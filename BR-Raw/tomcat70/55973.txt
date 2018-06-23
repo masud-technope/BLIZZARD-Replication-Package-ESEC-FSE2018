@@ -1,0 +1,68 @@
+55973 – Failure to parse MergedWebXml when validation is enabled in Jasper
+See e-mail on dev@:
+"[7.0.x] Document is invalid: no grammar found.
+for MergedWebXml in Jasper"
+http://markmail.org/message/jbnbmezbdegoufm5
+This issue affects the current TC7 code (7.0.51-dev), since the following commit: http://svn.apache.org/r1552826
+It does not affect 7.0.50.
+(The error is generated internally, but the list of error is not checked, so it is effectively ignored).
+Steps to reproduce:
+1.
+Enable validation, by adding the following line to conf/catalina.properties
+org.apache.catalina.STRICT_SERVLET_COMPLIANCE=true
+2.
+Set JAVA_HOME variable to point a Java 6 JDK.
+I am using 6u45.
+3.
+Start Tomcat
+4.
+Go to http://localhost:8080/
+Expected: index.jsp of the ROOT web application
+Actual: Error 500, with the following message in localhost.DATE.log file:
+08.01.2014 1:20:11 org.apache.catalina.core.StandardWrapperValve invoke
+SEVERE: Servlet.service() for servlet [jsp] in context with path [] threw exception [org.apache.jasper.JasperException: XML parsing error on file org.apache.tomcat.util.scan.MergedWebXml: (line 2, col 9)] with root cause
+org.xml.sax.SAXParseException: Document is invalid: no grammar found.
+at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:131)
+at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:384)
+at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:250)
+at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3104)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:921)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:647)
+at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:511)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:808)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:119)
+at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:232)
+at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:284)
+at org.apache.jasper.xmlparser.ParserUtils.parseXMLDocument(ParserUtils.java:105)
+at org.apache.jasper.compiler.JspConfig.processWebDotXml(JspConfig.java:95)
+at org.apache.jasper.compiler.JspConfig.init(JspConfig.java:243)
+at org.apache.jasper.compiler.JspConfig.findJspProperty(JspConfig.java:302)
+at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:114)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:353)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:340)
+at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:657)
+at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:357)
+at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:390)
+at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:334)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:100)
+at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:409)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1044)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:607)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:313)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+at java.lang.Thread.run(Thread.java:662)

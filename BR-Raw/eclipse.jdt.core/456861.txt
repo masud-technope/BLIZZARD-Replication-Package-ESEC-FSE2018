@@ -1,0 +1,74 @@
+Bug 456861 – [recovery] NPE in RecoveryScanner since Mars M4
+I get a NullPointerException during compilation of a class that has a syntax error.
+This happens since Mars M4, previous milestone releases were fine.
+Here is a code snippet that reproducibly triggers the error
+public class Test {
+public void foo() {
+String s1 = "";
+s1.;
+}
+}
+Subsequently, the error log is spammed with the same error when hovering over the highlighted syntax error.
+This also breaks a lot of our tests in our build.
+One example of a test class with failures is at http://git.eclipse.org/c/recommenders/org.eclipse.recommenders.git/tree/tests/org.eclipse.recommenders.completion.rcp.tests/src/org/eclipse/recommenders/completion/rcp/it/RecommendersCompletionContextTest.xtend
+Stacktrace for the error:
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.parser.RecoveryScanner.insertTokenAhead(RecoveryScanner.java:100)
+at org.eclipse.jdt.internal.compiler.parser.Parser.consumeLocalVariableDeclarationStatement(Parser.java:4868)
+at org.eclipse.jdt.internal.compiler.parser.Parser.consumeRule(Parser.java:6589)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:11111)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parseStatements(Parser.java:11716)
+at org.eclipse.jdt.internal.compiler.parser.Parser$1MethodVisitor.endVisitMethod(Parser.java:12015)
+at org.eclipse.jdt.internal.compiler.parser.Parser$1MethodVisitor.endVisit(Parser.java:12001)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.traverse(MethodDeclaration.java:358)
+at org.eclipse.jdt.internal.compiler.parser.Parser.recoverStatements(Parser.java:12109)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:11174)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:11460)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.parseStatements(MethodDeclaration.java:192)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.parseMethods(TypeDeclaration.java:873)
+at org.eclipse.jdt.internal.compiler.parser.Parser.getMethodBodies(Parser.java:10149)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1159)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:689)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1183)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:809)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider$1.run(ASTProvider.java:535)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.createAST(ASTProvider.java:528)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.getAST(ASTProvider.java:471)
+at org.eclipse.jdt.ui.SharedASTProvider.getAST(SharedASTProvider.java:128)
+at org.eclipse.jdt.internal.ui.text.correction.AssistContext.getASTRoot(AssistContext.java:119)
+at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:221)
+at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getCompletionProposals(ProblemHover.java:199)
+at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover$AnnotationInformationControl.deferredCreateContent(AbstractAnnotationHover.java:285)
+at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover$AnnotationInformationControl.setInput(AbstractAnnotationHover.java:186)
+at org.eclipse.jface.text.AbstractInformationControlManager.internalShowInformationControl(AbstractInformationControlManager.java:1181)
+at org.eclipse.jface.text.AbstractInformationControlManager.presentInformation(AbstractInformationControlManager.java:1150)
+at org.eclipse.jface.text.AbstractHoverInformationControlManager.presentInformation(AbstractHoverInformationControlManager.java:902)
+at org.eclipse.jface.text.TextViewerHoverManager.doPresentInformation(TextViewerHoverManager.java:243)
+at org.eclipse.jface.text.TextViewerHoverManager$5.run(TextViewerHoverManager.java:233)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:136)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3983)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3660)
+at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1151)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:337)
+at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1032)
+at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:148)
+at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:648)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:337)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:592)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:138)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:380)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:235)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:483)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:648)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1438)

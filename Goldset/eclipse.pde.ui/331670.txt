@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.launching/src/org/eclipse/pde/launching/AbstractPDELaunchConfiguration.java
+ui/org.eclipse.pde.launching/src/org/eclipse/pde/internal/launching/launcher/LauncherUtils.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/LauncherUtilsStatusHandler.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.launching/src/org/eclipse/pde/launching/JUnitLaunchConfigurationDelegate.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java

@@ -1,0 +1,2 @@
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/provider/xmpp/identity/XMPPID.java
+tests/bundles/org.eclipse.ecf.tests.presence/src/org/eclipse/ecf/tests/presence/IDCreateTest.java

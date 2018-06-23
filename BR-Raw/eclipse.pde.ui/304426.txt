@@ -1,0 +1,29 @@
+Bug 304426 – Regression: Cannot "install into host" with I20100302-0800
+Build ID: Eclipse SDK I20100302-0800 on WinXP SP2 / Sun Jdk 1.6.0_16
+I cannot Export > Deployable Plugins : Install into Host any more.
+Unfortunately, this is currently blocking my testing since I don't know how else I would get a debuggee to run.
+I know that this did work with I20100217-1031.
+Here is the error I get:
+An internal error occurred during: "Install Job".
+Parse error in string "requiredCapabilities.exists(rq | rq ~= $0 && rq.name == $1 && rq.range == $2": Unexpeced end of expression at position 76
+and here is the backtrace from errorlog:
+org.eclipse.equinox.p2.metadata.expression.ExpressionParseException: Parse error in string "requiredCapabilities.exists(rq | rq ~= $0 && rq.name == $1 && rq.range == $2": Unexpeced end of expression at position 76
+at org.eclipse.equinox.internal.p2.metadata.expression.parser.ExpressionParser.syntaxError(ExpressionParser.java:633)
+at org.eclipse.equinox.internal.p2.metadata.expression.parser.ExpressionParser.syntaxError(ExpressionParser.java:626)
+at org.eclipse.equinox.internal.p2.metadata.expression.parser.ExpressionParser.assertToken(ExpressionParser.java:390)
+at org.eclipse.equinox.internal.p2.ql.parser.QLParser.parseLambdaDefinition(QLParser.java:290)
+at org.eclipse.equinox.internal.p2.metadata.expression.parser.ExpressionParser.parseCollectionRHS(ExpressionParser.java:261)
+at org.eclipse.equinox.internal.p2.ql.parser.QLParser.parseCollectionRHS(QLParser.java:216)
+at org.eclipse.equinox.internal.p2.metadata.expression.parser.ExpressionParser.parseCollectionExpression(ExpressionParser.java:239)
+at org.eclipse.equinox.internal.p2.metadata.expression.parser.ExpressionParser.parseNot(ExpressionParser.java:223)
+at org.eclipse.equinox.internal.p2.metadata.expression.parser.ExpressionParser.parseBinary(ExpressionParser.java:159)
+at org.eclipse.equinox.internal.p2.metadata.expression.parser.ExpressionParser.parseAnd(ExpressionParser.java:145)
+at org.eclipse.equinox.internal.p2.metadata.expression.parser.ExpressionParser.parseOr(ExpressionParser.java:131)
+at org.eclipse.equinox.internal.p2.ql.parser.QLParser.parseCondition(QLParser.java:62)
+at org.eclipse.equinox.internal.p2.metadata.expression.parser.ExpressionParser.parse(ExpressionParser.java:94)
+at org.eclipse.equinox.p2.metadata.expression.ExpressionUtil.parse(ExpressionUtil.java:63)
+at org.eclipse.equinox.p2.query.ExpressionMatchQuery.<init>(ExpressionMatchQuery.java:38)
+at org.eclipse.equinox.p2.query.QueryUtil.createMatchQuery(QueryUtil.java:347)
+at org.eclipse.pde.internal.ui.build.RuntimeInstallJob.createInstallableUnitPatch(RuntimeInstallJob.java:203)
+at org.eclipse.pde.internal.ui.build.RuntimeInstallJob.run(RuntimeInstallJob.java:142)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)

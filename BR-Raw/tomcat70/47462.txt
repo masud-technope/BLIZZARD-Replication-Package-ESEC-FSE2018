@@ -1,0 +1,60 @@
+47462 – The annotation doesn't become effective.(metadata-complete="false" is not effective.)
+Even if "false" is set to metadata-complete,
+the annotation doesn't become effective.
+To invalidate the annotation by all the Web applications of Tomcat,
+metadata-complete of conf/web.xml is set to "true".
+[conf/web.xml]
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+version="2.5"
+metadata-complete="true"
+>
+.....
+</web-app>
+To make the annotation of Web application (testWebApp) effective,
+metadata-complete of webapps/testWebApp/WEB-INF/web.xml is set to "false".
+[webapps/testWebApp/WEB-INF/web.xml]
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+version="2.5"
+metadata-complete="false">
+....
+</web-app>
+However, testWebApp doesn't make the annotation effective.
+Because WebRuleSet#IgnoreAnnotationsRule#begin is as follows.
+When metadata-complete is "false", context.setIgnoreAnnotations(false) is not invoked.
+[WebRuleSet#IgnoreAnnotationsRule#begin]
+final class IgnoreAnnotationsRule extends Rule {
+public IgnoreAnnotationsRule() {
+}
+public void begin(String namespace, String name, Attributes attributes)
+throws Exception {
+Context context = (Context) digester.peek(digester.getCount() - 1);
+String value = attributes.getValue("metadata-complete");
+if ("true".equals(value)) {
+context.setIgnoreAnnotations(true);
+}
+if (digester.getLogger().isDebugEnabled()) {
+digester.getLogger().debug
+(context.getClass().getName() + ".setIgnoreAnnotations( " +
+context.getIgnoreAnnotations() + ")");
+}
+}
+}
+I think that the following patches are necessary.
+Index: java/org/apache/catalina/startup/WebRuleSet.java
+===================================================================
+--- java/org/apache/catalina/startup/WebRuleSet.java	(revision 763870)
++++ java/org/apache/catalina/startup/WebRuleSet.java	(working copy)
+@@ -848,6 +848,8 @@
+String value = attributes.getValue("metadata-complete");
+if ("true".equals(value)) {
+context.setIgnoreAnnotations(true);
++        } else if ("false".equals(value)) {
++            context.setIgnoreAnnotations(false);
+}
+if (digester.getLogger().isDebugEnabled()) {
+digester.getLogger().debug
+Best regards.

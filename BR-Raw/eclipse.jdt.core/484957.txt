@@ -1,0 +1,16 @@
+Bug 484957 – [formatter] Extra blank lines between consecutive javadoc comments
+Based on forum thread https://www.eclipse.org/forums/index.php/t/1070825/
+Some users put multiple javadoc comments on a single element to create some king of decoration, for example:
+/*********************/
+/** Something...
+  ***/
+/*********************/
+public class Test {
+}
+Now when formatter needs to insert some blank lines before such an element, they go between those comments:
+/*********************/
+/** Something...
+  ***/
+/*********************/
+public class Test {
+}

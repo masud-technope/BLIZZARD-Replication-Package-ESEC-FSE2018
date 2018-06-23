@@ -1,0 +1,10 @@
+Bug 399792 – [1.8][dom ast] AST APIs should support casts with intersection types.
+BETA_JAVA8:
+The following is a legal construct in Java 8:
+interface I {
+void doit();
+}
+class X {
+Object o = (I & Serializable) () -> {};
+}
+AST/APIs need a new facility to capture the additional bounds.

@@ -1,0 +1,8 @@
+41327 – Jasper does'nt display the full path of the file in a 404 Not found error page
+When you try accessing a non-existent jsp page in a webapp, tomcat(jasper)
+doesnt display the full path of the file which was not found in the browser.
+example:
+Accessing a non-existent jsp page say a.jsp with this url
+http://localhost:8080/jsp-examples/a.jsp would return a 404 Not Found error page
+which displays "/a.jsp not found".
+Rather it should be "/jsp-examples/a.jsp not found".

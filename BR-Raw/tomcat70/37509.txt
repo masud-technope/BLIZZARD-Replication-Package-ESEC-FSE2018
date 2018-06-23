@@ -1,0 +1,30 @@
+37509 – ClassLoaderLogManager remove '\n' at the end of logging.properties values
+The method ClassLoaderLogManager.replace(String) that is in charge of replacing
+system properties at the begining of the property also modify the end of the
+property due to a call to trim.
+This implies that Logger/Handler/Formatter that relies on properties endding
+with some spases (including '\n') will have a different behaviour with JDK
+LogManger and tomcat ClassLoaderLogManager
+a modified verstion of this method could be:
+protected String replace(String str) {
+// start modification
+//        String result = str.trim();  // commented out
+int len = str.length();
+int st = 0;
+while ((st < len) && (str.charAt(st) <= ' ')) {
+st++;
+}
+String result = (st > 0) ? str.substring(st) : str;
+// end modification
+if (result.startsWith("${")) {
+int pos = result.indexOf('}');
+if (pos != -1) {
+String propName = result.substring(2, pos);
+String replacement = System.getProperty(propName);
+if (replacement != null) {
+result = replacement + result.substring(pos + 1);
+}
+}
+}
+return result;
+}

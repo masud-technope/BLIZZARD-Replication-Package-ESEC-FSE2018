@@ -1,0 +1,28 @@
+Bug 173791 – PDE Tools > Organize Manifest... incorrectly identifes an externalized Bundle-Category value as unused
+Using 3.3 M5
+The PDE Tools > Organize Manifest...
+tool incorrectly identifes an externalized Bundle-Category value as unused, and consequently removes it from the properties file.
+ This is not the expected behavior.
+Steps to Reproduce:
+1.
+ Create a Plug-in Project.
+2.
+ Open the project's META-INF/MANIFEST.MF.
+ Add the follow OSGi headers:
+Bundle-Localization: plugin
+Bundle-Category: %category
+3.
+ If necessary, add a plugin.properties file to the root of the project.
+4.
+ Add the following property to the plugin.properties file:
+category=Test
+5.
+ Select the project in the Package Explorer, and organize its manifest by
+choosing PDE Tools > Organize Manifest...
+from the context menu.
+6.
+ Check the checkbox labeled "Remove unused keys from plug-in's properties
+file" and then click the "Finish" button.
+7.
+ Go to the plugin.properties file to find that the category propery has been
+removed.

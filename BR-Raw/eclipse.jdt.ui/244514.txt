@@ -1,0 +1,3 @@
+Bug 244514 – [package explorer] PackageExplorerContentProvider.executeRunnables(Collection) might change event order
+R3.4.
+[package explorer] PackageExplorerContentProvider.executeRunnables(Collection) might change event order because it runs stuff in the UI thread even if there are other events pending.

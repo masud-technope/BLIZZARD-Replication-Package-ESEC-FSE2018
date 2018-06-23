@@ -1,0 +1,4 @@
+java/org/apache/catalina/loader/LocalStrings.properties
+java/org/apache/catalina/loader/LocalStrings_es.properties
+webapps/docs/changelog.xml
+java/org/apache/catalina/loader/WebappClassLoaderBase.java

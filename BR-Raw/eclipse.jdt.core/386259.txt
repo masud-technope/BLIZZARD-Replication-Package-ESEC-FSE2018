@@ -1,0 +1,11 @@
+Bug 386259 – Cast on MethodHandle#invoke(..) wrongly marked as unnecessary
+Code example
+------------
+* before save:
+MethodHandle mh = lookup.findVirtual(instance.getClass(), "toString", MethodType.methodType(String.class));
+String actual = (String) mh.invoke(instance);
+* after save:
+MethodHandle mh = lookup.findVirtual(instance.getClass(), "toString", MethodType.methodType(String.class));
+String actual = mh.invoke(instance);
+This will cause a compilation error, mh.invoke returns an java.lang.Object and must be casted to String.
+When Save Action "remove unnecessary casts" is enabled the cast to String is removed even though the cast is necessary.

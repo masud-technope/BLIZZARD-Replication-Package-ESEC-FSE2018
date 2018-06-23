@@ -1,0 +1,28 @@
+Bug 427367 – [1.8][compiler] Produces bad classfile format for unresolved type in annotation value
+The produced classfile for this CU is problematic:
+package bug.imports.test;
+import java.lang.annotation.*;
+@Target(ElementType.TYPE_USE)
+@interface Ann {
+Thread.State value() default Thread.State.NEW;
+int value2() default 1;
+}
+public class BadClassfile {
+public void foo003(
+@Ann(value = XXThread.State.BLOCKED, value2 = 42) Object o
+) {}
+}
+The search index says:
+!MESSAGE The Java indexing could not index /zz1.8/bin/bug/imports/test/BadClassfile.class.
+This .class file doesn't follow the class file format specification.
+Please report this issue against the .class file vendor
+When I locate the BadClassfile.class file in the Navigator view and then try to open it, the disassembler fails here:
+java.lang.ArrayIndexOutOfBoundsException: 659
+at org.eclipse.jdt.internal.core.util.ClassFileStruct.u1At(ClassFileStruct.java:52)
+at org.eclipse.jdt.internal.core.util.ExtendedAnnotation.<init>(ExtendedAnnotation.java:112)
+at org.eclipse.jdt.internal.core.util.RuntimeInvisibleTypeAnnotationsAttribute.<init>(RuntimeInvisibleTypeAnnotationsAttribute.java:55)
+at org.eclipse.jdt.internal.core.util.MethodInfo.<init>(MethodInfo.java:128)
+at org.eclipse.jdt.internal.core.util.ClassFileReader.<init>(ClassFileReader.java:238)
+at org.eclipse.jdt.internal.core.util.Disassembler.disassemble(Disassembler.java:261)
+at org.eclipse.jdt.internal.ui.javaeditor.ClassFileEditor$SourceAttachmentForm.updateCodeView(ClassFileEditor.java:410)
+...

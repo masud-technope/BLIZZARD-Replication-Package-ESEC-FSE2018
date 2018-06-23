@@ -1,0 +1,17 @@
+Bug 274765 – [target] Cancelling resolution after editor closed raises assertion failure
+Created attachment 134189 [details]
+Assertion failure
+Build ID: I20090430-2300
+Steps To Reproduce:
+1.
+Create new target defn
+2.
+Add something from the Galileo repo, resolve began running in the background
+3.
+While resolving, I gave up and closed the editor (experienced bug 274694)
+4.
+Resolve was still running so I clicked cancel in the progress view.
+5.
+Got an error dialog: "assertion failed: ContentViewer must have a content provider when input is set".
+See attached.
+No stack in the log.

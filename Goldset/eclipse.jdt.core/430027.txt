@@ -1,0 +1,4 @@
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/LambdaExpression.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/LambdaMethod.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/Member.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/hierarchy/HierarchyResolver.java

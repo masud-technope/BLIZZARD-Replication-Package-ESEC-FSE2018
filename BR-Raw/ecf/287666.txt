@@ -1,0 +1,3 @@
+Bug 287666 – [releng][filetransfer] Removed javax.microedition import
+Buckminster Build fails with "The import javax.microedition cannot be resolved".
+Thus removed import of javax.microedition by replacing iHTTPConnection.HTTP_NOT_FOUND with "404".

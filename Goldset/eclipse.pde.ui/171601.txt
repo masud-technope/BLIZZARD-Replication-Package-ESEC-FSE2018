@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/SourceViewerConfigurationFactory.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/text/ColorManager.java

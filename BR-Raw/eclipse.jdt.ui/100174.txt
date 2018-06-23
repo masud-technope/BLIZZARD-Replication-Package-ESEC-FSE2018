@@ -1,0 +1,4 @@
+Bug 100174 – [preferences] New link on Java Editor pref page does not honor dialog font
+I20050615-0010
+Omission when fixing bug 99714: the new link on the Java editor preference page
+does not honor the dialog font.

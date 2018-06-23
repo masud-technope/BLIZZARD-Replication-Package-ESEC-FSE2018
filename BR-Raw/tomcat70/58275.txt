@@ -1,0 +1,16 @@
+58275 – TLS prefixed ciphers are discarded with IBM JRE
+Regarding IBM JRE ciphersuites, below IBM documentation says that
+https://www-01.ibm.com/support/knowledgecenter/SSYKE2_7.0.0/com.ibm.java.security.component.71.doc/security-component/jsse2Docs/ciphersuites.html
++++++++
+Note: In the following list, the string "SSL" is interchangeable with "TLS" and vice versa.
+For example, where SSL_RSA_WITH_AES_128_CBC_SHA is specified, TLS_RSA_WITH_AES_128_CBC_SHA also applies.
+++++++++
+However if I set TLS prefixed ciphers using the setCiphers method of org.apache.coyote.http11.Http11Protocol object, it is not taking effect.
+I see the following bugzilla thread which says
+https://bz.apache.org/bugzilla/show_bug.cgi?id=57718
++++
+IBM uses SSL_XXX for all it ciphers although it will accept TLS_XXX.
+When Tomcat compares the available ciphers against the requested ciphers it can't tell that SSL_XXX and TLS_XXX are the same.
++++++++++++
+My request here is to see we have some option to avoid this check of cipher list against the available ciphers?.
+If not, can we have such option, as a JVM parameter or something, so that we can make use of it to allow TLS prefixed ciphers with IBM JRE?

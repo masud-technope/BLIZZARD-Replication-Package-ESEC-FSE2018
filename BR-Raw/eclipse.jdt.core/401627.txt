@@ -1,0 +1,7 @@
+Bug 401627 – [1.8][testing] RunAllJava8Tests should run TestAll's in 1.8 mode (only)
+BETA_JAVA8
+----------
+The smoke test RunAllJava8Tests should also run RunCompilerTests, but only
+in 1.8 mode.
+We are missing some failures otherwise sometimes, which cause
+needless disruption to other committers.

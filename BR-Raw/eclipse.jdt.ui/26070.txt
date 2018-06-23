@@ -1,0 +1,8 @@
+Bug 26070 – [code manipulation] [dcr] toString() builder wizard
+It would be nice to have a wizard that acts similar to the Generate Getter and
+Setter wizard in that a user is presented with a GUI that displays all of the
+fields associated with a class.
+ If a field is unchecked, the field would be
+removed from the toString().
+ It would also be nice to be able to control the
+order of the fields.

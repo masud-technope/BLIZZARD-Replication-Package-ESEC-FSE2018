@@ -1,0 +1,11 @@
+Bug 382355 – [1.8][compiler] Compiler accepts erroneous default method
+BETA_JAVA8:
+The following program should be rejected since an default method is never
+allowed to be override-equivalent with a public instance method of the
+class Object (as it is pointless since it will never be chosen for dispatch
+ever).
+It is not rejected as of now.
+//----------
+interface I {
+public String toString () default { return "";}
+}

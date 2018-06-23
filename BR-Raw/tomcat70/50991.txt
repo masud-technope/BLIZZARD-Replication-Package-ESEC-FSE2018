@@ -1,0 +1,14 @@
+50991 – Data source is closed before contextDestroyed is executed. tomcat 7.0.11
+In my ServletContextListener contextDestroyed method I do a database update to clean up a table.
+ In tomcat 7.0.11, I get the error (see below) when I shutdown tomcat.
+Mar 28, 2011 10:47:57 AM org.apache.catalina.core.ApplicationContext log
+> INFO: ContextListener: contextDestroyed()
+> Mar 28, 2011 10:47:57 AM org.apache.catalina.core.StandardContext listenerStop
+> SEVERE: Exception sending context destroyed event to listener instance of class org.ycmi.listeners.contextListener
+java.lang.RuntimeException: java.sql.SQLException: Data source is closed
+at org.ycmi.prot.ypresults.db.dbUtils.update(dbUtils.java:495)
+at org.ycmi.listeners.contextListener.contextDestroyed(contextListener.java:58)
+This looks like the DataSource is being closed before contextDestroyed is run so I can't do the clean up.
+This wasn't a problem in tomcat 6.
+As noted by Mark Thomas, this may be related to
+https://issues.apache.org/bugzilla/show_bug.cgi?id=25060

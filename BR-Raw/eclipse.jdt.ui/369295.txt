@@ -1,0 +1,23 @@
+Bug 369295 – [extract method] Extract code in a method that returns generic type causes compilation error
+Build Identifier: Version: 3.7.1 Build id: I20110613-1736
+Extract method refactoring introduces incorrect return type for the extracted method.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Mark "toExtract(list)" in the example below
+2.
+Perform ExtractMethod refactoring
+3.
+The resulting code is not compilable
+class ExtractMethod {
+class C {
+void m() {
+}
+}
+<T extends Comparable<? super T>> void method(List<T> list) {
+toExtract(list).m();
+}
+static <T extends Comparable<? super T>> C toExtract(List<T> list) {
+return null;
+}
+}

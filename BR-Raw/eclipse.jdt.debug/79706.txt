@@ -1,0 +1,9 @@
+Bug 79706 – Detail formatter fails in simple case
+build I20041124-0800
+- set a breakpoint on MenuManager.isVisible()
+- start the IDE
+- when the breakpoint is hit, add a detail formatter for MenuManager that has
+just: getId()
+- you get:
+Detail formatter error: Unable to retrieve the correct enclosing instance of 'this'
+At this point, there are no nested classes involved.

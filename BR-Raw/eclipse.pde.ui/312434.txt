@@ -1,0 +1,34 @@
+Bug 312434 – NPE in SourceEntryErrorReporter.validate(..)
+Created attachment 167930 [details]
+.classpath
+HEAD, looks like this got broken by bug 297483.
+Steps:
+- create a new Plug-in project, all defaults
+- replace the .classpath file with the attached file
+- clean and build the project
+=> Error dialog, log entry:
+!ENTRY org.eclipse.core.resources 4 75 2010-05-11 16:25:38.388
+!MESSAGE Errors occurred during the build.
+!SUBENTRY 1 org.eclipse.pde.core 4 75 2010-05-11 16:25:38.388
+!MESSAGE Errors running builder 'Plug-in Manifest Builder' on project 'Bug'.
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.pde.internal.core.builders.SourceEntryErrorReporter.validate(SourceEntryErrorReporter.java:405)
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validateBuild(BuildErrorReporter.java:233)
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validate(BuildErrorReporter.java:139)
+at org.eclipse.pde.internal.core.builders.ErrorReporter.validateContent(ErrorReporter.java:127)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.validateBuildProperties(ManifestConsistencyChecker.java:316)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.validateProject(ManifestConsistencyChecker.java:231)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.build(ManifestConsistencyChecker.java:157)
+at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:629)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:172)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:203)
+at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:255)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:258)
+at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:311)
+at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:343)
+at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:144)
+at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:242)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)

@@ -1,0 +1,4 @@
+Bug 229791 – Only save version info in launch configurations if needed
+We should only save version information in launch configurations if the information is really needed.
+i.e., there are more than one version of the plug-in...
+otherwise, we should always revert to the old behavior (just bundle)

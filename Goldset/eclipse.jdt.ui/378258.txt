@@ -1,0 +1,2 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/hover/BestMatchHover.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/hover/JavaInformationProvider.java

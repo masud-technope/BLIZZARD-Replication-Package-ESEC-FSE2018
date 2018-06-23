@@ -1,0 +1,5 @@
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/DiscardWorkingCopyOperation.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/ClassFile.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/BecomeWorkingCopyOperation.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ASTParser.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/Util.java

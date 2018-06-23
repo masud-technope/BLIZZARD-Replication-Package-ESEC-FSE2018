@@ -1,0 +1,4 @@
+Bug 457926 – [JUnit] Update to JUnit 4.12
+Junit 4.12 was released, it would be good to update the version of junit in jdt to the latest version.
+Upstream's release notes:
+https://github.com/junit-team/junit/blob/master/doc/ReleaseNotes4.12.md

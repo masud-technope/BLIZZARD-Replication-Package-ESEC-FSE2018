@@ -1,0 +1,8 @@
+ui/org.eclipse.pde.launching/src/org/eclipse/pde/launching/AbstractPDELaunchConfiguration.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/launcher/ConfigurationTab.java
+ui/org.eclipse.pde.launching/src/org/eclipse/pde/internal/launching/launcher/LaunchConfigurationHelper.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/P2Utils.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/SoftwareInstallBlock.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.launching/src/org/eclipse/pde/launching/IPDELauncherConstants.java

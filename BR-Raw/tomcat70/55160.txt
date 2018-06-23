@@ -1,0 +1,16 @@
+55160 – NIO connectionUploadTimeout can't work
+when i configure disableUploadTimeout="false" and connectionTimeout="20000" ,connectionUploadTimeout="30000" .
+I found the connectionUploadTimeout doesn't work, because the code in internalNioInputBuffer.readSocket():
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+try {
+NioEndpoint.KeyAttachment att = (NioEndpoint.KeyAttachment)socket.getAttachment(false);
+if ( att == null ) throw new IOException("Key must be cancelled.");
+nRead = pool.read(socket.getBufHandler().getReadBuffer(),socket,selector,att.getTimeout());
+} catch ( EOFException eof ) {
+nRead = -1;
+} finally {
+if ( selector != null ) pool.put(selector);
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+att.getTimeout() is the connectionTimeout ,not the connectionUploadTimeout.
+so , in NioBlockingSelector.read(), the readTimeout is connectionTimeout

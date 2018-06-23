@@ -1,0 +1,93 @@
+Bug 395691 – [search] NPE when trying to search for a method declaration
+3.8.1 M20121003-1000
+What steps will reproduce the problem?
+1.
+Ctrl + H
+2.
+Java Search
+3.
+get*raw*
+4.
+Method, Declarations, Source, Workspace
+These are the exact steps, however I wasn't able to reproduce it once I closed and reopened the dialog.
+While it was open I was hit by the exception each time I pressed 'Search'.
+-- Error Details --
+Date: Tue Dec 04 12:43:54 CET 2012
+Message: Unhandled event loop exception
+Severity: Error
+Product: Eclipse SDK 3.8.1.v201210031000 (org.eclipse.sdk.ide)
+Plugin: org.eclipse.ui
+Session Data:
+eclipse.buildId=M20121003-1000
+java.version=1.7.0_07
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=pl_PL
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+Exception Stack Trace:
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.ui.viewsupport.JavaElementLabelComposer.appendElementLabel(JavaElementLabelComposer.java:258)
+at org.eclipse.jdt.ui.JavaElementLabels.getElementLabel(JavaElementLabels.java:518)
+at org.eclipse.jdt.ui.JavaElementLabels.getElementLabel(JavaElementLabels.java:491)
+at org.eclipse.jdt.internal.ui.search.JavaSearchScopeFactory.getSelectionScopeDescription(JavaSearchScopeFactory.java:254)
+at org.eclipse.jdt.internal.ui.search.JavaSearchScopeFactory.getSelectionScopeDescription(JavaSearchScopeFactory.java:243)
+at org.eclipse.jdt.internal.ui.search.JavaSearchPage.performNewSearch(JavaSearchPage.java:331)
+at org.eclipse.jdt.internal.ui.search.JavaSearchPage.performAction(JavaSearchPage.java:298)
+at org.eclipse.search.internal.ui.SearchDialog.performAction(SearchDialog.java:476)
+at org.eclipse.search.internal.ui.util.ExtendedDialogWindow.buttonPressed(ExtendedDialogWindow.java:164)
+at org.eclipse.jface.dialogs.Dialog$2.widgetSelected(Dialog.java:624)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:248)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4169)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3758)
+at org.eclipse.jface.window.Window.runEventLoop(Window.java:825)
+at org.eclipse.jface.window.Window.open(Window.java:801)
+at org.eclipse.search.internal.ui.OpenSearchDialogAction.run(OpenSearchDialogAction.java:54)
+at org.eclipse.search.internal.ui.OpenSearchDialogAction.run(OpenSearchDialogAction.java:45)
+at org.eclipse.ui.internal.handlers.ActionDelegateHandlerProxy.execute(ActionDelegateHandlerProxy.java:289)
+at org.eclipse.core.commands.Command.executeWithChecks(Command.java:499)
+at org.eclipse.core.commands.ParameterizedCommand.executeWithChecks(ParameterizedCommand.java:508)
+at org.eclipse.ui.internal.handlers.HandlerService.executeCommand(HandlerService.java:169)
+at org.eclipse.ui.internal.keys.WorkbenchKeyboard.executeCommand(WorkbenchKeyboard.java:468)
+at org.eclipse.ui.internal.keys.WorkbenchKeyboard.press(WorkbenchKeyboard.java:786)
+at org.eclipse.ui.internal.keys.WorkbenchKeyboard.processKeyEvent(WorkbenchKeyboard.java:885)
+at org.eclipse.ui.internal.keys.WorkbenchKeyboard.filterKeySequenceBindings(WorkbenchKeyboard.java:567)
+at org.eclipse.ui.internal.keys.WorkbenchKeyboard.access$3(WorkbenchKeyboard.java:508)
+at org.eclipse.ui.internal.keys.WorkbenchKeyboard$KeyDownFilter.handleEvent(WorkbenchKeyboard.java:123)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+at org.eclipse.swt.widgets.Display.filterEvent(Display.java:1262)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1052)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1077)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1062)
+at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1104)
+at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1100)
+at org.eclipse.swt.widgets.Widget.wmChar(Widget.java:1521)
+at org.eclipse.swt.widgets.Control.WM_CHAR(Control.java:4640)
+at org.eclipse.swt.widgets.Tree.WM_CHAR(Tree.java:5962)
+at org.eclipse.swt.widgets.Control.windowProc(Control.java:4528)
+at org.eclipse.swt.widgets.Tree.windowProc(Tree.java:5958)
+at org.eclipse.swt.widgets.Display.windowProc(Display.java:4989)
+at org.eclipse.swt.internal.win32.OS.DispatchMessageW(Native Method)
+at org.eclipse.swt.internal.win32.OS.DispatchMessage(OS.java:2546)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3756)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2701)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2665)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2499)
+at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:679)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:668)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:353)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:180)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:629)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1414)

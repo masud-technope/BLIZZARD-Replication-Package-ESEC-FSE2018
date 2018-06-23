@@ -1,0 +1,17 @@
+Bug 402259 – [1.8][compiler] NPE during overload resolution when there are syntax errors.
+BETA_JAVA8:
+The following program triggers an NPE: Noticing the missing semicolon after
+the return.
+// ----
+interface I {
+J foo();
+}
+interface J {
+void foo();
+}
+public class X {
+void foo(I i) {};
+public static void main(String[] args) {
+new X().foo(() -> { return () -> { return}; });
+}
+}

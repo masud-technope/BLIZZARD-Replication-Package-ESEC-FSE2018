@@ -1,0 +1,48 @@
+57047 – Occasional failure in TestWsWebSocketContainer.testSmallTextBufferClientTextMessage test
+This is a rare minor issue that I encountered when testing 7.0.56 release candidate.
+Platform: Windows 7, 32-bit JDK 6u45 + 7u67.
+I encountered it when running the whole testsuite.
+After that I did ~50 runs in a loop of this specific test with all 3 connectors with
+test.entry=org.apache.tomcat.websocket.TestWsWebSocketContainer
+test.entry.methods=testSmallTextBufferClientTextMessage
+The issue reproduced 2 times with NIO, 1 time with APR and 1 time with BIO - all from 50x3 connectors runs.
+Stacktraces are the same (it is websocket client's stacktrace, it does not depend on server side).
+This one is from running with NIO:
+[[[
+Testcase: testSmallTextBufferClientTextMessage took 2,587 sec
+Caused an ERROR
+java.util.concurrent.ExecutionException: java.io.IOException: Unable to write the complete message as the WebSocket connection has been closed
+java.io.IOException: java.util.concurrent.ExecutionException: java.io.IOException: Unable to write the complete message as the WebSocket connection has been closed
+at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendPartialString(WsRemoteEndpointImplBase.java:229)
+at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendString(WsRemoteEndpointImplBase.java:172)
+at org.apache.tomcat.websocket.WsRemoteEndpointBasic.sendText(WsRemoteEndpointBasic.java:37)
+at org.apache.tomcat.websocket.TestWsWebSocketContainer.doBufferTest(TestWsWebSocketContainer.java:256)
+at org.apache.tomcat.websocket.TestWsWebSocketContainer.testSmallTextBufferClientTextMessage(TestWsWebSocketContainer.java:156)
+Caused by: java.util.concurrent.ExecutionException: java.io.IOException: Unable to write the complete message as the WebSocket connection has been closed
+at org.apache.tomcat.websocket.FutureToSendHandler.get(FutureToSendHandler.java:102)
+at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendPartialString(WsRemoteEndpointImplBase.java:224)
+Caused by: java.io.IOException: Unable to write the complete message as the WebSocket connection has been closed
+at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:447)
+at org.apache.tomcat.websocket.WsSession.close(WsSession.java:418)
+at org.apache.tomcat.websocket.WsFrameClient.close(WsFrameClient.java:86)
+at org.apache.tomcat.websocket.WsFrameClient.access$300(WsFrameClient.java:26)
+at org.apache.tomcat.websocket.WsFrameClient$WsFrameClientCompletionHandler.completed(WsFrameClient.java:115)
+at org.apache.tomcat.websocket.WsFrameClient$WsFrameClientCompletionHandler.completed(WsFrameClient.java:100)
+at sun.nio.ch.Invoker.invokeUnchecked(Invoker.java:126)
+at sun.nio.ch.Invoker$2.run(Invoker.java:218)
+at sun.nio.ch.AsynchronousChannelGroupImpl$1.run(AsynchronousChannelGroupImpl.java:112)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at java.lang.Thread.run(Thread.java:745)
+]]]
+(The stack traces look a bit confusing, because they span Future and different threads.
+The main one is at the top, in "WsRemoteEndpointImplBase.sendPartialString()").
+My assessment
+==============
+I think that this is a variant of expected behaviour.
+The test case testSmallTextBufferClientTextMessage is essentially a call to
+{
+doBufferTest(true, false, true, false);
+}
+where 4th argument is pass:=false.
+It is expected to fail.

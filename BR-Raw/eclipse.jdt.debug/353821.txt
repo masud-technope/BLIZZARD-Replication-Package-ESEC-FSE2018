@@ -1,0 +1,12 @@
+Bug 353821 – Test failures in latest I-builds
+Created attachment 200853 [details]
+fix
+Unexpected compile errors in project.
+Expected 1, found 371
+junit.framework.AssertionFailedError: Unexpected compile errors in project.
+Expected 1, found 371
+at org.eclipse.jdt.debug.tests.ProjectCreationDecorator.testForUnexpectedErrorsInProject(ProjectCreationDecorator.java:425)
+at org.eclipse.jdt.debug.tests.AbstractDebugTest.runBare(AbstractDebugTest.java:1849)
+at org.eclipse.jdt.debug.tests.DebugSuite$1.run(DebugSuite.java:54)
+at java.lang.Thread.run(Thread.java:619)
+The problem is coming from how our bogus ProjectCreationDecorator is creating projects that some of the tests are expecting to be available when they run.

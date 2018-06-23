@@ -1,0 +1,11 @@
+Bug 55221 – Bug in comment mapper: Grabs next node's Javadoc
+20040318
+In the following code, the extended range of class A includes the Javadoc of
+class Test1.
+/**
+*/
+class A{
+}/**
+*/
+class Test1{
+}

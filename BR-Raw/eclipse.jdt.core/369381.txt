@@ -1,0 +1,1 @@
+Bug 369381 – [null][compiler] 'Adding potential null mark in unexpected state' assertion while compiling

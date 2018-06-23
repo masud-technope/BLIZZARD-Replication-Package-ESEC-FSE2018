@@ -1,0 +1,28 @@
+43470 – ClassCastException at org.apache.catalina.deploy.NamingResources
+NamingResources reads
+public void removeLocalEjb(String name) {
+entries.remove(name);
+ContextLocalEjb localEjb = null;
+synchronized (localEjbs) {
+localEjb = (ContextLocalEjb) ejbs.remove(name);
+}
+if (localEjb != null) {
+support.firePropertyChange("localEjb", localEjb, null);
+localEjb.setNamingResources(null);
+}
+}
+if should be
+public void removeLocalEjb(String name) {
+entries.remove(name);
+ContextLocalEjb localEjb = null;
+synchronized (localEjbs) {
+localEjb = (ContextLocalEjb) localEjbs.remove(name); // The error
+was in this line
+}
+if (localEjb != null) {
+support.firePropertyChange("localEjb", localEjb, null);
+localEjb.setNamingResources(null);
+}
+}
+Regards,
+lg

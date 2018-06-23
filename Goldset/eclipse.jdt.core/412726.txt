@@ -1,0 +1,4 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTConverter18Test.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ITypeBinding.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/RecoveredTypeBinding.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/TypeBinding.java

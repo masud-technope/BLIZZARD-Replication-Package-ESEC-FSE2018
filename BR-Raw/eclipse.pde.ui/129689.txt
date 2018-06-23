@@ -1,0 +1,37 @@
+Bug 129689 – Unable to add extra dependencies to an RCP project
+After creating an example eclipse RCP application everything runs great.
+If I add another, new, dependency, I have been using org.eclipse.ui.forms or org.hibernate.eclipse as examples (since this is when I first noticed the bugs I kept using them for testing) the application does noet start anymore.
+this is my log entry:
+!SESSION 2006-02-27 23:17:49.937 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.5.0_06
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=nl_BE
+Framework arguments:  -application test.application -pdelaunch
+Command-line arguments:  -application test.application -data C:\java\runtime-EclipseApplication -dev file:C:/java/workspace/.metadata/.plugins/org.eclipse.pde.core/Eclipse Application/dev.properties -pdelaunch -os win32 -ws win32 -arch x86
+!ENTRY org.eclipse.osgi 2006-02-27 23:17:50.468
+!MESSAGE Bundle initial@reference:file:../java/workspace/test/ [11] was not resolved.
+!SUBENTRY 1 org.eclipse.osgi 2006-02-27 23:17:50.468
+!MESSAGE Missing required bundle org.eclipse.ui.forms_0.0.0.
+!ENTRY org.eclipse.osgi 2006-02-27 23:17:50.468
+!MESSAGE Application error
+!STACK 1
+java.lang.RuntimeException: Application "test.application" could not be found in the registry.
+The applications available are: <NONE>.
+at org.eclipse.core.internal.runtime.PlatformActivator$1.run(PlatformActivator.java:216)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:376)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:163)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.core.launcher.Main.invokeFramework(Main.java:334)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:278)
+at org.eclipse.core.launcher.Main.run(Main.java:973)
+at org.eclipse.core.launcher.Main.main(Main.java:948)
+!ENTRY org.eclipse.osgi 2006-02-27 23:17:50.484
+!MESSAGE Bundle initial@reference:file:../java/workspace/test/ [11] was not resolved.
+!SUBENTRY 1 org.eclipse.osgi 2006-02-27 23:17:50.484
+!MESSAGE Missing required bundle org.eclipse.ui.forms_0.0.0.
+I was using eclipse wtp all-in-one and myeclipse, tried a 3.1.2 virgin eclipse, nothing changed, tried 3.2M5a, nothing changed, I can't do a decent rcp app at the moment on this machine anymore.
+I have to note that it did work until shortly, nothing major changed, only notable difference with my laptop is that it's an x64 machine with windows x64, I've google'd my *ss off but found nothing directly related to this.

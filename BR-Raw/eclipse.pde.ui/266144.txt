@@ -1,0 +1,6 @@
+Bug 266144 – [doc] Missing help topics in schema editor
+Build id: I20090224-0800
+1) Open an extension point schema editor
+2) Hit F1
+3) Try clicking all the "see also" links
+-> These links are all broken (missing content)

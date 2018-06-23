@@ -1,0 +1,39 @@
+Bug 10009 – Creating image descriptor registry on shutdown
+The JDIDebugUIPlugin is incorrectly triggering the creation of the image
+descriptor registry at shutdown.
+Current Java thread:
+at org.eclipse.swt.internal.motif.OS.XtOpenDisplay(Native Method)
+at org.eclipse.swt.widgets.Display.createDisplay(Display.java:442)
+at org.eclipse.swt.widgets.Display.create(Display.java:403)
+at org.eclipse.swt.graphics.Device.<init>(Device.java:104)
+at org.eclipse.swt.widgets.Display.<init>(Display.java:305)
+at org.eclipse.swt.widgets.Display.<init>(Display.java:302)
+at org.eclipse.swt.widgets.Display.getDefault(Display.java:679)
+at
+org.eclipse.jdt.internal.debug.ui.JDIDebugUIPlugin.getStandardDisplay
+(JDIDebugUIPlugin.java:305)
+at
+org.eclipse.jdt.internal.debug.ui.ImageDescriptorRegistry.<init>
+(ImageDescriptorRegistry.java:30)
+at
+org.eclipse.jdt.internal.debug.ui.JDIDebugUIPlugin.getImageDescriptorRegistry
+(JDIDebugUIPlugin.java:291)
+at
+org.eclipse.jdt.internal.debug.ui.JDIDebugUIPlugin.shutdown
+(JDIDebugUIPlugin.java:206)
+at
+org.eclipse.core.internal.plugins.PluginRegistry$2.run(PluginRegistry.java:268)
+at
+org.eclipse.core.internal.runtime.InternalPlatform.run
+(InternalPlatform.java:817)
+at
+org.eclipse.core.internal.plugins.PluginRegistry$1.visit
+(PluginRegistry.java:281)
+at
+org.eclipse.core.internal.plugins.PluginRegistry.accept(PluginRegistry.java:45)
+at
+org.eclipse.core.internal.plugins.PluginRegistry.shutdownPlugins
+(PluginRegistry.java:284)
+at
+org.eclipse.core.internal.plugins.PluginRegistry.shutdown
+(PluginRegistry.java:250)

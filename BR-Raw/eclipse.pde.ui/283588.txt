@@ -1,0 +1,4 @@
+Bug 283588 – [target] target editor help acting strange, possibly incorrect context hookup
+Clicking on the help button at the top right opens the dynamic help to the right page.
+ But if you click and hold (keeping the button depressed) a generic workbench help page comes up.
+ Also, if you have the dynamic help up for the editor, sometimes clicking on different things in the editor will open the same generic help page.

@@ -1,0 +1,23 @@
+49217 – Accepting java keyword in EL
+According to EL, the Whatever comes to the right of the dot operator must follow normal Java naming rules for identifiers.
+For example it must not be a Java Key word (Here the example is shown for int, which is a Java key word).
+// Java Bean
+package library;
+public class Book {
+private String title;
+public void setInt(String title) {
+this.title = title;
+}
+public String getInt() {
+return title;
+}
+}
+// JSP
+<%
+library.Book book = new library.Book();
+book.setInt("sample title");
+request.setAttribute("book", book);
+%>
+${book.int}
+//OUTPUT
+sample title

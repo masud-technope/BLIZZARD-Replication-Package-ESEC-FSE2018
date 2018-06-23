@@ -1,0 +1,15 @@
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/provider/jmdns/container/JMDNSDiscoveryContainer.java
+tests/bundles/org.eclipse.ecf.tests.provider.jmdns/META-INF/MANIFEST.MF
+tests/bundles/org.eclipse.ecf.tests.provider.jmdns/src/org/eclipse/ecf/tests/provider/jmdns/AllTests.java
+tests/bundles/org.eclipse.ecf.tests.provider.jmdns/src/org/eclipse/ecf/tests/provider/jmdns/JMDNSDiscoveryTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.jmdns/src/org/eclipse/ecf/tests/provider/jmdns/remoteservice/JMDNSRemoteServiceDiscoveryTest.java
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/discovery/ServiceProperties.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/provider/jmdns/container/JMDNSDiscoveryContainer.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/ServiceInfoComparator.java
+tests/bundles/org.eclipse.ecf.tests.provider.jmdns/src/org/eclipse/ecf/tests/provider/jmdns/JMDNSDiscoveryServiceTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.jmdns/src/org/eclipse/ecf/tests/provider/jmdns/remoteservice/JMDNSRemoteServiceDiscoveryTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/src/org/eclipse/ecf/tests/provider/discovery/CompositeServiceInfoComporator.java
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/src/org/eclipse/ecf/tests/provider/discovery/CompositeServiceInfoComporator.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/provider/jmdns/container/JMDNSDiscoveryContainer.java
+tests/bundles/org.eclipse.ecf.tests.provider.jmdns/src/org/eclipse/ecf/tests/provider/jmdns/JMDNSDiscoveryServiceTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.jmdns/src/org/eclipse/ecf/tests/provider/jmdns/remoteservice/JMDNSRemoteServiceDiscoveryTest.java

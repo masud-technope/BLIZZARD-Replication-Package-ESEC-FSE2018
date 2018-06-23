@@ -1,0 +1,9 @@
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/EditorTestHelper.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/ExtractInterfaceWizard.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/PullUpMemberPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/compare/JavaStructureDiffViewer.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/JavaEditor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/FilterTextControl.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/formatter/LineWrappingTabPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/CPListElement.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/ProjectsWorkbookPage.java

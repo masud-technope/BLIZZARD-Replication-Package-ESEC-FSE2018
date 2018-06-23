@@ -1,0 +1,3 @@
+Bug 497876 – remote exported configs can be String[] or Collection<String>
+Currently the code in RSA impl assumes that the type of the exporterSupportedConfigs edef property value assumes a type of String[].
+ It should allow Collection<String> and String in addition to String[].

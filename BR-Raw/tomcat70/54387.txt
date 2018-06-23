@@ -1,0 +1,32 @@
+54387 – Having servlets with same url should at least cause warning
+I've found this interesting "mal functioning" in a application where I just copied the mapping portion of web.xml for a new created servlet, but forgot to change de URI.
+Tomcat deployed the application without any warning, but when running the application only the last referenced servlet was working (like if the mapping of the first has been overwritten by the last in the XML file).
+I made additional tests using annotations in servlets, and the behavior of having more than one servlet with same mapping causes random access to one or another (I cannot determine a predictable way).
+In order to prevent breaking existing applications, I would like to have just a "big warning" in the log at startup and/or deployment of the application that have more than one servlet mapped to same URL.
+Examples of the problem:
+Example 1: Web.xml
+...
+<servlet>
+<servlet-name>PrintDacteServlet</servlet-name>
+<servlet-class>br.com.simfreteV1.web.PrintDacteServlet</servlet-class>
+</servlet>
+<servlet>
+<servlet-name>CotacaoReportServlet</servlet-name>
+<servlet-class>br.com.simfreteV1.web.CotacaoReportServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>PrintDacteServlet</servlet-name>
+<url-pattern>/secure/relatorios/Action</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+<servlet-name>CotacaoReportServlet</servlet-name>
+<url-pattern>/secure/relatorios/Action</url-pattern>
+</servlet-mapping>
+...
+Example 2: annotations in java servlet files
+@WebServlet(name = "PdfReportPrint", urlPatterns = {"/secure/relatorios/doReport"})
+public class PdfReportPrint extends AbstractBaseServlet {
+...
+@WebServlet(name = "PrintBoletoServlet", urlPatterns = {"/secure/relatorios/doReport"})
+public class PrintBoletoServlet extends HttpServlet {
+...

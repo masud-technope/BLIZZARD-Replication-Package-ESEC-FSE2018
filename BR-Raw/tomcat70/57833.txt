@@ -1,0 +1,69 @@
+57833 – NIO connector fails SSL handshake due to uppercase letters in keyAlias name
+Created attachment 32664 [details]
+Patch for fixing NIO connector SSL handshake exception due to uppercase letters in keyAlias
+If we create a SSL enabled NIO connector with keyAlias name containing mixed case of letters i.e.
+uppercase and lowercase, for instance, "externalCA" and try to connect to that port using SSL, then the handshake fails with following exception:
+====================================================
+FINE: Error during SSL handshake
+javax.net.ssl.SSLHandshakeException: no cipher suites in common
+at sun.security.ssl.Handshaker.checkThrown(Handshaker.java:1336)
+at sun.security.ssl.SSLEngineImpl.checkTaskThrown(SSLEngineImpl.java:519)
+at sun.security.ssl.SSLEngineImpl.writeAppRecord(SSLEngineImpl.java:1197)
+at sun.security.ssl.SSLEngineImpl.wrap(SSLEngineImpl.java:1169)
+at javax.net.ssl.SSLEngine.wrap(SSLEngine.java:469)
+at org.apache.tomcat.util.net.SecureNioChannel.handshakeWrap(SecureNioChannel.java:301)
+at org.apache.tomcat.util.net.SecureNioChannel.handshake(SecureNioChannel.java:175)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1715)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1698)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+at java.lang.Thread.run(Thread.java:745)
+Caused by: javax.net.ssl.SSLHandshakeException: no cipher suites in common
+at sun.security.ssl.Alerts.getSSLException(Alerts.java:192)
+at sun.security.ssl.SSLEngineImpl.fatal(SSLEngineImpl.java:1639)
+at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:281)
+at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:269)
+at sun.security.ssl.ServerHandshaker.chooseCipherSuite(ServerHandshaker.java:901)
+at sun.security.ssl.ServerHandshaker.clientHello(ServerHandshaker.java:629)
+at sun.security.ssl.ServerHandshaker.processMessage(ServerHandshaker.java:167)
+at sun.security.ssl.Handshaker.processLoop(Handshaker.java:901)
+at sun.security.ssl.Handshaker$1.run(Handshaker.java:841)
+at sun.security.ssl.Handshaker$1.run(Handshaker.java:839)
+at java.security.AccessController.doPrivileged(Native Method)
+at sun.security.ssl.Handshaker$DelegatedTask.run(Handshaker.java:1273)
+at org.apache.tomcat.util.net.SecureNioChannel.tasks(SecureNioChannel.java:285)
+at org.apache.tomcat.util.net.SecureNioChannel.handshakeUnwrap(SecureNioChannel.java:343)
+at org.apache.tomcat.util.net.SecureNioChannel.handshake(SecureNioChannel.java:193)
+...
+6 more
+Apr 16, 2015 8:55:00 PM org.apache.tomcat.util.net.NioEndpoint$Poller cancelledKey
+FINE: Failed to close socket
+java.nio.channels.ClosedChannelException
+at sun.nio.ch.SocketChannelImpl.ensureWriteOpen(SocketChannelImpl.java:265)
+at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:474)
+at org.apache.tomcat.util.net.SecureNioChannel.flush(SecureNioChannel.java:135)
+at org.apache.tomcat.util.net.SecureNioChannel.close(SecureNioChannel.java:370)
+at org.apache.tomcat.util.net.SecureNioChannel.close(SecureNioChannel.java:398)
+at org.apache.tomcat.util.net.NioEndpoint$Poller.cancelledKey(NioEndpoint.java:1115)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1767)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1698)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+at java.lang.Thread.run(Thread.java:745)
+======================================================
+Found out that the actual issue is not due to the mentioned exception message "no cipher suites in common" but instead the issue is due to the way X509KeyManager stores the private key.
+It uses map with keyAlias as key (converted to lowercase).
+And the calling code has to take care of passing keyAlias in lowercase while retrieving.
+This is correctly handled in JSSESocketFactory.getKeyManagers() method @line 594 if the key store type is default (JKS).
+But in case of NioEndpoint, the conversion of keyAlias to lowercase is missed and due to that, the private key is returned null causing the handshake to fail.
+Please find attached the patch to fix the issue.
+It would be good if we can throw exception with relevant message which would help us locate the issue faster.
+Steps to reproduce:
+------------------
+1.
+Create a SSL enabled NIO connector with keyAlias name containing uppercase letters.
+2.
+Try to connect to the NIO port over https.
+Then above exception can be seen if juli logging is enabled.

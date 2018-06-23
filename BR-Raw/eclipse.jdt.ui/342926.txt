@@ -1,0 +1,29 @@
+Bug 342926 – [JUnit] DBCS4.1: JUnit4 can not generate a method name with CJK extension B.
+Build Identifier: I20110407-2200
+OS: SLES11
+Eclipse: 4.1 I20110407-2200
+JDK: IBM 1.6.0
+When I create a methods name such as cjkExtensionB\ud842\udf9f() by JUnit4,
+JUnit generates testCjkExtensionB() instead of cjkExtensionB\ud842\udf9f().
+Reproducible: Always
+Steps to Reproduce:
+1.
+Paste the following code in your Java Editor and create the class BugXXXXXX.
+--------------------------------
+public class BugXXXXXX {
+public void cjk\u4e00() {
+}
+public void cjkExtensionB\ud842\udf9f() {
+}
+}
+----------------------------------
+2.
+From the context menu of BugXXXXXX.java -> [New] -> [JUnit Test Case...]
+3.
+Type BugXXXXXXTest for 'Name' field and select BugXXXXXX for 'Class under test', then click [Next:.
+4.
+Select 'cjk\u4e00()' and 'cjkExtensionB\ud842\udf9f()', then click [Finish].
+5.
+JUnit4 can generate testCJK\u4e00(), but it can not generate testCjkExtensionB\ud842\udf9f().
+6.
+It generates testCjkExtensionB() and truncates the name after '\ud842'.

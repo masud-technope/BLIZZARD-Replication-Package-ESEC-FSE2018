@@ -1,0 +1,4 @@
+Bug 249061 – Support on-client-demand proxy creation for XMPP provider
+Currently, the XMPP provider does not support having clients request access to a service proxy on demand.
+ Rather, the service host currently provides the proxy to the client at service registration time.
+The use case for on-demand delivery of a service proxy should be supported, by adding to the org.eclipse.ecf.remoteservices implementation (which XMPP provider currently uses).

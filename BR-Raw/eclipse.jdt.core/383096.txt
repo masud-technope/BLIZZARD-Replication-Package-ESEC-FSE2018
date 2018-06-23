@@ -1,0 +1,24 @@
+Bug 383096 – [1.8][compiler]NullPointerException with a wrong lambda code snippet
+With this code snippet, I get a NullPointerException.
+###
+interface I {}
+class XI {
+void foo() {
+I t1 = f -> {{};
+I t2 = () -> 42;
+}
+}
+###
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.ast.LocalDeclaration.resolve(LocalDeclaration.java:195)
+at org.eclipse.jdt.internal.compiler.ast.Block.resolve(Block.java:105)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:507)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:259)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:466)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1162)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1272)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:561)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1200)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:685)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1181)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:807)

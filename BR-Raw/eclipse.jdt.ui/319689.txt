@@ -1,0 +1,27 @@
+Bug 319689 – Invalid thread access in ProblemMarkerManager
+I've just got this exception while shuting down my 4.0 SDK but my guess from the stacktrace is that this not really a problem solely in 4.0
+--------8<--------
+org.eclipse.swt.SWTException: Invalid thread access
+at org.eclipse.swt.SWT.error(SWT.java:4083)
+at org.eclipse.swt.SWT.error(SWT.java:3998)
+at org.eclipse.swt.SWT.error(SWT.java:3969)
+at org.eclipse.swt.widgets.Display.error(Display.java:1027)
+at org.eclipse.swt.widgets.Display.createDisplay(Display.java:794)
+at org.eclipse.swt.widgets.Display.create(Display.java:777)
+at org.eclipse.swt.graphics.Device.<init>(Device.java:130)
+at org.eclipse.swt.widgets.Display.<init>(Display.java:668)
+at org.eclipse.swt.widgets.Display.<init>(Display.java:659)
+at org.eclipse.swt.widgets.Display.getDefault(Display.java:1303)
+at org.eclipse.jdt.internal.ui.util.SWTUtil.getStandardDisplay(SWTUtil.java:63)
+at org.eclipse.jdt.internal.ui.viewsupport.ProblemMarkerManager.fireChanges(ProblemMarkerManager.java:201)
+at org.eclipse.jdt.internal.ui.viewsupport.ProblemMarkerManager.resourceChanged(ProblemMarkerManager.java:144)
+at org.eclipse.core.internal.events.NotificationManager$2.run(NotificationManager.java:291)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:285)
+at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:149)
+at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:327)
+at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:1181)
+at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:157)
+at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:242)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+--------8<--------

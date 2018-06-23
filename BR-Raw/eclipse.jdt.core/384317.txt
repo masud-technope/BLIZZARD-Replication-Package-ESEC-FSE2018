@@ -1,0 +1,11 @@
+Bug 384317 – [1.8][compiler] More smarts needed in Scanner.jumpOver()
+BETA_JAVA8:
+(1) As it stands now, Scanner.jumpOver can wastefully look ahead until EOF on
+some ill formed programs (parenthesis imbalance early on).
+We need to build
+some ways to fail early.
+A black list is one possible way already exploited
+while looking ahead at '<'.
+(2) In the same method, we are reusing the counter `found` for various
+token classes.
+It needs to be understood whether this is kosher to do.

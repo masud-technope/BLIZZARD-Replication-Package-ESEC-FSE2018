@@ -1,0 +1,42 @@
+43053 – Session doesn't do time-out when BackUpManager is used.
+I noticed a problem that the session doesn't do time-out when BackUpManager is
+used.
+To detect the session time-out, ManagerBase.processExpires() of
+backgroundProcess is executed.
+In processExpires, the time-out of the session acquired in the
+ManagerBase.findSessions() is checked(isValid()).
+And, in findSessions(), the list of the session is acquired from session map
+(sessions).
+When BackUpManager is used, session map (sessions) becomes the instance of
+org.apache.catalina.tribes.tipis.AbstractReplicatedMap.
+Only the PRIMARY entry is returned in the method such as size(), entrySet()
+and keySet() of AbstractReplicatedMap.
+#PRIMARY entry means entry.isPrimary() returns true.
+#I found sizeFull(), keySetFull() and entrySetFull().
+#These methods return all the entries.
+Therefore, the target session by ManagerBase.processExpires() for the session
+time-out check becomes only
+PRIMARY session.
+The BACKUP session and the PROXY session become off the subject of the session
+time-out check.
+When Tomcat in the cluster does Down, the session(PRIMARY) created by Tomcat
+that does Down cannot do the time-out in BACKUP and PROXY.
+For instance,
+It has one session (sessionA) in three cluster configurations
+(tomcat1,tomcat2,tomcat3).
+The first state of sessionA.
+sessionA is PRIMARY in tomcat1.
+sessionA is BACKUP in tomcat2.
+sessionA is PROXY in tomcat3.
+Now, tomcat1 does down (before doing the time-out).
+state of sessionA is ...
+tomcat1 is down.
+sessionA is BACKUP in tomcat2.
+sessionA is PROXY in tomcat3.
+This means PRIMARY doesn't exist.
+Of course if sessionA is accessed again, either tomcat2 or tomcat3 becomes
+PRIMARY.
+However, it is not guaranteed that sessionA is accessed again.
+The target of the session time-out when BackUpManager is used is only PRIMARY.
+(see above)
+As a result, sessionA never do time-out.

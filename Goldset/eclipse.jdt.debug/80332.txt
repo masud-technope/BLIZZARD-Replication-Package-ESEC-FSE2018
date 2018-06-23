@@ -1,0 +1,3 @@
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/logicalstructures/JavaLogicalStructures.java
+org.eclipse.jdt.debug/plugin.xml
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/logicalstructures/JavaLogicalStructure.java

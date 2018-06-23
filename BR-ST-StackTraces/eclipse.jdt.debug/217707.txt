@@ -1,0 +1,12 @@
+org.eclipse.core.runtime.Path.<init>
+org.eclipse.jdt.internal.launching.StandardVMType.getDefaultPackageRootPath
+org.eclipse.jdt.internal.launching.StandardVMType.getDefaultLibraryLocations
+org.eclipse.jdt.internal.launching.StandardVMType.canDetectDefaultSystemLibraries
+org.eclipse.jdt.internal.launching.StandardVMType.detectInstallLocation
+org.eclipse.jdt.launching.JavaRuntime.detectEclipseRuntime
+org.eclipse.jdt.launching.JavaRuntime.initializeVMs
+org.eclipse.jdt.launching.JavaRuntime.getVMInstallTypes
+org.eclipse.jdt.internal.debug.ui.jres.InstalledJREsBlock.fillWithWorkspaceJREs
+org.eclipse.jdt.internal.debug.ui.jres.InstalledJREsBlock.createControl
+org.eclipse.jdt.internal.debug.ui.jres.JREsPreferencePage.createContents
+org.eclipse.jface.preference.PreferencePage.createControl

@@ -1,0 +1,5 @@
+Bug 181063 – NPE when running "Find Unsed Dependencies" from Dependencies View
+Caused by: java.lang.NullPointerException
+at org.eclipse.pde.internal.ui.search.dependencies.ShowResultsAction.getUnusedDependeciesInfoDialog(ShowResultsAction.java:80)
+at org.eclipse.pde.internal.ui.search.dependencies.ShowResultsAction.run(ShowResultsAction.java:48)
+at org.eclipse.pde.internal.ui.search.dependencies.UnusedDependenciesJob$1.run(UnusedDependenciesJob.java:64)

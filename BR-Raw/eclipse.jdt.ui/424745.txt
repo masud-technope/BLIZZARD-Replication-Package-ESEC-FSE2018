@@ -1,0 +1,23 @@
+Bug 424745 – [1.8][inline] Error after inlining constant with static method reference as initializer
+@FunctionalInterface
+interface FI {
+int foo(int x);
+}
+class Test {
+public static final FI f= Test::m;
+static int m(int x) {
+return x++;
+}
+}
+enum E1 {
+E_C1(Test.f); // [1] - Inline 'f' here
+E1(FI fi) {
+}
+}
+-------------------------------------------------------
+Inline 'f' in the enum constant declaration, we get the following code with compilation error:
+enum E1 {
+E_C1(Test::Test.m); // [1] Error
+E1(FI fi) {
+}
+}

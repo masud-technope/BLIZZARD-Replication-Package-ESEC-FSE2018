@@ -1,0 +1,5 @@
+Bug 251740 – [filetransfer][plan] create filetransfer provider from httpclient 4.X
+Httpclient 4.0 (aka httpcomponents) beta 3 was introduced into Orbit as per bug #251137.
+ECF can/should have a filetransfer provider based upon httpcomponents 4.0/nio.
+This provider has been started, and is under construction at
+:pserver:anonymous@ecf1.osuosl.org:/ecf plugins/org.eclipse.ecf.provider.filetransfer.httpcore

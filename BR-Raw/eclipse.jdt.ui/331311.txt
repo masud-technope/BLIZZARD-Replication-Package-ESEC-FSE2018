@@ -1,0 +1,7 @@
+Bug 331311 – [syntax highlighting] Syntax coloring for abstract classes
+Build Identifier: 20100917-0705
+I find it very useful to colorizes interfaces and abstract classes with the same color with JDT built in syntax coloring.
+Unfortunately, it isn't possible to assign different colors for classes and abstract classes in preferences->java->syntax coloring->element->java.
+Reproducible: Always
+Steps to Reproduce:
+Open a java source file containing references to classes and abstract classes and try to assign different colors.

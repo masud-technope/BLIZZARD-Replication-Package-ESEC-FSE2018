@@ -1,0 +1,37 @@
+49994 – NamingContext Possible Bug
+In NamingContext implementation, if "lookup()" is a Reference, current
+implementation caches the result of the NamingManager # getObjectInstance via
+following statements and changes the type of the entry.
+In the following
+lookups, same object is returned.
+I would like to write ObjectFactory that
+returns new instance for each time lookup is called on its reference.
+But with
+the current implementation, it is not possible to write such an object factory
+because of aferomentioned sitaution.
+I think that entry must be stay as
+Reference instead of changing entry type.
+NamingContext class:
+protected Object lookup(Name name, boolean resolveLinks)
+throws NamingException {
+.....
+} else if (entry.type == NamingEntry.REFERENCE) {
+try {
+Object obj = NamingManager.getObjectInstance
+(entry.value, name, this, env);
+if (obj != null) {
+entry.value = obj;
+entry.type = NamingEntry.ENTRY;  ---> CHANGES type of
+the naming entry
+}
+return obj;
+} catch (NamingException e) {
+throw e;
+} catch (Exception e) {
+log.warn(sm.getString
+("namingContext.failResolvingReference"), e);
+throw new NamingException(e.getMessage());
+}
+}
+...........
+}

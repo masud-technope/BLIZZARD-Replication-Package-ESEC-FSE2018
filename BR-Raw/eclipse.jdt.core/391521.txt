@@ -1,0 +1,14 @@
+Bug 391521 – [1.8][compiler] Error highlighting is not accurate for type references with type annotations
+In the following code:
+class Y {
+class Z {
+}
+Z z1 = (@Marker ZZ) null;  // 1
+Z z2 = new @Marker ZZ();  // 2
+}
+@java.lang.annotation.Target (java.lang.annotation.ElementType.TYPE_USE)
+@interface Marker{}
+The error highlighting includes the annotations as well, which shouldn't be the case.
+It appears that the we are reporting the problem against the TypeReference and the source locations for the type reference includes the annotations as well.
+It doesn't happen in other cases, let's say arguments, because the annotations are part of the argument and not TypeReference and hence the location for the TypeReference is accurate.
+Also note that in the first line, the same error "ZZ cannot be resolved" is reported twice!

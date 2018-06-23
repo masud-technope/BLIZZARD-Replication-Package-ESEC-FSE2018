@@ -1,0 +1,3 @@
+java/org/apache/catalina/manager/HTMLManagerServlet.java
+java/org/apache/catalina/manager/ManagerServlet.java
+java/org/apache/tomcat/util/res/StringManager.java

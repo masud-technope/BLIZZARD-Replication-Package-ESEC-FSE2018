@@ -1,0 +1,6 @@
+Bug 28177 – Stack frames not updating when watch expression present
+If I create a watch expression before debugging a program, stack frames do not
+update properly.
+(1) Add "System.currentTimeMillis()" to the expression view
+(2) Debug "VectorTests" to a breakpoint in "testCapacity()"
+(3) Stack frames show up as "<unknown receiving type>..." etc.

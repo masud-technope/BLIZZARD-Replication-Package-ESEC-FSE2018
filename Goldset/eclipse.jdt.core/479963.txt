@@ -1,0 +1,2 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/TypeResolveTests.java
+org.eclipse.jdt.core/codeassist/org/eclipse/jdt/internal/codeassist/SelectionEngine.java

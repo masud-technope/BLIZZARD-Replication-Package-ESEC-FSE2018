@@ -1,0 +1,5 @@
+Bug 252092 – [Discovery][Composite] Add composite tests
+Add unit tests for CompositeDiscoveryContainer.
+Use the same tests like the jslp and jmdns provider.
+Either jSLP or JMDNS or both need to be present and started for the tests to succeed.
+After all, CDC is no real discovery provider.

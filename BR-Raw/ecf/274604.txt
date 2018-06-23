@@ -1,0 +1,7 @@
+Bug 274604 – ColaSynchronizationStrategy instantiates new Booleans unnecessarily
+The getInstanceFor(ID, boolean) method has the following:
+Boolean existingStrategyIsInitiator = new Boolean(existingStrategy.isInitiator);
+if (existingStrategyIsInitiator.equals(new Boolean(isInitiator))) {
+return existingStrategy;
+}
+There seems to no reason to why new Boolean objects need to be instantiated when the boolean primitives could be compared directly.

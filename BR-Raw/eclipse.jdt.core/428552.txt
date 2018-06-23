@@ -1,0 +1,19 @@
+Bug 428552 – [1.8][compiler][codegen] Serialization does not work for method references
+For lambdas created using a method reference of the form Type::MethodName instead of a lambda expression of the form (arg)->expression the Serialization does not work.
+They will be compiled like non-Serializable lambdas ignoring if the functional interface extends Serializable.
+import java.io.*;
+public class SimpleTestCase {
+interface Example extends Serializable
+{
+String convert(Object o);
+}
+public static void main(String[] args) throws IOException {
+Example e=Object::toString;
+try(ObjectOutputStream os=new ObjectOutputStream(new ByteArrayOutputStream())) {
+os.writeObject(e);
+}
+}
+}
+Produces
+Exception in thread "main" java.io.NotSerializableException: Non-serializable lambda
+at SimpleTestCase$$Lambda$1/2536472.writeObject(Unknown Source)

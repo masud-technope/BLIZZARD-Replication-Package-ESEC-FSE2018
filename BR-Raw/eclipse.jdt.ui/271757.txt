@@ -1,0 +1,16 @@
+Bug 271757 – TextMergeViewer.createSourceViewer(...) should return SourceViewer
+This is one of the issues mentioned on bug 259411.
+It looks serious enough to make a separate bug out of it and not mix it with the others.
+GOALS/BENEFITS:
+org.eclipse.compare.contentmergeviewer.TextMergeViewer.createSourceViewer(Composite, int) should return concrete SourceViewer instead of ISourceViewer interface.
+The ISourceViewer type is not enough for the MergeSourceViewer to work properly, the MergeSourceViewer requires methods which are not part of the ISourceViewer interface.
+The concrete class of SourceViewer is the optimal return type.
+ASSOCIATED BUGS:
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=259411
+RISKS:
+The bad news is that the method is part API, the good news is that is has been introduced in 3.5.
+So I guess the risk is low, especially given the fact that the API is marked as "experimental" and using it should be consulted with the Workspace team.
+Impact is limited to JDT which is the only client of the new API so far.
+Required changes are in the patch.
+PERFORMANCE IMPACT:
+None.

@@ -1,0 +1,14 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/classpath/ClasspathMessages.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/classpath/ClasspathMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/snippeteditor/SnippetMessages.properties
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/engine/EvaluationEngineMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/console/ConsoleMessages.properties
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/LaunchingMessages.properties
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIDebugModelMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/DebugUIMessages.properties
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/JDIMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/jres/JREMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/ActionMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/LauncherMessages.properties
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/JavaAppletLaunchConfigurationDelegate.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIThread.java

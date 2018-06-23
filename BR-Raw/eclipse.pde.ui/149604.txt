@@ -1,0 +1,16 @@
+Bug 149604 – Amnesia when opening manifest of a JARd plug-in
+1.
+Go to plug-ins view
+2.
+double-click on any plug-in represented by a blue icon (without children).
+3.
+Observe how the manifest file(s) for this plug-in open.
+ good.
+4.
+Turn to a tab other than the first tab.
+5.
+close the editor.
+6.
+repeat #2.
+observed behavior: the editor opens on Overview tab.
+expected behavior: the editor opens on tab from #4.

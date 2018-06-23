@@ -1,0 +1,15 @@
+Bug 311933 – Validate on feature based launch config does not consider application plug-in as requirement
+1) Create a new Eclipse launch config
+2) Go to plug-ins tab, change to features selected below
+3) Deselect all
+4) Check a random sdk feature such as org.eclipse.pde
+5) Hit validate plug-ins
+Result:
+org.eclipse.sdk.ide is missing
+The launch won't work either.
+ We should have code similar to the PluginBlock which checks the application and gets the required plug-in providing it.
+ This should happen on validate and launch time.
+Since the code will be duplicated, it should be moved to a helper class or somewhere.
+ Otherwise fixes like bug 309860 won't fix everything everywhere.
+Select required doesn't help at all since it only selects required features, it doesn't account for the launcher.
+ I'm not sure if changing this is a good idea.

@@ -1,0 +1,5 @@
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/AbstractVMRunner.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/jres/JREMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/jres/StandardVMPage.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/jres/JREMessages.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/jres/EEVMPage.java

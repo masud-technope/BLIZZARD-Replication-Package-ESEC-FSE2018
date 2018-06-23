@@ -1,0 +1,5 @@
+java/org/apache/catalina/connector/CoyoteAdapter.java
+java/org/apache/catalina/connector/MapperListener.java
+java/org/apache/catalina/connector/Request.java
+java/org/apache/tomcat/util/http/mapper/Mapper.java
+webapps/docs/changelog.xml

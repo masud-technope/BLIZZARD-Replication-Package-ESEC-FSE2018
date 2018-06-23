@@ -1,0 +1,4 @@
+Bug 248268 – [ds tooling] Validate <component> element's factory and name attributes
+The <component> element has an optional factory attribute that if used MUST be a non-empty string.
+ See section 112.4.3 of the OSGi spec.
+We need to mark the factory attribute with an error if it is assigned an empty string.

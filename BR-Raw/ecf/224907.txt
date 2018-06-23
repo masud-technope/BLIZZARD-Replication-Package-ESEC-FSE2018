@@ -1,0 +1,14 @@
+Bug 224907 – Translatable or not?
+Build ID: I20080329
+1.
+eclipse\plugins\org.eclipse.ecf.identity\org\eclipse\ecf\internal\core\identity\messages.properties:
+Namespace_Namespace_Name_Not_Null=Namespace<init> name cannot be null
+ContainerTypeDescription_Name_Not_Null = ContainerTypeDescription<init> name cannot be null
+"Namespace" & "ContainerTypeDescription" translatable or not?
+2.
+eclipse\plugins\org.eclipse.ecf.identity\org\eclipse\ecf\internal\core\identity\messages.properties:
+IDFactory_StringID_Not_Null=StringID cannot be null
+StringID_StringID_Namespace_Description=StringID Namespace
+StringID_StringID_Name_Not_Null=StringID name cannot be null
+LongID_LongID_Namespace_Description=LongID Namespace
+"StringID" & "LongID" translatable or not?

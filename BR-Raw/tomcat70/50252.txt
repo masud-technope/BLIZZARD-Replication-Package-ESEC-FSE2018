@@ -1,0 +1,33 @@
+50252 – ClassCastException occurs if context.xml contains <ResourceLink>.
+Created attachment 26281 [details]
+patch for NamingContext.java
+If context.xml contains <ResourceLink>, ClassCastException occurs as follows.
+java.lang.ClassCastException: org.apache.naming.ResourceLinkRef cannot be cast to org.apache.naming.ResourceRef
+at org.apache.naming.NamingContext.lookup(NamingContext.java:828)
+at org.apache.naming.NamingContext.lookup(NamingContext.java:145)
+at org.apache.naming.NamingContext.lookup(NamingContext.java:814)
+at org.apache.naming.NamingContext.lookup(NamingContext.java:159)
+at org.apache.catalina.core.DefaultInstanceManager.lookupFieldResource(DefaultInstanceManager.java:460)
+at org.apache.catalina.core.DefaultInstanceManager.processAnnotations(DefaultInstanceManager.java:299)
+at org.apache.catalina.core.DefaultInstanceManager.newInstance(DefaultInstanceManager.java:137)
+at org.apache.catalina.core.DefaultInstanceManager.newInstance(DefaultInstanceManager.java:119)
+at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1046)
+at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:797)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:135)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:161)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:164)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:108)
+at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:558)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:379)
+at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:242)
+at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:259)
+at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:237)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:281)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:619)
+This issue is relating to the following issue.
+https://issues.apache.org/bugzilla/show_bug.cgi?id=50159
+I attached the patch for this issue.
+Regards.

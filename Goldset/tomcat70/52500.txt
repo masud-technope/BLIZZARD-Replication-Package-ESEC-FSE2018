@@ -1,0 +1,6 @@
+java/org/apache/catalina/realm/LocalStrings.properties
+java/org/apache/catalina/realm/RealmBase.java
+java/org/apache/catalina/realm/X509SubjectDnRetriever.java
+java/org/apache/catalina/realm/X509UsernameRetriever.java
+webapps/docs/changelog.xml
+webapps/docs/config/realm.xml

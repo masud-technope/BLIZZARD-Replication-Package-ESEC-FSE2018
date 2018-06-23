@@ -1,0 +1,5 @@
+Bug 43554 – Creating a breakpoint on method signature should use a method entry breakpoint
+Build 3.0M3
+When double-clicking in the left margin in front of a method signature, a
+standard breakpoint is created on the first statement of the method body.
+I would rather expect it to simply create a method entry breakpoint instead.

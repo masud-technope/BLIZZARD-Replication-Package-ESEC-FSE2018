@@ -1,0 +1,28 @@
+Bug 428468 – [1.8][compiler] Finishing touches for Java 8 release.
+I wanted to capture the finishing touches in this ticket, so we don't
+goof up and miss something in the last stages.
+This is to be taken up
+post RC2 (March 7th 2014)
+Here is the list I came up with:
+Core + APT:
+1.
+Remove JCP disclaimer from all files.
+2.
+Update @since 3.9 BETA_JAVA8 tags with appropriate values.
+3.
+Does bundle versions/qualifier need change ?
+4.
+Check if batch compiler version strings need to bumped up.
+5.
+Build state identifier needs bump up ?
+6.
+Make BETA_JAVA8 the master branch.
+UI:
+7.
+Do what is applicable from 1-6.
+8.
+Change compliance string from 1.8_BETA to 1.8
+9.
+Remove JCP disclaimer from dialog boxes.
+10.
+Open up a bottle of champagne :)

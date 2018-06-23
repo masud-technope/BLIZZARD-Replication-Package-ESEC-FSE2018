@@ -1,0 +1,7 @@
+Bug 369079 – [null] Allow multiple null annotations
+(I can imagine that this has been discuss before but I couldn't find the bug/comment.)
+Currently it seems as if one can only configure one qualified name for Nullable and for NonNull annotations.
+Given the many different existing annotations out there with the very same semantic meaning, it seems important to allow multiple annotations per case to support code which uses two or more different libraries which are each annotated with different annotations.
+It would be even better if the compiler would allow wildcards and do name-based matching.
+Having the "Nullable" and "NonNull" as default.
+That wouldn't force everybody to have the currently provided runtime jar on the classpath and solve most integration issues without any further ado on the user side.

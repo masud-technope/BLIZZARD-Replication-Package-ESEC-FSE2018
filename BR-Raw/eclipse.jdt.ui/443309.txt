@@ -1,0 +1,9 @@
+Bug 443309 – tearDownAfterClass() in NewTestCaseCreationWizard gets disabled when something else is clicked on
+Steps to reproduce:
+1.
+Open New JUnit Test Case Wizard (NewTestCaseCreationWizard)
+2.
+See, that tearDownAfterClass() checkbox is enabled.
+3.
+FAIL Click on any checkbox in "Which method stubs would you like to create?" section -> tearDownAfterClass() checkbox turns disabled.
+I think that this is not desired behavior.

@@ -1,0 +1,13 @@
+java.util.Properties.load
+java.util.Properties.load
+org.eclipse.jdt.internal.corext.refactoring.nls.NLSHintHelper.getProperties
+org.eclipse.jdt.internal.corext.refactoring.nls.NLSHintHelper.getProperties
+org.eclipse.jdt.internal.corext.refactoring.nls.NLSHint.<init>
+org.eclipse.jdt.internal.corext.refactoring.nls.NLSRefactoring.<init>
+org.eclipse.jdt.internal.corext.refactoring.nls.NLSRefactoring.create
+org.eclipse.jdt.internal.ui.refactoring.nls.ExternalizeWizard$1.run
+org.eclipse.swt.custom.BusyIndicator.showWhile
+org.eclipse.jdt.internal.ui.refactoring.nls.ExternalizeWizard.open
+org.eclipse.jdt.ui.actions.ExternalizeStringsAction.run
+org.eclipse.jdt.ui.actions.ExternalizeStringsAction.run
+org.eclipse.jdt.ui.actions.SelectionDispatchAction.dispatchRun

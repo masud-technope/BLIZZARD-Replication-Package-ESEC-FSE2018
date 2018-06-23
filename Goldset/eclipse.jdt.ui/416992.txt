@@ -1,0 +1,3 @@
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/AdvancedQuickAssistTest18.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/QuickFixTest.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/AdvancedQuickAssistProcessor.java

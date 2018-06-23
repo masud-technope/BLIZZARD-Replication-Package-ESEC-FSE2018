@@ -1,0 +1,2 @@
+Bug 407402 – [MAC OS] Checked JRE is system JRE (should be JRE defined in eclipse.ini)
+In windows & linux OS the checked JRE is the one defined in eclipse.ini (see screen-cap), on MAC OS the JRE listed in eclipse.ini is not even one of the listed JREs, what is checked instead is the defined Default OS JRE (could be different Java version entirely than what is listed in eclipse.ini)

@@ -1,0 +1,5 @@
+Bug 160475 – Decorate erroneous additional.bundles in raw editor
+When the additional.bundles property contain an entry that is in error the raw build.properties editor is NOT decorated with a red X icon.
+ The error only appears on the Automated Management of Dependencies section of the form-based editor.
+Other aspects of the manifest, such as Required Plug-ins, are decorated in both the form-based editor and the raw MANIFEST.MF.
+While clearly the PDE should be encouraging the developer to use the form-based editors, it is also important to be consistent with regard to where errors are reported.

@@ -1,0 +1,13 @@
+Bug 177212 – Dependency View does not update upon models being removed
+During refactoring work, I found the Dependency View does not update when the focused model is removed.
+ This can cause wierd things to happen.
+ For instance, these steps produce an NPE in the Manifest Editor:
+1.
+Create plug-in project with unique name (not in target platform).
+2.
+Focus on it in the Dependencies View
+3.
+Delete the project
+4.
+Double click on the project
+Instead of fixing the Manifest Editor, we should look at refocusing the Dependency View when the focused model is removed.

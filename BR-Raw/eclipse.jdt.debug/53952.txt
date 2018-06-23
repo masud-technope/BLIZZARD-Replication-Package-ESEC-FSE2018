@@ -1,0 +1,14 @@
+Bug 53952 – Generic type name of local variables not displayed when available
+Test case (with Java 1.5.0) :
+import java.util.Vector;
+public class Test6 {
+public static void main(String[] args) {
+Vector<String> v= new Vector<String>();
+System.out.println(v); // <-- breakpoint here
+}
+}
+Launch it in debug to the breakpoint.
+The Variables view display for v :
+Vector v= Vector<E>  (id=13)
+it should display :
+Vector<String> v= Vector<E>  (id=13)

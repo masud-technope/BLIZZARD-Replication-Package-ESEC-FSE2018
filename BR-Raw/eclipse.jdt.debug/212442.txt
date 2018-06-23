@@ -1,0 +1,3 @@
+Bug 212442 – Failing importbreakpoints tests
+with the fix to 208127, the logic was not quite right and is causing test failures for two of the import breakpoint tests.
+The problem was comparing a String to an Integer and the second clause of the if statement, which would say that two line breakpoints were equal, even though they were not.

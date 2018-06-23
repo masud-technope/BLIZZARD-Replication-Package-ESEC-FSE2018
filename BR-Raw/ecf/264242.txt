@@ -1,0 +1,3 @@
+Bug 264242 – Remove extends Serializable from org.eclipse.ecf.core.util.Event interfac
+Currently, the org.eclipse.ecf.core.util.Event interface extends Serializable.
+ This should be removed so Event does not extend Serializable...to allow for subclasses to not be Serializable.

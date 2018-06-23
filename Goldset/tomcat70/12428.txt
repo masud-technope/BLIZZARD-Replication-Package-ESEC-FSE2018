@@ -1,0 +1,10 @@
+java/org/apache/catalina/Context.java
+java/org/apache/catalina/authenticator/AuthenticatorBase.java
+java/org/apache/catalina/core/StandardContext.java
+java/org/apache/catalina/startup/ContextConfig.java
+test/org/apache/catalina/core/TestStandardWrapper.java
+test/webapp-3.0-servletsecurity2/WEB-INF/web.xml
+test/webapp-3.0-servletsecurity2/protected.jsp
+test/webapp-3.0-servletsecurity2/unprotected.jsp
+webapps/docs/changelog.xml
+webapps/docs/config/context.xml

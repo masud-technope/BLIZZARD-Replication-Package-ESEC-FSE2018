@@ -1,0 +1,26 @@
+Bug 258252 – [Discovery][SLP] Colons in path portion of ServiceURL cause SLE when _optional_ port is missing
+-- Error Log from JUnit --
+Class: ch.ethz.iks.slp.impl.ServiceURLTest
+Method: testServiceURL12345
+Actual: null
+Expected: null
+Stack Trace:
+ch.ethz.iks.slp.ServiceLocationException: service url is malformed: [service:osgi:6x://mhhb3j0c/?scope=UNDEFINED:UNDEFINED:5da1e680-f1e0-11d9-bbed-0002a5d5c51b:5da1e680-f1e0-11d9-bbed-1112a5d5c51b,objectClass=6x,version=0.0.0].
+at ch.ethz.iks.slp.ServiceURL.<init>(ServiceURL.java:153)
+at ch.ethz.iks.slp.impl.ServiceURLTest.testServiceURL12345(ServiceURLTest.java:169)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:324)
+at junit.framework.TestCase.runTest(TestCase.java:164)
+at junit.framework.TestCase.runBare(TestCase.java:130)
+at junit.framework.TestResult$1.protect(TestResult.java:106)
+at junit.framework.TestResult.runProtected(TestResult.java:124)
+at junit.framework.TestResult.run(TestResult.java:109)
+at junit.framework.TestCase.run(TestCase.java:120)
+at org.eclipse.jdt.internal.junit.runner.junit3.JUnit3TestReference.run(JUnit3TestReference.java:130)
+at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)

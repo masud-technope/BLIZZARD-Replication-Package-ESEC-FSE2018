@@ -1,0 +1,6 @@
+java/org/apache/catalina/core/LocalStrings.properties
+java/org/apache/catalina/core/LocalStrings_es.properties
+java/org/apache/catalina/core/AprLifecycleListener.java
+java/org/apache/catalina/core/LocalStrings.properties
+java/org/apache/catalina/core/LocalStrings_es.properties
+webapps/docs/changelog.xml

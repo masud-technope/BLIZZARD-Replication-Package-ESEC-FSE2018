@@ -1,0 +1,11 @@
+Bug 364947 – [move method] The design of the Move Instance Method refactoring tool doesn't match users' expectations
+Build Identifier: M20110909-1335
+We have recently conducted an empirical study on the use of Eclipse refactoring tool using our custom data collector called CodingSpectator
+<http://codingspectator.cs.illinois.edu/>.
+We studied the refactoring activities of 26 programmers for a total of about 1400 hours of programming.
+See our technical report <http://hdl.handle.net/2142/27730> for more details.
+One of the findings of our study was that our participants were not able to use the Move Instance Method refactoring tool.
+We investigated the invocations of this refactoring and asked some of our participants about their use of it.
+As a result, we found a mismatch between how users expected the Move Instance Method refactoring tool to work and the current design of the tool.
+In the following, I'll briefly describe the current current design of the Move Instance Method refactoring in Eclipse, explain the problems of our participants with this design, and finally propose a few alternatives to mitigate these problems.
+Reproducible: Always

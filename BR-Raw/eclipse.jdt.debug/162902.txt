@@ -1,0 +1,4 @@
+Bug 162902 – [jres] "cancel" button should probably be "stop" for JRE search
+3.3
+From the installed JREs page, when "Search..." is pressed and a location to search is chosen, the progress dialog shows a "Cancel" button.
+This button should probably be labelled "Stop" as the results found until the button is pressed are retained on the preference page (where cancel can be pressed).

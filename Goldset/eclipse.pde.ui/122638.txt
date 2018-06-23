@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/ischema/ISchema.java
+org.eclipse.pde/src/org/eclipse/pde/internal/builders/SchemaTransformer.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/Schema.java

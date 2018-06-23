@@ -1,0 +1,47 @@
+Bug 269091 – Incorrect file requests when an address contains // after host
+Two of the mirrors for the Eclipse 3.4 p2 repository contain // following the host, when ECF requests the file from the server the path is missing the first directory.
+For example, the following address:
+http://eclipse.saplabs.bg//eclipse/updates/3.4/plugins/org.eclipse.equinox.p2.exemplarysetup.source_1.0.0.v20080427-2136.jar.pack.gz
+Would result in a request for:
+/updates/3.4/plugins/org.eclipse.equinox.p2.exemplarysetup.source_1.0.0.v20080427-2136.jar.pack.gz
+2009/03/17 16:57:47:546 EDT [DEBUG] DefaultHttpParams - Set parameter http.useragent = Jakarta Commons-HttpClient/3.0.1
+2009/03/17 16:57:47:562 EDT [DEBUG] DefaultHttpParams - Set parameter http.protocol.version = HTTP/1.1
+2009/03/17 16:57:47:562 EDT [DEBUG] DefaultHttpParams - Set parameter http.connection-manager.class = class org.apache.commons.httpclient.SimpleHttpConnectionManager
+2009/03/17 16:57:47:562 EDT [DEBUG] DefaultHttpParams - Set parameter http.protocol.cookie-policy = rfc2109
+2009/03/17 16:57:47:562 EDT [DEBUG] DefaultHttpParams - Set parameter http.protocol.element-charset = US-ASCII
+2009/03/17 16:57:47:562 EDT [DEBUG] DefaultHttpParams - Set parameter http.protocol.content-charset = ISO-8859-1
+2009/03/17 16:57:47:562 EDT [DEBUG] DefaultHttpParams - Set parameter http.method.retry-handler = org.apache.commons.httpclient.DefaultHttpMethodRetryHandler@802ed1
+2009/03/17 16:57:47:562 EDT [DEBUG] DefaultHttpParams - Set parameter http.dateparser.patterns = [EEE, dd MMM yyyy HH:mm:ss zzz, EEEE, dd-MMM-yy HH:mm:ss zzz, EEE MMM d HH:mm:ss yyyy, EEE, dd-MMM-yyyy HH:mm:ss z, EEE, dd-MMM-yyyy HH-mm-ss z, EEE, dd MMM yy HH:mm:ss z, EEE dd-MMM-yyyy HH:mm:ss z, EEE dd MMM yyyy HH:mm:ss z, EEE dd-MMM-yyyy HH-mm-ss z, EEE dd-MMM-yy HH:mm:ss z, EEE dd MMM yy HH:mm:ss z, EEE,dd-MMM-yy HH:mm:ss z, EEE,dd-MMM-yyyy HH:mm:ss z, EEE, dd-MM-yyyy HH:mm:ss z]
+2009/03/17 16:57:47:578 EDT [DEBUG] DefaultHttpParams - Set parameter http.socket.timeout = 60000
+2009/03/17 16:57:47:578 EDT [DEBUG] DefaultHttpParams - Set parameter http.connection.timeout = 120000
+2009/03/17 16:57:47:625 EDT [DEBUG] DefaultHttpParams - Set parameter http.authentication.credential-provider = org.eclipse.ecf.provider.filetransfer.httpclient.HttpClientRetrieveFileTransfer$ECFCredentialsProvider@73c7fb
+2009/03/17 16:57:47:625 EDT [DEBUG] MultiThreadedHttpConnectionManager - HttpConnectionManager.getConnection:  config = HostConfiguration[host=http://eclipse.saplabs.bg], timeout = 0
+2009/03/17 16:57:47:640 EDT [DEBUG] MultiThreadedHttpConnectionManager - Allocating new connection, hostConfig=HostConfiguration[host=http://eclipse.saplabs.bg]
+2009/03/17 16:57:47:640 EDT [DEBUG] HttpConnection - Open connection to eclipse.saplabs.bg:80
+2009/03/17 16:57:47:906 EDT [DEBUG] header - >> "GET /updates/3.4/plugins/org.eclipse.equinox.p2.exemplarysetup.source_1.0.0.v20080427-2136.jar.pack.gz HTTP/1.1[\r][\n]"
+2009/03/17 16:57:47:906 EDT [DEBUG] HttpMethodBase - Adding Host request header
+2009/03/17 16:57:47:906 EDT [DEBUG] header - >> "Cache-Control: max-age=0[\r][\n]"
+2009/03/17 16:57:47:906 EDT [DEBUG] header - >> "Accept-encoding: gzip[\r][\n]"
+2009/03/17 16:57:47:906 EDT [DEBUG] header - >> "User-Agent: Jakarta Commons-HttpClient/3.0.1[\r][\n]"
+2009/03/17 16:57:47:906 EDT [DEBUG] header - >> "Host: eclipse.saplabs.bg[\r][\n]"
+2009/03/17 16:57:47:906 EDT [DEBUG] header - >> "[\r][\n]"
+2009/03/17 16:57:48:203 EDT [DEBUG] header - << "HTTP/1.1 404 Not Found[\r][\n]"
+2009/03/17 16:57:48:203 EDT [DEBUG] header - << "Date: Tue, 17 Mar 2009 20:58:37 GMT[\r][\n]"
+2009/03/17 16:57:48:203 EDT [DEBUG] header - << "Server: Apache[\r][\n]"
+2009/03/17 16:57:48:203 EDT [DEBUG] header - << "Content-Length: 363[\r][\n]"
+2009/03/17 16:57:48:203 EDT [DEBUG] header - << "Connection: close[\r][\n]"
+2009/03/17 16:57:48:203 EDT [DEBUG] header - << "Content-Type: text/html; charset=iso-8859-1[\r][\n]"
+2009/03/17 16:57:48:203 EDT [DEBUG] content - << "<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">[\n]"
+2009/03/17 16:57:48:203 EDT [DEBUG] content - << "<html><head>[\n]"
+2009/03/17 16:57:48:203 EDT [DEBUG] content - << "<title>404 Not Found</title>[\n]"
+2009/03/17 16:57:48:203 EDT [DEBUG] content - << "</head><body>[\n]"
+2009/03/17 16:57:48:203 EDT [DEBUG] content - << "<h1>Not Found</h1>[\n]"
+2009/03/17 16:57:48:203 EDT [DEBUG] content - << "<p>The requested URL /updates/3.4/plugins/org.eclipse.equinox.p2.exemplarysetup.source_1.0.0.v20080427-2136.jar.pack.gz was not found on this server.</p>[\n]"
+2009/03/17 16:57:48:203 EDT [DEBUG] content - << "<hr>[\n]"
+2009/03/17 16:57:48:203 EDT [DEBUG] content - << "<address>Apache Server at eclipse.saplabs.bg Port 80</address>[\n]"
+2009/03/17 16:57:48:203 EDT [DEBUG] content - << "</body></html>[\n]"
+2009/03/17 16:57:48:203 EDT [DEBUG] HttpMethodBase - Should close connection in response to directive: close
+2009/03/17 16:57:48:203 EDT [DEBUG] HttpConnection - Releasing connection back to connection manager.
+2009/03/17 16:57:48:203 EDT [DEBUG] MultiThreadedHttpConnectionManager - Freeing connection, hostConfig=HostConfiguration[host=http://eclipse.saplabs.bg]
+2009/03/17 16:57:48:203 EDT [DEBUG] IdleConnectionHandler - Adding connection at: 1237323468203
+2009/03/17 16:57:48:203 EDT [DEBUG] MultiThreadedHttpConnectionManager - Notifying no-one, there are no waiting threads

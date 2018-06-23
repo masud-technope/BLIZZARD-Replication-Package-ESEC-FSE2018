@@ -1,0 +1,9 @@
+Bug 332271 – [quick assist] Use ()+ icon for quick assists which add parentheses around expressions
+Created attachment 184920 [details]
+fix
+I found three, which do not use this icon
+- Add paranoiac parenthesis for conditions
+- Put 'instanceof' in parentheses
+- Put 'instanceof' in parentheses
+Is there a reason for not doing this ?
+(Note: JavaPluginImages.IMG_CORRECTION_CAST is not a great name for this icon but I have not changed this for now)

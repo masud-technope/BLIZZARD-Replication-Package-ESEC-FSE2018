@@ -1,0 +1,7 @@
+Bug 138903 – Template for the perspectives extension point
+I have created a new template for the perspectives extension point however I have certain concerns.
+I themed the sample perspective around Release Engineering and to accomplish this I have hardcoded some view id's into the sample code.
+While I normally would abstain from using hardcoded values, in this case it allowed for a bit more depth in the template.
+The two options I see are:
+1) Keep the hardcoded values and theme to provide a template that's more interesting
+2) Remove the hardcoded values, stick to using view id's that have public constants available, and adjust the template decription accordingly.

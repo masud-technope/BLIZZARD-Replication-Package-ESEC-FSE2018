@@ -1,0 +1,14 @@
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/build/properties/AbstractBuildValidationTest.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/imports/ImportFromRepoTestCase.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/project/ClasspathContainerInitializer.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/performance/parts/InitializeModelsPerfTest.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/classpathcontributor/ClasspathContributorTest.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/ee/EnvironmentAnalyzerDelegate.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/classpathcontributor/TestClasspathContributor.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/performance/parts/OpenManifestEditorPerfTest.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/performance/parts/SchemaLoaderPerfTest.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/project/PluginRegistryTests.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/performance/parts/SchemaTraversePerfTest.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/util/ProjectUtils.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/wizards/NewSiteProjectTestCase.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/performance/parts/AbstractSchemaPerfTest.java

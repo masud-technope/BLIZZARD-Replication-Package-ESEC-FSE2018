@@ -1,0 +1,11 @@
+java.io.File.<init>
+org.eclipse.pde.internal.core.P2Utils.writeBundlesTxt
+org.eclipse.pde.internal.core.P2Utils.writeBundlesTxt
+org.eclipse.pde.internal.ui.launcher.LaunchConfigurationHelper.createConfigIniFile
+org.eclipse.pde.ui.launcher.EclipseApplicationLaunchConfiguration.getProgramArguments
+org.eclipse.pde.ui.launcher.AbstractPDELaunchConfiguration.launch
+org.eclipse.debug.internal.core.LaunchConfiguration.launch
+org.eclipse.debug.internal.core.LaunchConfiguration.launch
+org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch
+org.eclipse.debug.internal.ui.DebugUIPlugin$7.run
+org.eclipse.core.internal.jobs.Worker.run

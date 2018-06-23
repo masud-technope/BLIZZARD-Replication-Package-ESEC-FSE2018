@@ -1,0 +1,9 @@
+Bug 324246 – Cannot pass the project classpath to external programs defined as builders
+Build Identifier: 3.6.0 I20100608-0911
+I defined an external program as a builder.
+The external builder called java and the OpenJPA JPA enhancer.
+The enhancer works from the JVM classpath.
+However their is no variable defined that would allow you to pass the project classpath into the java -cp argument.
+You have to enter it again.
+It would be really good if there was a variable like ${project_classpath} perhaps that can take an argument, so you could do this ${project_classpath:${project_name}} and have it expand to the classpath
+Reproducible: Always

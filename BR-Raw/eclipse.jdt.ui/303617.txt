@@ -1,0 +1,12 @@
+Bug 303617 – [extract constant] Refactoring not available on pop-up if selected string is an annotation
+Build Identifier: 3.5.1
+If I select a string that is the value for an annotation, "Extract constant..." is available on the Refactor menu, but not on the Shift-Alt-T quick menu.
+This is inconsistent, as it is on that menu for string constants outside of annotations.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Select a string constant within  @Annotation("string constant")
+2.
+Press Shift-Alt-T
+3.
+Menu item is not available

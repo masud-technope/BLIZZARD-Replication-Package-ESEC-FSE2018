@@ -1,0 +1,6 @@
+Bug 310789 – Optimize the update of projects JRE container when the VM has changed
+Created attachment 166301 [details]
+Draft patch implementing the requested optimization
+When a VM change is observed, all JRE Container of existing project needs to be updated and this is done through the LaunchingPLugin.VMChanges.rebind(...) method.
+This method calls the JavaCore.setClasspathContainer project per project (through the JREContainerInitializer) although this method accepts an array of projects.
+An interesting optimization (see bug 302295) could be to bundle the projects which need to initialize their JRE container and call the JavaCore.setClasspathContainer(...) method only once with the array of the concerned projects.

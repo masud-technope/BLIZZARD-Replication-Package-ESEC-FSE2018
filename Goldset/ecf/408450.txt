@@ -1,0 +1,5 @@
+compendium/bundles/org.eclipse.ecf.osgi.services.distribution/src/org/eclipse/ecf/internal/osgi/services/distribution/BasicTopologyManagerImpl.java
+compendium/bundles/org.eclipse.ecf.osgi.services.distribution/src/org/eclipse/ecf/internal/osgi/services/distribution/BasicTopologyManagerImpl.java
+osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/src/org/eclipse/ecf/osgi/services/remoteserviceadmin/AbstractMetadataFactory.java
+osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/src/org/eclipse/ecf/osgi/services/remoteserviceadmin/AbstractMetadataFactory.java
+osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/src/org/eclipse/ecf/osgi/services/remoteserviceadmin/AbstractMetadataFactory.java

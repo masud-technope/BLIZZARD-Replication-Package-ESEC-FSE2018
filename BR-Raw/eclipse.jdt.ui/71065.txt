@@ -1,0 +1,6 @@
+Bug 71065 – [dnd] Package Explorer should support PluginTransfer method
+The package explorer support two transfer drop method :
+LocalSelectionTransfer
+FileTransfer
+It could useful to support PluginTransfer.
+Plugin developers could then use the 'org.eclipse.ui.dropActions' extension point.

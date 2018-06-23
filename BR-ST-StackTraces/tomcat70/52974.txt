@@ -1,0 +1,4 @@
+org.apache.naming.NamingContext.lookup
+org.apache.naming.NamingContext.lookup
+org.apache.catalina.authenticator.AuthenticatorBase.invoke
+org.apache.catalina.valves.ErrorReportValve.invoke

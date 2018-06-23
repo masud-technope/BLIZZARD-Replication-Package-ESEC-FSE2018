@@ -1,0 +1,16 @@
+Bug 424415 – [1.8][compiler] Eventual resolution of ReferenceExpression is not seen to be happening.
+// -- Triggers NPE:
+import java.util.ArrayList;
+import java.util.Collection;
+interface Functional<T> {
+T apply();
+}
+class X {
+void foo(Object o) { }
+<Q extends Collection<?>> Q goo(Functional<Q> s) {
+return null;
+}
+void test() {
+foo(goo(ArrayList<String>::new));
+}
+}

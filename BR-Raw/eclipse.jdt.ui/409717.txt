@@ -1,0 +1,8 @@
+Bug 409717 – [hovering] Javadoc link to package doesn't work in attached package-info.java
+The Javadoc in javax.lang.model's package-info.java (in attached source) contains: "{@linkplain javax.annotation.processing annotation processing}"
+The parsing of this link fails in JavaElementLinks#parseURI(URI) because the
+"if (element instanceof IPackageFragment)" branch only resolves types, but not packages.
+We should use the same code as in "if (element instanceof IType)" to resolve a link to package as well.
+Also need to check whether the Javadoc tool supports links to members.
+If it does, then reuse that part of "if (element instanceof IType)" as well.
+And last but not least, Javadocs of JavaElementLinks need to tell that refTypeName can also refer to a package.

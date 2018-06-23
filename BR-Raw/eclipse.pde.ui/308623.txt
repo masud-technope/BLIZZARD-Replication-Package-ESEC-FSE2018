@@ -1,0 +1,7 @@
+Bug 308623 – IPluginModelBase.getBuildModel() always returns null
+I am using the following code:
+IPluginModelBase pluginModel = PluginRegistry.findModel(project);
+IBuildModel buildModel = pluginModel.getBuildModel();
+buildModel is always null here.
+This is the only API I found to get IBuildModel.
+Am I missing something?

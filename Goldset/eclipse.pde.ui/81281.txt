@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui/plugin.properties
+ui/org.eclipse.pde.ui/icons/obj16/plugin_javasearch.gif
+ui/org.eclipse.pde.ui/plugin.xml
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/plugins/AddAllPluginsToJavaSearchHandler.java

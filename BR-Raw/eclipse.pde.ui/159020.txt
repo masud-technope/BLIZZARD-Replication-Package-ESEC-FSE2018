@@ -1,0 +1,2 @@
+Bug 159020 – Included Features don't show up in Feature Editor Outline
+When a Feature Editor contains "Included Features", none of the included features show up in the Feature Editor outline.

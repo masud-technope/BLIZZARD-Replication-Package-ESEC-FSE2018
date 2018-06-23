@@ -1,0 +1,6 @@
+Bug 405934 – [1.8][dom ast] thrown Exceptions with Type Annotations should have malformed nodes for AST level less than 8
+Created attachment 229840 [details]
+Test case to reproduce
+See  java.io.@NonNull EOFException node in the attached test case using ast viewer:
+thrownExceptions are converted to Name in ast level prior to 8.
+These nodes should have malformed flag set (somewhere) in case of presence of type annotations in the thrown exceptions.

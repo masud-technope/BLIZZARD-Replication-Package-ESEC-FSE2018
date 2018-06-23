@@ -1,0 +1,52 @@
+56529 – NoSuchElementException for attribute with empty string in custom tag
+Created attachment 31628 [details]
+patch for Validator.java
+Hi team,
+I was verifying the fix for https://issues.apache.org/bugzilla/show_bug.cgi?id=56481 and found one issue with respect to custom tag libraries.
+A tld has an attribute which could be an empty string.
+Example is below.
+Here 'indicator' attribute is provided as "".
+<dmf:requiredfieldvalidator
+name='<%=Login.CONTROL_USERNAME_VALIDATOR%>'
+controltovalidate='<%=Login.CONTROL_USERNAME%>'
+nlsid='<%=Login.MSG_USERNAME_REQUIRED%>'
+indicator=""
+/>
+However, while compiling this in jsp resulted in the following exception:
+message Unable to compile class for JSP
+description The server encountered an internal error that prevented it from fulfilling this request.
+exception
+org.apache.jasper.JasperException: Unable to compile class for JSP
+org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:579)
+org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:357)
+org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:403)
+org.apache.jasper.servlet.JspServlet.service(JspServlet.java:347)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:725)
+root cause
+java.util.NoSuchElementException
+java.util.ArrayList$Itr.next(ArrayList.java:834)
+org.apache.jasper.compiler.Validator$ValidateVisitor.checkXmlAttributes(Validator.java:1132)
+org.apache.jasper.compiler.Validator$ValidateVisitor.visit(Validator.java:879)
+org.apache.jasper.compiler.Node$CustomTag.accept(Node.java:1521)
+org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2361)
+org.apache.jasper.compiler.Node$Visitor.visitBody(Node.java:2413)
+org.apache.jasper.compiler.Node$Visitor.visit(Node.java:2419)
+org.apache.jasper.compiler.Node$Root.accept(Node.java:464)
+org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2361)
+org.apache.jasper.compiler.Validator.validateExDirectives(Validator.java:1840)
+org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:217)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:356)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:336)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:323)
+org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:564)
+org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:357)
+org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:403)
+org.apache.jasper.servlet.JspServlet.service(JspServlet.java:347)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:725)
+note The full stack trace of the root cause is available in the Apache Tomcat/@VERSION@ logs.
+By looking into the source of Validator.java I observed that for the empty string we get the ELNode iterator but there isn't a check to see if the element has next node or not.
+The call ((ELNode.Text) el.iterator().next()).getText(); results in the above exception.
+I added a test to see if the element has next node and it worked fine.
+Attached is the patch for your reference.
+Regards,
+Hariprasad

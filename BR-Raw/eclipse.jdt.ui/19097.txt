@@ -1,0 +1,7 @@
+Bug 19097 – outline: applying filters freezed the ide for large files [filters]
+F2
+.OS.java from swt
+.apply the 'public' filter
+.remove the filter
+the whole thing freezes while the outline is refreshing and there's not even a
+busy cursor

@@ -1,0 +1,48 @@
+48049 – org.apache.naming.NamingContext's destroySubcontext() method doesn't invoke itself recursively, but invoke unbind() method
+Below is the original implementation of destroySubcontext(Name name) method:
+public void destroySubcontext(Name name)
+throws NamingException {
+checkWritable();
+while ((!name.isEmpty()) && (name.get(0).length() == 0))
+name = name.getSuffix(1);
+if (name.isEmpty())
+throw new NamingException
+(sm.getString("namingContext.invalidName"));
+NamingEntry entry = (NamingEntry) bindings.get(name.get(0));
+if (entry == null) {
+throw new NameNotFoundException
+(sm.getString("namingContext.nameNotBound", name.get(0)));
+}
+if (name.size() > 1) {
+if (entry.type == NamingEntry.CONTEXT) {
+((Context) entry.value).unbind(name.getSuffix(1));
+} else {
+throw new NamingException
+(sm.getString("namingContext.contextExpected"));
+}
+} else {
+if (entry.type == NamingEntry.CONTEXT) {
+((Context) entry.value).close();
+bindings.remove(name.get(0));
+} else {
+throw new NotContextException
+(sm.getString("namingContext.contextExpected"));
+}
+}
+}
+However, the method invokes 'unbind' method rather than invokes itself recursively.
+if (name.size() > 1) {
+if (entry.type == NamingEntry.CONTEXT) {
+((Context) entry.value).unbind(name.getSuffix(1));
+} else {
+throw new NamingException
+(sm.getString("namingContext.contextExpected"));
+}
+should be:
+if (name.size() > 1) {
+if (entry.type == NamingEntry.CONTEXT) {
+((Context) entry.value).destroySubcontext(name.getSuffix(1));
+} else {
+throw new NamingException
+(sm.getString("namingContext.contextExpected"));
+}

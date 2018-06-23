@@ -1,0 +1,15 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/feature/RequiresSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/DependencyManagementSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/ElementSection.java
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/toc/TocTreeSection.java
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/cheatsheet/simple/SimpleCSMasterTreeSection.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/spy/SpyFormToolkit.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/ExtensionsSection.java
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/cheatsheet/comp/CompCSMasterTreeSection.java
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/ctxhelp/CtxHelpTreeSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/RequiresSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/feature/IncludedFeaturesSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/FeatureSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/PluginSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/feature/PluginSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/commands/CommandList.java

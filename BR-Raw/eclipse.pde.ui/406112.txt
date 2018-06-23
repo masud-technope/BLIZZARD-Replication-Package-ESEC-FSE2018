@@ -1,0 +1,3 @@
+Bug 406112 – Use scan API problems use a flag that collides with NO_FLAGS
+FUP to bug 310547
+When the builder finds a use scan reference that has been deleted it creates a problem using the flag value 0 to mean deleted, but that value collides with IApiProblem.NO_FLAGS (value 0, used through out the tooling to determine if any flags at all are set).

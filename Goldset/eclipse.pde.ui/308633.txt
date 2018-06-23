@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.launching/src/org/eclipse/pde/internal/launching/launcher/BundleLauncherHelper.java
+ui/org.eclipse.pde.launching/src/org/eclipse/pde/internal/launching/launcher/BundleLauncherHelper.java

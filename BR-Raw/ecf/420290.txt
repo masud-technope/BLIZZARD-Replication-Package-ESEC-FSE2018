@@ -1,0 +1,5 @@
+Bug 420290 – Asynchronous Remote Services may support java.util.concurrent.Future
+java.util.concurrent.Future comes with more advanced auxiliary API compared to org.eclipse.equinox.concurrent.IFuture (e.g.
+java.util.concurrent.CompletionService<V>).
+Thus, ECF async RS's consumer experience would be boosted if ECF would allow to use Future.
+Additionally it's one more step to decouple ECF from Eclipse dependencies.

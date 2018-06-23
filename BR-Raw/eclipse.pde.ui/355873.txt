@@ -1,0 +1,12 @@
+Bug 355873 – Import from CVS tests no longer have a repo to import from
+Our import from repo test case is now failing because the pde.ua.ui bundle is now in the git repository.
+testImportOrgEclipsePdeUaUi	Failure	Project org.eclipse.pde.ua.ui does not exist
+junit.framework.AssertionFailedError: Project org.eclipse.pde.ua.ui does not exist
+at org.eclipse.pde.ui.tests.imports.BaseImportTestCase.verifyProject(BaseImportTestCase.java:131)
+at org.eclipse.pde.ui.tests.imports.ImportFromRepoTestCase.verifyProject(ImportFromRepoTestCase.java:107)
+at org.eclipse.pde.ui.tests.imports.BaseImportTestCase.verifyProject(BaseImportTestCase.java:125)
+at org.eclipse.pde.ui.tests.imports.BaseImportTestCase.doSingleImport(BaseImportTestCase.java:66)
+at org.eclipse.pde.ui.tests.imports.ImportFromRepoTestCase.testImportOrgEclipsePdeUaUi(ImportFromRepoTestCase.java:78)
+at org.eclipse.test.EclipseTestRunner.run(EclipseTestRunner.java:501)
+at org.eclipse.test.EclipseTestRunner.run(EclipseTestRunner.java:259)
+at org.eclipse.test.UITestApplication$2.run(UITestApplication.java:197)

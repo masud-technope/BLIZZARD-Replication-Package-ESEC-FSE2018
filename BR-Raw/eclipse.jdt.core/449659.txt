@@ -1,0 +1,5 @@
+Bug 449659 – [1.8][compiler] Investigate status of disabled generics tests
+There are a few dozens of tests in GTT that are disabled for 1.8.
+This ticket is to investigate the status of those and enable them
+by possibly remastering the tests and/or fixing the compiler.
+We should also check whether GRT* have similarly disabled tests.

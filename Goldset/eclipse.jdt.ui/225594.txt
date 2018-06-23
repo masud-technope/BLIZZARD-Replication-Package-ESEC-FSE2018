@@ -1,0 +1,14 @@
+org.eclipse.jdt.junit.core/.settings/org.eclipse.jdt.core.prefs
+org.eclipse.jdt.junit.core/META-INF/MANIFEST.MF
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/JUnitCorePlugin.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/buildpath/BuildPathSupport.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/buildpath/JUnitHomeInitializer.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/buildpath/P2Utils.java
+org.eclipse.jdt.junit/.settings/org.eclipse.jdt.core.prefs
+org.eclipse.jdt.junit/META-INF/MANIFEST.MF
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/buildpath/BuildPathSupport.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/buildpath/JUnitHomeInitializer.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/buildpath/P2Utils.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/JUnitPlugin.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/buildpath/BuildPathSupport.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/buildpath/BuildPathSupport.java

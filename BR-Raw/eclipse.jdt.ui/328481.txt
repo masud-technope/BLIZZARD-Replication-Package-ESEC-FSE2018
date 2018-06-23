@@ -1,0 +1,3 @@
+Bug 328481 – [quick fix] Adjust quick fixes for unused variable/field/param to improved problem detection
+We need to adjust our quick fixes for unused variable/field/param to the improved problem detection, see bug 185682.
+This means we not only remove the declaration but also the usages of the variables.

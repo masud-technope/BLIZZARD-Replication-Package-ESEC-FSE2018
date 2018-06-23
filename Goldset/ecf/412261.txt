@@ -1,0 +1,15 @@
+server-side/bundles/org.eclipse.ecf.remoteservice.eventadmin/src/org/eclipse/ecf/remoteservice/eventadmin/EventMessage.java
+server-side/bundles/org.eclipse.ecf.remoteservice.eventadmin/src/org/eclipse/ecf/remoteservice/eventadmin/EventTopicFilter.java
+server-side/bundles/org.eclipse.ecf.remoteservice.eventadmin/src/org/eclipse/ecf/remoteservice/eventadmin/EventMessage.java
+server-side/bundles/org.eclipse.ecf.remoteservice.eventadmin/src/org/eclipse/ecf/remoteservice/eventadmin/DistributedEventAdmin.java
+server-side/bundles/org.eclipse.ecf.remoteservice.eventadmin/META-INF/MANIFEST.MF
+server-side/bundles/org.eclipse.ecf.remoteservice.eventadmin/src/org/eclipse/ecf/remoteservice/eventadmin/DistributedEventAdmin.java
+tests/bundles/org.eclipse.ecf.tests.remoteserivce.eventadmin/.classpath
+tests/bundles/org.eclipse.ecf.tests.remoteserivce.eventadmin/.gitignore
+tests/bundles/org.eclipse.ecf.tests.remoteserivce.eventadmin/.project
+tests/bundles/org.eclipse.ecf.tests.remoteserivce.eventadmin/.settings/org.eclipse.jdt.core.prefs
+tests/bundles/org.eclipse.ecf.tests.remoteserivce.eventadmin/.settings/org.eclipse.pde.core.prefs
+tests/bundles/org.eclipse.ecf.tests.remoteserivce.eventadmin/META-INF/MANIFEST.MF
+tests/bundles/org.eclipse.ecf.tests.remoteserivce.eventadmin/build.properties
+tests/bundles/org.eclipse.ecf.tests.remoteserivce.eventadmin/src/org/eclipse/ecf/remoteservice/eventadmin/DistributedEventAdminTest.java
+tests/bundles/org.eclipse.ecf.tests.remoteserivce.eventadmin/src/org/eclipse/ecf/remoteservice/eventadmin/TestDistributedEventAdmin.java

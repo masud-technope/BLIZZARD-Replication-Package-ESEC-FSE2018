@@ -1,0 +1,4 @@
+Bug 420858 – [r-OSGi] Sync SF.net and ECF's codebase
+r-OSGi has been evolved in two places (EF & SF.net [1]).
+The SF.net content should be ported/synced to EF.
+[1] http://sourceforge.net/p/r-osgi/code/HEAD/tree/

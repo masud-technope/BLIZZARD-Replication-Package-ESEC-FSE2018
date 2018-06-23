@@ -1,0 +1,11 @@
+Bug 384600 – [1.8] 'this' should not be allowed in lambda/Reference expressions in contexts that don't allow it
+BETA_JAVA8
+'this' keyword should not be allowed inside a lambda expression when the enclosing context does not allow 'this' to be used.
+Example:
+public class Action<T> {
+public void f1(Object o) {}
+public void foo() {
+f1( (t) -> { if (t == 1) return t; else return this;} ) ;
+}
+}
+This is in accordance with JLS 15.8.3

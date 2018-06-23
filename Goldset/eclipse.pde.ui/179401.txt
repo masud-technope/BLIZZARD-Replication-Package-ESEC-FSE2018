@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/ExecutionEnvironmentSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/BaseBlock.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/JREBlock.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/PDEPreferencesUtil.java

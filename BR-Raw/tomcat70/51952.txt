@@ -1,0 +1,46 @@
+51952 – IllegalStateException using CompressionFilter with Tomcat 7.0.21/22
+Created attachment 27685 [details]
+Simple test to recreate CompressionFilter causing IllegalStateException
+Using Tomcat 7.0.21 or 7.0.22 with jdk1.6.0_26 on Solaris 10, mod_ajp and Apache 2.2.21, we get the following logged exception when a sendRedirect is used in a jsp and the CompressionFilter is enabled.
+It does not occur using 7.0.20.
+I've attached a gzipped tar file containing a simple test that reproduces the problem.
+test.jsp just contains a sendRedirect to test2.jsp and I've included the source code for the CompressionFilter and a simple web.xml file with this filter's entry.
+Hitting test.jsp logs the exception below.
+SEVERE: Servlet.service() for servlet [jsp] in context with path [] threw exception [java.lang.IllegalStateException: getWriter() has already been called for this response] with root cause
+java.lang.IllegalStateException: getWriter() has already been called for this response
+at org.apache.catalina.connector.Response.getOutputStream(Response.java:594)
+at org.apache.catalina.connector.ResponseFacade.getOutputStream(ResponseFacade.java:199)
+at com.tirerack.filters.CompressionResponseStream.<init>(CompressionResponseStream.java:47)
+at com.tirerack.filters.CompressionServletResponseWrapper.createOutputStream(CompressionServletResponseWrapper.java:172)
+at com.tirerack.filters.CompressionServletResponseWrapper.getWriter(CompressionServletResponseWrapper.java:250)
+at org.apache.jasper.runtime.JspWriterImpl.initOut(JspWriterImpl.java:125)
+at org.apache.jasper.runtime.JspWriterImpl.flushBuffer(JspWriterImpl.java:118)
+at org.apache.jasper.runtime.PageContextImpl.release(PageContextImpl.java:190)
+at org.apache.jasper.runtime.JspFactoryImpl.internalReleasePageContext(JspFactoryImpl.java:123)
+at org.apache.jasper.runtime.JspFactoryImpl.releasePageContext(JspFactoryImpl.java:80)
+at org.apache.jsp.test_jsp._jspService(test_jsp.java:74)
+at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:433)
+at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:389)
+at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:333)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:304)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+at com.tirerack.filters.CompressionFilter.doFilter(CompressionFilter.java:194)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:224)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:100)
+at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:929)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:405)
+at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:200)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:515)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:302)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:662)

@@ -1,0 +1,41 @@
+60041 – NPE in WebappClassLoaderBase
+After deploy war in tomcat, delete the jar in WEB-INF/lib/, then it may throws NullPointerException when load class
+The reason as follow:
+WebappClassLoaderBase (between line 3093 and 3110 in method openJARs())
+protected boolean openJARs() {
+if (started && (jarFiles.length > 0)) {
+lastJarAccessed = System.currentTimeMillis();
+if (jarFiles[0] == null) {
+for (int i = 0; i < jarFiles.length; i++) {
+try {
+jarFiles[i] = new JarFile(jarRealFiles[i]);
+} catch (IOException e) {
+if (log.isDebugEnabled()) {
+log.debug("Failed to open JAR", e);
+}
+return false;
+}
+}
+}
+}
+return true;
+}
+If IOException is thrown in line 3099, the jarFiles will be [file1,file2,NULL,NULL,...].
+after that, it will return true when invoke openJARs(), beacuse jarFiles[0] != null.
+WebappClassLoaderBase (between line 3271 and 3285 in method openJARs())
+if (openJARs()) {
+for (int i = 0; i < jarFiles.length; i++) {
+jarEntry = jarFiles[i].getJarEntry(jarEntryPath);
+if (jarEntry != null) {
+try {
+entry.manifest = jarFiles[i].getManifest();
+} catch (IOException ioe) {
+// Ignore
+}
+break;
+}
+}
+}
+beacuse jarFiles=[file1,file2,NULL,NULL,...], so jarFiles[i] may be null, This will cause NullPointerException in line 3274.
+In this case, it is difficult to judge what went wrong.
+I attached a patch that fixes it

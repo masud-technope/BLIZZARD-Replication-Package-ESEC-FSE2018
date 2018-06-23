@@ -1,0 +1,8 @@
+Bug 250717 – [api] add IResourceID
+Add IResourceID to core identity package, so that:
+public interface IResourceID extends ID {
+public URI toURI();
+}
+Also see discussion on mailing list
+http://dev.eclipse.org/mhonarc/lists/ecf-dev/msg01881.html
+Note:  this will imply moving the minimum execution environment for the core up to CDC 1.1 to accomodate using the java.net.URI class.

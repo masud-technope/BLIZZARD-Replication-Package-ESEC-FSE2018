@@ -1,0 +1,15 @@
+Bug 427169 – [1.8][quick assist] lambda body: convert expression to block
+I was playing with a lambda with a simple expression, and then I wanted to add slightly more logic which required me to use a block instead of the expression.
+Wouldn't it be cool if JDT/UI offered a quick assist
+"Convert body expression to block"? :)
+To convert this:
+void assistDemo(boolean flag) {
+perform(() -> 13);
+}
+into this:
+void assistDemo(boolean flag) {
+perform(() -> {
+return 13;
+});
+}
+(And perhaps the inverse, too, if possible).

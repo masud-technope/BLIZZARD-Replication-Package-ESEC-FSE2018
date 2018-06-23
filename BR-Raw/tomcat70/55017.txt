@@ -1,0 +1,6 @@
+55017 – Ability to configure RMI bind address
+Created attachment 30319 [details]
+Patch to provider bind rmi bind address setup ability
+There is a patch which adds rmiBindAddress property to JmxRemoteLifecycleListener, which allows to bind RMI server to specific interface instead of 0.0.0.0.
+It may useful for binding RMI to localhost and avoiding firewall configuration (and then monitoring through SSH tunnel).
+Unfortunatly using of rmiBindAddress incompatible with rmiSSL, but i think it's not an issue because of rarely intersecting use cases.

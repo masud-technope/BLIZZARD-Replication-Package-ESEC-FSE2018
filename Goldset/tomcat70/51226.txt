@@ -1,0 +1,5 @@
+java/org/apache/catalina/ant/FindLeaksTask.java
+java/org/apache/catalina/manager/HTMLManagerServlet.java
+java/org/apache/catalina/manager/LocalStrings.properties
+java/org/apache/catalina/manager/ManagerServlet.java
+webapps/docs/manager-howto.xml

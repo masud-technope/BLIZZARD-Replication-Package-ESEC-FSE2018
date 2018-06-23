@@ -1,0 +1,10 @@
+Bug 260555 – [remoteservices][api] change callSynch to callSync
+In the remote services API IRemoteService interface there are several methods:
+fireAsynch
+callSynch
+callAsynch/2
+callAsynch
+These methods should be renamed in major release cycle (ECF 3.0) to
+fireAsync
+callSync
+callAsync

@@ -1,0 +1,21 @@
+Bug 273599 – Datashare implementation for IRC provider
+I have created a datashare implementation for the IRC provider via extending the classes of the NIO datashare implementation from bug 273357.
+I have tested this _locally_ with two Eclipse instances and comparing two files (via the ECF Team provider) and DocShare (changes are propagated, of course, since I can't type on two windows at the same time I haven't really tested it as much as I would like).
+The request is sent to the remote peer similar to a DCC request.
+It looks something like this...
+"/msg rcjsuen2 \01ECF 1.2.3.4:5678\01"
+--------------------------
+Outstanding issues:
+1.
+Need method of retrieving localhost's ip.
+-InetAddress.getLocalHost() can throw UnknownHostException (happens to me on Linux)
+-InetAddress.getLocalHost() can return useless address (hostname/192.168.2.10, happens to me on Vista), this cannot be used to communicate to the remote peer for instantiating a socket connection
+Possible solutions:
+-use /userhost nick to retrieve the ip from the IRC server, this will fail for users that have cloaks
+-have a preference for users to input their own ip if "everything" fails, either an Eclipse preference and/or a system property, XChat provides such a setting for DCC file transfers
+2.
+Introducing NIO means upping the IRC bundle's BREE to J2SE-1.4 and ditching Foundation 1.1.
+-putting the datashare code in the bundle requires less hacks for parsing information but increases the coupling of the code, possibly causing maintenance issues
+-adding the datashare implementation means adding a new bundle dependency
+Possible solutions:
+-use a fragment and try to use listeners to monitor the state of the IContainer and its received messages

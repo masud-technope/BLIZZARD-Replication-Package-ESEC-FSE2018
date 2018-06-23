@@ -1,0 +1,41 @@
+Bug 408966 – [1.8][inline] Invalid inline constant and inline temp refactorings using lambda expressions
+Consider the following example and perform Refactor > Inline as per the comments:
+@FunctionalInterface
+interface I1 {
+int foo(int x);
+}
+public class X {
+public static final I1 a= (int x) -> x;
+void fun1() {
+int n = a.foo(0); // [1] Inline "a" => AFE
+I1 i= (int x) -> { return x; }; // [2] Inline "i"
+I1 i1= x -> i.foo(x); // => Invalid inlining of "i"
+fun2(i); // => Valid inlining of "i"
+}
+void fun2(I1 i) {}
+}
+[1] =>
+java.lang.reflect.InvocationTargetException
+...
+Caused by: org.eclipse.core.runtime.AssertionFailedException: assertion failed:
+at org.eclipse.core.runtime.Assert.isTrue(Assert.java:110)
+at org.eclipse.core.runtime.Assert.isTrue(Assert.java:96)
+at org.eclipse.jdt.internal.corext.dom.fragments.ASTFragmentFactory$FragmentFactory.setFragment(ASTFragmentFactory.java:194)
+at org.eclipse.jdt.internal.corext.dom.fragments.ASTFragmentFactory$FragmentForFullSubtreeFactory.visit(ASTFragmentFactory.java:133)
+at org.eclipse.jdt.internal.corext.dom.HierarchicalASTVisitor.visit(HierarchicalASTVisitor.java:547)
+at org.eclipse.jdt.internal.corext.dom.HierarchicalASTVisitor.visit(HierarchicalASTVisitor.java:566)
+at org.eclipse.jdt.core.dom.SimpleName.accept0(SimpleName.java:149)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2670)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:2718)
+at org.eclipse.jdt.core.dom.LambdaExpression.accept0(LambdaExpression.java:215)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2670)
+at org.eclipse.jdt.internal.corext.dom.fragments.ASTFragmentFactory$FragmentFactory.createFragment(ASTFragmentFactory.java:186)
+at org.eclipse.jdt.internal.corext.dom.fragments.ASTFragmentFactory$FragmentForFullSubtreeFactory.createFragmentFor(ASTFragmentFactory.java:115)
+at org.eclipse.jdt.internal.corext.dom.fragments.ASTFragmentFactory.createFragmentForFullSubtree(ASTFragmentFactory.java:56)
+at org.eclipse.jdt.internal.corext.refactoring.code.InlineConstantRefactoring.checkInitializer(InlineConstantRefactoring.java:789)
+at org.eclipse.jdt.internal.corext.refactoring.code.InlineConstantRefactoring.checkInitialConditions(InlineConstantRefactoring.java:736)
+at org.eclipse.ltk.core.refactoring.CheckConditionsOperation.run(CheckConditionsOperation.java:83)
+...
+[2] => Results in:
+I1 i1= x -> (int x) -> { return x; }.foo(x); // => Invalid inlining of "i"
+fun2((int x) -> { return x; }); // => Valid inlining of "i"

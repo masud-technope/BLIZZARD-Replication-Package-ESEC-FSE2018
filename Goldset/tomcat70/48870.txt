@@ -1,0 +1,5 @@
+build.xml
+java/org/apache/catalina/startup/Bootstrap.java
+java/org/apache/catalina/startup/ClassLoaderFactory.java
+java/org/apache/catalina/startup/LocalStrings.properties
+webapps/docs/changelog.xml

@@ -1,0 +1,16 @@
+java.util.EventObject.<init>
+javax.management.Notification.<init>
+org.apache.catalina.core.StandardContext.destroyInternal
+org.apache.catalina.util.LifecycleBase.destroy
+org.apache.catalina.core.ContainerBase.removeChild
+org.apache.catalina.core.ContainerBase.destroyInternal
+org.apache.catalina.util.LifecycleBase.destroy
+org.apache.catalina.core.ContainerBase.removeChild
+org.apache.catalina.core.ContainerBase.destroyInternal
+org.apache.catalina.util.LifecycleBase.destroy
+org.apache.catalina.core.StandardService.destroyInternal
+org.apache.catalina.util.LifecycleBase.destroy
+org.apache.catalina.core.StandardServer.destroyInternal
+org.apache.catalina.util.LifecycleBase.destroy
+org.apache.catalina.startup.Tomcat.destroy
+su.msk.jet.nioproxy.rule.config.EmbeddedWebserver.stop

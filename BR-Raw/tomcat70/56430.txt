@@ -1,0 +1,17 @@
+56430 – Extension mapping that includes a dot in the extension does not work
+Chapter SRV.11.2 of the servlet specification defines...
+A string beginning with a '*.' prefix is used as an extension mapping.
+http://download.oracle.com/otndocs/jcp/servlet-2.5-mrel2-eval-oth-JSpec/
+So, this tells us, the url-pattern '*.jsp' forwards all requests ending with '.jsp' to the mapped servlet or filtes.
+With this, one might also assume that the url-pattern '*.my.txt' forwards all requests ending with 'my.txt' to the configured servlet or filters.
+But the latter does not work with Tomcat.
+I set up a tiny maven project, for illustrating the problem: https://bitbucket.org/benplocek/servlet-extension-mapping-test
+This project contains a Servlet and a Filter, both mapped to '.my.html':
+<servlet-mapping>
+<servlet-name>MyServlet</servlet-name>
+<url-pattern>*.my.html</url-pattern>
+</servlet-mapping>
+When sending a request to /test.my.html Tomcat responds with a 404.
+I also deployed this app to Jetty 9.1.4 which behaves as expected: /test.my.html invokes the filter and also serves the servlet.
+Because of this I assume this is a bug in Tomcat.
+Note: Also applies to Tomcat 8.0.5.

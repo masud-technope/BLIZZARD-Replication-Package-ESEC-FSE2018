@@ -1,0 +1,4 @@
+Bug 389230 – Filetransfer testcases fails because of references to files in archived ECF repositories
+The filetransfer tests use some "known locations" to get some files.
+Some of them point to files in old ECF versions.
+Since the old ECF versions were archived the file pointers are broken.

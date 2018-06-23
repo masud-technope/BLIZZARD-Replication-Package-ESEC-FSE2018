@@ -1,0 +1,22 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat/JarRsrcLoader.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat/RsrcURLConnection.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat/RsrcURLStreamHandler.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat/RsrcURLStreamHandlerFactory.java
+org.eclipse.jdt.ui/.classpath
+org.eclipse.jdt.ui/.cvsignore
+org.eclipse.jdt.ui/.externalToolBuilders/Build Jar in Jar Loader.launch
+org.eclipse.jdt.ui/.project
+org.eclipse.jdt.ui/.settings/org.eclipse.pde.prefs
+org.eclipse.jdt.ui/build.properties
+org.eclipse.jdt.ui/jar in jar loader/org/eclipse/jdt/internal/jarinjarloader/JarRsrcLoader.java
+org.eclipse.jdt.ui/jar in jar loader/org/eclipse/jdt/internal/jarinjarloader/RsrcURLConnection.java
+org.eclipse.jdt.ui/jar in jar loader/org/eclipse/jdt/internal/jarinjarloader/RsrcURLStreamHandler.java
+org.eclipse.jdt.ui/jar in jar loader/org/eclipse/jdt/internal/jarinjarloader/RsrcURLStreamHandlerFactory.java
+org.eclipse.jdt.ui/jar-in-jar-loader.zip
+org.eclipse.jdt.ui/scripts/build_jar-in-jar-loader.xml
+org.eclipse.jdt.ui/scripts/exportplugin.xml
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat/FatJarRsrcUrlBuilder.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat/FatJarRsrcUrlManifestProvider.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat/build_jar-rsrc-loader.xml
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat/jar-rsrc-loader.zip
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat/jar-rsrc-loader_howto_create.txt

@@ -1,0 +1,20 @@
+Bug 266483 – [Discovery][JmDNS] Replace outdated/inofficial "._mdns._udp." meta query with official "._dns-sd._udp."
+"9.
+Service Type Enumeration
+In general, clients are not interested in finding *every* service on
+the network, just the services that the client knows how to talk to.
+However, for problem diagnosis and network management tools, it may
+be useful for network administrators to find the list of advertised
+service types on the network, even if those service names are just
+opaque identifiers and not particularly informative in isolation.
+For this reason, a special meta-query is defined.
+A DNS query for PTR
+records with the name "_services._dns-sd._udp.<Domain>" yields a list
+of PTR records, where the rdata of each PTR record is the two-label
+name of a service type, e.g.
+"_http._tcp." These two-label service
+types can then be used to construct subsequent Service Instance
+Enumeration PTR queries, in this <Domain> or others, to discover
+a list of instances of that service type.
+"
+http://files.dns-sd.org/draft-cheshire-dnsext-dns-sd.txt p24

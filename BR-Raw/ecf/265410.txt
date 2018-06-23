@@ -1,0 +1,4 @@
+Bug 265410 – [Discovery] Reorder test inheritance to fix setUp/tearDown bugs
+DiscoveryServiceTests must not fiddle with the IContainer instance life cycle (e.g.
+call dispose/disconnect/connect).
+Thus the test hierarchy has to be changed to not inherit certain setUps/tearDowns.

@@ -1,0 +1,6 @@
+Bug 461549 – [patch] [target] Dont increment sequence number during reload and provide tooltips for reload and update
++++ This bug was initially created as a clone of Bug #441190 +++
+Additional discussion on Bug 439034.
+ We should consider having a reload button that clears the cached p2 profile, allowing the p2 sites to query the remote repositories.
+We now allow this after a successful update as well as when the resolution returned an error status.
++++ This bug was initially created as a clone of Bug #439034 +++

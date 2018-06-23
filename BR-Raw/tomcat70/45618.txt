@@ -1,0 +1,7 @@
+45618 – Selector is not closed.
+In the class ParallelNioSender [1], a Selector (selector) is declared as a field.
+In line 60, it is opened (selector = Selector.open()).
+However, it is not closed in any situations.
+As shown by its Javadoc [2], it has a close() method, and this method should be called to close the selector.
+[1]http://www.google.com/codesearch?hl=en&q=lang:java+open+java.nio.channels.Selector+show:hsMlF-2s6UU:ZSXpd2XI4bI:dK-_LkuTzG4&sa=N&ct=rx&cd=4&cs_p=http://archive.apache.org/dist/tomcat/tomcat-6/v6.0.0/src/apache-tomcat-6.0.0-src.tar.gz&cs_f=apache-tomcat-6.0.0-src/java/org/apache/catalina/tribes/transport/nio/ParallelNioSender.java&cs_p=http://archive.apache.org/dist/tomcat/tomcat-6/v6.0.0/src/apache-tomcat-6.0.0-src.tar.gz&cs_f=apache-tomcat-6.0.0-src/java/org/apache/catalina/tribes/transport/nio/ParallelNioSender.java
+[2]http://java.sun.com/j2se/1.5.0/docs/api/java/nio/channels/Selector.html

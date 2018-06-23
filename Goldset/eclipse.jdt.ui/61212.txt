@@ -1,0 +1,5 @@
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/search/FileAdapterTest.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/JavaSearchResult.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/search/SearchTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/search/ParticipantTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/search/JUnitSourceSetup.java

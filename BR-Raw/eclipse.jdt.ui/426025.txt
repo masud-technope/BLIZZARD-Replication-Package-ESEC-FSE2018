@@ -1,0 +1,1 @@
+Bug 426025 – [Graphics] Switch JDT UI to use png file instead of .gif

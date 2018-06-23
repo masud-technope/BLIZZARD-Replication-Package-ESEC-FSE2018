@@ -1,0 +1,6 @@
+Bug 204614 – Validate more versions in Manifest
+When a user specifies an invalid version in the new Fragment wizard, it gets flagged as an invalid format.
+ If they enter the same version into the Manifest Editor, we mark an error on the Form editor but do not mark the error on the source page.
+These version format errors result in the Manifest not registering correctly with the resolver state.
+ Since this is the case, we should do our best to inform the user when they have a problem with their versions so they may be able to better utilize PDE tooling.
+Same should be done for the Import-Package and Require-Bundle since version formatting errors in these headers also cause problems when registering the Manifest.

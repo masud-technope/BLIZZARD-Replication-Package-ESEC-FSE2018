@@ -1,0 +1,21 @@
+51453 – Requests to open URL that include an Authorization header do not reach servlet
+In Tomcat 7, I've noticed that a request to a URL that does not require authentication will get forwarded to the login page if the request contains an "Authorization" header.
+Our application expects these requests to be processed by the servlet.
+ The servlet parses the Authorization header and takes appropriate action (possibly redirecting to the login page or allowing the request if the headers contain an acceptible token).
+ This has worked in older versions of Tomcat.
+The relevant part of our web.xml looks like:
+<security-constraint>
+<web-resource-collection>
+<web-resource-name>open</web-resource-name>
+<url-pattern>/*</url-pattern>
+<!-- several other url patterns -->
+</web-resource-collection>
+<user-data-constraint>
+<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+</user-data-constraint>
+<!-- Notice no auth-constraint element -->
+</security-constraint>
+I observed the behavior of org.apache.catalina.authenticator.AuthenticatorBase.invoke(), here's what I saw:
+The constraints variable contains a single constraint that matches the security constraint from our web.xml above.
+On line 520, authRequired is set to true because of the presence of the Authorization header.
+The authenticate() call on line 535 fails and redirects to the login page.

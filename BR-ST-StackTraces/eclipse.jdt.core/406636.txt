@@ -1,0 +1,7 @@
+org.eclipse.jdt.internal.core.util.ClassFileStruct.u2At
+org.eclipse.jdt.internal.core.util.BootstrapMethodsEntry.<init>
+org.eclipse.jdt.internal.core.util.BootstrapMethodsAttribute.<init>
+org.eclipse.jdt.internal.core.util.ClassFileReader.<init>
+org.eclipse.jdt.internal.core.util.Disassembler.disassemble
+org.eclipse.jdt.core.tests.compiler.regression.Jsr335ClassFileTest.verifyClassFile
+org.eclipse.jdt.core.tests.compiler.regression.Jsr335ClassFileTest.test014

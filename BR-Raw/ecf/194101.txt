@@ -1,0 +1,4 @@
+Bug 194101 – [UI] Increase user info pop-up time delay
+As soon as you hover over a name in the contacts ui, you get a popup with user info.
+This is great, however that popup comes up so fast that it's difficult to just right click on a user's name.
+There should be a longer delay for that popup.

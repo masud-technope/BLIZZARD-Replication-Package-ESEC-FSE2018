@@ -1,0 +1,3 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/SefWorkSpace/SefTests/existingmethods_in/TestTwoFragmentsWithSetter.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SefWorkSpace/SefTests/existingmethods_out/TestTwoFragmentsWithSetter.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/sef/SelfEncapsulateFieldRefactoring.java

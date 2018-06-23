@@ -1,0 +1,15 @@
+Bug 282667 – [remotesrvs][r-osgi] class name parsing exception in ch.ethz.iks.r_osgi.impl.CodeAnalyzer
+Hi, as described by Wojciech in bug 274982, we have some issues with CodeAnalyzer.
+I'll paste that comment in this bug, since I believe ECF bug is better place to discuss this than PDE bug :-)
+------- Comment  #9 From Wojciech Galanciak  2009-07-07 06:17:47 -0400  [reply] -------
+Ok, we've got an interesting issue :-)
+Our remote service interface contains a method like this:
+void addExtensionPoints(ExtensionPoint[] extensionPoints);
+and when we try to register it, we get to the point where r-OSGI is analyzing
+it (in ch.ethz.iks.r_osgi.impl.CodeAnalyzer.visit(String)) and is trying to
+find type ExtensionPoint[].
+It's trying to open class file named
+"[Lorg/eclipse/pde/internal/runtime/registry/model/ExtensionPoint.class" - note
+the '[' at the beginning.
+This fails with IOException.
+Does this mean, that we should not use arrays in our services?

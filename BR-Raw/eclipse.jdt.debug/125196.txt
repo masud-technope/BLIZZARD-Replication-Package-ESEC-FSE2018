@@ -1,0 +1,6 @@
+Bug 125196 – Installed JREs preference page layout problems
+Build: I20060124-1115
+Open the Java > Installed JREs preference page.
+Move the sash between the tree view on the left and the preference page on the right.
+-> The dialog gets wider.
+ Each time you move the sash the whole dialog resizes.

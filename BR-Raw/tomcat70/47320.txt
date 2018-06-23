@@ -1,0 +1,15 @@
+47320 – Decoding jsessionid bug on z/os
+If you receive a rewritten URL on z/os with uss (unix on a mainframe), Tomcat
+does not properly decode the jsessionid portion of the URL.
+The problem is in org.apache.catalina.connector.CoyoteAdapter in the parseSessionId method.
+The two instantiations of a String object do not specify the encdoding to use.
+e.g.
+String sid = new String(uriBC.getBuffer(), start + sessionIdStart,
+semicolon2 - sessionIdStart);
+...as well as the second String instantiation in this method.
+Consequently z/os uses its default encoding which (I think) is EBCDIC.
+If I recompile with a hardcoded "UTF-8" for the encoding then the jsessionid decodes properly.
+ Not that I am suggesting this literally for the official fix.
+e.g.
+String sid = new String(uriBC.getBuffer(), start + sessionIdStart,
+semicolon2 - sessionIdStart, "UTF-8");

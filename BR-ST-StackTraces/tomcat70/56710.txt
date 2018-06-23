@@ -1,0 +1,17 @@
+org.apache.catalina.webresources.StandardRoot.validate
+org.apache.catalina.webresources.StandardRoot.getResource
+org.apache.catalina.webresources.StandardRoot.getResource
+org.apache.catalina.mapper.Mapper.internalMapWrapper
+org.apache.catalina.mapper.Mapper.internalMap
+org.apache.catalina.mapper.Mapper.map
+org.apache.catalina.connector.CoyoteAdapter.postParseRequest
+org.apache.catalina.connector.CoyoteAdapter.service
+org.apache.coyote.http11.AbstractHttp11Processor.process
+org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process
+org.apache.coyote.http11.Http11NioProtocol$Http11ConnectionHandler.process
+org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun
+org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run
+java.util.concurrent.ThreadPoolExecutor.runWorker
+java.util.concurrent.ThreadPoolExecutor$Worker.run
+org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run
+java.lang.Thread.run

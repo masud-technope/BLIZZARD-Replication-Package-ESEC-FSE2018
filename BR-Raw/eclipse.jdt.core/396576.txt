@@ -1,0 +1,3 @@
+Bug 396576 – [1.8] Implement AST Rewrite extended dimensions
+AST/DOM support for extended dimensions are being added via bug 391895.
+This bug is to track the AST rewrite part for the extended dimensions for SingleVariableDeclaration and VariableDeclarationFragment.

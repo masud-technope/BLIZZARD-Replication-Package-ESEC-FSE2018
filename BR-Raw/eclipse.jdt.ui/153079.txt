@@ -1,0 +1,11 @@
+Bug 153079 – [search] search button should be disabled when all "Search In" checkboxes cleared
+I20060708-2000
+- Search > Java
+- clear all "Search In" check boxes
+- click Search
+> no results
+- Ctrl+H again
+> Search-In state is remembered
+expected:
+- Search button is disabled when all Search-In-Boxes cleared
+- warning message in dialog

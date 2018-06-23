@@ -1,0 +1,3 @@
+Bug 131394 – javacVerbose default should be false, not true
+With the javac ant task verbose option doing what it is supposed to do (see bug 131373), there is no need to set it to true by default.
+See bug 131373 and 131377 for more details.

@@ -1,0 +1,20 @@
+Bug 181204 – [launching] context launching of non-resource based objects
+The context launching enhancement provided through bug 74480 only applies to resource based objects.
+I like the enhanced behavior.
+However, my product uses non resource objects to launch remote programs so I request the context launching to be further enhanced to handle this scenario.
+As the background information, the following comments are extracted from bug 74480:
+>>   My run/debug launch configuration applies to remote executable object or
+>> process.
+For example, run/debug program on remote host or debug process on
+>> remote host.
+Remote object is NOT an IResource.
+>>   Does this mean I can not take advantage of the proposed context launching ?
+>> Is there other way to determine the context mapping except using IResource ? 
+>Currently, conetxt launching is resource based.
+For 3.3, this is all we have
+>planned.
+We may one to look at further enhancements to this in a future release
+>to allow for context launching of non-resource based objects.
+>Marking fixed & verified.
+New bugs should be opened for issues pertaining to
+>context launching.

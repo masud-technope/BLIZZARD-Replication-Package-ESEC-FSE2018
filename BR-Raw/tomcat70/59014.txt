@@ -1,0 +1,29 @@
+59014 – No CloseMessage because of WebSocket connection has been closed
+In our test-cases we would like to handle
+Endpoint.onClose(Session session, CloseReason closeReason) {}
+But looks the code isn't reachable.
+WsSession does:
+state = State.CLOSED_SENT;
+...
+sendCloseMessage(closeReasonMessage);
+Where we have the code like in WsRemoteEndpointImplBase.startMessageBlock:
+FutureToSendHandler f2sh = new FutureToSendHandler(wsSession);
+startMessage(opCode, payload, last, f2sh);
+try {
+if (timeout == -1) {
+f2sh.get();
+} else {
+f2sh.get(timeout, TimeUnit.MILLISECONDS);
+}
+That f2sh.get() does this:
+wsSession.registerFuture(this);
+where:
+if (isOpen()) {
+futures.put(f2sh, f2sh);
+}
+is false because our state is State.CLOSED_SENT not like:
+state == State.OPEN || state == State.SENDING_CLOSED
+Therefore we never get result from that Future and our onClose() test fail.
+You can find more info in the bug57489, especially https://bz.apache.org/bugzilla/show_bug.cgi?id=58624#c13 and its attachment.
+The related Spring Integration JIRA: https://jira.spring.io/browse/INT-3909.
+Thank you in advance!

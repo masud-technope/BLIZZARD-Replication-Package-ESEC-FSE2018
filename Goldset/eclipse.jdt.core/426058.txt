@@ -1,0 +1,5 @@
+org.eclipse.jdt.core.tests.model/workspace/AttachedJavadocProject/UTF8doc2/p/TestBug394382.html
+org.eclipse.jdt.core.tests.model/workspace/AttachedJavadocProject/UTF8doc2/p/TestBug394382.txt
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavaElement.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/AttachedJavadocTests.java
+org.eclipse.jdt.core.tests.model/.settings/org.eclipse.core.resources.prefs

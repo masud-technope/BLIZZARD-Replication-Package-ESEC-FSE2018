@@ -1,0 +1,15 @@
+Bug 250472 – [preferences] Add preference for new compiler warning: MissingHashCodeMethod
+3.5
+For bug 38751, some UI work is needed to surface the new warning.
+fyi:
+Added a new compiler warning to report a missing hashCode() method when overriding the equals() method from Object.
+This diagnosis is controlled by option:
+JavaCore.COMPILER_PB_MISSING_HASHCODE_METHOD and produces a problem marker which ID is
+IProblem.MissingHashCodeMethod problem ID.
+Compiler option ID: Reporting Missing HashCode Method.
+When enabled, the compiler will issue an error or a warning if a type
+overrides Object.equals(Object) but does not override hashCode().
+Option id: "org.eclipse.jdt.core.compiler.problem.missingHashCodeMethod"
+Possible values: { "error", "warning", "ignore" }
+Default: "ignore"
+This should appear in Potential Programming Problems section.

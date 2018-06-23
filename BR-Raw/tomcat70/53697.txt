@@ -1,0 +1,42 @@
+53697 – java.lang.NullPointerException at org.apache.coyote.http11.Http11AprProcessor.actionInternal(Http11AprProcessor.java:277)
+I hit tomcat with ~20 different urls in ~2 seconds, test some functionality, wait ~3 minutes, then do it again and I always get this exception and then I get (intermitent) connection interrupted messages in the browser.
+ Here's the full trace:
+Aug 10, 2012 6:33:14 PM org.apache.catalina.connector.CoyoteAdapter event
+SEVERE: null
+Aug 10, 2012 6:33:14 PM org.apache.catalina.connector.CoyoteAdapter event
+java.lang.NullPointerException
+at org.apache.coyote.http11.Http11AprProcessor.actionInternal(Http11AprProcessor.java:277)
+at org.apache.coyote.http11.AbstractHttp11Processor.action(AbstractHttp11Processor.java:846)
+at org.apache.coyote.Response.action(Response.java:172)
+at org.apache.catalina.connector.CoyoteAdapter.event(CoyoteAdapter.java:229)
+at org.apache.coyote.http11.Http11AprProcessor.event(Http11AprProcessor.java:133)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:581)
+at org.apache.tomcat.util.net.AprEndpoint$SocketProcessor.run(AprEndpoint.java:1770)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+at java.lang.Thread.run(Thread.java:722)
+Aug 10, 2012 6:33:14 PM org.apache.coyote.http11.Http11AprProcessor event
+SEVERE: Error processing request
+java.lang.NullPointerException
+at org.apache.coyote.http11.Http11AprProcessor.actionInternal(Http11AprProcessor.java:277)
+at org.apache.coyote.http11.AbstractHttp11Processor.action(AbstractHttp11Processor.java:846)
+at org.apache.coyote.Request.action(Request.java:346)
+at org.apache.catalina.connector.Request.getRemoteAddr(Request.java:1281)
+at org.apache.catalina.connector.Request.getRemoteHost(Request.java:1296)
+at org.apache.catalina.valves.AccessLogValve$HostElement.addElement(AccessLogValve.java:1327)
+at org.apache.catalina.valves.AccessLogValve.log(AccessLogValve.java:953)
+at org.apache.catalina.core.AccessLogAdapter.log(AccessLogAdapter.java:51)
+at org.apache.catalina.core.ContainerBase.logAccess(ContainerBase.java:1263)
+at org.apache.catalina.core.ContainerBase.logAccess(ContainerBase.java:1270)
+at org.apache.catalina.connector.CoyoteAdapter.event(CoyoteAdapter.java:250)
+at org.apache.coyote.http11.Http11AprProcessor.event(Http11AprProcessor.java:133)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:581)
+at org.apache.tomcat.util.net.AprEndpoint$SocketProcessor.run(AprEndpoint.java:1770)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+at java.lang.Thread.run(Thread.java:722)
+Additional information:
+- hp Proliant DL360 with two 3ghz processors
+- CentOS 6.3
+- One app runs websockets under bleading edge Atmosphere and Grails
+- the 20 urls come from chrome and firefox, simulatneously

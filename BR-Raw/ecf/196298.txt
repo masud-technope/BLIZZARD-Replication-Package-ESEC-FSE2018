@@ -1,0 +1,9 @@
+Bug 196298 – [xmpp] Google talk provider hobbled by existence of 'gmail.com' string
+The GoogleTAlk XMPP(s) assume that the user is always @gmail.com, when that isn't the case.
+For example, in the UK, @googlemail.co.uk is common (or is it googlemail.com?) and other countries may have other suffixes.
+Not only that, but the actual talk server is talk.google.com, which may be specified in a number of clients (including other Jabber ones) separately to the user identifier.
+This may be an issue for others using googledomain, where joe@bloggs.com may want to connect to talk.google.com for its communication services.
+Thus two things are needed;
+1) To ensure that there's a separate way of specifying the username from the jabber host
+2) To ensure that other variants of Google are recognised and/or provide for a way for a user to override the server (e.g.
+joe@bloggs.com@talk.google.com).

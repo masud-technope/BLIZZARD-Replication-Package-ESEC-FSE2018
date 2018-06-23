@@ -1,0 +1,9 @@
+Bug 393602 – Problem hover - Link text cut at end for some OSes / fonts
+Created attachment 223196 [details]
+Combined hover - values missing and ctrl-1 hover - everything is ok
+Hello, I have Arch Linux x64, KDE.
+The problem that appeared is that when I hover over a problem, e.g.
+a class that isn't imported, the combined hover appears but some values are not present.
+If I press ctrl+1, everything appears fine.
+This happens to: "import", "create class", "change to" etc.
+I attach an example (2 pictures)

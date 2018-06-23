@@ -1,0 +1,9 @@
+Bug 180420 – New Plug-in wizard defaults are biased toward plug-in development
+There are a couple of settings in the New Plug-in Project wizard that should be persisted from one invocation of the wizard to the next to make for a friendlier workflow.
+1.
+The Eclipse Platform vs the OSGi framework choice on the first choice.
+OSGi developers currently always have to change this selection.
+2.
+The selected values in the combo boxes should also be selected.
+There are settings that we can persist on the second page, e.g.
+whether or not an activator is needed or whether it is a UI plug-in or not, but this can be done for extra credit as I am not sure how annoying this part is, if at all.

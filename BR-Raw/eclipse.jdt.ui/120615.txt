@@ -1,0 +1,9 @@
+Bug 120615 – [hovering] Javadoc Viewer doesn't display {@link ... } properly if text is just whitespace
+I20051213-0010
+While browsing doc using the viewer I noticed that the following java doc excerpt from the merge method in IMergeContext:
+* For two-way merging, clients can either accept changes using the
+* {@link #merge(IDiffNode[], boolean, IProgressMonitor) } method or reject
+* them using {@link #markAsMerged(IFile, boolean, IProgressMonitor) }.
+corresponds to the following output in the Javadoc viewer:
+For two-way merging, clients can either accept changes using the method or reject them using .
+It seems that this is only true for links to local methods.

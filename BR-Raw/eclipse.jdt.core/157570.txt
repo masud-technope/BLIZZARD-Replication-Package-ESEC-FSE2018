@@ -1,0 +1,35 @@
+Bug 157570 – Bug in ASTParser
+1) Create a new ASTParser using ASTParser.newParser()
+2) Set the 'kind' to K_STATEMENTS
+3) Set source to the following code snippet
+"   public static void m1()
+{
+int a;
+int b;
+}
+public static void m2()
+{
+int c;
+int d;
+}
+"
+4)Create AST by invoking the createAST method
+only partial AST is returned.
+ie.
+AST for the following code fragment is only returned
+"{
+int c;
+int d;
+}"
+When I looked at the source of ASTParser I found the following problem
+In the method private ASTNode internalCreateASTForKind()
+at line 963 shown below
+<--
+ConstructorDeclaration constructorDeclaration = codeSnippetParsingUtil.parseStatements(this.rawSource, this.sourceOffset, this.sourceLength, this.compilerOptions, true, true);
+-->
+the constructorDeclaration object is initialized and at the next line the 'compilationResult' field of the 'constructorDeclaration' is accessed.
+ Therefore the assumption is  constructorDeclaration object will never be null.
+However at line 978 there is an 'if else statement' where the body of the if statement executes only if 'constructorDeclaration' is not null and the body of the else statement executes if 'constructorDeclaration' is null.
+Since 'constructorDeclaration' object can never be null, as per the above assumption, the body of the else statement is never executed.
+The eclipse version used was Version: 3.2.0
+Build id: M20060628-1325

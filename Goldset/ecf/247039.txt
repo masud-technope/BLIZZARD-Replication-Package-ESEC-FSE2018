@@ -1,0 +1,3 @@
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/provider/xmpp/identity/XMPPID.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/XMPPContainerPresenceHelper.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/smack/ECFConnection.java

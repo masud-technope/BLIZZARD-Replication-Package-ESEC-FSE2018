@@ -1,0 +1,12 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/TemplateListSelectionPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/NewWizard.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/WizardElement.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/NewProjectCreationFromTemplatePage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/templates/NewPluginProjectFromTemplateWizard.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/TemplateWizardHelper.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/NewPluginProjectWizard.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/NewProjectCreationPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/PluginContentFromTemplatePage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/PluginContentPage.java

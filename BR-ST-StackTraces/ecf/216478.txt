@@ -1,0 +1,17 @@
+org.eclipse.ecf.internal.provider.filetransfer.Activator.getProxyService
+org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.setupProxies
+org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest
+org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest
+org.eclipse.ecf.provider.filetransfer.retrieve.MultiProtocolRetrieveAdapter.sendRetrieveRequest
+org.eclipse.equinox.internal.p2.metadata.repository.ECFMetadataTransport.transfer
+org.eclipse.equinox.internal.p2.metadata.repository.ECFMetadataTransport.download
+org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load
+org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository
+org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository
+org.eclipse.equinox.p2.ui.operations.ProvisioningUtil.loadMetadataRepository
+org.eclipse.equinox.p2.ui.model.MetadataRepositoryElement.getQueryable
+org.eclipse.equinox.internal.p2.ui.admin.ProvAdminQueryProvider.getQueryDescriptor
+org.eclipse.equinox.internal.p2.ui.model.RemoteQueriedElement.fetchChildren
+org.eclipse.equinox.internal.p2.ui.model.RemoteQueriedElement.fetchDeferredChildren
+org.eclipse.ui.progress.DeferredTreeContentManager$1.run
+org.eclipse.core.internal.jobs.Worker.run

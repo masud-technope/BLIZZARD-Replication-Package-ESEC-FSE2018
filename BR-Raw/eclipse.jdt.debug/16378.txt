@@ -1,0 +1,6 @@
+Bug 16378 – Missing icons in launch config creation tabs
+Build 20020517
+- Debug...
+/ Run-time Workbench / New
+The tabs are missing icons, but the space for them remains.
+See attached screen shot.

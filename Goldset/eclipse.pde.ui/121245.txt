@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/JUnitLaunchConfiguration.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/NewProjectCreationOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/parts/PluginVersionPart.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDEPluginConverter.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/FragmentContentPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/DependencyPropertiesDialog.java

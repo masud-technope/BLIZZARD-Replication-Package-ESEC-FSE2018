@@ -1,0 +1,3 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/snippeteditor/JavaSnippetEditor.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JDIModelPresentation.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIThread.java

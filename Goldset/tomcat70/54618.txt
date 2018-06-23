@@ -1,0 +1,8 @@
+conf/web.xml
+java/org/apache/catalina/filters/CorsFilter.java
+java/org/apache/catalina/filters/FilterBase.java
+java/org/apache/catalina/filters/HttpHeaderSecurityFilter.java
+java/org/apache/catalina/filters/LocalStrings.properties
+webapps/docs/changelog.xml
+webapps/docs/config/filter.xml
+webapps/docs/security-howto.xml

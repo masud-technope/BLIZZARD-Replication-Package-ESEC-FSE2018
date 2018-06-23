@@ -1,0 +1,23 @@
+Bug 342757 – ArrayIndexOutOfBoundsException in MethodInfoWithParameterAnnotations.getParameterAnnotations when generating method info for an inner class constructor with annotated parameter
+Build Identifier: I20110310-1119
+If a class file in jar is an inner Java type with constructor that has annotated parameters, ArrayIndexOutOfBoundsException is thrown when IType is accessed, for instance when user tries to open that element of jar in Class File Editor.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Create a Java project with one java source
+package test;
+public class A {
+class B {
+public B(@Deprecated String s) {
+}
+}
+}
+.
+2.
+Build that project and export it into a.jar file.
+3.
+Create another Java project and add a.jar file as an external jar.
+4.
+Expand Referenced Libraries -> a.jar -> test -> A.class and try to open it in Class File Editor.
+5.
+Error logged with ArrayIndexOutOfBoundsException

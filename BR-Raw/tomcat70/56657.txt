@@ -1,0 +1,13 @@
+56657 – Parallel deployment. If sessionid belongs to the latest version of webapp, use the latest version.
+In 8.0.9, 7.0.54: [1]
+Reviewing the loop that finds correct web application version by a sessionid.
+Looking at [1], there shall be a "break;" after line 921.
+This matters in the following rare scenario:
+1.
+There are several versions of the same web application that are deployed in parallel.
+2.
+The same sessionid is valid both for the latest version and for some older one.
+3.
+Expected result: map request to the latest version of the webapp.
+Actual result: the latest version will be skipped and the request will be mapped to an older version.
+[1] http://svn.apache.org/viewvc/tomcat/tc8.0.x/tags/TOMCAT_8_0_9/java/org/apache/catalina/connector/CoyoteAdapter.java?view=markup#l916

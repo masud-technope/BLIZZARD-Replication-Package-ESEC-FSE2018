@@ -1,0 +1,7 @@
+53896 – Optimized Jasper ELResolver
+JspApplicationContextImpl sets up a CompositeELResolver with the standard and application-specific EL resolvers.
+The CompositeELResolver implementation basically just invokes every ELResolver in the list until a value is successfully resolved.
+The issue is that in certain situations some ELResolvers are called needlessly.
+For example, if base != null, calling getValue() on ImplicitObjectELResolver is unnecessary.
+So there are cases in which certain ELResolvers can be skipped over.
+In EL heavy applications skipping over certain ELResolvers can quickly add up.

@@ -1,0 +1,31 @@
+Bug 259917 – Bittorrent bencode decoder cannot parse dictionary or list with value of 1
+Build ID: M20080911-1700
+Steps To Reproduce:
+For dictionary:
+1.
+Create a bencoded string representing a dictionary containing a value consisting of the single character 1 (Ex.
+d3:foo1:13:bar1:1e)
+2.
+In a class that has access to the org.eclipse.ecf.protocol.bittorrent.internal.encode.Decode class, call Decode.bDecode("d3:foo1:13:bar1:1e");
+3.
+A NumberFormatException will be thrown.
+For list:
+1.
+Create a bencoded string representing a dictionary containing a list value with an element consisting of the single character 1 (Ex.
+d4:listl3:foo1:13:baree)
+2.
+In a class that has access to the org.eclipse.ecf.protocol.bittorrent.internal.encode.Decode class, call Decode.bDecode("d4:listl3:foo1:13:baree");
+3.
+The  method will never return as it will go into an infinite loop
+More information:
+This bug is due to the same parsing logic flaw in two different places in the Decode class and only occurs when the value is 1.
+ The problem code is:
+string = string.substring(string.indexOf(value) + value.length());
+on lines 98-99 and 131-132 of org.eclipse.ecf.protocol.bittorrent.internal.encode.Decode
+The string the logic is trying to remove from the head of the string is 1:1, which is the bencoded representation of the string 1.
+The correct logic at these lines should be either:
+string = string.substring(string.indexOf(value, 1) + value.length());
+or
+string = string.substring(string.indexOf(value, string.indexOf(':')) + value.length());
+The former will work for all cases I can think of.
+ The latter is less efficient but more explicit.

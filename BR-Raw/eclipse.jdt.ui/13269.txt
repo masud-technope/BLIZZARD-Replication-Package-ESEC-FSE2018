@@ -1,0 +1,42 @@
+Bug 13269 – Incorrect operation order in jarpackager
+Steps:
+1)select some packages and export jar
+2)select 'Export java source files and resources'
+3)Next
+4)select in 'Save description of this JAR in workspace' a .jardesc that already
+exists.
+5)Next
+6)Select 'Use existing manifest from workspace' and choose a manifest that
+already exist (this is easiest if you run the wizard once and then a second
+time with the presevered settings).
+7)Finish
+8)A dialog will appear asking if you wish to overwrite your .jardesc file.
+Choose NO.
+9)A dialog will appear asking if you wish to overwrite your manifest file.
+Choose NO.
+Note that an error dialog appears saying JAR creation failed, because saving
+manifest to workspace failed and saving description to workspace failed.
+If you
+click okay you will return to the wizard.
+10)Choose Cancel.
+Go to were your .jar file was to have been generated and note that it was
+indeed created.
+This is because the jar file is created before the overwrite
+verifications happen.
+Other notes:
+-the messages 'saving manifest file failed' is perhaps incorrect in this case
+as the user chose not to overwrite the manifest file (thus it is not really a
+failure).
+Same goes for '.jardesc' file.
+-prehaps a warning in the wizard's header (now that an icon is shown as well)
+would be better in the case of the '.jardesc' file then a dialog box at the
+end.
+Either way not overwriting this file should not cause the wizard to not
+complete its operation.
+-The 'use existing manifest from workspace' option should not save a new
+manifest file.
+If the user wants that they should use the 'save the manifest in
+the workspace' option combined with the 'reuse and save the manifest in the
+workspace' option.
+>20020409.
+JRT.

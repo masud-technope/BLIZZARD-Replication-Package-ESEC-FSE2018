@@ -1,0 +1,32 @@
+56545 – Examples app security exceptions
+Created attachment 31637 [details]
+(1) localhost.2014-05-20.log
+Testing examples web application in 8.0.8 release candidate running with Security Manager enabled, with NIO connector, JDK 7u55 32-bit, Win7, I see several issues.
+Steps to reproduce (1).
+1.
+Edit conf/tomcat-users.xml  and uncomment sample roles there.
+2.
+Start bin/catalina.bat start -security
+3.
+Access the following page:
+http://localhost:8080/examples/jsp/security/protected/index.jsp
+Expected: Login page
+Actual: Error 500
+Access denied ("java.lang.RuntimePermission" "accessClassInPackage.org.apache.tomcat.util.http.parser")
+The stack trace is:
+java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.org.apache.tomcat.util.http.parser")
+at java.security.AccessControlContext.checkPermission(AccessControlContext.java:372)
+at java.security.AccessController.checkPermission(AccessController.java:559)
+at java.lang.SecurityManager.checkPermission(SecurityManager.java:549)
+at java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1525)
+at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:305)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:412)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+at org.apache.tomcat.util.http.parser.HttpParser.skipConstant(HttpParser.java:305)
+at org.apache.tomcat.util.http.parser.HttpParser.parseMediaType(HttpParser.java:192)
+at org.apache.tomcat.util.http.parser.MediaTypeCache.parse(MediaTypeCache.java:54)
+at org.apache.catalina.connector.Response.setContentType(Response.java:712)
+at org.apache.jsp.jsp.security.protected_.login_jsp._jspService(login_jsp.java:52)
+at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:725)
+See attached "(1) localhost.2014-05-20.log" for the full stack trace.

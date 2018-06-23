@@ -1,0 +1,3 @@
+Bug 314998 – [Discovery][DNS-SD] Make provider configurable with Configuration Admin
+At least the default search path should be configurable via Config Admin [0] and may take precedence over what is set a the default search path of the local system.
+[0] http://www.dynamicjava.org/articles/osgi-compendium/configuration-admin-service

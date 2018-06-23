@@ -1,0 +1,8 @@
+48297 – webservices.ServiceRefFactory.initHandlerChain adds wrong items to list?
+naming.factory.webservices.ServiceRefFactory.initHandlerChain method does the following:
+HandlerInfo handlerref (parameter)
+HandlerChain handlerList = (HandlerChain) handlerRegistry.getHandlerChain(portName);
+handlerList.add(handlerref);
+Now according to http://www.j2ee.me/j2ee/1.4/docs/api/javax/xml/rpc/handler/HandlerChain.html HandlerChain, "All elements in the HandlerChain are of the type javax.xml.rpc.handler.Handler."
+However HandlerInfo (javax.xml.rpc.handler.HandlerInfo) is not of the type Handler.
+HandlerInfo should be passed to the init() method of a Handler instance.

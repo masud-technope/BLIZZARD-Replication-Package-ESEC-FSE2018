@@ -1,0 +1,3 @@
+Bug 488045 – ClassResolverObjectInputStream must close ServiceTracker
+In ClassResolverObjectInputStream.resolveClass a ServiceTracker is opened, but it only gets closed if the close method is explicitly called.
+The ServiceTracker (or some other way of getting appropriate whiteboard service) should be closed upon every invocation of resolveClass.

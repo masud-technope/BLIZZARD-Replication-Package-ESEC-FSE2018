@@ -1,0 +1,10 @@
+Bug 295030 – Update Manager doesn't work with SOCKS proxy
+The Update Manager does not work with a SOCKS proxy (at least not in the common scenario of the update site being an http URL).
+It seem equally broken in 3.5.1 and 3.6M3.
+Try in an eclipse instance that ONLY has a SOCKS server specified (native, and no http or https proxy), with the userid and password stored in the proxy definition.
+Then bring up the update manager.
+You'll see that you get prompted for a SOCKS userid/password, which is the first sign that things are going wrong (it shouldn't prompt since you provided that information in the proxy definition).
+In this scenario, the socket connection at least succeeds (set a breakpoint in SocketEventCreateUtil.createSocket()), but alas the ecf plugin ends up unable to identify an http server.
+But it gets worse.
+Now try in an instance where you have both a SOCKS proxy and an HTTP one configured.
+In this situation, no only do you, again, get prompted for a SOCKS userid/password (which equally makes no sense in this case), but the SocketEventCreateUtil.createSocket() logic fails to even connect.

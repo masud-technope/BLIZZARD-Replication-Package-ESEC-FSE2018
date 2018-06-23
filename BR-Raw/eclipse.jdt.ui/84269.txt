@@ -1,0 +1,10 @@
+Bug 84269 – [implementation] Leak: Java Editor preference page: listener in SmartTypingConfigurationBlock
+N20050202-0010
+The SmartTypingConfigurationBlock adds a property change listener to the
+JavaPlugin combined preference store.
+This listener is not removed --> results in leakage for each open close of the
+Java preference pages.
+Test case:
+Window>Preferences>Java>Editor
+For each open close the state associated with the
+SmartTypingConfigurationBlock is leaked.

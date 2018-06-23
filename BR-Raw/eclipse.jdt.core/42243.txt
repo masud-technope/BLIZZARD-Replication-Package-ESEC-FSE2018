@@ -1,0 +1,11 @@
+Bug 42243 – Incorrect syntax diagnosis for assert in source 1.3 mode
+Build 3.0M3
+The following source compiled in 1.3 source mode is flagged with a syntax error
+as expected (assert isn't a keyword in 1.3 mode), but the error diagnosis is
+rather misleading.
+public class X {
+public static void main(String[] args) {
+assert true;
+}
+}
+--> Syntax error on token "assert", assert expected	!?

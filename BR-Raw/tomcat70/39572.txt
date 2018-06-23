@@ -1,0 +1,9 @@
+39572 – fixes to use CompressionFilter in WebSphere app server
+There are a couple of small bugs in the compression filter classes that are
+triggered by using the filter in WebSphere 5.1 or 6.
+Here are patches.
+- CompressionResponseStream should not compress the output stream if the
+response has been committed (because then it cannot write the Content-Encoding:
+gzip header, and the browser displays the compressed output as-is)
+- CompressionServletResponseWrapper causes a NullPointerException if you flush
+before writing anything

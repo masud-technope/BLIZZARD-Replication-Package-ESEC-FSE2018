@@ -1,0 +1,12 @@
+Bug 244431 – [preferences] Outgoing change to preferences when no change made
+Created attachment 110226 [details]
+Outgoing changes after not modifying anything
+Build: I20080807-1402
+1) Checkout this project from CVS:
+/cvsroot/rt/org.eclipse.equinox/p2/bundles/org.eclipse.equinox.p2.tests
+2) Open the Properties dialog on the project
+3) Click or arrow down to visit each of the JDT property pages
+4) Click OK to close the dialog without modifying anything
+Expected: No outgoing changes to preference files since I didn't modify anything
+Actual: Both jdt.core.prefs and jdt.ui.prefs have outgoing changes.
+I will attach a patch showing all the outgoing changes.

@@ -1,0 +1,36 @@
+Bug 130145 – Method entry breakpoint fails on method with Enum parameter
+Test case - place method entry breakpoint on Y.foo(MyEnum)
+/*******************************************************************************
+* Copyright (c) 2006 IBM Corporation and others.
+* All rights reserved.
+This program and the accompanying materials
+* are made available under the terms of the Eclipse Public License v1.0
+* which accompanies this distribution, and is available at
+* http://www.eclipse.org/legal/epl-v10.html
+*
+* Contributors:
+*     IBM Corporation - initial API and implementation
+*******************************************************************************/
+package a.b.c;
+/**
+* @since 3.2
+*
+*/
+public class X {
+enum MyEnum {
+APPLE, ORANGE;
+}
+class Y {
+public void foo(MyEnum z) {
+System.err.println(z);
+}
+}
+public static void main(String[] args) {
+X x = new X();
+x.foo();
+}
+public void foo() {
+Y y = new Y();
+y.foo(MyEnum.APPLE);
+}
+}

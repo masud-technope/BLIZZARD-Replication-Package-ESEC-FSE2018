@@ -1,0 +1,4 @@
+Bug 137700 – Product editor generates a plugin list for a feature-based product
+I have a feature-based product.
+I use the product editor to modify my .product file (for example to set or remove the "Intro ID" of the Branding tab) and save it using CTRL-S.
+The generated .product file contains a whole list of "plugin" child elements under the "plugins" element even though my product is feature based.

@@ -1,0 +1,3 @@
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/Activator.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/AllTests.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/DiscoveryTest.java

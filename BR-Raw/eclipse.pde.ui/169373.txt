@@ -1,0 +1,3 @@
+Bug 169373 – [Manifest Editor] Provide a quickfix / flag for Provide-Package
+Provide-Package is deprecated and should have a proper warning.
+It would also be nice to have a quickfix so it could be moved to the Export-Package header.

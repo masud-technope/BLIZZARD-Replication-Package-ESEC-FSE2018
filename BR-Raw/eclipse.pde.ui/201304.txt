@@ -1,0 +1,6 @@
+Bug 201304 – ErrorReporter makes deprecated calls
+org.eclipse.pde.internal.core.builders.ErrorReporter.java
+Severity and Description	Path	Resource	Location	Creation Time	Id
+The method connect(IPath, IProgressMonitor) from the type IFileBufferManager is deprecated	org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders	ErrorReporter.java	line 71	1188224978203	132719
+The method disconnect(IPath, IProgressMonitor) from the type IFileBufferManager is deprecated	org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders	ErrorReporter.java	line 75	1188224978203	132721
+The method getTextFileBuffer(IPath) from the type ITextFileBufferManager is deprecated	org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders	ErrorReporter.java	line 72	1188224978203	132720

@@ -1,0 +1,3 @@
+Bug 335309 – [formatter] FUP of bug 332843: add regression test
+The fix for bug 332843 can be tested with test project attached in bug 332843#comment11.
+We should capture this test somehow in the formatter tests.

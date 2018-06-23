@@ -1,0 +1,7 @@
+Bug 184646 – [Launchers] Add Required Plug-ins acts weird
+The 'Add Required Plug-ins/bundles' functionality in the PDE launchers give weird results, particularly when it comes to:
+1.
+checking/unchecking the optional dependencies checkbox:  it does not seem to be able to tell the difference if Import-Package is used.
+2.
+multiple bundles by the same ID.
+ Sometimes one of the dups get unchecked for no good reason.

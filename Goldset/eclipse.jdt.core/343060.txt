@@ -1,0 +1,3 @@
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/MethodVerifier15.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/MethodVerifyTest.java

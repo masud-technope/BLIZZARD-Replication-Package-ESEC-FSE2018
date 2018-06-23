@@ -1,0 +1,14 @@
+Bug 143001 – Statement recovery doesn't recover broken try statement
+From bug 142793
+public class X {
+void bar(Collection<String> c) {
+for(String s: c) {
+try {
+bar();
+}
+}
+}
+}
+This test case has a syntax error:
+"Syntax error, insert "Finally" to complete BlockStatements"
+In this case the statement recovery fail because it is not able to rebuild a fake "Finally".

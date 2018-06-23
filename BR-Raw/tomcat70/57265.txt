@@ -1,0 +1,15 @@
+57265 – Tomcat 8 hiden behind NGINX fails to send file when using NIO connector
+We have moved Tomcat 8 server behind the nginx balancing server and have started  experiencing this problem:
+org.apache.tomcat.util.net.NioEndpoint$NioBufferHandler@2001a157
+26-Nov-2014 11:37:04.476 SEVERE [http-nio-8443-ClientPoller-0] org.apache.tomcat.util.net.NioEndpoint$Poller.processSendfile
+java.lang.IllegalArgumentException: You can only read using the application read buffer provided by the handler.
+at org.apache.tomcat.util.net.SecureNioChannel.write(SecureNioChannel.java:489)
+at sun.nio.ch.FileChannelImpl.transferToArbitraryChannel(FileChannelImpl.java:534)
+at sun.nio.ch.FileChannelImpl.transferTo(FileChannelImpl.java:583)
+at org.apache.tomcat.util.net.NioEndpoint$Poller.processSendfile(NioEndpoint.java:1200)
+at org.apache.tomcat.util.net.NioEndpoint$Poller.processKey(NioEndpoint.java:1122)
+at org.apache.tomcat.util.net.NioEndpoint$Poller.run(NioEndpoint.java:1087)
+at java.lang.Thread.run(Thread.java:745)
+Problem occurres irregularly when loading lots of scripts refencenced by homepage.
+It seems to be ok with useSendfile=false.
+I have tried to add some slow logging (with flushing output) to code and it lowers occurrence rate, so it looks like some race condition problem.

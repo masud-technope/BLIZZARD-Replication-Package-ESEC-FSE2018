@@ -1,0 +1,16 @@
+Bug 408330 – Java Model Exception from Javadoc view if element is deleted
+Select foo() in the following example and open the Javadoc view:
+public class Test {
+private void foo() {}
+}
+Now, delete the method:
+private void foo() {}
+An error is logged in the Error Log view on deletion:
+Java Model Exception: Java Model Status [foo() [in Test [in [Working copy] Test.java [in test.bugs.var [in src [in com.bugs.test]]]]] does not exist]
+at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(JavaElement.java:498)
+at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:532)
+...
+at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContentFromSource(JavadocContentAccess2.java:600)
+at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent(JavadocContentAccess2.java:495)
+at org.eclipse.jdt.internal.ui.infoviews.JavadocView.getJavadocHtml(JavadocView.java:1097)
+at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeInput(JavadocView.java:908)

@@ -1,0 +1,13 @@
+Bug 411588 – "Convert for loops to enhanced" may mess up program logic when dealing with Iterable
+With the save action "Convert 'for' loops to enhanced 'for' loops" enabled,
+the conversion to enhanced loop might introduce a logical error.
+Lets suppose you have an object "s" with a class implementing java.lang.Iterable and this class has also another method named "iterator", also with an "Iterator" return type, BUT with a __non empty signature__.
+for (Iterator<Object> it = s.iterator(42) ; it.hasNext(); ) {
+Object obj = it.next();
+// ...
+}
+The save action will convert it to an enhanced loop assuming the use of "s.iterator()" instead of "s.iterator(42)" !
+for (Object obj : s) {
+// ...
+}
+(The bug exists also in 3.7.2 and probably in all releases until Kepler)

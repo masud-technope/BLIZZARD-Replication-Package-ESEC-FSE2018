@@ -1,0 +1,3 @@
+Bug 218571 – test suite required for incremental builder
+with incremental building added to api tooling we need to have a fairly extensive test suite for it.
+A good place to start would be to examine how jdt tests their builders.

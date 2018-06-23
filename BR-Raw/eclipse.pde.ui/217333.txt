@@ -1,0 +1,3 @@
+Bug 217333 – MainTab's Location should be hyperlinked
+I find sometimes I need to jump to my workspace.
+It would be awesome of the Location property in the Workspace Data block was hyperlinkable.

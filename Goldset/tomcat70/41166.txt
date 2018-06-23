@@ -1,0 +1,3 @@
+java/org/apache/catalina/tribes/tipis/AbstractReplicatedMap.java
+java/org/apache/catalina/core/ApplicationContext.java
+java/org/apache/catalina/ha/context/ReplicatedContext.java

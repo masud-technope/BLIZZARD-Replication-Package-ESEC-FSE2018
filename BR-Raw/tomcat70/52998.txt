@@ -1,0 +1,26 @@
+52998 – Performance issue with ExpressionFactory.newInstance()
+javax.el.ExpressionFactory.newInstance() implementation in Tomcat 7 does not cache created instance and performs class name discovery on every invocation.
+The discovery process involves looking for the file named
+"META-INF/services/javax.el.ExpressionFactory".
+So every invocation of the method involves looking for and maybe reading the file.
+This issue was reported on the dev list, see thread:
+[1] "Two performance problems (found during myfaces testing)", starting on 2012-03-08,
+- http://tomcat.markmail.org/thread/7bbvzmkvyvryvn44
+- http://marc.info/?t=133124021200002&r=1&w=2
+The above thread [1] also references this one of myfaces:
+[2] "EL method invocation performance", 2010-08-25:
+- http://www.mail-archive.com/dev@myfaces.apache.org/msg48482.html
+------------------
+My evaluation is that
+1.
+This problem is specific for Tomcat 7.
+- The ExpressionFactory.newInstance() method was added in EL 2.2 and Tomcat 6 does not have it.
+2.
+It hits javax.el.BeanELResolver#invoke() the most, as ExpressionFactory.newInstance() is called on each invocation.
+3.
+There are 2 places where the factory instance is stored in a static field.
+This is good for performance, but breaks the discovery process and may cause consequences if implementation is bundled in a web application.
+It is a bug.
+The places:
+org.apache.jasper.runtime.JspApplicationContextImpl.expressionFactory
+org.apache.jasper.compiler.Validator$ValidateVisitor.EXPRESSION_FACTORY

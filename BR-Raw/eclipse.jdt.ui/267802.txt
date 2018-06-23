@@ -1,0 +1,3 @@
+Bug 267802 – [implementation] progress monitor in JUnitCore.findTestTypes not used
+I20090310-0100.
+JUnitCore.findTestTypes(IJavaElement, IProgressMonitor) does not pass on the progress monitor.

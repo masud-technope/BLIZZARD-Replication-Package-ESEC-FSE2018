@@ -1,0 +1,9 @@
+Bug 28304 – [variables] UnsupportedOperationException report to user on toString on WTK
+WTK 2.0beta
+Debug a program to a breakpoint
+Select a variable
+Get "java.lang.UnsupportedOperationException occurred invoking method." in the
+details pane.
+ We could handle this better.
+ Could report "toString()
+unavailable".

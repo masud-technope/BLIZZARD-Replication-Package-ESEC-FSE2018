@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/SourceEntryErrorReporter.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/MultiFixResolution.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/text/PDEQuickAssistAssistant.java

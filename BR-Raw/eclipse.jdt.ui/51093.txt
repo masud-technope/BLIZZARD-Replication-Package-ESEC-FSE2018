@@ -1,0 +1,6 @@
+Bug 51093 – [typing] Pressing enter after an opening curly brace closes the curly brace repeatedly.
+Pressing enter after an opening curly brace closes the curly brace repeatedly.
+IF you are about to define a method and you open a curly brace, the completion
+closing curly brace is added automatically.
+If you go and press "enter" again in front of the opening curly brace , it adds
+another closing brace repeatedly.

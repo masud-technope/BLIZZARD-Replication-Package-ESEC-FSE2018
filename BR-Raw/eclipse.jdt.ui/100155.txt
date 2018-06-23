@@ -1,0 +1,17 @@
+Bug 100155 – [hovering] Hover labels for local variables
+RC2
+Hover over a local variable, e.g.
+x.
+The hover shows:
+'int p.Try2.m().x'
+in 3.0 we showed
+'int x - p.Try2.m()'
+which I think is much better.
+As a side note, the important information should be (besides the type of the
+variable), that this is a local variable or a parameter.
+class Try2 {
+int m() {
+int x = 0;
+return x;
+}
+}

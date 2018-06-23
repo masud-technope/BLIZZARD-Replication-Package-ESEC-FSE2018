@@ -1,0 +1,5 @@
+Bug 310903 – [hovering] Javadoc hovers don't show annotations on constructors
+HEAD
+Javadoc hovers don't show annotations on constructor invocations, e.g.
+references to java.lang.management.LockInfo(String, int) in JDK6.
+Problem is bug 62605: In JavadocHover#getAnnotations(IJavaElement, ITypeRoot, IRegion), "((SimpleName)node).resolveBinding()" returns the type binding and not the constructor binding.

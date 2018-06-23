@@ -1,0 +1,6 @@
+Bug 81140 – [nls tooling] Too many false positives when navigating from a key in properties file editor to Java editor
+I200412142000
+Currently properties key references are determined by a text search.
+The text
+search results should be filtered, such that the final results contain only
+matches from string partitions.

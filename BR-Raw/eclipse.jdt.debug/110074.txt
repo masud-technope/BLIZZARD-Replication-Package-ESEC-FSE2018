@@ -1,0 +1,7 @@
+Bug 110074 – Breakpoints are not added to default breakpoint working set
+I20050920
+* create two breakpoint working sets
+* set one as default
+* create a new breakpoint
+-> The breakpoint is placed in the "others (no working set)" category rather
+than the default set

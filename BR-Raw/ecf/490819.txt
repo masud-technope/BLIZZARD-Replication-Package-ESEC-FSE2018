@@ -1,0 +1,4 @@
+Bug 490819 – Add constants to allow configuration of ecf discovery for remote services
+Currently, it's impossible for remote services to configure the use of the ecf discovery API for remote service advertise/discover.
+  For example, the ttl of the publish.
+ To do this all that's required is adding a couple of new constants, and the handling of these constants in the ECF RSA implementation.

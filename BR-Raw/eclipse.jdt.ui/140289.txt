@@ -1,0 +1,12 @@
+Bug 140289 – JUnit 4: Arrow remains on class when method is ignored
+In RC2.
+ Run this test class:
+public class ATest {
+@Ignore @Test public void a() {
+Assert.fail();
+}
+@Test public void b() {
+Assert.fail();
+}
+}
+After running, the class ATest still has a blue arrow, as if it is still "running".

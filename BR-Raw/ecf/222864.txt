@@ -1,0 +1,20 @@
+Bug 222864 – If the room tab is clicked, the NullPointerException occurred.
+Build ID: 2.0.0.v20080310-1643
+Steps To Reproduce:
+1.
+Connect XMPP Server
+2.
+Open Chat room 1
+3.
+Open Chat room 2
+4.
+Click the room tab of "Chat room 1"
+More information:
+java.lang.NullPointerException
+at org.eclipse.ecf.presence.ui.chatroom.ChatRoomManagerView$ChatRoomTab.access$0(ChatRoomManagerView.java:115)
+at org.eclipse.ecf.presence.ui.chatroom.ChatRoomManagerView$15.widgetSelected(ChatRoomManagerView.java:775)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:227)
+---
+ChatRoomManagerView.java (level 1.41),
+line=775: if (itemSelected == rootChannelTab.tabItem)
+rootChannelTab is null !

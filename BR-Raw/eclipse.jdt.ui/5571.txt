@@ -1,0 +1,5 @@
+Bug 5571 – JAR Packager: Reveal first checked project
+If the list of projects in the JAR Packager is long it is possible that the
+shown projects are not checked even though there are checked projects (due to
+current selection).
+==> reveal the first checked project.

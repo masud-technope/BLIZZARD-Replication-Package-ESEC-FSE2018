@@ -1,0 +1,18 @@
+Bug 424110 – [1.8][hovering] Hover, F3 does not work for method reference in method invocation
+package com.test;
+public class C2 {
+static F f = C2::m; // [1] Works
+int i = fun(C2::m); // [2] Does not work
+public static int m(int x) {
+return x;
+}
+private int fun(F f) {
+return f.foo(0);
+}
+}
+interface F {
+int foo(int x);
+}
+---------------------------------------------------------
+In the above example, press F3 or hover over 'm' at [1] and [2].
+It works at [1] but not at [2].

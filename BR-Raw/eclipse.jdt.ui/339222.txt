@@ -1,0 +1,24 @@
+Bug 339222 – [quick assist] "Change modifiers to final where possible" too prominent
+-----------------------------------------------------------
+package p;
+class A {   // warning here
+int a;
+@Override
+public boolean equals(Object obj) {
+if (this == obj)
+return true;
+if (obj == null)
+return false;
+if (getClass() != obj.getClass())
+return false;
+ClassA other = (ClassA) obj;
+if (a != other.a)
+return false;
+return true;
+}
+}
+----------------------------------------------------------
+- Enable 'Class overrides equals() but not hashcode()' warning
+- Click on the warning in the vertical ruler
+- 'Override hascode()' is number 2 and 'Generate hashcode and equals' is number 3.
+Expected: These should be 1 and 2.

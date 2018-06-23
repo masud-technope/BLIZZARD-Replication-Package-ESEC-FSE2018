@@ -1,0 +1,5 @@
+Bug 141655 – "Find unused dependencies" should ignore packages exported by the bundle
+Using Eclipse 3.2 RC3
+In the PDE/Manifest editor, under "Dependency Analysis", clicking the "Find unused dependencies" will find all the Import-Package and Require-Bundle entries that are unused by the bundle.
+If you create a bundle that exports a package AND imports the same package (a technique used in OSGi to prevent multiple versions of a package) the tool identifies it as unused.
+ I would suggest that all packages exported by the bundle be considered automatically used by the bundle.

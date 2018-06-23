@@ -1,0 +1,14 @@
+Bug 344984 – BadLocationException from ToggleBreakpointAdapter when trying to toggle watchpoint
+I20110504-0800
+- import org.eclipse.jdt.ui as source (from CVS or using the PDE importer)
+- open type ModifyDialog
+- double-click the left ruler on line 94 to set a watchpoint for field
+private final Map<String, String> fWorkingValues;
+=> watchpoint is not created, exception in log:
+org.eclipse.jface.text.BadLocationException
+at org.eclipse.jface.text.ListLineTracker.getLineInformation(ListLineTracker.java:180)
+at org.eclipse.jface.text.AbstractLineTracker.getLineInformation(AbstractLineTracker.java:137)
+at org.eclipse.jface.text.AbstractDocument.getLineInformation(AbstractDocument.java:929)
+at org.eclipse.core.internal.filebuffers.SynchronizableDocument.getLineInformation(SynchronizableDocument.java:337)
+at org.eclipse.jdt.internal.debug.ui.actions.ToggleBreakpointAdapter$2.run(ToggleBreakpointAdapter.java:261)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)

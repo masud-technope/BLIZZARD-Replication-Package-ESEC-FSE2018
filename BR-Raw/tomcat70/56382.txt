@@ -1,0 +1,9 @@
+56382 – Add logging of deployment time
+Tomcat logs the start of the deployment directory, but doesn't log finish.
+I've created the small patch, which logs when the particular deployment is finished, with the deployment time.
+So output will be like this:
+Apr 10, 2014 4:26:17 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory C:\AAA\Tools\apache-tomcat-7.0.52\webapps\aaa-admin
+....
+Apr 10, 2014 4:31:10 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory C:\AAA\Tools\apache-tomcat-7.0.52\webapps\aaa-admin has finished in 292,516 ms.

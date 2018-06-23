@@ -1,0 +1,43 @@
+43435 – AbstractReplicatedMap.memberDisappeared is executed more than the necessity.
+The following codes are in the memberDisappeared method of
+org.apache.catalina.tribes.tipis.AbstractReplicatedMap.
+public void memberDisappeared(Member member) {
+boolean removed = false;
+synchronized (mapMembers) {
+removed = (mapMembers.remove(member) != null );
+}
+Iterator i = super.entrySet().iterator();
+while (i.hasNext()) {
+** omit Relocate of session.
+**
+This means relocate of the session is done every time after
+member is deleted from mapMembers
+(The value of removed : regardless of true/false).
+I think that if the member has already been deleted,
+the relocate of the session need not be done.
+This most strongly influencing is
+stop Tomcat(setting TcpFailureDetector) in Cluster at a high load
+(A lot of requests are processed at the same time).
+Above-mentioned case is
+The relocate of the session is done at all requests
+where memberDisappeared is detected by TcpFailureDetector.
+The relocate of the session is a little heavy processing.
+IMHO, this is not good thing.
+I made AbstractReplicatedMap's patch.
+Index: /tomcat6-
+trunk/java/org/apache/catalina/tribes/tipis/AbstractReplicatedMap.java
+===================================================================
+--- /tomcat6-
+trunk/java/org/apache/catalina/tribes/tipis/AbstractReplicatedMap.java
+(revision 577691)
++++ /tomcat6-
+trunk/java/org/apache/catalina/tribes/tipis/AbstractReplicatedMap.java
+(working copy)
+@@ -713,6 +713,7 @@
+boolean removed = false;
+synchronized (mapMembers) {
+removed = (mapMembers.remove(member) != null );
++            if (!removed) return;
+}
+Iterator i = super.entrySet().iterator();
+Regards.

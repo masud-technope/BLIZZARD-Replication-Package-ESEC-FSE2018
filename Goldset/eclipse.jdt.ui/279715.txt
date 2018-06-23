@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/InlineConstantTests.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/ASTNodes.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline/test33/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline/test33/in/A.java

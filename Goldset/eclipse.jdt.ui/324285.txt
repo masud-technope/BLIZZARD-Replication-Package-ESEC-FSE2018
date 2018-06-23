@@ -1,0 +1,5 @@
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/model/RemoteTestRunnerClient.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/model/TestRunSession.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/junit/tests/AbstractTestRunSessionSerializationTests.java
+org.eclipse.jdt.ui.tests/testresources/JUnitWorkspace/JUnitTests/ant/JUnit runAllTests.xml.launch
+org.eclipse.jdt.ui.tests/testresources/JUnitWorkspace/JUnit4Tests/ant/JUnit4 runAllTests.xml.launch

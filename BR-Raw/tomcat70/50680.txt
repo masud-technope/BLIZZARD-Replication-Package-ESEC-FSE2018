@@ -1,0 +1,5 @@
+50680 – NPE in TagFileProcessor when tag file is in an expanded directory "jar"
+Created attachment 26570 [details]
+Patch against current trunk to add a null check to TagFileProcessor
+When using VirtualDirContext, or the equivalent in the Web Tools Tomcat support, an expanded directory can be used in place of a jar file.
+ In this case, tag files in the directory's META-INF folder will result in an NPE because the jarResource obtained from the TldLocation is null.

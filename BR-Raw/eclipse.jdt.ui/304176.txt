@@ -1,0 +1,14 @@
+Bug 304176 – [hashcode/equals] Generated equals() should use Arrays.deepEquals() instead of Arrays.equals()
+Build Identifier:
+I'm not sure what is the point of Arrays.equals() since it can fail to work properly for a number of cases, including three-dimensional arrays, as demonstrated in this example:
+import java.util.Arrays;
+public class Test {
+public static void main(String[] args) {
+int[][][] a = new int[][][] {{null}};
+int[][][] b = new int[][][] {{null}};
+System.out.println(Arrays.equals(a, b)); // false
+System.out.println(Arrays.deepEquals(a, b)); // true
+}
+}
+I believe Eclipse-generated equals() method should use Arrays.deepEquals() as it seems to be doing its job properly.
+Reproducible: Always

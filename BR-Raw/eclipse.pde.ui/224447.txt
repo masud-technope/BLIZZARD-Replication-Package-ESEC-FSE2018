@@ -1,0 +1,4 @@
+Bug 224447 – change to x-internal in manifest file is not picked up
+I changed one of my packages from x-internal:false to x-internal:true (and vice versa), but the API tooling did not pick up this change - I had to go to the file in question and make a whitespace change to get updated error markers based on the x-internal setting.
+We had an internal package that was marked as x-internal:false.
+I found this bug when I tried to fix our problem in the manifest file.

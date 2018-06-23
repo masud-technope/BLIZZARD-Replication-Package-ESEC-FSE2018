@@ -1,0 +1,7 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/contentassist/VirtualSchemaObject.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/util/SchemaUtil.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/PDEFormEditor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/extension/PointSelectionPage.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/SchemaElement.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/util/XMLComponentRegistry.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/SchemaAttribute.java

@@ -1,0 +1,14 @@
+Bug 417659 – [dom][ast][1.8] test failures - ast structure - when debug tracing is on
+Following tests fail when the following debug options are on:
+org.eclipse.jdt.core/debug/dom/ast=true
+org.eclipse.jdt.core/debug/dom/ast/throw= true
+org.eclipse.jdt.core/debug/dom/ast/rewrite = true
+The failures are listed below:
+TypeAnnotationsConverterTests : test0003, test0004, test0005, test0008.
+ASTConverter18Test : test0004, test0006, test0015, test399794.
+ASTRewritingMethodDeclTest: testListInserts(JLS8), TestMethodReturnTypeChanges2_only_2(
+JLS2),TestMethodReturnTypeChanges_only_2 (JLS2).
+ASTRewritingTypeAnnotationsTest: testClassInheritenceAnnotations(JLS8).
+ASTRewritingReferenceExpressionsTest:
+4 failures testRE_test00{1,3,4,5}_since_8
+This may be converted to an umbrella bug for better tracking if the patches are grouped for particular sets.

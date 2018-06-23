@@ -1,0 +1,13 @@
+Bug 147773 – [debugger] determineIfDaemon throws exception
+when running java projects I frequently see the following exception with build  N20060617-0010.
+com.sun.jdi.ObjectCollectedException
+at org.eclipse.jdi.internal.MirrorImpl.defaultReplyErrorHandler(MirrorImpl.java:241)
+at org.eclipse.jdi.internal.ObjectReferenceImpl.referenceType(ObjectReferenceImpl.java:474)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.determineIfDaemonThread(JDIThread.java:446)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.initialize(JDIThread.java:256)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.<init>(JDIThread.java:222)
+at org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.createThread(JDIDebugTarget.java:456)
+at org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget$ThreadStartHandler.handleEvent(JDIDebugTarget.java:1765)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:140)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.run(EventDispatcher.java:232)
+at java.lang.Thread.run(Unknown Source)

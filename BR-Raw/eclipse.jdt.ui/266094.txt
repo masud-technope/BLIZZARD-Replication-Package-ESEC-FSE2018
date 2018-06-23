@@ -1,0 +1,5 @@
+Bug 266094 – Don't use "(s)" as placeholder for singular and plural
+I20090224-0800.
+Example can be found e.g.
+in refactoringui.properties:
+PullUpInputPage1_status_line={0} member(s) selected.

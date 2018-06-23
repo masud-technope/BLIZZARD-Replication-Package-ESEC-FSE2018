@@ -1,0 +1,1 @@
+protocols/bundles/ch.ethz.iks.slp/src/test/java/ch/ethz/iks/slp/impl/AttributeParserTest.java

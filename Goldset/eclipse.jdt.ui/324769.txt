@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/util/JavaModelUtil.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/rename/RenameTypeProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/infoviews/JavadocView.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/viewsupport/JavaElementImageProvider.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/viewsupport/JavaElementLabelComposer.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/viewsupport/JavaElementLinks.java

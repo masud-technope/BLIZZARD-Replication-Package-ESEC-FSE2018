@@ -1,0 +1,76 @@
+57700 – Exception in a LifecycleListener on Context makes webapp unreachable in spite of subsequent successful startups
+Using Tomcat 7.0.59.
+I have an implementation of LifecycleListener that is configured in META-INF/context.xml of a web application and performs some configuration work on CONFIGURE_START_EVENT.
+Roughly:
+[[[
+import org.apache.catalina.Context;
+import org.apache.catalina.Lifecycle;
+import org.apache.catalina.LifecycleEvent;
+import org.apache.catalina.LifecycleListener;
+public class FooListener implements LifecycleListener {
+@Override
+public void lifecycleEvent(LifecycleEvent event) {
+if (event.getLifecycle() instanceof Context) {
+if (Lifecycle.CONFIGURE_START_EVENT.equals(event.getType())) {
+if (loader == null) {
+Context context = (Context) event.getLifecycle();
+try {
+// <Do some work...>
+} catch (Exception ex) {
+final String msg = "Configuration failed for web application \"" + context.getName()
++ "\".";
+throw new ConfigurationException(msg, ex);
+}
+}
+}
+}
+}
+}
+]]]
+The work of the listener can fail due to some external condition.
+Steps to reproduce:
+All the following is performed via HTML UI of the Manager web application.
+1.
+Undeploy application foo.
+2.
+Upload foo.war.
+3.
+The external condition is not configured.
+The following is observed:
+- The application fails to start.
+- A org.apache.catalina.LifecycleException happens and is logged into catalina.dddd-yy-mm.log
+- The Manager app shows the application as deployed and is in "stopped" state.
+This all is as expected.
+4.
+Fix the external condition and start the web application via Manager.
+Observed behaviour:
+- The application is started.
+The manager webapp shows that it is started and running.
+Expected behaviour:
+- Being able to access /foo
+Actual behaviour:
+- Error 404.
+The access log shows that the request was served by the ROOT web application.
+- No errors or warnings are logged
+If I stop/start the foo application, it stops and starts successfully, but nothing changes.
+If I stop/start the ROOT application, it stops and starts successfully, but nothing changes.
+If I undeploy and re-deploy the foo application, the situation resolves and the application can be accessed successfully.
+Thoughts:
+----------
+1.
+Maybe the error is in Mapper.
+Maybe the error is handling of FailedContext.
+The initial error may be a deployment error (resulting in use of FailedContext), but in this case it is odd that starting the application (after fixing the external condition) is performed successfully and it is shown as running.
+If the error is in the Mapper, why the error is fixed when the application is undeployed?
+2.
+We already have test cases for failed startups,
+org.apache.catalina.core.TestStandardContext
+-> testBug46243()
+-> testWebappLoaderStartFail()
+-> testWebappListenerConfigureFail()
+The testWebappListenerConfigureFail() test was designed to reflect this situation.
+I guess there is a difference in deployment scenario via Manager webapp vs.
+the one used in the test.
+3.
+I wonder, if the Manager webapp had a "[Redeploy]" button for a webapp, like it has a "[Reload]" one, would pressing it be able to resolve this issue.
+I will file an enhancement request for that.

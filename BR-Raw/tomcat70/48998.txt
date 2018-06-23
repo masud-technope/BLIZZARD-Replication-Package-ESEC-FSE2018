@@ -1,0 +1,12 @@
+48998 – Proposal : port mod_expires in java as ExpiresFilter Servlet Filter
+Created attachment 25189 [details]
+Port of mod_expires as ExpiresFilter
+Here is a proposal to port Apache Httpd mod_expires in java as ExpiresFilter, a standard Servlet Filter.
+I detailed a standalone version on http://code.google.com/p/xebia-france/wiki/ExpiresFilter .
+More over, I tried my best to provide very detailed javadocs and docs (in filter.html).
+The proposed contribution is slightly different because it uses Tomcat logging, few Servlet 3 enhancements and test cases use Tomcat engine.
+The attached patch contains :
+* ExpiresFilter.java : the Expires Filter
+* TestExpiresFilter : detailed test cases
+* filter.xml : doc updates
+The filter has been optimized using a profiler and stress tested with Apache Bench under high load.

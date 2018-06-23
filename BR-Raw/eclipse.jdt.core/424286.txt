@@ -1,0 +1,3 @@
+Bug 424286 – [1.8] Update type inference to spec version 0.9.1
+The new version 0.8.0 of the JSR 335 spec has been published, which contains some significant changes affecting type inference.
+These need to be incorporated, or verified for those changes that go back to our own reports.

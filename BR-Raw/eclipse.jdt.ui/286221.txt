@@ -1,0 +1,19 @@
+Bug 286221 – [move method] Move refactoring can produce duplicate methods [refactoring]
+Build ID: I20090611-1540
+Steps To Reproduce:
+Steps To Reproduce:
+1.
+Create the following classes:
+public class O {
+private S _s;
+public void m(){}
+}
+public class S {
+public void m(){}
+}
+2.
+Now use the move refactoring to move method O.m to S.
+3.
+The refactoring performs and produces the compile error without indicating an error status:
+Duplicate method m() in type S	S.java
+More information:

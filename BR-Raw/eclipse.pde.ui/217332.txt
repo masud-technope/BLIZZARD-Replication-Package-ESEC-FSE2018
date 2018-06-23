@@ -1,0 +1,2 @@
+Bug 217332 – [p2] should use reference URL when dealing with simple configurator
+Currently when working with p2, we correctly set osgi.bundles to include simple configurator, however, we don't do this via reference and cause issues.

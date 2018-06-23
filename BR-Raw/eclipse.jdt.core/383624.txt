@@ -1,0 +1,12 @@
+Bug 383624 – [1.8][compiler] Revive code generation support for type annotations (from Olivier's work)
+Created attachment 217920 [details]
+Original implementation of code generation from 2010.
+BETA_JAVA8:
+In order to make it more manageable by breaking it into chunks, the commit in
+http://git.eclipse.org/c/jdt/eclipse.jdt.core.git/commit/?h=BETA_JAVA8&id=831d96bc5763622ed503192c35bfd6688abedd96, did not include
+the files that implement code generation support for JSR308.
+After code review, spec review and testing is over for what has already
+been released (grammar + parser changes, AST construction, symbol/type
+resolution ...), we should release the rest of the changes that deal with
+code generation.
+I'll post a patch that consists of the pending changes.

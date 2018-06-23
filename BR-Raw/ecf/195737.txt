@@ -1,0 +1,6 @@
+Bug 195737 – [appint] Provide ability to export/import task context via ECF communications
+The context sharing should happen synchronously using ECF.
+Drap&drop a task on the person in the roster view or choose from a context menu "Share With" and select a person you want to share the task.
+On the other side, the notification window should popup asking whether the person wants to accept the context or not.
+If selected yes, then the person goes to Import Wizard and apply the received context to the selected task.
+If selected no, the sender should get a message, that the sharing was rejected.

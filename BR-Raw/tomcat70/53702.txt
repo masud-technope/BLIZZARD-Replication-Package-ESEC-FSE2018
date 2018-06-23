@@ -1,0 +1,57 @@
+53702 – Only the last url-pattern from jsp-property-group is processed
+Created attachment 29215 [details]
+Modified files from the ROOT webapp
+According to XSDs (jsp_2_0.xsd, jsp_2_1.xsd, jsp_2_2.xsd), the "url-pattern" can occur more than once in the same "jsp-property-group".
+[[[
+<xsd:complexType name="jsp-property-groupType">
+...
+<xsd:element name="url-pattern"
+type="javaee:url-patternType"
+maxOccurs="unbounded"/>
+]]]
+There are three places where the "jsp-property-group" element is represented by an object in Tomcat:
+a) in Jasper, o.a.jasper.compiler.JspConfig$JspPropertyGroup
+b) in Catalina, o.a.catalina.deploy.JspPropertyGroup
+c) in Servlet 3.0 API, javax.servlet.descriptor.JspPropertyGroupDescriptor (implemented by o.a.c.core.ApplicationJspPropertyGroupDescriptor)
+The implementations in a) and c) are correct ones,  but in b) the collection of url patterns is mistakenly represented by a single value and setUrlPattern() method.
+As the "setUrlPattern" method is called by digester (configured in o.a.c.startup.WebRuleSet), only the last url-pattern value survives.
+The observable consequences of this issue:
+===========================================
+1.
+Merged web.xml is reproduced and passed to Jasper incorrectly.
+(Currently it is passed only when metadata-complete="false" or absent, as I noted in Re:r1371995 on dev@, which is a different issue but it hides the effect of this one).
+2.
+A known feature is that the paths mentioned in jsp-property-group are implicitly mapped to the JspServlet.
+Due to this issue this mapping occurs only for the last url-pattern.
+(in WebXml#configureContext())
+To reproduce in current 7.0.x (7.0.29 is affected):
+====================================================
+1.
+Unpack attached archive and put the files into the ROOT webapp.
+The files are context.xml with <Context logEffectiveWebXml="true"/>
+and web.xml without metadata-compete attribute and adding the following:
+[[[
+<jsp-config>
+<jsp-property-group>
+<url-pattern>*.foo</url-pattern>
+<url-pattern>*.bar</url-pattern>
+<is-xml>true</is-xml>
+</jsp-property-group>
+</jsp-config>
+]]]
+2.
+Start Tomcat and look into the "catalina.`date`.log" file.
+The merged web.xml should have been dumped there.
+Look for the "jsp-property-group" element.
+Actual result:
+[[[
+<jsp-config>
+<jsp-property-group>
+<url-pattern>*.bar</url-pattern>
+<is-xml>true</is-xml>
+</jsp-property-group>
+</jsp-config>
+]]]
+Expected result: both *.foo and *.bar should be mentioned.
+Tomcat 6 does not have this issue, because there is no such object in Catalina there.
+The digester configured in WebRuleSet calls StandardContext.addJspMapping(..), which is additive.

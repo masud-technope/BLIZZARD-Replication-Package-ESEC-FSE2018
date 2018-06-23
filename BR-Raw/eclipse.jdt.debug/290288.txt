@@ -1,0 +1,2 @@
+Bug 290288 – Detail panes/editors for Java breakpoints
+JDT needs to supply breakpoint editors/detail panes for Java breakpoints once the breakpoint view supports pluggable detail panes.

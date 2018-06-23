@@ -1,0 +1,14 @@
+55317 – Facilitate weaving by allowing ClassFileTransformer to be added to WebppClassLoader
+Most application servers provide a mechanism whereby web applications can instrument class bytecode.
+This is normally in the form of two or three instrumentation methods on the ClassLoader implementation responsible for web application class loading.
+Spring Framework, for example, provides a way to automatically detect and use the various instrumentable ClassLoaders provided by different application servers.
+However, since Tomcat's o.a.catalina.loader.WebappClassLoader is not instrumentable, Spring cannot use it directly.
+Instead, it provides a class that extends WebappClassLoader to implement the instrumentation.
+Users must place this special spring-instrument-tomcat.jar file in $TOMCAT_HOME/lib and put a loader declaration in META-INF/context.xml in order to get this to work--rather a pain in the rear.
+Spring's changes in the extended WebappClassLoader are really very trivial and involve only 2 classes: a helper class called WeavingTransformer [1] and the extended TomcatInstrumentableClassLoader [2].
+I intend to port these changes to Tomcat for Tomcat 7 and 8 and submit a patch.
+However, before I get started I needed to get two answers from the community:
+1) Is there any objection to such a simple addition to WebappClassLoader? I think it would be an easy-but-big improvement to Tomcat.
+2) What steps do I need to take to get this Spring code officially "donated" to Tomcat so that all legal requirements are met? The code is licensed Apache 2.0, so that at least should make it easier.
+[1] https://github.com/SpringSource/spring-framework/blob/master/spring-instrument-tomcat/src/main/java/org/springframework/instrument/classloading/WeavingTransformer.java
+[2] https://github.com/SpringSource/spring-framework/blob/master/spring-instrument-tomcat/src/main/java/org/springframework/instrument/classloading/tomcat/TomcatInstrumentableClassLoader.java

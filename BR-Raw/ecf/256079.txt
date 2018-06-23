@@ -1,0 +1,9 @@
+Bug 256079 – NPE at BaseSharedObject#destroySelfLocal
+Build ID: M20080911-1700
+Steps To Reproduce:
+1.Call BaseSharedObject#destroySelfLocal
+More information:
+since I'm not native English speaker, it's kind of difficult to collectly explain.
+so, please see the ML-log below.
+thanks.
+http://dev.eclipse.org/mhonarc/lists/ecf-dev/msg01934.html

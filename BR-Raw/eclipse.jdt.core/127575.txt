@@ -1,0 +1,16 @@
+Bug 127575 – Null reference checks don't handle Assert
+Build id: I20060213-0800
+I get null reference warnings in a lot of my code, even when null reference checks are done via an assertion method.
+ Should the flow analysis be able to catch situations where an exception is thrown for a null variable?  Here is an example:
+public class A {
+public void foo() {
+Object o = null;
+if ("foo".startsWith("bar"))
+o = new Object();
+assertNotNull(o);
+}
+public void assertNotNull(Object o) {
+if (o == null)
+throw new RuntimeException();
+}
+}

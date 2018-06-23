@@ -1,0 +1,27 @@
+Bug 388172 – JDI ArrayIndexOutOfBoundsException when debugging (until I deleted all breakpoints)
+When running a testng test in debug mode, I got the error and exception shown below.
+The test would hang every time.
+After deleting all of my breakpoints, the test began working correctly again.
+---
+An internal error occurred during: "JDI Event Dispatch".
+java.lang.ArrayIndexOutOfBoundsException: -4
+at org.eclipse.jdi.internal.MethodImpl.javaStratumLocationsOfLines(MethodImpl.java:867)
+at org.eclipse.jdi.internal.ReferenceTypeImpl.locationsOfLine(ReferenceTypeImpl.java:1966)
+at org.eclipse.jdi.internal.ReferenceTypeImpl.locationsOfLine(ReferenceTypeImpl.java:1594)
+at org.eclipse.jdi.internal.ReferenceTypeImpl.locationsOfLine(ReferenceTypeImpl.java:1079)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.determineLocations(JavaLineBreakpoint.java:355)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.newRequests(JavaLineBreakpoint.java:294)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.createRequest(JavaBreakpoint.java:486)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleClassPrepareEvent(JavaBreakpoint.java:374)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:290)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:152)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:100)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:249)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+---
+eclipse.buildId=I20120608-1400
+java.version=1.6.0_33
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -clean -showlocation

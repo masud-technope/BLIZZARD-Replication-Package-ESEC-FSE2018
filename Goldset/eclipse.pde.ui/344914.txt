@@ -1,0 +1,6 @@
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/model/tests/ComponentManifestTests.java
+apitools/org.eclipse.pde.api.tools/src_ant/org/eclipse/pde/api/tools/internal/tasks/AnalysisReportConversionTask.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/problems/ApiProblem.java
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/tests/ApiToolsTestSuite.java
+apitools/org.eclipse.pde.api.tools/src_ant/org/eclipse/pde/api/tools/internal/tasks/APIToolsAnalysisTask.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/model/BundleComponent.java

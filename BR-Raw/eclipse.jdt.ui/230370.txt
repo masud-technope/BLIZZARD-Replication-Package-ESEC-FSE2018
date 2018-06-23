@@ -1,0 +1,3 @@
+Bug 230370 – Get rid of JavaModelUtil.findType(...)
+3.4 M7.
+Those methods should no longer be needed and in fact there is only one client in the real code (some more in tests).

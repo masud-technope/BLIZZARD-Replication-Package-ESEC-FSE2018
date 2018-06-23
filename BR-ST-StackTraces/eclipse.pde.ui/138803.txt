@@ -1,0 +1,17 @@
+java.util.Stack.peek
+java.util.Stack.pop
+org.eclipse.pde.internal.core.XMLDefaultHandler.endElement
+javax.xml.parsers.SAXParser.parse
+javax.xml.parsers.SAXParser.parse
+org.eclipse.pde.internal.core.schema.Schema.load
+org.eclipse.pde.internal.core.schema.Schema.load
+org.eclipse.pde.internal.core.schema.SchemaDescriptor.getSchema
+org.eclipse.pde.internal.core.schema.SchemaRegistry.getSchema
+org.eclipse.pde.internal.ui.search.ClassSearchParticipant.searchProject
+org.eclipse.pde.internal.ui.search.ClassSearchParticipant.search
+org.eclipse.jdt.internal.ui.search.JavaSearchQuery$2.run
+org.eclipse.core.runtime.SafeRunner.run
+org.eclipse.jdt.internal.ui.search.JavaSearchQuery.run
+org.eclipse.mylar.internal.java.search.AbstractJavaRelationProvider$JavaSearchOperation.run
+org.eclipse.mylar.internal.java.search.AbstractJavaRelationProvider$JavaSearchJob.run
+org.eclipse.core.internal.jobs.Worker.run

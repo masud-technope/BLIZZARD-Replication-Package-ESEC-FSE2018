@@ -1,0 +1,15 @@
+50059 – Resources are not served from /WEB-INF/lib/{*.jar}/META-INF/resources if metadata-complete="true" is set in web.xml
+To reproduce:
+1.
+Make a Servlet 3.0 webapp (lets name it foo) with metadata-complete="true" attribute set on the web-app element in the /WEB-IBNF/web.xml.
+2.
+Make a jar holding a single /META-INF/resources/index.html file.
+The jar should be placed in /WEB-INF/lib (lets name it bar.jar).
+3.
+Start the web app in Tomcat 7.0.2 and in browser go to http://localhost:8080/foo/index.html.
+Expected result: 200 response and index.html served.
+Actual result: 404
+If you modify the web.xml to metadata-complete="false" and restart the app now /foo/index.html will respond as expected.
+I tried the same webapp with Glassfish v3.0.1 and it works as expected regardless what I set in metadata-complete attribute.
+I made a quick look in the servlet 3.0 spec and as far as I can see metadata-complete only regulates annotation and web fragment processing.
+In the example bar.jar has nothing to do with annotations and it is not a web fragment either but it is still handled differently depending on the metadata-complete attribute.

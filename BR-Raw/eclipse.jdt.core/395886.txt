@@ -1,0 +1,24 @@
+Bug 395886 – [1.8][DOM/AST] Withdraw annotations property from Name nodes.
+As part of the fix for bug 391890, ANNOTATIONS_PROPERTY was added to Name nodes.
+These need to be removed since the specification has changed to disallow
+constructs of the form:
+@Marker java.util.List
+The proper way to annotate these is to say:
+java.util.
+@Marker List
+Thus the presence of annotations before a certain segment of a qualified type
+signals that what follows is a type and cannot be a name.
+Very similar to how
+the presence of type parameters signals a type.
+See also:
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=391847#c4
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=391847#c7
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=391847#c33
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=391847#c34
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=391847#c37
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=391847#c39
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=391847#c46
+When we converty a QualifiedTypeReference or its subtypes, we should
+convert everything before the first type annotation seen as a SimpleType of
+QualifiedName/SimpleName and convert everything further as types.
+Compare how type parameters are handled in conversion of PQTR.

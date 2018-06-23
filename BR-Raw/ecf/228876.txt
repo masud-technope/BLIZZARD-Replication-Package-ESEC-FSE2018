@@ -1,0 +1,6 @@
+Bug 228876 – [Discovery][jSLP] org.eclipse.ecf.provider.jslp.container.JSLPServiceInfo.getServiceURL() needs to remove "IANA" itself
+Build ID: M20071023-1652
+Steps To Reproduce:
+Method JSLPServiceInfo.getServiceURL() does not check for "IANA" and remove it in the service url before return the result.
+This results in "IANA" is included explicitly in the service url, which is not allowed as stated in RFC2608.
+More information:

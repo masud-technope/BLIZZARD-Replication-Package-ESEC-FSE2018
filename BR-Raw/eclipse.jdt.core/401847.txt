@@ -1,0 +1,16 @@
+Bug 401847 – [1.8][compiler] Polyconditionals not accepted in method invocation contexts.
+BETA_JAVA8:
+The following program should compile, but fails instead with a
+ClassCastException:
+// ---
+interface I {
+Integer foo(X x);
+}
+public class X {
+int foo(I ...i) { return 10;}
+int goo() { return 0;}
+{
+foo(true ? X::goo : X::goo);
+foo(true ? x-> 1 : x->0);
+}
+}

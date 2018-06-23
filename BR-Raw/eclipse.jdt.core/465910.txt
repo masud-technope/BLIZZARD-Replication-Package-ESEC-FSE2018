@@ -1,0 +1,9 @@
+Bug 465910 – [formatter] add a 'wrap before operator' option for conditional expressions
+In the 'Line wrapping' tab, 'Expressions' menu, the 'Conditionals' settings do not allow to wrap the line after the '?' and ':' operators.
+There is a 'wrap before operator' setting for Binary expressions that can be unset and another one for multi-catch statements, but it is not possible to unset this for conditional expressions: wrapping is always done before the operator, never after.
+When people use a wrap after operator policy, they often intend to use it for all kind of operators.
+The checkstyle tool Wrap Operator Policy does not distinguish between different uses.
+This means that is you set it to eol (operators are at the end of the line, and wrapping occurs after them), then you set it also for conditionals expressions.
+With the current [formatter] setting, you cannot do that for conditionals even if you did it for binary expressions and multi-catch statements.
+This is the same as bug #325631, but for conditionals.
+This is however a different bug than #459304.

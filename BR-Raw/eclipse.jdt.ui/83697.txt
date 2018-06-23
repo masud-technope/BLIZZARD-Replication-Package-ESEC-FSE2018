@@ -1,0 +1,11 @@
+Bug 83697 – [misc] Inline tags are not rendered when in the content of a block tag
+Version: 3.1.0
+Build id: I20050125-0800
+The javadoc manual states that is possible to use inline tags (eg {@link}) in
+the content of block tags (such as @param).
+ This simple case renders as "foo
+{@link String bar}" when it should be "foo bar":
+/**
+* @param foo {@link String bar}
+*/
+public void fred(String foo){}

@@ -1,0 +1,4 @@
+45419 – Return Accept-Ranges from DefaultServlet
+Currently the DefaultServlet accepts the "Ranges" request header, but doesn't indicate this in its response by returning "Accept-Ranges: bytes".
+Although this is not required in HTTP/1.1, setting the header is required in order for the Adobe Acrobat plugin to correctly handle Linearized PDF's (which can speed download by allowing random access to a PDF file).
+Although it's not strictly necessary according to the specification I can't think of any reason why this header is not safe to set in a response from DefaultServlet, which is always dealing with static files, and not doing so has a negative impact on serving large PDF files - so I'm filing it as a bug rather than an RFE.

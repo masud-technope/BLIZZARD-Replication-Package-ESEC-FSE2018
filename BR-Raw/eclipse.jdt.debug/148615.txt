@@ -1,0 +1,7 @@
+Bug 148615 – [JUnit] JUnit 4 does not recognize JunitTestCase if @Test is only in superclass
+Hi!
+Eclipse 3.2 RC7 does not seem to recognize a JUnit 4-TestCase if it does not derive from TestCase and if the methods marked with @Test are in super-classes of the selected class.
+This problem occurs if you select a class with @Test-methods defined in the superclass and then select right mouse down (context menu) -> Run As.
+There, no JUnit-Runner will be provided.
+ciao
+Volker

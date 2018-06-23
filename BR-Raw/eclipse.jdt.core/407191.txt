@@ -1,0 +1,8 @@
+Bug 407191 – [1.8] Binary access support for type annotations
+Following on from bug 383624 which activates code generation for type annotations, this bug covers further work in JDT core on surfacing this information elsewhere in the compiler.
+Work items (likely incomplete list), please feel free to add !
+org.eclipse.jdt.internal.compiler.classfmt.ClassFileReader
+- load type annotations on the types and members
+- has structural change checking for annotations
+BinaryTypeBinding
+- surface relevant type annotations

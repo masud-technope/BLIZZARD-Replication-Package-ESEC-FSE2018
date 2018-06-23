@@ -1,0 +1,11 @@
+Bug 422016 – [1.8] Having reference expressions or lambdas in file triggers warning for missing line numbers
+If I add lambdas to the simplest of classes, and tries to debug it, I will get soemthing like the following error text:
+--------------------------------------------------
+Unable to install breakpoint in demo.LambdaMain$$Lambda$1.380936215 due to missing line number attributes.
+Modify compiler options to generate line number attributes.
+Reason:
+Absent Line Number Information
+[ ] Donâ€™t tell me again
+--------------------------------------------------
+I don't know why the warning is shown as I haven't tried to set the breakpoints in the function objects themselves.
+The function object classes are synthetic, even if the classes aren't marked as such (but that's inferred from the class, isn't it?), so perhaps that could be used to detect whether or not to show this warning.

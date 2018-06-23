@@ -1,0 +1,4 @@
+41074 – Output of tag "jsp:plugin" is not conform to XHTML.
+The jsp comiler outputs all tag required for an object in upper case letters.
+To be conform with XHTML lower case is required, but all tags are hard coded in
+the generator.

@@ -1,0 +1,6 @@
+java/org/apache/jasper/compiler/Compiler.java
+test/org/apache/jasper/compiler/TestCompiler.java
+test/webapp-3.0/WEB-INF/web.xml
+test/webapp-3.0/bug49726a.jsp
+test/webapp-3.0/bug49726b.jsp
+webapps/docs/changelog.xml

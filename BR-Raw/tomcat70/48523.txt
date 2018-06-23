@@ -1,0 +1,62 @@
+48523 – Duplicate property keys in various files
+There are some properties files with non-unique property keys; normally these should be unique.
+File: java\org\apache\catalina\realm\LocalStrings.properties
+Duplicate key: 'jaasRealm.userPrincipalSuccess'
+jaasRealm.userPrincipalSuccess=Principal "{0}" is a valid user class.
+We will use this as the user Principal.
+jaasRealm.userPrincipalSuccess=Subject for username "{0}" returned user Principal "{1}"
+Duplicate key: 'jaasRealm.userPrincipalFailure'
+jaasRealm.userPrincipalFailure=No valid user Principal found
+jaasRealm.userPrincipalFailure=Subject for username "{0}" did not return a valid user Principal
+File: java\org\apache\catalina\realm\LocalStrings_es.properties
+Duplicate key: 'jaasRealm.userPrincipalSuccess'
+jaasRealm.userPrincipalSuccess = El Principal "{0}" es una clase v\u00E1lida de usuario.
+La vamos a usar como usuario Principal.
+jaasRealm.userPrincipalSuccess = El asunto para el nombre de usuario "{0}" devolvi\u00F3 usuario Principal "{1}"
+Duplicate key: 'jaasRealm.userPrincipalFailure'
+jaasRealm.userPrincipalFailure = No se ha hallado usuario Principal
+jaasRealm.userPrincipalFailure = El asunto para el nombre de usuario "{0}" no devolvi\u00F3 un usuario Principal v\u00E1lido
+File: java\org\apache\catalina\startup\LocalStrings.properties
+Duplicate key: 'contextConfig.jndiUrl'
+contextConfig.jndiUrl=The connection created for URL [{0}] was not a DirContextURLConnection
+contextConfig.jndiUrl=Unable to process JNDI URL [{0}] for annotations
+Duplicate key: 'webXml.mergeConflictFilter'
+webXml.mergeConflictFilter=The Servlet [{0}] was defined inconsistently in multiple fragments including fragment with name [{1}] located at [{2}]
+webXml.mergeConflictFilter=The Filter [{0}] was defined inconsistently in multiple fragments including fragment with name [{1}] located at [{2}]
+File: java\org\apache\jasper\resources\LocalStrings.properties
+Duplicate key: 'jsp.error.page.invalid.buffer'
+jsp.error.page.invalid.buffer=Page directive: invalid value for buffer
+jsp.error.page.invalid.buffer=Page directive: invalid buffer size
+Duplicate key: 'jsp.error.xml.invalidHighSurrogate'
+jsp.error.xml.invalidHighSurrogate = High surrogate bits in UTF-8 sequence must not exceed 0x10 but found 0x{0}.
+jsp.error.xml.invalidHighSurrogate = High surrogate bits in UTF-8 sequence must not exceed 0x10 but found 0x{0}.
+File: java\org\apache\jasper\resources\LocalStrings_es.properties
+Duplicate key: 'jsp.error.page.invalid.buffer'
+jsp.error.page.invalid.buffer = Directiva Page\: valor incorrecto para b\u00FAfer
+jsp.error.page.invalid.buffer = Directiva Page\: valor incorrecto para buffer
+Duplicate key: 'jsp.error.xml.invalidHighSurrogate'
+jsp.error.xml.invalidHighSurrogate = Los bits de surrogaci\u00F3n alta en secuencai UTF-8 no deben de exceder 0x10 pero se hall\u00F3 0x{0}.
+jsp.error.xml.invalidHighSurrogate = Surrogaci\u00F3n Alta de bits en secuencia UTF-8 no debe de exceder 0x10, pero se hall\u00F3 0x{0}.
+File: java\org\apache\jasper\resources\LocalStrings_ja.properties
+Duplicate key: 'jsp.error.page.invalid.buffer'
+jsp.error.page.invalid.buffer=page\u6307\u793a\u5b50: buffer\u5c5e\u6027\u306e\u5024\u304c\u7121\u52b9\u3067\u3059
+jsp.error.page.invalid.buffer=page\u6307\u793a\u5b50: \u7121\u52b9\u306a\u30d0\u30c3\u30d5\u30a1\u30b5\u30a4\u30ba\u3067\u3059
+Duplicate key: 'jsp.error.xml.invalidHighSurrogate'
+jsp.error.xml.invalidHighSurrogate = UTF-8\u30b7\u30fc\u30b1\u30f3\u30b9\u306e\u30cf\u30a4\u30b5\u30ed\u30b2\u30fc\u30c8\u30d3\u30c3\u30c8\u306f0x10\u3092\u8d8a\u3048\u3066\u306f\u3044\u3051\u307e\u305b\u3093\u304c\u30010x{0}\u304c\u898b\u3064\u304b\u308a\u307e\u3057\u305f
+jsp.error.xml.invalidHighSurrogate = UTF-8\u30b7\u30fc\u30b1\u30f3\u30b9\u306e\u30cf\u30a4\u30b5\u30ed\u30b2\u30fc\u30c8\u30d3\u30c3\u30c8\u306f0x10\u3092\u8d8a\u3048\u3066\u306f\u3044\u3051\u307e\u305b\u3093\u304c\u30010x{0}\u304c\u898b\u3064\u304b\u308a\u307e\u3057\u305f
+File: java\org\apache\tomcat\util\net\res\LocalStrings.properties
+Duplicate key: 'endpoint.poll.fail'
+endpoint.poll.fail=Socket [{0}] poll event: [{1}] {2}
+endpoint.poll.fail=Critical poller failure (restarting poller): [{0}] {1}
+File: java\org\apache\tomcat\util\net\res\LocalStrings_es.properties
+Duplicate key: 'endpoint.poll.fail'
+endpoint.poll.fail = Conector [{0}] evento de encuesta\: [{1}] {2}
+endpoint.poll.fail = Fallo cr\u00EDtico de encuestador (reiniciando encuestador)\: [{0}] {1}
+File: java\org\apache\tomcat\util\net\res\LocalStrings.properties
+Duplicate key: 'endpoint.poll.fail'
+endpoint.poll.fail=Socket [{0}] poll event: [{1}] {2}
+endpoint.poll.fail=Critical poller failure (restarting poller): [{0}] {1}
+File: java\org\apache\tomcat\util\net\res\LocalStrings_es.properties
+Duplicate key: 'endpoint.poll.fail'
+endpoint.poll.fail = Conector [{0}] evento de encuesta\: [{1}] {2}
+endpoint.poll.fail = Fallo cr\u00EDtico de encuestador (reiniciando encuestador)\: [{0}] {1}

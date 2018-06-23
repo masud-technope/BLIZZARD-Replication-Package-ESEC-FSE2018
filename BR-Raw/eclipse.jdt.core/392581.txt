@@ -1,0 +1,5 @@
+Bug 392581 – [content assist] after "super.", enclosing method should be first proposal
+When you invoke content assist after "super.", the super method of the enclosing method should be the first proposal.
+This is the 99% case.
+The full solution could be non-trivial to implement if 1.5 features (type variables, varargs) are part of the game.
+However, a simple implementation can just boost relevance of all methods with the same name as the enclosing method (which should be the first boost step anyway, to make the user aware of the fact that the method is overloaded).

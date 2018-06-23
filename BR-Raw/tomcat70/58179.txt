@@ -1,0 +1,40 @@
+58179 – Atomicity violation
+My name is Bai Guangdong, a research fellow from National University of Singapore.
+I find an atomicity violation similar to bug 53498.
+The problem occurs in the same file java/org/apache/catalina/core/ApplicationContext.java.
+Look at the code snippet below.
+L791         oldValue = attributes.get(name);
+L792         if (oldValue != null)
+L793             replaced = true;
+L794         attributes.put(name, value);
+...
+         ...
+L801         if (replaced)
+L802             event =
+L803                 new ServletContextAttributeEvent(context.getServletContext(),
+L804                                                  name, oldValue);
+L805         else
+L806             event =
+L807                 new ServletContextAttributeEvent(context.getServletContext(),
+L808                                                  name, value);
+...
+         ...
+L816                 if (replaced) {
+L817                     context.fireContainerEvent
+L818                         ("beforeContextAttributeReplaced", listener);
+L819                     listener.attributeReplaced(event);
+L820                     context.fireContainerEvent("afterContextAttributeReplaced",
+L821                                                listener);
+L822                 } else {
+L823                     context.fireContainerEvent("beforeContextAttributeAdded",
+L824                                                listener);
+L825                     listener.attributeAdded(event);
+L826                     context.fireContainerEvent("afterContextAttributeAdded",
+L827                                                listener);
+Suppose two threads T1 and T2 executes this code snippet with the same key ("name").
+Initially, "attributes" is empty.
+T1 executes line 791 and "oldValue" in T1 becomes null.
+Before T1 executes line 794, T2 executes 791 and "oldValue" in T2 becomes null as well.
+Then T1 executes line 794, and later T2 replaces T1's "value" at line 794.
+Afterwards, both T1 and T2 fire the "beforeContextAttributeAdded" event at line 823.
+However, in the above situation, "replaced" in T2 should be true and "beforeContextAttributeReplaced" should be fired at line 817.

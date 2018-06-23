@@ -1,0 +1,2 @@
+Bug 431290 – [1.8] Properly extract invokedynamic instructions
+We need to implement the new API to properly extract invokedynamic instructions

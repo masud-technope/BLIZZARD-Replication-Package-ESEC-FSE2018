@@ -1,0 +1,42 @@
+Bug 220745 – NPE launching in nightly build
+I selected a plug-in and pressed "debug".
+I got this error:
+N20080228-0010
+java.lang.ExceptionInInitializerError
+at org.eclipse.pde.internal.ui.editor.text.ColorManager.initializeDefaults(ColorManager.java:44)
+at org.eclipse.pde.internal.ui.preferences.PreferenceInitializer.initializeDefaultPreferences(PreferenceInitializer.java:27)
+at org.eclipse.core.internal.preferences.PreferenceServiceRegistryHelper.runInitializer(PreferenceServiceRegistryHelper.java:276)
+at org.eclipse.core.internal.preferences.PreferenceServiceRegistryHelper.applyRuntimeDefaults(PreferenceServiceRegistryHelper.java:130)
+at org.eclipse.core.internal.preferences.PreferencesService.applyRuntimeDefaults(PreferencesService.java:367)
+at org.eclipse.core.internal.preferences.DefaultPreferences.applyRuntimeDefaults(DefaultPreferences.java:163)
+at org.eclipse.core.internal.preferences.DefaultPreferences.loadDefaults(DefaultPreferences.java:236)
+at org.eclipse.core.internal.preferences.DefaultPreferences.load(DefaultPreferences.java:232)
+at org.eclipse.core.internal.preferences.EclipsePreferences.create(EclipsePreferences.java:307)
+at org.eclipse.core.internal.preferences.EclipsePreferences.internalNode(EclipsePreferences.java:543)
+at org.eclipse.core.internal.preferences.EclipsePreferences.node(EclipsePreferences.java:662)
+at org.eclipse.core.internal.preferences.AbstractScope.getNode(AbstractScope.java:38)
+at org.eclipse.core.runtime.preferences.DefaultScope.getNode(DefaultScope.java:67)
+at org.eclipse.ui.preferences.ScopedPreferenceStore.getDefaultPreferences(ScopedPreferenceStore.java:249)
+at org.eclipse.ui.preferences.ScopedPreferenceStore.getPreferenceNodes(ScopedPreferenceStore.java:283)
+at org.eclipse.ui.preferences.ScopedPreferenceStore.internalGet(ScopedPreferenceStore.java:473)
+at org.eclipse.ui.preferences.ScopedPreferenceStore.getBoolean(ScopedPreferenceStore.java:385)
+at org.eclipse.pde.internal.ui.launcher.LauncherUtils.validateProjectDependencies(LauncherUtils.java:166)
+at org.eclipse.pde.ui.launcher.AbstractPDELaunchConfiguration.validateProjectDependencies(AbstractPDELaunchConfiguration.java:381)
+at org.eclipse.pde.ui.launcher.AbstractPDELaunchConfiguration.preLaunchCheck(AbstractPDELaunchConfiguration.java:290)
+at org.eclipse.pde.ui.launcher.EclipseApplicationLaunchConfiguration.preLaunchCheck(EclipseApplicationLaunchConfiguration.java:222)
+at org.eclipse.pde.ui.launcher.AbstractPDELaunchConfiguration.launch(AbstractPDELaunchConfiguration.java:47)
+at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:764)
+at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:614)
+at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:827)
+at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1030)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.swt.SWTException: Invalid thread access
+at org.eclipse.swt.SWT.error(SWT.java:3756)
+at org.eclipse.swt.SWT.error(SWT.java:3674)
+at org.eclipse.swt.SWT.error(SWT.java:3645)
+at org.eclipse.swt.widgets.Display.error(Display.java:1156)
+at org.eclipse.swt.widgets.Display.checkDevice(Display.java:681)
+at org.eclipse.swt.widgets.Display.getHighContrast(Display.java:1691)
+at org.eclipse.pde.internal.ui.editor.text.IPDEColorConstants.<clinit>(IPDEColorConstants.java:22)
+...
+27 more

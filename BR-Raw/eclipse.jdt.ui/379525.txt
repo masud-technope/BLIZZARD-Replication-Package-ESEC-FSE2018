@@ -1,0 +1,7 @@
+Bug 379525 – [api][implementation] get rid of illegal unencoded URLs
+JavaDocLocations and clients have a fundamental problem: They deal with illegal URLs for which URL#toURI() throws an exception.
+The problem is that they use an unescaped and unencoded form of URLs.
+This format is lossy, since it is not possible to later distinguish characters like #!? that can occur in file system paths from characters that delimit the components of a URL (path, ref, query).
+APIs in JavaUI and stored data in classpath attribute and persistent project properties are also affected.
+If the fix also touches the storage format, then it needs a migration story.
+No migration story is necessary for API clients who implemented workarounds for the bad URL format (that's their fault).

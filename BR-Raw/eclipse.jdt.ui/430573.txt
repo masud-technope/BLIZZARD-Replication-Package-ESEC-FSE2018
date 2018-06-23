@@ -1,0 +1,17 @@
+Bug 430573 – [1.8][clean up][quick assist] Convert lambda to anonymous must qualify references to 'this'/'super'
+Convert lambda to anonymous must qualify references to 'this'/'super':
+package p;
+import java.util.function.IntSupplier;
+public class A {
+public static void main(String[] args) {
+new A();
+}
+A() {
+IntSupplier i = () -> this.m();
+System.out.println(i.getAsInt());
+}
+public int m() {
+return 7;
+}
+}
+=> In the anonymous, the method must return "A.this.m()", not just "this.m()".

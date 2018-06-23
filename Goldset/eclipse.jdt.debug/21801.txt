@@ -1,0 +1,2 @@
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/ThreadGroupReferenceImpl.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/ThreadReferenceImpl.java

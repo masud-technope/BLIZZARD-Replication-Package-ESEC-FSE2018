@@ -1,0 +1,12 @@
+58187 – Tomcat manager incorrect deployment status
+When using the manager to deploy a war file (using html or text version of the manager), the response sent from the tomcat manager appears before the application ends its starting.
+It appears after deployment but before application's context is fully up.
+That means if the application fails in its start process, Tomcat manager will already have answered that the application has been deployed.
+It was not the case with Tomcat 7.0.61.
+It affects versions 7.0.63, and 7.0.62 of the Tomcat manager.
+The parameters used are:
+- war file located on server (/home/xxx.war),
+- update = true,
+- simple context (my-context)
+Maybe the response has become asynchronous when Tomcat manager is deploying war file ?
+It would be very strange since the reload is not asynchronous in all Tomcat versions.

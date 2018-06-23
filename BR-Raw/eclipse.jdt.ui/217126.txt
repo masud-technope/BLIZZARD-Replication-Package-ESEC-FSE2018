@@ -1,0 +1,6 @@
+Bug 217126 – [performance] Too many performance tests have only one measure
+Looking at the Scenario Status Table of the JDT/UI component performance tests, it  appears that most of the tests have only one run (eg.
+standard error = '[n/a]').
+This has a strong impact on the tests reliability and make the verification hard to be accurate.
+The global result is that no regression was noticed on this component although the fingerprints looks not so good; a large number of tests in the fingerprints are red or yellow.
+IMO, this may give to users a negative feeling about the global performance of this component although there's no real performance issue...

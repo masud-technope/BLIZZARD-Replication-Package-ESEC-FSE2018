@@ -1,0 +1,5 @@
+Bug 280286 – Search engine should report results after a threshold has been hit
+I20090611-1540
+Currently our search engine reports any results it has found when it finishes searching a package.
+It can happen that a package can contain many many types, which leads to our search engine running out of memory.
+We should include a threshold (max reference count) that if hit would also report.

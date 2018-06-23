@@ -1,0 +1,11 @@
+59261 – Request getAsyncContext should throw IllegalStateException if async is not started
+If ServletRequest.getAsyncContext() IllegalStateException is invoked and has not been put into asynchronous mode an .
+From the javadoc [1]:
+> Throws: IllegalStateException - if this request has not been put into
+> asynchronous mode, i.e., if neither startAsync() nor
+> startAsync(ServletRequest,ServletResponse) has been called
+For implementations of HttpServletRequestWrapper that override this method, the fact that result can be null can cause problems [2].
+It appears there are parts of tomcat that check if getAsyncContext() is null rather than checking isAsycStarted().
+For example, ApplicationDispatcher checks if getAsyncContext() is null.
+[1] http://docs.oracle.com/javaee/6/api/javax/servlet/ServletRequest.html#getAsyncContext()
+[2] https://github.com/spring-cloud/spring-cloud-netflix/issues/868

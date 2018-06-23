@@ -1,0 +1,24 @@
+Bug 412882 � Unnecessary validation of optional library classpath entries.
+During the classpath validation first all the classpath entries are validated and then the validation status is not reported for the optional entries.
+Due to that when large number of optional entries existed on classpath a majority of portion is spent on their validation which is of no use.
+In a project with 12000+ optional library jars, setRawclaasspath is spending  more than 90% of time on this unnecessary validation.
+Here is the call tree captured with a profiler ...
+- 21,925 ms org.eclipse.jdt.internal.core.JavaProject.setRawClasspath
+- 21,925 ms org.eclipse.jdt.internal.core.JavaProject.setRawClasspath
+- 21,925 ms org.eclipse.jdt.internal.core.JavaModelOperation.runOperation
+- 21,675 ms org.eclipse.core.internal.resources.Workspace.run
+- 21,675 ms org.eclipse.jdt.internal.core.JavaModelOperation.run
+- 21,675 ms org.eclipse.jdt.internal.core.SetClasspathOperation.executeOperation
+- 20,500 ms org.eclipse.jdt.internal.core.ChangeClasspathOperation.classpathChanged
+- 20,376 ms org.eclipse.jdt.internal.core.ClasspathValidation.validate
+- 20,214 ms org.eclipse.jdt.internal.core.ClasspathEntry.validateClasspathEntry
+- 20,214 ms org.eclipse.jdt.internal.core.ClasspathEntry.validateClasspathEntry
+- 19,978 ms org.eclipse.jdt.internal.core.ClasspathEntry.validateLibraryEntry
+- 13,461 ms org.eclipse.jdt.internal.core.ClasspathEntry.validateLibraryContents
+- 13,461 ms org.eclipse.jdt.internal.core.JavaModelManager.verifyArchiveContent
+- 12,023 ms org.eclipse.jdt.internal.core.JavaModelManager.getZipFile
+- 12,006 ms java.util.zip.ZipFile.<init>
+- 5,511 µs org.eclipse.core.internal.resources.Workspace.getRoot
+- 5,439 µs org.eclipse.core.runtime.Path.toFile
+- 1,438 ms org.eclipse.jdt.internal.core.JavaModelManager.closeZipFile
+I am working on a patch to avoid this unncessery validation and will send it across soon.

@@ -1,0 +1,14 @@
+45453 – JDBCRealm.getRoles bad synchronization causes hangs w/ DIGEST authentication
+JDBCRealm.getRoles bad synchronization causes hangs w/ DIGEST authentication
+JDBCRealm caches PreparedStatement preparedRoles.
+That, and missing synchronization in JDBCRealm and/or DigestAuthenticator allow two threads to call getRoles simultaneously so that T1 will do stmt.executeQuery() while T2 does stmt.setString(1, userName) plus another .executeQuery() on the same PreparedStatement object.
+In the worst case, the JDBC driver gets confused by this, and blocks forever waiting for server response, causing all other threads that try to access DB hang.
+(This was observed with PostgreSQL 8.3-603-jdbc4 JDBC driver)
+org.postgresql.jdbc2.AbstractJdbc2Statement.execute(AbstractJdbc2Statement.java:451)
+org.postgresql.jdbc2.AbstractJdbc2Statement.executeWithFlags(AbstractJdbc2Statement.java:350)
+org.postgresql.jdbc2.AbstractJdbc2Statement.executeQuery(AbstractJdbc2Statement.java:254)
+org.apache.catalina.realm.JDBCRealm.getRoles(JDBCRealm.java:631)
+org.apache.catalina.realm.JDBCRealm.getPrincipal(JDBCRealm.java:596)
+org.apache.catalina.realm.RealmBase.authenticate(RealmBase.java:399)
+org.apache.catalina.authenticator.DigestAuthenticator.findPrincipal(DigestAuthenticator.java:283)
+org.apache.catalina.authenticator.DigestAuthenticator.authenticate(DigestAuthenticator.java:176)

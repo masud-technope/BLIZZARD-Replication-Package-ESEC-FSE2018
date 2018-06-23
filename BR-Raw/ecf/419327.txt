@@ -1,0 +1,11 @@
+Bug 419327 – [r-OSGi] Support filtering event.topics to prevent serialization
+https://sourceforge.net/p/r-osgi/bugs/175/
+Eclipe E4 makes heavy use of the OSGi event admin.
+R_OSGi tries to distribute these events.
+Is there a way to switch this off? I don't want my local UI events to be distributed.
+There is also a bug in the event handler (ChannelEndpointImpl#handleEvent).
+The code tries to copy the properties but the value of the property can be null which is not allowed for Hashtable
+Dictionary props = new Hashtable();
+for (int i = 0; i < propertyNames.length; ++i) {
+props.put(propertyNames[i], event.getProperty(propertyNames[i]));//NPE
+}

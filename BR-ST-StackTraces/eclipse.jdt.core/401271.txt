@@ -1,0 +1,8 @@
+org.eclipse.jdt.internal.compiler.lookup.Scope.compilationUnitScope
+org.eclipse.jdt.internal.compiler.lookup.Scope.getType
+org.eclipse.jdt.internal.compiler.lookup.Scope.getTypeOrPackage
+org.eclipse.jdt.internal.compiler.lookup.Scope.getType
+org.eclipse.jdt.internal.compiler.lookup.Scope.getTypeOrPackage
+org.eclipse.jdt.internal.compiler.lookup.Scope.getType
+org.eclipse.jdt.internal.compiler.lookup.Scope.getTypeOrPackage
+org.eclipse.jdt.internal.compiler.lookup.Scope.getType

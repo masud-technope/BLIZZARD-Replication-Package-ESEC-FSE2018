@@ -1,0 +1,6 @@
+java/org/apache/tomcat/util/http/parser/AstMediaType.java
+java/org/apache/tomcat/util/http/parser/AstParameter.java
+java/org/apache/tomcat/util/http/parser/HttpParser.java
+java/org/apache/tomcat/util/http/parser/HttpParser.jjt
+test/org/apache/tomcat/util/http/parser/TestMediaType.java
+webapps/docs/changelog.xml

@@ -1,0 +1,15 @@
+org.eclipse.ecf.provider.remoteservice.generic.RemoteServiceNamespace.createInstance
+org.eclipse.ecf.core.identity.IDFactory.createID
+org.eclipse.ecf.provider.remoteservice.generic.RemoteServiceRegistryImpl.createRemoteServiceID
+org.eclipse.ecf.provider.remoteservice.generic.RemoteServiceRegistrationImpl.publish
+org.eclipse.ecf.provider.remoteservice.generic.RegistrySharedObject.registerRemoteService
+org.remotercp.ecf.session.impl.SessionServiceImpl.registerRemoteService
+org.remotercp.ecf.session.impl.SessionServiceImpl.publishRemoteServicesToUser
+org.remotercp.ecf.session.impl.SessionServiceImpl.access$2
+org.remotercp.ecf.session.impl.SessionServiceImpl$1.handlePresence
+org.eclipse.ecf.internal.provider.xmpp.XMPPContainerPresenceHelper.firePresenceListeners
+org.eclipse.ecf.internal.provider.xmpp.XMPPContainerPresenceHelper.handlePresenceEvent
+org.eclipse.ecf.internal.provider.xmpp.XMPPContainerPresenceHelper.handleEvent
+org.eclipse.ecf.provider.generic.SOWrapper.svc
+org.eclipse.ecf.provider.generic.SOWrapper$2.run
+java.lang.Thread.run

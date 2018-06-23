@@ -1,0 +1,14 @@
+Bug 425783 – An internal error occurred during: "Requesting Java AST from selection". java.lang.StackOverflowError
+Created attachment 239023 [details]
+eclipse project to test.
+Hello,
+I have an error while opening a file in eclipse for editing.
+Attached an eclipse project to test.
+open "Test.java" and it will fire an error.
+An internal error occurred during: "Requesting Java AST from selection".
+java.lang.StackOverflowError
+I am using jdk 8 ea b123 and followed http://wiki.eclipse.org/JDT/Eclipse_Java_8_Support_(BETA)
+So there is installed :
+Eclipse Java Development Tools Patch for Java 8 Support (BETA)	1.0.0.v20140115-0104_BETA_JAVA8	org.eclipse.jdt.java8patch.feature.group	Eclipse.org
+Eclipse Plugin-in Development Environment Patch for Java 8 Support (BETA)	1.0.0.v20140115-0104_BETA_JAVA8	org.eclipse.pde.java8patch.feature.group	Eclipse.org
+Eclipse RCP Patch for Java 8 Support (BETA)	1.0.0.v20140115-0104_BETA_JAVA8	org.eclipse.rcp.java8patch.feature.group	Eclipse.org

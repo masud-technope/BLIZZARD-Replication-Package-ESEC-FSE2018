@@ -1,0 +1,11 @@
+Bug 218223 – PDE editor browse type causes OOME
+Created attachment 89169 [details]
+PDE Browse button log
+BuildId: I20080207-0010
+I start up eclipse in a fresh workspace, and check out org.eclipse.ui.examples.contributions.
+ Bring up the Plug-ins view and add the target platform to the Java Search Path, CTRL+SHIFT+T and search for Person.
+Edit the plugin.xml, go to the first handler element and add enabledWhen>with>instanceof
+For the instanceof element click the Browser button and when it comes up, type Person.
+On windows and linux, the CPU pegs at around 95% for anywhere from 25 seconds to 2 minutes ...
+if it gets up in the 2 minute range, it usually dies with an OOME, log attached.
+PW

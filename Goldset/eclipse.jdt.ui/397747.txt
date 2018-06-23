@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/junit/tests/AbstractTestRunListenerTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/junit/tests/AbstractTestRunSessionSerializationTests.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/junit/tests/TestRunListenerTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/junit/tests/AbstractTestRunListenerTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/junit/tests/TestRunListenerTest.java
+org.eclipse.jdt.junit.runtime/src/org/eclipse/jdt/internal/junit/runner/junit3/JUnit3TestReference.java

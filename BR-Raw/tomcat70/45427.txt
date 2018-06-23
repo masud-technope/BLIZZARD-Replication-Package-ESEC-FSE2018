@@ -1,0 +1,40 @@
+45427 – Unmatched quotes inside EL break JSP parser
+Created attachment 22277 [details]
+Simple WAR containing test JSPs for the working and broken expressions.
+According to my reading of Sun's EL spec for JSP 2.1, any of the following expressions should be legal -
+${'This string contains unmatched escaped \' single and " double quotes, inside single quotes'}
+${"This string contains unmatched ' single and escaped \" double quotes, inside double quotes"}
+${"This string contains an ' unescaped single quote, inside double quotes"}
+${'This string contains an " unescaped, unmatched double quote, inside single quotes'}
+- but in Tomcat, none of the above expressions compiles, at least not when alone.
+(In some files, the unmatched quote may be matched inside a later EL expression.
+In that case, the JSP will compile, but both expressions, together with everything in between them, will be merged into one string literal! This is especially insidious.)
+org.apache.jasper.JasperException: /broken1.jsp(2,2) Unterminated ${ tag
+org.apache.jasper.compiler.DefaultErrorHandler.jspError(DefaultErrorHandler.java:40)
+org.apache.jasper.compiler.ErrorDispatcher.dispatch(ErrorDispatcher.java:407)
+org.apache.jasper.compiler.ErrorDispatcher.jspError(ErrorDispatcher.java:132)
+org.apache.jasper.compiler.Parser.parseELExpression(Parser.java:763)
+org.apache.jasper.compiler.Parser.parseElements(Parser.java:1451)
+org.apache.jasper.compiler.Parser.parse(Parser.java:133)
+org.apache.jasper.compiler.ParserController.doParse(ParserController.java:216)
+org.apache.jasper.compiler.ParserController.parse(ParserController.java:103)
+org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:153)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:314)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:294)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:281)
+org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:566)
+org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:317)
+org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:337)
+org.apache.jasper.servlet.JspServlet.service(JspServlet.java:266)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:803)
+The EL parser implementation seems to think that nested quotes are only escaped if they are the same (single/double) as the surrounding quotes, but nested quotes don't have to be closed/matched.
+The JSP implementation, on the other hand, seems to think that quotes do have to be matched, unless they are escaped.
+For some strings (above), no combination of escaping will make both parsers happy.
+I'm not sure whether this is a bug in the JSP implementation, or perhaps a deficiency in the JSP/EL specs.
+I have collected the above expressions which break the parser (broken[1234].jsp), along with some illegal expressions and some working expressions (working.jsp) in a small WAR file which is attached to this report.
+I don't believe that the files broken[1234].jsp should be causing exceptions.
+Note: for some reason, single quoted strings are not allowed(!) to contain escaped double quotes, and vice versa, so these expressions are illegal, and thus it's okay that they don't compile (illegal[12].jsp):
+${"This string contains an \' escaped single quote, inside double quotes"}
+${'This string contains an \" escaped double quote, inside single quotes'}
+(Note that the text of the EL spec implies that these should be legal, but the EL grammar says otherwise.
+Not a good sign...)

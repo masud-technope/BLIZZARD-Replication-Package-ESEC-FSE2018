@@ -1,0 +1,16 @@
+Bug 112613 – Debug's Breakpoint actions act on remote stuff
+I2051012-1200
+Some Breakpoint actions (e.g.
+toggle watchpoint) work on remote files which are
+open in the editor.
+Those breakpoints appear in the Breakpoints view but are
+basically useless and clicking on them in the Breakpoints view doesn't navigate
+to the remote file.
+The actions should not operate on such files, not write to the log but instead
+show a dialog similar to what all other JDT UI actions do:
+Title: Cannot Perform Operation
+Message: "The resource is not on the build path of a Java project."
+Please do not display the element or file name: we are currently investigating
+to create a dummy working copy for remote files in order to provide a Java
+Outline for it.
+If you show the name in the dialog it would look ugly.

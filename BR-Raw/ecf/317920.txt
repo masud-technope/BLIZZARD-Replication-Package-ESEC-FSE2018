@@ -1,0 +1,2 @@
+Bug 317920 – [Discovery][DNS-SD] Add tracing capabilities to provider
+Add tracing capabilities to provider

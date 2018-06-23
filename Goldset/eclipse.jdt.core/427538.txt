@@ -1,0 +1,5 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/CompletionTests18.java
+org.eclipse.jdt.core.tests.model/JCL/jclFull1.8.jar
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ResolveTests18.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ConverterTestSetup.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/AbstractJavaModelTests.java

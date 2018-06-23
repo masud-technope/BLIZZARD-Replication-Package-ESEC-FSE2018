@@ -1,0 +1,3 @@
+Bug 45695 – Tests for variables in program/vm args and working dir
+Please add tests for variable support in the program args, vm args, and working
+directory attributes of a java launch config.

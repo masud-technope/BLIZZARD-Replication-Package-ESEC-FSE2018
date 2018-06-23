@@ -1,0 +1,7 @@
+Bug 422051 – [1.8][compiler][tests] cleanup excuses (JavacHasABug) in InterfaceMethodTests
+InterfaceMethodTests uses two excuses from JavacHasABug, where the bug has been fixed meanwhile:
+- Javac8AcceptsDefaultMethodInAnnotationType
+- Javac8ProducesIllegalAccessError
+Since the bug was in unreleased EA versions, I believe we should simply remove these excuses.
+Additionally, testBug421543b() shows a warning (re missing @Override) only from ecj, not from javac.
+This situation should simply be avoided.

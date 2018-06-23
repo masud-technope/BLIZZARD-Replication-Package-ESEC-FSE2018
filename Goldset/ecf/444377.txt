@@ -1,0 +1,3 @@
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient4/src/org/eclipse/ecf/internal/provider/filetransfer/httpclient4/ECFHttpClientSecureProtocolSocketFactory.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient4/src/org/eclipse/ecf/internal/provider/filetransfer/httpclient4/ECFHttpClientProtocolSocketFactory.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient4/META-INF/MANIFEST.MF

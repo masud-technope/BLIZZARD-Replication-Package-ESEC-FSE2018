@@ -1,0 +1,5 @@
+Bug 276744 – [hashcode/equals] New 3.5 feature not working: [hashcode/equals] Wizard should allow to specify that blocks should always be used
+I20090515-1143.
+See bug 250621: this used to work in M3 but got broken during M6.
+Markus, please investigate.
+We should fix this for 3.5.

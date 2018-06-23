@@ -1,0 +1,13 @@
+Bug 153044 – JarEntryFile does not return fully qualified path
+3.3.M1 test pass
+From some plugin project in the workspace
+1.
+Expand Plug-In Dependencies
+2.
+Expand a project
+3.
+Open its plugin.xml
+Is:
+The editor tab hover only shows 'plugin.xml'
+Should:
+Indicate to which project the plugin.xml belongs to (Problem occures if you found this plugin.xml through a plugin search)

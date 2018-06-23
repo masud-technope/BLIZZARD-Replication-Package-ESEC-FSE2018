@@ -1,0 +1,7 @@
+Bug 310424 – Inconsistent behavior with virtual source folders
+Follow up on Bug 297442
+File -> New -> Source Folder -> Browse - select a virtual folder => Wizard
+shows an error 'Source folder cannot be a virtual folder.' : good
+Java Build Path -> Source tab -> Add Folder - select a virtual folder =>
+virtual folder becomes a source folder : *not* good
+A virtual folder should not be converted to a source folder.

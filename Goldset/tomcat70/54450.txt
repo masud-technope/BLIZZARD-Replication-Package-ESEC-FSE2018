@@ -1,0 +1,5 @@
+java/org/apache/catalina/core/DefaultInstanceManager.java
+test/org/apache/catalina/startup/TestContextConfig.java
+test/org/apache/catalina/startup/TesterServletWithAnnotations.java
+test/webapp-3.0-fragments/WEB-INF/web.xml
+webapps/docs/changelog.xml

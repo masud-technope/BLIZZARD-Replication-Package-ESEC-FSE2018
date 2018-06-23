@@ -1,0 +1,34 @@
+51630 – java.lang.IllegalStateException: Calling [asyncComplete()]
+example:
+webapps\examples\WEB-INF\classes\async\Async0.java
+log file: logs\localhost.2011-08-07.log
+=============================================
+java.lang.IllegalStateException: Calling [asyncComplete()] is not valid for a request with Async state [DISPATCHED]
+at org.apache.coyote.AsyncStateMachine.asyncComplete(AsyncStateMachine.java:221)
+at org.apache.coyote.http11.Http11Processor.actionInternal(Http11Processor.java:525)
+at org.apache.coyote.http11.AbstractHttp11Processor.action(AbstractHttp11Processor.java:773)
+at org.apache.coyote.Request.action(Request.java:344)
+at org.apache.catalina.core.AsyncContextImpl.complete(AsyncContextImpl.java:89)
+at async.Async0.service(Async0.java:42)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:304)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:684)
+at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:593)
+at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:530)
+at org.apache.catalina.core.AsyncContextImpl$1.run(AsyncContextImpl.java:173)
+at org.apache.catalina.core.AsyncContextImpl.doInternalDispatch(AsyncContextImpl.java:314)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:219)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:175)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:462)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:164)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:100)
+at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:851)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.asyncDispatch(CoyoteAdapter.java:296)
+at org.apache.coyote.http11.AbstractHttp11Processor.asyncDispatch(AbstractHttp11Processor.java:1220)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:511)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:302)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:619)

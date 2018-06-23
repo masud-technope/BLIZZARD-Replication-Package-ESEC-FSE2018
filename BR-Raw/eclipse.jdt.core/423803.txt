@@ -1,0 +1,24 @@
+Bug 423803 – [1.8][compiler] No error shown for ambiguous reference to the method
+package test;
+class C2 implements C2_Sup {
+public static final FI fi = x -> x++;
+public static final FL fl = x -> x++;
+{
+bar(x -> x++); // [1]
+bar(fl);
+}
+void bar(FI fi) { }
+}
+interface C2_Sup {
+default void bar(FL fl) { }
+}
+@FunctionalInterface
+interface FI {
+int foo(int x);
+}
+@FunctionalInterface
+interface FL {
+long foo(long x);
+}
+--------------------------------------------------------
+The above example compiles without any error with ECJ, but shows error at [1] with b118.

@@ -1,0 +1,8 @@
+Bug 428522 – [1.8] VerifyError when a non primitive type cast to primitive type
+To reproduce, run the following code with "Preserve unused local variables" option turned off:
+public class X {
+public static void main(String args[]) {
+long l = (long) ((Object) 100L);
+}
+}
+This is a recent regression.

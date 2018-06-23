@@ -1,0 +1,19 @@
+53465 – mapped-name is read when in @Resource, but not when in web.xml
+Created attachment 28995 [details]
+Patch proposal
+Hi,
+When I have the code below in a servlet
+@Resource(mappedName="test")
+private DataSource ds;
+'mapped name' is read when @Resource is processed (org.apache.catalina.startup.WebAnnotationSet.addResource(WebAnnotationSet.java:377)) so later on it is available through Reference object as StringRefAddr
+But when I have the declaration below in web.xml
+<resource-ref>
+<res-ref-name>datasource</res-ref-name>
+<res-type>javax.sql.DataSource</res-type>
+<mapped-name>test</mapped-name>
+</resource-ref>
+'mapped name' is not read at all.
+I would like to propose a patch that adds additional Rule to WebRuleSet so that 'mapped name' is process and set as property.
+I'm looking forward to your comments.
+Regards
+Violeta Georgieva

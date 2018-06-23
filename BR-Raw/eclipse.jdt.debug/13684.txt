@@ -1,0 +1,47 @@
+Bug 13684 – CoreException thrown when no project is specified
+Build: 20020409
+Description: When programmatically launching a java application from an
+external jar, it is not necessary to specify a project in order to get the
+application to run.
+However, a CoreException is still thrown saying that
+project was specified.
+So the application will be launched but a CoreException
+is also thrown.
+Here is an example from a plugin running SWT Examples:
+Note: You will have to load the SWT Examples plugin and set up the correct
+classpaths in the example code.
+private void launchItem () {
+try {
+ILaunchConfigurationType lcType = DebugPlugin.getDefault
+().getLaunchManager().getLaunchConfigurationType
+(IJavaLaunchConfigurationConstants.ID_JAVA_APPLICATION);
+ILaunchConfigurationWorkingCopy wc = lcType.newInstance(null,
+itemDescriptor.getName());
+List classpathList = new ArrayList();
+//add paths to plugin directories
+classpathList.add
+("d:/eclipse/plugins/org.swt.examples/swtexamples.jar");
+classpathList.add
+("d:/eclipse/plugins/org.eclipse.swt/ws/win32/swt.jar");
+wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_CLASSPATH,
+classpathList);
+wc.setAttribute
+(IJavaLaunchConfigurationConstants.ATTR_MAIN_TYPE_NAME, "org.eclipse.swt.example
+s.helloworld.HelloWorld1");
+IVMInstall vm = JavaRuntime.getDefaultVMInstall();
+if (vm != null) {
+wc.setAttribute
+(IJavaLaunchConfigurationConstants.ATTR_VM_INSTALL, vm.getId());
+wc.setAttribute
+(IJavaLaunchConfigurationConstants.ATTR_VM_INSTALL_TYPE, vm.getVMInstallType
+().getId());
+}
+//Add vm args
+wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_VM_ARGUMENTS, "-
+Djava.library.path=d:/eclipse/plugins/org.eclipse.swt/os/win32/x86");
+ILaunchConfiguration config = wc.doSave();
+ILaunch launch = config.launch(ILaunchManager.RUN_MODE, null);
+} catch (Exception e) {
+e.printStackTrace ();
+}
+}

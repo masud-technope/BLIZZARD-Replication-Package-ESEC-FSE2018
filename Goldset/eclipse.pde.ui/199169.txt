@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/compare/ManifestStructureCreator.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/compare/PluginStructureCreator.java

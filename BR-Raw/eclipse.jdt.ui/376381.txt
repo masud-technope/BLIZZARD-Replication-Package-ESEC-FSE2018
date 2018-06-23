@@ -1,0 +1,24 @@
+Bug 376381 – [preferences][clean up] ICleanUpConfigurationUI parent Composite has excess margins
+Build Identifier: Version: Indigo Service Release 2 Build id: 20120216-1857
+ContributedCleanUpTabPage.doCreatePreferences(...) creates a Composite to pass into fContribution.createContents(parent).
+This composite is setup with a GridData and GridLayout as follows:
+final Composite parent= new Composite(composite, SWT.NONE);
+GridData layoutData= new GridData(SWT.FILL, SWT.FILL, true, true);
+layoutData.horizontalSpan= numColumns;
+parent.setLayoutData(layoutData);
+parent.setLayout(new GridLayout(1, false));
+This results in adding extra margin around UI within contributed tabs.
+To work around this I have to use the following code at the start of my createContents(...) method:
+// Fix parent layout which added some extra margin
+GridLayout parentLayout = new GridLayout();
+parentLayout.marginHeight = 0;
+parentLayout.marginWidth = 0;
+parent.setLayout(parentLayout);
+Reproducible: Always
+Steps to Reproduce:
+1.
+Implement ICleanUpConfigurationUI.
+2.
+Create some UI within the createContents(...) method.
+3.
+Resulting UI has extra margin compared to the existing UI tabs.

@@ -1,0 +1,13 @@
+Bug 183715 – [Refactoring] renaming a bundle does not update references in dependents.
+1.
+Create a plug-in project (com.example.xyz)
+2.
+Create a plug-in project (com.example.aaa).
+ Add a dependency on com.example.xyz.
+3.
+Select com.example.xyz project and choose Refactor > Rename...
+from context menu.
+ Ensure 'update references' is checked.
+ Rename to com.example.www.
+Note how com.example.aaa has an error now.
+ it still references com.example.xyz

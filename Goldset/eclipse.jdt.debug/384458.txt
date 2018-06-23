@@ -1,0 +1,4 @@
+org.eclipse.jdt.debug.tests/testprograms/LocalVariableTests2.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AbstractDebugTest.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/LocalVariableTests.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIStackFrame.java

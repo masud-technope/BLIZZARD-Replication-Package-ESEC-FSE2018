@@ -1,0 +1,3 @@
+Bug 103450 – [quick assist] Quick fix to remove synchronized block
+I would like a Quick Fix option to "remove surrounding 'synchronized'
+statement", just like you can do with an "if" statement.

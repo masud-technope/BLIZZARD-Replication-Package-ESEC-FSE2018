@@ -1,0 +1,4 @@
+org.eclipse.jdt.debug.tests/testfiles/test-jre/bin/test-foundation11-win32.ee
+org.eclipse.jdt.debug.tests/testfiles/test-jre/bin/test-foundation11.ee
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/EEDefinitionTests.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/environments/ExecutionEnvironmentDescription.java

@@ -1,0 +1,21 @@
+Bug 425152 – [1.8] [compiler] Lambda Expression not resolved but flow analyzed leading to NPE.
+This code results in an NPE:
+interface Base {
+Base get(int x);
+}
+class Main {
+<T> Base foo(Base b) {
+return null;
+}
+void bar(Base b) { }
+void testCase() {
+bar(foo((int p)->null));
+}
+}
+And the stack trace:
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.analyseCode(LambdaExpression.java:393)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.analyseCode(MessageSend.java:162)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.analyseCode(MessageSend.java:162)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.analyseCode(MethodDeclaration.java:128)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.internalAnalyseCode(TypeDeclaration.java:741)

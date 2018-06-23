@@ -1,0 +1,4 @@
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/JUnitPreferencesConstants.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/EnableStackFilterAction.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/FailureTrace.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/JUnitPreferencePage.java

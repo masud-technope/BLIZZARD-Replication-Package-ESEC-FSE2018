@@ -1,0 +1,16 @@
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/provisional/ApiPlugin.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/WorkspaceApiProfile.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/ApiDescription.java
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/util/tests/JavaModelEventWaiter.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/CompilationUnit.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/ApiUseAnalyzer.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/ApiDescriptionManager.java
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/util/tests/PluginModelEventWaiter.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/provisional/IApiProfileManager.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/AbstractClassFileContainer.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/AbstractApiComponent.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/PluginProjectApiComponent.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/ApiProfileManager.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/ProjectApiDescription.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/BundleApiComponent.java
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/util/tests/ApiProfileManagerTests.java

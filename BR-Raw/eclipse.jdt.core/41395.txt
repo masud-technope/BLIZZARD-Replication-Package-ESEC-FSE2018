@@ -1,0 +1,86 @@
+Bug 41395 – StackOverflowError when pasting code
+Eclipse 3.0 build 200307300800
+I was pasting some code into an inner class (a listener) when I got the
+following stack overflow error.
+ The code I was pasting in did not have the
+correct number of closing "}".
+!ENTRY org.eclipse.ui 4 0 Aug 11, 2003 10:31:03.460
+!MESSAGE java.lang.StackOverflowError
+!STACK 0
+java.lang.StackOverflowError
+at org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.<init>
+(SourceTypeBinding.java:46)
+at org.eclipse.jdt.internal.compiler.lookup.NestedTypeBinding.<init>
+(NestedTypeBinding.java:23)
+at org.eclipse.jdt.internal.compiler.lookup.LocalTypeBinding.<init>
+(LocalTypeBinding.java:24)
+at org.eclipse.jdt.internal.compiler.lookup.ClassScope.buildLocalType
+(ClassScope.java:143)
+at
+org.eclipse.jdt.internal.compiler.lookup.ClassScope.buildAnonymousTypeBinding
+(ClassScope.java:33)
+at org.eclipse.jdt.internal.compiler.lookup.BlockScope.addAnonymousType
+(BlockScope.java:77)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType
+(QualifiedAllocationExpression.java:362)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve
+(Expression.java:433)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatemen
+ts(AbstractMethodDeclaration.java:363)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements
+(MethodDeclaration.java:135)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve
+(AbstractMethodDeclaration.java:353)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve
+(TypeDeclaration.java:848)
+at
+org.eclipse.jdt.internal.compiler.ast.AnonymousLocalTypeDeclaration.resolve
+(AnonymousLocalTypeDeclaration.java:124)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType
+(QualifiedAllocationExpression.java:363)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve
+(Expression.java:433)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatemen
+ts(AbstractMethodDeclaration.java:363)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements
+(MethodDeclaration.java:135)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve
+(AbstractMethodDeclaration.java:353)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve
+(TypeDeclaration.java:848)
+at
+org.eclipse.jdt.internal.compiler.ast.AnonymousLocalTypeDeclaration.resolve
+(AnonymousLocalTypeDeclaration.java:124)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType
+(QualifiedAllocationExpression.java:363)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve
+(Expression.java:433)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatemen
+ts(AbstractMethodDeclaration.java:363)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements
+(MethodDeclaration.java:135)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve
+(AbstractMethodDeclaration.java:353)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve
+(TypeDeclaration.java:848)
+at
+org.eclipse.jdt.internal.compiler.ast.AnonymousLocalTypeDeclaration.resolve
+(AnonymousLocalTypeDeclaration.java:124)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType
+(QualifiedAllocationExpression.java:363)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve
+(Expression.java:433)
+...

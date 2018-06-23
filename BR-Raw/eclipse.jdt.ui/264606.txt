@@ -1,0 +1,21 @@
+Bug 264606 – [extract method] extracting return value results in compile error
+Build ID: I20080617-2000
+Steps To Reproduce:
+Use Extract Method on 'foo' in the indicated line.
+class Bar {
+boolean foo;
+private boolean getFoo()
+{
+return foo; // use 'Extract Method' on 'foo' here
+}
+private void setFoo(boolean newFoo)
+{
+this.foo = newFoo; // breaks this line
+}
+}
+More information:
+This changes the indicated line in setFoo to:
+this.bar() = foo;
+which is obviously incorrect.
+If the assignment to foo is changed to 'foo = newFoo' (i.e.
+without 'this.'), the problem disappears.

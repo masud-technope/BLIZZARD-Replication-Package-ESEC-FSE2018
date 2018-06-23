@@ -1,0 +1,45 @@
+Bug 317798 – [Discovery][DNS-SD] Create/register IDiscoveryAdvertiser container/service
+-- Error Log from JUnit --
+Class: org.eclipse.ecf.tests.provider.dnssd.DnsSdAdvertiserWithoutRegister
+Method: testConnect
+Actual: null
+Expected: null
+Stack Trace:
+org.eclipse.ecf.core.ContainerCreateException: Container type description with name=ecf.discovery.dnssd.advertiser not found.
+ This may indicate that the desired provider is not available or not startable within runtime.
+at org.eclipse.ecf.core.ContainerFactory.getDescriptionByNameWithException(ContainerFactory.java:261)
+at org.eclipse.ecf.core.ContainerFactory.createContainer(ContainerFactory.java:255)
+at org.eclipse.ecf.tests.discovery.DiscoveryTestsWithoutRegister.getContainer(DiscoveryTestsWithoutRegister.java:46)
+at org.eclipse.ecf.tests.discovery.DiscoveryTestsWithoutRegister.setUp(DiscoveryTestsWithoutRegister.java:53)
+at junit.framework.TestCase.runBare(TestCase.java:132)
+at junit.framework.TestResult$1.protect(TestResult.java:110)
+at junit.framework.TestResult.runProtected(TestResult.java:128)
+at junit.framework.TestResult.run(TestResult.java:113)
+at junit.framework.TestCase.run(TestCase.java:124)
+at junit.framework.TestSuite.runTest(TestSuite.java:232)
+at junit.framework.TestSuite.run(TestSuite.java:227)
+at org.eclipse.jdt.internal.junit.runner.junit3.JUnit3TestReference.run(JUnit3TestReference.java:130)
+at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+at org.eclipse.pde.internal.junit.runtime.RemotePluginTestRunner.main(RemotePluginTestRunner.java:62)
+at org.eclipse.pde.internal.junit.runtime.CoreTestApplication.run(CoreTestApplication.java:23)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at org.eclipse.equinox.internal.app.EclipseAppContainer.callMethodWithException(EclipseAppContainer.java:587)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:198)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:369)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:619)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:574)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1407)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1383)

@@ -1,0 +1,3 @@
+Bug 153329 – Refactor->Rename of other resources does not update plugin.xml
+If you, for example, rename an icon which is referenced by plugin.xml in a Plugin Project, the Refactoring should also update the plugin.xml according to the new name of the file.
+Does not work in I20060725-0800.

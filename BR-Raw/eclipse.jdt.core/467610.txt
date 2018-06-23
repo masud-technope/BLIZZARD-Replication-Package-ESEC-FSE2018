@@ -1,0 +1,21 @@
+Bug 467610 – bogus "mismatching null constraints" error when extending parameterized class
+I have the following class (using Java 1.7):
+@NonNullByDefault
+public abstract class SuperClass<T> {
+abstract T doSomething();
+abstract String returnAString();
+public static abstract class SubClass<S> extends SuperClass<S> {
+@Override
+abstract S doSomething();
+@Override
+abstract String returnAString();
+}
+}
+With null annotation analysis enabled, this results in the following compile error on the declaration of "abstract S doSomething();":
+The return type is incompatible with '@NonNull S' returned from SuperClass<S>.doSomething() (mismatching
+null constraints)
+If I enable "Inherit null annotations" the error goes away.
+I would expect the @NonNullByDefault annotation to also apply to the sub class so there shouldn't be a conflict.
+I can reproduce the error with 4.5M6 (Version: Mars (4.5)
+Build id: I20150320-0800).
+This error does not occur with 4.4.2.

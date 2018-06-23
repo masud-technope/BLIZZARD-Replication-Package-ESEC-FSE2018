@@ -1,0 +1,27 @@
+Bug 368483 – Mac OSX JDT launching plugin needs to check new VM locations on Snow Leopard and Lion
+Build Identifier: 20100617-1415
+running eclipse Helios 3.6 (64 bit) on Mac OS X (10.6.8).
+java -version:
+java version "1.6.0_29"
+Java(TM) SE Runtime Environment (build 1.6.0_29-b11-402-10M3527)
+Java HotSpot(TM) 64-Bit Server VM (build 20.4-b02-402, mixed mode)
+GWT plugin, 2.4, installed.
+On start up the 'initializing java tooling: 30%' status displays for about a minute if VPN (Cisco anyconnect) is running.
+ < 2 seconds (or not at all) without VPN running.
+Also, can get the SBOD (spinning beachball of death) if I have a GWT project with a run or debug configuration and try to edit it (or create one).
+ Locks up the launch config dialog.
+This happens with only one project in workspace (or more).
+This happens with or without the split tunnel setup (multi-home).
+Happens with Indigo or Helios, 32 bit or 64 bit.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Start the cisco VPN Anyconnect client
+2.
+Start eclipse
+3.
+Watch the 'initialzing java tooling' status for about a minute.
+4.
+Try creating a new Debug configuration for a GWT project.
+5.
+Watch the SBOD for about 20 minutes.

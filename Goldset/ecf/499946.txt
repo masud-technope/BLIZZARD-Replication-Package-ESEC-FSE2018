@@ -1,0 +1,8 @@
+providers/bundles/org.eclipse.ecf.provider.r_osgi/.settings/org.eclipse.jdt.core.prefs
+providers/bundles/org.eclipse.ecf.provider.r_osgi/src/org/eclipse/ecf/internal/provider/r_osgi/RemoteServiceRegistrationImpl.java
+providers/bundles/org.eclipse.ecf.provider.r_osgi/build.properties
+providers/bundles/org.eclipse.ecf.provider.r_osgi/META-INF/MANIFEST.MF
+protocols/bundles/ch.ethz.iks.r_osgi.remote/src/main/java/ch/ethz/iks/r_osgi/impl/RemoteOSGiServiceImpl.java
+providers/bundles/org.eclipse.ecf.provider.r_osgi/src/org/eclipse/ecf/internal/provider/r_osgi/R_OSGiRemoteServiceContainer.java
+protocols/bundles/ch.ethz.iks.r_osgi.remote/src/main/java/ch/ethz/iks/r_osgi/impl/ChannelEndpointImpl.java
+providers/bundles/org.eclipse.ecf.provider.r_osgi/.classpath

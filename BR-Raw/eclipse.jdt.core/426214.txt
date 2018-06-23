@@ -1,0 +1,11 @@
+Bug 426214 – [1.8] Eclipse compiler does not allow certain unicode characters as part of identiifers
+Eclipse compiler reports errors on the following program:
+public class X {
+int a\u058f = 0; // Rejected
+String a41\u08fc; // Rejected
+float a\u057f = 1; // Allowed
+}
+My guess is that these are new unicode characters introduced after unicode version 6.0.0, which is the latest we seem to support.
+Note there's been three versions since then, namely 6.1.0, 6.2.0 and 6.3.0.
+At the moment, I have no idea what it takes to start supporting new ones.
+Will investigate.

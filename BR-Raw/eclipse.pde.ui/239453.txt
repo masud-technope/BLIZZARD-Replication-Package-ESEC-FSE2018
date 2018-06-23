@@ -1,0 +1,16 @@
+Bug 239453 – Possible NPEs when accessing filtered text if filtered text preference turned off
++++ This bug was initially created as a clone of Bug #239446 +++
+There are several places in PDE where we grab the filter text to set focus the same way as debug does in bug 239446.
+ If the preference is changed to turn off filtered texts, the method to get the text is spec'd to return null.
+Build ID: M20071023-1652
+Steps To Reproduce:
+I had a plug-in which had the following code:
+PlatformUI.getPreferenceStore().setValue(IWorkbenchPreferenceConstants.SHOW_FILTERED_TEXTS, false);
+After this code ran in my IDE, the Eclipse Launcher dialog would not come up.
+ Instead, it would fail with the following exception stack trace.
+Now, admittedly, a plug-in shouldn't be setting this global store manually.
+ But, OTOH, if this setting is false, the Launcher shouldn't be failing in the way it is.
+java.lang.NullPointerException
+at org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationsDialog.initializeContent(LaunchConfigurationsDialog.java:1086)
+at org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationsDialog.createContents(LaunchConfigurationsDialog.java:446)
+at org.eclipse.jface.window.Window.create(Window.java:426)

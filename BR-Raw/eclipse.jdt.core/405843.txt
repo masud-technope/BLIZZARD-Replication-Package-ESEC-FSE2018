@@ -1,0 +1,5 @@
+Bug 405843 – [1.8] SourceTypeConverter should expose type annotations.
+This bug to be used to discuss and come up with changes that are required in Java model to support type annotations (JSR 308).
+At this point there is nothing critical or broken, but the requirement will be driven largely by the client.
+If needed, raise separate bugs to track individual requirements.
+Some of the things that may need correction are method signatures, type parameter signatures etc.

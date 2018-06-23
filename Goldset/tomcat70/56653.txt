@@ -1,0 +1,3 @@
+webapps/docs/changelog.xml
+java/org/apache/tomcat/util/http/mapper/Mapper.java
+test/org/apache/tomcat/util/http/mapper/TestMapper.java

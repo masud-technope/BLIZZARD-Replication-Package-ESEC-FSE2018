@@ -1,0 +1,5 @@
+Bug 230987 – [ds] DSAddItemAction isn't raising IModelChangedEvent.INSERT event
+When we add a new Element to DS model, the class DSAddItemActions is called.
+When the class DSAddItemAction creates and adds a new IDSObject to the DS model it should raise IModelChangedEvent.INSERT event to be caught by modelChanged() method.
+But it isn't working.
+This Problem should resolve the refresh problem while adding new elements in the DSMasterTreeSection.

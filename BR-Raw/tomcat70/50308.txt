@@ -1,0 +1,48 @@
+50308 � Call to AsyncContext.dispatch() in the onTimeout callback throws exception
+When dispatch() method is called inside the onTimeout() function of the AsyncListener, the exception is thrown:
+SEVERE: An exception or error occurred in the container during the request processing
+java.lang.IllegalStateException: Calling [dispatchAsync()] is not valid for a request with Async state [TIMING_OUT]
+at org.apache.coyote.AsyncStateMachine.asyncDispatch(AsyncStateMachine.java:220)
+at org.apache.coyote.http11.Http11NioProcessor.actionInternal(Http11NioProcessor.java:672)
+at org.apache.coyote.http11.AbstractHttp11Processor.action(AbstractHttp11Processor.java:937)
+at org.apache.coyote.Request.action(Request.java:348)
+at org.apache.catalina.core.AsyncContextImpl.dispatch(AsyncContextImpl.java:173)
+at org.apache.catalina.core.AsyncContextImpl.dispatch(AsyncContextImpl.java:135)
+at org.apache.catalina.core.AsyncContextImpl.dispatch(AsyncContextImpl.java:130)
+at com.juriy.snowball.SnowServlet$1.onTimeout(SnowServlet.java:23)
+at org.apache.catalina.core.AsyncListenerWrapper.fireOnTimeout(AsyncListenerWrapper.java:45)
+at org.apache.catalina.core.AsyncContextImpl.timeout(AsyncContextImpl.java:109)
+at org.apache.catalina.connector.CoyoteAdapter.asyncDispatch(CoyoteAdapter.java:270)
+at org.apache.coyote.http11.Http11NioProcessor.asyncDispatch(Http11NioProcessor.java:232)
+at org.apache.coyote.http11.Http11NioProtocol$Http11ConnectionHandler.event(Http11NioProtocol.java:305)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1526)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:619)
+The sample code is below:
+protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+AsyncContext context = request.startAsync();
+context.setTimeout(3000);
+context.addListener(new AsyncListener() {
+public void onComplete(AsyncEvent asyncEvent) throws IOException {}
+public void onTimeout(AsyncEvent asyncEvent) throws IOException {
+System.out.println("HITTING TIMEOUT");
+asyncEvent.getAsyncContext().dispatch();
+}
+public void onError(AsyncEvent asyncEvent) throws IOException {}
+public void onStartAsync(AsyncEvent asyncEvent) throws IOException {}
+});
+}
+It looks like the Servlet 3.0 specification allows to do such call, here's the quotation that explicitly states the flow of the timeouted async contexts (page 18):
+"In the event that an asynchronous operation times out, the container must run
+through the following steps:
+■ Invoke the AsyncListener.onTimeout method on all the AsyncListener
+instances registered with the ServletRequest on which the asynchronous
+operation was initiated.
+■ If none of the listeners called AsyncContext.complete() or any of the
+AsyncContext.dispatch methods, perform an error dispatch with a status
+code equal to HttpServletResponse.SC_INTERNAL_SERVER_ERROR.
+■ If no matching error page was found, or the error page did not call
+AsyncContext.complete() or any of the AsyncContext.dispatch
+methods, the container MUST call AsyncContext.complete()"
+Second step assumes that the call to dispatch in onTimeout() is allowed.

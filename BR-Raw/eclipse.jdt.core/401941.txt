@@ -1,0 +1,14 @@
+Bug 401941 – [1.8][dom/ast] DOM/AST structure review
+Large-scale review of all JLS8 DOM/AST changes.
+Major topics:
+- removed "infos" from extra dimension APIs
+- added more instructions to ASTNode (and followed them)
+- fixed ordering of property declarations, in traversal/clone/match/etc.
+operations, and in implementations where regularity reduces errors
+- fixed @since tags (missing/redundant)
+- many Javadoc fixes (missing @exception UnsupportedOperationException tags, missing "added in JLS8 API", etc.)
+- properly implemented properties in abstract AST node types.
+VariableDeclaration was already in a bad shape in 3.8, but at least the necessary APIs were there and were correctly implemented.
+I cleaned this up, moved all fields and accessors etc.
+into the superclass, and added VariableDeclaration#getExtraDimensions2Property().
+Added AnnotatableType#getAnnotationsProperty() and also moved all the implementations to the supertype.

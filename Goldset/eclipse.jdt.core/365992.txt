@@ -1,0 +1,8 @@
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/classfmt/MethodInfo.java
+org.eclipse.jdt.core/eval/org/eclipse/jdt/internal/eval/CodeSnippetSkeleton.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/classfmt/ClassFileReader.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/BinaryTypeBinding.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/classfmt/MethodInfoWithParameterAnnotations.java
+org.eclipse.jdt.core.tests.builder/src/org/eclipse/jdt/core/tests/builder/AnnotationDependencyTests.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/env/IBinaryMethod.java

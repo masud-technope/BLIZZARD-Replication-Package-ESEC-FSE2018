@@ -1,0 +1,6 @@
+Bug 252591 – [render] External chained jars are not correctly displayed
+Created attachment 116419 [details]
+Screenshot of Package Explorer
+I20081029-0100
+If an external jar "lib1.jar" references another external jar "lib2.jar" though the Class-Path: of its manifest, then the package explorer shows "lib1.jar" twice.
+This works fine if "lib1.jar" and "lib2.jar" are internal to the project.

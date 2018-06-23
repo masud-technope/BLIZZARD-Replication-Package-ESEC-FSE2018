@@ -1,0 +1,39 @@
+51910 – NPE in comet processing when shutting down Tomcat
+I've hit it when testing 7.0.22 RC.
+1.
+Configure Tomcat with NIO connector
+2.
+Start Tomcat and open Comet chat example
+http://localhost:8080/examples/jsp/chat/index.jsp
+3.
+Type some Nickname and press button to start chat
+The chat log will be in the second frame at the lower half of the page.
+4.
+While chat log is active (Browser shows page as being loaded),
+shut down Tomcat.
+5.
+Observe NPE in the logs:
+28.09.2011 15:55:32 org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-nio-8080"]
+28.09.2011 15:55:33 org.apache.catalina.connector.CoyoteAdapter event
+SEVERE: null
+java.lang.NullPointerException
+at org.apache.catalina.core.StandardWrapperValve.event(StandardWrapperValve.java:354)
+at org.apache.catalina.core.StandardContextValve.event(StandardContextValve.java:192)
+at org.apache.catalina.valves.ValveBase.event(ValveBase.java:226)
+at org.apache.catalina.core.StandardHostValve.event(StandardHostValve.java:245)
+at org.apache.catalina.valves.ValveBase.event(ValveBase.java:226)
+at org.apache.catalina.valves.ValveBase.event(ValveBase.java:226)
+at org.apache.catalina.core.StandardEngineValve.event(StandardEngineValve.java:138)
+at org.apache.catalina.connector.CoyoteAdapter.event(CoyoteAdapter.java:211)
+at org.apache.coyote.http11.Http11NioProcessor.event(Http11NioProcessor.java:131)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.>
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1554)
+at org.apache.tomcat.util.net.NioEndpoint.processSocket(NioEndpoint.java:717)
+at org.apache.tomcat.util.net.NioEndpoint$Poller.cancelledKey(NioEndpoint.java:1026)
+at org.apache.tomcat.util.net.NioEndpoint$Poller.processKey(NioEndpoint.java:1169)
+at org.apache.tomcat.util.net.NioEndpoint$Poller.timeout(NioEndpoint.java:1352)
+at org.apache.tomcat.util.net.NioEndpoint$Poller.run(NioEndpoint.java:1085)
+at java.lang.Thread.run(Thread.java:662)
+28.09.2011 15:55:33 org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]

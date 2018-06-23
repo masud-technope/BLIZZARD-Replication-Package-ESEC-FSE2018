@@ -1,0 +1,6 @@
+Bug 479474 – [formatter] Problems when doc.comment.support=disabled
+The formatter assumes that javadoc nodes are always attached to their corresponding body declaration nodes.
+It is not true with preference org.eclipse.jdt.core.compiler.doc.comment.support=disabled.
+This leads to problems like one reported in bug 471364 comment 17.
+After reading bug 52264 and bug 51529 I'm still not sure how important this setting is.
+I think the formatter can just override this setting when it initializes its parser, but I'd like someone to confirm if this is a good idea and would not cause any unexpected problems.

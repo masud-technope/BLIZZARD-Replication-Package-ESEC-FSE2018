@@ -1,0 +1,255 @@
+41166 – Unable to start ReplicatedContext
+I try to test the Cluster function.
+I got a problem: something like following
+apears in the $CATALINA_HOME/logs/catalina.out
+SEVERE: Unable to start ReplicatedContext
+java.lang.ClassCastException: org.apache.naming.resources.ProxyDirContext
+cannot be cast to java.io.Serializable
+at
+org.apache.catalina.tribes.tipis.AbstractReplicatedMap$MapEntry.setValue
+(AbstractReplicatedMap.java:1060)
+I didn't change any file in $CATALINA_HOME except server.xml, the any thing I
+changed in server.xml is uncomment the line:
+<Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster"/>.
+and I add a context configuration file test.xml to
+$CATALINA_HOME/conf/Catalina/localhost with the flolling content
+[Aray@BONC-01 conf]$ cat Catalina/localhost/test.xml
+<Context
+className="org.apache.catalina.ha.context.ReplicatedContext"
+path="/test" docBase="/var/www/ClusterTest"
+debug="0" privileged="true" reloadable="true"
+>
+the web.xml file in /var/www/ClusterTest has no <distributable/> element
+I am worrying about I can't explain the problem clearly with my poor English.
+So I paste the stepes I do as following:
+[Aray@BONC-01 apache-tomcat-6.0.2]$ which java
+/usr/java/jdk1.6.0/bin/java
+[Aray@BONC-01 apache-tomcat-6.0.2]$ java -version
+java version "1.6.0-rc"
+Java(TM) SE Runtime Environment (build 1.6.0-rc-b104)
+Java HotSpot(TM) Client VM (build 1.6.0-rc-b104, mixed mode, sharing)
+[Aray@BONC-01 apache-tomcat-6.0.2]$ echo $JAVA_HOME
+/usr/java/jdk1.6.0
+[Aray@BONC-01 apache-tomcat-6.0.2]$ echo $CLASSPATH
+[Aray@BONC-01 apache-tomcat-6.0.2]$ uname -a
+Linux BONC-01 2.6.9-34.EL #1 Wed Mar 8 00:07:35 CST 2006 i686 i686 i386
+GNU/Linux
+[root@BONC-01 local]# cat /etc/redhat-release
+CentOS release 4.3 (Final)
+[Aray@BONC-01 apache-tomcat-6.0.2]$ cd conf
+[Aray@BONC-01 conf]$ cat server.xml
+<!-- Note:  A "Server" is not itself a "Container", so you may not
+define subcomponents such as "Valves" at this level.
+Documentation at /docs/config/server.html
+-->
+<Server port="8005" shutdown="SHUTDOWN">
+<!--APR library loader.
+Documentation at /docs/apr.html -->
+<Listener className="org.apache.catalina.core.AprLifecycleListener"
+SSLEngine="on" />
+<!--Initialize Jasper prior to webapps are loaded.
+Documentation
+at /docs/jasper-howto.html -->
+<Listener className="org.apache.catalina.core.JasperListener" />
+<!-- JMX Support for the Tomcat server.
+Documentation at /docs/non-
+existent.html -->
+<Listener className="org.apache.catalina.mbeans.ServerLifecycleListener" />
+<Listener
+className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
+<!-- Global JNDI resources
+Documentation at /docs/jndi-resources-howto.html
+-->
+<GlobalNamingResources>
+<!-- Editable user database that can also be used by
+UserDatabaseRealm to authenticate users
+-->
+<Resource name="UserDatabase" auth="Container"
+type="org.apache.catalina.UserDatabase"
+description="User database that can be updated and saved"
+factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
+pathname="conf/tomcat-users.xml" />
+</GlobalNamingResources>
+<!-- A "Service" is a collection of one or more "Connectors" that share
+a single "Container" Note:  A "Service" is not itself a "Container",
+so you may not define subcomponents such as "Valves" at this level.
+Documentation at /docs/config/service.html
+-->
+<Service name="Catalina">
+<!-- A "Connector" represents an endpoint by which requests are received
+and responses are returned.
+Documentation at :
+Java HTTP Connector: /docs/config/http.html (blocking & non-blocking)
+Java AJP  Connector: /docs/config/ajp.html
+APR (HTTP/AJP) Connector: /docs/apr.html
+Define a non-SSL HTTP/1.1 Connector on port 8080
+-->
+<Connector port="8080" protocol="HTTP/1.1"
+maxThreads="150" connectionTimeout="20000"
+redirectPort="8443" />
+<!-- Define a SSL HTTP/1.1 Connector on port 8443
+This connector uses the JSSE configuration, when using APR, the
+connector should be using the OpenSSL style configuration
+described in the APR documentation -->
+<!--
+<Connector port="8443" protocol="HTTP/1.1"
+maxThreads="150" scheme="https" secure="true"
+clientAuth="false" sslProtocol="TLS" />
+-->
+<!-- Define an AJP 1.3 Connector on port 8009 -->
+<Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />
+<!-- An Engine represents the entry point (within Catalina) that processes
+every request.
+ The Engine implementation for Tomcat stand alone
+analyzes the HTTP headers included with the request, and passes them
+on to the appropriate Host (virtual host).
+Documentation at /docs/config/engine.html -->
+<!-- You should set jvmRoute to support load-balancing via AJP ie :
+<Engine name="Standalone" defaultHost="localhost" jvmRoute="jvm1">
+-->
+<Engine name="Catalina" defaultHost="localhost">
+<!--For clustering, please take a look at documentation at:
+/docs/cluster-howto.html  (simple how to)
+/docs/config/cluster.html (reference documentation) -->
+<Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster"/>
+<!-- The request dumper valve dumps useful debugging information about
+the request and response data received and sent by Tomcat.
+Documentation at: /docs/config/valve.html -->
+<!--
+<Valve className="org.apache.catalina.valves.RequestDumperValve"/>
+-->
+<!-- This Realm uses the UserDatabase configured in the global JNDI
+resources under the key "UserDatabase".
+ Any edits
+that are performed against this UserDatabase are immediately
+available for use by the Realm.
+ -->
+<Realm className="org.apache.catalina.realm.UserDatabaseRealm"
+resourceName="UserDatabase"/>
+<!-- Define the default virtual host
+Note: XML Schema validation will not work with Xerces 2.2.
+-->
+<Host name="localhost"  appBase="webapps"
+unpackWARs="true" autoDeploy="true"
+xmlValidation="false" xmlNamespaceAware="false">
+<!-- SingleSignOn valve, share authentication between web applications
+Documentation at: /docs/config/valve.html -->
+<!--
+<Valve className="org.apache.catalina.authenticator.SingleSignOn" />
+-->
+<!-- Access log processes all example.
+Documentation at: /docs/config/valve.html -->
+<!--
+<Valve className="org.apache.catalina.valves.FastCommonAccessLogValve"
+directory="logs"
+prefix="localhost_access_log." suffix=".txt" pattern="common"
+resolveHosts="false"/>
+-->
+</Host>
+</Engine>
+</Service>
+</Server>
+[Aray@BONC-01 conf]$ mkdir Catalina
+[Aray@BONC-01 conf]$ ln -s /usr/local/tomcatConf/localhost/ Catalina/localhost
+[Aray@BONC-01 conf]$ cat Catalina/localhost/test.xml
+<Context
+className="org.apache.catalina.ha.context.ReplicatedContext"
+path="/test" docBase="/var/www/ClusterTest"
+debug="0" privileged="true" reloadable="true"
+>
+</Context>
+[Aray@BONC-01 conf]$ cd ..
+[Aray@BONC-01 apache-tomcat-6.0.2]$ ls
+bin  conf  lib  LICENSE  logs  NOTICE  RELEASE-NOTES  RUNNING.txt  temp
+webapps  work
+[Aray@BONC-01 apache-tomcat-6.0.2]$ rm logs/*
+[Aray@BONC-01 apache-tomcat-6.0.2]$ bin/catalina.sh version
+Using CATALINA_BASE:   /home/Aray/download/apache-tomcat-6.0.2
+Using CATALINA_HOME:   /home/Aray/download/apache-tomcat-6.0.2
+Using CATALINA_TMPDIR: /home/Aray/download/apache-tomcat-6.0.2/temp
+Using JRE_HOME:       /usr/java/jdk1.6.0
+Server version: Apache Tomcat/6.0.2
+Server built:   Nov 16 2006 12:31:06
+Server number:  6.0.2.0
+OS Name:        Linux
+OS Version:     2.6.9-34.EL
+Architecture:   i386
+JVM Version:    1.6.0-rc-b104
+JVM Vendor:     Sun Microsystems Inc.
+[Aray@BONC-01 apache-tomcat-6.0.2]$ bin/startup.sh
+Using CATALINA_BASE:   /home/Aray/download/apache-tomcat-6.0.2
+Using CATALINA_HOME:   /home/Aray/download/apache-tomcat-6.0.2
+Using CATALINA_TMPDIR: /home/Aray/download/apache-tomcat-6.0.2/temp
+Using JRE_HOME:       /usr/java/jdk1.6.0
+[Aray@BONC-01 apache-tomcat-6.0.2]$ cat logs/catalina.out
+INFO: Initializing Coyote HTTP/1.1 on http-8080
+Dec 13, 2006 4:07:39 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 2532 ms
+Dec 13, 2006 4:07:40 PM org.apache.catalina.core.StandardService start
+INFO: Starting service Catalina
+Dec 13, 2006 4:07:40 PM org.apache.catalina.core.StandardEngine start
+INFO: Starting Servlet Engine: Apache Tomcat/6.0.2
+Dec 13, 2006 4:07:40 PM org.apache.catalina.ha.tcp.SimpleTcpCluster start
+INFO: Cluster is about to start
+Dec 13, 2006 4:07:40 PM org.apache.catalina.tribes.transport.ReceiverBase bind
+INFO: Receiver Server Socket bound to:/127.0.0.1:4000
+Dec 13, 2006 4:07:40 PM org.apache.catalina.tribes.membership.McastServiceImpl
+setupSocket
+INFO: Setting cluster mcast soTimeout to 500
+Dec 13, 2006 4:07:40 PM org.apache.catalina.tribes.membership.McastServiceImpl
+waitForMembers
+INFO: Sleeping for 1000 milliseconds to establish cluster membership, start
+level:4
+Dec 13, 2006 4:07:41 PM org.apache.catalina.tribes.membership.McastServiceImpl
+waitForMembers
+INFO: Done sleeping, membership established, start level:4
+Dec 13, 2006 4:07:41 PM org.apache.catalina.tribes.membership.McastServiceImpl
+waitForMembers
+INFO: Sleeping for 1000 milliseconds to establish cluster membership, start
+level:8
+Dec 13, 2006 4:07:42 PM org.apache.catalina.tribes.membership.McastServiceImpl
+waitForMembers
+INFO: Done sleeping, membership established, start level:8
+Dec 13, 2006 4:07:42 PM org.apache.catalina.core.StandardHost start
+INFO: XML validation disabled
+Dec 13, 2006 4:07:42 PM org.apache.catalina.tribes.tipis.AbstractReplicatedMap
+init
+INFO: Initializing AbstractReplicatedMap with context name:/test
+Dec 13, 2006 4:07:43 PM org.apache.catalina.ha.context.ReplicatedContext start
+SEVERE: Unable to start ReplicatedContext
+java.lang.ClassCastException: org.apache.naming.resources.ProxyDirContext cannot be cast to java.io.Serializable
+at org.apache.catalina.tribes.tipis.AbstractReplicatedMap$MapEntry.setValue(AbstractReplicatedMap.java:1060)
+at org.apache.catalina.tribes.tipis.AbstractReplicatedMap$MapEntry.<init>(AbstractReplicatedMap.java:1005)
+at org.apache.catalina.tribes.tipis.AbstractReplicatedMap.put(AbstractReplicatedMap.java:859)
+at org.apache.catalina.core.ApplicationContext.setAttribute(ApplicationContext.java:756)
+at org.apache.catalina.core.ApplicationContextFacade.setAttribute(ApplicationContextFacade.java:334)
+at org.apache.catalina.core.StandardContext.start(StandardContext.java:4296)
+at org.apache.catalina.ha.context.ReplicatedContext.start(ReplicatedContext.java:55)
+at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:760)
+at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:740)
+at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:525)
+at org.apache.catalina.startup.HostConfig.deployDescriptor(HostConfig.java:626)
+at org.apache.catalina.startup.HostConfig.deployDescriptors(HostConfig.java:553)
+at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:488)
+at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1138)
+at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:311)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:120)
+at org.apache.catalina.core.ContainerBase.start(ContainerBase.java:1022)
+at org.apache.catalina.core.StandardHost.start(StandardHost.java:719)
+at org.apache.catalina.core.ContainerBase.start(ContainerBase.java:1014)
+at org.apache.catalina.core.StandardEngine.start(StandardEngine.java:443)
+at org.apache.catalina.core.StandardService.start(StandardService.java:451)
+at org.apache.catalina.core.StandardServer.start(StandardServer.java:710)
+at org.apache.catalina.startup.Catalina.start(Catalina.java:552)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:288)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:413)
+Dec 13, 2006 4:07:43 PM org.apache.catalina.core.ContainerBase addChildInternal
+SEVERE: ContainerBase.addChild: start:
+LifecycleException:  Failed to start ReplicatedContext:
+java.lang.ClassCastException: org.apache.naming.resources.ProxyDirContext
+cannot be cast to java.io.Serializable
+at org.apache.catalina.ha.context.ReplicatedContext.start(ReplicatedContext.java:58)

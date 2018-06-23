@@ -1,0 +1,19 @@
+Bug 172080 – Quick fix broken: Externalize manifest header value
+Eclipse version > Build id: I20070123-1715
+Steps To Reproduce:
+(1) Open PDE compiler preferences
+Window -> Preferences...
+-> Plug-in Development -> Compilers
+(2) Set option "Usage of non-externalized strings" to "Error" on "Plug-ins"
+tab and apply
+(3) Create a plug-in project using the hello world template
+-> Builder shows an error
+(4) Switch to "MANIFEST.MF" source page
+-> Quick fix available next to "Bundle-Name" header
+(5) Click quick fix
+(6) Select "Externalize the Bundle-Name header"
+-> Properties file key is generated and substitutes the String value
+-> "null.properties" is created in the project root with the String value
+in it
+-> An error is still present saying that the key is not found in the
+properties file

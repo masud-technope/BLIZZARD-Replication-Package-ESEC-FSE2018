@@ -1,0 +1,10 @@
+Bug 171838 – Environment page of Target editor is too slow to initialize
+1.
+Start Eclipse
+2.
+Open/Create a target file
+3.
+Switch to the Environment page.
+It will take a long time for it to initialize.
+ This is due to the fact that it takes a long time to retrieve the locales that fill the NL combo box.
+The editor should do what the Environment tab of the target platform preference page does, which is to create the page and show it right away, and retrieve the locales and fill in the combo box asynchronously.

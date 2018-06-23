@@ -1,0 +1,37 @@
+54475 – SMAP broken in Java 8 for JSP compile
+In order to compile JSPs with Java 8, I made the following additions to the JSP servlet in conf\web.xml:
+<init-param>
+<param-name>compiler</param-name>
+<param-value>modern</param-value>
+</init-param>
+<init-param>
+<param-name>compilerSourceVM</param-name>
+<param-value>1.8</param-value>
+</init-param>
+<init-param>
+<param-name>compilerTargetVM</param-name>
+<param-value>1.8</param-value>
+</init-param>
+However, I get the following error:
+org.apache.jasper.JasperException: org.apache.jasper.JasperException: Unable to compile class for JSP
+org.apache.jasper.servlet.JspServletWrapper.handleJspException(JspServletWrapper.java:549)
+org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:378)
+org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:390)
+org.apache.jasper.servlet.JspServlet.service(JspServlet.java:334)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+...
+Caused by java.io.IOException: unexpected tag: 18
+at org.apache.jasper.compiler.SmapUtil$SDEInstaller.copyConstantPool(SmapUtil.java:434)
+at org.apache.jasper.compiler.SmapUtil$SDEInstaller.addSDE(SmapUtil.java:251)
+at org.apache.jasper.compiler.SmapUtil$SDEInstaller.install(SmapUtil.java:223)
+at org.apache.jasper.compiler.SmapUtil$SDEInstaller.install(SmapUtil.java:200)
+at org.apache.jasper.compiler.SmapUtil.installSmap(SmapUtil.java:163)
+at org.apache.jasper.compiler.AntCompiler.generateClass(AntCompiler.java:284)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:378)
+...
+If I also add the suppressSmap parameter to the JSP servlet in conf\web.xml, the error goes away, and the JSP compiles fine:
+<init-param>
+<param-name>suppressSmap</param-name>
+<param-value>true</param-value>
+</init-param>
+Something about the SMAP is not playing well with Java 8 language features like the lambda expression.

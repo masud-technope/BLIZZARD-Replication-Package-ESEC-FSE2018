@@ -1,0 +1,13 @@
+53230 – Allow custom error mapping when Manager's maxActiveSessions is exceeded
+Tomcat 7.0.27
+In ManagerBase an IllegalStateException is thrown when the configured maxActiveSessions attribute is exceeded.
+This allows no customized error handling via configuration in web.xml.
+See discussion: http://markmail.org/thread/xqjgdhf32gjrzjz2
+Can be reproduced with the sample application:
+http://localhost:8080/examples/jsp/security/protected/index.jsp
+Just set maxActiveSession="0" in ${catalina.base}/conf/context.xml
+A configuration like this would be very useful:
+<error-page>
+<exception-type>org.apache.catalina.session.MaxActiveSessionsExceededException</exception-type>
+<location>/maxSessions.html</location>
+</error-page>

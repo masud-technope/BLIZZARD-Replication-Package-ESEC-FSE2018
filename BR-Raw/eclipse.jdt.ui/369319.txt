@@ -1,0 +1,8 @@
+Bug 369319 – [junit] interesting warning in JUnitPropertyTester
+While playing with null analysis for more kinds of expressions (bug 331649 and bug 364326) I tried my current implementation against  org.eclipse.jdt.junit.core to find the following interesting warning:
+1.
+WARNING in src/org/eclipse/jdt/internal/junit/JUnitPropertyTester.java (in line 47):
+throw new IllegalArgumentException("Element must be of type 'IAdaptable', is " + receiver == null ? "null" : receiver.getClass().getName()); //$NON-NLS-1$ //$NON-NLS-2$
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Null comparison always yields false: this expression cannot be null
+I hope the above renders correctly in bugzilla so that you can see what the compiler sees :)

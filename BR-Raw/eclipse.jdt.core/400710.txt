@@ -1,0 +1,18 @@
+Bug 400710 – [1.8][compiler] synthetic access to default method generates wrong code
+The following code generates wrong code:
+interface I {
+public void foo() default {
+System.out.println("default");
+}
+}
+public class C implements I {
+public static void main(String[] args) {
+C c = new C();
+c.foo();
+}
+}
+At runtime this produces:
+Exception in thread "main" java.lang.NoSuchMethodError: java.lang.Object.foo()V
+at C.foo(C.java:1)
+at C.main(C.java:9)
+The reason is in the way a synthetic method (SuperMethodAccess) for foo is generated: it is assumed that the super method must be in accessMethod.declaringClass.superclass(), which leads to trying to invoke java.lang.Object.foo(), which obviously doesn't exist.

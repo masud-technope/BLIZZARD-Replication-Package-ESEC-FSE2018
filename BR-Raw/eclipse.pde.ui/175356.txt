@@ -1,0 +1,42 @@
+Bug 175356 – NPE in SourceOutlinePage.removeAllSelectionChangedListeners(..)
+Found this in the log:
+eclipse.buildId=I20070220-1330
+java.version=1.6.0_01
+Error
+Fri Feb 23 20:19:31 CET 2007
+Unhandled event loop exception
+java.lang.NullPointerException
+at org.eclipse.pde.internal.ui.editor.SourceOutlinePage.removeAllSelectionChangedListeners(SourceOutlinePage.java:135)
+at org.eclipse.pde.internal.ui.editor.PDESourcePage.updateOutlinePageSelection(PDESourcePage.java:560)
+at org.eclipse.pde.internal.ui.editor.plugin.BundleSourcePage.synchronizeOutlinePage(BundleSourcePage.java:749)
+at org.eclipse.pde.internal.ui.editor.plugin.BundleSourcePage.handleSelectionChangedSourcePage(BundleSourcePage.java:727)
+at org.eclipse.pde.internal.ui.editor.PDESourcePage$PDESourcePageChangedListener.selectionChanged(PDESourcePage.java:117)
+at org.eclipse.jface.text.TextViewer.firePostSelectionChanged(TextViewer.java:2522)
+at org.eclipse.jface.text.TextViewer.firePostSelectionChanged(TextViewer.java:2474)
+at org.eclipse.jface.text.TextViewer$5.run(TextViewer.java:2453)
+at org.eclipse.swt.widgets.Display.runTimer(Display.java:3570)
+at org.eclipse.swt.widgets.Display.messageProc(Display.java:2795)
+at org.eclipse.swt.internal.win32.OS.DispatchMessageW(Native Method)
+at org.eclipse.swt.internal.win32.OS.DispatchMessage(OS.java:2201)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3119)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2286)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2250)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2125)
+at org.eclipse.ui.internal.Workbench$4.run(Workbench.java:459)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:289)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:454)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:101)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:146)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:106)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:76)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:354)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:169)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:476)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:416)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1124)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1099)

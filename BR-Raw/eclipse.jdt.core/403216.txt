@@ -1,0 +1,16 @@
+Bug 403216 – [1.8][null] TypeReference#captureTypeAnnotations treats type annotations as type argument annotations
+As a result, when null analysis is enabled, the following code has one compilation error where there is none when not enabled:
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+public class Test {}
+class X {
+class Y {
+public void foo( @A X.
+@B Y this) {}
+}
+}
+@Target(value={ElementType.TYPE_USE})
+@interface A {}
+@Target(value={ElementType.TYPE_USE})
+@interface B {}
+The result is a ParameterizedTypeBinding when null analysis is enabled and MemberTypeBinding otherwise for the explicit receiver type.

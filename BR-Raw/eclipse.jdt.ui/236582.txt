@@ -1,0 +1,4 @@
+Bug 236582 – [preferences] F1 in code formatter edit dialog shows generic preference help
+3.4 RC4.
+F1 in code formatter edit dialog shows generic preference help.
+We should at least show the 'Code Formatter Preferences' help.

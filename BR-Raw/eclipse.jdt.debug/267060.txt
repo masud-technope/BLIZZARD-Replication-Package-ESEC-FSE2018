@@ -1,0 +1,3 @@
+Bug 267060 – Add API for IJavaValue.isNull()
+While working on bug 260850, I found it convenient to have an API on IJavaValue to test if it is null.
+Added IJavaValue.isNull()

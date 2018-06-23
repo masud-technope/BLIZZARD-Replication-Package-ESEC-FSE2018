@@ -1,0 +1,12 @@
+Bug 420283 – [1.8] Wrong error "Type is not visible" for cast to intersection type
+BETA_JAVA8
+package pack;
+import java.io.Serializable;
+import java.util.List;
+class C {
+void foo(List<Integer> l) {
+Integer i = (Integer & Serializable) l.get(0);
+}
+}
+On "l.get(0)", I get a wrong compile error:
+"The type Integer & Serializable is not visible".

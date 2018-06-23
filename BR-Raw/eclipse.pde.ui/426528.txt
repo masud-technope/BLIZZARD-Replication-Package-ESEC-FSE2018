@@ -1,0 +1,2 @@
+Bug 426528 – [Product][Editors] Specify the name and location of the CSS file to use
+In order to better support the CSS required by e4, the editor should allow for the name of the CSS file to be specified and synchronized with the appropriate value in the plugin.xml.

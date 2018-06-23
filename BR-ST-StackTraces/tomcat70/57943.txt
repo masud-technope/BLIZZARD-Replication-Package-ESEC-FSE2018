@@ -1,0 +1,6 @@
+java.util.HashMap$HashIterator.nextEntry
+java.util.HashMap$KeyIterator.next
+java.util.Collections$UnmodifiableCollection$1.next
+org.apache.tomcat.util.net.NioEndpoint$Poller.timeout
+org.apache.tomcat.util.net.NioEndpoint$Poller.run
+java.lang.Thread.run

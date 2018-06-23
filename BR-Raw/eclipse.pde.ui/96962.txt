@@ -1,0 +1,16 @@
+Bug 96962 – Quickfix to solve restriction access problem
+I20050527
+This morning I opened an existing workspace that was compiling fine yesterday (I
+did not try to run it and it was not the point), and I've noticed that it was no
+longer compiling because the type I was refering was "not accessible due to
+access restrictions".
+It tooks me a second or two before thinking that it could be that the plugin
+providing the type was not exporting the proper package.
+I fixed the package
+export and everything worked.
+Trivial.
+However I think for new comers to eclipse or even long time users this is not
+trivial.
+This problem must have a quick fix guiding the users on things that can
+be done to solve the problem.
+I mark as major since to me this is a major usability issue

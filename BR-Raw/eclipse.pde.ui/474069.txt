@@ -1,0 +1,7 @@
+Bug 474069 – Replace new Boolean with Boolean.valueOf
+Using `new Boolean()` results in the creation of a new object on the
+heap, when the flyweight `Boolean.TRUE` and `Boolean.FALSE` are available.
+Java 1.4 added a `Boolean.valueOf()` which can be used in place of
+`new Boolean()` but which will use the existing flyweight values instead.
+Globally change `new Boolean(...)` to `Boolean.valueOf(...)` and replace
+`new Boolean(...).booleanValue()` to the equivalent `Boolean.parseBoolean(...)`

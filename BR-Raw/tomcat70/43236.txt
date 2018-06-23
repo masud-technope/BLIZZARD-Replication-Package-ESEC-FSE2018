@@ -1,0 +1,19 @@
+43236 – Response.setCharacterEncoding() fails after Response.getWriter() and Response.reset()
+The class org.apache.catalina.connector.Response
+resets the internal hold coyoteResponse and outputBuffer during reset():
+public void reset() {
+if (included)
+return;     // Ignore any call from an included servlet
+coyoteResponse.reset();
+outputBuffer.reset();
+}
+but if anyone has already set the characterEncoding (e.g.
+to UTF-8) and already
+got the writer, than all following invocations of request.setCharacterEncoding()
+will do nothing, because the internal save flag for usingWriter is not reseted.
+This is very annoying, because the coyoteResponse.reset(), resets the
+characterEncoding to iso8859-1.
+So I have no change to change/reset the
+charaterEncoding to UTF-8.
+I'll think if you reset the response, you should also reset the usingWriter flag
+or add another special flag, that works with this circumstances.

@@ -1,0 +1,2 @@
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/Jsr335ClassFileTest.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/BootstrapMethodsAttribute.java

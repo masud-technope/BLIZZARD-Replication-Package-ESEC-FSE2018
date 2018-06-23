@@ -1,0 +1,14 @@
+Bug 157087 – should adopt ICU Collator and use new APIs on StructuredViewer
+Since ICU4J provides more comprehensive support for internationalization and is now included as part of the Platform, we should be endorsing it by adopting use  of its APIs instead of using the default Java implementation.
+One widespread example of usage that should be migrated to is using ICU's collator to sort in all of our viewers (see ViewerComparator) rather than the java.text collator used in ViewerSorter.
+ This component was found to be  affected by at least one of the 3 following conditions that should be adopted:
+1.
+change references to java.text.Collator to com.ibm.icu.Collator.
+CAVEAT: There may be cases where this is not possible if plug-ins can ship without the com.ibm.icu plug-in (example, JFace).
+2.
+change references to StructuredViewer#setSorter to use StructuredViewer#setComparator and StructuredViewer#getSorter to StructuredViewer#setComparator.
+These are slated to be deprecated (see bug 154871).
+3.
+any classes that subclass ViewerSorter should now sublcass ViewerComparator, if possible (i.e.
+if the class is internal).
+The UI component is in the process of completing this work (see bug 154884) and it is slated to be released for M2.

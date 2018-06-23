@@ -1,0 +1,7 @@
+java/org/apache/tomcat/util/http/CookieSupport.java
+java/org/apache/tomcat/util/http/Cookies.java
+test/org/apache/tomcat/util/http/TestCookies.java
+test/org/apache/tomcat/util/http/TestCookiesAllowNameOnly.java
+webapps/docs/config/systemprops.xml
+java/org/apache/tomcat/util/http/Cookies.java
+test/org/apache/tomcat/util/http/TestCookies.java

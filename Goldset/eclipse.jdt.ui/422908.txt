@@ -1,0 +1,2 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/dialogs/MultiElementListSelectionDialog.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/OrganizeImportsOperation.java

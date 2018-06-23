@@ -1,0 +1,7 @@
+org.eclipse.jdt.core.dom.ASTConverter.convert
+org.eclipse.jdt.core.dom.CompilationUnitResolver.convert
+org.eclipse.jdt.core.dom.ASTParser.internalCreateAST
+org.eclipse.jdt.core.dom.ASTParser.createAST
+org.eclipse.jdt.core.dom.rewrite.ImportRewrite.rewriteImports
+org.eclipse.jdt.internal.ui.text.java.JavaTypeCompletionProposal.apply
+org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.apply

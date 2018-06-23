@@ -1,0 +1,4 @@
+Bug 360913 – Resource leaks in o.e.jdt.ui
+There are 2 valid resource leaks warnings in o.e.jdt.ui
+Resource leak: 'outputStream' is not closed at this location	UnpackFatJarAntExporter.java	/org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat	line 58
+Resource leak: 'outputStream' is not closed at this location	UnpackJarAntExporter.java	/org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat	line 64

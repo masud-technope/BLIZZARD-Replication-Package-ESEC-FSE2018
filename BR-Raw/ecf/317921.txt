@@ -1,0 +1,2 @@
+Bug 317921 – [Discovery][DNS-SD] Browsing and registration domain can take more than one record
+Rename consts to plural form to indicate they return more than a single value

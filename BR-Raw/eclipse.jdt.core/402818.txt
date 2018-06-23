@@ -1,0 +1,23 @@
+Bug 402818 – [1.8][formatter] Code carrying interfaces halt formatting
+BETA_JAVA8:
+Attempting to format the following program leaves the program unchanged
+both the classes and interface parts:
+// ---
+class I {
+int id(int x,      int y)
+{
+return 0;
+}
+static void foo(int x      ,      int    y)
+{
+}
+}
+interface J {
+default int id(int x,      int y)
+{
+return 0;
+}
+static void foo(int x      ,      int    y)
+{
+}
+}

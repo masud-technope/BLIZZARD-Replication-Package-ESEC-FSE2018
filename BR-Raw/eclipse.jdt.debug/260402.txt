@@ -1,0 +1,44 @@
+Bug 260402 – Conflits during JRE's import are not solved correctly.
+Project org.eclipse.jdt.launching, no idea which component:
+Reproduction steps:
+1.
+Add a couple of JREs in the preferences (having 3 is ok).
+2.
+Export 'Installed JRE' preferences
+3.
+Rename all JREs (add f.e.
+_2)
+4.
+Export 'Installed JRE's.
+5.
+Delete all JREs except default one.
+6.
+Import both files.
+7.
+Repeat steps 5-6 if necessary.
+It usually works after second time.
+Result:
+not all JRE's are displayed (typically one is missing).
+You will see something like
+default
+java_1
+java_1_2
+java_2
+instead of
+default
+java_1
+java_1_2
+java_2
+java_2_2.
+Cause:
+JREPreferenceModifyListener, lines 85-89
+long unique = System.currentTimeMillis();
+IVMInstallType vmType = vm.getVMInstallType();
+while (vmType.findVMInstall(String.valueOf(unique)) != null) {
+unique++;
+}
+vm = new VMStandin(vm, String.valueOf(unique));
+This code replaces the conflicting id with the new one generated on the system time basis.
+The problem is that the while loop is never entered, because vmType is aware only about already existing ids, not about newly created ones.
+So if the second conflict is met and system time does not changes, the duplicated id is added.
+Therefore we see missing vms.

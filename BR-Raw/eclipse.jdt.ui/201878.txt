@@ -1,0 +1,7 @@
+Bug 201878 – [quick fix] improve cursor jumping on CTRL + 1
+3.3
+If CTRL + 1 finds warnings or errors on the same line, it jumps to the closest error and offers proposals for that error.
+Users would like to have more control over that:
+- they didn't want to fix the closest error but do a quick assist at the cursor location (see bug 201872)
+- they want to fix a different bug on the same line (or close to the cursor)
+- they want to fix an error on a different line

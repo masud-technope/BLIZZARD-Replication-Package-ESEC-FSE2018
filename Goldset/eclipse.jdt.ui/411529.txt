@@ -1,0 +1,8 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test48/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test48/in/B.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test48/in/C.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test48/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test48/out/B.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test48/out/C.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/MoveInstanceMethodTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/MemberVisibilityAdjustor.java

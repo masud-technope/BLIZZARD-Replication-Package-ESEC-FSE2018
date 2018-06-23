@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/dependencies/GatherUnusedDependenciesOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/dependencies/DependencyExtentOperation.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/BundleErrorReporter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/search/PluginJavaSearchUtil.java

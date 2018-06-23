@@ -1,0 +1,4 @@
+Bug 13916 – api: IScanner - Scanner.linePtr
+20020412
+i can't find a good way to get the old Scanner.linePtr  funtionality
+in the api scanner (i need read access to that field)

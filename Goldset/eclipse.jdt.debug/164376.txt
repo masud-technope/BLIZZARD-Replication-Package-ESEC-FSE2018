@@ -1,0 +1,2 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaDetailFormattersManager.java
+org.eclipse.jdt.debug/buildnotes_jdt-debug.html

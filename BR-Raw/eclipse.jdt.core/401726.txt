@@ -1,0 +1,14 @@
+Bug 401726 – No ITypeHierarchyChangedListener#typeHierarchyChanged(..) event for added type with parametrized supertype
+master
+No ITypeHierarchyChangedListener#typeHierarchyChanged(..) event is sent when I add a type with a parametrized supertype.
+Steps:
+- paste into Package Explorer:
+abstract class AAAList extends java.util.ArrayList<String> { }
+abstract class AAAListRaw extends java.util.ArrayList { }
+- comment both lines
+- open Type Hierarchy on ArrayList
+- uncomment one of the lines and save the editor
+=> When I uncomment the type AAAListRaw, the Type Hierarchy view is updated and shows the new subtype.
+OTOH, when I uncomment AAAList, the TH is not refreshed.
+The bug is in
+org.eclipse.jdt.internal.core.hierarchy.TypeHierarchy.subtypesIncludeSupertypeOf(IType): "type.getSuperclassName()" and "type.getSuperInterfaceNames()" include the type arguments, but hasSubtypeNamed(String) expects a raw type.

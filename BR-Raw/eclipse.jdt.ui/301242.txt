@@ -1,0 +1,13 @@
+Bug 301242 – [refactoring][clean up] UI locked by 2 dialogs after repeated Undos in Java editor
+Created attachment 157616 [details]
+Stacktrace
+I20100128-1731
+The UI can be locked up by 2 dialogs when the user repeatedly performs Undo in a Java editor with the 'Format all' Save Action enabled.
+My test case:
+- check out org.eclipse.ui.workbench
+- open class SearchPattern, go to validateMatchRule(..)
+- add spaces at the beginning of a few lines
+- press Ctrl+S
+- add more spaces at the beginning of a few lines
+- press Ctrl+S again
+- press and hold Ctrl+Z

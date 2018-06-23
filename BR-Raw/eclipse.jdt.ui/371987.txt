@@ -1,0 +1,28 @@
+Bug 371987 – [quick fix] generated code where required type is masked by a local declaration should use full type name
+Build Identifier: Indigo release, 20110615-0604
+If the context in which an undeclared field is used refers to a type whose name is masked by another one (e.g.
+due to a locally declared class of the same name), the 'quick fix' generated just substitutes one error for another, i.e.
+that the types are incompatible.
+ Eclipse should detect this scenario and use fully qualified types when it would occur.
+This is not as strange a scenario as it would at first appear, and happens especially frequently in code using the Android API, which includes interfaces that mask each other in the same context (e.g.
+DialogInterface.OnClickListener and View.OnClickListener, both of which are local types in classes that extend Dialog, and Eclipse currently declares fields to be the former whereas the latter is more commonly used).
+Reproducible: Always
+Steps to Reproduce:
+1.
+Create class with code that refers to a non-existent field that should have a type which is masked by a local declaration, for example:
+public class Test {
+class Runnable
+{
+}
+public void test ()
+{
+new Thread (myRunnable);
+}
+}
+2.
+Choose 'quick fix' for the undefined identifier error, and choose 'create field'
+The field declaration added is:
+private Runnable myRunnable;
+It should be:
+private java.lang.Runnable myRunnable;
+as in this context 'Runnable' refers to the local class that is not the one that should be used.

@@ -1,0 +1,10 @@
+54458 – DataSourceRealm should provide more info on SQLException
+The getPassword() method of the DataSourceRealm does not log enough information when it encounters an SQL error.
+ The catch block is:
+} catch(SQLException e) {
+containerLog.error(
+sm.getString("dataSourceRealm.getPassword.exception",
+username));
+} finally {
+it would be really helpful to have some details of what the SQLException is.
+ I am getting this intermittently, and have resorted to subclassing getPassword() in an attempt to figure out what is going wrong.

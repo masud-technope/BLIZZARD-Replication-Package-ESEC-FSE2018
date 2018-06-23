@@ -1,0 +1,9 @@
+Bug 178491 – "Rename Bundle-SymbolicName..." is not context-sensitive
+The context menu for the MANIFEST.MF source page now has a permanent "Rename Bundle-SymbolicName...".
+1.
+That item is in a weird place in the menu.
+ It is in the Shift Left/Right section.
+2.
+that item must only show up where it applied, ie.
+only when the value of the bundle symbolic name is selected.
+ Take a look at how/when other menu items such as 'Open Type' and hyperlinking are enabled for example.

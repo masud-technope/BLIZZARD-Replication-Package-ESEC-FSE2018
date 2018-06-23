@@ -1,0 +1,4 @@
+48146 – some misspellings I can find in the "org.apache.tomcat" package
+Created attachment 24493 [details]
+svn patch for the various classes in the org.apache.tomcat package
+see the attached svn patch file

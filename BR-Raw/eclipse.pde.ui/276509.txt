@@ -1,0 +1,10 @@
+Bug 276509 – Eclipse samples review wizard has incorrect text margins
+Created attachment 136001 [details]
+Screenshot on Mac
+Steps to reproduce:
+- On the Welcome page select "Samples"
+- Select "Property sheet and outline"
+- Download samples
+- Accept default project name, press Next
+- The text on the "Review" page of the wizard overlaps its border
+The border is visible by default on Mac (see screenshot attached) and becomes visible on Windows if the text is selected.

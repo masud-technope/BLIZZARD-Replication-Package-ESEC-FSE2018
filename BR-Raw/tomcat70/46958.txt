@@ -1,0 +1,20 @@
+46958 – manager XML interface hard-coded path in XSL transformation
+The manager XML-interface cannot be used if it's installed under any other path than /manager, failing to find the xform.xsl file needed for XSL transformation.
+Fails:
+http://example.com/mymanager/status?XML=true
+Works:
+http://example.com/manager/status?XML=true
+Reason for error, in Tomcat sources
+org.apache.catalina.manager.Constants
+XML_STYLE returns the constant value
+"<?xml-stylesheet type=\"text/xsl\" href=\"/manager/xform.xsl\" ?>";
+The /manager part needs to be modified to match webapp path.
+Caller:
+org.apache.catalina.util.RequestUtil.StatusTransformer
+public static void writeHeader(PrintWriter writer, final String contextPath, int mode) {
+//...
+// TODO needs current virtual webapp path as parameter
+writer.write(Constants.XML_STYLE);
+}
+On a sidenote, in org.apache.catalina.manager.host.Constants there is a similar hard-coded value, which might cause similar problems in the future.
+It seems to be unreferenced in the current sources right now (unused value).

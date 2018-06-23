@@ -1,0 +1,36 @@
+Bug 409680 – NullPointerException in XMLErrorReporter.getTextContent
+Using:
+Eclipse SDK 4.3.0 Build id: I20130601-1500, cocoa 64
+org.eclipse.pde.ui 3.8.0.v20130515-1659
+Eclipse Git Team Provider 3.0.0.201305291141
+Mac OS X 10.8.3 (can't reproduce on Ubuntu 13.04)
+1.
+Clone git://git.eclipse.org/gitroot/cdt/org.eclipse.cdt.git, checkout master
+2.
+Import org.eclipse.cdt.core and org.eclipse.cdt.core
+3.
+Open org.eclipse.cdt.ui/plugin.xml in the XML editor
+4.
+Checkout commit 4ead47e9484df076e410ba0a33e1c45f52d44c28 (bug 409651: MinGW language settings provider provides duplicate include paths)
+5.
+With plugin.xml still opened in the editor, checkout master
+6.
+NPE occurs.
+!ENTRY org.eclipse.core.resources 4 75 2013-06-02 15:36:00.558
+!MESSAGE Errors occurred during the build.
+!SUBENTRY 1 org.eclipse.pde.core 4 75 2013-06-02 15:36:00.558
+!MESSAGE Errors running builder 'Plug-in Manifest Builder' on project 'org.eclipse.cdt.ui'.
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.pde.internal.core.builders.XMLErrorReporter.getTextContent(XMLErrorReporter.java:356)
+at org.eclipse.pde.internal.core.builders.ExtensionsErrorReporter.validateTranslatableElementContent(ExtensionsErrorReporter.java:442)
+at org.eclipse.pde.internal.core.builders.ExtensionsErrorReporter.validateElement(ExtensionsErrorReporter.java:197)
+at org.eclipse.pde.internal.core.builders.ExtensionsErrorReporter.validateElement(ExtensionsErrorReporter.java:203)
+at org.eclipse.pde.internal.core.builders.ExtensionsErrorReporter.validateElement(ExtensionsErrorReporter.java:203)
+at org.eclipse.pde.internal.core.builders.ExtensionsErrorReporter.validateExtension(ExtensionsErrorReporter.java:110)
+at org.eclipse.pde.internal.core.builders.ExtensionsErrorReporter.validateContent(ExtensionsErrorReporter.java:75)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.validateFiles(ManifestConsistencyChecker.java:296)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.validateProject(ManifestConsistencyChecker.java:223)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.build(ManifestConsistencyChecker.java:157)
+at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:726)
+Unfortunately, I can't reproduce this on another machine (Ubuntu) or another workspace.

@@ -1,0 +1,12 @@
+58582 – org.apache.catalina.realm.CombinedRealm should implement backgroundProcess
+org.apache.catalina.realm.CombinedRealm should implement backgroundProcess() by calling this method on each of the Realms it manages e.g.
+@Override
+public void backgroundProcess()
+{
+for( Realm r: realms )
+r.backgroundProcess();
+// for Tomcat9 ;-)
+// realms.forEach( r -> r.backgroundProcess() );
+}
+Without this, the backgroundProcess() of a Realm that is wrapped by CombinedRealm or LockOutRealm (which extends CombinedRealm) is not called.
+Aidan.

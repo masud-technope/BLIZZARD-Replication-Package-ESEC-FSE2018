@@ -1,0 +1,23 @@
+Bug 303698 – [ccp] ReorgPolicies' canEnable() methods return true too often
+Build Identifier: M20090917-0800
+Have a look at ReorgPolicy.canEnable():
+public boolean canEnable() throws JavaModelException {
+IResource[] resources= getResources();
+for (int i= 0; i < resources.length; i++) {
+IResource resource= resources[i];
+if (!resource.exists() || resource.isPhantom() || !resource.isAccessible())
+return false;
+}
+IJavaElement[] javaElements= getJavaElements();
+for (int i= 0; i < javaElements.length; i++) {
+IJavaElement element= javaElements[i];
+if (!element.exists())
+return false;
+}
+return true;
+}
+The last "return true" is wrong, as it would enable the policy even if the resources and javaElements arrays are empty.
+The same problem occurs in many other ReorgPolicy classes.
+We experience this bug when using an own IQueryParticipant that creates non-IJavaElement matches.
+I'll attach a patch against HEAD.
+Reproducible: Always

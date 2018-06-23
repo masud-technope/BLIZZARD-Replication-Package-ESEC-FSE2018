@@ -1,0 +1,2 @@
+Bug 506865 – Race condition in AbstractVMInstallType.createVMInstall
+AbstractVMInstallType.createVMInstall may cause creation of two VMs with the same id since checking for existence of the VM being created is done outside of the synchronized block.

@@ -1,0 +1,4 @@
+Bug 381875 – Javadoc errors in org.eclipse.pde.core.target
+Created attachment 216941 [details]
+pde.doc.user.javadoc.txt
+The latest 3.8 build has some Javadoc errors in the newly added org.eclipse.pde.core.target

@@ -1,0 +1,5 @@
+Bug 15667 – Adding a Jar to the src lookup path of a remote launch
+Adding an (internal) Jar to the src lookup path for a remote launch, you can
+select a folder and hit OK.
+ The folder is added and has the JAR icon.
+The dialog was realized when selecting the stack frame with unknown src.

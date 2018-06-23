@@ -1,0 +1,22 @@
+Bug 382590 – TypesImpl.asMemberOf must also work with a subclass and its superclass' element
+Build Identifier: Version: Indigo Service Release 2 Build id: 20120216-1857
+Let's say we have two classes:
+public class Base<T> {
+T field;
+}
+public class Concrete extends Base<Long> {
+}
+Then the following call should be legitimate and it is so in Oracle javac, but raises IllegalArgumentException in JDT:
+Types types = ...;
+Elements elems = ...;
+TypeMirror concreteType = elems.getTypeElement("Concrete").asType();
+Element baseField = elems.getTypeElement("Base").getEnclosedElements().get(0);
+TypeMirror tm = types.asMemberOf(concreteType, baseField);
+Reproducible: Always
+Steps to Reproduce:
+1.
+Write an annotation processor having the code snippet shown in Details section.
+2.
+Prepare forementioned classes too.
+3.
+Compile the codebase and see what's shown in the error log.

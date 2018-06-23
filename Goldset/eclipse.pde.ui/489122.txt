@@ -1,0 +1,7 @@
+ui/org.eclipse.pde.ui.templates/templates_3.1/helloOSGiServiceComponent/java/DictionaryServiceImpl.java
+ui/org.eclipse.pde.ui.templates/templates_3.1/OSGiSimpleLogService/java/SimpleLogService.java
+ui/org.eclipse.pde.ui.templates/templates_3.1/OSGiSimpleLogService/java/SimpleLogServiceImpl.java
+ui/org.eclipse.pde.ui.templates/templates_3.1/helloOSGiServiceComponent/java/DictionaryImpl.java
+ui/org.eclipse.pde.ui.templates/templates_3.1/helloOSGiServiceComponent/java/ServiceComponent.java
+ui/org.eclipse.pde.ui.templates/templates_3.1/OSGiSimpleLogService/java/$activator$.java
+ui/org.eclipse.pde.ui.templates/templates_3.1/helloOSGiServiceComponent/java/$activator$.java

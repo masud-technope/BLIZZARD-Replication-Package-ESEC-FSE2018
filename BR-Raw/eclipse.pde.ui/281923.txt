@@ -1,0 +1,13 @@
+Bug 281923 – Run in UI thread unchecked doesn't work with Headless Mode application
+Build ID: 3.5 GA
+Steps To Reproduce:
+1.
+Launch a JUnit Plug-in test with "Run in UI thread" unchecked and the application set to "[No Application] - Headless Mode"
+2.
+IDE still comes up (if you are using a target platform without the IDE, an exception is thrown)
+More information:
+The command line parameters end up being
+-application org.eclipse.pde.junit.runtime.nonuithreadtestapplication -testApplication org.eclipse.ui.ide.workbench
+To workaround this, you can either check "Run in UI thread" or you can override the application parameter with
+-testApplication org.eclipse.pde.junit.runtime.coretestapplication
+The "Run in UI thread" check box doesn't really make sense in headless mode, but unchecking it (which is more intuitive) should not break the tests.

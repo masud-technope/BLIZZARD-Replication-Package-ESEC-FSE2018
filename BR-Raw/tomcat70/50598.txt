@@ -1,0 +1,4 @@
+50598 – Sample build.xml uses wrong manager.url
+In
+http://tomcat.apache.org/tomcat-7.0-doc/appdev/build.xml.txt , referenced from http://tomcat.apache.org/tomcat-7.0-doc/appdev/processes.html
+sample manager.url is given as "http://localhost:8080/manager" but should be "http://localhost:8080/manager/text"

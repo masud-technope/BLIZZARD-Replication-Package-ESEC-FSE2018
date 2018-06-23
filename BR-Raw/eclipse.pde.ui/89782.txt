@@ -1,0 +1,5 @@
+Bug 89782 – Manifest builder is overzealous
+The manifest builder is overzealous when it comes to revalidating a plugin.xml
+file.
+ It sometimes runs unnecessarily when the resource being changed has no
+effect on its content.

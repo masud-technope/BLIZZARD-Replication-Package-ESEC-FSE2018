@@ -1,0 +1,11 @@
+Bug 405015 – Unsupported tag on a secondary type causes two problems to be created
+4.3.0 I20130326-0800
+Build the example below and notice you will get two problem markers for the invalid @noreference tag
+package x.y.z;
+public interface test13 {
+}
+/**
+* @noreference
+*/
+interface test13outer {}
+could be related to the fix for bug 404744 or bug 404830

@@ -1,0 +1,6 @@
+Bug 331116 – [quick assist] Join declaration quick fix removes comments between declaration and assignment
+See the below example for the shortest way to reproduce when joining a declaration.
+pre..
+String message;
+// this comment gets removed
+message = "";

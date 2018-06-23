@@ -1,0 +1,11 @@
+org.eclipse.jdt.internal.corext.refactoring.code.ExtractMethodRefactoring.createMethodBody
+org.eclipse.jdt.internal.corext.refactoring.code.ExtractMethodRefactoring.createNewMethod
+org.eclipse.jdt.internal.corext.refactoring.code.ExtractMethodRefactoring.createChange
+org.eclipse.jdt.internal.ui.text.correction.proposals.RefactoringCorrectionProposal.createTextChange
+org.eclipse.jdt.ui.text.java.correction.CUCorrectionProposal.createChange
+org.eclipse.jdt.ui.text.java.correction.ChangeCorrectionProposal.getChange
+org.eclipse.jdt.ui.text.java.correction.CUCorrectionProposal.getTextChange
+org.eclipse.jdt.ui.text.java.correction.CUCorrectionProposal.getAdditionalProposalInfo
+org.eclipse.jdt.internal.ui.text.correction.proposals.RefactoringCorrectionProposal.getAdditionalProposalInfo
+org.eclipse.jface.text.contentassist.AdditionalInfoController$3.run
+org.eclipse.core.internal.jobs.Worker.run

@@ -1,0 +1,12 @@
+Bug 8679 – Hit count ignored on breakpoints
+20020123++
+Suspend at a breakpoint.
+ Remove breakpoint and set another one somewhere else
+with a hit count.
+ Resume.
+ Notice that hit count breakpoint suspends every time, not just when hit
+count is reached.
+ Also found different situation when hit count was respected, but instead of
+suspending when hit count was reached, debug session just seemed to freeze.
+ This may have been a UI
+update problem.

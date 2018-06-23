@@ -1,0 +1,5 @@
+Bug 314595 – Prevent PluginModelManager from being instantiated
+Bug 313922 was caused by additional PluginModelManagers being instantiated whenever a feature launch occurred.
+ Each time a manager is instantiated it registers listeners that affect the java build path.
+To prevent bugs like this in the future we should prevent PluginModelManager from being instantiated.
+ We can add a javadoc comment, make the constructor package visible (PDECore being the only place that should instantiate), and/or make the class a singleton (with getInstance() instead of a public constructor).

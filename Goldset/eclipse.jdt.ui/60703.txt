@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/javadoc/JavaDocScanner.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/JavaCommentScanner.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/CombinedWordRule.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/JavaCodeScanner.java

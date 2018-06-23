@@ -1,0 +1,26 @@
+Bug 151885 – CCEs on PDE Properties pages for plugin projects
+I20060725-0800
+2 CCEs on PDE Properties pages for plugin projects:
+- aPluginProject > Properties > Plug-in Development page
+- press OK
+java.lang.ClassCastException: org.eclipse.jdt.internal.core.JavaProject
+at org.eclipse.pde.internal.ui.properties.PluginDevelopmentPage.performOk(PluginDevelopmentPage.java:76)
+at org.eclipse.jface.preference.PreferenceDialog$11.run(PreferenceDialog.java:889)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.core.runtime.Platform.run(Platform.java:843)
+at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:44)
+at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:149)
+at org.eclipse.jface.preference.PreferenceDialog.okPressed(PreferenceDialog.java:869)
+[..]
+- a similar CCE with Runtime Classpath page:
+!MESSAGE java.lang.ClassCastException: org.eclipse.jdt.internal.core.JavaProject
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.internal.core.JavaProject
+at org.eclipse.pde.internal.ui.properties.SelfHostingPropertyPage.performOk(SelfHostingPropertyPage.java:169)
+at org.eclipse.jface.preference.PreferenceDialog$11.run(PreferenceDialog.java:889)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.core.runtime.Platform.run(Platform.java:843)
+at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:44)
+at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:149)
+at org.eclipse.jface.preference.PreferenceDialog.okPressed(PreferenceDialog.java:869)
+[..]

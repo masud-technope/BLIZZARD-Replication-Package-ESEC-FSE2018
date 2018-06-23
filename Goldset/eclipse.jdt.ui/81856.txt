@@ -1,0 +1,7 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaUIMessages.properties
+org.eclipse.jdt.ui/serial support/org/eclipse/jdt/internal/ui/text/correction/SerialVersionMessages.properties
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/refactoring.properties
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/refactoringui.properties
+org.eclipse.jdt.ui.tests/chkpii/org/eclipse/jdt/ui/tests/chkpii/ChkpiiTests.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/JUnitMessages.properties
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/JUnitMessages.properties

@@ -1,0 +1,4 @@
+Bug 405704 – [1.8][render] Adornment for default methods and annotation type elements with default
+Add an icon adornment for default methods and annotation type elements with a default value.
+The overlay for both will be a blue "D" with colors borrowed from
+native_co.gif / final_co.gif.

@@ -1,0 +1,3 @@
+Bug 265645 – Configure Working Sets Dialog: sort checkbox does not use dialog font
+I20090217-2200.
+The 'Configure Working Sets' dialog's sort check box does not use dialog font.

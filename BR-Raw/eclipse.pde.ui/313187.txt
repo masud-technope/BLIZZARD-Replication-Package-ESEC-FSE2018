@@ -1,0 +1,9 @@
+Bug 313187 – OpenSchemaAction does not handle locations with spaces in it
+1) Open an Eclipse that is installed at a path with a space in it
+2) Create a plug-in project,add an extension that comes from the default target platform
+3) Select the extension and click "Open extension point schema"
+Result:
+Nothing happens, no error dialog, no schema is opened
+Two fixes should be made:
+1) OpenSchemaAction.run(), line 192 and 194, where we get a path from the url we should use the URIUtils to correctly handle spaces and other special characters.
+2) Inside openSchemaFile and openSchemaJar, we should check that the file exists and report an error if it doesn't.

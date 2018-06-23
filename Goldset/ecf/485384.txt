@@ -1,0 +1,3 @@
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdDiscoveryContainerAdapter.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdNamespace.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/META-INF/MANIFEST.MF

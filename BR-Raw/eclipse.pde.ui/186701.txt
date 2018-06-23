@@ -1,0 +1,13 @@
+Bug 186701 – Target Environment Amnesia
+Latest code from HEAD
+1.
+Create a Hello World plug-in project
+2.
+Change the os/ws target environment on the preference page to linux/gtk
+3.
+Observe how the Hellow world plug-in now has compiler errors, since the swt.win32 fragment is now unresolved and not on the classpath.
+ Good.
+4.
+ Shut down and restart.
+ The hello world plug-in is now fine.
+ It is expected to still have errors.

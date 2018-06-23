@@ -1,0 +1,23 @@
+44562 – HEAD requests cannot go through request dispatch include.
+See https://issues.apache.org/jira/browse/GERONIMO-3896
+briefly...
+tomcat complains:
+Servlet.service() for servlet SimpleDispatchServlet threw exception
+javax.servlet.ServletException: Original SevletResponse or wrapped original ServletResponse not passed to
+RequestDispatcher in violation of SRV.8.2 and SRV.14.2.5.1
+at org.apache.catalina.core.ApplicationDispatcher.checkSameObjects(ApplicationDispatcher.java:985)
+...
+The relevant code seems to be in javax.servlet.http.HttpServlet
+protected void doHead(HttpServletRequest req, HttpServletResponse resp)
+throws ServletException, IOException
+{
+NoBodyResponse response = new NoBodyResponse(resp);
+doGet(req, response);
+response.setContentLength();
+}
+which is fine but
+class NoBodyResponse implements HttpServletResponse {
+rather than
+class NoBodyResponse extends HttpServletResponseWrapper {
+The patch attached to the jira issue makes this change and adapts NoBodyResponse to be a subclass of HttpServletResponseWrapper and the user reports that it fixes the problem.
+  I don't know if there would be formatting issues applying the patch to tomcat's copy of the spec classes.

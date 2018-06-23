@@ -1,0 +1,9 @@
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/comparator/tests/FieldDeltaTests.java
+apitools/org.eclipse.pde.api.tools.tests/tests-deltas/field/test78/after/X.java
+apitools/org.eclipse.pde.api.tools/src_ant/org/eclipse/pde/api/tools/internal/tasks/APIFreezeReportConversionTask.java
+apitools/org.eclipse.pde.api.tools/src_ant/org/eclipse/pde/api/tools/internal/tasks/messages.properties
+apitools/org.eclipse.pde.api.tools.tests/tests-deltas/field/test78/before/X.java
+apitools/org.eclipse.pde.api.tools/src_ant/org/eclipse/pde/api/tools/internal/tasks/Messages.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/util/Util.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/comparator/DeltaXmlVisitor.java
+apitools/org.eclipse.pde.api.tools/src_ant/org/eclipse/pde/api/tools/internal/tasks/FilterListDeltaVisitor.java

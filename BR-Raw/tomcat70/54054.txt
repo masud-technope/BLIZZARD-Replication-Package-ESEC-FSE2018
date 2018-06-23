@@ -1,0 +1,15 @@
+54054 – 2 CGIServlet's with different Parameter passShellEnvironment
+Created attachment 29511 [details]
+2 webapps test1/test2.
+I'm running Tomcat 6.0.36 with Java 1.6.0_32 on Ubuntu 12.04 (64 Bit).
+I have 2 webapps test1 and test2 which use CGI with CGIServlet.
+The difference between test1 and test2 is the Parameter passShellEnvironment.
+test1 sets it to true, test2 to false.
+When I call .../cgi-bin/getenv.pl, both apps show the complete environment.
+I searched the source of CGIServlet and found, that there is a static
+Hashtable:
+static Hashtable<String,String> shellEnv = new Hashtable<String,String>();
+So test1 sets this Hashtable and test2 has it too.
+I suggest to remove the static.
+Then only test1 has the environment.
+In Tomcat 7.0.32 the problem is the same.

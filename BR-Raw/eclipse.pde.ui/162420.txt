@@ -1,0 +1,6 @@
+Bug 162420 – OSGi Console view
+A Plugin that lets you launch an OSGi Console from the console view, while Eclipse is running.
+Requires changes to org.eclipse.osgi.framework.internal.core.FrameworkConsole and FrameworkCommandProvider (Bug 162415).
+The plugin creates a FrameworkConsole, and extends IOConsole, then sends it's input to the framework, and takes FrameworkCOnsole's ouput.
+Then it registers itself with the IConsoleManager.
+It overrides the dispose() method to close the FrameworkConsole, then close normally.

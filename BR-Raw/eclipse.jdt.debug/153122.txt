@@ -1,0 +1,25 @@
+Bug 153122 – CCE performing eval of switch statement
+I20060807-2000
+* debug to breakpoint on first line of "Deck.shuffle()" in following example
+* evaluate the following snippet:
+for (Card card : fCards) {
+switch (card.getSuite()) {
+case HEARTS:
+System.out.println("BEST");
+break;
+default:
+System.err.println("OTHER");
+break;
+}
+}
+Boom:
+java.lang.ClassCastException: org/eclipse/jdt/internal/debug/core/model/JDIObjectValue incompatible with org/eclipse/jdt/debug/core/IJavaPrimitiveValue
+at org.eclipse.jdt.internal.debug.eval.ast.instructions.EqualEqualOperator.getBooleanResult(EqualEqualOperator.java:41)
+at org.eclipse.jdt.internal.debug.eval.ast.instructions.BinaryOperator.executeBinary(BinaryOperator.java:101)
+at org.eclipse.jdt.internal.debug.eval.ast.instructions.BinaryOperator.execute(BinaryOperator.java:38)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.Interpreter.execute(Interpreter.java:50)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine$1$EvaluationRunnable.run(ASTEvaluationEngine.java:455)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.runEvaluation(JDIThread.java:636)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine$EvalRunnable.run(ASTEvaluationEngine.java:489)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run(JDIThread.java:2532)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)

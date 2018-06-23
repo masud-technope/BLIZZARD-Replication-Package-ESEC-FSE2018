@@ -1,0 +1,14 @@
+49428 – Fix WebDAV mounts from Windows Mini-Redirector clients
+Created attachment 25584 [details]
+The patch for WebdavServlet
+The WebdavServlet does not work with native Windows clients besides the deprecated Web Folders.
+The more modern, common and supported by Microsoft client, Windows Mini-Redirector that allows mapping of WebDAV shares to local drives cannot mount a WebDAV share served by tomcat's WebdavServlet.
+You can observe this by using the following command from a windows machine:
+> net use * http://hostname:8080/webdav
+It should fail without the attached patch.
+The reason is that:
+DAV: namespaced elements in a PROPFIND responses can not use a default namespace; each element must be explicitly prefixed with a namespace prefix defined in itself or a parent.
+If a default namespace is used the client will give no errors, but will not display any resources.
+This is mentioned here, albeit for a single Windows version, Windows Server 2003:
+http://www.greenbytes.de/tech/webdav/webdav-redirector-list.html
+I have verified that the patch fixes WebDAV mounts for Windows XP, Vista & 7.

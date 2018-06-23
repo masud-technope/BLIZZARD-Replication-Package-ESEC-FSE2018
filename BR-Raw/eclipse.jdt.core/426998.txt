@@ -1,0 +1,15 @@
+Bug 426998 – [1.8][compiler] method(java.lang.Class, java.lang.String) not applicable for the arguments (java.lang.Class, java.lang.String)
+This seems like a very recent regression.
+This code no longer compiles:
+public class Snippet {
+static void call(Class type, long init) {
+String string = new String();
+method(type, init == 0 ? new String() : string);
+}
+private static void method(Class type, String s) {}
+}
+The error is:
+The method method(java.lang.Class, java.lang.String) in the type Snippet is not applicable for the arguments (java.lang.Class, java.lang.String)
+The code is narrowed down from JNA source code project that has been sitting open in my workspace for some time.
+Originally the two methods were named the same, but this was required to cause the error.
+The cause might be the fix to bug 426764 in which case feel free to mark as duplicate.

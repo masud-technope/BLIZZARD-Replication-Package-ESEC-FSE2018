@@ -1,0 +1,9 @@
+Bug 178309 – Using the add required bundles in the product editor brings along javax.servlet
+I200703200010
+I created a simple rcp application based on the RCP app template.
+Then I created a product file based on plug-ins, went to the configuration tab and added my newly created plugin.
+Finally I pressed the "add required plugins" button to discover that my small application required javax.servlet!!!! You could imagine my surprise.
+So I would like to understand:
+- who brings that bundle in? I would suspect it is either org.eclipse.osgi.services (that I happen to have in my target because I have the delta pack loaded) or help (which is why I cc'ed Curtis)
+- why
+- is it really needed (if it is then the RCP feature is invalid since it does not contain it)

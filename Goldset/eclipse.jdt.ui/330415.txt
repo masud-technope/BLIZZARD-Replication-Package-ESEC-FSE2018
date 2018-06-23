@@ -1,0 +1,13 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/operator_in/TestDiffDiff.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/operator_in/TestDivideDivide.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/operator_in/TestPlusDiff.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/operator_in/TestTimesDivide.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/operator_in/TestTimesTimes.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/operator_out/TestDiffDiff.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/operator_out/TestDivideDivide.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/operator_out/TestPlusDiff.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/operator_out/TestPlusPlus.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/operator_out/TestTimesDivide.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/operator_out/TestTimesTimes.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/InlineMethodTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/SourceProvider.java

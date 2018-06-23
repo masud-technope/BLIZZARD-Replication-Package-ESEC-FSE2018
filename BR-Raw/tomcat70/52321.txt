@@ -1,0 +1,4 @@
+52321 – coda/prelude order not respected
+WebXml (http://svn.apache.org/repos/asf/tomcat/tc7.0.x/trunk/java/org/apache/catalina/deploy/WebXml.java) and in ApplicationJspConfigDescriptor (http://svn.apache.org/repos/asf/tomcat/tc7.0.x/trunk/java/org/apache/catalina/core/ApplicationJspConfigDescriptor.java) jspPropertyGroups are HashSet but this kind of set doesn't preserve the order in which elements are added.
+However it should be guaranteed to be spec compliant.
+Using a LinkedHashSet instead of the HashSet fixes this issues.

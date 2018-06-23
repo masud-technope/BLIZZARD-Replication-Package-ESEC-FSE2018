@@ -1,0 +1,10 @@
+Bug 308547 – classpath entries added using Manifest.MF editor need to check the bundle root.
+Build Identifier: 3.6
+If I have a bundle root that differs from the project root, and I use the Manifest editor to add classpath entries, the entries are always added relative to the project root, not the bundle root.
+Reproducible: Always
+Steps to Reproduce:
+If I have a Web bundle and my bundle root is WebContent.
+When I use the Form based Manifest editor ( Runtime tab) to add the WEB-INF/classes classpath entry, I end up with this entry added:
+Bundle-ClassPath: WebContent/WEB-INF/classes/
+What I expect is to get this
+Bundle-ClassPath: WEB-INF/classes/

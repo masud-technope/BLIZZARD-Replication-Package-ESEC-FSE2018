@@ -1,0 +1,3 @@
+Bug 314584 – [Discovery][DNS-SD] Use local system search path if not given programmatically
+Contrary to multicast based discovery provider, DNS-SD does not define the default domain to search.
+Thus the provider should fall back to the system's default search path if no other search path is given programmatically.

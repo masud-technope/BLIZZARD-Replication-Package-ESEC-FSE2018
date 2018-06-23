@@ -1,0 +1,6 @@
+Bug 412139 – [hovering] Links in Javadoc hover/view headers don't resolve fully-qualified types correctly
+Links in Javadoc hover/view headers don't resolve fully-qualified types correctly.
+Many examples can be found in org.eclipse.jdt.core.dom.ASTConverter, e.g.
+recordNodes(ASTNode node, org.eclipse.jdt.internal.compiler.ast.ASTNode oldASTNode).
+The Javadoc tool generates title attributes like "class or interface in org.eclipse.jdt.internal.compiler.ast" for links to types.
+We could also generate titles, but we better just use "in <package>" syntax.

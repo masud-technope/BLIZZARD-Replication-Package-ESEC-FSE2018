@@ -1,0 +1,3 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/RuntimeClasspathAdvancedDialog.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/RuntimeClasspathEntry.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/IRuntimeClasspathEntry.java

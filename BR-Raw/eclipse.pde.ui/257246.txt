@@ -1,0 +1,57 @@
+Bug 257246 – Compiler warnings in I20081202-0800
+1.
+WARNING in /src/org/eclipse/pde/internal/ua/ui/editor/cheatsheet/comp/CompCSFormOutlinePage.java
+(at line 22)
+import org.eclipse.pde.internal.ui.PDEPlugin;
+The import org.eclipse.pde.internal.ui.PDEPlugin is never used
+/src/org/eclipse/pde/internal/ua/ui/editor/cheatsheet/simple/SimpleCSFormOutlinePage.java : 2 warnings :
+OTHER WARNINGS 1.
+WARNING in /src/org/eclipse/pde/internal/ua/ui/editor/cheatsheet/simple/SimpleCSFormOutlinePage.java
+(at line 22)
+import org.eclipse.pde.internal.ui.PDEPlugin;
+The import org.eclipse.pde.internal.ui.PDEPlugin is never used
+/src/org/eclipse/pde/internal/ua/ui/editor/ctxhelp/CtxHelpFormOutlinePage.java : 2 warnings :
+OTHER WARNINGS 1.
+WARNING in /src/org/eclipse/pde/internal/ua/ui/editor/ctxhelp/CtxHelpFormOutlinePage.java
+(at line 20)
+import org.eclipse.pde.internal.ui.PDEPlugin;
+The import org.eclipse.pde.internal.ui.PDEPlugin is never used
+/src/org/eclipse/pde/internal/ua/ui/editor/toc/TocFormOutlinePage.java : 2 warnings :
+OTHER WARNINGS 1.
+WARNING in /src/org/eclipse/pde/internal/ua/ui/editor/toc/TocFormOutlinePage.java
+(at line 21)
+import org.eclipse.pde.internal.ui.PDEPlugin;
+The import org.eclipse.pde.internal.ui.PDEPlugin is never used
+/src/org/eclipse/pde/internal/ua/ui/editor/toc/TocPage.java : 13 warnings :
+OTHER WARNINGS 1.
+WARNING in /src/org/eclipse/pde/internal/ua/ui/editor/toc/TocPage.java
+(at line 22)
+import org.eclipse.pde.internal.core.text.IEditingModel;
+The import org.eclipse.pde.internal.core.text.IEditingModel is never used
+2.
+WARNING in /src/org/eclipse/pde/internal/ua/ui/editor/toc/TocPage.java
+(at line 32)
+import org.eclipse.pde.internal.ui.editor.IFoldingStructureProvider;
+The import org.eclipse.pde.internal.ui.editor.IFoldingStructureProvider is never used
+3.
+WARNING in /src/org/eclipse/pde/internal/ua/ui/editor/toc/TocPage.java
+(at line 35)
+import org.eclipse.pde.internal.ui.editor.PDEProjectionSourcePage;
+The import org.eclipse.pde.internal.ui.editor.PDEProjectionSourcePage is never used
+4.
+WARNING in /src/org/eclipse/pde/internal/ua/ui/editor/toc/TocPage.java
+(at line 36)
+import org.eclipse.pde.internal.ui.editor.plugin.PluginFoldingStructureProvider;
+The import org.eclipse.pde.internal.ui.editor.plugin.PluginFoldingStructureProvider is never used
+/src/org/eclipse/pde/internal/ua/ui/editor/toc/TocSourcePage.java : 5 warnings :
+OTHER WARNINGS 1.
+WARNING in /src/org/eclipse/pde/internal/ua/ui/editor/toc/TocSourcePage.java
+(at line 29)
+import org.eclipse.pde.internal.ui.editor.PDEProjectionSourcePage;
+The import org.eclipse.pde.internal.ui.editor.PDEProjectionSourcePage is never used
+/src/org/eclipse/pde/internal/ua/ui/wizards/toc/NewTocFileWizard.java : 1 warning :
+OTHER WARNINGS 1.
+WARNING in /src/org/eclipse/pde/internal/ua/ui/wizards/toc/NewTocFileWizard.java
+(at line 18)
+import org.eclipse.pde.internal.ua.ui.PDEUserAssistanceUIPluginImages;
+The import org.eclipse.pde.internal.ua.ui.PDEUserAssistanceUIPluginImages is never used

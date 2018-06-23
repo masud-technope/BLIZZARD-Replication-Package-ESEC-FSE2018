@@ -1,0 +1,50 @@
+Bug 465363 – SISPSIE in JavaDebugHover.findLocalVariable (141)
+The following incident was reported via the automated error reporting:
+code:                   4
+plugin:                 org.eclipse.jdt.debug.ui_3.6.400.v20150123-1739
+message:                Invalid stack frame
+fingerprint:            7c66f3c3
+exception class:        org.eclipse.recommenders.internal.stacktraces.rcp.StandInStacktraceProvider$StandInException
+exception message:      Stand-In Stacktrace supplied by Eclipse Stacktraces & Error Reporting Tool
+number of children:     0
+org.eclipse.recommenders.internal.stacktraces.rcp.StandInStacktraceProvider$StandInException: Stand-In Stacktrace supplied by Eclipse Stacktraces & Error Reporting Tool
+at org.eclipse.jdt.internal.debug.ui.JDIDebugUIPlugin.log(JDIDebugUIPlugin.java:192)
+at org.eclipse.jdt.internal.debug.ui.JDIDebugUIPlugin.log(JDIDebugUIPlugin.java:211)
+at org.eclipse.jdt.internal.debug.ui.JavaDebugHover.findLocalVariable(JavaDebugHover.java:141)
+at org.eclipse.jdt.internal.debug.ui.JavaDebugHover.getHoverInfo2(JavaDebugHover.java:413)
+at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:129)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:85)
+at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
+General Information:
+reported-by:
+anonymous-id:     15a49981-f9a9-487f-a00e-e51077af7df8
+eclipse-build-id: 4.5.0.I20150203-1300
+eclipse-product:  org.eclipse.epp.package.jee.product
+operating system: Windows7 6.1.0 (x86_64) - win32
+jre-version:      1.7.0_60-b19
+The following plug-ins were present on the execution stack (*):
+1.
+org.eclipse.jdt.debug.ui_3.6.400.v20150123-1739
+2.
+org.eclipse.jdt.debug_3.8.200.v20150116-1130
+3.
+org.eclipse.jdt_3.11.0.v20150203-1300
+4.
+org.eclipse.jdt.ui_3.10.100.v20150116-1347
+5.
+org.eclipse.jface.text_3.10.0.v20150112-1146
+6.
+org.eclipse.jface_3.11.0.v20150121-1751
+Please note that:
+* Messages, stacktraces, and nested status objects may be shortened.
+* Bug fields like status, resolution, and whiteboard are sent
+back to reporters.
+* The list of present bundles and their respective versions was
+calculated by package naming heuristics.
+This may or may not reflect reality.
+Other Resources:
+* Report: https://dev.eclipse.org/recommenders/committers/confess/#/problems/54fe5cdce4b0a38aecd7509f
+* Manual: https://dev.eclipse.org/recommenders/community/confess/#/guide
+Thank you for your assistance.
+Your friendly error-reports-inbox.

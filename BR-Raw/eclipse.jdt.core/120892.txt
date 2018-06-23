@@ -1,0 +1,14 @@
+Bug 120892 – [assist] inconsistent completions for constructors an methods
+I20051214-0010
+Consider the CU below and invoke code assist behind the opening parentheses of the method and the constructor call, respectively:
+======== Try.java ========
+package pr120542;
+public class Try {
+void m() {
+wait(
+new String(
+}
+}
+==========================
+- The completion proposals received for the 'wait' method all have an empty completion, while the proposals for the 'String' ctor all have a completion consisting of a single closing parenthesis: ")".
+This seems inconsistent to me and causes bug 120542.

@@ -1,0 +1,3 @@
+Bug 331855 – Add Use Scan builder tests to nightly build
+Tests were checked in as part of fix for Bug #310547.
+Add them to nightly build.

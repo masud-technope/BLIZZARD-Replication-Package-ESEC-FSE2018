@@ -1,0 +1,19 @@
+Bug 488441 – [content assist] Substring proposals have incorrect relevance
+public class Try18 {
+public static void main(String[] args) {
+n|
+}
+}
+- Press ctrl+space after 'n'.
+=> Proposal for 'main(..)' (substring proposal) has a higher relevance than some other Types starting with 'n'.
+----------------------------
+public class Try18 {
+public static void main(String[] args) {
+y|
+}
+}
+- Press ctrl+space after 'y'.
+=> Proposal for 'Try18' (substring proposal) has a higher relevance than other Types starting with 'y'.
+----------------------------
+See screenshot in bug 487668 comment #0.
+Substring proposals should always be less relevant than applicable prefix proposals.

@@ -1,0 +1,6 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTConverter18Test.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/ArrayQualifiedTypeReference.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/ArrayTypeReference.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/TypeReference.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/Parser.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ASTConverter.java

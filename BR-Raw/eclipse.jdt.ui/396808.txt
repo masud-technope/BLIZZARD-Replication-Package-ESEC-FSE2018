@@ -1,0 +1,5 @@
+Bug 396808 – [hovering] Package hovering shows multiple hyperlinks if the package is present in multiple location in the build path.
+Hover over the package import java.lang.*; code present in a java file.
+Make sure the package is present in multiple jars and the jars are included in the classpath of the current project.
+While hovering multiple links of "java.lang" are displayed in the hover window and all of them point to the same Javadoc content.
+Duplicate link should not be displayed in the hover window if the Javadoc contents are the same.

@@ -1,0 +1,20 @@
+Bug 262517 – [ast rewrite] Whitespace settings in formatter ignored when adding annotation
+Build ID: 3.4M4
+Steps To Reproduce:
+1.
+Open Preferences
+2.
+Create your own format under Java->Code Style->Formatter
+3.
+Click the WhiteSpace tab
+4.
+Under Declarations->Annotations check the before opening parentheses option
+5.
+Save and close
+6.
+Now in the java editor create a statement which produces a warning for say deprecated
+7.
+Choose Cmd+1 for Quick Fix and choose the "Add suppress warnings" autofix option
+8.
+Annotation is added but the whitespace option you set is ignored
+More information:

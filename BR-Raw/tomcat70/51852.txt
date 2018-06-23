@@ -1,0 +1,8 @@
+51852 – BeanELResolver varargs handling is broken in multiple ways
+The supplied patch (against SVN Revision 1173292) addresses:
+- Incorrectly constructed varargs arguments (resulting in ArrayIndexOutOfBoundsExceptions)
+- Incorrectly detected matching varargs methods
+I originally encountered the first issue in my JSF application using the JUEL EL implementation in conjunction with Tomcat's EL API.
+ However I continue to get the error even when dropping JUEL from the application, so I'm not sure why in some instances the Jasper implementation seems to handle the varargs invocations and in others the BeanELResolver is invoked.
+ In any event, code that already resides in BeanELResolver should certainly function properly, and mixing a given ExpressionFactory implementation with any conforming API implementation should AFAICT be feasible.
+The second issue I encountered while debugging the first issue.

@@ -1,0 +1,5 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/formatter/FormatterCommentsBugsTest.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/formatter/FormatterBugsTests.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/formatter/org/eclipse/jdt/internal/formatter/Scribe.java
+org.eclipse.jdt.core/formatter/org/eclipse/jdt/internal/formatter/OptimizedReplaceEdit.java

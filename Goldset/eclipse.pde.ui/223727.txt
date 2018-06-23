@@ -1,0 +1,12 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/ConfigurationFileInfo.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/exports/ProductExportOperation.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/iproduct/IConfigurationFileInfo.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/iproduct/IProduct.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/ConfigurationFileInfo.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/Product.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/WorkspaceProductModel.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/ConfigurationSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/LaunchAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/product/BaseProductCreationOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/product/ProductFromConfigOperation.java

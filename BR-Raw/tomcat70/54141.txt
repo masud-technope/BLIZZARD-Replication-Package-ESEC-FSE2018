@@ -1,0 +1,15 @@
+54141 – Configuration does not allow Realms to be nested more than 2 levels deep
+The use case is to have one Realm that is configured for lock-out with another that is not: the two should be combined together.
+The obvious configuration attempt is this:
+<CombinedRealm>
+<LockoutRealm>
+<DataSourceRealm/>
+</LockoutRealm>
+<UserDatabaseRealm/>
+</CombinedRealm>
+Unfortunately, this configuration yields an error:
+No rules found matching 'Server/Service/Engine/Realm/Realm/Realm'
+org.apache.catalina.startup.RealmRuleSet.addRuleInstances only goes 2 levels deep when it comes to Realms (that is, only allows "Realm" and "Realm/Realm").
+Adding a 3rd level would certainly work here and might be sufficient.
+Another option would be to configure the digester to allow arbitrary levels of Realm-nesting for even the most pathological cases.
+For reference, see this link to a question over on StackOverflow: http://stackoverflow.com/questions/13274696/tomcat-7-nesting-combinedrealm-lockoutrealm-and-datasourcerealm

@@ -1,0 +1,7 @@
+Bug 322812 – [JUnit] JUnit library container can't resolve binary-imported org.hamcrest.core
+Created attachment 176684 [details]
+Fix
+HEAD
+The JUnit library container can't resolve a binary-imported org.hamcrest.core bundle.
+This makes e.g.
+TestRunSessionSerializationTests4 fail.

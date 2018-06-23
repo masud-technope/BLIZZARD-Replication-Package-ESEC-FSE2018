@@ -1,0 +1,5 @@
+org.apache.naming.resources.DirContextURLConnection.list
+org.apache.catalina.startup.ContextConfig.processAnnotationsJndi
+org.apache.catalina.startup.ContextConfig.processAnnotationsUrl
+org.apache.catalina.startup.ContextConfig.webConfig
+org.apache.catalina.startup.ContextConfig.start

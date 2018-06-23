@@ -1,0 +1,9 @@
+conf/catalina.properties
+java/org/apache/catalina/startup/Constants.java
+java/org/apache/catalina/startup/ContextConfig.java
+java/org/apache/catalina/startup/TldConfig.java
+java/org/apache/jasper/Constants.java
+java/org/apache/jasper/compiler/TldLocationsCache.java
+java/org/apache/jasper/resources/LocalStrings.properties
+webapps/docs/changelog.xml
+webapps/docs/config/systemprops.xml

@@ -1,0 +1,71 @@
+Bug 431275 – Deadlock in JavaModelManager$PerProjectInfo and DeltaProcessingState
+An adopter product (IBM) than runs in headless mode is hitting a deadlock with monitors org/eclipse/jdt/internal/core/JavaModelManager$PerProjectInfo and org/eclipse/jdt/internal/core/DeltaProcessingState.
+This product started to hit this deadlock with JDT 3.6.50.v_B79_R36x_J7 (org.eclipse.jdt.core_3.6.50.v_B79_R36x_J7.jar).
+They did not see this deadlock when they were using 3.6.4.v_A79_R36x (org.eclipse.jdt.core_3.6.4.v_A79_R36x).
+I noticed that the patch in bugzilla https://bugs.eclipse.org/bugs/show_bug.cgi?id=338006 was put into the stream between those two versions (although the bugzilla was targeted to 3.7.
+maybe was backported), and the code added there appears in all the stack traces I have collected (specifically, the call to the new method DeltaProcessor.addPackageFragmentRoot in DeltaProcessor.addToParentInfo).
+BTW, I compared the code with the latest code in master, and the code path involved in these stacks has not changed, so I believe this could happen in master as well.
+Below are the stack traces.
+Thread Name
+Worker-2
+State
+Deadlock/Blocked
+Monitor
+Owns Monitor Lock on org/eclipse/jdt/internal/core/DeltaProcessingState@0x0000000007292CF8
+Waiting for Monitor Lock on org/eclipse/jdt/internal/core/JavaModelManager$PerProjectInfo@0x000000001603D008
+Java Stack
+at org/eclipse/jdt/internal/core/JavaProject.getResolvedClasspath(JavaProject.java:1956)
+at org/eclipse/jdt/internal/core/PackageFragmentRoot.getResolvedClasspathEntry(PackageFragmentRoot.java:563)
+at org/eclipse/jdt/internal/core/DeltaProcessor.addPackageFragmentRoot(DeltaProcessor.java:325)
+at org/eclipse/jdt/internal/core/DeltaProcessor.addToParentInfo(DeltaProcessor.java:297)
+at org/eclipse/jdt/internal/core/DeltaProcessor.elementAdded(DeltaProcessor.java:1156)
+at org/eclipse/jdt/internal/core/DeltaProcessor.updateCurrentDeltaAndIndex(DeltaProcessor.java:2483)
+at org/eclipse/jdt/internal/core/DeltaProcessingState.updateRoots(DeltaProcessingState.java:621)
+at org/eclipse/jdt/internal/core/DeltaProcessor.updateCurrentDeltaAndIndex(DeltaProcessor.java:2479)
+at org/eclipse/jdt/internal/core/DeltaProcessor.traverseDelta(DeltaProcessor.java:2206)
+at org/eclipse/jdt/internal/core/DeltaProcessor.processResourceDelta(DeltaProcessor.java:1894)
+at org/eclipse/jdt/internal/core/DeltaProcessor.resourceChanged(DeltaProcessor.java:2067)
+at org/eclipse/jdt/internal/core/DeltaProcessingState.resourceChanged(DeltaProcessingState.java:470)
+at org/eclipse/core/internal/events/NotificationManager$2.run(NotificationManager.java:291)
+at org/eclipse/core/runtime/SafeRunner.run(SafeRunner.java:42)
+at org/eclipse/core/internal/events/NotificationManager.notify(NotificationManager.java:285)
+at org/eclipse/core/internal/events/NotificationManager.broadcastChanges(NotificationManager.java:149)
+at org/eclipse/core/internal/resources/Workspace.broadcastPostChange(Workspace.java:327)
+at org/eclipse/core/internal/resources/Workspace.endOperation(Workspace.java:1181)
+at org/eclipse/core/internal/resources/Workspace.run(Workspace.java:1984)
+at org/eclipse/core/internal/events/NotificationManager$NotifyJob.run(NotificationManager.java:40)
+at org/eclipse/core/internal/jobs/Worker.run(Worker.java:54)
+Thread Name
+main
+State
+Deadlock/Blocked
+Monitor
+Owns Monitor Lock on org/eclipse/jdt/internal/core/JavaModelManager$PerProjectInfo@0x000000001603D008
+Waiting for Monitor Lock on org/eclipse/jdt/internal/core/DeltaProcessingState@0x0000000007292CF8
+Java Stack
+at org/eclipse/jdt/internal/core/JavaModelManager$PerProjectInfo.addClasspathChange(JavaModelManager.java:1209)
+at org/eclipse/jdt/internal/core/JavaModelManager$PerProjectInfo.setClasspath(JavaModelManager.java:1190)
+at org/eclipse/jdt/internal/core/JavaModelManager$PerProjectInfo.setResolvedClasspath(JavaModelManager.java:1229)
+at org/eclipse/jdt/internal/core/JavaProject.resolveClasspath(JavaProject.java:2859)
+at org/eclipse/jdt/internal/core/JavaProject.getResolvedClasspath(JavaProject.java:1991)
+at org/eclipse/jem/workbench/utility/JemProjectUtilities.collectClasspathURLs(JemProjectUtilities.java:452)
+at org/eclipse/jem/workbench/utility/JemProjectUtilities.getClasspathAsURLArray(JemProjectUtilities.java:436)
+...
+(Adopter code)
+...
+at org/eclipse/core/internal/resources/Workspace.run(Workspace.java:1975)
+at org/eclipse/core/internal/resources/Workspace.run(Workspace.java:1957)
+...
+(Adopter code)
+...
+at sun/reflect/NativeMethodAccessorImpl.invoke0(Native Method)
+at sun/reflect/NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:60)
+at sun/reflect/DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:37)
+at java/lang/reflect/Method.invoke(Method.java:611)
+at org/eclipse/equinox/internal/app/EclipseAppContainer.callMethodWithException(EclipseAppContainer.java:587)
+at org/eclipse/equinox/internal/app/EclipseAppHandle.run(EclipseAppHandle.java:198)
+at org/eclipse/core/runtime/internal/adaptor/EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+at org/eclipse/core/runtime/internal/adaptor/EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+at org/eclipse/core/runtime/adaptor/EclipseStarter.run(EclipseStarter.java:369)
+...
+(Adopter code)

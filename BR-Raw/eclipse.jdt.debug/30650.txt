@@ -1,0 +1,10 @@
+Bug 30650 – Conditional breakpoint compilation problem dialog usability
+Build: I20030129
+If you have a compilation problem in a breakpoint condition, a dialog pops up at
+runtime to correct the error.
+ This dialog has the following problems:
+- the text entry field does not scroll if the condition doesn't fit in the
+allotted space.
+- default focus should be given to the text entry field, rather than the ok button
+- (minor nit) it looks weird to have this entry field center justified.
+Usually these fields are left justified in the dialog.

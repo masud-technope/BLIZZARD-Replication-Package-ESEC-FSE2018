@@ -1,0 +1,5 @@
+Bug 314999 – [Discovery][DNS-SD] Implement IDiscoveryAdvertiser
+IDiscoveryAdvertiser should be implemented based on DDNS [0][1].
+This update mechanism is used by bind, the most commonly used DNS server.
+[0] http://en.wikipedia.org/wiki/Dynamic_DNS
+[1] http://tools.ietf.org/html/rfc2136

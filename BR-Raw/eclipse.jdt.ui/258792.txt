@@ -1,0 +1,3 @@
+Bug 258792 – [package explorer] 'Working Set Assignments' dialog no longer sorted if new ws is created
+3.5 M4.
+The 'Working Set Assignemnts' dialog is no longer sorted if a new working set is created.

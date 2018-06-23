@@ -1,0 +1,6 @@
+54618 – Add filter implementing HTTP Strict Transport Security (HSTS) [PATCH]
+Created attachment 30000 [details]
+The actual filter
+The specification for HTTP Strict Transport Security (HSTS) has now been published (RFC 6797).
+Tomcat should include a filter implementing the specification to make it easy to add to web applications.
+I have attached an implementation suggestion.

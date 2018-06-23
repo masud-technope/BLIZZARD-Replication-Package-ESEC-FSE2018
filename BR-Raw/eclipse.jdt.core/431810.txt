@@ -1,0 +1,8 @@
+Bug 431810 – Annotations on constructors are always interpreted as type use annotations
+Created attachment 241511 [details]
+Test project
+We have a test in Xtext that fails on the current 4.4 integration build because
+annotations on constructors are interpreted as type use annotations and as such no longer returned by IMethodBinding.getAnnotations().
+The annotation does not have a @Target.
+As we neither compile nor execute against Java8 this is a regression.
+I've attached a test project: The (plug-in) test fails as long as the @Target is not defined on MyAnnotation.

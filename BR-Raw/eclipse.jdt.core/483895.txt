@@ -1,0 +1,2 @@
+Bug 483895 – [content assist] Disable and remove substring completion from Preferences
+Disable and remove substring code completion from Preferences until dependent bugs like bug 470203, bug 483511, bug 483512 and bug 483888 are fixed.

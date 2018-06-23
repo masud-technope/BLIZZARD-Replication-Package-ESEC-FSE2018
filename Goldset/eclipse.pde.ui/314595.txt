@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDECore.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PluginModelManager.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDECore.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PluginModelManager.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDECore.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PluginModelManager.java

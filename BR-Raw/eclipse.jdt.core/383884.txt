@@ -1,0 +1,17 @@
+Bug 383884 – [1.8][compiler] Compiler tolerates illegal dimension annotation in class literal expressions.
+BETA_JAVA8:
+JSR308 forbids application of type annotations on class literals.
+The draft spec cites the following examples as illegal ones:
+@Even int.class // illegal!
+int @NonEmpty [].class // illegal!
+ECJ's grammar as of this date forbids the former, but allows the
+latter.
+This needs to be fixed:
+//--------------
+public class X {
+public static void main(String[] args) {
+System.out.println(int @NonEmpty [].class); // illegal, but allowed now
+}
+}
+@interface NonEmpty {
+}

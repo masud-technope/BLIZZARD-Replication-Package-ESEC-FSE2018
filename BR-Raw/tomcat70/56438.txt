@@ -1,0 +1,17 @@
+56438 – If jar scan does not find context config or TLD config, log a message
+I went through the same process as many others migrating to Tomcat 7.
+My simple war application took orders of magnitude longer to load than in Tomcat 3.3, and root cause was new Tomcat 7 / Servlet 3.0 jar scanning to look for context config fragments.
+This is a very painful process.
+I had to use FINE log level, parse thousands of Tomcat log messages, and google the various messages.
+This was a waste of time.
+All Tomcat 7 needed to do was log a message when the jar scan did not find anything in a jar, and recommend adding that jar to one of the filters in catalina.properties.
+tomcat.util.scan.DefaultJarScanner.jarsToSkip
+org.apache.catalina.startup.ContextConfig.jarsToSkip
+org.apache.catalina.startup.TldConfig.jarsToSkip.
+As an enhancement, please add a log message recommending adding a jar if scanning does not find anything.
+I would recommend setting the log level to FINE, and explicitly putting a logging.properties override for that message in logging.properties.
+Anyone new to Tomcat 7 can fix these messages by either following the recommendation, or commenting out the logging.properties override for the message.
+This is low hanging fruit.
+It should be straight forward to add, and would be a huge help for anyone new to Tomcat 7 who are unaware of the performance impact of Servlet 3.0 jar scanning.
+It could even help Tomcat 7 veterans too, when they add/upgrade/replace existing jar files that unknowingly affect jar scanning performance.
+Thank you.

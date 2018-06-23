@@ -1,0 +1,3 @@
+Bug 151324 – PDE should warn user if Bundle-SymbolicName not specified in Manifest
+There is no warning/error if the user accidentally removes the Bundle-SymbolicName header.
+ Since a project is only a PDE project if the user wishes to make an OSGi bundle, we should flag this as missing a required header.

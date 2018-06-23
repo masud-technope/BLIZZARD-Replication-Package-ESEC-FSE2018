@@ -1,0 +1,13 @@
+Bug 422800 – [1.8][compiler] "Missing code implementation in the compiler" 2
+Follow-up to bug 422515.
+This time, I won't guess a reason...
+package jsr335;
+public class LambdaAccess2 {
+private String fField; // must be here; can be used or unused
+public void foo(Integer arg) {
+new Thread(() -> {
+// at "arg": Missing code implementation in the compiler
+arg.intValue();
+});
+}
+}

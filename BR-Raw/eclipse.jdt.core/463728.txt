@@ -1,0 +1,31 @@
+Bug 463728 – [1.8][compiler][inference] Ternary operator in lambda derives wrong type
+Mars (4.5) I20150320-0800
+This error is shown "Type mismatch cannot convert from Object to Color".
+The ternary operator at the bottom of the example seems to have type Object when it clearly has type Color.
+ The two commented out returns both compile.
+--
+package a_ternary;
+import java.util.function.Function;
+class Color {
+}
+class TypeMapper<R> {
+public TypeMapper() {
+}
+public R orElse(R result) {
+return result;
+}
+}
+public class Main {
+Color A;
+Color B;
+public static <T, R> TypeMapper<R> mapType(Function<T, R> mapper) {
+return new TypeMapper<R>();
+}
+public Color getForeground(Object element) {
+return mapType(library -> {
+//			return A;
+//			return (Color)(element != null ? A : B);
+return (element != null ? A : B);
+}).orElse(null);
+}
+}

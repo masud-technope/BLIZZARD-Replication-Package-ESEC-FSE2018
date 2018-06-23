@@ -1,0 +1,33 @@
+Bug 377141 – [hovering] if-else closing bracket hover should always include else
+Follow up for bug 184056
+Copying bug 184056 comment 42 for easy reference
+> (In reply to comment #39)
+> > Discussion topic: What should the hover show for the last '}' in
+> > "if (..) {..} else {..}"? Both the "if" and the "else" are interesting, and
+> > both are only really valuable if the other one is also shown.
+> >
+> > I currently think we should handle this special case (two blocks in one
+> > statement) specially unless we show the full hover.
+E.g.
+stitch together both
+> > headers like this:
+> >    if (..) {
+> >        foo();
+> >        bar();
+> > ...
+> >    } else {
+> >        foo2();
+> >        bar2();
+> > -----------------------------------------------
+> >                               <n> lines skipped
+>
+>
+> I agree, but I would also expect a "..." in the else branch:
+>    if (..) {
+>        foo();
+>        bar();
+> ...
+>    } else {
+>        foo2();
+>        bar2();
+> ...

@@ -1,0 +1,11 @@
+Bug 266548 – [target] Move... target button allows targets to be moved on top of each other
+Move...
+button was added in bug 264901.
+ Since we are on a preference page we don't actually create the new files in the workspace until OK or Apply is pressed.
+The move...
+dialog only checks workspace files conflicts.
+ So it is possible to move two target definitions to the same place.
+ When this happens, one overwrites the other which is lost forever.
+This is an uncommon case, but it is easily fixable.
+ We just need to pass the list of 'moved' targets to the Move wizard.
+ It can do an additional check to see if the path the user has chosen is already in the list and set an error message on the wizard.

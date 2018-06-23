@@ -1,0 +1,13 @@
+Bug 354586 – API Errors/Warnings severity fishy
+N20110810-2000.
+Something is fishy when determining the severity of an API Errors/Warnings problem.
+1.
+start new workspace
+2.
+set 'Missing execution environment descriptions' to 'Warning'
+3.
+checkout 'org.eclipse.ui.navigator' from HEAD
+==> WRONG: error after build due to missing EE description
+4.
+open the 'API Errors/Warnings' property page for the project
+==> OK: the page  indicates that the problem should be reported as warning

@@ -1,0 +1,8 @@
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/build/properties/AbstractBuildValidationTest.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/CompilerFlags.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/PDECompilersConfigurationBlock.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDECoreMessages.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PreferenceInitializer.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/BuildErrorReporter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/pderesources.properties

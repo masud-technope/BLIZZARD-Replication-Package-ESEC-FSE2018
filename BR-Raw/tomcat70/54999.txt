@@ -1,0 +1,12 @@
+54999 – JSESSIONIDSSO not re-created upon re-authentication on the same request - logout() and login(username,password)
+In testing I found that the JSESSIONIDSSO was not re-created upon re-authentication via logout() and login(username,password) in the same request.
+ The problem stemmed from the REQ_SSOID_NOTE that was was not reset upon request.logout(), whereas the documentation indicates that a logout() from any web-app should logout() from all web-apps.
+ When the REQ_SSOID_NOTE is not removed upon logout(), a subsequent login(username,password) on the same request will re-create a JSESSIONID for the current web-app but fails to re-create a JSESSIONIDSSO since the REQ_SSO_ID_NOTE still lingers on the request.
+AuthenticatorBase.java adjustment for logout(request) that removes the REQ_SSOID_NOTE so that a subsequent login(username,password) will work on the same request:
+@Override
+public void logout(Request request) throws ServletException {
+register(request, request.getResponse(), null,
+null, null, null);
+request.removeNote(Constants.REQ_SSOID_NOTE);
+}
+I'll upload a diff-patch against the trunk and for 7.0.40.

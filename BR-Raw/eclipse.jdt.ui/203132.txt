@@ -1,0 +1,28 @@
+Bug 203132 – [hashcode/equals] Remove unnecessary warning from hashcode/equals generator
+** Background:
+When using Source->Generate hashCode() and equals(), there is a check on whether all included fields implement their own version of hashCode() and equals().
+ If one of the fields does not implement hashCode() or equals(), then the following warning is shown (see example below).
+For example, attempt to run the hashCode/equals generator for the following class:
+<code>
+import java.util.ArrayList;
+public class HashCodeEquals
+{
+private ArrayList<Integer> myList;
+/**
+* @param myList
+*/
+public HashCodeEquals( ArrayList<Integer> myList )
+{
+super();
+this.myList = myList;
+}
+}
+</code>
+The following "problem" is found:
+"The field type 'java.util.ArrayList<java.lang.Integer>' does not implement equals() and hashCode() - the resulting code may not work correctly."
+** What I'm requesting:
+Currently, this check for equals() and hashCode() only looks in the class of the field itself, not any of its ancestors (super classes) of that class.
+ This make sense, because looking at the entire ancestry would reveal Object's implementation, and so we'd always have a positive.
+ I propose checking the entire ancestry, except for Object itself.
+ If one of the ancestor classes (except Object) implements hashCode() and equals(), then the above warning should not be issued for the field in question.
+In the example above, the superclass of ArrayList, java.util.AbstractList, does in fact implement both hashCode() and equals(), so it should be safe.

@@ -1,0 +1,23 @@
+50016 – bad division of responsibility around isUserInRole and new Request login and logout methods
+Created attachment 26089 [details]
+improve division of responsibility for isUserInRole and login/logout methods
+There are 2 similar problems that have a bad division of responsibility.
+1.
+Request.isUserInRole tries to prevent jacc implementations and is also wrong.
+In the current tomcat implementation, role-ref mappings are first applied to the supplied role and then the target role is tested.
+If the user is not in the mapped role the original role is tested.
+However,
+(a).
+jacc requires that this be implemented by constructing a role-ref permission with the current servlet name and the supplied (not mapped) role.
+So to be reasonably amenable to a jacc implementation Request.isUserInRole should supply the original role and if possible the servlet name to the wrapper.
+(b) if there is a mapping, only the mapped role should be checked.
+Aside from the spec language, consider a web app with two roles A and B and a servlet S that maps A to B and B to A.
+A user that logs in and is in role A and not B should be able to test in S
+is in A >> false
+is in B >> true
+The current implementation reports true for both A and B.
+2.
+The implementation of the new login and logout methods are excessively intrusive into the internals of the authentication.
+Both should be delegated directly to the Authenticator.
+In particular, checking which known Authenticator is installed to see if it supports user/pw login is overly restrictive since other authenticators might be installed.
+The authenticator also ought to be able to decide if it wants to cache the authentication results.

@@ -1,0 +1,13 @@
+53828 – StreamInbound.closeOutboundConnection(WsFrame) closes with an opcode instead of status
+201	private void closeOutboundConnection(WsFrame frame) throws IOException {
+202	  try {
+203	    getWsOutbound().close(frame);
+204	  } finally {
+205	    doOnClose(Constants.OPCODE_CLOSE);
+206	  }
+207	}
+Line 205 uses the close opcode instead of a valid status (Constants.STATUS_*).
+Not sure of the exact context of this called but it seems to only be called when the last frame from the client was a close frame, thus a Constants.STATUS_NORMAL may be in order.
+If not, the frame's opcode could be inspected and mapped to an appropriate status (normal, shutdown, etc...).
+Thanks,
+Michael

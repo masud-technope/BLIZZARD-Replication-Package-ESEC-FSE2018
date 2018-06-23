@@ -1,0 +1,20 @@
+50448 – StandardSession.expire causes IllegalStateException: getCreationTime: Session already invalidated
+Hi,
+when verifying the fix for #50360 I ran into an issue with expired sessions during processExpires:
+Dec 10, 2010 12:59:32 AM org.apache.catalina.core.ContainerBase backgroundProcess
+WARNING: Exception processing manager de.javakaffee.web.msm.MemcachedBackupSessionManager[/] background process
+java.lang.IllegalStateException: getCreationTime: Session already invalidated
+at org.apache.catalina.session.StandardSession.getCreationTime(StandardSession.java:1096)
+at org.apache.catalina.session.ManagerBase.remove(ManagerBase.java:802)
+at org.apache.catalina.session.StandardSession.expire(StandardSession.java:840)
+at org.apache.catalina.session.StandardSession.isValid(StandardSession.java:655)
+at org.apache.catalina.session.ManagerBase.processExpires(ManagerBase.java:609)
+at org.apache.catalina.session.ManagerBase.backgroundProcess(ManagerBase.java:594)
+at de.javakaffee.web.msm.MemcachedBackupSessionManager.backgroundProcess(MemcachedBackupSessionManager.java:1130)
+at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1214)
+AFAICS in MemcachedBackupSessionManager I could override remove(Session session, boolean update) with calling super.remove(session, false) for invalid sessions.
+Another option would be to change StandardSession.expire(StandardSession.java:840) so that it does not invoke manager.remove(this, true) but manager.remove(this, false).
+Or even better: change ManagerBase.remove(ManagerBase.java:802) to invoke some session.getCreationTimeInternal() which skips validation.
+What do you think?
+Cheers,
+Martin

@@ -1,0 +1,47 @@
+42530 – ManagerBase.backgroundProcess throws NullPointerException.
+ManagerBase.backgroundProcess throws NullPointerException.
+java.lang.NullPointerException
+at org.apache.catalina.session.ManagerBase.processExpires(ManagerBase.java:682)
+at org.apache.catalina.session.ManagerBase.backgroundProcess(ManagerBase.java:667)
+at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1316)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1601)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1610)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1610)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1590)
+at java.lang.Thread.run(Thread.java:595)
+Environment:
+Tomcat6.0.13
+JDK1.5.11
+TestServletF
+protected void doGet(HttpServletRequest request,
+HttpServletResponse response) throws ServletException, IOException {
+HttpSession session = request.getSession();
+session.invalidate();
+}
+Test:
+ab -c 3000 -n 300000 http://localhost:8080/contextName/TestServlet
+It is as follows in org.apache.catalina.session.ManagerBase:(findSessions()
+that is called by processExpires()).
+public Session[] findSessions() {
+Session results[] = null;
+synchronized (sessions) {
+results = new Session[sessions.size()];  ----- (A)
+results = (Session[]) sessions.values().toArray(results); ----- (B)
+}
+return (results);
+}
+In Tomcat6, sessions of ManagerBase has been changed from HashMap to
+ConcurrentHashMap.
+At the same time, synchronized operations of sessions have been removed from
+the  methods
+such as findSession(String is), add(Session session), and remove(Session
+session).
+However, if the lock of sessions is not acquired by add(Session session) and
+remove(Session session),
+Servlets can execute session.invalidate() between (A) and (B).
+(see above.)
+As a result, NullpointerException is thrown by processing the 682 line of
+ManagerBase.processExpires().
+if (!sessions[i].isValid()) {
+I think add(Session session) and remove(Session session) should manipulate
+sessions in synchronized manner like Tomcat5.5.

@@ -1,0 +1,7 @@
+Bug 15662 – Display of "null" shows nothing
+If I do a display that results in "null" no result is shown.
+If I inspect, I
+see "null".
+This used to work.
+Example.
+Select a variable that has a null value and "display".

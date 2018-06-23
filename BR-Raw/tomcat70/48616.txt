@@ -1,0 +1,130 @@
+48616 – Struts 1.2 and bean:define tag throws jsp 1.1 regression exception
+I'm using Struts 1.2.
+I've upgrade from tomcat 6.0.20 to 6.0.24 and nothing works.
+The jsp compilation throws many error (i use the tag bean:define with same variable many times in jsp):
+During jsp precompilation:
+"my_variable" is already defined in _jspService(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+and at runtime:
+26-gen-2010 10.16.43 org.apache.catalina.core.ApplicationDispatcher invoke
+GRAVE: Servlet.service() for servlet jsp threw exception
+org.apache.jasper.JasperException: Unable to compile class for JSP:
+An error occurred at line: 459 in the generated java file
+Duplicate local variable configurationExists
+An error occurred at line: 576 in the generated java file
+Duplicate local variable configurationExists
+An error occurred at line: 693 in the generated java file
+Duplicate local variable configurationExists
+An error occurred at line: 810 in the generated java file
+Duplicate local variable configurationExists
+An error occurred at line: 927 in the generated java file
+Duplicate local variable configurationExists
+An error occurred at line: 1.045 in the generated java file
+Duplicate local variable configurationExists
+An error occurred at line: 1.162 in the generated java file
+Duplicate local variable configurationExists
+An error occurred at line: 1.279 in the generated java file
+Duplicate local variable configurationExists
+An error occurred at line: 1.396 in the generated java file
+Duplicate local variable configurationExists
+An error occurred at line: 1.531 in the generated java file
+Duplicate local variable patientsExists
+An error occurred at line: 1.660 in the generated java file
+Duplicate local variable patientsExists
+An error occurred at line: 1.777 in the generated java file
+Duplicate local variable patientsExists
+An error occurred at line: 1.897 in the generated java file
+Duplicate local variable multiportionExists
+An error occurred at line: 2.014 in the generated java file
+Duplicate local variable multiportionExists
+An error occurred at line: 2.131 in the generated java file
+Duplicate local variable multiportionExists
+An error occurred at line: 2.251 in the generated java file
+Duplicate local variable generalExists
+An error occurred at line: 2.368 in the generated java file
+Duplicate local variable generalExists
+An error occurred at line: 2.485 in the generated java file
+Duplicate local variable generalExists
+An error occurred at line: 2.605 in the generated java file
+Duplicate local variable messagesExists
+An error occurred at line: 2.722 in the generated java file
+Duplicate local variable messagesExists
+An error occurred at line: 2.842 in the generated java file
+Duplicate local variable printFindExists
+An error occurred at line: 2.959 in the generated java file
+Duplicate local variable printFindExists
+Stacktrace:
+at org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:92)
+at org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:330)
+at org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:439)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:334)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:312)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:299)
+at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:589)
+at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:317)
+at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:313)
+at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:260)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:646)
+at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:551)
+at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:488)
+at org.apache.jasper.runtime.JspRuntimeLibrary.include(JspRuntimeLibrary.java:968)
+at org.apache.jsp.WEB_002dINF.pages.login.mainPage_jsp._jspService(mainPage_jsp.java:206)
+at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:377)
+at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:313)
+at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:260)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:646)
+at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:436)
+at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:374)
+at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:302)
+at org.apache.struts.action.RequestProcessor.doForward(RequestProcessor.java:1062)
+at org.apache.struts.action.RequestProcessor.processForwardConfig(RequestProcessor.java:386)
+at org.apache.struts.action.RequestProcessor.process(RequestProcessor.java:229)
+at org.apache.struts.action.ActionServlet.process(ActionServlet.java:1196)
+at org.apache.struts.action.ActionServlet.doPost(ActionServlet.java:432)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:637)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:646)
+at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:436)
+at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:374)
+at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:302)
+at org.apache.struts.action.RequestProcessor.doForward(RequestProcessor.java:1062)
+at org.apache.struts.action.RequestProcessor.processForwardConfig(RequestProcessor.java:386)
+at org.apache.struts.action.RequestProcessor.process(RequestProcessor.java:229)
+at org.apache.struts.action.ActionServlet.process(ActionServlet.java:1196)
+at org.apache.struts.action.ActionServlet.doPost(ActionServlet.java:432)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:637)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at org.displaytag.filter.ResponseOverrideFilter.doFilter(ResponseOverrideFilter.java:125)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:558)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:298)
+at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:852)
+at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:588)
+at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:489)
+at java.lang.Thread.run(Thread.java:619)
+Before upgrading to 6.0.24 all works fine.
+Reading the documentation of bean:define in struts javadoc i see this message:
+USAGE NOTE - There is a restriction in the JSP 1.1 Specification that disallows using the same value for an id attribute more than once in a single JSP page.
+Therefore, you will not be able to use <bean:define> for the same bean name more than once in a single page.
+But i've not specify any jsp version.
+So, is this a tomcat 6.0.24 regression bug?
+I've not particular compilation type/version specified in my app.

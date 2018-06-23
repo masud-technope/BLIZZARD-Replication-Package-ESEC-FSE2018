@@ -1,0 +1,3 @@
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/TypeConstants.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/MessageSend.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/ResourceLeakTests.java

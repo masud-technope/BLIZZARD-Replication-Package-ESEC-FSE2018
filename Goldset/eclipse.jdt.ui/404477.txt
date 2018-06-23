@@ -1,0 +1,9 @@
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/MoveInstanceMethodProcessor.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/cannotMove/testFail15/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/MoveInstanceMethodTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/MoveInstanceMethodProcessor.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test64/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test64/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/cannotMove/testFail14/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/MoveInstanceMethodTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/MoveInstanceMethodProcessor.java

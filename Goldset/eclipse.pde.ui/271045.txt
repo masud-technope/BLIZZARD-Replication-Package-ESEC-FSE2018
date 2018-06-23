@@ -1,0 +1,14 @@
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/provisional/comparator/ApiComparator.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/BaseApiAnalyzer.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/util/FilteredElements.java
+apitools/org.eclipse.pde.api.tools/src_ant/org/eclipse/pde/api/tools/internal/tasks/messages.properties
+apitools/org.eclipse.pde.api.tools/src_ant/org/eclipse/pde/api/tools/internal/tasks/Messages.java
+apitools/org.eclipse.pde.api.tools/src_ant/org/eclipse/pde/api/tools/internal/tasks/APIToolsAnalysisTask.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/util/Util.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/comparator/DeltaXmlVisitor.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/IApiXmlConstants.java
+apitools/org.eclipse.pde.api.tools/src_ant/org/eclipse/pde/api/tools/internal/tasks/APIFreezeTask.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/buildermessages.properties
+apitools/org.eclipse.pde.api.tools/src_ant/org/eclipse/pde/api/tools/internal/tasks/AnalysisReportConversionTask.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/provisional/comparator/CompareApiScopeVisitor.java
+apitools/org.eclipse.pde.api.tools/src_ant/org/eclipse/pde/api/tools/internal/tasks/APIFreezeReportConversionTask.java

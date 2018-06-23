@@ -1,0 +1,6 @@
+51545 – make threadname available in ExtendedAccessLogValve
+Created attachment 27309 [details]
+Threadname usable in ExtendedAccessLogValve
+As discussed on the tomcat-users mailinglist
+http://old.nabble.com/thread-name-in-extended-access-log-valve-tt32101677.html
+make the threadname of the thread, that served the request, available to the ExtendedAccessLogValve.

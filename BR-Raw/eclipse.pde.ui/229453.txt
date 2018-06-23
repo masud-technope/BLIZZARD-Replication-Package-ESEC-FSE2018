@@ -1,0 +1,12 @@
+Bug 229453 – Inappropriate build.properties errors for yet-to-be-built extra classpath jars that fail to update when the jar is built
+When I extract the EMF source, none of the ant task jars are built and hence they don't exist yet.
+ References to missing jars on the jars.extra.classpath are flagged as errors which is really annoying because it means the newly extract source contains errors already.
+ It seems odd though that missing jars on the jars.compile.order aren't flagged at all while the ones on the jars.extra.classpath are flagged as errors.
+jars.compile.order = .,\
+ant_tasks/uml2.uml.ecore.importer.tasks.jar
+jars.extra.classpath = ../org.eclipse.emf.ant/ant_tasks/emf.ant.tasks.jar
+What makes it even more annoying is that when I actually build the jar, all these downstream errors in other projects don't go away until I clean each project.
+Wouldn't it be better for this to be treated as a warning.
+And to make this all exceedingly annoying, I can't even just create an empty jar to make the warnings go away because the build.xml isn't properly set up to depend on the .class files that go into the jar so the jar won't be rebuilt.
+ It's like all these things are stacked one on the other to make it impossible to work around this little annoyance.
+ We'll need to document all these steps for users setting up an development image from CVS (http://wiki.eclipse.org/EMF/Getting_Source), and that just helps highlight the underlying issues in the PDE, which otherwise is a like one of the crown jewels of Eclipse.

@@ -1,0 +1,4 @@
+Bug 266428 – [Discovery][Composite][JmDNS] org.osgi.framework.Constants.SERVICE_RANKING not set
+Due to a refactoring org.osgi.framework.Constants.SERVICE_RANKING isn't set for org.eclipse.ecf.provider.discovery.CompositeDiscoveryContainer and org.eclipse.ecf.provider.jmdns.container.JMDNSDiscoveryContainer leaving org.eclipse.ecf.provider.jslp.container.JSLPDiscoveryContainer the highest ranking org.eclipse.ecf.discovery.service.IDiscoveryService.
+The property value has to be of type Integer.
+String is ignored by OSGi.

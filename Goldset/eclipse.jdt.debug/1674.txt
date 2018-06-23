@@ -1,0 +1,2 @@
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/LocalVariableImpl.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/MethodImpl.java

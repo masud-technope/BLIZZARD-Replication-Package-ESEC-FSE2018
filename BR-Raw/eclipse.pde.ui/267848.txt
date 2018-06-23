@@ -1,0 +1,7 @@
+Bug 267848 – PDE illegally complains about non-externalized strings
+I20090310-0100, broken since 3.5 M4.
+PDE illegally complains about non-externalized strings in old plug-ins (i.e.
+those which do not have a MANIFEST.MF.
+This used to work up to 3.5 M3.
+While I understand that my pug-in does not use the newest format, I have no clue from PDE why I now get these warnings.
+There is no warning/error saying that my plug-in is outdated.

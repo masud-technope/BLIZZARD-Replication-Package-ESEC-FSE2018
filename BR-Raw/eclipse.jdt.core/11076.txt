@@ -1,0 +1,4 @@
+Bug 11076 – Deleted configs remain in favorite list
+Add some launch configuration to your favorites.
+Delete this configurations via the launch configuration dialog.
+The configurations remain listed in the favorites.

@@ -1,0 +1,5 @@
+test/org/apache/naming/resources/TestNamingContext.java
+test/org/apache/naming/resources/TesterFactory.java
+test/org/apache/naming/resources/TesterObject.java
+java/org/apache/naming/NamingContext.java
+java/org/apache/naming/NamingContextBindingsEnumeration.java

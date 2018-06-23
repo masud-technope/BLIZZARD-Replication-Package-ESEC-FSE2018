@@ -1,0 +1,3 @@
+org.eclipse.jdt.debug.ui/icons/full/wizban/library_wiz.gif
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/JREContainerWizardPage.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaDebugImages.java

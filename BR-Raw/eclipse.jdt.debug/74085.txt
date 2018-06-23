@@ -1,0 +1,16 @@
+Bug 74085 – Exception hyperlink conflicts with stack trace
+The exception hyperlinks and stack trace hyperlinks conflict/overlap when an
+Exception class exists in a stack trace.
+For example, in the following trace,
+the hperlink for the stack NullPointerException.java:61 appears as an
+exception hyperlink, rather than a file link.
+Fix was to define the exception
+hyperlink to be followed by whitespace.
+java.lang.NullPointerException
+at java.lang.Throwable.<init>(Throwable.java:59)
+at java.lang.Throwable.<init>(Throwable.java:73)
+at java.lang.NullPointerException.<init>(NullPointerException.java:61)
+at junit.samples.FloodConsole.main(FloodConsole.java:13)
+Changes in plugin.xml (for exception pattern match regex) and in
+JavaExceptionConsoleTracker (to subtract 1 from match length for link and
+exception name).

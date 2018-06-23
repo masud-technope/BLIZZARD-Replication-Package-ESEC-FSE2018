@@ -1,0 +1,15 @@
+Bug 184222 – [templates] 2 new code templates: finally & lock
+Build ID: xx
+Steps To Reproduce:
+try {
+} finally {
+}
+@@@@
+lock.lock();
+try {
+} finally {
+lock.unlock();
+}
+@@@@
+Both patterns are very common in concurrent programming.
+More information:

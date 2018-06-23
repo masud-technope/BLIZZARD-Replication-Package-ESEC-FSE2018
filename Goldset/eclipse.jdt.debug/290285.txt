@@ -1,0 +1,9 @@
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AutomatedSuite.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/ProjectCreationDecorator.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/JDWPTests.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/state/RefreshStateTests.java
+org.eclipse.jdt.debug/META-INF/MANIFEST.MF
+org.eclipse.jdt.debug/model/org/eclipse/jdt/debug/core/IJavaDebugTarget.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/debug/core/IJavaThread.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIDebugTarget.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIThread.java

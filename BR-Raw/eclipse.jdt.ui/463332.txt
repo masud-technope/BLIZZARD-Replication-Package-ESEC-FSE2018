@@ -1,0 +1,20 @@
+Bug 463332 – [1.8][quick fix] No quick fix to resolve 'default method conflicts' error
+public interface Interface1 {
+public default void x() {
+//...
+}
+}
+public interface Interface2 {
+public void x();
+}
+//The below class has an compile error because it must pick which x() to inherit.
+public abstract class Helper implements Interface1, Interface2 {
+}
+There doesn't seem to be a quick fix for this.
+I was expecting to see a menu with a few options:
+1.
+Override x() completely (empty body with TODO statement, this is like redefining the method).
+2.
+Override x() by using the default implementation in Interface1 (Interface1.super.x();).
+In fact, Eclipse would not code-complete this code.
+I'll file another bug for that.

@@ -1,0 +1,16 @@
+sun.nio.ch.Net.bind
+sun.nio.ch.ServerSocketChannelImpl.bind
+sun.nio.ch.ServerSocketAdaptor.bind
+org.apache.tomcat.util.net.NioEndpoint.init
+org.apache.tomcat.util.net.NioEndpoint.start
+org.apache.coyote.http11.Http11NioProtocol.start
+org.apache.catalina.connector.Connector.start
+org.apache.catalina.core.StandardService.start
+org.apache.catalina.core.StandardServer.start
+org.apache.catalina.startup.Catalina.start
+sun.reflect.NativeMethodAccessorImpl.invoke0
+sun.reflect.NativeMethodAccessorImpl.invoke
+sun.reflect.DelegatingMethodAccessorImpl.invoke
+java.lang.reflect.Method.invoke
+org.apache.catalina.startup.Bootstrap.start
+org.apache.catalina.startup.Bootstrap.main

@@ -1,0 +1,4 @@
+Bug 473446 – xmpp provider must generalize XMPP.equals to include resource prefixes
+The google talk service uses two different resource identifiers to refer to the same user...e.g.
+/messaging-adfasdfasdfa and /adfasdfasdfa are equal.
+ The XMPP.equality testing should take this into account.

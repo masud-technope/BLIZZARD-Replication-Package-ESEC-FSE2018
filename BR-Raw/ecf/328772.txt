@@ -1,0 +1,3 @@
+Bug 328772 – org.eclipse.ecf.core.status.SerializableStatus.OK_STATUS causes exception in org.eclipse.ecf.core.status.SerializableStatus.checkForSerializable(Throwable) due to null
+org.eclipse.ecf.core.status.SerializableStatus.OK_STATUS initializes with null which subsequently causes an exception when setting the exception (org.eclipse.ecf.core.status.SerializableStatus.setException(Throwable)).
+IMO org.eclipse.ecf.core.status.SerializableStatus.setException(Throwable) should exclude null from  org.eclipse.ecf.core.status.SerializableStatus.checkForSerializable(Throwable).

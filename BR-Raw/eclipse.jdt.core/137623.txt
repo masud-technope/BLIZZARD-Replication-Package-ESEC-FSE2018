@@ -1,0 +1,81 @@
+Bug 137623 – Exception calculating java content assist
+Version: 3.2.0
+Build id: I20060413-1718
+While trying to activate content assist, i got the attached exception.
+ Try activating code assist after "int." in the following sample:
+public class Test {
+public boolean foo() {
+boolean retValue;
+Class fieldClass = null;
+Object value = null;
+if(fieldClass.isPrimitive())
+{
+if(((fieldClass==int.) && (value.getClass().getName() == "java.lang.Integer"))
+|| ((fieldClass.getName()=="char") && (value.getClass().getName() == "java.lang.Character"))
+|| ((fieldClass.getName()=="short") && (value.getClass().getName() == "java.lang.Short"))
+|| ((fieldClass.getName()=="boolean") && (value.getClass().getName() == "java.lang.Boolean"))
+|| ((fieldClass.getName()=="byte") && (value.getClass().getName() == "java.lang.Byte"))
+|| ((fieldClass.getName()=="long") && (value.getClass().getName() == "java.lang.Long"))
+|| ((fieldClass.getName()=="double") && (value.getClass().getName() == "java.lang.Double"))
+|| ((fieldClass.getName()=="float") && (value.getClass().getName() == "java.lang.Float"))
+)
+{
+retValue=true;
+}
+}
+return retValue;
+}
+}
+java.lang.NegativeArraySizeException
+at org.eclipse.jdt.internal.compiler.parser.Parser.getUnspecifiedReferenceOptimized(Parser.java:8306)
+at org.eclipse.jdt.internal.codeassist.impl.AssistParser.getUnspecifiedReferenceOptimized(AssistParser.java:961)
+at org.eclipse.jdt.internal.codeassist.complete.CompletionParser.getUnspecifiedReferenceOptimized(CompletionParser.java:3422)
+at org.eclipse.jdt.internal.codeassist.complete.CompletionParser.buildMoreCompletionContext(CompletionParser.java:663)
+at org.eclipse.jdt.internal.codeassist.complete.CompletionParser.attachOrphanCompletionNode(CompletionParser.java:424)
+at org.eclipse.jdt.internal.codeassist.complete.CompletionParser.updateRecoveryState(CompletionParser.java:3772)
+at org.eclipse.jdt.internal.compiler.parser.Parser.resumeOnSyntaxError(Parser.java:9915)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:8784)
+at org.eclipse.jdt.internal.codeassist.impl.AssistParser.parseBlockStatements(AssistParser.java:1313)
+at org.eclipse.jdt.internal.codeassist.impl.AssistParser.parseBlockStatements(AssistParser.java:1166)
+at org.eclipse.jdt.internal.codeassist.impl.Engine.parseBlockStatements(Engine.java:292)
+at org.eclipse.jdt.internal.codeassist.impl.Engine.parseBlockStatements(Engine.java:255)
+at org.eclipse.jdt.internal.codeassist.CompletionEngine.complete(CompletionEngine.java:1747)
+at org.eclipse.jdt.internal.core.Openable.codeComplete(Openable.java:123)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeComplete(CompilationUnit.java:313)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeComplete(CompilationUnit.java:306)
+at org.eclipse.jdt.internal.ui.text.java.JavaCompletionProposalComputer.internalComputeCompletionProposals(JavaCompletionProposalComputer.java:213)
+at org.eclipse.jdt.internal.ui.text.java.JavaCompletionProposalComputer.computeCompletionProposals(JavaCompletionProposalComputer.java:193)
+at org.eclipse.jdt.internal.ui.text.java.JavaTypeCompletionProposalComputer.computeCompletionProposals(JavaTypeCompletionProposalComputer.java:73)
+at org.eclipse.jdt.internal.ui.text.java.CompletionProposalComputerDescriptor.computeCompletionProposals(CompletionProposalComputerDescriptor.java:285)
+at org.eclipse.jdt.internal.ui.text.java.CompletionProposalCategory.computeCompletionProposals(CompletionProposalCategory.java:252)
+at org.eclipse.jdt.internal.ui.text.java.ContentAssistProcessor.collectProposals(ContentAssistProcessor.java:212)
+at org.eclipse.jdt.internal.ui.text.java.ContentAssistProcessor.computeCompletionProposals(ContentAssistProcessor.java:181)
+at org.eclipse.jface.text.contentassist.ContentAssistant.computeCompletionProposals(ContentAssistant.java:1577)
+at org.eclipse.jface.text.contentassist.CompletionProposalPopup.computeProposals(CompletionProposalPopup.java:448)
+at org.eclipse.jface.text.contentassist.CompletionProposalPopup.access$15(CompletionProposalPopup.java:445)
+at org.eclipse.jface.text.contentassist.CompletionProposalPopup$2.run(CompletionProposalPopup.java:380)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:69)
+at org.eclipse.jface.text.contentassist.CompletionProposalPopup.showProposals(CompletionProposalPopup.java:374)
+at org.eclipse.jface.text.contentassist.ContentAssistant$2.run(ContentAssistant.java:346)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:123)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3323)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2969)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1914)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:1878)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:419)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:143)
+at org.eclipse.ui.internal.ide.IDEApplication.run(IDEApplication.java:95)
+at org.eclipse.core.internal.runtime.PlatformActivator$1.run(PlatformActivator.java:78)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:92)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:68)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:376)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:169)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.core.launcher.Main.invokeFramework(Main.java:336)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:280)
+at org.eclipse.core.launcher.Main.run(Main.java:977)
+at org.eclipse.core.launcher.Main.main(Main.java:952)

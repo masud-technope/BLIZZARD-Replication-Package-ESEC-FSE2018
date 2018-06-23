@@ -1,0 +1,3 @@
+Bug 243147 – [breadcrumb] Should not show Java projects as simple projects
+After the fix from bug 219405, the first breadcrumb dropdown shows all projects as simple projects.
+Also Java projects just contain files and folders, rather then Java elements.

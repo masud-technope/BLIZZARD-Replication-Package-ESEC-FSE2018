@@ -1,0 +1,11 @@
+Bug 254677 – [patch] Add step filtering of bean-style getters and setters
+Created attachment 117393 [details]
+Patch for this feature
+A colleague suggested that the debugger could filter out simple getters and setters when single stepping, and I couldn't resist the challenge.
+So here is a feature:
+- adds checkboxes for filter getters and filter setters to the step filtering preferences page
+- when step filters are used, and the corresponding options are turned on, simple getters and setters are filtered out.
+- the filter is based on recognition of the very simple byte code signatures of getters / setters.
+Patch is against R3_4_1 (plugins org.eclipse.jdt.debug, org.eclipse.jdt.debug.ui, and org.eclipse.jdt.doc.user)
+I can update it to HEAD if you need.
+Try it, it makes single stepping a lot easier!

@@ -1,0 +1,6 @@
+Bug 185069 – [spell checking] Provide easy setup of user dictionary
+At the moment there is no hint to the user why it is not possible for him to add a word to a dictionary on a fresh workspace.
+It would be nice to
+a) specify a workspace relative user dictionary
+b) have a default (empty) user dictionary
+This way a user could always add words to his dictionary right from the start.

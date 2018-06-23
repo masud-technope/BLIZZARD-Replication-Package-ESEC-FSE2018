@@ -1,0 +1,4 @@
+java/org/apache/catalina/AccessLog.java
+java/org/apache/catalina/connector/CoyoteAdapter.java
+webapps/docs/config/valve.xml
+java/org/apache/catalina/valves/AccessLogValve.java

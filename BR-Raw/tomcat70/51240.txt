@@ -1,0 +1,38 @@
+51240 – maxConnections not honors config when acceptorThreadCount > 1
+When acceptorThreadCount > 1, maxConnections not honors config, this affects BIO & NIO connector (others don't know).
+---------- test config begin --------
+<Executor name="tomcatThreadPool" namePrefix="catalina-exec-"
+maxThreads="300" minSpareThreads="4"/>
+<Connector port="9993"
+protocol="org.apache.coyote.http11.Http11Protocol"
+URIEncoding="ISO-8859-1"
+enableLookups="false"
+acceptorThreadCount="2"
+executor="tomcatThreadPool"
+acceptCount="1"
+maxConnections="1"
+/>
+<Connector port="9994"
+protocol="org.apache.coyote.http11.Http11NioProtocol"
+URIEncoding="ISO-8859-1"
+enableLookups="false"
+acceptorThreadCount="2"
+executor="tomcatThreadPool"
+acceptCount="1"
+maxConnections="1"
+/>
+---------- test config end ----------
+---- Test-1 (acceptorThreadCount="1") --- OK ---
+$ ab2 -n 20000 -c 1000 http://localhost:999x/
+$ netstat -atn | grep :999x | grep ESTABLISHED
+This show range 3-5 connections (acceptable number)
+---- Test-2 (acceptorThreadCount="2") --- KO ---
+$ ab2 -n 20000 -c 1000 http://localhost:999x/
+$ netstat -atn | grep :999x | grep ESTABLISHED
+This show +100 connections > "OOPS", too much far
+----
+Logs show traces like this when socket closes:
+----- catalina.out begin -----
+May 22, 2011 9:10:51 PM org.apache.tomcat.util.net.AbstractEndpoint countDownConnection
+WARNING: Incorrect connection count, multiple socket.close called on the same socket.
+----- catalina.out end -------

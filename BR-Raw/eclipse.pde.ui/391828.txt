@@ -1,0 +1,19 @@
+Bug 391828 – TargetEnvironmentTestCase tests fail locally
+The tests have been around for some time and it became accepted fact that they were flaky when run locally.
+org.eclipse.pde.ui.tests.target.TargetEnvironmentTestCase.testStateDictionaryNumber()
+Debugging through this test shows that the state's platform properties have nothing to do with the known execution environments.
+ This test is not comparing anything useful.
+ The platform properties have an execution environment property.
+ However, it is a list of supported execution environments.
+ The list of execution environments is given to us directly from JavaRuntime.
+I'm proposing to delete this test.
+org.eclipse.pde.ui.tests.target.TargetEnvironmentTestCase.testExecutionEnvironment()
+This test is very similar in that it pulls the state's platform properties and checks for execution environments.
+ This is not necessary as PDE never collects execution environment information from the state.
+ Also, the test isn't actually testing that the properties contain all the execution environemnts, it simply checks that all sets of properties have an execution environment.
+ This fails locally because the jdt debug tests have a test profile called 'systempackage' that I have copied below.
+{org.osgi.framework.os.name=win32, osgi.resolveOptional=true, osgi.os=win32, org.osgi.framework.language=en, osgi.nl=en_CA, org.osgi.framework.processor=x86, osgi.arch=x86, osgi.resolverMode=development, osgi.system.bundle=org.eclipse.osgi, osgi.ws=win32, org.osgi.framework.system.packages=one.two,three.four}
+This test should also be deleted.
+***
+If we were concerned about the contents of our state's properties, we could craft a test to do a better comparison.
+ However, in PDE we never need the state properties describing EE profiles so I recommend just removing the tests.

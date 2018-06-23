@@ -1,0 +1,15 @@
+58096 – Incorrect CodeSource location from ProtectionDomain for classes in WEB-INF/classes
+I tried a very simple webapp, with a test.jsp and WEB-INF/classes/test/pkg/Test.class on both Tomcat 7 and Tomcat 8 latest version (with Java 7 and Java 8 respectively)
+==== test.jsp ====
+Test: <%= test.pkg.Test.class.getProtectionDomain().getCodeSource().getLocation() %>
+==================
+and Tomcat 8 shows
+Test: file:/C:/Install/apache-tomcat-8.0.23/webapps/test/WEB-INF/classe/test/pkg/Test.class
+Tomcat 7 shows the similar result.
+In a standalone Java program, the similar code shows the top-level classpath entry like xxx/classes where test/pkg/Test.class is saved.
+I also tried Jetty, it shows it correctly like:
+Test: file:/C:/Install/jetty-distribution-9.3.0.v20150612/test-base/webapps/test/WEB-INF/classes/
+So what I expect is WEB-INF/classes, is there any reason why Tomcat returns the full path of the class file instead of WEB-INF/classes ?
+I have a quick fix to get what I want, but not sure whether there are other impacts, at least all unit tests are passed except two TEST-org.apache.catalina.filters.TestRemoteIpFilter.*.
+The fix is here:
+https://github.com/SuperMMX/tomcat/commit/a96b4a80144f78140690fd35e47d0fdd1a64d0ae

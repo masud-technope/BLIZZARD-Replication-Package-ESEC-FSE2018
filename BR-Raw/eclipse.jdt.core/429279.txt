@@ -1,0 +1,10 @@
+Bug 429279 – [1.8][index] Java 8 search support degrades indexing performance.
+Manoj has collected some profiles that show that ~70% of time spent
+in indexing goes into the new method SourceIndex.indexedResolvedDocument.
+We need to find ways to speed this up:
+Some obvious candidates looking at the profile (Manoj - please attach)
+- Disabling task tag processing
+- Setting a bit in those methods that have a functional type and only
+populating those methods's bodies in the parse tree (others will have the
+skeleton built by diet parser)
+etc.

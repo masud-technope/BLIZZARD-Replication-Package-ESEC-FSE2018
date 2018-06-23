@@ -1,0 +1,23 @@
+Bug 418096 – [1.8][compiler] Misattribution of annotations with C style array declarations
+BETA_JAVA8:
+We just ran into this testing APT changes for JSR308.
+Given:
+// ---
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+public class X {
+int @Nullable [] f @NonNull [] = null;
+}
+// ----
+on the compiler side, when incorrectly fold the extra dimensions into total
+dimensions and end up with
+int @Nullable [] @NonNull [] f;
+It should be
+int @NonNull [] @Nullable[] f;
+Since in a C style array declaration, the extra dimension should bind
+more readily with the field than any type components preceding it.
+While the compiler side story is easy to fix, it will break DOM/AST encoding
+unless care it taken: some original dimensions could start showing up as
+extra dimensions and vice versa !
+I think it is not hard to fix cleanly end to end.
+I'll see what can be done.

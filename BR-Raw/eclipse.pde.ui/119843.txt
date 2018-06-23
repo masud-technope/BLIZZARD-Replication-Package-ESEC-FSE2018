@@ -1,0 +1,6 @@
+Bug 119843 – Exporting a plug-in leaves file javaCompiler...args
+I20051206-1200
+Export a plug-in using File > Export...
+> Deployable plug-ins and fragments.
+In the plug-in's root folder, a file called 'javaCompiler...args' is generated (you might have to refresh to see it).
+It looks like a transient file that should have been created in the metadata area (or at least removed from the project when the export is done).

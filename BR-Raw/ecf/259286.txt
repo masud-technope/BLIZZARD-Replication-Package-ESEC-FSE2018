@@ -1,0 +1,5 @@
+Bug 259286 – [[core][sharedobject] improve handling of class not found problems
+Currently, the reporting of class not found exceptions on shared object deserialization is not good.
+One frequent cause of such errors (not exporting the necessary package/class) is now documented here:
+http://wiki.eclipse.org/ECF_Pitfalls
+When such errors occur, and a class cannot be found, this should be reported more loudly via system.err.

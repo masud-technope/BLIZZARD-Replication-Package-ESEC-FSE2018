@@ -1,0 +1,4 @@
+Bug 7404 – Add Filter for step filtering broken
+Attempting to define my own filter for a step filter does not work.
+Hitting the button realizes a new entry in the list but it is not editable and
+it just disappears.

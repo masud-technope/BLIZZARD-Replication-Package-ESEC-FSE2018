@@ -1,0 +1,8 @@
+Bug 9057 – API - CHANGE event should be better specified
+The CHANGE event is currently a catch all.
+It could be better specified, and
+perhaps have detail codes to make it more usable.
+For example, if an element
+fires a change event to update a label, there should be a way to specify that
+only the label has changed, and not all of its children or the rest of the
+target's state.

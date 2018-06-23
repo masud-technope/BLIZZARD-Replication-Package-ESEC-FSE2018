@@ -1,0 +1,4 @@
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/use/Messages.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/use/messages.properties
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/use/ApiUseScanTab.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/use/ApiUseScanJob.java

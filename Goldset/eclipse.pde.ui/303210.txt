@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/project/BundleProjectDescription.java
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/tests/util/ProjectUtils.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/core/project/IBundleProjectDescription.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/project/ProjectCreationTests.java

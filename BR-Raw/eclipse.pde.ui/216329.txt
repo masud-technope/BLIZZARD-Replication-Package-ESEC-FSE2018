@@ -1,0 +1,9 @@
+Bug 216329 – [api tooling] Refactoring participants required for filters
+In our code we have many places that record/cache/persist qualified names/sigatures/etc.
+for reuse.
+If a refactoring is done on one of these referenced types then the cached information about the (previous) type is stale and never gets removed.
+We need to add in refactoring participants for:
+1.
+api descriptions, for package/type/member rename/signature changes
+2.
+api filters, for package/type/member rename/signature changes

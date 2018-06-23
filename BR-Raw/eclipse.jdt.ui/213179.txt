@@ -1,0 +1,8 @@
+Bug 213179 – [code assist] Static import fails with overloaded method name
+Created attachment 85383 [details]
+testcase
+Build ID: M20071023-1652
+Steps To Reproduce:
+Using attached testcase, ensure MyStaticClass is in the static import favourites, then use autocompletion to choose MyStaticClass.hello(int).
+The static import is not created, and you end up using Test.hello(String) instead.
+More information:

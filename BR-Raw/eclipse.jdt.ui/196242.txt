@@ -1,0 +1,12 @@
+Bug 196242 – [quick fix] Work around QuickFix Latency
+I use QuickFix to write my code for me.
+ So, before bar() exists, I'll write:
+private void foo() {
+bar();<cursor here>
+}
+and as soon as I've typed the semicolon, I type ctl-1 to bring up the quickfix that will create bar() for me.
+ But it hasn't analyzed the code I've typed in yet, so it tells me, "No suggestions available".
+ So I hit esc, wait a moment, and do it again.
+ I'd appreciate it if, when it thinks there are no suggestions available, it double-checked to see whether any suggestions have just become available, thanks to the most recent keystrokes.
+ It obviously doesn't take very long, and it would smooth my workflow significantly.
+I experience this on Mac and Windows both, and I think I noticed it still in 3.3, but it's basically been the behavior as long as I've been using Eclipse and my primary version is 3.2.1 - that is to say, I don't think this is a platform- or release-specific issue.

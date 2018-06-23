@@ -1,0 +1,10 @@
+Bug 33644 – Unable to add libraries to Java build path in Project preferences
+When using the java 1.4 endorsed-mechanism, and placing new versions of xalan.
+jar, xercesImpl.jar and xml-apis.jar in my JAVA_HOME/jre/lib/endorsed directory,
+the Project properties complains about "Classpath contains duplicate entry: C:
+\j2sdk1.4.1_01\jre\lib\ext\xalan.jar".
+When I expand the "JRE System Library" in the library tree, xalan.jar
+xercesImpl.jar and xml-apis.jar all show up twice in the list, both times
+located in the C:\j2sdk1.4.1_01\jre\lib\ext directory.
+I am not able to add any new librarys to my Java Build Path until i remove all
+the jars from the JAVA_HOME/jre/lib/endorsed directory.

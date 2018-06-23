@@ -1,0 +1,7 @@
+Bug 167182 – JDIDebugTarget.handleDebugEvents not using getAdapter when identifying the event source
+Inside JDIDebugTarget.handleDebugEvents(DebugEvent[]), when handling debug target creation event, the current code uses "event.getSource() == this" to ensure the event source is itself.
+Issue arised when a third party debug target, who registered itself as a event filter, caught and refired the JDIDebugTarget create event using itself as the new event source.
+This will result the EventDispatcher never being launched.
+Suggesting to use getAdpater when checking for the identity of the event source:
+Object source = event.getSource();
+if (source instanceof IDebugTarget && ((IDebugTarget)source).getAdapter(IJavaDebugTarget.class) == this ...

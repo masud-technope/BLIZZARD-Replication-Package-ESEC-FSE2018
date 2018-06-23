@@ -1,0 +1,14 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaDetailFormattersPreferencePage.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/PrimitiveOptionsAction.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/IJDIPreferencesConstants.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/PrimitiveOptionsDialog.java
+org.eclipse.jdt.debug.ui/plugin.xml
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/DetailOptionsDialog.java
+org.eclipse.jdt.debug.ui/plugin.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/DebugUIMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/IJavaDebugHelpContextIds.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JDIDebugUIPreferenceInitializer.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/ActionMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/DetailOptionsAction.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JDIModelPresentation.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/AbstractDisplayOptionsAction.java

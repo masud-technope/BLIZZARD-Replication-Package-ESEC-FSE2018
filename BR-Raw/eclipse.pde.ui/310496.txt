@@ -1,0 +1,5 @@
+Bug 310496 – Non-NLS'd string
+I20100425-2000
+Description	Resource	Path	Location	Type
+Non-externalized string literal; it should be followed by //$NON-NLS-<n>$	TargetDefinition.java	/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target	line 451	Java Problem
+String message = NLS.bind("Required feature could not be found: {0}", missing.getId());

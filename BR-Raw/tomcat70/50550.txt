@@ -1,0 +1,28 @@
+50550 – PropFind 404 error after MkCol succes
+A propfind call on a resource returns a 404 error when executed after a mkcol for the same resource.
+The mkcol should be preceeded with a propfind to trigger the issue.
+Steps to reproduce - See the following access log;
+127.0.0.1 - - [06/Jan/2011:14:09:19 +0100] "PROPFIND /webdav/output/f469e3d6-e536-4072-82da-d989acaf57a2/ HTTP/1.1" 404 1084
+127.0.0.1 - - [06/Jan/2011:14:09:19 +0100] "MKCOL /webdav/output/f469e3d6-e536-4072-82da-d989acaf57a2/ HTTP/1.1" 201 -
+127.0.0.1 - - [06/Jan/2011:14:09:19 +0100] "PROPFIND /webdav/output/f469e3d6-e536-4072-82da-d989acaf57a2/ HTTP/1.1" 404 1084
+When the first request would be omitted, the third request would have been succesful, as the following access log shows;
+127.0.0.1 - - [06/Jan/2011:14:10:39 +0100] "MKCOL /webdav/output/81a97360-ea49-44d3-b764-d8c7e60e885e/ HTTP/1.1" 201 -
+127.0.0.1 - - [06/Jan/2011:14:10:39 +0100] "PROPFIND /webdav/output/81a97360-ea49-44d3-b764-d8c7e60e885e/ HTTP/1.1" 207 628
+Note: After a few seconds, the response to propfind for that resource is OK again.
+This suggests this has to do with caching.
+Note2: This situation sounds similar to call 21288 (FIXED - 'DirContext caching problem with Dreamweaver 6 when recursively creating directories').
+Reproducable using a jackrabbit client;
+____
+HttpClient client = new HttpClient();
+String newDir = "http://localhost:8080/webdav/output/" + UUID.randomUUID() + "/";
+// Comment out this request to make second propfind succesful
+HttpMethod propFindMethod1 = new PropFindMethod(newDir);
+client.executeMethod(propFindMethod1);
+propFindMethod1.releaseConnection();
+HttpMethod mkcolMethod = new MkColMethod(newDir);
+client.executeMethod(mkcolMethod);
+mkcolMethod.releaseConnection();
+HttpMethod propFindMethod = new PropFindMethod(newDir);
+client.executeMethod(propFindMethod);
+propFindMethod.releaseConnection();
+____

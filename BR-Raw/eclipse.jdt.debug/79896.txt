@@ -1,0 +1,30 @@
+Bug 79896 – ObjectCollectedException while attempting to resume
+build I20041130
+- suspended all threads in the target (pause button with process selected in
+debug view)
+- tried to resume them all (play button with process selected)
+- it failed to resume and gave me an error dialog
+- log has (several):
+!ENTRY org.eclipse.debug.ui 4 5012 2004-12-01 12:15:07.347
+!MESSAGE Exceptions occurred attempting to resume.
+!SUBENTRY 1 org.eclipse.jdt.debug 4 5010 2004-12-01 12:15:07.347
+!MESSAGE com.sun.jdi.ObjectCollectedException occurred resuming VM.
+!STACK 0
+com.sun.jdi.ObjectCollectedException
+at
+org.eclipse.jdi.internal.MirrorImpl.defaultReplyErrorHandler(MirrorImpl.java:240)
+at
+org.eclipse.jdi.internal.ThreadReferenceImpl.suspendCount(ThreadReferenceImpl.java:433)
+at
+org.eclipse.jdt.internal.debug.core.model.JDIThread.resumedByVM(JDIThread.java:1472)
+at
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.resumeThreads(JDIDebugTarget.java:1199)
+at
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.resume(JDIDebugTarget.java:1066)
+at
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.resume(JDIDebugTarget.java:1040)
+at
+org.eclipse.debug.internal.ui.actions.ResumeActionDelegate.doAction(ResumeActionDelegate.java:30)
+at
+org.eclipse.debug.internal.ui.actions.AbstractDebugActionDelegate$DebugRequestJob.run(AbstractDebugActionDelegate.java:97)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:66)

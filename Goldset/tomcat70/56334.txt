@@ -1,0 +1,10 @@
+test/org/apache/jasper/compiler/TestELParser.java
+test/org/apache/el/TestELInJsp.java
+java/org/apache/jasper/compiler/Validator.java
+test/org/apache/jasper/compiler/TestParser.java
+webapps/docs/changelog.xml
+java/org/apache/jasper/compiler/Generator.java
+java/org/apache/jasper/compiler/ELParser.java
+test/webapp-3.0/bug5nnnn/bug56334and56561.jspx
+java/org/apache/jasper/resources/LocalStrings.properties
+test/webapp-3.0/bug5nnnn/bug56334.jspx

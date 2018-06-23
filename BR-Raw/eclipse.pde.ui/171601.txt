@@ -1,0 +1,5 @@
+Bug 171601 – Remove internal references to Java preferences
+To be a good platform citizen, PDE currently reuses the JDT color preferences for their plain properties editor to color the build.properties file.
+This is fine, but we currently access the jdt preferences via JavaPlugin.getDefault().getCombinedPreferenceStore(...) which is internal.
+After consulting with our friend DJ, the preferred way to access other plug-in's preferences is via
+Platform.getPreferencesService().getString("org.eclipse.jdt.ui", KEY, null, null)

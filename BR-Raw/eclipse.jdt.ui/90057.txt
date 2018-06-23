@@ -1,0 +1,4 @@
+Bug 90057 – [nls tooling] TVT3.1 #113 - Non-externalized string "default" in Externalize Strings panel
+Open Java file in Java perspective
+Select Source - Externalize strings - click Customize button for properties file.
+Strings (default) are shown in English (see screencapture).

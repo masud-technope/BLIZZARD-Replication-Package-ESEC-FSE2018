@@ -1,0 +1,6 @@
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/instructions/Instruction.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/instructions/PushArrayType.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/engine/ASTInstructionCompiler.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/instructions/LocalVariableCreation.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/instructions/ArrayInitializerInstruction.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/instructions/ArrayInstruction.java

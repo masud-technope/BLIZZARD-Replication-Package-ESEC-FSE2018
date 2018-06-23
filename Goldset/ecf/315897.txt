@@ -1,0 +1,4 @@
+tests/bundles/org.eclipse.ecf.tests.filetransfer/src/org/eclipse/ecf/tests/filetransfer/URLRetrieveTest.java
+tests/bundles/org.eclipse.ecf.tests.filetransfer/src/org/eclipse/ecf/tests/filetransfer/URLPartialRetrieveTest.java
+tests/bundles/org.eclipse.ecf.tests.filetransfer/src/org/eclipse/ecf/tests/filetransfer/URLRetrievePauseResumeTest.java
+tests/bundles/org.eclipse.ecf.tests.filetransfer/src/org/eclipse/ecf/tests/filetransfer/URLRetrieveTest.java

@@ -1,0 +1,10 @@
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/ExpressionContextTests.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/LambdaExpressionsTest.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/NegativeLambdaExpressionsTest.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/IntersectionCastTypeReference.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/problem/messages.properties
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/ExpressionContextTests.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/LambdaExpressionsTest.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/NegativeLambdaExpressionsTest.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/IntersectionCastTypeReference.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/problem/messages.properties

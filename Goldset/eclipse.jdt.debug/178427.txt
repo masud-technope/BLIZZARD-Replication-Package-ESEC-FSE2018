@@ -1,0 +1,3 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/heapwalking/Messages.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/heapwalking/AllReferencesActionDelegate.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/heapwalking/Messages.properties

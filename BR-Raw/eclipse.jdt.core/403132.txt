@@ -1,0 +1,17 @@
+Bug 403132 – [1.8][DOM] Incorrect ASTConversion for Annotations on inner classes of Receiver
+Created attachment 228323 [details]
+ASTConverter18Tests.java test case to reproduce the issue
+Annotations are not converted (and displayed) correctly in case of annotations on inner classes.
+Test program to reproduce:
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+public class X  {
+void foo1(@Marker X this) {}
+public class Y {
+void foo(@Marker X.@Marker Y this) {}
+}
+}
+@Target(ElementType.TYPE_USE)
+@interface Marker {}
+OR
+Add the attached test case to ASTConverter18Tests.java and the test will fail at the last assertion

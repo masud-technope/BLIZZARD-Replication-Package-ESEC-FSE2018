@@ -1,0 +1,66 @@
+Bug 343060 – Method.getMethods() returns different methods (compared to standard compiler) for public/non-public inheritance hierarchies
+Build Identifier: 20110218-0911
+Given the following interfaces and classes:
+Interface.java:
+interface Interface<M, X> {
+void method(X x, M m);
+}
+Abstract.java
+abstract class Abstract<X> implements Interface<String, X> {
+@Override
+public void method(X x, String string) {
+}
+}
+PublicAbstract.java:
+public abstract class PublicAbstract<X> implements Interface<String, X> {
+@Override
+public void method(X x, String string) {
+}
+}
+AbstractChild.java:
+public class AbstractChild extends Abstract<Integer> {
+}
+PublicAbstractChild:
+public class PublicAbstractChild extends PublicAbstract<Integer> {
+}
+And the program to test it (Main):
+import java.lang.reflect.Method;
+public class Main {
+public static void main(String[] args) {
+printMethods(PublicAbstractChild.class);
+printMethods(AbstractChild.class);
+}
+private static void printMethods(Class<?> clazz) {
+System.out.println("Methods for class: " + clazz.getName());
+for (Method m : clazz.getMethods()) {
+if (m.getName().startsWith("method")) {
+System.out.println(m);
+}
+}
+}
+}
+When I have classes compiled by Eclipse the result is:
+Methods for class: PublicAbstractChild
+public void PublicAbstract.method(java.lang.Object,java.lang.String)
+public void PublicAbstract.method(java.lang.Object,java.lang.Object)
+Methods for class: AbstractChild
+public void AbstractChild.method(java.lang.Object,java.lang.String)
+public void Abstract.method(java.lang.Object,java.lang.Object)
+When I have classes compiled by Oracle JDK (tested on versions 1.6.0_24 and 1.6.0_20) the result is:
+Methods for class: PublicAbstractChild
+public void PublicAbstract.method(java.lang.Object,java.lang.String)
+public void PublicAbstract.method(java.lang.Object,java.lang.Object)
+Methods for class: AbstractChild
+public void Abstract.method(java.lang.Object,java.lang.String)
+public void Abstract.method(java.lang.Object,java.lang.Object)
+Results are different which causes major problems using reflection.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Take the code described in the details section.
+2.
+Compile it and run Main within Eclipse.
+3.
+Compile it with Oracle JDK 1.6.0_2x and run Main.
+4.
+Compare the results.

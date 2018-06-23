@@ -1,0 +1,19 @@
+Bug 430241 – [1.8][compiler] Raw return type results in incorrect covariant return bridge request to LambdaMetaFactory
+The following program does not require bridges, but we request one:
+// --
+interface K extends I, J {
+}
+interface I {
+Comparable<Integer> foo();
+}
+interface J {
+Comparable foo();
+}
+public class X {
+public static void main(String[] args) {
+K k = () -> null;
+k.foo();
+}
+}
+Problem in comparing return types as is to see if they differ - we should
+compare the erasures - fix will follow shortly.

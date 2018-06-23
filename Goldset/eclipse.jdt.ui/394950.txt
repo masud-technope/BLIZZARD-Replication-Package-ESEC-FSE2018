@@ -1,0 +1,2 @@
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/generics/InferTypeArgumentsConstraintCreator.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/typeconstraints/types/TypeEnvironment.java

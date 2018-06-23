@@ -1,0 +1,17 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/ResolutionGenerator.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/tools/OrganizeManifest.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/UpdateActivationResolution.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDECoreMessages.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/BundleErrorReporter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/converter/PluginConverter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/pderesources.properties
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/bundle/BundleActivationPolicyHeader.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/bundle/BundleModelFactory.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/RenameAutostartResolution.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/ResolutionGenerator.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/UpdateActivationResolution.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/PluginGeneralInfoSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/text/ManifestConfiguration.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/NewProjectCreationOperation.java

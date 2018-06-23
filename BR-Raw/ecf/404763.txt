@@ -1,0 +1,4 @@
+Bug 404763 – support DS and non-DS usage of ECF remote services
+Currently ECF has this header in o.e.e.osgi.services.distribution bundle:
+Bundle-ActivationPolicy: lazy
+This is causing difficulty in running the OSGI conformance tests.

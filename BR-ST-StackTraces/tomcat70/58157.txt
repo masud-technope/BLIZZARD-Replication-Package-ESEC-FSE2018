@@ -1,0 +1,7 @@
+org.apache.catalina.connector.CoyoteAdapter.checkRecycled
+org.apache.coyote.http11.AbstractHttp11Processor.recycle
+org.apache.coyote.http11.Http11NioProtocol$Http11ConnectionHandler.release
+org.apache.tomcat.util.net.NioEndpoint$Poller.cancelledKey
+org.apache.tomcat.util.net.NioEndpoint$Poller.timeout
+org.apache.tomcat.util.net.NioEndpoint$Poller.run
+java.lang.Thread.run

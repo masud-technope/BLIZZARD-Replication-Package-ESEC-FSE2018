@@ -1,0 +1,5 @@
+java/org/apache/catalina/manager/JMXProxyServlet.java
+webapps/docs/changelog.xml
+java/org/apache/catalina/manager/JMXProxyServlet.java
+webapps/docs/changelog.xml
+webapps/docs/manager-howto.xml

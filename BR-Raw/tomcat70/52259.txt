@@ -1,0 +1,13 @@
+52259 – synchonization issues and dead lock if no realm is presented in configuration
+Problem:
+Tomcat 7.0.23 startup freezes at "INFO: Deploying web application directory ..."
+Nuances:
+- no errors are displayed in logs
+- tomcat process can't be shutted down with shutdown.sh script
+- http request on 80 port wait forever
+- it's a multi host configuration
+- the same setup works well on all previous build, including 7.0.22
+- when lib/*.jar files of tomcat-7.0.23 are replaced with lib/*.jar files of tomcat-7.0.23 - everything works just fine
+fix it asap!
+thank you!
+fill free to contact for details: a19596@mail.ru

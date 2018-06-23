@@ -1,0 +1,5 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/PreferencesMessages.properties
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/template/java/JavaContext.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/EditTemplateDialog.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/template/java/JavaDocContext.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/PreferencesMessages.java

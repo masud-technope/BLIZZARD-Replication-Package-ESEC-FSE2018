@@ -1,0 +1,6 @@
+Bug 266938 – Replace (JDT)QuickMenuAction with QuickMenuCreator
+Created attachment 127393 [details]
+Fix
+HEAD
+Replace (JDT)QuickMenuAction with QuickMenuCreator (see bug 151711).
+Patch also gets rid of hacks to show shortcuts on submenus.

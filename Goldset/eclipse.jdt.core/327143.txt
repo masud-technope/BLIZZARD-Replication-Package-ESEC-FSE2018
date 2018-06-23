@@ -1,0 +1,3 @@
+org.eclipse.jdt.core/batch/org/eclipse/jdt/internal/compiler/batch/messages.properties
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/search/org/eclipse/jdt/internal/core/search/processing/JobManager.java

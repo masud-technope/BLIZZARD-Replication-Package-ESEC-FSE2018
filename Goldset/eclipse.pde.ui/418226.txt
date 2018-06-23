@@ -1,0 +1,5 @@
+ui/org.eclipse.ui.trace/src/org/eclipse/ui/trace/internal/utils/PreferenceHandler.java
+ui/org.eclipse.ui.trace/src/org/eclipse/ui/trace/internal/TracingPreferencePage.java
+ui/org.eclipse.ui.trace/src/org/eclipse/ui/trace/internal/utils/TracingConstants.java
+ui/org.eclipse.ui.trace/src/org/eclipse/ui/trace/internal/messages.properties
+ui/org.eclipse.ui.trace/src/org/eclipse/ui/trace/internal/Messages.java

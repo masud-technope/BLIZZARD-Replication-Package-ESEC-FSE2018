@@ -1,0 +1,2 @@
+Bug 197007 – IChatRoomContainer & getCurrentParticipants()
+Consider adding a way to get participants easily via the chatroom container.

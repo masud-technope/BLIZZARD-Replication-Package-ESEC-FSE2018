@@ -1,0 +1,6 @@
+java/org/apache/jasper/compiler/ScriptingVariabler.java
+test/org/apache/jasper/compiler/TestScriptingVariabler.java
+test/webapp/WEB-INF/bugs.tld
+test/webapp/bug48616.jsp
+java/org/apache/jasper/compiler/Generator.java
+java/org/apache/jasper/compiler/Node.java

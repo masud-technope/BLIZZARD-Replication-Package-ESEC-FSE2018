@@ -1,0 +1,16 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/DebugUIMessages.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/JDIDebugPluginPreferenceInitializer.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaClassPrepareBreakpoint.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaLineBreakpoint.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaTargetPatternBreakpoint.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaMethodBreakpoint.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaBreakpoint.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/DebugUIMessages.properties
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/JDIDebugPlugin.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaStratumLineBreakpoint.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaDebugPreferencePage.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaPatternBreakpoint.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaExceptionBreakpoint.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/JavaBreakpointPropertiesAction.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaWatchpoint.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaMethodEntryBreakpoint.java

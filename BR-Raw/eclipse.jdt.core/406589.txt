@@ -1,0 +1,25 @@
+Bug 406589 – [1.8][compiler][codegen] super call misdispatched
+BETA_JAVA8:
+The following program prints X.foo, while it should actually print
+Y.foo
+// ----
+interface I {
+void foo();
+}
+class Y {
+void foo() {
+System.out.println("Y.foo");
+}
+}
+public class X extends Y {
+void foo() {
+System.out.println("X.foo");
+}
+void goo() {
+I i = super::foo;
+i.foo();
+}
+public static void main(String[] args) {
+new X().goo();
+}
+}

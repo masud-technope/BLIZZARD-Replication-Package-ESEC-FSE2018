@@ -1,0 +1,3 @@
+Bug 195729 – Provide a way to import plug-ins from CVS from the plug-ins tab
+It would be great to have a mechanism for importing plug-ins from the plug-ins tab through CVS.
+Fortunately, I have a patch in the waiting ...

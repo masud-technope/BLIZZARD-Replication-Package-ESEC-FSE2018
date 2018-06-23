@@ -1,0 +1,7 @@
+Bug 321693 – [preferences] Improve scroll bars in Errors/Warnings page
+I20100804-0100
+1.
+(broken since at least 3.6) Out of the box, the Errors/Warnings preference page should come up without horizontal scroll bars (no matter what sections are expanded initially).
+2.
+With the filtering, the vertical scroll bar appears and disappears more often, which looks noisy.
+We should try to show the vertical scroll bar all the time, but still keep the horizontal bar appearing dynamically if necessary.

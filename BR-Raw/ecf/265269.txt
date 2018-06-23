@@ -1,0 +1,17 @@
+Bug 265269 – ServiceTypeID to EMF URI conversion broken
+Hi !
+In the class org.eclipse.ecf.discovery.ui.model.resource.ServiceResource
+the conversion of ServiceTypeID to EMF URI is broken.
+A ServiceTypeID like
+'odbms._vodagent._rmi.default._versant'
+is now converted to
+'ecf://odbms/vodagent/rmi.default/versant'
+instead of
+'ecf://odbms/vodagent/rmi/default/versant'
+This seems to come from changing the 'org.eclipse.ecf.discovery.ui.model' plugin to CDC-1.1/Foundation-1.1,J2SE-1.4
+For that change the java.lang.String.replaceFirst(..) and java.lang.String.replaceAll(..)
+has been replaced by the
+org.eclipse.ecf.core.util.StringUtils.replaceFirst(..) and org.eclipse.ecf.core.util.StringUtils.replaceAll(..)
+But is seems that these Methods doesn't support regex, which are used here in ServiceResource.
+Attached is the simplest solution by changing ServiceResource to not use a regex.
+( the regex was originaly required because '.' is a key for regex, so it had to be quoted)

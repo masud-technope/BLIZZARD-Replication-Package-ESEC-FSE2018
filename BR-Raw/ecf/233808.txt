@@ -1,0 +1,2 @@
+Bug 233808 – [Discovery][SLP]org.eclipse.ecf.tests.discovery.DiscoveryTest.testAddServiceListenerIServiceTypeIDIServiceListener() fails for SLP provider
+org.eclipse.ecf.tests.discovery.DiscoveryTest.testAddServiceListenerIServiceTypeIDIServiceListener() fails for SLP provider with "Test listener didn't receive discovery"

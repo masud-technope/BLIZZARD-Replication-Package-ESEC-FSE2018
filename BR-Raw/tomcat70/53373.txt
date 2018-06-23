@@ -1,0 +1,12 @@
+53373 – Allow whitespace around delimiters in <Context> aliases for readability
+See bug 53359: Request for <Aliases> or <Alias> as element inside <Context>
+<Context> aliases attribute should allow whitespace to surround both the "," and "=" delimiters.
+For example:
+<Context aliases="/EDSILabCatalog= c:/xampp/htdocs/cLabs/EDSILabCatalog,
+/EDSILabs      = c:/xampp/htdocs/cLabs/EDSILabs,
+/Global        = c:/xampp/htdocs/cLabs/Global,
+/Skyline       = c:/xampp/htdocs/cLabs/Skyline,
+/Sun           = c:/xampp/htdocs/cLabs/Sun,
+/Sunset        = c:/xampp/htdocs/cLabs/Sunset,
+/Tech2000      = c:/xampp/htdocs/cLabs/Tech2000"
+/>

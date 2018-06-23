@@ -1,0 +1,4 @@
+Bug 409236 – [1.8][compiler] Type annotations on intersection cast types dropped by code generator
+BETA_JAVA8:
+See https://bugs.eclipse.org/bugs/show_bug.cgi?id=383624#c46, point (5): We
+are dropping type annotations on intersection cast constituents.

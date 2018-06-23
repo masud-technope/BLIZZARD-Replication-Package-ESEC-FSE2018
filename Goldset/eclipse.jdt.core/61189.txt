@@ -1,0 +1,10 @@
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/parser23.rsc
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/parser22.rsc
+org.eclipse.jdt.core/grammar/java_1_5.g
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/readableNames.properties
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ComplianceDiagnoseTest.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/diagnose/DiagnoseParser.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/parser21.rsc
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ParserTest.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/SyntaxErrorTest.java

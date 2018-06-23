@@ -1,0 +1,4 @@
+Bug 391894 – [1.8][compiler] Support type annotations on ArrayCreation nodes
+BETA_JAVA8:
+ArrayCreation node needs to be modified so it can capture the
+annotations.

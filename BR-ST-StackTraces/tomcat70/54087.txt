@@ -1,0 +1,7 @@
+org.apache.catalina.connector.Request.getDateHeader
+org.apache.catalina.connector.RequestFacade.getDateHeader
+javax.servlet.http.HttpServlet.service
+javax.servlet.http.HttpServlet.service
+sun.reflect.GeneratedMethodAccessor72.invoke
+sun.reflect.DelegatingMethodAccessorImpl.invoke
+java.lang.reflect.Method.invoke

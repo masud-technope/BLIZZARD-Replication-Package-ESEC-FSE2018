@@ -1,0 +1,9 @@
+57708 – [Patch] Authentication by reverse proxy, authorization by Tomcat
+Created attachment 32567 [details]
+Patch for tomcat v7.0.x
+In the current implementation of the tomcatAuthentication parameter, this allows the REMOTE_USER variable from the webserver to be used as the principal for the tomcat request.
+A side effect of this option is that if the web application uses roles (authorization), the roles will be silently ignored, and the user will be locked out.
+This limits the usefulness of tomcatAuthentication.
+The attached patches introduce the tomcatAuthorization flag.
+When true, the REMOTE-USER will be used as the principal, while authorization will continue in Tomcat as normal.
+What this means practically is that it now becomes possible to place a webserver in front of a web application, and the authentication performed by the webserver will cleanly replace the authentication performed by tomcat, while leaving the web application authorization configuration intact.

@@ -1,0 +1,13 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/LibraryPluginFieldData.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/LibraryPluginJarsPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/NewLibraryPluginCreationPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/NewLibraryPluginCreationUpdateRefPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/NewLibraryPluginProjectWizard.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/tools/ConvertJarsAction.java
+ui/org.eclipse.pde.ui/plugin.properties
+ui/org.eclipse.pde.ui/plugin.xml
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/tools/ConvertJarsAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/LibraryPluginFieldData.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/NewLibraryPluginCreationOperation.java

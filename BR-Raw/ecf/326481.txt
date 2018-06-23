@@ -1,0 +1,33 @@
+Bug 326481 – [sharedobject] SharedObjectMsg returns wrong method if number of arguments is equal
+Build Identifier:
+searchForMethod method in SharedObjectMsg returns the method if the number of arguments of the tested method is equal to the number of arguments given without testing if the types of the arguments are equal.
+For me, the following solution worked:
+public static Method searchForMethod(Method meths[], String meth, Class args[]) {
+// Find it from among the given set of Method objects
+for (int i = 0; i < meths.length; i++) {
+Method test = meths[i];
+if (test.getName().equals(meth)) {
+if (test.getParameterTypes().length == args.length) {
+/////////////////// new ///////////////////////////////
+boolean isAssignable = true;
+Class[] testParams = test.getParameterTypes();
+for (int j = 0; j < args.length; j++) {
+if (args[j] != null) {
+isAssignable &= testParams[j].isAssignableFrom(args[j]);
+}
+}
+if (isAssignable) {
+/////////////////// new ///////////////////////////////
+return test;
+}
+}
+}
+}
+return null;
+}
+Reproducible: Always
+Steps to Reproduce:
+1.
+Create a remote service with two methods having same name and number of arguments but different types.
+2.
+Call both methods - one of it isn't called because of an invalid argument exception

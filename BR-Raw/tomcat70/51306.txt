@@ -1,0 +1,33 @@
+51306 – NPE in DeltaRequest.writeExternal(DeltaRequest.java:267) when handling remote session expiration
+Occasionally we got errors like following:
+======
+2011-05-30 03:40:17,697 ERROR [pool-1-thread-2] (org.apache.catalina.ha.session.DeltaManager) Manager [localhost#]: Unable to receive message through TCP channel
+java.lang.NullPointerException
+at java.io.ObjectOutputStream$BlockDataOutputStream.getUTFLength(ObjectOutputStream.java:2106)
+at java.io.ObjectOutputStream$BlockDataOutputStream.writeUTF(ObjectOutputStream.java:1977)
+at java.io.ObjectOutputStream.writeUTF(ObjectOutputStream.java:849)
+at org.apache.catalina.ha.session.DeltaRequest.writeExternal(DeltaRequest.java:267)
+at org.apache.catalina.ha.session.DeltaRequest.serialize(DeltaRequest.java:287)
+at org.apache.catalina.ha.session.DeltaManager.serializeDeltaRequest(DeltaManager.java:716)
+at org.apache.catalina.ha.session.DeltaManager.requestCompleted(DeltaManager.java:1224)
+at org.apache.catalina.ha.session.DeltaSession.expire(DeltaSession.java:403)
+at org.apache.catalina.ha.session.DeltaManager.handleSESSION_EXPIRED(DeltaManager.java:1546)
+at org.apache.catalina.ha.session.DeltaManager.messageReceived(DeltaManager.java:1452)
+at org.apache.catalina.ha.session.DeltaManager.messageDataReceived(DeltaManager.java:1173)
+at org.apache.catalina.ha.session.ClusterSessionListener.messageReceived(ClusterSessionListener.java:92)
+at org.apache.catalina.ha.tcp.SimpleTcpCluster.messageReceived(SimpleTcpCluster.java:901)
+at org.apache.catalina.ha.tcp.SimpleTcpCluster.messageReceived(SimpleTcpCluster.java:882)
+at org.apache.catalina.tribes.group.GroupChannel.messageReceived(GroupChannel.java:269)
+at org.apache.catalina.tribes.group.ChannelInterceptorBase.messageReceived(ChannelInterceptorBase.java:79)
+at org.apache.catalina.tribes.group.interceptors.TcpFailureDetector.messageReceived(TcpFailureDetector.java:110)
+at org.apache.catalina.tribes.group.ChannelInterceptorBase.messageReceived(ChannelInterceptorBase.java:79)
+at org.apache.catalina.tribes.group.ChannelInterceptorBase.messageReceived(ChannelInterceptorBase.java:79)
+at org.apache.catalina.tribes.group.ChannelCoordinator.messageReceived(ChannelCoordinator.java:241)
+at org.apache.catalina.tribes.transport.ReceiverBase.messageDataReceived(ReceiverBase.java:225)
+at org.apache.catalina.tribes.transport.nio.NioReplicationTask.drainChannel(NioReplicationTask.java:188)
+at org.apache.catalina.tribes.transport.nio.NioReplicationTask.run(NioReplicationTask.java:91)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:662)
+It looks like the functionality of Tomcat is not affected by this.
+The NPE comes from trying to write null sessionId, but why does Tomcat try to send something from handling received authoritative SESSION_EXPIRED message?

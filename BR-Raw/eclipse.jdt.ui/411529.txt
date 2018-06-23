@@ -1,0 +1,18 @@
+Bug 411529 – [move method refactoring] reference to protected method
+package p;
+public class A {
+protected void m(){}
+}
+package p;
+public class B {
+public void n(q.C c, A a) {
+a.m();
+}
+}
+package q;
+public class C {
+}
+When p.B.n(q.C, A) is moved to q.C, Eclipse move-refactoring pops up a warning message:
+"The visibility of method `p.A.m()' will be changed to public."
+When I click the `continue' button to finish the refactoring, p.A.m() is still `protected' (no changes).
+That is an error.

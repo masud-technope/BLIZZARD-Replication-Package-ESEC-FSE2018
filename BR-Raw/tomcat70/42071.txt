@@ -1,0 +1,9 @@
+42071 – If a JSP throws an UnavailableException twice, an IllegalStateException occurs.
+If a JSP throws an UnavailableException twice, an IllegalStateException occurs.
+first access:
+JSP throws UnavailableException.
+second access:
+If the JSP throws an UnavailableException again then an IllegalStateException
+occurs and Tomcat returns status code:500 to the client.
+The problem is not that the IllegalStateException occurs.
+The problem is that the JSP can be called even though it cannot be used.

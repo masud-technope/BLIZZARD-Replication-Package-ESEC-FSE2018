@@ -1,0 +1,58 @@
+Bug 205655 – NPE in ManifestEditorMatchingStrategy
+Found this NPE in the log.
+Sorry, didn't see when it was printed, but since NPEs are often easy to figure out, thought I would log anyway.
+!SESSION 2007-10-07 01:04:00.120 -----------------------------------------------
+eclipse.buildId=I20070625-1500
+java.version=1.5.0_12
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_CA
+Framework arguments:  -product org.eclipse.sdk.ide -pdelaunch
+Command-line arguments:  -product org.eclipse.sdk.ide -data C:\dev\abstratt/../runtime-New_configuration -dev file:C:/dev/abstratt/.metadata/.plugins/org.eclipse.pde.core/Full/dev.properties -pdelaunch -os win32 -ws win32 -arch x86 -consolelog -console
+!ENTRY org.eclipse.ui 4 0 2007-10-07 01:02:06.595
+!MESSAGE Unhandled event loop exception
+!STACK 0
+org.eclipse.swt.SWTException: Failed to execute runnable (java.lang.NullPointerException)
+at org.eclipse.swt.SWT.error(SWT.java:3563)
+at org.eclipse.swt.SWT.error(SWT.java:3481)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:126)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3659)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3296)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2389)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2353)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2219)
+at org.eclipse.ui.internal.Workbench$4.run(Workbench.java:466)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:289)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:461)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:106)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:153)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:106)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:76)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:363)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:176)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:504)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:443)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1169)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1144)
+Caused by: java.lang.NullPointerException
+at org.eclipse.pde.internal.ui.editor.plugin.ManifestEditorMatchingStrategy.matches(ManifestEditorMatchingStrategy.java:32)
+at org.eclipse.ui.internal.EditorManager.findEditors(EditorManager.java:485)
+at org.eclipse.ui.internal.EditorManager.findEditors(EditorManager.java:431)
+at org.eclipse.ui.internal.EditorManager.findEditor(EditorManager.java:394)
+at org.eclipse.ui.internal.EditorManager.findEditor(EditorManager.java:376)
+at org.eclipse.ui.internal.WorkbenchPage.findEditor(WorkbenchPage.java:1967)
+at org.eclipse.ui.NavigationLocation.getEditorPart(NavigationLocation.java:44)
+at org.eclipse.ui.NavigationLocation.getText(NavigationLocation.java:60)
+at org.eclipse.ui.internal.NavigationHistoryEntry.<init>(NavigationHistoryEntry.java:49)
+at org.eclipse.ui.internal.NavigationHistory.createEntry(NavigationHistory.java:655)
+at org.eclipse.ui.internal.NavigationHistory.addEntry(NavigationHistory.java:371)
+at org.eclipse.ui.internal.NavigationHistory.access$10(NavigationHistory.java:352)
+at org.eclipse.ui.internal.NavigationHistory$2.run(NavigationHistory.java:199)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:123)
+...
+23 more

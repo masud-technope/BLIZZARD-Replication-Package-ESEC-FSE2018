@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/shared/target/TargetContentsGroup.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/shared/target/AddBundleContainerSelectionPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/shared/target/EditProfileContainerPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/shared/target/TargetLocationsGroup.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/shared/target/AddFeatureContainersPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/target/TargetDefinitionContentPage.java

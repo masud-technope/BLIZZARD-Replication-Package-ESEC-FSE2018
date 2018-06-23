@@ -1,0 +1,3 @@
+Bug 252556 – [formatter] Spaces removed before formatted region of a compilation unit.
+I20081027-1800
+The test case from bug 228652 comment 0 still fails because spaces are removed before the region that is being formatted (the region being a Javadoc in this test case).

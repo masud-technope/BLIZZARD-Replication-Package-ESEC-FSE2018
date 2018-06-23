@@ -1,0 +1,17 @@
+Bug 12665 – ClassNotLoaded JDI exception during conditional breakpoint
+Build: 20020402
+Follow these steps:
+1.
+New workbench
+2.
+Import all plugins using the plugin import wizard (copy all plugins into the
+workspace)
+3.
+Add a breakpoint to org.eclipse.ui.internal.Workbench.run(Object) line 731.
+4.
+Set the following conditional on the breakpoint
+System.out.println(System.currentTimeMillis())
+5.
+Debug using the Run-time workbench launcher
+6.
+An error dialog will pop up claiming to have compilation problems

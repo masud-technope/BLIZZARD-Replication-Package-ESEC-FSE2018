@@ -1,0 +1,4 @@
+46866 – Seed from current time is useless
+fgrep -r 'new Random(System.currentTimeMillis())' .
+Gives 7 places where Random initialized with seed = currentTimeMillis.
+This is unnecessary, because better seed initialization happens in the default Random constructor.

@@ -1,0 +1,25 @@
+Bug 16046 – Launch configuration dialog doesn't/can't cancel a launch
+When the user presses the "cancel" button on the launch configuration
+dialog while a launch is in progress, the launch is not cancelled.
+Instead,
+we wait for the launch to finish and then terminate the launch if the user
+pressed cancel.
+This behavior is wrong for a number of reasons.
+1.
+A cancel button should respond immediately.
+"Cancel" is used to stop
+long operations.
+If it doesn't stop the operation immediately, it's not
+doing its job.
+2.
+After we've forced the user to wait until the launch completes (#1), we
+shouldn't terminate their launch.
+They didn't want to wait for the launch
+to finish.
+If we made them sit and wait for the launch to finish, they
+should at least get something in return for their time - their launch.
+What we really want is the ability to interrupt a launch while it's in
+progress.
+Until we achieve this, the Cancel button should be disabled
+during a launch to reflect the fact that we are unable to interrupt a
+launch.

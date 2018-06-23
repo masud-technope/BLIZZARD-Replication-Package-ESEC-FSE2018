@@ -1,0 +1,17 @@
+ui/org.eclipse.pde.core/plugin.properties
+ui/org.eclipse.pde.core/plugin.xml
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/variables/TargetNLVariableResolver.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/variables/TargetOSArchVariableResolver.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/variables/TargetOSVariableResolver.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/variables/TargetWSVariableResolver.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/IPDEUIConstants.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/EquinoxInitializer.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/LaunchAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/LaunchArgumentsHelper.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/OSGiMigrationDelegate.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/PDEMigrationDelegate.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/launcher/AbstractPDELaunchConfiguration.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/launcher/AbstractPDELaunchConfigurationTabGroup.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/launcher/EclipseLaunchShortcut.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/launcher/JUnitLaunchConfigurationDelegate.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/launcher/JUnitWorkbenchLaunchShortcut.java

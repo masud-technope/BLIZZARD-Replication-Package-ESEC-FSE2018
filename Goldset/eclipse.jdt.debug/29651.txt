@@ -1,0 +1,3 @@
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AutomatedSuite.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/ClasspathContainerTests.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/JREContainerInitializer.java

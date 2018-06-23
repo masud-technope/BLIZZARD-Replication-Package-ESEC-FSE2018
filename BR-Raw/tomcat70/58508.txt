@@ -1,0 +1,8 @@
+58508 – role_name in tomcat-users.xml : invalid character
+Bonjour,
+My tomcat server send exception about invalid characters with a role name "ubx:5485" ;
+My first question is : why ? ;o)
+and I would like find specifications about valid characters for a role name.
+do you have some solution , because I used Ldap connection, and all my groups are this format "xx:yyy:zzz" .
+Thanks a lot ,
+Frederic (de Bordeaux : soleil et froid )

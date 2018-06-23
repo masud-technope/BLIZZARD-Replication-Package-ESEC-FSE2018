@@ -1,0 +1,6 @@
+Bug 265714 – conditional breakpoint at end of step
+Currently, if a breakpoint coincides with the location of a step end, the Java debugger does not evaluate the condition (there is little point since the step end has already suspended execution).
+Recently, we have added support for breakpoint listener extensions to be registered on specific breakpoints.
+In this case, breakpoint listeners are notified of a breakpoint being hit, even though the condition may be false.
+Listeners should only be notified when the condition is true.
+The Java debugger could evaluate the condition in the case that breakpoint listeners are registered for the breakpoint, and call them only when the condition is true.

@@ -1,0 +1,6 @@
+Bug 328694 – [call hierarchy] Clearing history should clear the status bar of the view
+I20101025-1800
+Steps
+- Open call hierarchy on a method
+- Call Hierarchy view > History > Clear History => the status bar at the top of the view still says "Members calling 'foo() - in workspace"
+This works correctly in Search view

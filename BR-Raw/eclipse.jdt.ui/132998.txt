@@ -1,0 +1,5 @@
+Bug 132998 – [navigation] Javadoc view unnecessarily reloads doc if input has not changed
+I20060322-1335
+Javadoc view unnecessarily reloads doc if input has not changed.
+Moving the caret inside the same element in a CU editor reloads the view all the time.
+Updating on equal elements should either be turned off like in the Declaration view (just remove JavadocView#isIgnoringEqualInput()), or it should be made smarter and only update if the caret is inside a javadoc region.

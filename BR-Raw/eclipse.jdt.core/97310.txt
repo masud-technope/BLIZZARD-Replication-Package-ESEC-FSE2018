@@ -1,0 +1,7 @@
+Bug 97310 – code assist for type variable bounds: should not suggest classes
+RC1
+At the following location you can only insert interfaces.
+Code assist also
+suggests classes and other type variables:
+class Y<L1, A extends Number & L|code assist here   > {
+}

@@ -1,0 +1,63 @@
+Bug 448112 – [compiler] Compiler crash (ArrayIndexOutOfBoundsException at StackMapFrame.addStackItem()) with unused variable
+This error was originally reported at users <at> tomcat.apache.org mailing list as "Tomcat 7.0: Unused primitive long or double variables prevent Tomcat from compiling JSP" today (2014-10-21).
+The thread can be found in archives, e.g.
+here:
+http://tomcat.markmail.org/thread/jblxumvub6o7nusr
+Apache Tomcat uses Eclipse ECJ compiler to compile JSP pages.
+This issue happens when it compiles java code generated for a JSP page.
+Steps to reproduce:
+1) Download Tomcat 8 zip or tar.gz binary distributive from
+http://tomcat.apache.org/download-80.cgi
+2) Unpack the archive
+3) Set JAVA_HOME environment variable to home directory of Java 7 or later JDK.
+(Details if needed can be found in RUNNING.txt in the archive).
+4) Create a jsp page file "webapps/ROOT/test.jsp" with the following text:
+======
+<%
+session.setAttribute("v1", 1L);
+session.setAttribute("v2", 2L);
+long v1 = (Long) session.getAttribute("v1");
+long v2 = (Long) session.getAttribute("v2");
+out.write(String.valueOf(v1));
+//out.write(String.valueOf(v2));
+%>
+======
+5) At the time of this writing, Tomcat includes ecj 4.4.
+To test with a later version of ECJ, replace file lib/ecj-4.4.jar with a different version of "JDT Core Batch Compiler" as can be downloaded from
+http://download.eclipse.org/eclipse/downloads/
+6) Start Tomcat by running bin/startup.bat or bin/startup.sh
+7) Open the following page in a Web Browser:
+http://localhost:8080/test.jsp
+8)
+Expected output: "1"
+Actual output: Compilation error.
+9) Stop Tomcat (Ctrl+C, or run bin/shutdown.bat, bin/shutdown.sh)
+- This issue is reproducible with ecj-4.4.1.jar and with the current nightly ecj-N20141020-2000.jar.
+- Stacktrace of the error is the following
+(using current dev version of Tomcat 8 close to next 8.0.15 release
+and nightly ecj-N20141020-2000.jar):
+======
+java.lang.ArrayIndexOutOfBoundsException: -1
+org.eclipse.jdt.internal.compiler.codegen.StackMapFrame.addStackItem(StackMapFrame.java:92)
+org.eclipse.jdt.internal.compiler.ClassFile.traverse(ClassFile.java:5560)
+org.eclipse.jdt.internal.compiler.ClassFile.generateStackMapTableAttribute(ClassFile.java:4319)
+org.eclipse.jdt.internal.compiler.ClassFile.completeCodeAttribute(ClassFile.java:1387)
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.generateCode(AbstractMethodDeclaration.java:339)
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.generateCode(AbstractMethodDeclaration.java:271)
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode(TypeDeclaration.java:566)
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode(TypeDeclaration.java:635)
+org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.generateCode(CompilationUnitDeclaration.java:368)
+org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:781)
+org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:470)
+org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:440)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:361)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:336)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:323)
+org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:564)
+org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:357)
+org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:396)
+org.apache.jasper.servlet.JspServlet.service(JspServlet.java:340)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:725)
+org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+======
+- If the last line of the above fragment is uncommented, the JSP page compiles successfully and prints "12".

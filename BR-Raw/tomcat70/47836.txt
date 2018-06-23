@@ -1,0 +1,20 @@
+47836 – TldConfig keeps an internal list of ApplicationListeners
+Created attachment 24258 [details]
+When the Context is stopped, clears the listeners list
+When a WebApp is refreshed, the following warning is displayed:
+"StandardContext.addApplicationListener : The listener
+"com.sun.faces.config.ConfigureListener" is already configured for this
+context.
+The duplicate definition has been ignored."
+This is because the TldConfig instance does not react to a STOP event of the
+StandardContext.
+It should clear the list's content when the WebApp is stopped.
+We've encountered this bug with tomcat 6.0.20.
+I've checked the Tomcat7 TldConfig code to see if the issue may still be there,
+but I'm not sure: there is some code dealing with already registered taglib URI
+that may prevent the warning.
+So the provided patch is against tomcat6.0.x branch (but should be easy to port
+to trunk if there is some interest).
+BTW, I've checked the TldLocationsCache source code, but it is not implementing
+the LifecycleListener interface, so that patch cannot be applied on that file
+...

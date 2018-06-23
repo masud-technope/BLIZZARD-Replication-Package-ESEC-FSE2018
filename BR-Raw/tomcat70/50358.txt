@@ -1,0 +1,10 @@
+50358 – Embedded.stopInternal sets state to STARTING, should be STOPPING
+Embedded.stopInternal invokes setState(LifecycleState.STARTING), this should be changed to setState(LifecycleState.STOPPING).
+Setting LifecycleState.STARTING during stopInternal leads to a LifecycleException when the Embedded is shut down:
+LifecycleException:  An invalid Lifecycle transition was attempted ([after_stop]) for component [StandardService[null]] in state [STARTING]
+at org.apache.catalina.util.LifecycleBase.invalidTransition(LifecycleBase.java:321)
+at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:226)
+at de.javakaffee.web.msm.MemcachedSessionManagerIntegrationTest.tearDown(MemcachedSessionManagerIntegrationTest.java:112)
+This failure leads to failing tests in my case.
+I'm using the (deprecated) Embedded for integration testing the memcached-session-manager (http://code.google.com/p/memcached-session-manager/).
+I'm just working on a tomcat7 branch, which shall diverge as little as possible from the master/trunk, therefore I'm still using Embedded instead of the newly introduced Tomcat.

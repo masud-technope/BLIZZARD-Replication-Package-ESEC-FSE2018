@@ -1,0 +1,23 @@
+Bug 393356 – Failures in CompilerInvocationTests in I20121031-2000
+The following test fails in the latest I build with the following trace:
+C:\Users\HUDSONBUILD\AppData\Local\Temp\comptest\run.1351741384979\regression\bin: does not exist
+java.io.FileNotFoundException: C:\Users\HUDSONBUILD\AppData\Local\Temp\comptest\run.1351741384979\regression\bin: does not exist
+at com.sun.tools.javac.file.JavacFileManager.getOutputDirectory(JavacFileManager.java:840)
+at com.sun.tools.javac.file.JavacFileManager.setLocation(JavacFileManager.java:820)
+at org.eclipse.jdt.compiler.tool.tests.CompilerInvocationTests.test004_no_dash_d_option(CompilerInvocationTests.java:391)
+at org.eclipse.jdt.core.tests.util.CompilerTestSetup.run(CompilerTestSetup.java:55)
+at org.eclipse.test.EclipseTestRunner.run(EclipseTestRunner.java:650)
+at org.eclipse.test.EclipseTestRunner.run(EclipseTestRunner.java:305)
+at org.eclipse.test.CoreTestApplication.runTests(CoreTestApplication.java:36)
+at org.eclipse.test.CoreTestApplication.run(CoreTestApplication.java:32)
+at org.eclipse.equinox.internal.app.EclipseAppContainer.callMethodWithException(EclipseAppContainer.java:587)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:198)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:353)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:180)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:629)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+at org.eclipse.core.launcher.Main.main(Main.java:34)

@@ -1,0 +1,28 @@
+Bug 421620 – [1.8][compiler] wrong compile error with TYPE_USE annotation on exception
+BETA_JAVA8
+Wrong compile error if a throws declaration doesn't use the same TYPE_USE annotations as a declared variable of the thrown exception's type.
+If I remove the declaration of field 'e1', then the code compiles.
+class E1 extends Exception {
+private static final long serialVersionUID = 1L;
+}
+@Target(ElementType.TYPE_USE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@interface NonCritical { }
+public class Exceptions {
+@NonCritical E1 e1; // looks like this field's type binding is reused
+//wrong error:
+//Cannot use the parameterized type E1 either in catch block or throws clause
+void f1 (int a) throws /*@NonCritical*/ E1 {
+throw new E1();
+}
+void foo() {
+try {
+f1(0);
+//wrong error: Unreachable catch block for E1.
+//             This exception is never thrown from the try statement body
+} catch (@NonCritical final RuntimeException | @NonCritical E1 ex) {
+System.out.println(ex);
+}
+}
+}

@@ -1,0 +1,10 @@
+51905 – Infinite loop when shutting down AprEndpoint
+If unlocking the acceptor during AprEndpoint shutdown fails, it enters an infinite loop, printing endpoint.warn.unlockAcceptorFailed message
+(Acceptor thread [{0}] failed to unlock.
+Forcing hard socket shutdown.)
+It was reported on users@ mailing lists,
+http://tomcat.markmail.org/thread/xo2jolyr44ijuu34
+It might be caused by a firewall preventing Tomcat from connecting to its own HTTP port.
+I can reproduce it if I turn the unlockAccept() method in endpoint into an noop (e.g.
+by adding "if(true){ return; }"), both in 6.0 and in trunk.
+In 6.0 this bug was introduced in r1065945 and affects 6.0.32 and 6.0.33.

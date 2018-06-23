@@ -1,0 +1,19 @@
+Bug 135042 – java search causes NPE in PDE
+Mylar's Active Search runs numerous searches for Java elements in the background, some of which cause the following NPE due to trying to get an element from a null document.
+Most of the time this failure is innocuous.
+ However, it seems that if the corresponding plugin.xml is open for editing bogus compiler errors can result stating that extension points are not valid elements, and it seems that these can not be fixed without a restart.
+Let me know if you need more information about search parameters or anything related and I can try to isolate further.
+java.lang.NullPointerException
+at org.eclipse.pde.internal.core.XMLDefaultHandler.getDocumentElement(XMLDefaultHandler.java:108)
+at org.eclipse.pde.internal.core.schema.Schema.load(Schema.java:398)
+at org.eclipse.pde.internal.core.schema.Schema.load(Schema.java:373)
+at org.eclipse.pde.internal.core.schema.SchemaDescriptor.getSchema(SchemaDescriptor.java:73)
+at org.eclipse.pde.internal.core.schema.SchemaRegistry.getSchema(SchemaRegistry.java:54)
+at org.eclipse.pde.internal.ui.search.ClassSearchParticipant.searchProject(ClassSearchParticipant.java:169)
+at org.eclipse.pde.internal.ui.search.ClassSearchParticipant.search(ClassSearchParticipant.java:124)
+at org.eclipse.jdt.internal.ui.search.JavaSearchQuery$2.run(JavaSearchQuery.java:162)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.jdt.internal.ui.search.JavaSearchQuery.run(JavaSearchQuery.java:168)
+at org.eclipse.mylar.internal.java.search.AbstractJavaRelationProvider$JavaSearchOperation.run(AbstractJavaRelationProvider.java:299)
+at org.eclipse.mylar.internal.java.search.AbstractJavaRelationProvider$JavaSearchJob.run(AbstractJavaRelationProvider.java:280)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)

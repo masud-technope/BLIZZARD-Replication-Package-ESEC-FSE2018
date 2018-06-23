@@ -1,0 +1,5 @@
+Bug 420188 – Bindings.containsTypeVariables(ITypeBinding type) contains unused code
+org.eclipse.jdt.internal.corext.dom.Bindings.containsTypeVariables(ITypeBinding type)
+This method consists of 6 if statements in a row.
+The 1st and 5th if statement are the same.
+Therefore the 5th one is never going to get executed because the first on returns.

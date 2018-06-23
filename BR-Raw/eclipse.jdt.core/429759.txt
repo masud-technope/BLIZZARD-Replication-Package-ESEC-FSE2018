@@ -1,0 +1,20 @@
+Bug 429759 – [1.8][compiler] Lambda expression's signature matching error
+Hi, one more finding (jdk8 compiles, eclipse not):
+public class Main {
+public static void main(String[] args) {
+// *
+// * ERROR MESSAGE:
+// * Lambda expression's signature does not match
+// * the signature of the functional interface method get()
+// *
+final int i = new Test<Integer>().test("", (String s) -> 1);
+}
+static class Test<R> {
+<T> R test(T t, Supplier<R> s) {
+return s.get();
+}
+<T> R test(T t, Function<T, R> f) {
+return f.apply(t);
+}
+}
+}

@@ -1,0 +1,17 @@
+Bug 165045 – Import plugin with source leaves a warning about missing ---src.zip
+After exporting a plug-in project with source the export includes a ---src.zip file for use when importing with source.
+On import the build.properties file that is created references the --src.zip file.
+But since the src zip was used on import but not imported itself there is a warning in the on the build.properties.
+I tried including build.properties on export since it does not reference a --src.zip file but that file is ignored on import.
+build.properies file created on import that includes the warning.
+source.actions.jar = src-actions/
+bin.includes = .project,\
+about.html,\
+actions.jar,\
+actionssrc.zip,\     <== warning on this non-existant file
+build.properties,\
+doc/,\
+icons/,\
+META-INF/,\
+plugin.xml,\
+src-actions/

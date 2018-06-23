@@ -1,0 +1,13 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/ExecutionEnvironmentAnalyzer.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/BundleErrorReporter.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/bundle/ExportPackageHeader.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/bundle/ExportPackageObject.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/RemoveInternalDirectiveEntryResolution.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/ResolutionGenerator.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/BundleErrorReporter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/PDEMarkerFactory.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/bundle/PDEManifestElement.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/RemoveInternalDirectiveEntryResolution.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/ResolutionGenerator.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties

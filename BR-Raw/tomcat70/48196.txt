@@ -1,0 +1,6 @@
+48196 – Public arrays that should be private
+Created attachment 24535 [details]
+Patch fixes some public arrays that aren't currently accessed outside their class.
+Arrays should never be public unless they have zero elements.
+Patch fixes some public arrays that aren't currently accessed outside their
+class.

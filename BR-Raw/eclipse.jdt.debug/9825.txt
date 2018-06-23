@@ -1,0 +1,13 @@
+Bug 9825 – Action icon inconsistencies
+20020212++
+The debugger has several different approaches to what "icon" is shown depending
+on the state of the action.
+ We need to come up with one consistent plan that
+matches what is proposed for the whole workbench.
+For example, look at the remove all action icon in the launch view and
+breakpoint view.
+ In the launch view, the action has color if it is enabled.
+In the breakpoints view it does not show color until one hovers over the
+action.
+I actually prefer showing the color when the action is active (makes it easy to
+tell what action is active instead of having to hover).

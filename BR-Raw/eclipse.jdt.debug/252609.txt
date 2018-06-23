@@ -1,0 +1,4 @@
+Bug 252609 – Transient ConsoleLineTracker test failures
+I20081029-0100 has some more of the transient ConsoleLineTracker test failures.
+The failure is not reproducible locally.
+We should disable the offending tests in the build until we can figure out the reason for the failure(s).

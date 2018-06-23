@@ -1,0 +1,3 @@
+Bug 56211 – Class prepare breakpoint annotation
+I believe we need some indication of a class prepare breakpoint via an
+annotation or marker.

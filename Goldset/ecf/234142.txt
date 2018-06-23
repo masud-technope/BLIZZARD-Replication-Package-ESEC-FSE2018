@@ -1,0 +1,15 @@
+tests/bundles/org.eclipse.ecf.tests.sync/src/org/eclipse/ecf/tests/sync/SimulatedClientTests.java
+framework/bundles/org.eclipse.ecf.sync/src/org/eclipse/ecf/internal/sync/Activator.java
+framework/bundles/org.eclipse.ecf.sync/src/org/eclipse/ecf/sync/IModelSynchronizationStrategy.java
+framework/bundles/org.eclipse.ecf.sync/src/org/eclipse/ecf/sync/IModelChange.java
+framework/bundles/org.eclipse.ecf.sync/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.sync/src/org/eclipse/ecf/sync/IModelChangeMessage.java
+framework/bundles/org.eclipse.ecf.sync/src/org/eclipse/ecf/internal/sync/doc/cola/ColaSynchronizationStrategy.java
+tests/bundles/org.eclipse.ecf.tests.sync/src/org/eclipse/ecf/tests/sync/SharedDocClient.java
+framework/bundles/org.eclipse.ecf.sync/src/org/eclipse/ecf/sync/doc/IDocumentSynchronizationStrategyFactory.java
+framework/bundles/org.eclipse.ecf.sync/src/org/eclipse/ecf/sync/doc/IDocumentChange.java
+framework/bundles/org.eclipse.ecf.sync/src/org/eclipse/ecf/sync/IServiceConstants.java
+framework/bundles/org.eclipse.ecf.sync/src/org/eclipse/ecf/sync/doc/DocumentChangeMessage.java
+framework/bundles/org.eclipse.ecf.sync/src/org/eclipse/ecf/internal/sync/doc/cola/ColaDocumentChangeMessage.java
+framework/bundles/org.eclipse.ecf.sync/src/org/eclipse/ecf/sync/SerializationException.java
+framework/bundles/org.eclipse.ecf.sync/src/org/eclipse/ecf/sync/ModelUpdateException.java

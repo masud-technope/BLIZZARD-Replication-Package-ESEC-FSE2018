@@ -1,0 +1,7 @@
+org.eclipse.jdt.debug.tests/testprograms/java7/Literals17.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AbstractDebugTest.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AutomatedSuite.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/ProjectCreationDecorator.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/LiteralTests17.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/JavaPrimitiveValueEditor.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/engine/ASTInstructionCompiler.java

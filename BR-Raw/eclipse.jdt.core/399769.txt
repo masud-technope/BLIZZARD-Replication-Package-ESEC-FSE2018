@@ -1,0 +1,10 @@
+Bug 399769 – [1.8][compiler] Use of '_' as identifier name should trigger a diagnostic.
+'_' is a reserved keyword in Java 8 and cannot be used as an identifier
+per 3.9 Keywords [Modified] of the proposed spec.
+8b74 only issues a warning at this point, though the spec requires an
+unambiguous error.
+X.java:9: warning: '_' used as an identifier
+I  _ = null;
+^
+(use of '_' as an identifier might not be supported in future releases)
+1 warning

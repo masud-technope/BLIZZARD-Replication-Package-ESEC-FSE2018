@@ -1,0 +1,10 @@
+Bug 38371 – Changes for JDT Core fix: JavaCore.newLibraryEntry(...)
+IMPORTANT: JavaCore.newLibraryEntry(...) incorrectly tolerates relative source
+attachment path which is against the spec.
+This new patch will log an entry
+inside the .log when this is detected, and silently convert the path internally
+into an absolute one.
+By our spec, client code should be fixed.
+It seems that the JREContainerInitializer should be corrected (when opening
+InstalledJRE page, it will use empty relative source attachments "", instead
+of "/").

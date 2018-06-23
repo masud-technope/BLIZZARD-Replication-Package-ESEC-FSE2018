@@ -1,0 +1,2 @@
+Bug 489869 – Contribute Java project detection to importer framework
+JDT could contribute the mechanism to automatically detect and configure Java projects if those aren't already handled by more "structuring" import (Eclipse, Maven, Gradle...)

@@ -1,0 +1,6 @@
+org.eclipse.jdt.junit.core/META-INF/MANIFEST.MF
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/model/TestRunSession.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/junit/model/ITestRunSession.java
+org.eclipse.jdt.junit/META-INF/MANIFEST.MF
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/model/TestRunSession.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/junit/model/ITestRunSession.java

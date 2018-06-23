@@ -1,0 +1,6 @@
+java/org/apache/catalina/deploy/FilterDef.java
+java/org/apache/catalina/deploy/ContextHandler.java
+java/org/apache/catalina/deploy/ContextService.java
+java/org/apache/catalina/deploy/ResourceBase.java
+java/org/apache/catalina/deploy/NamingResources.java
+java/org/apache/catalina/deploy/ContextTransaction.java

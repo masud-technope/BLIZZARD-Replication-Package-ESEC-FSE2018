@@ -1,0 +1,15 @@
+Bug 108473 – [Performance] The performance of eclipse severely degrades over time
+Same as [Bug 67259] on an other platform.
+We are having the same problem on Windows XP.
+So it may not be OS dependent.
+System: Windows XP
+JDK: Sun 1.4.2_08 or 1.5.0_04
+Eclipse: 3.1.0
+We are running Tomcat from Eclipse using the Sysdeo launcher.
+After running Tomcat several times, there is a huge slow down in Tomcat:
+Almost all the CPU time (more than 80%) is allocated to a thread in Eclipse,
+Tomcat itself is not consuming much CPU time (less than 1%) but is not
+responding correctly at all.
+Tomcat process is run in debug mode.
+If we stop Tomcat and run it again without debug mode, then it runs fine.
+To have the debug mode running correctly again, we have to restart Eclipse.

@@ -1,0 +1,7 @@
+Bug 393161 – [type wizards] Pre-fill package name in the new class dialog
+If the new java class wizard is executed against a project and the project does not have any packages yet then the package field should be prefilled with the named of the project.
+Reproduce.
+Create an empty project
+go to the source folder
+select new class
+the package field is empty and it requires a lot of work to fill it in with the name of the project, which should, by convention, be the name of the top level package.

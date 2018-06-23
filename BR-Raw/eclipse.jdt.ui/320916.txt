@@ -1,0 +1,9 @@
+Bug 320916 – [preferences] Content Assist > Advanced: Read description for entry fields
+3.6 and HEAD.
+From bug 272167 comment 13:
+Btw:
+There is a small enhancement in that page regarding accessibility.
+Provide some description to the field that contains the delay value and to the
+field that contains the trigger value.
+Actually orca only reads the value of that fields, no description is present.
+The desired behavior is present in content assist preferences of ant editor.

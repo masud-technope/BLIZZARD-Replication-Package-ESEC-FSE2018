@@ -1,0 +1,3 @@
+Bug 255222 – Invalid tags leak into API descriptions
+From testing the memory performance of our api descriptions I found that we leak restrictions for invalid tags into our api descriptions.
+For example if you place a nooverride tag on a final method it will be set in the api description.

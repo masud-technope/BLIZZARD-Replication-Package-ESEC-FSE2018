@@ -1,0 +1,17 @@
+Bug 299937 – NPE when opening existing workspace, I20100115-1100
+Created attachment 156382 [details]
+NPEs in the error log
+I picked up a new build, I20100115-1100, and opened my existing 3.6 workspace.
+ It does a build, and then I got NPEs from API tools in the log.
+ I've attached the 3 errors, here's the example.
+ex:
+!ENTRY org.eclipse.core.resources 4 75 2010-01-18 09:34:22.958
+!MESSAGE Errors occurred during the build.
+!SUBENTRY 1 org.eclipse.pde.api.tools 4 75 2010-01-18 09:34:22.958
+!MESSAGE Errors running builder 'API Analysis Builder' on project 'org.eclipse.ui.workbench'.
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.pde.api.tools.internal.model.BundleComponent.createApiDescription(BundleComponent.java:365)
+at org.eclipse.pde.api.tools.internal.model.Component.getApiDescription(Component.java:105)
+at org.eclipse.pde.api.tools.internal.comparator.ClassFileComparator.collectAllInterfaces(ClassFileComparator.java:963)
+...

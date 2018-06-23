@@ -1,0 +1,23 @@
+Bug 88674 – NPE validating breakpoint location
+Unsure what triggered this...except that the binding is null
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.debug.ui.actions.ValidBreakpointLocationLocator.visit(ValidBreakpointLocationLocator.java:392)
+at org.eclipse.jdt.core.dom.Assignment.accept0(Assignment.java:307)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2450)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:2497)
+at org.eclipse.jdt.core.dom.ExpressionStatement.accept0(ExpressionStatement.java:143)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2450)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2520)
+at org.eclipse.jdt.core.dom.Block.accept0(Block.java:135)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2450)
+at org.eclipse.jdt.internal.debug.ui.actions.ValidBreakpointLocationLocator.visit(ValidBreakpointLocationLocator.java:759)
+at org.eclipse.jdt.core.dom.MethodDeclaration.accept0(MethodDeclaration.java:486)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2450)
+at org.eclipse.jdt.internal.debug.ui.actions.ValidBreakpointLocationLocator.visit(ValidBreakpointLocationLocator.java:1008)
+at org.eclipse.jdt.core.dom.TypeDeclaration.accept0(TypeDeclaration.java:466)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2450)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2520)
+at org.eclipse.jdt.core.dom.CompilationUnit.accept0(CompilationUnit.java:299)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2450)
+at org.eclipse.jdt.internal.debug.ui.actions.BreakpointLocationVerifierJob.run(BreakpointLocationVerifierJob.java:151)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:67)

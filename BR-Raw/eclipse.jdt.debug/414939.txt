@@ -1,0 +1,4 @@
+Bug 414939 – Error when checking out 'org.eclipse.debug.examples.mixedmode' example
+master (N20130812-2000).
+I get the following error when checking out 'org.eclipse.debug.examples.mixedmode':
+Referenced class 'org.eclipse.debug.internal.examples.mixedmode.LaunchConfigurationDelegate1' in attribute 'delegate' is not on the plug-in classpath

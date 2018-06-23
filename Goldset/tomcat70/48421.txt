@@ -1,0 +1,2 @@
+java/org/apache/juli/logging/LogFactory.java
+java/org/apache/juli/ClassLoaderLogManager.java

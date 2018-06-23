@@ -1,0 +1,8 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/LauncherMessages.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/jres/JREMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/jres/JREsPreferencePage.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/jres/JREMessages.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/LauncherMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/SWTUtil.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/jres/JREsComboBlock.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/debug/ui/launchConfigurations/JavaJRETab.java

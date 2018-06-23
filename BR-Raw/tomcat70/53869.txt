@@ -1,0 +1,15 @@
+53869 – Performance tuning solution to resolve too many cascaded JspContextWrapper issue
+Created attachment 29372 [details]
+Patch for JspContextWrapper.java
+JspContextWrapper.getServletContext, JspContextWrapper.findAttribute and JspContextWrapper.getELContext take much time because there are many cascaded tag files.
+For example:
+<tag1>
+<tag2>
+<tag3>
+<tag4/>
+</tag3>
+</tag2>
+</tag1>
+When calling JspContextWrapper(tag4).getServletContext from tag4, it will call JspContextWrapper(tag3).getServletContext --> JspContextWrapper(tag2).getServletContext --> JspContextWrapper(tag1).getServletContext --> PageContext.getServletContext.
+If the root PageContext can be held in JspConextWrapper, those page,session,application scopes calling can go directy to this root PageContext.
+Please check out the attached diff file (JspContextWrapper.diff) to get more detail about this change.

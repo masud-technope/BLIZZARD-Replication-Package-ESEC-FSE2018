@@ -1,0 +1,13 @@
+Bug 178744 – [misc] Editor opened upon an out of sync resource should allow for refresh action
+I20070320-0010
+Scenario:
+- create new file test.txt in project P;
+- edit it;
+- leave Eclipse;
+- touch test.txt;
+- launch Eclipse;
+- answer 'No' to the 'File Changed' prompt;
+- you get your editor to display 'Resource is out of sync...';
+- while refreshing it from the Navigator is easy, I found no means to refresh the resource from the editor itself, which I find non intuitive.
+Note: that behavior is somewhat general and other scenarios enable to display the file contents instead of the 'Resource is out of sync...' disclaimer, for which a contextual menu is available, but that menu has no refresh item.
+Checked behavior for Linux and XP.

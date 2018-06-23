@@ -1,0 +1,18 @@
+Bug 385389 – [quick assist] 'Invert equals' not available for enum comparisons.
+class A{
+void foo(Enum e) {
+if (e.equals(Enum.e1)) {
+} else if (e.equals(Enum.e2)) {
+} else if (e.equals(Enum.e3)) {
+}
+}
+}
+enum Enum {
+e1, e2, e3;
+}
+org.eclipse.jdt.internal.ui.text.correction.QuickAssistProcessor.getInvertEqualsProposal(IInvocationContext, ASTNode, Collection<ICommandAccess>)
+Line 2094 should be
+if (binding != null && !(binding.isClass() || binding.isInterface() || binding.isEnum())) { //overloaded equals w/ non-class/interface argument or null
+..
+or something better.
+(Need to check if something else is also missing)

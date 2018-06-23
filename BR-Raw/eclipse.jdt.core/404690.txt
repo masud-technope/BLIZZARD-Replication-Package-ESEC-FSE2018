@@ -1,0 +1,4 @@
+Bug 404690 – [1.8][compiler] revisit bridge generation after VM bug is fixed
+Bug 391376 solves a problem that should actually be handled in the VM, see
+http://bugs.sun.com/view_bug.do?bug_id=8009130
+Once that bug is fixed we should revisit our strategy for generating bridges.

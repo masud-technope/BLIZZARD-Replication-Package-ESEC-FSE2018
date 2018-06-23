@@ -1,0 +1,16 @@
+Bug 246594 – [model] API request: ITypeParameter#getBoundsSignatures() or #getSignature()
+N20080904-2000
+API request:
+- ITypeParameter#getBoundsSignatures() // returns type signatures of the bounds
+- or ITypeParameter#getSignature() // returns type variable signature
+ITypeParameter currently only offers getBounds(), which returns only the name of a bound.
+For correctly rendering the type parameter in Java editor hovers, I need the complete signatures of the bounds, e.g.
+for:
+class MyList<Element extends Map<String, Integer>> { ..
+},
+...
+I'd like to display:
+'Element extends Map<String, Integer> - pack.MyList'
+...
+when you hover over 'Element'.
+The type parameter signatures are already available via ITypeParameter#getDeclaringMember() and then IMethod#getTypeParameterSignatures() or IType#getTypeParameterSignatures(), but this is inelegant, and IMethod#getTypeParameterSignatures() is even deprecated.

@@ -1,0 +1,4 @@
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/discovery/IDiscoveryContainerAdapter.java
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/discovery/AbstractDiscoveryContainerAdapter.java
+providers/bundles/org.eclipse.ecf.provider.discovery/src/org/eclipse/ecf/provider/discovery/CompositeDiscoveryContainer.java
+providers/bundles/org.eclipse.ecf.provider.discovery/src/org/eclipse/ecf/provider/discovery/SingletonDiscoveryContainer.java

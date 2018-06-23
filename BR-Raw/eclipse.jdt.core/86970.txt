@@ -1,0 +1,3 @@
+Bug 86970 – [codeassist] Add an API on completion proposal API to surface the expected type
+We should add an API on completion proposal API to surface the expected type
+when we had one in the engine.

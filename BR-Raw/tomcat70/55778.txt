@@ -1,0 +1,25 @@
+55778 – JNDIRealm: Authentication with GSSAPI to LDAP with SSL connection causes an exception
+Whenever i try to authenticate with GSSAPI to a LDAP server with a SSL connection (ldaps), the following exception is thrown:
+javax.naming.ServiceUnavailableException: myserver.at:636; socket closed; remaining name 'dc=example,dc=org'
+at com.sun.jndi.ldap.Connection.readReply(Connection.java:452)
+at com.sun.jndi.ldap.LdapClient.getSearchReply(LdapClient.java:631)
+at com.sun.jndi.ldap.LdapClient.search(LdapClient.java:554)
+at com.sun.jndi.ldap.LdapCtx.doSearch(LdapCtx.java:1985)
+at com.sun.jndi.ldap.LdapCtx.searchAux(LdapCtx.java:1847)
+at com.sun.jndi.ldap.LdapCtx.c_search(LdapCtx.java:1772)
+...
+Steps to reproduce:
+1.
+Configure the valve org.apache.catalina.authenticator.SpnegoAuthenticator in the server.xml with storeDelegatedCredential="true".
+2.
+Configure the realm org.apache.catalina.realm.JNDIRealm in the server.xml with an SSL connection url (e.g.
+ldaps://myserver.at:636)
+3.
+Configure an auth-method with SPNEGO, security-constraints and security-roles in the web.xml
+4.
+Add required keystores to the jdk for the ldaps connection.
+5.
+Try to authenticate
+I debugged into the JNDIRealm and figured out, that changing line 2082 from "context.addToEnvironment("javax.security.sasl.qop", "auth-conf");" to "context.addToEnvironment("javax.security.sasl.qop", "auth");" would solve the problem.
+I also tested the fix with a new written JNDIRealm.
+But i'm not sure, if this fix causes other security issues.

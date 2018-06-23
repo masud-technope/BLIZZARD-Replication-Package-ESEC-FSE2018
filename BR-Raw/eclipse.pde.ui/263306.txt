@@ -1,0 +1,2 @@
+Bug 263306 – Installed metadata group no longer spans the preference page
+On the API Use tag of the API errors and warnings pref page, the group that shows what EE descriptions are installed no longer spans the page, but appears squished in the middle of the tab.

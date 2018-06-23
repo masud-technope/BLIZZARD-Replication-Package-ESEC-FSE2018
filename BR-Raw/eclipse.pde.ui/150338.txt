@@ -1,0 +1,11 @@
+Bug 150338 – [Content Assist] proposals should be case-insensitive
+It would be cool if the content assist proposals were case-insensitive across the board in MANIFEST.MF and plugin.xml files.
+MANIFEST.MF:
+- package names
+- header names
+- attributes and their values
+- directives and their values
+plugin.xml:
+- <extension> <extension-point> and other elements
+- attribute names
+For example, when I type 'org.eclipse.ui.actions' in the 'point' attribute of an <extension> element, I should still see 'org.eclipse.ui.actionSets' as a proposal.

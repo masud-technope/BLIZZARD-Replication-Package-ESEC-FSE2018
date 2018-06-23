@@ -1,0 +1,27 @@
+56042 – java.lang.IllegalStateException: Calling [asyncComplete()] is not valid for a request with Async state [MUST_DISPATCH]
+The issue appears if the response has been set before startAsync:
+response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+AsyncContext asyncContext = request.startAsync(request, response);
+asyncContext.dispatch();
+You might wonder why would anyone do that? The actual scenario is a bit more complex.
+It involves a separate thread that completes very fast, even before startAsync is called.
+The resulting stack trace:
+java.lang.IllegalStateException: Calling [asyncComplete()] is not valid for a request with Async state [MUST_DISPATCH]
+at org.apache.coyote.AsyncStateMachine.asyncComplete(AsyncStateMachine.java:227)
+at org.apache.coyote.http11.Http11Processor.actionInternal(Http11Processor.java:358)
+at org.apache.coyote.http11.AbstractHttp11Processor.action(AbstractHttp11Processor.java:871)
+at org.apache.coyote.Request.action(Request.java:344)
+at org.apache.catalina.core.AsyncContextImpl.complete(AsyncContextImpl.java:92)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:140)
+at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:409)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1044)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:607)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:313)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+at java.lang.Thread.run(Thread.java:744)
+The Servlet spec says: "It is illegal to call startAsync if ..., or if the response has been committed and closed, ...".
+If that is indeed the reason, a clear error should be raised, and startAsync not be allowed to proceed.
+Or perhaps it is an issue that can be fixed? For what it's worth it actually works in Jetty even though the spec says it is illegal.

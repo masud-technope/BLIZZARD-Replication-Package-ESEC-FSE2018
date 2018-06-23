@@ -1,0 +1,15 @@
+Bug 209432 – Issue a warning when "Bundle-ActivationPolicy: lazy" adds no value
+People love to be lazy.
+ They love laziness so much that they often add "Bundle-ActivationPolicy: lazy" to their bundle manifests without understanding when it is meaningful.
+ I'd like to see a warning issued by PDE when this header/value is used but:
+1.
+ The bundle does NOT export any packages via the Export-Package header.
+2.
+ The bundle does NOT define a bundle activator via the Bundle-Activator header.
+If my understanding is correct, both 1 and 2 must be true, otherwise the header
+Bundle-ActivationPolicy with the value "lazy" is meaningless.
+The most important of these is 1, since without an exported package there will be no types visible for other bundles to "touch" to cause the bundle to be lazily started.
+Regarding 2, without a bundle activator defined in the manifest starting a bundle has no effect, apart from changing its state to ACTIVE.
+ So you could argue that is it not absolutely necessary to have a bundle activator defined in the manifest, but I cannot imagine anyone wanting/needing to lazy start a bundle without a bundle activator just to have the bundle's state change to ACTIVE.
+Along with the warning, I'd like to see any applicable quick fixes.
+ The most reasonable quick fix I can think of would be "Remove header", since resolving 1 and 2 are probably too complicated for a quick fix.

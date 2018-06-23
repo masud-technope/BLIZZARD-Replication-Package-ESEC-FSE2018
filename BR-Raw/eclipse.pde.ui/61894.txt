@@ -1,0 +1,15 @@
+Bug 61894 – Sort plugin dependencies and feature content automatically in manifest files
+In plugin.xml editor, when you add required plugins on the Dependencies tab,
+they are always presented lexicografically sorted, which is good for
+readability.
+I believe it's reasonable to sort them (the <import plugin="..."/>
+elements) the same way in the plugin.xml source.
+The same applies for feature content ("Feature Plug-ins and Fragments" in
+feature.xml editor, corresponding <plugin> elements in source) as well as
+feature dependencies (the <requires> section in source).
+The related point is, that even when managing the manifest files using the
+visual editors only (and not touching the source), one comes across the xml
+version when synchronizing with repository and doing file comparisons.
+In these
+case, having the items sorted improves readability and may also prevent some
+conflicts (caused by different order only).

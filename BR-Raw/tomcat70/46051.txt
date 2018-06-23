@@ -1,0 +1,23 @@
+46051 – Servlet response writer does not respect line.separator system property
+Created attachment 22763 [details]
+remove special CoyoteWriter println handling
+public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
+response.setContentType("text/plain");
+PrintWriter writer = response.getWriter();
+writer.print("hello world");
+writer.println(); //FIXME ignores System.getProperty("line.separator") and always outputs \r\n
+return;
+}
+This means that if you use a servlet Writer on a Unix system to output any text based data format which is defined as requiring Unix format line endings ('\n'), that data will be corrupted.
+This appears to be because org.apache.catalina.connector.CoyoteWriter does:
+--------
+private static final char[] LINE_SEP = { '\r', '\n' };
+public void println() {
+write(LINE_SEP);
+}
+--------
+This used to work in Tomcat 4.
+Looking at the old code at http://svn.apache.org/repos/asf/tomcat/archive/tc4.0.x/tags/tc4.0.6/connectors/coyote/src/java/org/apache/coyote/tomcat4/CoyoteWriter.java it appears to defer line endings to the PrintWriter base class which does the right thing.
+Was this change was made to output HTTP headers properly or something?  It specifically seems to override the default behavior to do this.
+ I don't know the code well enough to determine if the attached patch to revert to the default behavior again would break something?
+Thanks for your consideration.

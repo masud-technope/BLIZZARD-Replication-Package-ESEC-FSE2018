@@ -1,0 +1,2 @@
+Bug 255307 – [Discovery][Composite] Instantiate nested bundles on first OSGi getServices
+Lazily instantiate nested discovery bundles for better resource handling.

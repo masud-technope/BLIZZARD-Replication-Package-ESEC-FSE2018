@@ -1,0 +1,5 @@
+Bug 388954 – [1.8][compiler] detect default methods in class files
+Default methods have no specific modifier in the class file format, yet the compiler needs to know when a method is a default method.
+I'm not 100% sure how compilation for 1.7- should handle any default methods it finds.
+At those levels the compiler doesn't expect any non-abstract methods in interfaces.
+So maybe we should add the AccAbstract flag for default methods in 1.7-, but I wouldn't know, where this is specified.

@@ -1,0 +1,2 @@
+Bug 313276 – [remoteservices][xmpp] Fix handling of service registration for xmpp provider
+Currently, service unregistration does not take into account the the Constants.SERVICE_REGISTRATION_TARGETS if set.

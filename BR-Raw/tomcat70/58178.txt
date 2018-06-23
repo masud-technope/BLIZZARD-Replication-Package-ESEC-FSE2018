@@ -1,0 +1,15 @@
+58178 – Exception not passed to c:catch in custom jsp tag
+Created attachment 32935 [details]
+Project demonstrating the problem
+If a custom tag uses the jstl <catch> tag, then the exception is saved into the page attributes, but is not actually available to other tags via EL expressions.
+If, however, the <catch> tag is used directly in a jsp page, then the exception is propagated into the var and visible to subsequent El expressions.
+I'm attaching a small project that contains a taglib that demonstrates the problem.
+The project contains 2 jsps:
+1.
+no-tagtest.jsp that uses the <catch> and other jstl tags directly in the jsp
+2.
+tagtest.jsp that references a custom tag that uses the <catch> and other jstl tags.
+The problem seems to be that when a custom tag uses any other tags, then the page context is an instance of JspContextWrapper.
+When resolving el expressions, the JspContextWrapper.getElContext() returns an ELContext for the rootContext, rather than the page context.
+In this example, the <catch> tag saves the exception as an attribute named "error" in the page context attributes (the page context will be an instance of JspContextWrapper).
+However, when the "error" variable is referenced later in an EL expression, the EL mechanism has a page context that is the root context of the JspContextWrapper and thus can't resolve that variable.

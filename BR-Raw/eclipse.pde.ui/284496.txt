@@ -1,0 +1,3 @@
+Bug 284496 – Context Help Editor should debug XML errors
+Like TOC Editor, make context help editor too report the XML errors.
+See bug 280119.

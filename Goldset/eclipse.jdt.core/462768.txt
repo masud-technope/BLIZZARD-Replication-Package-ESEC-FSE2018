@@ -1,0 +1,5 @@
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/ExternalAnnotationTracker.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/ClasspathEntry.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/util/ExternalAnnotationUtil.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/ClassFile.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ExternalAnnotations17Test.java

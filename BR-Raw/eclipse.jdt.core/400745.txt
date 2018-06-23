@@ -1,0 +1,23 @@
+Bug 400745 – [1.8][compiler] Compiler incorrectly allows shadowing of local class names.
+BETA_JAVA8:
+Amends to JLS7 read:
+"It is a compile-time error if the name of a local class C is used to declare a new local class within the scope of C, unless the new local class is declared in the body of C or within another class whose declaration is within the scope of C."
+So the following program should be rejected, but is not.
+// --------
+interface I {
+void foo();
+}
+public class X {
+void foo() {
+class Y {};
+I i = ()  -> {
+class Y {};
+};
+}
+}
+// ---
+javac complains:
+X.java:9: error: class Y is already defined in method foo()
+class Y {};
+^
+1 error

@@ -1,0 +1,8 @@
+Bug 29651 – allow source attachment changes on classpath container entries
+Use case:
+* From the java build paths page
+* The "Edit" button is disabled on a JRE container entry, to change the source
+attachment for a container
+We must implement these methods in Container
+#canUpdateClasspathContainer
+#requestClasspathContainerUpdate

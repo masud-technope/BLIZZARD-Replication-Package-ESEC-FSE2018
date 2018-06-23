@@ -1,0 +1,54 @@
+56536 – HttpSessionBindingListener.valueUnbound uses wrong classloader when SingleSignOn valve is used
+Created attachment 31630 [details]
+Reproduction war (including sources inside)
+We are encountering an issue with the call to the valueUnbound listener of our application.
+We rely on the SingleSignOn valve (org.apache.catalina.authenticator.SingleSignOn) to invalidate all user sessions for all web applications when the user chooses to logout (session invalidate) on one webapp.
+It seems that the valueUnboud is always called with the WebappClassLoader of the application where the original Session.invalidate was called.
+In the SingleSignOn scenario this is not always the webappclassloader.
+I have added reproduction steps and .wars below.
+It seems that the HttpSessionListener methods _are_ being called with the correct classloader from org.apache.catalina.session.StandardSession.expire(boolean).
+The expire method holds functionality to set the classloader to the webapp classloader, and restore it after calling.
+In the patch i have moved the classloader restore code down.
+This makes that also the valueUnbound calls are now done using the right webappclassloader.
+But i am not sure if this is valid as also a number of internal calls are being executed in the process.
+I will add the patch in the comments as i can only add a single attachment it seems.
+= Reproduction =
+I have created a very small demo project (code to be found in the war).
+== Preparation ==
+- Use a Tomcat 7 runtime.
+- Make sure you can login with a user that gets role 'test' by editing <tomcat>/conf/tomcat-users.xml.
+- Make sure SingleSignOn valve is enabled in server.xml
+- Place SingleSignOut.war in <tomcat>/webapps/
+- Make a copy of this <tomcat>/webapps/SingleSignOut.war to <tomcat>/webapps/SingleSignOut2.war
+(now you have two web applications that expect a user with role test, and answer to a request on / and on /logout)
+== Running the repro ==
+- Go to http://localhost:8080/SingleSignOut/
+- login: test/test
+- Go to http://localhost:8080/SingleSignOut2/
+- No login needed
+- Go to http://localhost:8080/SingleSignOut2/logout
+- See the following log on stdout:
+<begin stdout snippet>
+Calling session invalidate from /SingleSignOut2 using classloader WebappClassLoader
+context: /SingleSignOut2
+delegate: false
+repositories:
+/WEB-INF/classes/
+----------> Parent Classloader:
+org.apache.catalina.loader.StandardClassLoader@7a1f0683
+/SingleSignOut VALUE UNBOUND using classloader WebappClassLoader
+context: /SingleSignOut2
+delegate: false
+repositories:
+/WEB-INF/classes/
+----------> Parent Classloader:
+org.apache.catalina.loader.StandardClassLoader@7a1f0683
+/SingleSignOut2 VALUE UNBOUND using classloader WebappClassLoader
+context: /SingleSignOut2
+delegate: false
+repositories:
+/WEB-INF/classes/
+----------> Parent Classloader:
+org.apache.catalina.loader.StandardClassLoader@7a1f0683
+</end stdout snippet>
+- Observe that the value unboud for /SingleSignOut is being called with the classloader for /SingleSignOut2!

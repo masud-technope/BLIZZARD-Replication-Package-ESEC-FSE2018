@@ -1,0 +1,20 @@
+21157 – CookieExample is setting cookie after writing data
+A servlet can not set the headers and cookies after writing data to the
+servlet's output stream.
+Once the servlet writes data, headers are committed.
+However CookieExample writes some data first before doing addCookie on the
+response.
+The reason why this code works at all even with the above bug is: The
+CookieExample is only writing a small amount of data before doing
+response.addCookie.
+That data is still held in buffer and not yet sent over
+the wire.
+Hence the headers are not yet committed.
+So it is pure luck that
+this example works.
+You can easily expose the bug by writing say 20K characters in this example
+before response.addCookie is called.
+You will see that the cookies that are
+adding to response are not actually sent back to client.
+Fix is simple.
+Move up the response.addCookie() before response.getWriter()

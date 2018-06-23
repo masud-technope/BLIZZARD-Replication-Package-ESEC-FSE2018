@@ -1,0 +1,2 @@
+providers/bundles/org.eclipse.ecf.provider.discovery/src/org/eclipse/ecf/internal/provider/discovery/Activator.java
+providers/bundles/org.eclipse.ecf.provider.discovery/src/org/eclipse/ecf/provider/discovery/CompositeServiceContainerEvent.java

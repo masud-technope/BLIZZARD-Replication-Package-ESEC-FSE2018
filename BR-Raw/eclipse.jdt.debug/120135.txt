@@ -1,0 +1,5 @@
+Bug 120135 – catch up with new type rename refactoring support
+Type rename supports an optional "update similarly named variables and methods" option.
+This can cause many member name changes.
+The BreakpointRenameTypeParticipant needs to be updated to handle these changes.
+For M4, we disable the breakpoint participant when the option is checked.

@@ -1,0 +1,19 @@
+Bug 79794 – Adopt new hyperlink feature
+N200412010010
+Hyperlink (also known as Ctrl+Click) support has been added to text viewers and
+editors.
+For details see text build notes.
+If you now hover over an URL while MOD is pressed in the PDE editor's source
+page it will show up as hyperlink and you can open it.
+There are two things to do:
+1) use the shared hyperlink preferences.
+AFAIK the PDE source
+editor already sets a chained preference store but since its source viewer
+configuration inherits from SourceViewerConfiguration and not from
+TextSourceViewerConfiguration you need to copy all the getHyperlink* methods
+from TextSourceViewerConfiguration.
+2) PDE Source editors should offer to detect other links in plugin.xml (e.g.
+type names) by writing an IHyperlink and IHyperlinkDetector for each
+hyperlink target and by extending
+SourceViewerConfiguration.getHyperlinkDetectors(...) to return yours and
+the inherited ones (currently URLHyperlinkDetector).

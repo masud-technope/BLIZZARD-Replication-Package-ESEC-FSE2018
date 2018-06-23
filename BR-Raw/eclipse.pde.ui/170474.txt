@@ -1,0 +1,12 @@
+Bug 170474 – Dependancies not initially set in project creation wizard
+build i0109-1805
+When I create a new HelloWorld plug-in project with the wizard and do not choose to have an Activator class created for me, the plug-in dependancies for the project are not set up and I end up with compile errors in my java file.
+Steps:
+- File -> New -> PDE -> Plug-in Project
+- Enter a project name
+- Next
+- De-select "Generate an Activator class"
+- Next
+- Choose "Hello, World"
+- Finish
+Note the compile errors in the java file.

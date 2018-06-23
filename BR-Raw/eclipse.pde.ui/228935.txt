@@ -1,0 +1,18 @@
+Bug 228935 – NPE writing bundles.info, stale model in state
+I had created a test fragment in my workspace (for bug 223289), I then later deleted that fragment from my workspace.
+I then went to launch a self hosted workspace, and the launch failed with an NPE.
+On the launch config Plug-ins tab, I clicked Validate Plug-ins and one of the problems was a missing version constraint that exists in my test fragment which has since been deleted from the workspace.
+ (Apparently the fragment still exists in the target state?)
+The NPE is
+java.lang.NullPointerException
+at java.io.File.<init>(File.java:220)
+at org.eclipse.pde.internal.core.P2Utils.writeBundlesTxt(P2Utils.java:222)
+at org.eclipse.pde.internal.core.P2Utils.writeBundlesTxt(P2Utils.java:322)
+at org.eclipse.pde.internal.ui.launcher.LaunchConfigurationHelper.createConfigIniFile(LaunchConfigurationHelper.java:118)
+at org.eclipse.pde.ui.launcher.EclipseApplicationLaunchConfiguration.getProgramArguments(EclipseApplicationLaunchConfiguration.java:80)
+at org.eclipse.pde.ui.launcher.AbstractPDELaunchConfiguration.launch(AbstractPDELaunchConfiguration.java:62)
+at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:764)
+at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:614)
+at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:827)
+at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1030)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

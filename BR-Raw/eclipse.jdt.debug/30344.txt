@@ -1,0 +1,13 @@
+Bug 30344 – Insertion of 'scrapbook' error messages unhelpful
+When an error occurs in the scrapbook (e.g.
+a syntax error) or a result is
+returned, the scrapbook inserts text in the scrapbook page (which is what VAJ
+used to do).
+This has always been remarkably unhelpful; if the developer does not delete the
+message/result straight away then when selecting a block of text next time may
+end up with the error message being interpreted, which gives a further error
+message ad tedium.
+It would be much better if a pop-up-dialog box was used to indicate of a
+result/error that could be dismissed leaving the source code intact, or
+alternatively displaying the result using another mechanism (pop-up text,
+console for standard output/error etc.)

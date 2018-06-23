@@ -1,0 +1,5 @@
+Bug 262768 – [jar exporter] Jardesc for normal Jar contains <fatjar builder="...
+I20090127-2000
+The *.jardesc generated from the normal JAR file exporter contains this line:
+<fatjar builder="org.eclipse.jdt.ui.plain_jar_builder" launchConfig=""/>
+I don't see the benefit of this, especially since the Runnable JAR exporter does not support .jardesc files.

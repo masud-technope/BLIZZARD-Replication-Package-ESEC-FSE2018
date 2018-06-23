@@ -1,0 +1,20 @@
+56446 – Handling InvocationTargetException for PojoMessageHandlerWholeBase and PojoMessageHandlerPartialBase.onMessage()
+Both two methods handle InvocationTargetException from Endpoint @OnMessage method like this:
+try {
+result = method.invoke(pojo, parameters);
+} catch (IllegalAccessException | InvocationTargetException e) {
+throw new IllegalArgumentException(e);
+}
+I'd like to suggest to use
+org.apache.tomcat.util.ExceptionUtils#unwrapInvocationTargetException() and RuntimeException
+, which is like below:
+try {
+result = method.invoke(pojo, parameters);
+} catch (IllegalAccessException | InvocationTargetException e) {
+Throwable throwable = ExceptionUtils.unwrapInvocationTargetException(e);
+if (throwable instanceof RuntimeException) {
+throw (RuntimeException) throwable;
+} else {
+throw new RuntimeException(throwable);
+}
+}

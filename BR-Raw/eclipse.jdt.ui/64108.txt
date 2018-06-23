@@ -1,0 +1,7 @@
+Bug 64108 – Javadoc keywords settings no longer work in Java Editor
+Using build I200405260010.
+I've noticed that Javadoc keywords (ie.
+tag names in javadoc comments) were no
+longer highlighted.
+Trying to see if my preferences were reset and then realized
+that whatever color or style I set for Javadoc keywords, they stay unchanged...

@@ -1,0 +1,94 @@
+Bug 403700 – Selecting Ant Build launch configuration in External Tools Configuration dialog causes NPE
+Created attachment 228601 [details]
+Screen shot of blank JRE tab in External Tools Config dialog
+I recently upgraded to Eclipse Juno on my Windows XP machine:
+Eclipse Java EE IDE for Web Developers.
+Version: Juno Service Release 2
+Build id: 20130225-0426
+When I open the External Tools Configurations dialog and try to select one of my Ant Build launch configurations, this message appears at the top of the dialog:
+"[JRE]: Unable to resolve JRE: jdk1.5.0_19 (Standard VM)".
+I try navigating to the JRE tab to fix this, but the UI of the tab is totally blank (see attached screen shot).
+ I also get a "Problem Occurred" pop-up dialog with the text "An error has occurred.
+ See error log for more details.
+ java.lang.NullPointerException."
+I've tried closing and reopening the External Tools Configuration dialog, and running Eclipse with -clean, but the JRE tab is always blank now, so I can't figure out how to get into a state where I could designate the correct JRE.
+Here is the full stack trace from the log file:
+java.lang.NullPointerException
+at org.eclipse.core.runtime.Path.append(Path.java:261)
+at org.eclipse.jdt.launching.JavaRuntime.newJREContainerPath(JavaRuntime.java:1915)
+at org.eclipse.jdt.debug.ui.launchConfigurations.JavaJRETab.selectJRE(JavaJRETab.java:417)
+at org.eclipse.jdt.debug.ui.launchConfigurations.JavaJRETab.updateJREFromConfig(JavaJRETab.java:361)
+at org.eclipse.jdt.debug.ui.launchConfigurations.JavaJRETab.initializeFrom(JavaJRETab.java:164)
+at org.eclipse.ant.internal.ui.launchConfigurations.AntJRETab.initializeFrom(AntJRETab.java:160)
+at org.eclipse.debug.ui.AbstractLaunchConfigurationTabGroup.initializeFrom(AbstractLaunchConfigurationTabGroup.java:86)
+at org.eclipse.ant.internal.ui.launchConfigurations.AntTabGroup.initializeFrom(AntTabGroup.java:50)
+at org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationTabGroupWrapper.initializeFrom(LaunchConfigurationTabGroupWrapper.java:194)
+at org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationTabGroupViewer.displayInstanceTabs(LaunchConfigurationTabGroupViewer.java:753)
+at org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationTabGroupViewer$8.run(LaunchConfigurationTabGroupViewer.java:624)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+at org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationTabGroupViewer.inputChanged(LaunchConfigurationTabGroupViewer.java:641)
+at org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationTabGroupViewer.setInput0(LaunchConfigurationTabGroupViewer.java:603)
+at org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationTabGroupViewer.setInput(LaunchConfigurationTabGroupViewer.java:579)
+at org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationsDialog.handleLaunchConfigurationSelectionChanged(LaunchConfigurationsDialog.java:941)
+at org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationsDialog$3.selectionChanged(LaunchConfigurationsDialog.java:560)
+at org.eclipse.jface.viewers.StructuredViewer$3.run(StructuredViewer.java:888)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:49)
+at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:175)
+at org.eclipse.jface.viewers.StructuredViewer.firePostSelectionChanged(StructuredViewer.java:886)
+at org.eclipse.jface.viewers.StructuredViewer.handlePostSelect(StructuredViewer.java:1226)
+at org.eclipse.jface.viewers.StructuredViewer$5.widgetSelected(StructuredViewer.java:1251)
+at org.eclipse.jface.util.OpenStrategy.firePostSelectionEvent(OpenStrategy.java:262)
+at org.eclipse.jface.util.OpenStrategy.access$5(OpenStrategy.java:256)
+at org.eclipse.jface.util.OpenStrategy$3.run(OpenStrategy.java:433)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4144)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3761)
+at org.eclipse.jface.window.Window.runEventLoop(Window.java:825)
+at org.eclipse.jface.window.Window.open(Window.java:801)
+at org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationsDialog.open(LaunchConfigurationsDialog.java:1132)
+at org.eclipse.debug.ui.DebugUITools$2.run(DebugUITools.java:600)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+at org.eclipse.debug.ui.DebugUITools.openLaunchConfigurationDialogOnGroup(DebugUITools.java:608)
+at org.eclipse.debug.ui.DebugUITools.openLaunchConfigurationDialogOnGroup(DebugUITools.java:542)
+at org.eclipse.debug.ui.actions.OpenLaunchDialogAction.run(OpenLaunchDialogAction.java:81)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:498)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:584)
+at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:501)
+at org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:411)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4169)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3758)
+at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1053)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:942)
+at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:86)
+at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:588)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:543)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:353)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:180)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:629)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
+!SESSION 2013-03-18 17:10:10.639 -----------------------------------------------
+eclipse.buildId=M20130204-1200
+java.version=1.6.0_31
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product -clean
+Please advise if I need to provide any more details.
+Thank you,
+Jennifer

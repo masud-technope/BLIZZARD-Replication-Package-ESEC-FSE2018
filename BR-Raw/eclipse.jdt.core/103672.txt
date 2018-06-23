@@ -1,0 +1,13 @@
+Bug 103672 – compiler problem VARARGS_ARGUMENT_NEED_CAST only explains one of two solutions
+3.1
+The compiler problem COMPILER_PB_VARARGS_ARGUMENT_NEED_CAST is a bit misleading,
+since it only explains one of two solutions to the underlying problem (see bug
+103667) when it says:
+"Varargs argument null should be cast to Object[] when passed to the method
+addElements(Object...) from type VarargExample".
+The compiler preference page calls this 'Inexact type match for varargs
+argument', and I think the error message should rather explain this problem than
+propose a solution.
+My proposal for a more neutral error message:
+"Varargs argument null does not match argument type Object[] of method
+addElements(Object...) from type VarargExample".

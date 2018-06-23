@@ -1,0 +1,3 @@
+Bug 463252 – Compile log warning in JDT Debug ui in N20150326-2000
+Compile log warning
+http://download.eclipse.org/eclipse/downloads/drops4/N20150326-2000/compilelogs/plugins/org.eclipse.jdt.debug.ui_3.7.0.N20150326-2000/@dot.html

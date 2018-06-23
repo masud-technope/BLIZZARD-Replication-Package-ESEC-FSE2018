@@ -1,0 +1,25 @@
+Bug 428985 – [1.8][null] help the type inference to find a nullness-annotated type if possible
+Consider examples like this:
+//---
+import org.eclipse.jdt.annotation.*;
+interface Func<T>  {
+T a(T i);
+}
+public class PolyNull {
+<X> X extract(Func<X> f, X s) { return f.a(s); }
+@NonNull String test() {
+return extract(i -> i, "hallo");
+}
+//---
+Type inference will infer X to String, fine.
+But the target type is actually '@NonNull String'.
+While null analysis should not affect the basic outcome of type inference, we actually have sufficient leeway to improve the exact inferred type:
+Inference comes up with
+X#0 :> String
+X#0 <: @NonNull String
+knowing that both bounds are compatible since incorporation didn't fail.
+During resolution X#0 is instantiated just from the lower bound, which has no null annotation.
+If we add to this result just the nullness findings from the upper bounds we can indeed produces the result '@NonNull String'.
+I'll look for more tests, to see this is already makes for a consistent solution.
+Another option would be to add nullness hints to TypeBounds during incorporation.
+Obviously, any such magic will be controlled by the option to enable null annotations in the first place.

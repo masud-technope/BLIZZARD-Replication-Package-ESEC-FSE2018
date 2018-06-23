@@ -1,0 +1,12 @@
+55035 – Deploy ROOT webapp with version through text manager using Ant
+Currently Ant "deploy" task does not support separate parameter "version" and, thanks to URLEncoder, there is no workaround for that.
+But for apps with not empty context it's possible to define version using ##, like setting path to "/someContext#someVersion".
+For apps with empty context we receive error:
+Case #1:
+<deploy url="{tomcat.manager}/text" username="${username}", password="${password}" path="/ROOT##12345" war="${pathtowar}" />
+Result:
+Failed to deploy application at context path /ROOT##12345
+Case #1:
+<deploy url="{tomcat.manager}/text" username="${username}", password="${password}" path="/##12345" war="${pathtowar}" />
+Result:
+Failed to deploy application at context path /##12345

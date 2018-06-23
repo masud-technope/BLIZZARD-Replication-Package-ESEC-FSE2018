@@ -1,0 +1,10 @@
+50836 – LifecycleState#isAvailable() to be more restrictive
+I think some of the values returned by LifecycleState#isAvailable() are wrong.
+1.
+I am certain that MUST_DESTROY should return false, because it is a state that is later than stopped.
+2.
+I think that STOPPING_PREP should return false, because we can get there from the FAILED state.
+3.
+I think that STARTING should return false, because it is too early to return true there.
+As a result, the following is the complete list of states are to return true in #isAvailable():
+STARTED, MUST_STOP

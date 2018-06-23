@@ -1,0 +1,29 @@
+Bug 406388 – [1.8][compiler][codegen] Runtime evaluation of method reference produces "BootstrapMethodError: call site initialization exception"
+BETA_JAVA8:
+-----------
+The following program when compiled and run with branch head, produces:
+Exception in thread "main" java.lang.BootstrapMethodError: call site initialization exception
+at java.lang.invoke.CallSite.makeSite(CallSite.java:298)
+at java.lang.invoke.MethodHandleNatives.linkCallSite(MethodHandleNatives.java:294)
+at X.main(X.java:7)
+Caused by: java.lang.NullPointerException
+at java.lang.invoke.MethodHandleInfo.<init>(MethodHandleInfo.java:53)
+at java.lang.invoke.AbstractValidatingLambdaMetafactory.<init>(AbstractValidatingLambdaMetafactory.java:110)
+at java.lang.invoke.InnerClassLambdaMetafactory.<init>(InnerClassLambdaMetafactory.java:109)
+at java.lang.invoke.LambdaMetafactory.metaFactory(LambdaMetafactory.java:188)
+at java.lang.invoke.CallSite.makeSite(CallSite.java:283)
+...
+2 more
+------------------
+// --
+interface I {
+Object copy(int [] ia);
+}
+class X  {
+public static void main(String [] args) {
+I i = int[]::<String>clone;
+i.copy(new int[10]);
+}
+}
+// ---
+Thanks to Andy Clement for reporting this.

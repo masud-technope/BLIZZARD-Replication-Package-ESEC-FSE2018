@@ -1,0 +1,6 @@
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/chatroom/ChatRoomManagerView.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/chatroom/IChatRoomAdminSender.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/chatroom/IChatRoomContainer.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/XMPPChatRoomContainer.java
+providers/bundles/org.eclipse.ecf.provider.irc/src/org/eclipse/ecf/internal/provider/irc/container/IRCChannelContainer.java
+providers/bundles/org.eclipse.ecf.provider.irc/src/org/eclipse/ecf/internal/provider/irc/container/IRCRootContainer.java

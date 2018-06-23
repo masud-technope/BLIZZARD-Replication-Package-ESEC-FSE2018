@@ -1,0 +1,14 @@
+42361 – POST content type incorrect for multipart forms after login
+When using a form with a custom encoding (e.g.
+"multipart/form-data"), the
+content type is not restored after a redirect to a login page (auth-method = FORM).
+To reproduce:
+- A page that POSTs using multipart/form-data encoding (or anything other than
+application/x-www-form-urlencoded) to a result page that is protected by a login
+page (auth-method=FORM) is invoked.
+- Even though the multipart POST data exists (verified by reading input stream
+of request from result page) the content type of the request is always
+"application/x-www-form-urlencoded".
+- This only happens when redirected to the login page first.
+ It does not happen
+if already logged in.

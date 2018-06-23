@@ -1,0 +1,7 @@
+Bug 385293 – [1.8][compiler] compiler accepts normal modifiers on type arguments
+Type references like
+T<final X>
+T<@Marker static X>
+are silently accepted.
+Parser.modifier is never read in this context.
+Either the grammar should be changed not to allow normal modifiers in this position or we need to check and report any stored modifiers.

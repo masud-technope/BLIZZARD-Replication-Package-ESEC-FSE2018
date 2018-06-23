@@ -1,0 +1,8 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/wizards/NewPackageWizardPage.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/junit/wizards/NewTestSuiteWizardPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/NewSourceFolderWizardPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/NewWizardMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/wizards/NewTypeWizardPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/NewWizardMessages.properties
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/wizards/WizardMessages.properties
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/wizards/WizardMessages.java

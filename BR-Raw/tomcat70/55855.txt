@@ -1,0 +1,28 @@
+55855 – Unexpected WsFilter is configured in a webapp that does not use WebSocket
+Reproducible in Tomcat 7 on 7.0.47 and on the current 7.0.x (@ r1548765).
+I have not tested Tomcat 8.
+Steps to reproduce:
+1.
+Create the file webapps/ROOT/test.jsp in the default ROOT web application.
+[[[
+<% throw new RuntimeException(); %>
+]]]
+2.
+Configure JAVA_HOME to point to a Java 7 JRE (7u45).
+3.
+Start Tomcat
+4.
+Browse http://localhost:8080/test.jsp
+The following stacktrace is printed on the error page and into the log files:
+[[[
+org.apache.jasper.JasperException: An exception occurred processing JSP page /test.jsp at line 1
+1: <% throw new RuntimeException(); %>
+Stacktrace:
+org.apache.jasper.servlet.JspServletWrapper.handleJspException(JspServletWrapper.java:568)
+org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:470)
+org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:390)
+org.apache.jasper.servlet.JspServlet.service(JspServlet.java:334)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+]]]
+The "WsFilter" in the stacktrace is unexpected, as the default ROOT web application does not use WebSockets.

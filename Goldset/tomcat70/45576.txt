@@ -1,0 +1,3 @@
+java/org/apache/catalina/realm/JAASCallbackHandler.java
+java/org/apache/catalina/realm/JAASRealm.java
+java/org/apache/catalina/realm/JAASMemoryLoginModule.java

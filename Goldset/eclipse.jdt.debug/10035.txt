@@ -1,0 +1,4 @@
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/AbstractJavaLaunchConfigurationDelegate.java
+org.eclipse.jdt.launching/.project
+org.eclipse.jdt.launching/plugin.xml
+org.eclipse.jdt.launching/.classpath

@@ -1,0 +1,6 @@
+Bug 93140 – Search for main methods can use smaller scope
+The "search" button on the main tab of a Java launch config searches all
+libraries and sources and then filters the results based on whether the user
+chose to search libraries.
+This can be more efficient by creating a more
+restrictive scope for the search.

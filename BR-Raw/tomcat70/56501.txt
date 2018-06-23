@@ -1,0 +1,20 @@
+56501 – problems with urlencoding in webapp name
+we have a webapp with a filter, that generates an index.html file if the app is called on its root directory or with index.html as path.
+there is one edge case where this filter is ignored and tomcat trys to open an actual index.html (which does not exist).
+this happens when the webapp contains a underscore (_) in its name and the app is opened with %5F encoding instead of the underscore and a leading /.
+we found this issue while migrating our apps from tomcat 6 to tomcat 7(.0.52).
+the manager app links the webapps with "/test%5Fapp/" (tomcat 6 used "/test%5Fapp" without the leading /) on tomcat 6 clicking the link the webapp opened as expected.
+on tomcat 7 we get 404 or if we place a real index.html it is shown.
+on tomcat 8 the real index.html is accessed too, haven't checked how the manager links to the app.
+eg
+WepApp name: test_app
+http://tomcat/test_app - Filter
+http://tomcat/test_app/ - Filter
+http://tomcat/test%5Fapp - Filter
+http://tomcat/test%5Fapp/ - index.html (404)
+http://tomcat/test_app/index.html - Filter
+http://tomcat/test%5Fapp/index.html - Filter
+with name: testapp
+http://tomcat/testapp - Filter
+http://tomcat/testapp/ - Filter
+http://tomcat/testapp/index.html - Filter

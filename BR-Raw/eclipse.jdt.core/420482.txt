@@ -1,0 +1,8 @@
+Bug 420482 – [1.8] ExecutableTypeImpl#getParameterTypes() does not include type annotation from type parameter
+Created attachment 236948 [details]
+Test case
+The attachment is a patch of a testcase in Java8ElementProcessor and it fails when Java8ElementTests are run.
+The code is:
+public <T> Z(@Type T t){}
+When ExecutableTypeImpl#getParameterTypes() is invoked with the above code, we look at the MethodBinding#parameters to create the TypeMirror.
+But the parameters contains a TypeVariableBinding but the binding doesn't contain the annotations.

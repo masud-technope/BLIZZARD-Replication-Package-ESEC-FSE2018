@@ -1,0 +1,13 @@
+Bug 179473 – [rename] Rename in Editor should enter linked mode if identifier cannot be resolved
+N20070327-0010
+'Refactor > Rename' in 'Rename in Editor' mode should enter linked mode if the selected identifier cannot be resolved.
+This is the last advantage of the 'Rename In File' quick assist over the in-place rename refactoring.
+E.g.
+Alt+Shift+R should link the two unresolved 'argument' references (but not show the refactoring popup at all):
+public class Try {
+void m(String arg) {
+System.out.println(argument + argument);
+}
+}
+Currently, we show a dialog that the element could not be resolved.
+Martin, do you agree?

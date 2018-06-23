@@ -1,0 +1,8 @@
+Bug 9517 – Browser Perspective: new project doesn't show up in project view part
+Test pass for M3
+- open eclipse
+- switch to browser perspective
+- open context menu in project view part
+- select New->Project
+- create JUnit project
+observe: new project doesn't show up in project view part

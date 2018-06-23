@@ -1,0 +1,3 @@
+providers/bundles/org.eclipse.ecf.provider.discovery/plugin.xml
+providers/bundles/org.eclipse.ecf.provider.discovery/src/org/eclipse/ecf/internal/provider/discovery/CompositeNamespace.java
+providers/bundles/org.eclipse.ecf.provider.discovery/src/org/eclipse/ecf/internal/provider/discovery/CompositeServiceID.java

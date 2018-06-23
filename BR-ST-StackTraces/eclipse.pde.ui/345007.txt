@@ -1,0 +1,7 @@
+org.eclipse.pde.internal.runtime.registry.model.ServiceRegistration.getUsingBundles
+org.eclipse.pde.internal.runtime.registry.RegistryBrowserModelChangeListener.getTopLevelElement
+org.eclipse.pde.internal.runtime.registry.RegistryBrowserModelChangeListener.refreshTopLevelElements
+org.eclipse.pde.internal.runtime.registry.RegistryBrowserModelChangeListener.update
+org.eclipse.pde.internal.runtime.registry.RegistryBrowserModelChangeListener$1.run
+org.eclipse.swt.widgets.RunnableLock.run
+org.eclipse.swt.widgets.Synchronizer.runAsyncMessages

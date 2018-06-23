@@ -1,0 +1,22 @@
+Bug 382606 – [javadoc] constructor used in javadoc not getting resolved for secondary types.
+Ran into this issue while working on bug 381567
+####
+package pkg;
+/**
+* @see A
+*/
+public interface A {
+}
+/**
+* @see #B()
+*/
+class B {
+B() {}
+public void foo(){
+new B();
+}
+}
+####
+Turn on javadoc processing and also turn on warnings for malformed javadoc comments.
+Also make 'only consider members as visible as' Default and turn on 'Validate tag arguments'.
+The warning "The method B() is undefined for the type B" gets reported.

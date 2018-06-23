@@ -1,0 +1,2 @@
+server-side/examples/bundles/org.eclipse.ecf.examples.updatesite.client/src/org/eclipse/ecf/internal/examples/updatesite/client/UpdateSiteServiceAccessHandler.java
+server-side/examples/bundles/org.eclipse.ecf.examples.updatesite.server/src/org/eclipse/ecf/internal/examples/updatesite/DiscoverableServer.java

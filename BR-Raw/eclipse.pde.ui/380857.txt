@@ -1,0 +1,4 @@
+Bug 380857 – Fix mixed line delimiters
+The following change messed up the line delimiters for several files:
+http://git.eclipse.org/c/pde/eclipse.pde.ui.git/diff/apitools/org.eclipse.pde.api.tools.ee.cdcfoundation11/build.properties?id=9eb2c6bee2afc8c16abdf52aacc798dcd3a617f0
+How could this happen?

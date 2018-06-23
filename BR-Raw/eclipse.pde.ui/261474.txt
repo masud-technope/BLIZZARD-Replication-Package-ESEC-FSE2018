@@ -1,0 +1,7 @@
+Bug 261474 – [Manifest] [Editors] Quick Diff and Line Numbers don't work in build.properties editor
+I20090114-1322
+Quick Diff and Line Number rulers don't work in build.properties editor.
+When I choose Show Quick Diff from the left ruler context menu, a quick diff bar is shown, but it doesn't show diffs.
+Also, the menu item does not become checked, and when I run it a second time, a second quick diff ruler is added.
+Line numbers don't show up at all.
+The normal *.properties file editor is OK.

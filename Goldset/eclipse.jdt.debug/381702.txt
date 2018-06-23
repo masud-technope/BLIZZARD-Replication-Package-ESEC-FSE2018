@@ -1,0 +1,5 @@
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/environments/IExecutionEnvironmentsManager.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/jres/ExecutionEnvironmentsPreferencePage.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/jres/JREsComboBlock.java
+org.eclipse.jdt.launching/META-INF/MANIFEST.MF
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/environments/EnvironmentsManager.java

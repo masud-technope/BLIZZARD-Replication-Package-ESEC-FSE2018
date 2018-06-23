@@ -1,0 +1,9 @@
+Bug 66646 – [package explorer] Show in doesn't inform user about filters if name filter filters element to be shown
+I20040611
+- create project Test
+- create class A
+- open in editor
+- package explorer: set name filter for Test
+- give focus to editor
+- Show in Package exlorer
+observe: you don't get a hint that the element is filtered out.

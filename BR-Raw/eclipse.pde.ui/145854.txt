@@ -1,0 +1,2 @@
+Bug 145854 – Create a template for a a Hello World OSGi service
+There currently is a hello world bundle template for Equinox, I would like to see one for an OSGi service (using DS and not DS).

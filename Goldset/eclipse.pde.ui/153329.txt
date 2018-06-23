@@ -1,0 +1,16 @@
+ui/org.eclipse.pde.ui/plugin.properties
+ui/org.eclipse.pde.ui/plugin.xml
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/BuildPropertiesChange.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/BundleManifestChange.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/ContainerMoveParticipant.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/ContainerRenameParticipant.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/FileMoveParticipant.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/FileRenameParticipant.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/ManifestPackageMoveParticipant.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/ManifestTypeMoveParticipant.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/PDEMoveParticipant.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/PDERenameParticipant.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/PluginManifestChange.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/ResourceMoveParticipant.java

@@ -1,0 +1,13 @@
+Bug 425460 – [1.8] [inference] Type not inferred on stream.toArray
+// ERROR: Cannot convert from Object[] to Integer[]
+final Integer[] boom =
+Arrays.asList("1", "22", "333")
+.stream()
+.map(str -> str.length())
+.toArray(i -> new Integer[i]);
+// WORKAROUND: casting
+final Integer[] boom =
+Arrays.asList("1", "22", "333")
+.stream()
+.map(str -> str.length())
+.toArray((IntFunction<Integer[]>) i -> new Integer[i]);

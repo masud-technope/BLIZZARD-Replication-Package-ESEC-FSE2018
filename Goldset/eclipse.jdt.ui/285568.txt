@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/GetterSetterCompletionProposal.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/contentassist/AbstractCompletionTest.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/text/java/CompletionProposalCollector.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/contentassist/SpecialMethodsCompletionTest.java

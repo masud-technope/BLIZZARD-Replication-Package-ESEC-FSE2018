@@ -1,0 +1,5 @@
+Bug 57853 – Persist Display view contents during a session
+When the Display view is closed during a session (hidden), we should persist its
+contents.
+This would allow us to let the debugger automatically open/close the
+Display view without worrying about losing state.

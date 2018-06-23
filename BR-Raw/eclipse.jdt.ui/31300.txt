@@ -1,0 +1,27 @@
+Bug 31300 – RepositoryProvider.isShared has problems with closed projects [API]
+build i0206 (1700), win2k, j9sc20030205
+In the Packages View, when I select to filter out projects which are non-
+shared, I get the following warnings in my log file.
+Note that all these are
+all the closed projects in my workspace and they are all shared.
+!ENTRY org.eclipse.core.resources 4 372 Feb 07, 2003 09:45:50.574
+!MESSAGE Resource /org.eclipse.core.tests.resources.saveparticipant is not open.
+!ENTRY org.eclipse.core.resources 4 372 Feb 07, 2003 09:45:50.604
+!MESSAGE Resource /org.eclipse.core.tests.resources.saveparticipant1 is not open
+.
+!ENTRY org.eclipse.core.resources 4 372 Feb 07, 2003 09:45:50.614
+!MESSAGE Resource /org.eclipse.core.tests.resources.saveparticipant2 is not open
+.
+!ENTRY org.eclipse.core.resources 4 372 Feb 07, 2003 09:45:50.644
+!MESSAGE Resource /org.eclipse.core.tests.resources.saveparticipant3 is not open
+.
+!ENTRY org.eclipse.core.resources 4 372 Feb 07, 2003 09:45:50.674
+!MESSAGE Resource /org.eclipse.core.tools.wizards is not open.
+!ENTRY org.eclipse.core.resources 4 372 Feb 07, 2003 09:45:50.694
+!MESSAGE Resource /org.eclipse.platform.doc.isv is not open.
+!ENTRY org.eclipse.core.resources 4 372 Feb 07, 2003 09:45:50.734
+!MESSAGE Resource /org.eclipse.platform.doc.user is not open.
+!ENTRY org.eclipse.core.resources 4 372 Feb 07, 2003 09:45:50.774
+!MESSAGE Resource /org.eclipse.webdav.tests is not open.
+!ENTRY org.eclipse.core.resources 4 372 Feb 07, 2003 09:45:50.934
+!MESSAGE Resource /org.eclipse.core.tests.resources.saveparticipant is not open.

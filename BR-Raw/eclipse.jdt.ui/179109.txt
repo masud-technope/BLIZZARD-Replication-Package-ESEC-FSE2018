@@ -1,0 +1,6 @@
+Bug 179109 – [misc] Editor computing AST twice concurrently
+Build: I20070322-1800
+I did Open Type, and it was taking a long time to open the editor after I clicked finish.
+ I produced a stack dump while I was waiting, and I noticed that there are two threads creating an AST at the same time.
+Presumably they are even generating the same AST.
+It would be good to avoid creating the same AST multiple times when the editor is first opened.

@@ -1,0 +1,2 @@
+Bug 244784 – [Discovery][jSLP] Move/Maintain jSLP code base to Eclipse.org
+http://wiki.eclipse.org/ECF_Conference_Call_8.7.2008

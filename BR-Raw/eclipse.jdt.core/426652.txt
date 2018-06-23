@@ -1,0 +1,10 @@
+Bug 426652 – [1.8][inference] inference loops infinitely on unconstrained inference variable
+On this example:
+import static java.util.stream.Collectors.toList;
+public class Y {
+Object o = toList();
+}
+inference never terminates, because some inference variable has neither lower nor upper bounds, and hence no progress is made during resolution.
+One could argue, that this rule
+* Otherwise, where Î±i has proper upper bounds U1, ..., Uk, Ti = glb(U1, ..., Uk).
+implicitly includes the case of k=0, where glb() is probably assumed to answer j.l.Object.

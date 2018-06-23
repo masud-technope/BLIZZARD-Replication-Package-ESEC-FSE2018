@@ -1,0 +1,13 @@
+Bug 199134 – NPE in Extensions Section
+I20070807-0100
+java.lang.NullPointerException
+at org.eclipse.pde.internal.ui.editor.plugin.ExtensionsSection.getCustomImage(ExtensionsSection.java:750)
+at org.eclipse.pde.internal.ui.editor.plugin.ExtensionsSection.resolveObjectImage(ExtensionsSection.java:716)
+at org.eclipse.pde.internal.ui.editor.plugin.ExtensionsSection.access$1(ExtensionsSection.java:709)
+at org.eclipse.pde.internal.ui.editor.plugin.ExtensionsSection$ExtensionLabelProvider.getImage(ExtensionsSection.java:149)
+at org.eclipse.jface.viewers.WrappedViewerLabelProvider.getImage(WrappedViewerLabelProvider.java:117)
+at org.eclipse.jface.viewers.WrappedViewerLabelProvider.update(WrappedViewerLabelProvider.java:165)
+.....
+An attribute of type resource can specify either an file or folder.
+ If it is a folder, I believe the file extension is null, causing the NPE.
+ This appears to be a small side effect from bug 198305.

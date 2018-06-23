@@ -1,0 +1,26 @@
+Bug 42429 – escaping double quotes
+3.0 M3
+* note the following program as an example.
+It writes program args to
+System.out.
+public class Args {
+public static void main(String[] args) {
+for (int i = 0; i < args.length; i++) {
+String string = args[i];
+System.out.println(string);
+}
+}
+}
+From the command line, the following program arguments results in passing a
+quoted string to the program, with the given result (->)
+\"test\" -> "test"
+From Eclipse, it results in the following:
+\"test\" -> test
+To get the same result in Eclipse, one must use this argument:
+"\"test\""
+It seems like we should be able to make the same command lines work from
+Eclipse as from the command line (or at least perform the correct translation,
+so the user does not have to figure it out).
+I think that the rule is "if there
+are any escaped characters in an argument, you have to put the whole thing in
+quotes."

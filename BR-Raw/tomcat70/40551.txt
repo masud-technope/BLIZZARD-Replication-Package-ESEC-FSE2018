@@ -1,0 +1,10 @@
+40551 – Sticky sessions using PersistentManager enter indeterminate state on node failover
+If a cluster of nodes is being load balanced with sticky sessions, and a
+particular node becomes unavailable, any sessions bound to that node must be
+redistributed.
+ Particularly in the case of mod_jk these sessions will not be
+bound to whichever node the failover occurred on because the jessionid will
+still contain the JVM route of the original failed node, thus placing the
+session in an indeterminate state and losing sticky properties.
+I am attaching a patch that will trigger a session to rebind itself to a new
+node if the jvmroutes don't match and replace the jessionid in the browser's cookie.

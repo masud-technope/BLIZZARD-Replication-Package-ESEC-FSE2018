@@ -1,0 +1,30 @@
+51095 – NPE in AprEndpoint.java
+Created attachment 26917 [details]
+Patch to AprEndpoint.java
+OVERVIEW:
+In all of the most recent versions of Tomcat 7, including Trunk.
+When running with APR SSL and the site is accessed using an improper SSL handshake, then a SEVERE NullPointerException will is logged into catalina.out.
+STEPS TO REPRODUCE:
+It's pretty easy to test this, just type the following:
+curl http://localhost:8444/
+Where 8444 is the port that SSL is running on for Tomcat 7.
+ACTUAL RESULTS:
+If you look in the catalina.out when you do this, you'll see the following stack trace and error message:
+Apr 20, 2011 1:55:32 AM org.apache.coyote.http11.Http11AprProtocol$Http11ConnectionHandler process
+SEVERE: Error reading request, ignored
+java.lang.NullPointerException
+at org.apache.coyote.http11.Http11AprProcessor.process(Http11AprProcessor.java:208)
+at org.apache.coyote.http11.Http11AprProtocol$Http11ConnectionHandler.process(Http11AprProtocol.java:322)
+at org.apache.tomcat.util.net.AprEndpoint$SocketWithOptionsProcessor.run(AprEndpoint.java:1670)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:662)
+Exception in thread ""http-apr-8444"-exec-2727" java.lang.NullPointerException
+at org.apache.tomcat.util.net.AprEndpoint$SocketWithOptionsProcessor.run(AprEndpoint.java:1673)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+EXPECTED RESULTS:
+The expected behavior is for Tomcat to not generate a NullPointerException when someone improperly accesses the SSL port.
+BUILD INFO:
+Taken from the latest subversion trunk, 1095243.
+I've attached a patch that fixes this.

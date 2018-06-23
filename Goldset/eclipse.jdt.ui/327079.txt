@@ -1,0 +1,5 @@
+org.eclipse.jdt.junit4.runtime/META-INF/MANIFEST.MF
+org.eclipse.jdt.junit4.runtime/src/org/eclipse/jdt/internal/junit4/runner/JUnit4TestMethodReference.java
+org.eclipse.jdt.junit.runtime/META-INF/MANIFEST.MF
+org.eclipse.jdt.junit.runtime/src/org/eclipse/jdt/internal/junit/runner/junit3/JUnit3TestLoader.java
+org.eclipse.jdt.junit4.runtime/src/org/eclipse/jdt/internal/junit4/runner/JUnit4TestLoader.java

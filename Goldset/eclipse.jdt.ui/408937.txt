@@ -1,0 +1,16 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/RenameTests18/testLambda3/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/RenameTests18/testLambda3/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/RenameTests18.java
+org.eclipse.jdt.ui.tests.refactoring/resources/RenameTests18/testLambda0/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/RenameTests18/testLambda0/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/RenameTests18/testLambda1/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/RenameTests18/testLambda1/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/RenameTests18/testLambda2/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/RenameTests18/testLambda2/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/RenameTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/RenameTests18.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/RefactoringCoreMessages.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/refactoring.properties
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/rename/RefactoringAnalyzeUtil.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/rename/RenameAnalyzeUtil.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/rename/RenameLocalVariableProcessor.java

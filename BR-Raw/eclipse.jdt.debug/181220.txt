@@ -1,0 +1,14 @@
+Bug 181220 – Variable text font does not update correctly when columns turned on/off
+I20070403-1110
+When the variable text font setting was added (bug 176478), an unusual problem occurs.
+ So far the only time the behaviour occurs is when debugging with a java.util.Random instance being displayed in the variables view.
+ There is a screenshot and example code on bug 176478.
+With the Random instance expanded, change the variable text font setting (Preferences > Appearance > Colors and Fonts > Debug folder > Variable text font).
+ Then toggle the view columns setting in the variables view.
+ You may have to change the font and toggle the setting several times in different combinations.
+ You may also have to have one of the fields of the Random expanded.
+When the problem occurs, the three private fields of the Random instance will stop updating, changes to the text or font of those entries will no longer change.
+ There is no call being made to VariableLabelProvider for those entries.
+This bug is marked as a platform bug since it is likely to be a problem with the viewer, however the only test case discovered so far is using java.util.Random.
+ The bug is marked as trivial as the case is unlikely to be reproduced by a user.
+Bug 176478 contains some test code and a screenshot of the behaviour.

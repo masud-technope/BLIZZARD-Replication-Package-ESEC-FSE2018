@@ -1,0 +1,31 @@
+Bug 73573 – [1.5] - CodeAssist - ArrayIndexOutOfBoundsException with genric type completion
+build I20040907
+1) create X.java
+public class X {
+Hash#cursor#<
+}
+2) do ctrl + space at cursor location
+No compleiotn appear and an ArrayIndexOutOfBoundsException occurs inside
+CompletionEngine.
+java.lang.ArrayIndexOutOfBoundsException: -1
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionParser.attachOrphanCompl
+etionNode(CompletionParser.java:153)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionParser.updateRecoverySta
+te(CompletionParser.java:3079)
+at org.eclipse.jdt.internal.compiler.parser.Parser.resumeOnSyntaxError
+(Parser.java:8967)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse
+(Parser.java:8186)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse
+(Parser.java:8399)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse
+(Parser.java:8364)
+at org.eclipse.jdt.internal.compiler.parser.Parser.dietParse
+(Parser.java:7107)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionParser.dietParse
+(CompletionParser.java:2703)
+at org.eclipse.jdt.internal.codeassist.CompletionEngine.complete
+(CompletionEngine.java:919)

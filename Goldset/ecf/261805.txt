@@ -1,0 +1,3 @@
+examples/bundles/org.eclipse.ecf.example.collab/META-INF/MANIFEST.MF
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/example/collab/share/EclipseCollabSharedObject.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/example/collab/share/RosterListener.java

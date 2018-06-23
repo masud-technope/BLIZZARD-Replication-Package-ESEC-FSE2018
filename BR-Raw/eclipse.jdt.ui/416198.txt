@@ -1,0 +1,22 @@
+Bug 416198 – [Inline] Inline method refactoring fails to update method reference as of enum constructor call's argument
+Here is the code snippet before applying inline refactoring:
+public class A {
+public static int i;
+public static int getI() {         // APPLY INLINE HERE
+return i;
+}
+}
+public enum B {
+m(A.getI());
+B(int j){
+}
+}
+Applying inline refactoring to getI() cannot update A.getI() that is a parameter of enum constructor call:
+public class A {
+public static int i;
+}
+public enum B {
+m(A.getI());             // ERROR
+B(int j){
+}
+}

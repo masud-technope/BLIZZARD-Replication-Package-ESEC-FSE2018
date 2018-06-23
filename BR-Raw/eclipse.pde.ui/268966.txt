@@ -1,0 +1,11 @@
+Bug 268966 – Import binary plug-ins does not update source attachment when replacing existing non-jared plug-ins
+I20090313-0100
+Import binary plug-ins does not the update source attachment when replacing existing non-jared plug-ins.
+Steps:
+- with I20090313-0100, import org.junit and org.junit4 from 3.4.2 as binary
+=> source attachments OK
+- import binary plug-ins from default target (I20090313-0100)
+=> source attachments broken, since entries in .classpath still reference the old sourcepath, e.g.:
+<classpathentry exported="true" kind="lib" path="junit.jar" sourcepath="org.junit.source_3.8.2.v20080602-1318.jar"/>
+This is only a problem for non-jared plug-ins (e.g.
+works fine for org.eclipse.jface).

@@ -1,0 +1,8 @@
+Bug 182483 – [Plug-in Dependencies View] sorting is lost after changing to presentation name mode
+1.
+Open the Plug-in Dependencies view and put it into 'PDE State' mode
+2.
+Open the Plug-in Development preference page.
+ Change the 'Show plug-in objects in editors and dialogs' setting to 'Presentation names'.
+ Press OK.
+Note how the dependencies view updates correctly, but the entries are no longer sorted.

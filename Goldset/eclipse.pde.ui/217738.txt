@@ -1,0 +1,10 @@
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/PluginAdapter.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/RegistryBrowserListener.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/RegistryBrowserContentProvider.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/PDERuntimeMessages.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/PDERuntimePluginImages.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/pderuntimeresources.properties
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/RegistryBrowserLabelProvider.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/RegistryBrowser.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/ServiceReferenceAdapter.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/IBundleFolder.java

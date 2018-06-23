@@ -1,0 +1,3 @@
+Bug 261937 – [remoteservice] simplify remote method calling with helper class
+Currently, it's necessary for a caller of IRemoteService to define a new IRemoteCall for callSync, and callAsync.
+ It would improve usability to create a helper class with static methods for asyncExec and syncExec to make it easier on remote services API users...giving them a choice.

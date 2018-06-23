@@ -1,0 +1,4 @@
+Bug 30169 – no hover message for bookmarks in overview ruler
+20030121
+hovering over bookmarks in the overview ruler should show the bookmark name
+it does not

@@ -1,0 +1,3 @@
+Bug 266595 – [Discovery][ui] remove services that have been undiscovered
+Currently, the discovery UI seems to keep discovered services around, even if serviced have been unregistered.
+ It would be nice to have services removed when they have been explicitly unregistered.

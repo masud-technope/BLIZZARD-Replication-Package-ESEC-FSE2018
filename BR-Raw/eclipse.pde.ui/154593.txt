@@ -1,0 +1,4 @@
+Bug 154593 – PDE Tools > Update Classpath deletes Access-Rules
+Eclipse 3.2
+Whenever I run "Update Classpath..." on my Plugin, all defined access-rules get removed.
+Ben

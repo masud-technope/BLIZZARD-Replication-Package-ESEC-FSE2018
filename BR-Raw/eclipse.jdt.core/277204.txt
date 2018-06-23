@@ -1,0 +1,30 @@
+Bug 277204 – IAE in SharedASTProvider for generic local class.
+Build ID: I20090430-2300  (3.5M7)
+Click the mouse repeatedly in the editor, and see the error log fill with exceptions.
+class Bug {
+{
+class Local extends java.util.Stack<String>{
+Text x,
+Local
+}
+}
+}
+java.lang.IllegalArgumentException
+at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:2614)
+at org.eclipse.jdt.core.dom.ASTConverter.convertToFieldDeclaration(ASTConverter.java:2915)
+at org.eclipse.jdt.core.dom.ASTConverter.checkAndAddMultipleFieldDeclaration(ASTConverter.java:376)
+at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:172)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2694)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2458)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:523)
+at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:179)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2694)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1264)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.convert(CompilationUnitResolver.java:256)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:933)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:657)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider$1.run(ASTProvider.java:544)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.createAST(ASTProvider.java:537)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.getAST(ASTProvider.java:478)
+at org.eclipse.jdt.ui.SharedASTProvider.getAST(SharedASTProvider.java:126)

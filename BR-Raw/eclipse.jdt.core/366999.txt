@@ -1,0 +1,45 @@
+Bug 366999 – VerifyError: Inconsistent stackmap frames
+Build Identifier: Version: 3.8.0 Build id: I20111209-1447
+java version "1.7.0_04-ea"
+Java(TM) SE Runtime Environment (build 1.7.0_04-ea-b04)
+Java HotSpot(TM) Server VM (build 23.0-b06, mixed mode)
+in case it matters:
+I set my default VM-options in eclipse to: -XX:-UseLoopPredicate
+if you comment the sysout-line in finally, or have no nested try-resource it works.
+source:
+package ecerr;
+import java.io.BufferedReader;
+import java.io.Closeable;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+public class VerErr {
+static class C
+implements Closeable {
+@Override
+public void close() throws IOException {
+//
+}
+}
+int run() throws IOException {
+int lcnt = 0;
+try (C c = new C();) {
+try (final BufferedReader br =
+new BufferedReader(new FileReader(new File("logging.properties")))) {
+String s;
+while ((s = br.readLine()) != null)
+lcnt++;
+return lcnt;
+}
+} finally {
+System.out.println("read " + lcnt + " lines");
+}
+}
+public static void main(final String[] args) throws IOException {
+new VerErr().run();
+}
+}
+Reproducible: Always
+Steps to Reproduce:
+1.
+compile and run the given class in eclipse-ide

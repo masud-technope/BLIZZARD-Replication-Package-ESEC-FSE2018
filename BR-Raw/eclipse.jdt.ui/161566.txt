@@ -1,0 +1,5 @@
+Bug 161566 – [JUnit] API: container name for JUnit container
+When I generate code that has JUnit as a requirement, I used to add a JUNIT_HOME/junit.jar entry to the project classpath.
+Now that a JUnit container is available, I would need instead to add the JUnit container entry to the classpath.
+This enhancement request is about making the this container path publicly available, to allow plugins to add this container to a project classpath.
+(Typically, publishing the contants org.eclipse.jdt.internal.junit.buildpathJUnitContainerInitializer.JUNIT?_PATH would do the trick).

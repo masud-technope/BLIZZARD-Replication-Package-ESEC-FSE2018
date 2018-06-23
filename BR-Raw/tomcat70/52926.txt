@@ -1,0 +1,15 @@
+52926 – NPE in processSocket
+We have sporadic issues triggering 502 proxy errors using the NIO connector behind Nginx, caused by dropped connections/end of streams in Tomcat.
+The Tomcat log shows:
+SEVERE: Error allocating socket processor
+java.lang.NullPointerException
+at org.apache.tomcat.util.net.NioEndpoint.processSocket(NioEndpoint.java:721)
+at org.apache.tomcat.util.net.NioEndpoint$Poller.cancelledKey(NioEndpoint.java:1048)
+at org.apache.tomcat.util.net.NioEndpoint$Poller.timeout(NioEndpoint.java:1392)
+at org.apache.tomcat.util.net.NioEndpoint$Poller.run(NioEndpoint.java:1174)
+at java.lang.Thread.run(Thread.java:662)
+Looking at the code in processSocket I see the line in NioEndpoint(721):
+attachment.setCometNotify(false); //will get reset upon next reg
+Attachment is fetched in line 720:
+KeyAttachment attachment = (KeyAttachment)socket.getAttachment(false);
+Looking at socket.getAttachement() method I see that this method is indeed capable of returning null, but no null-check for this is done (although it is in multiple other locations, so it seems inconsistent).

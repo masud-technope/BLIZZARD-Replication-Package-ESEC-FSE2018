@@ -1,0 +1,13 @@
+Bug 199336 – [IRC] Unable to close chatroom tab after wrong join command
+Build ID: I20070625-1500
+Steps To Reproduce:
+1.
+Connect to an IRC server
+2.
+Type command '/join foobar'
+3.
+A new tab is opened and after a few seconds you'll get a connect error message.
+4.
+Now, you won't be able to close the chatroom tab.
+I'm not an expert IRC user and sometimes I forget to use '#'.
+Other IRC clients prepend '#' if the user made such mistake, so, it would be nice if IRC provider fixes the user input.

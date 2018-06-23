@@ -1,0 +1,17 @@
+Bug 260717 – [assist] Constructors should be proposed even when the declaring type is not imported
+build I20090106-1323
+1) create missing/MissingType.java
+package missing;
+public class MissingType {
+public MissingType(int i) {}
+}
+2) create test/Test.java
+package test;
+public class Test{
+void foo() {
+new MissingType(| // do ctrl+space at |
+}
+}
+3) do ctrl+space at |
+There is no proposal
+The constructor of MissingType should be proposed even missing.MissinType is not imported.

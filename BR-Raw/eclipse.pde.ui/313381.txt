@@ -1,0 +1,8 @@
+Bug 313381 – When launching with features, pressing select features button when no features available should warn user
+1) Open an Eclipse launch config
+2) Plug-ins Tab, Launch using features selected below.
+3) Select all features
+4) Press select features...
+We should have a warning message saying that all features have been selected.
+ A better solution would be to disable the button, however, there is no easy way to do this.
+ In addition, if the user is only viewing selected plug-ins, there would be no explanation to the user as to why the button was disabled.

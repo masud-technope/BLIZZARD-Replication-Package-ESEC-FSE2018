@@ -1,0 +1,12 @@
+Bug 163258 – Bundle-Localization Manifest Header not honored by plugin.xml editor
+I'm seeing that if a Bundle-Localization other than the default of plugin.properties is specified in the MANIFEST.MF of a project, the plugin.xml editor no longer displays the value for any keys that were entered as attribute values.
+For example, I have a project that specifies the Bundle-Localization in it's MANIFEST.MF as follows:
+Bundle-Localization: OSGI-INF/l10n/bundle
+I've created a a bundle.properties file in the OSGI-INF/l10n/ folder at the root of my project with the following content:
+view.label=My View
+Then, in the plug-in.xml for the same project I set the name attribute of one of my view extensions to %view.label.
+ When I run the application the value for the view.label key ("My View") is automatically retrieved and displayed in the app.
+ However, if I open the plugin.xml editor "My View" does not appear, but rather "%view.label".
+Note that if I had not changed the location of the Bundle-Localization it would have defaulted to plugin.properties in the root of my project.
+ In this situation the plugin.xml editor displays the key value correctly, and "My View" would appear next to the view extension.
+So, whatever mechanism does the lookup is working correctly in the application, but the plugin.xml editor doesn't appear to do it's lookup based on Bundle-Localization.

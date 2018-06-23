@@ -1,0 +1,24 @@
+Bug 120572 – [implementation] ISelectionListenerWithAST not notified when opening CU from package explorer
+3.2 M4 test pass
+Similar to bug 119326, there is no notification to registered ISelectionListenerWithAST listeners in the following case:
+- have two CU's containing FooClass and BarClass:
+============ FooClass.java ==========
+package pr119326;
+public class FooClass {
+}
+=====================================
+(- BarClass analogous, in the same package)
+- check "double click" open mode on the "General" preference page
+- open the package explorer (not as fast view)
+- close all editors
+- in the package explorer, double click on BarClass.java (the CU, not the class)
+> note: all selection listeners are notified with an AST of BarClass
+- in the package explorer, double click on FooClass.java (the CU, not the class)
+> actual: all selection listeners are notified with an AST of BarClass again
+< expected: notification with FooClass, not BarClass
+Notes:
+- the same works as expected with other open modes:
+- single click
+- context menu > open
+- double click on class instead of CU
+- it is not 100% reproducable, but about 90% on my machine

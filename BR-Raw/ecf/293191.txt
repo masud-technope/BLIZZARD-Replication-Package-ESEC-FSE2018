@@ -1,0 +1,25 @@
+Bug 293191 – Generic Server is created by extension point does not add to ContainerManager
+User-Agent:       Opera/9.64 (X11; Linux i686; U; ru) Presto/2.1.1
+Build Identifier: trunk
+Create eclipse plugin with folow extension:
+<extension
+point="org.eclipse.ecf.server.generic.configuration">
+<connector
+discovery="true"
+hostname="localhost"
+keepAlive="30000"
+port="4280">
+<group
+name="mygroup">
+</group>
+</connector>
+</extension>
+Trying get list of all containers in plugin activator:
+IContainerManager containerManager = getContainerManagerService();
+IContainer[] allContainers = containerManager.getAllContainers();
+for (IContainer container: allContainers)
+{
+System.out.println(container.getID());
+}
+but allContainers is empty array.
+Reproducible: Always

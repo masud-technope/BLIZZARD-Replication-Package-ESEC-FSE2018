@@ -1,0 +1,2 @@
+Bug 24863 – F1 Help on Detail Formatters pref page
+F1 help is not available for this page.

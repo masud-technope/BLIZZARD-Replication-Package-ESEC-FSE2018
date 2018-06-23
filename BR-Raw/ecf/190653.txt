@@ -1,0 +1,7 @@
+Bug 190653 – [ui] add joinRoom API to MultiRosterView
+We want to integrate the ECF into BSCWeasel (cf.
+www.bscweasel.de/).
+At the moment the user are connected to our Jabber Server automatically on startup and also connected to a common chat room.
+In order to simulate this functionality with the ECF, we need the feature to join a room via a function call.
+> Suggestion of a solution of the problem
+Therefore we enhance the MultiRosterView we a function  'public void joinRoom(MultiRosterAccount account, IChatRoomInfo selectedInfo)' and make some other small extensions.

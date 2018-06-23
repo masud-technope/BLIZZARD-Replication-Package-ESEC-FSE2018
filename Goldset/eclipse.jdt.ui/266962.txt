@@ -1,0 +1,15 @@
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/JUnitPreferencesConstants.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/buildpath/BuildPathSupport.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/buildpath/JUnitContainerInitializer.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/buildpath/JUnitHomeInitializer.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/buildpath/P2Utils.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/buildpath/BuildPathSupport.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/buildpath/JUnitContainerInitializer.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/buildpath/JUnitHomeInitializer.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/buildpath/P2Utils.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/JUnitPreferencesConstants.java
+org.junit4/.classpath
+org.junit4/META-INF/MANIFEST.MF
+org.junit4/about.html
+org.junit4/junit.jar
+org.junit4/junitsrc.zip

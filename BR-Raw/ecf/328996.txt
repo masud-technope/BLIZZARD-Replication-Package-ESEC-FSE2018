@@ -1,0 +1,11 @@
+Bug 328996 – [Discovery][DNS-SD] Upon opening the Service Discovery view a ClassCastException gets thrown
+!ENTRY org.eclipse.core.jobs 4 2 2010-10-29 07:14:38.484
+!MESSAGE An internal error occurred during: "ServiceDiscoveryListener".
+!STACK 0
+java.lang.ClassCastException: org.eclipse.ecf.core.identity.StringID cannot be cast to org.eclipse.ecf.provider.dnssd.DnsSdServiceTypeID
+at org.eclipse.ecf.provider.dnssd.DnsSdDiscoveryAdvertiser.connect(DnsSdDiscoveryAdvertiser.java:108)
+at org.eclipse.ecf.provider.discovery.CompositeDiscoveryContainer.connect(CompositeDiscoveryContainer.java:148)
+at org.eclipse.ecf.provider.discovery.SingletonDiscoveryContainer.connect(SingletonDiscoveryContainer.java:46)
+at org.eclipse.ecf.discovery.ui.model.resource.ServiceResource$ServiceDiscoveryListener.connect(ServiceResource.java:63)
+at org.eclipse.ecf.discovery.ui.model.resource.ServiceResource$1.run(ServiceResource.java:451)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)

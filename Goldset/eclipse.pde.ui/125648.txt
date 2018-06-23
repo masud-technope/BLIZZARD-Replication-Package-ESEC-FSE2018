@@ -1,0 +1,13 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/dependencies/AddNewBinaryDependenciesOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/dependencies/AddNewDependenciesOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/dependencies/PackageFinder.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/NewLibraryPluginCreationOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/dependencies/AddNewDependenciesOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/LibraryPluginFieldData.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/NewLibraryPluginCreationOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/NewLibraryPluginCreationPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/NewProjectCreationOperation.java

@@ -1,0 +1,3 @@
+Bug 338638 – [quick assist][quick fix] Relevance for externalization quick fixes too low with non-empty selection
+The order for string externalization quick fixes is different when invoked by clicking on the marker on the left margin compared to one that comes by pressing Ctrl + 1 on the non-NLS'ed string.
+See snapshots

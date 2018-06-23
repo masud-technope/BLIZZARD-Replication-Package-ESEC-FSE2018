@@ -1,0 +1,7 @@
+Bug 274678 – [category] file selection dialog displays error dialogs while searching
+I20090430-2300
+* Export a feature
+* Choose a categorization file from the options tab using the "Browse..." button
+If an exception is hit checking file content types an error dialog is shown for each exception on top of the file selection dialog.
+We should suppress these errors.
+For example, I got several "resource out of synch with the file system" dialogs.

@@ -1,0 +1,26 @@
+Bug 264106 – [target] Provide careful handling when the "Remove" button is pressed
+Using Eclipse 3.5 M5.
+The "Target Platform (experimental)" preference page gathers all the targets that exist in the .metadata and the workspace.
+Unfortunately, the UI does not always show where the targets reside, and clicking the "Remove" button physically deletes the files, rather than just removing it from the list of managed targets.
+ The downside of this is that a file from the workspace can be lost without the user realizing it.
+Some suggestions:
+1.
+Show in the UI where the target file resides:
+- For those that reside in the .metadata you could just say something like
+"Private" or "Internal", or some such word.
+- For those that reside in the workspace, the workspace's relative path would
+suffice.
+- And if/when in the future targets can reside in the local file system, but
+outside of the workspace, the absolute path should be shown.
+2.
+Creating a target is not necessarily trivial, so please consider adding a
+confirmation dialog to the "Remove" behavior.
+- This will help prevent accidental deletion, somewhat.
+- To delete a target that resides in either the workspace or the local
+file system the dialog should contain a checkbox that the user is
+required to check before the .target file is really deleted.
+ This is
+just like when you delete a Project from the workspace.
+- You could add a "Don't ask me again" checkbox for those that find it
+annoying.
+Although I'm not convinced that this is a good thing.

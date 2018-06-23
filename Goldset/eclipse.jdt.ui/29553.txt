@@ -1,0 +1,2 @@
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/template/default-templates.xml
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/ASTFlattener.java

@@ -1,0 +1,15 @@
+Bug 12996 – open multipage editor causes Invalid thread access when exporting to a jar
+This also happens in Eclipse 2.0 build 20020214
+1.
+install the mulitpage editor example into the workspace
+2.
+in a project create a file of type .mpe
+3.
+a multipage editor opens on this new file.
+ Leave the editor open.
+4.
+select File/Export/Jar File.
+ Fill in the jar file and click finish.
+You get the following Jar Export Error:
+Creation of JAR failed
+Invalid thread access

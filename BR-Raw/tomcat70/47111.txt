@@ -1,0 +1,5 @@
+47111 – do caching the resources like the docu say it (StringManager)
+Created attachment 23559 [details]
+do caching the resources like the docu say it
+do caching the resources like the docu say it
+see https://issues.apache.org/bugzilla/show_bug.cgi?id=46933

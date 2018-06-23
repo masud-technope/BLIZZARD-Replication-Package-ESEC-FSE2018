@@ -1,0 +1,4 @@
+Bug 276723 – [launching] Applet launch config should use project's EE as default
+I20090515-1143.
+We changed the launch configs to use the project's EE as default.
+Looks like we forgot to do this fro the Applet launch config.

@@ -1,0 +1,3 @@
+Bug 221139 – [wizards] Weak e-mail address validation in User ID field
+In the MSN, XMPP, XMPPS connection wizards there is very weak e-mail address validation.
+It is only checked if "@" is inserted in to the User ID form.

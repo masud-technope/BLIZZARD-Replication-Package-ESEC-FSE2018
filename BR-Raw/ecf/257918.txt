@@ -1,0 +1,4 @@
+Bug 257918 – [core][Remotesvcs] add SerializableStatus and SerializableMultiStatus classes
+org.eclipse.ecf.examples.remoteservice.mailer.server.ISMTPSender cannot be modeled to use org.eclipse.core.runtime.IStatus as a return val.
+This is because IStatus cannot be serialized to be send over the wire.
+It should be noted, that newer r-OSGi version circumvent this limitation by not relying on Java serialization.

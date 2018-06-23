@@ -1,0 +1,106 @@
+Bug 364628 – [JUnit] Having a plus sign in Eclipse's path causes NPE in the Classpath Variables preferences page
+Build Identifier: M20110909-1335
+If a plus sign ('+') exists in Eclipse's path (e.g.
+"C:\Apps\Eclipse\3.7+SDK\eclipse.exe"), opening the Classpath Variables preferences page (Window -> Preferences -> Java -> Build Path -> Classpath Variables) causes the following error:
+> Unable to create the selected preference page.
+>>  java.lang.NullPointerException
+Removing the plus sign from the path fixes the issue.
+Here is the full stack trace from the log:
+!SESSION 2011-11-23 19:10:46.063 -----------------------------------------------
+eclipse.buildId=M20110909-1335
+java.version=1.7.0_01
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+!ENTRY org.eclipse.equinox.registry 4 1 2011-11-23 19:11:37.403
+!MESSAGE Unable to create the selected preference page.
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.junit.buildpath.BuildPathSupport$JUnitPluginDescription.getSourceLocation(BuildPathSupport.java:112)
+at org.eclipse.jdt.internal.junit.buildpath.BuildPathSupport$JUnitPluginDescription.getSourceBundleLocation(BuildPathSupport.java:64)
+at org.eclipse.jdt.internal.junit.buildpath.JUnitHomeInitializer.initializeSource(JUnitHomeInitializer.java:50)
+at org.eclipse.jdt.internal.junit.buildpath.JUnitHomeInitializer.initialize(JUnitHomeInitializer.java:31)
+at org.eclipse.jdt.core.JavaCore.getClasspathVariable(JavaCore.java:2921)
+at org.eclipse.jdt.internal.ui.wizards.buildpaths.VariableBlock.refresh(VariableBlock.java:409)
+at org.eclipse.jdt.internal.ui.wizards.buildpaths.VariableBlock.<init>(VariableBlock.java:111)
+at org.eclipse.jdt.internal.ui.preferences.ClasspathVariablesPreferencePage.<init>(ClasspathVariablesPreferencePage.java:50)
+at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+at java.lang.reflect.Constructor.newInstance(Unknown Source)
+at java.lang.Class.newInstance0(Unknown Source)
+at java.lang.Class.newInstance(Unknown Source)
+at org.eclipse.core.internal.registry.osgi.RegistryStrategyOSGI.createExecutableExtension(RegistryStrategyOSGI.java:184)
+at org.eclipse.core.internal.registry.ExtensionRegistry.createExecutableExtension(ExtensionRegistry.java:905)
+at org.eclipse.core.internal.registry.ConfigurationElement.createExecutableExtension(ConfigurationElement.java:243)
+at org.eclipse.core.internal.registry.ConfigurationElementHandle.createExecutableExtension(ConfigurationElementHandle.java:55)
+at org.eclipse.ui.internal.WorkbenchPlugin.createExtension(WorkbenchPlugin.java:260)
+at org.eclipse.ui.internal.dialogs.WorkbenchPreferenceNode.createPage(WorkbenchPreferenceNode.java:47)
+at org.eclipse.jface.preference.PreferenceDialog.createPage(PreferenceDialog.java:1339)
+at org.eclipse.ui.internal.dialogs.FilteredPreferenceDialog.createPage(FilteredPreferenceDialog.java:376)
+at org.eclipse.jface.preference.PreferenceDialog.showPage(PreferenceDialog.java:1230)
+at org.eclipse.ui.internal.dialogs.FilteredPreferenceDialog.showPage(FilteredPreferenceDialog.java:674)
+at org.eclipse.jface.preference.PreferenceDialog$10.run(PreferenceDialog.java:708)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+at org.eclipse.jface.preference.PreferenceDialog$9.selectionChanged(PreferenceDialog.java:704)
+at org.eclipse.jface.viewers.StructuredViewer$3.run(StructuredViewer.java:888)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:49)
+at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:175)
+at org.eclipse.jface.viewers.StructuredViewer.firePostSelectionChanged(StructuredViewer.java:886)
+at org.eclipse.jface.viewers.StructuredViewer.handlePostSelect(StructuredViewer.java:1226)
+at org.eclipse.jface.viewers.StructuredViewer$5.widgetSelected(StructuredViewer.java:1251)
+at org.eclipse.jface.util.OpenStrategy.firePostSelectionEvent(OpenStrategy.java:262)
+at org.eclipse.jface.util.OpenStrategy.access$5(OpenStrategy.java:256)
+at org.eclipse.jface.util.OpenStrategy$3.run(OpenStrategy.java:433)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4140)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3757)
+at org.eclipse.jface.window.Window.runEventLoop(Window.java:825)
+at org.eclipse.jface.window.Window.open(Window.java:801)
+at org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog.open(WorkbenchPreferenceDialog.java:215)
+at org.eclipse.ui.internal.handlers.ShowPreferencePageHandler.execute(ShowPreferencePageHandler.java:54)
+at org.eclipse.ui.internal.handlers.HandlerProxy.execute(HandlerProxy.java:293)
+at org.eclipse.core.commands.Command.executeWithChecks(Command.java:476)
+at org.eclipse.core.commands.ParameterizedCommand.executeWithChecks(ParameterizedCommand.java:508)
+at org.eclipse.ui.internal.handlers.HandlerService.executeCommand(HandlerService.java:169)
+at org.eclipse.ui.internal.handlers.SlaveHandlerService.executeCommand(SlaveHandlerService.java:241)
+at org.eclipse.ui.internal.actions.CommandAction.runWithEvent(CommandAction.java:157)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:584)
+at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:501)
+at org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:411)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4165)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3754)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2696)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2660)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2494)
+at org.eclipse.ui.internal.Workbench$7.run(Workbench.java:674)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:667)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:123)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:622)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:577)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1410)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1386)
+Reproducible: Always
+Steps to Reproduce:
+1.
+Rename the Eclipse folder to a name containing a plus sign ('+'), e.g.
+"C:\Apps\Eclipse+SDK"
+2.
+Run Eclipse.
+3.
+Open Window -> Preferences -> Java -> Build Path -> Classpath Variables

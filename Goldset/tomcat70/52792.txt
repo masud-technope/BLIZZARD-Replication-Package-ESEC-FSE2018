@@ -1,0 +1,2 @@
+java/org/apache/naming/LocalStrings.properties
+java/org/apache/naming/NamingContext.java

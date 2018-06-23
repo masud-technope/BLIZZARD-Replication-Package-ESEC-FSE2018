@@ -1,0 +1,5 @@
+Bug 324333 – remote service exception results in client timeout
+If a remote service throws an exception, the client will timeout instead of receive the exception.
+ To reproduce, modify the org.eclipse.ecf.examples.remoteservices.hello example such that the hello() in IHello throws an exception, then change the host bundle implementation to actually throw the declared exception.
+ Run the host and client.
+ The client will timeout.

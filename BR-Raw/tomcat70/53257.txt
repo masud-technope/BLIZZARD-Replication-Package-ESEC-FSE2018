@@ -1,0 +1,31 @@
+53257 – getLastModified() of compilation context returns negative number
+Created attachment 28802 [details]
+full stacktrace
+Jasper Compiler has an issue on compiling JSPs if they are contained in a folder like the following example: /a+b/test.jsp.
+The plus charachter seems to break
+the org.apache.jasper.JspCompilationContext#getLastModified() method, because it returns -1 every time:
+java.lang.IllegalArgumentException: Negative time
+java.io.File.setLastModified(File.java:1258)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:376)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:353)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:340)
+org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:644)
+org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:358)
+org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:389)
+org.apache.jasper.servlet.JspServlet.service(JspServlet.java:333)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+*******************************************************
+*******************************************************
+net.sf.ehcache.constructs.web.filter.GzipFilter.doFilter(GzipFilter.java:81)
+net.sf.ehcache.constructs.web.filter.Filter.doFilter(Filter.java:92)
+org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
+org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:76)
+Some details:
+- First I suspected URIEncoding="utf-8" in the Connector, but removing the configuration didn't fix the bug
+- The same bug occurs on my developing machine (Windows 7, NTFS, Apache Tomcat 7.0.22)
+- On a other customer machine the same example as above worked fine! (Any Linux Distribution, Apache Tomcat 7.0.19)
+- By the way I also tried the right URI-Encoding: http://.../a%2Bb/test.jsp
+Please find attached the full stack trace
+Best Regards
+A.
+Etzlstorfer

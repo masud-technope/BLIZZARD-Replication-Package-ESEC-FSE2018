@@ -1,0 +1,17 @@
+47518 – Valve Interface Javadocs for invoke method references non-existent method
+It appears that the Valve interface javadoc hasn't been updated since around TC 5.5.
+Here is a snip of what it currently available from TC's website (6.0.20 I would guess):
+"
+# If the corresponding Response was not generated (and control was not returned, call the next Valve in the pipeline (if there is one) by executing context.invokeNext().
+.
+.
+.
+# Modify the HTTP headers included with the Response after the invokeNext() method has returned.
+# Perform any actions on the output stream associated with the specified Response after the invokeNext() method has returned.
+"
+The invokeNext method has not existed in the Valve interface in many versions.
+I believe the replacement is:
+this.getNext().invoke(request, response)
+I'm happy to provide a doc patch if getNext().invoke(request, response) is the expected replacement for invokeNext(request, response).
+Note that the docs for 5.5 also have the same problem.
+Please let me know if I should log that separately.

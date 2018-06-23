@@ -1,0 +1,14 @@
+48647 – RemoteIpFilter : request.secure and request.scheme are not forced to "false" and "http" if X-Forwarded-Proto=http
+Created attachment 24913 [details]
+Tomcat 7 patch with updated docs
+When X-Forwarded-Proto="http", the incoming request attributes secure, scheme and serverPort are not overridden as they are with "https".
+If a request came as unsecured/http but the communication between apache and tomcat is ssl, then request.isSecure(), request.getScheme() and request.getServerPort() are wrong.
+Proposed patch :
+* introduce a httpServerPort configuration parameter
+* modify logic for request.isSecure(), request.getScheme() , and request.getServerPort() :
+** if header "x-forwarded-proto" is null then keep incoming values
+** else if header "x-forwarded-proto" is equal to "https" then override values to true, https and 443
+** else override values to false, http and 80
+Note :
+* "x-forwarded-proto", 80, 443 and "https" (as the ssl value for x-forwarded-proto header) are configurable ; I use sample values in the bug description to make it easier to understand.
+* I will soon provide the same fix for RemoteIpValve.

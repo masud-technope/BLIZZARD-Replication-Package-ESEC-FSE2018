@@ -1,0 +1,4 @@
+org.eclipse.jdt.internal.ui.text.correction.QuickAssistProcessor.getConvertEnhancedForLoopProposal
+org.eclipse.jdt.internal.ui.text.correction.QuickAssistProcessor.getAssists
+org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeAssistCollector.safeRun
+org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run

@@ -1,0 +1,18 @@
+54381 – Websocket StreamInbound never reports receipt of a Pong
+The tomcat websocket api now allows the send of a Ping frame by the server (as of 7.0.33), via WsOutbound, but never reports the receipt of a Pong.
+See StreamInbound in the onData() method...
+} else if (opCode == Constants.OPCODE_PONG) {
+// NO-OP
+}
+As the intended use of Pings is for heartbeat messages, allowing a Ping without informing the server extension of the returned Pong leaves out half the utility.
+I would suggest these changes to StreamInbound as a fix...
+1) In the onData() method...
+} else if (opCode == Constants.OPCODE_PONG) {
+onPong(frame.getPayLoad());
+}
+2) Add a method onPong (ByteBuffer buffer)...
+protected void onPong(ByteBuffer buffer) {
+// NO-OP
+}
+...which implementations may now override to handle Pong receipt and heartbeat logic.
+This is necessary as onData() is marked final, so there's no alternate workaround.

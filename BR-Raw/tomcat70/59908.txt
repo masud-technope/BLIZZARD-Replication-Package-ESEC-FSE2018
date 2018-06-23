@@ -1,0 +1,5 @@
+59908 – Tomcat reports empty(null) close reason if send operation timed out.
+If Tomcat tryes to send large enough message thought websoket (I've tested binary messages) not to fit into 20 sec timeout, session is closed with null reason.
+"null" reason goes from org.apache.tomcat.websocket.FutureToSendHandler.get(long, TimeUnit) method, which throws "TimeoutException" constructed with default constructor.
+Later, in org.apache.tomcat.websocket.WsRemoteEndpointImplBase.handleSendFailureWithEncode(Throwable) CloseReason object is created, calling t.getMessage(), which returns null.
+The expected behaviour is not to report null close reason, but instead report, that operation timed out.

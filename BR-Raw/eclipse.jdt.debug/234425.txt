@@ -1,0 +1,3 @@
+Bug 234425 – Only use relevant compiler options for debug evaluations
+Currently when we take a snippet for evaluation we get the default set of Java compiler options and set the compiler compliance and source compliance to our desired level and set those options in the ASTParser we create.
+We could be a little smarter here by not using the entire collection of default options: the reason being we end up wasting cycles checking warnings that have nothing to do with evaluations (for example non-static access to a static member is a warning by default).

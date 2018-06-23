@@ -1,0 +1,4 @@
+Bug 296970 – Plug-in import detail page has bad layout in linux
+On the second page of the plug-in import wizard, there are two lists separated by buttons.
+ These lists are intended to be of equal size, filling extra space in the dialog.
+On linux, the sizes are not equal because the first list's width is forced to be as wide as the first checkbox option underneath it.

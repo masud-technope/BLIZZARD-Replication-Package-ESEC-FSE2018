@@ -1,0 +1,3 @@
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/messages.properties
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/ui/JoinGroupWizardPage.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/Messages.java

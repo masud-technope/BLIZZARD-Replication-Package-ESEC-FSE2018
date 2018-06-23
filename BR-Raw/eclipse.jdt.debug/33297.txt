@@ -1,0 +1,17 @@
+Bug 33297 – Unneccessary error logging from detail formatter manager
+There are two places in the detail formatter manager where errors are logged
+and displayed to the user when a 'toString()' evaluation fails.
+Since the error
+is displayed to the user, we do not need to log the errors.
+We currently do not
+log "thread not suspended errors", but no errors need to be logged.
+see #resolveFormatter & EvaluationListener#evaluationComplete
+try {
+valueToString(result.getValue());
+} catch (DebugException e) {
+if (e.getStatus().getCode() != IJavaThread.ERR_THREAD_NOT_SUSPENDED) {
+// don't log 'thread not suspended' errors
+JDIDebugUIPlugin.log(e);
+}
+fListener.detailComputed(fValue, e.getStatus().getMessage());
+}

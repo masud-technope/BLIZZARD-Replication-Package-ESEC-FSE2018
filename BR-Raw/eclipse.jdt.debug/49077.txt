@@ -1,0 +1,4 @@
+Bug 49077 – Cannot append more than one jar to default bootpath
+I20031216
+* If I create a config with two jars tacked onto the default bootpath, only
+the first one is specified on the command line.

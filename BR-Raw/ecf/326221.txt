@@ -1,0 +1,38 @@
+Bug 326221 – java.lang.LinkageError: loader constraint violation: loader (instance of org/eclipse/osgi/internal/baseadaptor/DefaultClassLoader) previously initiated loading for a different type with name...
+Hi folks,
+I'm just trying to get familiar with Distributed OSGi with ECF.
+I followed the instructions here:
+http://bryanhunt.wordpress.com/2009/06/20/remote-declarative-osgi-services/
+But when I try to launch my example I get the following error:
+java.lang.LinkageError: loader constraint violation: loader (instance of org/eclipse/osgi/internal/baseadaptor/DefaultClassLoader) previously initiated loading for a different type with name "de/c1wps/ winterschool/domain/kunde/material/Kunde" 
+at java.lang.ClassLoader.defineClass1(Native Method) 
+at java.lang.ClassLoader.defineClass(ClassLoader.java:700) 
+at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.defineClass(DefaultClassLoader.java:183) 
+at org.eclipse.osgi.baseadaptor.loader.ClasspathManager.defineClass(ClasspathManager.java:576) 
+at org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findClassImpl(ClasspathManager.java:546) 
+at org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClassImpl (ClasspathManager.java:477) 
+at org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClass_LockClassLoader(ClasspathManager.java:465) 
+at org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClass(ClasspathManager.java:445) 
+at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.findLocalClass(DefaultClassLoader.java:211) 
+at org.eclipse.osgi.internal.loader.BundleLoader.findLocalClass(BundleLoader.java:381) 
+at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:457) 
+at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:410) 
+at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:398) 
+at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:105) 
+at java.lang.ClassLoader.loadClass(ClassLoader.java:254) 
+at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:399) 
+at proxy.fbipcahacoinformatikouni_hamburgode_jcicfc.de.c1wps.winterschool.domain.kunde.service.IKundenServiceImpl.erzeugeKunde (Unknown Source) 
+at de.c1wps.winterschool.kundekontoverwalter.KundenVerwalter ._erstelleKunde(KundenVerwalter.java:26) 
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) 
+at sun.reflect.NativeMethodAccessorImpl.invoke (NativeMethodAccessorImpl.java:39) 
+at sun.reflect.DelegatingMethodAccessorImpl.invoke (DelegatingMethodAccessorImpl.java:25) 
+at java.lang.reflect.Method.invoke(Method.java:597) 
+at org.eclipse.osgi.framework.internal.core.FrameworkCommandInterpreter.execute (FrameworkCommandInterpreter.java:155) 
+at org.eclipse.osgi.framework.internal.core.FrameworkConsole.docommand (FrameworkConsole.java:303) 
+at org.eclipse.osgi.framework.internal.core.FrameworkConsole.console (FrameworkConsole.java:288) 
+at org.eclipse.osgi.framework.internal.core.FrameworkConsole.run (FrameworkConsole.java:224) 
+at java.lang.Thread.run(Thread.java:637)
+I've already double checked that it's not the same error described here: http://dev.eclipse.org/newslists/news.eclipse.technology.ecf/msg01329.html
+Everything seem to work fine when I use primitive data types as service interface parameters.
+By when I change the parameter types to more complex one the above exception is thrown.
+Regards, Eugen

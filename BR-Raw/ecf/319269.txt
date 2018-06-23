@@ -1,0 +1,2 @@
+Bug 319269 – [RemoteSrvc] Split org.eclipse.ecf.tests.remoteservice into r-osgi and generic bundle
+Splitting up org.eclipse.ecf.tests.remoteservice into three bundles makes separate testing easier.

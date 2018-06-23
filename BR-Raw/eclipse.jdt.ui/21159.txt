@@ -1,0 +1,4 @@
+Bug 21159 – [misc] Outline View and CVS Repository Exploring
+I'd find it nice if the Outline View would show a class' members when I select
+(or doubleclick) it in the "CVS Repositories" View.
+As it is now, I feel somehow "blind" when browsing the CVS Repository.

@@ -1,0 +1,4 @@
+Bug 230182 – [Discovery][SLP] priority, weight and protocol unset
+The jSLP currently doesn't set priority, weight and protocol on discovered services.
+Instead it sets default values.
+Also these values are ignored on services which are registered via org.eclipse.ecf.discovery.IDiscoveryContainerAdapter.registerService(IServiceInfo).

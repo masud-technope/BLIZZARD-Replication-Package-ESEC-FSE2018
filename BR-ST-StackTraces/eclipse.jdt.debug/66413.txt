@@ -1,0 +1,9 @@
+com.sun.jdi.IncompatibleThreadStateException.<init>
+org.eclipse.jdi.internal.ThreadReferenceImpl.frameCount
+org.eclipse.jdt.internal.debug.core.model.JDIThread.getUnderlyingFrameCount
+org.eclipse.jdt.internal.debug.core.model.JDIThread.computeNewStackFrames
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.handleConditionalBreakpointEvent
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.handleBreakpointEvent
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent
+org.eclipse.jdt.internal.debug.core.EventDispatcher.run
+java.lang.Thread.run

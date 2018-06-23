@@ -1,0 +1,4 @@
+Bug 228765 – Can't use an existing config.ini in product editor
+I20080422
+I created a new product.
+When I try set the option to use an existing config.ini file, the browse button is not enabled and I can't enter something in the text area.

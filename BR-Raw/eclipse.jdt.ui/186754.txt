@@ -1,0 +1,8 @@
+Bug 186754 – [package explorer] new context menu not available on empty selection
+I20070514-0010
+Right click on an empty package explorer
+Is:
+New> Menu is not available anymore
+Should:
+Be available, regression
+Also 'Configure Workingset...' and 'Assign Working Set...' are available, both make no sense in this context.

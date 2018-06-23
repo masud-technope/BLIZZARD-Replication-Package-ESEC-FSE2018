@@ -1,0 +1,7 @@
+Bug 161704 – [model] Improve progress for Java initialization task job
+Build 3.3M2
+Instead of just "Initializing Java Tooling...", the message should indicate what is going on, since it may take a while.
+Also it could point at offending third-parties invoked during the initialization sequence.
+e.g.
+for PDE container inits:
+Initializing Java Tooling : configuring plugin dependencies

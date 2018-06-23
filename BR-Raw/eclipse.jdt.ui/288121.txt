@@ -1,0 +1,5 @@
+Bug 288121 – [perfs] Comments applied for performance tests are obsolete
+Looking at code in HEAD today, I can see that RenameMethodWithOverloadPerfTests test suite has a method explainDegradation() method referencing the Performance.setComment method with the following comment:
+"The degradation is a consequence of fixing bug 250454 in JDT Core."
+As bug 250454 was fixed in 3.5 this comment should be removed for 3.6 performance tests, hence update the 3 methods using it (i.e.
+calling explainDegradation()).

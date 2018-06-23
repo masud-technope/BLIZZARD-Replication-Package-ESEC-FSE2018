@@ -1,0 +1,16 @@
+53062 – Tomcat doesn't normalize absolute urls for redirect
+Created attachment 28582 [details]
+A demo app that demonstrates the problem.
+Issue a request to /serv1 and check the produced 'Location' response header
+Issuing a redirect like:
+response.sendRedirect("./serv2");
+will lead to a response header like:
+Location:http://localhost:8080/./serv2
+and this causes problems for some not that smart user agents like Internet Explorer and JMeter.
+The problem has been reported few times in Apache Wicket's Jira.
+Wicket works only with relative urls and lets the web container to make them absolute when a redirect is needed.
+But it seems only Tomcat produces absolute urls with '../' and/or './' inside and let the user agent to normalize them.
+Other web containers normalize the url at the server side and make user agents life easier.
+See
+https://issues.apache.org/jira/browse/WICKET-2732
+https://issues.apache.org/jira/browse/WICKET-4260

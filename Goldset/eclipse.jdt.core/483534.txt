@@ -1,0 +1,4 @@
+org.eclipse.jdt.core/search/org/eclipse/jdt/internal/core/search/matching/MethodDeclarationPattern.java
+org.eclipse.jdt.core/search/org/eclipse/jdt/internal/core/search/MethodNameMatchRequestorWrapper.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/core/compiler/CharOperation.java
+org.eclipse.jdt.core/search/org/eclipse/jdt/internal/core/index/DiskIndex.java

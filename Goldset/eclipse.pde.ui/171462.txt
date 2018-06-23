@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui.templates/src/org/eclipse/pde/internal/ui/templates/ide/EditorTemplate.java
+ui/org.eclipse.pde.ui.templates/src/org/eclipse/pde/internal/ui/templates/ide/MultiPageEditorTemplate.java
+ui/org.eclipse.pde.ui.templates/src/org/eclipse/pde/internal/ui/templates/pderesources.properties
+ui/org.eclipse.pde.ui.templates/templates_3.1/editor/java/NonRuleBasedDamagerRepairer.java

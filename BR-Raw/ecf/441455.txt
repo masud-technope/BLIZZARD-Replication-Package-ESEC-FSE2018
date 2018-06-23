@@ -1,0 +1,17 @@
+Bug 441455 – [Discovery][zookeeper] Using serviceTypeID.getInternal() as id for serviceInfo does not provide uniqueness
+In the OSGI CT tests there is a test
+org.osgi.test.cases.remoteserviceadmin.junit.DiscoveryTest.testDiscovery____RSA_1_1___basicEndpointEvents()
+That results in two service infos being published for a remote service...the initial one and a second one to represent the properties update.
+  The zookeeper provider was failing to publish the second advertisement because the following code returning prior to publishing the second service info (published) in WatchManager.java
+-		String serviceid = published.getServiceID().getServiceTypeID()
+-				.getInternal();
+-		if (getNodeWriters().containsKey(serviceid))
+-			return;
+The serviceid for both published values was
+_ecfosgirsvc._default.default._iana
+returned by the call to published.getServiceID().getServiceTypeID().getInternal().
+This code seems to be based upon the assumption that the call to getServiceTypeID().getInternal() (as oppsoed to the serviceID itself) is *unique* for every service (hence the variable name 'serviceid').
+ This is not correct, as the serviceid is unique, but the service type id (internal) is not necessarily unique.
+I believe that the unique String value for 'serviceid' is something like:
+String serviceid = published.getServiceID().getName();
+Using this, the serviceid will be/is unique.

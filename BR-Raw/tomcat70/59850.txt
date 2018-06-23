@@ -1,0 +1,4 @@
+59850 – StatementCache interceptor does not seem to close ResultSets
+It seems that when enabling the StatementCache interceptor, closeing the (proxy) statement does not cause open ResultSets to be closed.
+This seems to be incorrect according to the Javadoc for Statement:
+"A ResultSet object is automatically closed when the Statement object that generated it is closed, re-executed, or used to retrieve the next result from a sequence of multiple results." -- <http://docs.oracle.com/javase/6/docs/api/java/sql/ResultSet.html>

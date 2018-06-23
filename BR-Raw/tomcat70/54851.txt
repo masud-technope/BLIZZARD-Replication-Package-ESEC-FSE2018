@@ -1,0 +1,9 @@
+54851 – Folder without web-fragment.xml should not impact the status of distributable
+Created attachment 30200 [details]
+patch
+revision 889701 "JARs without any web.xml fragments should not impact the status of distributable" was applied to scan(JarURLConnection jarConn), but was not applied to scan(File file).
+I ran into this while trying to run cluster nodes from inside eclipse/wtp which supplies some folders to WebappClassLoader.addRepository(), e.g.
+<another workspace project>/classes.
+This causes the app to be marked as distributable=false, regardless of supplying the <distributable/> tag in the web.xml.
+The attached patch resolved the issue for me.
+Thanks.

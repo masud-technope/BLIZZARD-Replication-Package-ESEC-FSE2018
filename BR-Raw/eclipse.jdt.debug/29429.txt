@@ -1,0 +1,28 @@
+Bug 29429 – Inspect fails to inspect large array
+1.
+Add .java file attached to bugreport to project
+2.
+Set breakpoint on first line
+3.
+Inspect "white" static member
+4.
+Add watch "white[1020]".
+5.
+Eclipse fails to evaluate expression and produces exception in log.
+!SESSION jan 14, 2003 12:02:17.741 ---------------------------------------------
+java.version=1.4.1_01
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=no_NO
+Command-line arguments: -os win32 -ws win32 -arch x86 -install file:C:/m4/
+!ENTRY org.eclipse.jdt.debug 4 120 jan 14, 2003 12:02:17.741
+!MESSAGE Internal error logged from JDI Debug:
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException: 1020
+at org.eclipse.jdt.internal.debug.eval.ast.instructions.ArrayAccess.execute(ArrayAccess.java:33)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.Interpreter.execute(Interpreter.java:44)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationThread$1$EvaluationRunnable.run(EvaluationThread.java:159)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.runEvaluation(JDIThread.java:559)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationThread.doEvaluation(EvaluationThread.java:181)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationThread.access$2(EvaluationThread.java:143)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationThread$1.run(EvaluationThread.java:117)
+at java.lang.Thread.run(Thread.java:536)

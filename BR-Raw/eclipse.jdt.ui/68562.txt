@@ -1,0 +1,38 @@
+Bug 68562 – [projection] NPE in ProjectionViewer.setRangeIndication
+Build: I200406231200
+I found this stack trace in my log file.
+It appeared twice, with about a second
+in between the two.
+I don't know what I was doing at the time:
+java.lang.NullPointerException
+at java.lang.Throwable.<init>(Throwable.java)
+at java.lang.Throwable.<init>(Throwable.java)
+at java.lang.NullPointerException.<init>(NullPointerException.java:60)
+at org.eclipse.jface.text.source.projection.ProjectionViewer.setRangeIndication(ProjectionViewer.java:1162)
+at org.eclipse.ui.texteditor.AbstractTextEditor.setHighlightRange(AbstractTextEditor.java)
+at org.eclipse.jdt.internal.ui.javaeditor.TogglePresentationAction.run(TogglePresentationAction.java:70)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:881)
+at org.eclipse.ui.actions.RetargetAction.runWithEvent(RetargetAction.java:212)
+at org.eclipse.ui.internal.WWinPluginAction.runWithEvent(WWinPluginAction.java:211)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:915)
+at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java)
+at org.eclipse.jface.action.ActionContributionItem$8.handleEvent(ActionContributionItem.java)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1375)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:1346)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:252)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:141)
+at org.eclipse.ui.internal.ide.IDEApplication.run(IDEApplication.java:96)
+at org.eclipse.core.internal.runtime.PlatformActivator$1.run(PlatformActivator.java:335)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:272)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:128)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:79)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:41)
+at java.lang.reflect.Method.invoke(Method.java:386)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:186)
+at org.eclipse.core.launcher.Main.run(Main.java:647)
+at org.eclipse.core.launcher.Main.main(Main.java:631)

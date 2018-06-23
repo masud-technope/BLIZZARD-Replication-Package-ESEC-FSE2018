@@ -1,0 +1,4 @@
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/JavaLocalApplicationLaunchConfigurationDelegate.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaLineBreakpoint.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/JavaAppletLaunchConfigurationDelegate.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/JavaRemoteApplicationLaunchConfigurationDelegate.java

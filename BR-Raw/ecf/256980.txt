@@ -1,0 +1,2 @@
+Bug 256980 – o.e.ecf.example.collab should contribute a presence container
+It is annoying to have to contribute new menu items to consider the users that are created by the example.collab project when we should be able to reuse the same contributions for the presence containers.

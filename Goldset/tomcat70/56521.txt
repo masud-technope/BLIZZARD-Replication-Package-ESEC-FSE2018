@@ -1,0 +1,13 @@
+java/org/apache/coyote/http11/AbstractHttp11Protocol.java
+java/org/apache/coyote/http11/Http11AprProtocol.java
+java/org/apache/coyote/http11/Http11NioProtocol.java
+java/org/apache/coyote/http11/Http11Protocol.java
+java/org/apache/coyote/http11/upgrade/AbstractServletOutputStream.java
+java/org/apache/coyote/http11/upgrade/AprProcessor.java
+java/org/apache/coyote/http11/upgrade/AprServletOutputStream.java
+java/org/apache/coyote/http11/upgrade/BioProcessor.java
+java/org/apache/coyote/http11/upgrade/BioServletOutputStream.java
+java/org/apache/coyote/http11/upgrade/NioProcessor.java
+java/org/apache/coyote/http11/upgrade/NioServletOutputStream.java
+webapps/docs/changelog.xml
+webapps/docs/config/http.xml

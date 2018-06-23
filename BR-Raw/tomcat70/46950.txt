@@ -1,0 +1,22 @@
+46950 – SSL renegotiation does not occur when resource with CLIENT-CERT auth is requested
+When a part of a webapp requires an SSL connection with a client certificate there should be an SSL renegotiation to request a client certificate from the browser.
+This is the configuration I added to an webapp that already uses an SSL connector:
+<login-config id="LoginConfig_1">
+<auth-method>CLIENT-CERT</auth-method>
+<realm-name>WPS</realm-name>
+</login-config>
+<security-constraint id="SecurityConstraint_1">
+<web-resource-collection id="WebResourceCollection_1">
+<web-resource-name/>
+<url-pattern>/LoginWithCert.do</url-pattern>
+<http-method>DELETE</http-method>
+<http-method>GET</http-method>
+<http-method>POST</http-method>
+<http-method>PUT</http-method>
+<http-method>HEAD</http-method>
+</web-resource-collection>
+<user-data-constraint id="UserDataConstraint_4">
+<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+</user-data-constraint>
+</security-constraint>
+Requests to /LoginWithCert.do require an SSL connection, if there isn't one, but no client certificate is requested.

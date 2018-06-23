@@ -1,0 +1,7 @@
+Bug 436418 – Regression: Plug-ins view: Find References shows nothing
+RC3:
+Window->Show View->Plugins
+Select org.eclipse.ui.editors
+Find References
+In RC3 Nothing is displayed.
+RC2 shows numerous dependencies.

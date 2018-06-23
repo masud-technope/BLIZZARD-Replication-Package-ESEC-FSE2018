@@ -1,0 +1,3 @@
+56369 – BaseModelMBean does not clean-up attributeBroadcaster in removeNotificationListener()
+BaseModelMBean.addNotificationListener() registers the listener on attributeBroadcaster, while BaseModelMBean.removeNotificationListener() fails to clean that up.
+The end result is a memory leak that is very apparent when you embed directly in your WAR file jmxremote_optional.jar as the com.sun.jmx.remote.opt.internal.ArrayNotificationBuffer$BufferListener' classloader cannot be garbage collected which end up depleting the perm gen merely after a few redeploys.

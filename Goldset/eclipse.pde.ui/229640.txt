@@ -1,0 +1,3 @@
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/text/DSDocumentFactory.java
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/Activator.java
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/IDSDocumentFactory.java

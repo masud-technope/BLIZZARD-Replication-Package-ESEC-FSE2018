@@ -1,0 +1,2 @@
+Bug 399768 – [1.8] DOM AST Type Annotation Tests to be added.
+ASTConverter [ and associated non-rewrite part] tests to be added for different cases of TypeAnnotations.

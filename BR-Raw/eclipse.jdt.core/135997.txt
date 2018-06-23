@@ -1,0 +1,14 @@
+Bug 135997 – [AST] invalid source range with recovered node
+20060410
+Look at the following code with the (recovered) AST view:
+- in the AST View double click the block node of the initializer:
+> its source range does end in the middle of the second statement
+Add Olivier as CC as this might be related to the latest addition of incomplete ExpressionStatement
+package p1.sub1;
+import java.io.File;
+public class C2 {
+{
+new Thread();
+File.pathSeparator;
+}
+}

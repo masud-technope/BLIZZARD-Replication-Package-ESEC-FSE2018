@@ -1,0 +1,60 @@
+Bug 65149 – Resource exception in JavaDebugOptionsManager.initializeProblemHandling
+3.0 RC1
+Got the following in my log after replacing a local project with a project at
+some other date in CVS.
+org.eclipse.core.internal.resources.ResourceException: The resource tree is
+locked for modifications.
+at org.eclipse.core.internal.resources.WorkManager.checkIn(WorkManager.java:93)
+at
+org.eclipse.core.internal.resources.Workspace.prepareOperation(Workspace.java:1628)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1668)
+at
+org.eclipse.jdt.internal.debug.ui.JavaDebugOptionsManager.initializeProblemHandling(JavaDebugOptionsManager.java:263)
+at
+org.eclipse.jdt.internal.debug.ui.JavaDebugOptionsManager.activate(JavaDebugOptionsManager.java:781)
+at
+org.eclipse.jdt.internal.debug.ui.JavaDebugOptionsManager.launchChanged(JavaDebugOptionsManager.java:800)
+at
+org.eclipse.debug.internal.core.LaunchManager$LaunchNotifier.run(LaunchManager.java:1336)
+at
+org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java:615)
+at org.eclipse.core.runtime.Platform.run(Platform.java:758)
+at
+org.eclipse.debug.internal.core.LaunchManager$LaunchNotifier.notify(LaunchManager.java:1355)
+at org.eclipse.debug.internal.core.LaunchManager.fireUpdate(LaunchManager.java:363)
+at org.eclipse.debug.core.Launch.fireChanged(Launch.java:399)
+at org.eclipse.debug.core.Launch.launchConfigurationRemoved(Launch.java:516)
+at
+org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.run(LaunchManager.java:1484)
+at
+org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java:615)
+at org.eclipse.core.runtime.Platform.run(Platform.java:758)
+at
+org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.notify(LaunchManager.java:1505)
+at
+org.eclipse.debug.internal.core.LaunchManager.launchConfigurationDeleted(LaunchManager.java:736)
+at
+org.eclipse.debug.internal.core.LaunchManager$LaunchManagerVisitor.visit(LaunchManager.java:1067)
+at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:68)
+at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:77)
+at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:77)
+at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:77)
+at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:49)
+at
+org.eclipse.debug.internal.core.LaunchManager.resourceChanged(LaunchManager.java:939)
+at
+org.eclipse.core.internal.events.NotificationManager$2.run(NotificationManager.java:283)
+at
+org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java:615)
+at org.eclipse.core.runtime.Platform.run(Platform.java:758)
+at
+org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:277)
+at
+org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:151)
+at
+org.eclipse.core.internal.resources.Workspace.broadcastChanges(Workspace.java:172)
+at org.eclipse.core.internal.resources.Workspace.endOperation(Workspace.java:900)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1682)
+at
+org.eclipse.core.internal.events.NotificationManager$NotifyJob.run(NotificationManager.java:38)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:66)

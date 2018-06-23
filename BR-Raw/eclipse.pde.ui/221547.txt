@@ -1,0 +1,5 @@
+Bug 221547 – Profiles need to re-bind EE/VM as VM installs change
+We need profiles to update as VM installs are added/removed such that the VM they are bound to might change:
+* a VM might be removed that a profile is bound to
+* a VM might be added that better satisfies the bundle requirements in profile
+In both cases, the pofile needs to re-bind its VM/EE.

@@ -1,0 +1,42 @@
+Bug 264527 – [Discovery][jSLP] Receive Timed Out Error
+Steps To Reproduce:
+1.
+I start two jSLP instances in two different JVMs
+2.
+I publish something in the first VM.It works.
+3.
+I try to lookup or publish anything in the second VM.
+I do get the Error Receive Timed Out.
+ch.ethz.iks.slp.ServiceLocationException: Receive timed out
+to 139.21.92.41:427
+at ch.ethz.iks.slp.impl.SLPCore.sendMessage(SLPCore.java:747)
+Exception:      at ch.ethz.iks.slp.impl.AdvertiserImpl.register(AdvertiserImpl.java:135)
+at ch.ethz.iks.slp.impl.AdvertiserImpl.register(AdvertiserImpl.java:108)
+at org.osgi.impl.service.discovery.slp.SLPHandlerImpl.publishService(SLPHandlerImpl.java:403)
+at org.osgi.impl.service.discovery.slp.ServicePublicationTracker.publishServicePublication(ServicePublicationTracker.java:82)
+at org.osgi.impl.service.discovery.slp.ServicePublicationTracker.addingService(ServicePublicationTracker.java:53)
+at org.osgi.util.tracker.ServiceTracker$Tracked.customizerAdding(ServiceTracker.java:892)
+at org.osgi.util.tracker.AbstractTracked.trackAdding(AbstractTracked.java:261)
+at org.osgi.util.tracker.AbstractTracked.track(AbstractTracked.java:233)
+at org.osgi.util.tracker.ServiceTracker$Tracked.serviceChanged(ServiceTracker.java:836)
+at org.eclipse.osgi.internal.serviceregistry.FilteredServiceListener.serviceChanged(FilteredServiceListener.java:121)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl.dispatchEvent(BundleContextImpl.java:930)
+at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:219)
+at org.eclipse.osgi.framework.eventmgr.ListenerQueue.dispatchEventSynchronous(ListenerQueue.java:151)
+at org.eclipse.osgi.internal.serviceregistry.ServiceRegistry.publishServiceEventPrivileged(ServiceRegistry.java:763)
+at org.eclipse.osgi.internal.serviceregistry.ServiceRegistry.publishServiceEvent(ServiceRegistry.java:718)
+at org.eclipse.osgi.internal.serviceregistry.ServiceRegistrationImpl.register(ServiceRegistrationImpl.java:129)
+at org.eclipse.osgi.internal.serviceregistry.ServiceRegistry.registerService(ServiceRegistry.java:206)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl.registerService(BundleContextImpl.java:532)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl.registerService(BundleContextImpl.java:550)
+at com.siemens.test.cases.discovery.DiscoveryCommandProvider._publish(DiscoveryCommandProvider.java:154)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.osgi.framework.internal.core.FrameworkCommandInterpreter.execute(FrameworkCommandInterpreter.java:150)
+at org.eclipse.osgi.framework.internal.core.FrameworkConsole.docommand(FrameworkConsole.java:299)
+at org.eclipse.osgi.framework.internal.core.FrameworkConsole.console(FrameworkConsole.java:284)
+at org.eclipse.osgi.framework.internal.core.FrameworkConsole.run(FrameworkConsole.java:220)
+at java.lang.Thread.run(Unknown Source)
+More information:

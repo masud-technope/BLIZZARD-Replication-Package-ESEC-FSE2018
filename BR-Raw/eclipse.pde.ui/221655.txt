@@ -1,0 +1,13 @@
+Bug 221655 – [plug-ins view] useless content description
+I20080304-1113
+After the resolution of bug 220069, I realized that we have a bigger problem.
+1.
+Make sure all instances of the 'Plug-ins' view is closed across all
+perspectives.
+2.
+Open the 'Plug-ins' view.
+3.
+See the content description for the view, 'Plug-ins: Plug-ins View', and start rubbing your chin.
+This content description is not helpful to the user in any way, shape, or form.
+The content description should either be hidden upon view construction or it should tell me 'Filter matched 109 of 128 plug-ins'.
+One interesting thing is that once the view first gets constructed and then you perform an action like 'Add to Java Search' or 'Remove from Java Search', the content description will change from 'Plug-ins: Plug-ins View' - 'Filter matched 109 of 128 plug-ins', but I presume that is a separate matter.

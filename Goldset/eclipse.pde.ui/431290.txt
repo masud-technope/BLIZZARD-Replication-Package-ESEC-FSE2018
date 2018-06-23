@@ -1,0 +1,12 @@
+apitools/org.eclipse.pde.api.tools.tests/test-source/invokedynamic/test7.java
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/model/tests/ClassFileScannerTests.java
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/model/tests/ScannerTest.java
+apitools/org.eclipse.pde.api.tools.tests/test-source/invokedynamic/test2.java
+apitools/org.eclipse.pde.api.tools.tests/test-source/invokedynamic/test6.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/ReferenceExtractor.java
+apitools/org.eclipse.pde.api.tools.tests/test-source/invokedynamic/test3.java
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/tests/ApiToolsTestSuite.java
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/model/tests/Java8ClassfileScannerTests.java
+apitools/org.eclipse.pde.api.tools.tests/test-source/invokedynamic/test1.java
+apitools/org.eclipse.pde.api.tools.tests/test-source/invokedynamic/test5.java
+apitools/org.eclipse.pde.api.tools.tests/test-source/invokedynamic/test4.java

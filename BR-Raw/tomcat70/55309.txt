@@ -1,0 +1,10 @@
+55309 – Concurrent issue of TagPluginManager
+Created attachment 30629 [details]
+Patch on TagPluginManager
+TagPluginManager is shared within ServletContext.
+But it contains a variable "PageInfo pageInfo".
+PageInfo should be aligned with specified page.
+PageInfo is used for holding page information, such as "Import".
+So when there are two pages are compiled in parallel.
+It encounters concurrent issue.
+ One of the page can't be compiled unless the server is restarted.

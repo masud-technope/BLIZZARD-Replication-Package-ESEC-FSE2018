@@ -1,0 +1,8 @@
+Bug 152135 – [breakpoints] Hovering on conditional breakpoint should show condition
+For breakpoints that have a a condition enabled, it would be great, if I could see the condition without having to open the "breakpoint properties" dialog.
+One way to do this is using the mouse hover tool tip popup thingy.
+This is really useful when you have set a breakpoint more than a few hours ago, and are not sure of the condition.
+Thanks
+Ajay
+PS: Great Job with Eclipse 3.2...
+With 3.x, Eclipse got to a point where I have started pushing people towards Eclipse.

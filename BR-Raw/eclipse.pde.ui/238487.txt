@@ -1,0 +1,16 @@
+Bug 238487 – [logview] LogView assumes SHOW_FILTERED_TEXTS=true
+Build ID: I20080617-2000
+Steps To Reproduce:
+1.
+Create RCP that includes the LogView plugin
+2.
+Run RCP and ensure the "Error Log" view can be displayed as expected
+3.
+Create a plugin_customization.ini for your RCP product and add "org.eclipse.ui/SHOW_FILTERED_TEXTS=false" to it
+4.
+Rerun the RCP and try to open the "Error Log" view again.
+It should fail with a NullPointerException in LogView.showFilterText at line 461
+More information:
+The FilteredTree didn't create the filter control because showFilterControls was initialized to false via the setting in plugin_customization.ini.
+ In many places, LogView assumes the existance of the filter control via fFilteredTree.getFilterControl() without checking that it returns non-null.
+(Sorry for not including an exact stack-trace or code to reproduce the problem as it was discovered on another machine w/o internet access)

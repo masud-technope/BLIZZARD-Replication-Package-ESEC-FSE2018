@@ -1,0 +1,34 @@
+Bug 42487 – NPE if ctrl dbl click in JavaDetailFormattersPreferencePage
+Window>Preferences>Java>Debug>Detail Formatters
+Select a detail formatter
+Hold the ctrl key
+Double click on the formatter
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.debug.ui.DetailFormatterDialog.createDialogArea
+(DetailFormatterDialog.java:155)
+at org.eclipse.jface.dialogs.Dialog.createContents(Dialog.java:566)
+at org.eclipse.jface.window.Window.create(Window.java:302)
+at org.eclipse.jface.dialogs.Dialog.create(Dialog.java:876)
+at org.eclipse.jdt.internal.ui.dialogs.StatusDialog.create
+(StatusDialog.java:101)
+at org.eclipse.jface.window.Window.open(Window.java:552)
+at
+org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersPreferencePage.editType
+(JavaDetailFormattersPreferencePage.java:290)
+at
+org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersPreferencePage$4.doubleCl
+ick(JavaDetailFormattersPreferencePage.java:145)
+at org.eclipse.jface.viewers.StructuredViewer$1.run(StructuredViewer.java:367)
+at org.eclipse.core.internal.runtime.InternalPlatform.run
+(InternalPlatform.java:1016)
+at org.eclipse.core.runtime.Platform.run(Platform.java:420)
+at org.eclipse.jface.viewers.StructuredViewer.fireDoubleClick
+(StructuredViewer.java:365)
+at org.eclipse.jface.viewers.StructuredViewer.handleDoubleSelect
+(StructuredViewer.java:584)
+at org.eclipse.jface.viewers.StructuredViewer$4.widgetDefaultSelected
+(StructuredViewer.java:679)
+at org.eclipse.jface.util.OpenStrategy.fireDefaultSelectionEvent
+(OpenStrategy.java:187)
+at org.eclipse.jface.util.OpenStrategy.access$0(OpenStrategy.java:184)
+at org.eclipse.jface.util.OpenStrategy$1.handleEvent(OpenStrategy.java:231)

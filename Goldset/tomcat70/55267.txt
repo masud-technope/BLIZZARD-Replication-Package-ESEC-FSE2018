@@ -1,0 +1,4 @@
+java/org/apache/coyote/ajp/AjpNioProcessor.java
+java/org/apache/coyote/http11/InternalNioOutputBuffer.java
+java/org/apache/tomcat/util/net/NioEndpoint.java
+webapps/docs/changelog.xml

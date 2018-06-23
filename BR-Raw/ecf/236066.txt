@@ -1,0 +1,16 @@
+Bug 236066 – [ecf.mylyn] importing a received task to an empty task list generates NullPointerExcepiton
+Build ID: I20080523-0100
+Steps To Reproduce:
+1.
+Empty task list, restart eclipse
+2.
+Receive a task via ecf.mylyn (xmpp)
+3.
+Open Task Selection dialog, import the received task
+Note: does not occur if the task was already imported (but failed), deleted, then imported again within the same eclipse instance
+More information:
+Using:
+-Mylyn 3.0.0.I20080526
+-ECF 2.0
+-org.eclipse.ecf.mylyn.ui HEAD (v1.3) with https://bugs.eclipse.org/bugs/show_bug.cgi?id=235930 patch
+-on Eclipse 3.4RC2

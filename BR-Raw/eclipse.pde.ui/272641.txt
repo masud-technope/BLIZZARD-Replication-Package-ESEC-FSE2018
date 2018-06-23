@@ -1,0 +1,6 @@
+Bug 272641 – Externalize Strings for MANIFEST.MF should not put ".0" suffix on each header
+Is there any particular reason to suffix each OSGI-Bundle header that is externalized from a MANIFEST.MF with ".0"?
+Bundle-Name becomes substituted as "Bundle-Name.0"
+We always have to manually remove the ".0" suffix as there cannot be more than one Bundle-Name header anyway.
+Would be nice if the Externalization-Wizard would just leave the substitution name untouched and keeps it equal with the bundle header name.
+I could provide a patch.

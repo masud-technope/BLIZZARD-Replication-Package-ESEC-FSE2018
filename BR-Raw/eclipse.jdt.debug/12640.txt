@@ -1,0 +1,5 @@
+Bug 12640 – Workspace runnable not run correctly
+In JavaBreakpoint#removeFromTarget, a workspace runnable is created and run
+directly - it should call #run(IWorkspaceRunnable) rather than invoking the
+runnable directly.
+Check all runnables in breakpoints for same bug.

@@ -1,0 +1,4 @@
+server-side/examples/bundles/org.eclipse.ecf.examples.remoteservices.server/src/org/eclipse/ecf/internal/examples/remoteservices/server/DiscoveryProperties.java
+server-side/examples/bundles/org.eclipse.ecf.examples.remoteservices.server/src/org/eclipse/ecf/internal/examples/remoteservices/server/DiscoverableServer.java
+providers/bundles/org.eclipse.ecf.provider.remoteservice/src/org/eclipse/ecf/provider/remoteservice/generic/RegistrySharedObject.java
+framework/bundles/org.eclipse.ecf.remoteservice/src/org/eclipse/ecf/remoteservice/util/RemoteServiceProperties.java

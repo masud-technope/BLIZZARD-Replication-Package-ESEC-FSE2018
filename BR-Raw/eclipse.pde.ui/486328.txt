@@ -1,0 +1,16 @@
+Bug 486328 – Warning in pde.core and pde.ui
+http://download.eclipse.org/eclipse/downloads/drops4/N20160121-2000/compilelogs/plugins/org.eclipse.pde.core_3.11.0.N20160121-2000/@dot.html
+for eg
+1.
+WARNING in /src/org/eclipse/pde/internal/core/schema/Schema.java
+(at line 31)
+private ListenerList fListeners = new ListenerList();
+ListenerList is a raw type.
+References to generic type ListenerList<E> should be parameterized
+http://download.eclipse.org/eclipse/downloads/drops4/N20160121-2000/compilelogs/plugins/org.eclipse.pde.ui_3.8.300.N20160121-2000/@dot.html
+1.
+WARNING in /src/org/eclipse/pde/internal/ui/commands/TagManager.java
+(at line 20)
+private ListenerList fListeners = new ListenerList();
+ListenerList is a raw type.
+References to generic type ListenerList<E> should be parameterized

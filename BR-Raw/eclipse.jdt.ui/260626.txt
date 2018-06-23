@@ -1,0 +1,29 @@
+Bug 260626 – [clean up] "Convert for loops to enhanced" clean up leaves iterator references
+Build ID: I20080617-2000
+Steps To Reproduce:
+import java.util.Collections;
+import java.util.Iterator;
+public class Test {
+void foo() {
+for (
+Iterator iter = Collections.emptySet().iterator();
+iter.hasNext();
+) {
+iter.next().toString();
+String.valueOf(iter.hasNext() ? "x" : "y");
+}
+}
+}
+becomes
+import java.util.Collections;
+public class Test {
+void foo() {
+for (Object element : Collections.emptySet()) {
+element.toString();
+String.valueOf(iter.hasNext() ? "x" : "y");
+}
+}
+}
+More information:
+The cleanup seems to update code when there is only a single reference to iterator.
+ Things go bad when subsequent refs are in ternary conditions.

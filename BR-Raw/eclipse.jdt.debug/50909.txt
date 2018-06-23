@@ -1,0 +1,9 @@
+Bug 50909 – Make new bootpath options non-breaking
+We added support for appending/prepending the default bootpath.
+We can make
+this a non-breaking change by placing the attribtues in the VM specific
+attributes table.
+Then the VMRunner can use the new options if supported
+(rather than making the launch delegate responsible for setting up the proper
+bootpath).
+This avoids breaking existing launch delegates.

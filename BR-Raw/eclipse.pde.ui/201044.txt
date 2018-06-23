@@ -1,0 +1,13 @@
+Bug 201044 – [pde] fragment wizard doesn't transfer host maximum version from wizard into manifest
+Build ID: I20070625-1500
+Steps To Reproduce:
+1.
+Create a new fragment project
+2.
+Choose your Host Plug-in
+3.
+Enter Maximum version
+4.
+Finish the wizard
+5.
+The Plug-in Manifest Editor opens and the host maximum version is empty

@@ -1,0 +1,15 @@
+Bug 287834 – JavaLineBreakpoint is not thread-safe and causes 100% CPU
+Build ID: Eclipse 3.5
+Steps To Reproduce:
+I was in a normal debug session.
+When I wanted to pause a thread, the request timed-out.
+Afterward, the CPU went to 100%.
+I needed to restart to fix it.
+It looks like JavaLineBreakpoint can be accessed by multiple threads at the same time.
+This may be unintentional.
+The stacks I have show that there are two EventDispatcher threads active.
+The comments for that class say that there should only be 1 active at a time.
+If for some reason more than one is active, they can be simultaneously accessing the JavaLineBreakpoint.
+Accessing a hashmap from more than one thread can corrupt its internal structure and it can go into an infinite loop.
+(See http://mailinator.blogspot.com/2009/06/beautiful-race-condition.html)
+Attaching several stacks I took while the CPU was at 100%.

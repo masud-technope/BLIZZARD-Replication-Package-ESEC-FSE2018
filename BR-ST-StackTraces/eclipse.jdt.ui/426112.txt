@@ -1,0 +1,5 @@
+org.eclipse.jface.operation.ModalContext.run
+org.eclipse.ltk.internal.ui.refactoring.RefactoringWizardDialog2.run
+org.eclipse.jdt.internal.corext.dom.Bindings.equals
+org.eclipse.jdt.internal.corext.refactoring.structure.MoveInstanceMethodProcessor$VisibilityAdjustingArgumentFactory.adjustTypeVisibility
+org.eclipse.jdt.internal.corext.refactoring.structure.MoveInstanceMethodProcessor$1.getArgumentNode

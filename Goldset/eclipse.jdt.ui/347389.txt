@@ -1,0 +1,8 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInnerToTopLevel/test43/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInnerToTopLevel/test43/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInnerToTopLevel/test43/out/B.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInnerToTopLevel/test44/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInnerToTopLevel/test44/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInnerToTopLevel/test44/out/B.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/MoveInnerToTopLevelTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/MoveInnerToTopRefactoring.java

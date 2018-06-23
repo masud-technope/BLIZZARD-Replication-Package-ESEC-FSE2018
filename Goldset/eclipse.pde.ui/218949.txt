@@ -1,0 +1,9 @@
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/wizards/ApiProjectSetupRefactoring.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/wizards/ApiToolingSetupRefactoring.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/actions/ApiToolingSetupObjectContribution.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/wizards/ApiToolingSetupWizardPage.java
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/util/tests/ApiDescriptionProcessorTests.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/wizards/WizardMessages.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/wizards/ApiToolingSetupWizard.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/wizards/ProjectUpdateChange.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/wizards/wizardmessages.properties

@@ -1,0 +1,12 @@
+ui/org.eclipse.pde.core/META-INF/MANIFEST.MF
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/LoadTargetOperation.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDECoreMessages.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/target/TargetDefinitionSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/target/TargetErrorDialog.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/parts/TreeErrorMessage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/parts/TreeMessageDialog.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/TargetPlatformPreferencePage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/TargetPluginsTab.java

@@ -1,0 +1,4 @@
+Bug 405067 – [1.8][compiler][codegen] Generate code for stateless lambda expressions.
+BETA_JAVA8:
+This ER will be used to implement/track generation of code for stateless
+lambda's.

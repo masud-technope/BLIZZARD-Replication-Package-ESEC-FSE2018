@@ -1,0 +1,13 @@
+Bug 49047 – scrapbook suspends on uncaught exceptions
+I20031216
+I think this is a regression..
+the scrapbook did not used to suspend on
+uncaught exceptions.
+When I turn the pref to suspend off, things work as
+expected (i.e.
+a stack trace is written to the console).
+I beleive we should
+ignore the exception for scrapbook VMs.
+Since we cannot show the source code
+for the exception (if it's actually part of the code snippet), it is very
+confusing to the user, since they get a "source not found" editor.

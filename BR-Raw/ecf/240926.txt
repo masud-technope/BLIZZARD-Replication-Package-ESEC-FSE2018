@@ -1,0 +1,3 @@
+Bug 240926 – [docshare] insufficient cleanup on editor closing
+If a shared editor is closed without previously stopping shared editing it can leave the sender and/or the receiver in an improper state.
+Logic should be added to clean up properly when a shared editor is closed.

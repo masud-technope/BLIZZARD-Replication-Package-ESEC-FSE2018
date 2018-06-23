@@ -1,0 +1,15 @@
+Bug 395989 – [generalize type] Generalize Declared Type does not consider use of variable in throw statement, which yields compilation error
+Steps to reproduce:
+1.
+See the instructions in code below
+2.
+The resulting code does not compile ("No exception of type Object can be thrown; an exception type must be a subclass of Throwable")
+class GeneralizeDeclaredTypeBug3 {
+void f() throws Exception {
+// Invoke "Generalize Declared Type" on "Exception"
+// and select "Object" as new type
+Exception e = new Exception();
+throw e;
+}
+}
+(Thanks to Yilong Li for helping with the bug report.)

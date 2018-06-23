@@ -1,0 +1,4 @@
+Bug 430159 – [1.8][search] Lambda Expression not found when searching using OrPattern or AndPattern
+Created attachment 240793 [details]
+test case as a JavaSearchBugs8Test function
+follow up of bug 429498.

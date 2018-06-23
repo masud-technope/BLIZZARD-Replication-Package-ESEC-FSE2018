@@ -1,0 +1,31 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_01/out/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_02/out/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_03/out/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_04/out/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_05/out/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_01/in/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_01/out/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_02/in/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_02/out/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_03/in/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_03/out/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_04/in/C.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_04/in/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_04/out/C.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_04/out/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_05/in/C.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_05/in/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_05/out/C.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_05/out/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_06/in/C.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_06/in/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_06/out/C.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test18_06/out/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/AllRefactoringTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/IntroduceIndirectionTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/IntroduceIndirectionTests18.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/reorg/IntroduceIndirectionPerfAcceptanceTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/RefactoringCoreMessages.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/IntroduceIndirectionRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/refactoring.properties
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/IntroduceIndirectionInputPage.java

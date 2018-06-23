@@ -1,0 +1,16 @@
+java.lang.NumberFormatException.forInputString
+java.lang.Integer.parseInt
+java.lang.Integer.parseInt
+ch.ethz.iks.slp.ServiceURL.parse
+ch.ethz.iks.slp.ServiceURL.fromBytes
+ch.ethz.iks.slp.impl.ServiceReply.<init>
+ch.ethz.iks.slp.impl.SLPMessage.parse
+ch.ethz.iks.slp.impl.SLPCore$2.run
+java.lang.NumberFormatException.forInputString
+java.lang.Integer.parseInt
+java.lang.Integer.parseInt
+ch.ethz.iks.slp.ServiceURL.parse
+ch.ethz.iks.slp.ServiceURL.fromBytes
+ch.ethz.iks.slp.impl.ServiceReply.<init>
+ch.ethz.iks.slp.impl.SLPMessage.parse
+ch.ethz.iks.slp.impl.SLPCore$2.run

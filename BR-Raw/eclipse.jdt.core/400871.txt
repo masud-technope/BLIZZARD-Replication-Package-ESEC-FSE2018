@@ -1,0 +1,11 @@
+Bug 400871 – [1.8][compiler] Overhaul overload resolution to reconcile with JLS8 15.12.2
+BETA_JAVA8:
+A number of changes are being made to overload resolution mechanism
+to accommodate poly expressions in method invocation context.
+ECJ needs to evolve to address this scenario, which creates some interesting
+problems: When a lambda expression occurs in method invocation context as
+an argument, the type of the lambda expression cannot be determined until
+the overloaded method is chosen and the overloaded method cannot be chosen
+until the lambda expression's type is known.
+JLS8 15.12.2 (part F of JSR335 specification) spells out the amended
+overload resolution rules to address this and other scenarios.

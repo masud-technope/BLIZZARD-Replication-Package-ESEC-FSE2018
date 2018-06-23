@@ -1,0 +1,27 @@
+Bug 380918 – Launching is failing due to missing optional project(s) - pt.2
+Build Identifier: I20120518-2345
+In my workspace, I have two projects.
+ Project 1 is linked to Project 2 in the
+.classpath file as a "src" entry that is optional.
+ The jar that Project 1
+creates is also added to the .classpath of Project 2 as a "lib" entry.
+ Project 1 is closed when not being actively worked on.
+ When I try to run JUnit tests within Project 2, the launch fails with the message "Project 1 does not exist" in my Progress view.
+This should not fail since Project 1 is optional and only linked for debugging
+purposes (source linkage).
+ The classes from Project 1 are available thorough
+the jar that is present in Project 2.
+ Launching Project 2 in the Servers view
+works fine, so I don't think it is all types of launching that are affected --
+it may be isolated to JUnit.
+(See attachment for the projects.)
+Reproducible: Always
+Steps to Reproduce:
+1.
+Import projects from attached archive
+2.
+Close Project 1
+3.
+Launch Main as Java application or Tests as JUnit test suite
+4.
+Check Progress view for "Project 1 does not exist"

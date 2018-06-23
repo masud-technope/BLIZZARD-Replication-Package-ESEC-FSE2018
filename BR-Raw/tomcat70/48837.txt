@@ -1,0 +1,23 @@
+48837 – Memory leaks protection does not detect leaks triggered by JSP pages code
+Created attachment 25077 [details]
+webapps/examples/foo.jsp
+The memory leaks protection feature of TC6/TC7 is able to heal certain types of memory leaks caused by servlet code (where classes are loaded by WebappClassLoader), but does not provide a cure for ones caused by JSP code (where classes are loaded by JasperLoader).
+I think that is of little concern, as the code that triggers a memory leak is unlikely to be present on a JSP page or a tag file, but at least it provides us with an example to test the "Find leaks" diagnostics in the Manager webapp.
+To reproduce:
+1.
+Place the attached foo.jsp into the examples webapp
+2.
+Open http://localhost:8080/examples/foo.jsp
+3.
+Open the Manager web application
+4.
+Reload or stop/start the examples application
+5.
+Press the "Find leaks" button in the Manager
+6.
+The message will be displayed that "/examples" app triggered a memory leak.
+The leak is caused by foo.jsp creating a ThreadLocal holding an instance of some inner class of that JSP.
+(That inner class was loaded through JasperLoader, and thus was not detected when enumerating ThreadLocals in leaks protection code.)
+7.
+Another ThreadLocal (holding a reference to some servlet) is successfully cleared by memory leak protection code when the examples application is stopped.
+You can see a message about that in the Tomcat logs.

@@ -1,0 +1,49 @@
+Bug 436997 – [move method] incorrect precondition of checking references to enclosing instances in generic declaring class.
+When the declaring class of enclosing instances is "generic", the precondition for checking references to enclosing instances does not work.
+Applying move-instance-method to method m() results in an error below.
+------------------------------
+BEFORE
+------------------------------
+class A<T> {
+int i;
+class C {
+B b = null;
+void m() {
+i = 0;
+}
+}
+}
+------------------------------
+AFTER
+------------------------------
+class A<T> {
+int i;
+class C {
+B b = null;
+}
+}
+import p.A.C;
+class B{
+void m(C c) {
+i = 0;	//ERROR
+}
+}
+------------------------------
+Here is the error location.
+JDT Classic version: 4.2.2
+Class Name: org.eclipse.jdt.internal.corext.refactoring.structure.MoveInstanceMethodProcessor
+Source code:
+...
+public final class EnclosingInstanceReferenceFinder extends AstNodeFinder {
+...
+@Override
+public final boolean visit(final SimpleName node) {
+Assert.isNotNull(node);
+final IBinding binding= node.resolveBinding();
+ITypeBinding declaring= null;
+if (binding instanceof IVariableBinding) {
+final IVariableBinding variable= (IVariableBinding) binding;
+if (Flags.isStatic(variable.getModifiers()))
+return false;
+declaring= variable.getDeclaringClass();    //getDeclaringClass() returns NULL when the declaring class is "generic".
+...

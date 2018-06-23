@@ -1,0 +1,3 @@
+Bug 181506 – Migrate presence IM providers to use MessagesView
+Remy came up with a nice messages view which allows for tabbed chats and uses Forms.
+It looks 1000x better than what we have now so it would be nice to migrate.

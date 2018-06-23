@@ -1,0 +1,11 @@
+Bug 232293 – [misc] Turn {@inheritDoc} in Javadoc main description into link
+Created attachment 100426 [details]
+Fix
+Turn {@inheritDoc} in Javadoc main description into a link.
+This is a low-risk partial solution to bug 24227 to support common cases like the addition of an @since tag in the overriding method, e.g.
+/**
+* {@inheritDoc}
+*
+* @since 3.4
+*/
+The link points to the Javadoc that would have been displayed without the @since or without a Javadoc comment at all.

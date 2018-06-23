@@ -1,0 +1,53 @@
+47744 – Memory leak when using SSL + Java security manager
+Created attachment 24170 [details]
+The zip described in the main bug.
+Contains test client, JSP for the server, and patch.
+When using SSL + the java security manager, Tomcat leaks memory when servlets
+access cert path/cipher as request properties.
+ When the servlet/JSP asks for
+these properties and they are not in the request, they are loaded via the
+JSSESupport class.
+The offending method calculates the key size and attempts to cache this in the
+SSLSession.
+ Without the security manager, this is fine.
+ When the security
+manager runs, however, the AccessControlContext is different every time.
+Retrieving from the cache will always return null, and putting into the
+SSLSession's cache leaks memory.
+ This part is probably a JVM bug and not
+Tomcat's fault, but Tomcat is exercising it nonetheless.
+Popular web service tools (such as Apache CXF) retrieve cert properties from
+the request for every invocation.
+ Depending on the policy file, the leak may
+be relatively slow, requiring 100s of thousands or millions of requests; or it
+could be fast (in our case), requiring only ~40k to crash an instance of Tomcat
+limited to 1 gig of memory.
+A note here.
+ The SSLSession can be collected once it is not in use, so the
+memory leak isn't permanent.
+ If you turn down the SSLSession timeout and wait
+at least that amount of time in between using a specific session, you might
+never see this bug.
+ You have to continuously use the same session *and* trip
+JSSESession into attempting to get the keysize.
+ In our particular case, we
+have long-connected clients that stream information to us, so it is only taking
+is 10-20 minutes before we are being affected negatively by this.
+I have attached a zip containing:
+- A test client
+- A script (.bat, sorry guys, but easily adapted) to run the test client
+- A .jsp that trips the JSSESupport to call the affected method.
+- The simplest possible policy file, to demonstrate it's not a policy file
+issue.
+Also attached: a patch that fixes this issue.
+(It's in the zip for good
+measure.)
+I recommend setting the invocation count to at least 100,000 or so on the test
+client.
+ Use jconsole or a similar tool attached to tomcat to monitor the
+memory use.
+ You should notice that after the test, a large chunk of memory is
+not able to be returned by the garbage collector.
+ If you apply the patch,
+update tomcat-coyote.jar, and re-run the load test, you will notice that memory
+consumption stays low and you can immediately return to the baseline.

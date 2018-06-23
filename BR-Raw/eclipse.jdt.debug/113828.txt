@@ -1,0 +1,10 @@
+Bug 113828 – Make Java BP properties dialog publicly accessible
+For SQLJ we use JDT Java breakpoints.
+ From the editor veritical rule we want to
+have the popup menu action to show the breakpoint properties dialog.
+The existing JavaEditor action
+(org.eclipse.jdt.internal.debug.ui.actions.JavaBreakpointPropertiesRulerActionDelegate)
+is internal, but if it was an external API then we could use it for our editor
+too.
+Other editors that use JavaStratumLineBreakpoints could also benefit from having
+this public API.

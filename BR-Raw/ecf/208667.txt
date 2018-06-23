@@ -1,0 +1,5 @@
+Bug 208667 – [msn] MSNContainer.sendPresenceUpdate throws NullPointerException for UNAVAILABLE
+Invoking org.eclipse.ecf.internal.provider.msn.MSNContainer.sendPresenceUpdate with a presence of type IPresence.Type.UNAVAILABLE causes a call to disconnect() in which the 'client' instance variable is set to null.
+The 'client' instance variable is subsequently used in the same method:
+client.setPersonalMessage(presence.getStatus());
+without a check for null.

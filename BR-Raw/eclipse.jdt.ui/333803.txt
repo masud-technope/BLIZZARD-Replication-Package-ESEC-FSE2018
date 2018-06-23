@@ -1,0 +1,12 @@
+Bug 333803 – [move member type] Move Type to New File creates compile error with parametrized outer type
+HEAD
+The 'Move Type to New File' refactoring creates a compile error when the member type contains an array access expression:
+public class Outer {
+private final Object[] fSet= new Object[1];
+class Inner { //Move Type to New File
+void foo() {
+System.out.println(fSet[0]); // broken
+//			System.out.println(fSet);    // OK
+}
+}
+}

@@ -1,0 +1,3 @@
+Bug 310643 – [zookeeper][remoteservices] add usage of zookeeper discovery to hello world examples
+Currently, the hello world examples use zeroconf, slp, and file-based discovery, and this is specified in the product configurations (in products directory).
+A new product configuration should be added that uses zookeeper-based discovery (with proper bundles, proper bundle starts, and proper system properties for zookeeper-based discovery to work.

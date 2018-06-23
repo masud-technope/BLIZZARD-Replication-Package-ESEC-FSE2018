@@ -1,0 +1,8 @@
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/ValueImpl.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIArrayEntryVariable.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDILocalVariable.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/JDIMessages.properties
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIModificationVariable.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/JavaVariableValueEditor.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIVariable.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIFieldVariable.java

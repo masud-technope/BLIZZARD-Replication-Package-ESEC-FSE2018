@@ -1,0 +1,5 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/CompletionTests.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/codeassist/org/eclipse/jdt/internal/codeassist/CompletionEngine.java
+org.eclipse.jdt.core/codeassist/org/eclipse/jdt/internal/codeassist/RelevanceConstants.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/SnippetCompletionTests.java

@@ -1,0 +1,14 @@
+Bug 383001 – Typo in "Key 'mathProcessorName' is not found localization properties file"
+org.eclipse.equinox.bidi has an extension that declares
+<typeDescription
+class="org.eclipse.equinox.bidi.internal.consumable.STextMath"
+description="%mathProcessorName"
+type="math">
+</typeDescription>
+...
+but the %mathProcessorName is missing.
+Error message:
+Key 'mathProcessorName' is not found localization properties file
+Correct error message:
+Key 'mathProcessorName' is not found in localization properties file
+It also wouldn't hurt if the path to the localization properties file was appended to the error message.

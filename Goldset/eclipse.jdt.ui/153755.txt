@@ -1,0 +1,184 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/cleanup/package.html
+org.eclipse.jdt.ui.tests/performance/org/eclipse/jdt/ui/tests/performance/views/CleanUpPerfTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/ChangeNonStaticToStaticTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/CleanUpActionTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/CleanUpTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/CleanUpTestCase.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/SaveParticipantTest.java
+org.eclipse.jdt.ui/META-INF/MANIFEST.MF
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/AbstractFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/AbstractSerialVersionOperation.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CleanUpConstants.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CleanUpPostSaveListener.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CleanUpPreferenceUtil.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CleanUpRefactoring.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CleanUpRegistry.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CodeFormatFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CodeStyleFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CompilationUnitRewriteOperationsFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/ControlStatementsFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/ConvertLoopFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/ExpressionsFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/FixMessages.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/FixMessages.properties
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/IFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/ILinkedFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/IProposableFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/ImportsFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/Java50Fix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/PotentialProgrammingProblemsFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/SortMembersFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/StringFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/TextEditFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/UnimplementedCodeFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/UnusedCodeFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/VariableDeclarationFix.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/RefactoringExecutionStarter.java
+org.eclipse.jdt.ui/plugin.properties
+org.eclipse.jdt.ui/plugin.xml
+org.eclipse.jdt.ui/schema/cleanUps.exsd
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/AllCleanUpsAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/CleanUpAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/MultiFormatAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/MultiOrganizeImportAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/MultiSortMembersAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/AbstractCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/AbstractMultiFix.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/CleanUpOptions.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/CleanUpRefactoringWizard.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/CleanUpSaveParticipantPreferenceConfiguration.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/CodeFormatCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/CodeStyleCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/ControlStatementsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/ConvertLoopCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/ExpressionsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/ICleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/IMultiFix.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/IMultiLineCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/ImportsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/Java50CleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/MapCleanUpOptions.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/PotentialProgrammingProblemsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/SaveActionSelectionDialog.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/SortMembersCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/StringCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/UnimplementedCodeCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/UnnecessaryCodeCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/UnusedCodeCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/VariableDeclarationCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/AbstractCleanUpTabPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CleanUpConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CleanUpMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CleanUpMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CleanUpModifyDialog.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CleanUpPreview.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CleanUpProfileManager.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CleanUpProfileVersioner.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CleanUpTabPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CodeFormatingTabPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/ContributedCleanUpTabPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/DefaultCleanUpOptionsInitializer.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/ICleanUpTabPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/SaveActionCleanUpOptionsInitializer.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/AdvancedQuickAssistProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/CorrectionMarkerResolutionGenerator.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/LocalCorrectionsSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/ModifierCorrectionSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/QuickAssistProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/ReorgCorrectionsSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/SerialVersionHashOperation.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/SerialVersionSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/proposals/CUCorrectionProposal.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/proposals/FixCorrectionProposal.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/cleanup/CleanUpContext.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/cleanup/CleanUpOptions.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/cleanup/CleanUpRequirements.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/cleanup/ICleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/cleanup/ICleanUpConfigurationUI.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/cleanup/ICleanUpFix.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/cleanup/ICleanUpOptionsInitializer.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CleanUpRefactoring.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CodeStyleFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/Java50Fix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/UnusedCodeFix.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/AbstractCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/AbstractMultiFix.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/CodeStyleCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/ExpressionsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/ICleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/IMultiFix.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/Java50CleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/PotentialProgrammingProblemsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/StringCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/UnimplementedCodeCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/UnnecessaryCodeCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/UnusedCodeCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/CorrectionMarkerResolutionGenerator.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/proposals/FixCorrectionProposal.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/AbstractFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/AbstractSerialVersionOperation.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/AddUnimplementedMethodsOperation.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CleanUpRefactoring.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CodeFormatFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CodeStyleFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CommentFormatFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CompilationUnitRewriteOperationsFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/ControlStatementsFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/ConvertForLoopOperation.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/ConvertIterableLoopOperation.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/ConvertLoopFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/ConvertLoopOperation.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/ExpressionsFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/FixMessages.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/FixMessages.properties
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/IFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/IFixRewriteOperation.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/ILinkedFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/ILinkedFixRewriteOperation.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/IProposableFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/ImportsFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/Java50Fix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/LinkedFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/PotentialProgrammingProblemsFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/SortMembersFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/StringFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/TextEditFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/UnimplementedCodeFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/UnusedCodeFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/VariableDeclarationFix.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/CodeFormatCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/CodeFormatFix.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/CodeStyleCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/CommentFormatCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/CommentFormatFix.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/AdvancedQuickAssistProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/CorrectionMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/CorrectionMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/LocalCorrectionsSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/ModifierCorrectionSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/QuickAssistProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/ReorgCorrectionsSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/SerialVersionSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/proposals/FixCorrectionProposal.java
+org.eclipse.jdt.ui.tests/performance/org/eclipse/jdt/ui/tests/performance/views/CleanUpPerfTest.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CleanUpPostSaveListener.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CleanUpRefactoring.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/AbstractCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/CleanUpOptions.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/CodeFormatCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/CodeStyleCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/CommentFormatCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/ControlStatementsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/ConvertLoopCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/ExpressionsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/ICleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/ImportsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/Java50CleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/PotentialProgrammingProblemsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/SortMembersCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/StringCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/UnnecessaryCodeCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/UnusedCodeCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/VariableDeclarationCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/CorrectionMarkerResolutionGenerator.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/FixCorrectionProposal.java

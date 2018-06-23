@@ -1,0 +1,11 @@
+Bug 443338 – Errors during saving the plugin descriptor file
+Created attachment 246735 [details]
+Dialog with error
+Found in eclipse-SDK-M20140827-0800-win32-x86_64
+Steps to recreate the issue:
+1) Install the 'Eclipse 4 - Core tools' plugin from the update site: http://download.eclipse.org/e4/downloads/drops/S-0.16-201408072200/repository
+2) Generate sample E4 RCP application with the wizard: File/New/Eclipse 4/Eclipse 4 Application Project
+3) Open plugin.xml file and remove the property 'applicationCSS'
+4) Delete the following file from the project: css/default.css
+5) Open product configuration file and try to launch the application
+6) Application runs, but the PDE reports the issue, see attachment (it can be another issue connected to some assertion failure)

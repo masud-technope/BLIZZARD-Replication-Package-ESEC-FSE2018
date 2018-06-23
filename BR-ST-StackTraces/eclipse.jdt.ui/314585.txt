@@ -1,0 +1,13 @@
+org.eclipse.jdt.internal.ui.viewsupport.JavaElementLabelComposer.appendElementLabel
+org.eclipse.jdt.internal.ui.viewsupport.JavaElementLinks.getElementLabel
+org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.addValue
+org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.addValue
+org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.addAnnotation
+org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getAnnotations
+org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.addAnnotations
+org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo
+org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.internalGetHoverInfo
+org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo2
+org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2
+org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2
+org.eclipse.jface.text.TextViewerHoverManager$4.run

@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractClass/testNested1/in/Nested1.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractClass/testNested1/out/Nested1.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractClass/testNested2/in/Nested2.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractClass/testNested2/out/Nested2.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ExtractClassTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ExtractClassRefactoring.java

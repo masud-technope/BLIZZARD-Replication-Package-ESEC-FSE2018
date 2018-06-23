@@ -1,0 +1,5 @@
+Bug 336833 – [ltk][refactoring] Allow for context help on DIALOG_BASED_USER_INTERFACE
+Currently you have to use a wizard (WIZARD_BASED_USER_INTERFACE) to show any context sensitive help in a refactoring dialog.
+ This is cumbersome particularly when your refactoring dialog is quite large already and you don't want to add the title area.
+Also since many refactoring dialogs are quite complex, adding the title area tends to clutter the UI and make it harder on users.
+On a cursory glance, RefactoringWizardDialog2 would just need extend TrayDialog.

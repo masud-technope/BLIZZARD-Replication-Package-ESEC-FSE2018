@@ -1,0 +1,4 @@
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/buildermessages.properties
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/BaseApiAnalyzer.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/BuildState.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/BuilderMessages.java

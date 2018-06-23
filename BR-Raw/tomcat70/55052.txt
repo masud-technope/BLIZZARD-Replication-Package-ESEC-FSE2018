@@ -1,0 +1,48 @@
+55052 – [JULI] Make ClassLoaderLogManager.getProperty() to try unprefixed property if prefixed one does not exist
+The following issue was reported by "Edson" via comments system at
+http://tomcat.apache.org/tomcat-7.0-doc/logging.html
+[quote]
+I would like to have a section explaining how to use SimpleFormatter.format, because I can't make log behave as expected when using JULI.
+Seems that Tomcat always ignore my attemps - unless I set in catalina.sh the system property: -Djava.util.logging.SimpleFormatter.format="[%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS.%1$tL] %4$s: %5$s %6$s %n" Would this be clarified in documentation?
+[/quote]
+I am confirming this behaviour with with the current Tomcat 7.0.x (7.0.40) and JDK 7u21.
+Actual:
+=======
+If add the following line to logging.properties logging output does not change, as reported in the comment:
+[[[
+java.util.logging.SimpleFormatter.format=[%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS.%1$tL] %4$s: %5$s %6$s %n
+]]]
+But, if I add the following line, the output changes for all handlers.
+(At least for the console one, catalina.DATE.log and localhost.DATE.log files.
+Other log files are empty by default).
+[[[
+1catalina.java.util.logging.SimpleFormatter.format=[%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS.%1$tL] %4$s: %5$s %6$s %n
+]]]
+Problem:
+========
+Oracle's SimpleFormatter.format is a static field, an thus is initialized only once.
+ While it is good that prefixed "1catalina.*" property works, this specific formatter cannot be configured per-handler.
+(One is free to implement their own formatter that does not use a static field there, or file an enhancement request to Oracle or OpenJDK).
+The code in question is ClassLoaderLogManager.getProperty(String) which does
+[[[
+if (prefix != null) {
+name = prefix + name;
+}
+]]]
+Thus is a prefix is active it tries only prefixed value of a property and never tries an unprefixed one.
+Expected:
+=========
+With SimpleFormatter it would be more sense to configure it using an unprefixed property, regardless of which Handler is initialized first.
+Workaround
+===========
+Change the values of "handlers", ".handlers" properties so that an unprefixed handler is listed first.
+In the default configuration that will be ConsoleHandler:
+[[[
+handlers = java.util.logging.ConsoleHandler, 1catalina.org.apache.juli.FileHandler, 2localhost.org.apache.juli.FileHandler, 3manager.org.apache.juli.FileHandler, 4host-manager.org.apache.juli.FileHandler
+.handlers = java.util.logging.ConsoleHandler, 1catalina.org.apache.juli.FileHandler
+]]]
+Alternatively, you can remove a prefix from one of other handlers.
+If you do so, and if that handler uses a SimpleFormatter, then the unprefixed configuration property will work:
+[[[
+java.util.logging.SimpleFormatter.format=[%1$tY-%1$tm-%1$td %1$tH:%1$tM:%1$tS.%1$tL] %4$s: %5$s %6$s %n
+]]]

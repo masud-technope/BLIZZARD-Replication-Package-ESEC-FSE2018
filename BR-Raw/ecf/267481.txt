@@ -1,0 +1,5 @@
+Bug 267481 – [server] supporrt remoteservice container adapter in generic server
+The AbstractGenericServer class does not support the IRemoteServiceContainerAdapter, because the GenericServerContainer is an inner, protected class...and the plugin.xml in org.eclipse.ecf.server.generic does not include an adapter factory for IRemoteServiceContainerAdapter.
+To support this adapter
+1) Move GenericServerContainer into a top-level class
+2) Add markup to plugin.xml to support an adapter factory for IRemoteServiceContainerAdapter

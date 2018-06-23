@@ -1,0 +1,13 @@
+Bug 405066 – [1.8][compiler][codegen] Implement code generation infrastructure for JSR335.
+BETA_JAVA8:
+This ER will be used to implement the infrastructure support for generating
+code for lambda expressions and method references.
+Among other things:
+We need to add capability to generate:
+- ConstantPool sections for MethodHandles, MethodType, InvokeDynamic
+- Attribute section for BootStrapMethods
+- Adding of InnerClass reference for MethodHandles.Lookup
+The patch at https://bugs.eclipse.org/bugs/show_bug.cgi?id=400875 has
+support for these.
+The infrastructure portion needs to be separated out,
+reviewed and released.

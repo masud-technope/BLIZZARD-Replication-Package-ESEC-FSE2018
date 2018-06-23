@@ -1,0 +1,17 @@
+54955 – Mapping to application context root returns 404 after reload
+Created attachment 30273 [details]
+A minimum war file to reproduce the bug with sources attached
+URL mapping specified as ""(empty string) maps a servlet to the context root according to servlet specification.
+This feature is working when an application is deployed, but broken when it's reloaded.
+A reload will result in 404 error.
+(Other url mappings are OK, only "")
+Steps to reproduce:
+1) Create a servlet with URL mapping as empty string, you can either use @WebServlet("") annotation or <url-pattern></url-pattern> in web.xml
+2) If you deploy it in Tomcat 7.0.40, it will work.
+(e.g.
+http://localhost:8080/myapp/)
+3) But if you reload the app (say using the manager app), http://localhost:8080/myapp/ will give 404 error.
+Servlet in step 1 is never called this time.
+Actual Results: 404 Not Found
+Expected Results: Show the context root page.
+Env: Tomcat 7.0.40, Java 7, Windows 8

@@ -1,0 +1,7 @@
+Bug 291040 – codeSelect(..) does not work for a deeply nested method invocation in nested and anonymous class
+I20090929-0800
+ICompilationUnit#codeSelect(..) does not work for a deeply nested method invocation in a nested and anonymous class:
+- org.eclipse.jdt.ui in source
+- org.eclipse.jdt.internal.ui.dialogs.TextFieldNavigationHandler.FocusHandler.getKeyListener().new KeyAdapter() {...}.getSubmissions(), line 390 is:
+fSubmissions.add(new Submission(getKeyBindings(localBindingManager, commandService, ITextEditorActionDefinitionIds.SELECT_WORD_NEXT)) {
+- on "getKeyBindings", codeSelect does not find the method (tried with Ctrl+Click, F3, and the JavaElement View (first button in toolbar).

@@ -1,0 +1,4 @@
+Bug 125296 – [JUnit] Eclipse shows only one failure or error from the JUnit test result
+If the TestResult of JUnit test performed contains several failures/errors, only one is shown.
+As a result, it makes unconvenient investigating the faulty tests that execute several threads and each failed thread adds error/failure to the TestResult, since only one fault can be viewed and this fault can be result of fault in other thread.
+See http://www.javaworld.com/javaworld/jw-12-2000/jw-1221-junit-p5.html as an example of such tests.

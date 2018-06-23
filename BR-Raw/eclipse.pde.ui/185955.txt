@@ -1,0 +1,19 @@
+Bug 185955 – Target setting in New Plug-in Project wizard remembers too much
+Build: 3.3 M7
+1.
+Open the New Plug-in Project wizard.
+ Note how on the first page of the wizard, the 'Eclipse version' combo value is 3.3 (current target version).
+ Good.
+ Create a project.
+2.
+Change the target platform location to point to a 3.0.x build
+3.
+Repeat #1.
+ Note how the Eclipse version combo value is now set to 3.0 (current target value).
+ Good.
+4.
+Change the target platform location back to 3.3 via the Reset button on the Target Platform preference page.
+5.
+Repeat #1.
+ You should now see 3.3 again in the combo box, but you still still 3.0.
+ Not good.

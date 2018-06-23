@@ -1,0 +1,7 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/BundleErrorReporter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/PDEMarkerFactory.java
+ui/org.eclipse.pde.ui/.settings/org.eclipse.jdt.core.prefs
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/RemoveLazyLoadingDirectiveResolution.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/ResolutionGenerator.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties

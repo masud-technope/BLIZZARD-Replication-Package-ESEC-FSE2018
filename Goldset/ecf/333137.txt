@@ -1,0 +1,5 @@
+framework/bundles/org.eclipse.ecf.discovery.ui/.settings/org.eclipse.jdt.core.prefs
+framework/bundles/org.eclipse.ecf.discovery.ui/.settings/org.eclipse.jdt.ui.prefs
+framework/bundles/org.eclipse.ecf.discovery.ui/plugin.properties
+framework/bundles/org.eclipse.ecf.discovery.ui/plugin.xml
+framework/bundles/org.eclipse.ecf.discovery.ui/src/org/eclipse/ecf/internal/discovery/ui/views/DiscoveryView.java

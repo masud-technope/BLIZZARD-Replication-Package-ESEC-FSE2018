@@ -1,0 +1,32 @@
+Bug 399567 – [1.8] Different error message from the reference compiler
+[org.eclipse.jdt.core.tests.compiler.regression.AmbiguousMethodTest._test009()]
+Similar error message though, but different for the following code:
+import java.util.*;
+public class T {
+void test() {
+OrderedSet<String> os = null;
+os.add("hello");
+OrderedSet<Integer> os2 = null;
+os2.add(1);
+}
+}interface OrderedSet<E> extends List<E>, Set<E> { boolean add(E o); }
+JDT Core reports two errors and two warnings [b74 build]
+Errors for the last line:
+Multiple markers at this line
+- Duplicate methods named parallelStream with the parameters () and () are inherited from the types Set<E> and
+List<E>
+- implements java.util.List<E>.add
+- Duplicate methods named stream with the parameters () and () are inherited from the types Set<E> and List<E>
+Warnings for os(2).add lines:
+Null pointer access: The variable os can only be null at this location
+Null pointer access: The variable os2 can only be null at this location
+Reference compiler reports:
+$/lambda-8-b74-windows-x64-21_jan_2013/jdk1.8.0/bin/javac.exe T.java
+T.java:10: error: interface OrderedSet<E> inherits unrelated defaults for parallelStream() from types List and Set
+}interface OrderedSet<E> extends List<E>, Set<E> {
+^
+where E is a type-variable:
+E extends Object declared in interface OrderedSet
+1 error
+$lambda-8-b74-windows-x64-21_jan_2013/jdk1.8.0/bin/javac.exe -version
+javac 1.8.0-ea

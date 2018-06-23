@@ -1,0 +1,7 @@
+Bug 417660 – [1.8][compiler] Incorrect parsing of Annotations with array dimensions in arguments
+Created attachment 235645 [details]
+Test code to reproduce the issue
+ArrayTypeReference generated for argument is incorrect.
+Expected: int [] @TakeType(int[].class) []
+Actual: int @TakeType(int[][].class) []
+(only 1 dimension shown in actual, while the 2nd dimension is shown as part of annotations).

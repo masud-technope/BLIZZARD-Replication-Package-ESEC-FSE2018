@@ -1,0 +1,8 @@
+48143 – Javadoc fixes
+Created attachment 24491 [details]
+Patch for Javadoc
+Lots of Javadoc fixes.
+Mainly misspelt parameter names or non-existent parameters.
+A few descriptions have been left as TBA.
+Large sections of Javadoc have been commented out in BaseModelMBean because the
+corresponding methods were already commented out.

@@ -1,0 +1,5 @@
+Bug 226254 – API tools use too much memory
+I20080401-0851
+After working for a day, I ran out of memory with -Xmx350M, SDK from CVS (except help, update, p2).
+A memory snapshot showed that the 63 instances of ProjectApiDescription used around 53MB.
+Please profile and reduce the heap usage.

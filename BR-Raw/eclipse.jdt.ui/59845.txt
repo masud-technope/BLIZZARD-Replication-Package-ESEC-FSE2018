@@ -1,0 +1,5 @@
+Bug 59845 – [performance] Opening a class file editor should not compute all overriding indicators
+Relative to bug 57871, I think that the class file editor should compute the
+overriding indicators in the background.
+It can be really time consuming to get
+and resolve all methods for the hierarchy just to update the indicator.

@@ -1,0 +1,4 @@
+Bug 269685 – Importing plug-ins as source should not import .class files
+I20090317-1745
+Importing plug-ins as source should not import .class files.
+Currently, all class files from the binary plug-in end up in the root of the imported plug-in (in their folders, so you usually just see an 'org' or 'com' folder inside the project).

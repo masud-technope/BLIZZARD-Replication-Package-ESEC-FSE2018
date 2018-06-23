@@ -1,0 +1,7 @@
+Bug 164162 – [implementation] Memory leak in AbstractJavaCompletionProposal due to synthetic this$0 field of anonymous class
+I20061108-1600
+I think I found a Memory leak in AbstractJavaCompletionProposal#getInformationControlCreator(): The anonymous class contains a synthetic this$0 field, which prevents the outer object from being garbage collected.
+All in all, YourKit says that 121 instances of CompletionProposal are retained, which use up 22.5MB.
+From looking at the code, I think the anonymous class is not necessary at all.
+A better solution would be a normal class.
+An instance of that subclass could even be shared among all completion proposals.

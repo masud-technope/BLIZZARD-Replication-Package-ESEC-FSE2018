@@ -1,0 +1,33 @@
+Bug 430108 – [type wizards] Creating class pkg1.A that implements/extends type pkg2.A result in code with error
+I have some code that create a Java class that extends a specific interface.
+By default the created class and the interface have the same names (though different packages).
+Since migrating our product from Indigo to Kepler, it does not produce the same code anymore.
+In Indigo, the code produced would be:
+package pkg1;
+class A implements pkg2.A {
+...
+}
+=> the wizard noticed the type names are the same hence it uses the full classname for the implements.
+Now in Kepler we get:
+package pkg1;
+import pkg2.A
+class A implements A {
+...
+}
+=> error on the import ("The import pkg2.A conflicts with a type defined in the same file" ) and on the implemented A ( "Cycle detected: the type Initial cannot extend/implement itself or one of its own member types" )
+The code we use to open the wizard is this:
+final OpenNewClassWizardAction wizardCreator = new OpenNewClassWizardAction();
+final NewClassWizardPage page = new NewClassWizardPage();
+page.setTitle(...);
+page.setDescription(...);
+page.addSuperInterface("pkg2.A");
+page.setTypeName("A", true);
+final IPackageFragmentRoot root = jproject.getPackageFragmentRoot(jproject.getElementName() + "/src");
+page.setPackageFragmentRoot(root, true);
+final IPackageFragment fragment = root.getPackageFragment("pkg1");
+page.setPackageFragment(fragment, false);
+page.setEnclosingTypeSelection(false, false);
+page.setMethodStubSelection(false, false, true, false);
+page.setModifiers(page.F_PUBLIC, false);
+wizardCreator.setConfiguredWizardPage(page);
+wizardCreator.run();

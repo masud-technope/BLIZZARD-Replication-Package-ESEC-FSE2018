@@ -1,0 +1,7 @@
+Bug 401358 – Name selection for Mac VM installs needs improvement
+Created attachment 227361 [details]
+Screen shot
+When you search for a JDK/JRE on Mac, we use information from the plist file to compute a name.
+This works fine most of the time, but if you happen to have more than one of the same version of VM installed they are added with the same name.
+To make matters a bit worse, if you edit one of the JREs the wizard starts out with an error complaining that the name is already in use.
+The attached screen shot shows the duplicated names for the Java 7 JREs

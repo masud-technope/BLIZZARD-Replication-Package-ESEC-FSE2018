@@ -1,0 +1,5 @@
+Bug 76675 – Pattern Matching independent of IOConsole and IOConsolePartitioner
+Non stream-based consoles such as our stack trace console should be able to reuse pattern matching
+w/o having to rewrite it.
+Requires creation of new layer of abstraction to separate PatternMatching from
+IOConsole.

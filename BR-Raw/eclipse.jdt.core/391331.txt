@@ -1,0 +1,14 @@
+Bug 391331 – [1.8][compiler] Compiler should replicate annotations with mixed SE7 & SE8 targets
+BETA_JAVA8:
+From EDR draft section 2.3:
+@Target({ ElementType.TYPE_USE, ElementType.METHOD })
+public @interface SillyAnnotation {  }
+If @SillyAnnotation were written before a non-void method, then the
+annotation would apply to both the return type and the method declaration.
+The annotation appears twice in the AST during annotation processing,
+and it appears twice in the classfile.
+...
+If you write @SillyAnnotation
+on a void-returning method, then it applies only to the declaration,
+because it is not written in a type annotation position.
+We need to add support for this part of the specification.

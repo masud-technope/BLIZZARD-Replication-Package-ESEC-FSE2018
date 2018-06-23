@@ -1,0 +1,7 @@
+48644 – Code should never ignore throwable
+There seem to be quite a few places where code catches Throwable and ignores it.
+For example:
+ant.jmx.JMXAccessorQueryTask.bindAttributes
+ant.jmx.JMXAccessorTask.execute
+core.StandardContext - lots of methods
+In most cases, catching Exception would be enough.

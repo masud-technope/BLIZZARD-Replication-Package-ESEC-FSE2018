@@ -1,0 +1,29 @@
+Bug 174457 – The finish button state is not correct in the new plug-in project wizard the first time the Template Selection page is visible
+Build ID: M20060921-0945
+Steps To Reproduce:
+The state of the finish button is not properly set in the new plug-in project wizard the first time the Template Selection page is visible.
+This only happens when a template is contributed that has a wizard with one or more initially incomplete pages.
+I've written a plug-in that provides a template and wizard to illustrate the problem.
+The important part of the wizard is in the method templates.MyPage.isPageComplete().
+It always returns false.
+Import this plug-in, launch a runtime workbench and then perform the following:
+1) Select File -> New -> Project.
+2) Select Plug-in Project, press next.
+3) Enter a project name, press next twice to get to templates page.
+4) Select Custom plug-in wizard, press Next.
+Notice the finish button is enabled.
+5) Press deselect all and then press select all.
+Notice the finish button is disabled.
+I debugged this and I think I know what's wrong.
+To determine if the finish button should be enabled or disabled all the pages of the main wizard are asked if they are complete.
+As soon as one page is found that is not complete, the finish button is disabled.
+None of the pages of wizards that come with eclipse have incomplete pages.
+The wizard I've contributed does have a page that is initially incomplete.
+When the Template Selection page is first displayed, the pages of the wizards corresponding to the templates have not been added to main wizard.
+Therefore, the finish button is enabled because the page that is incomplete has not been asked for it's status.
+After pressing deselect all and select all, all the pages have been added to the main wizard.
+When determining the state for the finish button, the incomplete page (contributed from my wizard) is found and the finish button is enabled.
+The finish button should not have been enabled the first time the Template Selection page is shown.
+It initially has my template selected in the list and my template wizard cannot finish at that point.
+I think the pages from the template wizards should have been added to the main wizard as soon as the Template Selection page is visible.
+More information:

@@ -1,0 +1,17 @@
+Bug 16446 – Can't launch programs on Linux with default java executable name
+1.
+Select a launch config (Local Java App) and go to the JRE page.
+2.
+Click "New" and add a new JRE.
+A new option appears to specify the name of
+the Java executable.
+The "Use default" button is selected.
+Leave it that way.
+3.
+Try to launch the program.
+An exception occurs.
+I've debugged this enough to see that the command line we're trying to launch
+is javaw.
+javaw only exists in a few VMs.
+If we want to look for it, that's
+fine, but we need to fall back to java (or java.exe) if javaw is not found.

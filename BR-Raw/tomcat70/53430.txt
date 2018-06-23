@@ -1,0 +1,68 @@
+53430 – JVM crash at startup if TC-Native version is too old
+For each Tomcat release there exists minimum version of Tomcat-Native library with which it can work.
+Tomcat 7.0.28 requires Tomcat-Native 1.1.24 or later.
+If you try to start it with an older version of the library + it is explicitly configured it to use the "Apr" variant of a connector,
+then it crashes the JVM at startup.
+Actual result:
+Tomcat will not start and will crash the JVM.
+A crash report file is created by JVM (hs_err_pidNNNN.log)
+Stack trace from the crash report file:
+[[[
+Stack: [0x008c0000,0x00910000],  sp=0x0090f634,  free space=317k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [tcnative-1.dll+0xf762]
+C  [tcnative-1.dll+0x6ddd]  Java_org_apache_tomcat_jni_Pool_create+0x1d
+j  org.apache.tomcat.jni.Pool.create(J)J+0
+j  org.apache.tomcat.util.net.AprEndpoint.bind()V+2
+j  org.apache.tomcat.util.net.AbstractEndpoint.init()V+8
+j  org.apache.coyote.AbstractProtocol.init()V+274
+j  org.apache.catalina.connector.Connector.initInternal()V+49
+j  org.apache.catalina.util.LifecycleBase.init()V+29
+j  org.apache.catalina.core.StandardService.initInternal()V+105
+j  org.apache.catalina.util.LifecycleBase.init()V+29
+j  org.apache.catalina.core.StandardServer.initInternal()V+212
+j  org.apache.catalina.util.LifecycleBase.init()V+29
+j  org.apache.catalina.startup.Catalina.load()V+573
+j  org.apache.catalina.startup.Catalina.load([Ljava/lang/String;)V+9
+]]]
+Expected result:
+1.
+Log an error and do not initialize the connector.
+Do not initialize the endpoint.
+If org.apache.catalina.startup.EXIT_ON_INIT_FAILURE=true system property is configured [1], then exit Tomcat.
+If the property is not defined or is false (its current default value), then continue with startup sequence, without that connector.
+[1] http://tomcat.apache.org/tomcat-7.0-doc/config/systemprops.html
+---------------------
+Steps to reproduce: (on Windows)
+1.
+Place an older version of tcnative-1.dll (e.g.
+the one from Tomcat 7.0.27) into the bin directory.
+2.
+Configure connector with one of these:
+protocol="org.apache.coyote.http11.Http11AprProtocol"
+protocol="org.apache.coyote.ajp.AjpAprProtocol"
+3.
+Start Tomcat
+Actual result: JVM crashes, as described above.
+---------------------
+Notes on the code:
+1.
+The issue is that AprLifecycleListener.isAprAvailable() flag is only tested by Connector#setProtocol(String) and influences autoselection of protocols.
+If an Apr protocol implementation is configured explicitly, it does not prevent it from starting.
+2.
+The code is essentially the same in 6.0 and 5.5.
+So it is an old issue.
+This issue happens when running the testsuite because the testsuite explicitly selects the Apr connector.
+3.
+If tc-native version is below required one, AprLifecycleListener shuts down the library by calling terminateAPR().
+That is why an old library crashes early.
+4.
+AprEndpoint is not supposed to call AprLifecycleListener.isAprAvailable() directly, because they belong to different subsystems (coyote, tomcat.util.net vs.
+catalina.core).
+ Do we care?
+We can do the isAprAvailable() check in Connector class, but it would mean that Connector class should know which ProtocolHandler implementations require the library.
+It could guess it from ProtocolHandler class name (contains("Apr")), but it is not pretty.
+---------------------
+Thread on dev@:
+"tcnative version check broken for test suite of TC 7" (2012-06-16)
+http://tomcat.markmail.org/thread/izbqzmfgs7jdgnnq

@@ -1,0 +1,7 @@
+Bug 262748 – [jar exporter] extract constants for string literals in JarRsrcLoader et al.
+HEAD
+The code in org.eclipse.jdt.internal.ui.jarpackagerfat is hard to maintain because relevant string literals are spread and duplicated in various classes, e.g.
+JarRsrcLoader, RsrcURLStreamHandler, FatJarRsrcUrlAntExporter, FatJarRsrcUrlManifestProvider, etc.
+String literals like "Rsrc-Main-Class", "rsrc" (the URL protocol), etc.
+should be extracted into constants and moved into a few selected classes.
+Coordinate this with bug 262746 (move redistributable classes into a separate source folder).

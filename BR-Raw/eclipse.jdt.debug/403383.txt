@@ -1,0 +1,6 @@
+Bug 403383 – 3 failing tests in M6 candidate (caused by ConditionalBreakpointsWithGenerics#testBreakpointWithGenericCondition4)
+There are 3 failing tests in the M6 candidate: http://download.eclipse.org/eclipse/downloads/drops4/I20130313-2000/testResults.php
+They have failed for the last three builds.
+It appears that one of the new tests added for bug 403028 forgets to clean up after itself and leaves a dead launch in the view, which leaks an instruction pointer and prevents the watch expression from updating (because the debug selection does not change).
+This is a problem only in the tests.
+The offending test is: ConditionalBreakpointsWithGenerics#testBreakpointWithGenericCondition4

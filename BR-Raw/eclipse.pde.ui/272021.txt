@@ -1,0 +1,4 @@
+Bug 272021 – [preferences] Javadoc the PDEPreferencesManager
+The new preferences manager in PDE aims to streamline the usage of preferences in PDE (bug 264394).
+ Unfortunately, even though it is now used throughout the platform it is not documented properly.
+ New classes, especially those used throughout the component, should have javadoc to ensure they are used correctly.

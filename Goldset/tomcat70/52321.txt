@@ -1,0 +1,2 @@
+java/org/apache/catalina/core/ApplicationJspConfigDescriptor.java
+java/org/apache/catalina/deploy/WebXml.java

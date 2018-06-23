@@ -1,0 +1,4 @@
+Bug 192756 – [IRC] On channel join, get rid of 'entered' spam in
+If you join a big channel, you get a ton of "xxx entered".
+I think on channel entry, we don't show these messages.
+We should show these messages in maybe the 'server tab', ie., irc.freenode.net, similar to how other IRC clients do it.

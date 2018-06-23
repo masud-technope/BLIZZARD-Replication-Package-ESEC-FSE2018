@@ -1,0 +1,6 @@
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/SelectionParserTest18.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/TestAll.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/RunOnlyAssistTests18.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/RunOnlyJava8Tests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ResolveTests18.java
+org.eclipse.jdt.core/codeassist/org/eclipse/jdt/internal/codeassist/select/SelectionOnReferenceExpressionName.java

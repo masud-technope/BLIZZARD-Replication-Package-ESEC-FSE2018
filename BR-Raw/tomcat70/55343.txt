@@ -1,0 +1,6 @@
+55343 – Add flag to ignore exceptions while creating initial pool
+I want my initial pool to be of some size i.e.
+not empty AND start even if it fails to create all or some of connections.
+If pool fails to create initial connections for some reason it just throws exceptions.
+To workaround that I have to set initial pool size to 0.
+It can be handy to add a flag to ignore (just log them) exceptions that occur while creating initial connections.

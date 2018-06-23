@@ -1,0 +1,2 @@
+Bug 413083 – Builder debug info: wrongly accuses user of requesting a full build
+See bug 413067.

@@ -1,0 +1,4 @@
+49092 – util.IntrospectionUtils.PATH_SEPARATOR should be final
+The field
+org.apache.tomcat.util.IntrospectionUtils.PATH_SEPARATOR
+should be final.

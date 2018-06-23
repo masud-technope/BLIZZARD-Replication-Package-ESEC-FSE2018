@@ -1,0 +1,5 @@
+43819 – Support latest JSR245 proposal to make EL "self-contained"
+Please add the two static methods ExpressionFactory.newInstance(..) as described
+in http://jcp.org/aboutJava/communityprocess/maintenance/jsr245/245-MR1.html.
+These changes make the EL "self-contained" and allow to plug-in third party EL
+implementations like JUEL (http://juel.sf.net).

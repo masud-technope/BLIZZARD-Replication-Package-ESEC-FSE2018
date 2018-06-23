@@ -1,0 +1,39 @@
+Bug 485581 – [1.8][null] NonNullByDefault applies to type variables when used as field type and accessed via class file
+DESCRIPTION: An error is reported for the following code
+project 1 - - -
+package test;
+import org.eclipse.jdt.annotation.NonNullByDefault;
+@NonNullByDefault
+public class MatchResult<V> implements Comparable<MatchResult<?>> {
+public final int score;
+public final V value;
+public MatchResult(int score, V value) {
+this.score = score;
+this.value = value;
+}
+@Override
+public int compareTo(MatchResult<?> o) {
+return score - o.score;
+}
+}
+project 2 - - -
+package test;
+import org.eclipse.jdt.annotation.NonNullByDefault;
+@NonNullByDefault
+public class FVEHandler {
+public static void process(MatchResult<?> matchResult) {
+if (matchResult.value != null) {
+}
+}
+}
+----------
+1.
+ERROR in test\FVEHandler.java (at line 8)
+if (matchResult.value != null) {
+^^^^^
+Redundant null check: comparing '@NonNull capture#of ?' against null
+----------
+ANALYSIS:
+In BinaryTypeBinding.scanFieldForNullAnnotation, the check fieldType.acceptsNonNullDefault() is missing (that is done in the corresponding to FieldBinding.fillInDefaultNonNullness)
+PATCH (via gerrit):
+Adds the check.

@@ -1,0 +1,5 @@
+Bug 224409 – The ability to mark extension points as "internal"
+PDE allows developers to mark packages as being internal and flags users using these internal packages.
+I think the same logic can be applied to extension points.
+There are cases when extension points are "internal" user only and not ready for public consumption yet.
+We have a couple examples of this throughout the SDK.

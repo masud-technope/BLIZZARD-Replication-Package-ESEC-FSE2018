@@ -1,0 +1,13 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTConverter18Test.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/classfmt/ClassFileConstants.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/ExtraCompilerModifiers.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/AST.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/Modifier.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/Flags.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTConverter17Test.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTConverter18Test.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTTest.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/AST.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ASTConverter.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/Modifier.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/Flags.java

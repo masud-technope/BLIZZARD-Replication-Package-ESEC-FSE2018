@@ -1,0 +1,44 @@
+Bug 446691 – [1.8][compiler] NullPointerException in SingleNameReference.analyseCode
+> java.lang.NullPointerException
+> 	at org.eclipse.jdt.internal.compiler.ast.SingleNameReference.analyseCode(SingleNameReference.java:186)
+> 	at org.eclipse.jdt.internal.compiler.ast.MessageSend.analyseCode(MessageSend.java:123)
+> 	at org.eclipse.jdt.internal.compiler.ast.BinaryExpression.analyseCode(BinaryExpression.java:66)
+> 	at org.eclipse.jdt.internal.compiler.ast.AllocationExpression.analyseCode(AllocationExpression.java:117)
+> 	at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.analyseCode(LambdaExpression.java:487)
+> 	at org.eclipse.jdt.internal.compiler.ast.MessageSend.analyseCode(MessageSend.java:173)
+> 	at org.eclipse.jdt.internal.compiler.ast.LocalDeclaration.analyseCode(LocalDeclaration.java:88)
+> 	at org.eclipse.jdt.internal.compiler.ast.Block.analyseCode(Block.java:48)
+> 	at org.eclipse.jdt.internal.compiler.ast.IfStatement.analyseCode(IfStatement.java:133)
+> 	at org.eclipse.jdt.internal.compiler.ast.Block.analyseCode(Block.java:48)
+> 	at org.eclipse.jdt.internal.compiler.ast.TryStatement.analyseCode(TryStatement.java:165)
+> 	at org.eclipse.jdt.internal.compiler.ast.ConstructorDeclaration.analyseCode(ConstructorDeclaration.java:176)
+> 	at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.internalAnalyseCode(TypeDeclaration.java:733)
+> 	at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.analyseCode(TypeDeclaration.java:261)
+> 	at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.analyseCode(CompilationUnitDeclaration.java:118)
+> 	at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1207)
+> 	at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:689)
+> 	at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1183)
+> 	at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:809)
+> 	at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider$1.run(ASTProvider.java:544)
+> 	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+> 	at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.createAST(ASTProvider.java:537)
+> 	at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.getAST(ASTProvider.java:480)
+> 	at org.eclipse.jdt.ui.SharedASTProvider.getAST(SharedASTProvider.java:128)
+> 	at org.eclipse.jdt.ui.OverrideIndicatorLabelDecorator.getOverrideIndicators(OverrideIndicatorLabelDecorator.java:161)
+> 	at org.eclipse.jdt.ui.OverrideIndicatorLabelDecorator.computeAdornmentFlags(OverrideIndicatorLabelDecorator.java:136)
+> 	at org.eclipse.jdt.ui.OverrideIndicatorLabelDecorator.decorate(OverrideIndicatorLabelDecorator.java:273)
+> 	at org.eclipse.ui.internal.decorators.LightweightDecoratorDefinition.decorate(LightweightDecoratorDefinition.java:273)
+> 	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager$LightweightRunnable.run(LightweightDecoratorManager.java:83)
+> 	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+> 	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager.decorate(LightweightDecoratorManager.java:367)
+> 	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager.getDecorations(LightweightDecoratorManager.java:349)
+> 	at org.eclipse.ui.internal.decorators.DecorationScheduler$1.ensureResultCached(DecorationScheduler.java:372)
+> 	at org.eclipse.ui.internal.decorators.DecorationScheduler$1.run(DecorationScheduler.java:332)
+> 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+eclipse.buildId=4.5.0.I20140918-0330
+java.version=1.8.0_11
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.jee.product
+I didn't see this under 4.4.

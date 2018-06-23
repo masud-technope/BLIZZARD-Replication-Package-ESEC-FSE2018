@@ -1,0 +1,115 @@
+129689	RuntimeException
+136314	NullPointerException
+151884	NullPointerException
+151885	ClassCastException
+153460	NullPointerException
+156021	StringIndexOutOfBoundsException
+156385	NullPointerException
+157030	NullPointerException
+157504	ClassCastException
+161265	RuntimeException
+162557	SWTException
+166826	ClassNotFoundException
+168337	NullPointerException
+171759	NullPointerException
+173715	ClassCastException
+175138	SWTException
+175356	NullPointerException
+176509	AssertionFailedException
+177379	NullPointerException
+179677	NullPointerException
+181063	NullPointerException
+187094	NullPointerException
+190780	SWTException NullPointerException
+191973	NullPointerException
+195267	NullPointerException
+195394	NullPointerException
+198305	SWTException
+199134	NullPointerException
+202124	NullPointerException
+203795	IllegalArgumentException
+204187	NullPointerException
+205655	SWTException NullPointerException
+205767	NullPointerException
+208855	NullPointerException
+209155	NullPointerException
+212869	NullPointerException
+214914	NullPointerException
+215014	NullPointerException
+217824	ClassNotFoundException
+219250	NullPointerException
+220745	SWTException
+225210	IllegalArgumentException
+229382	NullPointerException
+230911	MalformedURLException FileNotFoundException
+231001	NullPointerException
+234414	NullPointerException
+237764	NullPointerException
+238934	NullPointerException
+280070	NullPointerException
+290136	ClassCastException MalformedTreeException AssertionFailedException
+290138	IllegalArgumentException
+296917	NullPointerException
+299792	ClassCastException
+308313	IndexOutOfBoundsException
+311927	ClassCastException
+312434	NullPointerException
+334523	NullPointerException
+343455	NullPointerException
+94956	NullPointerException
+97109	ArrayStoreException
+98123	RuntimeException CoreException
+124815	NullPointerException
+125179	SWTException NullPointerException
+131777	IllegalArgumentException
+134400	IllegalArgumentException
+135042	NullPointerException
+138803	EmptyStackException
+167774	NullPointerException
+168198	SWTException
+171823	ArrayStoreException
+186963	ConcurrentModificationException
+206721	NullPointerException
+207466	ClassCastException
+211884	IllegalArgumentException
+211931	IllegalArgumentException
+212771	NullPointerException
+226352	IOException
+228935	NullPointerException
+231652	NullPointerException
+238392	NullPointerException
+239453	NullPointerException
+245554	FileNotFoundException
+248334	NumberFormatException
+251313	TemplateInitializationException AssertionFailedException WriteAccessException
+255587	CoreException
+262976	NullPointerException
+268595	NullPointerException
+268751	NullPointerException
+269001	NullPointerException
+271362	NullPointerException
+275296	BundleStatusException BundleException
+278598	CoreException BundleException TerminatingClassNotFoundException ClassNotFoundException
+279697	ArrayIndexOutOfBoundsException
+282803	NullPointerException
+288343	IllegalArgumentException
+290756	NullPointerException
+294324	callMethodWithException
+299937	NullPointerException
+304426	ExpressionParseException
+310692	AssertionFailedException
+313952	NullPointerException
+331863	NullPointerException callMethodWithException
+344929	NullPointerException
+345007	NullPointerException
+363432	NullPointerException
+363934	NullPointerException
+393597	SWTException
+397363	NullPointerException
+406018	NullPointerException
+406990	ArrayIndexOutOfBoundsException
+409680	NullPointerException
+458995	BundleException
+486911	NullPointerException
+55388	NullPointerException AssertionFailedException IllegalArgumentException
+65572	NullPointerException

@@ -1,0 +1,15 @@
+Bug 189294 – [getter setter] Getter methods not generated correctly for boolean types that starts with "is"
+Build ID: M20070212-1330
+Steps To Reproduce:
+1.
+Create a POJO with boolean fields named "isDone" and "done".
+Example:
+class Foo {
+private boolean done;
+private boolean isDone;
+}
+2.
+Menu->Source generate Getter and Setter.
+3.
+The methods for "isDone" field is created same as "done" which is incorrect.
+More information:

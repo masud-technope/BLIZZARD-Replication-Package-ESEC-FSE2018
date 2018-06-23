@@ -1,0 +1,21 @@
+Bug 406641 – [1.8][compiler][codegen] Code generation for intersection cast.
+BETA_JAVA8:
+The following program when run produces strange messages about
+Exception in thread "main" java.lang.NoClassDefFoundError:  notional
+at X.f(X.java:13)
+at X.main(X.java:9)
+Caused by: java.lang.ClassNotFoundException:  notional
+This is because code generation is not in place for intersection casts.
+// --
+interface I {
+}
+interface J {
+}
+public class X implements I, J {
+public static void main( String [] args) {
+f(new X());
+}
+static void f(Object o) {
+X x = (X & I & J) o;
+}
+}

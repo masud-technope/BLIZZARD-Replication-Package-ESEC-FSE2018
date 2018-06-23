@@ -1,0 +1,19 @@
+55108 – Wasted work in "AbstractReplicatedMap.excludeFromSet"
+Created attachment 30448 [details]
+patch
+The problem appears in version 7.0.41 and in revision 1493861.
+ I
+attached a one-line patch that fixes it.
+In method "AbstractReplicatedMap.excludeFromSet", the loop over "mbrs"
+should break immediately after "include" is set to "false".
+ All the
+iterations after "include" is set to "false" do not perform any useful
+work, at best they just set "include" again to "false".
+Method "inSet" in the same class "AbstractReplicatedMap" (right above
+the definition of "excludeFromSet") has a similar loop (over "set"),
+and this loop breaks immediately after "result" is set to "true", just
+like in the proposed patch.
+ Other methods (e.g.,
+"MapperListener.findDefaultHost", "CollectVisitor.checkSeen",
+"JspDocumentParser.processChars", "ParameterParser.isOneOf") also have
+similar loops with similar breaks, just like in the proposed patch.

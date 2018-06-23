@@ -1,0 +1,8 @@
+Bug 213255 – Extension point schemas aren't valid W3C Schemas
+Reviewing the eclipse extension point schemas they are almost compliant W3C schemas except for one apparent element name that is misspelled.
+ In Eclipse schemas, the element name <appInfo> should be <appinfo>.
+ As it is now, if you try to apply the W3C Schemas namespace to the XML it will report the schema as being invalid because the name is misspelled.
+While this is not a show stopper, it is curious that eclipse uses the W3C schema language but doesn't follow the W3C Schema specs for how it should be implemented.
+  It would be nice if we could bring the Eclipse Schemas up to the W3C spec, so that standard compliant tools and validators could be used as alternative ways to create the schemas.
+ It would also allow leveraging of the Web Standard Tools XSD Editor for editing and maintaining extension point schemas in the future.
+Is there a particular reason that the W3C schema specs weren't implemented in regards to appinfo, or was it a Typo that has just been propigated through the development process?

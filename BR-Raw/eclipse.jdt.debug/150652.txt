@@ -1,0 +1,7 @@
+Bug 150652 – [evaluation] Force early return
+JavaSE6 provides the debugger with support to "force early return" from a method.
+We should expose this as special evaluation action "Force Return".
+The action should only enable when there is a debug context (as the other evaluation actions).
+When in a void method, the action should enable when there is no selection (otherwise a selection is required to have an expression to evaluate the return value).
+We should evaluate the expression to verify that the return value is of a compatible type with the method return type.
+The action should be available from the Java editor, Display view, and variables view detail pane.

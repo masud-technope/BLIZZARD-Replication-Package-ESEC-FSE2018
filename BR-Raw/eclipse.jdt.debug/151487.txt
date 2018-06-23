@@ -1,0 +1,13 @@
+Bug 151487 – Variable hover incorrect for members of the same type but different object
+Variable hover displays the value of the this member when hovering over the same member in a different object of the same type.
+ For example:
+public class Foo
+{
+private int id;
+public boolean equals(Object other)
+{
+Foo that = (Foo)other;
+return this.id == that.id;
+}
+}
+Setting a breakpoint at the return statement and hovering over the id in "that.id" displays the value of "this.id".

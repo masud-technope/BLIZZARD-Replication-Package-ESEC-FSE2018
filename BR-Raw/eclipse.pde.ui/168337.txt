@@ -1,0 +1,69 @@
+Bug 168337 – NPE in TargetPlatformPreferencePage
+Build ID: I20061214-1445
+Steps To Reproduce:
+new install; fresh workspace
+java.lang.NullPointerException
+at org.eclipse.pde.internal.ui.preferences.TargetPlatformPreferencePage.dispose(TargetPlatformPreferencePage.java:121)
+at org.eclipse.jface.preference.PreferenceNode.disposeResources(PreferenceNode.java:173)
+at org.eclipse.ui.internal.preferences.WorkbenchPreferenceExtensionNode.disposeResources(WorkbenchPreferenceExtensionNode.java:134)
+at org.eclipse.jface.preference.PreferenceDialog.close(PreferenceDialog.java:289)
+at org.eclipse.ui.internal.dialogs.FilteredPreferenceDialog.close(FilteredPreferenceDialog.java:452)
+at org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog.close(WorkbenchPreferenceDialog.java:140)
+at org.eclipse.jface.preference.PreferenceDialog.cancelPressed(PreferenceDialog.java:269)
+at org.eclipse.jface.preference.PreferenceDialog.handleShellCloseEvent(PreferenceDialog.java:824)
+at org.eclipse.jface.window.Window$3.shellClosed(Window.java:682)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:159)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1527)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1551)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1536)
+at org.eclipse.swt.widgets.Shell.closeWidget(Shell.java:433)
+at org.eclipse.swt.widgets.Shell.kEventWindowClose(Shell.java:969)
+at org.eclipse.swt.widgets.Widget.windowProc(Widget.java:2069)
+at org.eclipse.swt.widgets.Display.windowProc(Display.java:4007)
+at org.eclipse.swt.internal.carbon.OS.SendEventToEventTarget(Native Method)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2963)
+at org.eclipse.jface.window.Window.runEventLoop(Window.java:820)
+at org.eclipse.jface.window.Window.open(Window.java:796)
+at org.eclipse.ui.internal.OpenPreferencesAction.run(OpenPreferencesAction.java:65)
+at org.eclipse.ui.carbon.CarbonUIEnhancer.runAction(CarbonUIEnhancer.java:280)
+at org.eclipse.ui.carbon.CarbonUIEnhancer.access$0(CarbonUIEnhancer.java:274)
+at org.eclipse.ui.carbon.CarbonUIEnhancer$Target.commandProc(CarbonUIEnhancer.java:79)
+at org.eclipse.swt.internal.carbon.OS.MenuSelect(Native Method)
+at org.eclipse.swt.widgets.Display.mouseProc(Display.java:2786)
+at org.eclipse.swt.internal.carbon.OS.SendEventToEventTarget(Native Method)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2963)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1945)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:1909)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:425)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.IDEApplication.run(IDEApplication.java:95)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at org.eclipse.equinox.internal.app.EclipseAppContainer.callMethod(EclipseAppContainer.java:522)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:147)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:104)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:74)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:354)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:170)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at org.eclipse.core.launcher.Main.invokeFramework(Main.java:339)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:283)
+at org.eclipse.core.launcher.Main.run(Main.java:984)
+at org.eclipse.core.launcher.Main.main(Main.java:959)
+More information:
+possibly related to bug 167774
+eclipse.buildId=I20061214-1445
+java.version=1.5.0_06
+java.vendor=Apple Computer, Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=carbon, NL=en_US
+Framework arguments:  -keyring /Users/dragonfly/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws carbon -keyring /Users/dragonfly/.eclipse_keyring -consoleLog -showlocation
+java version "1.5.0_06"
+Java(TM) 2 Runtime Environment, Standard Edition (build 1.5.0_06-112)
+Java HotSpot(TM) Client VM (build 1.5.0_06-64, mixed mode, sharing)

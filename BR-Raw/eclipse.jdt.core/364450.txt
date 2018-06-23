@@ -1,0 +1,24 @@
+Bug 364450 – Dubious class path error triggers a full rebuild
+The following test case should show two fatal errors regarding unresolved w.I.
+If we do some change e.g.
+change the type of w.W#i from w.I to I, and then undo this change, we will get two build path errors:
+1.
+"The project was not built since its build path is incomplete.
+Cannot find the class file for w.I.
+Fix the build path then try building this project"
+2.
+"The type w.I cannot be resolved.
+It is indirectly referenced from required .class files"
+We can observe the same problem, if we change the order of imports in a.A instead of changing the type of w.W#i.
+After the clean correct errors are shows again.
+----------%<-----------
+package a;
+import w.I;
+import w.W;
+public class A {
+}
+package w;
+public class W {
+private w.I i;
+}
+----------%<-----------

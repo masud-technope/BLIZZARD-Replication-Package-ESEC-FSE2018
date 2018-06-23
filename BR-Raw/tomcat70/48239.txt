@@ -1,0 +1,4 @@
+48239 – HexUtils exposes public array
+Created attachment 24567 [details]
+Patch to replace direct array access with getters
+HexUtils has two public static arrays which ought to be immutable.

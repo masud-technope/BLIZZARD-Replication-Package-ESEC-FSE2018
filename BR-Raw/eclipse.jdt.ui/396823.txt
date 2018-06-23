@@ -1,0 +1,3 @@
+Bug 396823 – Use JavaModelUtil.isPackageInfo(ICompilationUnit) util where applicable
+Use JavaModelUtil.isPackageInfo(ICompilationUnit) util where applicable.
+This should only be done when the Package hover work is in 'master'.

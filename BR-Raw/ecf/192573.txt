@@ -1,0 +1,5 @@
+Bug 192573 – Send Request to Open Resource fails with incorrect message
+Just installing ECF as part of Europa adds a "Communications" context menu to all of my resources with a "Send Request to Open Resource" action.
+ Invoking it opens a dialog saying "Project 'soandso' not connected to any collaboration groups.
+ To connect, open context menu for resource and ECF->Join ECF Collaboration...".
+ There's no such property page on either the file or the dynamic web project containing it.

@@ -1,0 +1,6 @@
+providers/bundles/org.eclipse.ecf.provider.irc/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.irc/src/org/eclipse/ecf/internal/provider/irc/Activator.java
+providers/bundles/org.eclipse.ecf.provider.irc/src/org/eclipse/ecf/internal/provider/irc/container/IRCRootContainer.java
+providers/bundles/org.eclipse.ecf.provider.irc/src/org/eclipse/ecf/internal/provider/irc/datashare/IIRCDatashareContainer.java
+providers/bundles/org.eclipse.ecf.provider.irc/src/org/eclipse/ecf/internal/provider/irc/datashare/IRCDatashareChannel.java
+providers/bundles/org.eclipse.ecf.provider.irc/src/org/eclipse/ecf/internal/provider/irc/datashare/IRCDatashareContainer.java

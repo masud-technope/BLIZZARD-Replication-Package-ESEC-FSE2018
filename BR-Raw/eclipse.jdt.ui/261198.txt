@@ -1,0 +1,15 @@
+Bug 261198 – nodes missing in Java Model in Synchronize view
+I have a project with the following structure:
+123 (project shared using CVS)
++- src (source folder)
++- somebusiness
++- some-business
+|  +- file1.txt
++-file2.txt
+Now when I make changes only to file1.txt and do "Team->Synchronize with Repository", I don't see the file1.txt, only:
+123
++- src
+But when I make changes to file2.txt, in "Team->Synchronize with Repository"
+I see that both file1.txt and file2.txt have changed.
+This problem was originally spotted on Eclipse 3.2.2, but appears still on 3.5M4.
+So far I had traced it to org.eclipse.jdt.internal.ui.model.JavaSynchronizationContentProvider

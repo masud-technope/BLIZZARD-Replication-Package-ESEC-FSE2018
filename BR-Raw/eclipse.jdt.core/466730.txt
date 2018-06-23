@@ -1,0 +1,28 @@
+Bug 466730 � Java 8: single method with generics is ambiguous when using import static ...* and inheritance
+DESCRIPTION:
+In Java 8, you get the error Message "The method fails() is ambiguous for the type StaticImportBug“ for the following code:
+package bug;
+public class Base {
+public static Object works() {
+throw new IllegalStateException();
+}
+public static <T> T fails() {
+throw new IllegalStateException();
+}
+}
+-———————————————
+package bug;
+public class Derived extends Base {
+}
+———————————————————
+package bug;
+import static bug.Base.*;
+import static bug.Derived.*;
+public class StaticImportBug {
+void m() {
+java.util.Objects.requireNonNull(works());
+java.util.Objects.requireNonNull(fails());
+}
+}
+WORKAROUND: organize imports.
+(Real-Life example: Base= org.mockito.Matchers, Derived=org.mockito.Mockito, Method=any())

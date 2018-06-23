@@ -1,0 +1,4 @@
+Bug 321043 – Enable 1.7 compiler compliance
+In HEAD, we can revert bug 309163 again and enable 1.7 compiler compliance.
+Fix is to revert attachment 165459 [details] from bug 309163 comment 15.
+Corresponding UI bug is bug 321035.

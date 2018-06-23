@@ -1,0 +1,7 @@
+java.util.Timer.sched
+java.util.Timer.schedule
+javax.jmdns.impl.tasks.Canceler.start
+javax.jmdns.impl.JmDNSImpl.unregisterAllServices
+javax.jmdns.impl.JmDNSImpl.close
+javax.jmdns.impl.JmDNSImpl$Shutdown.run
+java.lang.Thread.run

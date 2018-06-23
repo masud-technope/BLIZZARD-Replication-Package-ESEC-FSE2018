@@ -1,0 +1,10 @@
+56461 – New option to make context startup fail if a load-on-startup servlet fails
+Created attachment 31563 [details]
+Patch for tomcat 8
+Currently when a servlet with load-on-startup >=0 fails its startup, the context startup is still considered as OK.
+With some webapps (like spring-based ones with a DispatcherServlet), this makes no sense at all : if the servlet failed its startup, the webapp is unuseable and it would be more sensible to have tomcat mark the context as failed.
+Such a behavior is not specified in JEE specs, so I propose to have a new optional flag on Context and Host containers.
+In the attached patch, the flag is named failDeploymentIfServletLoadedOnStartupFails .
+If specified on Context, it overrides the value potentially specified at the Host level.
+The proposed patch for tomcat 8 passes checkstyle, provides a unit test and updates documentation.
+If it's OK with the patch, I'd also like to have it backported to tomcat 7.

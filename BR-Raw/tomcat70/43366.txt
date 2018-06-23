@@ -1,0 +1,11 @@
+43366 – Session Statistics command in manager fails with "Unknown command /sessions"
+A documentation page for Tomcat 6 at
+http://tomcat.apache.org/tomcat-6.0-doc/manager-howto.html#Session%20Statistics
+allows for the following command to be used in the manager:
+http://localhost/manager/sessions?path=/
+This used to work in Tomcat 5.
+In Tomcat 6, the following error is returned:
+FAIL - Unknown command /sessions
+I have created two different installations of Tomcat 6.0.14 (one on CentOS 5,
+and one on Fedora 7).
+Both installations exhibit the same failure.

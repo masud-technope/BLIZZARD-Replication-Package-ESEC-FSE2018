@@ -1,0 +1,2 @@
+Bug 332851 – [Discovery][ZooDiscovery] ServiceName and ServiceInfo unset causing NPE
+A NPE occurs in the ECF discovery UI because ZooDiscovery does not set servicename nor IServiceInfo on a ServiceID.

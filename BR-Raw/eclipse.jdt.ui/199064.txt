@@ -1,0 +1,5 @@
+Bug 199064 – [dnd] Element reordering via DnD should not format field comments
+I20070807-0010.
+Reordering fields formats them.
+This is not expected.
+Methods seem to be OK.

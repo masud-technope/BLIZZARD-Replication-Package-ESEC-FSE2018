@@ -1,0 +1,4 @@
+org.eclipse.jdt.core/codeassist/org/eclipse/jdt/internal/codeassist/complete/CompletionOnJavadocTag.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/JavadocTagConstants.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavadocBugsCompletionModelTest.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html

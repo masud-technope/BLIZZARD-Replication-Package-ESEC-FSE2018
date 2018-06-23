@@ -1,0 +1,15 @@
+52957 – ClassCastException while removing Valve
+Created attachment 28490 [details]
+Patch proposal
+Hello,
+The exception below is thrown when StandardPipeline.removeValve() is invoked:
+Caused by: java.lang.ClassCastException: test.MyValve cannot be cast to org.apache.catalina.Lifecycle
+at org.apache.catalina.core.StandardPipeline.removeValve(StandardPipeline.java:461)
+at org.apache.catalina.core.StandardPipeline.destroyInternal(StandardPipeline.java:222)
+at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:304)
+test.MyValve implements only Valve
+I'm attaching a patch made against 7.0.x.
+Please review it and comment it.
+Thanks in advance.
+Regards
+Violeta Georgieva

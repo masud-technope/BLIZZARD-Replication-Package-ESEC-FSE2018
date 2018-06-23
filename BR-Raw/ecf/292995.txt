@@ -1,0 +1,38 @@
+Bug 292995 – Timeout number is so huge when using httpclient to download
+User-Agent:       Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Chrome/4.0.222.5 Safari/532.2
+Build Identifier: 20090619-0625
+It must wait the http connection timeout so long if using ArtifactRepositoryManager.loadRepository(URI, IProgressMonitor) to download repository.
+ECF set the default timeout of httpclient as 120000(2m), but httpclient also retries to connect if it fails.
+So the timeout should be expanded to 10m or more.
+In below stack, the HttpMethodDirector.executeWithRetry(HttpMethod) would retry several times to establish connection.
+SocketInputStream.socketRead0(FileDescriptor, byte[], int, int, int) line: not available [native method] [local variables unavailable]
+SocketInputStream.read(byte[], int, int) line: 129
+SocksSocketImpl.readSocksReply(InputStream, byte[]) line: 88
+SocksSocketImpl.connect(SocketAddress, int) line: 429
+Socket.connect(SocketAddress, int) line: 525
+SocketEventCreateUtil.createSocket(ISocketListener, ISocketEventSource, INonconnectedSocketFactory, InetSocketAddress, InetSocketAddress, int) line: 43
+ECFHttpClientProtocolSocketFactory.createSocket(InetSocketAddress, InetSocketAddress, int) line: 81
+ECFHttpClientProtocolSocketFactory.createSocket(InetSocketAddress, InetSocketAddress, HttpConnectionParams) line: 73
+ECFHttpClientProtocolSocketFactory.createSocket(String, int, InetAddress, int, HttpConnectionParams) line: 65
+MultiThreadedHttpConnectionManager$HttpConnectionWithReference(HttpConnection).open() line: 707
+MultiThreadedHttpConnectionManager$HttpConnectionAdapter.open() line: 1361
+HttpMethodDirector.executeWithRetry(HttpMethod) line: 387
+HttpMethodDirector.executeMethod(HttpMethod) line: 171
+HttpClient.executeMethod(HostConfiguration, HttpMethod, HttpState) line: 397
+HttpClient.executeMethod(HostConfiguration, HttpMethod) line: 346
+HttpClientRetrieveFileTransfer.performConnect(IProgressMonitor) line: 992
+HttpClientRetrieveFileTransfer.openStreams() line: 584
+HttpClientRetrieveFileTransfer(AbstractRetrieveFileTransfer).sendRetrieveRequest(IFileID, IFileRangeSpecification, IFileTransferListener, Map) line: 808
+HttpClientRetrieveFileTransfer(AbstractRetrieveFileTransfer).sendRetrieveRequest(IFileID, IFileTransferListener, Map) line: 506
+MultiProtocolRetrieveAdapter.sendRetrieveRequest(IFileID, IFileTransferListener, Map) line: 98
+FileReader.sendRetrieveRequest(URI, OutputStream, FileReader$DownloadRange, boolean, IProgressMonitor) line: 317
+FileReader.readInto(URI, OutputStream, long, IProgressMonitor) line: 263
+RepositoryTransport.download(URI, OutputStream, long, IProgressMonitor) line: 70
+RepositoryTransport.download(URI, OutputStream, IProgressMonitor) line: 121
+SimpleArtifactRepositoryFactory.load(URI, int, IProgressMonitor) line: 65
+ArtifactRepositoryManager.factoryLoad(URI, IExtension, int, SubMonitor) line: 62
+ArtifactRepositoryManager(AbstractRepositoryManager).loadRepository(URI, String, String, int, SubMonitor) line: 669
+ArtifactRepositoryManager(AbstractRepositoryManager).loadRepository(URI, IProgressMonitor, String, int) line: 617
+ArtifactRepositoryManager.loadRepository(URI, int, IProgressMonitor) line: 93
+ArtifactRepositoryManager.loadRepository(URI, IProgressMonitor) line: 89
+Reproducible: Always

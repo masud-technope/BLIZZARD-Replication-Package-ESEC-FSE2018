@@ -1,0 +1,8 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/PullUp/test18_1/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/PullUp/test18_1/in/B.java
+org.eclipse.jdt.ui.tests.refactoring/resources/PullUp/test18_1/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/PullUp/test18_1/out/B.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/AllRefactoringTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/PullUpTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/PullUpTests18.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/PullUpRefactoringProcessor.java

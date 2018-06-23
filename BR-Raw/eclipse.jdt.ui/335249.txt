@@ -1,0 +1,8 @@
+Bug 335249 – [preferences] Improve grouping of "Potential programming problems" on Errors/Warnings page
+Improve grouping of options on Errors/Warnings page.
+"Potential programming problems" is too big and without logical order.
+It could be split into options that affect
+- members (method signatures, serial id)
+- expressions
+- statements and blocks
+Or we could just order them by scope.

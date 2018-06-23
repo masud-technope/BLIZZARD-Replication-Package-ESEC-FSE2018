@@ -1,0 +1,8 @@
+Bug 171823 – ArrayStoreException in PluginJavaUtil
+I am getting a ASE when I trying run the "find unused dependencies" functionality on the PDE Manifest Editor.
+ The stack trace is as follows:
+java.lang.ArrayStoreException
+at java.util.AbstractCollection.toArray(Unknown Source)
+at org.eclipse.pde.internal.core.search.PluginJavaSearchUtil.getPluginImports(PluginJavaSearchUtil.java:47)
+at org.eclipse.pde.internal.core.search.PluginJavaSearchUtil.getPluginImports(PluginJavaSearchUtil.java:41)
+at org.eclipse.pde.internal.ui.search.dependencies.GatherUnusedDependenciesOperation.isUnused(GatherUnusedDependenciesOperation.java:147)

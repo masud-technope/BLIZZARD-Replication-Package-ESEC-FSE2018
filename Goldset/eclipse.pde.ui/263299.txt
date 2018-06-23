@@ -1,0 +1,16 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target/impl/DirectoryBundleContainer.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target/impl/FeatureBundleContainer.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target/impl/ProfileBundleContainer.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target/provisional/IBundleContainer.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/target/TargetDefinitionTests.java
+ui/org.eclipse.pde.ui/META-INF/MANIFEST.MF
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/targetdefinition/ArgumentsSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/LaunchArgumentsHelper.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/shared/target/ArgumentsFromContainerSelectionDialog.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/shared/target/BundleContainerLabelProvider.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/shared/target/BundleContainerTable.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/shared/target/Messages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/shared/target/messages.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/target/TargetDefinitionContentPage.java

@@ -1,0 +1,3 @@
+Bug 164762 – Export product on OS X fails to put product.ini in proper location
+When a product x is exported on OS X, the x.ini file is placed in the root folder which doesn't work.
+ You have to manually copy it to the x.app/Contents/MacOS folder and then it works.

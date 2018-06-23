@@ -1,0 +1,6 @@
+Bug 15969 – Promote standard classpath/sourcepath providers to API
+Both classes, StandardClasspathProvider and StandardSourcePathProvider,
+provider generic and usefull implementations of resolveClasspath.
+StandardClasspathProvider also provides the recoverRuntimePath method which is
+going to be needed by anybody implementing the IRuntimeClasspathProvider
+interface properly.

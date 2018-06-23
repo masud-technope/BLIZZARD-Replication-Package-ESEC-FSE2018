@@ -1,0 +1,4 @@
+org.apache.catalina.connector.CoyoteAdapter.postParseRequest
+org.apache.catalina.connector.CoyoteAdapter.service
+org.apache.coyote.ajp.AjpProcessor.process
+org.apache.coyote.ajp.AjpProtocol$AjpConnectionHandler.process

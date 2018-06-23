@@ -1,0 +1,4 @@
+Bug 3536 – Support to search for JDK installations (1G5HPND)
+EG (12/5/00 4:33:34 PM)
+we should support to locate installed JDKs for the user.
+NOTES:

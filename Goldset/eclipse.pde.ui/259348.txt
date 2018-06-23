@@ -1,0 +1,7 @@
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/model/LocalRegistryBackend.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/RegistryBrowserContentProvider.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/PDERuntimePluginImages.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/RegistryBrowserLabelProvider.java
+ui/org.eclipse.pde.runtime/icons/obj16/property_obj.gif
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/model/Property.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/model/ServiceRegistration.java

@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/DependencyManager.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/AbstractPluginBlock.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/TargetPluginsTab.java

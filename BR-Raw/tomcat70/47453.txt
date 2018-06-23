@@ -1,0 +1,94 @@
+47453 – JasperException for deferred-method with return type void
+Created attachment 23908 [details]
+Zipped Eclipse 3.4 projects
+I tried to get the JSF sample application bookstore6 from the SUN Java EE 5 Tutorial running.
+Environment:
+Tomcat Version : 6.0.20
+Eclipse Version: 3.4
+Java JDK Version: jdk1.5.0_17
+See: http://java.sun.com/javaee/5/docs/tutorial/doc/bnara.html
+I added jsf-api.jar, jsf-impl.jar and jstl-1.1.2.jar to Tomcat's lib directory, then created the project (bookstoreJSF and utility project bookstore)and populated it with the sample source files from the Java EE 5 tutorial.
+I created a Tomcat Server in the Eclipse workspace and added the project to the Tomcat Server.
+The server and the web application started fine.
+When I directed my browser (Firefox 3) at the starting page of the project (http://localhost:8080/bookstoreJSF), I got a Jasper Exception:
+org.apache.jasper.JasperException: /chooselocale.jsp(45,12) Unknown attribute type (void) for attribute actionListener.
+at org.apache.jasper.compiler.DefaultErrorHandler.jspError(DefaultErrorHandler.java:40)
+at org.apache.jasper.compiler.ErrorDispatcher.dispatch(ErrorDispatcher.java:407)
+at org.apache.jasper.compiler.ErrorDispatcher.jspError(ErrorDispatcher.java:236)
+at org.apache.jasper.compiler.Validator$ValidateVisitor.checkXmlAttributes(Validator.java:1099)
+at org.apache.jasper.compiler.Validator$ValidateVisitor.visit(Validator.java:821)
+at org.apache.jasper.compiler.Node$CustomTag.accept(Node.java:1530)
+at org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2361)
+at org.apache.jasper.compiler.Node$Visitor.visitBody(Node.java:2411)
+at org.apache.jasper.compiler.Validator$ValidateVisitor.visit(Validator.java:840)
+at org.apache.jasper.compiler.Node$CustomTag.accept(Node.java:1530)
+at org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2361)
+at org.apache.jasper.compiler.Node$Visitor.visitBody(Node.java:2411)
+at org.apache.jasper.compiler.Validator$ValidateVisitor.visit(Validator.java:840)
+at org.apache.jasper.compiler.Node$CustomTag.accept(Node.java:1530)
+at org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2361)
+at org.apache.jasper.compiler.Node$Visitor.visitBody(Node.java:2411)
+at org.apache.jasper.compiler.Validator$ValidateVisitor.visit(Validator.java:840)
+at org.apache.jasper.compiler.Node$CustomTag.accept(Node.java:1530)
+at org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2361)
+at org.apache.jasper.compiler.Node$Visitor.visitBody(Node.java:2411)
+at org.apache.jasper.compiler.Node$Visitor.visit(Node.java:2417)
+at org.apache.jasper.compiler.Node$Root.accept(Node.java:495)
+at org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2361)
+at org.apache.jasper.compiler.Validator.validateExDirectives(Validator.java:1736)
+at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:183)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:332)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:312)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:299)
+at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:586)
+at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:317)
+at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:342)
+at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:267)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:646)
+at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:436)
+at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:374)
+at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:302)
+at com.sun.faces.context.ExternalContextImpl.dispatch(ExternalContextImpl.java:410)
+at com.sun.faces.application.ViewHandlerImpl.executePageToBuildView(ViewHandlerImpl.java:468)
+at com.sun.faces.application.ViewHandlerImpl.renderView(ViewHandlerImpl.java:140)
+at com.sun.faces.lifecycle.RenderResponsePhase.execute(RenderResponsePhase.java:110)
+at com.sun.faces.lifecycle.Phase.doPhase(Phase.java:100)
+at com.sun.faces.lifecycle.LifecycleImpl.render(LifecycleImpl.java:139)
+at javax.faces.webapp.FacesServlet.service(FacesServlet.java:266)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:646)
+at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:436)
+at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:374)
+at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:302)
+at org.apache.jasper.runtime.PageContextImpl.doForward(PageContextImpl.java:706)
+at org.apache.jasper.runtime.PageContextImpl.forward(PageContextImpl.java:677)
+at org.apache.jsp.index_jsp._jspService(index_jsp.java:91)
+at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:374)
+at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:342)
+at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:267)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:128)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:293)
+at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:849)
+at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:583)
+at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:454)
+at java.lang.Thread.run(Thread.java:595)
+The problem comes from an actionListener defined in the taglib (see bookstore.tld in the attached project bookstoreJSF) with a method-signature using 'void' as return type.
+I found no way to work around the problem.
+Then I looked up the source code for org.apache.jasper.compiler.Validator.
+From what I understand, the (inner class) method ValidateVisitor.checkXmlAttributes checks the deferred-method's return type from the taglib.
+The call to JspUtil.toClass then fires a ClassNotFoundException for the method's return type 'void'.
+This triggers the JasperException 'invalid attribute type' that I see in the Tomcat console.
+The test for a 'deferred-value' type is perfectly correct, but the return type for a deferred-method should be legally specifiable as void.

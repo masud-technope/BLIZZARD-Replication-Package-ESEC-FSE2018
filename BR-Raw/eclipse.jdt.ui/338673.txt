@@ -1,0 +1,13 @@
+Bug 338673 – [preferences][implementation] Encoding problem for "As JRE library use" preference dropdown box
+Created attachment 190145 [details]
+As JRE library use.jpg
+Using a pseudo translation language pack where all Latin characters are replaced with double-byte characters, entries in the "As JRE library use" preference dropdown box do not display.
+This problem will cause all translations in other languages to be displayed as question marks too.
+Test Data:
+==========
+Replace the following string
+NewJavaProjectPreferencePage_jre_container_description=JRE container
+in
+eclipse\plugins\org.eclipse.jdt.ui\org\eclipse\jdt\internal\ui\preferences\PreferencesMessages.properties
+to
+NewJavaProjectPreferencePage_jre_container_description=[G'\uff2a\uff32\uff25 \uff43\uff4f\uff4e\uff54\uff41\uff49\uff4e\uff45\uff52\u0130\u0131\uff5c]

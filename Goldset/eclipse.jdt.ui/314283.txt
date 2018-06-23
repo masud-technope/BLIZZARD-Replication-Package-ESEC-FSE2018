@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui/icons/full/ovr16/default_tsk.gif
+org.eclipse.jdt.ui/plugin.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/InterfaceIndicatorLabelDecorator.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaPluginImages.java

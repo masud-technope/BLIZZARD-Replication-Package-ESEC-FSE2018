@@ -1,0 +1,3 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/CompilationUnitDocumentProvider.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/saveparticipant/IPostSaveListener.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CleanUpPostSaveListener.java

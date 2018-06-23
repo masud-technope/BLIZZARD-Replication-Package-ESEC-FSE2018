@@ -1,0 +1,5 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/cleanup/ICleanUpConfigurationUI.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/cleanup/ICleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/cleanup/ICleanUpOptionsInitializer.java
+org.eclipse.jdt.ui/schema/cleanUps.exsd
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/cleanup/CleanUpRequirements.java

@@ -1,0 +1,8 @@
+53793 – Change webapp links in Manager to point to /appname/ instead of /appname
+The first column of the table that lists Web Applications in Tomcat Manager webapp contains links to those applications, e.g.
+<a href="/examples">/examples</a>
+When the link is clicked and browser navigates to "/examples", it results in 302 redirect to "/examples/".
+It would be better to change that link to point directly to "/examples/".
+<a href="/examples/">/examples</a>
+I am changing the link address only, but not the text on it.
+That is because the "Path" of the web application displayed in that column (and used in Manager commands elsewhere) does not have the additional '/'.

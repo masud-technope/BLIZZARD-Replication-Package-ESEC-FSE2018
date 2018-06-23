@@ -1,0 +1,3 @@
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/JSR308SpecSnippetTests.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ClassFile.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/CastExpression.java

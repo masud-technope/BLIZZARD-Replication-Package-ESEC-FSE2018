@@ -1,0 +1,4 @@
+Bug 201096 – [templates] SWT proposal computer must not findType on each call
+Created attachment 76908 [details]
+proposed fix
+I20070821-0800

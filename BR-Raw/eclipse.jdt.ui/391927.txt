@@ -1,0 +1,6 @@
+Bug 391927 – Speed up JDT UI tests by avoiding performDummySearch()
+Many jdt.ui and jdt.ui.refactoring tests call JavaProjectHelper#performDummySearch(IJavaSearchScope).
+This was added to synchronize with the indexer, to make sure subsequent file deletions don't fail because the indexer is still running and locks the file.
+However, performDummySearch is quite costly and is most often not necessary.
+I'll comment out the search and rely on the try-catch-retry in JavaProjectHelper#delete(IResource) to handle the rare case where file locking is really a problem.
+Initial measurements predict a speedup of 2.5 (AllJDTTests takes only 30 min instead of 75 min).

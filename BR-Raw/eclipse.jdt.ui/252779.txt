@@ -1,0 +1,16 @@
+Bug 252779 – [encapsulate field] Encapsulate field does not use parameter prefix code style
+Automatic generation of GETTER and SETTER methods donÂ´t use configured naming conventions.
+for example.
+i configured "par" as a prefix for parameter values.
+for the field:
+private Long   invoiceId ;
+the generated SETTER looks like:
+public void setInvoiceId ( Long invoiceId )
+{
+this.invoiceId = invoiceId ;
+}
+but it should :
+public void setInvoiceId ( Long parInvoiceId )
+{
+this.invoiceId = parInvoiceId ;
+}

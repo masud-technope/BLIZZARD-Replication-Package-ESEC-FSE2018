@@ -1,0 +1,10 @@
+54198 – Improve HttpServletResponse#sendError(int) JavaDoc description
+This methods calls sendError(int, null) internally.
+Thus generating a HTML page without a message.
+This is not mentioned in the docs.
+One could assume that the response will be empty.
+One could duplicate the first paragraph of the sendError(int,String) method and alter it to "The server defaults to creating the response to look like an HTML-formatted server error page with any specific message, setting the content type to "text/html",..." further "If an error-page declaration has been made for the web application corresponding to the status code passed in, it will be served back." (Might need improvement in this case, I am not a native speaker).
+Moreover, I would add "This method is effectively the same as calling sendError(int, null)".
+Plus add @see #sendError(int,String).
+Though the JavaDocs seems to be a verbatim copy of Oracle's Servlet API, it does not reveal this information explicitly.
+Should I provide a patch if that doc is available in svn.apache.org?

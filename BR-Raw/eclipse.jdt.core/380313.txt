@@ -1,0 +1,6 @@
+Bug 380313 – Inconsistent stack error when using Java 1.7
+please refer to this thread for details:
+http://www.eclipse.org/forums/index.php/mv/msg/277248/875304/#msg_875304
+Seems that Xtext should support this functionality with the latest Java version.
+I'm using a Windows 7 64-bit machine.
+Please let me know if you need more information.

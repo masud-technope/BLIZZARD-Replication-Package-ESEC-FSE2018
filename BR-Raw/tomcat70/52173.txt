@@ -1,0 +1,7 @@
+52173 – Add a drop of additional clarification to doc on the delegate setting of the WebappClassLoader
+Created attachment 27931 [details]
+javadoc tweaks to WebappClassLoader
+There is a full description of the 'delegate' flag on the protected boolean member, but programmers using the class are likely to look to the setDelegate function for enlightenment.
+Further, the IMPLEMENTATION NOTE at the top does
+not mention the existence of the delegate flag.
+This patch tries to makes it harder to misunderstand, since the term 'delegate' has, to me at least, a bit of ambiguity to it.

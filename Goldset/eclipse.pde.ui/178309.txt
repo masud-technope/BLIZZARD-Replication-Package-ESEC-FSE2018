@@ -1,0 +1,12 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/product/ProductFromExtensionOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/PluginSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/target/ContentSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/dependencies/CalculateDependenciesAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/dependencies/DependencyCalculator.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/ConfigurationPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/IntroSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/PluginSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/target/ContentSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/dependencies/CalculateDependenciesAction.java

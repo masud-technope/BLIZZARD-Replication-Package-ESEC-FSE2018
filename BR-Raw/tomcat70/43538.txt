@@ -1,0 +1,7 @@
+43538 – [patch] Show the hostname and IP address in the manager webapp
+We have an environment with a couple of load-balanced Tomcats fronted by httpd.
+If someone accesses the manager application through the load-balancer, they will
+not know which of the load-balanced Tomcats they end up at.
+In these situations,
+and others as well, it would be nice if the manager could tell the hostname and
+IP address of the machine it is running on.

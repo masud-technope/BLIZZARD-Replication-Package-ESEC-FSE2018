@@ -1,0 +1,19 @@
+Bug 467430 – [null][1.8] Confusing error message with known null value
+DESCRIPTION:
+with the following code:
+public class A {
+@org.eclipse.jdt.annotation.NonNullByDefault
+void m(java.util.@org.eclipse.jdt.annotation.Nullable Map<String, Integer> map) {
+}
+void m2(A a) {
+final java.util.Map<String, Integer> v = null;
+a.m(v);
+}
+}
+you get the following confusing error message regarding the "a.m(v)" statement:
+"Null type mismatch: required '@Nullable Map<@NonNull String,@NonNull Integer>' but the provided value is null"
+ANALYSIS:
+In
+org.eclipse.jdt.internal.compiler.problem.ProblemReporter.nullityMismatchingTypeAnnotation(Expression, TypeBinding, TypeBinding, NullAnnotationMatching)
+the first "if" doesnt check if the required type is NonNull at all.
+I'll send a patch via gerrit.

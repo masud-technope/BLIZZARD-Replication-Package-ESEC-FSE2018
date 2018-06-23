@@ -1,0 +1,19 @@
+Bug 146622 – deserializeSharedObjectMessage with custom Class problem
+when sending a instance of a custom Class in a SharedObject, one get this Exception:
+java.io.EOFException
+at java.io.ObjectInputStream$PeekInputStream.readFully(Unknown Source)
+at java.io.ObjectInputStream$BlockDataInputStream.readShort(Unknown Source)
+at java.io.ObjectInputStream.readStreamHeader(Unknown Source)
+at java.io.ObjectInputStream.<init>(Unknown Source)
+at org.eclipse.ecf.core.util.IdentifiableObjectInputStream.<init>(IdentifiableObjectInputStream.java:31)
+at org.eclipse.ecf.provider.generic.SOContainer.deserializeSharedObjectMessage(SOContainer.java:1039)
+at org.eclipse.ecf.provider.generic.SOContainer.handleSharedObjectMessage(SOContainer.java:711)
+at org.eclipse.ecf.provider.xmpp.container.XMPPGroupChatSOContainer.handleContainerMessage(XMPPGroupChatSOContainer.java:132)
+at org.eclipse.ecf.provider.xmpp.container.XMPPClientSOContainer.processAsynch(XMPPClientSOContainer.java:346)
+at org.eclipse.ecf.provider.generic.SOContainer$MessageReceiver.handleAsynchEvent(SOContainer.java:194)
+...
+after a look at source code, in org.eclipse.ecf.provider.generic.SOContainer line 1039,
+it seems that's the BinaryInputStream needs to be reset before trying deserialisation with the SharedObject classloader.
+a simple 'bins.reset()' corrects the problems.
+also the first error dump should not be dumped since this is a "normal" behavior.
+We do not want such stack trace for each custom object sent !

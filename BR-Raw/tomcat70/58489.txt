@@ -1,0 +1,30 @@
+58489 – QueryStatsComparator throws IllegalArgumentException: Comparison method violates its general contract!
+Created attachment 33177 [details]
+JUnit test to show the exception
+Overview:
+QueryStatsComparator may throw java.lang.IllegalArgumentException: Comparison method violates its general contract!
+This happens in specific situations depending on the data in the reported queries.
+In our environment this occurs every time we keep the server running until the maxCapacity (1000 items) is reached and the removeOldest method is called.
+I have managed to narrow down the test data from more than 1000 records to around 40 items and created a JUnit test to showcase the error.
+I needed to copy some parts out of the SlowQueryReport class and made some simplifications as the QueryStatsComparator is not reachable from outside.
+Steps to Reproduce:
+Please use the attached JUnit source code to reproduce this error.
+Additional Builds and Platforms:
+This bug seems to happen on all platforms.
+We are using Tomcat 8, tomcat-dbcp 8.0.24, JDK 1.80.0_60.
+Additional Information:
+It seems to be a problem of the first two lines of the QueryStatsComparator.
+Note that a single change in the data of the unit test may cause the Exception not to occur.
+Stacktrace:
+java.lang.IllegalArgumentException: Comparison method violates its general contract!
+at java.util.TimSort.mergeLo(TimSort.java:773)
+at java.util.TimSort.mergeAt(TimSort.java:510)
+at java.util.TimSort.mergeCollapse(TimSort.java:435)
+at java.util.TimSort.sort(TimSort.java:241)
+at java.util.Arrays.sort(Arrays.java:1512)
+at java.util.ArrayList.sort(ArrayList.java:1454)
+at java.util.Collections.sort(Collections.java:175)
+at org.apache.tomcat.jdbc.pool.interceptor.SlowQueryReport.removeOldest(SlowQueryReport.java:218)
+at org.apache.tomcat.jdbc.pool.interceptor.SlowQueryReport.getQueryStats(SlowQueryReport.java:205)
+at org.apache.tomcat.jdbc.pool.interceptor.SlowQueryReport.reportQuery(SlowQueryReport.java:119)
+at org.apache.tomcat.jdbc.pool.interceptor.AbstractQueryReport$StatementProxy.invoke(AbstractQueryReport.java:254)

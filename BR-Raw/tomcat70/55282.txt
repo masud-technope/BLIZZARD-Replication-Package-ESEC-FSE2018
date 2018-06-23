@@ -1,0 +1,13 @@
+55282 – JSF PhaseListeners are duplicated
+Created attachment 30604 [details]
+source code to reproduce the issue
+If using jsf 2 project and add Phase Listeners there, they are created and added to the list of Phase Listeners twice which means on page load same Phase Listeners are executed twice.
+This is happening only when com.sun.faces.config.ConfigureListener is defined in web.xml.
+Without such declaration in web.xml jsf is initialized one time.
+Such behaviour seems to happen on 7.0.42 version.
+I was using 7.0.41 and didn't see such behaviour.
+I didn't have a chance to check it again on 7.0.41 but checked on 7.0.6(because had it installed) and there everything was fine.
+Such behaviour can be very critical for applications using jsf and Phase Listeners.
+And Maybe not only Phase Listeners are duplicated(didn't look), because the problem here is that jsf is initialized twice and other things can get duplicated too.
+Attaching eclipse project where you can check the bug on 7.0.42 and compare to other tomcat version.
+In 7.0.42 there is duplicated message in console that Phase Listener is created.

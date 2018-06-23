@@ -1,0 +1,7 @@
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/LaunchingMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/RuntimeClasspathEntryLabelProvider.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/LauncherMessages.properties
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/IJavaLaunchConfigurationConstants.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/debug/ui/launchConfigurations/JavaClasspathTab.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/debug/ui/launchConfigurations/JavaMainTab.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/JavaRuntime.java

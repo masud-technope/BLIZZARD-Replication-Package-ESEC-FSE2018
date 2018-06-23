@@ -1,0 +1,6 @@
+Bug 211625 – Need option to omit -XstartOnFirstThread for SWT projects on MacOS
+I'm attempting to use the new SoyLatte JDK6 for MacOS, which doesn't understand the -XstartOnFirstThread JVM option.
+It appears that if I have a projects that includes a jar named 'swt.jar', it will automatically add the -XstartOnFirstThread JVM argument whenever I run a main() from inside eclipse.
+SoyLatte doesn't understand -XstartOnFirstThread, so it will not launch my application.
+There does not appear to be any way to tell Eclipse not to do this, either in the launch configuration screen, or the project options.
+More information:

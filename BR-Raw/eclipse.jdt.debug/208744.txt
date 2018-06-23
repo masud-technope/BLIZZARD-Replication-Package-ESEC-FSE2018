@@ -1,0 +1,19 @@
+Bug 208744 – [breakpoints] Unable to set watchpoints on some field declarations
+Build ID: I20070921-0919
+Steps To Reproduce:
+1.
+Copy the code below
+2.
+Reads the comments to know where to put watchpoints
+3.
+Watchpoints are not set, instead a breakpoint is set for
+the next "valid" line (which is dumb i think)
+public class Watchpoint {
+double a, b; // unable to set a watchpoint on this line
+double c, // unable to set a watchpoint on this line or the next one
+d;
+void foo() {
+} // for somme unknow reason, this line gets "invalid" watchpoints as breakpoints
+}
+Workaround:
+split the declaration, of 2 fields as 2 different line, and then add the watchpoints.

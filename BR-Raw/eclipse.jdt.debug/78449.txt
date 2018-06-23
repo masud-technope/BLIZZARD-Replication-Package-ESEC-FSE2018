@@ -1,0 +1,5 @@
+Bug 78449 – Closed project error message problems
+For an Ant launch configuration from a closed project you initially get the
+correct error message in the Ant launch configuration dialog.
+But if you then go to the classpath tab, the error message is incorrectly
+cleared (but the red X remains on the classpath tab).

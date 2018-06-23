@@ -1,0 +1,44 @@
+49218 – Fix support for META-INF/resources
+I have added the test for it in r939253
+The tests in TestStandardContextResources are currently failing, and thus are wrapped with if(false) until a solution is found.
+I debugged the context.getResource("/resourceB.jsp") call in the second test and I see that the following exception is caught and silently swallowed in o.a.c.core.ApplicationContext#getResource():
+java.lang.IllegalStateException: zip file closed
+at java.util.jar.JarFile.getMetaInfEntryNames(Native Method)
+at java.util.jar.JarFile.maybeInstantiateVerifier(JarFile.java:277)
+at java.util.jar.JarFile.getInputStream(JarFile.java:381)
+at org.apache.naming.resources.WARDirContext$WARResource.streamContent(WARDirContext.java:951)
+at org.apache.naming.resources.ProxyDirContext.cacheLoad(ProxyDirContext.java:1578)
+at org.apache.naming.resources.ProxyDirContext.cacheLookup(ProxyDirContext.java:1458)
+at org.apache.naming.resources.ProxyDirContext.lookup(ProxyDirContext.java:292)
+at org.apache.catalina.core.ApplicationContext.getResource(ApplicationContext.java:506)
+Besides the above, I have the following concerns related to resources support:
+1.
+The JavaDoc for ServletContext#getResourcePaths() in the Servlet 3.0 specification shows, that this method should list the resources from the JAR files as well.
+I cannot test it now, but I think that that is not implemented yet.
+A test for this could be added to TestStandardContextResources.java
+What is not clear to me there is what happens when the resource is present both in web application and in the resources JAR - should it be listed twice, or once only? I do not see much harm from listing it twice.
+2.
+BaseDirContext#addResourcesJar():
+The jarFile.getEntry("/"); call there returns null.
+Actually it is not needed there at all, because the second argument to the WARDirContext constructor is essentially ignored, because warDirContext.loadEntries() reinitializes the WARDirContext#entries field.
+3.
+BaseDirContext
+In all places where ("META-INF/resources/" + name) is used there is an "else"  branch where "META-INF/resources/" prefix is not added.
+I think it is an error, though it does not matter much because the main branch is usually executed.
+E.g., in #listBindings():
+if (altDirContext instanceof BaseDirContext)
+bindings = ((BaseDirContext) altDirContext).doListBindings(
+"META-INF/resources/" + name);
+else {
+try {
+bindings = altDirContext.listBindings(name);
+} catch (NamingException ne) {
+// Ignore
+}
+}
+If the altDirContext field were declared as List<BaseDirContext>, the code could be simplified.
+4.
+As of now, resource JARs are considered only if they are web fragments.
+That is if they contain META-INF/web-fragment.xml and the main web.xml has metadata-complete="false".
+I think that this is the correct implementation, based on the security and backwards compatibility considerations, but I do not see where the Servlet 3.0 spec explicitly says about these requirements.
+Is it implied from what is said in ch.8.2? I think it could be more explicit in the spec.

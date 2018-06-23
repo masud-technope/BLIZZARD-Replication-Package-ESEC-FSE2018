@@ -1,0 +1,6 @@
+org.apache.catalina.connector.Response.normalize
+org.apache.catalina.connector.Response.toAbsolute
+org.apache.catalina.connector.Response.encodeURL
+org.apache.catalina.connector.ResponseFacade.encodeURL
+org.apache.wicket.protocol.http.WebResponse.encodeURL
+org.apache.wicket.protocol.http.request.WebRequestCodingStrategy.encode

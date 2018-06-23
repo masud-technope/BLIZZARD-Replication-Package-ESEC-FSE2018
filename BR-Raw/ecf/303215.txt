@@ -1,0 +1,2 @@
+Bug 303215 – update o.e.e.examples.clients examples
+The examples in o.e.examples.clients do not have behavior in keeping with recent versions of Equinox and need to be updated.

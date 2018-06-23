@@ -1,0 +1,34 @@
+53783 – Static resources and jsp files under WEB-INF/lib/*.jar!/META-INF/resources are not found
+Created attachment 29283 [details]
+Example
+Hi,
+According to Servlet Specification, Servlet container should serve static resources and jsp files, located in META-INF/resources in any jar file under WEB-INF/lib.
+"
+10.5  Directory Structure
+A Web application exists as a structured hierarchy of directories.
+The root of this hierarchy serves as the document root for files that are part of the application.
+For example, for a Web application with the context path /catalog in a Web container, the index.html file at the base of the Web application hierarchy or in a JAR file inside WEB-INF/lib that includes the index.html under META-INF/resources directory can be served to satisfy a request from /catalog/index.html.
+If an index.html is present both in the root context and in the META-INF/resources directory of a JAR file in the WEB-INF/lib directory of the application, then the file that is available in the root context MUST be used.
+"
+When requesting such static resource/jsp file, Tomcat returns 404 Not Found.
+Example is attached.
+Request:
+http://localhost:8080/test-meta-inf-resources/test.jsp
+http://localhost:8080/test-meta-inf-resources/meta_inf_resource.jsp
+After investigating the issue I think that the problem is in the following code:
+org.apache.catalina.startup.ContextConfig
+protected void processResourceJARs(Set<WebXml> fragments) {
+...
+if (jar.entryExists("META-INF/resources/")) {
+context.addResourceJarUrl(url);
+...
+}
+When I list the entries in jar, I receive:
+INFO: Deploying web application archive C:\apache-tomcat-7.0.29\webapps\test-met
+a-inf-resources.war
+META-INF/MANIFEST.MF
+META-INF/resources/meta_inf_resource.jsp
+There is no entry "META-INF/resources/"
+I would like to propose a patch (attached) with which the request URLs above are working as expected.
+Best Regards
+Violeta Georgieva

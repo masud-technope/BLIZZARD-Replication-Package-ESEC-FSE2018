@@ -1,0 +1,8 @@
+Bug 53634 – Non-default JRE libraries don't work when running an application...
+I2004-02-26
+When switching to non-default JRE libraries (Preferences->Java->Installed JREs), e.g.
+adding some
+additional libraries, this has no effect when running the application.
+The newly added libraries are not
+added to the bootclasspath.
+Same with removing libraries.

@@ -1,0 +1,7 @@
+Bug 284882 – [target] Make features first class citizens in target definitions
+We need a grouping mechanism in targets.
+ There are too many plug-ins for most users to manage.
+ The standard way of grouping in Eclipse is features.
+ While features are not required by p2 or osgi, they are used in a number of areas within Eclipse.
+Currently features in targets are hidden from the user.
+ We should make them first class citizens, incorporating them into the UI.

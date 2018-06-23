@@ -1,0 +1,4 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/TypeBindingTests308.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/ASTNode.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/Binding.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/LocalVariableBinding.java

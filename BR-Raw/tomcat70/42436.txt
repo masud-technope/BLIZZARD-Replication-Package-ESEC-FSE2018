@@ -1,0 +1,27 @@
+42436 – service-qname and soap-header not parsed correctly
+The service-qname and soap-header elements are type j2ee:xsdQNameType according
+to the schema at:
+https://svn.apache.org/repos/asf/tomcat/tc6.0.x/trunk/java/javax/servlet/resources/j2ee_web_services_client_1_1.xsd
+Using this schema, an example soap-header element might look like:
+<soap-header xmlns:myns="http://myns.org">myns:extra-header</soap-header>
+However Tomcat's digester expects a soap-header element to look like:
+<soap-header>
+<namespaceURI>http://myns.org</namespaceURI>
+<localpart>extra-header</localpart>
+</soap-header>
+which is from a previous webservice DTD, I think.
+When the digester processes a web.xml that uses the correct form of
+<soap-header> it produces this stack trace:
+May 16, 2007 10:18:08 AM org.apache.tomcat.util.digester.Digester endElement
+SEVERE: End event threw exception
+java.lang.IllegalArgumentException: Can't convert argument: null
+at
+org.apache.tomcat.util.IntrospectionUtils.convert(IntrospectionUtils.java:976)
+at
+org.apache.tomcat.util.digester.CallMethodRule.end(CallMethodRule.java:523)
+at org.apache.tomcat.util.digester.Rule.end(Rule.java:229)
+at org.apache.tomcat.util.digester.Digester.endElement(Digester.java:1058)
+at
+com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.endElement(AbstractSAXParser.java:633)
+<service-qname> elements that use the correct form do not produce a stacktrace
+but they are not processed correctly.

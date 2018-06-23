@@ -1,0 +1,13 @@
+Bug 94448 – The addition of an extension or extension-point must set the singleton directive
+I20050510-0010
+Create a new plugin using the default options of the wizard.
+You end up with a
+plugin that has a manifest.mf and no plugin.xml.
+Everything is fine.
+Now add an extension or an extension point using the editor.
+Run, you will notice that the extension is not present.
+This is because the
+extension registry rejects all contributions that are not done by a singleton
+bundle.
+PDE should automatically add and always ensure that the singleton directive is
+present if there is an extension or an extension point in a plugin.

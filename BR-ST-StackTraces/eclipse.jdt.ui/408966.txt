@@ -1,0 +1,17 @@
+org.eclipse.core.runtime.Assert.isTrue
+org.eclipse.core.runtime.Assert.isTrue
+org.eclipse.jdt.internal.corext.dom.fragments.ASTFragmentFactory$FragmentFactory.setFragment
+org.eclipse.jdt.internal.corext.dom.fragments.ASTFragmentFactory$FragmentForFullSubtreeFactory.visit
+org.eclipse.jdt.internal.corext.dom.HierarchicalASTVisitor.visit
+org.eclipse.jdt.internal.corext.dom.HierarchicalASTVisitor.visit
+org.eclipse.jdt.core.dom.SimpleName.accept0
+org.eclipse.jdt.core.dom.ASTNode.accept
+org.eclipse.jdt.core.dom.ASTNode.acceptChild
+org.eclipse.jdt.core.dom.LambdaExpression.accept0
+org.eclipse.jdt.core.dom.ASTNode.accept
+org.eclipse.jdt.internal.corext.dom.fragments.ASTFragmentFactory$FragmentFactory.createFragment
+org.eclipse.jdt.internal.corext.dom.fragments.ASTFragmentFactory$FragmentForFullSubtreeFactory.createFragmentFor
+org.eclipse.jdt.internal.corext.dom.fragments.ASTFragmentFactory.createFragmentForFullSubtree
+org.eclipse.jdt.internal.corext.refactoring.code.InlineConstantRefactoring.checkInitializer
+org.eclipse.jdt.internal.corext.refactoring.code.InlineConstantRefactoring.checkInitialConditions
+org.eclipse.ltk.core.refactoring.CheckConditionsOperation.run

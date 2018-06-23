@@ -1,0 +1,2 @@
+Bug 251333 – [Discovery][jSLP] Add test case for NullPatternLocator/Advertiser
+n/t

@@ -1,0 +1,1 @@
+Bug 313175 – No problem generated when missing output.<lib> entry

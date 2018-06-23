@@ -1,0 +1,2 @@
+Bug 318086 – [Discovery] discovery tests take too long on build.ecf-project.org
+Disabling discovery related unit tests for the moment until I figure out what the problem is.

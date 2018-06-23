@@ -1,0 +1,7 @@
+Bug 185113 – [working sets] Reveal changed element after 'Assign Working Sets'
+20070502
+- start with a new workspace, create a project 'A'
+- In the package explorer, change to 'Working Sets' as lop level elements
+- create a working set 'X' assign project 'A' to it
+- invoke 'Assign Working Sets...' on 'A', uncheck all
+- the project should be revealed in  the 'Other Projects' group after that operation

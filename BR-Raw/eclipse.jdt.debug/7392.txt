@@ -1,0 +1,4 @@
+Bug 7392 – JDIThreads show <not responding> at startup
+Some of our threads are showing as <not responding> startup because our model
+thinks they are suspended but when the out of synch code tries to get stack
+frames, we get an incompatible thread state exception.

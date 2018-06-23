@@ -1,0 +1,27 @@
+Bug 251824 – [save actions][clean up] Correct Indentation blocks Remove trailing whitespace from working in comments
+Build ID: M20080911-1700
+Steps To Reproduce:
+1.
+Enable save actions 'remove trailing whitespace' and 'correct indentation'.
+2.
+Create a new class, add a first line of comment.
+3.
+Hit return a few times to add blank lines of comment.
+4.
+Save.
+5.
+Note trailing whitespace...
+6.
+Disable 'remove trailing whitespace'.
+7.
+Make a further edit (more blank lines, whatever) and save.
+8.
+Note no trailing whitespace.
+More information:
+Maybe bug 173081 is related?  Seems undesirable to ever leave trailing whitespace if the user chooses to remove it.
+For example, we have a coding style check that our files don't contain trailing whitespace and naturally it doesn't make any exemptions for comments or anything else.
+It seems like its trimming whitespace first then correcting indentation which involves adding trailing whitespace to blank lines of comment.
+ Perhaps this is down to some option in the formatter but I can't find it and I want my comments indented by a character, provided there is one.
+===
+May be unrelated, but I noted that if you hit return in a comment that doesn't have any trailing whitespace then the next line isn't indented either.
+ This seems undesirable but I think padding comments with whitespace isn't a good solution, if indeed that's what's how this came about.

@@ -1,0 +1,17 @@
+51614 – PersistentManager loads session from Store and calls session.expire() twice.
+To check whether session is loaded into  memory, StoreBase#processExpires calls findSession(id).
+=====
+...
+if (manager.findSession(keys[i]) != null) {
+isLoaded = true;
+}
+...
+=====
+However, PersistentManager#findSession(id) loads session from Store when there is no session in memory.
+Because session loaded from Store is an invalid session
+PersistentManager logs errorlog, calls session.expire(), and deletes session from Store.
+As a result, findSession(id) returns null, and isLoaded becomes false.
+And, session.expire() is called again, and the session is deleted from Store.
+If manager is PersistentManager, it is necessary to call PersistentManagerBase#isLoaded(id).
+However, to avoid regression of r1033024, other managers call findSession(id).
+Best regards.

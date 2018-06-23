@@ -1,0 +1,8 @@
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/typeconstraints/SimpleTypeConstraint.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/typeconstraints/ITypeConstraintFactory.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/typeconstraints/CompositeOrTypeConstraint.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/typeconstraints/FullConstraintCreator.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/typeconstraints/TypeConstraintFactory.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ExtractInterfaceUtil.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ChangeTypeRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/typeconstraints/ConstraintVariableFactory.java

@@ -1,0 +1,13 @@
+Bug 310036 – Polish feature based launching
+There a definite improvements that we can make to feature based launching for 3.6.
+ The enhancement should also be tested more thoroughly with a broader variety of launching scenarios.
+One possible problem is that we set the start levels of all plug-ins to default:default.
+ This should be overridden by the launcher defaults, but we have to check that this happens correctly for both Eclipse launch configs and OSGi launch configs.
+Other Issues:
+- Mnemonics are required for the new buttons
+- The problem with using a single selection listener is that you can't reuse the methods if there are two ways to access the same funciton, case in point: The SWT.DEL key listener and remove plug-in buttons have duplicated code that is not identical.
+- Tree should be expanded by default
+- The remove button enablement is flaky
+- Rather than removing things from input and the tree, we should either remove from the backing input and refresh the tree, or just remove from the tree.
+- The add plug-ins dialog should filter plug-ins already in the config.
+- Sorting seems a little off, my com.ibm feature came after org.eclipse features

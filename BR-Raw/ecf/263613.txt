@@ -1,0 +1,6 @@
+Bug 263613 – [transport] Update site contacting / downloading is not cancelable
+3.5M5
+If an unresponsive update site is enabled (e.g.
+the main Eclipse site after releasing a Milestone), the "Install New Software" or "Update" actions don't complete.
+Cancelling the jobs in the Progress view does mark them as cancelled, however, the jobs take a long time to actually finish.
+Expected behavior: any networking job should immediately respond to a cancellation.

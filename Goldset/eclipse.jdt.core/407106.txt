@@ -1,0 +1,8 @@
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/CompletionParserTest18.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/RunAllJava8Tests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/RunOnlyJava8Tests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/CompletionTests18.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/RunCompletionModelTests.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/Parser.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/RecoveredField.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/RecoveredLambdaExpression.java

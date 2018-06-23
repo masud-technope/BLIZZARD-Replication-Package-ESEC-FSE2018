@@ -1,0 +1,1 @@
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/im/IChat.java

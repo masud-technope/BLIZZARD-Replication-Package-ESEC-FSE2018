@@ -1,0 +1,2 @@
+Bug 216405 – Migrate jSLP contribution from ecf1.osuosl.org to dev.eclipse.org
+After approval of the jSLP contributions by the IP team (https://dev.eclipse.org/ipzilla/show_bug.cgi?id=1926), the code should be moved to dev.eclipse.org (we don't care for the CVS history)

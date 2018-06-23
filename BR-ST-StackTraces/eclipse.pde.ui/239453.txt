@@ -1,0 +1,3 @@
+org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationsDialog.initializeContent
+org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationsDialog.createContents
+org.eclipse.jface.window.Window.create

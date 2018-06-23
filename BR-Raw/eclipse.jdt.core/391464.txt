@@ -1,0 +1,21 @@
+Bug 391464 – [1.8][compiler] Compiler fails to resolve annotations in a few places
+BETA_JAVA8:
+The following program should trigger four errors.
+It triggers only two:
+// ------
+public class X<T> {
+public void foo() {
+Object o = (X @Marker []) null;  // Error here - Good.
+(ArrayTypeReference)
+o = (java.lang.String @Marker []) null; // Error here - Good.
+(ArrayQualifiedTypeReference)
+o = (X<String> @Marker []) null; // No error here - Bad.
+(ParameterizedSingleTypeReference)
+o = (java.util.List<String> @Marker []) null; // No error here, Bad.
+(ParameterizedQualifiedTypeReference)
+if (o == null) {
+return;
+}
+}
+}
+// ----

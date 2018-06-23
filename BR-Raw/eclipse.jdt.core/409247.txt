@@ -1,0 +1,9 @@
+Bug 409247 – [1.8][compiler] Verify error with code allocating multidimensional array.
+BETA_JAVA8:
+The following program triggers a verify error when run (operand stack underflow)
+// ---
+public class X {
+public static void main(String[] args) {
+X [][][] x = new X[10][10][];
+}
+}

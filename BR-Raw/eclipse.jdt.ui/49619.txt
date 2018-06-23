@@ -1,0 +1,16 @@
+Bug 49619 – [formatting] comment formatter leaves whitespace in comments
+if you format the follwing
+---------------------------------
+public class A
+{
+/**
+* the line below will end in whitespace
+*
+* @param x something blah
+*/
+public void method(int x)
+{
+}
+}
+---------------------------------------------
+the middle line in the comments will have a whitespace at the end.

@@ -1,0 +1,7 @@
+Bug 485593 – Stream mapping expression produces errors
+The following expression works fine outside eclipse:
+double[][] e = Arrays.stream(d).map(a -> (double[]::clone)).toArray(double[][]::new);
+Inside it produces these errors:
+Description	Resource	Path	Location	Type
+The target type of this expression must be a functional interface	test.java	/firefly-math-exceptions/src/main/java/com/fireflysemantics/math/exception	line 10	Java Problem
+Type mismatch: cannot convert from Stream<Object> to <unknown>	test.java

@@ -1,0 +1,9 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/typehierarchy/SubTypeHierarchyViewer.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/typehierarchy/SuperTypeHierarchyViewer.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/typehierarchy/TraditionalHierarchyViewer.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/typehierarchy/TypeHierarchyMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/typehierarchy/TypeHierarchyMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/typehierarchy/TypeHierarchyViewPart.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/typehierarchy/TypeHierarchyViewer.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaPerspectiveFactory.java
+org.eclipse.jdt.ui/plugin.properties

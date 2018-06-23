@@ -1,0 +1,1 @@
+tests/bundles/org.eclipse.ecf.tests.remoteservice.rest/src/org/eclipse/ecf/tests/remoteservice/rest/twitter/TwitterRemoteServiceTest.java

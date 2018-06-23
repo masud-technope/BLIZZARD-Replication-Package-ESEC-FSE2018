@@ -1,0 +1,18 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/cast_in/TestReturnValue1.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/cast_in/TestReturnValue2.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/cast_in/TestReturnValue3.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/cast_in/TestReturnValue4.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/cast_in/TestReturnValue5.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/cast_out/TestReturnValue1.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/cast_out/TestReturnValue2.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/cast_out/TestReturnValue3.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/cast_out/TestReturnValue4.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/cast_out/TestReturnValue5.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/generic_in/TestParameterizedType4.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/generic_in/TestParameterizedType5.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/generic_in/TestParameterizedType6.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/generic_out/TestParameterizedType4.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/generic_out/TestParameterizedType5.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/generic_out/TestParameterizedType6.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/InlineMethodTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/CallInliner.java

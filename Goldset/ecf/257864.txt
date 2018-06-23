@@ -1,0 +1,12 @@
+server-side/examples/bundles/org.eclipse.ecf.examples.remoteservices.server/src/org/eclipse/ecf/internal/examples/remoteservices/server/DiscoverableServer.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/provider/jslp/container/JSLPDiscoveryContainer.java
+compendium/bundles/org.eclipse.ecf.osgi.services.discovery/src/org/eclipse/ecf/internal/osgi/services/discovery/ServicePublicationHandler.java
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/discovery/IDiscoveryContainerAdapter.java
+providers/bundles/org.eclipse.ecf.provider.discovery/src/org/eclipse/ecf/provider/discovery/CompositeDiscoveryContainer.java
+providers/bundles/org.eclipse.ecf.provider.discovery/src/org/eclipse/ecf/provider/discovery/SingletonDiscoveryContainer.java
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/src/org/eclipse/ecf/tests/provider/discovery/CompositeDiscoveryContainerTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/src/org/eclipse/ecf/tests/provider/discovery/TestDiscoveryContainer.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/provider/jmdns/container/JMDNSDiscoveryContainer.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/DiscoveryTest.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/DiscoveryTestsWithoutRegister.java
+server-side/examples/bundles/org.eclipse.ecf.examples.updatesite.server/src/org/eclipse/ecf/internal/examples/updatesite/DiscoverableServer.java

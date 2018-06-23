@@ -1,0 +1,14 @@
+Bug 280333 – [refactoring] enhance Javadoc of RefactoringWizard.performFinish() (was: Refactoring wizard remains open with enabled buttons after refactoring operation completes)
+Refactoring wizard remains open with enabled buttons after refactoring operation completes.
+When an extension of the org.eclipse.ltk.ui.refactoring.RefactoringWizard performs steps after the call to org.eclipse.ltk.ui.refactoring.RefactoringWizard.performFinish() in the <subclass>.performFinish() method, the refactoring wizard remains open with the Finish/Next buttons enabled until the <subclass>.performFinish() method terminates.
+Steps to reproduce:
+1) Create a extension of the org.eclipse.ltk.ui.refactoring.RefactoringWizard.
+2) In the <subclass>.performFinish() method, call org.eclipse.ltk.ui.refactoring.RefactoringWizard.performFinish() and then:
+try {
+Thread.sleep(5000);
+}
+catch (Exception e) {
+e.printStackTrace();
+}
+3) Open the refactoring wizard and finish the operation (click Finish).
+4) Note the Next/Finish buttons remain disabled until the refactoring operation terminates and then enable for the 5 second sleep before the refactoring wizard is closed.

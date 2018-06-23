@@ -1,0 +1,57 @@
+Bug 138803 – EmptyStackException during schema parsing
+from bug 135042
+The original exception has gone away, but I am now seeing the following in its
+place:
+java.util.EmptyStackException
+at java.util.Stack.peek(Unknown Source)
+at java.util.Stack.pop(Unknown Source)
+at
+org.eclipse.pde.internal.core.XMLDefaultHandler.endElement(XMLDefaultHandler.java:57)
+at
+com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.endElement(Unknown
+Source)
+at
+com.sun.org.apache.xerces.internal.parsers.AbstractXMLDocumentParser.emptyElement(Unknown
+Source)
+at
+com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(Unknown
+Source)
+at
+com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown
+Source)
+at
+com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown
+Source)
+at
+com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown
+Source)
+at
+com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown
+Source)
+at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(Unknown
+Source)
+at
+com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(Unknown
+Source)
+at javax.xml.parsers.SAXParser.parse(Unknown Source)
+at javax.xml.parsers.SAXParser.parse(Unknown Source)
+at org.eclipse.pde.internal.core.schema.Schema.load(Schema.java:397)
+at org.eclipse.pde.internal.core.schema.Schema.load(Schema.java:373)
+at
+org.eclipse.pde.internal.core.schema.SchemaDescriptor.getSchema(SchemaDescriptor.java:73)
+at
+org.eclipse.pde.internal.core.schema.SchemaRegistry.getSchema(SchemaRegistry.java:54)
+at
+org.eclipse.pde.internal.ui.search.ClassSearchParticipant.searchProject(ClassSearchParticipant.java:179)
+at
+org.eclipse.pde.internal.ui.search.ClassSearchParticipant.search(ClassSearchParticipant.java:134)
+at
+org.eclipse.jdt.internal.ui.search.JavaSearchQuery$2.run(JavaSearchQuery.java:163)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at
+org.eclipse.jdt.internal.ui.search.JavaSearchQuery.run(JavaSearchQuery.java:169)
+at
+org.eclipse.mylar.internal.java.search.AbstractJavaRelationProvider$JavaSearchOperation.run(AbstractJavaRelationProvider.java:299)
+at
+org.eclipse.mylar.internal.java.search.AbstractJavaRelationProvider$JavaSearchJob.run(AbstractJavaRelationProvider.java:280)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)

@@ -1,0 +1,22 @@
+Bug 217824 – Target no longer start after importing binary plug-ins
+I20080205-0010.
+As usual I imported the new build as binary plug-ins (for all non-shared ones).
+Now I can no longer start my Eclipse targets.
+I get:
+!SESSION Tue Feb 05 14:10:24 CET 2008 ------------------------------------------
+!ENTRY org.eclipse.equinox.launcher 4 0 2008-02-05 14:10:24.206
+!MESSAGE Exception launching the Eclipse Platform:
+!STACK
+java.lang.ClassNotFoundException: org.eclipse.core.runtime.adaptor.EclipseStarter
+at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+at java.security.AccessController.doPrivileged(Native Method)
+at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:561)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:504)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1251)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1227)
+The reason: this resulted in duplicate plug-ins in my workspace which seems to break the luncher.
+Caused by bug 18500.
+Marking as critical as this makes the build unusable for me: I have to go and manually select each duplicate and delete it.

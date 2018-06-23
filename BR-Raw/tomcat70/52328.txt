@@ -1,0 +1,17 @@
+52328 – Massive garbage production observed when using the response writer
+In our application we used to use Tomcat 5, by writing our content directly to the response writer in our servlet:
+Writer w = response.getWriter();
+w.append(...)
+We have regularly measured performance of our application under stress with multiple simultaneous requests per second.
+We recently upgraded to Tomcat 7, and immediately observed a performance degradation of 10% on the request roundtrip on the same machine and the same tests, compared to our application deployed on Tomcat 5.
+Profiling with JProfiler showed that we got massive amount of transient objects {{java.nio.HeapCharBuffer}} produced - 400Mb+ within a few minutes.
+The way we are writing the response is by multiple statements of {{append}} of small strings or single chars, which used to work properly.
+For experiment, we wrapped the response writer with a {{BufferedWriter}} with a buffer of 64k.
+This brought our application's performance back to normal.
+We see this as either a:
+- anti-pattern usage since Tomcat 6/7, in which case please provide some documentation about that.
+- bug in the C2BConverter that is applied per every call to the CoyoteWriter write methods, which generates the garbage buffers per every call.
+We know that the response stream has a 8k buffer by default.
+Nevertheless, this buffer comes after the encoding step and as such it is too late to help with the garbage.
+Perhaps Tomcat can buffer before it encodes?
+Still, so much transient objects for just a pattern of eligible use of the servlet API seems a bug to me.

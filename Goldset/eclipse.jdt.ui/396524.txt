@@ -1,0 +1,27 @@
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/tostringgeneration/ToStringGenerationContext.java
+org.eclipse.jdt.ui.tests.refactoring/resources/PullUp/test52/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/PullUp/test18_3/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/PullUp/test53/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/PullUp/test18_3/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/PullUp/test18_6/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface18/testExtractInterfaceFromClass2/out/I.java
+org.eclipse.jdt.ui.tests.refactoring/resources/PullUp/test18_2/out/A.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/ModifierCorrectionSubProcessor.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/PullUpTests.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface18/testExtractInterfaceFromClass2/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/PullUp/test18_5/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/PullUp/test18_5/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/PullUp/test18_2/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface18/testExtractInterfaceFromClass2/out/A.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/StubUtility2.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ExtractInterfaceProcessor.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/PullUpTests18.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/PullUpRefactoringProcessor.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/GenerateHashCodeEqualsOperation.java
+org.eclipse.jdt.ui.tests.refactoring/resources/PullUp/test18_4/out/A.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/tostringgeneration/AbstractToStringGenerator.java
+org.eclipse.jdt.ui.tests.refactoring/resources/PullUp/test53/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/PullUp/test18_6/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ExtractInterfaceTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ExtractInterfaceTests18.java
+org.eclipse.jdt.ui.tests.refactoring/resources/PullUp/test18_4/in/A.java

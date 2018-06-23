@@ -1,0 +1,14 @@
+Bug 369480 – Fixed bug 369480: launchingsupport.jar must be 1.1 compatible (was:1.4.2 JRE is not recognized in the latest M5 builds)
+- Fresh workspace
+- Add 1.4.2 IBM JRE to your workspace (I also have 1.5 and 1.6 JREs added to the workspace)
+- Java > Installed JREs > Execution environments > J2SE 1.4
+=> 1.4.2.
+JRE is not shown as a compatible match
+- Import projects which use 1.4 as an execution environment e.g.
+o.e.pde.ui
+=> The JRE container will show 1.6 JRE
+This is a major bug as I cannot build against 1.4 JRE.
+Note:
+- Things work with 3.8 M4
+- Things also work with new builds and older workspaces (Things are fine in my dev workspace).
+The problem surfaces only in new workspaces.

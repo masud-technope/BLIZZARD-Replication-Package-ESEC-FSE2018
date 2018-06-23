@@ -1,0 +1,15 @@
+Bug 20468 – Installed JRE: Source attachment set to non existing location
+F3
+When creating a new JRE on alocation that contains no source, the rt.jar's
+source attachment path is set to a guess:
+xxx/jre/src.jar, even there is no JAR like this.
+This has as result that on the edit JRE page the image of rt.jar has a attached
+source image.
+To find out if the JAR really has a attachemnt set, you have to uncheck
+the 'Use default' check, 'Source attach' on the JAR and browse file system.
+The very first page of the JDT documentation ('Getting Started') is about
+verifying the correct JRE installation.
+As long as we will not have a src.zip
+in our drop, it is important to let users do this source attachment check.
+It would be very helpful if the visual indication is better.
+We should not set a dummy path or let the label provider do an exists test.

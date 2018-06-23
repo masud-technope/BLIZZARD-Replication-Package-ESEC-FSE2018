@@ -1,0 +1,5 @@
+Bug 209611 – [organize imports] Organize imports perf test has no loop and no warm up
+I20071107-1300
+The OrganizeImportsPerfTest has no loop and no warm up, which makes the test unreliable.
+Also we use clean up to run Organize imports in the UI since a while (bug 181160).
+We should therefore also test this real world scenario.

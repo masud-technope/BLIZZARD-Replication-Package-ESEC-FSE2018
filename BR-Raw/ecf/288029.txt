@@ -1,0 +1,3 @@
+Bug 288029 – org.eclipse.ecf.provider.filetransfer seems to have missing @since tags and license headers
+There seems to be some (new?) API in the *.filetransfer.util packages that were introduced during the Galileo release with no @since tags.
+Some of the classes in the *.filetransfer.events.socket package are also missing license headers (though there may be others).

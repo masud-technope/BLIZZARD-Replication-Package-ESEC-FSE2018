@@ -1,0 +1,31 @@
+Bug 13525 – Error evaluating with no public class
+Add breakpoint to NavigatorDropAdapter.openError.
+Create a simple project in the navigator.
+Create a file in this project.
+Drag the file and drop over the project.
+In NavigatorDropAdapter.openError select IStatus.ERROR and Display it.
+Got the following exception:
+java.lang.IllegalArgumentException
+at org.eclipse.jdt.core.dom.AST.parseCompilationUnit(AST.java:310)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.getCompiledExpression(ASTEvaluationEngine.java:159)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.evaluate(ASTEvaluationEngine.java:59)
+at org.eclipse.jdt.internal.debug.ui.actions.EvaluateAction.run(EvaluateAction.java:225)
+at org.eclipse.jdt.internal.debug.ui.actions.DisplayAction.run(DisplayAction.java:122)
+at org.eclipse.jdt.internal.debug.ui.actions.EvaluateAction.run(EvaluateAction.java:503)
+at org.eclipse.ui.internal.PluginAction.runWithEvent(PluginAction.java:204)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:407)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetEvent(ActionContributionItem.java(Compiled Code))
+at org.eclipse.jface.action.ActionContributionItem$ActionListener.handleEvent(ActionContributionItem.java(Compiled Code))
+at org.eclipse.jface.action.ActionContributionItem$ActionListener.handleEvent(ActionContributionItem.java(Compiled Code))
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java(Compiled Code))
+at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java(Compiled Code))
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java(Compiled Code))
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java(Compiled Code))
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java(Compiled Code))
+at org.eclipse.ui.internal.Workbench.run(Workbench.java:819)
+at org.eclipse.core.internal.boot.InternalBootLoader.run(InternalBootLoader.java:777)
+at org.eclipse.core.boot.BootLoader.run(BootLoader.java:319)
+at java.lang.reflect.Method.invoke(Native Method)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:190)
+at org.eclipse.core.launcher.Main.run(Main.java:549)
+at org.eclipse.core.launcher.Main.main(Main.java:390)

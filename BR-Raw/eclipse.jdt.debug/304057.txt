@@ -1,0 +1,5 @@
+Bug 304057 – Breakpoint hit count widget should take focus when enabled
+Created attachment 160326 [details]
+fix
+I20100225-1936
+When you enable (check on) the hit count option for a breakpoint, the text widget should take focus so you can start typing immediately without further mouse clicks - as it does when enabling the condition.

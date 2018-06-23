@@ -1,0 +1,19 @@
+Bug 246635 – [build path] Add project screen shows added projects
+Build ID: I20080617-2000
+Steps To Reproduce:
+1.
+Create many projects on workspace
+2.
+Open the wizard to create a new Java Project
+3.
+Put the name of the project
+4.
+Select the "Projects" tab on "Java Settings"
+5.
+Press the button to add new projects
+6.
+Mark many projects and press ok
+7.
+Press the button to add new projects
+The projects added should not be visible again but some projects appear on screen.
+More information:

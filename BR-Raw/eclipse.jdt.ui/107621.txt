@@ -1,0 +1,29 @@
+Bug 107621 – [implementation] JavaSpellingReconcileStrategy calls getContentType() and it is not used
+I wanted to create a content type that was a subtype of JavaSource so that we
+can have our own default editor for special java classes.
+To determine if it was
+our type we created a content describer that looks through the code to see if it
+is our type.
+The problem is that the JavaSpellingReconcileStrategy class is calling the
+getContentType() twice for every keystroke (reconcile) so that it can put it
+into the SpellingContext.
+Then the spelling context never even uses this content
+type.
+This is very inefficient, causes the class to parsed twice like that and never
+even use the result.
+If this is absolutely necessary, then SpellingContext
+should be changed to lazily request the content type instead of having it put it
+into it right away.
+From JavaSpellingReconcileStrategy:
+public void reconcile(IRegion region) {
+if (fRequestor != null) {
+try {
+SpellingContext context= new SpellingContext();
+context.setContentType(getContentType());
+EditorsUI.getSpellingService().check(fDocument, context, fCollector,
+fProgressMonitor);
+} catch (CoreException x) {
+// swallow exception
+}
+}
+}

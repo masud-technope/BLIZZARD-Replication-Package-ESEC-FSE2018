@@ -1,0 +1,20 @@
+Bug 428261 – [1.8][compiler] Incorrect error: No enclosing instance of the type X is accessible in scope
+The following program should compile, but is presently rejected:
+// --
+interface I {
+X foo(int a);
+}
+public class X {
+public static void main(String[] args) {
+String s = "Blah";
+class Local extends X {
+Local(int a) {
+System.out.println(a);
+System.out.println(s);
+}
+}
+I i = Local::new; // Incorrect error here.
+i.foo(10);
+}
+}
+Point is Local being in static context, does not have an enclosing instance.

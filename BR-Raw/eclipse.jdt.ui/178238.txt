@@ -1,0 +1,14 @@
+Bug 178238 – [quick fix] lightbulb shown although there's no SuppressWarnings quick fix for user-configured error
+I20070320-0010
+- Have this class in a 5.0 project:
+public class T {
+void m() {
+Object a= null;
+if (a == null) // quick fix?
+return;
+}
+}
+- Set 'Redundant null check' problem to Error
+=> There's a quick fix light bulb, but Ctrl+1 does not show a quick fix.
+The problem is that SuppressWarningsSubProcessor.hasSuppressWarningsProposal(int) returns true for this problem, but addSuppressWarningsProposals(..) only adds a quick fix if the problem severity is not error.
+hasSuppressWarningsProposal(..) should check the configured severity and only return the token if the severity is not error.

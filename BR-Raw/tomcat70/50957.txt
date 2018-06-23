@@ -1,0 +1,35 @@
+50957 – Blocking IO can serve wrong response data
+Tomcat: 7.0.8
+OS:  Windows 2008 Server (x64)
+Compression enabled on both HTTP and HTTPS connectors.
+When using standard blocking IO HTTP/1.1 over a period of 2+ days under moderate traffic, Tomcat 7 will begin to occasionally serve the incorrect responses for a request.
+Incorrect responses span a variety behaviors
+* Serving a javascript (.js) file instead of HTML or Image
+* Serving the wrong image
+* Serving a .css file instead of HTML, javascript file, or Image
+This behavior has been observed in both HTTP & HTTPS.
+Another observation is that if the wrong response is served, the response is at least for something that was also requested and not something random.
+Once the behavior was detected, I used WebScarab as a proxy to monitor the entire Browser <--> Tomcat conversation.
+ I was able to confirm a scenario like the following:
+--------
+ImageA.gif
+ImageB.gif
+Each has different file size, ETAG, etc.
+GET ImageB.gif returned ImageA.gif (with ImageA.gif's ETAG, headers, binary content, and content size)
+-------
+This report corroborates another report discovered in the wild:
+http://www.apacheserver.net/q11460/Tomcat-serving-wrong-content
+In the above report, the person requested a page and received an image.
+No reproduction steps have been identified to trigger this condition.
+ The only thing the above reporter & I noticed is that Tomcat needs to be up for a while and serve traffic throughout that period.
+ Once the condition has been established it is still seemingly random when it occurs.
+Whenever it begins to happen, however, disable caching & keep reloading an image-heavy page until you see obvious misplaced images or other things.
+Using a debugging proxy will allow you to verify that incorrect content is served.
+Switching to NIO appears to bypass the problem or at least NIO does not exhibit the same behavior.
+ As the other reporter had noted, restarting Tomcat will clear the condition.
+My hypothesis is that there is some condition within Tomcat & Blocking IO where a series of (pipelined?) requests (images, css, js) spawned from a page can become confused resulting in swapped responses (A <--> B) or duplicated responses (A & A).
+ Maybe some output buffer is getting clobbered.
+ Based upon Http11Processor, pipelined requests are constrained to the same Socket so I do not believe there is a risk of swapping responses across users.
+ It is unknown if this bug could be deliberately exploited in some way.
+Needless to say, a server that is serving incorrect content justifies a very serious severity rating.
+I would not recommend using BIO in any Production environment for the time being.

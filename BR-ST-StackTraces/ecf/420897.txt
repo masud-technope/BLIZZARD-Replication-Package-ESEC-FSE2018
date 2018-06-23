@@ -1,0 +1,11 @@
+ch.ethz.iks.r_osgi.impl.ChannelEndpointImpl.ungetRemoteService
+ch.ethz.iks.r_osgi.impl.RemoteOSGiServiceImpl.ungetRemoteService
+org.eclipse.ecf.internal.provider.r_osgi.R_OSGiRemoteServiceContainer.ungetRemoteService
+org.eclipse.ecf.osgi.services.remoteserviceadmin.RemoteServiceAdmin$ImportEndpoint.close
+org.eclipse.ecf.osgi.services.remoteserviceadmin.RemoteServiceAdmin$ImportReference.close
+org.eclipse.ecf.osgi.services.remoteserviceadmin.RemoteServiceAdmin$ImportRegistration.close
+org.eclipse.ecf.osgi.services.remoteserviceadmin.AbstractTopologyManager.handleECFEndpointRemoved
+org.eclipse.ecf.internal.osgi.services.distribution.BasicTopologyManagerImpl.endpointRemoved
+org.eclipse.ecf.osgi.services.remoteserviceadmin.EndpointDescriptionLocator$1.dispatchEvent
+org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent
+org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run

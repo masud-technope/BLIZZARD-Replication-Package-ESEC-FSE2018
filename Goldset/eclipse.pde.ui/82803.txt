@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/launcher/AbstractLaunchShortcut.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/launcher/EclipseLaunchShortcut.java

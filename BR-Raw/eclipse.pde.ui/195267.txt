@@ -1,0 +1,45 @@
+Bug 195267 – Features dependencies - add features fail
+In Feature editor, in tabs "dependencies" ,
+I have "org.eclipse.rcp" Feature in error and when i click on Features button , nothing is happened and i have this error
+if i delete "org.eclipse.rcp" and i click on features button , the dialog appears and  i can select "org.eclipse.rcp"
+-- Error Log --
+Date: Tue Jul 03 15:57:40 CEST 2007
+Message: Unhandled event loop exception
+Severity: Error
+Plugin ID: org.eclipse.ui
+Stack Trace:
+java.lang.NullPointerException
+at org.eclipse.pde.internal.ui.editor.feature.RequiresSection.canAdd(RequiresSection.java:308)
+at org.eclipse.pde.internal.ui.editor.feature.RequiresSection.access$4(RequiresSection.java:293)
+at org.eclipse.pde.internal.ui.editor.feature.RequiresSection$4.run(RequiresSection.java:253)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:67)
+at org.eclipse.pde.internal.ui.editor.feature.RequiresSection.handleNewFeature(RequiresSection.java:246)
+at org.eclipse.pde.internal.ui.editor.feature.RequiresSection.buttonSelected(RequiresSection.java:185)
+at org.eclipse.pde.internal.ui.editor.TableSection$PartAdapter.buttonSelected(TableSection.java:45)
+at org.eclipse.pde.internal.ui.parts.SharedPartWithButtons$SelectionHandler.buttonSelected(SharedPartWithButtons.java:35)
+at org.eclipse.pde.internal.ui.parts.SharedPartWithButtons$SelectionHandler.widgetSelected(SharedPartWithButtons.java:28)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:227)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:938)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3682)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3293)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2389)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2353)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2219)
+at org.eclipse.ui.internal.Workbench$4.run(Workbench.java:466)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:289)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:461)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:106)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:153)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:106)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:76)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:363)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:176)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:504)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:443)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1169)

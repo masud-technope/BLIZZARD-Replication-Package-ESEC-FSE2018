@@ -1,0 +1,14 @@
+Bug 468457 – [quick assist] Convert to Lambda Quick Assist missing for method parameters of type Object
+If a parameter is of type object it looks like the quickfix for convertion to lambda is missing.
+Example from the eclipse.platform.runtime repository:
+1.)Change plug-in: org.eclipse.e4.core.tests to be based on Java 8.
+2.) Open ContextDynamicTest.java
+3.) Try to convert the following in testReplaceFunctionWithStaticValue via Quickfix
+context.set("bar", new IContextFunction() {
+@Override
+public Object compute(IEclipseContext context, String contextKey) {
+return "baz1";
+}
+});
+Manual convertion seem to work
+context.set("bar", (IContextFunction) (context1, contextKey) -> "baz1");

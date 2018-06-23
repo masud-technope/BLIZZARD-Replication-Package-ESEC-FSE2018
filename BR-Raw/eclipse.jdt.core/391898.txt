@@ -1,0 +1,9 @@
+Bug 391898 – [1.8][compiler] Add DOM/AST support for annotations on varargs,
+BETA_JAVA8:
+For a variable arity method, the compiler AST contains an extra dimension
+while on the DOM/AST side the Type of SingleVariableDeclaration does not
+contain an extra dimension, but captures the fact of variable arity in a
+boolean property: VARARGS_PROPERTY.
+So SingleVariableDeclaration  needs to
+be extended to capture, expose and allow manipulations on the annotations
+on the ...

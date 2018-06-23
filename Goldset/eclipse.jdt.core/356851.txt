@@ -1,0 +1,9 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/formatter/FormatterCommentsBugsTest.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/formatter/comment/JavaDocTestCase.java
+org.eclipse.jdt.core/formatter/org/eclipse/jdt/internal/formatter/DefaultCodeFormatterOptions.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/formatter/FormatterJSR308Tests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/formatter/FormatterRegressionTests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/formatter/FormatterBugsTests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/formatter/FormatterCommentsTests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/formatter/FormatterJSR335Tests.java
+org.eclipse.jdt.core/formatter/org/eclipse/jdt/core/formatter/DefaultCodeFormatterConstants.java

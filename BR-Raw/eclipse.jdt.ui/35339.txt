@@ -1,0 +1,3 @@
+Bug 35339 – @inheritedoc no consistently rendered
+Javadoc code completion now understands @inheritdoc but it isn't rendered
+consistently with the other javadoc tags like @param

@@ -1,0 +1,9 @@
+incubation/bundles/org.eclipse.ecf.provider.riena/src/org/eclipse/ecf/provider/riena/container/RienaContainer.java
+framework/bundles/org.eclipse.ecf.remoteservice/src/org/eclipse/ecf/remoteservice/IRemoteServiceContainerAdapter.java
+framework/bundles/org.eclipse.ecf.remoteservice/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.remoteservice/src/org/eclipse/ecf/provider/remoteservice/generic/RemoteServiceContainer.java
+framework/bundles/org.eclipse.ecf.remoteservice/src/org/eclipse/ecf/remoteservice/client/AbstractClientContainer.java
+framework/bundles/org.eclipse.ecf.remoteservice/src/org/eclipse/ecf/remoteservice/client/RemoteServiceClientRegistry.java
+providers/bundles/org.eclipse.ecf.provider.local/src/org/eclipse/ecf/internal/provider/local/container/LocalRemoteServiceContainer.java
+providers/bundles/org.eclipse.ecf.provider.remoteservice/src/org/eclipse/ecf/provider/remoteservice/generic/RegistrySharedObject.java
+providers/bundles/org.eclipse.ecf.provider.r_osgi/src/org/eclipse/ecf/internal/provider/r_osgi/R_OSGiRemoteServiceContainer.java

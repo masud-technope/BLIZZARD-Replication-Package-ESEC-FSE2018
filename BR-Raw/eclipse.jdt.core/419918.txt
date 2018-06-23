@@ -1,0 +1,10 @@
+Bug 419918 – [1.8][compiler] Annotations are not restored from class files in a few situations
+BETA_JAVA8:
+BinaryTypeBinding:655 reads:
+// Note(stephan): currently the compiler is not interested in retrieving receiver annotations, here is how we would do it:
+// IBinaryAnnotation[] receiverAnnotations = walker.toReceiver().getAnnotationsAtCursor();
+Apart from this action, we also need to create an annotated type instance
+for the declaring class and store it in org.eclipse.jdt.internal.compiler.lookup.MethodBinding.receiver.
+javax.lang.model.element.ExecutableElement.getReceiverType() and
+javax.lang.model.type.ExecutableType.getReceiverType() should answer the
+annotated type.

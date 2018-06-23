@@ -1,0 +1,12 @@
+Bug 244395 – [refactoring] [launch config refactoring] project rename cannot undo
+Build ID: I20080617-2000
+Steps To Reproduce:
+1.
+create a launch config in a java project.
+2.
+rename the java project.
+The launch config will refactored (org.eclipse.jdt.launching.PROJECT_ATTR attribute in the launch config will change).
+3.Undo the rename operation (press Ctrl+z in Package Explorer view).
+4.
+Now the launch config will disappeared.
+More information:

@@ -1,0 +1,5 @@
+Bug 463008 – [r-OSGi] add system property to prevent usage of InetAddress.getLocalHost().getCanonicalHostname()
+Currently in R_OSGIContainerInstantiator is this code for getting the localhost name:
+final String localHost = InetAddress.getLocalHost().getCanonicalHostName();
+With some LAN/network configurations, this system call will block for a significant length of time (> 15 seconds) because the nameserver is absent or misconfigured.
+ It would be useful to have a system property to prevent calling this method...and using the string 'localhost' for such environments.

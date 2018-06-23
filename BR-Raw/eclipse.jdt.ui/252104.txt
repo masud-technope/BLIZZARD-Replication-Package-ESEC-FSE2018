@@ -1,0 +1,26 @@
+Bug 252104 – [quick assist] Convert to switch produces compile errors for conditional expression
+N20081005-2000
+See the following snippet:
+-------------
+package p;
+public class B {
+public static void main(String[] args) {
+switch(getFoo() ? getBar() : getBar()) {
+case 1:
+System.out.println();
+break;
+}
+}
+private static int getBar() {
+return 0;
+}
+private static boolean getFoo() {
+return false;
+}
+}
+------
+Using the "Convert switch to if/else" quick assist fails to add the correct parentheses to the expression.
+After the quick assist is done there are currently two quick fixes:
+* add cast to boolean
+* Insert null check
+In this case these two quick fixes are not really useful as we don't come closer to a compilable output.

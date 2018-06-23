@@ -1,0 +1,22 @@
+Bug 418347 – [1.8][compiler] Type annotations from SE7 locations not handled properly during code generation.
+BETA_JAVA8:
+// ---
+class Outer<K>  {
+class Inner<P> {
+}
+public @T(1) Outer<@T(2) String>.@T(3) Inner<@T(4) Integer> @T(5) [] omi @T(6) [];
+}
+@java.lang.annotation.Target (java.lang.annotation.ElementType.TYPE_USE)
+@interface T {
+int value();
+}
+// --
+Given the above, ECJ generates only 5 annotations.
+There should be 6.
+The one
+with the type path: FIELD, location=[ARRAY, ARRAY, INNER_TYPE] is absconding.
+AST and bindings look correct.
+While debugging, you may notice that the extended dimensions would appear ahead
+of the base dimension.
+This is the right behavior.
+See bug 418096.

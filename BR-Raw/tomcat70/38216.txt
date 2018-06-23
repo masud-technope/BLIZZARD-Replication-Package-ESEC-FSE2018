@@ -1,0 +1,4 @@
+38216 – Extend Jmxproxy to allow call of MBean Operations
+Currently one can only query Beans or set/get Attributes of them.
+It would be
+good if a certain operation of a MBean could be called by the Jmxproxy Servlet.

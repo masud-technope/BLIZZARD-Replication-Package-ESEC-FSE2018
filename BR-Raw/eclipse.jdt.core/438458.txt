@@ -1,0 +1,24 @@
+Bug 438458 – [1.8][null] clean up handling of null type annotations wrt type variables
+After bug 430150 has introduced stricter null checking against type variables, some previous decisions need to be reconsidered.
+In particular the integration with type inference and type substitution need to be revisited.
+The principles to follow are:
+(A) A type parameter with a null type annotation does not participate in nullness inference, i.e., any inference solution must match exactly with the type annotation on the type parameter:
+interface I1 <@NonNull T> { ...
+}
+...
+<U> void m(I1<U> in) { ...
+}
+...
+m(x); // inference here
+When inferring U as the type argument to I1, it must be ensured that U is a nonnull type.
+(B) A null type annotation on a type variable (use) overrides any nullness associated with the type variable, be it declared on the type parameter or via client side substitution, i.e., the type after substitution has the same null type annotation as the declaration.
+interface I1 <T> {
+@Nullable T maybeGet(List<T> in);
+}
+...
+List<@NonNull String> strings = ...
+x = someI1.maybeGet(strings);
+Here the substituted return type of maybeGet() must be '@Nullable String' even if x has a nonnull type and tries to direct inference into answering '@NonNull String'.
+The explicit type annotation on 'T' overrides the nullness of 'T' and excludes that particular occurrence of 'T' from null type inference.
+As one consequence we will avoid inferring contradictory null type annotations in many cases (need to check if that error can still be triggered and when).
+Instead, we give precedence to null type annotations in the locations (A) and (B) and prefer blaming the client in terms of null type mismatch against the arguments or return of the given invocation.

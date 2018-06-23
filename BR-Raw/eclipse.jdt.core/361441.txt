@@ -1,0 +1,44 @@
+Bug 361441 – Error in JDT Core during AST creation
+What steps will reproduce the problem?
+1.
+create a Java 7 project
+2.
+compile the attached class
+3.
+an error dialog pops up
+-- Error Details --
+Date: Wed Oct 19 19:25:52 CEST 2011
+Message: Error in JDT Core during AST creation
+Severity: Error
+Product: Eclipse SDK 3.7.1.v201109091335 (org.eclipse.sdk.ide)
+Plugin: org.eclipse.jdt.ui
+Session Data:
+eclipse.buildId=M20110909-1335
+java.version=1.6.0_26
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/marschall/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/marschall/.eclipse_keyring -showlocation
+Exception Stack Trace:
+java.lang.ClassCastException: org.eclipse.jdt.internal.compiler.lookup.MethodBinding cannot be cast to org.eclipse.jdt.internal.compiler.lookup.ParameterizedGenericMethodBinding
+at org.eclipse.jdt.internal.compiler.problem.ProblemReporter.invalidMethod(ProblemReporter.java:3677)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.resolveType(MessageSend.java:435)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java:947)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:463)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:252)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:422)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1148)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1258)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:539)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1191)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:681)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1181)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:807)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider$1.run(ASTProvider.java:544)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.createAST(ASTProvider.java:537)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.getAST(ASTProvider.java:480)
+at org.eclipse.jdt.ui.SharedASTProvider.getAST(SharedASTProvider.java:128)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:170)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$3.run(SelectionListenerWithASTManager.java:155)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)

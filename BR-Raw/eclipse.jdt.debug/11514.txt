@@ -1,0 +1,12 @@
+Bug 11514 – Feature: support WAS 5.0 JSP debugging
+Due to changes in WebSphere 5.0, pattern breakpoints are not sufficient to
+support JSP debugging.
+ In WAS 5, org.apache.jsp is used as the package for the
+Java source generated from all JSPs.
+ With the current pattern breakpoint
+support, it is not possible to distinguish JSPs of the same name in different
+folders.
+The proposed solution is to place a static field in the generated Java source
+whose value is the full path of the JSP source file.
+ After a successful
+pattern breakpoint match, the debugger will check this field if present.

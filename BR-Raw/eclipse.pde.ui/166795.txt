@@ -1,0 +1,10 @@
+Bug 166795 – variables in config.ini template field don't stick
+I20061128-0800
+If you use a variable to point to a config.ini template in the workspace (i.e.
+${workspace_loc}\demo.eclipse.tracing\config.ini) then PDE seems to fill in the correct information when you launch.
+ But then if you open the launcher again you will notice that the ${workspace_loc} variable has been replaced with the real absolute path to your workspace.
+ All other fields in PDE seem to keep the variable and do not modify the value with the real path.
+I ran into this issue following the instructions at the AspectJ incubator site http://www.eclipse.org/equinox/incubator/aspects/getting_started.php
+The demos in the incubator include launchers that point to workspace config.ini templates.
+ The problem is the launchers include absolute paths the the workspace the developer was using when they specified the launchers.
+ It would be nice if these launchers could be released with ${workspace_loc} variables but PDE UI prevents this.

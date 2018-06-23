@@ -1,0 +1,21 @@
+Bug 233699 – Add support for version types other than OSGi
+One of the core facilities listed for p2 is Generic Metadata, rich enough to describe units that are not OSGi or Eclipse related.
+The current p2 API's uses the OSGi Version as the only possible version type.
+In order to capture all types of versions, the semantics used for parsing, serializing, and comparing versions must be extendable.
+I therefore suggest that the p2 API's are enhanced to recognize an opaque version with an associated type.
+Here is what I think is needed:
+- Two new interfaces, IVersionType and IVersion.
+- The IVersion interface extends Comparable<IVersion>
+- An extension point for implementors of the IVersionType.
+- Implementations of IVersionType that covers OSGi and a few other very common types.
+Some rules that I think must apply:
+- A version type can answer if it is comparable to another type.
+- A version range is typed.
+Only comparable versions can be within range.
+- Equality comparisons of non-comparable types yields a false result.
+- Magnitude comparisons of non-comparable types is an illegal operation.
+- Whenever a version or version range is serialized/parsed, it's type must also be serialized/parsed.
+In most places where p2 is used in Eclipse, the version type should automatically default to OSGi.
+This would of course also be true for all current repositories where no version type exists.
+I would like to help out with the implementation of this if possible.
+I have written similar functionality for Buckminster.

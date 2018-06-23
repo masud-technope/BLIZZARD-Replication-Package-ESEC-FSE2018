@@ -1,0 +1,33 @@
+Bug 277031 – [rename] Renaming type parameter also renames arguments of the same name
+Build ID: I20090515-1143
+java.version=1.6.0_13
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+Steps To Reproduce:
+1.
+Create a class like:
+class Badger<Queue>
+{
+void bar(Queue Queue)
+{
+Queue.notify();
+}
+}
+2.
+ Place the cursor in <Queue> and trigger a rename (alt+shift+r
+3.
+Change it to "Foo".
+ Note that, in the preview, the method declaration line reads: void bar(Bar Queue)
+4.
+ Press enter to apply it.
+5.
+ All instances of Queue in the file will have been replaced with Bar, so it will now read:
+class Badger<Bar>
+{
+void bar(Bar Bar)
+{
+Bar.notify();
+}
+}
+Surely only the ones shown in the preview should be renamed?

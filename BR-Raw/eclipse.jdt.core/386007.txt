@@ -1,0 +1,15 @@
+Bug 386007 – [1.8][compiler] Need Junit suite for Java8 tests alone.
+BETA_JAVA8:
+We need a smoke testsuite  for Java 8 work that will run only the Java8
+tests.
+This is so we can quickly test our changes to make sure none of
+the new functionality is broken as we are churning the code.
+The new suite could be RunAllJava8Tests:
+It should run:
+LambdaExpressionSyntaxTest
+ReferenceExpressionSyntaxTest
+TypeAnnotationSyntaxTest
+DefaultMethodsTest
+NegativeLambdaExpressionsTest
+NegativeTypeAnnotationTest
+ComplianceDiagnoseTest

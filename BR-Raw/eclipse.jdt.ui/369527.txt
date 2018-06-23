@@ -1,0 +1,16 @@
+Bug 369527 – Potential NPEs in JDT UI code
+master branch
+Potential null pointer access: The field fGeneratedAnnotations may be null at this location	CompilationUnitDocumentProvider.java	/org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor	line 744
+The code does look wrong to me
+private void stopCollectingProblems() {
+if (fGeneratedAnnotations != null)
+removeAnnotations(fGeneratedAnnotations, true, true);
+fGeneratedAnnotations.clear();   //warning
+}
+Potential null pointer access: The field fLeaveDelegateCheckBox may be null at this location	MoveInstanceMethodWizard.java	/org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring	line 259
+Similar code pattern as above
+fLeaveDelegateCheckBox= //something
+if (fLeaveDelegateCheckBox != null) {
+// lots of code here
+}			fProcessor.setInlineDelegator(!fLeaveDelegateCheckBox.getSelection()); //warning
+fProcessor.setRemoveDelegator(!fLeaveDelegateCheckBox.getSelection());

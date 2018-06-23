@@ -1,0 +1,2 @@
+ui/org.eclipse.ui.views.log/META-INF/MANIFEST.MF
+ui/org.eclipse.ui.views.log/src/org/eclipse/ui/internal/views/log/LogView.java

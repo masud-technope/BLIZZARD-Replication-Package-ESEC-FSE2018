@@ -1,0 +1,10 @@
+Bug 344552 – Source tabs not cleared when project is closed
+Build Identifier: M20100211-1343
+When a project is opened, Problems, Javadoc & Declarations display the relevant data.
+If the project is closed, these tab fields are not cleared and the (now irrelevant) data remains displayed.
+It remains displayed even if the project is deleted (from the Edit menu).
+Reproducible: Always
+Steps to Reproduce:
+1.create a new project
+2.Close it from Project menu
+3.Delete it from the Edit menu

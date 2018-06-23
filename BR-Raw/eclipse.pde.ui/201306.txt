@@ -1,0 +1,6 @@
+Bug 201306 – XMLErrorReporter makes deprecated calls
+org.eclipse.pde.internal.core.builders.XMLErrorReporter.java
+Severity and Description	Path	Resource	Location	Creation Time	Id
+The method connect(IPath, IProgressMonitor) from the type IFileBufferManager is deprecated	org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders	XMLErrorReporter.java	line 94	1188224977953	132716
+The method disconnect(IPath, IProgressMonitor) from the type IFileBufferManager is deprecated	org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders	XMLErrorReporter.java	line 96	1188224977953	132718
+The method getTextFileBuffer(IPath) from the type ITextFileBufferManager is deprecated	org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders	XMLErrorReporter.java	line 95	1188224977953	132717

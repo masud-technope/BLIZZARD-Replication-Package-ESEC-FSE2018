@@ -1,0 +1,11 @@
+Bug 134426 – double warning messages in product editor
+3.2 M6
+Create an empty product file.
+Go to the Branding page.
+Click on any image link (eg.
+the one in the About section)
+You get a warning saying that a path to an existing file must be provided.
+Fine.
+ dismiss the dialog.
+You get another one saying that the specified image could not be found.
+The second warning is not fine.

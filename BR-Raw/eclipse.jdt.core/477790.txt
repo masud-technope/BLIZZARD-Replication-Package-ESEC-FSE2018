@@ -1,0 +1,6 @@
+Bug 477790 – Change usage of SubProgressMonitor to SubMonitor in org.eclipse.jdt.core
+SubProgressMonitor has bad performance characteristics and SubMonitor
+was offered 2007 as replacement for it.
+Platform recently deprecated
+SubProgressMonitor and continues to improve performance of SubMonitor
+See Bug 475767, Bug 475785 and Bug 475747 for details.

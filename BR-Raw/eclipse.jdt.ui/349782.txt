@@ -1,0 +1,21 @@
+Bug 349782 – [quick assist] "Convert to enhanced for loop" isn't available for loops over array with prefix increment
+Build Identifier: M20110210-1200
+public static void main(String[] args)
+{
+for (int i = 0; i < args.length; ++i) { // "Convert to enhanced for loop" refactoring should be available on this line
+String arg = args[i];
+System.out.println(arg);
+}
+for (int i = 0; i < args.length; ++i) {
+String arg = args[i];
+System.out.println(arg);
+}
+}
+Reproducible: Always
+Steps to Reproduce:
+1.
+Paste example function to some class.
+2.
+Open suggestion window on for loop header (Ctrl-1).
+3.
+Expected: "Convert to enhanced for loop" command is in list of suggestions, actual: It isn't.

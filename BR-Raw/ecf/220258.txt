@@ -1,0 +1,2 @@
+Bug 220258 – Download jobs should show download speed
+While playing with p2 3.4M5 today I noticed that it would be cool to show the current download speed when the progress view is open and showing the download job.

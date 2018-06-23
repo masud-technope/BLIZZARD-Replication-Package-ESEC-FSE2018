@@ -1,0 +1,11 @@
+Bug 65738 – [builder] Build automatically happens only on every other save
+After about the 2nd or 3rd time doing a save after starting Eclipse, I notice
+that automatic builds only happen every other time that I do a save.
+So, if I make a change to a CU, and save, an automatic build occurs.
+ If I
+then make a change to the same or another CU (regardless of whether in the
+same project), a build does not occur.
+ Making a third change to a CU (again,
+regardless of which one), causes a build to occur for both the second and
+third CU.
+I'm running RC1.

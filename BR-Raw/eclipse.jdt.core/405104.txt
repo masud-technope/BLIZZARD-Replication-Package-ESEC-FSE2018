@@ -1,0 +1,3 @@
+Bug 405104 – [1.8][compiler][codegen] Implement support for serializeable lambdas
+BETA_JAVA8:
+This ER will be used to implement track support for serializeable lambdas.

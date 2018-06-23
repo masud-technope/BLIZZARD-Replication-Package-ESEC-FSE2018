@@ -1,0 +1,28 @@
+Bug 334480 – [quick fix] create method incorrectly makes static method when called from inner class in static method
+Build Identifier: M20100909-0800
+Consider Following Java class 'Foo'
+public class Foo {
+public static void bar(final Foo f) {
+new Object() {
+void foo() {
+f.foobar(); // invoke quick fix here
+}
+};
+}
+}
+When you execute the quick fix "Create method 'foobar()' in type 'Foo'", eclipse makes a static method in Foo:
+protected static void foobar() {
+// TODO Auto-generated method stub
+}
+A non-static method would be correct as we are invoking foobar explicitly on an instance of Foo.
+So the correct method in Foo would be
+protected void foobar() {
+// TODO Auto-generated method stub
+}
+Note: If bar is non-static, the correct method is already made by the quick fix.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Create class Foo as given in the description
+2.
+Invoke the create method quick fix

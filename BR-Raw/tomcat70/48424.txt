@@ -1,0 +1,5 @@
+48424 – Keep same logic for creating the objectnames for connector mbeans
+Currently, for connector MBeans, they are registered and unregistered by Connector classes themselves.
+But in the ServerLifecycle and MBeanUtils, there are also codes for unregistering the connector MBeans.
+Suppose it is used for double check ?
+The question is that the codes for creating connector object name are not same, in the MBeanUtils, it always assume that address property is of String type, sometimes that a ClassCastException would be thrown.

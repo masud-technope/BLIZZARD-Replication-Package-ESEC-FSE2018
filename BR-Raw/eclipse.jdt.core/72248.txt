@@ -1,0 +1,24 @@
+Bug 72248 – [1.5] StackOverflowError caused by methods type variable
+build I20040817 + head
+1) launch eclipse
+2) open java perspective
+3) create a java project P
+4) create a class X.java
+public class X {
+<T> T foo(){return null;}
+}
+5) close eclipse
+6) relaunch
+an exception occurs
+java.lang.StackOverflowError
+at org.eclipse.jdt.core.dom.TypeBinding.isLocal(TypeBinding.java:301)
+at org.eclipse.jdt.core.dom.TypeBinding.getKey(TypeBinding.java:457)
+at org.eclipse.jdt.core.dom.MethodBinding.getKey
+(MethodBinding.java:162)
+at org.eclipse.jdt.core.dom.TypeBinding.getKey(TypeBinding.java:512)
+at org.eclipse.jdt.core.dom.MethodBinding.getKey
+(MethodBinding.java:162)
+at org.eclipse.jdt.core.dom.TypeBinding.getKey(TypeBinding.java:512)
+at org.eclipse.jdt.core.dom.MethodBinding.getKey
+(MethodBinding.java:162)
+at ...

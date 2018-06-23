@@ -1,0 +1,7 @@
+Bug 197745 – [IRC] Hyperlink support for IRC channels within the IRC UI
+For example, say you see this in the IRC UI:
+(23:31:10) irc.freenode.net: whois pombreda
+(23:31:10) irc.freenode.net: pombreda@c-71-204-153-28.hsd1.ca.comcast.net
+(23:31:10) irc.freenode.net: channels: #fedora-java #gentoo-java #trac #seagull #udig #weblogic-eclipse #jfire #rssowl #jbosstools #eclipse-ecf #phpeclipse #eclipse-dev #easyeclipse #eclipse #eclipse-commits
+It would be nice to ctrl+click those and join a channel within your existing connection.
+I'm marking this as bugday but this one may be a bit tricky.

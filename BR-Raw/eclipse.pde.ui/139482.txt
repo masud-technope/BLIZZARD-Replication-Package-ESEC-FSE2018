@@ -1,0 +1,48 @@
+Bug 139482 – Launch Configuration adds unneccesary plugins
+Eclipse 3.2 RC2.
+ I have the RCP delta pack installed in my target (same as host).
+1.
+ I create a new "Eclipse Application" launch configuration based on a "product" (i.e an RCP application).
+2.
+ On the "Plug-ins" tab I select "Choose plug-ins and fragments to launch from the list".
+3.
+ I tick my plug-in and the click the "Add Required Plug-ins" button.
+Result - unnecessary plugins from the Delta pack are checked.
+ Pressing the "Validate Plug-in Set" reveals which ones have been added.
+ For example:
+Fragment "org.eclipse.filesystem.hpux.PA_RISC" will be disabled
+Fragment "org.eclipse.filesystem.linux.x86" will be disabled
+Fragment "org.eclipse.filesystem.linux.x86_64" will be disabled
+Fragment "org.eclipse.filesystem.macosx" will be disabled
+......
+Fragment "org.eclipse.swt.macosx" will be disabled
+.....
+....
+etc
+This is annoying because if I ignore this, then when I actually run my RCP application these errrors are written to the error log in the runtime workspace.
+ I like to keep an eye on this error log but it becomes cluttered now with stuff like:
+!SESSION 2006-05-01 12:52:40.781 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.5.0_06
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_GB
+Framework arguments:  -product org.tencompetence.ldauthor.product
+Command-line arguments:  -product org.tencompetence.ldauthor.product -data @noDefault -dev file:D:/eclipse 3.2/workspace/.metadata/.plugins/org.eclipse.pde.core/LDAuthor/dev.properties -os win32 -ws win32 -arch x86
+!ENTRY org.eclipse.osgi 2 0 2006-05-01 12:52:42.859
+!MESSAGE The following is a complete list of bundles which are not resolved, see the prior log entry for the root cause if it exists:
+!SUBENTRY 1 org.eclipse.osgi 2 0 2006-05-01 12:52:42.859
+!MESSAGE Bundle update@links/rcp-delta-pack/eclipse/plugins/org.eclipse.core.filesystem.hpux.PA_RISC_1.0.0.v20051114.jar [152] was not resolved.
+!SUBENTRY 2 org.eclipse.core.filesystem.hpux.PA_RISC 2 0 2006-05-01 12:52:42.859
+!MESSAGE Platform filter did not match: (& (osgi.os=hpux) (osgi.arch=PA_RISC))
+!SUBENTRY 2 org.eclipse.core.filesystem.hpux.PA_RISC 2 0 2006-05-01 12:52:42.859
+!MESSAGE Missing Constraint: Fragment-Host: org.eclipse.core.filesystem; bundle-version="[1.0.0,2.0.0)"
+!SUBENTRY 1 org.eclipse.osgi 2 0 2006-05-01 12:52:42.859
+!MESSAGE Bundle update@links/rcp-delta-pack/eclipse/plugins/org.eclipse.core.filesystem.linux.x86_1.0.0.v20051114.jar [153] was not resolved.
+!SUBENTRY 2 org.eclipse.core.filesystem.linux.x86 2 0 2006-05-01 12:52:42.859
+!MESSAGE Platform filter did not match: (& (osgi.os=linux) (osgi.arch=x86))
+.....
+.....
+etc....
+The workaround is to manually untick all these extraneous plug-in entries in the Launch Configuration, which is a pain every time you need to do the "Add Required Plug-ins" thing.
+Can this be fixed?  :-)
+PB

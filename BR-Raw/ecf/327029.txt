@@ -1,0 +1,33 @@
+Bug 327029 – [r-OSGi][RemoteSrvs] Smart Proxy cannot delegate to original method
+A r-OSGi smart proxy [0] allows to intercept methods called on the generated service proxy on the consumer side.
+E.g.
+public abstract class SmartProxyService implements IFooService {
+/* (non-Javadoc)
+* @see o.e.ecf.IFooService#foo()
+*/
+public boolean foo() {
+return false;
+}
+}
+foo() overwrites the method declaration in IFooService.
+Unfortunately, r-OSGi does not support calling the original IFooService#foo() method from within the smart proxy, because it's not possible to get hold of the IFooService instance, e.g.:
+public abstract class SmartProxyService implements IFooService {
+/* (non-Javadoc)
+* @see o.e.ecf.IFooService#foo()
+*/
+public boolean foo() {
+return anIFooService.foo();
+}
+}
+Instead I have added functionality to declare a stub method inside the SmartProxyService that is dispatched to the original IFooService#foo() method at runtime.
+For this work, the stub method has to be abstract, declare the same signature, but prepend the original method name with "_rosgi" and the first character capitalized:
+public abstract class SmartProxyService implements IFooService {
+public abstract boolean _rosgiFoo();
+/* (non-Javadoc)
+* @see o.e.ecf.IFooService#foo()
+*/
+public boolean foo() {
+return _rosgiFoo();
+}
+}
+[0] http://r-osgi.sourceforge.net/advanced.html

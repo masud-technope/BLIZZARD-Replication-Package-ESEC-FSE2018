@@ -1,0 +1,6 @@
+Bug 135976 – Enhance PDE support for extension points specifying a namespace
+The runtime has included support for extension points specifying a namespace other than the contributing plugin's id (bug 112856).
+Currently, PDE's extension point wizard does not allow the user to type in a '.' in the id field.
+ Also, PDE puts an error on the plugin.xml that uses an extension with a namespace other than the plugin id.
+ It warns of an "Unknown extension point".
+These are two examples of areas where we might modify PDE to make it more user friendly to utilize new runtime functionality.

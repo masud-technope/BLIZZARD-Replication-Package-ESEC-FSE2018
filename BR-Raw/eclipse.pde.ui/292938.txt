@@ -1,0 +1,14 @@
+Bug 292938 – "Open extension point schema" link fails in plugin.xml editor
+User-Agent:       Opera/9.80 (Windows NT 5.1; U; de) Presto/2.2.15 Version/10.00
+Build Identifier: 20090619-0625
+In the plugin.xml editor the link "Open extension point schema" does not work under conditions described in steps to reproduce.
+A warning message is presented: "Extension point schema for extension point <extpointname> cannot be found." (where <extpointname> is the name of the new extension point enclosed in quotes)
+Also tested under Windows 2000, maybe all platforms are affected.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Add a new extension point in the plugin.xml editor in tab "Extension Points" (keep the "Edit extension point schema when done" checked) -> the extension point schema editor opens fine and is activated
+2.
+Close the extension point schema editor without doing any changes to the schema -> the plugin.xml editor is activate again
+3.
+Try to open extension point schema using the link "Open extension point schema" -> warning message, schema editor does not open

@@ -1,0 +1,3 @@
+Bug 121245 – New fragment dialog exposes old notion for matching rules
+When you create a new fragment, the dialog talks to you about the match rule for the plug-in in terms of "equivalent", "compatible", etc...
+whereas it should be a range.

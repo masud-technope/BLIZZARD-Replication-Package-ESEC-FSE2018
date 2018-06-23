@@ -1,0 +1,7 @@
+Bug 332489 – [quick assist] 'exchange left and right operands' for comparison operators changes semantics
+Fix for Bug 149803 was not good.
+The right fix should do the following
+if(a > b)  --> if(b < a)
+if(a >= b) --> if(b <= a)
+if(a < b)  --> if(b > a)
+if(a <= b) --> if(b >= a)

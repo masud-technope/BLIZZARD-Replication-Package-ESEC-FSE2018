@@ -1,0 +1,3 @@
+Bug 258135 – Confirm Delete package dialog: 'Delete subpackages' should have focus
+I20081209-0100.
+The 'Delete subpackages' check box in the 'Confirm Delete' package dialog should have focus otherwise hitting Space bar to toggle the check box starts the deletion.

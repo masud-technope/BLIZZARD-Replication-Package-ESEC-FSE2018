@@ -1,0 +1,16 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractMethodWorkSpace/ExtractMethodTests/duplicates_in/A_test988.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractMethodWorkSpace/ExtractMethodTests/duplicates_in/A_test989.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractMethodWorkSpace/ExtractMethodTests/duplicates_out/A_test988.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractMethodWorkSpace/ExtractMethodTests/duplicates_out/A_test989.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ExtractMethodTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/ExtractMethodRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/SnippetFinder.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/code/ExtractMethodInputPage.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractMethodWorkSpace/ExtractMethodTests/duplicates_in/A_test988.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractMethodWorkSpace/ExtractMethodTests/duplicates_in/A_test989.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractMethodWorkSpace/ExtractMethodTests/duplicates_out/A_test988.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractMethodWorkSpace/ExtractMethodTests/duplicates_out/A_test989.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ExtractMethodTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/ExtractMethodRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/SnippetFinder.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/code/ExtractMethodInputPage.java

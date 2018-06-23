@@ -1,0 +1,7 @@
+Bug 226951 – Builder should use analyser, and create its own markers
+Doing some introspection on our builder while fixing bug 226745, there are a few things we could probably change.
+Currently we have a problem reporter that is used for each instance of our builder, which accepts problems and once the build is done creates markers (as needed).
+This works well, but is not quite as flexible as we could be.
+For example, if we used the notion of an analyser that could do all of the api analysis, create problems, etc.
+and when the build is done give the problems back to the builder to create markers (as needed).
+This way clients (if there are any in the future) could provide their own analyser and all we do is call it in a consistent way and create markers (if any) once the builder is done.

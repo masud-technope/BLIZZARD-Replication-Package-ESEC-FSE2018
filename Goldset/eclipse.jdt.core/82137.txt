@@ -1,0 +1,4 @@
+org.eclipse.jdt.core/codeassist/org/eclipse/jdt/internal/codeassist/SelectionEngine.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ResolveTests_1_5.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/SelectionRequestor.java

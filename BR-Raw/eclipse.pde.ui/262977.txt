@@ -1,0 +1,10 @@
+Bug 262977 – NPE editing external site.xml
+Drag and drop an external site.xml into the editor area.
+Get an NPE:
+ception
+at org.eclipse.pde.internal.ui.editor.site.SiteEditor.createSystemFileContexts(SiteEditor.java:93)
+at org.eclipse.pde.internal.ui.editor.PDEFormEditor.createInputContexts(PDEFormEditor.java:205)
+at org.eclipse.pde.internal.ui.editor.PDEFormEditor.createPages(PDEFormEditor.java:243)
+at org.eclipse.ui.part.MultiPageEditorPart.createPartControl(MultiPageEditorPart.java:329)
+at org.eclipse.ui.internal.EditorReference.createPartHelper(EditorReference.java:678)
+at org.eclipse.ui.internal.EditorReference.createPart(EditorReference.java:444)

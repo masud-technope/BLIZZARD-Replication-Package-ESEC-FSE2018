@@ -1,0 +1,3 @@
+Bug 427199 – [1.8][resource] avoid resource leak warnings on Streams that have no resource
+The new type java.util.stream.Stream extends AutoCloseable, although in many cases these do not hold a reference to any resource that would *require* closing.
+To avoid uninteresting warnings, our leak analysis should generally white list Stream (no warnings if not closed), and add special treatment for API which are known to produce a Stream that indeed holds GC resistant resources, in particular: all static methods in java.nio.file.Files that return a java.util.stream.Stream.

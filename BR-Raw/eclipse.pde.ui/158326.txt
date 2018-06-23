@@ -1,0 +1,34 @@
+Bug 158326 – Opening build.properties for big plug-in locks UI for 45s and flashes cursor
+I20060922-0010
+Opening build.properties for a big plug-in locks the UI for 45+ seconds and heavily flashes the cursor beween busy and normal.
+- open /org.eclipse.jdt.ui.tests.refactoring/build.properties
+- go to 'Build' page
+Trace taken while blocked (looks like CheckboxTreeViewer creates children eagerly):
+"main" prio=6 tid=0x00280048 nid=0x6bec runnable [0x0007e000..0x0007fc40]
+at org.eclipse.swt.internal.win32.OS.CallWindowProcW(Native Method)
+at org.eclipse.swt.internal.win32.OS.CallWindowProc(OS.java:1883)
+at org.eclipse.swt.widgets.Tree.callWindowProc(Tree.java:1321)
+at org.eclipse.swt.widgets.Control.windowProc(Control.java:3340)
+at org.eclipse.swt.widgets.Tree.windowProc(Tree.java:4889)
+at org.eclipse.swt.widgets.Display.windowProc(Display.java:4059)
+at org.eclipse.swt.internal.win32.OS.SendMessageW(Native Method)
+at org.eclipse.swt.internal.win32.OS.SendMessage(OS.java:2630)
+at org.eclipse.swt.widgets.Tree.createItem(Tree.java:1820)
+at org.eclipse.swt.widgets.TreeItem.<init>(TreeItem.java:195)
+at org.eclipse.swt.widgets.TreeItem.<init>(TreeItem.java:153)
+at org.eclipse.jface.viewers.TreeViewer.createNewRowPart(TreeViewer.java:932)
+at org.eclipse.jface.viewers.TreeViewer.newItem(TreeViewer.java:450)
+at org.eclipse.jface.viewers.AbstractTreeViewer.createTreeItem(AbstractTreeViewer.java:796)
+at org.eclipse.jface.viewers.AbstractTreeViewer$1.run(AbstractTreeViewer.java:775)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:67)
+at org.eclipse.jface.viewers.AbstractTreeViewer.createChildren(AbstractTreeViewer.java:749)
+at org.eclipse.jface.viewers.TreeViewer.createChildren(TreeViewer.java:774)
+at org.eclipse.jface.viewers.CheckboxTreeViewer.setCheckedChildren(CheckboxTreeViewer.java:404)
+at org.eclipse.jface.viewers.CheckboxTreeViewer.setCheckedChildren(CheckboxTreeViewer.java:412)
+at org.eclipse.jface.viewers.CheckboxTreeViewer.setCheckedChildren(CheckboxTreeViewer.java:412)
+at org.eclipse.jface.viewers.CheckboxTreeViewer.setSubtreeChecked(CheckboxTreeViewer.java:556)
+at org.eclipse.pde.internal.ui.editor.build.BuildContentsSection$4.run(BuildContentsSection.java:313)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:123)
+- locked <0x1b6f5798> (a org.eclipse.swt.widgets.RunnableLock)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3367)

@@ -1,0 +1,17 @@
+Bug 420582 – [1.8][compiler] Compiler should allow creation of generic array creation with unbounded wildcard type arguments
+BETA_JAVA8:
+// --
+interface I {
+X<?, ?, ?>[] makeArray(int i);
+}
+public class X<T, U, V> {
+public static void main(String [] args) {
+I i = X<?, ?, ?>[]::new; // OK.
+i = X<String, Integer, ?>[]::new; // ! OK
+X<?, ?, ?> [] a = new X<?, ?, ?>[10]; // OK
+a = new X<String, Integer, ?>[10]; // ! OK
+System.out.println(i.makeArray(1024).length);
+}
+}
+We reject the first line tagged as OK, we should allow it.
+Fix is trivial, will follow shortly.

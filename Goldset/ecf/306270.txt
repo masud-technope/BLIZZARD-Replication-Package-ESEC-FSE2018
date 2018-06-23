@@ -1,0 +1,2 @@
+protocols/bundles/org.eclipse.ecf.protocol.msn/src/org/eclipse/ecf/protocol/msn/NotificationSession.java
+protocols/bundles/org.eclipse.ecf.protocol.msn/src/org/eclipse/ecf/protocol/msn/internal/encode/MD5HashImpl.java

@@ -1,0 +1,6 @@
+java.lang.invoke.CallSite.makeSite
+java.lang.invoke.MethodHandleNatives.linkCallSite
+MainTest.main
+java.lang.invoke.AbstractValidatingLambdaMetafactory.validateMetafactoryArgs
+java.lang.invoke.LambdaMetafactory.metafactory
+java.lang.invoke.CallSite.makeSite

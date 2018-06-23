@@ -1,0 +1,6 @@
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/smack/ECFConnection.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/provider/xmpp/XMPPSContainer.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/Messages.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/messages.properties
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/provider/xmpp/XMPPContainer.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/provider/xmpp/XMPPSContainer.java

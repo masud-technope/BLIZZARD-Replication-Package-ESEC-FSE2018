@@ -1,0 +1,28 @@
+Bug 56252 – [Generic Console] no support for enabled/disabled lifecycles
+Currently there is no support in the console API for consoles that are enabled
+and disabled by the user.
+First, I'll explain why this is important for the
+CVS console then explain which console APIs that get in the way of having
+extended lifecycles.
+Writting to a console is expensive and more so when there is a high volume of
+output generated.
+With the CVS console we prefer to have the console disabled
+unless the user decides to see the output of a specific command.
+Previously,
+the lifecycle was embedded in the opening/closing of the CVS Console View.
+This workflow has changed, and instead I've had to add a preference to the CVS
+console page to enable/disable the console.
+It seems un-intuitive that the
+generic console isn't the place where I can enable/disable a console.
+On a
+side note, we also buffer output when the console is disabled so that when it
+is enabled we have a small history to show the user.
+This is useful for using
+the console when an error occurs, looking at the output, then closing the view.
+Specific problems with the current consoles API:
+1.
+Lifecycle in AbstractConsole is short lived.
+A console is not meant to be
+added to the console manager after it has been disposed.
+2.
+There is no UI support for enabled/disabled consoles.

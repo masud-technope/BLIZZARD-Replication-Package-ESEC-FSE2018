@@ -1,0 +1,12 @@
+org.apache.catalina.core.ContainerBase.removeChild
+org.apache.catalina.startup.HostConfig.undeployApps
+org.apache.catalina.startup.HostConfig.stop
+org.apache.catalina.startup.HostConfig.lifecycleEvent
+org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent
+org.apache.catalina.core.ContainerBase.stop
+org.apache.catalina.core.ContainerBase.stop
+org.apache.catalina.core.StandardEngine.stop
+org.apache.catalina.core.StandardService.stop
+org.apache.catalina.core.StandardServer.stop
+org.apache.catalina.startup.Catalina.stop
+org.apache.catalina.startup.Catalina$CatalinaShutdownHook.run

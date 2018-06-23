@@ -1,0 +1,26 @@
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/reorg/IReorgDestination.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/reorg/ReorgMoveWizard.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ccp/CopyTest.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/reorg/IReorgPolicy.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/dnd/JdtViewerDropAdapter.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/reorg/IReorgDestinationValidator.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/packageview/FileTransferDropAdapter.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/reorg/ReorgDestinationFactory.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ValidateEditTests.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/dnd/ViewerInputDropAdapter.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/reorg/JavaCopyProcessor.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/reorg/AbstractMoveCompilationUnitPrefTest.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ccp/MoveTest.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/reorg/ReorgMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/navigator/JavaDropAdapterAssistant.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/reorg/ReorgCopyWizard.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/packageview/SelectionTransferDropAdapter.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ccp/MultiMoveTest.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/reorg/DestinationContentProvider.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/reorg/ReorgMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/packageview/WorkingSetDropAdapter.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/reorg/ReorgCopyStarter.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/reorg/PasteAction.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/reorg/ReorgPolicyFactory.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/reorg/ReorgMoveStarter.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/reorg/JavaMoveProcessor.java

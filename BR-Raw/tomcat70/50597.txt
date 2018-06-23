@@ -1,0 +1,27 @@
+50597 – Class.newInstance is used for Dynamic instance filters causing InstantiationException
+Class.newInstance is called even when the following method ServletContext.addFilter method is called:
+javax.servlet.FilterRegistration.Dynamic addFilter(java.lang.String s, javax.servlet.Filter filter);
+This leads to an InstantiationException at runtime if there is no no-args constructor for the filter (pasted below).
+I'll supply a simple patch that fixes the issue for me.
+SEVERE: Exception starting filter testFilter
+java.lang.InstantiationException: test.TestFilter
+at java.lang.Class.newInstance0(Class.java:340)
+at java.lang.Class.newInstance(Class.java:308)
+at org.apache.catalina.core.DefaultInstanceManager.newInstance(DefaultIn
+stanceManager.java:119)
+at org.apache.catalina.core.ApplicationFilterConfig.getFilter(Applicatio
+nFilterConfig.java:252)
+at org.apache.catalina.core.ApplicationFilterConfig.setFilterDef(Applica
+tionFilterConfig.java:372)
+at org.apache.catalina.core.ApplicationFilterConfig.<init>(ApplicationFi
+lterConfig.java:98)
+at org.apache.catalina.core.StandardContext.filterStart(StandardContext.
+java:4382)
+at org.apache.catalina.core.StandardContext$2.call(StandardContext.java:
+5040)
+at org.apache.catalina.core.StandardContext$2.call(StandardContext.java:5035)
+at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:303)
+at java.util.concurrent.FutureTask.run(FutureTask.java:138)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:662)

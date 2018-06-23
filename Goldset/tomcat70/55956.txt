@@ -1,0 +1,9 @@
+java/org/apache/catalina/Globals.java
+java/org/apache/catalina/filters/RemoteIpFilter.java
+java/org/apache/catalina/manager/StatusTransformer.java
+java/org/apache/catalina/valves/RemoteIpValve.java
+java/org/apache/coyote/Constants.java
+java/org/apache/coyote/RequestInfo.java
+webapps/docs/changelog.xml
+webapps/docs/config/filter.xml
+webapps/docs/config/valve.xml

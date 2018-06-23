@@ -1,0 +1,10 @@
+Bug 225199 – Translation Clarification - org.eclipse.ecf.provider.filetransfer
+Build ID: I20080401
+Steps To Reproduce:
+In the file:
+eclipse\plugins\org.eclipse.ecf.provider.filetransfer\org\eclipse\ecf\internal\provider\filetransfer\messages.properties
+We came across the following sentences:
+{0} for protocol {1} from {2} will be ignored.
+{0} for {1} from {2} has invalid priority {3}.
+Could you please provide us with more information regarding what the variables ({0}, {1},{2} & {3}) mentioned above stand for?
+More information:

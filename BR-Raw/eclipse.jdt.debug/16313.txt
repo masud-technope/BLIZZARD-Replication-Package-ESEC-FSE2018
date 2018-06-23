@@ -1,0 +1,47 @@
+Bug 16313 – NPE out of StandardSourcePathProvider
+On the latest code I get the following attempting a launch.
+The launch is successful.
+!STACK 1
+org.eclipse.core.runtime.CoreException[5013]: java.lang.NullPointerException
+at org.eclipse.jdt.launching.StandardSourcePathProvider.resolveClasspath
+(StandardSourcePathProvider.java:60)
+at org.eclipse.jdt.launching.JavaRuntime.resolveSourceLookupPath
+(JavaRuntime.java:605)
+at
+org.eclipse.jdt.launching.sourcelookup.JavaSourceLocator.initializeDefaults
+(JavaSourceLocator.java:299)
+at org.eclipse.jdt.debug.ui.JavaUISourceLocator.initializeDefaults
+(JavaUISourceLocator.java:240)
+at
+org.eclipse.debug.internal.core.LaunchConfiguration.initializeSourceLocator
+(LaunchConfiguration.java:170)
+at org.eclipse.debug.internal.core.LaunchConfiguration.launch
+(LaunchConfiguration.java:152)
+at
+org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationDialog$10.
+run(LaunchConfigurationDialog.java:2152)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run
+(ModalContext.java:98)
+!ENTRY org.eclipse.debug.ui 4 5013 5/17/02 4:06 PM
+!MESSAGE Exception occurred while launching
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.jdt.launching.StandardSourcePathProvider.resolveClasspath
+(StandardSourcePathProvider.java:60)
+at org.eclipse.jdt.launching.JavaRuntime.resolveSourceLookupPath
+(JavaRuntime.java:605)
+at
+org.eclipse.jdt.launching.sourcelookup.JavaSourceLocator.initializeDefaults
+(JavaSourceLocator.java:299)
+at org.eclipse.jdt.debug.ui.JavaUISourceLocator.initializeDefaults
+(JavaUISourceLocator.java:240)
+at
+org.eclipse.debug.internal.core.LaunchConfiguration.initializeSourceLocator
+(LaunchConfiguration.java:170)
+at org.eclipse.debug.internal.core.LaunchConfiguration.launch
+(LaunchConfiguration.java:152)
+at
+org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationDialog$10.
+run(LaunchConfigurationDialog.java:2152)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run
+(ModalContext.java:98)

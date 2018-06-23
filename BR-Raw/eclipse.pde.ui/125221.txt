@@ -1,0 +1,75 @@
+Bug 125221 – [doc] missing context help
+There are many instances in PDE (well, not just PDE) where there is no context help available - it is either just not there or we get the default parent help like for the new or import/export wizards.
+This will become more apparent once the help button is added to dialogs.
+Here are some examples as I was going through..
+but this list is not complete:
+Preferences:
+Target platform page:
+Target Profiles section (bottom):
+Profile link -> resulting dialog
+Browse...
+-> resulting dialog
+Launching Arguments tab:
+Variables...:
+resulting dialog
+Edit Variables...
+-> New...
+-> resulting dialog
+Configure...
+-> resulting dialog
+Implicit Dependencies tab:
+Add...
+-> resulting dialog
+Views:
+Error Log:
+Right click -> Event Details -> resulting dialog
+View menu -> Filters...
+-> resulting dialog
+Plug-in Dependencies:
+Right click -> Focus On...
+-> resulting dialog
+Editors:
+plugin.xml editor:
+Overview tab:
+Browse...
+-> resulting dialog
+Add..
+-> resulting dialog
+Dependencies tab:
+both Add..
+buttons -> resulting dialog
+both Properties...
+buttons -> resulting dialog
+Runtime tab:
+all Add...
+buttons -> resulting dialog
+Properties...
+-> resulting dialog
+New...
+-> resulting dialog
+Extension points tab:
+Browse...
+-> resulting dialog
+Wizards:
+New:
+Extension Point Schema:
+Extensino Point Schema Properties (first page) -> Browse...
+-> resulting dialog (both buttons)
+Feature Patch:
+Patch Properties (page 2) -> Browse...
+-> resulting dialog
+Fragment Project:
+Fragment Content (page 2) -> Browse...
+-> resulting dialog
+Plug-in from existing JAR file:
+Add..
+-> resulting dialog
+Product Configuration:
+wizard page
+Target Profile:
+wizard page
+Export:
+Eclipse product:
+main wizard page
+Browse...
+-> resulting dialog

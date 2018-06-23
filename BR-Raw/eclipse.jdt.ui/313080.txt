@@ -1,0 +1,3 @@
+Bug 313080 – SpellCheckingTest#test() runs very fast
+SpellCheckingTest#test() seems to run very fast on all platforms since it was added in Jan 2010.
+I suspect something is wrong as this test takes about 300ms on my machine.

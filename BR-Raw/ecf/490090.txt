@@ -1,0 +1,5 @@
+Bug 490090 – ClassCastException in SOContainerGroup when using SSLServerContainerGroup
+Created attachment 260446 [details]
+possible patch
+A ClassCastException occurs, when trying to connect a SSLClient (java.lang.ClassCastException: org.eclipse.ecf.provider.generic.SSLServerSOContainer cannot be cast to org.eclipse.ecf.provider.generic.TCPServerSOContainer).
+The problem is in line 153 of class SOContainerGroup: there is a hard cast from SOContainer to TCPServerSOContainer.

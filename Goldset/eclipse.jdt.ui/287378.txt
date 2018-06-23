@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/bugs_in/Test_287378.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/bugs_out/Test_287378.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/InlineMethodTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/SourceProvider.java

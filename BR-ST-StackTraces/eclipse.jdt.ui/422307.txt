@@ -1,0 +1,6 @@
+org.eclipse.jface.operation.ModalContext.run
+org.eclipse.ltk.internal.ui.refactoring.RefactoringWizardDialog2.run
+org.eclipse.ltk.ui.refactoring.RefactoringWizard.createChange
+org.eclipse.jdt.internal.corext.refactoring.code.InlineConstantRefactoring.getInitializer
+org.eclipse.jdt.internal.corext.refactoring.code.InlineConstantRefactoring.checkFinalConditions
+org.eclipse.ltk.core.refactoring.CheckConditionsOperation.run

@@ -1,0 +1,9 @@
+org.eclipse.jdt.debug.ui/plugin.xml
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/debug/ui/actions/package.html
+org.eclipse.jdt.debug.ui/plugin.properties
+org.eclipse.jdt.debug.ui/META-INF/MANIFEST.MF
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/debug/ui/actions/JavaBreakpointPropertiesRulerActionDelegate.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/ActionMessages.properties
+org.eclipse.jdt.debug.ui/component.xml
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/JavaBreakpointPropertiesRulerAction.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/JavaBreakpointPropertiesRulerActionDelegate.java

@@ -1,0 +1,9 @@
+Bug 125641 – Problems enabling AST with recovery
+20060129
+To get the AST with recovery enabled, I had to change the following lines:
+Compiler.java, line 274: change to 			this.options.performStatementsRecovery = statementsRecovery;
+CompilerOptions.java, line 730, comment out the test for OPTION_StatementsRecovery
+What could be a bug is
+ReconcileWorkingCopyOperation:makeConsistent
+The AST created created on this.ast = workingCopy.makeConsistent
+always has statement reconvery, even if not wanted.

@@ -1,0 +1,32 @@
+Bug 326377 – [content assist] Content assist for abstract class instantiation adds semicolon at wrong place
+I20100915-2024
+Given:
+public class E02 {
+public static abstract class Bar {
+public abstract void doBar();
+}
+public void foo() {
+addBar(new Bar|)
+}
+public void addBar(Bar bar) {
+}
+}
+1.
+Cursor where the '|' is
+2.
+Control space
+3.
+Select E02.Bar proposal
+IS:
+addBar(new Bar() {
+@Override
+public void doBar() {
+}
+};)
+Should:
+addBar(new Bar() {
+@Override
+public void doBar() {
+}
+});
+I think this might be a regression: I've never had that before.

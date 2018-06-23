@@ -1,0 +1,18 @@
+Bug 383358 – [convert local] The Quick Assist action is not offered when a use of a local var is selected
+Build id: 20120606-2254
+Quick Assist offers the action "Convert local variable to field" only when the declaration of a variable is selected not its use.
+In the following example, if the user selects variable 'a' in the declaration statement and presses CTRL+1, the Quick Assist menu will offer the "Convert local variable to field" action.
+However, if the user selects the variable 'a' where it's used in the `println` method, the Quick Assist menu will no longer offer the action.
+```
+public class C {
+public void main() {
+// "Convert local variable to field" is available for the following local variable declaration 'a'.
+int a = 1;
+// "Convert local variable to field" is unavailable for the following use of the local variable 'a'.
+System.out.println(a);
+}
+}
+```
+As part of the CodingSpectator study, we found that Quick Assist is a popular method of invoking refactorings <http://codingspectator.cs.illinois.edu/Blog/ProgrammersPreferContextAwareAndLightWeightMethodsOfInvokingAutomatedRefactorings>.
+Offering the "Convert local variable to field" action both at declaration and use sites of local variables makes this refactoring more accessible to programmers.
+Is excluding the "Convert local variable to field" action at use sites of local variables intentional?

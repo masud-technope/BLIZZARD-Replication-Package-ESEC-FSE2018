@@ -1,0 +1,6 @@
+org.eclipse.jdt.internal.ui.javaeditor.DocumentAdapter.getChar
+org.eclipse.jdt.internal.ui.search.JavaElementLine.<init>
+org.eclipse.jdt.internal.ui.search.OccurrencesSearchQuery.getLineElement
+org.eclipse.jdt.internal.ui.search.OccurrencesSearchQuery.run
+org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run
+org.eclipse.core.internal.jobs.Worker.run

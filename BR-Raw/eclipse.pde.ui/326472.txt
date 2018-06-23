@@ -1,0 +1,12 @@
+Bug 326472 – Can't remove missing plug-in through the Target Definition editor
+Build Identifier: 20100917-0705
+...
+Reproducible: Always
+Steps to Reproduce:
+1.
+delete a plug-in that is referenced from an existing target definition file
+2.
+upon opening that target definition, there is a notice that a "required plug-in could not be found"; deselect that plug-in in the "Content" tab and save
+3.
+re-open the target definition; the missing plug-in is selected again!
+Workaround: Open the target definition in a text editor and delete the line that references the missing plug-in.

@@ -1,0 +1,9 @@
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/core/ContainerFactory.java
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/core/ContainerFactory.java
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/internal/core/ECFPlugin.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/internal/provider/jslp/Activator.java
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/src/org/eclipse/ecf/tests/provider/discovery/CompositeDiscoveryContainerTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/src/org/eclipse/ecf/tests/provider/discovery/CompositeDiscoveryServiceContainerTest.java
+providers/bundles/org.eclipse.ecf.provider.discovery/src/org/eclipse/ecf/internal/provider/discovery/Activator.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/internal/provider/jmdns/JMDNSPlugin.java
+framework/bundles/org.eclipse.ecf.discovery.ui.model/src/org/eclipse/ecf/discovery/ui/model/ModelPlugin.java

@@ -1,0 +1,4 @@
+Bug 234342 – Improved retrieval of remote filename
+This patch will make the UrlConnectionRetrieveFileTransfer use the URL of the resolved connection as the last resort.
+This is different from the original URL since the connection in some cases automatically resolves redirects.
+This fix will make the UrlConnectionRetrieveFileTransfer behave the same as the HttpCLientConnectionRetrieveFileTransfer.

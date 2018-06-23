@@ -1,0 +1,36 @@
+Bug 481332 – [null] Inconsistent error reporting for annotated leaf type in generic method
+Using Eclipse 4.6-I20151029-1100.
+Passing a '@NonNull Object @Nullable []' to a method accepting '@Nullable T @Nullable []' reports an error.
+Passing a '@Nullable List<@NonNull String>' to a method accepting '@Nullable C container', where '<@Nullable T, C extends Iterable<T>>' does not report an error.
+Here is a snippet demonstrating this behavior.
+public void foo() {
+@Nullable
+List<@NonNull String> list = new ArrayList<>();
+checkNotNull(list); // OK
+@Nullable
+Map<@NonNull String, @NonNull String> map = new HashMap<>();
+checkNotNull(map); // OK
+@NonNull
+Object @Nullable [] objects = null;
+// Error: Null type mismatch (type annotations): required '@NonNull Object @NonNull[]' but this expression ...
+checkNotNull(objects);
+}
+public static <@Nullable T> T[] checkNotNull(T @Nullable [] array) {
+if (array == null) {
+throw new NullPointerException();
+}
+return array;
+}
+public static <@Nullable T, C extends Iterable<T>> C checkNotNull(@Nullable C container) {
+if (container == null) {
+throw new NullPointerException();
+}
+return container;
+}
+public static <@Nullable K, @Nullable V, M extends Map<K, V>> M checkNotNull(@Nullable M map) {
+if (map == null) {
+throw new NullPointerException();
+}
+return map;
+}
+I will also attach a sample project for convenience.

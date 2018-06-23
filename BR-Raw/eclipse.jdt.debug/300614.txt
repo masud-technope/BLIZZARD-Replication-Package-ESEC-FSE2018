@@ -1,0 +1,5 @@
+Bug 300614 – Hit count field too small in "Settings" detail pane
+I20100119-0800
+Enable details pane in Breakpoints view, select a Java breakpoint, Show Details As > Breakpoint Settings.
+On Cocoa, the text field for Hit Count is only a few pixels wide (less than a character).
+Looks OK on WinXP.

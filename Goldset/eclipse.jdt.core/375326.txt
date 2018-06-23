@@ -1,0 +1,4 @@
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/TryWithResourcesStatementTest.java
+org.eclipse.jdt.core/batch/org/eclipse/jdt/internal/compiler/batch/messages.properties
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/TryStatement.java

@@ -1,0 +1,48 @@
+Bug 29531 – JavaColorManager initialized in non UI thread
+Build I20030114
+- open Workspace
+- select CU without opening in editor
+- activate Move refactoring
+- select different package
+- press Preview
+Caused by: java.lang.NullPointerException
+at org.eclipse.jdt.internal.ui.text.JavaColorManager.getColor(JavaColorManager.java:53)
+at org.eclipse.jdt.internal.ui.text.JavaColorManager.getColor(JavaColorManager.java:85)
+at org.eclipse.jdt.internal.ui.text.AbstractJavaScanner.addToken(AbstractJavaScanner.java:90)
+at org.eclipse.jdt.internal.ui.text.AbstractJavaScanner.initialize(AbstractJavaScanner.java:75)
+at org.eclipse.jdt.internal.ui.text.java.JavaCodeScanner.<init>(JavaCodeScanner.java:126)
+at org.eclipse.jdt.ui.text.JavaTextTools.<init>(JavaTextTools.java:80)
+at org.eclipse.jdt.internal.ui.JavaPlugin.getJavaTextTools(JavaPlugin.java:316)
+at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitDocumentProvider.initializeDocument(CompilationUnitDocumentProvider.java:979)
+at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitDocumentProvider.createDocument(CompilationUnitDocumentProvider.java:994)
+at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitDocumentProvider$BufferFactory.internalGetDocument(CompilationUnitDocumentProvider.java:630)
+at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitDocumentProvider$BufferFactory.createBuffer(CompilationUnitDocumentProvider.java:646)
+at org.eclipse.jdt.internal.core.WorkingCopy.openBuffer(WorkingCopy.java:365)
+at org.eclipse.jdt.internal.core.Openable.getBuffer(Openable.java:192)
+at org.eclipse.jdt.internal.core.CompilationUnit.getContents(CompilationUnit.java:367)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:7095)
+at org.eclipse.jdt.internal.compiler.SourceElementParser.parseCompilationUnit(SourceElementParser.java:1051)
+at org.eclipse.jdt.internal.core.CompilationUnit.generateInfos(CompilationUnit.java:323)
+at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:77)
+at org.eclipse.jdt.internal.core.Openable.openWhenClosed(Openable.java:395)
+at org.eclipse.jdt.internal.core.Openable.open(Openable.java:346)
+at org.eclipse.jdt.internal.core.WorkingCopy.open(WorkingCopy.java:354)
+at org.eclipse.jdt.internal.core.CompilationUnit.getWorkingCopy(CompilationUnit.java:609)
+at org.eclipse.jdt.internal.core.CompilationUnit.getSharedWorkingCopy(CompilationUnit.java:581)
+at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitDocumentProvider.createElementInfo(CompilationUnitDocumentProvider.java:845)
+at org.eclipse.ui.texteditor.AbstractDocumentProvider.connect(AbstractDocumentProvider.java:302)
+at org.eclipse.jdt.internal.corext.textmanipulation.TextBufferFactory.acquire(TextBufferFactory.java:85)
+at org.eclipse.jdt.internal.corext.textmanipulation.TextBuffer.acquire(TextBuffer.java:371)
+at org.eclipse.jdt.internal.corext.codemanipulation.ImportsStructure.aquireTextBuffer(ImportsStructure.java:538)
+at org.eclipse.jdt.internal.corext.codemanipulation.ImportsStructure.<init>(ImportsStructure.java:85)
+at org.eclipse.jdt.internal.corext.codemanipulation.ImportEdit.<init>(ImportEdit.java:33)
+at org.eclipse.jdt.internal.corext.refactoring.reorg.MoveCuUpdateCreator.getImportEdit(MoveCuUpdateCreator.java:217)
+at org.eclipse.jdt.internal.corext.refactoring.reorg.MoveCuUpdateCreator.addImportToSourcePackageTypes(MoveCuUpdateCreator.java:176)
+at org.eclipse.jdt.internal.corext.refactoring.reorg.MoveCuUpdateCreator.addUpdates(MoveCuUpdateCreator.java:121)
+at org.eclipse.jdt.internal.corext.refactoring.reorg.MoveCuUpdateCreator.addUpdates(MoveCuUpdateCreator.java:112)
+at org.eclipse.jdt.internal.corext.refactoring.reorg.MoveCuUpdateCreator.createChangeManager(MoveCuUpdateCreator.java:88)
+at org.eclipse.jdt.internal.corext.refactoring.reorg.MoveRefactoring.createChangeManager(MoveRefactoring.java:448)
+at org.eclipse.jdt.internal.corext.refactoring.reorg.MoveRefactoring.checkInput(MoveRefactoring.java:151)
+at org.eclipse.jdt.internal.ui.refactoring.CheckConditionsOperation.run(CheckConditionsOperation.java:59)
+at org.eclipse.jdt.internal.ui.refactoring.CreateChangeOperation.run(CreateChangeOperation.java:94)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:95)

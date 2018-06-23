@@ -1,0 +1,51 @@
+47343 – Fails re-deploying, when we update context.xml.
+When context.xml of the conf/<engine>/<host>directory is updated, docBase directory is deleted and fails re-deploying.
+Reproduction.
+(The context name is assumed to be testWebapp.
+)
+1.<<Tomcat_home>>/webapps/testWebapp/META-INF/context.xml is prepared.
+2.Context.xml is not put under the conf/<engine>/<host> directory.
+(means first deployed)
+3.Tomcat is started.
+(testWebapp.xml is created to the conf/<engine>/<host> directory.
+)
+4.testWebapp.xml of conf/<engine>/<host > is updated.
+Result.
+<<Tomcat_home>>/webapps/testWebapp directory is deleted.
+The cause is in the fixed of "http://svn.apache.org/viewvc?view=rev&revision=712464".
+The order of the resource added to HostConfig$DeployedApplication#redeployResources was changed by this fix.
+order of the redploy resources is as follows.
+[before fix]
+Case of Deploy war.
+war -> context.xml(conf/<engine>/<host>) -> doceBase directory
+Case of Deploy directory.
+doceBase directory -> context.xml(META-INF/context.xml)
+[after fix]
+Case of Deploy war.
+context.xml(conf/<engine>/<host>) -> war -> doceBase directory
+Case of Deploy directory.
+context.xml(META-INF/context.xml) -> doceBase directory
+HostConfig#checkResources is as follows.
+for (int i = 0; i < resources.length; i++) {
+...omits
+if ((!resource.isDirectory()) && resource.lastModified() > lastModified) {
+...omits
+// Delete other redeploy resources
+for (int j = i + 1; j < resources.length; j++) {
+try {
+File current = new File(resources[j]);
+...omits
+ExpandWar.delete(current);
+}
+} catch (IOException e) {
+log.warn(sm.getString
+("hostConfig.canonicalizing", app.name), e);
+}
+}
+...omits
+After all,
+When testWebapp.xml of conf/<engine>/<host > is updated,
+directory is deleted or war and the directory are deleted.
+As a result,
+It fails in deploying because it tries to deploy it only with context.xml (docBase direcotry doesn't exist).
+Regards.

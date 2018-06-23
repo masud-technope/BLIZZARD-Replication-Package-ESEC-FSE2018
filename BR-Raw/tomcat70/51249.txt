@@ -1,0 +1,7 @@
+51249 – JULI ClassLoaderLogManager doesn't properly handle ${} when replacing property values
+when the LogManager does it's replace of ${property} it doesn't handle properly the fact that a } could exist before ${.
+The indexOf for the char } should be relative to the start position of ${
+Example of string : %{custom.property.matching} ${system.property.tomcat}
+This would throw an exception about the index } being before ${
+This is valid for all the 7.* versions as well as all the 6.* versions (validated from 6.0.27 and above).
+There is not even a way to "escape" the ${} chars if we'd like to output them.

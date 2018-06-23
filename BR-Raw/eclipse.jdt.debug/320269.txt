@@ -1,0 +1,4 @@
+Bug 320269 – update JRE javadoc links from Sun to Oracle
+Javadoc links for system libraries are hard coded to Sun URL's.
+These should probably be updated to refer to the new Oracle links.
+@see org.eclipse.jdt.internal.launching.StandardVMType.getDefaultJavadocLocation(String)

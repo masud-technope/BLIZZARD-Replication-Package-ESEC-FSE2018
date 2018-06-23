@@ -1,0 +1,15 @@
+Bug 365387 – [compiler][null] bug 186342: Issues to follow up post review and verification.
+This bug will be used a as a placeholder to log issues I discover during review
+and verification of the implementation for bug 186342 for M4 test week.
+Source code references are w.r.t the patch referred to by
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=186342#c196
+Right now there is one issue:
+(1) What are the changes in Scanner.java for ? Even without those changes all
+tests pass.
+Changes to Scanner.java almost always need to be mirrored into
+PublicScanner.java and in this case, only one file has changed.
+As this change, even if only a minor one, constitutes a change deep in the
+entrails, we should justify this with a regression test.
+Otherwise, if this
+change is not integral to this feature we should consider backing out this
+particular change.

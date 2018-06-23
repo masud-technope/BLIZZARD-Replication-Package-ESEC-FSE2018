@@ -1,0 +1,28 @@
+46666 – Why is disableUploadTimeout and KeepAliveTimeout correlated in Http11 Connector?
+In Http11Processor.java
+while (started && !error && keepAlive) {
+// Parsing the request header
+try {
+if (!disableUploadTimeout && keptAlive) {
+if (keepAliveTimeout > 0) {
+socket.setSoTimeout(keepAliveTimeout);
+}
+else if (soTimeout > 0) {
+socket.setSoTimeout(soTimeout);
+}
+}
+inputBuffer.parseRequestLine();
+request.setStartTime(System.currentTimeMillis());
+keptAlive = true;
+if (!disableUploadTimeout) {
+socket.setSoTimeout(timeout);
+}
+disableUploadTimeout  - This flag allows the servlet container to use a different, longer connection timeout while a servlet is being executed, which in the end allows either the servlet a longer amount of time to complete its execution, or a longer timeout during data upload.
+If not specified, this attribute is set to "true".
+The code above is waiting on a new Http Request and precedes the servlet processing logic.
+ It seems odd to me that I must set disableTimeout to false to get my keepAliveTimeout set.
+To set keepalivetimout, I must implicitely enable upload timeout whether I need it or not.
+ It seems to me that the disableTimeout is unneccessary in the following line
+if (!disableUploadTimeout && keptAlive) {
+Do you agree with this?
+Thanks for the insight

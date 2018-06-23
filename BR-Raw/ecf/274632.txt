@@ -1,0 +1,8 @@
+Bug 274632 – HttpClientFileSystemBrowser#runRequest needs to return HTTP status code
+HttpClientFileSystemBrowser, (indeed File system browsers in general)
+should return an error code to make it possible for the caller to understand the nature of a communication error.
+In p2, the current solution is to parse the message text in the IOException thrown in HttpClientFileSystemBrowser#runRequest.
+As these messages can be translated, the current implementation is brittle.
+Suggested fix for 3.5: The smallest possible change is to introduce a subclass of IOException that includes an integer code.
+Callers that expect an IOException will not notice, but p2 can exploit the new class.
+Also see Bug 274569.

@@ -1,0 +1,4 @@
+Bug 477719 – [null] compiler should know that Object.getClass() always returns nonnull
+Given that we use per-class method bindings for Object.getClass(), external annotations cannot match those implicit signatures.
+Instead, the compiler should create those method bindings with knowledge that their return type is nonnull, perhaps even as
+@NonNull Class<? extends @NonNull X> getClass()

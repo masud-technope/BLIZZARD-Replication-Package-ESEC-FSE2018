@@ -1,0 +1,59 @@
+53854 – DefaultServlet directory listings for aliased directories do not seem to work
+The following situation does not seem to work.
+1.) In a Context, add an alias to a directory.
+2.) Enable directory listings on the DefaultServlet.
+3.) Try to view the directory listing of the alias directory.
+Example:
+conf/context.xml:
+<Context aliases="/files=/my/downloads">
+...
+</Context>
+conf/web.xml:
+...
+<servlet>
+<servlet-name>default</servlet-name>
+<servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
+<init-param>
+<param-name>debug</param-name>
+<param-value>0</param-value>
+</init-param>
+<init-param>
+<param-name>listings</param-name>
+<param-value>true</param-value>
+</init-param>
+<load-on-startup>1</load-on-startup>
+</servlet>
+...
+contents of the directory "/my/downloads":
+-rw-r--r--@ 1 daniel  staff  8156824 Sep 10 09:15 apache-tomcat-7.0.30.zip
+URL works:
+http://localhost:8080/files/apache-tomcat-7.0.30.zip
+URL does not work:
+http://localhost:8080/files/
+The URL that does not work fails with the error:
+SEVERE: Servlet.service() for servlet [default] in context with path [/] threw exception [Error accessing resource] with root cause
+javax.naming.NameNotFoundException: Resource /files/ not found
+at org.apache.naming.resources.FileDirContext.list(FileDirContext.java:303)
+at org.apache.naming.resources.ProxyDirContext.list(ProxyDirContext.java:512)
+at org.apache.catalina.servlets.DefaultServlet.renderHtml(DefaultServlet.java:1458)
+at org.apache.catalina.servlets.DefaultServlet.render(DefaultServlet.java:1254)
+at org.apache.catalina.servlets.DefaultServlet.serveResource(DefaultServlet.java:951)
+at org.apache.catalina.servlets.DefaultServlet.doGet(DefaultServlet.java:412)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:929)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1002)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:585)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:680)

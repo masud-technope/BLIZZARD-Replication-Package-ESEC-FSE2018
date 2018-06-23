@@ -1,0 +1,9 @@
+60008 – Tomcat CORS filter not allowing origin with file:// when resource access done from WebView
+The CORS filter not allowing request and returning 403 when the request is as follows.
+Request Headers
+POST http://kodiakptt.com/poc/ HTTP/1.1
+Accept: application/json, text/plain, */*
+Origin: file://
+User-Agent: Mozilla/5.0 (Linux; Android 4.4.2; XT1033 Build/KXB20.25-1.31) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/30.0.0.0 Mobile Safari/537.36
+Content-Type: application/json;charset=UT
+We have a app which accesses the resource from tomcat web server, if UI is part of the app and using hosted JSCDE/mobile API js file, the webview send the request with Origin: file:// which tomcat rejects with 403 Forbidden.

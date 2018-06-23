@@ -1,0 +1,27 @@
+Bug 478427 – org.eclipse.jdt.internal.compiler.batch.Main.initializeAnnotationProcessorManager() consumes ClassNotFoundException
+In org.eclipse.jdt.internal.compiler.batch.Main.initializeAnnotationProcessorManager() the following code is present:
+protected void initializeAnnotationProcessorManager() {
+try {
+Class c = Class.forName("org.eclipse.jdt.internal.compiler.apt.dispatch.BatchAnnotationProcessorManager"); //$NON-NLS-1$
+AbstractAnnotationProcessorManager annotationManager = (AbstractAnnotationProcessorManager) c.newInstance();
+annotationManager.configure(this, this.expandedCommandLine);
+annotationManager.setErr(this.err);
+annotationManager.setOut(this.out);
+this.batchCompiler.annotationProcessorManager = annotationManager;
+} catch (ClassNotFoundException e) {
+// ignore
+} catch (InstantiationException e) {
+// should not happen
+throw new org.eclipse.jdt.internal.compiler.problem.AbortCompilation();
+} catch (IllegalAccessException e) {
+// should not happen
+throw new org.eclipse.jdt.internal.compiler.problem.AbortCompilation();
+} catch(UnsupportedClassVersionError e) {
+// report a warning
+this.logger.logIncorrectVMVersionForAnnotationProcessing();
+}
+}
+If someone calls the eclipse compiler programmatically or from command line, and does not have the org.eclipse.jdt.compiler.apt on the classpath, the compiler simply ignores annotation processors without a single output or error message.
+This happens even if the user defines the "-processors" argument.
+What I would expect:
+If there is any annotation processor on the classpath and/or "-processors" is given and the org.eclipse.jdt.compiler.apt jar is missing, the compilation should fail.

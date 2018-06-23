@@ -1,0 +1,18 @@
+Bug 302831 – [quick assist] Assigning a parameter to an existing field allows incomplete linked mode
+Build Identifier: I20100129-1300
+Assume the following example:
+public class Foo {
+int existing;
+public Foo(int existingVal) {
+}
+void existingReference() {
+existing++;
+}
+}
+1) on the constructor, move the cursor on the existingVal parameter.
+2) Use quick fix to assign the parameter to the field existing
+observe: the editor is now in linked mode, but only with the field declaration and the assignment
+3) change the name of the field
+observe: a compile error results
+expected: the linked mode should include the field's references as well
+Reproducible: Always

@@ -1,0 +1,6 @@
+52729 – An incomplete fix for the resource leak bug in CometConnectionManagerValve.java
+The fix revision 640273 was aimed to remove an resource leak bug on the  CometEventImpl object "cometEvent " (created line 130) in the method "lifecycleEvent()" of the file "/tomcat/trunk/java/org/apache/catalina/valves/CometConnectionManagerValve.java" , but it is incomplete.
+There are some problems:
+1.
+when the statements at lines 131-134 throw some exception, the "cometEvent" can not be closed as expected.
+The best way to close such resource objects is putting such close operations in the finaly block of a try-catch-finally structure.

@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target/impl/TargetDefinition.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/imports/PluginImportWizardFirstPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java

@@ -1,0 +1,8 @@
+58541 – CGIServlet and WebdavServlet code improvements
+Created attachment 33213 [details]
+Code improvements to two Servlet classes
+Noticed some opportunities:
+'String.indexOf(char)' is faster than 'String.indexOf(string)'
+'Integer.parseInt(s)' is more efficient than 'new Integer(s).intValue()'
+'Integer.valueOf(i)' may be more efficient than 'new Integer(i)'
+'Integer.toString(i)' is more efficient than 'Integer.valueOf(i).toString()'

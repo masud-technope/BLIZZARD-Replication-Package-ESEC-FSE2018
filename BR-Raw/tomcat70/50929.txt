@@ -1,0 +1,4 @@
+50929 – [patch] Ensure rethrown exceptions retain the original cause
+Created attachment 26770 [details]
+Patch to fix problem in some files
+Where an exception is caught an rethrown, it helps to provide the original exception as the cause.

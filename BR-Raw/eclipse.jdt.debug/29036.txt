@@ -1,0 +1,47 @@
+Bug 29036 – NPE while debugging
+Using build M4
+After debugging a java app for a while I noticed a NPE in the .log file.
+Thought somebody should know about it.
+java.lang.NullPointerException
+Stack trace:
+java/lang/Throwable.<init>()V
+java/lang/Throwable.<init>(Ljava/lang/String;)V
+java/lang/NullPointerException.<init>(Ljava/lang/String;)V
+org/eclipse/jdt/internal/debug/core/model/JDIFieldVariable.equals(Ljava/lang/Object;)Z
+java/util/HashMap.put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+org/eclipse/debug/internal/ui/views/variables/VariablesViewContentProvider.cache(Ljava/lang/Object;[Ljava/lang/Object;)V
+org/eclipse/debug/internal/ui/views/variables/VariablesViewContentProvider.getChildren(Ljava/lang/Object;)[Ljava/lang/Object;
+org/eclipse/jface/viewers/AbstractTreeViewer.getRawChildren(Ljava/lang/Object;)[Ljava/lang/Object;
+org/eclipse/jface/viewers/StructuredViewer.getFilteredChildren(Ljava/lang/Object;)[Ljava/lang/Object;
+org/eclipse/jface/viewers/StructuredViewer.getSortedChildren(Ljava/lang/Object;)[Ljava/lang/Object;
+org/eclipse/jface/viewers/AbstractTreeViewer.createChildren(Lorg/eclipse/swt/widgets/Widget;)V
+org/eclipse/jface/viewers/AbstractTreeViewer.handleTreeExpand(Lorg/eclipse/swt/events/TreeEvent;)V
+org/eclipse/jface/viewers/AbstractTreeViewer$1.treeExpanded(Lorg/eclipse/swt/events/TreeEvent;)V
+org/eclipse/swt/widgets/TypedListener.handleEvent(Lorg/eclipse/swt/widgets/Event;)V
+org/eclipse/swt/widgets/EventTable.sendEvent(Lorg/eclipse/swt/widgets/Event;)V
+org/eclipse/swt/widgets/Widget.sendEvent(Lorg/eclipse/swt/widgets/Event;)V
+org/eclipse/swt/widgets/Widget.sendEvent(ILorg/eclipse/swt/widgets/Event;Z)V
+org/eclipse/swt/widgets/Widget.sendEvent(ILorg/eclipse/swt/widgets/Event;)V
+org/eclipse/swt/widgets/Tree.wmNotifyChild(II)Lorg/eclipse/swt/internal/win32/LRESULT;
+org/eclipse/swt/widgets/Control.WM_NOTIFY(II)Lorg/eclipse/swt/internal/win32/LRESULT;
+org/eclipse/swt/widgets/Composite.WM_NOTIFY(II)Lorg/eclipse/swt/internal/win32/LRESULT;
+org/eclipse/swt/widgets/Control.windowProc(III)I
+org/eclipse/swt/widgets/Display.windowProc(IIII)I
+org/eclipse/swt/internal/win32/OS.CallWindowProcW(IIIII)I
+org/eclipse/swt/internal/win32/OS.CallWindowProc(IIIII)I
+org/eclipse/swt/widgets/Tree.callWindowProc(III)I
+org/eclipse/swt/widgets/Tree.WM_LBUTTONDOWN(II)Lorg/eclipse/swt/internal/win32/LRESULT;
+org/eclipse/swt/widgets/Control.windowProc(III)I
+org/eclipse/swt/widgets/Display.windowProc(IIII)I
+org/eclipse/swt/internal/win32/OS.DispatchMessageW(Lorg/eclipse/swt/internal/win32/MSG;)I
+org/eclipse/swt/internal/win32/OS.DispatchMessage(Lorg/eclipse/swt/internal/win32/MSG;)I
+org/eclipse/swt/widgets/Display.readAndDispatch()Z
+org/eclipse/ui/internal/Workbench.runEventLoop()V
+org/eclipse/ui/internal/Workbench.run(Ljava/lang/Object;)Ljava/lang/Object;
+org/eclipse/core/internal/boot/InternalBootLoader.run(Ljava/lang/String;Ljava/net/URL;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/Runnable;)Ljava/lang/Object;
+org/eclipse/core/boot/BootLoader.run(Ljava/lang/String;Ljava/net/URL;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/Runnable;)Ljava/lang/Object;
+java/lang/reflect/AccessibleObject.invokeL(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+java/lang/reflect/Method.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+org/eclipse/core/launcher/Main.basicRun([Ljava/lang/String;)Ljava/lang/Object;
+org/eclipse/core/launcher/Main.run([Ljava/lang/String;)Ljava/lang/Object;
+org/eclipse/core/launcher/Main.main([Ljava/lang/String;)V

@@ -1,0 +1,3 @@
+Bug 308672 – [api] Make JavaElementImageDescriptor.BUILDPATH_ERROR API
+Follow-up to bug 215980.
+Make JavaElementImageDescriptor.PROJECT_ERROR API.

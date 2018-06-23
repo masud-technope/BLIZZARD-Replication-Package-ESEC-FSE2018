@@ -1,0 +1,23 @@
+Bug 386518 – [extract method] CCE in ExtractMethodRefactoring#createMethodBody(..)
+From my logfile:
+!SESSION 2012-08-02 08:19:17.758 -----------------------------------------------
+eclipse.buildId=I20120608-1400
+java.version=1.7.0_04
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=de_DE
+Command-line arguments:  -os linux -ws gtk -arch x86
+!ENTRY org.eclipse.jface.text 2 0 2012-08-02 10:10:56.675
+!MESSAGE
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.core.dom.ChildPropertyDescriptor cannot be cast to org.eclipse.jdt.core.dom.ChildListPropertyDescriptor
+at org.eclipse.jdt.internal.corext.refactoring.code.ExtractMethodRefactoring.createMethodBody(ExtractMethodRefactoring.java:1115)
+at org.eclipse.jdt.internal.corext.refactoring.code.ExtractMethodRefactoring.createNewMethod(ExtractMethodRefactoring.java:960)
+at org.eclipse.jdt.internal.corext.refactoring.code.ExtractMethodRefactoring.createChange(ExtractMethodRefactoring.java:508)
+at org.eclipse.jdt.internal.ui.text.correction.proposals.RefactoringCorrectionProposal.createTextChange(RefactoringCorrectionProposal.java:59)
+at org.eclipse.jdt.ui.text.java.correction.CUCorrectionProposal.createChange(CUCorrectionProposal.java:244)
+at org.eclipse.jdt.ui.text.java.correction.ChangeCorrectionProposal.getChange(ChangeCorrectionProposal.java:355)
+at org.eclipse.jdt.ui.text.java.correction.CUCorrectionProposal.getTextChange(CUCorrectionProposal.java:254)
+at org.eclipse.jdt.ui.text.java.correction.CUCorrectionProposal.getAdditionalProposalInfo(CUCorrectionProposal.java:141)
+at org.eclipse.jdt.internal.ui.text.correction.proposals.RefactoringCorrectionProposal.getAdditionalProposalInfo(RefactoringCorrectionProposal.java:71)
+at org.eclipse.jface.text.contentassist.AdditionalInfoController$3.run(AdditionalInfoController.java:106)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)

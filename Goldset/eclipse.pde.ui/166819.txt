@@ -1,0 +1,8 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/BundleManifestChange.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/ContainerRenameParticipant.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/MovedTextFileChange.java
+ui/org.eclipse.pde.ui/plugin.xml
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/BundleManifestChange.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/ContainerRenameParticipant.java

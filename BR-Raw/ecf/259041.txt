@@ -1,0 +1,3 @@
+Bug 259041 – [discovery][examples] updatesite example client needs refactoring
+The project org.eclipse.ecf.examples.updatesite.client uses the now deprected Service access handler extension point (in the old discovery.ui project).
+The client should be updated/refactored to use the new discovery.ui code instead.

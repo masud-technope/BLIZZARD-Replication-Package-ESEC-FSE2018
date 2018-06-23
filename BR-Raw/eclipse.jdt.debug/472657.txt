@@ -1,0 +1,3 @@
+Bug 472657 – Set "Redundant type arguments (1.7 or highter)" to warning instead of ignore
+I personally was not aware of that warning / error in JDT and while I was trying to build an AST transformation to fix this in Platform UI I googled a bit and found this blogpost: http://blog.deepakazad.com/2011/07/java-7-support-in-eclipse-jdt-beta-part_22.html
+I think we you set it to warning more people will discover it.

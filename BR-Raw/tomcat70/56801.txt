@@ -1,0 +1,22 @@
+56801 – Avoid duplicated String to CharArray conversion in the loop of Matcher#matchName
+Created attachment 31865 [details]
+Patch for Matcher
+The loop in matchName,
+public static boolean matchName(Set<String> patternSet, String fileName) {
+for (String pattern: patternSet) {
+if (match(pattern, fileName, true)) {
+return true;
+}
+}
+return false;
+}
+Optimized,
+public static boolean matchName(Set<String> patternSet, String fileName) {
+char[] charArray = fileName.toCharArray();
+for (String pattern: patternSet) {
+if (match(pattern, charArray, true)) {
+return true;
+}
+}
+return false;
+}

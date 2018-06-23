@@ -1,0 +1,24 @@
+Bug 120651 – Display and Content Assist do not work consistently in Variables View
+1.
+ From the Variables View, select "list"
+2.
+ From the details pane, type "this." and CTRL+Space to bring up content assist.
+ Content assist does not work in this case.
+3.
+ Change to "list." and CTRL+Space to bring up content assist.
+ Content assist works this time.
+4.
+ Select ".size" from content assist.
+5.
+ Select the resulting string and type "CTRL+Shift+D" to display the string.
+6.
+ Resulted in the error that "list" cannot be resolved.
+I have to change the text back to "this.size" to display the value.
+ It seems that content assist and display is not getting context for evaluation consistently.
+Testcase:
+ArrayList list = new ArrayList();
+list.add("one");
+list.add("one");
+list.add("two");
+list.add("three");
+System.out.println(list);

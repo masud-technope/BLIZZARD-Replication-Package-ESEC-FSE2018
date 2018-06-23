@@ -1,0 +1,15 @@
+Bug 499048 – Compile error in org.eclipse.ui.internal.ide.misc.DisjointSet<T>
+Created attachment 263423 [details]
+File
+org.eclipse.ui.internal.ide.misc.DisjointSet<T> does not compile with:
+Eclipse SDK
+Version: Oxygen (4.7)
+Build id: I20160801-2000
+OS: Windows 7, v.6.1, x86_64 / win32
+It gives the error: "The type DisjointSet.Node is not visible"
+It compiles properly with jdk-8u66-fcs-bin-b08-windows-x64-03_aug_2015 and:
+Eclipse SDK
+Version: Oxygen (4.7)
+Build id: I20160726-1400
+OS: Windows 7, v.6.1, x86_64 / win32
+Attaching the file for convenience.

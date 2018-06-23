@@ -1,0 +1,10 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/MinimalState.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/bundle/Bundle.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/bundle/BundleModel.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/bundle/WorkspaceBundleModel.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/converter/PDEPluginConverter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/converter/PluginConverter.java
+ui/org.eclipse.pde.core/ant_tasks/pde-ant.jar
+ui/org.eclipse.pde.core/src_ant/org/eclipse/pde/internal/core/ant/ConvertSchemaToHTML.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/bundle/Bundle.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/bundle/BundleModel.java

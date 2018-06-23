@@ -1,0 +1,5 @@
+Bug 400164 – Add API to allow customization of proxy creation
+Currently the remote services proxy creation is accomplished by
+AbstractRemoteService.createProxy/2
+In order to customize the proxy creation it's currently necessary to subclass AbstractRemoteService and override createProxy.
+It would be much easier if a new whiteboard pattern service was available, called IRemoteServiceProxyCreator that would allow the proxy creation to be dynamically customized by providing a IRemoteServiceProxyCreator with an appropriate service ranking...and then that creator would be used rather than the default.

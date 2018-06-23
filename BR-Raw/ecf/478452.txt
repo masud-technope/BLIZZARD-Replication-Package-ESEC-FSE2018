@@ -1,0 +1,2 @@
+Bug 478452 – NPE in AbstractTopologyManager on shutdown
+Under some timing conditions, it's possible to have a NPE in abstracttopologymanager and any subclasses.

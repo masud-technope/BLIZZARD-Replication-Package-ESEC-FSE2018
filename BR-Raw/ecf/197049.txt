@@ -1,0 +1,12 @@
+Bug 197049 – NPE in contacts browse dialogt
+Getting the following NPE when
+1) Open 'Open Contact' dialog (via communications perspective toolbar icon or key assist)
+2) Start typing in 'Select a contact to message'
+Get in Error Log
+java.lang.NullPointerException
+at org.eclipse.ecf.internal.presence.ui.handlers.BrowseDialog.fillContentProvider(BrowseDialog.java:105)
+at org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.filterContent(FilteredItemsSelectionDialog.java:2059)
+at org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.internalRun(FilteredItemsSelectionDialog.java:2001)
+at org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.doRun(FilteredItemsSelectionDialog.java:1973)
+at org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.run(FilteredItemsSelectionDialog.java:1960)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

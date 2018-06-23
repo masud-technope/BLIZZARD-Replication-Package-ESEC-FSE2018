@@ -1,0 +1,10 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractClass/testTypeParameter/in/TypeParameter.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractClass/testTypeParameter/out/TypeParameter.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceParameterObject/testMethodTypeParamArgs/in/TestMethodTypeParamArgs.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceParameterObject/testMethodTypeParamArgs/out/TestMethodTypeParamArgs.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceParameterObject/testMethodTypeParamArgsTopLevel/in/TestMethodTypeParamArgsTopLevel.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceParameterObject/testMethodTypeParamArgsTopLevel/out/FooParameter.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceParameterObject/testMethodTypeParamArgsTopLevel/out/TestMethodTypeParamArgsTopLevel.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ExtractClassTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/IntroduceParameterObjectTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ParameterObjectFactory.java

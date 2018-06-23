@@ -1,0 +1,10 @@
+Bug 222868 – [MSN] When E-mail is not specified and the password is entered, the Finish button can be clicked.
+Build ID: 2.0.0.v20080310-1643
+Steps To Reproduce:
+1.
+Open connection wizard
+2.
+Select MSN
+3.
+The password is entered only
+More information:

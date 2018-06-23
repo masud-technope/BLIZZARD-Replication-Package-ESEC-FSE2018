@@ -1,0 +1,22 @@
+Bug 427479 – Internal compiler error: java.lang.UnsupportedOperationException: Breaking a dependency cycle NYI
+Created attachment 239664 [details]
+Collecting a Map with lambdas resulting in a bug.
+Overview:
+I get an error message after compiling a litte java 8 lambdas experiment.
+Steps to reproduce:
+1) Create new Java Projekt
+2) Insert attached file in default package
+Actual Results:
+I get the Error Message:
+> Internal compiler error: java.lang.UnsupportedOperationException: Breaking a dependency cycle NYI 
+at   org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.missingImplementation(InferenceContext18.java:1449)
+Expected Result:
+It shall compile without errors.
+Build Date & Hardware:
+* I just downloaded a fresh Eclipse for Java Developers with Build id: 20130614-0229.
+* Windows 7
+Additional Information:
+* The JDT has the version   1.0.0.v20140205-0104_BETA_JAVA8.
+* My workspace is as new as "new Date()".
+* I tested the file with a java 8 sdk version number 1.8.0-ea-b104.
+It compiled and gave output as expected.

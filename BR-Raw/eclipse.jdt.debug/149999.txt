@@ -1,0 +1,6 @@
+Bug 149999 – Use ComboFieldEditor from JFace
+I have released the ComboFieldEditor to JFace.
+I will attach a patch that
+updates search to use this new class.
+The testing I did did not reveal any
+problems but please have a look to ensure that I didn't miss something.

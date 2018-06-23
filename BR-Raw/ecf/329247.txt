@@ -1,0 +1,2 @@
+Bug 329247 – [Discovery][DNS-SD] NPE in org.eclipse.ecf.provider.dnssd.DnsSdDiscoveryContainerAdapter.getSRVRecord(Lookup, Comparator) when record not PTR or SRV record
+[Discovery][DNS-SD] NPE in org.eclipse.ecf.provider.dnssd.DnsSdDiscoveryContainerAdapter.getSRVRecord(Lookup, Comparator) when record not PTR or SRV record

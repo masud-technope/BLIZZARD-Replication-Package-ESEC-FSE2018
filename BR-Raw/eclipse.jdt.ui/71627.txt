@@ -1,0 +1,10 @@
+Bug 71627 – [code style] don't generate redundant modifiers "public static final abstract" for interface members
+There should be a preference (on the Code Style page?) where users can configure
+modifiers to be generated for new interface members.
+The JLS allows to redundantly add any of
+- "public static final" to a field declaration,
+- "public static" to a class declaration,
+- "public abstract" to a method declaration in an interface.
+I'd suggest to add 4 checkboxes with label "Add redundant modifiers to interface
+members:".
+Move Static Members and Extract Interface should respect this preference.

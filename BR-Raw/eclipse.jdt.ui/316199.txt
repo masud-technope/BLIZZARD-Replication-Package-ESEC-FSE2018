@@ -1,0 +1,9 @@
+Bug 316199 – [JUnit][API] Expose JUnitModel.exportTestRunSession(...) as API
+There is currently no API that allows plug-ins to make use of the export methods in org.eclipse.jdt.internal.junit.model.JUnitModel:
+- exportTestRunSession(TestRunSession, File)
+- exportTestRunSession(TestRunSession, OutputStream)
+Without a public API, plug-ins that wish to programatically save JUnit test reports or need to feed the XML data into some other process have to register their own TestRunListener and need to duplicate all the business logic that converts test results into the standard XML format.
+This affects all plug-ins that need to integrate with Eclipse's JUnit support or build additional functionality on top of it.
+A possible solution for exposing the existing methods as API would be to add them as static methods to JUnitCore and simply delegate to the implementations in JUnitModel.
+The API methods would use ITestRunSession instead of TestRunSession in their signatures.
+This would be a fairly simple API addition that would be useful to many technologies that depend on or interact with JUnit.

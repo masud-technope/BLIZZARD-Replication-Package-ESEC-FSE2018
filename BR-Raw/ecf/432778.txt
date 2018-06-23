@@ -1,0 +1,4 @@
+Bug 432778 – With removal of dependency on extension registry, make handling of supported configs dynamic
+With bug 421569 ECF has an approach that allows Namespaces and ContainerTypeDescriptions to be registered dynamically (via OSGi services) rather than the extension registry.
+The OSGi RS specification dictates that the standard service property 'remote.configs.supported' will be set.
+ With ECF's ability to dynamically add/remove distributions providers at runtime, it's necessary to make dynamic the setting/updating of this service property (on the RemoteServiceAdmin implementation).

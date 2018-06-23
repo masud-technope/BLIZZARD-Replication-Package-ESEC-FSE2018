@@ -1,0 +1,4 @@
+Bug 205532 – [IRC][ui] add hyperlinking in chat subject box
+Currently, we have a nice subject/topic line above the main chat output window.
+ Further, due to 197332 we have a way to set the subject (if one has the appropriate account/channel permissions).
+But in many/most cases the subject actually has an URL, and it would be very handy to have this URL be hyperlinked, so that that URL can/could be easily accessed from within channel.

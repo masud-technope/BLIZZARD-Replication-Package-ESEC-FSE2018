@@ -1,0 +1,6 @@
+Bug 91306 – [navigation] Java file opens with all text selected
+3.1M6
+I had some Java files which I associated to the text editor.
+ When I open them
+from the package explorer, they open with all of the text selected (as if I had
+hit Ctrl-A).

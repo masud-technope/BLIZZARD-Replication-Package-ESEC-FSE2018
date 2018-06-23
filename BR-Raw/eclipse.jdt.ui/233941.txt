@@ -1,0 +1,15 @@
+Bug 233941 – [ltk] Refactoring history does not show workspace refactorings from last year
+Created attachment 101960 [details]
+2007 history
+I20080523-0100
+Given a fresh workspace:
+1.
+Extract given zip into workspaces .metadata/.plugins folder
+2.
+Start eclipse
+3.
+Refactor>History...
+Is:
+The history is empty
+Should:
+Show the workspace refactoring made in 2007

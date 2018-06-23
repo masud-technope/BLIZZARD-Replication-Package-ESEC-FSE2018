@@ -1,0 +1,6 @@
+Bug 62226 – [search] inline the filters menu
+The filters menu on the search results is currently shown in a submenu.
+Since
+there are only a couple of them we should show the filters inline.
+Also they
+should appear above the layout option.

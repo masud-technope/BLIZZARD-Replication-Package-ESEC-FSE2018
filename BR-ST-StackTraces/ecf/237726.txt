@@ -1,0 +1,9 @@
+com.sun.org.apache.xerces.internal.parsers.DOMParser.parse
+com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse
+javax.xml.parsers.DocumentBuilder.parse
+org.jivesoftware.smackx.provider.VCardProvider._createVCardFromXml
+org.jivesoftware.smackx.provider.VCardProvider.parseIQ
+org.jivesoftware.smack.PacketReader.parseIQ
+org.jivesoftware.smack.PacketReader.parsePackets
+org.jivesoftware.smack.PacketReader.access$0
+org.jivesoftware.smack.PacketReader$1.run

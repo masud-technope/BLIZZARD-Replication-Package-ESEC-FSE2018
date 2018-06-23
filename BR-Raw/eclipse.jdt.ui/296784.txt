@@ -1,0 +1,8 @@
+Bug 296784 – [patch] Layout of RefactoringStatusDialog not standard
+User-Agent:       Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.1.1) Gecko/20090715 Firefox/3.5.1
+Build Identifier:
+RefactoringStatusDialog.createDialogArea could reuse the super implementation to comply with the standard layout defined in IDialogConstants
+Also, the call to initializeDialogUnits is unecessary, since it is already in Dialog.createContents
+Strange code found with the Code Recommender System of TU Darmstadt
+(http://www.stg.tu-darmstadt.de/research/core/)
+Reproducible: Always

@@ -1,0 +1,14 @@
+Bug 17317 – Preference Pages taller than the screen 1024x768
+build 20020521
+The preference pages is to big to fit on the screen 1024x768
+1) Go on the menu: Windows -> Preferences
+2) Look the page Java->Editor (First Tab: Appearance)
+When the preference page comes out it is big than the screen, so I have to
+resize (or move) it in order to reach the Button Close, for instance.
+For the Java->Editor, when I resize it the Table on bottom ("Appearance color
+options") is hidden, so I have to be dacing with the preference page resizing
+and moving when I need to change some thing.
+I guess there to many option on the same page, test replace the table by a
+Combo, or split the options on one more tabpage.
+Note, you cannot see the problem on Windows, have to be Motif since the Motif
+borders and trims are bigger than windows.

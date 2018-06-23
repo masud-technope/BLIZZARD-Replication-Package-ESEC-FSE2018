@@ -1,0 +1,13 @@
+39875 – RealmBase#init() needs cleanup
+In RealmBase#init():
+<quote>
+public void init() {
+this.containerLog = container.getLogger();
+if( initialized && container != null ) return;
+initialized=true;
+if( container== null ) {
+</quote>
+If the container is null, then a NPE will occurs.
+The container is not null, then the if block is no longer needed.
+The first line is changed at revision r372854.
+http://svn.apache.org/viewvc/tomcat/container/tc5.5.x/catalina/src/share/org/apache/catalina/realm/RealmBase.java?r1=371686&r2=372854

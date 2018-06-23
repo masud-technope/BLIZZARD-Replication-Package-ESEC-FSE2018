@@ -1,0 +1,5 @@
+Bug 440804 – [javadoc wizard] Generate Javadoc should keep generated javadoc-arguments temp file
+The "Generate Javadoc" wizard should keep the generated javadoc-arguments temp file for a while to allow debugging.
+The file is mentioned in the command line on the "Process properties" page, e.g:
+C:\java\jdk8\bin\javadoc.exe -J-showversion @C:\Users\xxx\AppData\Local\Temp\javadoc-arguments2359803814154564317.tmp
+The file should not be deleted when the process terminates, but only when it is removed from the debug view (or on shutdown).

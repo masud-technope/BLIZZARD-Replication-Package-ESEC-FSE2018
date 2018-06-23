@@ -1,0 +1,6 @@
+Bug 30511 – IPackageFragmentRoot:move ignores FORCE flag
+20030128
+i call move with FORCE
+and get a NAME_COLLISION exception
+(btw.
+the message says 'JavaModelStatus' which is not useful)

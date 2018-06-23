@@ -1,0 +1,5 @@
+50927 – [patch] More specific error message for missing SSLCertificateFile
+Created attachment 26767 [details]
+Patch to check and report error
+If using SSL with APR, a missing SSLCertificateFile attribute currently results in a somewhat cryptic message from the native code.
+This patch checks whether the attribute is null before calling the native code, and reports a more specific error.

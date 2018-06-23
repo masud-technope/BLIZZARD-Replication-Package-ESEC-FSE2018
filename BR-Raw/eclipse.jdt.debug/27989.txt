@@ -1,0 +1,22 @@
+Bug 27989 – Provide 'final verification' launch configuration API
+I would like to propose the following suggestion for the launch configuration
+API change:
+Tab group owners should be notified whenever a 'Debug' or 'Run' button is
+pressed.
+This will give them a chance to perform final checks before continuing
+with the launch.
+Some checks that require long time to run are not practical to
+perform when corresponding control or even entire tab is updated.
+This
+notification should be 'unique' in a sense that they should know that this
+is 'a final' check before.
+Usage Scenario:
+For example, if one needs to verify a process ID to debug from a remote
+machine.
+This could be a very expensive operation.
+It may not be practical to
+perform the validity check every time user changes the value.
+Farthermore, it
+may not even be practical to make a validity check every time performApply() is
+called.
+This is a very good candidate for the 'final check' API.

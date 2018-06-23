@@ -1,0 +1,5 @@
+Bug 190711 – [target] Add ability to export the artifacts for a target
+3.3 RC3
+If you create a .target file, and specify a list of plugins that comprise that target, it would be nice to be able to export that target as a directory of plugins, pulled from the environment you are running in.
+This could be done either in the target editor (Overview or Content pages), or in the Export menu with the target file selected, or both.
+A more comprehensive wizard would set the runtime for execution to be that exported target directory.

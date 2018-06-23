@@ -1,0 +1,26 @@
+49730 – Race condition in StandardThreadExecutor : requests are sometimes enqueued instead of creating new threads
+In tomcat 6, I often configure an Executor with minSpareThreads=0 to work around memory leak issues upon redeployment.
+Sometimes (especially in development), when I refresh a page of my webapp with Safari, Chrome or Firefox, some resources of the page take several seconds (>10s) to be served though they are static resources and should come in less than 50ms.
+For instance, over 15 requests for a page (1 for html, the others for resources like js, css, images...), I sometimes have 1 or 2 that take >10s.
+After analysis, I found that in org.apache.catalina.core.StandardThreadExecutor.TaskQueue.offer(Runnable) the statement
+if (parent.getActiveCount()<(parent.getPoolSize()))
+is sometimes true unexpectedly.
+Here is the scenario :
+- ThreadPoolExecutor is empty
+- the user refreshes the page (or accesses it with an empty cache) in his web browser for a page that uses a more than 10-15 resources
+- the browser establishes one TCP connection and a new Thread is created
+- after the browser receives the response, it decides to load as many resources as possible in parallel.
+For this it establishes up to 6 TCP connections (in my tests)
+- The Acceptor thread calls StandardThreadExecutor.execute to process each incoming connection.
+- For each call, StandardThreadExecutor.TaskQueue.offer(Runnable) is being called
+- if you study the sources of Java 6 ThreadPoolExecutor, you can see that there's a small delay between the time a new Thread is created (thus increasing poolSize) and the time it starts working on its first task (increasing the activeCount)
+- Since in my case connections are established in a rapid burst, the calls to TaskQueue.offer() are sometimes faster than this small delay, so that we do have parent.getActiveCount()<parent.getPoolSize() and thus the task is enqueued instead of forcing the creation of a thread to serve it.
+- Since Keep-Alive is enabled and tomcat 6 threads take care of only one TCP connection at a time, the requests in the queue must wait for the keep-alive timeout so that a Thread is returned to the pool to serve pending tasks.
+- With 25s keepAliveTimeOut, it means that some requests take more than 25s to be served eventhough the pool was never full and the server quite idle!!!
+Other facts about this issue :
+- Although my test case starts with an empty pool, it can occur even on a loaded server.
+The thing that triggers the issue is the burst of new TCP connections.
+- The problem is less severe with a lower keepAliveTimeout, or if keepalive is disabled.
+In any case, it also depends on the time taken to serve current requests.
+- The issue also affects tomcat 7 but is less severe because tc7 threads are returned to the pool after each http request, even if the TCP connection is kept alive.
+The impact would the same as with tc6 with keepAlive disabled.

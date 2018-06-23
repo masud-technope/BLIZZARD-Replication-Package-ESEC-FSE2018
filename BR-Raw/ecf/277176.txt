@@ -1,0 +1,7 @@
+Bug 277176 – Service Discovery view not working with osgiservices
+When I bring up the Service Discovery view in the client, I see my machine
+under Neighborhood, and under my machine, I have osgiservices
+[tcp]:iana.
+ When I run the ECF examples, I see remotesvcs [tcp]:iana.
+When I right-click on osgiservices [tcp]:iana, I'm not getting the
+connect menu option.

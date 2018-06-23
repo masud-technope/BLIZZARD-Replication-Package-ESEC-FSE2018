@@ -1,0 +1,6 @@
+Bug 4348 – ResourceMarkerAnnotaionModel: unnecessary fireModelChange (1GJ65EW)
+MA (28.08.2001 14:40:37)
+ResourceMarkerAnnotationModel.updates fires a ModelChange even when the markerDelta is empty.
+NOTES:
+KUM (8/31/2001 3:53:50 PM)
+Fixed.

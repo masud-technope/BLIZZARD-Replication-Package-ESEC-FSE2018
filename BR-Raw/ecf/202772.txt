@@ -1,0 +1,3 @@
+Bug 202772 – Broken import statement in pubsub
+Hi,
+the CollabClient import in pubsub is broken and causes compile errors.

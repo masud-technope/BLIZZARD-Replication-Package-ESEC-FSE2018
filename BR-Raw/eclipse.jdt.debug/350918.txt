@@ -1,0 +1,14 @@
+Bug 350918 � [java launching] Applet parameters containing unusual characters confuse eclipse
+Build Identifier:  20100917-0705
+Try passing an 8 character applet parameter like 'foo'"Bar"
+to an applet using the eclipse debuging environment.
+  Or if you
+are more adventurous, try some chinese text, such as 您好.
+You won't get anything reasonable as the parameter value when you call
+getParam
+It may be the case that this is an ill-defined area in general, but
+even so, if unexpected or unpredictable results are "expected" it would
+be better not to allow GIGO
+Reproducible: Always
+Steps to Reproduce:
+experiment with unusual applet parameters.

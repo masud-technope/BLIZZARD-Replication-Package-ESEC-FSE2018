@@ -1,0 +1,2 @@
+Bug 302394 – [Discovery][jSLP] Test parser for bad tags
+The attribute parser must not accept bad tags (CR, LF, HTAB, "_").

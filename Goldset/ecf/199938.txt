@@ -1,0 +1,13 @@
+framework/bundles/org.eclipse.ecf/schema/start.exsd
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/internal/core/ECFPlugin.java
+tests/bundles/org.eclipse.ecf.tests/plugin.xml
+tests/bundles/org.eclipse.ecf.tests/src/org/eclipse/ecf/tests/core/ECFStartup.java
+framework/bundles/org.eclipse.ecf/plugin.xml
+framework/bundles/org.eclipse.ecf/schema/start.exsd
+framework/bundles/org.eclipse.ecf/schema/startup.exsd
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/core/start/ECFStartJob.java
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/core/start/IECFStart.java
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/internal/core/ECFPlugin.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/start/CollabStart.java
+tests/bundles/org.eclipse.ecf.tests/plugin.xml
+tests/bundles/org.eclipse.ecf.tests/src/org/eclipse/ecf/tests/core/ECFStartup.java

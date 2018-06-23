@@ -1,0 +1,7 @@
+VMDefinitionsContainer.parseXMLIntoContainer
+JavaRuntime.addPersistedVMs
+JavaRuntime.initializeVMs
+avaRuntime.getDefaultVMId
+JavaRuntime.getDefaultVMInstall
+JREContainerInitializer.resolveVM
+JREContainerInitializer.initialize

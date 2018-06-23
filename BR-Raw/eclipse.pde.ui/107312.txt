@@ -1,0 +1,9 @@
+Bug 107312 – [Schema][Editors][Actions] Refresh on schema preview not working
+R3.1
+1.
+select a schema file and open its preview via PDE Tools context menu.
+2.
+change the schema and save
+3.
+go back to the preview, context menu > refresh
+==> not updated.

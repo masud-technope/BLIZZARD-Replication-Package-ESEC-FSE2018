@@ -1,0 +1,15 @@
+Bug 409969 – Target Platform GC should run more often
+TargetPlatformPreferencePage.runGC is called only when a target has been removed from the preferences.
+My current Team's process for target platform is as follows:
+- The releng build produces a new .target file for each build and delivers it to source control
+- Team members accept the new .target file and then either reload the target from the preferences, or select "Set as Target Platform" in the target editor.
+As time goes by, the target moves forward on the versions of bundles it contains, old versions remain in the target folder and GC is never called because team members don't normally need to remove targets.
+As an example, a teammate has used the same workspace & targets for a relatively long time.
+ His .metadata\.plugins\org.eclipse.pde.core\.bundle_pool\plugins folder on disk was 5.9GB.
+ He manually triggered a GC by doing:
+Preferences -> Target Plaform > Add..
+> Start with empty definition > finish
+Apply
+Select New Target > Remove
+OK
+GC then ran, and when complete his bundle_pool was reduced to 695MB

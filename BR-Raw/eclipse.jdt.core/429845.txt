@@ -1,0 +1,36 @@
+Bug 429845 – [1.8] CCE on hover
+package pkg.test;
+@FunctionalInterface
+interface FI {
+int foo();
+}
+class C1 {
+void fun1(int x) {
+FI test= () -> {
+for (int k=0;k<1;) ;
+for (int k=0;k<1;) ;
+try {
+} catch (Exception ex) {
+}
+return 0;
+};
+}
+}
+---------------------------------------------------------------
+Hover over "ex" in catch clause.
+We get the following exception:
+java.lang.ClassCastException: org.eclipse.jdt.internal.compiler.ast.ForStatement cannot be cast to org.eclipse.jdt.internal.compiler.ast.LambdaExpression
+at org.eclipse.jdt.internal.compiler.parser.Parser.consumeLambdaExpression(Parser.java:7975)
+at org.eclipse.jdt.internal.codeassist.select.SelectionParser.consumeLambdaExpression(SelectionParser.java:765)
+at org.eclipse.jdt.internal.compiler.parser.Parser.consumeRule(Parser.java:6827)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:11023)
+at org.eclipse.jdt.internal.codeassist.impl.AssistParser.parseBlockStatements(AssistParser.java:1628)
+at org.eclipse.jdt.internal.codeassist.impl.AssistParser.parseBlockStatements(AssistParser.java:1466)
+at org.eclipse.jdt.internal.codeassist.impl.Engine.parseBlockStatements(Engine.java:308)
+at org.eclipse.jdt.internal.codeassist.impl.Engine.parseBlockStatements(Engine.java:271)
+at org.eclipse.jdt.internal.codeassist.SelectionEngine.select(SelectionEngine.java:964)
+at org.eclipse.jdt.internal.core.Openable.codeSelect(Openable.java:163)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeSelect(CompilationUnit.java:381)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeSelect(CompilationUnit.java:375)
+at org.eclipse.jdt.internal.ui.text.java.hover.AbstractJavaEditorTextHover.getJavaElementsAt(AbstractJavaEditorTextHover.java:118)
+...

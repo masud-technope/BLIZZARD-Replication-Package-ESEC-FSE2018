@@ -1,0 +1,14 @@
+org.apache.jasper.JspCompilationContext.compile
+org.apache.jasper.servlet.JspServletWrapper.service
+org.apache.jasper.servlet.JspServlet.serviceJspFile
+org.apache.jasper.servlet.JspServlet.service
+javax.servlet.http.HttpServlet.service
+java.io.File.setLastModified
+org.apache.jasper.compiler.Compiler.compile
+org.apache.jasper.compiler.Compiler.compile
+org.apache.jasper.compiler.Compiler.compile
+org.apache.jasper.JspCompilationContext.compile
+org.apache.jasper.servlet.JspServletWrapper.service
+org.apache.jasper.servlet.JspServlet.serviceJspFile
+org.apache.jasper.servlet.JspServlet.service
+javax.servlet.http.HttpServlet.service

@@ -1,0 +1,8 @@
+Bug 108247 – 'Selected resources' scope disabled but 'Enclosing projects' possible
+I20050823-0800
+Open a CU and press Ctrl+H ==> the 'Selected resources' scope is disabled but
+the 'Enlcosing projects' scope is not.
+How can the projects be computed if the
+selected resources are not known? ;-)
+If an editor is active I would expect that the selected resources are the
+resources specified by the editor input.

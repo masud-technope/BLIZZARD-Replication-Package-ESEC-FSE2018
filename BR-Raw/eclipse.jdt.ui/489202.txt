@@ -1,0 +1,20 @@
+Bug 489202 � [save actions] Format edited lines on Save formats lines with non-ASCII characters
+The "Format edited lines" Save Action formats lines with non-ASCII characters, even the lines were not touched.
+Steps:
+- have a project with Cp1252 encoding
+- save this snippet in a *.java file with UTF-8 encoding:
+package tests.saveaction;
+public class LongLines{
+void foo() {
+System.out.println("C:\\temp\\בגקכ\\שנ.txt"); // file is 2 chars, folder is 4 chars
+System.out.println("Here's a Java method: Does it need line breaks? " + "p." + "abc" + "(" + "abcdef f" + ", " + "abcdef2 f2" + ");");
+System.out.println("Here's a Java method: Does it need line breaks? " + "ש." + "שנב" + "(" + "ש שנבגקכ" + ", " + "2ש 2שנבגקכ" + ");");
+}
+}
+- add a space at the end of the first line
+- Save
+=> expected: space gets removed
+=> was:      space gets removed, and the two lines that contain Hebrew characters get formatted
+The bug is in org.eclipse.jdt.internal.ui.javaeditor.EditorUtility.calculateChangedLineRegions(...).new ISafeRunnable() {...}.run():
+IFileBufferManager#connectFileStore(..) specifies that it should not be used with a file store for a file from the workspace.
+Here, it doesn't fail for the reason specified in the Javadoc, but because connectFileStore creates a buffer with a wrong encoding (see FileStoreTextFileBuffer#cacheEncodingState(), which  uses the global default, and not the resource's encoding in the workspace).

@@ -1,0 +1,4 @@
+57724 – CorsFilter does not work correctly if the "origin" has the same value with the "host"
+I am using tomcat 7.0.57, and I have CorsFilter configured in my application, in my login page, I just have normal form with the username & password filter and a submit button, I set the "method" to "POST', when I use Google Chrome to login, I get a 403 error.
+The reason is Google Chrome adds the "origin" into the http header, and the value is same as the host value(both of them are "http://localhost:8000").
+It will be nice if someone can update CorsFilter.checkRequestType to return a CORSRequestType.NOT_CORS in this case.

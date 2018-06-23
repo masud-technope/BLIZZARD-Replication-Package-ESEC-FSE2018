@@ -1,0 +1,9 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTConverter18Test.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/rewrite/describing/ASTRewritingMethodDeclTest.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/TypeAnnotationsConverterTest.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/TypeBindingTests308.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ASTConverter.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/TypeBindingTests308.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTConverter18Test.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/TypeAnnotationsConverterTest.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/rewrite/describing/ASTRewritingMethodDeclTest.java

@@ -1,0 +1,10 @@
+Bug 270644 – eclipse hangs on update site test if proxy information is incorrect
+Build ID: I20090313-0100
+Steps To Reproduce:
+I started Eclipse 3.5 M6 within a corporate firewall.
+The network connections proxy options were set to native by default.
+I created a remote update site to http://download.eclipse.org/tools/buckminster/updates-3.5 (which works fine outside the firewall) and attempted to test the connection
+this causes Eclipse to hang.
+cancel doesn't seem to do nothing
+Will attach thread dumps shortly.
+More information:

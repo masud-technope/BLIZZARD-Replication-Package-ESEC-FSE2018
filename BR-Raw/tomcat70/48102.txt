@@ -1,0 +1,20 @@
+48102 – 'Bootstrap' is misspelled as 'Boostrap' in the javadoc of the class of 'org.apache.catalina.startup.Bootstrap'
+Below is the javadoc of the class of 'org.apache.catalina.startup.Bootstrap':
+/**
+* Boostrap loader for Catalina.
+ This application constructs a class loader
+* for use in loading the Catalina internal classes (by accumulating all of the
+* JAR files found in the "server" directory under "catalina.home"), and
+* starts the regular execution of the container.
+ The purpose of this
+* roundabout approach is to keep the Catalina internal classes (and any
+* other classes they depend on, such as an XML parser) out of the system
+* class path and therefore not visible to application level classes.
+*
+* @author Craig R.
+McClanahan
+* @author Remy Maucherat
+* @version $Revision: 831860 $ $Date: 2009-11-02 19:00:01 +0800 (Mon, 02 Nov 2009) $
+*/
+the first word ommits a 't' letter.
+It sould be 'Bootstrap', not 'Boostrap'.

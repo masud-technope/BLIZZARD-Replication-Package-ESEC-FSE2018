@@ -1,0 +1,20 @@
+Bug 471034 – Error creating external annotation on array parameter in "Type name[]" format
+The Ctrl+1 external annotation command fails when a method parameter is defined with array brackets after the parameter name instead of the type.
+For example, in java.lang.Thread#enumerate:
+public static int enumerate(Thread tarray[])
+Pressing Ctrl+1 with the cursor on the brackets has no effect, while pressing it with the cursor on the type causes the following error in the Error Log:
+Error computing completion proposals.
+java.lang.IllegalArgumentException: Mismatching type structures [Ljava/lang/Thread; vs L1java/lang/Thread;
+at org.eclipse.jdt.core.util.ExternalAnnotationUtil.match(ExternalAnnotationUtil.java:471)
+at org.eclipse.jdt.core.util.ExternalAnnotationUtil.updateType(ExternalAnnotationUtil.java:426)
+at org.eclipse.jdt.core.util.ExternalAnnotationUtil.annotateParameterType(ExternalAnnotationUtil.java:687)
+at org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals$ParameterAnnotationRewriteProposal.dryRun(ExternalNullAnnotationChangeProposals.java:263)
+at org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals$SignatureAnnotationChangeProposal.initializeOperation(ExternalNullAnnotationChangeProposals.java:148)
+at org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals$ProposalCreator.create(ExternalNullAnnotationChangeProposals.java:462)
+at org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals.createProposalsForType(ExternalNullAnnotationChangeProposals.java:516)
+at org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals.collectExternalAnnotationProposals(ExternalNullAnnotationChangeProposals.java:411)
+at org.eclipse.jdt.internal.ui.text.correction.ExternalNullAnnotationQuickAssistProcessor.computeQuickAssistProposals(ExternalNullAnnotationQuickAssistProcessor.java:91)
+at org.eclipse.jface.text.quickassist.QuickAssistAssistant$ContentAssistProcessor.computeCompletionProposals(QuickAssistAssistant.java:75)
+at org.eclipse.jface.text.contentassist.ContentAssistant$5.run(ContentAssistant.java:1904)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+...

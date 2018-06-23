@@ -1,0 +1,10 @@
+Bug 479963 – [1.8] Open Declared Type for lambda parameter
+SCENARIO:
+new ArrayList<String>().forEach( item -> System.out.println( item ) );
+Ctrl+Click 'item' before ->
+Click Open Declared type
+EXPECTED:
+String class is opened
+(class of method parameter of the corresponding method in functional interface is expected to be opened)
+ACTUALLY:
+Nothing happens

@@ -1,0 +1,9 @@
+Bug 154186 – [working sets] Improve "Edit Working-Set" Dialog
+Adding new files to a working set is really a pain:
+I have to edit the working set and browse until I reach the package or file I want to add.
+This could be done more easily from the Package Explorer or Editor Context menu.
+Sometimes, there is already a "Remove from working set" entry, but not for all items.
+And the "Add to..." working set is completely missing.
+This would be useful in the "Other projects..." tree or even in another working set.
+While this is "only" an enhancement, I would regard this as a higher priority.
+Thanks, JÃ¶rg

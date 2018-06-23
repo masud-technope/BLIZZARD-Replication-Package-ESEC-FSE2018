@@ -1,0 +1,22 @@
+Bug 402261 – [1.8][compiler] Shape analysis confused by returns from inner classes/lambdas
+BETA_JAVA8:
+The following program should compile, but does not and fails with:
+"The method foo(I) in the type X is not applicable ..." message
+// ---
+interface I {
+J foo();
+}
+interface J {
+void foo();
+}
+public class X {
+void foo(I i) {};
+public static void main(String[] args) {
+new X().foo(() -> { class local { void foo() { return; }} return () -> { return;}; });
+}
+}
+// ---
+The return from the inner classes is confused to be a return from the
+lambda.
+However the return from the lambda that forms the return expression
+of the first lambda is handled properly.

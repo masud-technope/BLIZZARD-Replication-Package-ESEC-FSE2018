@@ -1,0 +1,14 @@
+Bug 414084 – [1.8][quick fix] Add more quick fix proposals for implicit abstract method with body in interface
+Consider the below code:
+interface test{
+public void m1(){
+}
+For m1(), currently user is provided with a single Quick Fix proposal which will remove the body of the method.
+Ideally from Java 1.8, the method can be either default or static, hence we need to provide 2 new proposals here.
+The Quick Fix proposals will be:
+1.
+Remove method body
+2.
+Add 'default' modifier
+3.
+Add 'static' modifier

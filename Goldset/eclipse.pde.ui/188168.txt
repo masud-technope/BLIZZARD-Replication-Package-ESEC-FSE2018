@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/IPDEUIConstants.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/LaunchListener.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/LaunchPluginValidator.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/launcher/AbstractPDELaunchConfiguration.java

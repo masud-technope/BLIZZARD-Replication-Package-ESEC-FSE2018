@@ -1,0 +1,5 @@
+Bug 426984 – [1.8][inference] Capture problem in GenericsRegressionTest_1_8.testBug424710()
+Bug 420525 masked a problem in GenericsRegressionTest_1_8.testBug424710() so that fixing bug 420525 will create a regression in this test, saying:
+Type mismatch: cannot convert from Stream<capture#8-of ? extends Object> to Stream<? extends capture#4-of ? extends Object>
+I don't really know what "? extends capture#4-of ? extends Object" means and if we can avoid such beasts.
+When releasing the fix for bug 420525 I will disable this test for now.

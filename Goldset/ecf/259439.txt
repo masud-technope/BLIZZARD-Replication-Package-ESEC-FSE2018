@@ -1,0 +1,10 @@
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/ui/MessageLoader.properties
+framework/bundles/org.eclipse.ecf.sharedobject/src/org/eclipse/ecf/core/sharedobject/SharedObjectFactory.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/messages.properties
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/ui/ChatComposite.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/ui/MessageLoader.java
+framework/bundles/org.eclipse.ecf.sharedobject/src/org/eclipse/ecf/core/sharedobject/TwoPhaseCommitEventProcessor.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/example/collab/share/EclipseCollabSharedObject.java
+framework/bundles/org.eclipse.ecf.sharedobject/src/org/eclipse/ecf/internal/core/sharedobject/messages.properties
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/example/collab/share/io/EclipseFileTransferAndLaunch.java
+framework/bundles/org.eclipse.ecf.sharedobject/src/org/eclipse/ecf/internal/core/sharedobject/Messages.java

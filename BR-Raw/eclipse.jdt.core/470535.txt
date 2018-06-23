@@ -1,0 +1,6 @@
+Bug 470535 – Bug in UserLibrary.hashCode()
+http://git.eclipse.org/c/jdt/eclipse.jdt.core.git/tree/org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/UserLibrary.java#n97
+calls hashCode() on the entries array each time, should be:
+for (int i= 0; i < this.entries.length; i++) {
+hashCode= hashCode * 17 + this.entries[i].hashCode();
+}

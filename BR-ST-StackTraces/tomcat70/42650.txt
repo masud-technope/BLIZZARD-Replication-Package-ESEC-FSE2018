@@ -1,0 +1,4 @@
+org.apache.jk.server.JkCoyoteHandler.invoke
+org.apache.jk.common.HandlerRequest.invoke
+org.apache.jk.common.ChannelSocket.invoke
+java.lang.Thread.run

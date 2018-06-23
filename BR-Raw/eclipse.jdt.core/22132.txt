@@ -1,0 +1,44 @@
+Bug 22132 – JDT ASTs: QualifiedName versus FieldAccess
+It appears that org.eclipse.jdt.core.dom converts all field references to
+SimpleName or QualifiedName, unless they are proceeded by a "this."  Even
+access to static fields proceeded by the Class name, See the example output
+and code below:
+DEBUG [ModalContext] - Name = sf_hi
+DEBUG [ModalContext] - Name = FieldRef.sf_hi
+DEBUG [ModalContext] - Name = FieldRef
+DEBUG [ModalContext] - Name = f_hi
+DEBUG [ModalContext] - FieldAccess = this.f_hi
+public class FieldRef {
+static String sf_hi = "HI";
+String f_hi = "HI";
+void test() {
+// static field
+sf_hi = "HI";
+FieldRef.sf_hi = "HI";
+// field
+f_hi = "HI";
+this.f_hi = "HI";
+}
+public static void main(String[] args) {
+FieldRef fr = new FieldRef();
+fr.test();
+}
+}
+First problem, the JavaDoc leads one to believe that everything should show up
+in a FieldAccess not just the "this." case, hence the documentation needs to
+be beefed up.
+Second problem, I understand the difficulty of figuring out if something is a
+FieldAccess vs Type vs nested class field, etc...
+without binding, hence my
+proposal is that FieldAccess should get the axe.
+FieldAccess is currently used for a special case only and it implys binding
+knowledge if it is not only used in that special case.
+ It leads the user to
+believe that all FieldAccess's will show up as this node.
+My proposal is to remove FieldAccess and change all ASTNode instances that
+today show up as FieldAccess into a QualifiedName.
+ Thoughts?
+Another possiblity is that FieldAccess become a child-class of QualifiedName
+so this strangeness can be ignored if desired.
+Take Care,
+Tim Halloran

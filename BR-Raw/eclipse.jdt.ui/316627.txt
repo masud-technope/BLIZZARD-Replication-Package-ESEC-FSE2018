@@ -1,0 +1,16 @@
+Bug 316627 – [refactoring] Refactoring does not give warning about modifying derived resources
+Build Identifier: M20100211-1343
+The first time I try to edit a derived resource, Eclipse gives a warning about the resource being derived.
+However, when some refactoring would change that same resource, no warning is issued.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Generate some Java classes with some tool like ANTLR
+2.
+Mark the generated sources as derived
+3.
+Create a normal class that refers to one of the generated classes
+4.
+Rename the generated class by changing its name in the class that refers it
+5.
+Eclipse will complete the refactor without any warning, but once you regenerate your ANTLR code, you will have compile errors

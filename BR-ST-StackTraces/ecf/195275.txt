@@ -1,0 +1,14 @@
+java.lang.String.substring
+org.eclipse.ecf.internal.provider.msn.MSNID.<init>
+org.eclipse.ecf.internal.provider.msn.MSNNamespace.createInstance
+org.eclipse.ecf.internal.provider.msn.MSNRosterEntry.<init>
+org.eclipse.ecf.internal.provider.msn.MSNContainer$3.contactAdded
+org.eclipse.ecf.protocol.msn.ContactList.fireContactAdded
+org.eclipse.ecf.protocol.msn.ContactList.addContact
+org.eclipse.ecf.protocol.msn.ContactList.internalAddContact
+org.eclipse.ecf.protocol.msn.NotificationSession.retrieveBuddyList
+org.eclipse.ecf.protocol.msn.NotificationSession.login
+org.eclipse.ecf.protocol.msn.MsnClient.connect
+org.eclipse.ecf.internal.provider.msn.MSNContainer.connect
+org.eclipse.ecf.ui.actions.AsynchContainerConnectAction$AsynchActionJob.run
+org.eclipse.core.internal.jobs.Worker.run

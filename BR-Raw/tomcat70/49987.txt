@@ -1,0 +1,13 @@
+49987 – Data race in ApplicationContext
+r998053
+http://svn.apache.org/repos/asf/tomcat/tc6.0.x/trunk/java/org/apache/catalina/core/ApplicationContext.java
+Data race on variable
+private Map parameters
+In method
+private void mergeParameters() {
+if (parameters != null)  // concurrent read : 881
+return;
+Map results = new ConcurrentHashMap();
+...
+parameters = results; // concurrent write : 897
+}

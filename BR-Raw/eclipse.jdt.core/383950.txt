@@ -1,0 +1,14 @@
+Bug 383950 – [1.8][compiler] Type annotations must have target type meta annotation TYPE_USE
+BETA_JAVA8:
+From the spec:
+"If an annotation is not meta-annotated with @Target
+(which would be poor style!), then the compiler treats the
+annotation as if it is meta-annotated with all of the
+ElementType enum constants that appear in Java 7"
+This would mean that the following snippet should not
+compile: but it does at the moment.
+// ----------
+@interface Marker {
+}
+public class X  extends @Marker Object {
+}

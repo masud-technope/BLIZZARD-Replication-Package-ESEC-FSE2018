@@ -1,0 +1,7 @@
+51376 – Dynamically added Servlet instances ignore setLoadOnStartup(), @ServletSecurity, etc
+When a pre-existing instance of Servlet class is added dynamically by calling ServletContext.addServlet(String, Servlet) in ServletContainerInitializer, multiple problems arise:
+* setLoadOnStartup() is ignored
+* @ServletSecurity is ignored
+* destroy() can be called on non-initialized servlet
+Adding a servlet class (addServlet(String, String), addServlet(String, Class)) doesn't have this problems.
+It happens because methods of org.apache.catalina.core.StandardWrapper treat presence of servlet instance as an indicator of the fact that servlet have been initialized, that is not true when addServlet(String, Servlet) is used.

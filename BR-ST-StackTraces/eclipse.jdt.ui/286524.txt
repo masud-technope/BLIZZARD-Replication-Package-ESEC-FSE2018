@@ -1,0 +1,12 @@
+java.net.URLClassLoader$1.run
+java.security.AccessController.doPrivileged
+java.net.URLClassLoader.findClass
+java.lang.ClassLoader.loadClass
+sun.misc.Launcher$AppClassLoader.loadClass
+java.lang.ClassLoader.loadClass
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.loadClass
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.loadClasses
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run
+org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main

@@ -1,0 +1,13 @@
+Bug 427748 – [1.8][compiler] Cannot convert from Boolean to boolean on generic return type
+Another weird sounding error from compiling JDK source, with this source code:
+public class CannotConvertTest {
+private static interface Action<T> {T run();}
+private static Action<Boolean> baction;
+static void getLog(int override) {}
+static void getLog(boolean override) {}
+private static <T> T doit(Action<T> action) {return null;}
+static {
+//Type mismatch: cannot convert from Boolean to boolean
+getLog(doit(baction));
+}
+}

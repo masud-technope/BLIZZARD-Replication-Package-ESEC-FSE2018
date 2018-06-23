@@ -1,0 +1,37 @@
+Bug 312038 – JREContainer hasChildren locks up the UI for more than 30s
+Created attachment 167452 [details]
+backtrace and example of recursive stat
+3.6M7
+I'm seeing this very frequently.
+ Changing a Manifest.MF, for example, causes the entire Eclipse UI to lockup.
+  There seems to be an issue in the way that the JDT discovers whether a source directory is available.
+Using jstack multiple times, I see that the main thread is locked up in java.io.File.isFile(), called as a result of TreeViewer.isExpandable():
+java.lang.Thread.State: RUNNABLE
+at java.io.UnixFileSystem.getBooleanAttributes0(Native Method)
+at java.io.UnixFileSystem.getBooleanAttributes(UnixFileSystem.java:228)
+at java.io.File.isFile(File.java:778)
+at org.eclipse.jdt.internal.launching.StandardVMType.getDefaultSystemLibrarySource(StandardVMType.java:237)
+at org.eclipse.jdt.internal.launching.StandardVMType.getDefaultLibraryLocations(StandardVMType.java:310)
+at org.eclipse.jdt.launching.JavaRuntime.getLibraryLocations(JavaRuntime.java:1639)
+at org.eclipse.jdt.internal.launching.JREContainer.computeClasspathEntries(JREContainer.java:293)
+...
+Stracing the process shows that's it's iterating up the tree recursively looking for src.zip / src.jar.
+When it hits a NFS automount directory the thread main thread is context switched out, and the stat is 100+ times slower.
+It seems to be doing this again and again on the UI thread:
+[pid  4095] 11:08:21 stat("/tools/oss/packages/x86_64-rhel4/java/jdk1.6.0_11/jre/lib/src.jar", 0x402288d0) = -1 ENOENT (No such file or directory) <0.000017>
+[pid  4095] 11:08:21 stat("/tools/oss/packages/x86_64-rhel4/java/jdk1.6.0_11/jre/lib/src.zip", 0x402288d0) = -1 ENOENT (No such file or directory) <0.000013>
+[pid  4095] 11:08:21 stat("/tools/oss/packages/x86_64-rhel4/java/jdk1.6.0_11/jre/src.jar", 0x402288d0) = -1 ENOENT (No such file or directory) <0.000012>
+[pid  4095] 11:08:21 stat("/tools/oss/packages/x86_64-rhel4/java/jdk1.6.0_11/jre/src.zip", 0x402288d0) = -1 ENOENT (No such file or directory) <0.000012>
+[pid  4095] 11:08:21 stat("/tools/oss/packages/x86_64-rhel4/java/jdk1.6.0_11/src.jar", 0x402288d0) = -1 ENOENT (No such file or directory) <0.000011>
+[pid  4095] 11:08:21 stat("/tools/oss/packages/x86_64-rhel4/java/jdk1.6.0_11/src.zip", 0x402288d0) = -1 ENOENT (No such file or directory) <0.000012>
+[pid  4095] 11:08:21 stat("/tools/oss/packages/x86_64-rhel4/java/src.jar", 0x402288d0) = -1 ENOENT (No such file or directory) <0.000015>
+[pid  4095] 11:08:21 stat("/tools/oss/packages/x86_64-rhel4/java/src.zip", 0x402288d0) = -1 ENOENT (No such file or directory) <0.000010>
+[pid  4095] 11:08:21 stat("/tools/oss/packages/x86_64-rhel4/src.jar", 0x402288d0) = -1 ENOENT (No such file or directory) <0.000013>
+[pid  4095] 11:08:21 stat("/tools/oss/packages/x86_64-rhel4/src.zip", 0x402288d0) = -1 ENOENT (No such file or directory) <0.000010>
+[pid  4095] 11:08:21 stat("/tools/oss/packages/src.jar", 0x402288d0) = -1 ENOENT (No such file or directory) <0.000011>
+[pid  4095] 11:08:21 stat("/tools/oss/packages/src.zip", 0x402288d0) = -1 ENOENT (No such file or directory) <0.000010>
+[pid  4095] 11:08:21 stat("/tools/oss/src.jar", 0x402288d0) = -1 ENOENT (No such file or directory) <0.000007>
+[pid  4095] 11:08:21 stat("/tools/oss/src.zip", 0x402288d0) = -1 ENOENT (No such file or directory) <0.000008>
+[pid  4095] 11:08:21 stat("/tools/src.jar",  <unfinished ...>
+This is really bad for performance, and hurts automounters badly.
+ I attached strace some time after the start of the hang and I have 28M of stat()s...

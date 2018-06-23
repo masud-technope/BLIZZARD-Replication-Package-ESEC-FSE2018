@@ -1,0 +1,5 @@
+Bug 57598 – Remove "New Scrapbook Page" toolbar button
+As it appears that there is not way to correctly place the "New Scrapbook
+Page" button within the toolbar group of the JDT Java Element creation toolbar
+actions, we plan to remove this action.
+It is available via the File>New menu.

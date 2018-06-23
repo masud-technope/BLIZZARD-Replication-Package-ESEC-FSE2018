@@ -1,0 +1,8 @@
+org.eclipse.jdt.internal.debug.ui.JDIDebugUIPlugin.log
+org.eclipse.jdt.internal.debug.ui.JDIDebugUIPlugin.log
+org.eclipse.jdt.internal.debug.ui.JavaDebugHover.findLocalVariable
+org.eclipse.jdt.internal.debug.ui.JavaDebugHover.getHoverInfo2
+org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2
+org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2
+org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2
+org.eclipse.jface.text.TextViewerHoverManager$4.run

@@ -1,0 +1,23 @@
+57845 – Multiple JspServletWrapper's sharing one JspCompilationContext
+Copied from http://stackoverflow.com/questions/24567224/tomcat-serving-cached-alias:
+Setup:  One jsp served at multiple urls:
+<welcome-file-list>
+<welcome-file>index.jsp</welcome-file>
+</welcome-file-list>
+<servlet>
+<servlet-name>Main</servlet-name>
+<jsp-file>/index.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+<servlet-name>Main</servlet-name>
+<url-pattern>/advanced/</url-pattern>
+</servlet-mapping>
+When I change the contents of index.jsp and visit /, it is updated.
+ Then when I visit /advanced/ it is not updated.
+ I expect both URL's contents to be updated.
+ If I change index.jsp again and visit /advanced/ first, it is up-to-date, but / is not.
+I spent some time in org.apache.jasper.compiler.Compiler#isOutDated(boolean), and I've found that only the first URL that I visit is the one that is marked outDated.
+The second URL I visit is never marked outDated.
+So it's as if tomcat keeps two instances of JspServlet but share the same outDated information for the file, so when one JspServlet marks it as outDated and sets reload, the second JspServlet never recompiles it nor serves the recompiled version.
+(Also happened in 7.0.47 and some earlier versions of Tomcat7.
+ Never tried it on Tomcat6 or 8.)

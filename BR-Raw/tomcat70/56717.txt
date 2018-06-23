@@ -1,0 +1,65 @@
+56717 – MapperListener does not remove its listeners. It matters for repeated starts of embedded Tomcat,
+Debugged om the current trunk at 1610244, between 8.0.10 and 8.0.11.
+Steps to reproduce:
+1.
+Add the following lines to build.properties
+test.entry=org.apache.catalina.core.TestStandardContext
+test.entry.methods=testFlagFailCtxIfServletStartFails
+2.
+I added log.info("...", new RuntimeException()) to Mapper.addHost(), Mapper.removeHost()
+3.
+Run the test case.
+The test case performs "tomcat.stop(); tomcat.start();" twice.
+Actual behaviour:
+During the second tomcat.start() the Mapper.addHost() is called twice with the same host.
+It results in an error message,
+> SEVERE [main] org.apache.catalina.mapper.Mapper.addHost Duplicate Host [localhost].
+The name is already used by Host [localhost].
+This Host will be ignored.
+Expected behaviour:
+No such message.
+From debug stacktraces that I printed in addHost(), I see that during the second start the two addHost() calls have the following stack traces:
+[[[
+java.lang.RuntimeException
+at org.apache.catalina.mapper.Mapper.addHost(Mapper.java:95)
+at org.apache.catalina.mapper.MapperListener.registerHost(MapperListener.java:295)
+at org.apache.catalina.mapper.MapperListener.lifecycleEvent(MapperListener.java:482)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:117)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:402)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:168)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at java.lang.Thread.run(Thread.java:745)
+]]]
+and
+[[[
+java.lang.RuntimeException
+at org.apache.catalina.mapper.Mapper.addHost(Mapper.java:95)
+at org.apache.catalina.mapper.MapperListener.registerHost(MapperListener.java:295)
+at org.apache.catalina.mapper.MapperListener.startInternal(MapperListener.java:110)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+at org.apache.catalina.core.StandardService.startInternal(StandardService.java:450)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:760)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+at org.apache.catalina.startup.Tomcat.start(Tomcat.java:340)
+at org.apache.catalina.startup.TomcatBaseTest$TomcatWithFastSessionIDs.start(TomcatBaseTest.java:410)
+at org.apache.catalina.core.TestStandardContext.testFlagFailCtxIfServletStartFails(TestStandardContext.java:917)
+(...
+JUnit code...)
+]]]
+The second stack trace with "MapperListener.startInternal()" is the expected one.
+The same stack trace is observed during the first tomcat.start().
+The first stack trace with "MapperListener.lifecycleEvent()" is an unexpected one.
+It is caused by the lifecycle listener still being registered on Host.
+The MapperListener.startInternal() method contains line
+> addListeners(engine);
+As listeners are stored in a list, it means that the same listener will be added the second time.
+I expect that if one adds the thirds tomcat.start() call to the test case, it will cause Mapper.addHost() to be called three times.
+That said, I think there is not much of a problem from calling addHost() more than once for the same host (e.g.
+Mapper.addContextVersion() may call it silently).
+Thus I'll change Mapper.addHost() to do not treat such repeated calls as an error.

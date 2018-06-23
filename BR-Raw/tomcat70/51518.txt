@@ -1,0 +1,29 @@
+51518 – "/absolute-ordering/name/others" should not include "name" element
+method:
+org.apache.catalina.startup.WebRuleSet.addRuleInstances(Digester digester)
+code:
+====================================================
+digester.addCallMethod(fullPrefix + "/absolute-ordering/name/others",
+"addAbsoluteOrderingOthers");
+====================================================
+web-common_3_0.xsd
+====================================================
+<xsd:complexType name="absoluteOrderingType">
+<xsd:annotation>
+<xsd:documentation>
+Please see section 8.2.2 of the specification for details.
+</xsd:documentation>
+</xsd:annotation>
+<xsd:choice minOccurs="0"
+maxOccurs="unbounded">
+<xsd:element name="name"
+type="javaee:java-identifierType"
+minOccurs="0"
+maxOccurs="unbounded"/>
+<xsd:element name="others"
+type="javaee:ordering-othersType"
+minOccurs="0"
+maxOccurs="1"/>
+</xsd:choice>
+</xsd:complexType>
+====================================================

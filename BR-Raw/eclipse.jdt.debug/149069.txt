@@ -1,0 +1,2 @@
+Bug 149069 – [preferences] Move USE_STEP_FILTERING pref constant to public API
+the use_step_filtering pref constant needs to be moved to public API.

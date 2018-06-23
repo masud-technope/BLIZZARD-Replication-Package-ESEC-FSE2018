@@ -1,0 +1,3 @@
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdServiceTypeID.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdDisocoveryLocator.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdServiceTypeID.java

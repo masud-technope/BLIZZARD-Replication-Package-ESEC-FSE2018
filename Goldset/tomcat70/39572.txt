@@ -1,0 +1,4 @@
+webapps/examples/WEB-INF/classes/compressionFilters/CompressionServletResponseWrapper.java
+webapps/examples/WEB-INF/classes/compressionFilters/CompressionFilterTestServlet.java
+webapps/examples/WEB-INF/classes/compressionFilters/CompressionResponseStream.java
+webapps/docs/changelog.xml

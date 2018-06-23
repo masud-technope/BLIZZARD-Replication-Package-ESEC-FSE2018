@@ -1,0 +1,4 @@
+Bug 130411 – Copyright statements are missing on new java files
+New java files in the registry package have no copyright statement on top.
+The copyright should just refer to 2006
+Janek, while you're at it, you should add the copyright statement to your Java code template so that all new files are created with it automatically.

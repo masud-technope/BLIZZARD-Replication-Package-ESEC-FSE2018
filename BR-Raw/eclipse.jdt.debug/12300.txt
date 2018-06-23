@@ -1,0 +1,7 @@
+Bug 12300 – Sharing launch config difficult because of VM_INSTALL_ID
+Build: 20020321
+When trying to execute a launch configuration that someone else in the team has
+created, the Run/Debug button is grayed out for a reason that is hard to find: The VM_INSTALL_ID
+does not match any locally installed JRE.
+It is not trivial to figure out that the Environment -> JRE
+tabs must be edited.

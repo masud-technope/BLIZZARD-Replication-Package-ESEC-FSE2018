@@ -1,0 +1,19 @@
+Bug 405780 – [1.8][compiler] Bad syntax error 'insert ":: IdentifierOrNew"' for missing semicolon
+JDT UI's org.eclipse.jdt.ui.tests.refactoring.ExtractConstantTests#test34() fails in BETA_JAVA8 because we get an unexpected second syntax error when trying to compile the result of the refactoring.
+Source:
+package p;
+import java.util.List;
+class A {
+private static final String STRING = new String();
+{
+Object o= STRING;
+Object o2= STRING
+}
+}
+In master, we get the error:
+- Syntax error, insert ";" to complete LocalVariableDeclarationStatement
+In BETA_JAVA8, we get:
+- Syntax error, insert ":: IdentifierOrNew" to complete Expression
+- Syntax error, insert ";" to complete LocalVariableDeclarationStatement
+The first error should not be issued.
+It doesn't make sense at all in pre-JLS8 ASTs, and even in JLS8, inserting a method reference would not fix the problem.

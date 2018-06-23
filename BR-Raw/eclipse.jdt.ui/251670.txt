@@ -1,0 +1,2 @@
+Bug 251670 – [preferences] CODEASSIST_STATIC_FINAL_FIELD_PREFIXES should be added in preferences page
+The new JavaCore options CODEASSIST_STATIC_FINAL_FIELD_PREFIXES and CODEASSIST_STATIC_FINAL_FIELD_SUFFIXES (bug 38111) should be added in preferences page.

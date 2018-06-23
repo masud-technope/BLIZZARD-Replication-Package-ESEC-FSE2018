@@ -1,0 +1,16 @@
+56025 – Order of invocation of method of ServerEndpointConfig.Configurator
+The current order of invocation (from http://svn.apache.org/repos/asf/tomcat/trunk/java/org/apache/tomcat/websocket/server/UpgradeUtil.java) is:
+checkOrigin()
+getNegotiatedSubprotocol()
+getEndpointInstance()
+modifyHandshake()
+JSR 356 is guilty for not specifying this order, but I believe a different order is more useful.
+Below I refer to "the application" as a subclass of the ServerEndpointConfig.Configurator implemented by end users.
+I'd like to propose this new order:
+modifyHandshake() as first: this allows applications to query/store information about the upgrade request (for example, the URI);
+checkOrigin() as second: this allows applications to check the origin with more information available, because the request/response are available from the previous call and therefore checks of the origin against the request URI and/or other HTTP headers will be possible;
+getNegotiatedSubprotocol() as third: this should be always invoked, while right now it is not invoked if the client does not specify the Sec-WebSocket-Protocol header; this is not ideal since the server may have been configured with a sub-protocol, but the application is never called to check what the client has sent;
+getEndPointInstance() as last: there is no point in creating the endpoint if the other methods returned a failure, nor there is point to invoke any other method if this one returned null.
+The current order also does not invoke method getNegotiatedExtensions(), but as far as I understand extensions are not yet supported.
+I believe this method should be eventually invoked as fourth, before getEndPointInstance().
+Thanks !

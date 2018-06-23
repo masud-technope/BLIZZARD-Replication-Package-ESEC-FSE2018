@@ -1,0 +1,8 @@
+Bug 18306 – Use safe runnables for listeners and "untrusted" code
+See Bug 18305.
+An NPE in the runtime workbench launch configuration prevents
+me from opening the launch configuration dialog.
+Whereever possible, the platform launch config support should defend against
+errors in the delegates.
+An error in one delegate (in this case, PDE)
+shouldn't cripple the platform.

@@ -1,0 +1,5 @@
+Bug 74753 – [1.5] codeassist failing on type parameter
+Build 20040921
+When attempting to complete at: final Constructor<T|<--- CODEASSIST HERE
+in 1.5 source for java.lang.Class (b64, cursor location 321:36); an error
+dialog opens telling action failed.

@@ -1,0 +1,3 @@
+Bug 192762 – [IRC] Support common operations on usernames like op,voice,etc
+A lot of IRC clients have support for commands on usernames listed.
+Some examples are 'op,voice,deop,etc...' We should aim to do this.

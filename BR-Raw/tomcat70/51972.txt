@@ -1,0 +1,5 @@
+51972 – sendRedirect does not support protocol relative URLs
+The following URL is a protocol relative URL: "//server.com:8080/foo/bar/kala.html"
+where as this is server relative: "/foo/bar/kala.html"
+org/apache/catalina/connector/Response.java breaks on protocol relative URLs in that toAbsolute(String) expects everything that begins with a '/' to be server relative.
+toAbsolute adds the protocol, server and port to the URL, resulting in URLs like http://foo.com:80//server.com:8080/foo/bar/kala.html (instead of the correct http://server.com:8080/foo/bar/kala.html)

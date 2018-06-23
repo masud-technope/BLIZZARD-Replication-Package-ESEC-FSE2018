@@ -1,0 +1,6 @@
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/core/util/SerializableMultiStatus.java
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/core/status/SerializableMultiStatus.java
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/core/status/SerializableStatus.java
+framework/bundles/org.eclipse.ecf/META-INF/MANIFEST.MF
+tests/bundles/org.eclipse.ecf.tests/src/org/eclipse/ecf/tests/core/util/SerializableStatusTest.java
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/core/util/SerializableStatus.java

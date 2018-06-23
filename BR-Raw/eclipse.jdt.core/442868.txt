@@ -1,0 +1,17 @@
+Bug 442868 – [content assist] No type completion on 2nd+ parameter in anonymous classes
+While running some smoke tests I found that triggering JDT content assist on the second argument of m() marked with a '$', JDT does not propose any types.
+Whereas when I trigger content assist on the first type I get all types as expected.
+package __test;
+import java.util.List;
+public class Weird {
+private static void weird() {
+new Other() {
+@Override
+public void m(String s, L$ist l, Object o) {
+}
+};
+}
+}
+abstract class Other {
+public abstract void m(String s, List l, Object o);
+}

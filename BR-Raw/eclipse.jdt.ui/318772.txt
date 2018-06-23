@@ -1,0 +1,16 @@
+Bug 318772 – [build path] help button on "Inclusion and Exclusion Patterns" wizard page does not work
+The help button shown as a question mark icon on the "Inclusion and Exclusion Patterns" page of the "Edit source folder" wizard does not work when clicked.
+ However, the previous page titled, "Source Folder" does work.
+Steps to duplicate:
+* Create a new Java project.
+* Open the project's properties.
+* Navigate to Java Build Path.
+* Click "Add Folder".
+* Choose a path and click next.
+* On the "Inclusion and Exclusion Patterns" page, click the help button in the lower-left corner.
+Actual behavior:
+* Nothing happens.
+Expected behavior:
+* Help side-bar panel opens on the right side of the page.
+Version: Helios Release
+Build id: 20100617-1415

@@ -1,0 +1,31 @@
+50184 – RpcChannel sends the answer without requesting an ACK
+Created attachment 26229 [details]
+proposed patch
+Hi,
+I'm using apache tribes outside of Tomcat.
+Although my version is not the latest one, this also applies to trunk.
+I have a customer that was using Bio senders (a version before to the excecutors refactor see bug 50183), and there were experiencing some weird behavior.
+(I couldn't reproduce it, but I guess it is related with the platform since they are using solaris)
+My application uses tribes to create an RPC channel.
+They also had some network issues.
+So, in certain occasions, the application invoked a remote method, the remote node processed the invocation and send the answer back (but it is not received in the first node).
+So, the timeout occurs and eventually a new RPC invocation occurs.
+But this time, the second node realized that there is a socket issue when trying to send the answer back (it gets a broken pipe exception).
+Them the connection is re-established and the message is received without any issues.
+My customer is complaining about the timeout that occurred the first time.
+To send the message we do the following:
+BioSender.pushMessage(.....) {
+...
+soOut.write(data);
+soOut.flush();
+...
+}
+But the flush operation does not warranty that the message was successfully sent to the network.
+It just warranty that the information was passed to the S.O.
+http://download.oracle.com/javase/6/docs/api/java/io/OutputStream.html#flush()
+So, in order to avoid this issue I thought that we can modify the RpcChannel to send the reply message using SEND_OPTIONS_USE_ACK option.
+Setting this, the remote node will be able to detect situations like the one I commented, and recreate the connection.
+I'm attaching a patch with my proposal.
+Thanks for your time.
+Regards,
+Ariel

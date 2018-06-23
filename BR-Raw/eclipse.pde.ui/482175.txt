@@ -1,0 +1,2 @@
+Bug 482175 – Cleanup code in SpyHandler and MenuSpyHandler
+Javadoc of Object execute(ExecutionEvent event) says that an event can never be null.

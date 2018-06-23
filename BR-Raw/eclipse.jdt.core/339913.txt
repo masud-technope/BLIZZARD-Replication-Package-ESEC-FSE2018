@@ -1,0 +1,12 @@
+Bug 339913 – [compiler] Misleading error message for annotations inside a method body
+public class X {
+public static String foo() {
+@interface C {}
+return "";
+}
+}
+Compiling this with HEAD leads to:
+The member annotation C can only be defined inside a static context.
+It has nothing to do with the static context.
+Only the error message is wrong.
+This is detected as an invalid local type.

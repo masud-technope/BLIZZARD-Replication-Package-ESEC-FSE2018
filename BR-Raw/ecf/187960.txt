@@ -1,0 +1,3 @@
+Bug 187960 – [presence] API needed for inviting a user to a chat(room)
+Am I blind or have we not actually had this this whole time? I'm not seeing it anywhere.
+We have a listener for invites (IChatRoomInvitationListener) but we don't appear to be capable of actually sending out invites.

@@ -1,0 +1,14 @@
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/AttributeReply.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/AttributeRequest.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/DAAdvertisement.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/SLPCore.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/SLPDaemonImpl.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/SLPMessage.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/ServiceAcknowledgement.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/ServiceDeregistration.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/ServiceRegistration.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/ServiceReply.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/ServiceRequest.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/ServiceTypeReply.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/ServiceTypeRequest.java
+protocols/bundles/ch.ethz.iks.slp/src/test/java/ch/ethz/iks/slp/impl/AttributeParserTest.java

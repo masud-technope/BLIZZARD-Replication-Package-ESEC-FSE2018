@@ -1,0 +1,5 @@
+Bug 260953 – Importing fragment without Import/Export-headers forgets java nature
+N20090109-2000
+Importing a fragment from the target platform which does not specify any import/export headers ends up as pde project without java nature.
+See PluginImportOperation#needsJavaNature.
+I don't think that this is the right way as you can have correct fragment project without the corresponding manifest headers.

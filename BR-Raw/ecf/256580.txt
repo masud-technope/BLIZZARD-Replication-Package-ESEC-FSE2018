@@ -1,0 +1,2 @@
+Bug 256580 – org.eclipse.ecf.core.ContainerFactory.getContainer(ID) never returns and causes caller to hang indefinitely
+org.eclipse.ecf.core.ContainerFactory.getContainer(ID) never reaches the break condition

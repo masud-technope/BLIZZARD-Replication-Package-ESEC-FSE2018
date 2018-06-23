@@ -1,0 +1,21 @@
+54124 – wrong javax.servlet.async.request_uri information and javax.servlet.async.path_info is missing
+As it is clearly shown that
+org.apache.catalina.core.AsyncContextImpl.dispatch(ServletContext, String)
+@Override
+public void dispatch(ServletContext context, String path) {
+if (log.isDebugEnabled()) {
+logDebug("dispatch   ");
+}
+check();
+if (request.getAttribute(ASYNC_REQUEST_URI)==null) {
+request.setAttribute(ASYNC_REQUEST_URI, request.getRequestURI()+"?"+request.getQueryString());
+request.setAttribute(ASYNC_CONTEXT_PATH, request.getContextPath());
+request.setAttribute(ASYNC_SERVLET_PATH, request.getServletPath());
+request.setAttribute(ASYNC_QUERY_STRING, request.getQueryString());
+}
+....
+}
+the value of ASYNC_REQUEST_URI is not the same as request.getRequestURI().
+They must be equal to each other as defined by Servlet 3.0, 9.7.2
+Dispatched Request Parameters.
+And ASYNC_PATH_INFO is missing.

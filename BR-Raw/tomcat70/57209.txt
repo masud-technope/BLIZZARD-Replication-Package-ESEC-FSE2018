@@ -1,0 +1,27 @@
+57209 – JNDIRealm userSearch does not work against active directory with roles
+JNDIRealm without connectionPassword/connectionName on role lookups - role search as user does not work as intended.
+ If you want to search the system as the logged in user for roles:
+userBase = DC=Company,DC=com
+userSearch = (&(objectCategory=person)(sAMAccountName={0}))
+userSubTree = true
+This works fine and you can bind as a user, but searching fails.
+ Search fails because there's no user credentials to bind with and binding anonymously is disabled.
+ If you have isRoleSearchAsUser turned on the expectation
+protected User getUser(DirContext context, String username, String credentials, int curUserPattern)
+does not add the binding user credentials for searching.
+ A VERY simple fix around line 1297 is to do the following so that searches work with the bound user:
+// Use pattern or search for user entry
+if (userPatternFormatArray != null && curUserPattern >= 0) {
+user = getUserByPattern(context, username, credentials, attrIds, curUserPattern);
+}
+else {
+if (isRoleSearchAsUser()) {
+userCredentialsAdd(context, username, credentials);
+}
+user = getUserBySearch(context, username, attrIds);
+}
+There's probably a cleaner way to do this, but this is how I've managed to get things working at this point.
+ I'd imagine a property "userSearchDNPattern" could be added so that you can specify the pattern for the DN to bind with.
+ And switch the "userCredentialsAdd" to use that userSearchDNPattern" instead.
+ With the above fix binding as a user and role lookups now work.
+ Another option is to change "roleSearchAsUser" to something that says "do all operatins with the authenticated user, assuming he's authorized"

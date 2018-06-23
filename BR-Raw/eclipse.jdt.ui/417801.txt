@@ -1,0 +1,9 @@
+Bug 417801 – [1.8][quick assist] Infer lambda parameters
+A quick assist can be added to infer lambda parameters in a lambda expression which has type inferred (type-less) parameters.
+It would be useful to know the types of the lambda parameters explicitly, in cases where the functional interface is not in the same class or project.
+Example: Invoking infer lambda parameters quick assist on the lambda expression:
+Button button = new Button();
+button.addActionListener(e -> foo());
+should result in:
+Button button = new Button();
+button.addActionListener((ActionEvent e) -> foo());

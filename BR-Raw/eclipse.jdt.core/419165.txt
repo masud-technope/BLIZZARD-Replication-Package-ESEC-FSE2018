@@ -1,0 +1,21 @@
+Bug 419165 – [1.8][compiler] TypeBinding.id assignment interferes with hashmap storage/retrieval
+BETA_JAVA8:
+From https://bugs.eclipse.org/bugs/show_bug.cgi?id=417113#c63:
+// --
+Working on type inference I discovered:
+- an InferenceVariable (subclass of TypeVariableBinding) appeared twice as a key in a HashMap, assumably caused by:
+- TypeBinding.hashCode relies on stability of TypeBinding.id
+- UnannotatedTypeSystem lazily assigns ids, which violates stability
+In that particular case I can workaround by either of:
+- eagerly registering with UTS
+- overriding hashCode() and equals()
+Raising this issue here, because:
+- the problem could potentially affect other subclasses of TypeBinding?
+- the lone hashCode() looks strange without a matching equals()
+@Srikanth, do you have reasons at hand, why the existing code is safe, or should I file a new bug?
+// --
+No, the existing code is not safe as your HashMap experience shows.
+The id
+assignment is safe from the pov of UTS + ATS, but that is not good enough.
+I'll work on resolving this asap.
+Thanks for catching this.

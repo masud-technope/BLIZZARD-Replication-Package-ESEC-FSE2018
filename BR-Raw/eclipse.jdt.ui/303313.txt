@@ -1,0 +1,68 @@
+Bug 303313 – Test failures in SurroundWithTests when run in AllAllRefactoringTests
+When I run the AllAllRefactoringTests, I get 4 failures in SurroundWithTests:
+testNoException()
+testAlreadyCaught()
+testRuntimeException2()
+testThenStatement()
+SurroundWithTests run alone is green.
+I've debugged it, and the problem is e.g.
+visible here:
+Thread [main] (Suspended)
+owns: RunnableLock  (id=102)
+SelectionAwareSourceRangeComputer.initializeRanges() line: 72
+SelectionAwareSourceRangeComputer.computeSourceRange(ASTNode) line: 47
+ASTRewriteAnalyzer.getExtendedRange(ASTNode) line: 186
+ASTRewriteAnalyzer.getExtendedOffset(ASTNode) line: 190
+ASTRewriteAnalyzer$ParagraphListRewriter(ASTRewriteAnalyzer$ListRewriter).rewriteList(ASTNode, StructuralPropertyDescriptor, int, String) line: 527
+ASTRewriteAnalyzer.rewriteParagraphList(ASTNode, StructuralPropertyDescriptor, int, int, int, int) line: 998
+ASTRewriteAnalyzer.visit(Block) line: 1679
+Block.accept0(ASTVisitor) line: 134
+Block(ASTNode).accept(ASTVisitor) line: 2480
+ASTRewrite.internalRewriteAST(char[], LineInformation, String, List, Map, ASTNode, RecoveryScannerData) line: 271
+ASTRewrite.rewriteAST() line: 260
+SurroundWithTryCatchRefactoring.createChange(IProgressMonitor) line: 197
+CreateChangeOperation.run(IProgressMonitor) line: 124
+PerformRefactoringOperation.run(IProgressMonitor) line: 102
+BatchOperation.executeOperation() line: 39
+BatchOperation(JavaModelOperation).run(IProgressMonitor) line: 728
+Workspace.run(IWorkspaceRunnable, ISchedulingRule, int, IProgressMonitor) line: 1986
+JavaCore.run(IWorkspaceRunnable, ISchedulingRule, IProgressMonitor) line: 4725
+JavaCore.run(IWorkspaceRunnable, IProgressMonitor) line: 4682
+SurroundWithTests(AbstractSelectionTestCase).performTest(ICompilationUnit, Refactoring, int, String, boolean) line: 126
+SurroundWithTests.performTest(IPackageFragment, String, String, int) line: 58
+SurroundWithTests.tryCatchTest() line: 66
+SurroundWithTests.testAlreadyCaught() line: 74
+The problem is that the buffer is closed and Buffer#getText(..) returns "".
+The buffer gets closed here:
+Thread [main] (Suspended (breakpoint at line 102 in Buffer))
+owns: BufferManager  (id=3641)
+owns: RunnableLock  (id=102)
+Buffer.close() line: 102
+BufferCache.closeBuffers() line: 67
+BufferManager.addBuffer(IBuffer) line: 60
+CompilationUnit.openBuffer(IProgressMonitor, Object) line: 1161
+CompilationUnit.buildStructure(OpenableElementInfo, IProgressMonitor, Map, IResource) line: 116
+CompilationUnit(Openable).generateInfos(Object, HashMap, IProgressMonitor) line: 258
+CompilationUnit(JavaElement).openWhenClosed(Object, IProgressMonitor) line: 515
+CompilationUnit(JavaElement).getElementInfo(IProgressMonitor) line: 252
+CompilationUnit(JavaElement).getElementInfo() line: 238
+CompilationUnit(JavaElement).getChildren() line: 193
+CompilationUnit(JavaElement).getChildrenOfType(int) line: 207
+CompilationUnit.getTypes() line: 920
+CompilationUnit.getAllTypes() line: 605
+ContextSensitiveImportRewriteContext.findInContext(String, String, int) line: 148
+ImportRewrite.internalAddImport(String, ImportRewrite$ImportRewriteContext) line: 927
+ImportRewrite.addImport(ITypeBinding, ImportRewrite$ImportRewriteContext) line: 578
+SurroundWithTryCatchRefactoring.createTryCatchStatement(IBuffer, String) line: 217
+SurroundWithTryCatchRefactoring.createChange(IProgressMonitor) line: 190
+CreateChangeOperation.run(IProgressMonitor) line: 124
+PerformRefactoringOperation.run(IProgressMonitor) line: 102
+BatchOperation.executeOperation() line: 39
+BatchOperation(JavaModelOperation).run(IProgressMonitor) line: 728
+Workspace.run(IWorkspaceRunnable, ISchedulingRule, int, IProgressMonitor) line: 1986
+JavaCore.run(IWorkspaceRunnable, ISchedulingRule, IProgressMonitor) line: 4725
+JavaCore.run(IWorkspaceRunnable, IProgressMonitor) line: 4682
+SurroundWithTests(AbstractSelectionTestCase).performTest(ICompilationUnit, Refactoring, int, String, boolean) line: 126
+SurroundWithTests.performTest(IPackageFragment, String, String, int) line: 58
+SurroundWithTests.tryCatchTest() line: 66
+SurroundWithTests.testRuntimeException2() line: 174

@@ -1,0 +1,13 @@
+59123 – The JNDIRealm does not close the NamingEnumeration
+The JNDIRealm does not close any of the NamingEnumeration it uses in the following methods :
+- getUserBySearch, line 1685
+- getRoles, line 1974
+- addAttributeValues, line 2125
+(this is from trunk, I saw the same issue in Tomcat 8, I suspect the problem is the same for all the tomcat versions)
+The problem is that if a NamingEnumeration is not close, then the associated DirContext won't be closed, even if a DirContext.close() is explicitly called, leving the DirContext opened until it times out.
+The consequence is that if this DirContext is taken from a Pool of connection, you pretty quickly exhaust this pool, as the connction will be back into the available connections only when they timeout (an dthe default timeout is 30s, from the top of my head).
+This is explicitely said on https://docs.oracle.com/javase/tutorial/jndi/ldap/close.html :
+"You invoke Context.close() on a Context instance to indicate that you no longer need to use it.
+If the Context instance being closed is using a dedicated connection, the connection is also closed.
+If the Context instance is sharing a connection with other Context and unterminated NamingEnumeration instances, the connection will not be closed until close() has been invoked on all such Context and NamingEnumeration instances."
+or in https://blogs.oracle.com/moazam/entry/jndi_connections_not_closing_remember

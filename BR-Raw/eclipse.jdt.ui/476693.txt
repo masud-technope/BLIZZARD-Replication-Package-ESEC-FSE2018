@@ -1,0 +1,44 @@
+Bug 476693 – [1.8] Open declaration jumps to the wrong method when overloaded
+The following is the most minimal configuration that I have found to reproduce this issue:
+----------------------------------------------------------------
+import static java.util.stream.Collectors.toList;
+import java.util.List;
+import java.util.Spliterator;
+import java.util.stream.Stream;
+public class Test {
+<T1, T2> Seq<Tuple2<T1, T2>> m(Stream<T1> arg1, Stream<T2> arg2) {
+System.out.println("m1"); return null;
+}
+<T1, T2> Seq<Tuple2<T1, T2>> m(Iterable<T1> arg1, Iterable<T2> arg2) {
+System.out.println("m2"); return null;
+}
+<T1, T2> Seq<Tuple2<T1, T2>> m(Seq<T1> arg1, Seq<T2> arg2){
+System.out.println("m3"); return null;
+}
+<T1, T2, T3> void m(Seq<T1> c1, Seq<T2> c2, Seq<T3> c3) {
+// Click F3 on the m() call.
+This will jump to m3, correctly
+Seq<Tuple2<T1, T2>> s = m(c1, c2);
+try {
+// Click F3 on the m() call.
+This will jump to m1, erroneously
+List<Tuple2<T1, T2>> l = m(c1, c2).collect(toList());
+}
+catch (NullPointerException ignore) {}
+}
+public static void main(String[] args) {
+new Test().m(null, null, null);
+}
+}
+interface Seq<T> extends Stream<T>, Iterable<T> {
+@Override
+default Spliterator<T> spliterator() {
+return Iterable.super.spliterator();
+}
+}
+interface Tuple2<T1, T2> {}
+interface Tuple3<T1, T2, T3> {}
+----------------------------------------------------------------
+The problem is only related to the "open declaration" functionality.
+The compiler links the correct method (m3 is output two times), and also when clicking on / highlighting "m3", both m() calls are highlighted as well.
+I have found that both the assignment to the "List<Tuple2<T1, T2>>" type as well as the "collect" call are relevant to reproduce this issue.

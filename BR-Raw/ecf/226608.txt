@@ -1,0 +1,4 @@
+Bug 226608 – make IContainerEjectedEvent .getSerializable return a Throwable
+The reason I ask for this is that some clients have a need to know exactly why they have been disconnected (ie., what was the root exception that caused the ejection event).
+They need this event to be able to act on it in some fashion.
+In the short term, returning a throwable might be the quick fix...

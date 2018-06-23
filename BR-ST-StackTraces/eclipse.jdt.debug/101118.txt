@@ -1,0 +1,14 @@
+org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.getJavaProject
+org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.getCompiledExpression
+org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.resolveFormatter
+org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.access$0
+org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager$4.run
+org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run
+org.eclipse.core.internal.jobs.Worker.run
+org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.getJavaProject
+org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.getCompiledExpression
+org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.resolveFormatter
+org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.access$0
+org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager$4.run
+org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run
+org.eclipse.core.internal.jobs.Worker.run

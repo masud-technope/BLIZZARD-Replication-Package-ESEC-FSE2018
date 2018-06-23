@@ -1,0 +1,26 @@
+Bug 453475 – [1.8][null] Contradictory null annotations (4.5 M3 edition)
+TestMap.java
+------------
+> import java.util.*;
+> import org.eclipse.jdt.annotation.*;
+>
+> @NonNullByDefault
+> public abstract class TestMap extends AbstractMap<String,@Nullable String> {
+>
+> }
+Test.java
+------------
+> import java.util.*;
+> import org.eclipse.jdt.annotation.*;
+>
+> @NonNullByDefault
+> public class Test {
+>
+>   public static final void test(TestMap testMap) {
+>     testMap.putAll(new HashMap<String,@Nullable String>()); // Error: Contradictory null annotations: method was inferred as 'void putAll(Map<? extends @NonNull String,? extends @NonNull @Nullable String>)', but only one of '@NonNull' and '@Nullable' can be effective at any location
+>   }
+>
+> }
+eclipse.buildId=4.5.0.I20141029-2000
+If I do a "Project->Clean..." the error disappears and won't show up until I modify and save Test.java.
+Sorry if this is a dup, but all the others are marked verified fixed in earlier releases.

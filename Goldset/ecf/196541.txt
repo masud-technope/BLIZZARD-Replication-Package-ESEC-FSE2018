@@ -1,0 +1,3 @@
+providers/bundles/org.eclipse.ecf.provider.msn.ui/src/org/eclipse/ecf/internal/provider/msn/ui/MSNConnectWizardPage.java
+providers/bundles/org.eclipse.ecf.provider.xmpp.ui/src/org/eclipse/ecf/internal/provider/xmpp/ui/wizards/XMPPConnectWizardPage.java
+providers/bundles/org.eclipse.ecf.provider.xmpp.ui/src/org/eclipse/ecf/internal/provider/xmpp/ui/wizards/XMPPSConnectWizardPage.java

@@ -1,0 +1,3 @@
+Bug 260913 – [metadata] Move concrete metadata classes to an internal package
+Now that Bug# 256359 is fixed, we should move the concrete metadata classes to o.e.e.internal.p2.metadata.
+This should just affect import statements.

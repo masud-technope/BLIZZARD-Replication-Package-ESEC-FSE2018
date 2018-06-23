@@ -1,0 +1,23 @@
+Bug 276906 – [build path] Dialog telling about output folder deletion should be improved
+Build id: I20090515-1143
+Steps:
+1.
+Create a linked folder "bin_ext" in your workspace
+2.
+Change Default output folder to "bin_ext"
+4.
+You have a prompt whether to remove the old location
+5.
+Click Yes and "bin" is deleted
+6.
+Change Default output folder back to "bin"
+7.
+You have a prompt whether to remove the old location
+Actual:
+8A.
+Click Yes and "bin_ext" is not deleted
+Expected:
+8B.
+Click Yes and "bin_ext" is deleted, it's clear from the prompt:
+"The output folder has changed.
+Do you want to remove the old location "<ROOT/>/bin_ext" and its content?"

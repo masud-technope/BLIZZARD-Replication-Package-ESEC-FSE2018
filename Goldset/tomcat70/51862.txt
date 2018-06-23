@@ -1,0 +1,4 @@
+webapps/docs/changelog.xml
+java/org/apache/catalina/core/JreMemoryLeakPreventionListener.java
+java/org/apache/catalina/core/LocalStrings.properties
+webapps/docs/config/listeners.xml

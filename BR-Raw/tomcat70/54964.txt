@@ -1,0 +1,14 @@
+54964 – Class loading issue of "TagPlugin" in TagPluginManager
+Created attachment 30281 [details]
+Patch for TagPluginManager.java
+TagPluginManager is using "Class.forName" to load extensions of TagPlugin.
+It can't work when these extensions are put under the WEB-INF/lib.
+Here is the code,
+String pluginClassStr = pluginClassNode.getBody();
+TagPlugin tagPlugin = null;
+try {
+Class<?> pluginClass = Class.forName(pluginClassStr);
+tagPlugin = (TagPlugin) pluginClass.newInstance();
+} catch (Exception e) {
+throw new JasperException(e);
+}

@@ -1,0 +1,33 @@
+48790 – Race condition in org.apache.catalina.session.ManagerBase:maxActive
+We are running tomcat 6.0.18 with a race detector (http://www.alphaworks.ibm.com/tech/msdk), and find one race condition in class
+org.apache.catalina.session.ManagerBase field maxActive.
+Data Race 1 : org.apache.catalina.session.ManagerBase : maxActive
+Thread "http-8080-3" : Tid 34 : WRITE
+Lock Set : [ ]
+[org.apache.catalina.session.ManagerBase : add(Lorg/apache/catalina/Session;)V :  : 741]
+[org.apache.catalina.session.StandardSession : setId(Ljava/lang/String;)V :  : 368]
+[org.apache.catalina.session.ManagerBase : createSession(Ljava/lang/String;)Lorg/apache/catalina/Session; :  : 827]
+[org.apache.catalina.session.StandardManager : createSession(Ljava/lang/String;)Lorg/apache/catalina/Session; :  : 291]
+[org.apache.catalina.connector.Request : doGetSession(Z)Lorg/apache/catalina/Session; :  : 2324]
+[org.apache.catalina.connector.Request : getSession(Z)Ljavax/servlet/http/HttpSession; :  : 2074]
+[org.apache.catalina.connector.RequestFacade : getSession(Z)Ljavax/servlet/http/HttpSession; :  : 833]
+[org.apache.catalina.connector.RequestFacade : getSession()Ljavax/servlet/http/HttpSession; :  : 844]
+[com.ecyrd.jspwiki.auth.AuthenticationManager : login(Ljavax/servlet/http/HttpServletRequest;)Z :  : 270]
+........
+Thread "http-8080-1" : Tid 32 : READ
+Lock Set : [ ]
+[org.apache.catalina.session.ManagerBase : add(Lorg/apache/catalina/Session;)V :  : 740]
+[org.apache.catalina.session.StandardSession : setId(Ljava/lang/String;)V :  : 368]
+[org.apache.catalina.session.ManagerBase : createSession(Ljava/lang/String;)Lorg/apache/catalina/Session; :  : 827]
+[org.apache.catalina.session.StandardManager : createSession(Ljava/lang/String;)Lorg/apache/catalina/Session; :  : 291]
+........
+Here is the code snip of ManagerBase.java
+public void add(Session session) {
+sessions.put(session.getIdInternal(), session);
+int size = sessions.size();
+1->      if( size > maxActive ) {
+2->         maxActive = size;
+}
+}
+Statement 1 and statement 2 should executed in an atomic manner.
+ One fix to this problem is to move statement 1 and statement 2 into a synchronized block.

@@ -1,0 +1,13 @@
+Bug 258072 – [quick fix] Dead code detection quick fix leaves behind the curly braces
+The quick fix for the dead code detection removes the code as well as the condition, which works in case of only 'if' block but if an 'if-else ' block is used it leaves behind the curly braces with the valid code.
+Try this simple test case:
+if (false){
+x= 1;
+}else {
+x= 0;
+}
+then click on remove in the quick fix.
+It leaves this :
+{
+x= 0;
+}

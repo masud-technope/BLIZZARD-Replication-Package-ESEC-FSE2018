@@ -1,0 +1,12 @@
+Bug 425718 – [1.8] default method changes access privilege of protected overridden method from Object
+The following code is allowed by ECJ:
+interface I {
+default Object clone() { return null; }
+}
+public class Main  {
+public void foo() {
+I x = new I(){};
+System.out.println(x.clone());
+}
+}
+While Javac rejects it as clone is a protected method and should not be allowed to be accessed.

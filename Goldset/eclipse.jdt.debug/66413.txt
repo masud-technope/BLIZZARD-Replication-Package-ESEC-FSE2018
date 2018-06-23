@@ -1,0 +1,3 @@
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIStackFrame.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaLineBreakpoint.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIDebugTarget.java

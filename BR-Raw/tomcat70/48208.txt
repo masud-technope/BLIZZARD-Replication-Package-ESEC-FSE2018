@@ -1,0 +1,15 @@
+48208 – allow to configure a custom client certificate Trust Manager in server.xml per connector attribute "trustManagerClassName"
+Created attachment 24546 [details]
+patch_48158_c5_wildCard.txt
+as per bug 48158 comment 8, this is now an RFE on its own:
+Luciana has come up with a patch to allow accepting any client certificate on a
+per Connector basis.
+In server.xml the following attribute should be added in the Connector element:
+<Connector ...
+acceptAllCerts="true"/>
+If this argument is present and set to true or yes, then the
+AcceptAllTrustManager will be used as Trust Manager.
+The "truststoreFile" of
+http://tomcat.apache.org/tomcat-5.5-doc/ssl-howto.html#Edit%20the%20Tomcat%20Configuration%20File
+can be left empty
+originally was attachment (id=24542)

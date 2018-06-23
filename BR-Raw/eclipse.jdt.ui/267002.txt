@@ -1,0 +1,11 @@
+Bug 267002 – [working sets] Assign Working Sets dialog does not show new working set
+Created attachment 127463 [details]
+Screenshot
+I20090303-0800, probably introduced with bug 190438
+See screenshot.
+- Initially, the projects you see selected in the Package Explorer were only in the JUnit working set.
+- I selected the projects and chose "Assign Working Sets...".
+- In the "Working Set Assignments" dialog, I unchecked 'JUnit'.
+- I clicked "New...", gave the new working set the name 'JUnit/Hamcrest', and confirmed
+=> Now, you can see that the working set has really been created (it shows up at the end of the Package Explorer), but it's not visible in the "Working Set Assignments" dialog.
+Hint: When I toggle the "Show only in Package Explorer" checkbox, the new WS magically appears.

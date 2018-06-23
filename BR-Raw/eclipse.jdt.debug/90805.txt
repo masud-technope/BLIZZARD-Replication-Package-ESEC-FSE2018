@@ -1,0 +1,32 @@
+Bug 90805 – Drop to frame failed during evaluation, with no message in error dialog, and evaluation flag not cleared
+build I20050405
+vm: pj9n142ifx-20041206
+- set breakpoint in FiltersAction.run()
+- clicked on the Filters button in target's Problems view
+- breakpoint hit
+- evaluated:
+Display.getDefault().beep()
+- set a breakpoint in the beep method
+- evaluated the same expression again
+- breakpoint hit
+- tried evaluating the following, from within the beep method:
+OS.MessageBeep (OS.MB_OK)
+- it told me that it could not do nested evaluations; fair enough, it is
+actually nested here+
+- stepped over the MessageBeep call
+- IP was at the end of the method (frame for beep() still showing)
+- tried Drop to Frame
+- got a blank error dialog, but the details pane had details: Unable to pop the
+selected stack frame due to invalid frame id, and that the thread had been
+resumed (not exact wording)
+- the thread had not been resumed, and the selected frame was still showing in
+the Debug view
+- resumed
+- it paused back at FiltersAction.run()
+- resumed again
+- pressed the Filters button again
+- breakpoint in FiltersAction.run() hit
+- tried evaluating:
+Display.getDefault().beep()
+- it told me that it could not do nested evaluations; this is wrong - I had
+fully resumed and was not within another evaluation

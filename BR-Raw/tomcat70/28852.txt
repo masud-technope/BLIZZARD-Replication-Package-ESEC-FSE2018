@@ -1,0 +1,5 @@
+28852 – failonerror attribute on Ant tasks
+failonerror boolean attribute on manager Ant tasks would be a nice have to
+allow for more flexible operation within Ant build files.
+I will attach a patch next week that also fixes unecessary CRs during response
+read/print and missing url encoding in some tasks.

@@ -1,0 +1,23 @@
+Bug 421543 – [1.8][compiler] Compiler fails to recognize default method being turned into abstract by subtytpe
+BETA_JAVA8:
+The following program correctly triggers an error:
+The type X must implement the inherited abstract method J.foo()
+// --
+interface I  {
+default void foo() {}
+}
+interface J extends I {
+void foo();
+}
+public class X implements J {
+}
+However, if the types are generic, we don't issue an error:
+// --
+interface I <T> {
+default void foo(T t) {}
+}
+interface J extends I<J> {
+void foo(J t);
+}
+public class X implements J {
+}

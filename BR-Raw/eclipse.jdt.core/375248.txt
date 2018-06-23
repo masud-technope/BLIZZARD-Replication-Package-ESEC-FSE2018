@@ -1,0 +1,67 @@
+Bug 375248 – AIOOBE inside twr with finally block
+Build Identifier: Version: 4.2.0 Build id: I20120209-1230
+You cannot compile the following class:
+package de.gps.db.impl;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+public class Test {
+public void executeImports() throws MalformedURLException {
+for (int i = 0; i < 3; i++) {
+URL url = new URL("dummy"); //$NON-NLS-1$
+if (url != null) {
+Path target = new File("dummy").toPath();
+try (InputStream is = url.openStream()) {
+java.nio.file.Files.copy(is, target,
+StandardCopyOption.REPLACE_EXISTING);
+} catch (IOException e) {
+break;
+} finally {
+try {
+java.nio.file.Files.delete(target);
+} catch (IOException e1) {
+}
+}
+}
+}
+}
+}
+The cause of the error is the break statement in the catch clause.
+If you remove this statement, everything works fine.
+If the break-statement is present, the exception given below is thrown.
+The jre is jdk1.7.2_02 from sun.
+java.lang.ArrayIndexOutOfBoundsException: 2
+at org.eclipse.jdt.internal.compiler.codegen.ExceptionLabel.placeEnd(ExceptionLabel.java:41)
+at org.eclipse.jdt.internal.compiler.ast.TryStatement.generateSubRoutineInvocation(TryStatement.java:841)
+at org.eclipse.jdt.internal.compiler.ast.BranchStatement.generateCode(BranchStatement.java:48)
+at org.eclipse.jdt.internal.compiler.ast.Block.generateCode(Block.java:57)
+at org.eclipse.jdt.internal.compiler.ast.TryStatement.generateCode(TryStatement.java:663)
+at org.eclipse.jdt.internal.compiler.ast.Block.generateCode(Block.java:57)
+at org.eclipse.jdt.internal.compiler.ast.IfStatement.generateCode(IfStatement.java:189)
+at org.eclipse.jdt.internal.compiler.ast.Block.generateCode(Block.java:57)
+at org.eclipse.jdt.internal.compiler.ast.ForStatement.generateCode(ForStatement.java:303)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.generateCode(AbstractMethodDeclaration.java:316)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.generateCode(AbstractMethodDeclaration.java:261)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode(TypeDeclaration.java:547)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode(TypeDeclaration.java:616)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.generateCode(CompilationUnitDeclaration.java:360)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1205)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:684)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1181)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:807)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider$1.run(ASTProvider.java:544)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.createAST(ASTProvider.java:537)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.getAST(ASTProvider.java:480)
+at org.eclipse.jdt.ui.SharedASTProvider.getAST(SharedASTProvider.java:128)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:170)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$3.run(SelectionListenerWithASTManager.java:155)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Reproducible: Always
+Steps to Reproduce:
+Use the class given and comment / uncomment the break-statement.
+You should see the error.

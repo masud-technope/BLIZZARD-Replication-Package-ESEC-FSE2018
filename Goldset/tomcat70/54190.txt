@@ -1,0 +1,2 @@
+test/org/apache/catalina/authenticator/TestNonLoginAndBasicAuthenticator.java
+webapps/docs/changelog.xml

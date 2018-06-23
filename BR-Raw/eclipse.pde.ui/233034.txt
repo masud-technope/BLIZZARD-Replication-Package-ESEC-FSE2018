@@ -1,0 +1,6 @@
+Bug 233034 – Error message missing arguments
+I created a @since tag on a member like:
+@since 3.4.2
+The problem message appeared like:
+Invalid @since tag '3.4.2' on {1}; expecting two fragments
+> Missing member name

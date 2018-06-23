@@ -1,0 +1,14 @@
+Bug 256859 – PDE-Warning for illegal characters in feature.xml (complains about "-" chars)
+Steps to reproduce:
+Add the following lines to a feature.xml:
+<plugin
+id="org.springframework.osgi.servlet-api.osgi"
+download-size="0"
+install-size="0"
+version="0.0.0"
+unpack="false"/>
+PDE-Tools now display a warning because of an invalid token "-":
+Illegal value 'org.springframework.osgi.servlet-api.osgi' for attribute 'id'.
+ Legal token characters are "a-z", "A-Z", "0-9", "_".
+ Tokens must be separated by "."
+According to OSGi spec, both "-" and "_" are valid characters for a bundle symbolic name (chapter 1.3.2 General Syntax Definitions).

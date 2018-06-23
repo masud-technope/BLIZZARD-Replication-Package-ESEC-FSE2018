@@ -1,0 +1,12 @@
+Bug 198965 – Feature Editor does not find feature dependencies correctly
+When specifying a dependency on a feature in the Feature Editor on the Dependencies tab, the outline is updated.
+ If there is a feature which PDE is tracking that meets the version and match rule, the outline's icon is created with no error.
+ But when no feature can be found that satisfies the version constraint, a little red X appears on the icon.
+Unfortunately, the validation for this is not working correctly.
+ Add a dependency on a 3.3.0 feature.
+ By default the version to match will be 3.3.0.....
+ Change the version to match to 3.2.0.
+ Then change the Match rule to 'Compatible'.
+ Since the current 3.3.0 version is compatible with 3.2.0, no X should appear, but it does.
+ Then change the version to match to 3.4.0.
+ Note how this version is not compatible, yet the red X disappears.

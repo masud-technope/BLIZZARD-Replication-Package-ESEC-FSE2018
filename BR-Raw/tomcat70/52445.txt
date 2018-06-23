@@ -1,0 +1,104 @@
+52445 – Methodexpression with arguments fails on nested properties
+This is basically an improvement of issue 50449 https://issues.apache.org/bugzilla/show_bug.cgi?id=50449
+Invoking a method expression with arguments fails on nested properties.
+I.e.
+#{bean.submit('foo')} works, but #{bean.nested.submit('foo')} does not work.
+com.example.Bean:
+-------------------------------------------------------------------------------
+package com.example;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+@ManagedBean
+@RequestScoped
+public class Bean {
+public void submit1() {
+System.out.println("Submit1 without argument");
+}
+public void submit1(String argument) {
+System.out.println("Submit1 with argument " + argument);
+}
+public void submit2(String argument) {
+System.out.println("Submit2 with argument " + argument);
+}
+public Bean getNested() {
+return new Bean();
+}
+}
+-------------------------------------------------------------------------------
+test.xhtml
+-------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html lang="en"
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+<title>Tomcat nested methodexpression test</title>
+</h:head>
+<h:body>
+<h:form>
+<h:commandButton value="bean.submit1 without argument"
+action="#{bean.submit1()}" /><br/>
+<h:commandButton value="bean.submit1 with argument"
+action="#{bean.submit1('foo')}" /><br/>
+<h:commandButton value="bean.submit2 with argument"
+action="#{bean.submit2('bar')}" /><br/>
+<h:commandButton value="bean.nested.submit1 without argument"
+action="#{bean.nested.submit1()}" /><br/>
+<h:commandButton value="bean.nested.submit1 with argument"
+action="#{bean.nested.submit1('foo')}" /><br/>
+<h:commandButton value="bean.nested.submit2 nested bean with argument"
+action="#{bean.nested.submit2('bar')}" /><br/>
+</h:form>
+</h:body>
+</html>
+-------------------------------------------------------------------------------
+Open the page and invoke the 6 buttons in sequence from top to bottom.
+The result is:
+-------------------------------------------------------------------------------
+Submit1 without argument
+Submit1 with argument foo
+Submit2 with argument bar
+Submit1 without argument
+Submit1 without argument
+Jan 09, 2012 11:21:45 PM com.sun.faces.lifecycle.InvokeApplicationPhase execute
+WARNING: #{bean.nested.submit2('bar')}: javax.el.MethodNotFoundException: /test.xhtml @27,50 action="#{bean.nested.submit2('bar')}": Method not found: com.example.Bean@4f88bc88.submit2()
+javax.faces.FacesException: #{bean.nested.submit2('bar')}: javax.el.MethodNotFoundException: /test.xhtml @27,50 action="#{bean.nested.submit2('bar')}": Method not found: com.example.Bean@4f88bc88.submit2()
+at com.sun.faces.application.ActionListenerImpl.processAction(ActionListenerImpl.java:110)
+at javax.faces.component.UICommand.broadcast(UICommand.java:315)
+at javax.faces.component.UIViewRoot.broadcastEvents(UIViewRoot.java:794)
+at javax.faces.component.UIViewRoot.processApplication(UIViewRoot.java:1259)
+at com.sun.faces.lifecycle.InvokeApplicationPhase.execute(InvokeApplicationPhase.java:81)
+at com.sun.faces.lifecycle.Phase.doPhase(Phase.java:101)
+at com.sun.faces.lifecycle.LifecycleImpl.execute(LifecycleImpl.java:118)
+at javax.faces.webapp.FacesServlet.service(FacesServlet.java:593)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:224)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98)
+at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:928)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:987)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:539)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:300)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+at java.lang.Thread.run(Thread.java:722)
+Caused by: javax.faces.el.MethodNotFoundException: javax.el.MethodNotFoundException: /test.xhtml @27,50 action="#{bean.nested.submit2('bar')}": Method not found: com.example.Bean@4f88bc88.submit2()
+at javax.faces.component.MethodBindingMethodExpressionAdapter.invoke(MethodBindingMethodExpressionAdapter.java:92)
+at com.sun.faces.application.ActionListenerImpl.processAction(ActionListenerImpl.java:102)
+...
+23 more
+Caused by: javax.el.MethodNotFoundException: /test.xhtml @27,50 action="#{bean.nested.submit2('bar')}": Method not found: com.example.Bean@4f88bc88.submit2()
+at com.sun.faces.facelets.el.TagMethodExpression.invoke(TagMethodExpression.java:109)
+at javax.faces.component.MethodBindingMethodExpressionAdapter.invoke(MethodBindingMethodExpressionAdapter.java:88)
+...
+24 more
+-------------------------------------------------------------------------------
+Note that the 5th button invokes the wrong method (the one without arguments) and that the 6th button throws an exception that the method cannot be found.
+It's basically looking for a method without arguments.
+This exception occurs regardless of if Mojarra or MyFaces is used.
+I tested with Mojarra 2.1.4 and MyFaces 2.1.3 on Tomcat 7.0.23.

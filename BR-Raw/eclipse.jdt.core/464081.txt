@@ -1,0 +1,15 @@
+Bug 464081 – [null] Error when specifying external annotation on argument
+With 4.5M6, I'm trying to specify an external annotation for the argument of the method java.util.Collections.unmodifiableList(List<? extends T> list).
+I've opened the Collections source in the binary viewer, and located the cursor on "List" of the argument.
+When pressing Cmd-1 to specify the List to be nonnull, I'm getting the following stack trace:
+java.lang.IllegalArgumentException: Mismatching type structures T:Ljava/lang/Object; vs L1java/util/List<+TT;>;
+at org.eclipse.jdt.core.util.ExternalAnnotationUtil.match(ExternalAnnotationUtil.java:467)
+at org.eclipse.jdt.core.util.ExternalAnnotationUtil.updateType(ExternalAnnotationUtil.java:422)
+at org.eclipse.jdt.core.util.ExternalAnnotationUtil.annotateParameterType(ExternalAnnotationUtil.java:683)
+at org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals$ParameterAnnotationRewriteProposal.dryRun(ExternalNullAnnotationChangeProposals.java:258)
+at org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals$SignatureAnnotationChangeProposal.initializeOperation(ExternalNullAnnotationChangeProposals.java:143)
+at org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals$ProposalCreator.create(ExternalNullAnnotationChangeProposals.java:401)
+at org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals.createProposalsForType(ExternalNullAnnotationChangeProposals.java:455)
+at org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals.collectExternalAnnotationProposals(ExternalNullAnnotationChangeProposals.java:354)
+(more)
+It should be possible to specify an annotation at that location, right?

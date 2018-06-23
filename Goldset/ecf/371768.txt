@@ -1,0 +1,1 @@
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/node/internal/WatchManager.java

@@ -1,0 +1,10 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/isite/IStatsInfo.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/site/Site.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/isite/ISite.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/site/StatsInfo.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/isite/ISiteModelFactory.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/category/DownloadStatsSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/category/RepositoryMetadataPage.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/site/SiteModelFactory.java

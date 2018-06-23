@@ -1,0 +1,23 @@
+44223 – Tomcat ignores the "javax.net.ssl.trustStoreType" system property
+Set up a SSL Connector with a keystore in JKS format:
+<Connector ...
+SSLEnabled="true"
+keystoreFile="tomcat.keystore" keystoreType="JKS">
+Let's say you need a custom truststore (e.g.
+for authenticating self-signed
+client certificates), and that this truststore is also needed by some of your
+webapps, not only Tomcat.
+The natural thing to do then is to configure this
+truststore globally for the whole JVM, not in server.xml.
+Let's also assume this truststore is in a different format (e.g.
+PKCS#12).
+So
+before starting Tomcat, you do this:
+export JAVA_OPTS="-Djavax.net.ssl.trustStore=trusted.keystore -
+Djavax.net.ssl.trustStoreType=PKCS12"
+Well, it doesn't work.
+If you look at tomcat/logs/catalina.out, you will see a
+keystore-related exception.
+Upon further debugging, you will discover the
+problem is that Tomcat is trying to open the truststore as if it were in JKS
+format, even though it is clearly specified as type PKCS12 in JAVA_OPTS above.

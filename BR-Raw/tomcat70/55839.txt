@@ -1,0 +1,6 @@
+55839 – DataSourceRealm doesn't handle prefix on password digest
+Created attachment 31088 [details]
+Entire class with additional check for prefix.
+Similar to bug #37984 which provided a fix for JNDIRealm, DataSourceRealm should also remove prefixes of the form {SHA}, {MD5}, etc before comparing the digests.
+The attached class(sorry - corporate firewall wouldn't allow me to create a patch) is suitable for my own needs (where the prefix is provided in lower case, so is compared case-insensitively), but I acknowledge that a fuller fix may be more appropriate, e.g.
+providing a helper method for removing known prefixes in RealmBase.

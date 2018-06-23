@@ -1,0 +1,6 @@
+Bug 385192 – Make environment variables rendering in Process Properties user-friendly
+Follow-up to bug 285720
+The common way to render environment variables is:
+- separated by newline
+- ordered lexicographically
+Eclipse should do the same.

@@ -1,0 +1,16 @@
+54507 – Notification for expired session sent to still initializing servlet context
+The Tomcat backgroundprocess for expiring sessions does not wait for the servlet context (application loaded by a filter) to be fully initialized.
+The following stacktrace happens while Filter.init is still being executed (hence the application is only partly initialized and shouldn't receive any work):
+at org.apache.wicket.protocol.http.WebApplication.sessionUnbound(WebApplication.java:552)
+at org.apache.wicket.session.HttpSessionStore$SessionBindingListener.valueUnbound(HttpSessionStore.java:465)
+at org.apache.catalina.session.StandardSession.removeAttributeInternal(StandardSession.java:1800)
+at org.apache.catalina.session.StandardSession.expire(StandardSession.java:865)
+at org.apache.catalina.session.StandardSession.isValid(StandardSession.java:658)
+at org.apache.catalina.session.ManagerBase.processExpires(ManagerBase.java:534)
+at org.apache.catalina.session.ManagerBase.backgroundProcess(ManagerBase.java:519)
+at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1352)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1530)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1540)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1540)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1519)
+at java.lang.Thread.run(Thread.java:722)

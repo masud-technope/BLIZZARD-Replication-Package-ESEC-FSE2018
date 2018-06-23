@@ -1,0 +1,33 @@
+56213 – Many KeyReference Objects Cause Long CMS-remark GC Times
+This is a request to prop the following fix to Tomcat 7.
+http://svn.apache.org/viewvc?diff_format=h&view=revision&revision=1388890
+Using the NIO connector with a WebSocket application many (millions of) KeyReference objects are  created under traffic.
+ While the objects are small, the sheer number of them seems to overwhelm the CMS collector.
+ Before the above fix with our application the CMS remark stop the world phase was taking up to 8.8 seconds.
+716.463: [GC[YG occupancy: 213377 K (392896 K)]716.463: [Rescan (parallel) , 5.7904380 secs]722.253: [weak refs processing, 2.3101000 secs] [1 CMS-remark: 1160677K(1703936K)] 1374054K(2096832K), 8.8005960 secs] [Times: user=107.17 sys=0.00, real=8.80 secs]
+Total time for which application threads were stopped: 8.8020690 seconds
+After applying the fix under the same traffic the time drops to 110ms.
+1282.459: [GC[YG occupancy: 203760 K (392896 K)]1282.459: [Rescan (parallel) , 0.0594610 secs]1282.519: [weak refs processing, 0.0452530 secs] [1 CMS-remark: 1159948K(1703936K)] 1363708K(2096832K), 0.1084940 secs] [Times: user=1.12 sys=0.00, real=0.11 secs]
+Total time for which application threads were stopped: 0.1100650 seconds
+For a real time application the 9 second pause is a killer.
+These tests were executed under:
+RHEL 6.4
+java version "1.6.0_65"
+Java(TM) SE Runtime Environment (build 1.6.0_65-b14-BR8013809)
+Java HotSpot(TM) 64-Bit Server VM (build 20.65-b04, mixed mode)
+With the following JVM parms:
+-server
+-XX:NewSize=384m
+-XX:MaxNewSize=384m
+-XX:+UseParNewGC
+-XX:MaxTenuringThreshold=0
+-Xms2048m
+-Xmx2048m
+-XX:+UseConcMarkSweepGC
+-XX:CMSInitiatingOccupancyFraction=68
+-XX:+UseCMSInitiatingOccupancyOnly
+-XX:PermSize=96m
+-XX:MaxPermSize=96m
+-XX:+UseMembar
+-XX:+HeapDumpOnOutOfMemoryError
+-XX:+PrintClassHistogram

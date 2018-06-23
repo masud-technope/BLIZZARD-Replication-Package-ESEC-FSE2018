@@ -1,0 +1,4 @@
+java.lang.String.checkBounds
+java.lang.String.<init>
+org.eclipse.ecf.protocol.msn.ChatSession.read
+org.eclipse.ecf.protocol.msn.Session$IdleThread.run

@@ -1,0 +1,46 @@
+Bug 416992 – [1.8][quick assist] Convert to 'if-!-return' not offered in lambda expression
+The quick assist (Convert to 'if-!-return') is not offered in a lambda body at valid 'if' locations.
+Examples:
+package misc.test;
+@FunctionalInterface
+interface A {
+void run(int n);
+}
+@FunctionalInterface
+interface B {
+A foo(int x);
+}
+public class Test {
+A fi0 = (n) -> {
+if (n == 0) {	// [1]
+System.out.println(n);
+return;
+}
+};
+int fun1(int a, int b) {
+A fi2 = (n) -> {
+if (a == b) {	// [2]
+System.out.println(n);
+return;
+}
+};
+return a + b;
+}
+A fun2(int a, int b) {
+return (n) -> {
+if (a == b) {	// [3]
+System.out.println(n);
+return;
+}
+};
+}
+int fun3(int a, int b) {
+B fi3 = (x) -> (n) -> {
+if (a == b) {	// [4]
+System.out.println(a);
+return;
+}
+};
+return a + b;
+}
+}

@@ -1,0 +1,8 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/ischema/ISchemaAttribute.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/SchemaElement.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/AbstractSchemaDetails.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/SchemaAttributeDetails.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/SchemaElementDetails.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/SchemaFormPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties

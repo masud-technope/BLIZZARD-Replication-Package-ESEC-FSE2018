@@ -1,0 +1,13 @@
+57016 – PersistentValve deletes sessions right after it creates them
+PersistentValve is broken as it stands and always delete sessions right after it creates them.
+cf.
+the following lines in https://github.com/apache/tomcat/blob/TOMCAT_7_0_42/java/org/apache/catalina/valves/PersistentValve.java#L178-L179
+store.save(session);
+((PersistentManager) manager).removeSuper(session);
+I have setup my PersistentManager with a JDBCStore, and if I set a breakpoint between these two lines, I can see the `save` call inserts a row into the database properly, and then take one step past the `removeSuper` call, and it deletes the row from the database.
+The removeSuper (used by PersistentValve) method has the following comment on it:
+"Remove this Session from the active Sessions for this Manager, but not from the Store."
+The implementation of remove in PersistentManagerBase has the following comment:
+"Remove this Session from the active Sessions for this Manager, and from the Store."
+There is clearly a break in the API here.
+The PersistentValve is expecting the PersistentManager.removeSuper to do one thing (which method has a comment saying it exists only for the sake of PersistentValve, btw.), but PersistentManagerBase which implements this does a different thing than expected.

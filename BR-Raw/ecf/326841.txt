@@ -1,0 +1,10 @@
+Bug 326841 – [RemoteSrvs] Overwrite defaults in org.eclipse.ecf.provider.generic.TCPServerSOContainer via system properties
+Overwriting the defaults set in org.eclipse.ecf.provider.generic.TCPServerSOContainer via system properties allows consumers to adapt the container to custom requirements.
+The property names and defaults are:
+String:
+org.eclipse.ecf.provider.generic.host ("localhost")
+org.eclipse.ecf.provider.generic.name ("/server")
+org.eclipse.ecf.provider.generic.scheme ("ecftcp")
+Int:
+org.eclipse.ecf.provider.generic.port (3282)
+org.eclipse.ecf.provider.generic.keepalive (30000)

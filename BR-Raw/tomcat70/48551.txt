@@ -1,0 +1,7 @@
+48551 – StringCache: Use entrySet() rather than keySet() + get()
+Created attachment 24846 [details]
+Replace keySet() + get(key) with entrySet()
+Using entrySet() to iterate over a map is faster than using keySet() followed by get(key).
+Sample patch attached.
+There are quite a few other examples elsewhere in the Tomcat code.
+I can provide patches for those if required.

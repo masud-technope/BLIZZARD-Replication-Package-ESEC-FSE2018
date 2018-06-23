@@ -1,0 +1,9 @@
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/JSR335ClassFileTest.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/LambdaExpressionsTest.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/JSR335ClassFileTest.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/Disassembler.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/Messages.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/messages.properties
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/JSR335ClassFileTest.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/LambdaExpressionsTest.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/Disassembler.java

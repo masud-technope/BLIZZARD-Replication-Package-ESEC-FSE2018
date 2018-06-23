@@ -1,0 +1,10 @@
+Bug 183405 – [Manifest][Editors] "Required Plug-ins" section title missing on "Dependencies" page
+Steps To Reproduce:
+(1) Create new plug-in project (any)
+-> Editor opens on "Overview" page
+(2) Switch to "Dependencies" page
+-> BUG: Title missing
+(3) Close editor
+(4) Open editor
+-> Editor opens on "Dependencies" page
+-> Title present now

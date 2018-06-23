@@ -1,0 +1,18 @@
+53735 – Update annotation scanning to be compatible with Java 7 class files
+As was reported on the users mailing list, the annotation scanning code may fail when trying to scan a class compiled for Java 7.
+The thread:
+"Tomcat 7.0.29 vs.
+Groovy with Java 7"
+http://tomcat.markmail.org/thread/4y7jfmznleqdczwh
+As said there, "It appears that when one installs the groovy-all-2.0.1-indy.jar in a Tomcat web app, BCEL chokes on the Java 7 specific byte-code therein ala"
+[[[
+org.apache.tomcat.util.bcel.classfile.ClassFormatException: Invalid byte tag
+in constant pool: 15 at
+org.apache.tomcat.util.bcel.classfile.Constant.readConstant(Constant.java:131) at
+org.apache.tomcat.util.bcel.classfile.ConstantPool.<init>(ConstantPool.java:60) at
+org.apache.tomcat.util.bcel.classfile.ClassParser.readConstantPool(ClassParser.java:209) at
+org.apache.tomcat.util.bcel.classfile.ClassParser.parse(ClassParser.java:119) at
+org.apache.catalina.startup.ContextConfig.processAnnotationsStream(ContextConfig.java:2066)
+]]]
+If the problem is with specific libraries (like Groovy 2.0), it is possible to disable annotation scanning for them (see the thread above).
+In general, though, as Tomcat 8 targets Java 7, it should be able to scan such files.

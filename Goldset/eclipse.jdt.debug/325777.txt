@@ -1,0 +1,10 @@
+org.eclipse.jdt.debug.tests/testresources/plist.xml
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AutomatedSuite.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/launching/PListParserTests.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/jres/InstalledJREsBlock.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/jres/JREMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/jres/MacVMSearch.java
+org.eclipse.jdt.launching.macosx/macosx/org/eclipse/jdt/internal/launching/macosx/MacOSXLauncherMessages.properties
+org.eclipse.jdt.launching.macosx/macosx/org/eclipse/jdt/internal/launching/macosx/MacOSXVMInstallType.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/MacInstalledJREs.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/PListParser.java

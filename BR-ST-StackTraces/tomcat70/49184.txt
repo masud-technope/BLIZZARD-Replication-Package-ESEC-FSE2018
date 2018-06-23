@@ -1,0 +1,3 @@
+java.lang.System.arraycopy
+org.apache.catalina.core.StandardContext.addFilterMapBefore
+org.apache.catalina.core.ApplicationFilterRegistration.addMappingForServletNames

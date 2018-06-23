@@ -1,0 +1,6 @@
+org.eclipse.jdt.debug.tests.core.LineTrackerTests.testSimpleLineCounter
+sun.reflect.NativeMethodAccessorImpl.invoke0
+sun.reflect.NativeMethodAccessorImpl.invoke
+sun.reflect.DelegatingMethodAccessorImpl.invoke
+org.eclipse.jdt.debug.tests.DebugSuite$1.run
+java.lang.Thread.run

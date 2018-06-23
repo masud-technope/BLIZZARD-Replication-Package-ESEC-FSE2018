@@ -1,0 +1,6 @@
+49140 – Inefficient use of keySet() iterator in StandardContext.java
+Created attachment 25316 [details]
+Change keySet() Iterator to values()
+The loadOnStartup(Container[]) method of StandardContext loops on the keySet() but actually only uses the key to get the values, so it would be more efficient to use the values() Iterator.
+According to the Javadoc, the keySet() and values() iterators generate the entries in the same order (key ascending).
+Findbugs detected another 6 such instances for which I can provide patches if required.

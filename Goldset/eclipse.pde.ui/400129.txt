@@ -1,0 +1,4 @@
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/toc/TocEditor.java
+ui/org.eclipse.pde.core/META-INF/MANIFEST.MF
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/ctxhelp/CtxHelpEditor.java
+ua/org.eclipse.pde.ua.ui/META-INF/MANIFEST.MF

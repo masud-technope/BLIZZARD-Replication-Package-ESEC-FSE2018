@@ -1,0 +1,13 @@
+Bug 90264 – Using nested classes in extensions leads to ClassNotFoundException
+In Eclipse 3.0.1 the usage of nested Classes in an extension was done by using
+the '$' seperator.
+For example:
+com.abc.product.core.CatalogProxy$Integer2CatalogProxyConverter (at least it's
+what the plugin.xml editor produces).
+In Eclipse 3.1M5 the plugin.xml editor produces this:
+com.heiler.ppm.catalog.core.CatalogProxy.Integer2CatalogProxyConverter (a dot
+instad of the dollar).
+The nested class using the dollar synatx will not be
+found by the plugin.xml editor.
+Using the "dot syntax" leads to a ClassNotFoundException when trying to
+instantiate the class by the extension.

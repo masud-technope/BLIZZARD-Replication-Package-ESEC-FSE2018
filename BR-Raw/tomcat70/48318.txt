@@ -1,0 +1,45 @@
+48318 – WebDAV servlet returns 500 if files not readable
+If a directory contains a file that is not readable by the Tomcat
+process (eg file permissions, dangling symlink) then Tomcat throws a
+NullPointerException and returns a 500 Internal Server Error to the
+client.
+Throwing NPE in these circumstances is certainly wrong.
+ Returning 500
+with no further information is unhelpful behavior and should be fixed.
+Generally, interfaces of this type at least list inaccessible files
+(Windows Explorer, UNIX ls(1), BSD FTP client, ...) and only return an
+error when one attempts to access such a file.
+markt suggests an alternative of simply ignoring inaccessible files but notes
+that "could cause issues if a user tries to upload a file of that name" and
+suggests better error reporting.
+Stack:
+SEVERE: Servlet.service() for servlet webdav threw exception
+java.lang.NullPointerException
+at org.apache.catalina.servlets.WebdavServlet.parseProperties(Unknown Source)
+at org.apache.catalina.servlets.WebdavServlet.doPropfind(Unknown Source)
+at org.apache.catalina.servlets.WebdavServlet.service(Unknown Source)
+at javax.servlet.http.HttpServlet.service(Unknown Source)
+...
+Method parseProperties() is in
+java/org/apache/catalina/servlets/WebdavServlet.java.org and the NPE
+happens when cacheEntry.attributes is null (case FIND_BY_PROPERTY in my
+testing and possibly in other cases too).
+Following the breadcrumbs via:
+cacheEntry = resources.lookupCache(path);
+leads eventually to java/org/apache/naming/resources/FileDirContext.java:
+public Attributes getAttributes(String name, String[] attrIds)
+throws NamingException {
+// Building attribute list
+File file = file(name);
+if (file == null)
+throw new NamingException
+(sm.getString("resources.notFound", name));
+...
+protected File file(String name) {
+File file = new File(base, name);
+if (file.exists() && file.canRead()) {
+...
+// do useful stuff
+} else {
+return null; // ouch
+}

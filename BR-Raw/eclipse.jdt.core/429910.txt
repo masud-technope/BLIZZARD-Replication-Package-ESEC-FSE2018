@@ -1,0 +1,23 @@
+Bug 429910 – [1.8][model] Superinterfaces of lambda element's IType are missing type arguments
+Created attachment 240672 [details]
+Patch 1
+Superinterfaces of lambda element's IType are missing type arguments.
+The effect of this is that method override computations in JDT UI fail (e.g.
+in Ctrl+T and to render Javadocs for the lambda IMethod).
+Example:
+Function<List<String>, List<String>> sup = (arg) -> {
+return new ArrayList<>(arg);
+};
+Function<List<String>, List<String>> suppe =
+new Function<List<String>, List<String>>() {
+@Override
+public List<String> apply(List<String> arg) {
+return new ArrayList<>(arg);
+}
+};
+IType#getSuperInterfaceTypeSignatures() on the IType for the lambda returns "QFunction;".
+This signature is missing type arguments.
+The corresponding anonymous type always returns the supertype via IType#getSuperclassTypeSignature().
+Here, it returns the correctly parameterized signature "QFunction<QList<QString;>;QList<QString;>;>;".
+For the lambda IType, resolved supertypes would be also be better than unresolved ones.
+The attached patch fixes this, but I don't really understand the difference between the LambdaExpression and ResolvedLambdaExpression types.

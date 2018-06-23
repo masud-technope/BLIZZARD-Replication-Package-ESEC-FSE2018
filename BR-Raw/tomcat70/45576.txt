@@ -1,0 +1,4 @@
+45576 – JAASRealm not working with DigestAuthenticator
+JAASRealm cannot be used with DigestAuthenticator.
+JAASRealm only overrides authenticate(String, String), whereas DigestAuthenticator calls authenticate(String, String, String, String, String, String, String, String).
+This is similar to bug 41407, where CLIENT-CERT authentication is used.

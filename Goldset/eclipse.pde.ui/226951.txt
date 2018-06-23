@@ -1,0 +1,16 @@
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/ApiProblemReporter.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/provisional/ApiPlugin.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/provisional/problems/IApiProblem.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/ApiPluginPreferenceInitializer.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/ApiAnalysisBuilder.java
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/builder/tests/ApiTestingEnvironment.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/BaseApiAnalyzer.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/problems/ApiProblemFactory.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/ApiUseAnalyzer.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/buildermessages.properties
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/provisional/IApiMarkerConstants.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/provisional/builder/IApiAnalyzer.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/BuilderMessages.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/provisional/builder/IApiProblemReporter.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/preferences/ApiProfilesConfigurationBlock.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/provisional/problems/IApiProblemTypes.java

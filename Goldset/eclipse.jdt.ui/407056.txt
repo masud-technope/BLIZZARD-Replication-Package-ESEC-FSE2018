@@ -1,0 +1,18 @@
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/ASTNodes.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/PotentialProgrammingProblemsFix.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/flow/FlowAnalyzer.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/CopyQualifiedNameAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/SemanticHighlightings.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/ASTResolving.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/UnresolvedElementsSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/hover/JavadocHover.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/PotentialProgrammingProblemsFix.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/CopyQualifiedNameAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/OccurrencesFinder.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/ASTResolving.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/LocalCorrectionsSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/ModifierCorrectionSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/QuickAssistProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/TypeMismatchSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/UnresolvedElementsSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/hover/JavadocHover.java

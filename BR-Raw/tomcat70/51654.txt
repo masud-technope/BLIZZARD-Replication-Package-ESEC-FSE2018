@@ -1,0 +1,47 @@
+51654 – NullPointerException in startup (org.apache.catalina.startup.HostConfig.filterAppPaths) due to missing app base
+A hard-to-diagnose NullPointerException at startup which can be bettered with an appropriate error message:
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.19
+java.lang.NullPointerException
+at org.apache.catalina.startup.HostConfig.filterAppPaths(HostConfig.java:493)
+at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:466)
+at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1322)
+at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:311)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:89)
+Ok, what's this about?
+In "protected String[] filterAppPaths(String[] unfilteredAppPaths)"
+the exception is raised at
+for (String appPath : unfilteredAppPaths)
+Which means the "unfilteredAppPaths" passed in is null.
+filterAppPaths does not check for that (shouldn't there be an assertion at least)
+The problems comes from "deployApps()":
+protected void deployApps() {
+File appBase = appBase();
+File configBase = configBase();
+String[] filteredAppPaths = filterAppPaths(appBase.list()); <----
+// Deploy XML descriptors from configBase
+deployDescriptors(configBase, configBase.list());
+// Deploy WARs, and loop if additional descriptors are found
+deployWARs(appBase, filteredAppPaths);
+// Deploy expanded folders
+deployDirectories(appBase, filteredAppPaths);
+}
+Where "appBase.list()" returns null.
+This must be because "appBase" does not actually denote a directory (A-HA!)
+Indeed, the server.xml points to a nonexisting appBase.
+Suggesting to add a check to "deployApps":
+protected void deployApps() {
+File appBase = appBase();
+File configBase = configBase();
+if (!appBase.exists() || appBase.list()==null) {
+throw new IllegalArgumentException("The appBase " + appBase + " does not exist or cannot be listed");
+}
+String[] filteredAppPaths = filterAppPaths(appBase.list()); <----
+// Deploy XML descriptors from configBase
+deployDescriptors(configBase, configBase.list());
+// Deploy WARs, and loop if additional descriptors are found
+deployWARs(appBase, filteredAppPaths);
+// Deploy expanded folders
+deployDirectories(appBase, filteredAppPaths);
+}
+This probably violates some I18N requirement though.

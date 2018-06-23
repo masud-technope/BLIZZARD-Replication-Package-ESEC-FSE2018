@@ -1,0 +1,54 @@
+Bug 30468 – enhanced smart pasting
+consider the following file:
+public class Test
+{
+public void method()
+{
+String x = "hello";
+}
+public class C
+{
+}
+}
+-------------------
+if you select the method starting the 'p' in "public void method()"
+and paste it just below with smart pasting enabled you get the following:
+public class Test
+{
+public void method()
+{
+String x = "hello";
+}
+public void method()
+{
+String x = "hello";
+}
+public class C
+{
+}
+}
+If you then paste it as part of class C you get the following:
+public class Test
+{
+public void method()
+{
+String x = "hello";
+}
+public void method()
+{
+String x = "hello";
+}
+public class C
+{
+public void method()
+{
+String x = "hello";
+}
+}
+}
+It would be nice if the brackets line up with the method.
+This can probably be
+achieved if you treat the first line of the pasted text as different to the
+other lines because you cannot guarentee that text selection will always start
+from the beginning of the line with the correct ammount of tabs/spaces in the
+first line of a selection.

@@ -1,0 +1,15 @@
+54011 – Code generation error in jstl tagPlugin "Out" when has "escapeXml" on the tagPlugin
+Created attachment 29482 [details]
+Patch for org.apache.jasper.tagplugins.jstl.core.Out.java
+When setting up org.apache.jasper.tagplugins.jstl.core.Out as a tagplugin and trying to make code generation for the following code,
+<c:out escapeXml="false" value="test"/>
+It will generate an error.
+It has a typo in it
+if(hasEscapeXml){
+ctxt.generateJavaSource(strEscapeXmlName + " = Boolean.parseBoolean((");
+ctxt.generateAttribute("default");
+ctxt.generateJavaSource(").toString());");
+}
+The attribute name should be "escapeXml".
+Even change the right name,  it occurs an error because of "(false).toString()".
+Attached two patchs for this bug fix and code simplified.

@@ -1,0 +1,11 @@
+providers/bundles/org.eclipse.ecf.provider.xmpp.ui/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.xmpp.ui/plugin.xml
+providers/bundles/org.eclipse.ecf.provider.xmpp.ui/src/org/eclipse/ecf/internal/provider/xmpp/ui/XMPPCompoundContributionItem.java
+providers/bundles/org.eclipse.ecf.provider.xmpp.ui/src/org/eclipse/ecf/internal/provider/xmpp/ui/XMPPConnectWizard.java
+providers/bundles/org.eclipse.ecf.provider.xmpp.ui/src/org/eclipse/ecf/internal/provider/xmpp/ui/XMPPConnectWizardPage.java
+providers/bundles/org.eclipse.ecf.provider.xmpp.ui/src/org/eclipse/ecf/internal/provider/xmpp/ui/XMPPSConnectWizard.java
+providers/bundles/org.eclipse.ecf.provider.xmpp.ui/src/org/eclipse/ecf/internal/provider/xmpp/ui/XMPPSConnectWizardPage.java
+providers/bundles/org.eclipse.ecf.provider.xmpp.ui/src/org/eclipse/ecf/provider/xmpp/ui/wizards/XMPPConnectWizard.java
+providers/bundles/org.eclipse.ecf.provider.xmpp.ui/src/org/eclipse/ecf/provider/xmpp/ui/wizards/XMPPConnectWizardPage.java
+providers/bundles/org.eclipse.ecf.provider.xmpp.ui/src/org/eclipse/ecf/provider/xmpp/ui/wizards/XMPPSConnectWizard.java
+providers/bundles/org.eclipse.ecf.provider.xmpp.ui/src/org/eclipse/ecf/provider/xmpp/ui/wizards/XMPPSConnectWizardPage.java

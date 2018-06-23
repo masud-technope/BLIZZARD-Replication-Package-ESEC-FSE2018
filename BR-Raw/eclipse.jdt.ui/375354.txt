@@ -1,0 +1,8 @@
+Bug 375354 – toolbar button tool tips are not read by screen reader
+While using either JAWS or NVDA:
+1.
+Open the Extract Constant dialog from the Refactor menu (the other options like that probably work too).
+2.
+Click Preview.
+3.
+Shift+Tab backwards, the top toolbar buttons are only read as "buttons", without an accessible label.

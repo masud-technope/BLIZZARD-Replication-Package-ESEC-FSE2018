@@ -1,0 +1,9 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/JDTQuickMenuAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/JDTQuickMenuCreator.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/OccurrencesSearchMenuAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/QuickMenuAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/SurroundWithActionGroup.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/SurroundWithTemplateMenuAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/actions/GenerateActionGroup.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/actions/OccurrencesSearchGroup.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/actions/RefactorActionGroup.java

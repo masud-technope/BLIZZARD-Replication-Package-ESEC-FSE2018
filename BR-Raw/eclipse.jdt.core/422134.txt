@@ -1,0 +1,50 @@
+Bug 422134 – [1.8] NPE in NullAnnotationMatching with inlined lambda expression used with a raw type
+package test;
+import java.util.ArrayList;
+import java.util.Collections;
+class Z {
+private void foo() {
+Collections.sort(new ArrayList(), (o1, o2) -> {
+return o1.compareToIgnoreCase(o1);
+});
+}
+}
+-----------------------------------
+In the above example, edit something.
+We get the following exception:
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.ast.NullAnnotationMatching.analyse(NullAnnotationMatching.java:123)
+at org.eclipse.jdt.internal.compiler.ast.Statement.checkAgainstNullTypeAnnotation(Statement.java:151)
+at org.eclipse.jdt.internal.compiler.ast.ReturnStatement.checkAgainstNullAnnotation(ReturnStatement.java:177)
+at org.eclipse.jdt.internal.compiler.ast.ReturnStatement.analyseCode(ReturnStatement.java:76)
+at org.eclipse.jdt.internal.compiler.ast.Block.analyseCode(Block.java:43)
+at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.doesNotCompleteNormally(LambdaExpression.java:297)
+at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.isCompatibleWith(LambdaExpression.java:491)
+at org.eclipse.jdt.internal.compiler.lookup.PolyTypeBinding.isCompatibleWith(PolyTypeBinding.java:37)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.parameterCompatibilityLevel(Scope.java:4355)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.parameterCompatibilityLevel(Scope.java:4331)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod(Scope.java:678)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod(Scope.java:620)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.findMethod(Scope.java:1508)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getMethod(Scope.java:2540)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.resolveType(MessageSend.java:674)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java:1011)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:620)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:303)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:531)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1209)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1319)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:570)
+at org.eclipse.jdt.internal.compiler.Compiler.resolve(Compiler.java:920)
+at org.eclipse.jdt.internal.core.CompilationUnitProblemFinder.process(CompilationUnitProblemFinder.java:196)
+at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:195)
+at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:258)
+at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:521)
+at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1082)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:170)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:89)
+at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:728)
+at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:788)
+at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1247)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:126)
+...

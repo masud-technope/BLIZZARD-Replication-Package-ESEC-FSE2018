@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui.templates/src/org/eclipse/pde/internal/ui/templates/rcp/MailTemplate.java
+ui/org.eclipse.pde.ui.templates/templates_3.0/mail/bin/plugin.properties
+ui/org.eclipse.pde.ui.templates/templates_3.1/mail/bin/plugin.properties
+ui/org.eclipse.pde.ui.templates/templates_3.3/mail/bin/plugin.properties

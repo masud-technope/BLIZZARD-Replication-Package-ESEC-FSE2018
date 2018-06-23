@@ -1,0 +1,11 @@
+Bug 66237 – Feature Wizard / Feature Patch Wizard can be shortened
+Combine Custom Install Handler page with Feature/Patch properties pages and
+beautify :)  Source and Java Build (aka Output) folders should be taken from JDT
+Preferences.
+For Patch wizard, the properties page should have
+- a group for patch properties
+- a group for properties of feature being patched
+- a group for custom install handler settings
+For Feature wizard, the properties page should have
+- a group for feature properties
+- a group for custom install handler settings

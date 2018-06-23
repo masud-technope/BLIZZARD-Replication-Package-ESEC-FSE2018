@@ -1,0 +1,8 @@
+Bug 38499 – Source Hover oszillates
+I20030604
+MacOS 10.2.6
+- in Java Editor preferences configure source hover to activate without pressing a
+modifier key
+- activate source hover and stop moving the mouse
+Observe: after two seconds the hover disappears and reappears a second later;
+this oszillates indefinitetly

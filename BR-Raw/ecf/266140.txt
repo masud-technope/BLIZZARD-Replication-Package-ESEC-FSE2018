@@ -1,0 +1,24 @@
+Bug 266140 – HttpFileRetrieveTransfer does not detect malformed URL
+This method in HttpFileRetrieveTransfer:
+protected static int getPortFromURL(String url) {
+final int colonSlashSlash = url.indexOf("://"); //$NON-NLS-1$
+final int colonPort = url.indexOf(':', colonSlashSlash + 1);
+if (colonPort < 0)
+return urlUsesHttps(url) ? HTTPS_PORT : HTTP_PORT;
+final int requestPath = url.indexOf('/', colonPort + 1);
+int end;
+if (requestPath < 0)
+end = url.length();
+else
+end = requestPath;
+return Integer.parseInt(url.substring(colonPort + 1, end));
+}
+Does not do a good job when the url is malformed.
+As an example - try feeding it "http:bogus".
+The result is that it tries to transform "bogus" to a port number - with a NumberFormatException as the result.
+Insert this after the first line in the method to correct it;
+if(colonSlashSlash < 0)
+return urlUsesHttps(url) ? HTTPS_PORT : HTTP_PORT;
+Since it is not meaningful to try to look for a port if there is no :// in the URL.
+Have not searched if there are similar methods in other transfer protocols.
+The methods getHostFromUrl, and getPathFromUrl have similar problems on malformed URLs as they start searching for "/" from a position -1 + 3.

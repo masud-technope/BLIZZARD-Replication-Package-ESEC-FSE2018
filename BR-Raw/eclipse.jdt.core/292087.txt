@@ -1,0 +1,17 @@
+Bug 292087 – anonymous class in array member initializer confuses content assist
+User-Agent:       Mozilla/5.0 (compatible; Konqueror/4.3; Linux) KHTML/4.3.1 (like Gecko) SUSE
+Build Identifier: I20080617-2000
+One (commented) example is worth a thousand words:
+public class Test extends Thread {
+private class Nested extends LinkedList<String> {
+// here content assist works correctly
+private Runnable member[] = { new Runnable() {
+public void run() {};
+}
+// here it thinks you're not in the array initializer anymore
+};
+// here it thinks you're not in Nested anymore
+}
+// here it thinks you're not in Test anymore
+}
+Reproducible: Always

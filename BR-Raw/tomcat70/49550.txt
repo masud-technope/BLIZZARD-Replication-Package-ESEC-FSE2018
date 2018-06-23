@@ -1,0 +1,4 @@
+49550 – [PATCH] Response class fix isSpace (deprecated) => isWhiteSpace
+Created attachment 25703 [details]
+fix isSpace (deprecated) => isWhiteSpace
+As the subject says

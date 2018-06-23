@@ -1,0 +1,23 @@
+Bug 337751 – COMPILER_PB_UNAVOIDABLE_GENERIC_TYPE_PROBLEMS misses references in conditional expression
+HEAD, follow-up to bug 322817
+The JavaCore.COMPILER_PB_UNAVOIDABLE_GENERIC_TYPE_PROBLEMS option misses references in conditional expressions.
+In the example below, generifying Project#getOptions() gets rid of the type safety warning, and the compiler option should also hide it.
+package problems;
+import java.util.Map;
+public class Project {
+//raw return type (assume in 1.4 code)
+public Map/*<String, String>*/ getOptions(boolean b) {
+return null;
+}
+}
+package problems;
+import java.util.Map;
+public class GenericConditional {
+void foo(Project project) {
+// Bad warning: "Type safety: The expression of type Map needs
+//    unchecked conversion to conform to Map<String,String>"
+Map<String, String> options=
+project != null ? project.getOptions(true) : null;
+System.out.println(options);
+}
+}

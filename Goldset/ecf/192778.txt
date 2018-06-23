@@ -1,0 +1,10 @@
+framework/bundles/org.eclipse.ecf.presence.ui/plugin.xml
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/internal/presence/ui/Activator.java
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/internal/presence/ui/Messages.java
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/internal/presence/ui/messages.properties
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/handlers/BrowseDialog.java
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/handlers/BrowseHandler.java
+framework/bundles/org.eclipse.ecf.ui/plugin.xml
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/internal/ui/Activator.java
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/internal/ui/IImageFiles.java
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/ui/SharedImages.java

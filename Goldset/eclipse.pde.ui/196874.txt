@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/StructuredViewerSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/ExtensionPointsSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/ExtensionsSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/ElementSection.java

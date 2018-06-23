@@ -1,0 +1,9 @@
+Bug 187390 – Call super implementation from FormFilteredTree.doCreateTreeViewer
+Could you please change FormFilteredTree.doCreateTreeViewer to call the super implementation? Like this:
+protected TreeViewer doCreateTreeViewer(Composite parent, int style) {
+TreeViewer viewer = super.doCreateTreeViewer(parent, toolkit.getBorderStyle());
+toolkit.paintBordersFor(viewer.getTree().getParent());
+return viewer;
+}
+I have to put in code to safeguard against changes to the tree while the filtered tree is showing (see bug 187200).
+Without calling the super implementation, you will be left with an unoptimized filtered tree as of 3.3 RC1.

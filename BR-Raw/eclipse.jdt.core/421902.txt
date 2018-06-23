@@ -1,0 +1,27 @@
+Bug 421902 – [1.8][reconciler] Deleting an interface declaration shows no errors on uses of the interface
+BETA_JAVA8:
+Start with the following program in the editor:
+interface I {
+void foo();
+}
+interface J {
+int foo();
+}
+public class X {
+static void goo(I i) {
+System.out.println("goo(I)");
+}
+static void goo(J j) {
+System.out.println("goo(J)");
+}
+public static void main(String[] args) {
+final boolean x = true;
+//		goo(()-> goo((J)null));
+}
+int f() {
+final boolean x = true;
+while (x);
+}
+}
+Delete the first three lines of code - until you save or otherwise modify
+the buffer you don't get to see errors on the use of I.

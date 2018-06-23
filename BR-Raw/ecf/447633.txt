@@ -1,0 +1,8 @@
+Bug 447633 – The SCP file browse capability will not return files beginning with '.'
+The SCP file browser executes a bash command remotely to list the properties of all files in a directory.
+ This command effectively is:
+"for file in <directory>/*; do stat --format='%F|%s|%Y|%n' $file; done"
+Unfortunately, this will not return files that begin with the '.' character, and it does not work with filenames containing spaces.
+My initial thought is to modify the command to cover the '.' issue:
+"for file in <directory>/*.*; do stat --format='%F|%s|%Y|%n' $file; done"
+and adding documentation for the issue with spaces in files.

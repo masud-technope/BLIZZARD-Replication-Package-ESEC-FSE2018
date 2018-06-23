@@ -1,0 +1,9 @@
+59138 – checkThreadLocalMapForLeaks has false positives
+ThreadLocal$ThreadLocalMap weakly references keys but strongly references values.
+ However, it appears the checkThreadLocalMapForLeaks checking reports false positives if the key is a ThreadLocal subclass (e.g., anonymous class) but the value does not strongly reference the class loader (e.g., Integer, int[], List<SimpleDateFormatter>, etc.).
+ Example output:
+07-Mar-2016 11:27:08.258 SEVERE [localhost-startStop-2] org.apache.catalina.loader.WebappClassLoaderBase.checkThreadLocalMapForLeaks The web application [servlettest-0.1] created a ThreadLocal with key of type [servlettest.TestServlet$1] (value [servlettest.TestServlet$1@40d92399]) and a value of type [java.lang.Integer] (value [1]) but failed to remove it when the web application was stopped.
+Threads are going to be renewed over time to try and avoid a probable memory leak.
+For large web applications with many such false positives, this output makes tracking down (or even noticing new) real issues more difficult.
+ Third party libraries refuse to adjust their use of ThreadLocal because they believe (IMO rightly) their code is not causing leaks.
+ I have read bug 50175 comment 6, but given that the current heuristic has false positives, can some compromise be reached?  Perhaps some configuration for stifling the warning on a per key class name basis could be added?  It would even be acceptable for us if that configuration hid the per-instance message but issued a single overall "suppressing N ThreadLocal warnings based on config" info/warning message.

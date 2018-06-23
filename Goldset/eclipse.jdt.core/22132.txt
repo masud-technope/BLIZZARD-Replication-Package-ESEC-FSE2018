@@ -1,0 +1,4 @@
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/QualifiedName.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/FieldAccess.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/SuperFieldAccess.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ThisExpression.java

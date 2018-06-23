@@ -1,0 +1,52 @@
+Bug 422516 – [1.8][compiler] NPE in ArrayReference.analyseAssignment
+This happened while I was trying to create an example for bug 422515.
+The code has compile errors, but there shouldn't be an NPE.
+!ENTRY org.eclipse.jdt.core 4 4 2013-11-25 20:47:34.680
+!MESSAGE Exception occurred during problem detection:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package jsr335;
+public class LambdaAccessArray {
+public static void main(String[] args) throws InterruptedException {
+final int[] result= { 0 };
+Thread t = new Thread(() -> {
+sysoresult[0]= 42;
+});
+t.start();
+t.join();
+System.out.println(result[0]);
+}
+}
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.ast.ArrayReference.analyseAssignment(ArrayReference.java:57)
+at org.eclipse.jdt.internal.compiler.ast.Assignment.analyseCode(Assignment.java:80)
+at org.eclipse.jdt.internal.compiler.ast.Block.analyseCode(Block.java:43)
+at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.doesNotCompleteNormally(LambdaExpression.java:309)
+at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.isCompatibleWith(LambdaExpression.java:506)
+at org.eclipse.jdt.internal.compiler.lookup.PolyTypeBinding.isCompatibleWith(PolyTypeBinding.java:37)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.parameterCompatibilityLevel(Scope.java:4435)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.parameterCompatibilityLevel(Scope.java:4404)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod(Scope.java:678)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod(Scope.java:620)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getConstructor(Scope.java:2172)
+at org.eclipse.jdt.internal.compiler.ast.AllocationExpression.resolveType(AllocationExpression.java:446)
+at org.eclipse.jdt.internal.compiler.ast.LocalDeclaration.resolve(LocalDeclaration.java:244)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:620)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:303)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:531)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1209)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1319)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:570)
+at org.eclipse.jdt.internal.compiler.Compiler.resolve(Compiler.java:920)
+at org.eclipse.jdt.internal.core.CompilationUnitProblemFinder.process(CompilationUnitProblemFinder.java:196)
+at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:195)
+at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:258)
+at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:521)
+at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1082)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:170)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:89)
+at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:728)
+at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:788)
+at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1247)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:126)

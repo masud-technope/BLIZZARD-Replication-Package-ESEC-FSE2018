@@ -1,0 +1,12 @@
+44494 – Requests greater than 8k being truncated.
+After updating to Tomcat 5.5.26 from Tomcat 5.5.23 we appear to be having trouble with requests, that are greater than 8k, being truncated with the CoyoteRequest.getReader() method.
+The following steps caused this issue to appear:
+1.
+I constructed a post request from a jsp page which exceeded 8k in size.
+2.
+In the corresponding servlet I call request.getReader() and pipe the returned BufferedReader into a string.
+3.
+Inspection of the string reveals that the content is  being truncated after 8k.
+4.
+If I replace the request.getReader() method call with request.getInputStream() no truncation occurs.
+Also, after reverting back to Tomcat 5.5.23 and using the request.getReader() method no truncation occurs.

@@ -1,0 +1,10 @@
+47378 – welcome-file ignores servlet mapping
+Web applications that use a servlet mapping for their welcome-file are ignored
+and the server returns either a directory listing or a 404 if the listing is
+disabled.
+I have JSF servlet defined and a servlet-mapping for *.jsf to go to the
+FacesServlet.
+I have "index.jsf" listed as by welcome-file and I get a 404 with directory
+listing disabled.
+I also have a custom servlet defined with its mapping and set the welcome-file
+to its mapping and get a 404 as well.

@@ -1,0 +1,30 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface18/testExtractInterfaceFromAbstractClass/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface18/testExtractInterfaceFromAbstractClass/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface18/testExtractInterfaceFromAbstractClass/out/B.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface18/testExtractInterfaceFromClass/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface18/testExtractInterfaceFromClass/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface18/testExtractInterfaceFromClass/out/B.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface18/testExtractInterfaceFromInterface1/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface18/testExtractInterfaceFromInterface1/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface18/testExtractInterfaceFromInterface1/out/B.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface18/testExtractInterfaceFromInterface2/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface18/testExtractInterfaceFromInterface2/in/I1.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface18/testExtractInterfaceFromInterface2/in/I2.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface18/testExtractInterfaceFromInterface2/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface18/testExtractInterfaceFromInterface2/out/B.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface18/testExtractInterfaceFromInterface2/out/I1.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface18/testExtractInterfaceFromInterface2/out/I2.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/AllRefactoringTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ExtractInterfaceTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ExtractInterfaceTests18.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ExtractInterfaceProcessor.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/JDTFlagsTest18.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/util/JdtFlags.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/JDTFlagsTest18.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/util/JdtFlags.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/JDTFlagsTest18.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/util/JdtFlags.java
+org.eclipse.jdt.ui.tests/testresources/JDTFlagsTest18.zip
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/CoreTests.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/JDTFlagsTest18.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/util/JdtFlags.java

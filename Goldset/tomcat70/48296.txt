@@ -1,0 +1,3 @@
+java/org/apache/catalina/ant/jmx/JMXAccessorTask.java
+java/org/apache/catalina/tribes/membership/Membership.java
+java/org/apache/naming/resources/DirContextURLConnection.java

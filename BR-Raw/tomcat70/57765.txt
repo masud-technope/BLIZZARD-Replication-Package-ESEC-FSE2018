@@ -1,0 +1,32 @@
+57765 – autodeploy sometimes fails to redeploy the latest war
+if a war file is updated multiple times within a 1s window the autodeployment logic may fail to deploy the latest war.
+this is particularly a problem if doing something like wget to install a war directly to the webapps directory.
+ it may fail (because the zip is invalid) but then not retry when the download completes (presumably because the file timestamp is not different to the failed timestamp, even though the file *is* different.)
+for example, try the following script:
+while [ true ]  ; do
+curl http://path/to/large/sample.war -o sample.war
+sleep 15
+if [ ! -d sample ] ; then exit ; fi
+done
+with the sleep 15, tomcat should be guaranteed to unpack the war (running with its default 10s detect audodeployment files).
+however this script usually fails one in 20 times with a sufficiently large war file (where download time is >5s).
+in such cases the last autodeployment attempt logs an invalid zip, there is no subsequent autodeployment, and the timestamp of the completed (valid) download is identical to the log timestamp of the failed autodeployment, at least to a one-second resolution (common on filesystems).
+what i suspect is happening is, for example:
+00:00:00.100 sample.war is partially written
+00:00:00.200 autodeployment is attempted, and fails
+00:00:00.300 sample.war is completely written
+00:00:10.200 subsequent autodeployment cycle does not attempt re-deployment
+i suspect that at time 00:00:00.200, when the deployment fails, it records a "last update" timestamp.
+ 10 seconds later it checks the timestamp of the file on disk, which will be 00:00:00 (note no milliseconds) which is not later than the "last update" timestamp and so it incorrectly skips the redeployment.
+this could probably also result in the following situation
+00:00:00.100 sample.war v1 is written
+00:00:00.200 autodeployment is done
+00:00:00.300 sample.war v2 is written
+00:00:10.200 subsequent autodeployment cycle does not attempt re-deployment
+and so v1 is deployed even though v2 was subsequently written.
+i suggest that autodeployment should wait for files to stabilise, i.e.
+skipping any file updated within the 1s window immediately prior to autodeployment (and ensuring that it is picked up on the next autodeployment cycle, unless it is still being changed).
+there are workarounds:
+* download to a tmp directory then atomically `mv` the file to the webapps directory upon completion
+* use the manager webapp instead of autodeployment
+but it would be nice to fix this so that autodeployment works as advertised (and i think the fix sketched here should be fairly straightforward).

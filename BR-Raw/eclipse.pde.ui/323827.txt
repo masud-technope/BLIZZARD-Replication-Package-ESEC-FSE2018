@@ -1,0 +1,7 @@
+Bug 323827 – Wrong colour on parent composite in the error log view
+Created attachment 177617 [details]
+screen shot
+I20100824-1210 and 3.6.1
+In the error log view if you turn on "show text filter" you will notice that the background of the composite that holds the filter widget is also white.
+I would expect it to be the standard tab colour.
+The attached screen shot shows the problem.

@@ -1,0 +1,9 @@
+Bug 63250 – searching for .class files failes
+20040520
+1.
+New workspace, create a project with one class test.Main.
+2.
+Use File Search file name pattern "*.java" containing text empty (or *)
+No results are found.
+ I expected Main.class (which I see in the navigator)
+(Also fails in other workspaces)

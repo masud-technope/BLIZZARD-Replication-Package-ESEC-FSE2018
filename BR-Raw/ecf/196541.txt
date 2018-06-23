@@ -1,0 +1,4 @@
+Bug 196541 – [wizards] Passwords get reset upon user input in the username field
+The password text field appears to be cleared once you start changing the contents of the username text field if it can't load one from the cache.
+I have noticed this behaviour in the MSN and XMPP wizards and not in IRC.
+I'm not sure about the other providers at the moment.

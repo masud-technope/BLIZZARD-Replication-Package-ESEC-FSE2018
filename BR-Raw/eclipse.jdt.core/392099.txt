@@ -1,0 +1,3 @@
+Bug 392099 – [1.8][compiler][null] Apply null annotation on types for null analysis
+Given the good progress in supporting JSR 308 by the compiler I'm going to investigate what it takes to consume such type annotations for null analysis.
+This will also serve as the first field study to challenge the JSR 308 implementation in use.

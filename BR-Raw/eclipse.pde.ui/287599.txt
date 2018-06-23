@@ -1,0 +1,4 @@
+Bug 287599 – Provide summary of missing required bundles
+I20090818-0800
+With the new details provided for why bundles have not been searched (for use reporting), it would be nice if there was an additional page listing all of the bundles required for a complete search.
+This information is available on the details page, but it is quite annoying to have to check the details for every single skipped bundle when a nice summary page could tell you what bundles are missing in a simple list.

@@ -1,0 +1,2 @@
+Bug 313751 – Fix typo "modfier" in code
+N20100519-2000.

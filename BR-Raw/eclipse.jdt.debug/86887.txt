@@ -1,0 +1,10 @@
+Bug 86887 – Conditions do not work for JSP breakpoints
+If you set a JSP breakpoint with the condition "true == false", it is still hit.
+The reason seems to be that in
+JavaLineBreakpoint.handleConditionalBreakpointEvent(), the call to
+getJavaProject returns null.
+This seems to be the case because
+JavaModelManager.create(IFile, IJavaProject) assumes that the File is a java
+file, a class file or an archive file.
+Since this is a JSP file that is passed
+through, it returns null rather than the correct source element.

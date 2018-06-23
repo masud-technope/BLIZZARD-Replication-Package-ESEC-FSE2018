@@ -1,0 +1,3 @@
+org.eclipse.jdt.core.dom.ASTConverter.convert
+org.eclipse.jdt.core.dom.AST.convertCompilationUnit
+org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent

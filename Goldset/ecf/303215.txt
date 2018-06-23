@@ -1,0 +1,9 @@
+examples/bundles/org.eclipse.ecf.example.clients/products/ChatRobot.product
+examples/bundles/org.eclipse.ecf.example.clients/src/org/eclipse/ecf/example/clients/applications/ChatSORobotApplication.java
+examples/bundles/org.eclipse.ecf.example.clients/src/org/eclipse/ecf/example/clients/applications/ChatRobotApplication.java
+examples/bundles/org.eclipse.ecf.example.clients/src/org/eclipse/ecf/example/clients/applications/ChatRoomRobotApplication.java
+examples/bundles/org.eclipse.ecf.example.clients/META-INF/MANIFEST.MF
+examples/bundles/org.eclipse.ecf.example.clients/src/org/eclipse/ecf/example/clients/TestSharedObject.java
+examples/bundles/org.eclipse.ecf.example.clients/build.properties
+examples/bundles/org.eclipse.ecf.example.clients/src/org/eclipse/ecf/example/clients/XMPPChatClient.java
+examples/bundles/org.eclipse.ecf.example.clients/src/org/eclipse/ecf/example/clients/XMPPChatRoomClient.java

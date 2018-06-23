@@ -1,0 +1,13 @@
+sun.misc.Unsafe.park
+org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run
+java.util.concurrent.ThreadPoolExecutor.runWorker
+java.util.concurrent.ThreadPoolExecutor$Worker.run
+org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run
+java.lang.Thread.run
+org.apache.tomcat.util.net.JIoEndpoint.processSocketAsync
+org.apache.coyote.AbstractProcessor.setErrorState
+org.apache.coyote.http11.AbstractHttp11Processor.action
+org.apache.coyote.Response.action
+org.apache.catalina.connector.OutputBuffer.doFlush
+org.apache.catalina.connector.OutputBuffer.flush
+org.apache.catalina.connector.CoyoteOutputStream.flush

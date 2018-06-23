@@ -1,0 +1,32 @@
+Bug 279124 – [quick assist] 'Remove extra parenthesis' removes comment
+Build ID: I20090522-1710
+java.version=1.6.0_13
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_GB
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+Steps To Reproduce:
+1.
+Create a class like:
+class PND {
+void foo() {
+int a = 7;
+if (a != 4 &&
+// check a is 5
+(a != 5)) {
+System.out.println(a);
+}
+}
+}
+2.
+Place the cursor before the the open bracket: (a != 5)
+3.
+Quick-fix -> remove extra parenthesis
+4.
+Recieve:
+if (a != 4 &&
+a != 5) {
+System.out.println(a);
+}
+..with the comment destroyed.
+There are other issues about comments being removed when, say, a local variable is inlined, but I believe this to be a separate case.

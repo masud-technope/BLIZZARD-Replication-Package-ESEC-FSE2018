@@ -1,0 +1,2 @@
+Bug 241169 – [p2] Product editor could have a license field
+Since p2 is using the .product file to generate top level IUs, it would be great if the product editor could carry some notion of license such that p2 MD generation could use that has input.

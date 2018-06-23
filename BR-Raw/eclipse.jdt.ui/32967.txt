@@ -1,0 +1,8 @@
+Bug 32967 – Java Editors preference page uses externalized values for constant
+RC1
+The value for Ctrl is externallized for the Hover page of the Java Editors
+preference page.
+As a result when you run in Japanese you immediately get an
+error: "Modifer <japanese version of Ctrl> for Source hover is not valid."
+I don't think this is in the 2.0 translations - I generated some for 2.1 to
+test Japanese

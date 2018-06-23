@@ -1,0 +1,65 @@
+Bug 273357 – Abstract implementation of datashare APIs using Java 1.4 NIO
+Created attachment 132859 [details]
+Single text file with two Java classes
+This is still a work in progress but I guess I'll put it in bugzilla for the time being.
+NIODatashareContainer:
+-abstract createNIOChannel(ID channelId, IChannelListener listener, Map properties)
+-abstract createNIOChannel(IChannelConfig newChannelConfig)
+Counterparts to createChannel(...).
+NIOChannel:
+-sendRequest(ID)
+Used by sendMessage(ID, byte[]) to send a request to the remote peer for establishing a socket connection with each other.
+---------------------------------
+IChannelContainerAdapter channelContainer = new NIOConcreteSubclass();
+// this is presumably invoked on both ends, Alice and Bob now both have
+// a thread 1, it is waiting for IP addresses to connect to
+IChannel channel = channelContainer.createChannel(...);
+// the returned channel will be an NIOChannel subclass, thread 2 starts,
+// thread 2 will accept sockets, send, and receive byte[] messages
+channel.sendMessage(targetId, message); /* snippet X */
+// at this point, the channel checks if there is a SocketChannel available
+// for the target id, since none is found, it will invoke NIOChannel's
+// sendRequest(ID) so the implementation will notify the remote peer
+// the byte[] message itself will be queued up for processing later when a
+// socket connection _is_ established
+/* sendRequest(ID) is invoked on Alice's side */
+/* Bob processes the request and calls NIODatashareContainer's
+enqueue(String[]) */
+// at this point, there is a String[] (holding ip at [0] and port at [1])
+// IP address waiting to be processed, thread A sees the IP and begins
+// processing
+/* SocketChannel.open(String, port) is invoked, Bob having processed
+Alice's request, tries to connect to Alice */
+/* a SocketChannel is returned, Bob identifies himself by sending his ID
+as a serialized object */
+/* Alice's thread 2 has a non-blocking ServerSocketChannel, it accepts
+the socket channel from Bob */
+/* handshaking begins, NIOChannel stores the socket channel with
+put(...) on Alice's side */
+/* on Bob's thread 1 side, we process the handshake details from the
+NIOChannel, if we get the ID and try to find a matching NIOChannel,
+the socket is closed it not found, if found, store the socket through
+NIOChannel just like the above */
+// now both Alice and Bob's NIOChannels have a SocketChannel
+// corresponding to each other
+/* Alice's thread 2 finds the byte[] message originally sent by
+snippet X, Alice's NIOChannel retrieves Bob's SocketChannel and writes
+him the data */
+/* Bob's thread 2 polls and finds data waiting to be read, his
+SocketChannel reads the information from the ByteBuffer and notifies
+his IChannelListener of this data */
+// ...and so on and so forth...
+---------------------------------
+Wow, that probably made no sense at all, right?
+Known issues:
+-not all events are fired, IChannelContainerListener is not used at all, for IChannelListener, only IChannelMessageEvents are fired at the moment
+-from the example, you might've noticed that repeated invocations of sendMessage(ID, byte[]) may cause multiple invocations to sendRequest(ID), this is not good of course
+-thread A should probably only start when a channel has been created instead of in the constructor
+-NIOChannel stores the SocketChannel before the handshake is truly complete as thread A has not really "accepted" the connection yet, thread B should remove stale sockets that are disconnected (based on isOpen()?)
+-thread B sends/receives messages but also accepts sockets, socket handshake maybe should be done in a thread C because the handshake is currently a blocking operation, on the other hand, three threads is a lot, maybe change to non-blocking
+-unhandled exceptions
+Room for improvement:
+-the dispose life cycle of the channel container is not completely clear because IChannelContainerAdapter doesn't have any disconnect() or dispose() methods, not sure if this is a general datashare API problem or not
+-more javadocs, more comments
+---------------------------------
+Definitely more but these are the ones I know of off-hand.

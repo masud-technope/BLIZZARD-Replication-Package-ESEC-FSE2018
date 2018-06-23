@@ -1,0 +1,5 @@
+Bug 216840 – Continue validating a Bundle-Activator exists for lazy start header?
+See https://bugs.eclipse.org/bugs/show_bug.cgi?id=216271#c8
+Since it seems that having a lazy start header is sometimes valid and doesn't really ever change the behavior of the plug-in, should we continue to even validate this?  Currently, this warning is not tied to any compiler preference.
+ This seems like something that might not warrant us adding yet another preference to the PDE preference page.
+ I wanted to make sure adding a preference and setting its default value to ignore is warranted based on this problem.

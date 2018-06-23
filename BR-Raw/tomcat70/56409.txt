@@ -1,0 +1,11 @@
+56409 – A file called \ causes StackOverflowError in tldScanResourcePaths during startup
+at org.apache.catalina.startup.TldConfig.tldScanResourcePaths(TldConfig.java:366)
+at org.apache.catalina.startup.TldConfig.tldScanResourcePaths(TldConfig.java:398)
+at org.apache.catalina.startup.TldConfig.tldScanResourcePaths(TldConfig.java:398)
+at org.apache.catalina.startup.TldConfig.tldScanResourcePaths(TldConfig.java:398)
+at org.apache.catalina.startup.TldConfig.tldScanResourcePaths(TldConfig.java:398)
+(...
+repeats a lot of times)
+Steps to reproduce:
+1) Create a file named "\" below WEB-INF in an own folder
+2) Start Tomcat7

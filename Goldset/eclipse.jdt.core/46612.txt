@@ -1,0 +1,6 @@
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/FieldDeclaration.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/MethodDeclaration.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/BodyDeclaration.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/TypeDeclaration.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/Initializer.java

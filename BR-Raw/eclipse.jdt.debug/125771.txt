@@ -1,0 +1,3 @@
+Bug 125771 – unable to create method breakpoints in external source
+When double-clicking on a method in external source a breakpoint is not created.
+It appears we are not retrieving the method siganture properly.

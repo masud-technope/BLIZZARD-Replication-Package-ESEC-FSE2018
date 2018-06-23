@@ -1,0 +1,12 @@
+Bug 425277 – [1.8][actions] AddImportsOperation has bugs with nested/parameterized/annotated types
+AddImportsOperation has various bugs with nested and parameterized types
+Examples:
+public class Try {
+java.lang.Thread.State s;
+java.util.Map m;
+java.util.Map<String, Integer> m2;
+java.util.Map.Entry e;
+java.util.Map.Entry<String, Object> e2;
+pack.Outer.Middle.Inner i;
+pack.Outer.Middle<String>.Inner<Integer> i2;
+}

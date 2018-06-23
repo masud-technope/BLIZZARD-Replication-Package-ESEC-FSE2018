@@ -1,0 +1,31 @@
+Bug 133141 – Must JavaCore.create(IFile) always do full checks?
+I20060315-1200
+I found this while digging into bug 133025.
+In 3.2 Debug added some code that requests the Java element adapter for an IFile (that's OK).
+This results in a call to JavaCore.create(IFile).
+Even though the CU is in the model all checks are made before the CU is returned and the Scanner is consulted, see the stack trace below.
+NOTE: this is the same behavior as in 3.1 (and maybe before) and not a regression in JDT Core but since many clients are either using JavaCore.create(IFile) or IFile.getAdapter(IJavaElement.class) it could be a good performance benefit if this could be avoided.
+Thread [main] (Suspended (breakpoint at line 834 in Scanner))
+owns: Class<T> (org.eclipse.jdt.core.JavaConventions) (id=270)
+owns: RunnableLock  (id=310)
+Scanner.getNextToken() line: 834
+JavaConventions.scannedIdentifier(String) line: 89
+JavaConventions.validateIdentifier(String) line: 232
+Util.isValidFolderNameForPackage(String) line: 1320
+Util.packageName(IPath) line: 1474
+JavaModelManager.determineIfOnClasspath(IResource, IJavaProject) line: 830
+JavaModelManager.createCompilationUnitFrom(IFile, IJavaProject) line: 749
+JavaModelManager.create(IFile, IJavaProject) line: 660
+JavaModelManager.create(IResource, IJavaProject) line: 624
+JavaCore.create(IResource) line: 1378
+ResourceAdapterFactory.getAdapter(Object, Class) line: 38
+AdapterFactoryProxy.getAdapter(Object, Class) line: 63
+AdapterManager.getAdapter(Object, Class) line: 253
+File(PlatformObject).getAdapter(Class) line: 65
+FileEditorInput.getAdapter(Class) line: 87
+ToggleBreakpointAdapter.isRemote(IWorkbenchPart, ISelection) line: 422
+ToggleBreakpointAdapter.canToggleWatchpoints(IWorkbenchPart, ISelection) line: 810
+RetargetWatchpointAction.canPerformAction(Object, ISelection, IWorkbenchPart) line: 36
+RetargetAction$1.run() line: 204
+RunnableLock.run() line: 35
+UISynchronizer(Synchronizer).runAsyncMessages(boolean) line: 123

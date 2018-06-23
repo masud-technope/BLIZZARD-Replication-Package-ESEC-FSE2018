@@ -1,0 +1,3 @@
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/StandardVMRunner.java
+org.eclipse.jdt.debug/buildnotes_jdt-debug.html
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/AbstractJavaCommandTab.java

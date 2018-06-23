@@ -1,0 +1,381 @@
+Bug 338107 – [remoteserviceadmin] org.eclipse.ecf.osgi.services.remoteserviceadmin sets jre.compilation.profile = J2SE-1.4 but uses 1.5 API
+This is with head project of master, if I use launch product it works and after a build (target platform 3.6.1) this Exception comes up.
+I have looked into the plugins directory and the bundle "org.eclipse.ecf.osgi.services.remoteserviceadmin" is there, so it should build, but the package folders inside "org.eclipse.ecf.osgi.services.remoteserviceadmin" jar are empty (so local build fails somehow, but now Error about this).
+----- Build log -----
+# 24.02.11 16:35:36 MEZ
+# Eclipse Compiler for Java(TM) 0.A68_R36x, 3.6.1, Copyright IBM Corp 2000, 2010.
+All rights reserved.
+Target level 'jsr14' is incompatible with source level '1.3'.
+A source level '1.5' or better is required
+----- Exception -----
+eclipse.buildId=unknown
+java.version=1.6.0_20
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=de_DE
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -clean -console
+-conso
+leLog
+!ENTRY org.eclipse.ecf.osgi.services.distribution 4 0 2011-02-24 15:53:15.624
+!MESSAGE
+!STACK 0
+org.osgi.framework.BundleException: Exception in
+org.eclipse.ecf.internal.osgi.s
+ervices.distribution.Activator.start() of bundle
+org.eclipse.ecf.osgi.services.d
+istribution.
+at
+org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActiv
+ator(BundleContextImpl.java:806)
+at
+org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(Bund
+leContextImpl.java:755)
+at
+org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(Bundl
+eHost.java:370)
+at
+org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(Abstra
+ctBundle.java:374)
+at
+org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Frame
+work.java:1067)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBund
+les(StartLevelManager.java:561)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBund
+les(StartLevelManager.java:546)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(St
+artLevelManager.java:459)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStart
+Level(StartLevelManager.java:243)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEv
+ent(StartLevelManager.java:440)
+at
+org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventM
+anager.java:227)
+at
+org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(Even
+tManager.java:337)
+Caused by: java.lang.NoClassDefFoundError:
+org/eclipse/ecf/osgi/services/remotes
+erviceadmin/AbstractTopologyManager
+at java.lang.ClassLoader.defineClass1(Native Method)
+at java.lang.ClassLoader.defineClassCond(Unknown Source)
+at java.lang.ClassLoader.defineClass(Unknown Source)
+at
+org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.defineClass(
+DefaultClassLoader.java:188)
+at
+org.eclipse.osgi.baseadaptor.loader.ClasspathManager.defineClass(Clas
+spathManager.java:580)
+at
+org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findClassImpl(Cl
+asspathManager.java:550)
+at
+org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClassIm
+pl(ClasspathManager.java:481)
+at
+org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClass_L
+ockClassLoader(ClasspathManager.java:469)
+at
+org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClass(C
+lasspathManager.java:449)
+at
+org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.findLocalCla
+ss(DefaultClassLoader.java:216)
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findLocalClass(BundleLo
+ader.java:393)
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(Bundl
+eLoader.java:469)
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.
+java:422)
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.
+java:410)
+at
+org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(De
+faultClassLoader.java:107)
+at java.lang.ClassLoader.loadClass(Unknown Source)
+at
+org.eclipse.ecf.internal.osgi.services.distribution.Activator.start(A
+ctivator.java:99)
+at
+org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(Bund
+leContextImpl.java:783)
+at java.security.AccessController.doPrivileged(Native Method)
+at
+org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActiv
+ator(BundleContextImpl.java:774)
+...
+11 more
+Caused by: java.lang.ClassNotFoundException:
+org.eclipse.ecf.osgi.services.remot
+eserviceadmin.AbstractTopologyManager
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(Bundl
+eLoader.java:506)
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.
+java:422)
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.
+java:410)
+at
+org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(De
+faultClassLoader.java:107)
+at java.lang.ClassLoader.loadClass(Unknown Source)
+...
+31 more
+Root exception:
+java.lang.NoClassDefFoundError:
+org/eclipse/ecf/osgi/services/remoteserviceadmin
+/AbstractTopologyManager
+at java.lang.ClassLoader.defineClass1(Native Method)
+at java.lang.ClassLoader.defineClassCond(Unknown Source)
+at java.lang.ClassLoader.defineClass(Unknown Source)
+at
+org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.defineClass(
+DefaultClassLoader.java:188)
+at
+org.eclipse.osgi.baseadaptor.loader.ClasspathManager.defineClass(Clas
+spathManager.java:580)
+at
+org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findClassImpl(Cl
+asspathManager.java:550)
+at
+org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClassIm
+pl(ClasspathManager.java:481)
+at
+org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClass_L
+ockClassLoader(ClasspathManager.java:469)
+at
+org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClass(C
+lasspathManager.java:449)
+at
+org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.findLocalCla
+ss(DefaultClassLoader.java:216)
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findLocalClass(BundleLo
+ader.java:393)
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(Bundl
+eLoader.java:469)
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.
+java:422)
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.
+java:410)
+at
+org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(De
+faultClassLoader.java:107)
+at java.lang.ClassLoader.loadClass(Unknown Source)
+at
+org.eclipse.ecf.internal.osgi.services.distribution.Activator.start(A
+ctivator.java:99)
+at
+org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(Bund
+leContextImpl.java:783)
+at java.security.AccessController.doPrivileged(Native Method)
+at
+org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActiv
+ator(BundleContextImpl.java:774)
+at
+org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(Bund
+leContextImpl.java:755)
+at
+org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(Bundl
+eHost.java:370)
+at
+org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(Abstra
+ctBundle.java:374)
+at
+org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Frame
+work.java:1067)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBund
+les(StartLevelManager.java:561)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBund
+les(StartLevelManager.java:546)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(St
+artLevelManager.java:459)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStart
+Level(StartLevelManager.java:243)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEv
+ent(StartLevelManager.java:440)
+at
+org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventM
+anager.java:227)
+at
+org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(Even
+tManager.java:337)
+Caused by: java.lang.ClassNotFoundException:
+org.eclipse.ecf.osgi.services.remot
+eserviceadmin.AbstractTopologyManager
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(Bundl
+eLoader.java:506)
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.
+java:422)
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.
+java:410)
+at
+org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(De
+faultClassLoader.java:107)
+at java.lang.ClassLoader.loadClass(Unknown Source)
+...
+31 more
+!ENTRY org.eclipse.ecf.osgi.services.remoteserviceadmin 4 0 2011-02-24
+15:53:15.
+643
+!MESSAGE
+!STACK 0
+org.osgi.framework.BundleException: The activator
+org.eclipse.ecf.internal.osgi.
+services.remoteserviceadmin.Activator for bundle
+org.eclipse.ecf.osgi.services.r
+emoteserviceadmin is invalid
+at
+org.eclipse.osgi.framework.internal.core.AbstractBundle.loadBundleAct
+ivator(AbstractBundle.java:156)
+at
+org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(Bund
+leContextImpl.java:751)
+at
+org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(Bundl
+eHost.java:370)
+at
+org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(Abstra
+ctBundle.java:374)
+at
+org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Frame
+work.java:1067)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBund
+les(StartLevelManager.java:561)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBund
+les(StartLevelManager.java:546)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(St
+artLevelManager.java:459)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStart
+Level(StartLevelManager.java:243)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEv
+ent(StartLevelManager.java:440)
+at
+org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventM
+anager.java:227)
+at
+org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(Even
+tManager.java:337)
+Caused by: java.lang.ClassNotFoundException:
+org.eclipse.ecf.internal.osgi.servi
+ces.remoteserviceadmin.Activator
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(Bundl
+eLoader.java:506)
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.
+java:422)
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.
+java:410)
+at
+org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(De
+faultClassLoader.java:107)
+at java.lang.ClassLoader.loadClass(Unknown Source)
+at
+org.eclipse.osgi.internal.loader.BundleLoader.loadClass(BundleLoader.
+java:338)
+at
+org.eclipse.osgi.framework.internal.core.BundleHost.loadClass(BundleH
+ost.java:232)
+at
+org.eclipse.osgi.framework.internal.core.AbstractBundle.loadBundleAct
+ivator(AbstractBundle.java:149)
+...
+11 more
+Root exception:
+java.lang.ClassNotFoundException:
+org.eclipse.ecf.internal.osgi.services.remotes
+erviceadmin.Activator
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(Bundl
+eLoader.java:506)
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.
+java:422)
+at
+org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.
+java:410)
+at
+org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(De
+faultClassLoader.java:107)
+at java.lang.ClassLoader.loadClass(Unknown Source)
+at
+org.eclipse.osgi.internal.loader.BundleLoader.loadClass(BundleLoader.
+java:338)
+at
+org.eclipse.osgi.framework.internal.core.BundleHost.loadClass(BundleH
+ost.java:232)
+at
+org.eclipse.osgi.framework.internal.core.AbstractBundle.loadBundleAct
+ivator(AbstractBundle.java:149)
+at
+org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(Bund
+leContextImpl.java:751)
+at
+org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(Bundl
+eHost.java:370)
+at
+org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(Abstra
+ctBundle.java:374)
+at
+org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Frame
+work.java:1067)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBund
+les(StartLevelManager.java:561)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBund
+les(StartLevelManager.java:546)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(St
+artLevelManager.java:459)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStart
+Level(StartLevelManager.java:243)
+at
+org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEv
+ent(StartLevelManager.java:440)
+at
+org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventM
+anager.java:227)
+at
+org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(Even
+tManager.java:337)
+ZooDiscovery> Discovery Service Activated.
+24.02.2011 15:53:15.
+!ENTRY org.eclipse.osgi 4 0 2011-02-24 15:53:15.984
+!MESSAGE Bundle org.eclipse.ecf.osgi.services.distribution_2.0.0.201102241552
+[1
+8] is not active.
+!ENTRY org.eclipse.osgi 4 0 2011-02-24 15:53:15.986
+!MESSAGE Bundle
+org.eclipse.ecf.osgi.services.remoteserviceadmin_1.0.0.201102241
+552 [19] is not active.

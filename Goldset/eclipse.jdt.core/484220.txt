@@ -1,0 +1,4 @@
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/Parser.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTConverter15Test.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/CommentRecorderParser.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/compiler/SourceElementParser.java

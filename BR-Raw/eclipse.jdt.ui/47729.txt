@@ -1,0 +1,17 @@
+Bug 47729 – Unable to ignore '*,D' files [filters]
+I am using Aegis which produces files having the extension ',D', e.g.
+'MyClass.java,D'.
+I want to ignore these files from being shown in the Package Explorer.
+I tried
+the filter in
+Project - Properties - Java Build Path - Source - Exclusion Filter
+but failed.
+I tried
+**/*,D
+**/*.java,D
+**/*.java?D
+without success.
+Seems as if this filter only ignores .java files.
+The only help
+I found was the filter for 'non-java elements', but then my .properties files
+disappear, too.

@@ -1,0 +1,13 @@
+org.eclipse.jdt.internal.compiler.parser.RecoveredMethod.updateFromParserState
+org.eclipse.jdt.internal.compiler.parser.Parser.updateRecoveryState
+org.eclipse.jdt.internal.compiler.parser.Parser.resumeOnSyntaxError
+org.eclipse.jdt.internal.compiler.parser.Parser.parse
+org.eclipse.jdt.internal.compiler.parser.Parser.parse
+org.eclipse.jdt.internal.compiler.parser.Parser.parse
+org.eclipse.jdt.internal.compiler.parser.Parser.dietParse
+org.eclipse.jdt.internal.compiler.Compiler.internalBeginToCompile
+org.eclipse.jdt.internal.compiler.Compiler.beginToCompile
+org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve
+org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve
+org.eclipse.jdt.core.dom.ASTParser.internalCreateAST
+org.eclipse.jdt.core.dom.ASTParser.createAST

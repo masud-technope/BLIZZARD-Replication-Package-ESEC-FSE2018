@@ -1,0 +1,191 @@
+51860 – HTTP/SSL with NIO won't work
+Error reproduction conditions:
+Tomcat 7.0.20 and 21.
+Connector="...Http11NioProtocol"
+SSLEnabled="true"
+secure="true"
+scheme="https"
+clientAuth=true or false
+JDK 1.6.0_27 X64.
+All operation systems.
+When user connects to https://, the SSL handshake fails with error:
+javax.net.ssl.SSLHandshakeException: no cipher suites in common
+If we have same connector settings,  but if we change it to BIO: Connector="...Http11Protocol", everything works fine.
+The problem cause is a differences in SSL behavior between BIO and NIO handshake.
+I've found the workaround here:
+http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6448723
+See the org.apache.tomcat.util.net.jsse.JSSESocketFactory.
+JSSEKeyManager wraps the KeyManager.
+In NIO mode, the KeyManager should have two extra methods:
+public java.lang.String chooseEngineClientAlias(java.lang.String[] keyType, java.security.Principal[] issuers, javax.net.ssl.SSLEngine engine);
+public java.lang.String chooseEngineServerAlias(java.lang.String keyType, java.security.Principal[] issuers, javax.net.ssl.SSLEngine engine);
+We use a custom hand-made SSLInmplemention with extra features:
+* Keypair storage on hardware device or database
+* ExtendedKeyUsage verification in TrustManager
+* CRL validation on CRL distribution point online synchronization
+* ActiveDirectory account lookup by certificate
+The complete source code of workaround:
+package ru.yamoney.calypso.server.security.jsse;
+import org.apache.tomcat.util.net.AbstractEndpoint;
+import org.apache.tomcat.util.net.jsse.JSSESocketFactory;
+import ru.yamoney.calypso.server.CommonKernel;
+import javax.net.ssl.*;
+import java.net.Socket;
+import java.security.KeyStore;
+import java.security.Principal;
+import java.security.PrivateKey;
+import java.security.cert.X509Certificate;
+/**
+* SSLImplementation for Tomcat-7-NIO
+*
+* @author Roman Tsirulnikov
+*/
+final class CalypsoSSLSocketFactory
+extends JSSESocketFactory {
+private final CalypsoKeyManager keyManager;
+private final X509TrustManager trustManager;
+public CalypsoSSLSocketFactory(AbstractEndpoint endpoint) {
+super(endpoint);
+keyManager = CommonKernel.getInstance().getBean("server_calypsoKeyManager");
+trustManager = CommonKernel.getInstance().getBean("server_calypsoTrustManager");
+}
+@Override
+public KeyManager[] getKeyManagers() {
+try {
+KeyStore ks = keyManager.getKeyStore();
+if (!ks.isKeyEntry(keyManager.getKeyAlias())) {
+throw new IllegalArgumentException("Keystore entry is not a private keypair: " + keyManager.getKeyAlias());
+}
+KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+kmf.init(ks, keyManager.getKeystorePass().toCharArray());
+KeyManager[] kms = kmf.getKeyManagers();
+for (int i = 0; i < kms.length; i++) {
+kms[i] = new NIOKeyManagerWrapper((X509KeyManager) kms[i], keyManager.getKeyAlias());
+}
+return kms;
+} catch (Exception e) {
+throw new IllegalArgumentException("SSLSocketFactory init: " + e.getMessage(), e);
+}
+}
+@Override
+public TrustManager[] getTrustManagers() {
+return new TrustManager[]{trustManager};
+}
+/**
+* X509KeyManager wrapper
+* Workaround for the SSL-NIO engine bug http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6448723
+*/
+private final class NIOKeyManagerWrapper extends X509ExtendedKeyManager {
+private X509KeyManager delegate;
+private String serverKeyAlias;
+/**
+* Constructor.
+*
+* @param mgr            The X509KeyManager used as a delegate
+* @param serverKeyAlias The alias name of the server's keypair and
+*                       supporting certificate chain
+*/
+NIOKeyManagerWrapper(X509KeyManager mgr, String serverKeyAlias) {
+super();
+this.delegate = mgr;
+this.serverKeyAlias = serverKeyAlias;
+}
+/**
+* Choose an alias to authenticate the client side of a secure socket,
+* given the public key type and the list of certificate issuer authorities
+* recognized by the peer (if any).
+*
+* @param keyType The key algorithm type name(s), ordered with the
+*                most-preferred key type first
+* @param issuers The list of acceptable CA issuer subject names, or null
+*                if it does not matter which issuers are used
+* @param socket  The socket to be used for this connection.
+This parameter
+*                can be null, in which case this method will return the most generic
+*                alias to use
+* @return The alias name for the desired key, or null if there are no
+*         matches
+*/
+@Override
+public String chooseClientAlias(String[] keyType, Principal[] issuers,
+Socket socket) {
+return delegate.chooseClientAlias(keyType, issuers, socket);
+}
+/**
+* Returns this key manager's server key alias that was provided in the
+* constructor.
+*
+* @param keyType The key algorithm type name (ignored)
+* @param issuers The list of acceptable CA issuer subject names, or null
+*                if it does not matter which issuers are used (ignored)
+* @param socket  The socket to be used for this connection.
+This parameter
+*                can be null, in which case this method will return the most generic
+*                alias to use (ignored)
+* @return Alias name for the desired key
+*/
+@Override
+public String chooseServerAlias(String keyType, Principal[] issuers,
+Socket socket) {
+return serverKeyAlias;
+}
+/**
+* Returns the certificate chain associated with the given alias.
+*
+* @param alias The alias name
+* @return Certificate chain (ordered with the user's certificate first
+*         and the root certificate authority last), or null if the alias can't be
+*         found
+*/
+@Override
+public X509Certificate[] getCertificateChain(String alias) {
+return delegate.getCertificateChain(alias);
+}
+/**
+* Get the matching aliases for authenticating the client side of a secure
+* socket, given the public key type and the list of certificate issuer
+* authorities recognized by the peer (if any).
+*
+* @param keyType The key algorithm type name
+* @param issuers The list of acceptable CA issuer subject names, or null
+*                if it does not matter which issuers are used
+* @return Array of the matching alias names, or null if there were no
+*         matches
+*/
+@Override
+public String[] getClientAliases(String keyType, Principal[] issuers) {
+return delegate.getClientAliases(keyType, issuers);
+}
+/**
+* Get the matching aliases for authenticating the server side of a secure
+* socket, given the public key type and the list of certificate issuer
+* authorities recognized by the peer (if any).
+*
+* @param keyType The key algorithm type name
+* @param issuers The list of acceptable CA issuer subject names, or null
+*                if it does not matter which issuers are used
+* @return Array of the matching alias names, or null if there were no
+*         matches
+*/
+@Override
+public String[] getServerAliases(String keyType, Principal[] issuers) {
+return delegate.getServerAliases(keyType, issuers);
+}
+/**
+* Returns the key associated with the given alias.
+*
+* @param alias The alias name
+* @return The requested key, or null if the alias can't be found
+*/
+@Override
+public PrivateKey getPrivateKey(String alias) {
+return delegate.getPrivateKey(alias);
+}
+public java.lang.String chooseEngineClientAlias(java.lang.String[] keyType, java.security.Principal[] issuers, javax.net.ssl.SSLEngine engine) {
+return delegate.chooseClientAlias(keyType, issuers, null);
+}
+public java.lang.String chooseEngineServerAlias(java.lang.String keyType, java.security.Principal[] issuers, javax.net.ssl.SSLEngine engine) {
+return serverKeyAlias;
+}
+}
+}

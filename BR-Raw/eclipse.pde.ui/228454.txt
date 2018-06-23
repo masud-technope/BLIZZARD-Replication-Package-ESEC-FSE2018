@@ -1,0 +1,3 @@
+Bug 228454 – Add p2 property constants to P2Util
+As a polish item for p2 support, it would be better to define the p2 metedata generator properties as constants, probably in P2Util, so that we remain consistent everywhere we use them.
+This should wait until metadata generation for products and update sites is in HEAD.

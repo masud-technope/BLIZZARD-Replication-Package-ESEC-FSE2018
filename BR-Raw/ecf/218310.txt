@@ -1,0 +1,5 @@
+Bug 218310 – [Discovery][jSLP] ServiceType in jSLP always starts with "_service."
+By SLP RFC a service always starts with "service:".
+This should be removed from the ECF IServiceType as it is contrary to JMDNS and doesn't offer any benefit for the consumer.
+Though we must consider, that a consumer explicitly prefixes a service with e.g.
+"_service._foo..." which from the SLP perspective results in "service:service:foo..."

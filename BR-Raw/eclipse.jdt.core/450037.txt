@@ -1,0 +1,15 @@
+Bug 450037 – [1.8][[compiler] Bogus error message: Unhandled exception type Object[]
+GTT.test1210 is presently disabled for 1.8, when enabled I get:
+// --
+public class X {
+public final <E extends Exception> E throwE (Object ...
+args) throws E {
+return null;
+}
+void foo(Object[] objs) {
+Object[] o  = throwE(objs);
+}
+}
+"Unhandled exception type Object[]"
+I would have expected a message:
+cannot convert from Object[] & Exception to Object[]

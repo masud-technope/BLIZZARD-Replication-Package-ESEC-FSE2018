@@ -1,0 +1,12 @@
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIDebugModelMessages.properties
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIArrayType.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/debug/core/IJavaClassType.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIClassType.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/debug/core/IJavaFieldVariable.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/InstanceVariableTests.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/debug/core/IJavaInterfaceType.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIInterfaceType.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/debug/core/IJavaReferenceType.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JDIModelPresentation.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIReferenceType.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIFieldVariable.java

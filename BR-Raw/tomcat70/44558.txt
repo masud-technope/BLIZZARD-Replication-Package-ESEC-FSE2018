@@ -1,0 +1,13 @@
+44558 – cite attempted address when throwing "Cannot assign requested address"
+SEVERE: Error starting endpoint
+java.net.BindException: Cannot assign requested address:2217
+at org.apache.tomcat.util.net.JIoEndpoint.init(JIoEndpoint.java:501)
+at org.apache.tomcat.util.net.JIoEndpoint.start(JIoEndpoint.java:515)
+at org.apache.coyote.http11.Http11Protocol.start(Http11Protocol.java:203)
+at org.apache.catalina.connector.Connector.start(Connector.java:1131)
+at org.apache.catalina.core.StandardService.start(StandardService.java:531)
+at org.apache.catalina.core.StandardServer.start(StandardServer.java:710)
+at org.apache.catalina.startup.Catalina.start(Catalina.java:578)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+saying which address a bind was attempted for would accelerate the error resolution quite a bit!

@@ -1,0 +1,54 @@
+Bug 327193 – [patch] Launching command line exceeds the process creation command limit on Windows
+Build Identifier: 3.6.x I20100608-0911
+In case you have a very huge classpath and also many VM arguments for your junit test suite, you are not able to run it inside eclipse.
+The internal builded command line for the RemoteTestRunner process gets too long and reaches the windows xp limit (8191 characters).
+The error you get looks like this:
+Pop up "Problem occured" with Message: Exception occurred executing command line.
+Cannot run program "C:\Apps\Tip60\cs\java\jdk160_16\bin\javaw.exe" (in directory "C:\DevWork\Projects\Frontnet\rmt.head\RMT\lib\RMT"): CreateProcess error=87, The parameter is incorrect
+Stack Trace from Error Log:
+java.io.IOException: Cannot run program "C:\Apps\Tip60\cs\java\jdk160_16\bin\javaw.exe" (in directory "C:\DevWork\Projects\Frontnet\rmt.head\RMT\lib\RMT"): CreateProcess error=87, The parameter is incorrect
+at java.lang.ProcessBuilder.start(Unknown Source)
+at java.lang.Runtime.exec(Unknown Source)
+at org.eclipse.debug.core.DebugPlugin.exec(DebugPlugin.java:827)
+at org.eclipse.jdt.launching.AbstractVMRunner.exec(AbstractVMRunner.java:73)
+at org.eclipse.jdt.internal.launching.StandardVMRunner.run(StandardVMRunner.java:317)
+at org.eclipse.jdt.junit.launcher.JUnitLaunchConfigurationDelegate.launch(JUnitLaunchConfigurationDelegate.java:174)
+at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:853)
+at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:702)
+at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:923)
+at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1126)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: java.io.IOException: CreateProcess error=87, The parameter is incorrect
+at java.lang.ProcessImpl.create(Native Method)
+at java.lang.ProcessImpl.<init>(Unknown Source)
+at java.lang.ProcessImpl.start(Unknown Source)
+...
+11 more
+There exist currently no workaround to solve that issue.
+You need to rewrite your testsuite e.g.
+by using ant inorder to shorten the command line by uisng a "proxy" process which has an own class loader andconfiguration loader.
+Expectation:
+- extend the Junit Runner, add a configuration option for passing over an own classpath which uses a java class loader before the test starts.
+- don't use the command line to pass over the classpath or configuration (syste m properties)
+- Please have a look at the IDE "Idea" there they are using also an own runner, but the classpath configuration is not passed via a command line
+refer also to:
+http://www.eclipse.org/forums/index.php?t=msg&th=197955
+http://support.microsoft.com/kb/830473
+many thanks in advance.
+regards
+Mark
+Reproducible: Always
+Steps to Reproduce:
+1.
+create one single project with many jar files in the classpath.
+The path for each jar file should be long.
+The overall string for the full class path should approx.
+exceeds 8100 characters
+2.
+write a junit test for that project
+3.
+setting up a junt run configuration and some VM arguments.
+Use as classpath the path of the project.
+If necessary add the Junit library additionally to the classpath
+4.
+try to run the junit test.

@@ -1,0 +1,16 @@
+Bug 203356 – target platform looses all all previous bundles when adding a new directory of target plugins
+I20070911-0833
+This was so strange I had to get Chris A.
+to come over and see this happen in my workspace to make sure I was not loosing it.
+ Steps to reproduce:
+1) Launch a new workspace and create a few plugin projects, or open a workspace with existing bundle projects if you are brave :-)
+2) Create a test bundles directory somewhere (in my case c:\dev\testbundles\)
+3) Export one of the plugins from your workspace into the test bundles directory, or place another built test bundle into the testbundles directory
+4) In Target Platform preferences, click the "Add" button to add the test bundles directory as new provisioner.
+5) Before clicking Apply or OK check the Group plug-ins by location box.
+ Notice the the old locations have every bundle checked but the toplevel box for the old locations are not checked
+6) Click OK, notice that the bundles resolved against the bundles in the target no longer resolve.
+ It appears all the bundles from the old locations got removed from the target State which causes the workspace bundles to be unresolved.
+Reloading the target seems to remove the extra testbundles location, then adding it back seems to work.
+ Then if you restart you will notice that the old target bundles seem to be missing again.
+More information, I configured an extension location to my dev environment, this location is also included in the list of locations in the PDE target platform.

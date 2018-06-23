@@ -1,0 +1,9 @@
+org.eclipse.jdt.internal.core.search.matching.MatchLocator.findIndexMatches
+org.eclipse.jdt.internal.core.search.PatternSearchJob.search
+org.eclipse.jdt.internal.core.search.PatternSearchJob.execute
+org.eclipse.jdt.internal.core.search.processing.JobManager.performConcurrentJob
+org.eclipse.jdt.internal.core.search.BasicSearchEngine.findMatches
+org.eclipse.jdt.internal.core.search.BasicSearchEngine.search
+org.eclipse.jdt.core.search.SearchEngine.search
+org.eclipse.jdt.internal.ui.propertiesfileeditor.PropertyKeyHyperlink$4.run
+org.eclipse.jface.operation.ModalContext$ModalContextThread.run

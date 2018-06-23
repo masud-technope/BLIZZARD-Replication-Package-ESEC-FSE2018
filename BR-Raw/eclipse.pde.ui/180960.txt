@@ -1,0 +1,10 @@
+Bug 180960 – Project import does not check if there is a project available on the filesystem
+I20070327-0800
+When importing a project from the target platform with source, the wizard does not check for the presence of a folder on the file system and overlays the source over what was there, leaving the system in a weird state.
+Steps to reproduce:
+- load org.eclipse.pde.ui from CVS
+- delete the project from the workspace but do *not* delete it from the file system
+- import org.eclipse.pde.ui using the plug-in import wiazard and check to import with source.
+Once the import is complete you will notice that you still have the CVS information, which is a sign that what was there has not been deleted.
+Mike told me that he had some code implementing the logic of checking, etc.
+You may want to reuse that.

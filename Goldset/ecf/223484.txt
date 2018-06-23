@@ -1,0 +1,7 @@
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/MultiRosterAccount.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/internal/docshare/ECFStart.java
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/MultiRosterView.java
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/MultiRosterAccount.java
+framework/bundles/org.eclipse.ecf.datashare/src/org/eclipse/ecf/datashare/AbstractShare.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/internal/docshare/ECFStart.java
+framework/bundles/org.eclipse.ecf.presence.collab.ui/src/org/eclipse/ecf/internal/presence/collab/ui/ShareReceiversECFStart.java

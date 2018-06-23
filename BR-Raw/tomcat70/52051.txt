@@ -1,0 +1,30 @@
+52051 – NullPointerException when Jasper tries to compile a directory
+Created attachment 27809 [details]
+Sample webapp that demonstrates the problem.
+STR:
+1.
+Map JspServlet to /jsp/*
+2.
+Create a directory /jsp/dir
+3.
+Make a request to /jsp/dir
+Result:
+org.apache.jasper.JasperException: File "/jsp/dir" not found
+org.apache.jasper.compiler.DefaultErrorHandler.jspError(DefaultErrorHandler.java:56)
+org.apache.jasper.compiler.ErrorDispatcher.dispatch(ErrorDispatcher.java:410)
+org.apache.jasper.compiler.ErrorDispatcher.jspError(ErrorDispatcher.java:117)
+org.apache.jasper.compiler.JspUtil.getInputStream(JspUtil.java:679)
+org.apache.jasper.xmlparser.XMLEncodingDetector.getEncoding(XMLEncodingDetector.java:109)
+org.apache.jasper.compiler.ParserController.determineSyntaxAndEncoding(ParserController.java:337)
+org.apache.jasper.compiler.ParserController.doParse(ParserController.java:190)
+org.apache.jasper.compiler.ParserController.parseDirectives(ParserController.java:119)
+org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:193)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:353)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:340)
+org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:644)
+org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:358)
+org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:389)
+org.apache.jasper.servlet.JspServlet.service(JspServlet.java:333)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+Expected: 404 Not Found response

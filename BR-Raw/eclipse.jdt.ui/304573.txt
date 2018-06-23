@@ -1,0 +1,5 @@
+Bug 304573 – [JUnit] Adopt p2 API changes for SimpleConfiguratorManipulator
+bug 269496 introduces API for BundleInfo and SimpleConfiguratorManipulator
+junit.core uses this api to find the junit bundle and its source.
+See https://bugs.eclipse.org/bugs/attachment.cgi?id=160708 for the patch on JDT
+p2 can't release this API without coordinating with JDT to avoid breaking the build.

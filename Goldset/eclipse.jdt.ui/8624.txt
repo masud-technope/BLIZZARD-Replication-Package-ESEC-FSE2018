@@ -1,0 +1,7 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/propertiesfileeditor/PropertiesFileSourceViewerConfiguration.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/JavaStringDoubleClickSelector.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/PartitionDoubleClickSelector.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/text/JavaSourceViewerConfiguration.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/JavaDoubleClickSelector.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/JavaDoubleClickSelectorTest.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/JavadocDoubleClickStrategy.java

@@ -1,0 +1,28 @@
+Bug 449063 – [1.8][compiler] Bring back generic signatures for Lambda Expressions
+Until Eclipse 4.4 the generic signature of a Lambda Expression was stored within the class file, which made it possible to extract type information for creating type-safe programs.
+With the merge of the patch for Bug 436542 (https://bugs.eclipse.org/bugs/show_bug.cgi?id=436542) this feature has been completely thrown away.
+The following snippet shows an example where a generic signature is a very valuable feature:
+/////
+public class Test {
+public static interface Map<IN, OUT> {
+public OUT map(IN in);
+}
+public static class Tuple<T1, T2> {
+private T1 field1;
+private T2 field2;
+}
+public static void main(String[] strings) throws Exception {
+Map<Tuple<String, Double>, Tuple<Integer, String>> map = (in) -> new Tuple<>();
+SerializedLambda sl = getSerializedLambda(lambda);
+Method m = getLambdaMethod(sl);
+// Use the type information stored in signature
+System.out.println(m.getGenericReturnType());
+for (Type t : m.getGenericParameterTypes()) {
+System.out.println(t);
+}
+}
+}
+/////
+Another discussion on this topic can be found here:
+http://stackoverflow.com/questions/21887358/reflection-type-inference-on-java-8-lambdas
+It would be a great enhancement to bring the functionality back (by default or at least with help of a compiler option).

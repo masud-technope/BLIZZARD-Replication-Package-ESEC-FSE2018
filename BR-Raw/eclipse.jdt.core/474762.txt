@@ -1,0 +1,33 @@
+Bug 474762 – LambdaExpressionsTest.test447119d - 1.8 fails
+I20150811-1400 and next N-build too.
+Fails since we switched to JRE 8 on the Mac OS X platform.
+LambdaExpressionsTest.test447119d - 1.8
+http://download.eclipse.org/eclipse/downloads/drops4/I20150811-1400/testresults/html/org.eclipse.jdt.core.tests.compiler_macosx.cocoa.x86_64_8.0.html
+Unexpected output running resulting class file for X.java: --[START]-- Lambda binds to: X.lambda$0 Methods (with generics): - java.util.List<java.lang.String> lambda$0(java.util.List<java.lang.String>) - java.util.List<java.lang.String> noop(java.util.List<java.lang.String>) ---[END]---
+junit.framework.AssertionFailedError: Unexpected output running resulting class file for X.java:
+--[START]--
+Lambda binds to: X.lambda$0
+Methods (with generics):
+- java.util.List<java.lang.String> lambda$0(java.util.List<java.lang.String>)
+- java.util.List<java.lang.String> noop(java.util.List<java.lang.String>)
+---[END]---
+at org.eclipse.jdt.core.tests.compiler.regression.AbstractRegressionTest.runTest(AbstractRegressionTest.java:2558)
+at org.eclipse.jdt.core.tests.compiler.regression.AbstractRegressionTest.runTest(AbstractRegressionTest.java:2298)
+at org.eclipse.jdt.core.tests.compiler.regression.AbstractRegressionTest.runConformTest(AbstractRegressionTest.java:1365)
+at org.eclipse.jdt.core.tests.compiler.regression.LambdaExpressionsTest.test447119d(LambdaExpressionsTest.java:4988)
+at org.eclipse.jdt.core.tests.util.CompilerTestSetup.run(CompilerTestSetup.java:56)
+at org.eclipse.test.EclipseTestRunner.run(EclipseTestRunner.java:692)
+at org.eclipse.test.EclipseTestRunner.run(EclipseTestRunner.java:319)
+at org.eclipse.test.CoreTestApplication.runTests(CoreTestApplication.java:36)
+at org.eclipse.test.CoreTestApplication.run(CoreTestApplication.java:32)
+at org.eclipse.equinox.internal.app.EclipseAppContainer.callMethodWithException(EclipseAppContainer.java:587)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:198)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:669)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:608)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1515)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1488)
+at org.eclipse.core.launcher.Main.main(Main.java:34)

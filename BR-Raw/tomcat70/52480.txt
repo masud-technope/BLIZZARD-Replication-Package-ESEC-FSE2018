@@ -1,0 +1,142 @@
+52480 – TC7 + AntCompiler problems with whitespace in pathname
+### Overview
+Bug opened for Linux but it also happens on Windows - see below for detailed environments.
+TC fails to compile JSP when:
+1) the compiler is AntCompiler
+and 2) there is a whitespace somewhere in the absolute pathname to TC home dir.
+It may also fail when the absolute pathname to TC home dir contains non URI-compatible characters but I have tested only with whitespace.
+Configuring logging.properties to have AntCompiler set to level FINEST, logs show that:
+- whitespace is translated to "%20";
+- javac task fails with many errors, the first being "package javax.servlet does not exist".
+Our tests show that:
+- When AntCompiler is used AND tomcat is installed in a directory whose absolute pathname does NOT contain any whitespace, compilation is ok.
+- When AntCompiler is used AND tomcat is installed in a directory whose absolute pathname DOES contain at least one whitespace, compilation fails.
+- When JDTCompiler is used, compilation is ok (whitespace or not).
+This has been tested with the two environments described below (+ steps to reproduce).
+### History
+
+Following "aw at ice-sa.com"'s advice on the mailing list, I googled with "deployment" and found this:
+- TC6: In CGI Mode, "executable" full path with spaces does not work
+https://issues.apache.org/bugzilla/show_bug.cgi?id=49657
+- TC5: Tomcat fails to start on linux if CATALINA_HOME contains a space
+https://issues.apache.org/bugzilla/show_bug.cgi?id=43578
+- TC5: java.endorsed.dirs is not used when JSP compilation is forked (see comment #2)
+https://issues.apache.org/bugzilla/show_bug.cgi?id=31257#c2
+It looks like having spaces ought to be ok.
+Note: on Windows, the installation wizard deploys TC into "C:\Program Files\Apache Software Foundation" which contains many spaces.
+### Background
+Q: Why not use JDTCompiler?
+A: We have at least one "huge" JSP that fails to compile with JDTCompiler ("unresolved compilation error").
+When we delete code from this JSP, it compiles.
+We could resolve the problem for this specific JSP but we have not found what makes the boundary between "it compiles" and "it does not compile" (tried suppressSmap=false, development=false).
+We can not afford to deploy our application on a production server with a compiler that might "randomly" fail on some other JSP.
+Previous version of our application has always been compiled with Sun / Oracle JDK: we prefer not to change the compiler brand.
+### Build & Platform
+Test environment #1:
+- OS is Linux 32 bits (Ubuntu 10.04 LTS)
+- TC is tomcat-7.0.23
+- Files ant.jar + ant-launcher.jar from ant-1.8.2 copied to tomcat lib dir
+- File tools.jar copied from JDK to tomcat lib dir
+- "javac -version" returns
+javac 1.6.0_26
+- "java -version" returns
+java version "1.6.0_26"
+Java(TM) SE Runtime Environment (build 1.6.0_26-b03)
+Java HotSpot(TM) Client VM (build 20.1-b02, mixed mode, sharing)
+Test environment #2:
+- OS is Windows 7 64 bits
+- TC is tomcat-7.0.23
+- Files ant.jar + ant-launcher.jar from ant-1.8.2 copied to tomcat lib dir
+- File tools.jar copied from JDK to tomcat lib dir
+- "javac.exe -version" returns
+javac 1.7.0
+- "java.exe -version" returns
+java version "1.7.0"
+Java(TM) SE Runtime Environment (build 1.7.0-b147)
+Java HotSpot(TM) 64-Bit Server VM (build 21.0-b17, mixed mode)
+Note: same results with Windows 2008 R2
+### Steps to reproduce
+Each test begins this way:
+- Extract apache-tomcat-7.0.23.tar.gz to <SOME_DIR>
+- Depending on test <SOME_DIR> absolute pathname contains a space or not
+- Download apache-ant-1.8.2-bin.tar.gz
+- Extract to any temp directory
+- Copy apache-ant-1.8.2/lib/ant.jar + apache-ant-1.8.2/lib/ant-launcher.jar to <SOME_DIR>/lib
+- Forget ant (extracted directory can be deleted)
+- Copy JDK lib/tools.jar to <SOME_DIR>/lib (mandatory when fork=false, see below)
+- Update original web.xml this way (starting at line 230):
+<servlet>
+<servlet-name>jsp</servlet-name>
+<servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
+<init-param>
+<param-name>fork</param-name>
+<param-value>false</param-value> <!-- true: same failure -->
+</init-param>
+<init-param>
+<param-name>xpoweredBy</param-name>
+<param-value>false</param-value>
+</init-param>
+<init-param>
+<param-name>compiler</param-name>
+<param-value>javac1.6</param-value> <!-- 1.7 if JDK 1.7 is used -->
+</init-param>
+<init-param>
+<param-name>suppressSmap</param-name>
+<param-value>true</param-value>
+</init-param>
+<load-on-startup>3</load-on-startup>
+</servlet>
+- Delete <SOME_DIR>/work to be sure not to run with any previous compilation results
+- Run tomcat with startup.sh (or startup.bat if running on Windows)
+- Go to http://localhost:8080
+- When <SOME_DIR> absolute pathname contains a space, it fails, else it works.
+### Actual Results
+Our tests:
+- Env#1, SOME_DIR="/mnt/DSK2/tmp/tc/tc 7.0.23" => FAILS
+- Env#1, SOME_DIR="/mnt/DSK2/tmp/tc/apache-tomcat-7.0.23" => WORKS
+- Env#2, SOME_DIR="C:\Users\ekp\Desktop\Work tc7\apache-tomcat-7.0.23" => FAILS
+- Env#2, SOME_DIR="C:\tc7\apache-tomcat-7.0.23" => WORKS
+### Expected Results
+TC should compile JSP even if the absolute pathname to TC home dir contains a space (or, I suppose, any other non URI-compatible character).
+This is especially disturbing on Windows because the TC installer deploys into "C:\Program Files\Apache Software Foundation" which contains many spaces.
+### Excerpts from log file, FAIL case on environment #1
+[ translation : "FIN" = fine ; "PLUS FIN" = finer / finest ; "GRAVE" = failure ]
+16 janv.
+2012 23:19:12 org.apache.jasper.compiler.JspRuntimeContext initClassPath
+
+[...]
+16 janv.
+2012 23:19:18 org.apache.jasper.compiler.AntCompiler generateClass
+
+16 janv.
+2012 23:19:18 org.apache.jasper.compiler.AntCompiler generateClass
+GRAVE: Javac exception
+Compile failed; see the compiler error output for details.
+at org.apache.tools.ant.taskdefs.Javac.compile(Javac.java:1150)
+at org.apache.tools.ant.taskdefs.Javac.execute(Javac.java:912)
+at org.apache.jasper.compiler.AntCompiler.generateClass(AntCompiler.java:234)
+[...]
+16 janv.
+2012 23:19:18 org.apache.jasper.compiler.AntCompiler generateClass
+GRAVE: Environment: Compile: javaFileName=/mnt/DSK2/tmp/tc/tc 7.0.23/work/Catalina/localhost/_/org/apache/jsp/index_jsp.java
+
+cp=/mnt/DSK2/tmp/tc/tc 7.0.23/bin/bootstrap.jar:/mnt/DSK2/tmp/tc/tc 7.0.23/bin/tomcat-juli.jar
+cp=/mnt/DSK2/tmp/tc/tc 7.0.23/work/Catalina/localhost/_
+cp=/mnt/DSK2/tmp/tc/tc%207.0.23/lib
+cp=/mnt/DSK2/tmp/tc/tc%207.0.23/lib/tools.jar
+cp=/mnt/DSK2/tmp/tc/tc%207.0.23/lib/tomcat-dbcp.jar
+cp=/mnt/DSK2/tmp/tc/tc%207.0.23/lib/tomcat-jdbc.jar
+cp=/mnt/DSK2/tmp/tc/tc%207.0.23/lib/jasper-el.jar
+[...]
+### Excerpts from log file, WORK case on environment #1
+17 janv.
+2012 00:05:49 org.apache.jasper.compiler.JspRuntimeContext initClassPath
+
+[...]
+17 janv.
+2012 00:05:59 org.apache.jasper.compiler.AntCompiler generateClass
+
+17 janv.
+2012 00:06:00 org.apache.jasper.compiler.AntCompiler generateClass
+FIN: Compiled /mnt/DSK2/tmp/tc/apache-tomcat-7.0.23/work/Catalina/localhost/_/org/apache/jsp/index_jsp.java 1580ms
+=*= THE END =*=

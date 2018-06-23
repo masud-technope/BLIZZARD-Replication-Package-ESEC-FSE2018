@@ -1,0 +1,7 @@
+Bug 396258 – [1.8] adopt new syntax for annotations on qualified type names in NullTypeAnnotationTest
+Bug 394356 had to simplify some tests in NullTypeAnnotationTest due to the
+spec change from '@NonNull java.lang.Object' to 'java.lang.
+@NonNull Object'.
+I should re-introduce some variance of this kind because the new syntax
+forces annotations to be interpreted as type annotations, where until now
+the syntax was ambiguous with SE7 annotations.

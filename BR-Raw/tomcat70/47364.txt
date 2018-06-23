@@ -1,0 +1,14 @@
+47364 – HttpServletRequest.getAttributeNames() does not return the names of all attributes
+In an email exchange that involved Ranier (see attachment), he suggested I log this in Bugzilla, so I am.
+I was using Tomcat 6.0.20 on Windows XP SP3 with the latest Java 6 JVM.
+In the doGet method of a servlet, I was trying to see all request attributes to see if the "sendfile supported" attribute was set (specifically the request attribute org.apache.tomcat.sendfile.support).
+On my first pass at this I just used HttpServletRequest.getAttributeNames() to dump all the names of the attributes expecting to see this one listed, but I got no attributes listed at all.
+Then I actually got the attribute via getAttribute("org.apache.tomcat.sendfile.support") which worked.
+So getAttributeNames is not returning the names of all attributes.
+So either:
+1.
+getAttributeNames needs to be fixed to return the names of all attributes (i.e., a code change); or
+2.
+The Tomcat doc needs to be updated in some way as to say thatgetAttributeNames only returns certain attributes and blah blah (i.e., a doc change).
+Again my original email and Ranier's reply is attached.
+Thanks!

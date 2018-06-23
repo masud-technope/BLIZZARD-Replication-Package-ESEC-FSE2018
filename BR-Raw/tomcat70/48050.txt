@@ -1,0 +1,33 @@
+48050 – org.apache.naming.NamingContext's createSubcontext method returns Context with wrong name
+Below is the original source code of org.apache.naming.NamingContext's createSubcontext(Name name) method:
+/**
+* Creates and binds a new context.
+Creates a new context with the given
+* name and binds it in the target context (that named by all but
+* terminal atomic component of the name).
+All intermediate contexts and
+* the target context must already exist.
+*
+* @param name the name of the context to create; may not be empty
+* @return the newly created context
+* @exception NameAlreadyBoundException if name is already bound
+* @exception InvalidAttributesException if creation of the subcontext
+* requires specification of mandatory attributes
+* @exception NamingException if a naming exception is encountered
+*/
+public Context createSubcontext(Name name)
+throws NamingException {
+checkWritable();
+Context newContext = new NamingContext(env, this.name);
+bind(name, newContext);
+return newContext;
+}
+However, the returned NamingContext has the same name with its parent NamingContext.
+I suggest change the source code to below:
+public Context createSubcontext(Name name)
+throws NamingException {
+checkWritable();
+Context newContext = new NamingContext(env, name.get(name.size() - 1));
+bind(name, newContext);
+return newContext;
+}

@@ -1,0 +1,11 @@
+Bug 475865 – JDT deletes code
+I have the following line of code:
+private Runnable disposeRunnable = () -> dispose();
+I change it to:
+private Runnable disposeRunnable = this::dispose(); // not syntactical correct
+and save.
+I know that I still need to remove the () at the end but CTRL+S is hardcode into my fingers.
+JDT changes the code to:
+dispose();
+To test this, you can use org.eclipse.jface.resource.ImageRegistry and adjust line 57 to the starting point of:
+private Runnable disposeRunnable = () -> dispose();

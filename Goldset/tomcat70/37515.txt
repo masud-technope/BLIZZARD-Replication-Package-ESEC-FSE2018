@@ -1,0 +1,2 @@
+java/org/apache/jasper/compiler/JDTCompiler.java
+webapps/docs/jasper-howto.xml

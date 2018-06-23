@@ -1,0 +1,3 @@
+Bug 182075 – [Manifest Content Assist] Version proposals should not include qualifiers
+Content assist for the bundle-version attribute shows/inserts proposals with qualifiers.
+Qualifiers, if present, should be cut off.

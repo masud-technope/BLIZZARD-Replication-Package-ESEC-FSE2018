@@ -1,0 +1,13 @@
+Bug 242950 – IRCChannelContainer throws NPE during disconnect if the connection timeouts
+Build ID: I20080617-2000
+Steps To Reproduce:
+When connecting to an IRC server timeouts, and a 'TimeoutException' is thrown in 'IRCChannelContainer#connect()', the 'targetID' variable remains 'null'.
+The function 'IRCChannelContainer#disconnect()' is throwing a NPE when trying to refer to the name of 'targetID'.
+I have the following version of the plugin installed:
+org.eclipse.ecf.provider.irc_1.3.0.v20080623-0046.jar
+More information:
+public void disconnect() {
+fireContainerEvent(...);
+rootContainer.doPartChannel(targetID.getName());  // NPE
+fireContainerEvent(...);
+}

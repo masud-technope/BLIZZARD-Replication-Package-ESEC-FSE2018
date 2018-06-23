@@ -1,0 +1,8 @@
+Bug 394260 – Feature Manifest and several other editors don't respect end-line delimiters
+After the line ending problems discussions[1], we, at Eclipse MDT/OCL project, decided to standarize the use of the Unix line ending.
+However, windows users (like me) are having problems when using the Feature Manifest editor:
+If I change a feature.xml which has Unix line endings by the means of that editor, the line endings are automatically changed to Windows one after every saving.
+This is quite inconvenient, since a I have to remember to reset the Unix line ending (File -> Conver Line Delimiters To -> Unix) before every commit which includes a feature.xml file
+This problem, of course, is extensible to every end-user (including other project committers) which use a Windows SO.
+note: The Plugin Manifest Editor works fine what respects to this issue.
+[1] http://dev.eclipse.org/mhonarc/lists/cross-project-issues-dev/msg07987.html

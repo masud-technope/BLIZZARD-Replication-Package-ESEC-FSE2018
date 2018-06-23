@@ -1,0 +1,5 @@
+Bug 259273 – [Discovery][Zeroconf] JMDNS doesn't translate default scope, protocols and naming authority to internal and vice versa
+jSLP doesn't translate default scope, protocols and naming authority to internal and vice versa:
+ECF default scope -> Zeroconf: "local"
+ECF default protocol -> Zeroconf: "tcp"
+ECF default NA -> Zeroconf: "iana"

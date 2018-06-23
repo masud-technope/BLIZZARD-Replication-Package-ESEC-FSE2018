@@ -1,0 +1,3 @@
+Bug 272737 – [working sets] 'Other Projects' keeps label when starting with another locale
+I20090416-1053
+The 'Other Projects' working set keeps the label in the original language when I start the same workspace with another locale.

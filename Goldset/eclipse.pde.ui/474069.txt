@@ -1,0 +1,13 @@
+ua/org.eclipse.pde.ua.core/src/org/eclipse/pde/internal/ua/core/cheatsheet/comp/CompCSTaskObject.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/feature/FeatureChild.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/feature/FeatureImport.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/feature/FeaturePlugin.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/plugin/Extensions.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/plugin/PluginImport.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/plugin/PluginLibrary.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/PluginConfiguration.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/site/SiteFeature.java
+ui/org.eclipse.pde.core/src_ant/org/eclipse/pde/internal/core/ant/BaseExportTask.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/bundle/ImportPackageObject.java
+ui/org.eclipse.pde.ui.templates/src/org/eclipse/pde/internal/ui/templates/ide/ViewTemplate.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/TemplateWizardHelper.java

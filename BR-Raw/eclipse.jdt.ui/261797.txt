@@ -1,0 +1,22 @@
+Bug 261797 – CVS decorators broken due to fix to JavaElementResourceMapping
+N20090120-2000.
+The fix for bug in JavaElementResourceMapping breaks CVS decorators as it causes:
+!ENTRY org.eclipse.ui 4 4 2009-01-21 12:18:26.639
+!MESSAGE java.lang.ArrayStoreException
+!STACK 0
+java.lang.ArrayStoreException
+at java.lang.System.arraycopy(Native Method)
+at java.util.ArrayList.toArray(ArrayList.java:306)
+at org.eclipse.jdt.internal.corext.util.JavaElementResourceMapping$LogicalPackageResourceMapping.getTraversals(JavaElementResourceMapping.java:309)
+at org.eclipse.team.internal.ccvs.ui.CVSLightweightDecorator.getTraversalRoots(CVSLightweightDecorator.java:261)
+at org.eclipse.team.internal.ccvs.ui.CVSLightweightDecorator.isSupervised(CVSLightweightDecorator.java:248)
+at org.eclipse.team.internal.ccvs.ui.CVSLightweightDecorator.decorate(CVSLightweightDecorator.java:209)
+at org.eclipse.team.internal.ccvs.ui.CVSLightweightDecorator.decorate(CVSLightweightDecorator.java:161)
+at org.eclipse.ui.internal.decorators.LightweightDecoratorDefinition.decorate(LightweightDecoratorDefinition.java:263)
+at org.eclipse.ui.internal.decorators.LightweightDecoratorManager$LightweightRunnable.run(LightweightDecoratorManager.java:81)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.ui.internal.decorators.LightweightDecoratorManager.decorate(LightweightDecoratorManager.java:365)
+at org.eclipse.ui.internal.decorators.LightweightDecoratorManager.getDecorations(LightweightDecoratorManager.java:347)
+at org.eclipse.ui.internal.decorators.DecorationScheduler$1.ensureResultCached(DecorationScheduler.java:374)
+at org.eclipse.ui.internal.decorators.DecorationScheduler$1.run(DecorationScheduler.java:334)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

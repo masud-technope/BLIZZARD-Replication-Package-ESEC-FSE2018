@@ -1,0 +1,8 @@
+Bug 43927 – Content assist does not work in breakpoint properties
+This is for build I200309250800.
+Before this version content assist was possible in the condition.
+Now it does
+not work anymore.
+If Content assist is auto-enabled, it will show up after the
+dot but by pressing Ctrl-Space it does not work.
+3.0 M3 (200308281813) was OK.

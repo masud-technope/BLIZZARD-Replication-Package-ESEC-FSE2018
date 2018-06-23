@@ -1,0 +1,30 @@
+Bug 339980 – [move method] Move method adds enum name to case statements
+Build Identifier: 20100617-1415
+When using the "Move..." refactoring on a method containing a switch over some enum value, the cases values will be prefixed with their enum name.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Create a class with the below code
+2.
+Trigger "Move..." refactoring on someMethod
+3.
+Choose to move the method to someField
+4.
+The resulting code does not compile because each case statement contains the enum name ("case MyEnum.FOO:" instead of just "case FOO:")
+public class MoveMethodWithEnum {
+OtherClass someField;
+enum MyEnum {
+FOO, BAR
+}
+void someMethod(MyEnum fooBar) {
+switch (fooBar) {
+case FOO:
+System.out.println("foo");
+break;
+case BAR:
+System.out.println("bar");
+}
+}
+}
+class OtherClass {
+}

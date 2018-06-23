@@ -1,0 +1,4 @@
+Bug 185172 – [working sets] 'New' action not available if >1 working set selected
+I20070502-0010.
+If I want to create a new Java project and directly add it to a working set I can select the working set and then 'context menu' > New > 'Java Project'.
+However, if I want to create the new Java project directly into >1 working sets I'm doomed as the context menu is missing.

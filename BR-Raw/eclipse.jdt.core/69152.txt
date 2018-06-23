@@ -1,0 +1,31 @@
+Bug 69152 – [NPE] An internal error occurred during: "Override indicator installation job".
+Version: 3.0.0
+Build id: 200406251208
+The above error is displayed after launching the workbench w/the Java editor
+open.
+java.lang.ExceptionInInitializerError
+at org.eclipse.jdt.core.dom.AST.newConditionalExpression(AST.java:2517)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1652)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:911)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2077)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1843)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:770)
+at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:336)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:274)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:152)
+at org.eclipse.jdt.core.dom.ASTParser.convert(ASTParser.java:711)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:681)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:574)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.createAST(ASTProvider.java:439)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.getAST(ASTProvider.java:391)
+at org.eclipse.jdt.internal.ui.javaeditor.JavaEditor$8.run(JavaEditor.java:3775)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:66)
+Caused by: java.lang.NullPointerException
+at org.eclipse.jdt.core.dom.ASTNode.addProperty(ASTNode.java:1728)
+at org.eclipse.jdt.core.dom.ConditionalExpression.<clinit>(ConditionalExpression.java:59)
+...
+16 more
+eclipse.buildId=I200406251208
+java.version=1.4.2_04
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US

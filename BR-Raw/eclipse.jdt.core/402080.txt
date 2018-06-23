@@ -1,0 +1,19 @@
+Bug 402080 – [1.8][code select] Unable to navigate to method declaration from method reference
+BETA_JAVA8:
+I am unable to control+click or use F3 to jump to declaration from the
+method reference.
+Constructor reference may also be broken:
+// ---
+interface I {
+String foo(String x);
+}
+public class X {
+public  String goo(String x) {
+return null;
+}
+void foo()
+{
+X x = new X();
+I i = x::goo;  // control+click/F3 on goo.
+}
+}

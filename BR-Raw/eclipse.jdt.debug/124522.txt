@@ -1,0 +1,2 @@
+Bug 124522 – Display View - No Undo available
+The display view in the debug perspective has no undo functionality.

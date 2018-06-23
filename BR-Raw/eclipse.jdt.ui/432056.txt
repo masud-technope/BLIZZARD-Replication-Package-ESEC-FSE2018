@@ -1,0 +1,4 @@
+Bug 432056 – [1.8][javadoc] "Open Attached Javadoc" needs to adapt to Javadoc's new anchor format
+The Javadoc tool for Java SE 8 changed the anchor syntax and now tries to avoid "strange" characters in URLs by replacing them with "-" or ":A" (for "[]").
+This breaks all clients that directly create such URLs.
+We can't know what format is required (at least without pre-loading the generated Javadoc), so we just guess by the project's compiler compliance.

@@ -1,0 +1,11 @@
+Bug 392931 – Option to not create an @Override annotation when implementing interface method in 1.6
+Since Java 1.6, it's also legal to add an @Override annotation to a method that extends or implements an interface method.
+However, @Override annotations are not required anywhere, and some users prefer the 1.5 way
+http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Override.html
+over the 1.6 way (wrongly spec'd in JavaSE 6 APIs, so better see JavaSE 7):
+http://docs.oracle.com/javase/7/docs/api/java/lang/Override.html
+We already have an Eclipse-specific compiler diagnostic for missing @Override annotations and a checkbox to include implementations of interface methods.
+When that checkbox is checked and the diagnostic is set to error or warning, then we have to generate @Override.
+But when the checkbox is unchecked, we can also not add @Override.
+Note that generation of @Override can be toggled on the Code Style preference page.
+I'll add a link there to configure the behavior for interface methods.

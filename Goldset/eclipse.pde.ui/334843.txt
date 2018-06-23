@@ -1,0 +1,1 @@
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/search/UseReportConverter.java

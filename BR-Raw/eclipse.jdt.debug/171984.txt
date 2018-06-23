@@ -1,0 +1,2 @@
+Bug 171984 – Open the Breakpoint Properties dialog on a key stroke
+It would be nice to have the Breakpoint Properties action bound to a command so that it can be associated with a key stroke.

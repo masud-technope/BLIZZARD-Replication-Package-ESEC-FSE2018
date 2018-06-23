@@ -1,0 +1,3 @@
+Bug 171473 – Remove references to Headers.parseManifest(...)
+Nevermind, I figured out if I create a Dictionary (ie.
+Hashtable) and pass it into the parseBundleManifest as the second argument, I can use the new function and still pass a Dictionary to the other runtime functions (without doing any contents copying).

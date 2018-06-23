@@ -1,0 +1,11 @@
+Bug 316155 – JUnit View: can't open source for test classes in fragments
+Build Identifier: M20090917-0800
+I have plugins A, B and C which is a fragment to B.
+A is a test harness which creates a JUnit3 TestSuite, containing test classes from both B and C.
+A is dependent on B.
+When a test in B fails, I can open the test class from the JUnit view.
+When a test in C fails, I get the "Test class not found in selected project" error.
+This is related to bug 87492: that added code to look for source in non-exported packages of dependent plugins; what is still missing is looking for source in _fragments_ of dependent plugins (which may not be dependencies themselves).
+Reproducible: Always
+Steps to Reproduce:
+see above

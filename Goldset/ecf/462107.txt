@@ -1,0 +1,2 @@
+protocols/bundles/ch.ethz.iks.r_osgi.remote/META-INF/MANIFEST.MF
+protocols/bundles/ch.ethz.iks.r_osgi.remote/src/main/java/ch/ethz/iks/r_osgi/impl/ChannelEndpointImpl.java

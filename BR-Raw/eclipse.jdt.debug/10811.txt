@@ -1,0 +1,6 @@
+Bug 10811 – Deregistered launches not removed by JavaHCRManager
+The JavaHCRManager listens to launches being added/removed, but it does nothing
+when a launch is removed.
+In the case where a launch is deregistered without properly terminating in the
+debug model (via TerminateAndRemove), this means that the HCRManager keeps
+trying to send HCR notifications to the dead VM.

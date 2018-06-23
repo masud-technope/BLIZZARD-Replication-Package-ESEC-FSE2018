@@ -1,0 +1,12 @@
+Bug 339024 – [Zoodiscovery] ArrayIndexOutOfBoundsException in ECF Discovery View
+java.lang.ArrayIndexOutOfBoundsException: 1
+at org.eclipse.ecf.provider.zookeeper.core.internal.Configuration.<init>(Configuration.java:63)
+at org.eclipse.ecf.provider.zookeeper.core.internal.Configuration.<init>(Configuration.java:55)
+at org.eclipse.ecf.provider.zookeeper.core.internal.Configurator.createConfig(Configurator.java:41)
+at org.eclipse.ecf.provider.zookeeper.core.ZooDiscoveryContainer.init(ZooDiscoveryContainer.java:122)
+at org.eclipse.ecf.provider.zookeeper.core.ZooDiscoveryContainer.connect(ZooDiscoveryContainer.java:326)
+at org.eclipse.ecf.provider.discovery.CompositeDiscoveryContainer.connect(CompositeDiscoveryContainer.java:150)
+at org.eclipse.ecf.provider.discovery.SingletonDiscoveryContainer.connect(SingletonDiscoveryContainer.java:46)
+at org.eclipse.ecf.discovery.ui.model.resource.ServiceResource$ServiceDiscoveryListener.connect(ServiceResource.java:63)
+at org.eclipse.ecf.discovery.ui.model.resource.ServiceResource$1.run(ServiceResource.java:455)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)

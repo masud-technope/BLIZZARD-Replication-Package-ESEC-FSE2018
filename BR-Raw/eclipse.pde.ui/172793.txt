@@ -1,0 +1,6 @@
+Bug 172793 – EE combo box should show EE-JRE bindings
+The EE combo box in the JRE section of the product editor should show in parenthesis the name of the JRE that is bound with each EE, or "unbound" if none exists.
+This would indicate clearly to the user the JRE that will be copied
+It would also be consistent with the behaviour of the combo on the JRE tab of the Java app launch configs.
+Note that the jre name in the EE combo is just for display only.
+ It must not be persisted since it will have a different value from workspace to workspace.

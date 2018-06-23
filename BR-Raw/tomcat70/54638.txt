@@ -1,0 +1,13 @@
+54638 – /manager/status?XML=true
+Hi all,
+in /manager/status?XML=true, informations about memory pools are incorrect.
+for every row all the values (initial,committed,maximum,used) are the same:
+Memory Pools
+Name:Eden Space	Type:Heap memory	Initial:143130624	Committed:143130624	Maximum:143130624	Used:143130624
+Name:Survivor Space	Type:Heap memory	Initial:17891328	Committed:17891328	Maximum:17891328	Used:17891328
+Name:Tenured Gen	Type:Heap memory	Initial:357957632	Committed:357957632	Maximum:357957632	Used:357957632
+Name:Code Cache	Type:Non-heap memory	Initial:163840	Committed:8421376	Maximum:33554432	Used:163840
+Name:Perm Gen	Type:Non-heap memory	Initial:12582912	Committed:23330816	Maximum:67108864	Used:12582912
+Name:Perm Gen [shared-ro]	Type:Non-heap memory	Initial:10485760	Committed:10485760	Maximum:10485760	Used:10485760
+Name:Perm Gen [shared-rw]	Type:Non-heap memory	Initial:12582912	Committed:12582912	Maximum:12582912	Used:12582912
+Instead in the gui page values are correct.

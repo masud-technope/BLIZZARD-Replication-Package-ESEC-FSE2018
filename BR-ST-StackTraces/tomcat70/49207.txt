@@ -1,0 +1,4 @@
+org.apache.catalina.core.StandardContext.validateFilterMap
+org.apache.catalina.core.StandardContext.addFilterMapBefore
+org.apache.catalina.core.ApplicationFilterRegistration.addMappingForUrlPatterns
+org.pidster.tomcat.test7.dyn.TestDynamicsListener.contextInitialized

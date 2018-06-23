@@ -1,0 +1,24 @@
+55110 – Wasted work in "TestNonLoginAndBasicAuthenticator.doTestBasic"
+Created attachment 30450 [details]
+patch
+The problem appears in version 7.0.41 and in revision 1493861.
+ I
+attached a one-line patch (patch.diff) that fixes it.
+In method "TestNonLoginAndBasicAuthenticator.doTestBasic", the loop
+over "authHeaders" should break immediately after "methodFound" is set
+to "true".
+ All the iterations after "methodFound" is set to "true" do
+not perform any useful work, at best they just set "methodFound" again
+to "true".
+Method "TestWsWebSocketContainer.testSessionExpiryContainer" has a
+similar problem (the loop over "setA" should break immediately after
+"isOpen" is set to true).
+ I attached another one-line patch
+(patch2.diff) for this problem.
+Method "startInternal" in class "StandardHost" has a similar loop
+(over "valves"), and this loop breaks immediately after "found" is set
+to "true", just like in the proposed patches.
+ Other methods (e.g.,
+"MapperListener.findDefaultHost", "CollectVisitor.checkSeen",
+"JspDocumentParser.processChars", "ParameterParser.isOneOf") also have
+similar loops with similar breaks, just like in the proposed patches.

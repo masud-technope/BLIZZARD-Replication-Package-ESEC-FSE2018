@@ -1,0 +1,30 @@
+Bug 464369 – [test][builder]BuildpathTests.testCorruptBuilder2 and IncrementalTests.testBug364450 failed
+BuildID N20150409-2000
+http://download.eclipse.org/eclipse/downloads/drops4/N20150409-2000/testresults/html/org.eclipse.jdt.core.tests.builder_win32.win32.x86_7.0.html
+stacktrace
+Build path contains duplicate entry: 'C:Java/jdk1.7.0_51/jre/lib/resources.jar' for project 'P1'
+Java Model Exception: Java Model Status [Build path contains duplicate entry: 'C:Java/jdk1.7.0_51/jre/lib/resources.jar' for project 'P1']
+at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:785)
+at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:3097)
+at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:3059)
+at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:3112)
+at org.eclipse.jdt.core.tests.builder.TestingEnvironment.setClasspath(TestingEnvironment.java:1048)
+at org.eclipse.jdt.core.tests.builder.TestingEnvironment.addEntry(TestingEnvironment.java:285)
+at org.eclipse.jdt.core.tests.builder.TestingEnvironment.addExternalJars(TestingEnvironment.java:265)
+at org.eclipse.jdt.core.tests.builder.TestingEnvironment.addExternalJars(TestingEnvironment.java:253)
+at org.eclipse.jdt.core.tests.builder.BuildpathTests.testCorruptBuilder2(BuildpathTests.java:238)
+at org.eclipse.test.EclipseTestRunner.run(EclipseTestRunner.java:692)
+at org.eclipse.test.EclipseTestRunner.run(EclipseTestRunner.java:319)
+at org.eclipse.test.CoreTestApplication.runTests(CoreTestApplication.java:36)
+at org.eclipse.test.CoreTestApplication.run(CoreTestApplication.java:32)
+at org.eclipse.equinox.internal.app.EclipseAppContainer.callMethodWithException(EclipseAppContainer.java:587)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:198)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:380)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:235)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:648)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:603)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1438)
+at org.eclipse.core.launcher.Main.main(Main.java:34)

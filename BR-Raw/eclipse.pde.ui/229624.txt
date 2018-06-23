@@ -1,0 +1,3 @@
+Bug 229624 – Text wrapped and cutted in Import plugins wizard
+see screenshot.
+Resizing the dialog does not help to read the whole text in any form.

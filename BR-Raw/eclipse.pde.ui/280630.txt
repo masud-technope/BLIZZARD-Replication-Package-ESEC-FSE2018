@@ -1,0 +1,5 @@
+Bug 280630 – New API Baseline dialog: Does not resize vertically
+Created attachment 139442 [details]
+Screenshot
+I20090611-1540
+New API Baseline dialog: Does not resize vertically.

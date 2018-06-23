@@ -1,0 +1,4 @@
+java/org/apache/catalina/core/ApplicationContext.java
+test/org/apache/catalina/core/TestApplicationContext.java
+test/webapp-3.0/bug53467].jsp
+webapps/docs/changelog.xml

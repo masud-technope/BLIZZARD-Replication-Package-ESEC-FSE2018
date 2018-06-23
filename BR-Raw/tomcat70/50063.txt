@@ -1,0 +1,15 @@
+50063 – Latest trunck can't configure context when metadata-complete is true and version is 3.0
+patch:
+### Eclipse Workspace Patch 1.0
+#P tomcat-7.0.x
+Index: java/org/apache/catalina/startup/ContextConfig.java
+===================================================================
+--- java/org/apache/catalina/startup/ContextConfig.java	(revision 1006105)
++++ java/org/apache/catalina/startup/ContextConfig.java	(working copy)
+@@ -1281,6 +1281,7 @@
+}
+}
+} else {
++            	webXml.configureContext(context);
+ok = true;
+}

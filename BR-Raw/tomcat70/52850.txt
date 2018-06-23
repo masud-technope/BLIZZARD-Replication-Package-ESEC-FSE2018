@@ -1,0 +1,15 @@
+52850 – Various miscellaneous fixes to Tomcat Memory Leak Detection code
+Problem Description -
+----------------------
+Tomcat memory leak detection has the following issues
+- Most of the detection and fixing code has been tested ONLY on Sun JVMs.
+A lot of  the reflection based code does not work with the IBM JDK.
+- Tests in tomcat7.source\test\org\apache\catalina\loader do not seem to run successfully and are incomplete for all the protection that Tomcat provides for classloader memory leaks.
+- For some categories of threadlocal memory leaks the key and value are not displayed correctly in the warning messages; particularly ones dealing with indirect references to threadlocals
+-  org.apache.catalina.loader.WebappClassLoader.loadedByThisOrChild(Object) incorrectly traverses the object classloader hierarchy instead of the current (this) classloader hierarchy
+Problem Conclusion -
+--------------------
+- After extensive testing with the IBM JDKs, I have cleaned up and sanitized some of the reflection code to stop executors, timers, threads etc on the IBM JDK
+- Added new tests for detecting threadlocal leaks and thread leaks
+- Better ThreadLocal leak reporting with corrected loadedByThisOrChild method and addition of expungeStaleEntries method
+- Make code more resilient in certain leak detection scenarios.

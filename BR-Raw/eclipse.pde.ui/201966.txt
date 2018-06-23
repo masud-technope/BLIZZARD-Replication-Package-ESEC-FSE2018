@@ -1,0 +1,14 @@
+Bug 201966 – [Schema][Editors] Buttons should not be enabled with editor is not editable
+Eclipse version >= Build id: I20070828-0800
+Steps To Reproduce:
+(1) Open "org.eclipse.pde.doc.user" manifest file
+(2) Go to "Extensions" page
+(3) Select "org.eclipse.help.toc"
+(4) Click the "Open extension point schema" hyperlink
+(5) Go to the "Definition" page
+-> BUG:  The following buttons are enabled:
+- "New Choice"
+- "New Sequence"
+- "Remove"
+-> EXPECTED:  The buttons should be disabled if the editor is not
+editable

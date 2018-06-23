@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractMethodWorkSpace/ExtractMethodTests/generics_in/A_test1121.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractMethodWorkSpace/ExtractMethodTests/generics_in/A_test1122.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractMethodWorkSpace/ExtractMethodTests/generics_out/A_test1121.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractMethodWorkSpace/ExtractMethodTests/generics_out/A_test1122.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ExtractMethodTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/ExtractMethodRefactoring.java

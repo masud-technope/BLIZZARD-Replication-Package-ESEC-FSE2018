@@ -1,0 +1,70 @@
+57931 – NIO connector incorrectly closes connection when client certificate verification fails
+Created attachment 32738 [details]
+Test program to reproduce the issue
+If tomcat is set to use TLS and clientAuth="want" or clientAuth="true", it appears the NIO connector closes the connection in response to an untrusted client certificate.
+ This behavior differs from the BIO connector, and violates RFC 5246, which states that a fatal alert must be provided if "some aspect of the cert chain was unacceptable".
+ By closing the connection, this causes OpenSSL to provide an obscure error "Unexpected EOF", which indicates the TLS protocol was violated.
+I have attached a Python test program which demonstrates this behavior.
+ Simply run this program against a tomcat server, configured with the given server.xml Connector shown below.
+ Removal of the protocol attribute will use the BIO connector, and inclusion of the protocol attribute will demonstrate the NIO connector.
+Steps to reproduce:
+1) Setup a tomcat server with the connector configuration shown below
+2) Install Python as well as pyOpenSSL
+3) (If necessary) Modify the test.py program to communicate with the appropriate server and port.
+4) Run the test.py program.
+(Alternatively, if Python is not available, you should be able to use
+Desired behavior:
+Instead of closing the connection, the NIO connector should provide a fatal error response to an invalid certificate, like the BIO connector.
+I would strongly prefer if the response would match the response provided by Java through the BIO connector: "alert certificate unknown".
+ This would allow our program to use either connector without any changes.
+Impact:
+Due to this bug, when using the NIO connector, our program cannot differentiate between an unexpected network problem and a certificate issue during the handshake.
+ Because of this, the program is not able to flag and react to the possibility the certificate is invalid--it assumes an unexpected network error occurred.
+RFC 5246, 7.4.6.
+ Client Certificate:
+If the client does not send any certificates, the
+server MAY at its discretion either continue the handshake without
+client authentication, or respond with a fatal handshake_failure
+alert.
+ Also, if some aspect of the certificate chain was
+unacceptable (e.g., it was not signed by a known, trusted CA), the
+server MAY at its discretion either continue the handshake
+(considering the client unauthenticated) or send a fatal alert.
+NIO Connector (Incorrect behavior):
+python test.py
+Connecting...
+Performing SSL handshake...
+Traceback (most recent call last):
+File "test.py", line 18, in <module>
+conn.do_handshake()
+OpenSSL.SSL.SysCallError: (-1, 'Unexpected EOF')
+BIO connector (Correct behavior):
+python test.py
+Connecting...
+Performing SSL handshake...
+Traceback (most recent call last):
+File "test.py", line 18, in <module>
+conn.do_handshake()
+File "build/bdist.linux-x86_64/egg/OpenSSL/SSL.py", line 1442, in do_handshake
+File "build/bdist.linux-x86_64/egg/OpenSSL/SSL.py", line 1187, in _raise_ssl_error
+File "build/bdist.linux-x86_64/egg/OpenSSL/_util.py", line 48, in exception_from_error_queue
+OpenSSL.SSL.Error: [('SSL routines', 'SSL3_READ_BYTES', 'sslv3 alert certificate unknown')]
+Connector Configuration:
+<Connector port="10443" maxHttpHeaderSize="4096"
+maxThreads="75" minSpareThreads="25"
+maxKeepAliveRequests="-1"
+keepAliveTimeout="180000"
+enableLookups="false" disableUploadTimeout="true"
+acceptCount="10" scheme="https" secure="true" SSLEnabled="true"
+clientAuth="want" sslProtocol="TLS" sslEnabledProtocols="TLSv1.2,TLSv1"
+connectionTimeout="10000"
+protocol="org.apache.coyote.http11.Http11NioProtocol"
+keystoreFile="example.keystore"
+keystorePass="example" algorithm="SunX509"
+truststoreFile="example.keystore"
+truststorePass="example"
+truststoreType="JKS"
+keyAlias="tomcat"
+compression="on"
+compressionMinSize="2048"
+ciphers="TLS_DHE_RSA_WITH_AES_128_CBC_SHA"/>

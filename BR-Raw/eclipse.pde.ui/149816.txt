@@ -1,0 +1,8 @@
+Bug 149816 – [Manifest Editor] plugin.xml source editor syntax coloring confused by \
+in jdt.ui's plugin.xml, there's a declaration
+<key
+sequence="M1+M2+\"
+contextId="org.eclipse.jdt.ui.javaEditorScope"
+commandId="org.eclipse.jdt.ui.edit.text.java.remove.block.comment"
+schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+Syntax coloring is broken after the "\": String literals are rendered as tags and vice versa.

@@ -1,0 +1,7 @@
+test/org/apache/jasper/runtime/TestJspContextWrapper.java
+test/webapp-3.0/WEB-INF/tags/bug58178.tag
+java/org/apache/jasper/runtime/JspContextWrapper.java
+java/org/apache/jasper/runtime/PageContextImpl.java
+java/org/apache/jasper/el/ELContextImpl.java
+test/webapp-3.0/bug5nnnn/bug58178.jsp
+webapps/docs/changelog.xml

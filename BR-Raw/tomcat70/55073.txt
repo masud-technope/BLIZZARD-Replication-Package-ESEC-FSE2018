@@ -1,0 +1,18 @@
+55073 – wasted work in ValidateVisitor.isExpression()
+Created attachment 30404 [details]
+patch
+The problem appears in version 7.0.40 and in revision 1490425.
+ I
+attached a two-line patch that fixes it.
+In method "ValidateVisitor.isExpression", the loop over "nodes" should
+break immediately after "elExpression" is set to "true".
+ All the
+iterations after "elExpression" is set to "true" do not perform any
+useful work, at best they just set "elExpression" again to "true".
+Method "startInternal" in class "StandardHost" has a similar loop
+(over "valves"), and this loop breaks immediately after "found" is set
+to "true", just like in the proposed patch.
+ Other methods (e.g.,
+"MapperListener.findDefaultHost", "CollectVisitor.checkSeen",
+"JspDocumentParser.processChars", "ParameterParser.isOneOf") also have
+similar loops with similar breaks, just like in the proposed patch.

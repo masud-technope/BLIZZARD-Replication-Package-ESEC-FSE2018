@@ -1,0 +1,4 @@
+Bug 383970 – [compiler] Detail of message "Illegal modifier for the method ..." misses "strictfp"
+Message 358 constantly enumerates all legal modifiers:
+Illegal modifier for the method {0}; only public, protected, private, static, final, abstract, synchronized & native are permitted
+However, also strictfp is allowed for methods and should be added to the list.

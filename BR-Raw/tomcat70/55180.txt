@@ -1,0 +1,22 @@
+55180 – connectionTimeout="-1" causes timeout can't be negative
+I configured server.xml like this:
+connectionTimeout="-1" disableUploadTimeout="false" connectionUploadTimeout="200"
+(maybe it is stupid to configure like this,if connectionTimeout=-1,can i make disableUploadTimeout=false?).
+It will cause :
+java.lang.IllegalArgumentException: timeout can't be negative
+at sun.nio.ch.SocketAdaptor.setSoTimeout(SocketAdaptor.java:361)
+at org.apache.coyote.http11.Http11NioProcessor.setSocketTimeout(Http11NioProcessor.java:251)
+......
+because of :
+if (!disableUploadTimeout) {
+//endpoint.getSoTimeout()=-1.
+setSocketTimeout(endpoint.getSoTimeout());
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~
+another thing:
+if i configure connectionTimeout="0".
+in NioBlockingSelector.read(ByteBuffer buf, NioChannel socket, long readTimeout),readTimeout = 0, in case socket.read(buf) == 0, it make timeout=true.
+if (readTimeout >= 0 && (keycount == 0))
+timedout = (System.currentTimeMillis() - time) >= readTimeout;
+then throw the SocketTimeoutException().
+thank you.

@@ -1,0 +1,14 @@
+Bug 286656 – Plugins tab likes being the dirty button
+I20090809-2000
+Selecting the Plug-ins tab in a PDE launch configuration says the configuration has updates when none have been applied.
+Steps:
+1.
+create a new PDE launch configuration
+2.
+go to plug-ins tab and change setting to "plug-ins selected below only" and hit apply
+3.
+close the dialog and close one of your workspace projects
+4.
+reopen the dialog and go to the plug-ins tab.
+SHAZAAM it is marked as having changes.
+Pressing the revert button does nothing, pressing apply saves the phantom changes.

@@ -1,0 +1,19 @@
+Bug 249785 – [javadoc][assist] Javadoc content assist after "@see #" does not work with deprecated member before
+I20080930-0921
+- have:
+package xy;
+public class Try {
+/**
+* @deprecated bad
+*/
+public int field;
+/**
+* @see #
+*/
+public void m() {
+}
+}
+- content assist after "@see #"
+=> does not work (no proposals)
+- remove deprecation from the field
+=> content assist proposes members of xy.Try, as expected

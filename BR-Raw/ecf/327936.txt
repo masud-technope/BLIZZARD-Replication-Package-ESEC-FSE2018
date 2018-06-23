@@ -1,0 +1,2 @@
+Bug 327936 – [remoteservices] remove obsolete classes
+The org.eclipse.ecf.remoteservice.util.RemoteServiceProperties and org.eclipse.ecf.remoteservice.util.DiscoveryProperties are obsolete and should be removed with remoteservice API major changes in ECF 3.4.

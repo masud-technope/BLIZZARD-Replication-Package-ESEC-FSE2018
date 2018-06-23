@@ -1,0 +1,17 @@
+Bug 324773 – [patch] feature.xml editor, Recompute check box in dependencies tab does not stay set
+Build Identifier: 20100218-1602
+In the feature.xml editor, on top of Dependencies tab there is one check box labeled:
+Recompute when feature plug-ins change
+You can tick it, but if you close an reopen feature.xml it's not ticked any more.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Open feature.xml
+2.
+Click Dependencies tab
+3.
+Tick "Recompute when feature plug-ins change"
+4.
+Save and close feature.xml
+5.
+Reopen feature.xml and go to Dependencies tab, the check is off

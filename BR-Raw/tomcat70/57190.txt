@@ -1,0 +1,13 @@
+57190 – ServletContext.getContext(String) cannot return context when using parallel deployments
+When using ServletContext.getContext(String) in a parallel deployment the context is not returned.
+For example:
+foo_a##001 and foo_b##001 are deployed.
+Page on /foo_a/test.jsp calls ServletContext.getContext("/foo_b").
+ In non parallel deployments this returns the ServletContext for "/foo_b".
+However in parallel deployments the ServletContext for "/" is returned instead.
+This was encountered using a custom filter that is set to forward certain requests to files in one application to a central default application.
+CrossContext is set to true for the context.xml.
+ This works as long as the wars do not use the version name such as foo_b.war instead of foo_b##001.war.
+I would expect ServletContext.getContext("/foo_b") to return the current active context for a URL.
+ Instead it looks like it will require to specify the exact version of a context instead such as ServletContext.getContext("/foo_b##001").
+This puts the burden of finding the active version of the context on the calling application rather than the underlying servlet container to provide the most current context when ServletContext.getContext(String) is referenced.

@@ -1,0 +1,17 @@
+Bug 409544 – [1.8][compiler] Any local variable used but not declared in a lambda body must be definitely assigned before the lambda body.
+According to Lambda specification
+"Any local variable used but not declared in a lambda body must be definitely assigned  before the lambda body."
+http://cr.openjdk.java.net/~dlsmith/jsr335-0.6.1/B.html
+Eclipse 4.3 permits assigning a local variable before a lambda expression within the lambda expression.
+public class Sample{
+interface Int {
+void setInt(int[] i);
+}
+public static void main(String[] args) {
+int j;
+Int int1 = (int...
+i) -> {
+j=10;
+};
+}
+}

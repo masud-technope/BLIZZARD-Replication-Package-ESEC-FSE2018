@@ -1,0 +1,7 @@
+Bug 418392 – PDE Build's dependency on runtime compatibility should not be optional
+At least, that was one suggestion coming from bug 415008 comment 65.
+There might be other, more "direct" solutions (such as to "require" the "compatibility.state" bundle? Or ...
+to avoid the need for even that?
+I forget where we "left" that issue, but wanted to open this bug to track it.
+Let me know if I am mis-remembering.
+Thanks,

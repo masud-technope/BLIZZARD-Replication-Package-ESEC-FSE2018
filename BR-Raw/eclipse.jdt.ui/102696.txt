@@ -1,0 +1,2 @@
+Bug 102696 – [quick fix] Quick-Fix fail to update method comment
+When quick-fix changes method signature, the comment of the method fails to update.

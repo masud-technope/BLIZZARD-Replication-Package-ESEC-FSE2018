@@ -1,0 +1,3 @@
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/JUnitMessages.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/JUnitMessages.properties
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/OpenTestAction.java

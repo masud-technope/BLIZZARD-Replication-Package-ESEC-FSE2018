@@ -1,0 +1,7 @@
+Bug 232333 – Fix typo in CodeCompletionPerformanceTest.createTypeHierarchy()
+R3.4.
+There's a typo in the source of CodeCompletionPerformanceTest.createTypeHierarchy(): in
+"    int" + field + ";\n" +
+should be a space after int:
+"    int " + field + ";\n" +
+IMPORTANT: this change must be backported to perf34x branch.

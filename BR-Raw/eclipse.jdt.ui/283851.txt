@@ -1,0 +1,13 @@
+Bug 283851 – Very Minor cleanup in JUnitLaunchConfigurationTab
+Build ID: M20090211-1700
+Steps To Reproduce:
+private void setTestMethodLabel(String testMethodName) {
+if (!"".equals(testMethodName)) {
+fTestMethodLabel.setText(JUnitMessages.JUnitLaunchConfigurationTab_label_method+fOriginalTestMethodName);
+} else {
+fTestMethodLabel.setText("");
+}
+}
+This method is only used once, accepts the test method name, and yet still uses the class variable.
+Minor nit, but you should consistently use the parameter.
+More information:

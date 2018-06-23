@@ -1,0 +1,14 @@
+Bug 228044 – -testApplication parameter unusable if there's a product
+3.4
+In trying to implement this test (a SessionTest that runs an RCP application)
+we discovered that the testApplication parameter (used by UITestApplication)
+was effectively unusable.
+ If you look at the getApplicationToRun() method
+you'll see that if a product is present it will be used instead.
+ Given that
+testApplication is far more specific than what's considered to be the currently
+active product it'd be nice if this logic could be switched.
+ Ie:  put the
+check for the parameter first and fall back to the product.
+ Would you be
+amicable to this change?

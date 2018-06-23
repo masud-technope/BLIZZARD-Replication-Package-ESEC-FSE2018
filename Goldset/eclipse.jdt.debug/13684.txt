@@ -1,0 +1,4 @@
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/JavaLocalApplicationLaunchConfigurationDelegate.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/JavaRemoteApplicationLaunchConfigurationDelegate.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/JavaLaunchConfigurationUtils.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaDebugOptionsManager.java

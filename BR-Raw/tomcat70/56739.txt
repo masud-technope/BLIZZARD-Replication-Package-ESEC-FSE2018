@@ -1,0 +1,17 @@
+56739 – Error response body generated only occasionally
+When using the following approach in an asynchronous servlet for reporting an error condition, an error response body is generated only occasionally:
+((HttpServletResponse) asyncContext.getResponse()).sendError(statusCode, message);
+asyncContext.complete()
+Based on a discussion on tomcat-users this should be a valid approach:
+http://mail-archives.apache.org/mod_mbox/tomcat-users/201407.mbox/%3c53BD085C.7010205@apache.org%3e
+(subject: "Servlet 3.1 asynchronous processing API")
+Here's how to reproduce the issue:
+marko@ubuntu:~$ ab -v 2 -l -n 100 'http://localhost:8080/servlet3-async/error1?fail=true' |grep ^Content-Length| sort | uniq -c
+95 Content-Length: 0
+5 Content-Length: 1082
+The code and more information about the test can be found here:
+https://github.com/marko-asplund/servlet3-async
+Verified on:
+Ubuntu 14.04 / OpenJDK 1.7.0_55
+Mac OS X 10.8.5 / Oracle Java 1.7.0_55
+The same thing occurs with Tomcat 7.0.54.

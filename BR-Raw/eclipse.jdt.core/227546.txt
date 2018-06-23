@@ -1,0 +1,8 @@
+Bug 227546 – [assist] No method declaration completion in enum constant
+Build 3.4M6
+When invoking codeassist in following code, no method decl completion is proposed:
+public class X {
+public enum E implements Runnable {
+SUCCESS { <CODEASSIST HERE> };
+}
+}

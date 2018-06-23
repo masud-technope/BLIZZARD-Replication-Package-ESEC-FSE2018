@@ -1,0 +1,8 @@
+Bug 318607 – [ltk] RefactoringParticipant methods declare throws OperationCanceledExeption: exception gets logged
+org.eclipse.ltk.core.refactoring.participants.RefactoringParticipant.checkConditions() has a throws clause of OperationCanceledException.
+In my implementation of checkConditions() I check progressMonitor.isCanceled() and then throw the OperationCanceledException.
+ProcessorBasedRefactoring catches it and logs it, which just seems wrong to me.
+Of course the workaround is just to return null instead of throwing the OperationCanceledException.
+RefactoringParticipant.createChange() has the same problem but worse.
+In this case my participant gets removed from the framework as a result of throwing the OperationCanceledException.
+I assume createPreChange() has the same issue.

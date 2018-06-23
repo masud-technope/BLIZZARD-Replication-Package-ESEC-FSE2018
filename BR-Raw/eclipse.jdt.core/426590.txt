@@ -1,0 +1,16 @@
+Bug 426590 – [1.8][compiler] Compiler error with tenary operator
+It looks like as if the type inference for the tenary operator is broken:
+class A {
+}
+class B extends A {
+}
+class C extends B {
+}
+class D {
+D(A a) {
+}
+D(boolean b) {
+this(b ? new B() : new C());
+}
+}
+produces "The constructor FXTestCases.D((b ? new B() : new C())) is undefined"

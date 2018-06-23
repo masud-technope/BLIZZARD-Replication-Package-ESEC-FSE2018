@@ -1,0 +1,4 @@
+framework/bundles/org.eclipse.ecf.filetransfer.ui/plugin.xml
+framework/bundles/org.eclipse.ecf.filetransfer.ui/src/org/eclipse/ecf/internal/filetransfer/ui/messages.properties
+framework/bundles/org.eclipse.ecf.filetransfer.ui/src/org/eclipse/ecf/internal/filetransfer/ui/ScpDialog.java
+framework/bundles/org.eclipse.ecf.filetransfer.ui/src/org/eclipse/ecf/internal/filetransfer/ui/GetFileHandler.java

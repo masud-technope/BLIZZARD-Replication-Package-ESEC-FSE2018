@@ -1,0 +1,22 @@
+Bug 340338 – [content assist] Proposal does not replace leading chars if there's a selection
+3.1.
+Inserting a proposal does not replace the leading characters if there's a selection when invoking content assist.
+Test Case:
+1.
+set 'Completion overwrites'
+2.
+have:
+---%<---
+void test() {
+String s;
+s.getBytes();
+}
+---%<---
+3.
+select "get"
+4.
+Ctrl+Space
+5.
+select 'charAt' and insert it
+==> s.charAtBytes();
+EXPECTED: s.charAt();

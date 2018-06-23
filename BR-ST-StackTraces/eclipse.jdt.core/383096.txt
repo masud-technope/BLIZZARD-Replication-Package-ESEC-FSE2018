@@ -1,0 +1,12 @@
+org.eclipse.jdt.internal.compiler.ast.LocalDeclaration.resolve
+org.eclipse.jdt.internal.compiler.ast.Block.resolve
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve
+org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve
+org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve
+org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve
+org.eclipse.jdt.core.dom.ASTParser.internalCreateAST
+org.eclipse.jdt.core.dom.ASTParser.createAST

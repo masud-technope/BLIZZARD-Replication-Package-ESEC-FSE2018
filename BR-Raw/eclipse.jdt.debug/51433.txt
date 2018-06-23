@@ -1,0 +1,7 @@
+Bug 51433 – JavaDebugImages has a ton of constants
+JavaDebugImages contains a bunch of constants for image keys *and* a bunch of constants for
+image descriptors.
+A quick check shows that these keys aren't all used.
+Instead of creating all
+images in constant declarations, we should add a declareImages() method like the other images
+classes have.

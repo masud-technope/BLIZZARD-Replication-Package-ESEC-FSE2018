@@ -1,0 +1,5 @@
+Bug 70665 – [DOM/AST] missing type parameters for constructor declaration in JLS3
+In the javadoc of the class org.eclipse.jdt.core.dom.MethodDeclaration, in the
+JLS3 section, the type parameters are missing inside the definition of a
+constructor declaration.
+It is ok for the method declaration.

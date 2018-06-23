@@ -1,0 +1,44 @@
+Bug 31236 – SAXParseException should be supressed, i think
+20030206
+you get this exception if you try to import templates from an empty file
+not sure if this should be supressed somehow
+!ENTRY org.eclipse.jdt.ui 4 10002 Feb 07, 2003 11:55:45.646
+!MESSAGE Error occurred while reading templates.
+!STACK 0
+org.xml.sax.SAXParseException: Premature end of file.
+at org.apache.xerces.parsers.DOMParser.parse(DOMParser.java:235)
+at org.apache.xerces.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:209)
+at org.eclipse.jdt.internal.corext.template.TemplateSet.addFromStream(TemplateSet.java:95)
+at org.eclipse.jdt.internal.corext.template.TemplateSet.addFromFile(TemplateSet.java:70)
+at org.eclipse.jdt.internal.ui.preferences.CodeTemplateBlock.import_(CodeTemplateBlock.java:363)
+at org.eclipse.jdt.internal.ui.preferences.CodeTemplateBlock.doButtonPressed(CodeTemplateBlock.java:340)
+at org.eclipse.jdt.internal.ui.preferences.CodeTemplateBlock$CodeTemplateAdapter.customButtonPressed(CodeTemplateBlock.java:67)
+at org.eclipse.jdt.internal.ui.wizards.dialogfields.TreeListDialogField.buttonPressed(TreeListDialogField.java:165)
+at org.eclipse.jdt.internal.ui.wizards.dialogfields.TreeListDialogField.doButtonSelected(TreeListDialogField.java:380)
+at org.eclipse.jdt.internal.ui.wizards.dialogfields.TreeListDialogField.access$2(TreeListDialogField.java:376)
+at org.eclipse.jdt.internal.ui.wizards.dialogfields.TreeListDialogField$2.widgetSelected(TreeListDialogField.java:343)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:87)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:77)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:836)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:1692)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:1410)
+at org.eclipse.jface.window.Window.runEventLoop(Window.java:561)
+at org.eclipse.jface.window.Window.open(Window.java:541)
+at org.eclipse.ui.internal.OpenPreferencesAction.run(OpenPreferencesAction.java:47)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:804)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:450)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetEvent(ActionContributionItem.java:398)
+at org.eclipse.jface.action.ActionContributionItem.access$0(ActionContributionItem.java:392)
+at org.eclipse.jface.action.ActionContributionItem$ActionListener.handleEvent(ActionContributionItem.java:72)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:77)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:836)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:1692)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:1410)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1289)
+at org.eclipse.ui.internal.Workbench.run(Workbench.java:1272)
+at org.eclipse.core.internal.boot.InternalBootLoader.run(InternalBootLoader.java:845)
+at org.eclipse.core.boot.BootLoader.run(BootLoader.java:461)
+at java.lang.reflect.Method.invoke(Native Method)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:247)
+at org.eclipse.core.launcher.Main.run(Main.java:703)
+at org.eclipse.core.launcher.Main.main(Main.java:539)

@@ -1,0 +1,30 @@
+Bug 426510 – [1.8][dom ast] New API: ImportRewrite#addAnnotation(..)
+(In reply to Jayaprakash Arthanareeswaran from comment #21)
+> If you took this new code that create new annotations from the UI code, it
+> may not be a bad idea to move that code to Core so both Core and UI could
+> use that.
+Yes, we should not duplicate nontrivial code.
+We should remove the old org.eclipse.jdt.internal.corext.dom.ASTNodeFactory#newAnnotation(..) and turn ImportRewrite#newAnnotation(..) into an API like this:
+/**
+* Adds the necessary imports for the given annotation binding to the rewriter's record
+* and returns an {@link Annotation} that can be used in the code.
+* <p>
+* No imports are added for types that are already known.
+If an import for a type is recorded to be removed, this record is discarded instead.
+* </p>
+* <p>
+* The content of the compilation unit itself is actually not modified
+* in any way by this method; rather, the rewriter just records newly added imports.
+* </p>
+* @param binding the annotation to be added
+* @param ast the AST to create the returned annotation for
+* @param context an optional context that knows about types visible in the current scope or <code>null</code>
+* to use the default context (only using the available imports)
+* @return an annotation node.
+The returned annotation contains unqualified type names where
+* an import could be added or was already known.
+Type names are fully qualified if an import conflict prevented an import.
+*
+* @since 3.9 BETA_JAVA8
+*/
+public Annotation addAnnotation(IAnnotationBinding annotation, AST ast, ImportRewriteContext context)

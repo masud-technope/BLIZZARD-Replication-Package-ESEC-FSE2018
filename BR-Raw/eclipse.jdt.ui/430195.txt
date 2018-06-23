@@ -1,0 +1,10 @@
+Bug 430195 – [1.8][model][api] Lambda IType API problems (isLambda(); getElementName() returns "")
+API problems in the IType for a lambda:
+- getElementName() should return an empty name, like for anonymous types (this is currently specified in the Javadoc of IType, but that should be copied or moved to getElementName()).
+The current "Lambda(FunctionalInterfaceName)" violates the "simple name" statement in IType#getElementName().
+And it make sense not to perform some ad-hoc rendering in jdt.core.
+Caveat: Implementation of SourceType#isAnonymous() is:
+return this.name.length() == 0
+- specify getTypeQualified*(..) APIs for lambda types
+- add API isLambda()
+- add note in IType Javadoc that ITypes for lambda expressions are pseudo-elements like ILocalVariable that are not returned by getChildren() on their parent

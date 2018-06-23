@@ -1,0 +1,7 @@
+Bug 60364 – debug used deprecated runtime code
+The JDT debug related plugins use some code in Runtime which are newly
+deprecated.
+ I am
+attaching a patch (based on i0428) which eliminated the deprecations.
+ This is
+informational and rigorous testing has not been done.

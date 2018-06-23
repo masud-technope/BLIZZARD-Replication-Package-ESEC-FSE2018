@@ -1,0 +1,5 @@
+Bug 40708 – breakpoint properties dialog title
+The title for the breakpoint properties dialog is "Properties for".
+It should
+be more descriptive :-) I think we need to register an IWorkbenchAdapter to get
+the proper labels for the breakpoints.

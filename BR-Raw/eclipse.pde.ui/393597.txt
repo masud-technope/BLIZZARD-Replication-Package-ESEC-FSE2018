@@ -1,0 +1,19 @@
+Bug 393597 – Widget is disposed in Load Target Platform Job
+I got this stack trace while trying to set a target platform with the link above right "Set as Target Platform".
+I could only set it by restarting Eclipse.
+org.eclipse.swt.SWTException: Widget is disposed
+at org.eclipse.swt.SWT.error(SWT.java:4361)
+at org.eclipse.swt.SWT.error(SWT.java:4276)
+at org.eclipse.swt.SWT.error(SWT.java:4247)
+at org.eclipse.swt.widgets.Widget.error(Widget.java:468)
+at org.eclipse.swt.widgets.Widget.getDisplay(Widget.java:582)
+at org.eclipse.pde.internal.ui.editor.feature.PluginSection.modelsChanged(PluginSection.java:343)
+at org.eclipse.pde.internal.core.PluginModelManager.fireDelta(PluginModelManager.java:387)
+at org.eclipse.pde.internal.core.PluginModelManager.modelsChanged(PluginModelManager.java:286)
+at org.eclipse.pde.internal.core.PluginModelManager.resetState(PluginModelManager.java:1074)
+at org.eclipse.pde.core.target.LoadTargetDefinitionJob.performPlatformReset(LoadTargetDefinitionJob.java:602)
+at org.eclipse.pde.core.target.LoadTargetDefinitionJob.handleReload(LoadTargetDefinitionJob.java:579)
+at org.eclipse.pde.core.target.LoadTargetDefinitionJob.loadPlugins(LoadTargetDefinitionJob.java:286)
+at org.eclipse.pde.core.target.LoadTargetDefinitionJob.runInWorkspace(LoadTargetDefinitionJob.java:143)
+at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)

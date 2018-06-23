@@ -1,0 +1,8 @@
+java/org/apache/catalina/ha/deploy/FarmWarDeployer.java
+java/org/apache/catalina/manager/HTMLManagerServlet.java
+java/org/apache/catalina/mbeans/MBeanUtils.java
+java/org/apache/catalina/startup/HostConfig.java
+java/org/apache/catalina/util/ContextName.java
+test/org/apache/catalina/startup/TestHostConfigAutomaticDeployment.java
+test/org/apache/catalina/util/TestContextName.java
+webapps/docs/changelog.xml

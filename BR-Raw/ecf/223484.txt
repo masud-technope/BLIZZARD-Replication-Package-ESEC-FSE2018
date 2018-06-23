@@ -1,0 +1,45 @@
+Bug 223484 – Several threads remain though disconnect was done from the XMPP server
+Build ID: 2.0.0.v20080310-1643
+Steps To Reproduce:
+1.
+Connect the XMPP server
+2.
+Discoonect
+5 threads do not dispose;
+[org.eclipse.ecf.docshare.DocShare:run]
+[org.eclipse.ecf.presence.collab.ui.url.URLShare:run]
+[org.eclipse.ecf.presence.collab.ui.view.ViewShare:run]
+[org.eclipse.ecf.presence.collab.ui.console.ConsoleShare:run]
+[org.eclipse.ecf.presence.collab.ui.screencapture.ScreenCaptureShare:run]
+More information:
+Repeat 3 time ( 1, 2, 1, 2, 1 and 2),
+the following threads remained.
+Thread [main] (Running)
+Daemon Thread [State Data Manager] (Running)
+Daemon Thread [Framework Event Dispatcher] (Running)
+Daemon Thread [Start Level Event Dispatcher] (Running)
+Daemon Thread [Bundle File Closer] (Running)
+Thread [Worker-0] (Running)
+Thread [Worker-4] (Running)
+Thread [JMDNS Discovery Thread] (Running)
+Thread [Timer-0] (Running)
+Thread [JmDNS.SocketListener] (Running)
+Thread [org.eclipse.ecf.datashare.IChannelContainerAdapter:run] (Running)
+Daemon Thread [Thread-5] (Running)
+Thread [org.eclipse.ecf.docshare.DocShare:run] (Running)
+Thread [org.eclipse.ecf.presence.collab.ui.url.URLShare:run] (Running)
+Thread [org.eclipse.ecf.presence.collab.ui.view.ViewShare:run] (Running)
+Thread [org.eclipse.ecf.presence.collab.ui.console.ConsoleShare:run] (Running)
+Thread [org.eclipse.ecf.presence.collab.ui.screencapture.ScreenCaptureShare:run] (Running)
+Thread [org.eclipse.ecf.datashare.IChannelContainerAdapter:run] (Running)
+Thread [org.eclipse.ecf.docshare.DocShare:run] (Running)
+Thread [org.eclipse.ecf.presence.collab.ui.url.URLShare:run] (Running)
+Thread [org.eclipse.ecf.presence.collab.ui.view.ViewShare:run] (Running)
+Thread [org.eclipse.ecf.presence.collab.ui.console.ConsoleShare:run] (Running)
+Thread [org.eclipse.ecf.presence.collab.ui.screencapture.ScreenCaptureShare:run] (Running)
+Thread [org.eclipse.ecf.datashare.IChannelContainerAdapter:run] (Running)
+Thread [org.eclipse.ecf.docshare.DocShare:run] (Running)
+Thread [org.eclipse.ecf.presence.collab.ui.url.URLShare:run] (Running)
+Thread [org.eclipse.ecf.presence.collab.ui.view.ViewShare:run] (Running)
+Thread [org.eclipse.ecf.presence.collab.ui.console.ConsoleShare:run] (Running)
+Thread [org.eclipse.ecf.presence.collab.ui.screencapture.ScreenCaptureShare:run] (Running)

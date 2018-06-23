@@ -1,0 +1,9 @@
+test/org/apache/el/parser/TestELParser.java
+webapps/examples/WEB-INF/classes/jsp2/examples/ValuesBean.java
+java/org/apache/el/util/Validation.java
+test/org/apache/el/parser/TesterBeanA.java
+webapps/examples/jsp/jsp2/el/composite.jsp
+java/org/apache/el/parser/AstDotSuffix.java
+java/org/apache/el/parser/AstIdentifier.java
+webapps/docs/changelog.xml
+test/webapp-3.0/bug47413.jsp

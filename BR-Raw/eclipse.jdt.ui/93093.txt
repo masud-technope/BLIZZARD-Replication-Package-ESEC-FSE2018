@@ -1,0 +1,6 @@
+Bug 93093 – [1.5][dom] Capture binding "? extends Number[]" has bound Object instead of Number[]
+I20050426-1700
+Vector< ? extends Number[] > wild= null;
+wild.get(0);
+The bounds of the capture binding for expression "wild.get(0)" are { Object },
+but should be { Number[] }.

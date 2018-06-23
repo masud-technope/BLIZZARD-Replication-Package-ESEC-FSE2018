@@ -1,0 +1,5 @@
+java/org/apache/catalina/ha/session/BackupManager.java
+java/org/apache/catalina/tribes/tipis/AbstractReplicatedMap.java
+java/org/apache/catalina/ha/session/mbeans-descriptors.xml
+webapps/docs/config/cluster-manager.xml
+webapps/docs/changelog.xml

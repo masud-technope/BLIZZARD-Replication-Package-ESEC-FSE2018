@@ -1,0 +1,24 @@
+Bug 307149 – Adding import packages to Manifest.MF does not cause rebuild
+Build Identifier: 3.6
+Imported packages added to the Manifest.MF file will not be used to build the bundle till you start eclipse.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Create an OSGi bundle and add some java files importing packages that are outside the bundle.
+2.
+Observe that the java files have the errors that the packages cannot be resolved.
+2.
+Edit the Manifest.MF to import these packages.
+by adding (Import-Packages: xxx)
+3.
+Observe that the errors that the packages cannot be resolved are still there.
+(the imported packages that are added to Manifest.MF are not taken into consideration in building my bundle).
+4.
+Restart eclipse.
+5.
+All the errors are gone and all the packages are resolved.
+6.
+After this first time, if I remove the imported packages, I get the errors ( which is expected)
+7.
+When I add them back the errors are resolved (which is expected)
+The incorrect behavior is only the first time the packages are added to the Manifest.MF.

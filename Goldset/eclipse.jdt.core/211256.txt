@@ -1,0 +1,4 @@
+org.eclipse.jdt.core/dom/org/eclipse/jdt/internal/core/dom/rewrite/ASTRewriteAnalyzer.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/rewrite/describing/ASTRewritingStatementsTest.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/internal/core/dom/rewrite/RewriteEventStore.java

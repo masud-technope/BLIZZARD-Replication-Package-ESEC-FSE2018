@@ -1,0 +1,1 @@
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/discovery/ServiceInfo.java

@@ -1,0 +1,10 @@
+Bug 379793 – formatter hangs
+Build Identifier: Version: 3.8.0 Build id: I20120516-2100
+Every time I try to format the source for the attached file eclipse hangs.
+I will attach a zip containing the file and the exported formatter-xml.
+My Java-Version:
+java version "1.7.0_06-ea"
+Java(TM) SE Runtime Environment (build 1.7.0_06-ea-b09)
+Java HotSpot(TM) Server VM (build 23.0-b21, mixed mode)
+This is not the only source - but with this I can reproduce it always.
+Reproducible: Always

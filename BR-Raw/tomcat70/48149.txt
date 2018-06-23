@@ -1,0 +1,4 @@
+48149 – some misspellings I found in the "org.apache.coyote" package and "org.apache.el" package
+Created attachment 24496 [details]
+svn patch for "org.apache.coyote" and "org.apache.el" package
+see the attached svn patch file

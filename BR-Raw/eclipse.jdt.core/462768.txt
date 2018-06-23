@@ -1,0 +1,23 @@
+Bug 462768 – [null] NPE when using linked folder for external annotations
+I configured a linked folder as the annotationpath for rt.jar and then tried to open j.l.String from the Package Explorer.
+Here's what I got:
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.core.ClassFile.setupExternalAnnotationProvider(ClassFile.java:401)
+at org.eclipse.jdt.internal.core.ClassFile.getJarBinaryTypeInfo(ClassFile.java:379)
+at org.eclipse.jdt.internal.core.ClassFile.getBinaryTypeInfo(ClassFile.java:300)
+at org.eclipse.jdt.internal.core.ClassFile.getBinaryTypeInfo(ClassFile.java:294)
+at org.eclipse.jdt.internal.core.ClassFile.buildStructure(ClassFile.java:95)
+at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:259)
+at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:642)
+at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:336)
+at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:319)
+at org.eclipse.jdt.internal.core.Openable.getBuffer(Openable.java:285)
+at org.eclipse.jdt.internal.core.ClassFile.getBuffer(ClassFile.java:439)
+at org.eclipse.jdt.internal.core.ClassFile.getSourceRange(ClassFile.java:598)
+at org.eclipse.jdt.internal.ui.javaeditor.EditorUtility.getEditorID(EditorUtility.java:421)
+at org.eclipse.jdt.internal.ui.javaeditor.EditorUtility.openInEditor(EditorUtility.java:179)
+at org.eclipse.jdt.ui.actions.OpenAction.run(OpenAction.java:268)
+at org.eclipse.jdt.ui.actions.OpenAction.run(OpenAction.java:233)
+at org.eclipse.jdt.ui.actions.SelectionDispatchAction.dispatchRun(SelectionDispatchAction.java:275)
+at org.eclipse.jdt.ui.actions.SelectionDispatchAction.run(SelectionDispatchAction.java:251)
+at org.eclipse.jdt.internal.ui.packageview.PackageExplorerActionGroup.handleOpen(PackageExplorerActionGroup.java:376)

@@ -1,0 +1,4 @@
+Bug 269612 – [Discovery][Composite] CDC does not add container ending with ".locator" to its list
+CDC filters out containers whose name end in ".locator".
+With the old design (IDCA) this has not been a problem (the container ended up in the internal list anyway, since it was also an IDA).
+But new providers might only implement one of the interfaces.

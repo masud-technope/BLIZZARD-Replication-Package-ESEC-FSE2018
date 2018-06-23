@@ -1,0 +1,6 @@
+java.lang.invoke.MethodHandleNatives.linkMethodHandleConstant
+C.main
+sun.reflect.NativeMethodAccessorImpl.invoke0
+sun.reflect.NativeMethodAccessorImpl.invoke
+sun.reflect.DelegatingMethodAccessorImpl.invoke
+java.lang.reflect.Method.invoke

@@ -1,0 +1,19 @@
+56712 – Off-by-one second errors in time calculations in PersistenceManager
+The fix for bug 56698 (r1608443, r1608448) implemented an automated test for PersistenceManager.
+Reviewing the manager code to investigate the test failures, I see two issues:
+Checks that evaluate idle time of a session in PersistenceManagerBase typically do the following:
+> int timeIdle = (int) (session.getIdleTime() / 1000L);
+> if (timeIdle > maxIdleBackup) { ...
+}
+I see two errors in those two lines:
+Error 1.
+----
+The integer division performs truncation.
+Comparing the code with documentation, the condition there shall be
+> if (timeIdle >= maxIdleBackup) { ...
+}
+It does no matter much for a real-world configuration where the times are expected to be tens of seconds, but it matters for the test case that wants to run fast.
+Error 2.
+----
+StandardSession.getIdleTime() performs a validity check and can throw an ISE which is unexpected here.
+It shall be replaced with a call to session.getIdleTimeInternal().

@@ -1,0 +1,16 @@
+Bug 361933 – Handling response message in ECF when HTTP Status is different than OK 200
+Build Identifier:
+In case of expected server error (HTTP Status is not 200 (OK))
+I get RestException with the proper status code and this text :
+"Http response not OK.
+ URL=http://..........
+responseCode=505"
+According to http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1 "User agents SHOULD display any included entity to the user"
+The problem is in this code (line 83):
+http://git.eclipse.org/c/ecf/org.eclipse.ecf.git/tree/framework/bundles/org.eclipse.ecf.remoteservice.rest/src/org/eclipse/ecf/remoteservice/rest/client/RestClientService.java
+method invokeRemoteCall simply ignores response body (message) when HTTP status is not OK
+I need a way to get the proper message returned from server and not the hardcoded "Http response not OK"
+Thanks
+and Best Regards,
+Veselin Vasilev
+Reproducible: Always

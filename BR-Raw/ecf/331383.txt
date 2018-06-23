@@ -1,0 +1,19 @@
+Bug 331383 – Remote services with Java primitives fail
+A remote service with functions that contain Java primitives as arguments cannot be called.
+For example:
+public interface MyService
+{
+void update(long value);
+}
+If you attempt to call update() remotely, you will get a NoSuchMethodException.
+The root cause of the problem is in org.eclipse.ecf.core.util.reflection.ClassUtil line 68:
+clazzA.isAssignableFrom(clazzB)
+will return false if one class is a primitive and the other is the object form of the primitive.
+ See also:
+http://stackoverflow.com/questions/1650614/isassignablefrom-with-reference-and-primitive-types
+The workaround is to change all primitive arguments to their object form.
+ For example:
+public interface MyService
+{
+void update(Long value);
+}

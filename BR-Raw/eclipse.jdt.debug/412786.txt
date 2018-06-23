@@ -1,0 +1,3 @@
+Bug 412786 – Contributed JREs should be more recognizable
+On the JREs preference page the only way you can tell if a JRE is contributed is if you select it and the 'Delete' button disables or you noticed the '(locked)' text in the label - which should probably be changed to '(contributed)'.
+We should colour it the same way we do on other pages that show items that have been contributed - for example entries on the Classpath Variable page.

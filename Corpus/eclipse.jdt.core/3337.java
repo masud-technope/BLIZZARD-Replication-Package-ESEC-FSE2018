@@ -1,0 +1,2 @@
+package testBug348024;
+

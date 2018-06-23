@@ -1,0 +1,22 @@
+Bug 430987 – [1.8][compiler] Java 8 Compile Error with generic typed arguments
+While working with mockito I faced an Java 8 compile error for code that has worked with Java 7.
+I managed to create a standalone snippet to reproduce the code:
+public class Bug {
+public static interface Foo<T> {
+// no content
+}
+public void compileError() {
+doSomethingWithFoo( any( Foo.class ), any( Foo.class ) );
+}
+public void noCompileError() {
+Foo foo = any( Foo.class );
+doSomethingWithFoo( foo, foo );
+}
+public <T> void  doSomethingWithFoo( Foo<T> foo, Foo<T> foo2 ) {
+// do something
+}
+public static <T> T any(Class<T> clazz) {
+return null;
+}
+}
+This snippet works with Java 6 and 7 but not with 8.

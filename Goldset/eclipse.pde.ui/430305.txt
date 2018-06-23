@@ -1,0 +1,10 @@
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/provisional/problems/IApiProblem.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/ApiPluginPreferenceInitializer.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/preferences/ApiErrorsWarningsConfigurationBlock.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/preferences/PreferenceMessages.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/problems/problemmessages.properties
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/BaseApiAnalyzer.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/problems/ApiProblemFactory.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/preferences/preferencemessages.properties
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/provisional/problems/IApiProblemTypes.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/markers/ApiMarkerResolutionGenerator.java

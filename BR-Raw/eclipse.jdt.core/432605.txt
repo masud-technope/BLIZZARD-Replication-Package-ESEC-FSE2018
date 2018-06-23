@@ -1,0 +1,9 @@
+Bug 432605 – [1.8] Incorrect error "The type ArrayList<T> does not define add(ArrayList<T>, Object) that is applicable here"
+Created attachment 241880 [details]
+An excerpt showing the error
+The attached code fails to compile with ECJ but compiles successfully using javac.
+Some type information appears to be lost in the nested method call because extracting part of it into a new local variable makes the error go away.
+Tested using Eclipse SDK
+Version: Luna (4.4)
+Build id: I20140402-0100
+and JDT Core built from HEAD yesterday.

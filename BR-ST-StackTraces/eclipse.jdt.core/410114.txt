@@ -1,0 +1,11 @@
+org.eclipse.jdt.internal.compiler.ast.ReferenceExpression.generateCode
+org.eclipse.jdt.internal.compiler.ast.LocalDeclaration.generateCode
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.generateCode
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.generateCode
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode
+org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.generateCode
+org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve
+org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve
+org.eclipse.jdt.core.dom.ASTParser.internalCreateAST
+org.eclipse.jdt.core.dom.ASTParser.createAST

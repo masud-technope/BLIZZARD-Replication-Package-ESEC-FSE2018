@@ -1,0 +1,45 @@
+39769 – Wrong class loader when the myServlet.destroy() called if myServlet is in the T5 shared directory
+Hi all,
+My web app needs to have Thread.currentThread().getContextClassLoader() always
+right.
+ When the application is unload it seem not be the case.
+My classes are under the T5's shared directory (so all my
+servlet.getClass().getClassLoader() == the shared classloader i.e.:
+StandardCalssLoader.
+My understanding is that when executing the code in my web app
+Thread.currentThread().getContextClassLoader() should always give the
+WebappLoader used in the StandardContext.
+The problem occurs in StandardWrapper.unload()  before calling the
+servlet.destroy() method
+....
+ClassLoader oldCtxClassLoader =
+Thread.currentThread().getContextClassLoader();
+ClassLoader classLoader = instance.getClass().getClassLoader();
+PrintStream out = System.out;
+if (swallowOutput) {
+SystemLogHandler.startCapture();
+}
+// Call the servlet destroy() method
+try {
+instanceSupport.fireInstanceEvent
+(InstanceEvent.BEFORE_DESTROY_EVENT, instance);
+Thread.currentThread().setContextClassLoader(classLoader);
+if( System.getSecurityManager() != null) {
+SecurityUtil.doAsPrivilege("destroy",
+instance);
+SecurityUtil.remove(instance);
+} else {
+instance.destroy();
+}
+....
+In the code, the INSTANCE variable is my servlet and it have been loaded by the
+SHARED classloader.
+ So the classloader set in the thread is not the right one.
+It Should be the classloader related to StandardContext.getLoader()
+This problem occurs when I try to close my T5 dos windows and I suppose will
+occurs when I will uninstall any webApp from my T5.
+I notice the problem in T5 5.5.16 but I verified and it's the same code in
+5.5.17.
+ So probably the problem is still there
+Best Regards
+/David Gagnon

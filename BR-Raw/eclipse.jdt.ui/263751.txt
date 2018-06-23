@@ -1,0 +1,3 @@
+Bug 263751 – [common navigator] Drag Java object from Project Explorer to Package Explorer gets "assertion failed"
+This is the companion for bug 261865.
+Suggested patch is attached.

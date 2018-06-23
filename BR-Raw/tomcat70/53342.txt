@@ -1,0 +1,17 @@
+53342 – If starting immediately after Tomcat stop fail, BindException will throw.
+e.g.
+When Context#stop throw LifecycleException, the main thread stops,
+but startStopThreads of Host/Engine will remain for a while.
+Because, startStopThreads is not a demon thread.
+As a result,
+even if a main thread stops, Acceptor Threads of 8080/8009 is not stopped.
+keepAliveTime for 10 seconds is set up now.
+===
+startStopExecutor = new ThreadPoolExecutor(
+getStartStopThreadsInternal(),
+getStartStopThreadsInternal(), 10, TimeUnit.SECONDS,
+startStopQueue);
+===
+Therefore, in order to avoid BindException, the waiting for 10 seconds is required.
+I think that I need to make startStopThreads into a demon thread.
+Best Regards.

@@ -1,0 +1,10 @@
+Bug 393147 – Bugs in AdvancedQuickAssistProcessor.getConvertIfElseToSwitchProposals
+Created attachment 222979 [details]
+Fix
+Follow-up to bug 392847.
+AdvancedQuickAssistProcessor.getConvertIfElseToSwitchProposals has more bugs, e.g.
+- NPE for:
+if (equals("a")) {
+- coverts this (left operand neither a String nor a primitive, nor an enum):
+if (this.equals("a")) {
+The patch fixes these problems but is missing tests.

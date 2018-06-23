@@ -1,0 +1,12 @@
+Bug 349051 – [quick fix] "Add throws declaration" quick fix is not offered
+Fix for Bug 107923 isn't great as "Add throws declaration" quickfix is not offered in the following snippet even though it is perfectly valid here.
+-----------------------------------------------
+class MyException extends Exception {
+}
+class A implements AutoCloseable {
+@Override
+public void close() {
+throw new MyException();
+}
+}
+-----------------------------------------------

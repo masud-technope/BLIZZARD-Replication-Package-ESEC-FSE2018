@@ -1,0 +1,83 @@
+51653 – ServletRequestListener.requestDestroyed is called before request leaves a webapp
+Created attachment 27379 [details]
+Sample webapp demonstrating the issue
+I use Tomcat 7.0.19, jdk 1.7.0-b147, Ubuntu Linux 11.04.
+Steps to reproduce:
+1.
+declare error page for 404 code in web.xml
+2.
+Set location of that page to some servlet (let's call it ErrorServlet)
+3.
+go to any invalid URL in webapp (to cause 404)
+4.
+ErrorServlet is called after requestDestroyed on any registered listener.
+This kind of behaviour is not correct in my opinion because it
+contradicts to contract of ServletRequestListener.
+Also it breaks org.springframework.web.context.request.RequestContextListener
+if ErrorServlet uses session-scoped beans.
+Description of the attached war file:
+1.
+wheleph.RequestContextListener sets a local variable in requestInitialized and resets it in requestDestroyed
+2.
+wheleph.SecondServlet writes to System.out the value of that variable thus showing whether it was called between requestInitialized and requestDestroyed or not.
+It's registered as 404 handler.
+3.
+To reproduce the bug go to any invalid url (like http://localhost:8080/SpringListenerPOC/abcd) and see the message in log:
+"SecondServlet
+in scope: false"
+The relevant thread from dev.tomcat.apache.org:
+On 09/08/2011 20:55, Volodymyr Sobotovich wrote:
+> Hello, everyone.
+>
+> I think I have found a bug in Tomcat's lifecycle handling of
+> ServletRequestListener.
+I'd like to discuss it here before posting.
+> Tomcat 7.0.19, jdk 1.7.0-b147, Ubuntu Linux 11.04
+> Steps to reproduce:
+> 1.
+declare error page for 404 code in web.xml
+> 2.
+Set location of that page to some servlet (let's call it ErrorServlet)
+> 3.
+go to any invalid URL in webapp (to cause 404)
+> 4.
+ErrorServlet is called after requestDestroyed on any registered listener.
+> This kind of behaviour is not correct in my opinion because it
+> contradicts to contract of ServletRequestListener.
+> Also it breaks org.springframework.web.context.request.RequestContextListener
+> if ErrorServlet uses session-scoped beans.
+>
+> What do you think about that.
+Should I post in to Bugzilla?
+Hmm.
+The error page handling is currently at the host level.
+One could argue
+the listeners are being fired in the right place (when processing
+enters/leaves the context).
+However, custom error pages defined by the
+web app are currently outside the listener calls and that doesn't seem
+right.
+Addressing this would mean either:
+a) moving the error handling to the context (inside the calls to the
+ServletRequestListener) or
+b) moving the calls to ServletRequestListener to the host level
+I am leaning towards a) but wondering why things are the way the are
+currently.
+I'd suggest leaving this on the dev list for other folks to comment and
+then add it to BZ in a couple of days unless the consensus is that it is
+not a bug.
+The next 7.0.x release won;t be until early Sept so there is
+plenty of time to get this right.
+Mark
+=======================================================================
+Mark,
+On 8/9/2011 4:35 PM, Mark Thomas wrote:
+> Addressing this would mean either:
+> a) moving the error handling to the context (inside the calls to the
+> ServletRequestListener) or
++1
+This just feels like the right state management level to me.
+Certainly
+the default error handler can be called just as easily from this level
+of the code.
+-chris

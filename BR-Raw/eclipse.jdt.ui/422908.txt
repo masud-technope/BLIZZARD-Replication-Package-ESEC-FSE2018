@@ -1,0 +1,4 @@
+Bug 422908 – [organize imports] Add 'Skip' to Organize Import dialog
+Add to Organize Import dialog dialog the skip button which will preserve wrong import.
+Now the Organize Import dialog ask for each type that it can't resolve automatically and I must select the type or cancel the WHOLE operation.
+Sometime I prefer to resolve it manually after import organisation, realy.

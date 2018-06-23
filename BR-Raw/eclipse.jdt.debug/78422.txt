@@ -1,0 +1,12 @@
+Bug 78422 – test failure: testSimpleLineCounter
+On occasion the following test failure occurs on Linux.
+See I20041110-1000
+I've frequently seen the same failure running locally on Mac.
+Wrong number of lines output expected:<11> but was:<0>
+junit.framework.AssertionFailedError: Wrong number of lines output expected:<11> but was:<0>
+at org.eclipse.jdt.debug.tests.core.LineTrackerTests.testSimpleLineCounter(LineTrackerTests.java:78)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at org.eclipse.jdt.debug.tests.DebugSuite$1.run(DebugSuite.java:53)
+at java.lang.Thread.run(Thread.java:534)

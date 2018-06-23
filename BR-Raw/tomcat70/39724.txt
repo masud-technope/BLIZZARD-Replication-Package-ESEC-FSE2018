@@ -1,0 +1,32 @@
+39724 – Bug on StandardPipeline.removeValve(Valve valve) for T5.5.16+
+I run into this problem with T5 when tring to add/remove/add a valve to the
+standard engine.
+-For what I understand an empty pipeline has:
+basic = StandardEngineValve (For example);
+first = null;
+-If you add a valve you will get
+basic = StandardEngineValve
+first = myValve (with myValve.next = StandardEngineValve)
+-If you remove the valve you will get
+basic =StandardEngineValve
+first = StandardEngineValve
+Note that StandardEngineValve is in first too here.
+-If I try to add a new valve given the actual code in  addValve the valve will
+not be added because (see the **) current = basic and current.getNext() = null;
+addValve(Valve valve) {
+// Add this Valve to the set associated with this Pipeline
+if (first == null) {
+first = valve;
+valve.setNext(basic);
+} else {
+Valve current = first;
+while (current != null) {
+**                if (current.getNext() == basic) {
+current.setNext(valve);
+valve.setNext(basic);
+break;
+}
+current = current.getNext();
+}
+}
+}

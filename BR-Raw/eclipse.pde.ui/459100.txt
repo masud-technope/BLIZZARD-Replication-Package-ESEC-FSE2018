@@ -1,0 +1,3 @@
+Bug 459100 – [patch] Suggest "Configure Target-Platform" as Quick-fix when dependency is not found in MANIFEST.MF
+When a dependency is not resolved in a MANIFEST, one of the most common cause is that target-platform is not correctly configured (either it's not using a good TP for this project, or the current TP misses thing).
+So the Quick fix for such missing dependency should also suggest an entry to configure target-platforms (opening the target-platforms preference page).

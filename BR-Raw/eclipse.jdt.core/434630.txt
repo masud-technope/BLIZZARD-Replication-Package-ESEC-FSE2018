@@ -1,0 +1,5 @@
+Bug 434630 – [1.5][generics] Unexpected type mismatch error with nested types and generics
+Created attachment 242956 [details]
+The project to reproduce the issue
+After switching to 3.10.0.v20140501-0200 we got type mismatch errors for the code which is used to work.
+The project to reproduce the issue is attached to the bug.

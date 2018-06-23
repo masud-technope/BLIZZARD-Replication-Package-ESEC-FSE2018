@@ -1,0 +1,19 @@
+Bug 424205 – [1.8] Cannot infer type for diamond type with lambda on method invocation
+This example produces compilation errors while it shouldn't:
+interface I {
+void bar(String t);
+}
+class X<T> implements I {
+public void bar(String t) {}
+X(String x) {}
+X(T x) {}
+public void one(X<I> c){}
+public void two() {
+one(new X<>((String s) -> { })); // 1.
+Three errors
+X<I> i = new X<>((String s) -> { }); // 2.
+Error - Comment out the previous line to see this error go away.
+one (i);
+}
+}
+Interestingly, when the first statement is commented out, the second one compiles alright.

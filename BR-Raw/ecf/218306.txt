@@ -1,0 +1,6 @@
+Bug 218306 – [Discovery][jSLP][JMDNS] URI scheme in JMDNS is always set to "jmdns" while jSLP sets it depending on the actual SLP ServiceReply
+org.eclipse.ecf.discovery.IServiceInfo.getLocation().getScheme() in JMDNS is always set to "jmdns" while jSLP sets the same field depending on ch.ethz.iks.slp.ServiceURL.getProtocol().
+This should be aligned.
+But to what?
+Personally I'd propose to adopt the jSLP behavior for ECF discovery, because the benefit for the consumer is higher.
+Also setting it to "jmdns" unnecessarily exposes the actual discovery provider which should, if required at all, be accessible via some ECF "reflection".

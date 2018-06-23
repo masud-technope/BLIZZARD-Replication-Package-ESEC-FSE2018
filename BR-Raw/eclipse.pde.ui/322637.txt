@@ -1,0 +1,2 @@
+Bug 322637 – Validation dialog does not closes properly
+Validation dialog does not closes when the 'Launch with' is changed.

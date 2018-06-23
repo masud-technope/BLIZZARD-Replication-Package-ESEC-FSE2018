@@ -1,0 +1,2 @@
+Bug 478780 – add API IProblem#isInfo()
+Add API IProblem#isInfo() and fix the Javadoc of isError() and isWarning().

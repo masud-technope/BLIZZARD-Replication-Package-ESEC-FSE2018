@@ -1,0 +1,27 @@
+Bug 167313 – File System Target Provisioner wizard glitches
+The File system provisioner wizard is great.
+It does have a few glitches though:
+1a.
+Too many levels of indirection before choosing a directory.
+The Add Location dialog is not necessary.
+ the Add...
+in the wizard should directly invoke the directory chooser.
+Also, the Variables thing is a little weird here.
+ I suspect you wanted to reuse the location dialog from the target editor.
+ While it makes perfect sense for variables to appear in the target editor since those .target files are sharable.
+ Here people just want to add directories and they are not sharing that info.
+1b.
+The Edit...
+button should be removed when 1a is done.
+2.
+The Directory choooser has amnesia.
+ Every time I open it, it goes back to an all-collapsed uninitialized state.
+The first time it is open, we should initialize it to the current location of the target platform.
+ Every subsequent time it is open, it should be initialized to the last location entered.
+3.
+The help button in the bottom left does nothing.
+ you need to hook up context help.
+4.
+The wizard page description should read 'Add plug-ins from the file system to the target platform'
+5.
+The font in the table viewer and label does not honor the dialog font preferences.

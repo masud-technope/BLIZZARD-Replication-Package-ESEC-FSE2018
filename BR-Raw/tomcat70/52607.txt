@@ -1,0 +1,24 @@
+52607 – It is not well defined how "Dependencies on extensions" mechanism can be used in Tomcat
+Hi,
+As a result of the mail thread [1] I'm opening a bug.
+In short it is not clear how exactly "Dependencies on extensions" mechanism can be used.
+I have two proposals:
+1.
+Tomcat can continue to use in its implementation a separate property ("catalina.ext.dirs") that provides extensions' location.
+But its value should be added by default to the Tomcat's classpath directories (e.g.
+"shared.loader").
+- Pros: Tomcat users will know that this property specifies the directory for their extensions and only the files located there will be scanned during ExtensionValidator.validateApplication invocation.
+- Cons: Additional configuration that has to be maintained.
+2.
+Tomcat can remove this separate property ("catalina.ext.dirs") and start searching for such extensions in the Tomcat's classpath directories (e.g.
+shared.loader).
+- Pros: No additional configuration is needed.
+One can specify the shared libraries and the extensions with one and the same property.
+- Cons: During ExtensionValidator.validateApplication, it may appear that a lot of files are scanned which might be not necessary.
+I'm willing to provide a patch once we agree on the solution.
+My favourite is the first proposal.
+I'm looking forward to your comments.
+Thanks in advance.
+Regards,
+Violeta Georgieva
+[1] http://marc.info/?t=132827584600009&r=1&w=2

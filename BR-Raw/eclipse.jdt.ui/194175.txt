@@ -1,0 +1,8 @@
+Bug 194175 – [search] Search result filters not persisted any more
+N20070625-0010
+- search for references to a Java class
+=> search result has filter "In Imports" enabled by default
+- disable filter "In Imports"
+- search for references to another class
+=> search result has filter "In Imports" enabled
+=> expected: changed filter settings should apply to all Java searches (old and new ones)

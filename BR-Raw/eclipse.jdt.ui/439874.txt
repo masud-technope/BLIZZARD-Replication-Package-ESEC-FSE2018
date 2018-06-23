@@ -1,0 +1,2 @@
+Bug 439874 – Increase BREE for JDT UI
+Platform requires Java 1.6 since Luna and I think it would be nice to be able to use @Override for interfaces also in JDT.ui

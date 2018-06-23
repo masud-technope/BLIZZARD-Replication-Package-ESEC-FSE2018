@@ -1,0 +1,7 @@
+Bug 170516 – [Schema][Editors][Actions] Preview Reference Document should offer to save file
+Create a PDE schema file "schemaTest.exsd" extension, give it some content and save.
+Now make some more changes without saving the editor.
+From the package explorer right click on schemaTest.exsd and select
+PDE Tools/Preview Reference Document
+Expected result: I am asked if I want to first save the file.
+Actual result: The last saved version is previewed and the unsaved changes do not show.

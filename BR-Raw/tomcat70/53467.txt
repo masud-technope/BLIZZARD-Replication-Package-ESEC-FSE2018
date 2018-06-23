@@ -1,0 +1,20 @@
+53467 – 7.0.28 will no longer accept our jsp filenames
+We are currently running Tomcat7 7.0.27, and attempting to upgrade to 7.0.28.
+Some of our jsp files have square brackets and commas in the filenames, ie:
+WEB-INF/templates/com.example.standard/Container.asHeaderItem[_,_,closings].jsp
+With 7.0.27, this works fine.
+With 7.0.28, an error is thrown to the 'localhost.<date>.log' file, IE:
+Jun 25, 2012 4:17:42 PM org.apache.catalina.core.ApplicationContext log
+SEVERE: Failed to locate resource [/WEB-INF/templates//com.example.standard/CMContainer.asHeaderItem[_,_,closings].jsp] in context [/cae]
+java.net.URISyntaxException: Illegal character in path at index 123: jndi:/localhost/cae/WEB-INF/templates/com.example.standard/Container.asHeaderItem[_,_,closings].jsp
+at java.net.URI$Parser.fail(URI.java:2810)
+at java.net.URI$Parser.checkChars(URI.java:2983)
+at java.net.URI$Parser.parseHierarchical(URI.java:3067)
+at java.net.URI$Parser.parse(URI.java:3015)
+at java.net.URI.<init>(URI.java:806)
+at org.apache.catalina.core.ApplicationContext.getResource(ApplicationContext.java:537)
+at org.apache.catalina.core.ApplicationContextFacade.getResource(ApplicationContextFacade.java:201)
+at org.springframework.web.context.support.ServletContextResource.exists(ServletContextResource.java:101)
+Looks like this is the change that is breaking things:
+http://svn.apache.org/viewvc/tomcat/trunk/java/org/apache/catalina/core/ApplicationContext.java?r1=1344890&r2=1345357&pathrev=1345357
+Was this intentional? Or is our naming actually OK and this is a new bug?

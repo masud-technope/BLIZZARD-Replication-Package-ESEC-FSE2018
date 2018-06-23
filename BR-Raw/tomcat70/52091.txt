@@ -1,0 +1,14 @@
+52091 – TagHandlerPool is slow when high concurrently
+TagHandlerPool is slow when I ran stress test my web application using tomcat7.
+It occured in 7.0.19.
+Profiler said that it causes are followings:
+1.
+Lock of log instance at org.apache.jasper.runtime.TagHandlerPool.
+2.
+Lock of parameters field at org.apache.catalina.core.StandardWrapper.getInitParameter.
+An attached patch resolve this issue in my environment.
+It makes following changes:
+1.
+Makes log field to static.
+2.
+At StandardWrapper, changes lock policy from synchronized block to ReentrantReadWriteLock.

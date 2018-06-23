@@ -1,0 +1,6 @@
+Bug 69623 – [hovering] Show why there's no Javadoc
+Javadocs for methods, etc within the JRE display propery in the Javadoc View and in the code window
+after appropriate delay; the external browser menu also works.
+User libraries don't work in the first two
+cases, only the external browser works...
+(this confirms that the javadoc path is correct)

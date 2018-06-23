@@ -1,0 +1,8 @@
+Bug 412153 – [1.8][compiler] Check validity of annotations which may be repeatable
+The current check for duplicated annotations need a going over.
+If an annotation T is repeated at its use, it should be allowed, if:
+- If the annotation declaration T has a Repeatable meta-annotation mentioning TC as the container
+- if TC is allowed as the target where T is repeated
+If T and TC is both used in the same context, it is an error (even if neither T nor TC is repeated)
+Further, if TC is deprecated, a deprecation warning should be issued, even if T is not deprecated.
+We should have a configurable warning if the multiple T's aren't contiguous.

@@ -1,0 +1,14 @@
+java.lang.ClassCastException.<init>
+org.eclipse.jdt.internal.codeassist.CompletionEngine.complete
+org.eclipse.jdt.internal.core.Openable.codeComplete
+org.eclipse.jdt.internal.core.CompilationUnit.codeComplete
+org.eclipse.jdt.internal.core.CompilationUnit.codeComplete
+org.eclipse.jdt.internal.ui.text.java.JavaCompletionProcessor.internalComputeCompletionProposals
+org.eclipse.jdt.internal.ui.text.java.JavaCompletionProcessor.computeCompletionProposals
+org.eclipse.jface.text.contentassist.ContentAssistant.computeCompletionProposals
+org.eclipse.jface.text.contentassist.CompletionProposalPopup.computeProposals
+org.eclipse.jface.text.contentassist.CompletionProposalPopup.access$7
+org.eclipse.jface.text.contentassist.CompletionProposalPopup$1.run
+org.eclipse.jface.text.contentassist.CompletionProposalPopup.showProposals
+org.eclipse.jface.text.contentassist.ContentAssistant.showPossibleCompletions
+org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor$AdaptedSourceViewer.doOperation

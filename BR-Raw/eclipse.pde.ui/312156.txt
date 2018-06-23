@@ -1,0 +1,3 @@
+Bug 312156 – Show only selected on Feature based config like plug-ins based ones
+Add a 'Show only selected' check box filter on feature based configs.
+It should behave similar to the one on the plug-ins tab of a plug-ins based config.

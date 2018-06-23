@@ -1,0 +1,74 @@
+54022 – CometEvent.END event is not sent on a suspended socket disconnect when running with Tomcat Native (tcnative-1.dll) on Windows Vista / Windows Server 2008 or newer.
+Created attachment 29492 [details]
+Tomcat 7.0.32 source file with the bugfix
+Our Web application uses an asynchronous 3.0 servlet (via Atmosphere 1.0, actually) to send notification messages to clients connected via long-running sockets (e.g., HTTP streaming, long polling, etc.) I found a bug where Tomcat was not sending the CometEvent.END event on x64 platforms that used Tomcat Native when a socket would disconnect (e.g., by pressing CTRL-C from an HTTP GET curl command).
+After narrowing it down and debugging the Tomcat 7.0.32 source, I tracked the problem down to org.apache.coyote.AbstractProtocol.java.
+ Due to the way that APR handles socket polling in Tomcat Native, the bug only occurs on Windows platforms that 1) use tcnative-1.dll, and 2) are Vista/Server 2008 or newer.
+ Here is what is happening:
+1) On startup, APR in tcnative-1.dll looks for a method named "WSAPoll" method in Ws2_32.dll.
+ If it finds it, it assigns that function as the function to use to poll sockets.
+ Otherwise, it falls back to the legacy method of polling sockets.
+ WSAPoll is only present on Windows Vista/Server 2008 or newer.
+2) In org.apache.tomcat.util.net.AprEndpoint, the doPoll(long pollset) method invokes Poll.poll(pollset, pollTime, desc, true), which delegates the call to tcnative-1.dll if present.
+3) If doPoll returns > 0, it means that at least one socket requires processing, so it falls through to this block in the doPoll method AprEndpoint.java (comments added below marked with "{DB}"):
+for (int n = 0; n < rv; n++) {
+// Check for failed sockets and hand this socket off to a worker
+if (((desc[n*2] & Poll.APR_POLLHUP) == Poll.APR_POLLHUP)   // {DB} only the WSAPoll method sets the APR_POLLHUP flag when a socket disconnects; neither the legacy tcnative polling method nor the pure Java Coyote polling method sets this flag (which is fine)
+|| ((desc[n*2] & Poll.APR_POLLERR) == Poll.APR_POLLERR)
+|| (comet && (!processSocket(desc[n*2+1], SocketStatus.OPEN)))  // {DB} this line is executed for comet sockets if WSAPoll is not available on this platform (e.g., pre-Vista/Server 2008) or if tcnative-1.dll is not present.
+ (This is also fine.)
+|| (!comet && (!processSocket(desc[n*2+1])))) {
+// Close socket and clear pool
+if (comet) {
+processSocket(desc[n*2+1], SocketStatus.DISCONNECT);  // {DB} this is only reached if tcnative-1.dll is present and we are running on Vista/Server 2008 or newer.
+ This is OK, but there is a bug with SocketStatus.DISCONNECT handling for comet sockets in processSocket (described in the next step)
+} else {
+destroySocket(desc[n*2+1]);
+}
+}
+}
+4) The processSocket(long socket, SocketStatus status) method fires up a SocketEventProcessor and runs it, which excutes this:
+Handler.SocketState state = handler.process(socket, status);  // {DB} this does not send CometEvent.END for comet if status == SocketStatus.DISCONNECT (details in next steps)
+if (state == Handler.SocketState.CLOSED) {
+// Close socket and pool
+destroySocket(socket.getSocket().longValue());  // {DB} this closes the socket and frees it for reuse, but since the Comet application was not notified that the socket went away, the next time it tries to send data down the socket it either crashes the JVM or writes the data to the response which is now owned by somebody else.
+ Chaos ensues.
+socket = null;
+}
+5) When running Tomcat Native, the handler.process(socket, status) method is implemented by org.apache.coyote.http11.Http11AprProtocol$Http11ConnectionHandler, which extends AbstractConnectionHandler defined as an inner class in org.apache.coyote.AbstractProtocol.
+ The method and the fix that I made on my test instance are shown below [the fix was to add '&& (!processor.isComet())' to the beginning condition of the 'if' block]:
+======
+public SocketState process(SocketWrapper<S> socket, SocketStatus status) {
+...<snip>...
+do {
+// {DB} NOTE: status only == SocketStatus.DISCONNECT here if we are running tcnative on Windows Vista / Server 2008 or newer
+// {DB}       For all other cases status == SocketStatus.OPEN here even if a disconnect has occurred, so it falls through to the '} else if (processor.isComet()) {' line all is well.
+// {DB} Original line: if (status == SocketStatus.DISCONNECT) {
+if ( (status == SocketStatus.DISCONNECT) && (!processor.isComet()) ) {  // <<<<<< {DB} BUGFIX: if comet, must allow processor.event(SocketStatus.DISCONNECT) later in the 'if' block to send the Comet.END event and return SocketState.CLOSED
+//do nothing here, just wait for it to get recycled
+} else if (processor.isAsync() || state == SocketState.ASYNC_END) {
+state = processor.asyncDispatch(status);
+} else if (processor.isComet()) {
+state = processor.event(status);  // {DB} this sends CometEvent.END and returns SocketState.CLOSED if status == SocketStatus.DISCONNECT, which is what we want
+} else if (processor.isUpgrade()) {
+state = processor.upgradeDispatch();
+} else {
+state = processor.process(socket);
+}
+...<snip>...
+======
+After I made the fix above and deployed the updated tomcat-coyote.jar I am now getting the CometEvent.END events as expected when using Tomcat Native on Windows 7.
+ We are using Atmosphere (which uses Comet) for our next release, but we will need this Tomcat bugfix before we can deploy.
+ We could ship a custom patched tomcat-coyote.jar but obviously we would prefer to have an official fix in the next Tomcat patch release so we could just deploy that.
+The fix I made above works for me, but if you need to reproduce the problem, all you need to do is:
+1) Install Tomcat 7.0.32 along with Tomcat Native on a Windows 7 or Windows Server 2008 PC (I was using a 64-bit Windows 7 PC).
+2) Run a servlet that:
+a) implements org.apache.catalina.comet.CometProcessor, and
+b) logs the CometEvents received, and
+c) suspends the HttpRequest when it receives one.
+3) Connect to that servlet by doing an HTTP GET via Curl.
+4) Press CTRL-C to abort the socket connection.
+ The CometEvent.END event is never fired.
+I attached the source file containing the bugfix (AbstractProtocol.java).
+ The fix is marked with "{DB}" comments.
+ Thanks.

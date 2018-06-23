@@ -1,0 +1,22 @@
+46462 – JSPWiki JSP compilation prevented by org.apache.jasper.Constants.JSP_PACKAGE_NAME
+Hi,
+JSPWiki is currently an Incubator project at Apache.
+We intend to use the package name org.apache.jspwiki.
+However, any classes in this package tree fail to load when imported into a JSP page, specifically during Jasper's attempt to compile it.
+For example,
+<%@ page import="org.apache.jspwiki.WikiPage" %>
+does not compile.
+My colleague Harry Metske traced the cause to this line in org.apache.jasper.servlet.JasperLoader:
+if( !name.startsWith(Constants.JSP_PACKAGE_NAME) ) {
+// Class is not in org.apache.jsp, therefore, have our
+// parent load it
+clazz = parent.loadClass(name);
+if( resolve )
+resolveClass(clazz);
+return clazz;
+}
+The recommended bug fix would be to append a period (".") to the expression passed into name.startsWith(), which in this case would then evaluate to "org.apache.jsp.", and allow JSPWiki classes to load and compile.
+This issue is important for us as we emerge from incubation.
+Lack of a fix means that JSPWiki cannot release under the desired package name "org.apache.jspwiki."
+See additional commentary in the Apache JIRA database here:
+https://issues.apache.org/jira/browse/JSPWIKI-464

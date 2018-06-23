@@ -1,0 +1,10 @@
+org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit
+org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit
+org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit
+org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit
+org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit
+org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit
+org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit
+org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit
+org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit
+org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit

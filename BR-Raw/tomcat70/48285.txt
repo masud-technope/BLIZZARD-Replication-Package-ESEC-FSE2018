@@ -1,0 +1,3 @@
+48285 – ApplicationFilterFactory.matchDispatcher() fails to check ASYNC
+catalina.core.ApplicationFilterFactory.matchDispatcher(FilterMap filterMap, DispatcherType type) fails to check for type == ASYNC
+The extra case ought to be added (but I don't know what it should contain, so cannot provide a patch)

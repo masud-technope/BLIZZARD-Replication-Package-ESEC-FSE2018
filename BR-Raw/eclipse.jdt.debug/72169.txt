@@ -1,0 +1,9 @@
+Bug 72169 – provided debug context for non-UI thread
+DebugUITools provides #getDebugContext(), which in 3.0 and earlier, only works
+in the UI thread.
+It is useful to have this work in non-UI threads as well, to
+allow for background threads to access the debug context (for example debug
+hover help).
+Since we already have the SelectedResourceManager providing a similar service,
+it can also track the current "debug context" (selection in the debug view),
+for access from any thread.

@@ -1,0 +1,3 @@
+Bug 296107 – [Discovery][jSLP] Does not discard SLP protocol messages > version 2
+jSLP currently only discards SLPv1 messages but tries to read all other versions (>=SLPv2).
+Since messages formats might change in future version, it should discard and log messages marked version higher SLPv2.

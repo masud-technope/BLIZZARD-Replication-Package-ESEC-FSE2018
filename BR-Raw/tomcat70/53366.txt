@@ -1,0 +1,19 @@
+53366 – Running with SecurityManager: protected/index.jsp returns blank page when it is the first page accessed
+eproducible in 7.0.27 and in current 7.0.x.
+To reproduce:
+1.
+Start "catalina.bat start -security"
+2.
+Go to
+[1] http://localhost:8080/examples/jsp/security/protected/index.jsp
+3.
+Expected result: Display login form.
+Actual result:
+Blank page.
+Access log shows:
+127.0.0.1 - - [06/Jun/2012:04:35:23 +0400] "GET /examples/jsp/security/protected/index.jsp HTTP/1.1" 200 -
+That is, response code is 200, count of bytes is '-'.
+If I stay on [1] and keep refreshing it, the problem persists.
+But if I visit [2], then [1] starts to work.
+I suspect that some class needs to be preloaded.
+[2] http://localhost:8080/examples/

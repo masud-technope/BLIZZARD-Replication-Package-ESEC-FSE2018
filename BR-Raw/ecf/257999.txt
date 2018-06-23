@@ -1,0 +1,3 @@
+Bug 257999 – [remotesvcs] log exceptions in msg handling within RegistrySharedObject
+Currently, the RegistrySharedObject message handler does not log exceptions in methods invoked by SharedObjectMsg.invoke.
+ It should log these exceptions to the log service, if present.

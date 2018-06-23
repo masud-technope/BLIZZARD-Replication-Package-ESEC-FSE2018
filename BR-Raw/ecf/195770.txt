@@ -1,0 +1,2 @@
+Bug 195770 – [UI] Browse Contacts dialog should support filtering via online ("active") contacts
+The nifty browse dialog should support the ability to filter contacts.

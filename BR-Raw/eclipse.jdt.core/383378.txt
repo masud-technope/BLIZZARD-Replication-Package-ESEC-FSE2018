@@ -1,0 +1,10 @@
+Bug 383378 – [1.8][compiler] analyze performance impact of scanner/parser changes
+Bug 380194 introduced same changes to the parser / scanner that affect performance.
+The design works hard to avoid performance degradation but so far we have no measurements that can guide us in the choice between different strategies.
+E.g., I'd like to see if method Parser.parserAtConflictScenario() is worth the effort: is it saving relevant efforts in scanner look-ahead (Scanner.atLambdaParameterList() and atReferenceExpression()) to balance the initial efforts?
+In a first naive measurement I ran org.eclipse.jdt.core.tests.compiler.parser.TestAll with slight variations in the code.
+To my own surprise I saw that simply turning 1.8 mode on seemed to degrade performance by approx.
+9%, but I could not observe any difference related to parserAtConflictScenario() (delta < 0.1%).
+At this point the experiment was too naive to yield reliable figures but there seems to be some issue that I'd like to narrow down before finalizing the new parser design.
+Can we identify a relevant subset of tests? Is ...parser.TestAll already a good candidate?
+What would be a test case for the worst case scenarios mentioned in bug 380194 comment 24?

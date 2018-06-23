@@ -1,0 +1,34 @@
+54045 – ReplicatedMap don't like TcpFailureDetector in static configuration
+Tribes stack using:
+* TcpPingInterceptor
+* TcpFailureDetector
+* MessageDispatchInterceptor
+* StaticMembershipInterceptor
+Do not work well in static cluster.
+First side (ie one thread):
+* call to TcpFailureDetector.heartbeat()
+* call to checkMembers(false)
+* call to performBasicCheck() in synchronized(membership)
+* in performBasicCheck, for a missing static node:
+*   add "missing" member to membership with membership.memberAlive(m)
+*       HERE THE SECOND THREAD HAVE SOME TIME TO WORK
+*   check it with memberAlive(m)
+*   remove it since if it doesn't exist
+Second side (ie another thread):
+* some call to channel.getMembers() like what the done by AbstractReplicatedMap
+* this call will call the TcpFailureDetector.getMembers()
+* this one could return a wrong value since it can contains unavailable nodes
+Note:
+* synchronize on membership isn't use by TcpFailureDetector in getMember(), getMembers(), hasMembers(), neither in Membership equivalent method (maybe because it's too heavy to lock every thread while the TcpFailureDetector check if node are alive).
+It must not be an issue for AbstractReplicatedMap since with or without TcpFailureDetector a node could disapear while replicated map try to use it.
+But ReplicatedMap use always Channel.SEND_OPTIONS_DEFAULT where the value is Channel.SEND_OPTIONS_USE_ACK.
+So a message sent to a missing node will fail with an exception.
+Personnaly I override TcpFailureDetector.heartbeat() to avoid performBasicCheck() if I use a static configuration (TcpPingInterceptor call performForcedCheck()).
+But this doesn't fix ReplicatedMap issue.
+Better fix could avoid adding missing member to membership list:
+* Add a method like memberAlive(MemberImpl) to Membership without side effect (add the member)
+* in TcpFailureDetector.performBasicCheck(): check this new method before adding the node
+This doesn't fix the AbstractReplicatedMap issue which work always with acknoledge from other nodes.
+Same code for Tomcat 6.
+best regards
+F.Arnoud

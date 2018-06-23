@@ -1,0 +1,48 @@
+Bug 178912 – IVMInstallType api and AbstractVMInstallType impl are not thread safe
+The IVMInstallType.createVMInstall(<id>) method call immediately makes the vm install visible to everyone.
+I hit a race condition that looked like this:
+Thread 1
+========
+IVMInstall vm = type.createVMInstall(vmId);
+vm.setInstallLocation( vmLocation );
+vm.setName(vmName);
+Thread 2
+========
+java.lang.NullPointerException
+at org.eclipse.jdt.launching.AbstractVMInstallType.findVMInstallByName(AbstractVMInstallType.java:146)
+at org.eclipse.jdt.internal.launching.JREContainerInitializer.resolveVM(JREContainerInitializer.java:82)
+at org.eclipse.jdt.internal.launching.JREContainerInitializer.initialize(JREContainerInitializer.java:52)
+at org.eclipse.jdt.internal.launching.LaunchingPlugin$VMChanges.rebind(LaunchingPlugin.java:279)
+at org.eclipse.jdt.internal.launching.LaunchingPlugin$VMChanges.access$0(LaunchingPlugin.java:244)
+at org.eclipse.jdt.internal.launching.LaunchingPlugin$1.run(LaunchingPlugin.java:232)
+at org.eclipse.jdt.internal.core.BatchOperation.executeOperation(BatchOperation.java:39)
+at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:720)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1737)
+at org.eclipse.jdt.core.JavaCore.run(JavaCore.java:4024)
+at org.eclipse.jdt.internal.launching.LaunchingPlugin$VMChanges.doit(LaunchingPlugin.java:236)
+at org.eclipse.jdt.internal.launching.LaunchingPlugin$JREUpdateJob.run(LaunchingPlugin.java:316)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+public IVMInstall findVMInstallByName(String name) {
+for (int i= 0; i < fVMs.size(); i++) {
+IVMInstall vm= (IVMInstall)fVMs.get(i);
+if (vm.getName().equals(name)) {   <-- NPE right here
+return vm;
+}
+}
+return null;
+}
+There are two thread safety problems here:
+1.
+IVMInstallType api causes new runtimes to be made available to everyone before they can be fully initialized.
+2.
+AbstractVMInstallType internally does not use synchronization.
+Most specifically, access to fVMs list member variable is not synchronized.
+Potential fix:
+Can't change existing IVMInstallType api, but the AbstractVMInstallType implementation can be changed to synchronize on the vm type object for all getter and setter methods that deal with vm instances.
+That directly addresses #2 and allows #1 to be worked around by adding a synchronized block around code in Thread 1 above...
+synchronized( type )
+{
+IVMInstall vm = type.createVMInstall(vmId);
+vm.setInstallLocation( vmLocation );
+vm.setName(vmName);
+}

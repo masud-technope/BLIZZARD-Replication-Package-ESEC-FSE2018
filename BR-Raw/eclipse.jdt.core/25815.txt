@@ -1,0 +1,11 @@
+Bug 25815 – Code Assist does not propose member type.
+1) create the class X.
+public class X {
+public class Y {
+void foo() {
+Y var = new <cursor>
+}
+}
+}
+2) do ctrl + space at cursor location.
+the class Y is not proposed.

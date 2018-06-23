@@ -1,0 +1,3 @@
+Bug 252432 – [render] Use the new API from JDT/Core to provide a better display of the referenced jars
+When jar are referenced in the Class-Path: clause of the MANIFEST.MF file, they end up being displayed with the name of the jar that referenced them.
+This is far from being ideal as it is difficult to distinguish them.

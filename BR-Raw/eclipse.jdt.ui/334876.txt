@@ -1,0 +1,11 @@
+Bug 334876 – [quick assist] Invert conditions generates incorrect code
+Build Identifier: 20100917-0705
+Let a and b be of Object type, the following expression:
+a == null ^ b == null
+is inverted incorrectly to:
+!a == null ^ b == null
+which does not compile (The operator ! is undefined for the argument type(s) Object).
+The correct result should be:
+a != null ^ b == null
+It seems, that left-hand side argument is simply prefixed with !, but it should be recursively inverted as a separate expression.
+Reproducible: Always

@@ -1,0 +1,4 @@
+Bug 198175 – Double-click should expand nodes
+In the PDE editors, we have many sections depicting trees, where double-clicking on a tree node does nothing.
+By default, double-clicking should expand a collapsed node and collapse an expanded node (a la Package Explorer).
+I suspect we can fix all the PDE cases by modifying the TreeSection superclass.

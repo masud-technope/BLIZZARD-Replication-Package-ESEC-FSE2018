@@ -1,0 +1,12 @@
+Bug 442614 – Extract, merge, and fix string and char literal escaping
+Required for bug 441790.
+jdt.core has several implementation of string and char literal escaping.
+They should be combined into one and bugs should be fixed.
+org.eclipse.jdt.core.dom.StringLiteral#setLiteralValue(String) and
+org.eclipse.jdt.internal.core.util.Disassembler#escapeChar(StringBuffer, char)
+both escape \0 to \7 wrongly when they are followed by more octal numbers.
+E.g.
+"\0041" is the char sequence { '\4', '1' }, but such a sequence is currently escaped to "\41", which is equivalent to "!".
+I don't see a reason why we should only escape \0 to \7 and not all chars below 0x20.
+We can't know how these chars were represented in source, but it makes sense to escape them all, so that the user knows what's going on and doesn't run into trouble with tools that don't properly display these characters.
+As JLS8 3.10.6 says, Unicode escapes are usually preferred.

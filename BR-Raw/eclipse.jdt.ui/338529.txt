@@ -1,0 +1,5 @@
+Bug 338529 – [working sets] Clean up WorkingSetDropAdapterTest
+I20110301-0800.
+WorkingSetDropAdapterTest is ugly and does not correctly create the working sets.
+Besides that I'd like to remove PackageExplorerPart.internalTestShowWorkingSets(IWorkingSet[]).
+Use the Accessor to access non public stuff.

@@ -1,0 +1,8 @@
+Bug 416313 – [1.8][compiler] Typeids are not unique - plausibly broken with cherry picking
+BETA_JAVA8:
+org.eclipse.jdt.internal.compiler.lookup.TypeIds.T_JavaLangFunctionalInterface &
+org.eclipse.jdt.internal.compiler.lookup.TypeIds.T_JunitFrameworkAssert
+both have the same type id 69 :)
+Possibly other cases too.
+Please sort and eliminate duplicates and reassign
+suitable values.

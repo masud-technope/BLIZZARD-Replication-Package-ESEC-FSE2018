@@ -1,0 +1,20 @@
+50168 – destory method is called twice while the child is destoryed directly
+While calling the method destory() on the StandardContext directly, it seems that the method destoryInternal() is called twice in the LifecycleMBeanBase, the two stacktraces are below :
+a.
+ LifecycleMBeanBase.unregister(ObjectName) line: 191
+LifecycleMBeanBase.destroyInternal() line: 73
+ContainerBase.destroyInternal() line: 1109
+StandardContext.destroyInternal() line: 5114
+LifecycleBase.destroy() line: 271
+ContainerBase.removeChild(Container) line: 963
+ContainerBase.destroyInternal() line: 1106
+StandardContext.destroyInternal() line: 5114
+LifecycleBase.destroy() line: 271
+...
+b.
+LifecycleMBeanBase.unregister(ObjectName) line: 191
+LifecycleMBeanBase.destroyInternal() line: 73
+ContainerBase.destroyInternal() line: 1109
+StandardContext.destroyInternal() line: 5114
+LifecycleBase.destroy() line: 271
+...

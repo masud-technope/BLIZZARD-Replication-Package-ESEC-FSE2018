@@ -1,0 +1,7 @@
+50928 – [patch] JSSESocketFactory - wrong password in KeyManagerFactory.init
+Created attachment 26768 [details]
+Patch to fix problem
+JSSESocketFactory does not use the keyPass when calling KeyManagerFactory.init()
+Attached patch fixes the error.
+However, it might be better to fix up the handling of keyPass and keyStorePass defaults in the AbstractEndPoint super-class.
+Patch also fixes a throw clause to ensure that the true cause of the exception is reported.

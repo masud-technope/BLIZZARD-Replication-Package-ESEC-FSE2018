@@ -1,0 +1,10 @@
+Bug 19043 – Config dialog in Generate J Doc Wizard look bad
+Build F2
+1.
+Open the Javadoc wizard (export Javadoc)
+2.
+Press Next
+3.
+Select the JRE and press "Configure"
+The dialog looks ugly especially the entry field is way too small.
+See attached pic of the dialog.

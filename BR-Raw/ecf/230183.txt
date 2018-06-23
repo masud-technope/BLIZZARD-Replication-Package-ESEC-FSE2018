@@ -1,0 +1,2 @@
+Bug 230183 – [remotesvcs] Remove create org.eclipse.ecf.discovery.identity.IServiceID by java.lang.String
+http://dev.eclipse.org/mhonarc/lists/ecf-dev/msg01520.html

@@ -1,0 +1,3 @@
+java/org/apache/coyote/ajp/AjpProtocol.java
+java/org/apache/coyote/http11/Http11Protocol.java
+java/org/apache/tomcat/util/net/JIoEndpoint.java

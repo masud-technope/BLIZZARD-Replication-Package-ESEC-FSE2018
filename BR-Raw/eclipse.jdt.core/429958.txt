@@ -1,0 +1,4 @@
+Bug 429958 – [1.8][null] evaluate new DefaultLocation attribute of @NonNullByDefault
+With bug 392245 being resolved for BETA_JAVA8, we still need to evaluate the new annotation attribute of type DefaultLocation.
+While an implementation under test exists, this is too big a change for BETA_JAVA8 at this point.
+Hence separating this implementation from the API release.

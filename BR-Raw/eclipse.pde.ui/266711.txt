@@ -1,0 +1,4 @@
+Bug 266711 – [target] Making a target's name empty causes NPE
+If you set a target's name to be an empty string in the wizard or editor you get NPEs.
+ We should avoid the NPEs, but also add validation preventing an empty name (which couldn't be shown properly on the preference page).
+Note that there are other fields that can be set to random values and there is no validation for them.

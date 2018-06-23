@@ -1,0 +1,7 @@
+Bug 181091 – [Plug-in Dependencies View} Show version number in label
+It is odd that we don't show a bundle version in this view.
+ We show it everywhere else in PDE.
+This is particularly important when we are dealing with multiple versions of the same plug-in.
+ It is good to see what you are getting wired to.
+P.S.
+ The new implementation of the view is awesome.

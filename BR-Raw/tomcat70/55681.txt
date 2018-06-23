@@ -1,0 +1,28 @@
+55681 – JSR-356 message handling: NULL pointer being thrown when DecodeException is caught in PojoMessageHandlerWholeBase<T>.onMessage
+I am testing what happens when Encode/Decode Exceptions occur during JSR-356 communication.
+ In our case, we do NOT use annotation, but we "extend Endpoint" and "implement Whole<ThingworxMessage>".
+ I was forcing a DecodeException to occur - expecting to my onError to be called with the actual DecodeException.
+ Instead, I got a Null.
+Stepping the following code in Tomcat:
+in onMessage, the ((WsSession)session) is NULL.
+ As a result, the actual DecodeException (cause) is lost.
+// Can this message be decoded?
+Object payload;
+try {
+payload = decode(message);
+} catch (DecodeException de) {
+((WsSession) session).getLocal().onError(session, de);
+return;
+}
+Tracing this further up the stack, I found that Util.getMessageHandlers is initializing it and passing NULL in for the session:
+if (decoderMatch.getTextDecoders().size() > 0) {
+MessageHandlerResult result = new MessageHandlerResult(
+new PojoMessageHandlerWholeText(listener, m, null,
+endpointConfig,
+decoderMatch.getTextDecoders(), new Object[1],
+0, false, -1, -1),
+MessageHandlerResultType.TEXT);
+results.add(result);
+}
+Please let me know if I can provide any more details.
+-bob

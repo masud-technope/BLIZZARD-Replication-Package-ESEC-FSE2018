@@ -1,0 +1,25 @@
+50606 – Error running CGI executable in Tomcat 6.0.30
+Created attachment 26502 [details]
+localhost.2011-01-18.log
+I have web application hosting CGI executable with the following settings for CGI
+<servlet>
+<servlet-name>cgi</servlet-name>
+<servlet-class>org.apache.catalina.servlets.CGIServlet</servlet-class>
+<init-param>
+<param-name>debug</param-name>
+<param-value>2</param-value>
+</init-param>
+<init-param>
+<param-name>cgiPathPrefix</param-name>
+<param-value>WEB-INF/cgi</param-value>
+</init-param>
+<init-param>
+<param-name>executable</param-name>
+<param-value></param-value>
+</init-param>
+<init-param>
+<param-name>passShellEnvironment</param-name>
+<param-value>true</param-value>
+</init-param>
+</servlet>
+This was Ok in Tomcat 6.0.29 but not in 6.0.30, see attachment.

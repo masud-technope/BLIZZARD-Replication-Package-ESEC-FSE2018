@@ -1,0 +1,3 @@
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JDIDebugBreakpointMessages.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JDIDebugBreakpointMessages.properties
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaMethodBreakpoint.java

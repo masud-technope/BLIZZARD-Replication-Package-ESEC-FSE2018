@@ -1,0 +1,10 @@
+Bug 329248 – [ltk] "A file or folder with this name already exist" on empty input for resource rename dialog
+Build Identifier: Version: 3.6.1 Build id: M20100909-0800
+Inappropriate error message "A file or folder with this name already exist" appears on empty input for Resource Rename dialog.
+Reproducible: Always
+Steps to Reproduce:
+Steps to reproduce:
+1) Create any file
+2) Press F2 on it
+3) Delete all text in opened "Rename Resource" dialog
+4) Inappropriate error message "A file or folder with this name already exist" will appear

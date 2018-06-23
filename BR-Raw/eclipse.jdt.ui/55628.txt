@@ -1,0 +1,2 @@
+Bug 55628 – Ctrl+o Filters not persistent when set via view menu
+I20040322

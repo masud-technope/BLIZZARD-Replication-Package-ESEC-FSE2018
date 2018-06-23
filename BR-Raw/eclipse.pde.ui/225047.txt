@@ -1,0 +1,22 @@
+Bug 225047 – DBCS3.4: Externalize Strings halts when using DBCS characters
+Build ID: I20080305-1100
+OS: Mac OS X 10.5.2 (intel)
+Locale: ja_JP.UTF-8
+Steps To Reproduce:
+1.
+Create a plugin project with "Hello World" template
+2.
+Put DBCS values for plugin name or provider in plugin.xml
+otherwise, using NL packs could simplify this step since DBCS values are filled in menu and action name
+3.
+Select the project and start Externalize Strings wizard by PDE Tools > Externalize Strings...
+4.
+Make sure plugin.xml and MANIFEST.MF of the selected plugin are checked and click Finish
+5.
+An error dialog appears saying "An exception has been caught while processing the refactoring 'Extenalize Strings'." followed by the detailed reason as described below:
+Some characters cannot be mapped using "ISO-8859-1" character encoding.
+Either change the encoding or remove the characters which are not supported by the "ISO-8859-1" character encoding.
+This is right, however we can generate property files from Java class including DBCS values for fields and method body by using "Externalize Strings" wizard in JDT.
+Could PDE support converting DBCS values to Unicode escaped characters as JDT does before generating plugin.properties file?
+More information:
+also found on Win32 (ja) and Solaris (ja)

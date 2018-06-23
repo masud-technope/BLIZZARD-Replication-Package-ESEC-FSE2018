@@ -1,0 +1,19 @@
+Bug 24579 – Deadlock on first checkout of java project
+Build 20021008
+Exact steps followed:
+1) Open new workspace
+2) Go to Preferences-> Plugin Development -> Java Build Path Control
+3) Uncheck all check boxes
+4) Open new CVS perspective
+5) Create anonymous connect to eclipse.org
+6) Checkout org.eclipse.core.resources
+Deadlock.
+Note: this is not a core bug, I'm just logging it here until I can investigate
+further.
+ The problem is that someone is launching a ModalContext thread from
+the UI, and not blocking until it finishes.
+ Then another ModalContext is
+forked, so we have:
+ModalContext1: holding Workspace lock, attempts syncExec
+ModalContext2: waiting on workspace lock
+UI thread: blocked on ModalContext 2

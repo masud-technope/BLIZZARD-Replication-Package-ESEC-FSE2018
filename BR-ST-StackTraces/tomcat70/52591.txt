@@ -1,0 +1,9 @@
+org.apache.tomcat.util.modeler.BaseModelMBean.getAttribute
+com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.getAttribute
+com.sun.jmx.mbeanserver.JmxMBeanServer.getAttribute
+org.apache.catalina.mbeans.MBeanDumper.dumpBeans
+org.apache.catalina.manager.JMXProxyServlet.listBeans
+org.apache.catalina.manager.JMXProxyServlet.doGet
+javax.servlet.http.HttpServlet.service
+org.apache.tomcat.dbcp.dbcp.BasicDataSource.getLoginTimeout
+sun.reflect.NativeMethodAccessorImpl.invoke0

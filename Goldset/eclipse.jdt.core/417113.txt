@@ -1,0 +1,15 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/TypeBindingTests308.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/AbstractJavaModelTests.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/AnnotatableTypeSystem.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/LookupEnvironment.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/classfmt/TypeAnnotationWalker.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/impl/CompilerOptions.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/AnnotatableTypeSystem.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/AnnotationBinding.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/BinaryTypeBinding.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/LookupEnvironment.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/SourceTypeBinding.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/TypeSystem.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/UnannotatedTypeSystem.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/UnresolvedAnnotationBinding.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/CompilationUnitProblemFinder.java

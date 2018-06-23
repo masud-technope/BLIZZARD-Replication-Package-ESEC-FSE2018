@@ -1,0 +1,14 @@
+Bug 246155 – Support for multiple user log-ins with same username and password
+Build ID: ?
+Steps To Reproduce:
+1.
+Create XMPP user ID
+2.
+Try to log-in with the same ID several times
+3.
+More information:
+In companies where users have to work on several PCs at the same time they need to connect to an application several times as well by using their username and password.
+Please see the concerns Scott has below:
+The current implementation of XMPPIDs does not take the resourcename into account when testing for equality (e.g.
+"slewis@ecf.eclipse.org".equals("slewis@ecf.eclipse.org/ecf_client15")), so this may cause some issues with identifying and addressing specific remote instances.
+ If so we can/will fix the xmppid implementation...so please let me know how this goes.

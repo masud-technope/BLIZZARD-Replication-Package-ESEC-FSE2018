@@ -1,0 +1,9 @@
+org.eclipse.jdi.internal.MirrorImpl.defaultReplyErrorHandler
+org.eclipse.jdi.internal.ThreadReferenceImpl.suspendCount
+org.eclipse.jdt.internal.debug.core.model.JDIThread.resumedByVM
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.resumeThreads
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.resume
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.resume
+org.eclipse.debug.internal.ui.actions.ResumeActionDelegate.doAction
+org.eclipse.debug.internal.ui.actions.AbstractDebugActionDelegate$DebugRequestJob.run
+org.eclipse.core.internal.jobs.Worker.run

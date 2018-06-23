@@ -1,0 +1,113 @@
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/JavaHeuristicScannerTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/PartitionTokenScannerTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/SmartSemicolonAutoEditStrategyTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/contentassist/JavadocCompletionTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/contentassist/MethodInsertionFormattedCompletionTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/ScrollJavaEditorTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/ScrollTextEditorTest.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/BinaryReferencesTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ChangeSignatureTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/PromoteTempToFieldTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/RenamePackageTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/RenameTypeTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ccp/DeleteTest.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ccp/PasteActionTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/contentassist/CamelCaseCompletionTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/contentassist/CodeCompletionTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/contentassist/ContentAssistHistoryTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/contentassist/JavadocCompletionTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/contentassist/MethodInsertCompletionTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/contentassist/MethodInsertionFormattedCompletionTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/contentassist/MethodOverwriteCompletionTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/contentassist/MethodParameterGuessingCompletionTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/contentassist/MethodParamsCompletionTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/contentassist/SpecialMethodsCompletionTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/contentassist/TypeCompletionTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/CodeCompletionPerformanceTest.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ChangeSignatureTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/IntroduceParameterTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/nls/NLSHintTest.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/nls/NLSHolderTest.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/nls/NLSSourceModifierTest.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/nls/NLSTestSuite.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/nls/NlsRefactoringCheckFinalConditionsTest.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/nls/NlsRefactoringCheckInitialConditionsTest.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/nls/NlsRefactoringCreateChangeTest.java
+org.eclipse.jdt.ui.tests/leaks/org/eclipse/jdt/ui/tests/leaks/JavaLeakTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/callhierarchy/CallHierarchyContentProviderTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/ASTNodesInsertTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/ASTProviderTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/AddImportTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/BindingsNameTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/CallHierarchyTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/ClassPathDetectorTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/CodeFormatterTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/CodeFormatterUtilTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/CoreTests.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/HierarchicalASTVisitorTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/ImportOrganizeTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/IndentManipulationTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/JavaElementLabelsTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/JavaElementPropertyTesterTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/JavaModelUtilTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/MethodOverrideTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/NameProposerTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/OverrideTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/PartialASTTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/ScopeAnalyzerTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/SelectionHistoryTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/StringsTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/TemplateStoreTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/TypeHierarchyTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/TypeInfoTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/TypeRulesTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/source/AddUnimplementedConstructorsTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/source/AddUnimplementedMethodsTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/source/GenerateConstructorUsingFieldsTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/source/GenerateDelegateMethodsTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/source/GenerateGettersSettersTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/source/GenerateHashCodeEqualsTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/source/GenerateToStringTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/source/SourceActionTests.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/packageview/HierarchicalContentProviderTests.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/packageview/PackageExplorerTests.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/AdvancedQuickAssistTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/AssistQuickFixTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/ChangeNonStaticToStaticTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/CleanUpActionTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/CleanUpAnnotationTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/CleanUpStressTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/CleanUpTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/CleanUpTestCase.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/ContributedQuickFixTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/ConvertForLoopQuickFixTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/ConvertIterableLoopQuickFixTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/GetterSetterQuickFixTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/JavadocQuickFixTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/LocalCorrectionsQuickFixTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/MarkerResolutionTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/ModifierCorrectionsQuickFixTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/QuickFixEnablementTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/QuickFixTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/ReorgQuickFixTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/ReturnTypeQuickFixTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/SaveParticipantTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/SerialVersionQuickFixTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/SurroundWithTemplateTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/TypeMismatchQuickFixTests.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/TypeParameterMismatchTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/UnresolvedMethodsQuickFixTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/UnresolvedTypesQuickFixTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/UnresolvedVariablesQuickFixTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/UtilitiesTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/search/FileAdapterTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/search/NLSSearchTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/search/ParticipantTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/search/SearchLeakTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/search/SearchLeakTestWrapper.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/search/SearchTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/search/TreeContentProviderTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/search/TreeContentProviderTestWrapper.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/search/WorkspaceReferenceTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/wizardapi/NewTypeWizardTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/MarkerResolutionTest.java

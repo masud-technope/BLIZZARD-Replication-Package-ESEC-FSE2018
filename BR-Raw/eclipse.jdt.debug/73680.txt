@@ -1,0 +1,23 @@
+Bug 73680 – Array index out of bounds doing HCR
+I introduced a compilation error to a method which triggered an HCR, and got
+the following exception:
+java.lang.ArrayIndexOutOfBoundsException: Array index out of range: 0
+at org.eclipse.jdt.internal.debug.core.hcr.MethodSearchVisitor.visit(MethodSearchVisitor.java:156)
+at org.eclipse.jdt.core.dom.MethodDeclaration.accept0(MethodDeclaration.java:489)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2450)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2520)
+at org.eclipse.jdt.core.dom.TypeDeclaration.accept0(TypeDeclaration.java:486)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2450)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2520)
+at org.eclipse.jdt.core.dom.CompilationUnit.accept0(CompilationUnit.java:292)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2450)
+at org.eclipse.jdt.internal.debug.core.hcr.CompilationUnitDelta.findMethod(CompilationUnitDelta.java:142)
+at org.eclipse.jdt.internal.debug.core.hcr.CompilationUnitDelta.hasChanged(CompilationUnitDelta.java:130)
+at org.eclipse.jdt.internal.debug.core.hcr.JavaHotCodeReplaceManager.getAffectedFrame(JavaHotCodeReplaceManager.java:727)
+at org.eclipse.jdt.internal.debug.core.hcr.JavaHotCodeReplaceManager.getAffectedFrames(JavaHotCodeReplaceManager.java:681)
+at org.eclipse.jdt.internal.debug.core.hcr.JavaHotCodeReplaceManager.attemptPopFrames(JavaHotCodeReplaceManager.java:631)
+at org.eclipse.jdt.internal.debug.core.hcr.JavaHotCodeReplaceManager.doHotCodeReplace(JavaHotCodeReplaceManager.java:382)
+at org.eclipse.jdt.internal.debug.core.hcr.JavaHotCodeReplaceManager.access$0(JavaHotCodeReplaceManager.java:363)
+at org.eclipse.jdt.internal.debug.core.hcr.JavaHotCodeReplaceManager$1.run(JavaHotCodeReplaceManager.java:292)
+at org.eclipse.debug.core.DebugPlugin$AsynchJob.run(DebugPlugin.java:876)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:66)

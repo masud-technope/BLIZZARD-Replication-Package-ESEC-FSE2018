@@ -1,0 +1,62 @@
+57683 – Crash of stockticket async example caused by an aborted client request
+I mentioned this issue in "Time for 7.0.60" thread on dev@.
+It is a bug with error handling in example webapp.
+It is not a regression from recent changes.
+It is reproducible with 7.0.59.
+Steps to reproduce:
+Using Tomcat 7.0.59, JDK 6u45.
+1.
+Start Tomcat
+2.
+Visit stockicker example,
+http://localhost:8080/examples/async/stockticker
+3.
+Abort the request while the page is being loaded (Press "Esc" key on keyboard)
+4.
+Re-visit the example
+http://localhost:8080/examples/async/stockticker
+Expected: Working stockicker example.
+Actual:
+1) Browser waits for a response.
+After several seconds the progress indicator stops.
+A blank page is displayed.
+2) Access log shows response status 200, but byte counter is zero ("-").
+127.0.0.1 - - [10/Mar/2015:17:45:31 +0300] "GET /examples/async/stockticker HTTP/1.1" 200 -
+3) Looking into catalina.2015-03-10.log, there is the following exception:
+[[[
+10.03.2015 17:36:58 org.apache.coyote.AbstractProcessor setErrorState
+INFO: An error occurred in processing while on a non-container thread.
+The connection will be closed immediately
+java.net.SocketException: Software caused connection abort: socket write error
+at java.net.SocketOutputStream.socketWrite0(Native Method)
+at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:92)
+at java.net.SocketOutputStream.write(SocketOutputStream.java:136)
+at org.apache.coyote.http11.InternalOutputBuffer.realWriteBytes(InternalOutputBuffer.java:215)
+at org.apache.tomcat.util.buf.ByteChunk.flushBuffer(ByteChunk.java:480)
+at org.apache.coyote.http11.InternalOutputBuffer.flush(InternalOutputBuffer.java:119)
+at org.apache.coyote.http11.AbstractHttp11Processor.action(AbstractHttp11Processor.java:800)
+at org.apache.coyote.Response.action(Response.java:172)
+at org.apache.catalina.connector.OutputBuffer.doFlush(OutputBuffer.java:363)
+at org.apache.catalina.connector.OutputBuffer.flush(OutputBuffer.java:331)
+at org.apache.catalina.connector.CoyoteWriter.flush(CoyoteWriter.java:98)
+at async.AsyncStockServlet.writeStock(AsyncStockServlet.java:98)
+at async.AsyncStockServlet.tick(AsyncStockServlet.java:81)
+at async.Stockticker.run(Stockticker.java:84)
+at java.lang.Thread.run(Thread.java:662)
+]]]
+4) Looking at console,
+There is the same exception as in "3)",
+followed by the following exception:
+[[[
+java.lang.IllegalStateException: The request associated with the AsyncContext has already completed processing.
+at org.apache.catalina.core.AsyncContextImpl.check(AsyncContextImpl.java:553)
+at org.apache.catalina.core.AsyncContextImpl.getResponse(AsyncContextImpl.java:265)
+at async.AsyncStockServlet.writeStock(AsyncStockServlet.java:86)
+at async.AsyncStockServlet.tick(AsyncStockServlet.java:81)
+at async.Stockticker.run(Stockticker.java:84)
+at java.lang.Thread.run(Thread.java:662)
+]]]
+Essentially, the async.Stockticker thread crashed due to a non handled ISE.
+This explains the behaviour.
+5) The exception in "4)" is logged to the console only.
+It is not logged into Tomcat log files.

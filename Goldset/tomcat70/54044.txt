@@ -1,0 +1,5 @@
+test/org/apache/catalina/valves/TestAccessLogValve.java
+test/org/apache/juli/TestDateFormatCache.java
+java/org/apache/catalina/valves/AccessLogValve.java
+test/org/apache/catalina/valves/TestAccessLogValve.java
+webapps/docs/changelog.xml

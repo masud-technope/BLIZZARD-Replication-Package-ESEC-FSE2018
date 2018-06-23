@@ -1,0 +1,1 @@
+Bug 395658 – [1.8][ast rewrite] MethodDeclaration's thrown exceptions should be Types and not Names.

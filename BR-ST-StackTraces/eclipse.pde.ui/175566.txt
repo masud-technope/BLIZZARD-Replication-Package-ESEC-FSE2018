@@ -1,0 +1,13 @@
+java.lang.Throwable.<init>
+org.eclipse.swt.graphics.Device.new_Object
+org.eclipse.swt.graphics.Image.<init>
+org.eclipse.jface.resource.ImageDescriptor.createImage
+org.eclipse.jface.resource.ImageDescriptor.createImage
+org.eclipse.jface.resource.ImageDescriptor.createImage
+org.eclipse.pde.internal.ui.editor.text.PDEQuickAssistAssistant.<init>
+org.eclipse.pde.internal.ui.editor.text.XMLConfiguration.getQuickAssistAssistant
+org.eclipse.jface.text.source.SourceViewer.configure
+org.eclipse.pde.internal.ui.preferences.SyntaxColorTab.createPreviewer
+org.eclipse.pde.internal.ui.preferences.SyntaxColorTab.createContents
+org.eclipse.pde.internal.ui.preferences.EditorPreferencePage.createXMLTab
+org.eclipse.pde.internal.ui.preferences.EditorPreferencePage.createContents

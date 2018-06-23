@@ -1,0 +1,19 @@
+Bug 445231 – [compiler] IllegalAccessError running Eclipse-compiled class
+Created attachment 247419 [details]
+whole Eclipse project, with 4 source files and their compiled .classes as well
+The code below, when compiled by Eclipse (4.4.1), causes an IllegalAccessError to be thrown by "clazz.isAnonymousClass()" when it's run.
+The same code can be successfully compiled and runs properly by java's javac (java 1.7.0).
+I encountered this problem on my project, and then did my best to trim it down to a minimal reproduceable case, but I still need 4 classes in 2 java packages.
+Just about anything that I try to trim down any further makes the problem disappear.
+Be careful tinkering with this: incremental compile sometimes does not toggle the thing to go good/bad (i.e.
+when making any change to the code, do a full clean and re-run).
+I attach here the entire project as a zip, including the .classes as I see them.
+BTW, here's a few examples of things that make the problem go away:
+1.
+Stop calling .setJobName on Buggered
+2.
+Make Base public
+3.
+put all classes in the same package
+4.
+simplify the generic type of Base.Builder

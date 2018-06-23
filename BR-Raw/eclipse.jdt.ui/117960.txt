@@ -1,0 +1,11 @@
+Bug 117960 – [quick assist] Inversion of 'value' of conditional expressions is incorrect
+Start with this code:
+String scheme1 = "";
+String scheme2 = "";
+if (!(scheme1 == null ? scheme2 == null : ((scheme2 != null) && scheme1.equals(scheme2))))
+return false;
+2) Put the cursor next to the ! at the beginning of the if statement and select the "push negation down" quick fix.
+ The resulting code has compile errors:
+if (!scheme1 == null ? scheme2 == null : ((scheme2 != null) && scheme1.equals(scheme2)))
+return false;
+Error: "The operation "!" is undefined for the argument type(s) String."

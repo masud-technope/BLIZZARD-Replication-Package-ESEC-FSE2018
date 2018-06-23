@@ -1,0 +1,18 @@
+Bug 364815 – [preferences] UI for new preferences regarding annotation based null analysis
+As bug 186342 is converging towards release, now would be a good time
+to make the new configuration options available in the UI.
+Please see the new preference constants in JavaCore inside attachment 207270 [details]
+Basically we'd need:
+[x] Enable annotation based null analysis
+FQN of the annotation type to be used for marking nullable types _____
+FQN of the annotation type to be used for marking non-null types _____
+FQN of the annotation type to be used for making non-null the default ____
+[x] Globally make non-null the default
+Reporting:
+Violation of null specification [Error/Warning/Ignore]
+Violation of null specifications with potential null value [Error/Warning/Ignore]
+Insufficient information for analysing adherence to null specifications [Error/Warning/Ignore]
+Redundant null annotations  [Error/Warning/Ignore]
+Obviously all these preferences depend on the first ("Enable ...").
+Please consider the wording just as initial drafts.
+Let me know if anything is unclear.

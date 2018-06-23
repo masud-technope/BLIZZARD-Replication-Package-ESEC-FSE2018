@@ -1,0 +1,7 @@
+50591 – NPE in ReplicationValve in 7.0.6
+It was reported on the users@ list:
+http://tomcat.markmail.org/thread/44rnbj7gbkevzb32
+SEVERE: Unable to perform replication request.
+java.lang.NullPointerException
+at org.apache.catalina.ha.tcp.ReplicationValve.isRequestWithoutSessionChange(ReplicationValve.java:554)
+It will occur when ReplicationValve#filter attribute has an empty value.

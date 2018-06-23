@@ -1,0 +1,64 @@
+Bug 464570 – [compiler][codegen] race condition on static field CodeStream.noVisibleLocals in method CodeStream.init()
+weblogic make use of JDT to compile the translated java source from jsp files to java bytecode with multi-threads, ArrayIndexOutOfBoundsException occurs intermittently as following stack showing (weblogic repackaged the jdt jar for avoiding potential class conflict):
+java.lang.ArrayIndexOutOfBoundsException
+at java.lang.System.arraycopy(Native Method)
+at com.bea.core.repackaged.jdt.internal.compiler.codegen.CodeStream.init(CodeStream.java:4114)
+at com.bea.core.repackaged.jdt.internal.compiler.codegen.StackMapFrameCodeStream.init(StackMapFrameCodeStream.java:426)
+at com.bea.core.repackaged.jdt.internal.compiler.codegen.TypeAnnotationCodeStream.init(TypeAnnotationCodeStream.java:149)
+at com.bea.core.repackaged.jdt.internal.compiler.codegen.CodeStream.reset(CodeStream.java:6665)
+at com.bea.core.repackaged.jdt.internal.compiler.ast.AbstractMethodDeclaration.generateCode(AbstractMethodDeclaration.java:330)
+at com.bea.core.repackaged.jdt.internal.compiler.ast.AbstractMethodDeclaration.generateCode(AbstractMethodDeclaration.java:281)
+at com.bea.core.repackaged.jdt.internal.compiler.ast.TypeDeclaration.generateCode(TypeDeclaration.java:567)
+at com.bea.core.repackaged.jdt.internal.compiler.ast.TypeDeclaration.generateCode(TypeDeclaration.java:636)
+at com.bea.core.repackaged.jdt.internal.compiler.ast.CompilationUnitDeclaration.generateCode(CompilationUnitDeclaration.java:368)
+at com.bea.core.repackaged.jdt.internal.compiler.Compiler.process(Compiler.java:814)
+at com.bea.core.repackaged.jdt.internal.compiler.Compiler.processCompiledUnits(Compiler.java:488)
+at com.bea.core.repackaged.jdt.internal.compiler.Compiler.compile(Compiler.java:453)
+at weblogic.jsp.internal.java.JDTJavaCompiler.generateByteCode(JDTJavaCompiler.java:137)
+at weblogic.jsp.internal.java.JavaSourceFile._codeGen(JavaSourceFile.java:211)
+at weblogic.jsp.internal.java.JavaSourceFile.codeGen(JavaSourceFile.java:201)
+at weblogic.jsp.internal.ProxySourceFile.compileGeneratedFiles(ProxySourceFile.java:330)
+at weblogic.jsp.internal.ProxySourceFile.codeGen(ProxySourceFile.java:258)
+at weblogic.jsp.internal.SourceFile.codeGen(SourceFile.java:327)
+at weblogic.jsp.internal.client.ClientUtilsImpl$CodeGenJob.run(ClientUtilsImpl.java:622)
+at weblogic.jsp.internal.client.Job.performJob(Job.java:85)
+at weblogic.jsp.internal.client.ThreadPool$WorkerThread.run(ThreadPool.java:219)
+This AIOOBE should be caused by race-condition on the shared static field org.eclipse.jdt.internal.compiler.codegen.CodeStream.noVisibleLocals, it's easy to figure out a case which can reproduce such AIOOBE, one of the possible fixes may be:
+index 8a1c987..58e40b7 100644
+--- a/org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/codegen/CodeStream.java
++++ b/org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/codegen/CodeStream.java
+@@ -4108,29 +4108,37 @@ public void init(ClassFile targetClassFile) {
+this.pcToSourceMapSize = 0;
+this.lastEntryPC = 0;
+int length = this.visibleLocals.length;
++       LocalVariableBinding[] noVisibleLocals = this.noVisibleLocals;
+if (noVisibleLocals.length < length) {
+noVisibleLocals = new LocalVariableBinding[length];
++               this.noVisibleLocals = noVisibleLocals;
+}
+System.arraycopy(noVisibleLocals, 0, this.visibleLocals, 0, length);
+this.visibleLocalsCount = 0;
+length = this.locals.length;
++       LocalVariableBinding[] noLocals = this.noLocals;
+if (noLocals.length < length) {
+noLocals = new LocalVariableBinding[length];
++               this.noLocals = noLocals;
+}
+System.arraycopy(noLocals, 0, this.locals, 0, length);
+this.allLocalsCounter = 0;
+length = this.exceptionLabels.length;
++       ExceptionLabel[] noExceptionHandlers = this.noExceptionHandlers;
+if (noExceptionHandlers.length < length) {
+noExceptionHandlers = new ExceptionLabel[length];
++               this.noExceptionHandlers = noExceptionHandlers;
+}
+System.arraycopy(noExceptionHandlers, 0, this.exceptionLabels, 0, length);
+this.exceptionLabelsCounter = 0;
+length = this.labels.length;
++       BranchLabel[] noLabels = this.noLabels;
+if (noLabels.length < length) {
+noLabels = new BranchLabel[length];
++               this.noLabels = noLabels;
+}
+System.arraycopy(noLabels, 0, this.labels, 0, length);
+this.countLabels = 0;

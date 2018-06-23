@@ -1,0 +1,10 @@
+Bug 319854 – [search] wrong condition for warning about references to inlined constant
+Created attachment 174289 [details]
+Fix
+I20100713-0800 (old problem)
+The condition in SearchUtil.warnIfBinaryConstant(IJavaElement, Shell) is wrong.
+It tests whether the field is declared in a binary type, but that doesn't matter for this problem.
+What matters is whether a *reference* is in a binary type (since only those references are not being found due to bug 12044).
+I first thought we could improve the test by using
+"IField.getConstant() != null", but that Java model method doesn't work reliably since it doesn't resolve the initializer (bug 202293).
+So we have to keep the warning for all static final fields of a "dangerous" type.

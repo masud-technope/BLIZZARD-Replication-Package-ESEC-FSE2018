@@ -1,0 +1,8 @@
+Bug 198881 – Hyperlink detector not working on Build source page
+Created attachment 75393 [details]
+patch to org.eclipse.pde.ui
+Version: 3.3.0
+Build id: I20070625-1500
+The build.properties editor has a hyperlink detector, but it is never enabled due to a bug in BuildSourcePage.
+ It is attempting to adapt to IHyperlinkDetector[] instead of IHyperlinkDetector.
+ Patch is attached.

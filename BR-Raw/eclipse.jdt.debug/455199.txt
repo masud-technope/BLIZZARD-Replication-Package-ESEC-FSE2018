@@ -1,0 +1,21 @@
+Bug 455199 – [debug] Debugging doesn't work properly when inner classes are used
+Example class:
+class NoDebuggingCase {
+def void call(NoDebuggingAcceptor inner) {
+println(inner) //<-- set breakpoint here
+}
+interface NoDebuggingAcceptor {
+def void accept(String typeImport)
+}
+}
+When debugging the "call" method from e.g.
+junit test no display or inspect informations are available:
+@Test
+def void testCase() {
+var c = new NoDebuggingCase()
+c.call(new NoDebuggingCase.NoDebuggingAcceptor() {
+override accept(String typeImport) {
+throw new UnsupportedOperationException("TODO: auto-generated method stub")
+}
+})
+}

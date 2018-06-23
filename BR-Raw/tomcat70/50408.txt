@@ -1,0 +1,17 @@
+50408 – Scoped EL variable in methodexpression is treated as Object
+Consider following example:
+<dl>
+<c:forEach items="${pageContext.response.headerNames}" var="name">
+<c:forEach items="${pageContext.response.getHeaders(name)}" var="value">
+<dt>${name}</dt><dd>${value}</dd>
+</c:forEach>
+</c:forEach>
+</dl>
+The ${name} is a String.
+The ${name.class.name} also proves that.
+The getHeaders(name) call however results in:
+org.apache.jasper.el.JspELException: /test.jsp(23,12) '${pageContext.response.getHeaders(name)}' java.lang.NoSuchMethodException: org.apache.catalina.connector.ResponseFacade.getHeaders(java.lang.Object)
+Another example which also results in NoSuchMethodException which suggests that an Object is been passed as argument:
+<c:set var="name" value="test" />
+${pageContext.response.getHeader(name)}
+This works all fine on Glassfish v3.

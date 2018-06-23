@@ -1,0 +1,46 @@
+Bug 57642 – [ViewMgmt] debug tests failures due to missing selection
+I20040406
+Some of the varible resolution tests that depend on a selected resource fail
+due to an empty selection.
+The failures are intermitent - a sample is shown
+below.
+Not certain if this is a problem with our test, or the workbench.
+Running the tests locally, I get no failures.
+Variable references empty selection: ${project_loc}
+org.eclipse.core.runtime.CoreException: Variable references empty selection:
+${project_loc}
+at org.eclipse.debug.internal.ui.stringsubstitution.ResourceResolver.abort
+(ResourceResolver.java:104)
+at
+org.eclipse.debug.internal.ui.stringsubstitution.ResourceResolver.getSelectedRe
+source(ResourceResolver.java:117)
+at
+org.eclipse.debug.internal.ui.stringsubstitution.ResourceResolver.resolveValue
+(ResourceResolver.java:40)
+at org.eclipse.core.internal.variables.DynamicVariable.getValue
+(DynamicVariable.java:49)
+at org.eclipse.core.internal.variables.StringSubstitutionEngine.resolve
+(StringSubstitutionEngine.java:256)
+at org.eclipse.core.internal.variables.StringSubstitutionEngine.substitute
+(StringSubstitutionEngine.java:180)
+at
+org.eclipse.core.internal.variables.StringSubstitutionEngine.performStringSubst
+itution(StringSubstitutionEngine.java:87)
+at
+org.eclipse.core.internal.variables.StringVariableManager.performStringSubstitu
+tion(StringVariableManager.java:534)
+at
+org.eclipse.core.internal.variables.StringVariableManager.performStringSubstitu
+tion(StringVariableManager.java:327)
+at org.eclipse.jdt.debug.tests.core.StringSubstitutionTests.doSubs
+(StringSubstitutionTests.java:172)
+at
+org.eclipse.jdt.debug.tests.core.StringSubstitutionTests.testProjectLocSelectFo
+lder(StringSubstitutionTests.java:454)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke
+(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke
+(DelegatingMethodAccessorImpl.java:25)
+at org.eclipse.jdt.debug.tests.AutomatedSuite$1.run(AutomatedSuite.java:177)
+at java.lang.Thread.run(Thread.java:534)

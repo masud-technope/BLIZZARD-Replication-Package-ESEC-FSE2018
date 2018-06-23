@@ -1,0 +1,22 @@
+Bug 491485 – [1.8][compiler] Problem with Reference expression and intersection types
+The following code was rejected until 4.6 M5, but is accepted (erroneously) M6 onwards
+interface SAM<X, Y, Z extends X3> {
+Z bar(X a, Y b);
+}
+interface I<T> {
+}
+class X3 {
+}
+public class Tester {
+X3 method(SAM<?, ?, ?> s) {
+return s.bar(null, null);
+}
+Object foo(Object a, Object b) {
+return null;
+}
+X3 junk() {
+return method((SAM<?,?,?> & I <?>) this::foo);
+}
+}
+Happens since the fix for bug 487586.
+The reason is that getInterfaceAbstractContracts does not replace wildcards the way PTB.getSingleAbstractMethod does, leading the compiler to ignore the type bound on the third type parameter of SAM

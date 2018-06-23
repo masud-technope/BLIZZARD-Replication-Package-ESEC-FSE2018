@@ -1,0 +1,12 @@
+Bug 43364 – [typing] new line insertion sometimes goes wrong!
+try and put a new line between the two variable declarations.
+It will shift the
+second variable declaration to line up with "c".
+------------------------------------------------------------
+public class A
+{
+private static final String[] var = new String[] { "a", "b",
+"c", "d"};
+private static final int var2 = 4; //press enter at beginning of this line
+}
+------------------------------------------------------------

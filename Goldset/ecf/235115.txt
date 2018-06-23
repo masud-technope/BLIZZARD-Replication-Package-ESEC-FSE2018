@@ -1,0 +1,5 @@
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/provider/jslp/container/JSLPDiscoveryContainer.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/provider/jslp/identity/JSLPNamespace.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/provider/jslp/identity/JSLPServiceID.java
+tests/bundles/org.eclipse.ecf.tests.provider.jslp/src/org/eclipse/ecf/tests/provider/jslp/JSLPTestComparator.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/DiscoveryTest.java

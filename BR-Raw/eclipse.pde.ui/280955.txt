@@ -1,0 +1,7 @@
+Bug 280955 – Don't make Activator extend Plugin by default
+Build: 3.5
+I have a simple bundle with no dependency on org.eclipse.core.runtime.
+If I click the "Activator" hyperlink in the Overview tab of the manifest editor, it opens the new Class wizard with the superclass set to "org.eclipse.core.runtime.Plugin".
+We are trying to encourage people to convert to the OSGi practice of simply extending BundleActivator.
+Dependency on Plugin and org.eclipse.core.runtime pulls in lots of extra baggage that an "OSGi-clean" bundle will often want to avoid.
+In general I think the PDE tools should encourage best practices and avoid adding gratuitous dependencies, so I suggest changing this to simply implement BundleActivator instead.

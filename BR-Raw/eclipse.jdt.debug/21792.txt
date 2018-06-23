@@ -1,0 +1,12 @@
+Bug 21792 – vm arguments ending with a backslash cause problems
+When creating a launch configuration, if one specifies some vm arguments, those
+vm arguments cause problems when they end with a backslash ('\').
+What seems to
+happen is that the backslash 'consumes' the character that comes next.
+So if I for instance specify 2 vm arguments: -Duser.dir=c:\ -Duser.name=John
+Then the space which separates the 2 arguments will be 'eaten' by the
+backslash.
+The result is that only 1 vm argument is passed to the application.
+If I put 2 spaces between the 2 arguments, then both vm arguments are passed to
+the application, but now the first argument ends with a space (as it should).
+If I reverse the order of the arguments, then everything works fine.

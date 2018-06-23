@@ -1,0 +1,12 @@
+Bug 424914 – [1.8][compiler] No error shown for method reference with super enclosed in an interface
+package com.p1;
+interface A {
+String foo();
+default void fun1() {
+System.out.println((A) super::toString);
+}
+}
+----------------------------------------------
+The above example compiles with ECJ but shows error with b120.
+(JSR 335, 15.28 : If a method reference has the form super :: NonWildTypeArgumentsopt Identifier, let T be the type declaration immediately enclosing the method reference.
+It is a compile-time error if T is the class Object or T is an interface.)

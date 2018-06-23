@@ -1,0 +1,2 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/compare/JavaMergeViewer.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/EditorUtility.java

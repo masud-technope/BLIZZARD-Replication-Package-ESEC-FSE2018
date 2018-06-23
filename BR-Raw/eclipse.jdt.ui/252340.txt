@@ -1,0 +1,3 @@
+Bug 252340 – [clean up] Clean up infrastructure has minor documentation issues
+Current HEAD
+Several javadoc comments and the cleanup ext point schema have minor typos.

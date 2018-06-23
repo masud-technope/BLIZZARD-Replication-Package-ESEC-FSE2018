@@ -1,0 +1,26 @@
+Bug 443870 – [null] ArrayIndexOutOfBoundsException in NullAnnotationMatching
+> java.lang.ArrayIndexOutOfBoundsException: 1
+> 	at org.eclipse.jdt.internal.compiler.ast.NullAnnotationMatching.analyse(NullAnnotationMatching.java:217)
+> 	at org.eclipse.jdt.internal.compiler.lookup.ImplicitNullAnnotationVerifier.checkNullSpecInheritance(ImplicitNullAnnotationVerifier.java:291)
+> 	at org.eclipse.jdt.internal.compiler.lookup.ImplicitNullAnnotationVerifier.checkImplicitNullAnnotations(ImplicitNullAnnotationVerifier.java:113)
+> 	at org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.createArgumentBindings(SourceTypeBinding.java:2004)
+> 	at org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.resolveTypesFor(SourceTypeBinding.java:1971)
+> 	at org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.methods(SourceTypeBinding.java:1464)
+> 	at org.eclipse.jdt.internal.compiler.lookup.ReferenceBinding.unResolvedMethods(ReferenceBinding.java:1804)
+> 	at org.eclipse.jdt.internal.compiler.lookup.MethodVerifier.computeInheritedMethods(MethodVerifier.java:511)
+> 	at org.eclipse.jdt.internal.compiler.lookup.MethodVerifier.computeInheritedMethods(MethodVerifier.java:484)
+> 	at org.eclipse.jdt.internal.compiler.lookup.MethodVerifier.verify(MethodVerifier.java:969)
+> 	at org.eclipse.jdt.internal.compiler.lookup.MethodVerifier15.verify(MethodVerifier15.java:1003)
+> 	at org.eclipse.jdt.internal.compiler.lookup.MethodVerifier.verify(MethodVerifier.java:979)
+> 	at org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.verifyMethods(SourceTypeBinding.java:2508)
+> 	at org.eclipse.jdt.internal.compiler.lookup.CompilationUnitScope.verifyMethods(CompilationUnitScope.java:824)
+> 	at org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:767)
+> 	at org.eclipse.jdt.internal.compiler.ProcessTaskManager.run(ProcessTaskManager.java:137)
+> 	at java.lang.Thread.run(Thread.java:745)
+eclipse.buildId=4.4.1.M20140902-1430
+java.version=1.8.0_11
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.jee.product
+Sorry, I wasn't able to reduce my large project to replicate this in a small test-case.

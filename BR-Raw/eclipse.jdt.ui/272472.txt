@@ -1,0 +1,3 @@
+Bug 272472 – [extract method] preview shows useless scrollbar
+I20090414-0800
+The JavaSourceViewer used as preview for the method signature shows vertical scrollbars even if not necessary.

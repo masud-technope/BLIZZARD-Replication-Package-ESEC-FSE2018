@@ -1,0 +1,24 @@
+Bug 458577 – IClassFile.getWorkingCopy() may lead to NPE in BecomeWorkingCopyOperation
+Created attachment 250278 [details]
+proposed fixes
+In experiments regarding bug 458201 I ran into an NPE.
+It starts when I say
+classFile.getWorkingCopy((WorkingCopyOwner)null, null);
+on a classFile representing a class of an external jar, for which a source attachment exists.
+In BecomeWorkingCopyOperation.executeOperation() we NPE upon a non-existent resource.
+I tried two ways for avoiding the NPE:
+1.
+If resource == null completely avoid adding a delta.
+This approach caused another NPE down the line:
+Util.getUnresolvedJavaElement(TypeBinding ...) found a SourceTypeBinding for which none of the following attempts succeed:
+- check if file is *.class -> create a ClassFile
+- else getCompilationUnit()
+In this situation fileName referred to a *.jar, => we return null.
+NPE occurred when the result of a recursive invocation was not checked for null (the type variable branch).
+Should jars be handled here? Or is just the fileName wrong? Should it point to the class file insided the jar?
+2.
+As an alternative I tried branching into "// report an ADDED delta".
+This one additionally(?) caused CCE in ClassFile.existsUsingJarTypeCache() where we expect a ClassFile but now have a ClassFileWorkingCopy.
+Here an instanceof check seems a natural solution.
+I'm attaching a patch which should make all three locations safer - for good measure.
+It demonstrates (2) even though the other option might be preferrable(?)

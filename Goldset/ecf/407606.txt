@@ -1,0 +1,12 @@
+osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/src/org/eclipse/ecf/osgi/services/remoteserviceadmin/AbstractTopologyManager.java
+osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/src/org/eclipse/ecf/osgi/services/remoteserviceadmin/IServiceInfoFactory.java
+osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/src/org/eclipse/ecf/osgi/services/remoteserviceadmin/EndpointDescriptionAdvertiser.java
+osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/src/org/eclipse/ecf/osgi/services/remoteserviceadmin/IEndpointDescriptionAdvertiser.java
+osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/META-INF/MANIFEST.MF
+osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/src/org/eclipse/ecf/internal/osgi/services/remoteserviceadmin/Activator.java
+compendium/bundles/org.eclipse.ecf.osgi.services.distribution/src/org/eclipse/ecf/internal/osgi/services/distribution/Activator.java
+osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/src/org/eclipse/ecf/osgi/services/remoteserviceadmin/RemoteServiceAdmin.java
+osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/src/org/eclipse/ecf/osgi/services/remoteserviceadmin/EndpointDescriptionLocator.java
+osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/src/org/eclipse/ecf/osgi/services/remoteserviceadmin/AbstractMetadataFactory.java
+osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/src/org/eclipse/ecf/osgi/services/remoteserviceadmin/ServiceInfoFactory.java
+compendium/bundles/org.eclipse.ecf.osgi.services.distribution/META-INF/MANIFEST.MF

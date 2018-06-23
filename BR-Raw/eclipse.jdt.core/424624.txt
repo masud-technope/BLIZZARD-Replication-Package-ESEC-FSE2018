@@ -1,0 +1,6 @@
+Bug 424624 – [1.8][null] if a static-object with annotation @NonNull is used, a warning is shown
+A static class an a static fina object of this class are declared with @NonNull.
+In another class the static object are used in as methode-argument that are annotated @NonNull.
+The compiler shows the warning "Null type safety (type annotations): The expression of type '@NonNull Test3.Test3aa' needs unchecked conversion to conform to '@NonNull Object'" by the use of Methode "test1" in class "Test4" (see Attachment)
+The warning says "Test3.Test3aa" but the Objectname are "Test3.Test3a".
+I uses Java 8 Beta and eclipse-SDK-4.3.1-linux-gtk-x86_64-efx-0.9.0-SNAPSHOT.tar.gz

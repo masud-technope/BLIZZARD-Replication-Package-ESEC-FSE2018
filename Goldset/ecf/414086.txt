@@ -1,0 +1,15 @@
+framework/bundles/org.eclipse.ecf.remoteservice.servlet/src/org/eclipse/ecf/remoteservice/servlet/ServletServerContainerInstantiator.java
+framework/bundles/org.eclipse.ecf.remoteservice.servlet/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.remoteservice.servlet/src/org/eclipse/ecf/remoteservice/servlet/AbstractObjectSerialization.java
+framework/bundles/org.eclipse.ecf.remoteservice.rest/src/org/eclipse/ecf/remoteservice/rest/client/RestClientContainerInstantiator.java
+examples/bundles/com.mycorp.examples.timeservice.provider.rest.host/plugin.xml
+examples/bundles/com.mycorp.examples.timeservice.provider.rest.host/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.remoteservice.servlet/src/org/eclipse/ecf/remoteservice/servlet/HttpServiceComponent.java
+framework/bundles/org.eclipse.ecf.remoteservice.servlet/src/org/eclipse/ecf/remoteservice/servlet/ObjectSerializationParameterDeserializer.java
+framework/bundles/org.eclipse.ecf.remoteservice/src/org/eclipse/ecf/remoteservice/util/ObjectSerializationUtil.java
+framework/bundles/org.eclipse.ecf.remoteservice.servlet/src/org/eclipse/ecf/remoteservice/servlet/ObjectSerializationResponseSerializer.java
+framework/bundles/org.eclipse.ecf.remoteservice.servlet/src/org/eclipse/ecf/remoteservice/servlet/StreamUtil.java
+framework/bundles/org.eclipse.ecf.remoteservice/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.remoteservice/src/org/eclipse/ecf/remoteservice/util/StreamUtil.java
+framework/bundles/org.eclipse.ecf.remoteservice.servlet/src/org/eclipse/ecf/remoteservice/servlet/ServletServerContainer.java
+framework/bundles/org.eclipse.ecf.remoteservice.servlet/src/org/eclipse/ecf/remoteservice/servlet/RemoteServiceServlet.java

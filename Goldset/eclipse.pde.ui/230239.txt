@@ -1,0 +1,7 @@
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/text/DSDocumentHandler.java
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/text/DSModel.java
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/IDSObject.java
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/IDSModel.java
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/text/DSDocumentFactory.java
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/text/DSObject.java
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/IDSDocumentFactory.java

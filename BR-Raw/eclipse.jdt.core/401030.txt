@@ -1,0 +1,14 @@
+Bug 401030 – [1.8][null] Null analysis support for lambda methods.
+BETA_JAVA8:
+This may be broken.
+LambdaExpression.resolveType is an amalgam of
+MethodScope.createMethod
+SourceTypeBinding.resolveTypesFor
+AbstractMethodDeclaration.resolve
+I may not have hooked up all portions needed for null inheritance/analysis
+since some of this code was too dependent on the method binding having an
+associated AbstractMethodDeclaration.
+In particular, the call to SourceTypeBinding.createArgumentBindings is
+not there.
+Please see Scope.isLambdaScope, Scope.isLambdaSubscope, scope.namedMethodScope
+et al which may help with an alternate implementation.

@@ -1,0 +1,28 @@
+56172 – AjpNioProtocol sometimes corrupts (ignores) the request body
+Tomcat sometimes fails to read the request body when using the AjpNioProtocol
+connector.
+The symptom of this is the log message
+ERROR org.apache.coyote.ajp.AjpMessage - Invalid message received with
+signature  ...
+The cause of this problem is the fact that the read-method in  AjpNioProcessor may read more than the requested number of bytes, if more than one readSocket call is required.
+Thus, reading of an ajp-message can also wrongly read some or all of the next message(s) (if any).
+Reading of the next messages will then most likely fail with a signature error, or the content will be corrupt.
+This problem is unlikely to happen unless the FORWARD_REQUEST message is larger than a network packet, and there is a request body with Content-Length > 0, so that first body chunk message immediately follows the FORWARD_REQUEST message.
+I have reproduced and solved this problem with Tomcat 7.0.42, but looking at the source code I believe the problem should be present in trunk as well.
+Description of patch to fix the problem:
+The read-method may have to make several calls to readSocket to read the
+requested number of bytes.
+Alter the maximum bytes read per call so that
+the total bytes read is never more than requested.
+Index: org/apache/coyote/ajp/AjpNioProcessor.java
+===================================================================
+--- org/apache/coyote/ajp/AjpNioProcessor.java  (revisjon 1570107)
++++ org/apache/coyote/ajp/AjpNioProcessor.java  (arbeidskopi)
+@@ -155,7 +155,7 @@
+boolean block = blockFirstRead;
+while (read < n) {
+-            res = readSocket(buf, read + pos, n, block);
++            res = readSocket(buf, read + pos, n - read, block);
+if (res > 0) {
+read += res;
+} else if (res == 0 && !block) {

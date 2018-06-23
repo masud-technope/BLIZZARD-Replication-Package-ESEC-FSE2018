@@ -1,0 +1,6 @@
+Bug 69658 – typo in javadoc of ClassInstanceCreation
+latest of 1_5
+i see this in ClassInstanceCreation
+* (Note also that the first form became possible as of JLS2; only the second
+* form existed in JLS2.)
+it does not seem to make sense

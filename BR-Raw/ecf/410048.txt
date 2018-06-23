@@ -1,0 +1,2 @@
+Bug 410048 – [Kepler] Archive old ECF builds on download.eclipse.org
+Outdated ECF builds should move to archive.eclipse.org to keep mirror usage down.

@@ -1,0 +1,10 @@
+Bug 370536 – Creating a product for a plugin -> Extension tab is still empty until editor is closed an re-opened
+If I create a plug-in without extensions and add a product to it, this action will create the plugin.xml file and add a contribution to the "org.eclipse.core.runtime.products" extension point.
+If I had the MANIFEST.MF editor open and if I switch the Extension tab, this tab appears empty
+Error:
+I have to close and reopen the the editor to see the new extension.
+How-to reproduce:
+I have created a detailed descrition how to reproduce this.
+First create a plug-in as described here: http://www.vogella.de/articles/Eclipse4RCP/article.html#e4_plugin
+Aftrwards perform the following: http://www.vogella.de/articles/Eclipse4RCP/article.html#plugin_creatinge4
+Stop after the "Create Product configuration" step and validate that the extension point is not visible.

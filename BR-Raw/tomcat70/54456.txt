@@ -1,0 +1,17 @@
+54456 – ChunkedInputFilter returning EOF when client closes connection without sending end chunk
+Created attachment 29874 [details]
+Patch to fix the bug
+In my case client is processing user's InputStream and then sending data in chunks to server.
+At server end I read till EOF.
+Client can be simple Java program or a web application.
+I am facing issue when client gets error on user's InputStream and closes connection with server.
+In that case ChunkedInputFilter is returning -1.
+I have added logs and confirmed that endChunk is false.
+Issue was fixed after I added following just before "return result;"
+if (result == -1 && !endChunk)
+throw new EOFException("Unexpected end of stream while reading chunk body");
+I think ChunkedInputFilter should return -1 only when it gets endChunk.
+Also, from client end I am always sending complete chunk.
+So, in ChunkedInputFilter I should get EOF from socket stream while reading next chunk header (which is handled properly in ChunkedInputFilter) but that is not happening.
+I have attached patch.
+Patch was generated against tomcat/tc7.0.x/trunk

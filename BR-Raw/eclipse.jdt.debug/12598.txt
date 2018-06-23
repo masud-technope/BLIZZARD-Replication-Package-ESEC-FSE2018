@@ -1,0 +1,19 @@
+Bug 12598 – Launch config - tab group API inconvenience
+The code to create the tabs for a tab group is shown below.
+Question: why isn't the .setLaunchConfigurationsDialog set by the launch config
+infrastructure?
+This would make sure that the dialog reference is properly initialized and
+clients don't have to duplicate the setLaunch...
+calls in their code.
+public void createTabs(ILaunchConfigurationDialog dialog, String mode) {
+ILaunchConfigurationTab[] tabs = new ILaunchConfigurationTab[4];
+tabs[0] = new JavaMainTab();
+tabs[0].setLaunchConfigurationDialog(dialog);
+tabs[1] = new JavaArgumentsTab();
+tabs[1].setLaunchConfigurationDialog(dialog);
+tabs[2] = new JavaEnvironmentTab();
+tabs[2].setLaunchConfigurationDialog(dialog);
+tabs[3] = new CommonTab();
+tabs[3].setLaunchConfigurationDialog(dialog);
+setTabs(tabs);
+}

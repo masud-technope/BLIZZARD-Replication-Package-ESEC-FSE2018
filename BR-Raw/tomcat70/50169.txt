@@ -1,0 +1,128 @@
+50169 – Trying to register wrapper and welcomeFile to Mapper before context is registered on Mapper.
+Created attachment 26220 [details]
+patch for StandardContext and StandardWrapper
+When I used "Host start operation" via JMX, I got error messages.
+2010/10/28 11:04:10 org.apache.tomcat.util.http.mapper.Mapper addWrapper
+SEVERE: No context found:
+2010/10/28 11:04:10 org.apache.tomcat.util.http.mapper.Mapper addWrapper
+SEVERE: No context found:
+2010/10/28 11:04:10 org.apache.tomcat.util.http.mapper.Mapper addWrapper
+SEVERE: No context found:
+2010/10/28 11:04:10 org.apache.tomcat.util.http.mapper.Mapper addWrapper
+SEVERE: No context found:
+2010/10/28 11:04:10 org.apache.tomcat.util.http.mapper.Mapper addWrapper
+SEVERE: No context found:
+2010/10/28 11:04:10 org.apache.tomcat.util.http.mapper.Mapper addWrapper
+SEVERE: No context found:
+2010/10/28 11:04:10 org.apache.tomcat.util.http.mapper.Mapper addWelcomeFile
+SEVERE: No context found:
+2010/10/28 11:04:10 org.apache.tomcat.util.http.mapper.Mapper addWelcomeFile
+SEVERE: No context found:
+2010/10/28 11:04:10 org.apache.tomcat.util.http.mapper.Mapper addWelcomeFile
+SEVERE: No context found:
+2010/10/28 11:04:10 org.apache.tomcat.util.http.mapper.Mapper addWelcomeFile
+SEVERE: No context found:
+2010/10/28 11:04:10 org.apache.tomcat.util.http.mapper.Mapper addWelcomeFile
+SEVERE: No context found:
+2010/10/28 11:04:10 org.apache.tomcat.util.http.mapper.Mapper addWelcomeFile
+SEVERE: No context found:
+At first StandardHost starts /manager context.
+(1) LifecycleState is STARTING_PREP now.
+Wrapper is not registered because host has not been registered.
+Mapper.addWrapper(String, String, String, Object, boolean) line: 331
+MapperListener.containerEvent(ContainerEvent) line: 169
+StandardWrapper(ContainerBase).fireContainerEvent(String, Object) line: 1253
+StandardWrapper.addMapping(String) line: 740
+StandardContext.addServletMapping(String, String, boolean) line: 2921
+StandardContext.addServletMapping(String, String) line: 2881
+WebXml.configureContext(Context) line: 1274
+ContextConfig.webConfig() line: 1283
+ContextConfig.configureStart() line: 881
+ContextConfig.lifecycleEvent(LifecycleEvent) line: 315
+LifecycleSupport.fireLifecycleEvent(String, Object) line: 119
+StandardContext(LifecycleBase).fireLifecycleEvent(String, Object) line: 89
+StandardContext.startInternal() line: 4834
+StandardContext(LifecycleBase).start() line: 140
+StandardHost(ContainerBase).startInternal() line: 1027
+StandardHost.startInternal() line: 788
+StandardHost(LifecycleBase).start() line: 140
+(2) Set LifecycleState to STARTED.
+Register context and host on Mapper.
+Mapper.addHost(String, String[], Object) line: 96
+Mapper.addContext(String, Object, String, Object, String[], Context) line: 226
+MapperListener.registerContext(Context) line: 339
+MapperListener.lifecycleEvent(LifecycleEvent) line: 411
+LifecycleSupport.fireLifecycleEvent(String, Object) line: 119
+StandardContext(LifecycleBase).fireLifecycleEvent(String, Object) line: 89
+StandardContext(LifecycleBase).setState(LifecycleState, Object) line: 325
+StandardContext(LifecycleBase).setState(LifecycleState) line: 305
+StandardContext(LifecycleBase).start() line: 156
+StandardHost(ContainerBase).startInternal() line: 1027
+StandardHost.startInternal() line: 788
+StandardHost(LifecycleBase).start() line: 140
+(3) Register wrapper again.
+It succeeds because context has been registered on Mapper.
+Mapper.addWrapper(String, String, String, Object, boolean) line: 328
+MapperListener.registerWrapper(Wrapper) line: 394
+MapperListener.registerContext(Context) line: 343
+MapperListener.lifecycleEvent(LifecycleEvent) line: 411
+LifecycleSupport.fireLifecycleEvent(String, Object) line: 119
+StandardContext(LifecycleBase).fireLifecycleEvent(String, Object) line: 89
+StandardContext(LifecycleBase).setState(LifecycleState, Object) line: 325
+StandardContext(LifecycleBase).setState(LifecycleState) line: 305
+StandardContext(LifecycleBase).start() line: 156
+StandardHost(ContainerBase).startInternal() line: 1027
+StandardHost.startInternal() line: 788
+StandardHost(LifecycleBase).start() line: 140
+Next, StandardHost starts ROOT context.
+(4) Register wrapper.
+Then, gets error as follows because context has not been registered.
+2010/10/28 11:04:10 org.apache.tomcat.util.http.mapper.Mapper addWrapper
+SEVERE: No context found:
+Mapper.addWrapper(String, String, String, Object, boolean) line: 338
+MapperListener.containerEvent(ContainerEvent) line: 169
+StandardWrapper(ContainerBase).fireContainerEvent(String, Object) line: 1253
+StandardWrapper.addMapping(String) line: 740
+StandardContext.addServletMapping(String, String, boolean) line: 2921
+StandardContext.addServletMapping(String, String) line: 2881
+WebXml.configureContext(Context) line: 1274
+ContextConfig.webConfig() line: 1283
+ContextConfig.configureStart() line: 881
+ContextConfig.lifecycleEvent(LifecycleEvent) line: 315
+LifecycleSupport.fireLifecycleEvent(String, Object) line: 119
+StandardContext(LifecycleBase).fireLifecycleEvent(String, Object) line: 89
+StandardContext.startInternal() line: 4834
+StandardContext(LifecycleBase).start() line: 140
+StandardHost(ContainerBase).startInternal() line: 1027
+StandardHost.startInternal() line: 788
+StandardHost(LifecycleBase).start() line: 140
+(5) Set LifecycleState to STARTED, and register context.
+Mapper.addContext(String, Object, String, Object, String[], Context) line: 223
+MapperListener.registerContext(Context) line: 339
+MapperListener.lifecycleEvent(LifecycleEvent) line: 411
+LifecycleSupport.fireLifecycleEvent(String, Object) line: 119
+StandardContext(LifecycleBase).fireLifecycleEvent(String, Object) line: 89
+StandardContext(LifecycleBase).setState(LifecycleState, Object) line: 325
+StandardContext(LifecycleBase).setState(LifecycleState) line: 305
+StandardContext(LifecycleBase).start() line: 156
+StandardHost(ContainerBase).startInternal() line: 1027
+StandardHost.startInternal() line: 788
+StandardHost(LifecycleBase).start() line: 140
+(6) Register wrapper.
+ It succeeds because context has been registered on Mapper.
+Mapper.addWrapper(String, String, String, Object, boolean) line: 328
+MapperListener.registerWrapper(Wrapper) line: 394
+MapperListener.registerContext(Context) line: 343
+MapperListener.lifecycleEvent(LifecycleEvent) line: 411
+LifecycleSupport.fireLifecycleEvent(String, Object) line: 119
+StandardContext(LifecycleBase).fireLifecycleEvent(String, Object) line: 89
+StandardContext(LifecycleBase).setState(LifecycleState, Object) line: 325
+StandardContext(LifecycleBase).setState(LifecycleState) line: 305
+StandardContext(LifecycleBase).start() line: 156
+StandardHost(ContainerBase).startInternal() line: 1027
+StandardHost.startInternal() line: 788
+StandardHost(LifecycleBase).start() line: 140
+I think that addWrapper() is unnecessary until LifecycleState for StandardContext become STARTED.
+addWelcomeFile() is also similar.
+I attached the patch that prevent this error message.
+Best regards.

@@ -1,0 +1,4 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/breakpoints/AddClassPrepareBreakpointAction.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/breakpoints/ToggleClassPrepareBreakpointAction.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/debug/core/JDIDebugModel.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaClassPrepareBreakpoint.java

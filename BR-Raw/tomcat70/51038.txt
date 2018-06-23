@@ -1,0 +1,25 @@
+51038 – No access logs for Servlet 3.0 async requests
+Access logs written by org.apache.catalina.valves.AccessLogValve are not being written for servlet 3.0 async requests.
+To reproduce:
+- Handle a request asynchronously by marking the servlet with @WebServlet(asyncSupported=true)
+- Send some traffic and notice that nothing is being written to the access logs.
+AccessLogValve.log() is called by org.apache.catalina.Context.logAccess().
+From the source for version 7.0.11, in org.apache.catalina.connector.CoyoteAdapter.java, line 416:
+AsyncContextImpl asyncConImpl = (AsyncContextImpl)request.getAsyncContext();
+if (asyncConImpl != null) {
+async = true;
+} else if (!comet) {
+response.finishResponse();
+if (postParseSuccess) {
+// Log only if processing was invoked.
+// If postParseRequest() failed, it has already logged it.
+((Context) request.getMappingData().context).logAccess(
+request, response,
+System.currentTimeMillis() - req.getStartTime(),
+false);
+}
+req.action(ActionCode.POST_REQUEST , null);
+}
+In the async case logAccess() isn't called here.
+I've searched through the code and don't see logAccess() being called anywhere else, except in error cases.
+So, it looks like the async case is missing a call to logAccess() somewhere.

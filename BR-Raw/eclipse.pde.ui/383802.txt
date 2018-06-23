@@ -1,0 +1,8 @@
+Bug 383802 – Run button defaults to RAP in the "Eclipse for RCP and RAP Developers" download
+Created attachment 218019 [details]
+Menu
+If I download "Eclipse for RCP and RAP Developers" and press the "Start" button on the product configuration file it default to a RAP application.
+I think as RAP is contributed and less used then pure Eclipse RCP application the default should be "Eclipse Application".
+Maybe if the texts are adjusted this will change the order?
+Launch a RAP Application -> Launch RAP Application
+Launch an Eclipse Application -> Launch Eclipse Application

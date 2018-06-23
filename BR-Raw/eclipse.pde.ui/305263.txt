@@ -1,0 +1,4 @@
+Bug 305263 – consider removing version column in feature based self hosting
+I believe it just wastes space.
+To be consistent we should look at just have the version next to the id, similar to other things in PDE.
+Any reason we have a version column?

@@ -1,0 +1,10 @@
+Bug 296552 – ExpressionInputDialog.dispose is called twice
+User-Agent:       Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.1.1) Gecko/20090715 Firefox/3.5.1
+Build Identifier:
+ExpressionInputDialog.dispose is called twice when OK is pressed.
+okPressed()
+-> dispose() line 333
+-> super.okPressed() (Dialog)
+-> close() (ExpressionInputDialog)
+-> dispose() line 399
+Reproducible: Always

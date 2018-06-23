@@ -1,0 +1,3 @@
+org.apache.tools.ant.taskdefs.Javac.compile
+org.apache.tools.ant.taskdefs.Javac.execute
+org.apache.jasper.compiler.AntCompiler.generateClass

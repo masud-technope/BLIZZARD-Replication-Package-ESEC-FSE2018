@@ -1,0 +1,1 @@
+ui/org.eclipse.pde.ui.templates/src/org/eclipse/pde/internal/ui/templates/ide/PropertyPageTemplate.java

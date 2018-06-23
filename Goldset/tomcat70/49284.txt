@@ -1,0 +1,5 @@
+java/org/apache/coyote/http11/Http11NioProcessor.java
+java/org/apache/coyote/http11/LocalStrings.properties
+java/org/apache/tomcat/util/net/NioChannel.java
+java/org/apache/tomcat/util/net/SecureNioChannel.java
+webapps/docs/changelog.xml

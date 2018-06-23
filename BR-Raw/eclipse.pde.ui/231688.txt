@@ -1,0 +1,3 @@
+Bug 231688 – Cannot filter error inside MANIFEST.MF
+When trying to convert org.eclipse.core.runtime.compatibility.registry, I got some error for wrong bundle version.
+When trying to fix them using a filter, the errors are still reported after the build.

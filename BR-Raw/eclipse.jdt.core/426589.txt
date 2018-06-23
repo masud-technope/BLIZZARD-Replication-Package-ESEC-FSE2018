@@ -1,0 +1,19 @@
+Bug 426589 – [1.8][compiler] Compiler error with generic method/constructor invocation as vargs argument
+the first method does NOT compile, the 2nd does:
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.util.Duration;
+public class FXTestCases {
+void test1_fail() {
+KeyFrame keyFrame = new KeyFrame(Duration.millis(100),new KeyValue(new SimpleDoubleProperty(), 0,
+Interpolator.EASE_BOTH));
+}
+void test1_success() {
+KeyValue kv = new KeyValue(new SimpleDoubleProperty(), 0,
+Interpolator.EASE_BOTH);
+new KeyFrame(Duration.millis(100),kv);
+}
+}
+To get the javafx imports resolved in eclipse you need to modify yours project JRE System Library's Access rules to make "javafx/**" accessible.

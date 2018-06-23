@@ -1,0 +1,3 @@
+Bug 220569 – Schema identifier cannot be bound to core style extensions
+Most (if not all) core extensions are identified by a combination of extension ID and some nested attribute.
+ ie:  a <product> element with a name of "foo" inside an extension with an id of "org.eclipse" would be referred to by the string "org.eclipse.foo"  This style of identifier is not supported by the schema identifier attribute.

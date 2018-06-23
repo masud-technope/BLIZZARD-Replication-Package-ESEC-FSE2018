@@ -1,0 +1,23 @@
+57099 – loose parsing of import attribute in page directive screws up SMAP output
+Came across some customer code that had the following in their jsp files:
+<%@
+page session="false"
+buffer="8kb"
+import="java.io.*;
+import java.util.*;
+import java.text.*;
+import java.util.Date.*;
+import java.text.DecimalFormat;
+import com.xyz.debug.Debug;
+import com.xyz.failure.*;
+import com.xyz.messaging.*;
+import com.xyz.utils.*;
+import com.xyz.xml_messaging.*;
+import com.xyz.environment.*;
+import generated.screening_engine.*;
+import generated.xml_utils.*;"
+contentType="text/html"
+%>
+Even though the JSP spec says that the import statement should be "The value is as in an import declaration in the Java programming language, a (comma separated) list of either a fully qualified Java programming language type name denoting that type, or of a package name followed by the .* string, denoting all the public types declared in that package." this is parsed/compiled by the JSP parser." these folks seem to have stumbled on to a, well, different way of specifying a list of imports.
+Since the JSP parser only sees a "single" import and believes it has merely written a single import line, the SMAP numbering ends up being off by, in this case, 12, causing all sorts of fun down the line when trying to map back to original jsp code by way of the SMAP file.
+In short, it appears that one could, in an import statement, append a semicolon and then put whatever java code they want, and it would go in and get compiled in as long as there weren't any commas in it.

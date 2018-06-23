@@ -1,0 +1,19 @@
+Bug 110797 – In case of multiple task tags on a single line, the tasks view does not show the complete line for each tag
+Build is Build id: I20050923-1000 (aka 3.2 M2).
+If for example I have the following line in my code:
+// TODO FIXME need to review the loop
+I will get the following items into the Tasks view:
+TODO
+FIXME need to review the loop
+(plus file and line info).
+I'd rather get something along the following:
+TODO FIXME need to review the loop
+FIXME need to review the loop
+or:
+TODO need to review the loop
+FIXME need to review the loop
+I could go for a single tag per line and that's it.
+But I believe that multiple
+tags can help when people rely heavily on the source code as the central
+artifact of the project (say for example you have a series along the urgency,
+and a series along the subdomains like DATA, BUSINESS_RULE, REGULATORY, etc.).

@@ -1,0 +1,14 @@
+java.security.AccessControlContext.checkPermission
+java.security.AccessController.checkPermission
+java.lang.SecurityManager.checkPermission
+java.lang.SecurityManager.checkPackageAccess
+sun.misc.Launcher$AppClassLoader.loadClass
+java.lang.ClassLoader.loadClass
+java.lang.ClassLoader.loadClass
+org.apache.tomcat.util.http.parser.HttpParser.skipConstant
+org.apache.tomcat.util.http.parser.HttpParser.parseMediaType
+org.apache.tomcat.util.http.parser.MediaTypeCache.parse
+org.apache.catalina.connector.Response.setContentType
+org.apache.jsp.jsp.security.protected_.login_jsp._jspService
+org.apache.jasper.runtime.HttpJspBase.service
+javax.servlet.http.HttpServlet.service

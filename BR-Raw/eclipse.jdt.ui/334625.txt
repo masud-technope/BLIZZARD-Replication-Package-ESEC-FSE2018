@@ -1,0 +1,10 @@
+Bug 334625 – [jar exporter] Destination starting with '/' or '\' announced as being relative to the workspace
+3.7 M4 but broken since 3.0.
+When using a destination starting with '/' or '\' in the JAR exporter the wizard's descriptions says that it will be relative to the workspace.
+This is wrong, it will be in the root of the current working directory (user.dir).
+1.
+in the JAR Export wizard's 'JAR file' field enter: "/foo.jar or \foo.jar
+==> the wizard's description says: "The export destination will be relative to your workspace."
+2.
+export
+==> observe: the file will not be placed relative to the workspace.

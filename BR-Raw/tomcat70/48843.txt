@@ -1,0 +1,73 @@
+48843 – Tomcat Acceptor Thread goes into wait() and it will never come back
+Hi,
+I believe I've found a race condition in Tomcat that causes the http port to
+be non-responsive.
+It exists in 6.0 and also in 5.5 (although the code has
+been refactored).
+I could not find any reference to it in the Bug database or the mailing list
+archives.
+Consider a tomcat instance with maxThreads set to 2, i.e.
+you have 2 tomcat
+threads to service incoming requests.
+The sequence of events is as follows:
+1.
+Thread 1 and Thread 2 are both servicing a request each.
+2.
+A third request comes in.
+3.
+In class JIOEndpoint.java, the acceptor thread calls methods
+processSocket() which then calls getWorkerThread() which then calls
+createWorkerThread().
+4.
+createWorkerThread() returns null since both threads are busy processing
+the two requests.
+5.
+Here is the race condition in method getWorkerThread() in the code shown
+below
+protected Worker getWorkerThread(){
+...
+Worker workerThread = createWorkerThread();
+while (workerThread == null) {
+try {
+synchronized (workers) {
+workers.wait();
+}
+}
+...
+}
+The acceptor thread executes the "while(workerThread == null)" statement and
+is then switched out by the CPU.
+The two threads executing the two requests complete and go into
+Worker.await() waiting for the next job after executing method
+recycleWorkerThread().
+The acceptor thread is switched back into CPU and executes the synchronized
+block and goes into the wait().
+At this point, there aren't any Worker threads out there processing requests
+and therefore there isn't any thread to wake up the acceptor thread.
+The application is non-responsive after this.
+A simple solution would be to check if curThreadsBusy > 0 in the
+synchronized block before going into wait() in method getWorkerThread()
+OR increase the scope of the critical section to include the while loop.
+Thanks,
+Harshad
+Stack Traces below:
+"bda19102143" id=1578 in WAITING on
+lock=org.apache.tomcat.util.net.jioendpoint$wor...@13aa4ee3^m
+at java.lang.Object.wait(Native Method)^M
+at java.lang.Object.wait(Object.java:485)^M
+at
+org.apache.tomcat.util.net.JIoEndpoint$Worker.await(JIoEndpoint.java:416)^M
+at
+org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:442)^M
+at java.lang.Thread.run(Thread.java:619)^M
+"http-8091-Acceptor-0" id=43 in WAITING on
+lock=org.apache.tomcat.util.net.jioendpoint$workerst...@13bd7b6a^m
+at java.lang.Object.wait(Native Method)^M
+at java.lang.Object.wait(Object.java:485)^M
+at
+org.apache.tomcat.util.net.JIoEndpoint.getWorkerThread(JIoEndpoint.java:700)^M
+at
+org.apache.tomcat.util.net.JIoEndpoint.processSocket(JIoEndpoint.java:731)^M
+at
+org.apache.tomcat.util.net.JIoEndpoint$Acceptor.run(JIoEndpoint.java:313)^M
+at java.lang.Thread.run(Thread.java:619)^M

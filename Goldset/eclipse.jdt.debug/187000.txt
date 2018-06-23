@@ -1,0 +1,3 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/monitors/JavaThreadContentProvider.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaDetailFormattersManager.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIThread.java

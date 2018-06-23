@@ -1,0 +1,6 @@
+Bug 486719 – [formatter] Formatter removes space in //$IDENTITY-COMPARISON$ resulting in compiler errors
+Open LookupEnvironment from JDT Core code base.
+Do a format (Ctrl+Shit+F).
+The resulting code produces two compiler errors.
+The reason being, formatting adds a space after "//" in //$IDENTITY-COMPARISON$.
+This doesn't happen with //$NON-NLS-1$, though.

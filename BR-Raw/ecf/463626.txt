@@ -1,0 +1,7 @@
+Bug 463626 – [Tooling] provide endpoint discovery view
+One of the currently-difficult aspects of dealing with remote services is discovering Endpoints...either through network discovery protocols (e.g.
+zeroconf/jmdns, slp, zookeeper, others), or via EDEF.
+  This is difficult at least partially because the remote service consumer/user currently has no way to 'see' the discovered Endpoints prior to the import/proxy creation for the remote service.
+It would be helpful to have an Endpoint Discovery View in Eclipse, that would show users discovered endpoints, and allow them to manually (with user interface gesture) import the remote service into Eclipse as a consumer.
+ This would also provide a nice integration with the Mars-added enhancement for the PDE Plugin-Registry view.
+ see bug 270684

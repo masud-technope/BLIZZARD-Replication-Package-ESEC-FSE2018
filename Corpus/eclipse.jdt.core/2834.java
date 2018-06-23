@@ -1,0 +1,2 @@
+public class ResolveConstructorCall3 {
+}

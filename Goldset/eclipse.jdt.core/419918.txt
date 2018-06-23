@@ -1,0 +1,7 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/TypeBindingTests308.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/classfmt/TypeAnnotationWalker.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/BinaryTypeBinding.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/LookupEnvironment.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/SourceTypeBinding.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/IMethodBinding.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/MethodBinding.java

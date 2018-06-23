@@ -1,0 +1,15 @@
+Bug 252415 – [build path] New Java Project dialog radios should have same parent
+Build id: I20081027-1800
+1) File->New->Java Project
+The "New Java Project" dialog opens, and focus is in the "Project name:" text field.
+2) Type the Tab key twice to move the focus to the "JRE" group of radios.
+3) Type Tab one more time.
+Focus moves to the next radio in the group? This is not supposed to happen.
+Also, the next radio in the group becomes selected? This is not supposed to happen either.
+It would be very confusing to a screen reader user, who would not be able to see the visual relationship of the radios.
+The problem is that the "Use default JRE" radio (the topmost one) does not have the same parent as the "Use a project specific JRE" or "Use an exception environment JRE" radios.
+They need to have the same parent in order to work the way the platform intended.
+(i.e.
+you will also note that you cannot use arrow keys to traverse from the top radio to the other two, but you should be able to).
+I suspect that this was done in order to do the layout.
+However, this layout can be achieved with just one Composite and 3 columns in a GridLayout.

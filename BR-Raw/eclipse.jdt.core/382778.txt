@@ -1,0 +1,39 @@
+Bug 382778 – Call hierarchy missing valid callers probably because java search marks exact matches as potential
+Build Identifier: Version: Indigo Service Release 2 Build id: 20120216-1857
+I have a public static void method printIt(String name).
+When I open its call hierarchy, some callers are missing.
+I am guessing the callers are missing because java search marks them as potential instead of exact matches for the printIt(String) reference.
+The following code is *sometimes* marked as potential, and *sometimes* exact:
+// Listing 1
+PublicInterface2 impl2 = new Impl2("Name Broken");
+Static.printIt(impl2.getName());
+When the search result is marked potential, the caller is missing from the printIt() call hierarchy.
+PublicInterface2 is an empty public interface which extends PackageInterface2Getters.
+PackageInterface2Getters is an empty default-scoped interface which extends PackageInterface1Getters.
+PackageInterface1Getters is a default-scoped interface which declares String getName().
+So impl2.getName() above returns a String.
+The following code is always an exact match in the java search and always shows in the call hierarchy:
+// Listing 2
+PublicInterface2 impl2 = new Impl2("Name OK");
+String name = impl2.getName();
+Static.printIt(name);
+If Listing 1 and Listing 2 are implemented in the same file, the caller in Listing 1 is an exact match for printIt() and shows in the printIt() call hierarchy.
+If an additional file are added to the same package, containing only Listing 1 or only Listing 2, or if two files are added, one containing Listing 1 and the other containing Listing 2, then the java search shows Listing 1 as a potential match for printIt() instead of as an exact match and the printIt() call is missing from the call hierarchy.
+I wonder if this is the root cause for bug 155450, which was marked a duplicate of 73957.
+In that case, however, there were plugin dependencies.
+Here all the java source files can be in the same package in the same java (non-plugin) project.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Import the attached zipped eclipse project.
+2.
+Open the call hierarchy on Static.printIt() in src/main/Static.java.
+3.
+Expected: 4 callers.
+Actual: The call hierarchy will show Main.ok() and MainOK.main().
+Main.broken() and MainBroken.main() will be missing.
+4.
+Delete MainOK.java and MainBroken.java.
+5.
+Refresh the call hierarchy.
+Main.broken() shows up.

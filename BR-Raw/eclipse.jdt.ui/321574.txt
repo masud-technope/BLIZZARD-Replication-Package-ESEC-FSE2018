@@ -1,0 +1,3 @@
+Bug 321574 – [call hierarchy] Remove Hierarchy scope for Call Hierarchy
+I2010070802-1800.
+Search In dialog: "Note:" should be bold like in the preference dialog.

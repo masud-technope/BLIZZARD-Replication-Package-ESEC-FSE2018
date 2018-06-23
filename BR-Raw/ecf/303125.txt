@@ -1,0 +1,9 @@
+Bug 303125 – [Discovery][JmDNS] Timer is canceled too early
+Exception in thread "JmDNS.Shutdown" java.lang.IllegalStateException: Timer already cancelled.
+at java.util.Timer.sched(Timer.java:354)
+at java.util.Timer.schedule(Timer.java:222)
+at javax.jmdns.impl.tasks.Canceler.start(Canceler.java:78)
+at javax.jmdns.impl.JmDNSImpl.unregisterAllServices(JmDNSImpl.java:702)
+at javax.jmdns.impl.JmDNSImpl.close(JmDNSImpl.java:1241)
+at javax.jmdns.impl.JmDNSImpl$Shutdown.run(JmDNSImpl.java:1171)
+at java.lang.Thread.run(Thread.java:619)

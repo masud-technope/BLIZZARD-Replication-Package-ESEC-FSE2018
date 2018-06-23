@@ -1,0 +1,11 @@
+Bug 176613 – Load Target button not enabled until Pre-defined Target Platform is selected in the Combo
+Build ID:  I20070222-0951
+Steps To Reproduce:
+1.Open the Preferences for selecting a Target Platform (Plug-in Development>Target Platform)
+2.Browse for a pre-defined target.
+3.Select a pre-defined target and close the File Selection Dialog.
+The combo will now be populated with the pre-defined Target however the Load Target button is disabled.
+ User has to make a selection in the combo before the Load Target button will be enabled.
+ In previous versions of Eclipse (<3.3M5eh) the Load Target button would be enabled once the File Selection dialog was closed and a selection was made.
+More information:
+This issue is related to and might be caused for the patch applied to Bug 168669.

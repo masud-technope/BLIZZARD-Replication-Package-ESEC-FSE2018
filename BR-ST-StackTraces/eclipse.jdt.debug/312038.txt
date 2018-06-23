@@ -1,0 +1,7 @@
+java.io.UnixFileSystem.getBooleanAttributes0
+java.io.UnixFileSystem.getBooleanAttributes
+java.io.File.isFile
+org.eclipse.jdt.internal.launching.StandardVMType.getDefaultSystemLibrarySource
+org.eclipse.jdt.internal.launching.StandardVMType.getDefaultLibraryLocations
+org.eclipse.jdt.launching.JavaRuntime.getLibraryLocations
+org.eclipse.jdt.internal.launching.JREContainer.computeClasspathEntries

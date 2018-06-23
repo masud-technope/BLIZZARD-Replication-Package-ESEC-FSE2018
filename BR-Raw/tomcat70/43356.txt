@@ -1,0 +1,46 @@
+43356 – keystoreFile parameter, when specified as relative, is not treated relative to $CATALINA_BASE or catalina.base property for NioEndPoint
+This issue is virtually the same symptoms as http://issues.apache.org/bugzilla/
+show_bug.cgi?id=27050 except that it is with
+org.apache.tomcat.util.net.NioEndpoint.java instead of JSSESocketFactory
+----
+The docs state "keystoreFile - Add this attribute if the keystore file you
+created is not in the default place that Tomcat expects (a file named .keystore
+in the user home directory under which Tomcat is running).
+You can specify an
+absolute pathname, or a relative pathname that is resolved against the
+$CATALINA_BASE environment variable."
+Relative paths don't work though with NioConnector.
+Here is the problem code in
+NioEndPoint starting line 744:
+// Initialize SSL if needed
+if (isSSLEnabled()) {
+// Initialize SSL
+char[] passphrase = getKeystorePass().toCharArray();
+KeyStore ks = KeyStore.getInstance(getKeystoreType());
+ks.load(new FileInputStream(getKeystoreFile()), passphrase);
+KeyStore ts = KeyStore.getInstance(getKeystoreType());
+ts.load(new FileInputStream(getKeystoreFile()), passphrase);
+As you can see $CATALINA_BASE is not taken into account at all and therefore we
+get something like this on startup:
+[] 2007-09-11 14:38:20,828 ERROR
+org.apache.coyote.http11.Http11NioProtocol.start(168) | Error starting endpoint
+java.net.BindException: Address already in use: bind
+at sun.nio.ch.Net.bind(Native Method)
+at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:119)
+at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:59)
+at org.apache.tomcat.util.net.NioEndpoint.init(NioEndpoint.java:731)
+at org.apache.tomcat.util.net.NioEndpoint.start(NioEndpoint.java:779)
+at org.apache.coyote.http11.Http11NioProtocol.start(Http11NioProtocol.java:166)
+at org.apache.catalina.connector.Connector.start(Connector.java:1132)
+at org.apache.catalina.core.StandardService.start(StandardService.java:531)
+at org.apache.catalina.core.StandardServer.start(StandardServer.java:710)
+at org.apache.catalina.startup.Catalina.start(Catalina.java:566)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:288)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:413)
+Also I am curious why the keystoreFile is being used as the truststoreFile?
+Also found this against version 6.0.13, not 6.0.9 ( although it may be in 6.0.9
+too).

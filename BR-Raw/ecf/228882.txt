@@ -1,0 +1,8 @@
+Bug 228882 – [Discovery][slp][provider] SLP not getting service properties
+Build ID: M20071023-1652
+Steps To Reproduce:
+I'd like to request an additional method in IDiscoveryContainerAdapter to query the service properties of a given service.
+Currently the only way to get the service properties is by calling getServices() to find the service info.
+However, jslp provider for ECF does not implement it yet.
+Thus, I have no way to use ECF discovery to find the property of the service.
+More information:

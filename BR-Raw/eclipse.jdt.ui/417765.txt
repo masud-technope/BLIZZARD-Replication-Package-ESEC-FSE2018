@@ -1,0 +1,36 @@
+Bug 417765 – ImageDescriptorRegistry.hookDisplay() causes SWT Invalid thread access
+Eclipse Kepler
+There appears to be a case where NewJavaProjectWizardPageTwo causes an SWT Invalid Thread Access when using Bndtools.
+ This problem has been reproduced by others.
+To reproduce, create a new workspace, switch to the Bndtools perspective, create a new Bndtools OSGi project.
+ You should get the Invalid Thread Access.
+The workaround is to delete the project you just created and create it again.
+I believe the key here is that you have a brand new workspace.
+Here is the stack trace.
+org.eclipse.swt.SWTException: Invalid thread access
+at org.eclipse.swt.SWT.error(SWT.java:4397)
+at org.eclipse.swt.SWT.error(SWT.java:4312)
+at org.eclipse.swt.SWT.error(SWT.java:4283)
+at org.eclipse.swt.widgets.Display.error(Display.java:1204)
+at org.eclipse.swt.widgets.Display.checkDevice(Display.java:759)
+at org.eclipse.swt.widgets.Display.disposeExec(Display.java:1181)
+at org.eclipse.jdt.internal.ui.viewsupport.ImageDescriptorRegistry.hookDisplay(ImageDescriptorRegistry.java:77)
+at org.eclipse.jdt.internal.ui.viewsupport.ImageDescriptorRegistry.<init>(ImageDescriptorRegistry.java:40)
+at org.eclipse.jdt.internal.ui.JavaPlugin.internalGetImageDescriptorRegistry(JavaPlugin.java:954)
+at org.eclipse.jdt.internal.ui.JavaPlugin.getImageDescriptorRegistry(JavaPlugin.java:347)
+at org.eclipse.jdt.internal.ui.wizards.buildpaths.CPListLabelProvider.<init>(CPListLabelProvider.java:68)
+at org.eclipse.jdt.internal.ui.wizards.buildpaths.BuildPathsBlock.<init>(BuildPathsBlock.java:189)
+at org.eclipse.jdt.ui.wizards.JavaCapabilityConfigurationPage.getBuildPathsBlock(JavaCapabilityConfigurationPage.java:95)
+at org.eclipse.jdt.ui.wizards.JavaCapabilityConfigurationPage.init(JavaCapabilityConfigurationPage.java:151)
+at org.eclipse.jdt.ui.wizards.NewJavaProjectWizardPageTwo.initializeBuildPath(NewJavaProjectWizardPageTwo.java:318)
+at bndtools.wizards.project.NewBndProjectWizardPageTwo.initializeBuildPath(NewBndProjectWizardPageTwo.java:106)
+at org.eclipse.jdt.ui.wizards.NewJavaProjectWizardPageTwo.updateProject(NewJavaProjectWizardPageTwo.java:252)
+at org.eclipse.jdt.ui.wizards.NewJavaProjectWizardPageTwo.performFinish(NewJavaProjectWizardPageTwo.java:484)
+at org.eclipse.jdt.internal.ui.wizards.JavaProjectWizard.finishPage(JavaProjectWizard.java:82)
+at org.eclipse.jdt.internal.ui.wizards.NewElementWizard$2.run(NewElementWizard.java:118)
+at org.eclipse.jdt.internal.core.BatchOperation.executeOperation(BatchOperation.java:39)
+at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:728)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+at org.eclipse.jdt.core.JavaCore.run(JavaCore.java:5331)
+at org.eclipse.jdt.internal.ui.actions.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:106)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)

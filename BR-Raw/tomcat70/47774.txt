@@ -1,0 +1,15 @@
+47774 – Illegal context class loader is used when HttpSessionListener is executed.
+When HttpSessionListener is executed, illegal class loader is set to the context classLoader.
+I think that the problem is in CoyoteAdapter#parseSessionCookiesId method.
+JSESSION COOKIE is parsed in this method, and sessionId is set to the request.
+To check sessionId, Request#isRequestedSessionIdValid method is called in this method.
+And, Session#isValid() might be called in Request#isRequestedSessionIdValid method.
+However, the context class loader of a current thread is StandardClassLoader.
+It is not WebappClassLoader.
+For instance,
+When the session has already passed session-timeout,
+Session#expire is executed.
+At this time, the context class loader of the thread that executes HttpSessionListenner#sessionDestroyed is StanderdClassLoader.
+This is not good.
+The context class loader of the thread that executes HttpSessionListenner should be WebAppClassLoader.
+Best regards.

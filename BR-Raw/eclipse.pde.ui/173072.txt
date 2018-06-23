@@ -1,0 +1,10 @@
+Bug 173072 – Wrong plugin editor opened when double clicking on a plugin
+I20070206-0010
+When double clicking on a plugin in the plug-ins tab of a feature.xml, the wrong plugin editor is opened when versions are indicated.
+Steps:
+- create in your workspace two plugins with the same bundle id but different versions (don't put qualifier at the end)
+- create a feature and add those two plugins to the feature.
+- go the feature.xml tab and replace the 0.0.0s with the actual version numbers given to the plugins.
+- save
+- go back to the plugins tab and double click on the plugins.
+You will notice that it is always the same version of the editor that is opened.

@@ -1,0 +1,15 @@
+Bug 266737 – [target] "Save As" does not work on the Target Definition Editor
+Build ID: I20090224-0800
+Steps To Reproduce:
+1.
+Create a new target definition using File -> New -> Target Definition
+2.
+Save is as a file in the workspace.
+3.
+Open it.
+It will open in the Target Definition Editor
+4.
+Do File -> Save As.
+Nothing happens
+Either the Save As should be made functional or it should be disabled.
+More information:

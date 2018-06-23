@@ -1,0 +1,21 @@
+Bug 426078 – [1.8] VerifyError when conditional expression passed as an argument
+This program crashes when run:
+public class X {
+<T> int square(int i) {
+return i * i;
+}
+boolean isOdd(boolean what) {
+return square(what ? new Integer(1) : new Integer(2)) % 2 == 1; // trouble here
+}
+public static void main(String argv[]) {
+System.out.println(new X().isOdd(true));
+}
+}
+Note that the program runs fine if you:
+1.
+remove the type parameter <T> (or)
+2.
+substitute the 'what' with a boolean literal (or)
+3.
+get rid of the boxing for int primitive
+So, looks like all these are playing a part here.

@@ -1,0 +1,3 @@
+Bug 245140 – [code templates] Java Code Templates properties: 'Restore Defaults' removes nodes in UI
+I20080821-1005
+On the 'Java > Code Style > Code Templates' properties page for project-specific settings, the 'Restore Defaults' button is completely broken: Apart from the data loss problem (bug 130874), it disables project-specific settings and also removes all nodes in the tree except for the top-level 'Comments' and 'Code'.

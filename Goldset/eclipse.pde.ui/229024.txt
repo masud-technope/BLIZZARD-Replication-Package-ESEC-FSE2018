@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/DocumentSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/DocSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/SchemaFormOutlinePage.java

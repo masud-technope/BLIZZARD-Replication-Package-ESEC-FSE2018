@@ -1,0 +1,13 @@
+Bug 429763 – [1.8][compiler] Incompatible type specified for lambda expression's parameter
+stumbled upon this one...
+public class Main {
+public static void main(String[] args) {
+// does not compile
+final int i = new Test<Integer>().test((Byte b) -> (int) b);
+}
+static class Test<R> {
+<T> R test(Function<T,R> f) {
+return null;
+}
+}
+}

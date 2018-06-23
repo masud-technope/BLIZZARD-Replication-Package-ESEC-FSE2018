@@ -1,0 +1,13 @@
+54974 – SessionCookieConfig.setXXX methods must throw IllegalStateException when invoked after initialization phase
+According to Servlet 3.0 javadoc
+javax.servlet.SessionCookieConfig setter methods must throw IllegalStateException when invoked after initialization phase
+setComment(String)
+setDomain(String)
+setHttpOnly(boolean)
+setMaxAge(int)
+setName(String)
+setPath(String)
+setSecure(boolean)
+"
+Throws: java.lang.IllegalStateException - if the ServletContext from which this SessionCookieConfig was acquired has already been initialized
+"

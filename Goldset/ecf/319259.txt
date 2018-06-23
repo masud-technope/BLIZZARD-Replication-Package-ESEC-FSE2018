@@ -1,0 +1,2 @@
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/internal/provider/jslp/ServicePropertiesAdapter.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/internal/provider/jslp/ServicePropertiesAdapter.java

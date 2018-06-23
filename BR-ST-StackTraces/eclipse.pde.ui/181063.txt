@@ -1,0 +1,3 @@
+org.eclipse.pde.internal.ui.search.dependencies.ShowResultsAction.getUnusedDependeciesInfoDialog
+org.eclipse.pde.internal.ui.search.dependencies.ShowResultsAction.run
+org.eclipse.pde.internal.ui.search.dependencies.UnusedDependenciesJob$1.run

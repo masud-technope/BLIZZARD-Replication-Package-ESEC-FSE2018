@@ -1,0 +1,4 @@
+Bug 37513 – [misc] Outline tool-tip window should remember size and position
+It would be very nice if the Outline window (accessible from Ctrl+O or the
+menu "Navigate|Show Outline") would remember its size and position like most
+other windows in Eclipse do.

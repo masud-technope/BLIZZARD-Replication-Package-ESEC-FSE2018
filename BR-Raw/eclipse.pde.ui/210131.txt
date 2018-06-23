@@ -1,0 +1,7 @@
+Bug 210131 – Extension Registry enhancement - include disabled plug-ins
+This bug is to track the updates to the extension registry.
+ The original implementation discarded disabled plug-ins.
+ This caused problems such as bug 202410.
+ Also, this leads to inaccurate results when doing a plug-in search for extensions when you select "All plug-ins".
+ Another area this changed was producing errors on extension references to plug-ins that were disabled.
+When the extension registry is updated to handle disabled plug-ins, this should fix all these problems.

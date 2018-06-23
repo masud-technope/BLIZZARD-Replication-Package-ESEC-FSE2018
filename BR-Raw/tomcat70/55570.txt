@@ -1,0 +1,20 @@
+55570 – SpnegoAuthenticator: Resource file is missing placeholders for exceptions.
+In java/org/apache/catalina/authenticator/SpnegoAuthenticator.java problems are logged with an exception.
+The exception does not show up in the logging.
+The exception only shows up if I hack java/org/apache/catalina/authenticator/LocalStrings.properties in catalina.jar, and add a placeholder.
+REPRODUCE:
+- Configure SP-NEGO with Kerberos.
+- Mess up your principal in com.sun.security.jgss.krb5.accept in jaas.config.
+- Try to login.
+- See that you get something like:
+FINE [org.apache.catalina.authenticator.SpnegoAuthenticator authenticate] Failed to validate client supplied ticket
+FIX:
+In java/org/apache/catalina/authenticator/LocalStrings.properties please add [{0}] to the following lines:
+spnegoAuthenticator.ticketValidateFail=Failed to validate client supplied ticket
+spnegoAuthenticator.serviceLoginFail=Unable to login as the service principal
+In SpnegoAuthenticator.java you can verify that exceptions are indeed passed to the log.
+VALIDATE:
+- Reproduce again
+- See that you now get
+Failed to validate client supplied ticket [GSSException: Failure unspecified at GSS-API level (Mechanism level: Invalid argument (400) - Cannot find key of appropriate type to decrypt AP REP - RC4 with HMAC)]
+The exception is not super-helpful, but at least it's something.

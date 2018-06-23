@@ -1,0 +1,64 @@
+Bug 27027 – ClassCastException from codeassist
+Build 20021119
+I had been happily working for a few hours, including using code assist, when
+code assist suddenly stopped working.
+If I recall correctly, I was trying to
+code assist on a few of the beginning characters for "IResource".
+The
+following was in the log:
+!SESSION Nov 22, 2002 18:30:23.700 ---------------------------------------------
+java.version=1.4.0
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=en_US
+Command-line arguments: -os linux -ws gtk -arch x86 -install file:/home/jburns/host/eclipse/
+!ENTRY org.eclipse.team.cvs.ssh 1 0 Nov 22, 2002 18:30:23.702
+!MESSAGE Added host key for dev.eclipse.org to known_hosts.
+!SESSION Nov 23, 2002 12:38:58.337 ---------------------------------------------
+java.version=1.4.0
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=en_US
+Command-line arguments: -os linux -ws gtk -arch x86 -install file:/home/jburns/host/eclipse/
+!ENTRY org.eclipse.ui 4 4 Nov 23, 2002 12:38:58.338
+!MESSAGE Unhandled exception caught in event loop.
+!ENTRY org.eclipse.ui 4 0 Nov 23, 2002 12:38:58.351
+!MESSAGE org.eclipse.jdt.internal.compiler.lookup.BaseTypeBinding
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.internal.compiler.lookup.BaseTypeBinding
+at org.eclipse.jdt.internal.codeassist.CompletionEngine.computeExpectedTypes(CompletionEngine.java:2696)
+at org.eclipse.jdt.internal.codeassist.CompletionEngine.complete(CompletionEngine.java:349)
+at org.eclipse.jdt.internal.codeassist.CompletionEngine.complete(CompletionEngine.java:842)
+at org.eclipse.jdt.internal.core.Openable.codeComplete(Openable.java:124)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeComplete(CompilationUnit.java:104)
+at org.eclipse.jdt.internal.ui.text.java.JavaCompletionProcessor.internalComputeCompletionProposals(JavaCompletionProcessor.java:342)
+at org.eclipse.jdt.internal.ui.text.java.JavaCompletionProcessor.computeCompletionProposals(JavaCompletionProcessor.java:300)
+at org.eclipse.jface.text.contentassist.ContentAssistant.computeCompletionProposals(ContentAssistant.java:1279)
+at org.eclipse.jface.text.contentassist.CompletionProposalPopup.computeProposals(CompletionProposalPopup.java:178)
+at org.eclipse.jface.text.contentassist.CompletionProposalPopup.access$7(CompletionProposalPopup.java:177)
+at org.eclipse.jface.text.contentassist.CompletionProposalPopup$3.run(CompletionProposalPopup.java:139)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:65)
+at org.eclipse.jface.text.contentassist.CompletionProposalPopup.showProposals(CompletionProposalPopup.java:134)
+at org.eclipse.jface.text.contentassist.ContentAssistant.showPossibleCompletions(ContentAssistant.java:1199)
+at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor$AdaptedSourceViewer.doOperation(CompilationUnitEditor.java:233)
+at org.eclipse.ui.texteditor.ContentAssistAction$1.run(ContentAssistAction.java:84)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:65)
+at org.eclipse.ui.texteditor.ContentAssistAction.run(ContentAssistAction.java:82)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:769)
+at org.eclipse.ui.internal.WWinKeyBindingService.invoke(WWinKeyBindingService.java:138)
+at org.eclipse.ui.internal.WWinKeyBindingService.pressed(WWinKeyBindingService.java:119)
+at org.eclipse.ui.internal.WWinKeyBindingService$5.widgetSelected(WWinKeyBindingService.java:366)
+at org.eclipse.ui.internal.AcceleratorMenu$2.handleEvent(AcceleratorMenu.java:55)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:77)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:868)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:1453)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:1275)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1435)
+at org.eclipse.ui.internal.Workbench.run(Workbench.java:1418)
+at org.eclipse.core.internal.boot.InternalBootLoader.run(InternalBootLoader.java:831)
+at org.eclipse.core.boot.BootLoader.run(BootLoader.java:462)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:324)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:247)
+at org.eclipse.core.launcher.Main.run(Main.java:703)
+at org.eclipse.core.launcher.Main.main(Main.java:539)

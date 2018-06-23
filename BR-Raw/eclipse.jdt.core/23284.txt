@@ -1,0 +1,7 @@
+Bug 23284 – AST: SingleVariableDeclaration needs extra dimensions?
+20028303
+Similar to VariableDeclarationFragment,
+SingleVariableDeclaration can also have dimensions appended to the name
+(it is possible to write
+public void foo(int[] i[]))
+How is this expressed in a SingleVariableDeclaration?

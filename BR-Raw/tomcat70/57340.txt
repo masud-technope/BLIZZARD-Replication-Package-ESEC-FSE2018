@@ -1,0 +1,14 @@
+57340 – NioConnector caches get corrupted on concurrent comet close
+Configuration:
+Tomcat 7.0.47 NioConnector, nginx 1.6.2, atmosphere 2.2.3.
+It happens when nginx and atmosphere close the same comet connection concurrently.
+In NioEndpoint.Poller thread(A) the SocketChannel becomes ready for read when nginx closes it.
+Poller unregisters the channel for read and forks another thread(B) to handle close event.
+(see NioEndpoint:1239)
+Then atmosphere calls close on the connection in thread(C) and Tomcat receives internal action with code ActionCode.COMET_CLOSE and adds the channel to the Poller, which registers it for read again.
+(see Http11NioProcessor.java:462).
+The SocketChannel is still readable in case thread(B) hasnâ€™t invalidated the SelectionKey yet, so Poller in thread(A) initiates the closing process again and forks thread(D).
+Thread(B) completes the closing process and puts NioChannel and AttachmentKey into the corresponding caches.
+Then Thread(D) tries to close the channel again and realizes that it has already been closed (see AbstractProtocol.java:564) and puts the same NioChannel and AttachmentKey into caches.
+Caches become corrupted because they contain 2 references to the same object.
+Then any 2 subsequent requests may get the same NioChannel and AttachmentKey and some crazy stuff may happen (mixed up responses, etc).

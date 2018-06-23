@@ -1,0 +1,2 @@
+org.eclipse.jdt.apt.core/build_notes.html
+org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/APTDispatchRunnable.java

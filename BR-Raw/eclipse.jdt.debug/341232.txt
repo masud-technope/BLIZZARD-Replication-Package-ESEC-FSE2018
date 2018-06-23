@@ -1,0 +1,15 @@
+Bug 341232 – Eclipse is not able to set the simplest of conditional breakpoints and reports that the condition has compilation errors when it doesn't
+Build Identifier: 20110218-0911
+I have set a conditional breakpoint in one of my objects with the following condition:
+this.hashCode() == 518877755
+Whenever this method is called by the application Eclipse complains that:
+Conditional breakpoint has compilation error(s).
+Reason:
+Evaluations must contain either an expression or a block of well-formed statements
+Reproducible: Sometimes
+Steps to Reproduce:
+1.
+Set a conditional breakpoint in an object's method.
+2.
+Run debugger and get that method to be executed.
+3.

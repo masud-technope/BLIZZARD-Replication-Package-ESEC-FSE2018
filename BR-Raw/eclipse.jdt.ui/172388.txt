@@ -1,0 +1,29 @@
+Bug 172388 – [open type] Open Type dialog shows different JRE libraries with identical text
+Build ID: I20061214-1445
+Steps To Reproduce:
+1) Compile your own rt.jar for jdk1.6.0, with all debugging information included, for example.
+ (An exact copy will do for purposes of time.)  Name it rt_g.jar.
+2) Go to Eclipse Preferences, Java, Installed JREs.
+ Copy existing "jdk1.6.0" to "jdk1.6.0_debug".
+3) Edit "jdk1.6.0" debug, including built "rt_g.jar" directly above default "rt.jar".
+4) Create 2 projects in workspace, one using the default "jdk1.6.0" JRE, the other using the customized "jdk1.6.0_debug" JRE.
+5) Bring up the "Open Type" dialog.
+ Search for java.lang.Object.
+ 2 identical entries will appear:
+Object - java.lang - [jdk1.6.0]
+Object - java.lang - [jdk1.6.0]
+There is no way to differentiate between these two.
+ However, opening either does, in fact, open 2 different files.
+ One opens the Object.class (showing source) for the instance in rt.jar.
+ The other shows the instance from rt_g.jar.
+6) These tagged names appear to be the name as entered on the JRE under preferences.
+ Renaming "jdk1.6.0" to "test jdk1.6.0" will result in a repeat of this test showing:
+Object - java.lang - [test jdk1.6.0]
+Object - java.lang - [test jdk1.6.0]
+7) Now, removing the ORIGINAL "jdk1.6.0" all together (now called "test jdk1.6.0") shows a different result:
+Object - java.lang - C:\Program FilesJava\jdk1.6.0\jre\lib\rt.jar
+Object - java.lang - C:\Program FilesJava\jdk1.6.0\rt_g.jar
+(The above looks much more like what I would like / expect.)
+8) Copying the "jdk1.6.0_debug" back to "jdk1.6.0", AND removing the rt_g.jar from the later will reproduce the undesired result:
+Object - java.lang - [jdk1.6.0]
+Object - java.lang - [jdk1.6.0]

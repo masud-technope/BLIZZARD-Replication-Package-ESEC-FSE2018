@@ -1,0 +1,14 @@
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/hierarchy/HierarchyResolver.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaElement8Tests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ResolveTests18.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/env/ISourceType.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/BinaryType.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/IType.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/CompilationUnitStructureRequestor.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/ResolvedLambdaExpression.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/hierarchy/HierarchyType.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/AbstractJavaSearchTests.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/SourceTypeElementInfo.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/Member.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/LambdaExpression.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/SourceType.java

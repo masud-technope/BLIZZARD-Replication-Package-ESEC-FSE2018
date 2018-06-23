@@ -1,0 +1,22 @@
+Bug 424403 – [1.8][compiler] Generic method call with method reference argument fails to resolve properly.
+This is the code causing the NPE:
+interface Functional { int foo(); }
+class X {
+static int bar() {
+return -1;
+}
+static <T> T consume(T t) { return null; }
+public static void main(String[] args) {
+Functional f = consume(X::bar);
+}
+}
+Not sure if the NPE is causing it, but we also report a compilation error.
+And here's the stack trace:
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.lookup.CompilationUnitScope.recordQualifiedReference(CompilationUnitScope.java:636)
+at org.eclipse.jdt.internal.compiler.lookup.ReferenceBinding.getSingleAbstractMethod(ReferenceBinding.java:1861)
+at org.eclipse.jdt.internal.compiler.ast.ReferenceExpression.isPertinentToApplicability(ReferenceExpression.java:554)
+at org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.createInitialConstraintsForParameters(InferenceContext18.java:139)
+at org.eclipse.jdt.internal.compiler.lookup.ConstraintExpressionFormula.inferInvocationApplicability(ConstraintExpressionFormula.java:271)
+at org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.inferInvocationApplicability(InferenceContext18.java:217)
+at ...

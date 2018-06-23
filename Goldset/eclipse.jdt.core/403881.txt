@@ -1,0 +1,4 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/formatter/FormatterJSR308Tests.java
+org.eclipse.jdt.core.tests.model/workspace/FormatterJSR308/testBugs/Bug403881_in.java
+org.eclipse.jdt.core.tests.model/workspace/FormatterJSR308/testBugs/Bug403881_out.java
+org.eclipse.jdt.core/formatter/org/eclipse/jdt/internal/formatter/CodeFormatterVisitor.java

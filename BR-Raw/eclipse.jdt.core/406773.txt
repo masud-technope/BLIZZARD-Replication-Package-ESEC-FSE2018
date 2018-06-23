@@ -1,0 +1,42 @@
+Bug 406773 – [1.8][compiler][codegen] "java.lang.IncompatibleClassChangeError" caused by attempted invocation of private constructor
+BETA_JAVA8:
+The following error is triggered by the program below:
+Exception in thread "main" java.lang.IncompatibleClassChangeError
+at java.lang.invoke.MethodHandleNatives.linkMethodHandleConstant(MethodHandleNatives.java:383)
+at X$Y.f(X.java:12)
+at X.main(X.java:25)
+Caused by: java.lang.IllegalAccessException: member is private: X.<init>(int)void/invokeSpecial, from X$Y
+at java.lang.invoke.MemberName.makeAccessException(MemberName.java:732)
+at java.lang.invoke.MethodHandles$Lookup.checkAccess(MethodHandles.java:1135)
+at java.lang.invoke.MethodHandles$Lookup.getDirectConstructor(MethodHandles.java:1243)
+at java.lang.invoke.MethodHandles$Lookup.linkMethodHandleConstant(MethodHandles.java:1270)
+at java.lang.invoke.MethodHandleNatives.linkMethodHandleConstant(MethodHandleNatives.java:381)
+...
+2 more
+// ---
+interface I {
+X makeX(int x);
+}
+public class X {
+class Y extends X {
+private Y (int y) {
+System.out.println(y);
+}
+Y() {
+}
+void f() {
+I i = X::new;
+i.makeX(123456);
+i = X.Y::new;
+i.makeX(987654);
+}
+}
+private X(int x) {
+System.out.println(x);
+}
+X() {
+}
+public static void main(String[] args) {
+new X().new Y().f();
+}
+}

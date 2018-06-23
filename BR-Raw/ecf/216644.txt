@@ -1,0 +1,8 @@
+Bug 216644 – [irc] [bot] Add a command for creating a plug-in search query
+I'd like to see an enhanced version of the command ~plugins.
+It should allow plugin searches similar to the way ~g allows google searches:
+dominikg: ~g searchterm
+KOS-MOS: Try googling - http://google.com/search?q=searchterm
+what i want is something like this (the urls should work):
+dominikg: ~plugins searchterm
+KOS-MOS:Try searching for plugins: http://www.eclipseplugincentral.com/modules.php?name=search&action=search&q=searchterm  - http://www.eclipse-plugins.info/eclipse/search.jsp?query=searchterm

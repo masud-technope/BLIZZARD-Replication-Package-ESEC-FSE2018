@@ -1,0 +1,128 @@
+Bug 307407 – [Clean Up] NullPointerException running Change non static accesses to static members using declaring type clean up
+Build Identifier: 20100318-1801
+Exception thrown when running the cleanup to change non static access to static members cleanup.
+Run cleanup on this class:
+public class CleanupTest {
+private String localString = new MyClass().getMyString();
+/**
+* @param args
+*/
+public static void main(String[] args) {
+new CleanupTest().testCleanup();
+}
+public static class MyClass {
+private static String myString = "This is a constant";
+public static String getMyString() {
+return myString;
+}
+}
+public void testCleanup() {
+System.out.println(localString);
+}
+}
+!ENTRY org.eclipse.ltk.ui.refactoring 4 10000 2010-03-29 09:01:45.253
+!MESSAGE Internal Error
+!STACK 0
+java.lang.reflect.InvocationTargetException
+at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:421)
+at org.eclipse.jface.wizard.WizardDialog.run(WizardDialog.java:1002)
+at org.eclipse.ltk.ui.refactoring.RefactoringWizard.createChange(RefactoringWizard.java:599)
+at org.eclipse.ltk.ui.refactoring.RefactoringWizard.computeUserInputSuccessorPage(RefactoringWizard.java:438)
+at org.eclipse.ltk.ui.refactoring.UserInputWizardPage.computeSuccessorPage(UserInputWizardPage.java:74)
+at org.eclipse.ltk.ui.refactoring.UserInputWizardPage.getNextPage(UserInputWizardPage.java:114)
+at org.eclipse.jdt.internal.ui.fix.CleanUpRefactoringWizard$CleanUpConfigurationPage.getNextPage(CleanUpRefactoringWizard.java:449)
+at org.eclipse.jface.wizard.WizardDialog.nextPressed(WizardDialog.java:881)
+at org.eclipse.jface.wizard.WizardDialog.buttonPressed(WizardDialog.java:425)
+at org.eclipse.jface.dialogs.Dialog$2.widgetSelected(Dialog.java:624)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:228)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1050)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4037)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3628)
+at org.eclipse.jface.window.Window.runEventLoop(Window.java:825)
+at org.eclipse.jface.window.Window.open(Window.java:801)
+at org.eclipse.ltk.ui.refactoring.RefactoringWizardOpenOperation$1.run(RefactoringWizardOpenOperation.java:180)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+at org.eclipse.ltk.ui.refactoring.RefactoringWizardOpenOperation.run(RefactoringWizardOpenOperation.java:192)
+at org.eclipse.ltk.ui.refactoring.RefactoringWizardOpenOperation.run(RefactoringWizardOpenOperation.java:115)
+at org.eclipse.jdt.internal.ui.refactoring.actions.RefactoringStarter.activate(RefactoringStarter.java:38)
+at org.eclipse.jdt.internal.corext.refactoring.RefactoringExecutionStarter.startCleanupRefactoring(RefactoringExecutionStarter.java:251)
+at org.eclipse.jdt.internal.ui.actions.AllCleanUpsAction.performRefactoring(AllCleanUpsAction.java:75)
+at org.eclipse.jdt.internal.ui.actions.CleanUpAction.run(CleanUpAction.java:172)
+at org.eclipse.jdt.internal.ui.actions.CleanUpAction.run(CleanUpAction.java:97)
+at org.eclipse.jdt.ui.actions.SelectionDispatchAction.dispatchRun(SelectionDispatchAction.java:278)
+at org.eclipse.jdt.ui.actions.SelectionDispatchAction.run(SelectionDispatchAction.java:250)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:498)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:584)
+at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:501)
+at org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:411)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1050)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4037)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3628)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2416)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2380)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2229)
+at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:504)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:497)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:115)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:369)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:619)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:574)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1406)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1382)
+Caused by: java.lang.NullPointerException
+at org.eclipse.jdt.internal.corext.fix.CodeStyleFix$ToStaticAccessOperation.extractQualifier(CodeStyleFix.java:477)
+at org.eclipse.jdt.internal.corext.fix.CodeStyleFix$ToStaticAccessOperation.rewriteAST(CodeStyleFix.java:462)
+at org.eclipse.jdt.internal.corext.fix.CompilationUnitRewriteOperationsFix.createChange(CompilationUnitRewriteOperationsFix.java:100)
+at org.eclipse.jdt.internal.corext.fix.CleanUpRefactoring.calculateChange(CleanUpRefactoring.java:799)
+at org.eclipse.jdt.internal.corext.fix.CleanUpRefactoring$CleanUpASTRequestor.calculateSolutions(CleanUpRefactoring.java:299)
+at org.eclipse.jdt.internal.corext.fix.CleanUpRefactoring$CleanUpASTRequestor.acceptAST(CleanUpRefactoring.java:277)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:883)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:577)
+at org.eclipse.jdt.core.dom.ASTParser.createASTs(ASTParser.java:876)
+at org.eclipse.jdt.internal.corext.dom.ASTBatchParser.createASTs(ASTBatchParser.java:99)
+at org.eclipse.jdt.internal.corext.fix.CleanUpRefactoring$CleanUpFixpointIterator.next(CleanUpRefactoring.java:399)
+at org.eclipse.jdt.internal.corext.fix.CleanUpRefactoring.cleanUpProject(CleanUpRefactoring.java:707)
+at org.eclipse.jdt.internal.corext.fix.CleanUpRefactoring.checkFinalConditions(CleanUpRefactoring.java:663)
+at org.eclipse.ltk.core.refactoring.CheckConditionsOperation.run(CheckConditionsOperation.java:85)
+at org.eclipse.ltk.core.refactoring.CreateChangeOperation.run(CreateChangeOperation.java:121)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Root exception:
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.corext.fix.CodeStyleFix$ToStaticAccessOperation.extractQualifier(CodeStyleFix.java:477)
+at org.eclipse.jdt.internal.corext.fix.CodeStyleFix$ToStaticAccessOperation.rewriteAST(CodeStyleFix.java:462)
+at org.eclipse.jdt.internal.corext.fix.CompilationUnitRewriteOperationsFix.createChange(CompilationUnitRewriteOperationsFix.java:100)
+at org.eclipse.jdt.internal.corext.fix.CleanUpRefactoring.calculateChange(CleanUpRefactoring.java:799)
+at org.eclipse.jdt.internal.corext.fix.CleanUpRefactoring$CleanUpASTRequestor.calculateSolutions(CleanUpRefactoring.java:299)
+at org.eclipse.jdt.internal.corext.fix.CleanUpRefactoring$CleanUpASTRequestor.acceptAST(CleanUpRefactoring.java:277)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:883)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:577)
+at org.eclipse.jdt.core.dom.ASTParser.createASTs(ASTParser.java:876)
+at org.eclipse.jdt.internal.corext.dom.ASTBatchParser.createASTs(ASTBatchParser.java:99)
+at org.eclipse.jdt.internal.corext.fix.CleanUpRefactoring$CleanUpFixpointIterator.next(CleanUpRefactoring.java:399)
+at org.eclipse.jdt.internal.corext.fix.CleanUpRefactoring.cleanUpProject(CleanUpRefactoring.java:707)
+at org.eclipse.jdt.internal.corext.fix.CleanUpRefactoring.checkFinalConditions(CleanUpRefactoring.java:663)
+at org.eclipse.ltk.core.refactoring.CheckConditionsOperation.run(CheckConditionsOperation.java:85)
+at org.eclipse.ltk.core.refactoring.CreateChangeOperation.run(CreateChangeOperation.java:121)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Reproducible: Always
+Steps to Reproduce:
+1.Create class that is in the description above
+2.In cleanup choose Use Declaring class as qualifier and Change all accesses through instances
+3.Run clean up as configured.
+ Having other clean ups enabled does not impact the reproducibility.

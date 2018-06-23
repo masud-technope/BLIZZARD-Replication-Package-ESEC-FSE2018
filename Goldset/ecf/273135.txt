@@ -1,0 +1,1 @@
+framework/bundles/org.eclipse.ecf.identity/src/org/eclipse/ecf/core/util/SystemLogService.java

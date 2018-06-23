@@ -1,0 +1,7 @@
+50554 – Bad use of getClass() could potentially lead to concurrency bugs in future
+The method org.apache.naming.java.javaURLContextFactory.getInitialContext(Hashtable<?,?>) has a synchronized block on getClass().
+Using getClass() as lock is a bug pattern because if some class subclasses javaURLContextFactory and getInitialContext gets called on an instance of such a subclass, getClass() will return a different Class object for that instance.
+Locking different objects for different classes is usually not the expected behavior.
+Therefore, I suggest to remove this bug pattern by simply replacing getClass() by javaURLContextFactory.class.
+See https://www.securecoding.cert.org/confluence/display/java/LCK02-J.+Do+not+synchronize+on+the+class+object+returned+by+getClass%28%29 for more information about this bug pattern.
+Keshmesh (https://github.com/reprogrammer/keshmesh/) is an Eclipse plugin that analyzes the source code of Java programs to detect concurrency bug patterns such the one I reported.

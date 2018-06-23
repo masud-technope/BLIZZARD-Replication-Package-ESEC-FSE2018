@@ -1,0 +1,16 @@
+hudson.plugins.buckminster.EclipseBuckminsterBuilder.perform
+hudson.plugins.templateproject.ProxyBuilder.perform
+hudson.tasks.BuildStepMonitor$1.perform
+hudson.model.AbstractBuild$AbstractBuildExecution.perform
+hudson.model.Build$BuildExecution.build
+hudson.model.Build$BuildExecution.doRun
+hudson.model.AbstractBuild$AbstractBuildExecution.run
+hudson.model.Run.execute
+hudson.model.FreeStyleBuild.run
+hudson.model.ResourceController.execute
+hudson.model.Executor.run
+java.lang.Object.wait
+java.lang.Object.wait
+java.lang.UNIXProcess.waitFor
+hudson.Proc$LocalProc.join
+hudson.plugins.buckminster.EclipseBuckminsterBuilder.perform

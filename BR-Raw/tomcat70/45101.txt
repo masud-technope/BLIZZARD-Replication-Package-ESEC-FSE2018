@@ -1,0 +1,6 @@
+45101 – DirContextURLConnection - Format Date Header Values per HTTP spec
+Created attachment 22035 [details]
+Return Date header values in HTTP format
+When you retrieve a header value from a DirContextURLConnection, it currently returns a string by simply calling .toString() on the internal object, no matter the type of that Object.
+ For Date value headers such as 'Last-Modified', this results in a String formatted according to Java standards, rather than the Date format specified by the HTTP standard as clients of the API would expect.
+This is a follow-up to bug 44611.

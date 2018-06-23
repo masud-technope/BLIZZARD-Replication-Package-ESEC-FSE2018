@@ -1,0 +1,9 @@
+52156 – ServletContext.getResource(path) doesn't accept ".." anymore
+With WAR-packaged webapp,
+getServletContext().getResource("/mydata/../mydata/myfile.txt")
+should return the same URL as
+getServletContext().getResource("/mydata/myfile.txt")
+but returns NULL instead.
+It's ok for folder-based webapp.
+It was working in Tomcat 6.0.20.
+It looks like Bug 10629 (WARDirContext.java regression?).

@@ -1,0 +1,4 @@
+providers/bundles/org.eclipse.ecf.provider.discovery/src/org/eclipse/ecf/internal/provider/discovery/CompositeServiceContainerEvent.java
+providers/bundles/org.eclipse.ecf.provider.discovery/src/org/eclipse/ecf/internal/provider/discovery/CompositeServiceTypeContainerEvent.java
+providers/bundles/org.eclipse.ecf.provider.discovery/src/org/eclipse/ecf/provider/discovery/CompositeServiceContainerEvent.java
+providers/bundles/org.eclipse.ecf.provider.discovery/src/org/eclipse/ecf/provider/discovery/CompositeServiceTypeContainerEvent.java

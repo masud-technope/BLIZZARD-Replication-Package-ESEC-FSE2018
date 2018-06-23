@@ -1,0 +1,45 @@
+Bug 46084 – ArrayIndexOutOfBoundsException in compiler after feeding with non-real java code
+3.0 M4
+i fed the compiler with some java code with 'const' annotations (which makes it
+not java anymore).
+It made the compiler crash.
+Not severe but might be a
+usecase.
+Code attached.
+java.lang.ArrayIndexOutOfBoundsException
+at java.lang.System.arraycopy(Native Method)
+at org.eclipse.jdt.internal.compiler.parser.Scanner.getCurrentTokenSource(Scanner.java:361)
+at org.eclipse.jdt.internal.compiler.parser.diagnose.LexStream.readTokenFromScanner(LexStream.java:84)
+at org.eclipse.jdt.internal.compiler.parser.diagnose.LexStream.token(LexStream.java:137)
+at org.eclipse.jdt.internal.compiler.parser.diagnose.LexStream.kind(LexStream.java:177)
+at org.eclipse.jdt.internal.compiler.parser.diagnose.DiagnoseParser.secondaryPhase(DiagnoseParser.java:1552)
+at org.eclipse.jdt.internal.compiler.parser.diagnose.DiagnoseParser.errorRecovery(DiagnoseParser.java:453)
+at org.eclipse.jdt.internal.compiler.parser.diagnose.DiagnoseParser.diagnoseParse(DiagnoseParser.java:358)
+at org.eclipse.jdt.internal.compiler.parser.Parser.reportSyntaxErrorsForSkippedMethod(Parser.java:5686)
+at org.eclipse.jdt.internal.compiler.parser.Parser.reportSyntaxErrors(Parser.java:5665)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:5642)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:5953)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:5925)
+at org.eclipse.jdt.internal.compiler.parser.Parser.dietParse(Parser.java:4672)
+at org.eclipse.jdt.internal.compiler.Compiler.beginToCompile(Compiler.java:279)
+at org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:314)
+at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.compile(AbstractImageBuilder.java:201)
+at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.compile(AbstractImageBuilder.java:151)
+at org.eclipse.jdt.internal.core.builder.IncrementalImageBuilder.build(IncrementalImageBuilder.java:112)
+at org.eclipse.jdt.internal.core.builder.JavaBuilder.buildDeltas(JavaBuilder.java:222)
+at org.eclipse.jdt.internal.core.builder.JavaBuilder.build(JavaBuilder.java:150)
+at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:475)
+at org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java:1018)
+at org.eclipse.core.runtime.Platform.run(Platform.java:461)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:130)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:201)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:156)
+at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:182)
+at org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java:1018)
+at org.eclipse.core.runtime.Platform.run(Platform.java:461)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:185)
+at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:219)
+at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:247)
+at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:76)
+at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:109)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:62)

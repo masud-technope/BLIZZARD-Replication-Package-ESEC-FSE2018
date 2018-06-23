@@ -1,0 +1,2 @@
+Bug 236810 – IDiscoveryContainerAdapter may extend IContainer
+org.eclipse.ecf.discovery.IDiscoveryContainerAdapter may extend org.eclipse.ecf.core.IContainer to cleanup the inheritance tree

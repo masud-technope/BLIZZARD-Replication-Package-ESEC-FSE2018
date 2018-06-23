@@ -1,0 +1,7 @@
+java/org/apache/catalina/connector/CometEventImpl.java
+java/org/apache/catalina/connector/Request.java
+java/org/apache/coyote/http11/AbstractHttp11Processor.java
+java/org/apache/coyote/http11/Http11AprProcessor.java
+java/org/apache/coyote/http11/Http11NioProcessor.java
+java/org/apache/coyote/http11/Http11Processor.java
+test/org/apache/catalina/comet/TestCometProcessor.java

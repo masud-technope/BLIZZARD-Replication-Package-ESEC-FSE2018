@@ -1,0 +1,3 @@
+framework/bundles/org.eclipse.ecf.sharedobject/src/org/eclipse/ecf/core/util/reflection/ClassUtil.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/provider/jmdns/container/JMDNSDiscoveryContainer.java
+tests/bundles/org.eclipse.ecf.tests.sharedobject/src/org/eclipse/ecf/tests/sharedobject/util/reflection/ClassUtilTest.java

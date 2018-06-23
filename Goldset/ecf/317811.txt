@@ -1,0 +1,4 @@
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdDisocoveryLocator.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/Activator.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/ContainerInstantiator.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdDiscoveryLocator.java

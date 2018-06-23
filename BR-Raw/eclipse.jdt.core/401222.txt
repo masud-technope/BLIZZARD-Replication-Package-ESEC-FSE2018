@@ -1,0 +1,12 @@
+Bug 401222 – [1.8][compiler] Conditional operator expressions results differ from 8b76
+For the program below javac 8b76 reports:
+C:\jtests>C:\lambda-8-b76-windows-x64-05_feb_2013\jdk1.8.0\bin\javac -cp c:\jtes
+ts X.java
+X.java:5: error: incompatible types: bad type in conditional expression; int can
+not be converted to List<String>
+List<String> l = x== 2 ? (List<String>)(null) : 1;
+^
+1 error
+while eclipse BETA_JAVA8 head and javac7 report that Object cannot be
+converted to List<String>
+This difference needs to be investigated.

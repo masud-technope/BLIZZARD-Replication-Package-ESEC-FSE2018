@@ -1,0 +1,9 @@
+Bug 401983 – [CBI] Binary plug-in import also imports /OSGI-INF from the corresponding source bundle
+I20130227-2000.
+Binary plug-in import also imports /OSGI-INF from the corresponding source bundle.
+This is misleading, as there's already the plugin.properties file (correct).
+1.
+import a binary plug-in built with CBI, e.g.
+jface.text
+==>
+imports the OSGI-INF folder

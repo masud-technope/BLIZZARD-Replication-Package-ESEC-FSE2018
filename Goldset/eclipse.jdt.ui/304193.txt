@@ -1,0 +1,3 @@
+org.eclipse.jdt.ui.tests/performance/org/eclipse/jdt/ui/tests/performance/views/CleanUpPerfTest.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/reorg/MoveStaticMembersPerfTests1.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/reorg/MoveStaticMembersPerfTests2.java

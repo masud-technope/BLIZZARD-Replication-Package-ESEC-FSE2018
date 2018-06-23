@@ -1,0 +1,24 @@
+Bug 354502 – Incorrect Compiler Warning: "Method can be declared as static"
+Build Identifier: I20110613-1736
+Compiler shows warning that a method can be declared as static, but when declaring as static one will see a compiler error.
+See steps to reproduce for details...
+Reproducible: Always
+Steps to Reproduce:
+See attached project or follow instructions below:
+1.
+Turn on compiler warning for Code style "Method can be static".
+2.
+Create a java project with 2 packages (packageA and packageB)
+3.
+In package A create an abstract class (e.g.
+AbstractExample) with an inner protected abstract class (e.g.
+SubClass).
+4.
+In packageB create another class extending the abstract class (AbstractExample) from packageA.
+(here called Example)
+5.
+Create a method in the class of packageB (Example) that creates a new instance of the inner class (SubClass).
+6.
+Call this method in the constructor of "Example".
+As Is: One can see a compiler warning "method can be declared as static".
+To Be: No compiler warning, as making this method static will lead to a compile error.

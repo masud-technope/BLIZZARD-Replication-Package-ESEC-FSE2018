@@ -1,0 +1,4 @@
+Bug 231409 – Conversion of org.eclipse.update.core is causing weird results
+When convertion this bundle, the api restriction tags inside the type org.eclipse.update.configuration.IActivity are duplicated and you can find:
+@noextend null multiple times.
+This should be fixed to help people to convert.

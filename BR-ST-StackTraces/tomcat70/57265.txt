@@ -1,0 +1,7 @@
+org.apache.tomcat.util.net.SecureNioChannel.write
+sun.nio.ch.FileChannelImpl.transferToArbitraryChannel
+sun.nio.ch.FileChannelImpl.transferTo
+org.apache.tomcat.util.net.NioEndpoint$Poller.processSendfile
+org.apache.tomcat.util.net.NioEndpoint$Poller.processKey
+org.apache.tomcat.util.net.NioEndpoint$Poller.run
+java.lang.Thread.run

@@ -1,0 +1,2 @@
+49721 – Fail to access the resources such as jsp files from a jar file which is supported by servlet 3.0
+I put a jsp file in a jar file and test whether tomcat 7 supports it by viewing it from the browser and failed.

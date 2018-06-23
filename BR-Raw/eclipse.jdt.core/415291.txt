@@ -1,0 +1,25 @@
+Bug 415291 – [1.8][null] differentiate type incompatibilities due to null annotations
+With type annotations for null analysis, more patterns of incompatibility arise
+which deserve specific analysis and reporting.
+Consider:
+List<@NonNull String> nonNullStrings;
+List<@NonNull String> nullableStrings;
+List<String> strings;
+(A) Incompatible:
+nonNullStrings = nullableStrings;
+nullableStrings = nonNullStrings;
+(B) Lossy (but safe) conversions:
+strings = nonNullStrings;
+strings = nullableStrings;
+(C) Unchecked, unsafe conversions:
+nonNullStrings = strings;
+nullableStrings = strings;
+Current status:
+(A) is mostly implemented, exception:
+- array content, nullable to nonnull incompatibility is not reported
+Currently, this kind of incompatibility influences overload resolution, which
+is wrong.
+(B) works for array details, but not for type parameters.
+(C) works for type parameters but not all situations involving array details
+Note, that all checking for the above happens during resolve, no flow
+analysis involved.

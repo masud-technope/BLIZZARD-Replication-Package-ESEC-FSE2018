@@ -1,0 +1,38 @@
+Bug 270754 – annotation processing for inherited annotations only if base and subclass are compiled at same time
+Build ID: M20090211-1700
+Steps To Reproduce:
+1.
+create annotation with @Inherited
+2.
+create annotation processor for this annotation that checks something and may write an error
+3.
+use annotation and processor like this:
+a.
+create BaseClass and apply the annotation
+b.
+create SubClass inheriting BaseClass
+More information:
+Problem: the processor seems to be called (for the SubClass!) only if a clean + build is done.
+For the BaseClass the processor is called on every build.
+We are using the Java 6 style annotation processing.
+Batch Mode is NOT used.
+Perhaps some code is usefull:
+@Inherited
+@Documented
+@Retention( RetentionPolicy.SOURCE )
+@Target( ElementType.TYPE )
+public @interface NameRestriction {
+String value();
+}
+@SupportedAnnotationTypes( "entwickler.tools.annotation.NameRestriction" )
+@SupportedSourceVersion( SourceVersion.RELEASE_6 )
+public class NameRestrictionProcessor extends AbstractProcessor {
+@Override
+public boolean process( final Set<? extends TypeElement> annotations, final RoundEnvironment roundEnv ) {
+JOptionPane.showMessageDialog( null, "Hi" );
+return false;
+}
+}
+@NameRestriction(".*Class")
+public class BaseClass {}
+public class SubClazz extends BaseClass{}

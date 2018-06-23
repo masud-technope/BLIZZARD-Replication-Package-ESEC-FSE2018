@@ -1,0 +1,7 @@
+tests/bundles/org.eclipse.ecf.tests.provider.jslp/.settings/org.eclipse.jdt.core.prefs
+framework/bundles/org.eclipse.ecf.discovery/.settings/org.eclipse.jdt.core.prefs
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/discovery/IServiceProperties.java
+providers/bundles/org.eclipse.ecf.provider.discovery/.settings/org.eclipse.jdt.core.prefs
+tests/bundles/org.eclipse.ecf.tests.discovery/.settings/org.eclipse.jdt.core.prefs
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/DiscoveryTest.java
+providers/bundles/org.eclipse.ecf.provider.jslp/.settings/org.eclipse.jdt.core.prefs

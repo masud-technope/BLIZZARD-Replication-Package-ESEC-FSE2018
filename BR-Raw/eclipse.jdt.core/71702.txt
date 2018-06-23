@@ -1,0 +1,19 @@
+Bug 71702 – code completion doesn't work anymore after Array cast.
+using this code:
+package foo;
+import java.util.ArrayList;
+public class foo
+{
+public foo(int x)
+{
+String[] tmp = new String[10];
+ArrayList al = new ArrayList();
+tmp = (String[])al.toArray(tmp);
+}
+}
+then after the Array cast (String[])
+code completion doesn't work anymore
+I am using version:
+Version: 3.1.0
+Build id: 200408031300
+but i also now that this also happens in 3.0 code.

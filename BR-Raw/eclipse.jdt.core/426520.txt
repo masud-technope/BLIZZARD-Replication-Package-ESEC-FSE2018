@@ -1,0 +1,16 @@
+Bug 426520 – [1.8][formatter] inserts spaces into annotated qualified type
+package bug.formatter;
+import java.lang.annotation.*;
+@Target(ElementType.TYPE_USE)
+@interface T {
+}
+public class C {
+java.util.concurrent.@T Callable c;
+java.util.@T Set<java.lang.@T String> s;
+}
+The formatter inserts bad spaces after the package components of an annotated qualified type (but it seems to be afraid of touching a parameterized type):
+java.
+util.
+concurrent.@T Callable c;
+java.util.@T Set< java.
+lang.@T String> s;

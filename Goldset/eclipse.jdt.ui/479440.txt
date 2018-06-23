@@ -1,0 +1,3 @@
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/reorg/RenameInformationPopup.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/reorg/ReorgMessages.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/reorg/ReorgMessages.properties

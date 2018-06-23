@@ -1,0 +1,39 @@
+42707 – add host alias using jmx doesn't take affect until restart
+Adding a host alias using jmx doesn't take affect until tomcat is restarted.
+To test it I started tomcat using
+-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=6702
+-Dcom.sun.management.jmxremote.authenticate=false
+-Dcom.sun.management.jmxremote.ssl=false
+I created a webapps_test/test/index.html
+I created a new host
+<Host
+appBase="webapps_test"
+name="test.localdomain">
+</Host>
+I tested the url http://test.localdomain:8080/test/ and the index page showed up
+as expected.
+I used jconsole under Catalina/Host/test.localdomain/Operations/addAlias and
+added test1.localdomain (I edited my /etc/hosts file to map test.localdomain and
+test1.localdomain to 127.0.0.1).
+I went to the url http://test1.localdomain:8080/test/ and instead of the
+index.html page I received a 404 error.
+I tried starting and stopping the host
+from within jmx, it didn't help, I tried Catalina/Server/Operations/storeConfig
+and starting and stopping the host and that didn't help either.
+I tested with the following versions for the server
+jdk 1.6.0_01-b06
+tomcat 5.5.20, 6.0.10, 6.0.13
+for the client I was using the jdk 1.6.0_01-b06 jconsole, as well as a custom
+application I had written as well as the the "administration web application 5.5.23"
+all the combinations above had similar results.
+I will briefly mention that in tomcat 6.0.10/13 I was unable to save the
+configuration due to an error :
+Jun 20, 2007 5:26:11 PM org.apache.catalina.core.StandardServer storeConfig
+SEVERE: StoreConfig mbean not registeredCatalina:type=StoreConfig
+I will open a separate bug for that.
+In tomcat 5 I was able to save the config.
+If I restart tomcat5 after saving the config (using catalina.sh stop / start)
+the new alias works properly.
+Likewise, if I edit the tomcat 6 conf/server.xml and add the alias entry in
+manually and restart tomcat, the url http://test1.localdomain:8080/test/ works fine.
+So, the main problem is that adding an alias dynamically doesn't seem to work.

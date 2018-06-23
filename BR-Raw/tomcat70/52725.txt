@@ -1,0 +1,11 @@
+52725 – org.apache.jasper.compiler.JspUtil#getTagHandlerClassName() does not use org.apache.jasper.Constants.TAG_FILE_PACKAGE_NAME
+In the class org.apache.jasper.compiler.JspUtil, its method
+public static String getTagHandlerClassName(String path, String urn,
+ErrorDispatcher err) throws JasperException {
+...
+}
+uses the string constants directly like "org.apache.jsp.tag.web.", "org.apache.jsp.tag.meta.".
+But you know there is TAG_FILE_PACKAGE_NAME field in the class org.apache.jasper.Constants.
+The code should be adjusted like below :
+Constants.TAG_FILE_PACKAGE_NAME + ".web"
+Constants.TAG_FILE_PACKAGE_NAME + ".meta"

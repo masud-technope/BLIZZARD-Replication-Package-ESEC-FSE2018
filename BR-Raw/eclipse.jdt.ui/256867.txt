@@ -1,0 +1,3 @@
+Bug 256867 – [package explorer] Assign Working Sets dialog: checking a working set should show it
+I20081126-000
+When choosing to see all working sets in the 'Working Set Assignements' dialog and checking one of the yet hidden working sets it should make the working set(s) visible when clicking 'OK'.

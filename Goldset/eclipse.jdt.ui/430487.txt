@@ -1,0 +1,8 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/RenameTests18/testMethod0/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/RenameTests18/testMethod0/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/RenameTests18/testMethod1/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/RenameTests18/testMethod1/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/AllRefactoringTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/RenameTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/RenameTests18.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/rename/MethodOccurenceCollector.java

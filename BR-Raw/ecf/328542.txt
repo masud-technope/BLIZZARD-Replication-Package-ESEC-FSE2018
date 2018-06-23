@@ -1,0 +1,4 @@
+Bug 328542 – [RemoteSrvs][Generic] Change default to use InetAddress.getLocalHost().getCanonicalHostName() instead of "localhost"
+The generic providers selects "localhost" as the default hostname if not given explicitly.
+This fails for scenarios where services are to be remoted across different machines.
+Thus the default should be changed to use InetAddress.getLocalHost().getCanonicalHostName().

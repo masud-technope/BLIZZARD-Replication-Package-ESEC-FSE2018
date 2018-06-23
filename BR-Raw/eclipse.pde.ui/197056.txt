@@ -1,0 +1,3 @@
+Bug 197056 – [Schema][Editors] Move attribute "use" field "deprecated" field
+If you create attributes of different types and navigate between them in the tree viewer, the "use" field floats up and down.
+ I recommend moving the "use" field under the "deprecated" field so it never moves (regardless of attribute type).

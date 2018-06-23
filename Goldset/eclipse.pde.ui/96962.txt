@@ -1,0 +1,7 @@
+ui/org.eclipse.pde.ui/plugin.xml
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEPluginImages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/java/ForbiddenAccessProposal.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/java/QuickFixProcessor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/OSGiFrameworkPreferencePage.java

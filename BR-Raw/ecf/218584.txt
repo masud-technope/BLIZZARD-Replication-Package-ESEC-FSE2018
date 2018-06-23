@@ -1,0 +1,12 @@
+Bug 218584 – [remoteservices] [ui] add ui for invoking remote methods on interface classes
+As per this mailing list entry
+http://dev.eclipse.org/mhonarc/lists/ecf-dev/msg01336.html
+it would be helpful to have a UI to invoke methods on interfaces that expose either local or remote OSGi services.
+Here are the basic requirements:
+1) See the method names and type signatures of method parameters and return values (via reflective access to the interface class).
+2) Enter/set the values of parameters (to some Serializable type), and constrain to appropriate type
+3) Choose a method of remote invocation (e.g.
+proxy, synchronous, asynchronous with listener, future/asynchresult, etc)
+4) Set/choose a timeout
+What I would like to do is to present this interface when a service has been discovered (via the ECF discovery), and allow the user/developer to decide which methods to invoke (1), set any/all parameters for those methods (2), and then invoke the remote method (3-4).
+I think this could be a nice aid for development/testing/debugging of remote OSGi services.

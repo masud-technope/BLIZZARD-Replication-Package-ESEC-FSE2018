@@ -1,0 +1,14 @@
+Bug 148944 – need to render resource folders in JARs
+3.2
+Before fixing bug 142530, resources in JAR files were shown in package fragments also for folders that weren't legal package fragments.
+We had discussion here about the fix, and found that rendering the resources as flat list is not a good solution.
+We suggest to turn back the fix and accept the problematic package fragments, or better, add a new element for folders in JARs.
+To be backward compatible I suggest to add a new interface that still implements IStorage:
+interface IJARFileResourceEntry extends IStorage {
+isFile(): boolean    // true if file, false if folder
+getParent(): Object  // either a IJARFileResourceEntry or a IJavaElement
+getChildren(): IJARFileResourceEntry[]  // empty if entry is a file
+}
+or if you don't mind adding two interfaces:
+IJARFileResourceFile and IJARFileResourceFolder
+I think this the best solution and also fixes our problem of not being able to reveal such elements (bug 142048)

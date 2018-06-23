@@ -1,0 +1,26 @@
+Bug 388074 – [quick assist] invert if statement ignores operator precedence
+I use quickfix very often for refactoring, no I have produced a heave mistake.
+Quickfix "invert 'if' statement" goes wrong:
+if (!(a || b) || c) {
+return 0;
+} else {
+return 1;
+}
+yields the wrong result:
+if (a || b && !c) {
+return 1;
+} else {
+return 0;
+}
+If i first use quickfix "push negation down"...
+if (!a && !b || c) {
+return 0;
+} else {
+return 1;
+}
+...and then "invert 'if' statement" it works fine:
+if ((a || b) && !c) {
+return 1;
+} else {
+return 0;
+}

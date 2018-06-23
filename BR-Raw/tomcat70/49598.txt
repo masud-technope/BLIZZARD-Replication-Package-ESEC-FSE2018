@@ -1,0 +1,6 @@
+49598 – Session update fails and adds second cookie header without header name
+The following code in a Servlet or JSP will cause invalid session cookies to be sent to the client:
+HttpSession session = req.getSession(true);
+session.invalidate();
+req.getSession(true);
+Essentially the client will still see the old session cookie and then try and use the now invalidated session, breaking most applications that do this.

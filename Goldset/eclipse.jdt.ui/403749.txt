@@ -1,0 +1,53 @@
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/LambdaExpressionsFix.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/AssistQuickFixTest18.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/CleanUpTest18.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/StubUtility2.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CleanUpConstants.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/LambdaExpressionsFix.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/LambdaExpressionsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/MultiFixMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/MultiFixMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CleanUpMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CleanUpMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CodeStyleTabPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/IProposalRelevance.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/QuickAssistProcessor.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/CleanUpTest18.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/CleanUpTestCase.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/AssistQuickFixTest18.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CleanUpConstants.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/FixMessages.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/FixMessages.properties
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/LambdaExpressionsFix.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/IProposalRelevance.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/QuickAssistProcessor.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/AssistQuickFixTest18.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/LambdaExpressionsFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/util/JavaModelUtil.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CodeStyleTabPage.java
+org.eclipse.jdt.astview/src/org/eclipse/jdt/astview/views/Binding.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/AssistQuickFixTest18.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/LambdaExpressionsFix.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/AssistQuickFixTest18.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/CleanUpTest18.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/CleanUpTestCase.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CleanUpConstants.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/FixMessages.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/FixMessages.properties
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/LambdaExpressionsFix.java
+org.eclipse.jdt.ui/plugin.xml
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/LambdaExpressionsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/MultiFixMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/MultiFixMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CleanUpMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CleanUpMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CodeStyleTabPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/CorrectionMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/CorrectionMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/QuickAssistProcessor.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/AssistQuickFixTest18.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/util/JavaModelUtil.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/CorrectionMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/CorrectionMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/IProposalRelevance.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/QuickAssistProcessor.java

@@ -1,0 +1,40 @@
+Bug 215014 – NPE in XMLUtil.getSchemaElement when clicking an attribute with warning
+I20080108-1320
+- open /org.eclipse.jdt.debug.ui/plugin.xml 1.466
+- click into 'isMultiStrata' on line 1349:
+<test property="org.eclipse.jdt.debug.isMultiStrata" value="true"/>
+=> error in log:
+Error
+Fri Jan 11 14:17:43 CET 2008
+Unhandled event loop exception
+java.lang.NullPointerException
+at org.eclipse.pde.internal.ui.editor.text.XMLUtil.getSchemaElement(XMLUtil.java:100)
+at org.eclipse.pde.internal.ui.editor.text.XMLUtil.getSchemaAttribute(XMLUtil.java:112)
+at org.eclipse.pde.internal.ui.editor.plugin.ExtensionAttributePointDectector.checkIfOnTarget(ExtensionAttributePointDectector.java:146)
+at org.eclipse.pde.internal.ui.editor.plugin.ExtensionAttributePointDectector.mouseUp(ExtensionAttributePointDectector.java:208)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:206)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:952)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3758)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3369)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2392)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2356)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2222)
+at org.eclipse.ui.internal.Workbench$4.run(Workbench.java:474)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:288)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:469)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:106)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:193)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:106)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:76)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:362)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:175)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:561)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:501)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1239)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1215)

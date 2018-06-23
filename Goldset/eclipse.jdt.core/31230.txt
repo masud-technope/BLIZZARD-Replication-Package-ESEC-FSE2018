@@ -1,0 +1,4 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/CompletionTests.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/NamingConventions.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/NamingConventionTests.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html

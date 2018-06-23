@@ -1,0 +1,2 @@
+Bug 485384 – [discovery][dnssd] DnssdNamespace.createInstance cannot handle parameters from remote service publishing
+Under some remote service publishing conditions, DnssdNamespace.createInstance is called with String and URI parameters, and these are not handled properly in the DnssdNamespace.createInstance method leading to an IDCreateException.

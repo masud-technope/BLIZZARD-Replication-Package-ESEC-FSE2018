@@ -1,0 +1,8 @@
+Bug 222080 – [assist] Wrong proposals order when completing on an item of an array
+Created attachment 92055 [details]
+Project to reproduce the problem
+Build I20080305-1100.
+Unzip the attached jar file, import the 'Completion' project in a workspace, open the class 'Test' and complete where indicated.
+You'll get a long list of proposals...
+The one I was looking for was 'type', and I'm really surprised to find it only near the end of the list.
+As I was in an identity test with ASTNode, I would not expect to see all 'int' proposals placed before the 'ASTNode' one...

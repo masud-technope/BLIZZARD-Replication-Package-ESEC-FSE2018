@@ -1,0 +1,5 @@
+Bug 400636 – codeassist does not work in Display view
+This appears to be a regression in Kepler M5.
+When debugging an Eclipse Application, codeassist does not work in Display view.
+This worked in Kepler M4.
+Not sure if this makes any difference, I am on OSX 10.8.2 with Oracle Java 1.7.0_10.

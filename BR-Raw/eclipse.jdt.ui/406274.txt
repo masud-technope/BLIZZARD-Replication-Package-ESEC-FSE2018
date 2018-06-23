@@ -1,0 +1,13 @@
+Bug 406274 – [1.8][extract interface] Invoking 'Extract Interface' on an interface with default method results in losing the default method implementation.
+Consider the below interface
+package p1;
+public interface I1 {
+default int defaultMethod(){
+return 10;
+}
+}
+Invoke 'Refactor-> Extract Interface...' on I1.
+Select #defaultMethod to be part of the new interface.
+Click 'OK' button.
+In the newly created interface the method is created as abstract and in the original interface the method is removed.
+So basically the method implementation is lost after refactoring.

@@ -1,0 +1,11 @@
+org.eclipse.jdt.internal.core.JavaModelOperation.runOperation
+org.eclipse.jdt.internal.core.SourceType.newSupertypeHierarchy
+org.eclipse.jdt.internal.core.SourceType.newSupertypeHierarchy
+org.eclipse.jdt.ui.JavadocContentAccess.findDocInHierarchy
+org.eclipse.jdt.ui.JavadocContentAccess.getContentReader
+org.eclipse.jdt.ui.JavadocContentAccess.getHTMLContentReader
+org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo
+org.eclipse.jdt.internal.ui.text.java.hover.AbstractJavaEditorTextHover.getHoverInfo
+org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo
+org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo
+org.eclipse.jface.text.TextViewerHoverManager$4.run

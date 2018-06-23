@@ -1,0 +1,18 @@
+54521 – DigestAuthenticator: nonceCountValid() fails in case of simultaneous asynchronous requests of the same client
+Concerned components:
+org.apache.catalina.authenticator.DigestAuthenticator
+org.apache.catalina.authenticator.DigestAuthenticator.NonceInfo
+Scenario:
+A multithreaded client sends two requests within one millisecond.
+The DigestAuthenticator creates for each request a nonce as well as a NonceInfo instance.
+The two nonces are equal, as they were created within the same millisecond.
+When writing data into the cache (method generateNonce()), the second NonceInfo instance overwrites the first one (same key!).
+Problem:
+The two client threads then send a second request with a digest authentication header.
+In both requests, â€œncâ€? (nonce count) is equal â€œ1â€?, as the nonce has been newly created.
+In the NonceInfo of the first request, array â€œseenâ€? is set to â€œtrueâ€? for index ((nonceCount + offset) % seen.length).
+In the second request the same NonceInfo instance is used, as the instance is retrieved from map â€œnoncesâ€? using â€œnonceâ€? as a key, that is, in both requests the same key is used.
+Consequently, method â€œnonceCountValid()â€œ returns â€žfalseâ€œ, as  seen[(nonceCount + offset) % seen.length)] has already been set to â€žtrueâ€œ.
+ Therefore the authentication fails, although the client has sent a valid digest authentication header.
+Conclusion:
+Working with multi-threaded clients with many requests, digest authentication does not function reliably.

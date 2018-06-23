@@ -1,0 +1,9 @@
+Bug 422506 – [1.8][render] Abstract method from interface should show "A" adornment
+Created attachment 237697 [details]
+Fix
+BETA_JAVA8
+An abstract method from an interface should show an "A" adornment like an abstract method from a class.
+AFAIK, we didn't add the "A" in the past, since the outline of an interface looks a bit "crowded" when every method has an "A".
+However, the missing "A" is already problematic in other views like Search, Type Hierarchy, and in Quick Outline/Hierarchy, since the abstractness of a method cannot be seen without additional knowledge about the declaring type.
+With static and default methods in interfaces, this got even worse, since those methods now identify themselves as having an implementation, but abstract methods still look like regular instance methods.
+Does anybody disagree with this change or have a better solution?

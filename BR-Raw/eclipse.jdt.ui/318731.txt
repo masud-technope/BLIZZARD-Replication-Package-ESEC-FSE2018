@@ -1,0 +1,5 @@
+Bug 318731 – [perfs] Comments applied for JDT/UI performance tests are obsolete
+Degradation comments have been added while 3.6 dvpt for following performance bugs:
+- bug 304193
+As 3.7 performance tests will restart shortly, these obsolete comments have to
+be removed as soon as possible...

@@ -1,0 +1,6 @@
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient/src/org/eclipse/ecf/provider/filetransfer/httpclient/HttpClientOptions.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient/src/org/eclipse/ecf/provider/filetransfer/httpclient/NTLMProxyDetector.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient/src/org/eclipse/ecf/internal/provider/filetransfer/httpclient/HttpClientProxyCredentialProvider.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient/src/org/eclipse/ecf/provider/filetransfer/httpclient/HttpClientFileSystemBrowser.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/provider/filetransfer/browse/AbstractFileSystemBrowser.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient/src/org/eclipse/ecf/provider/filetransfer/httpclient/HttpClientRetrieveFileTransfer.java

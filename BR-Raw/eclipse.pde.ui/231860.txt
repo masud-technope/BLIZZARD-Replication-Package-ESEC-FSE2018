@@ -1,0 +1,3 @@
+Bug 231860 – Changing pde.core major version to 4.0.0.qualifier is not detected as an error
+This should be fixed for 3.4.
+We should detect that there is no need to upgrade the major version.

@@ -1,0 +1,14 @@
+Bug 174800 – Headless application overrides product in PDE JUnit launch configurations
+Build ID: I20061214-1445
+I've found that if I create a PDE JUnit launch configuration and set it to "Run a product", instead of "Run an application", that the test will be executed as a Headless test if No Application - Headless Mode was previously selected in the "Run an application" combo box.
+ This occurs even though the "Run a product" combo is selected as the program to run the the JUnit against
+Steps to reproduce:
+1.
+Create a simple RCP application and a product definition for it.
+1.
+Create a PDE Junit launch configuration.
+On the Main tab select "Run an application" and choose "No Application - Headless Mode"
+3.
+Now select "Run a product" and choose the product configuration for the application.
+4.
+Clicking run will execute the test headlessly, instead of launching the product first.

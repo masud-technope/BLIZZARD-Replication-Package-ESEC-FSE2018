@@ -1,0 +1,12 @@
+Bug 424273 – [1.8][clean up] Convert lambda to anonymous has problems with wildcards
+Convert lambda to anonymous has problems with wildcards:
+package xy;
+import java.util.*;
+public class E {
+void foo(Integer[] ints){
+Arrays.sort(ints, (i1, i2) -> i1 - i2);
+Comparator<?> cw = (w1, w2) -> 0;
+Comparator cr = (r1, r2) -> 0;
+Comparator<? extends Number> ce = (n1, n2) -> -0;
+};
+}

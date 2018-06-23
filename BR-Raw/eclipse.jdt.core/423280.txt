@@ -1,0 +1,43 @@
+Bug 423280 – Failure in testAddNonJavaResourcePackageFragmentRoot (now disabled)
+BUILD ID: N20131204-2000
+Test Results Location:
+http://download.eclipse.org/eclipse/downloads/drops4/N20131204-2000/testresults/html/org.eclipse.jdt.core.tests.model_win32.win32.x86_7.0.html
+testAddNonJavaResourcePackageFragmentRoot
+incorrect non java resources.
+----------- Expected ------------ /JavaProjectTests/.classpath\n /JavaProjectTests/.project\n /JavaProjectTests/.settings\n /JavaProjectTests/TestNonJavaResource.abc ------------ but was ------------ /JavaProjectTests/.classpath\n /JavaProjectTests/.project\n /JavaProjectTests/.settings --------- Difference is ---------- expected:<...ojectTests/.settings[\n /JavaProjectTests/TestNonJavaResource.abc]> but was:<...ojectTests/.settings[]>
+junit.framework.ComparisonFailure: incorrect non java resources.
+----------- Expected ------------
+/JavaProjectTests/.classpath\n
+/JavaProjectTests/.project\n
+/JavaProjectTests/.settings\n
+/JavaProjectTests/TestNonJavaResource.abc
+------------ but was ------------
+/JavaProjectTests/.classpath\n
+/JavaProjectTests/.project\n
+/JavaProjectTests/.settings
+--------- Difference is ----------
+expected:<...ojectTests/.settings[\n
+/JavaProjectTests/TestNonJavaResource.abc]> but was:<...ojectTests/.settings[]>
+at org.eclipse.jdt.core.tests.junit.extension.TestCase.assertStringEquals(TestCase.java:238)
+at org.eclipse.jdt.core.tests.junit.extension.TestCase.assertEquals(TestCase.java:214)
+at org.eclipse.jdt.core.tests.model.AbstractJavaModelTests.assertResourcesEqual(AbstractJavaModelTests.java:546)
+at org.eclipse.jdt.core.tests.model.JavaProjectTests.testAddNonJavaResourcePackageFragmentRoot(JavaProjectTests.java:426)
+at org.eclipse.jdt.core.tests.model.SuiteOfTestCases$Suite.runTest(SuiteOfTestCases.java:104)
+at org.eclipse.jdt.core.tests.model.SuiteOfTestCases$Suite.superRun(SuiteOfTestCases.java:88)
+at org.eclipse.jdt.core.tests.model.SuiteOfTestCases$1.protect(SuiteOfTestCases.java:76)
+at org.eclipse.jdt.core.tests.model.SuiteOfTestCases$Suite.run(SuiteOfTestCases.java:85)
+at org.eclipse.test.EclipseTestRunner.run(EclipseTestRunner.java:657)
+at org.eclipse.test.EclipseTestRunner.run(EclipseTestRunner.java:310)
+at org.eclipse.test.CoreTestApplication.runTests(CoreTestApplication.java:36)
+at org.eclipse.test.CoreTestApplication.run(CoreTestApplication.java:32)
+at org.eclipse.equinox.internal.app.EclipseAppContainer.callMethodWithException(EclipseAppContainer.java:587)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:198)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:109)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:80)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:372)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:226)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:636)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1450)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1426)
+at org.eclipse.core.launcher.Main.main(Main.java:34)

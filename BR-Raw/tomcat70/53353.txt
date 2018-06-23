@@ -1,0 +1,26 @@
+53353 – Malformed contentType attribute results in two charset values
+If contentType attribute of a JSP page has a broken value, Tomcat 7 can behave strangely and send two charset values in Content-Type header.
+To reproduce:
+1.
+Create this simple JSP file, ROOT/test.jsp
+Note, that there is a typo: "UTF-8" instead of "charset=UTF-8".
+It is what triggers this issue.
+[[[
+<%@page pageEncoding="UTF-8" contentType="text/html; UTF-8" %>
+Hello world!
+]]]
+2.
+Start Tomcat and access the page with Firefox
+http://localhost:8080/test.jsp
+(I am using version 12, with Live HTTP Headers addon).
+When the page loads: right-click -> Page info -> look for the value of Encoding.
+Then look for the value of Content-Type header.
+With current Tomcat 6.0:
+Encoding: UTF-8
+Content-Type header: text/html; UTF-8;charset=UTF-8
+With current Tomcat 7.0 (7.0.23):
+Encoding: ISO-8859-1
+Content-Type header: text/html; UTF-8;charset=UTF-8;charset=ISO-8859-1
+===============
+I think it is related to new contentType header parser (fix for bug 52811: r1300154 + r1300155 + r1304275 + r1304895).
+It is not a very convincing example, but it looks like it confirms the fears against backporting the fix for bug 52811 to 6.0.

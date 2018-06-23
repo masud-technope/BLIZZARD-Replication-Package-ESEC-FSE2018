@@ -1,0 +1,3 @@
+Bug 322893 – Misspelled API: IBundleProjectDescription.setBundleClassath()
+It should be "setBundleClasspath", not "setBundleClassath".
+Mind the "p" in "classpath".

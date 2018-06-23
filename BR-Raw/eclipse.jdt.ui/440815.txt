@@ -1,0 +1,41 @@
+Bug 440815 – External annotations need UI to be attached to library jars on the classpath
+Created attachment 245553 [details]
+Adding external annotations to JDK jars
+Bug 331651 describes the general requirement for having external annotations so that nullity and other annotations for .jar files can be specified "outside" source code.
+Bug 440477 describes the compiler centered code needed; this bug aims to describe and track the IDE user interface changes that are needed to implement this.
+External annotations are directly associated with any library .jar that contributes to the classpath.
+These can be:
+1.
+jars in the "project" classpaths of projects.
+2.
+jars provided by any JDK.
+External annotations will be presented as a single file (...) in a to-be-determined format (bug 440474).
+Each jar can have 0..1 external annotation files associated with it.
+The external annotation file for that jar only takes effect for the classes found (and used) from that jar.
+The UI for external annotation files closely mirrors the UI made for connecting Javadoc or sopurce attachments to jars on the classpath: a single "external annotations" file, in the Eclipse-defined format, can be connected to each jar on the classpath.
+The locations in the UI where this is exposed are:
+1.
+Window -> Preferences -> Java -> Installed JRE's.
+On a JRE's edit page we see the jar files, and each of them can be associated with a "Source Attachment" and a "Javadoc Location".
+There will be added an "External Annotations" entry per jar, with the selected file.
+2.
+Project Properties -> Java Build Path -> Libraries.
+This shows again a list of jars for the project, with Source Attachment, Javadoc Location and some other options.
+Here too we'll add an "External Annotations" node.
+For both screens adding an external annotations file works the same:
+1.
+Selecting the "External Annotations" node in the jar list enables the edit/remove buttons.
+2.
+Clicking edit shows the same UI as the current edit button for "Source Attachment".
+It allows selection of the file either from workspace or from "external location".
+The selection made will be saved in either .classpath (for a project) or in the JDK's properties stored in preferences.
+I would like to contribute the UI implementation of this functionality, in cooperation with Stephan Hermann.
+An initial implementation can be seen on Github:
+https://github.com/fjalvingh/eclipse.jdt.core/tree/externals (use the externals branch for this one)
+https://github.com/fjalvingh/eclipse.jdt.ui
+https://github.com/fjalvingh/eclipse.jdt.debug
+If accepted, I will rework this implementation and synchronize with Stephan's work.
+See the attached screenshots for the proposed UI (as implemented by the Github code).
+Once this basic implementation is done extensions can be defined that allow for:
+- allowing conversion of "foreign" annotation formats to Eclipse's defined one
+- allowing automatic downloading of annotations made for well-known libraries.

@@ -1,0 +1,2 @@
+Bug 431585 – problem with handling of remote service id for RestClientContainer
+There is a problem with the handling/use of the remote service id for subclasses of RestClientContainer (providers that use it).

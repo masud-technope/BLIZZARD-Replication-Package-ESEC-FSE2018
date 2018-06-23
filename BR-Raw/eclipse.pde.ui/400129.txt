@@ -1,0 +1,15 @@
+Bug 400129 – [ua] NPE when registering context help for non-plugin project
+Created attachment 226651 [details]
+Log with NPE
+It is wrong to register context help for a non-plugin project, but the error message could be more descriptive than NPE.
+Steps to reproduce:
+1.
+Create new General Project.
+2.
+Create new Context Help in that project.
+3.
+Click "Register this context help file" in the top right corner of Context Help Editor.
+4.
+Click Finish.
+=> Error dialog with NPE appears.
+Similar to bug 273049 comment 3.

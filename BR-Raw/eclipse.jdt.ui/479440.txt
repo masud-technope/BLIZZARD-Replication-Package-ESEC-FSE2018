@@ -1,0 +1,5 @@
+Bug 479440 – [rename] Show rename options as links in hover
+Inline renaming of a field should propose to also rename corresponding getter, setter and constructor parameter.
+Currently when triggering rename, there is a small popup saying "Enter new name then press Enter".
+This popup could also show a couple of settings as checkbox "propagate to getter and setter name" and "propagate to constructor parameter name".
+This is inspired from IntelliJ renaming feature.

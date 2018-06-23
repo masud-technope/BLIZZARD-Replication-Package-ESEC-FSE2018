@@ -1,0 +1,18 @@
+Bug 149801 – [quick assist] 'exchange left and right operands' incorrectly removes parentheses around logical operators
+The 'exchange left and right operands for infix expression' incorrectly removes parentheses that can be necessary for the statement to evaluate correctly if it contains logical operators.
+e.g.,
+private boolean isEnabled(byte[] masterBits)
+{
+return (0 == (masterBits[ENABLE_INDEX] & ENABLE_MASK));
+}
+Applying the 'exchange left and right' operator, Eclipse removes the parantheses on the right and side and _incorrectly_ turns the method into:
+private boolean isEnabled(byte[] masterBits)
+{
+return (masterBits[ENABLE_INDEX] & ENABLE_MASK == 0);
+}
+This yields the Java compile error: 'The operator & is undefined for the argument type(s) byte, boolean'
+It should have refactored to:
+private boolean isEnabled(byte[] masterBits)
+{
+return ((masterBits[ENABLE_INDEX] & ENABLE_MASK) == 0);
+}

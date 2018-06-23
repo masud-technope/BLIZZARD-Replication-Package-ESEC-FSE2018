@@ -1,0 +1,12 @@
+Bug 206887 – Building a workspace with an IES target and a large number of plugins takes much longer with 3.3 than 3.2
+Build ID: Any 3.3 released version
+Steps To Reproduce:
+CVS info will be transferred internally on demand.
+1.
+Create an IES target with all required plugins
+2.
+Import RMP/RUML code
+3.
+Try to be productive in any way.
+More information:
+This defect appeared late in the 3.3 cycle, either in RC1 or RC2.

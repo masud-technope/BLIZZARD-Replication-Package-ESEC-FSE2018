@@ -1,0 +1,2 @@
+providers/bundles/org.eclipse.ecf.provider.discovery/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.discovery/src/org/eclipse/ecf/internal/provider/discovery/Activator.java

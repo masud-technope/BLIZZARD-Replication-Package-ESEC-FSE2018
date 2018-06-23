@@ -1,0 +1,16 @@
+Bug 331115 – Replace if-else with conditional removes comment right above if-else
+If I apply the mentioned quick fix to an if-else block which has a comment above, the comment is removed.
+Please see the below class for an example.
+pre..
+public class Bug {
+public static void main(String[] args) {
+boolean flag = false;
+String value;
+// this comment will be erased
+if ( flag )
+value = "true";
+else
+value = "false";
+System.out.format("flag: %b, value: %s%n", flag, value);
+}
+}

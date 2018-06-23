@@ -1,0 +1,10 @@
+Bug 302928 – Target Definition problems with Helios
+Build Identifier: I20100129-1300
+I'm having some trouble with my target definition.
+After adding http://download.eclipse.org/releases/helios  as "software site", I selected a few projects.
+Now if I want to add new projects (double click on the "software site") the dialog tells me "At least one item must be selected" and my previous selection is gone.
+Far more worse is that I can not unselect "Group by Category", well I can but nothing happens.
+Same result when I create a new target definition trying to unselect the "Group by Category" option.
+I would like to add "Eclipse SDK" to my selected projects which is not possible.
+I just tested it with Eclipse 3.5.1 and the Helios Update Site works properly.
+Reproducible: Always

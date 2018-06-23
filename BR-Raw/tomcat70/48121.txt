@@ -1,0 +1,19 @@
+48121 – 2 misspellings in the javadoc of class "org.apache.catalina.startup.TldConfig"
+No.1
+Line 194:
+/**
+* Attribute value used to turn on/off TLD  namespace awarenes.
+*/
+private boolean tldNamespaceAware = false;
+'awareness' was misspelled as 'awarenes'
+No.2
+Line 261
+/**
+* Get the server.xml &lt;host&gt; attribute's xmlNamespaceAware.
+* @return true if namespace awarenes is enabled.
+*
+*/
+public boolean getTldNamespaceAware(){
+return this.tldNamespaceAware;
+}
+'awareness' was misspelled as 'awarenes'

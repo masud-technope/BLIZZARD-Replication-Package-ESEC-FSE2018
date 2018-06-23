@@ -1,0 +1,23 @@
+Bug 478136 – [1.8][clean up] Lambda rewriter removes annotations from method
+public class Class {
+public void method() {
+Runnable r = new Runnable() {
+@Override
+@Deprecated
+public void run() {
+}
+};
+r.run();
+}
+}
+When I process this code snippet with the lambda replacer, the result is:
+public class Class {
+public void method() {
+Runnable r = () -> {
+};
+r.run();
+}
+}
+The @Deprecated annotation has been removed.
+Since this also happens with other annotations, it has an effect especially in code that uses annotations for AspectJ weaving.
+The lambda cleanup should only remove @Override annotations.

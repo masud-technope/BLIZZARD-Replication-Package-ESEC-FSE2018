@@ -1,0 +1,3 @@
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/AbstractJavaLaunchConfigurationDelegate.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/JavaLocalApplicationLaunchConfigurationDelegate.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/JavaRemoteApplicationLaunchConfigurationDelegate.java

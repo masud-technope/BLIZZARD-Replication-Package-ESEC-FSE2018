@@ -1,0 +1,94 @@
+Bug 203795 – exception when opening and editing site.xml with features using invalid qualifier strings
+If you open a site.xml that has a feature with an "invalid" qualifier string, you get exception as you try to use the editor.
+This happens because we have a token that we replace at build time as a qualifier string, namely @TOKEN@ as for example in:
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+<description>
+bla bla
+</description>
+<feature url="features/foo.bar.baz_5.0.0.@RELEASE@.jar" id="foo.bar.baz" version="5.0.0.@RELEASE@" os="linux,macosx,win32" ws="carbon,gtk,win32">
+<category name="cat1"/>
+</feature>
+<category-def name="cat1" label="cat1">
+<description>
+Bla bla baz.
+</description>
+</category-def>
+</site>
+-- Error Log --
+Date: Tue Sep 18 10:50:21 EDT 2007
+Message: Problems occurred when invoking code from plug-in: "org.eclipse.jface".
+Severity: Error
+Plugin ID: org.eclipse.jface
+Stack Trace:
+java.lang.IllegalArgumentException: invalid qualifier
+at org.osgi.framework.Version.validate(Version.java:179)
+at org.osgi.framework.Version.<init>(Version.java:157)
+at org.osgi.framework.Version.parseVersion(Version.java:209)
+at org.eclipse.pde.internal.core.FeatureModelManager.findFeatureModelRelaxed(FeatureModelManager.java:165)
+at org.eclipse.pde.internal.ui.editor.site.SiteLabelProvider.getImage(SiteLabelProvider.java:52)
+at org.eclipse.jface.viewers.WrappedViewerLabelProvider.getImage(WrappedViewerLabelProvider.java:117)
+at org.eclipse.jface.viewers.WrappedViewerLabelProvider.update(WrappedViewerLabelProvider.java:165)
+at org.eclipse.jface.viewers.ViewerColumn.refresh(ViewerColumn.java:135)
+at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:911)
+at org.eclipse.jface.viewers.AbstractTreeViewer$UpdateItemSafeRunnable.run(AbstractTreeViewer.java:97)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.core.runtime.Platform.run(Platform.java:857)
+at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:46)
+at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:193)
+at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:988)
+at org.eclipse.jface.viewers.StructuredViewer$UpdateItemSafeRunnable.run(StructuredViewer.java:466)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.core.runtime.Platform.run(Platform.java:857)
+at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:46)
+at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:193)
+at org.eclipse.jface.viewers.StructuredViewer.updateItem(StructuredViewer.java:2026)
+at org.eclipse.jface.viewers.AbstractTreeViewer.createTreeItem(AbstractTreeViewer.java:806)
+at org.eclipse.jface.viewers.AbstractTreeViewer$1.run(AbstractTreeViewer.java:781)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:67)
+at org.eclipse.jface.viewers.AbstractTreeViewer.createChildren(AbstractTreeViewer.java:755)
+at org.eclipse.jface.viewers.TreeViewer.createChildren(TreeViewer.java:615)
+at org.eclipse.jface.viewers.AbstractTreeViewer.handleTreeExpand(AbstractTreeViewer.java:1407)
+at org.eclipse.jface.viewers.TreeViewer.handleTreeExpand(TreeViewer.java:906)
+at org.eclipse.jface.viewers.AbstractTreeViewer$4.treeExpanded(AbstractTreeViewer.java:1418)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:125)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:938)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:962)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:947)
+at org.eclipse.swt.widgets.Tree.wmNotifyChild(Tree.java:7053)
+at org.eclipse.swt.widgets.Control.wmNotify(Control.java:4563)
+at org.eclipse.swt.widgets.Composite.wmNotify(Composite.java:1581)
+at org.eclipse.swt.widgets.Control.WM_NOTIFY(Control.java:4216)
+at org.eclipse.swt.widgets.Control.windowProc(Control.java:3724)
+at org.eclipse.swt.widgets.Display.windowProc(Display.java:4351)
+at org.eclipse.swt.internal.win32.OS.CallWindowProcW(Native Method)
+at org.eclipse.swt.internal.win32.OS.CallWindowProc(OS.java:2178)
+at org.eclipse.swt.widgets.Tree.callWindowProc(Tree.java:1541)
+at org.eclipse.swt.widgets.Tree.WM_LBUTTONDOWN(Tree.java:5798)
+at org.eclipse.swt.widgets.Control.windowProc(Control.java:3705)
+at org.eclipse.swt.widgets.Tree.windowProc(Tree.java:5370)
+at org.eclipse.swt.widgets.Display.windowProc(Display.java:4364)
+at org.eclipse.swt.internal.win32.OS.DispatchMessageW(Native Method)
+at org.eclipse.swt.internal.win32.OS.DispatchMessage(OS.java:2264)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3291)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2389)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2353)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2219)
+at org.eclipse.ui.internal.Workbench$4.run(Workbench.java:466)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:289)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:461)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:106)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:153)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:106)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:76)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:363)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:176)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:504)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:443)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1169)

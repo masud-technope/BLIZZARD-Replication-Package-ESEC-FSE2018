@@ -1,0 +1,7 @@
+Bug 129817 – New dependencies from templates no longer added
+Eclipse 3.2 Build id: I20060221-1300
+It seems that some change between the above build and the latest projects from HEAD has caused an issue where the dependencies that are programatically added by Template classes (i.e.
+org.eclipse.pde.ui.ImportWizardTemplate) are no longer added.
+For example, using the above build, if you create a new plug-in project, then add the Import Wizard Template (through the Extension tab on plugin.xml) a dialog should appear asking if a save of the plugin file is desired and the dependencies should appear under the Dependencies tab.
+This does not occur using the latest projects from HEAD (or the latest build I20060228-1207).
+Specifically the problem seems to have been created due to some change in the project org.eclipse.pde.core between version 2006/02/24 00:00:00 and 2006/02/25 00:00:00

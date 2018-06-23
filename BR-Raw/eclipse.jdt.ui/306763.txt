@@ -1,0 +1,21 @@
+Bug 306763 – [BiDi] Copy element labels from a view should not contain BiDi markers
+Build Identifier: 3.6.0 - I20100313-1044
+Upper case letters-HEBREW
+1.
+Open Eclipse, create Java project
+2.
+Create folder named FIRST
+3.
+Under FIRST create folder named SECOND
+4.
+Create Hebrew-named java class inside the SECOND folder
+5.
+Declare some Hebrew-named method which recieves two Hebrew-named parameters
+of Hebrew-named types
+6.
+Go to Outline view, select Hebrew-named method and perform Copy
+7.
+Open Notepad, turn on 'Show Unicode Controlcharacters' option and perform paste
+Result: pasted data contains Unicode characters.
+The same behaviour is with 'CopyQualifiedName' option (see attached screenshot)
+Reproducible: Always

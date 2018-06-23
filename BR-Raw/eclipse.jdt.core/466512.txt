@@ -1,0 +1,58 @@
+Bug 466512 – Unexpected runtime error while computing a text hover (method reference with capture in type parameter bounds)
+The following code results in an unexpected runtime error, when one hovers over "testMethod" in "t.testMethod(null)":
+--------------------------------
+public class HoverTest<T> {
+static class TestClass<T>{
+<S extends T> TestClass<S> testMethod(Class<S> c){
+return null;
+}
+}
+void test(TestClass<? super T> t){
+t.testMethod(null);
+}
+}
+--------------------------------
+Steps to reproduce:
+(1) Compile the above class
+(2) Try to hover over "testMethod" in "t.testMethod(null)"
+Result:
+No method hover is shown.
+The following error is added to the error log:
+eclipse.buildId=4.4.2.M20150204-1700
+java.version=1.8.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=de_AT
+Framework arguments:  -product org.eclipse.epp.package.rcp.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.rcp.product
+org.eclipse.jface.text
+Error
+Wed May 06 07:32:13 CEST 2015
+Unexpected runtime error while computing a text hover
+java.lang.IllegalArgumentException
+at org.eclipse.jdt.core.Signature.getTypeParameters(Signature.java:2374)
+at org.eclipse.jdt.internal.core.util.KeyToSignature.consumeParameterizedGenericMethod(KeyToSignature.java:118)
+at org.eclipse.jdt.internal.core.util.BindingKeyParser.parseParameterizedMethod(BindingKeyParser.java:768)
+at org.eclipse.jdt.internal.core.util.BindingKeyParser.parseMethod(BindingKeyParser.java:839)
+at org.eclipse.jdt.internal.core.util.BindingKeyParser.parse(BindingKeyParser.java:670)
+at org.eclipse.jdt.internal.core.util.BindingKeyParser.parse(BindingKeyParser.java:618)
+at org.eclipse.jdt.internal.core.util.BindingKeyParser.parseTypeWithCapture(BindingKeyParser.java:1000)
+at org.eclipse.jdt.internal.core.util.BindingKeyParser.parse(BindingKeyParser.java:688)
+at org.eclipse.jdt.internal.core.util.BindingKeyParser.parse(BindingKeyParser.java:618)
+at org.eclipse.jdt.core.BindingKey.toSignature(BindingKey.java:334)
+at org.eclipse.jdt.internal.ui.viewsupport.JavaElementLabelComposer.appendMethodLabel(JavaElementLabelComposer.java:337)
+at org.eclipse.jdt.internal.ui.viewsupport.JavaElementLabelComposer.appendElementLabel(JavaElementLabelComposer.java:272)
+at org.eclipse.jdt.internal.ui.viewsupport.JavaElementLinks.getElementLabel(JavaElementLinks.java:704)
+at org.eclipse.jdt.internal.ui.viewsupport.JavaElementLinks.getElementLabel(JavaElementLinks.java:686)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getInfoText(JavadocHover.java:737)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo(JavadocHover.java:683)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.internalGetHoverInfo(JavadocHover.java:607)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo2(JavadocHover.java:599)
+at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:129)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:85)
+at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
+------------------------------------
+Additional information:
+- Replacing either "<S extends T>" with just "<S>" or "TestClass<? super T>" with just "<T>" causes the bug to disappear.
+- The argument "Class<S> c" is actually not necessary to reproduce the bug.
+- Perhaps somehow related to bug 384234? (but it has a different stack trace)

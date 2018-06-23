@@ -1,0 +1,21 @@
+Bug 173447 – Generated schema description is not valid HTML
+I20070208-0010
+Generated schema description is not valid HTML.
+E.g.
+validating the schema description for org.eclipse.ui.workbench.texteditor.hyperlinkDetectors yields 48 errors.
+Most of them are duplicate id=...
+attributes and nested <p> tags.
+The nested <p> tags are especially bad, since they make copy-paste of examples unusable, e.g.:
+<extension point=
+"org.eclipse.ui.workbench.texteditor.hyperlinkDetectorTargets"
+>
+<target id=
+"org.eclipse.jdt.ui.javaCode"
+name=
+"Java Editor"
+>
+<context type=
+"org.eclipse.ui.texteditor.ITextEditor"
+/>
+</target>
+</extension>

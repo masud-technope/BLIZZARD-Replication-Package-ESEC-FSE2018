@@ -1,0 +1,37 @@
+57323 – Correct display of outdated sessions in sessions count listing in Manager application
+A minor issue, reported in Re:r1614165,
+http://markmail.org/message/4iplahbcanujbqoo
+The Manager application has commands that display distribution of sessions according to their idle time.
+(The commands are "/text/sessions", "/text/expire" in Test GUI and "Expire Sessions" button in HTML GUI.)
+The commands display how many sessions have idle time <1 minute, from 1 up to 2 minutes (1 - <2), from 2 to 3 (2 - <3) and so on.
+Lets assume that a web application is configured with session-timeout of 30 minutes.
+Before r1614165 (in 7.0.56)/r1614163 (in 8.0.11) the last time slot in that statistics was labeled ">= 30".
+In those revisions it was fixed to be labeled "29 - <30".
+Actually it should have been labeled ">= 29", as sessions that have idle time more than 30 minutes are actually added to the value,
+else if (time >= maxCount)
+timeout[maxCount-1]++;
+It would be better to count outdated sessions in a separate time slot, so that  "29 - <30" and ">=30" were two distinct numbers.
+One may see ">=30" sessions if the thread that performs expiration have not run yet (or is stuck).
+An incorrect configuration to test this behaviour:
+1.
+Configure examples application with the following text in its web.xml
+<session-config>
+<session-timeout>2</session-timeout>
+</session-config>
+and the following META-INF/context.xml
+<Context backgroundProcessorDelay="10"/>
+2.
+Configure a user with roles manager-script and manager-gui.
+Start Tomcat.
+3.
+Visit example webapp -> Servlet examples -> Session example to create a session.
+4.
+Visit http://localhost:8080/manager/html, click on sessions number on the row for the examples webapp.
+A list of sessions opens.
+Use it to check idle time of the session.
+5.
+Visit http://localhost:8080/manager/text/sessions?path=/examples to see sessions statistics.
+6.
+Wait for 2 minutes.
+Expected output of /text/sessions command is that you have a session that is idle for more than 2 minutes.
+Actual output is "1 - <2 minutes: 1 sessions"

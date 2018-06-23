@@ -1,0 +1,15 @@
+org.eclipse.swt.SWT.error
+org.eclipse.swt.SWT.error
+org.eclipse.swt.SWT.error
+org.eclipse.swt.widgets.Widget.error
+org.eclipse.swt.widgets.Widget.getDisplay
+org.eclipse.pde.internal.ui.editor.feature.PluginSection.modelsChanged
+org.eclipse.pde.internal.core.PluginModelManager.fireDelta
+org.eclipse.pde.internal.core.PluginModelManager.modelsChanged
+org.eclipse.pde.internal.core.PluginModelManager.resetState
+org.eclipse.pde.core.target.LoadTargetDefinitionJob.performPlatformReset
+org.eclipse.pde.core.target.LoadTargetDefinitionJob.handleReload
+org.eclipse.pde.core.target.LoadTargetDefinitionJob.loadPlugins
+org.eclipse.pde.core.target.LoadTargetDefinitionJob.runInWorkspace
+org.eclipse.core.internal.resources.InternalWorkspaceJob.run
+org.eclipse.core.internal.jobs.Worker.run

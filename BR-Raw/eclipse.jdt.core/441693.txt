@@ -1,0 +1,19 @@
+Bug 441693 – [1.8][null] Bogus warning for type argument annotated with @NonNull
+In the program below, the method requireNonNull is invoked with
+@Nullable Iterable<@NonNull String>
+as argument, and therefore the returned value is
+@NonNull Iterable<@NonNull String>.
+Assigning the returned value to the field iterable is therefore safe.
+With Annotation-based null analysis enabled and "Unchecked conversion from non-annotated type to @NonNull type" set to warning, the null analysis issues a bogus warning: "The expression of type '@NonNull Iterable<String>' needs unchecked conversion to conform to '@NonNull Iterable<@NonNull String>'" at the line marked with (*)
+package foo.bar;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.NonNullByDefault;
+import org.eclipse.jdt.annotation.Nullable;
+@NonNullByDefault({})
+public abstract class Foo {
+abstract <T> @NonNull T requireNonNull(@Nullable T obj);
+@NonNull Iterable<@NonNull String> iterable;
+Foo(@Nullable Iterable<@NonNull String> iterable) {
+this.iterable = requireNonNull(iterable); // (*)
+}
+}

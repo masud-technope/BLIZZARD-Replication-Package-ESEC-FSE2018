@@ -1,0 +1,16 @@
+Bug 249549 – [quick fix] bad proposal for abstract modifier before constructors in abstract classes
+Build ID: M20080911-1700
+Steps To Reproduce:
+1.
+Create a class like this:
+abstract class Test {
+public abstract Test();
+}
+of course this code is wrong.
+But Eclipse proposes two quick fixes:
+"Add body", which is correct
+and
+"Add 'abstract' modifier", which does not make any sense.
+When using this one, the result is still wrong, but with two 'abstract' modifiers and the same quick fix proposals.
+More information:
+this bug is similar to #208655

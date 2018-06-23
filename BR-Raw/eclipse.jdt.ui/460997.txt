@@ -1,0 +1,4 @@
+Bug 460997 – [hovering] Report fallback mode in Javadoc view / hover when SWT Browser widget is not available
+Bug 456786 comment 0 tells that it's hard for users to find the real issue when Javadoc view and hovers only have degraded functionality because the Browser widget couldn't be created.
+Bug 73558 tried to convey this information in a dialog, but that was too intrusive.
+A middle way is to show it at the end of the view or enriched hover.

@@ -1,0 +1,23 @@
+Bug 447119 – [1.8][compiler] method references lost generic type information (4.4 -> 4.4.1 regression)
+Created attachment 247862 [details]
+test class that shows the regression
+In 4.4.1, generic type information is lost for lambdas.
+The attached test class shows the problem.
+The output is:
+Eclipse 4.4.1
+-------------
+Lambda binds to: Testbed.lambda$0
+Methods (with generics):
+- java.util.List<java.lang.String> noop(java.util.List<java.lang.String>)
+- interface java.util.List lambda$0(interface java.util.List)
+Eclipse 4.4.0
+-------------
+Lambda binds to: Testbed.lambda$0
+Methods (with generics):
+- java.util.List<java.lang.String> noop(java.util.List<java.lang.String>)
+- java.util.List<java.lang.String> lambda$0(java.util.List<java.lang.String>)
+jdk 1.8.0_11
+------------
+Lambda binds to: Testbed.noop
+Methods (with generics):
+- java.util.List<java.lang.String> noop(java.util.List<java.lang.String>)

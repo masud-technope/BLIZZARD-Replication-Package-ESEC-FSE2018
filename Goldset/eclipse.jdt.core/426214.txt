@@ -1,0 +1,11 @@
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/TestAll.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/Unicode18Test.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/RunOnlyJava8Tests.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/ScannerHelper.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/unicode6_2/part0.rsc
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/unicode6_2/part1.rsc
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/unicode6_2/part14.rsc
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/unicode6_2/part2.rsc
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/unicode6_2/start0.rsc
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/unicode6_2/start1.rsc
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/unicode6_2/start2.rsc

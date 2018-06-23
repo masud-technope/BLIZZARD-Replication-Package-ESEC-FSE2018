@@ -1,0 +1,73 @@
+56905 – "Unable to destroy WebSocket thread group" warning when reloading examples webapp
+Testing 8.0.12 release candidate.
+Windows, JDK 7u67 (32-bit), NIO connector.
+Steps to reproduce:
+==========
+1.
+Start Tomcat
+2.
+Visit "Echo" websockets example and do the following
+http://localhost:8080/examples/websocket/echo.xhtml
+- Select any connection option
+(I like "(*) annotation API (stream)", but the issue is reproducible with any of the 3 connection options)
+- Press "Connect" button
+- Press "Echo message" button
+- Press "Disconnect" button
+3.
+Touch file webapps\examples\WEB-INF\web.xml and wait for the web application to be reloaded by Tomcat
+Actual: Webapp reloading completes successfully, but a "Unable to destroy WebSocket thread group" warning is logged into logs/catalina.2014-08-31.log file:
+Expected: No warning.
+[[[
+31-Aug-2014 18:20:22.357 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.core.StandardContext.reload Reloading Context with name [/examples] has started
+31-Aug-2014 18:20:22.362 WARNING [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.tomcat.websocket.server.WsServerContainer.destroy Unable to destroy WebSocket thread group [WebSocketServer-localhost-/examples] as some threads were still running when the web application was stopped
+31-Aug-2014 18:20:22.877 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.core.StandardContext.reload Reloading Context with name [/examples] is completed
+]]]
+Evaluation, notes
+==========
+1) Reproduction rate is less than 100%.
+Sometimes the warning does not happen.
+Steps 2-4 can be repeated without restarting Tomcat until the issue shows itself.
+In the example, any connection option can be used.
+The issue does not depend on it.
+2) The message is printed by org.apache.tomcat.websocket.server.WsServerContainer.destroy() method and originates from r1589043
+3) I tried to get more information, by adding the following debug code:
+[[[
+StringBuilder buf = new StringBuilder();
+buf.append(threadGroup.getName());
+buf.append(" activeCount: ").append(threadGroup.activeCount());
+buf.append(" isDestroyed: ").append(threadGroup.isDestroyed());
+Thread[] threads = new Thread[100];
+int threadCount = threadGroup.enumerate(threads, false);
+buf.append("\nactual Thread count: ").append(threadCount);
+for (int i=0; i<threadCount; i++) {
+buf.append("\n\n").append(threads[i]);
+StackTraceElement[] stack = threads[i].getStackTrace();
+for (StackTraceElement ste: stack) {
+buf.append("\n\t").append(ste);
+}
+}
+log.warn(buf.toString());
+]]]
+The results:
+1.
+activeCount: 0 isDestroyed: false
+2.
+actual Thread count: 0, threadGroup.enumerate() have not returned any thread.
+3.
+If I add second threadGroup.destroy(); call after the above code, it succeeds.
+4) There are no PermGen memory leaks.
+(No thread stack traces are printed by WebappClassLoader leak detection code.
+No leaks detected by Find leaks command in Tomcat Manager webapp).
+Missing a ThreadGroup.destroy() call will keep this thread group in its parent thread group's list, so there will be a small java object leak.
+5) In this case we were safe, but generally there might be threads that are still running, as they perform some web application code.
+So the warning is justified.
+Thoughts on a possible fix
+==========
+1) Use threadGroup.setDaemon(true) [1].
+The daemon flag on a thread group means that its destroy() method will be called automatically when its thread count reaches zero.
+Generally it either shall be done in a synchronized(threadGroup) block, or we shall call some synchronized methods later to make sure that the change is propagated.
+(E.g.
+calling ThreadGroup.isDestroyed(), ThreadGroup.activeCount() is good for this).
+The goal is to avoid the java object leak.
+[1] http://docs.oracle.com/javase/7/docs/api/java/lang/ThreadGroup.html#setDaemon%28boolean%29
+2) Ask for threadGroup.activeCount() and include the count in the warning message.

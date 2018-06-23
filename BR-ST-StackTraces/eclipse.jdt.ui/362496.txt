@@ -1,0 +1,8 @@
+org.eclipse.jdt.core.dom.SimpleName.setIdentifier
+org.eclipse.jdt.core.dom.AST.newSimpleName
+org.eclipse.jdt.internal.corext.refactoring.nls.AccessorClassModifier.getNewFinalStringFieldDeclaration
+org.eclipse.jdt.internal.corext.refactoring.nls.AccessorClassModifier.addKey
+org.eclipse.jdt.internal.corext.refactoring.nls.AccessorClassModifier.addKey
+org.eclipse.jdt.internal.corext.refactoring.nls.AccessorClassModifier.addFields
+org.eclipse.jdt.internal.ui.propertiesfileeditor.PropertiesQuickAssistProcessor.getCreateFieldsInAccessorClassProposals
+org.eclipse.jdt.internal.ui.propertiesfileeditor.PropertiesQuickAssistProcessor.collectAssists

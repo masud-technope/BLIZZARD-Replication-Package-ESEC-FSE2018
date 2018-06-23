@@ -1,0 +1,7 @@
+Bug 464977 – [compiler] Deprecated bit not set
+Created attachment 252526 [details]
+An example project
+@Deprecated
+public class DeprecatedClass {}
+Compiling this class with the tycho-compiler-plugin, I expect the deprecated bit to be set in the class file.
+But it isn't.

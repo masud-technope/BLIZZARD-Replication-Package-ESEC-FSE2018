@@ -1,0 +1,12 @@
+Bug 255142 – [select] Codeselect should not omit cast
+3.5M3
+Hovering on #bar(...) invocation on line (5) should not show "<Object> Object bar(Object)" instead of "<String> String bar(String)".
+The compiler does the right thing, but codeselect seems to ignore the presence of the "(String)" cast in front of selected expression; which leads to generic inference considering expected type (String).
+import java.util.List;
+public class X {
+void foo(boolean b, Runnable r) {
+Zork z = null;
+String s = (String) bar(z); // 5
+}
+<T> T bar(T t) { return t; }
+}

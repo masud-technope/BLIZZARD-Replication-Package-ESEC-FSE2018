@@ -1,0 +1,13 @@
+38352 – Additional Entries for Default catalina.policy file.
+This patch adds additional entries to the catalina.policy file.
+Specifically:
+The catalina.base/shared directory is added and given equal permissions to
+catalina.home/common
+java.io.tmpdir is now readable.
+javax.servlet.context.tempdir is now readable.
+I think to be compliant with the
+spec, this must be allowed.
+Directory specified by java.io.tmpdir (which is what tomcat points
+javax.servlet.context.tempdir to) is now read, write, delete.
+Again, I think the
+spec requires this.

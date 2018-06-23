@@ -1,0 +1,5 @@
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/javadoc/JavaDocLocations.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javadocexport/RecentSettingsStore.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/JavadocConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/viewsupport/JavaElementLinks.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/wizards/BuildPathDialogAccess.java

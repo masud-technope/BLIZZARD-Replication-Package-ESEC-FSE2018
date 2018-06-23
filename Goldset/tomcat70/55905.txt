@@ -1,0 +1,4 @@
+java/org/apache/catalina/startup/LocalStrings_es.properties
+java/org/apache/catalina/startup/LocalStrings.properties
+java/org/apache/catalina/startup/TldConfig.java
+webapps/docs/changelog.xml

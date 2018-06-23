@@ -1,0 +1,5 @@
+59217 – Duplication of the recycling of the path in the ServerCookie
+Created attachment 33695 [details]
+patch
+The recycling of the path is invoked twice in the ServerCookie.recycle() method.
+This is a duplicate code.

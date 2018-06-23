@@ -1,0 +1,26 @@
+Bug 428642 – [1.8][compiler] java.lang.IllegalArgumentException: Invalid lambda deserialization exception
+From https://bugs.eclipse.org/bugs/show_bug.cgi?id=428552#c3:
+The following program throws an exception when executed:
+import java.io.*;
+import java.util.function.IntConsumer;
+public class QuickSerializedLambdaTest {
+interface X extends IntConsumer,Serializable{}
+public static void main(String[] args) throws IOException, ClassNotFoundException {
+X x1 = i -> System.out.println(i);// lambda expression
+X x2 = System::exit; // method reference
+ByteArrayOutputStream debug=new ByteArrayOutputStream();
+try(ObjectOutputStream oo=new ObjectOutputStream(debug))
+{
+oo.writeObject(x1);
+oo.writeObject(x2);
+}
+try(ObjectInputStream oi=new ObjectInputStream(new ByteArrayInputStream(debug.toByteArray())))
+{
+X x=(X)oi.readObject();
+x.accept(42);// shall print "42"
+x=(X)oi.readObject();
+x.accept(0);// shall exit
+}
+throw new AssertionError("should not reach this point");
+}
+}

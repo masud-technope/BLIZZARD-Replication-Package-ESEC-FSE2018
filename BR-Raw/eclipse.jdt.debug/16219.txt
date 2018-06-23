@@ -1,0 +1,5 @@
+Bug 16219 – re-setting "use default classpath" does not work
+* Open a launch config on VectorTest.
+* Remove "JUnit" from the classpath
+* check "use default classpath"
+NOTE: JUnit does not reappear

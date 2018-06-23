@@ -1,0 +1,34 @@
+49018 – Timeout argument misprocessed when expiring sessions from Tomcat Manager
+Steps to reproduce:
+1.
+Login to the Tomcat Manager Application
+2.
+Select a web application that has several sessions that are inactive for more than 2 minutes
+3.
+In the text field next to the "Expire sessions" button print "2"
+4.
+Press "Expire sessions"
+5.
+Sample observed result:
+OK - Session information for application at context path /myapp
+Default maximum session inactive interval 30 minutes
+<1 minutes:16 sessions
+1 - <2 minutes:2 sessions
+2 - <3 minutes:5 sessions
+3 - <4 minutes:1 sessions
+4 - <5 minutes:2 sessions
+5 - <6 minutes:1 sessions
+6 - <7 minutes:2 sessions
+9 - <10 minutes:1 sessions
+8 minutes:expired 0 sessions
+Actually some sessions were expired (even if the above message prints "0").
+Expected result:
+All sessions with idle time > 2 minutes had to be expired.
+The bug is in the following lines of ManagerServlet#sessions(PrintWriter, String, int):
+Lines 1176-1179
+if (idle >= 0 && time >= idle*60) {
+sessions[i].expire();
+idle++;
+}
+The patch would be to replace "idle++" with "expired++",
+because "idle" is the time (in minutes) as submitted from the web form and "expired" is the counter.

@@ -1,0 +1,3 @@
+Bug 463236 – Scrapbook evaluations fail in pre-1.7 projects
+Since org.eclipse.jdt.debug.ui was moved to 1.7, scrapbook evaluations fail in 1.5 and 1.6 projects because the snippetsupport.jar is not compiled with 1.7 as well.
+This JAR should stay at a compliance level that is as low as possible.

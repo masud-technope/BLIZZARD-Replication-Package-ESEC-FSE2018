@@ -1,0 +1,15 @@
+java/org/apache/jasper/compiler/AttributeParser.java
+java/org/apache/jasper/compiler/ELParser.java
+java/org/apache/jasper/compiler/JspDocumentParser.java
+java/org/apache/jasper/compiler/JspReader.java
+java/org/apache/jasper/compiler/Parser.java
+test/org/apache/el/TestELInJsp.java
+test/org/apache/jasper/compiler/TestAttributeParser.java
+test/org/apache/jasper/compiler/TestELParser.java
+test/org/apache/jasper/compiler/TestParser.java
+test/webapp-3.0/bug45nnn/bug45427.jsp
+test/webapp-3.0/bug45nnn/bug45451.jspf
+test/webapp-3.0/bug45nnn/bug45451a.jsp
+test/webapp-3.0/el-method.jsp
+test/webapp-3.0/el-misc.jsp
+webapps/docs/changelog.xml

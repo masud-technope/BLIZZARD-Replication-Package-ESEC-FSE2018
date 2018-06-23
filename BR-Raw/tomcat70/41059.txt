@@ -1,0 +1,8 @@
+41059 – WebAppClassLoader clearReferences code break running threads
+When the WebAppClassLoader stops it manually sets all static and final
+variables to null in the clearReferences method.
+ This results in NPEs for any
+thread that was not stopped and not expecting its final or static variables to
+be null.
+ This is particularly a problem with hot deploys since the unload
+fails and terminating the deploy.

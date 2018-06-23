@@ -1,0 +1,8 @@
+Bug 408072 – [nls tooling] Interface is flagged as missing NLS key
+Version: 4.3.0
+Build id: I20130513-2000
+While scanning org.eclipse.jface I got the following during the search:
+Undefined keys in: MenuManager.java - org.eclipse.jface.action (2 matches)
+One of the matches is: ExternalActionManager.ICallback callback = ExternalActionManager.getInstance().getCallback();
+with ExternalActionManager.ICallback highlighted.
+There are 17 of these flagged for all of jface.

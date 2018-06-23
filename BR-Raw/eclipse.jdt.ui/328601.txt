@@ -1,0 +1,17 @@
+Bug 328601 – [nls tooling] NLS Hover writes IAE to log
+HEAD, probably an older problem
+- Create a .properties file with invalid content like this:
+Snippet.xxx=\u
+- Hover over any key that refers to that .properties file
+=> IAE below is logged
+=> Expected: Nothing in log, but hover should tell which .properties file is malformed.
+java.lang.IllegalArgumentException: Malformed \uxxxx encoding.
+at java.util.Properties.loadConvert(Properties.java:552)
+at java.util.Properties.load0(Properties.java:375)
+at java.util.Properties.load(Properties.java:325)
+at org.eclipse.jdt.internal.corext.refactoring.nls.NLSHintHelper.getProperties(NLSHintHelper.java:461)
+at org.eclipse.jdt.internal.ui.text.java.hover.NLSStringHover.internalGetHoverInfo(NLSStringHover.java:171)
+at org.eclipse.jdt.internal.ui.text.java.hover.NLSStringHover.getHoverInfo2(NLSStringHover.java:112)
+at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:141)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:82)
+at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)

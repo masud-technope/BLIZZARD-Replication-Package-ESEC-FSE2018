@@ -1,0 +1,5 @@
+Bug 78853 – Variable value assignment allows for type mismatch
+From bug 65057:
+The debugger allows non type-safe assignments.
+For example, I can
+assign "new Object()" to a Vector (I don't think we should allow this?)

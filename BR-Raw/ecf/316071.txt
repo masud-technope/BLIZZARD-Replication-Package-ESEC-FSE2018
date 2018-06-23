@@ -1,0 +1,19 @@
+Bug 316071 – Problem registering and/or finding remote services
+Build Identifier: ECF 3.0.0.v20090831
+I have a simple example using the remote services API with XMPP (specifically, XMPPS via Google).
+ My application logs in to a GMail account and registers a service.
+ When I run two instances of the application on one computer, each instance is able to find an IRemoteServiceReference to the other.
+ But when I run two instances of the application on two separate machines, one of them is able to find a reference to the other, but not the other way around.
+ I apologize that I don't have any more information.
+ No exceptions are thrown, and I didn't notice anything suspect when I stepped through IRemoteServiceContainerAdapter.getRemoteServiceReferences().
+Also, I'm not sure if this is significant, but when I call getRemoteServiceReferences(), I actually do get an IRemoteServiceReference, but it's a pointer to my own remote service, not the other user's remote service.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Set up a remote service (call it RS1) on machine 1.
+2.
+Set up a remote service (call it RS2) on machine 2.
+3.
+Try to look up RS1 from machine 2 and RS2 from machine 1.
+4.
+One of the lookups will work, and the other will not.

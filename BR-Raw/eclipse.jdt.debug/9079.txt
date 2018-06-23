@@ -1,0 +1,10 @@
+Bug 9079 – Pattern breakpoints show as <unknown>
+Using the 0125 build, I created a pattern breakpoint in a JSP file using the
+following:
+JDIDebugModel.createPatternBreakpoint(file, pattern, line, -1, -1, 0, true,
+null);
+Two problems:
+1) In the Breakpoints view, the breakpoint shows as "<unknown>".
+2) No breakpoint marker appears in the JSP editor.
+ (Using the 1.0 code base, I
+only had to create the breakpoint to also get the marker.)

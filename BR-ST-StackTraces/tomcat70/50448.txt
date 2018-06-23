@@ -1,0 +1,10 @@
+org.apache.catalina.session.StandardSession.getCreationTime
+org.apache.catalina.session.ManagerBase.remove
+org.apache.catalina.session.StandardSession.expire
+org.apache.catalina.session.StandardSession.isValid
+org.apache.catalina.session.ManagerBase.processExpires
+org.apache.catalina.session.ManagerBase.backgroundProcess
+de.javakaffee.web.msm.MemcachedBackupSessionManager.backgroundProcess
+org.apache.catalina.core.ContainerBase.backgroundProcess
+Another option would be to change StandardSession.expire
+Or even better: change ManagerBase.remove

@@ -1,0 +1,10 @@
+Bug 13957 – LaunchingPlugin specification of resourceCopyExclusionFilter
+Currently there are bugs in the code.
+ The constant has changed and we should
+check for null when getting the key (even though JavaCore initializes the value
+to "").
+More difficult:
+The UI for manipulating the setting of this option in the JavaOptions does not
+take into consideration anyone setting a filter via code
+(JavaBuilderPreferencePage).
+ Is this an intended limitation?

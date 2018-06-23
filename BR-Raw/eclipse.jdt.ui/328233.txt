@@ -1,0 +1,18 @@
+Bug 328233 – [nls tooling] Externalize string broken with \\uHHHH in string
+HEAD, was OK in I20101005-0800
+package source;
+public class Snippet {
+public static void main(String[] args) {
+System.out.println("Hello \u00e4 \u2063, \\u00e4 \\u2063");
+}
+}
+- The Externalize Strings wizard wrongly says "Some values are invalid".
+- The NLS hover in the .properties file wrongly says "Malformed \uxxxx encoding".
+The encoding/decoding code needs some more cleanup:
+- NativeToAscii is a bad name.
+The native2ascii tool is already misnamed, since it converts to "Latin1 + escaped Unicode", and not to ASCII.
+Our class does not even deal with a "native" encoding, so both parts of the name are wrong.
+It should rater be called something like PropertiesFileEscapes.
+- The 2 conversion methods in NativeToAscii should both do the special handling for \t etc.
+.
+Callers of getEscapedAsciiString(char) shouldn't have to do that.

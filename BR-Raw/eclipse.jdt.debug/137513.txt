@@ -1,0 +1,27 @@
+Bug 137513 – Internal error when stepping quickly
+Using N20060418 + debug from HEAD + jdt debug from HEAD
+Logical structure is on from the Variables View and the view is visible.
+* Suspend at the first line from the test case
+* Expand the ArrayList variable after something has been added.
+* Hold down the step over key.
+Testcase:
+public static void main(String[] args) {
+ArrayList x = new ArrayList();
+for (int i=0; i<5; i++)
+{
+x.add(0, "a" + i);
+}
+}
+Got a bunch of exceptions in the log:
+!ENTRY org.eclipse.jdt.debug 4 120 2006-04-19 10:45:31.742
+!MESSAGE Internal error logged from JDI Debug:
+!STACK 1
+org.eclipse.debug.core.DebugException: Evaluation failed - thread not suspended.
+at org.eclipse.jdt.internal.debug.core.model.JDIDebugElement.throwDebugException(JDIDebugElement.java:207)
+at org.eclipse.jdt.internal.debug.core.model.JDIDebugElement.requestFailed(JDIDebugElement.java:162)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.runEvaluation(JDIThread.java:574)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine$EvalRunnable.run(ASTEvaluationEngine.java:489)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run(JDIThread.java:2467)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+!SUBENTRY 1 org.eclipse.jdt.debug 4 100 2006-04-19 10:45:31.742
+!MESSAGE Evaluation failed - thread not suspended.

@@ -1,0 +1,8 @@
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavaModel.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaModelTests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaElementDeltaTests.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/IJavaModel.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/DeltaProcessor.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ModifyingResourceTests.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavaModelInfo.java

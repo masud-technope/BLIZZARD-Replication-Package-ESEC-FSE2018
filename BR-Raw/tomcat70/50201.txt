@@ -1,0 +1,31 @@
+50201 – StandardEngine.defaultAccessLog may become stale when ROOT webapp is redeployed
+In tc6.0.x-dev after r1030188 (will be 6.0.30) and in TC 7.0.4:
+The method StandardEngine.logAccess(..) performs lookup of a default AccessLog implementation and caches it as StandardEngine.defaultAccessLog.
+ This value is not updated if the default host or its ROOT webapp are changed.
+ The most important use case here is when the ROOT webapp is redeployed or restarted.
+To reproduce:
+1.
+Configure an access log valve in the ROOT webapp.
+Remove access log valves from Engine and Host if there are any.
+2.
+Start Tomcat and do some malformed request
+3.
+Undeploy and redeploy the ROOT webapp.
+E.g.
+rename ROOT -> ROOT1, wait until undeployment happens and rename it back.
+4.
+Do some malformed request.
+Expected behaviour: the request has to be logged.
+Actual behaviour: the request is not logged.
+Notes:
+1.
+This does not happen if an access log valve is also configured on the Host or Engine.
+The default server.xml of Tomcat 7 does have such a valve in the default Host.
+2.
+Restarting the ROOT webapp (e.g.
+touching its web.xml) is not enough to trigger this.
+(Apparently it does not cause closing of the valve).
+3.
+It is not detected as a memory leak.
+(Apparently the Valve is not loaded with webapp's classloader).
+So, the requests not being logged is the only effect of this issue that I am observing.

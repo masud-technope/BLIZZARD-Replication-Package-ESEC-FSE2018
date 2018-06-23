@@ -1,0 +1,16 @@
+Bug 81109 – [nls tooling] Improve Properties file key navigation dialog for multiple references
+200412142000:
+- The description of the open dialog could be more specific, e.g.
+replace
+element by file
+- The entries in the open dialog are to wide, causing scrollbars to be shown
+initially.
+A simple tree view like in ElementTreeSelectionDialog would do the
+trick, not giving up the option to type in the item to be opened
+- Several matches in the same file should be indicated as in the search result
+view (file name + # of matches in parentheses)
+- The offset/length indication is useless: The length is the same anyway, and
+the offset cannot be easily used to differentiate between the results.
+A five-
+lines-high preview of the location would help, or a popup similar as the
+additional info popup for content assist proposals.

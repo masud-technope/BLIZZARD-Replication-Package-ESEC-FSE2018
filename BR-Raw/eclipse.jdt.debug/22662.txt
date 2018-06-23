@@ -1,0 +1,7 @@
+Bug 22662 – IClasspathContainerPage needs more context [build path]
+When adding a container to the buildpath of a project, it would be nice to have
+more context in the page.
+At least the classpath of the project that the
+container will be added to.
+This way one can handle inter container dependencies
+(fe this library can be used in combination with this base library, etc)

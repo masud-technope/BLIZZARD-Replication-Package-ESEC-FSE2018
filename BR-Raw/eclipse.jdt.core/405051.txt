@@ -1,0 +1,11 @@
+Bug 405051 – JavaModel.refreshExternalArchives needs to happen before search is primed
+When the search engine is primed (as part of calling JavaCore.initializeAfterLoad(IProgressMonitor)) then it populates the index manager based on the information returned from IndexManager#computeIndexLocation(IPath containerPath).
+ If the underlying index is a pre-built index but it has been deleted from the file-system, then the index is re-created in the workspace metadata and not in the location specified by the INDEX_LOCATION_ATTRIBUTE_NAME classpath attribute.
+ This is because search has no concept of the classpath containers - it simply knows a list of project and the corresponding archive files.
+In JavaCore.initializeAfterLoad(IProgressMonitor) the call to refresh external archives (which populates the index manager with the correct classpath attribute information) happens after the search occurs.
+ Since the index has already been built from the search call then it ends up being used.
+There are two ways to fix this:
+1) In JavaCore.initializeAfterLoad(IProgressMonitor), move the call to refresh the archives to happen BEFORE the search engine is primed.
+2) In IndexManager#computeIndexLocation(IPath containerPath, final URL newIndexURL) added via bug 395897, if the existing URL is different from the new URL then the index needs to be rebuilt after it is removed.
+I think fix 1 makes more sense as, ideally, you want to know the latest archive state before a search is done.
+ This approach also ensures that the indexer manager is doing less work

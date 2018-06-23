@@ -1,0 +1,6 @@
+com.sun.jndi.ldap.Connection.readReply
+com.sun.jndi.ldap.LdapClient.getSearchReply
+com.sun.jndi.ldap.LdapClient.search
+com.sun.jndi.ldap.LdapCtx.doSearch
+com.sun.jndi.ldap.LdapCtx.searchAux
+com.sun.jndi.ldap.LdapCtx.c_search

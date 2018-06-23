@@ -1,0 +1,11 @@
+Bug 385132 – [1.8][compiler] syntax error says "ARROW" or "COLON_COLON" where it shouls say "->" or "::"
+If one of the new tokens '->' or '::' is misplaced the compiler currently
+reports
+Syntax error on token "ARROW", ...
+Syntax error on token "COLON_COLON", ...
+For all other tokens it shows the token verbatim, not by its name.
+I found that this is caused by failure to list these tokens in the $names
+section of the grammar (at the very bottom).
+Adding these lines fixes the issue:
+ARROW ::= '->'
+COLON_COLON ::= '::'

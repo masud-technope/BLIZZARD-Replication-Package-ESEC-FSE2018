@@ -1,0 +1,5 @@
+Bug 18780 – Deleting a member in Members view not always working
+Build F2
+I detected that in some cases deleting a memeber (was a method) from the Members
+view doesn't get removed from the list.
+Should fix for F3

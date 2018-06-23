@@ -1,0 +1,134 @@
+Bug 89932 – Debugger shows dialog on each(!) breakpoint hit + NPE in .log
+I20050331-2000
+Every single breakpoint hit causes a dialog to appear (see picture) and NPEs
+being written to .log (see below).
+This makes the build fairly unusable for me.
+!SESSION 2005-04-01 12:05:02.214 -----------------------------------------------
+eclipse.buildId=I20050331-2000
+java.version=1.4.2_06
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=de_CH
+Framework arguments:  -update -keyring c:\eclipse\.keyring -application
+org.eclipse.ui.ide.workbench -showlocation
+Command-line arguments:  -update -keyring c:\eclipse\.keyring -application
+org.eclipse.ui.ide.workbench -showlocation -data
+c:\eclipse\workspaces\Development_2_2\plugins
+!ENTRY org.eclipse.debug.core 4 120 2005-04-01 12:05:02.214
+!MESSAGE Exception processing debug async queue
+!SUBENTRY 1 org.eclipse.debug.core 4 120 2005-04-01 12:05:02.214
+!MESSAGE Exception processing debug async queue
+!STACK 0
+java.lang.NullPointerException
+at
+org.eclipse.jdt.internal.debug.ui.monitors.JavaMonitorThread.update(JavaMonitorThread.java:175)
+at
+org.eclipse.jdt.internal.debug.ui.monitors.JavaMonitorThread.getContendedMonitor0(JavaMonitorThread.java:147)
+at
+org.eclipse.jdt.internal.debug.ui.monitors.ThreadMonitorManager$DetectDeadlock.run(ThreadMonitorManager.java:238)
+at org.eclipse.debug.core.DebugPlugin$AsynchJob.run(DebugPlugin.java:1024)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:67)
+!ENTRY org.eclipse.debug.core 4 120 2005-04-01 12:08:10.409
+!MESSAGE Exception processing debug async queue
+!SUBENTRY 1 org.eclipse.debug.core 4 120 2005-04-01 12:08:10.409
+!MESSAGE Exception processing debug async queue
+!STACK 0
+java.lang.NullPointerException
+at
+org.eclipse.jdt.internal.debug.ui.monitors.JavaMonitorThread.update(JavaMonitorThread.java:175)
+at
+org.eclipse.jdt.internal.debug.ui.monitors.JavaMonitorThread.refresh(JavaMonitorThread.java:284)
+at
+org.eclipse.jdt.internal.debug.ui.monitors.ThreadMonitorManager$RefreshAndDetectDeadlock.run(ThreadMonitorManager.java:218)
+at org.eclipse.debug.core.DebugPlugin$AsynchJob.run(DebugPlugin.java:1024)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:67)
+!ENTRY org.eclipse.debug.core 4 120 2005-04-01 12:08:57.222
+!MESSAGE Exception processing debug async queue
+!SUBENTRY 1 org.eclipse.debug.core 4 120 2005-04-01 12:08:57.222
+!MESSAGE Exception processing debug async queue
+!STACK 0
+java.lang.NullPointerException
+at
+org.eclipse.jdt.internal.debug.ui.monitors.JavaMonitorThread.update(JavaMonitorThread.java:175)
+at
+org.eclipse.jdt.internal.debug.ui.monitors.JavaMonitorThread.refresh(JavaMonitorThread.java:284)
+at
+org.eclipse.jdt.internal.debug.ui.monitors.ThreadMonitorManager$RefreshAndDetectDeadlock.run(ThreadMonitorManager.java:218)
+at org.eclipse.debug.core.DebugPlugin$AsynchJob.run(DebugPlugin.java:1024)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:67)
+!ENTRY org.eclipse.debug.core 4 120 2005-04-01 12:12:59.665
+!MESSAGE Exception processing debug async queue
+!SUBENTRY 1 org.eclipse.debug.core 4 120 2005-04-01 12:12:59.665
+!MESSAGE Exception processing debug async queue
+!STACK 0
+java.lang.NullPointerException
+at
+org.eclipse.jdt.internal.debug.ui.monitors.JavaMonitorThread.update(JavaMonitorThread.java:175)
+at
+org.eclipse.jdt.internal.debug.ui.monitors.JavaMonitorThread.refresh(JavaMonitorThread.java:284)
+at
+org.eclipse.jdt.internal.debug.ui.monitors.ThreadMonitorManager$RefreshAndDetectDeadlock.run(ThreadMonitorManager.java:218)
+at org.eclipse.debug.core.DebugPlugin$AsynchJob.run(DebugPlugin.java:1024)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:67)
+!ENTRY org.eclipse.debug.core 4 120 2005-04-01 12:13:08.967
+!MESSAGE Exception processing debug async queue
+!SUBENTRY 1 org.eclipse.debug.core 4 120 2005-04-01 12:13:08.967
+!MESSAGE Exception processing debug async queue
+!STACK 0
+java.lang.NullPointerException
+at
+org.eclipse.jdt.internal.debug.ui.monitors.JavaMonitorThread.update(JavaMonitorThread.java:175)
+at
+org.eclipse.jdt.internal.debug.ui.monitors.JavaMonitorThread.refresh(JavaMonitorThread.java:284)
+at
+org.eclipse.jdt.internal.debug.ui.monitors.ThreadMonitorManager$RefreshAndDetectDeadlock.run(ThreadMonitorManager.java:218)
+at org.eclipse.debug.core.DebugPlugin$AsynchJob.run(DebugPlugin.java:1024)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:67)
+!ENTRY org.eclipse.debug.core 4 2 2005-04-01 12:13:23.427
+!MESSAGE Problems occurred when invoking code from plug-in:
+"org.eclipse.debug.core".
+!STACK 0
+java.lang.NullPointerException
+at
+org.eclipse.jdt.internal.debug.ui.monitors.ThreadMonitorManager.clean(ThreadMonitorManager.java:140)
+at
+org.eclipse.jdt.internal.debug.ui.monitors.ThreadMonitorManager.handleDebugTargetTerminate(ThreadMonitorManager.java:130)
+at
+org.eclipse.jdt.internal.debug.ui.monitors.ThreadMonitorManager.handleDebugEvents(ThreadMonitorManager.java:105)
+at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1087)
+at
+org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java:1021)
+at org.eclipse.core.runtime.Platform.run(Platform.java:757)
+at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1119)
+at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:340)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:67)
+!ENTRY org.eclipse.debug.core 4 120 2005-04-01 12:13:23.427
+!MESSAGE An exception occurred while dispatching debug events.
+!STACK 0
+java.lang.NullPointerException
+at
+org.eclipse.jdt.internal.debug.ui.monitors.ThreadMonitorManager.clean(ThreadMonitorManager.java:140)
+at
+org.eclipse.jdt.internal.debug.ui.monitors.ThreadMonitorManager.handleDebugTargetTerminate(ThreadMonitorManager.java:130)
+at
+org.eclipse.jdt.internal.debug.ui.monitors.ThreadMonitorManager.handleDebugEvents(ThreadMonitorManager.java:105)
+at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1087)
+at
+org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java:1021)
+at org.eclipse.core.runtime.Platform.run(Platform.java:757)
+at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1119)
+at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:340)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:67)
+!ENTRY org.eclipse.debug.core 4 120 2005-04-01 12:13:35.449
+!MESSAGE Exception processing debug async queue
+!SUBENTRY 1 org.eclipse.debug.core 4 120 2005-04-01 12:13:35.449
+!MESSAGE Exception processing debug async queue
+!STACK 0
+java.lang.NullPointerException
+at
+org.eclipse.jdt.internal.debug.ui.monitors.JavaMonitorThread.update(JavaMonitorThread.java:175)
+at
+org.eclipse.jdt.internal.debug.ui.monitors.JavaMonitorThread.refresh(JavaMonitorThread.java:284)
+at
+org.eclipse.jdt.internal.debug.ui.monitors.ThreadMonitorManager$RefreshAndDetectDeadlock.run(ThreadMonitorManager.java:218)
+at org.eclipse.debug.core.DebugPlugin$AsynchJob.run(DebugPlugin.java:1024)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:67)

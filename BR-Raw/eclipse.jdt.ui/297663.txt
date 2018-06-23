@@ -1,0 +1,31 @@
+Bug 297663 – [JUnit] JUnit not found when JDT installed as dropin
+User-Agent:       Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.1.5) Gecko/20091105 Fedora/3.5.5-1.fc12 Firefox/3.5.5
+Build Identifier: M20090917-0800
+Fedora 12 packages JDT as a dropin in the shared installation area, which is read-only to normal users.
+If you try to add the JUnit library to a project, you receive a message in the wizard saying "The selected JUnit version is not available".
+I've tracked this down to the following problem:
+The install area bundles.info does not have the org.junit plugin in it.
+This file is in:
+/usr/lib/eclipse/configuration/org.eclipse.equinox.simpleconfigurator/bundles.info
+The config area bundles.info actually does have the org.junit plugin in it.
+It looks like:
+[phiggins@xeno ~]$ grep '^org.junit' .eclipse/*/configuration/org.eclipse.equinox.simpleconfigurator/bundles.info
+org.junit,3.8.2.v20090203-1005,dropins/jdt/plugins/org.junit_3.8.2.v20090203-1005/,4,false
+org.junit4,4.5.0.v20090824,dropins/jdt/plugins/org.junit4_4.5.0.v20090824/,4,false
+As you can see, it uses a relative URL to the dropins directory, which is actually in the shared install location: /usr/lib/eclipse/dropins
+The plugin does not exist in my private config area.
+I have created a patch to org/eclipse/jdt/internal/junit/buildpath/P2Utils.java which resolves relative URLs first to the config area and then to the install location when reading bundles from the config area.
+This patch fixes the problem for me.
+I will attach the patch shortly.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Install the org.junit plugin in a shared install location
+2.
+Remove the org.junit plugin from your config area if it exists
+3.
+Remove the reference to the org.junit plugin from the shared install location bundles.info
+4.
+Add a reference to the org.junit plugin to your config area bundles.info using a relative URL
+5.
+Try to add a junit library to a project

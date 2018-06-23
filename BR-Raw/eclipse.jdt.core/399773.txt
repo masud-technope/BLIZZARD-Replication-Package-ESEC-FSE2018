@@ -1,0 +1,17 @@
+Bug 399773 – [1.8][compiler] Cast expression should allow for additional bounds to form intersection types
+BETA_JAVA8:
+Java 8 amends to 15.16 allow type casts to constitute an intersection
+type of the form (Runnable & Serializable), so the following program
+is legal:
+// -----
+interface I {
+void foo();
+}
+interface J {
+}
+class X {
+I i = (I & J) () -> {};
+}
+// ---
+ECJ at the moment lacks support for such constructs starting at the
+grammar level.

@@ -1,0 +1,11 @@
+Bug 197011 – Add JRE fails to retain system library modifications.
+When adding a new JRE to the IDE, modifications to the JRE system libraries section will be lost once the user click on the OK button.
+Steps to reproduce:
+(1) Windows -> Preferences -> Java -> Installed JREs
+(2) Click on Add.
+(3) Fill in the requested information (JRE type, name, directory, etc.).
+(4) Modify the JRE system libraries section by, for example, adding an additional external JAR file.
+(5) Click on OK.
+(6) Select the new JRE and click on Edit.
+Any external JARs added (or removed) via the Add JRE window will be lost.
+The Edit JRE window works as expected.

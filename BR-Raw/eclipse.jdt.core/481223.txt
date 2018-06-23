@@ -1,0 +1,34 @@
+Bug 481223 – [performance] Regression below SearchableEnvironment.findConstructorDeclarations
+Dear JDT team,
+when switching from the platform's Neon M2 milestones to its M3 milestone, one of Code Recommenders' integration tests started to fail [1]: SubwordsCompletionProposalComputerIntegrationTest.
+In this test, the (simulated) user triggers content assist at
+InputStream in = new Ziut<ctrl+space>
+Under the hood, Code Recommenders subword completion triggers again at
+InputStream in = new Z<ctrl+space>
+Obviously, this can result in a large number of results (in a production scenario subwords would hence, by default, use a two character prefix).
+Now, our test simulates that the user triggers content assist twice (calls warmup and exercise in [2]).
+In previous versions of JDT (we test against Kepler SR2, Luna SR2, Mars SR1, and Neon M2 ATM), this warmup reliably prevented the timeout in exercise.
+As of Neon M3, this is no longer the case, however.
+The following occurs both on warmup (to be expected) and exercise call:
+org.eclipse.core.runtime.OperationCanceledException
+at org.eclipse.jdt.internal.core.SearchableEnvironment.findConstructorDeclarations(SearchableEnvironment.java:599)
+at org.eclipse.jdt.internal.codeassist.CompletionEngine.findTypesAndPackages(CompletionEngine.java:10674)
+at org.eclipse.jdt.internal.codeassist.CompletionEngine.completionOnSingleTypeReference(CompletionEngine.java:3360)
+at org.eclipse.jdt.internal.codeassist.CompletionEngine.complete(CompletionEngine.java:1715)
+at org.eclipse.jdt.internal.codeassist.CompletionEngine.complete(CompletionEngine.java:1939)
+at org.eclipse.jdt.internal.core.Openable.codeComplete(Openable.java:131)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeComplete(CompilationUnit.java:357)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeComplete(CompilationUnit.java:345)
+at org.eclipse.recommenders.internal.subwords.rcp.SubwordsSessionProcessor.computeProposals(SubwordsSessionProcessor.java:313)
+at org.eclipse.recommenders.internal.subwords.rcp.SubwordsSessionProcessor.getNewProposals(SubwordsSessionProcessor.java:202)
+at org.eclipse.recommenders.internal.subwords.rcp.SubwordsSessionProcessor.initializeContext(SubwordsSessionProcessor.java:142)
+at org.eclipse.recommenders.completion.rcp.processable.IntelligentCompletionProposalComputer.fireInitializeContext(IntelligentCompletionProposalComputer.java:292)
+at org.eclipse.recommenders.completion.rcp.processable.IntelligentCompletionProposalComputer.computeCompletionProposals(IntelligentCompletionProposalComputer.java:169)
+at org.eclipse.recommenders.subwords.rcp.it.SubwordsCompletionProposalComputerIntegrationTest.exercise(SubwordsCompletionProposalComputerIntegrationTest.java:224)
+at org.eclipse.recommenders.subwords.rcp.it.SubwordsCompletionProposalComputerIntegrationTest.warmup(SubwordsCompletionProposalComputerIntegrationTest.java:191)
+at org.eclipse.recommenders.subwords.rcp.it.SubwordsCompletionProposalComputerIntegrationTest.test(SubwordsCompletionProposalComputerIntegrationTest.java:152)
+I know that our integration test is far from a minimal test case, but if I can be of any help or assistance, just ask.
+Best wishes,
+Andreas
+[1] <https://hudson.eclipse.org/recommenders/job/org.eclipse.recommenders-gerrit/1334/>
+[2] <https://git.eclipse.org/c/recommenders/org.eclipse.recommenders.git/tree/tests/org.eclipse.recommenders.completion.rcp.tests/src/org/eclipse/recommenders/subwords/rcp/it/SubwordsCompletionProposalComputerIntegrationTest.java?h=v2.2.4#n144>

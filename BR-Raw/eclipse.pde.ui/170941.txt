@@ -1,0 +1,4 @@
+Bug 170941 – Be able to specify a Execution Environment when launching a Eclipse Application
+Currently, it is possible only to specify a JRE on "Eclipse Application" launcher.
+The "Java Application" launcher has this capability.
+A possible solution would be to remove the "Java Runtime Environment" section from the "Main" tab and reuse the "JRE" launch tab from JDT.

@@ -1,0 +1,9 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/exports/TargetDefinitionExportWizardPage.java
+ui/org.eclipse.pde.ui/plugin.properties
+ui/org.eclipse.pde.ui/plugin.xml
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/exports/ExportActiveTargetJob.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/exports/ExportTargetMetadata.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/exports/TargetDefinitionExportWizard.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/exports/TargetDefinitionExportWizardPage.java

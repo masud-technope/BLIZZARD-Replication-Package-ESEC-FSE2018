@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.core/schema.css
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/SchemaTransformer.java

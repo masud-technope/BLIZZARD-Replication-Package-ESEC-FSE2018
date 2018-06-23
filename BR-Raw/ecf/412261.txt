@@ -1,0 +1,4 @@
+Bug 412261 – [Distributed EventAdmin] Allow to only log serialization failures
+org.eclipse.ecf.remoteservice.eventadmin.DistributedEventAdmin.handleSendMessageException(String, Event, Object[], IOException) always throws a ServiceException but I can see use-cases where it's fine if events with non-serializable data just get ignored.
+Thus allow users to configure the behavior (with a system property).
+-Dorg.eclipse.ecf.remoteservice.eventadmin.DistributedEventAdmin.IgnoreSerialzationFailures=true

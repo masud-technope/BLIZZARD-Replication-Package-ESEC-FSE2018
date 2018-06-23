@@ -1,0 +1,7 @@
+50771 – HttpServletRequest#getAuthType() returns null though the request is authenticated.
+Created attachment 26648 [details]
+I made a patch.
+When Tomcat registers an authenticated Principal and authentication Type with current session,
+only authenticated Principal is replicated, and authentication Type is not replicated.
+Therefore, Request#getAuthType() returns null though the request is authenticated when the node changed.
+Best Regards.

@@ -1,0 +1,65 @@
+Bug 380194 – [1.8][compiler][lambda] Change ECJ grammar to support JSR 335
+The grammar changes to support JSR 335 come under three heads
+relative to the JLS7 grammar.
+(1) Lambda expressions:
+-----------------------
+PrimaryNoNewArray:
+LambdaExpression
+LambdaExpression:
+LambdaParameters '->' LambdaBody
+LambdaParameters:
+Identifier
+'(' FormalParameterListopt ')'
+'(' InferredFormalParameterList ')'
+InferredFormalParameterList:
+Identifier
+InferredFormalParameterList ',' Identifier
+LambdaBody:
+Expression
+Block
+(2) Method and constructor reference expressions:
+------------------------------------------------
+PrimaryNoNewArray:
+MethodReference
+ConstructorReference
+MethodReference:
+ExpressionName '::' NonWildTypeArgumentsopt Identifier
+Primary '::' NonWildTypeArgumentsopt Identifier
+ReferenceType '::' NonWildTypeArgumentsopt Identifier
+ConstructorReference:
+ClassType '::' NonWildTypeArgumentsopt 'new'
+(3) Default methods aka Virtual extension methods aka Defender methods
+(a) Change JLS7 production
+InterfaceMemberDeclaration:  AbstractMethodDeclaration  ';'
+into
+InterfaceMemberDeclaration:  InterfaceMethodDeclaration';'
+where
+(b)
+InterfaceMethodDeclaration:
+InterfaceMethodModifiersopt TypeParametersopt Result
+MethodDeclarator Throwsopt InterfaceMethodBody
+InterfaceMethodModifiers:
+InterfaceMethodModifier
+InterfaceMethodModifiers InterfaceMethodModifier
+InterfaceMethodModifier:
+Annotation 'public' 'abstract' 'strictfp' 'synchronized'
+InterfaceMethodBody: 'default' Block';'
+(c) Change JLS7 production
+MethodInvocation:
+ClassName '.' 'super' '.'
+NonWildTypeArgumentsopt Identifier '(' ArgumentListopt ')'
+into
+MethodInvocation:
+TypeName '.' 'super' '.'
+NonWildTypeArgumentsopt Identifier '(' ArgumentListopt ')'
+(d) Change JLS7 production
+AnnotationTypeElementDeclaration:
+AbstractMethodModifiersopt
+Type Identifier '(' ')' Dimsopt DefaultValueopt ';'
+into
+AnnotationTypeElementDeclaration:
+InterfaceMethodModifiersopt
+Type Identifier '(' ')' Dimsopt DefaultValueopt ';'
+I'll shortly post the massage version that uses jikespg notation
+as well as altered grammar symbols as we use in ECJ grammar so
+it could be copy + pasted and experimented with.

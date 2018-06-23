@@ -1,0 +1,2 @@
+server-side/bundles/org.eclipse.ecf.server.generic/META-INF/MANIFEST.MF
+server-side/bundles/org.eclipse.ecf.server.generic/src/org/eclipse/ecf/server/generic/IGenericServerContainerGroup.java

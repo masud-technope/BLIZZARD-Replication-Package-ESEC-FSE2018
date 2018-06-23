@@ -1,0 +1,9 @@
+Bug 30099 – NamingConvention.suggestArgumentNames: No guess returned
+20030122
+NamingConvention.suggestArgumentNames(...
+"Class" ) returns no guess.
+It would be good if NamingConvention could guaranteed that always at least one
+guess is returned.
+(c, class1), whatever.
+Otherwise such 'extra' guessing code
+has to be introduced on the client side.

@@ -1,0 +1,7 @@
+54239 – Extensible EL Interpreter
+Created attachment 29684 [details]
+Interface of ELInterpreter
+In some cases, applications need doing code generation for EL to make EL evaluation more faster.
+It's better for tomcat to provide an extensible EL Interpreter.
+So application can inject it's own ELInterpreter to replace the default JspUtil.interpreterCall.
+Attached an implementation.

@@ -1,0 +1,10 @@
+Bug 21417 – [type hierarchy] Multi-select java elements and show in Type Hierarchy
+F4 can be used for showing a package (or project) in the type hierarchy view.
+It would be nice if we could multi select packages and open in the type
+hierarchy view using F4.
+The use case is that I have a project with 2 source folders and some JARs in
+the classpath.
+If I use F4 on the project, the hierarchy view also shows the
+types in the JARs.
+What I'd like to have is only the types in my 2 source
+folders.

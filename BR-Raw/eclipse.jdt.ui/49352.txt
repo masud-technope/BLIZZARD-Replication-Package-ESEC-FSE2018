@@ -1,0 +1,9 @@
+Bug 49352 – [typing] Smart quotes problem
+M6:
+write this:
+System.out.println(filter:)
+Now let's fix this:
+- enter a '"' between the ':' and the ')'
+System.out.println(filter:"")
+To correct this try to enter a '"' between '(' and 'f'
+System.out.println(filter:"""")

@@ -1,0 +1,19 @@
+Bug 345305 – [compiler][null] Compiler misidentifies a case of "variable can only be null"
+Build Identifier: 3.6.1 M20100909-0800
+public class Test {
+public static void main(String[] args) {
+String s = null;
+while (true) {
+try {
+s = "hi";
+}
+finally {
+s.length();
+s = null;
+}
+}
+}
+}
+The compiler warns on the s.length() line saying that s can only be null at this point, which is not true -- in fact it can NEVER be null.
+This test case is totally contrived, but distilled from something more real :)
+Reproducible: Always

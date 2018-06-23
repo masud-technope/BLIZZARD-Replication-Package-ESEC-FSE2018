@@ -1,0 +1,2 @@
+Bug 204914 – [misc] Display values for constant fields in the Javadoc view
+similar to bug 85382

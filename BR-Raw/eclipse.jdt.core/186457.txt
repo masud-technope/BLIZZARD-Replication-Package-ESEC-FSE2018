@@ -1,0 +1,23 @@
+Bug 186457 – Breaking inconsistency between java.nio.Charset in java and in Eclipse
+If the region between the stars (in the code below) is uncommented, Eclipse will not present a warning or error, but compiling the class with javac.exe will produce an error (java 1.4 will complain that it cannot override final method compareTo, and java 1.5 will complain that two compareTo methods have the same erasure).
+If the region between the stars is commented, Eclipse will give an error saying that compareTo must be defined, but javac.exe will give no warnings or errors.
+The bottom line is that there seems to be no way to build any project in Eclipse that contains a subclass of Charset!!!
+// Begin code for CharsetSub.java :
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetDecoder;
+import java.nio.charset.CharsetEncoder;
+public class CharsetSub extends Charset {
+public CharsetSub(String name, String[] aliases) { super(name, aliases); }
+public CharsetEncoder newEncoder() { return null;  }
+public CharsetDecoder newDecoder() { return null;  }
+public boolean contains(Charset x) { return false; }
+//****************************** (the region between the stars)
+public int compareTo(Object obj) {
+return compareTo((Charset) obj);
+}
+//******************************
+public static void main(String[] args) {
+new CharsetSub("test", new String[] { "test" });
+System.out.println("Compilation succeeded.");
+}
+}

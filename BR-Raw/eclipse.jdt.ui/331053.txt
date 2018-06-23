@@ -1,0 +1,7 @@
+Bug 331053 – [JUnit] Importing from URL doesn't show whether connection is working and doesn't cancel
+Created attachment 183791 [details]
+Fix
+HEAD
+Importing from URL doesn't show whether the connection is working
+(bug 293446 comment 2) and doesn't cancel the download when I click Cancel
+(it just looks like it does...).

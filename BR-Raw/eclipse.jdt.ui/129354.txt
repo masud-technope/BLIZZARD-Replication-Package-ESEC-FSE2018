@@ -1,0 +1,4 @@
+Bug 129354 – Keybinding for 'focus javadoc' only present for editor
+If i'm in the Java persepective with the editor having focus, and I hover to get a javadoc popup, it says "Press 'F2' for focus."
+However, if my focus is in some other view, annd I hover over the same element to get its javadoc, it says "Press '' for focus.", and I can't get the javadoc to take focus with F2.
+eclipse 3.2M5 on OSX 10.4.5

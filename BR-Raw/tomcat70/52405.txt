@@ -1,0 +1,4 @@
+52405 – Update to Servlet 3.0 Rev A
+The list of changes is here:
+http://jcp.org/aboutJava/communityprocess/maintenance/jsr315/servlet3-mr-reva.html
+There are 20 changes that need to be checked / made.

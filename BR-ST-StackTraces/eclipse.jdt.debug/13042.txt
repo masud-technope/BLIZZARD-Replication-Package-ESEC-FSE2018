@@ -1,0 +1,4 @@
+org.eclipse.jdt.internal.debug.core.EventDispatcher.fireEvents
+org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch
+org.eclipse.jdt.internal.debug.core.EventDispatcher.run
+java.lang.Thread.run

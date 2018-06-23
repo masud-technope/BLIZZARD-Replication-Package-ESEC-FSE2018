@@ -1,0 +1,17 @@
+Bug 23328 – Resume fails on "suspend VM" breakpoint after stepping - VM BUG
+Test Case:
+* put a breakpoing in VectorTest#testCapacity, line 34
+public void testCapacity() {
+int size= fFull.size();
+for (int i= 0; i < 100; i++)
+>>>			fFull.addElement(new Integer(i));
+assertTrue(fFull.size() == 100+size);
+}
+* set the breakpoint to suspend the VM
+* debug the program
+* when the breakpoint is hit, step over TWICE
+* resume the VM
+* only the main thread resumes
+The problem does not seem to occurr if I step over only ONCE.
+Perhaps it has
+something to do with hitting the breakpoint a second time (while stepping?)

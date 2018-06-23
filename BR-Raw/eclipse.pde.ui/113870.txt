@@ -1,0 +1,13 @@
+Bug 113870 – PDE editor seems to improperly process extension points defined in fragments
+I have troubles with my fragment, I define a extension-point and I'm trying to
+use it on the same fragment but I get an error.
+The definition on the fragment.xml:
+<extension-point id="test" name="My test" schema="schema/test.exsd"/>
+The reference on the fragment.xml:
+<extension
+point="org.adexso.generator.test">
+</extension>
+The error:
+Unknown extension point: 'org.adexso.generator.test'.
+Thanks in advance
+Emmanuel

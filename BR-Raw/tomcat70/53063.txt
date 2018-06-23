@@ -1,0 +1,19 @@
+53063 – Inconsistency in documentation regarding Connector's maxConnections property
+According to the documentation, the "maxConnections" property of a BIO HTTP Connector defaults to the value of "maxThreads".
+Additionally, the documentation states that if the "executor" property is specified, any thread related properties on the Connector will be ignored.
+ This includes "maxThreads".
+However, when a BIO HTTP Connector is defined with an executor, the default value for "maxConnections" does not take the "maxThreads" value from the Executor.
+ In fact, it appears to take the "maxThreads" value from the Connector object, which is supposed to be ignored.
+https://tomcat.apache.org/tomcat-7.0-doc/config/http.html#Standard_Implementation
+This can be confirmed with the following test.
+1.) Download Tomcat 7.0.27.
+2.) Edit "conf/server.xml", uncomment the "tomcatThreadPool" executor, comment out the default HTTP connector and uncomment the HTTP connector below it that uses the executor.
+3.) Start Tomcat and connect with jconsole
+4.) Look at the Catalina -> ProtocolHandler -> 8080 -> maxConnections.
+ It will be set to 200 and not 150 (maxThreads on the executor).
+5.) Now, stop Tomcat, edit "conf/server.xml", add a "maxThreads" attribute to the connector, set the value to 300 and start tomcat.
+6.) Examine the Catalina -> ProtocolHandler -> 8080 -> maxConnections property again and it'll be set to 300.
+Suggestions:
+1.) Update the documentation to indicate that "maxConnections" for a BIO HTTP Connector defaults to "maxThreads" on the Connector, regardless of the presence of an executor.
+2.) Fix the "maxConnections" default so that it takes its value from "maxThreads" on the executor, when an executor is specified.
+My preferences would be for #2.

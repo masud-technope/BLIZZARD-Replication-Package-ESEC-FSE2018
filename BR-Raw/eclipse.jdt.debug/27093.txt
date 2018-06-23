@@ -1,0 +1,4 @@
+Bug 27093 – Javadoc location should have initial value
+The java doc location for standard JREs should use a URL to point to the
+apporpriate location on the Sun website (need to investigate if there are any
+legal issues here).

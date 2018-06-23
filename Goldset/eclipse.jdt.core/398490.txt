@@ -1,0 +1,4 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/AttachSourceTests.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/ClassFile.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/AttachSourceTests.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/ClassFile.java

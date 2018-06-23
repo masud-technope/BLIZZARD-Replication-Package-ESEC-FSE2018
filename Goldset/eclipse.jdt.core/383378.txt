@@ -1,0 +1,3 @@
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/Parser.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/Scanner.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/diagnose/DiagnoseParser.java

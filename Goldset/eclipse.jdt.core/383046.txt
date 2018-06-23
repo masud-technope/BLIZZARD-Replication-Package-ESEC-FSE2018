@@ -1,0 +1,4 @@
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/LambdaExpressionsNegativeTest.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/RecoveryScanner.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/Scanner.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/diagnose/DiagnoseParser.java

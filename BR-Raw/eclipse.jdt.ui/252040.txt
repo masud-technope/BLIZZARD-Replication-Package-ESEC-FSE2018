@@ -1,0 +1,23 @@
+Bug 252040 – [quick assist] 'Convert Switch to If' changes semantics (should extract key into local variable)
+N20081005-2000
+Consider the following snippet:
+---------------------------------
+package p;
+public class A {
+public static void main(String[] args) {
+switch(getSomethingWithSideEffects()) {
+case 1:
+break;
+case 2:
+break;
+default:
+}
+}
+private static int getSomethingWithSideEffects() {
+System.out.println("side effect");
+return 2;
+}
+}
+-----------------------
+After applying the "Convert switch to If" quick assist it leads to different semantics as the method with sideeffects is called twice instead of once.
+I think this could be handled by assigned the method result to a new local var which is then used in the if/else expressions.

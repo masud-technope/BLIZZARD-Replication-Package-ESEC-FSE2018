@@ -1,0 +1,13 @@
+server-side/examples/bundles/org.eclipse.ecf.examples.remoteservices.common/src/org/eclipse/ecf/examples/remoteservices/common/IRemoteEnvironmentInfo.java
+server-side/examples/bundles/org.eclipse.ecf.examples.remoteservices.server/src/org/eclipse/ecf/internal/examples/remoteservices/server/RemoteEnvironmentInfoImpl.java
+server-side/examples/bundles/org.eclipse.ecf.examples.remoteservices.client/src/org/eclipse/ecf/internal/examples/remoteservices/client/RemoteEnvironmentInfoServiceAccessHandler.java
+tests/bundles/org.eclipse.ecf.tests.provider.xmpp/META-INF/MANIFEST.MF
+server-side/examples/bundles/org.eclipse.ecf.examples.remoteservices.common/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.presence.collab.ui/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.discovery.ui/META-INF/MANIFEST.MF
+tests/bundles/org.eclipse.ecf.tests.remoteservice/META-INF/MANIFEST.MF
+server-side/examples/bundles/org.eclipse.ecf.examples.updatesite.server/META-INF/MANIFEST.MF
+server-side/examples/bundles/org.eclipse.ecf.examples.updatesite.client/META-INF/MANIFEST.MF
+server-side/examples/bundles/org.eclipse.ecf.examples.remoteservices.client/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.filetransfer.ui/META-INF/MANIFEST.MF
+tests/bundles/org.eclipse.ecf.tests.presence/META-INF/MANIFEST.MF

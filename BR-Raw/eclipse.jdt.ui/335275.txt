@@ -1,0 +1,38 @@
+Bug 335275 – [call hierarchy] update history when a top level item is removed from view
+---------------------------------------
+package p;
+class A {
+void foo(Object a) {
+bar();
+}
+void bar() {
+foo(this);
+}
+}
+---------------------------------------
+1.
+Empty CH view
+2.
+Select foo in Outline view and drag to CH view => CH view looks like
+-foo
++ bar
+3.
+Select bar in Outline view and Ctrl+drag to CH view =>
+-bar
++ foo
+-foo
++ bar
+4.
+Remove from view (delete) bar =>
+-foo
++ bar
+5.
+Select bar in Outline view and Ctrl+drag to CH view => Not good !
+-foo
++ bar
+6.
+Refresh View (view toolbar button) =>
+-bar
++ foo
+-foo
++ bar

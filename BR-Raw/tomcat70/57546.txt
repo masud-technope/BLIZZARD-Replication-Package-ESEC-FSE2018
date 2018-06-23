@@ -1,0 +1,50 @@
+57546 – Memory Leak in SecureNioChannel
+Created attachment 32440 [details]
+Too many instances in  hashmap
+We are connecting mobile devices via websocket to Tomcat 8.0.18 server.
+The physical mobile connection can die at random times.
+When the connection goes down the instance of org.apache.coyote.http11.upgrade.NioProcessor is not removed from the connections HashMap in class org.apache.coyote.http11.Http11NioProtocol$Http11ConnectionHandler.
+There are 4,181 entries in the connections HashMap.
+However, there are in fact 1,400 real socket connections.
+See DumpHprof1.jpg.
+This displays a drill-down into one of the HashMap entries.
+The instance of SafeCommConnection is my ServerEndpoint POJO.
+When onClose is called in my ServerEndpoint I set a flag called isClosing to true.
+You can see on the right side that it is set to true so I have removed it from my app but the instance remains in memory held by the NioProtocol's connections HashMap.
+It seems that http11NioProtocol.release method is not getting called.
+Also, here is a stack trace in the stderr log file.
+It gets hundreds of these:
+06-Feb-2015 14:12:05.255 INFO [http-nio-443-exec-385] org.apache.tomcat.websocket.server.WsRemoteEndpointImplServer.doClose Failed to close the ServletOutputStream connection cleanly
+java.io.IOException: An existing connection was forcibly closed by the remote host
+at sun.nio.ch.SocketDispatcher.write0(Native Method)
+at sun.nio.ch.SocketDispatcher.write(Unknown Source)
+at sun.nio.ch.IOUtil.writeFromNativeBuffer(Unknown Source)
+at sun.nio.ch.IOUtil.write(Unknown Source)
+at sun.nio.ch.SocketChannelImpl.write(Unknown Source)
+at org.apache.tomcat.util.net.SecureNioChannel.flush(SecureNioChannel.java:134)
+at org.apache.tomcat.util.net.SecureNioChannel.close(SecureNioChannel.java:370)
+at org.apache.tomcat.util.net.SecureNioChannel.close(SecureNioChannel.java:398)
+at org.apache.coyote.http11.upgrade.NioServletOutputStream.doClose(NioServletOutputStream.java:138)
+at org.apache.coyote.http11.upgrade.AbstractServletOutputStream.close(AbstractServletOutputStream.java:137)
+at org.apache.tomcat.websocket.server.WsRemoteEndpointImplServer.doClose(WsRemoteEndpointImplServer.java:143)
+at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.close(WsRemoteEndpointImplBase.java:638)
+at org.apache.tomcat.websocket.server.WsRemoteEndpointImplServer.onWritePossible(WsRemoteEndpointImplServer.java:118)
+at org.apache.tomcat.websocket.server.WsRemoteEndpointImplServer.doWrite(WsRemoteEndpointImplServer.java:81)
+at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.writeMessagePart(WsRemoteEndpointImplBase.java:450)
+at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.startMessage(WsRemoteEndpointImplBase.java:338)
+at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.startMessageBlock(WsRemoteEndpointImplBase.java:270)
+at org.apache.tomcat.websocket.WsSession.sendCloseMessage(WsSession.java:563)
+at org.apache.tomcat.websocket.WsSession.onClose(WsSession.java:503)
+at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler.close(WsHttpUpgradeHandler.java:183)
+at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler.access$200(WsHttpUpgradeHandler.java:48)
+at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler$WsReadListener.onDataAvailable(WsHttpUpgradeHandler.java:214)
+at org.apache.coyote.http11.upgrade.AbstractServletInputStream.onDataAvailable(AbstractServletInputStream.java:194)
+at org.apache.coyote.http11.upgrade.AbstractProcessor.upgradeDispatch(AbstractProcessor.java:96)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:654)
+at org.apache.coyote.http11.Http11NioProtocol$Http11ConnectionHandler.process(Http11NioProtocol.java:223)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1558)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1515)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+at java.lang.Thread.run(Unknown Source)

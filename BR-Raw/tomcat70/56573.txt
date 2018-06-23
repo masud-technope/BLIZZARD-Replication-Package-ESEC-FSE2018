@@ -1,0 +1,8 @@
+56573 – [Spec?] Session.getRequestURI() doesn't return the protocol, port etc.
+The spec is unclear about it, but
+Session.getRequestURI();
+doesn't return the full path, e.g for an enpoint, it returns
+/atmosphere-chat
+"instead" of
+ws://host:port/atmosphere-chat
+The issue I'm facing is an application cannot rebuidl the full URL as the port is missing, and there are no way to find the port without the proper URI.

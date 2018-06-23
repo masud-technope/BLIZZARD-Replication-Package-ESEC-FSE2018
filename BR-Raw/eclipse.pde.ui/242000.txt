@@ -1,0 +1,2 @@
+Bug 242000 – Should not allow @noreference tag on private fields
+To follow along bug 214989, we should also not allow the @noreference tag on private fields.

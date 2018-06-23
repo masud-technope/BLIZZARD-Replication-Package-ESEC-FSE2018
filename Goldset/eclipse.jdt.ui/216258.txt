@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/JavadocProblemsConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/PreferencesMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/PreferencesMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/ProblemSeveritiesConfigurationBlock.java

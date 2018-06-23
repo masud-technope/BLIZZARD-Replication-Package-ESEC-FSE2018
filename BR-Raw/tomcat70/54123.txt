@@ -1,0 +1,36 @@
+54123 � servlet 3.0 spec violation in async timeout processing
+Created attachment 29575 [details]
+test war file within java source
+Servlet 3.0 Spec.
+says that
+2.3.3.3 Asynchronous processing
+...
+In the event that an asynchronous operation times out, the container must run
+through the following steps:
+■ Invoke the AsyncListener.onTimeout method on all the AsyncListener
+instances registered with the ServletRequest on which the asynchronous
+operation was initiated.
+■ If none of the listeners called AsyncContext.complete() or any of the
+AsyncContext.dispatch methods, perform an error dispatch with a status
+code equal to HttpServletResponse.SC_INTERNAL_SERVER_ERROR.
+■ If no matching error page was found, or the error page did not call
+AsyncContext.complete() or any of the AsyncContext.dispatch
+methods, the container MUST call AsyncContext.complete().
+(servlet-3_0-mrel-spec.pdf / pdf page 40, Spec page 18)
+In other words, if there are no AsyncListeners which calls AsyncContext.complete() or any of the
+AsyncContext.dispatch, the container must perform an error dispatch with 500 error code.
+But tomcat 7 does not send 500 error response.
+It sends 200 OK.
+In org.apache.catalina.core.AsyncContextImpl.timeout(),
+if (listenerInvoked) {
+request.getCoyoteRequest().action(
+ActionCode.ASYNC_IS_TIMINGOUT, result);
+return !result.get();
+} else {
+// No listeners, container calls complete
+complete();
+}
+it just calls complete().
+So I think it must be spec violation.
+I've attached the test war file within a test source.
+Test URL is http://localhost:8080/asyncTimeoutTest/AsyncTimeoutTestServlet .

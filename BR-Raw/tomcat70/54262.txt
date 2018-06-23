@@ -1,0 +1,7 @@
+54262 – An empty <absolute-ordering /> should turn off all web-fragments
+The use of an <absolute-ordering> element does disable ServletContainerInitializer classpath scanning as discussed also in issue 53619.
+However, it does seem to require having at least one web-fragment name to be listed.
+In other words I would this:
+<absolute-ordering />
+To turn off all web-fragments since none are named.
+A workaround is to list a web-fragment even if it doesn't exist but that shouldn't be necessary.

@@ -1,0 +1,21 @@
+44268 – Multiple registrations of same ServletContextListener class not possible
+When I register the same class implementing ServletContextListener twice or more
+its' contextInitialized methods only gets called once.
+The servlet specifications (2.4 and 2.5) say the conforming container has to
+call the listeners in the same order they are registered in the deployment
+descriptor.
+The case that one listener class is registered twice is not mentioned
+explicitly in the specification, though.
+Example:
+<listener>
+<listener-class>test.ServletContextListener1</listener-class>
+</listener>
+<listener>
+<listener-class>test.ServletContextListener2</listener-class>
+</listener>
+<listener>
+<listener-class>test.ServletContextListener1</listener-class>
+</listener>
+test.ServletContextListener1 and test.ServletContextListener2 get called,
+but test.ServletContextListener1 does not get called again.
+Apache Tomcat 5.5.25 has the same bug.

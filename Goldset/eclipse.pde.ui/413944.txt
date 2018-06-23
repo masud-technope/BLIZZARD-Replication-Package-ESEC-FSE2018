@@ -1,0 +1,8 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/imagebrowser/filter/IFilter.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/imagebrowser/filter/OrFilter.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/imagebrowser/filter/AndFilter.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/imagebrowser/ImageBrowserView.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/imagebrowser/filter/PatternFilter.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/imagebrowser/filter/SizeFilter.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/imagebrowser/filter/ElementsFilter.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/imagebrowser/filter/NotFilter.java

@@ -1,0 +1,13 @@
+Bug 29474 – [Contributions] Context menu contributions should support visibility element
+M4
+(I thought there was an existing PR for this issue, but I could not find it).
+In the Java editor, the context menu contains items that only make sense when
+the debugger is active, e.g.
+Inspect, Display, Run to Line, Step Into
+Selection.
+We should allow all context menu contributions to have a <visibility> element.
+This is currently supported for <objectContribution> elements, but not
+<viewerContribution> elements.
+This would allow JDT Debug to set a system property when the debugger is
+active, and use the current support for system properties in <visibility>
+elements to hide these actions until the debugger is active.

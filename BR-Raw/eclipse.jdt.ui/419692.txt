@@ -1,0 +1,3 @@
+Bug 419692 – Java Type Indicator decorator causes image leak
+This bug was reported in bug 402983 comment 21
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=402983#c21

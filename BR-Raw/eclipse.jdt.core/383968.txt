@@ -1,0 +1,7 @@
+Bug 383968 – [1.8][compiler] update checking of method modifiers re default methods
+BETA_JAVA8
+The introduction of default methods changes and adds some rules regarding
+permissible modifiers on methods.
+- admit strictfp and synchronized for default methods (bug 382353)
+(rules about static, native and final for interfaces methods are unchanged)
+- report illegal combination of abstract and default (bug 382354)

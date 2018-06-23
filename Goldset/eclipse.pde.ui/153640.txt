@@ -1,0 +1,9 @@
+ui/org.eclipse.pde.ui/plugin.properties
+ui/org.eclipse.pde.ui/plugin.xml
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/templates/OSGiSimpleLogServiceNewWizard.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/templates/OSGiSimpleLogServiceTemplate.java
+ui/org.eclipse.pde.ui/templates_3.0/OSGiSimpleLogService/java/$applicationClass$.java
+ui/org.eclipse.pde.ui/templates_3.0/OSGiSimpleLogService/java/SimpleLogService.java
+ui/org.eclipse.pde.ui/templates_3.0/OSGiSimpleLogService/java/SimpleLogServiceImpl.java

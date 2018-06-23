@@ -1,0 +1,7 @@
+49978 – WebappLoader throws exception if workDir already exists (when unpackWARs=false)
+In WebappLoader.setRepositories(), if the war is not unpacked, it tries to create a directory /WEB-INF/classes inside the workDir.
+ If that directory already exists, an error is thrown and the webapp does not start.
+This is a change from 5.5, which didn't check the return value of classRepository.mkdirs().
+ mkdirs() returns false if the directories already exist.
+ I doubt it was the intention here.
+ Probably the intention was to throw an exception if the directory could not be created, rather than if it already existed.

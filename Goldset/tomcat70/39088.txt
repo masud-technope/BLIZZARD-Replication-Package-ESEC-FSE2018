@@ -1,0 +1,3 @@
+webapps/docs/changelog.xml
+java/org/apache/catalina/valves/ErrorReportValve.java
+java/org/apache/catalina/core/StandardWrapper.java

@@ -1,0 +1,22 @@
+Bug 267616 – [rename] Rename method fails to create a method handle
+Build ID: M20090211-1700
+Steps To Reproduce:
+1.
+place the cursor in the middle of a method selector
+2.
+Shift-Alt-R to rename it
+3.
+Ctrl-Backspace to delete first part of selector
+4.
+Ctrl-Delete to delete rest of selector
+5.
+type new name
+6.
+Return
+A dialog pops up saying:
+Could not create a method handle for project '{0}' with handle identifier '=YouProject/src<your.packagepath{YourClass.java[YourClass~yourMethod~QYourArgtype;'
+Reproducable in 3.4.2 but NOT in 3.4.1
+Initial debugging yields:
++ the method handle memento is OK, but the method cannot be found in the java model.
++ refactoring tries to undo the editing but step 5.
+is missing from the undo history! => Method is not present in the java model due to missing selector.

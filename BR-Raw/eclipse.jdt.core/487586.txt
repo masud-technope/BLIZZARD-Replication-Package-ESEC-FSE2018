@@ -1,0 +1,26 @@
+Bug 487586 – [1.8][compiler] intersection type wrongly claims to be a functional interface
+From http://stackoverflow.com/questions/35268927/lambda-and-cast-intersection-type-eclipse-compiler-bug
+This code:
+//---
+interface Calculator {
+public int calculate(int a, int b);
+}
+interface Sumator {
+public int test();
+public int test3(int a, int b);
+}
+// intersection of both types
+interface Both extends Sumator, Calculator {
+}
+public class SO {
+public static void main(String[] args) {
+Calculator test = (Calculator & Sumator) (a, b) -> a + b;
+System.out.println(test.calculate(2, 3));
+Sumator sumator = (Calculator & Sumator) (a, b) -> a + b; // does compile, but throws an Exception
+sumator.test();
+Both both = (Both) (a, b) -> a + b; // does not compile
+}
+}
+//---
+reports only 1 error but should report 3 errors.
+No errors are reported for cases involving intersection types, because IntersectionTypeBinding18.org.eclipse.jdt.internal.compiler.lookup.IntersectionTypeBinding18.getSingleAbstractMethod(Scope, boolean) wrongly answers a non-error method, where it should answer samProblemBinding.

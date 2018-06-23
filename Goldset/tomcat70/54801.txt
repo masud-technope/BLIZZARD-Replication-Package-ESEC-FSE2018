@@ -1,0 +1,7 @@
+java/org/apache/jasper/compiler/JspDocumentParser.java
+test/org/apache/jasper/compiler/TestJspDocumentParser.java
+test/webapp-3.0/bug5nnnn/bug54801a.jspx
+test/webapp-3.0/bug5nnnn/bug54801b.jspx
+test/webapp-3.0/bug5nnnn/bug54821a.jspx
+test/webapp-3.0/bug5nnnn/bug54821b.jspx
+webapps/docs/changelog.xml

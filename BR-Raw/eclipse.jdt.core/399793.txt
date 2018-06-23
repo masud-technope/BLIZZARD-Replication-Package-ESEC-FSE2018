@@ -1,0 +1,5 @@
+Bug 399793 – [1.8][dom ast] Add a new node type for compiler node LambdaExpression
+BETA_JAVA8:
+The compiler node type LambdaExpression needs a corresponding DOM/AST node.
+The interesting properties are arguments (which may have types or type and
+parenthesis elided) and body.

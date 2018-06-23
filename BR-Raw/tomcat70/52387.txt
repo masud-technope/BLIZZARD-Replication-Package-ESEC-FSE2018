@@ -1,0 +1,4 @@
+52387 – org.catalina.tomcat.startup.Tomcat#silence method doesn't use the host where we add the applications
+Created attachment 28100 [details]
+This patch solves the issue
+This method calls "getHost" but it should get the host from the methods that call it because the host can be different.

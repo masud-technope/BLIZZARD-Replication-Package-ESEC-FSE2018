@@ -1,0 +1,4 @@
+Bug 146912 – AbstractModel needs to update NLResourceHelper when a bundle localization changes
+When a bundle localization changes (ie.
+using the NLS wizard on a bundle without a Bundle-Localization specified) the underlying bundle's AbstractModel needs to update it's NLResourceHelper.
+The BundleErrorReporter reports missing nls keys (since its looking in the wrong .properties file) after such a change.

@@ -1,0 +1,13 @@
+Bug 82839 – [misc] Breakpoint icons disappear
+I am using 3.1M4
+1 - Open a file and set a breakpoint.
+The breakpoint icon appears in the left
+and right margins.
+2 - Close the file.
+3 - Open the same file.
+Note the breakpoint icons no longer appear.
+The
+breakpoint is still there but the icons don't appear and you can't select them.
+This is a major problem because I can't see the breakpoints I've previously set
+so I have to clear those breakpoints and set new ones each time I run a debug
+session.

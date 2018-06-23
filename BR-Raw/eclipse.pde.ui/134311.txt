@@ -1,0 +1,5 @@
+Bug 134311 – No validation done for Java project source/output folders in New Plug-in Project Wizard
+The source and output folder fields in the New Plug-in Project Wizard are not validated in any way within the wizard.
+ If you enter invalid characters into the folder name (* for example), no error is shown, and the wizard allows you to continue to the next page.
+ If you hit Finish, the Wizard partially completes creating the project, then pops up an error dialog "* is an invalid character in resource name src*"  The wizard does not exit after this error - and if you go back and fix the problem then try Finish again, it'll complain that a project with that name already exists.
+These fields should be validated like the Project name field is.

@@ -1,0 +1,6 @@
+Bug 250340 – [API] Create template method in JUnitLaunchConfigurationDelegate
+The JUnitLaunchConfigurationDelegate#collectExecutionArguments() figures out the application to be launched by introspecting and applying a set of heuristics.
+SWTBot needs that tests run in a non-UI thread, which is why it needs to launch another application (internal to SWTBot) and point that application to the application that the user selects.
+In order to do this the application in the case of SWTBot is always hardcoded to the application ID of swtbottestapplication.
+This patch extracts the piece of code that determines the application id, into a protected method so that clients can override it to provide another application id.
+Patch follows.

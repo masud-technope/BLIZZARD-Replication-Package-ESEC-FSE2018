@@ -1,0 +1,4 @@
+org.eclipse.jdt.core/search/org/eclipse/jdt/internal/core/search/matching/MethodLocator.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaSearchBugsTests2.java
+org.eclipse.jdt.core/search/org/eclipse/jdt/internal/core/search/matching/MatchLocator.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/BinaryMethod.java

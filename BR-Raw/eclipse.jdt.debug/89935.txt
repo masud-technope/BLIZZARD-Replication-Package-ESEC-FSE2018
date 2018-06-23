@@ -1,0 +1,61 @@
+Bug 89935 – Cipher.getInstance fails if using JRE without "Use default system libraries"
+When running a java application from Eclipse with Debug or Run, then code
+requesting a Cipher object through Cipher.getInstance will fail.
+This only
+happens if the JRE used is not configured (Window, Preferences, Java, Installed
+JREs, ${jre}, Edit) to "Use default system libraries ".
+Example code to produce the error:
+---
+public static void main(String[] args) {
+Cipher cp;
+try {
+cp=Cipher.getInstance("DES/ECB/NoPadding", "SunJCE");
+cp=Cipher.getInstance("DES/ECB/NoPadding");
+System.out.println("JCE OK");
+} catch (NoSuchAlgorithmException e) {
+e.printStackTrace();
+} catch (NoSuchProviderException e) {
+e.printStackTrace();
+} catch (NoSuchPaddingException e) {
+e.printStackTrace();
+}
+}
+---
+With "Use default system libraries" it works without problems.
+With default configuration for JRE and "Use default system libraries" switched off,
+it produces following stack dump:
+---
+Exception in thread "main" java.lang.SecurityException: JCE cannot authenticate
+the provider SunJCE
+at javax.crypto.Cipher.getInstance(DashoA12275)
+at javax.crypto.Cipher.getInstance(DashoA12275)
+at TestCaseJCE.main(TestCaseJCE.java:22)
+Caused by: java.util.jar.JarException: Class is on the bootclasspath
+at javax.crypto.SunJCE_d.a(DashoA12275)
+at javax.crypto.SunJCE_b.b(DashoA12275)
+at javax.crypto.SunJCE_b.a(DashoA12275)
+...
+3 more
+---
+As far as I have discovered this is caused by JRE default setting, placing all
+jar files from lib/ext directory into bootclasspath when "Use default system
+libraries" is switched off.
+This includes the SUN JCE provider
+"sunjce_provider.jar".
+Obviously the verification of the JCE provider fails if
+it is located in bootclasspath.
+The problem can be easily solved by removing
+sunjce_provider.jar from list of JRE jar files.
+Then again the above code runs
+without problems.
+In my opinion the default settings when importing a JRE into Eclipse should be
+changed not to include sunjce_provider.jar.
+One may argue that switching off "Use default system libraries" is typically not
+the case, but if source code is attached to one of the JRE jar files (including
+the lib/ext files), then this is done automatically by Eclipse.
+PS: I have discovered the problem running Windows XP on PC platform.
+Anyway I
+expect the problem to be platform and OS independent.
+I may have assigned the
+problem to the wrong component, please correct this if there is a better
+component fitting this problem.

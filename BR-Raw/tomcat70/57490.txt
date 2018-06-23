@@ -1,0 +1,125 @@
+57490 – Websocket client cannot connect from Tomcat servlet with a SecurityManager in place
+Created attachment 32393 [details]
+Repeat JSP file
+When using the Tomcat websocket client to connect to a websocket server from a servlet running with a SecurityManager, an AccessControlException is thrown even with a Java security policy that allows everything.
+This is an issue with the fix for bug 57091, which does not work when the websocket client is used where access to the "org.apache.tomcat." packages is restricted (as it is in the Catalina servlet container).
+Repeat using unmodified Tomcat 8.0.17 and JDK 8u31 in Win7 x64:
+1) Add the following at the end of $CATALINA_BASE/conf/catalina.policy:
+grant {
+permission java.security.AllPermission;
+};
+2) Put the attached JSP file (repeat.jsp) into $CATALINA_BASE/webapps/examples/jsp
+(The repeat opens a websocket client to the echo websocket example server,
+sends a text message and then waits for and outputs the echoed response.)
+3) Launch Tomcat from $CATALINA_BASE/bin with "catalina run -security"
+4) Open http://127.0.0.1:8080/examples/jsp/repeat.jsp in a web browser
+Expected results:
+Output "Response from echo: Hello World!" in the browser.
+Actual results:
+An exception is printed to the console, and no output in the browser (until timeout).
+Exception in thread "anInnocuousThread" java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.org.apache.tomcat.websocket")
+at java.security.AccessControlContext.checkPermission(AccessControlContext.java:457)
+at java.security.AccessController.checkPermission(AccessController.java:884)
+at java.lang.SecurityManager.checkPermission(SecurityManager.java:549)
+at java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1564)
+at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:305)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:411)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+at org.apache.tomcat.websocket.AsyncChannelGroupUtil$AsyncIOThreadFactory.newThread(AsyncChannelGroupUtil.java:116)
+at java.util.concurrent.ThreadPoolExecutor$Worker.<init>(ThreadPoolExecutor.java:612)
+at java.util.concurrent.ThreadPoolExecutor.addWorker(ThreadPoolExecutor.java:925)
+at java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1368)
+at org.apache.tomcat.util.threads.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:161)
+at org.apache.tomcat.util.threads.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:141)
+at sun.nio.ch.AsynchronousChannelGroupImpl.executeOnPooledThread(AsynchronousChannelGroupImpl.java:188)
+at sun.nio.ch.Invoker.invokeIndirectly(Invoker.java:212)
+at sun.nio.ch.Invoker.invoke(Invoker.java:188)
+at sun.nio.ch.Invoker.invoke(Invoker.java:297)
+at sun.nio.ch.WindowsAsynchronousSocketChannelImpl$WriteTask.completed(WindowsAsynchronousSocketChannelImpl.java:839)
+at sun.nio.ch.Iocp$EventHandlerTask.run(Iocp.java:397)
+at java.lang.Thread.run(Thread.java:745)
+at sun.misc.InnocuousThread.run(InnocuousThread.java:74)
+Exception in thread "anInnocuousThread" java.security.AccessControlException: access denied ("java.lang.RuntimePermission" "accessClassInPackage.org.apache.tomcat.websocket")
+at java.security.AccessControlContext.checkPermission(AccessControlContext.java:457)
+at java.security.AccessController.checkPermission(AccessController.java:884)
+at java.lang.SecurityManager.checkPermission(SecurityManager.java:549)
+at java.lang.SecurityManager.checkPackageAccess(SecurityManager.java:1564)
+at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:305)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:411)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+at org.apache.tomcat.websocket.AsyncChannelGroupUtil$AsyncIOThreadFactory.newThread(AsyncChannelGroupUtil.java:116)
+at java.util.concurrent.ThreadPoolExecutor$Worker.<init>(ThreadPoolExecutor.java:612)
+at java.util.concurrent.ThreadPoolExecutor.addWorker(ThreadPoolExecutor.java:925)
+at java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1368)
+at org.apache.tomcat.util.threads.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:161)
+at org.apache.tomcat.util.threads.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:141)
+at sun.nio.ch.AsynchronousChannelGroupImpl.executeOnPooledThread(AsynchronousChannelGroupImpl.java:188)
+at sun.nio.ch.Invoker.invokeIndirectly(Invoker.java:212)
+at sun.nio.ch.Invoker.invoke(Invoker.java:188)
+at sun.nio.ch.Invoker.invoke(Invoker.java:297)
+at sun.nio.ch.WindowsAsynchronousSocketChannelImpl$ReadTask.completed(WindowsAsynchronousSocketChannelImpl.java:581)
+at sun.nio.ch.Iocp$EventHandlerTask.run(Iocp.java:397)
+at java.lang.Thread.run(Thread.java:745)
+at sun.misc.InnocuousThread.run(InnocuousThread.java:74)
+(The repeat is of course artificial.
+In reality the websocket client is used outside of the servlet page rendering, but the same exception occurs.)
+The fix for bug 57091 tried to overcome the limitations of the InnocuousThread that serves the completion handler, by wrapping the implementation of AsyncChannelGroupUtil.AsyncIOThreadFactory.newThread in a privileged block.
+However, due to the null protection domain of InnocuousThread, the method is in this case not even allowed to load its own anonymous PrivilegedAction class!
+The anonymous class is called "org.apache.tomcat.websocket.AsyncChannelGroupUtil$AsyncIOThreadFactory$1", which triggers the check for the "accessClassInPackage.org.apache.tomcat.websocket" runtime permission.
+Normally this permission is granted to all code by catalina.policy, but the InnocuousThread has no permissions regardless of policy.
+A dirty workaround is to uncomment this line at the top of the JSP code:
+Class.forName("org.apache.tomcat.websocket.AsyncChannelGroupUtil$AsyncIOThreadFactory$1");
+Then the anonymous class is loaded by the application class loader at a time when there are permissions to do so (i.e.
+outside of the InnocuousThread), and the repeat will then work without exception (even after commenting out this line again, as long as Tomcat isn't restarted).
+Running Tomcat without "-security" also makes the repeat work without exception.
+There is an open OpenJDK issue about the InnocuousThread being used for the completion handler (https://bugs.openjdk.java.net/browse/JDK-8051403), but it would be good if this could be fixed in Tomcat until (or if not) the JDK is fixed.
+One fix is to use a non-anonymous PrivilegedAction in AsyncChannelGroupUtil.AsyncIOThreadFactory.newThread and then force it to be loaded when AsyncChannelGroupUtil.AsyncIOThreadFactory is initialized, by accessing the class in a static initializer:
+--- AsyncChannelGroupUtil.java.old      2015-01-09 16:04:42.000000000 +0100
++++ AsyncChannelGroupUtil.java  2015-01-24 01:30:33.660184500 +0100
+@@ -113,16 +113,32 @@
+// the thread inherits the current ProtectionDomain which is
+// essential to be able to use this with a Java Applet.
+See
+// https://issues.apache.org/bugzilla/show_bug.cgi?id=57091
+-            return AccessController.doPrivileged(new PrivilegedAction<Thread>() {
+-                @Override
+-                public Thread run() {
+-                    Thread t = new Thread(r);
+-                    t.setName("WebSocketClient-AsyncIO-" + count.incrementAndGet());
+-                    t.setContextClassLoader(this.getClass().getClassLoader());
+-                    t.setDaemon(true);
+-                    return t;
+-                }
+-            });
++            return AccessController.doPrivileged(new NewThreadPrivilegedAction(r));
+}
++
++        // Non-anonymous class due to class loading hack below
++        private class NewThreadPrivilegedAction implements PrivilegedAction<Thread> {
++
++            private final Runnable r;
++
++            public NewThreadPrivilegedAction(Runnable r) {
++                this.r = r;
++            }
++
++            @Override
++            public Thread run() {
++                Thread t = new Thread(r);
++                t.setName("WebSocketClient-AsyncIO-" + count.incrementAndGet());
++                t.setContextClassLoader(this.getClass().getClassLoader());
++                t.setDaemon(true);
++                return t;
++            }
++        }
++
++        // Load the privileged action class on initialization, since newThread is
++        // not be allowed to load it when called from an InnocuousThread, see
++        // https://issues.apache.org/bugzilla/show_bug.cgi?id=XXXXX
++        @SuppressWarnings("unused")
++        private static final Class newThreadPrivilegedActionClass = NewThreadPrivilegedAction.class;
+}
+}
+When I applied this patch to Tomcat 8.0.17, the repeat worked without any exception.
+Maybe there is another cleaner fix.
+Either way, it would be good if the fix could be applied to 7.0.x as well, since the bug is also repeatable there (I tried in 7.0.57).

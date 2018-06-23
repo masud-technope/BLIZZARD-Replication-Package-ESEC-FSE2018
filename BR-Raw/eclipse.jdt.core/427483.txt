@@ -1,0 +1,8 @@
+Bug 427483 – [Java 8] Variables in lambdas sometimes can't be resolved
+With the most recent Java 8 support, Eclipse reports the error as given in the snippet:
+new TreeSet<>((String qn1, String qn2) -> {
+boolean b = true;
+System.out.println(b); // ok
+if(b) { } // Eclipse says: b cannot be resolved or is not a field
+return qn1.compareTo(qn2);
+});

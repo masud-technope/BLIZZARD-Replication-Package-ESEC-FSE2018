@@ -1,0 +1,5 @@
+41089 – JspFactoryImpl has SPEC_VERSION = "2.0"
+org.apache.jasper.runtime.JspFactoryImpl has
+private static final String SPEC_VERSION = "2.0";
+Should be:
+private static final String SPEC_VERSION = "2.1";

@@ -1,0 +1,3 @@
+Bug 308879 – Surrogate support for JavaWordFinder
+JDT Text fixed bug 308612 in its word finder.
+The copy in Debug should be adjusted.

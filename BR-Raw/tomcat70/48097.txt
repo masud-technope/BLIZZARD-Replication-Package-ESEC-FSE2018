@@ -1,0 +1,40 @@
+48097 – NoClassDefFoundError on first access of first jsp
+Created attachment 24452 [details]
+simple webapp with one jsp and one class in one jar, reproducing the error
+I've had a strange situation getting NoClassDefFoundErrors on a particular jsp
+page (which happened to be the index.jsp page).
+The class it claimed to not
+find is a simple session bean class within a jar in the WEB-INF/lib folder.
+The
+strange thing is that it gave this error only when this page was the first one
+accessed after a tomcat restart.
+If any page was accessed before it, it would
+work properly.
+But if this page was accessed first, then no matter what pages
+were later accessed, the error remained in place.
+So the error/success state
+was determined by whichever page was accessed first ater the tomcat restart,
+and remained in the same error/success state for as long as tomcat was up,
+regardless of anything happening later on (until the next restart)
+This seems to be some sort of class-loading oder-of-initialization bug, but is
+entirely consistent when the pages are accessed in this order after a tomcat
+restart.
+It drove me nuts for a while, since the main application page was
+showing an error after every restart, but I eventually stumbled on a strange
+workaround: changing the order or a couple of lines in the jsp, involving the
+useBean directive and access to java's URI class.
+with the order changed, the
+error never happens.
+with the order returned, the error is reproduced as
+described above.
+I've managed to distill a simple scenario which reproduces this error - a short
+jsp and a trivial bean session class - attached.
+I reproduced this on a fresh
+installation of Kubuntu 9.10 in a virtual machine, with sun jre 6 and tomcat6
+installed.
+I didn't change any configuration, just replaced the ROOT sample
+webapp with this one, restarted tomcat, and browsed to
+http://localhost:8080/index.jsp.
+Remember u have to restart tomcat after every
+change to the jsp if u want to recreate the bug, because simply changing it and
+refreshing the browser will always succeed.

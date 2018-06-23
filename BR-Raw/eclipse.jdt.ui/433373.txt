@@ -1,0 +1,46 @@
+Bug 433373 – [1.8][rename] NPE on renaming the functional method
+package p1;
+public class C1 {
+FI fi1 = (int i) -> {};
+}
+interface FI {
+void foo(int i); // Rename 'foo' to 'foo1' using Alt+Shift+R
+}
+class Test {
+void foo1(int c){}
+}
+--------------------------------------------------------
+In the above example, rename 'foo' to 'foo1' using Alt+Shift+R as mentioned in the comment.
+Renaming fails and we get the following exception:
+java.lang.reflect.InvocationTargetException
+at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:423)
+at org.eclipse.ui.internal.WorkbenchWindow$13.run(WorkbenchWindow.java:2075)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+at org.eclipse.ui.internal.WorkbenchWindow.run(WorkbenchWindow.java:2071)
+at org.eclipse.jdt.internal.ui.refactoring.RefactoringExecutionHelper.perform(RefactoringExecutionHelper.java:191)
+at org.eclipse.jdt.internal.ui.refactoring.RefactoringExecutionHelper.perform(RefactoringExecutionHelper.java:151)
+at org.eclipse.jdt.ui.refactoring.RenameSupport.perform(RenameSupport.java:198)
+at org.eclipse.jdt.internal.ui.refactoring.reorg.RenameLinkedMode.doRename(RenameLinkedMode.java:362)
+at org.eclipse.jdt.internal.ui.refactoring.reorg.RenameLinkedMode$EditorSynchronizer.left(RenameLinkedMode.java:119)
+at org.eclipse.jface.text.link.LinkedModeModel.exit(LinkedModeModel.java:341)
+at org.eclipse.jface.text.link.LinkedModeUI$4.run(LinkedModeUI.java:1193)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+...
+...
+Caused by: java.lang.NullPointerException
+at org.eclipse.jdt.core.search.SearchPattern.createPattern(SearchPattern.java:1880)
+at org.eclipse.jdt.internal.corext.refactoring.RefactoringSearchEngine.createOrPattern(RefactoringSearchEngine.java:201)
+at org.eclipse.jdt.internal.corext.refactoring.rename.RenameMethodProcessor.batchFindNewOccurrences(RenameMethodProcessor.java:590)
+at org.eclipse.jdt.internal.corext.refactoring.rename.RenameMethodProcessor.analyzeRenameChanges(RenameMethodProcessor.java:540)
+at org.eclipse.jdt.internal.corext.refactoring.rename.RenameMethodProcessor.doCheckFinalConditions(RenameMethodProcessor.java:388)
+at org.eclipse.jdt.internal.corext.refactoring.rename.RenameVirtualMethodProcessor.doCheckFinalConditions(RenameVirtualMethodProcessor.java:146)
+at org.eclipse.jdt.internal.corext.refactoring.rename.JavaRenameProcessor.checkFinalConditions(JavaRenameProcessor.java:48)
+at org.eclipse.ltk.core.refactoring.participants.ProcessorBasedRefactoring.checkFinalConditions(ProcessorBasedRefactoring.java:224)
+at org.eclipse.ltk.core.refactoring.Refactoring.checkAllConditions(Refactoring.java:162)
+at org.eclipse.jdt.internal.ui.refactoring.RefactoringExecutionHelper$Operation.run(RefactoringExecutionHelper.java:80)
+at org.eclipse.jdt.internal.core.BatchOperation.executeOperation(BatchOperation.java:39)
+at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:729)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2333)
+at org.eclipse.jdt.core.JavaCore.run(JavaCore.java:5357)
+at org.eclipse.jdt.internal.ui.actions.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:106)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)

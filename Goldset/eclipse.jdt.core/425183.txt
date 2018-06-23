@@ -1,0 +1,9 @@
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/TypeConstants.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/util/Sorting.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/InferenceContext18.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/BindingKeyResolver.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTConverter18Test.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/BindingKeyParser.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/KeyToSignature.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/GenericsRegressionTest_1_8.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/CaptureBinding18.java

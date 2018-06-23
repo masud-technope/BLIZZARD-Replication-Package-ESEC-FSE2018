@@ -1,0 +1,8 @@
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/NegativeLambdaExpressionsTest.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ClassFile.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/LambdaExpression.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/codegen/CodeStream.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/RecoveredField.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/RecoveredLambdaExpression.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ASTConverter.java
+org.eclipse.jdt.core/formatter/org/eclipse/jdt/internal/formatter/CodeFormatterVisitor.java

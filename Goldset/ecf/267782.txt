@@ -1,0 +1,6 @@
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/src/org/eclipse/ecf/tests/provider/discovery/SingleCompositeDiscoveryServiceContainerTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/src/org/eclipse/ecf/tests/provider/discovery/WithoutJMDNSCompositeDiscoveryServiceContainerTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/src/org/eclipse/ecf/tests/provider/discovery/WithoutJSLPCompositeDiscoveryServiceContainerTest.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/internal/provider/jmdns/JMDNSPlugin.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/provider/jmdns/container/JMDNSDiscoveryContainer.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/internal/provider/jslp/Activator.java

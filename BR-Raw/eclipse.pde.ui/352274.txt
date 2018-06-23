@@ -1,0 +1,3 @@
+Bug 352274 – feature editor does not set dirty state on license text editing
+Editing the text of a local license of a feature does not set the dirty state (while all other edit fields do).
+I've created a patch to fix that.

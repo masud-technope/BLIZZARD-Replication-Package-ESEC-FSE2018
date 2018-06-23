@@ -1,0 +1,2 @@
+Bug 73199 – Support for varargs method in evaluation
+The evaluation engine needs to support calls on varargs methods.

@@ -1,0 +1,32 @@
+Bug 419833 – [1.8] NPE in CompilationUnitProblemFinder and ASTNode
+Consider the below testcase:
+@Target(ElementType.TYPE_USE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface TypeUse {
+int value();
+}
+public class Shape {
+}
+public class Square extends @TypeUse(1) Shape implements java.awt.@TypeUse Shape{
+}
+In Square there will be 2 compiler errors.
+First resolve "Add unimplemented methods".
+After this go to the second error, place the cursor just before <|>Shape{ press backspace so now there is no space between @TypeUse and Shape{, wait for a millisecond and now the Error Log will have few NPE's.
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.ast.ASTNode.copySE8AnnotationsToType(ASTNode.java:982)
+at org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.resolveTypesFor(SourceTypeBinding.java:1903)
+at org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.methods(SourceTypeBinding.java:1448)
+at org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.faultInTypesForFieldsAndMethods(SourceTypeBinding.java:836)
+at org.eclipse.jdt.internal.compiler.lookup.CompilationUnitScope.faultInTypes(CompilationUnitScope.java:424)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1200)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:692)
+Java Model Exception: java.lang.NullPointerException
+at org.eclipse.jdt.internal.core.CompilationUnitProblemFinder.process(CompilationUnitProblemFinder.java:248)
+at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:195)
+at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:258)
+at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:521)
+at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1082)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:170)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:89)
+at

@@ -1,0 +1,5 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JDIViewerConfiguration.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/display/DisplayViewContentAssistant.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/snippeteditor/JavaSnippetCompletionProcessor.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/display/DisplayCompletionProcessor.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JDIContentAssistPreference.java

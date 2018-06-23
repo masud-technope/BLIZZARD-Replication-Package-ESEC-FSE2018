@@ -1,0 +1,6 @@
+Bug 417923 – [1.8][dom ast] white space requirements for ArrayType NASTFlattener and ASTRFlattener
+In the ArrayType implementation specify the white space requirements
+Ref bug 413569 comment 18 last two items (reproduced below)
+- ASTRewritingStatementsTest file, testBug400568_a_since_8 has two additional white spaced after removal of annotations on dimensions.
+To be changed?
+- TypeAnnotationsConverterTest -  String [] [] [] [] - do we need these spaces if there are no annotations on dimensions?

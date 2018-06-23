@@ -1,0 +1,6 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ResolveTests18.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/LambdaMethod.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaSearchBugs8Tests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ResolveTests18.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/LambdaMethod.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/SelectionRequestor.java

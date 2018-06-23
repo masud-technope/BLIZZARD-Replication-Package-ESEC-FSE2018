@@ -1,0 +1,15 @@
+Bug 382069 – [null] Make the null analysis consider JUnit's assertNotNull similarly to assertions
+Build Identifier: 20120524-0130
+It would be nice if the null analysis would be aware of JUnit's assertNull and assertNotNull, and treat it in the same way that it already handles "assert x == null" and "assert x != null": as a way to guide the analysis for unknown null states.
+Here's a scenario (from issue 381445):
+Similarly, in some JUnit tests, I had places where I had
+assertNotNull(x);
+and I would later get a warning from the null analysis that "x may be null".
+When I inserted a "assert x != null" after the assertNotNull JUnit call, the
+warning went away, but in a similar spirit to the Closeables.closeQuietly
+issue, it would be nice if this JUnit API call could be known to be synonymous
+with assert != null.
+Similarly to issue 381445, there are some Guava (and probably Apache Commons) null assertion methods as well -- see http://code.google.com/p/guava-libraries/wiki/PreconditionsExplained .
+If you for example see Preconditions.checkNotNull(x), that's just like assert x != null.
+It would be nice to have these work as well.
+Reproducible: Always

@@ -1,0 +1,14 @@
+org.eclipse.swt.SWT.error
+org.eclipse.swt.SWT.error
+org.eclipse.swt.graphics.ImageLoader.save
+org.eclipse.jdt.internal.ui.viewsupport.ImagesOnFileSystemRegistry.getImageURL
+org.eclipse.jdt.internal.ui.viewsupport.ImagesOnFileSystemRegistry.getImageURL
+org.eclipse.jdt.internal.ui.infoviews.JavadocView.getInfoText
+org.eclipse.jdt.internal.ui.infoviews.JavadocView.getJavadocHtml
+org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeInput
+org.eclipse.jdt.internal.ui.infoviews.AbstractInfoView$2.run
+java.io.FileOutputStream.$$YJP$$open
+java.io.FileOutputStream.<init>
+java.io.FileOutputStream.<init>
+org.eclipse.swt.internal.Compatibility.newFileOutputStream
+org.eclipse.swt.graphics.ImageLoader.save

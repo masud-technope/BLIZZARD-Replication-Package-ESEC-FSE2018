@@ -1,0 +1,6 @@
+Bug 111653 – [misc] Dialogs remembering last location will help them open on correct monitor
+The original bug reporting this problem is bug #108801.
+In that bug we discussed the solution being dialogs remembering their last
+location.
+The text dialog specifically mentioned in the original bug was GotoLineDialog,
+but consider this a request to apply the feature where appropriate.

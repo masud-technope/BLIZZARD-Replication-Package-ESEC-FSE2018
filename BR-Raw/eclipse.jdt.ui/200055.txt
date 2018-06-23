@@ -1,0 +1,27 @@
+Bug 200055 – [spell checking] BadLocationException thrown for newly created class
+eclipse.buildId=I20070625-1500
+java.version=1.5.0_07
+java.vendor=Apple Computer, Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=carbon, NL=en_US
+Framework arguments:  -keyring /Users/dstadnik/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws carbon -arch x86 -keyring /Users/dstadnik/.eclipse_keyring -consoleLog -showlocation
+Error
+Wed Aug 15 17:39:16 CEST 2007
+Internal Error
+org.eclipse.jface.text.BadLocationException
+at org.eclipse.jface.text.AbstractDocument.computePartitioning(AbstractDocument.java:1296)
+at org.eclipse.jface.text.TextUtilities.computePartitioning(TextUtilities.java:428)
+at org.eclipse.jdt.internal.ui.text.spelling.JavaSpellingEngine.check(JavaSpellingEngine.java:55)
+at org.eclipse.jdt.internal.ui.text.spelling.SpellingEngine.check(SpellingEngine.java:77)
+at org.eclipse.jdt.internal.ui.text.spelling.DefaultSpellingEngine.check(DefaultSpellingEngine.java:75)
+at org.eclipse.ui.texteditor.spelling.SpellingService$1.run(SpellingService.java:103)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.ui.texteditor.spelling.SpellingService.check(SpellingService.java:108)
+at org.eclipse.ui.texteditor.spelling.SpellingService.check(SpellingService.java:80)
+at org.eclipse.ui.texteditor.spelling.SpellingReconcileStrategy.reconcile(SpellingReconcileStrategy.java:176)
+at org.eclipse.jdt.internal.ui.text.spelling.JavaSpellingReconcileStrategy.reconcile(JavaSpellingReconcileStrategy.java:125)
+at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:86)
+at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:96)
+at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:75)
+at org.eclipse.jdt.internal.ui.text.JavaReconciler.process(JavaReconciler.java:378)
+at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:204)

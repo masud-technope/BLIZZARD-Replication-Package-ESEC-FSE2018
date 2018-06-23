@@ -1,0 +1,2 @@
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/ui/LineChatClientView.java
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/MultiRosterView.java

@@ -1,0 +1,25 @@
+Bug 434791 – [inline][quick assist] Delete key does not work after Inline local variable
+If the command Quick Assist - Inline local variable is bound to Ctrl+Alt+Right in Preferences->General->Keys and that combination is activated and a local variable is thus inlined, pressing the Delete key afterwards has no effect.
+Delete key starts working again after some characters are selected with Shift+Any arrow key or the caret jumps to a different location by pressing Ctrl+Right, Ctrl+Left, Home, End.
+To reproduce the bug, take this source:
+import java.util.ArrayList;
+import java.util.function.Supplier;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+class DeleteKey<T> {
+public void inline() {
+// inline collectionFactory by pressing Ctrl+Alt+Right with the caret within it:
+Supplier<ArrayList<T>> collectionFactory = ArrayList<T>::new;
+Collector<T, ?, ArrayList<T>> collection = Collectors.toCollection(collectionFactory);
+}
+}
+Steps:
+1.
+Open Preferences -> General -> Keys and find Quick Assist - Inline local variable, bind it to the key combination Ctrl+Alt+Right Arrow, and press OK.
+2.
+Move the caret in the middle of the name of the variable collectionFactory.
+3.
+Press Ctrl+Alt+Right Arrow key combination.
+4.
+Press Delete, but it doesn't delete anything.
+Tested with Eclipse SDK Version: Luna (4.4) Build id: I20140510-1500

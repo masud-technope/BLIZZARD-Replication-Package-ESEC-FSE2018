@@ -1,0 +1,3 @@
+51526 – Process web application context config with embedded Tomcat.addWebApp(...)
+It would be nice if org.apache.catalina.startup.Tomcat.addWebApp(...) would process the web application's META-INF/context.xml if found.
+ The current implementation skips META-INF/context.xml loading, and does not appear to offer any hook to enable it--the StandardContext is instantiated and initialized with a null configFile in the single call to addWebApp(...).

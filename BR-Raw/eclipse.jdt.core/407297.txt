@@ -1,0 +1,4 @@
+Bug 407297 – [1.8][compiler] Control generation of parameter names by option (like 'javac -parameters')
+Although not documented in the JEP, the current EA javac supports generation of parameter names by option '-options' in javac.
+ECJ should follow this lead for now.
+There should be a distinct Java Code Generation option for this in the UI, too.

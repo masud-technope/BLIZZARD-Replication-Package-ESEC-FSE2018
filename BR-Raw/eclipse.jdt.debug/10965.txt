@@ -1,0 +1,4 @@
+Bug 10965 – Working directory for JavaSnippetEditor
+The user should be able to set the working directory of the snippet editor.
+This could be a settable persistent property on the actual IFile associated
+with the snippet page.

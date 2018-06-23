@@ -1,0 +1,4 @@
+Bug 401551 – [DOM/AST] Remove old grammar rules from Javadocs and deprecate all pre-JLS8 APIs
+Some DOM/AST Javadocs like MethodDeclaration have become quite hard to read, because they start with outdated grammar rules.
+The corresponding API methods are already deprecated, and the old grammar doesn't matter any more.
+Any opposition to removing the outdated grammar and just leaving the current version?

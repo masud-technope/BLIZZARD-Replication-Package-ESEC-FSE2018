@@ -1,0 +1,8 @@
+Bug 155352 – Enable "Properties..." button for multiple selected Imported Packages
+On the Dependencies page of the manifest editor, the Imported Packages section allows the properties of the imported packages to be configured via the Properties...
+button.
+Unfortunately, this button is only enabled when a single Imported Package is selected.
+ It would be a usability improvement if the button was enabled for multiple selected Imported Packages.
+There should be no special considerations necessary for multiple selected Imported Packages, and any changes should be applied equally to each of the selected Imported Packages.
+Once multiple Imported Packages can be selected, the title of the dialog box that is opened when the Properties...
+button is clicked should probably be changed to simply "Imported Package Properties", since today it is set to the selected package, which is certainly unsual.

@@ -1,0 +1,4 @@
+Bug 229640 – [ds] DSDocumentFactory POJO
+Created attachment 98185 [details]
+DSDocumentFactory and IDSDocumentFactory
+DSDocument POJO interface should be created and createProperty() access modifier sould be public.

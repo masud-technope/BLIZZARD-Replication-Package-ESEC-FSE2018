@@ -1,0 +1,4 @@
+Bug 420116 – [1.8] Add implemented methods should consider type annotations
+Preparing to speak about JSR 308 at ECE I see that "Add implemented methods" nicely copies old annotations, but ignores type annotations.
+While the implementation looks straight-forward, I'm not sure what's the plan regarding ASTProvider.SHARED_AST_LEVEL.
+Is it still at JLS4 because some operations are still used that only exist below JLS8?

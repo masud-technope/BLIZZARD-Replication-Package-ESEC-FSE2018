@@ -1,0 +1,18 @@
+54144 – Processing of java.io.Reader in "Out" tagplugin
+Reviewing r1401816 I see two issues in tagplugin o.a.jasper.tagplugins.jstl.core.Out:
+The code that the plugin generates calls value.toString(), default.toString() and passes these String values to the static method Out.output(...).
+This new method was added in r1401816.
+I think the output() method should accept Objects instead of Strings, because the following is wrong:
+1.
+The evaluation of default.toString() is not needed at all if the default is not used.
+2.
+The JSTL spec (1.1, 1.2) says that there is special processing if value is java.io.Reader.
+There is no such processing in the current code.
+(It seems that this feature was added in JSTL 1.1).
+[quote]
+If the result of the evaluation is not a java.io.Reader object, then it is coerced to
+a String and is subsequently emitted into the current JspWriter object.
+If the result of the evaluation is a java.io.Reader object, data is first read from the
+Reader object and then written into the current JspWriter object.
+[/quote]
+These two issues are not new - they existed before the recent changes.

@@ -1,0 +1,5 @@
+Bug 274023 – [build path] nested source folder on build path rendered with lib icon
+I20090428-0100.
+We now show (nested) folders which are on the build path as source folders also in the normal resource tree.
+But there it gets a library decoration which is wrong.
+I think it's good to show the folder but we should either have a more generic 'on build path' icon or use one that's closer to a source folder.

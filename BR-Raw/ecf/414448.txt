@@ -1,0 +1,3 @@
+Bug 414448 – Make RemoteServiceAdmin.importService more robust in face of no matching configs
+Currently, if RemoteServiceAdmin.importService cannot find any valid/matching imported configs, it returns null.
+ Rather, it should create and publish an error registration.

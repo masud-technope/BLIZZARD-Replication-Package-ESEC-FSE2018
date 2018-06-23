@@ -1,0 +1,24 @@
+Bug 282755 – [quick assist] "Use 'StringBuilder' for string concatenation" could fix existing misuses
+I've seen a lot of code that looks like:
+StringBuilder sb = new StringBuilder();
+sb.append("high" + 5);
+sb.append("more" + STUFF + "here");
+etc.
+Currently, Eclipse will refactor this to e.g.:
+StringBuilder sb = new StringBuilder();
+StringBuilder stringBuilder = new StringBuilder();
+stringBuilder.append("high")
+stringBuilder.append(5);
+sb.append(stringBuilder.toString());
+sb.append("more" + STUFF + "here");
+...which isn't exactly great (although correct).
+The attached patch will make that refactor result in:
+StringBuilder sb = new StringBuilder();
+sb.append("high")
+sb.append(5);
+sb.append("more" + STUFF + "here");
+..which is a lot closer to what I'd expect.
+It only looks for variableName.append(blah blah blah);, i.e.
+not in expressions, or with an expression on the left.
+ It works inside single-line ifs, as the original did.
+I've not written code against the Eclipse API before, and sacrificed my normal code style in the name of keeping the patch small (ignoring whitespace), buyer beware.

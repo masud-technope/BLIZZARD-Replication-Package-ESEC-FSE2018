@@ -1,0 +1,27 @@
+51872 – request.getRemoteAddr() sometimes returning IP address from the previous request
+request.getRemoteAddr() sometimes returning IP address from the previous request.
+ We have compared the IP address returned from the getRemoteHost() and from the headers with getRemoteAddr() and getRemoteAddr is returning wrong IP address.
+ We believe that this may come from the "pooled" request objects where it is sometimes sees the previous value of the remote IP.
+ The problem doesn't occur all the time.
+We are heavily relying on the getRemoteAddr to verify the remote client for some of our authentication.
+ Can this be fixed?
+2011-09-22 16:49:55,713 DEBUG [yjava.tomcat.valves.YahooConnectionValve] THREADID:1262 YahooConnectionValve invoked
+2011-09-22 16:49:55,826 DEBUG [yjava.tomcat.valves.YahooConnectionValve] THREADID:1262 YahooConnectionValve
+request.getInfo(): org.apache.coyote.catalina.CoyoteRequest/1.0
+2011-09-22 16:49:56,013 DEBUG [yjava.tomcat.valves.YahooConnectionValve] THREADID:1262 YahooConnectionValve
+request.getRemoteAddr(): 98.138.85.230
+2011-09-22 16:49:56,014 DEBUG [yjava.tomcat.valves.YahooConnectionValve] THREADID:1262 YahooConnectionValve
+request.getRemoteHost(): web120016.mail.ne1.yahoo.com
+[][~]$ nslookup web120016.mail.ne1.yahoo.com
+Server:              10.72.226.8
+Address:     10.72.226.8#53
+Name:        web120016.mail.ne1.yahoo.com
+Address: 98.138.85.143
+2011-09-22 16:49:56,014 DEBUG [yjava.tomcat.valves.YahooConnectionValve] THREADID:1262 YahooConnectionValve
+request.getRequestedSessionId(): null
+2011-09-22 16:49:56,015 DEBUG [yjava.tomcat.valves.YahooConnectionValve] THREADID:1262 YahooConnectionValve
+request.getHeader(): accept:*/* host:ls100.mail.vip.ne1.yahoo.com:4080 content-type:application/x-ypy
+yahoo-app-auth:v=1;a=yahoo.mail.acl.yca.lsg-prod;h=98.138.85.143;t=1319282225;
+content-length:574
+2011-09-22 16:49:56,015 DEBUG [yjava.filter.address.RemoteIPTranslator] THREADID:1262 Got remote address
+'98.138.85.230' and port '46663'

@@ -1,0 +1,10 @@
+Bug 96765 – Code completion does not work in enum constants
+Code completion does not work in enum constants:
+public enum MyEnum {
+A(){
+public String toString() {
+// no code completion here!
+return null;
+}
+};
+}

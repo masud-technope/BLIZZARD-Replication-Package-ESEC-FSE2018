@@ -1,0 +1,6 @@
+Bug 4121 – JarExporter causes out of Sync (1GILQD5)
+PA (8/17/01 2:03:29 PM)
+if you export a directory (project) and place the exported jar in the same directory (project) then
+you will get an out of sync message when you overwrite the exported jar-file the 2nd time.
+-> maybe the exported jar file should not include itself ?
+NOTES:

@@ -1,0 +1,34 @@
+Bug 167968 – Need a way to calculate the "uses" directive on exports
+I thought I already opened a bug about this but I cannot find it.
+ We need a way to calculate the "uses" directive on Export-Package statements for the developer.
+Classes can depend on classes in other packages.
+For example, when they
+extend classes from another package, or these other classes appear in
+method signatures.
+It can therefore be said that a package uses other packages.
+These inter-package dependencies are modeled with the uses directive
+on the Export-Package header.
+For example, org.osgi.service.http depends on the package javax.servlet.http
+because it is used in the API of the org.osgi.service.http package.
+The export definition of the org.osgi.service.http should therefore contain the uses directive with the javax.servlet package as its value.
+ For example,
+Export-Package: org.osgi.service.http; uses:="javax.servlet.http"
+If a bundle imports a package from an exporter then the export definition of
+that package can imply constraints on a number of other packages through
+the uses directive.
+The uses directive lists the packages that the exporter
+depends upon and therefore constrains the resolver for imports.
+These constraints ensure that a set of bundles share the same class loader for the same package.
+If this is not done we can get different errors (like ClassCastExcpetion) when the wrong version of a class is used to call some API.
+ It would be nice if PDE provided some way (maybe with a "calculate uses directive" operation) to calculate what the uses directive should be for all packages exported by a bundle.
+We should be able to calculate this by doing code analysis on the exported packages.
+ Here is an example of some rules we could start with to calculate the uses directive.
+- Only calculate uses directive on public API packages (not x-internal ones)
+- Only calculate used packages from public and protected classes.
+- Never include a package in java.* these can only come from boot and everone shares them.
+- Include the packages to all argument and return types to public/protected methods.
+- Include the packages to all public/protected field types
+This list is probably not complete but it should be a good start.
+ CC'ing BJ to see if he has other rules that should be applied to calculate the uses directive.
+ As you can see the rules are not easy for a mere mortal to follow and given the sheer number of API packages in Eclipse this is going to be very hard to force down on the community unless we have a tool to calculate it for them.
+I also CC'ed John because this is very much related to API definition.

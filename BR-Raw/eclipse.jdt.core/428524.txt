@@ -1,0 +1,13 @@
+Bug 428524 – [1.8][compiler] NPE when using JSE8 Class Constructor ref "TheClass::new" and "TheClass" is using default no-arg constructor
+Created attachment 240103 [details]
+Example class and NPE Stack in Event Details
+When using a Class Constructor Ref "TheClass::new" and "TheClass" is using a default no-arg constructor the JDT fails with NPE.
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.lookup.SyntheticMethodBinding.<init>(SyntheticMethodBinding.java:385)
+at org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.addSyntheticFactoryMethod(SourceTypeBinding.java:687)
+when using
+Supplier<WithoutNoArgConstructor> error = WithoutNoArgConstructor::new;
+System.err.println(error.get());
+...
+private static class WithoutNoArgConstructor {
+}

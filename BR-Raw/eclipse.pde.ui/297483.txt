@@ -1,0 +1,5 @@
+Bug 297483 – should warn when class file folder does not have output.<library> entry
+Build.properties validation should warn when a class file folder on the build path (i.e.
+library on the Java build path) does not have a corresponding output.<library> entry in the build.properties.
+This is similar to a source folder not having an output entry in the build.properties.
+This is a follow up to bug 297115.

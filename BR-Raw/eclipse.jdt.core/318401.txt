@@ -1,0 +1,102 @@
+Bug 318401 – FUP of 317858: Clarify eclipse compiler behavior on imports & shadowing
+(1) From bug 317858 comment 5:
+------------------------------
+This bug Eclipse also thinks it is importing a class when it shouldn't be (due
+to obscuring).
+I have 2 packages with the following classes:
+================================
+package p1;
+import static p2.OuterClass.Inner;
+public class myRunner {
+public static void main(String [] args)
+{
+System.out.println("Value1 = " +          Inner().toString());
+System.out.println("Value2 = " +      new Inner().toString());
+}
+}
+------------------------
+package p1;
+public class Inner {
+public String toString()
+{
+return "The Class -- p1.Inner";
+}
+}
+-------------------------
+package p2;
+public class OuterClass {
+public  class Inner{
+@Override
+public String toString()
+{
+return "The Class -- p2.OuterClass.In";
+}
+}
+public static String Inner()
+{
+return  "The Method -- p2.OuterClass.In()";
+}
+}
+----------------------------------
+====================================
+Since my import statement is STATIC, then it shouldn't be importing the
+non-static class with the same name as the STATIC method.
+"Value1" should be "The Method -- p2.OuterClass.In()"
+and
+"Value2" should be "The Class -- p1.Inner"
+The problem is that on the line:
+System.out.println("Value2 = " +      new Inner().toString());
+It should be invoking the class p1.Inner, but Eclipse thinks it is referring to
+p1.OuterClass.Inner (which isnt  static and shouldn't be imported)
+And "new Inner()" is not a valid way to call an non-static inner Class; (thus
+the error)
+-----------------------------------------
+(2) From bug 317858 comment 9:
+------------------------------
+I got the same bug, abused differently, to actually compile in Eclipse and give
+a different answer, I thought you might like to see it:
+------------------------------------
+package p2;
+import static p1.Bar.B;
+import  p3.Foo.*;
+public class OuterTest {
+public static void main(String [] args)
+{
+new OuterTest().beginTest();
+}
+public void beginTest(){
+System.out.print("1 + 1 =  ");
+if(alwaysTrue()){
+System.out.println("2");
+}
+else{
+System.out.println("3");
+}
+}
+public boolean alwaysTrue(){ // Returns FALSE in Eclipse
+String myB   =        B.class.getCanonicalName();
+String realB = p1.Bar.B.class.getCanonicalName();
+return myB.equals(realB);
+}
+}
+------------------------------------
+package p1;
+public class Bar {
+public static class  B{}
+final public static String B = new String("random");
+}
+------------------------------------
+package p3;
+public class Foo {
+public class  B {}
+}
+------------------------------------
+Eclipse will print out "1 + 1 = 3"
+-----------------------------------------------------------
+(3) From bug 317858 comment 10:
+------------------------------
+In the above bug, it appears that in "Bar" the field "B" is obscuring the class
+with the same name, and then it looks like the import-on-demand from "Foo.*" is
+shadowing the single-import "Bar.B".
+Perhaps the JSP is a bit to vague on these
+corner cases.

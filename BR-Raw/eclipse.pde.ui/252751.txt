@@ -1,0 +1,3 @@
+Bug 252751 – 313 tag tests mysteriously failed in I20081029-1823
+For some reason 313 of the tag tests failed in build I20081029-1823.
+There have been no changes to these tests and they do not fail locally or in any of the pre / post builds.

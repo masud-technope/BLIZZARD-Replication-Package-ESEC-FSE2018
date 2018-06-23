@@ -1,0 +1,23 @@
+Bug 390883 – [1.8][compiler] Unable to override default method
+BETA_JAVA8:
+The following program fails to compile with TOT while javac 8b56 compiles
+fine.
+I believe the right behavior is to compile it:
+// -----------------
+public interface X extends Map<String, Object> {
+}
+interface Map<K,V> extends MapStream<K, V>  {
+@Override
+Iterable<BiValue<K, V>> asIterable() default {
+return null;
+}
+}
+interface MapStream<K, V> {
+Iterable<BiValue<K, V>> asIterable() default {
+return null;
+}
+}
+interface BiValue<T, U> {
+T getKey();
+U getValue();
+}

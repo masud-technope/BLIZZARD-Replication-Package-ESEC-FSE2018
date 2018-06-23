@@ -1,0 +1,14 @@
+Bug 442645 – Missing Java project context in stratum breakpoints
+Before the fix for Bug 368212 there was this fallback code in JavaLineBreakpoint#getJavaProject
+if (sourceElement instanceof IJavaElement) {
+return ((IJavaElement) sourceElement).getJavaProject();
+} else if (sourceElement instanceof IResource) {
+IJavaProject project = JavaCore.create(((IResource) sourceElement).getProject());
+if (project.exists()) {
+return project;
+}
+}
+This fallback code was deleted, even though the bug only required deleting a block further up in that method.
+This is critical because for stratum line breakpoints (e.g.
+Xtend) the source will generally be some IFile and not an IJavaElement.
+This blocks conditional breakpoints in Xtend in Eclipse 4.3+

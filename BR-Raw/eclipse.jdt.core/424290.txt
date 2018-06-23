@@ -1,0 +1,8 @@
+Bug 424290 – [1.8] Evaluate alternate options for lambda shape analysis.
+When applying attachment 238421 [details] from bug 424167 comment 5, OverloadResolutionTest8.test004() starts failing.
+I believe this is caused by the way how lambda shape analysis surrenders when enclosingScopesHaveErrors().
+The test contains three almost identical method calls with a lambda as their argument.
+In all three cases inference wants to detect an incompatibility because the function type returns an int but the lambdas are not value-compatible.
+However, only the first occurrence succeeds to report this, because subsequent occurrences will detect the first error in some outer scope and refuse to complete its analysis.
+IMHO these statements should be fully independent.
+I know that this area is close to impossible to get right and fully spec-compliant, but the result in this test looks wrong.

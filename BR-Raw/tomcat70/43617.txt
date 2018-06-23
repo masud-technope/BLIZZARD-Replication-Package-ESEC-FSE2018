@@ -1,0 +1,12 @@
+43617 – attribute values within a .tag(x) file are not properly escaped
+Attribute values within a .tag(x) file are not properly escaped when they are
+converted into .java files.
+E.g
+Create a .tagx file with this content
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+xmlns="http://www.w3.org/1999/xhtml"
+version="2.1">
+<div test='"'>Hello world</div>
+</jsp:root>
+Call this tag from a .jsp page.
+Will attach a patch within some minutes

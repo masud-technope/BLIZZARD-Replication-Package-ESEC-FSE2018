@@ -1,0 +1,17 @@
+Bug 476517 – [1.8][quick fix] "Add unimplemented methods" creates stubs for methods with default implementation
+The problem is like this:
+let's say first there was an interface to be implemented by clients
+interface IHasInt {
+int getInt();
+}
+Later you want the implementors to be able to provide a BigInteger, without breaking old implementors and without the need to implement the old method for new implementors (And the caller wants to be able to distinguish old and new implementations).
+So you define
+interface IHasIntAsBigInteger extends IHasInt {
+default int getInt() {
+return getIntAsBigInteger().intValue();
+}
+getIntAsBigInteger();
+}
+If a class implements IHasIntAsBigInteger and the dev applies "add unimplemented methods".
+Stubs for both methods are created, which is bad.
+Propably due to the fact that both methods occur abstract somewhere in the interface hierarchy, not eliminating those with a default occurance.

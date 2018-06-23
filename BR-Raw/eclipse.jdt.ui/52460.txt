@@ -1,0 +1,36 @@
+Bug 52460 – [spell checking] Spell check index out of range
+I was running in console mode for other reasons, when I spotted this stack
+trace, that did not appear in the log.
+This is in M7; JDK 1.4.2_03.
+I just turned on spell checking in the In
+Progress pref pane but didn't otherwise do anything to configure.
+I don't know
+what specific action triggered this (nor did I observe any effect).
+java.lang.StringIndexOutOfBoundsException: String index out of range: 7
+[Dynamic-linking native method java.lang.Throwable.getStackTraceDepth ...
+JNI]
+[Dynamic-linking native method java.lang.Throwable.getStackTraceElement ...
+JNI]
+at java.lang.String.charAt(String.java:444)
+at
+org.eclipse.jdt.internal.ui.text.spelling.SpellCheckIterator.nextToken
+(SpellCheckIterator.java:297)
+at org.eclipse.jdt.internal.ui.text.spelling.SpellCheckIterator.next
+(SpellCheckIterator.java:241)
+at
+org.eclipse.jdt.internal.ui.text.spelling.engine.DefaultSpellChecker.execute
+(DefaultSpellChecker.java:208)
+at
+org.eclipse.jdt.internal.ui.text.spelling.SpellReconcileStrategy.reconcile
+(SpellReconcileStrategy.java:347)
+at
+org.eclipse.jface.text.reconciler.CompositeReconcilingStrategy.reconcile
+(CompositeReconcilingStrategy.java:83)
+at
+org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile
+(JavaCompositeReconcilingStrategy.java:97)
+at org.eclipse.jface.text.reconciler.MonoReconciler.process
+(MonoReconciler.java:76)
+at
+org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run
+(AbstractReconciler.java:189)

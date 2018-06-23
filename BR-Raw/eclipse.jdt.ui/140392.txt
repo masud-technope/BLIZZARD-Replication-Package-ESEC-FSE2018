@@ -1,0 +1,3 @@
+Bug 140392 – [JUnit] Rerun failed first does not work with JUnit4
+3.2 RC3
+Bug 139899 has disabled the button, but we should look whether we can support that feature in 3.3.

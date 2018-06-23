@@ -1,0 +1,5 @@
+Bug 152200 – Amnesia when retrieving extension point descriptions
+due to fix for bug 151702, descriptions are not stored in our schema models which is a good thing.
+In the New Extension wizard, we now parse the schema every time an extension point is selected to retrieve its description.
+ but then, we don't keep track of visited extension points, we reparse when an extension point is selected again.
+Given that we already paid the memory penalty once upon the first parsing, it would be good if we cached descriptions until the wizard is dismissed.

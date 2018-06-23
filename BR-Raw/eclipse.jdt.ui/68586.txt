@@ -1,0 +1,6 @@
+Bug 68586 – [implementation] Reconciling should be more robust
+Cheetah as of 20040625
+In situations where the compiler/reconcile has bugs like in early Cheetah,
+editor contents cannot be saved properly, also see bug 68557 for an example.
+We should make our support more robust, and capture such failures as
+JavaModelExceptions (similar to batch compiler handling).

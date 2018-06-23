@@ -1,0 +1,6 @@
+Bug 204404 – Bundles Launch Configuration should have option to show only selected bundles
+When configuring a launch (especially on an OSGi runtime) you often only need to see a small subset of the bundles.
+ For example, I am launching a system with 36 bundles, but there are over 1100 to choose from.
+ This makes navigating, selecting and choosing the start options a real pain.
+A "Show all" / "Show selected" toggle option would really help here.
+Does this make sense?

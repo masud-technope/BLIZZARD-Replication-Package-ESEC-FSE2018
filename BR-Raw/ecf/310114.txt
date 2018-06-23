@@ -1,0 +1,6 @@
+Bug 310114 – [core] remove dependencies so that ECF can run on other OSGi frameworks
+Currently, the ECF framwork runs on Equinox only.
+ There has been community input that people would like to see the ECF bundles run on other frameworks.
+To do this, we will have analyze existing dependencies, and eliminate those that cannot be incorporated into other frameworks.
+ In some cases this may reduce support for internationalization (i.e.
+NLS).

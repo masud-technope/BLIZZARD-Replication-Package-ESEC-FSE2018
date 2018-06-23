@@ -1,0 +1,6 @@
+org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer.registerSchemes
+org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer.<init>
+org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransferFactory.newInstance
+org.eclipse.ecf.internal.provider.filetransfer.Activator.getFileTransfer
+org.eclipse.ecf.provider.filetransfer.retrieve.MultiProtocolRetrieveAdapter.sendRetrieveRequest
+org.eclipse.oomph.internal.setup.util.ECFURIHandlerImpl.createInputStream

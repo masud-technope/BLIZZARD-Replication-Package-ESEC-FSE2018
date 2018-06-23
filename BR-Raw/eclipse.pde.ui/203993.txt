@@ -1,0 +1,211 @@
+Bug 203993 – Schema HTML generator cause CHKPII errors
+I20070919-0010
+releng errors are due to chkpii errors in platform doc.
+eclipse/plugins/org.eclipse.platform.doc.isv_3.4.0.v20070917_1242_jar/reference/extension-points/
+cheatSheetContentFileSpec.html  HTML-40     801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 27
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 31
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 37
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 42
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 60
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 60
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 90
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 98
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 118
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 136
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 163
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 172
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 206
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 215
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 221
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 259
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 273
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 300
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 309
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 309
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 343
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 353
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 412
+compositeContentFile.html       HTML-40     801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 26
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 30
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 38
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 45
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 53
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 60
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 66
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 77
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 82
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 82
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 88
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 88
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 95
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 99
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 99
+introContentFileSpec.html       HTML-40     801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 19
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 19
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 37
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 55
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 61
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 72
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 79
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 84
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 90
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 96
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 102
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 191
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 198
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 204
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 210
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 218
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 228
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 237
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 243
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 249
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 255
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 259
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 265
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 278
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 284
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 295
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 303
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 309
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 315
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 321
+801   Either '<br/' is an
+unsupported tag or replace '<' with '&lt;'.
+ Line: 321

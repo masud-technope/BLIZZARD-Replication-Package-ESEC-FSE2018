@@ -1,0 +1,6 @@
+Bug 465296 – precedence of extra attributes on a classpath container
+In bug 440477 I implemented merging of extra classpath attributes from a container and its elements during classpath resolution.
+In bug 465293 we see that this implementation applies undesirable precedence: Individual attributes are not merged but copied into a bigger list, and in this implementation attributes from the elements come before attributes of the referring entry.
+This is in conflict with the intuition that per-project configuration should override per-workspace configuration.
+On the long run we may want to filter duplicate attributes, but since I'm not aware of a specification saying that this should happen, for 4.5 I'm just changing the order in which attributes appear in the combined list: explicit per project configuration (from the referring entry) to come before container-provided configuration.
+For external null annotation paths this establishes the desired semantics.

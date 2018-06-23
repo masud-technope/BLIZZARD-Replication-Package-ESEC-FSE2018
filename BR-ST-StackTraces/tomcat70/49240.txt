@@ -1,0 +1,13 @@
+java.lang.ClassLoader.defineClass1
+java.lang.ClassLoader.defineClass
+java.security.SecureClassLoader.defineClass
+java.net.URLClassLoader.defineClass
+java.net.URLClassLoader.access$000
+java.net.URLClassLoader$1.run
+java.security.AccessController.doPrivileged
+java.net.URLClassLoader.findClass
+java.lang.ClassLoader.loadClass
+java.lang.ClassLoader.loadClass
+java.lang.ClassLoader.loadClassInternal
+java.lang.Class.forName0
+java.lang.Class.forName

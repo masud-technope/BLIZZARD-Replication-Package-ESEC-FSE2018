@@ -1,0 +1,10 @@
+Bug 69308 – All ASTNodes that deal with modifiers should offer a method setModifiers(List modifiers)
+3.0
+Dealing with modifiers in the new 3.0 API is complicated especially if you
+want to copy modifiers of an existing node into a new node.
+To ease this all
+ASTNodes that deal with modifiers should offer a method setModifiers(List
+modifiers).
+This methods copies the modifiers from the parameter list into the
+modifier list managed by the node.
+The current list should be emptied first.

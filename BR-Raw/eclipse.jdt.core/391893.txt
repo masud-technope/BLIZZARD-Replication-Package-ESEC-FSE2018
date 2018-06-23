@@ -1,0 +1,6 @@
+Bug 391893 – [1.8][DOM/AST] Add receiver parameter support in DOM/AST
+BETA_JAVA8:
+See https://bugs.eclipse.org/bugs/show_bug.cgi?id=383908#c2 and
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=383908#c3.
+The AST node MethodDeclaration should expose and provide facilities
+for manipulating the receiver.

@@ -1,0 +1,5 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/dependencies/CalleesListContentProvider.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/dependencies/DependenciesView.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/dependencies/DependenciesViewListPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/dependencies/DependenciesViewPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/dependencies/DependenciesViewTreePage.java

@@ -1,0 +1,8 @@
+org.eclipse.jdt.debug.ui/icons/full/obj16/jmeth_obj.gif
+org.eclipse.jdt.debug.ui/icons/full/obj16/jload_obj.gif
+org.eclipse.jdt.debug.ui/icons/full/obj16/jspbrkpt_obj.gif
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/breakpoints/JavaBreakpointTypeAdapterFactory.java
+org.eclipse.jdt.debug.ui/icons/full/obj16/jline_obj.gif
+org.eclipse.jdt.debug.ui/icons/full/obj16/jwatch_obj.gif
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaDebugImages.java
+org.eclipse.jdt.debug.ui/icons/full/obj16/jexcept_obj.gif

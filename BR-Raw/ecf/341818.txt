@@ -1,0 +1,27 @@
+Bug 341818 – [rosgi] System is out of thread resources when using r_osgi provider
+Build Identifier: eclipse 3.6.2 SDK - ECF 3.5
+executing the sample code:
+org.eclipse.ecf.examples.remoteservices.hello.consumer.rs
+org.eclipse.ecf.examples.remoteservices.hello.host.rs
+the consumer code was enhanced:
+// 6.
+Finally...call the proxy
+long start, end, total;
+start = System.currentTimeMillis();
+String response=null;
+long count = 8000;
+for (int i = 0; i<count;i++)
+response = proxy.sayHello("RemoteService Consumer");
+end = System.currentTimeMillis();
+total = end - start;
+long avg = total/count;
+System.out.println("total=["+total+"][avg=" +(avg) +"]"+ response);
+error recived:
+An internal error has occurred.
+unable to create new native thread
+Reproducible: Always
+Steps to Reproduce:
+1.
+invoke the consumer 8000 times in close loop
+2.
+3.

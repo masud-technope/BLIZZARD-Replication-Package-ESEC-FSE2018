@@ -1,0 +1,3 @@
+Bug 325813 – [remoteservices][provider] XML-RPC provider for ECF
+XML-RPC is more simple then SOAP protocol for remote method invocation via HTML.
+We can use org.apache.xmlrpc from ORBIT for this task.

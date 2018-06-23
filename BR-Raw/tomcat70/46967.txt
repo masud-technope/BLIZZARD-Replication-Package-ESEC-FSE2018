@@ -1,0 +1,32 @@
+46967 – ManagerBase.setRandomFile error handling fix
+On some platforms (z/OS for sure), the device file /dev/urandom can pass the "f.exists()" test, but throws an IOException of some kind when trying to open it.
+ The current code in ManagerBase.setRandomFile() doesn't handle this, which results in EVERY call to getRandom() to try again and log the error  "Failed to close randomIS".
+The following changes to the method will add proper error handling to correct this (my changes marked "// kjw")
+public void setRandomFile( String s ) {
+// as a hack, you can use a static file - and genarate the same
+// session ids ( good for strange debugging )
+if (Globals.IS_SECURITY_ENABLED){
+randomIS = (DataInputStream)AccessController.doPrivileged(new PrivilegedSetRandomFile());
+} else {
+try{
+devRandomSource=s;
+File f=new File( devRandomSource );
+if( ! f.exists() ) return;
+randomIS= new DataInputStream( new FileInputStream(f));
+randomIS.readLong();
+if( log.isDebugEnabled() )
+log.debug( "Opening " + devRandomSource );
+} catch( IOException ex ) {
+log.debug("Error reading " + devRandomSource, ex); //kjw
+if (randomIS != null) {  // kjw: if opened
+try {
+randomIS.close();
+} catch (Exception e) {
+log.warn("Failed to close randomIS.");
+}
+}                       // kjw
+devRandomSource = null; // kjw: don't try again automatically
+randomIS=null;
+}
+}
+}

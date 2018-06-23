@@ -1,0 +1,9 @@
+org.eclipse.jdt.ui/jar in jar loader/org/eclipse/jdt/internal/jarinjarloader/JIJConstants.java
+org.eclipse.jdt.ui/jar in jar loader/org/eclipse/jdt/internal/jarinjarloader/JarRsrcLoader.java
+org.eclipse.jdt.ui/jar in jar loader/org/eclipse/jdt/internal/jarinjarloader/RsrcURLConnection.java
+org.eclipse.jdt.ui/jar in jar loader/org/eclipse/jdt/internal/jarinjarloader/RsrcURLStreamHandler.java
+org.eclipse.jdt.ui/jar in jar loader/org/eclipse/jdt/internal/jarinjarloader/RsrcURLStreamHandlerFactory.java
+org.eclipse.jdt.ui/jar-in-jar-loader.zip
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat/FatJarRsrcUrlAntExporter.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat/FatJarRsrcUrlManifestProvider.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat/JIJConstants.java

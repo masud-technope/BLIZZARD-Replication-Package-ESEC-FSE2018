@@ -1,0 +1,13 @@
+Bug 342858 – [inline] inlining all invocations of a method does not work for method with non-final enum type
+Build Identifier: M20110210-1200
+Not always, but often, selecting a method and inlining "All invocations" of it does not work.
+ If you have "Delete method declaration" selected, that does take affect, leaving all the callers referring to a now deleted method, and thus compilation breaks.
+There are no errors from the refactoring itself, it just fails silently.
+I'm marking this Major, I think of this as being a critical refactoring.
+ It's necessary whenever a change to a method is more than just a signature change.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Inline CouponChoice.getFrequency().
+2.
+See the caller not change.

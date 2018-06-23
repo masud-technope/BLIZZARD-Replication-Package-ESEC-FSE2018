@@ -1,0 +1,6 @@
+Bug 21400 – Loss of member details in text of Breakpoints
+Since we fixed bug 17868, we have lost the fine grain detail of which member in
+a type that a breakpoint is located.
+We could add attributes to a Java line breakpoint for memberStart and memberEnd
+so that we could render the name of the method that a breakpoint is located
+within.

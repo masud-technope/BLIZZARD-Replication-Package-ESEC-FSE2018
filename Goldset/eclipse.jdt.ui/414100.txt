@@ -1,0 +1,10 @@
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/QuickFixTest18.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/proposals/ModifierChangeCorrectionProposal.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/QuickFixTest.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CodeStyleFix.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/ModifierCorrectionSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/QuickFixProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/proposals/ModifierChangeCorrectionProposal.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/QuickFixTest18.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/ModifierCorrectionSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/proposals/ModifierChangeCorrectionProposal.java

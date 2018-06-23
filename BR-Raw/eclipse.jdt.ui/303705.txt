@@ -1,0 +1,9 @@
+Bug 303705 – [search] Custom search results not shown hierarchically in the java search results view
+Build Identifier: M20090917-0800
+Consider an instance of org.eclipse.search.ui.text.Match with an element that is neither an IResource nor an IJavaElement.
+It might be an element in a class diagram, for example.
+When such an element is reported, it will be shown as a plain, flat element in the otherwise hierarchical java search results view.
+This is because the LevelTreeContentProvider and its superclasses only check for IJavaElement and IResource.
+I propose to also check for IAdaptable and try to adapt to IJavaElement and IResource, if the other checks fail.
+I'll attach a patch.
+Reproducible: Always

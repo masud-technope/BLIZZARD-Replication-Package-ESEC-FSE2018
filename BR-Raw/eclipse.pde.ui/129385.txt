@@ -1,0 +1,2 @@
+Bug 129385 – Organize Manifests Wizard missing banner icon
+This wizard needs an icon

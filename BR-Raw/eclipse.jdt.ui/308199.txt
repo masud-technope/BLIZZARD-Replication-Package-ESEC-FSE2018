@@ -1,0 +1,4 @@
+Bug 308199 – JavaElementAdapterFactory loads Team UI
+I20100406-0800.
+JavaElementAdapterFactory loads Team UI because it references IHistoryPageSource.
+We could use a lazy approach like for ISearchPageScoreComputer.

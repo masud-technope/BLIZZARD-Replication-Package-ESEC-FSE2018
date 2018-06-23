@@ -1,0 +1,18 @@
+Bug 238970 – [MSN] CPU usage increases significantly after connecting for a while
+Build ID: I20080617-2000
+Steps To Reproduce:
+1.
+connect to MSN
+2.
+wait ~30 seconds
+3.
+CPU goes 100% for Eclipse process
+4.
+it stays for at least an hour
+5.
+disconnect, and CPU goes normal in few seconds
+More information:
+ECF: 2.0.0v20080623-0046
+Java: java-6-sun-1.6.0.06
+OS: Ubuntu 8.04 32 bit
+(component chosen for the bug report was a guess ...)

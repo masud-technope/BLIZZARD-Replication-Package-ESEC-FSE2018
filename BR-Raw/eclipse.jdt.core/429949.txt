@@ -1,0 +1,5 @@
+Bug 429949 – Bad Javadoc link on ImportRewrite.create(ICompilationUnit, boolean)
+The Javadoc for ImportRewrite.create(ICompilationUnit, boolean) contains the self-referential line:
+"Note that {@link #create(ICompilationUnit, boolean)} is more efficient than this method if an AST for the compilation unit is already available."
+The "ICompilationUnit" should be "CompilationUnit".
+See ImportRewrite.create(CompilationUnit, boolean), which makes the claim that it is more efficient than the subject method if an AST is already available.

@@ -1,0 +1,57 @@
+Bug 15036 – ASTVisitor.preVisit and ASTVisitor.postVisit not called correctly
+I may be misunderstanding the model here, but preVisit and postVisit seem to be
+called incorrectly.
+1.
+Create a one line java source file:
+package thepackage;
+2.
+Run this code over it:
+// icu is an ICompilationUnit for the above file
+CompilationUnit cu = AST.parseCompilationUnit(icu, true);
+System.out.println(icu.getResource().getName());
+cu.accept (new ASTVisitor() {
+public void preVisit(ASTNode node) {
+System.out.println("Pre:  " + node.getClass());
+}
+public void postVisit(ASTNode node) {
+System.out.println("Post: " + node.getClass());
+}
+});
+Expected output is something like:
+Pre:  class org.eclipse.jdt.core.dom.CompilationUnit
+Pre:  class org.eclipse.jdt.core.dom.PackageDeclaration
+Pre:  class org.eclipse.jdt.core.dom.SimpleName ??
+Post: class org.eclipse.jdt.core.dom.SimpleName ??
+Post: class org.eclipse.jdt.core.dom.PackageDeclaration
+Post: class org.eclipse.jdt.core.dom.CompilationUnit
+Actual output is:
+Pre:  class org.eclipse.jdt.core.dom.CompilationUnit
+Pre:  class org.eclipse.jdt.core.dom.CompilationUnit
+Pre:  class org.eclipse.jdt.core.dom.PackageDeclaration
+Post: class org.eclipse.jdt.core.dom.PackageDeclaration
+Post: class org.eclipse.jdt.core.dom.CompilationUnit
+Post: class org.eclipse.jdt.core.dom.CompilationUnit
+I think the problems are in ASTNode.acceptChild and ASTNode.acceptChildren.
+E.g
+in ASTNode.getChild shouldn't
+// begin with the generic pre-visit
+visitor.preVisit(this);
+// dynamic dispatch to internal method for type-specific
+visit/endVisit
+child.accept0(visitor);
+// end with the generic post-visit
+visitor.postVisit(this);
+be
+// begin with the generic pre-visit ** for the child **
+visitor.preVisit(child);
+// dynamic dispatch to internal method for type-specific
+visit/endVisit
+child.accept0(visitor);
+// end with the generic post-visit ** for the child **
+visitor.postVisit(child);
+or, even simpler,
+// visit the child
+child.accept(visitor);
+and similarly in acceptChildren?
+Thanks
+Mark

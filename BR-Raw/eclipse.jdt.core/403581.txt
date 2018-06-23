@@ -1,0 +1,13 @@
+Bug 403581 – [1.8][compiler] Compile error on varargs annotations.
+BETA_JAVA8:
+The following program is incorrectly rejected with three bogus syntax errors:
+// ---
+import java.util.List;
+public class X {
+void foo(List<String> @Marker ...
+ls) {}
+}
+@java.lang.annotation.Target(java.lang.annotation.ElementType.TYPE_USE)
+@interface Marker {
+}
+Fix is trivial and will follow shortly.

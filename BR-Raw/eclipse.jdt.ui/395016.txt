@@ -1,0 +1,12 @@
+Bug 395016 – [introduce factory] Introduce Factory on an abstract class adds a statement to create an instance of that class
+Steps to reproduce:
+1.
+Invoke "Introduce Factory" on the constructor in code below
+2.
+The resulting code does not compile
+abstract class IntroduceFactoryBug1 {
+// Invoke "Introduce Factory" on the constructor
+IntroduceFactoryBug1() {
+}
+}
+(Thanks to Yilong Li for helping with the bug report.)

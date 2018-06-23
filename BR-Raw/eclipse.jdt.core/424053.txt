@@ -1,0 +1,2 @@
+Bug 424053 – [1.8][compiler] Consolidate type inference
+With bug 400874 about to be closed this bug will server as the umbrella for remaining & new issues relating to type inference in 1.8.

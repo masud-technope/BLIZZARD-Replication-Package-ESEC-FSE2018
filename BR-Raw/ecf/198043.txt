@@ -1,0 +1,2 @@
+Bug 198043 – [ui] open contacts dialog doesn't recognize users in groups
+When using open contacts, contacts list entries that are in groups are not found by recognizer.

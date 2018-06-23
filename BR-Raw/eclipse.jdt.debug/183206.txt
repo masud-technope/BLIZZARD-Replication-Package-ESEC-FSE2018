@@ -1,0 +1,4 @@
+Bug 183206 – [refactoring] Mysterious refactoring failure caused other tests to fail
+Build: N20070419-0010 had a refactoring failure that subsequently caused 25 other tests to fail.
+Our refactoring tests should be more atomic to prevent cascading failures.
+The reason for failure of the test canot be reproduced, but it would be good to look at the tests to ensure that something is not hagged up.

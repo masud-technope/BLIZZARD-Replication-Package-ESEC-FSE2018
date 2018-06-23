@@ -1,0 +1,4 @@
+Bug 287136 – [quick fix][api] Make ASTRewriteCorrectionProposal and parents public API
+I'm writing a plugin to add quickfix support for creating mock objects with mockito, and I'm discovering that it is quite difficult to supply a correct IJavaCompletionProposal.
+ ASTRewriteCorrectionProposal looks like a very simple API to achieve the functionality I want, but of course it is internal.
+ Could it be made public?

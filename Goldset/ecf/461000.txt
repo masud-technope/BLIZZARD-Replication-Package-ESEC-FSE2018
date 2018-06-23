@@ -1,0 +1,11 @@
+framework/bundles/org.eclipse.ecf.remoteservice.ui/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.remoteservice.ui/plugin.properties
+framework/bundles/org.eclipse.ecf.remoteservice.ui/plugin.xml
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/internal/remoteservices/ui/RemoteServicePerspective.java
+framework/bundles/org.eclipse.ecf.ui/icons/enabled/chat_32X32.png
+framework/bundles/org.eclipse.ecf.ui/icons/enabled/communicationsecf.png
+framework/bundles/org.eclipse.ecf.ui/icons/enabled/logo.png
+framework/bundles/org.eclipse.ecf.ui/icons/enabled/network.png
+framework/bundles/org.eclipse.ecf.ui/icons/ovl/ecf.png
+framework/bundles/org.eclipse.ecf.ui/plugin.properties
+framework/bundles/org.eclipse.ecf.ui/plugin.xml

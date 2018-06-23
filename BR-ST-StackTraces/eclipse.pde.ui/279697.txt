@@ -1,0 +1,15 @@
+org.objectweb.asm.Type.getObjectType
+org.eclipse.pde.api.tools.internal.builder.ReferenceExtractor$ClassFileMethodVisitor.visitMethodInsn
+org.objectweb.asm.ClassReader.accept
+org.objectweb.asm.ClassReader.accept
+org.eclipse.pde.api.tools.internal.model.ApiType.extractReferences
+org.eclipse.pde.api.tools.internal.provisional.search.ApiSearchEngine.getResolvedReferences
+org.eclipse.pde.api.tools.internal.provisional.search.ApiSearchEngine.access$0
+org.eclipse.pde.api.tools.internal.provisional.search.ApiSearchEngine$ReferenceExtractor.visit
+org.eclipse.pde.api.tools.internal.model.ArchiveApiTypeContainer.accept
+org.eclipse.pde.api.tools.internal.model.AbstractApiTypeContainer.accept
+org.eclipse.pde.api.tools.internal.model.AbstractApiComponent.accept
+org.eclipse.pde.api.tools.internal.provisional.search.ApiSearchEngine.searchReferences
+org.eclipse.pde.api.tools.internal.provisional.search.ApiSearchEngine.search
+org.eclipse.pde.api.tools.usage.internal.ui.search.ApiUsageSearchPage$1.run
+org.eclipse.core.internal.jobs.Worker.run

@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractMethodWorkSpace/ExtractMethodTests/return_out/A_test733.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ExtractMethodTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/flow/FlowInfo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractMethodWorkSpace/ExtractMethodTests/return_out/A_test734.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractMethodWorkSpace/ExtractMethodTests/return_in/A_test733.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractMethodWorkSpace/ExtractMethodTests/return_in/A_test734.java

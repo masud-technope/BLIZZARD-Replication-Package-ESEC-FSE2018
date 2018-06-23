@@ -1,0 +1,4 @@
+Bug 289992 – Use IResource#setDerived(boolean, IProgressMonitor) instead of IResource#setDerived(boolean)
+IResource#setDerived(boolean) is deprecated.
+New Use IResource#setDerived(boolean, IProgressMonitor) should be use instead which is a workspace operation and generates delta.
+See bug 45805.

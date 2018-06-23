@@ -1,0 +1,2 @@
+Bug 470207 – IJavaProject#getOptions should return Map<String, String>
+The Javadoc specifies already this type and as org.eclipse.jdt.core is based on Java 1.7 we could also return this type directly.

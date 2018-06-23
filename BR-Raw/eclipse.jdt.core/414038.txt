@@ -1,0 +1,24 @@
+Bug 414038 – [1.8][compiler] CCE in resolveAnnotations
+Created attachment 233952 [details]
+Test case to reproduce the issue
+Stack Trace:
+java.lang.ClassCastException: org.eclipse.jdt.internal.compiler.ast.Annotation$TypeUseBinding cannot be cast to org.eclipse.jdt.internal.compiler.lookup.FieldBinding
+at org.eclipse.jdt.internal.compiler.ast.ASTNode.resolveAnnotations(ASTNode.java:713)
+at org.eclipse.jdt.internal.compiler.lookup.FieldBinding.getAnnotationTagBits(FieldBinding.java:281)
+at org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.resolveTypeFor(SourceTypeBinding.java:1474)
+at org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.fields(SourceTypeBinding.java:775)
+at org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.faultInTypesForFieldsAndMethods(SourceTypeBinding.java:753)
+at org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.faultInTypesForFieldsAndMethods(SourceTypeBinding.java:757)
+at org.eclipse.jdt.internal.compiler.lookup.CompilationUnitScope.faultInTypes(CompilationUnitScope.java:424)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1200)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:692)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1186)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:812)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider$1.run(ASTProvider.java:544)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.createAST(ASTProvider.java:537)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.getAST(ASTProvider.java:480)
+at org.eclipse.jdt.ui.SharedASTProvider.getAST(SharedASTProvider.java:128)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:170)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$3.run(SelectionListenerWithASTManager.java:155)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)

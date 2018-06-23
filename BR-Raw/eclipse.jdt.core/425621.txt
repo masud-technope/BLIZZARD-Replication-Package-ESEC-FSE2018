@@ -1,0 +1,15 @@
+Bug 425621 – [1.8][compiler] Missing error for raw type in constructor reference with explicit type arguments
+From JSR 335 spec 0.9.1, 15.28
+It is a compile-time error If a method reference has the form ClassType :: NonWildTypeArguments new, where a constructor type
+argument list is provided, but the ClassType is a raw type.
+So the following program must be rejected, but we don't:
+// --
+class Y<T> {
+Y() {}
+}
+interface I {
+Y<Y> foo();
+}
+public class X  {
+I i = Y::<X>new;
+}

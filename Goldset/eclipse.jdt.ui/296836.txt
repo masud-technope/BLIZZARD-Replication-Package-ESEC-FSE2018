@@ -1,0 +1,2 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/ActionMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/ActionMessages.properties

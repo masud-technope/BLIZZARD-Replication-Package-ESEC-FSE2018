@@ -1,0 +1,11 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/SearchParticipantsExtensionPoint.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/JavaSearchPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/JavaSearchQuery.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/SearchParticipantRecord.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/SearchParticipantsPreferencePage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/SearchResultUpdater.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/search/SearchTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/search/ParticipantTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/search/TestParticipant.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/SearchParticipantDescriptor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/SearchMessages.properties

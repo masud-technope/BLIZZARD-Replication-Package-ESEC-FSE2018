@@ -1,0 +1,43 @@
+Bug 346042 – [1.5][compiler] ecj compiles code rejected by javac for varargs parameters of inaccessible type
+Eclipse(I20110514-0800) compiles the following code fine, but generates invalid bytecode which fails at runtime with a java.lang.IllegalAccessError.
+A.java
+----------
+package p1;
+class A {
+A() {
+}
+}
+------------
+B.java
+------------
+package p1;
+import java.io.*;
+public class B extends A {
+public B() {}
+public void foo(A...
+args) {
+System.out.println(args);
+}
+}
+-----------
+C.java
+----------
+package p2;
+import p1.B;
+public class C {
+public static final void main(String[] args) {
+(new B()).foo(new B(), new B());
+}
+}
+javac7b138 correctly complains at compile time
+C:\Documents and Settings\Administrator\Desktop\Eclipse builds\eclipse-SDK-I2011
+0514-0800-win32\eclipse\workspace\A\src\p2\C.java:6: error: method foo in class
+B cannot be applied to given types;
+(new B()).foo(new B(), new B());
+^
+required: A[]
+found: B,B
+reason: formal varargs element type A is not accessible from class C
+1 error
+--------------------------------------------------------------------
+This was a javac bug which is fixed with http://bugs.sun.com/view_bug.do?bug_id=6313164

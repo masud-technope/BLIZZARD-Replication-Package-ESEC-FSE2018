@@ -1,0 +1,11 @@
+Bug 151280 – [misc] Providing a JavaSourceViewerConfiguration to SemanticHighlightingManager
+We're (ab)using JDT in order to implement IDE-support for a language extension (see http://www.objectteams.org).
+We're reusing lots of internal JDT code, that was not meant to be reused.
+In order to provide syntax highlighting, we provide a subclass of JavaSourceViewerConfiguration (with a specialized JavaCodeScanner), to a subclass of CompilationUnitEditor.
+There is one problem however:
+A SemanticHighlightingManager that is attached to a JavaEditor, directly instantiates another JavaSourceViewerConfiguration, thus working with the original JavaSourceViewerConfiguration instead of our subclass.
+It would be very helpful if SemanticHighlightingManager could operate on an instance of our class.
+This could be achieved by having a factory method in JavaEditor, that SemanticHighlightingManager could call in its install() method.
+We could override that method to return our own JavaSourceViewerConfiguration.
+Another option would be to let JavaEditor pass an instance of JavaSourceViewerConfiguration to SemanticHighlightingManager's install() method.
+We would be very grateful if this small change could be added.

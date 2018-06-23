@@ -1,0 +1,2 @@
+Bug 344996 – API Freeze check leads to a NPE
+When trying to fix 344976 I got a NPE while running the ant task.

@@ -1,0 +1,5 @@
+Bug 88923 – [evaluation] Evaluations create compiled expression in UI thread
+The #evaluate(..) methods on IEvaluationEngine create compiled expressions in
+the UI thread before performing an evaluation asynchronously.
+All evaluation
+processing should be done asynchronously.

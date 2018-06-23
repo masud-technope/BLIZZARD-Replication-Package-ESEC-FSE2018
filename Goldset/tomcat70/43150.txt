@@ -1,0 +1,2 @@
+java/org/apache/jasper/JspCompilationContext.java
+java/org/apache/catalina/startup/ClassLoaderFactory.java

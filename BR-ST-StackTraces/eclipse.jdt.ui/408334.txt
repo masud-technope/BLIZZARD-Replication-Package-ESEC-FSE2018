@@ -1,0 +1,4 @@
+org.eclipse.core.runtime.Assert.isTrue
+org.eclipse.core.runtime.Assert.isTrue
+org.eclipse.ltk.core.refactoring.TextChange.getCurrentContent
+org.eclipse.ltk.internal.ui.refactoring.TextEditChangePreviewViewer.setInput

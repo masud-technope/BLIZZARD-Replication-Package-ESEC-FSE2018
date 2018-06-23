@@ -1,0 +1,27 @@
+Bug 320878 – [refactoring] DynamicValidationStateChange throws away valid changes after 30 minutes
+I20100720-0800, has been like this forever
+I ran the Infer Generic Type Arguments refactoring and left the preview open for > 30 minutes.
+When I tried to continue and apply the changes, I got the ConcurrentModificationException below.
+Initial changes should not be DynamicValidationStateChanges that throw away their children.
+Only undo changes should clean up after a while.
+Fix idea: Add a new constructor to DynamicValidationStateChange that prevents cleanup for that change (but implements it for Undo/Redo changes).
+java.util.ConcurrentModificationException
+at java.util.AbstractList$Itr.checkForComodification(AbstractList.java:372)
+at java.util.AbstractList$Itr.remove(AbstractList.java:357)
+at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:297)
+at org.eclipse.jdt.internal.corext.refactoring.changes.DynamicValidationStateChange.access$0(DynamicValidationStateChange.java:1)
+at org.eclipse.jdt.internal.corext.refactoring.changes.DynamicValidationStateChange$1.run(DynamicValidationStateChange.java:98)
+at org.eclipse.jdt.internal.core.BatchOperation.executeOperation(BatchOperation.java:39)
+at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:728)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+at org.eclipse.jdt.core.JavaCore.run(JavaCore.java:4777)
+at org.eclipse.jdt.internal.corext.refactoring.changes.DynamicValidationStateChange.perform(DynamicValidationStateChange.java:101)
+at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:258)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:306)
+at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.executeChange(UIPerformChangeOperation.java:92)
+at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:223)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)

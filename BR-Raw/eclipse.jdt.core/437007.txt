@@ -1,0 +1,18 @@
+Bug 437007 – [1.8][inference] Inferencing failing to work out type in vararg method invocation
+The following code compiles with javac:
+import java.util.*;
+public class ExecutorTests {
+List<Runnable> tasks = Arrays.asList(
+() -> {
+System.out.println("task1 start");
+}
+);
+public void executeInSync(){
+tasks.stream().forEach(Runnable::run);
+}
+}
+but not with ECJ:
+The method asList(T...) in the type Arrays is not applicable for the arguments (() -> {})	ExecutorTests.java	line 4	Java Problem
+The target type of this expression must be a functional interface	ExecutorTests.java	line 5	Java Problem
+It can be made to compile by changing it to "Arrays.<Runnable>asList(..."
+This was reported in http://stackoverflow.com/questions/24122672/ajc-wont-compile-lambda-as-an-vararg-argument originally against AspectJ but AspectJ is based on JDT and this is failing in Luna RC3 too.

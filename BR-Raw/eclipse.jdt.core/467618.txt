@@ -1,0 +1,4 @@
+Bug 467618 – [formater] Empty lines should not affect indentation of wrapped elements
+The old formatter's implementation didn't indent wrapped elements if they were preceded with an empty line (except for elements wrapped with "force split" wrapping policy).
+Attempts have been made to duplicate this behavior, but it leads to some problems - more details in bug 458208 comment 34.
+With this and the fact that it's probably not a desired feature anyway, let's change the formatter to always properly indent wrapped elements.

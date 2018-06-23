@@ -1,0 +1,2 @@
+Bug 153641 – [Template] OSGi Services: Usage of Preferences
+An example of the preferences service would be fantastic

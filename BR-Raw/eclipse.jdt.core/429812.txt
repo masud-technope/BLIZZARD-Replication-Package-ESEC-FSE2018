@@ -1,0 +1,26 @@
+Bug 429812 – [1.8][model] Signatures returned by lambda IMethod APIs should be dot-based
+The signatures returned by lambda IMethod APIs should be dot-based.
+Currently, getReturnType() and getParameterTypes() return slash-based signatures.
+This needs to be fixed to make Javadoc hovers on Lambda expressions work (once codeSelect on "->" returns the lambda method and not the SAM).
+Example:
+interface I {
+/**
+* Does it! Really.
+* @param number the int
+* @param str the String
+*/
+Object doit(int number, String str);
+}
+class X {
+I i = (i, s) -> {
+return null;
+};
+}
+E.g.
+use the JavaElement view to inspect the local variable "s" and then check its declaring member.
+- second parameter type is "Ljava/lang/String;".
+Should be "Ljava.lang.String;".
+- return type is "Qjava/lang/Object;", which is wrong.
+An unresolved signature ("Q") cannot be qualified.
+Should be "Ljava/lang/Object;"
+- please also check the other API methods

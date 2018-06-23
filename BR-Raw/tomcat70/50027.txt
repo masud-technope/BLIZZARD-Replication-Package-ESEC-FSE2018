@@ -1,0 +1,151 @@
+50027 – NullPointerException if context.xml is present with <Resource>
+If you deploy a WAR with contex.xml in META-INF and the context.xml has <Resource> tag, Tomcat donÂ´t boot and gives this error:
+java.lang.NullPointerException
+at org.apache.catalina.core.StandardContext.getObjectKeyPropertiesNameOnly(StandardContext.java:5570)
+at org.apache.catalina.core.StandardContext.setNamingResources(StandardContext.java:1757)
+at org.apache.catalina.core.StandardContext.getNamingResources(StandardContext.java:1735)
+at org.apache.catalina.startup.SetNextNamingRule.end(SetNextNamingRule.java:99)
+at org.apache.tomcat.util.digester.Digester.endElement(Digester.java:1058)
+at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.endElement(AbstractSAXParser.java:601)
+at com.sun.org.apache.xerces.internal.parsers.AbstractXMLDocumentParser.emptyElement(AbstractXMLDocumentParser.java:180)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(XMLDocumentFragmentScannerImpl.java:1343)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2755)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:511)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:808)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:119)
+at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1205)
+at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:522)
+at org.apache.tomcat.util.digester.Digester.parse(Digester.java:1544)
+at org.apache.catalina.startup.Catalina.load(Catalina.java:524)
+at org.apache.catalina.startup.Catalina.load(Catalina.java:560)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.apache.catalina.startup.Bootstrap.load(Bootstrap.java:260)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:414)
+29/09/2010 13:50:37 org.apache.catalina.startup.Catalina load
+AVISO: Catalina.start using conf/server.xml:
+java.lang.NullPointerException
+at org.apache.tomcat.util.digester.Digester.createSAXException(Digester.java:2688)
+at org.apache.tomcat.util.digester.Digester.createSAXException(Digester.java:2714)
+at org.apache.tomcat.util.digester.Digester.endElement(Digester.java:1061)
+at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.endElement(AbstractSAXParser.java:601)
+at com.sun.org.apache.xerces.internal.parsers.AbstractXMLDocumentParser.emptyElement(AbstractXMLDocumentParser.java:180)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(XMLDocumentFragmentScannerImpl.java:1343)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2755)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:511)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:808)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:119)
+at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1205)
+at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:522)
+at org.apache.tomcat.util.digester.Digester.parse(Digester.java:1544)
+at org.apache.catalina.startup.Catalina.load(Catalina.java:524)
+at org.apache.catalina.startup.Catalina.load(Catalina.java:560)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.apache.catalina.startup.Bootstrap.load(Bootstrap.java:260)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:414)
+Caused by: java.lang.NullPointerException
+at org.apache.catalina.core.StandardContext.getObjectKeyPropertiesNameOnly(StandardContext.java:5570)
+at org.apache.catalina.core.StandardContext.setNamingResources(StandardContext.java:1757)
+at org.apache.catalina.core.StandardContext.getNamingResources(StandardContext.java:1735)
+at org.apache.catalina.startup.SetNextNamingRule.end(SetNextNamingRule.java:99)
+at org.apache.tomcat.util.digester.Digester.endElement(Digester.java:1058)
+...
+20 more
+29/09/2010 13:50:37 org.apache.tomcat.util.digester.SetPropertiesRule begin
+AVISO: [SetPropertiesRule]{Server/Service/Engine/Host/Context} Setting property 'source' to 'org.eclipse.jst.jee.server:bestforkprime' did not find a matching property.
+29/09/2010 13:50:37 org.apache.tomcat.util.digester.Digester endElement
+GRAVE: End event threw exception
+java.lang.NullPointerException
+at org.apache.catalina.core.StandardContext.getObjectKeyPropertiesNameOnly(StandardContext.java:5570)
+at org.apache.catalina.core.StandardContext.setNamingResources(StandardContext.java:1757)
+at org.apache.catalina.core.StandardContext.getNamingResources(StandardContext.java:1735)
+at org.apache.catalina.startup.SetNextNamingRule.end(SetNextNamingRule.java:99)
+at org.apache.tomcat.util.digester.Digester.endElement(Digester.java:1058)
+at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.endElement(AbstractSAXParser.java:601)
+at com.sun.org.apache.xerces.internal.parsers.AbstractXMLDocumentParser.emptyElement(AbstractXMLDocumentParser.java:180)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(XMLDocumentFragmentScannerImpl.java:1343)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2755)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:511)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:808)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:119)
+at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1205)
+at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:522)
+at org.apache.tomcat.util.digester.Digester.parse(Digester.java:1544)
+at org.apache.catalina.startup.Catalina.load(Catalina.java:524)
+at org.apache.catalina.startup.Catalina.start(Catalina.java:573)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:288)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:415)
+29/09/2010 13:50:37 org.apache.catalina.startup.Catalina load
+AVISO: Catalina.start using conf/server.xml:
+java.lang.NullPointerException
+at org.apache.tomcat.util.digester.Digester.createSAXException(Digester.java:2688)
+at org.apache.tomcat.util.digester.Digester.createSAXException(Digester.java:2714)
+at org.apache.tomcat.util.digester.Digester.endElement(Digester.java:1061)
+at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.endElement(AbstractSAXParser.java:601)
+at com.sun.org.apache.xerces.internal.parsers.AbstractXMLDocumentParser.emptyElement(AbstractXMLDocumentParser.java:180)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(XMLDocumentFragmentScannerImpl.java:1343)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2755)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:511)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:808)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:119)
+at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1205)
+at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:522)
+at org.apache.tomcat.util.digester.Digester.parse(Digester.java:1544)
+at org.apache.catalina.startup.Catalina.load(Catalina.java:524)
+at org.apache.catalina.startup.Catalina.start(Catalina.java:573)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:288)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:415)
+Caused by: java.lang.NullPointerException
+at org.apache.catalina.core.StandardContext.getObjectKeyPropertiesNameOnly(StandardContext.java:5570)
+at org.apache.catalina.core.StandardContext.setNamingResources(StandardContext.java:1757)
+at org.apache.catalina.core.StandardContext.getNamingResources(StandardContext.java:1735)
+at org.apache.catalina.startup.SetNextNamingRule.end(SetNextNamingRule.java:99)
+at org.apache.tomcat.util.digester.Digester.endElement(Digester.java:1058)
+...
+20 more
+29/09/2010 13:50:37 org.apache.catalina.startup.Catalina start
+GRAVE: Cannot start server.
+Server instance is not configured.
+Here is my contex.xml OBS: some values were replaced with XXXX
+<?xml version="1.0" encoding="UTF-8"?>
+<Context privileged="true" reloadable="true">
+<WatchedResource>WEB-INF/web.xml</WatchedResource>
+<WatchedResource>META-INF/context.xml</WatchedResource>
+<Resource name="jdbc/bestfork" auth="Container"
+type="com.mchange.v2.c3p0.ComboPooledDataSource" factory="org.apache.naming.factory.BeanFactory"
+user="xxx" password="xxxx" driverClass="org.postgresql.Driver"
+jdbcUrl="jdbc:postgresql://localhost:5432/xxxxx" minPoolSize="5"
+maxPoolSize="30" acquireIncrement="5" idleConnectionTestPeriod="100"
+maxIdleTime="30"/>
+<Resource name="mail/Session" auth="Container" type="javax.mail.Session"
+mail.smtp.host="xxxx" mail.smtp.auth="true"
+username="xxx" password="xxx"
+mail.user="xxxx" mail.password="xxxx"
+mail.smtp.port="587" mail.transport.protocol="smtp" mail.debug="true" />
+<Realm className="org.apache.catalina.realm.JDBCRealm"
+driverName="org.postgresql.Driver" connectionURL="jdbc:postgresql://localhost:5432/xxxx"
+connectionName="xxxx" connectionPassword="xxxx" userTable="usuario"
+userNameCol="usuario_cpf" userCredCol="usuario_senha" userRoleTable="usuario_papel"
+roleNameCol="papel_nome" digest="MD5" />
+</Context>

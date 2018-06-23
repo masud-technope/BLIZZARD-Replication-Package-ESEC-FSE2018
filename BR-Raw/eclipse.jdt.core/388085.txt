@@ -1,0 +1,7 @@
+Bug 388085 – [1.8][compiler] Type annotations on a wildcard type argument are not supported
+From the JSR 308 specification:
+"An annotation on a wildcard type argument appears before the wildcard, as in MyClass<@Immutable ? extends
+Comparable<MyClass>>."
+This needs to be supported by the ECJ.
+A simpler example is:
+class MyClass<@Immutable ? extends Object> {}

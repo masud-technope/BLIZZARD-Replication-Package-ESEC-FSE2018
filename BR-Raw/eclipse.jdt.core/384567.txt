@@ -1,0 +1,7 @@
+Bug 384567 – [1.5][compiler] Compiler accepts illegal modifiers on package declaration
+3.8: Probably has always been buggy.
+The following program compiles with ECJ, while it should not:
+// --------------
+public package p;
+public class X {
+}

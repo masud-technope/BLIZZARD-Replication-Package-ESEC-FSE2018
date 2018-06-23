@@ -1,0 +1,17 @@
+Bug 13834 – Can't set breakpoints in external source
+Build 20020321
+There doesn't appear to be any way to set a breakpoint in source code which is
+not managed by Eclipse.
+I'm debugging code on a remote VM.
+ The program includes some code which is
+managed by my workspace, and some which is found in external JARs.
+ When I
+click on a stack frame for one of these unmanaged methods, I get a dialog
+asking where to find the source.
+ I point the dialog at the source, and an
+editor on the appropriate .java file opens.
+However, I can't set breakpoints in this file:
+- there is no ruler displayed, so I can't double click o nthe ruler
+- the context menu's Add->Breakpoint action is disabled
+This is frustrating, as I'd like to set breakpoints in the code that I'm
+examining!

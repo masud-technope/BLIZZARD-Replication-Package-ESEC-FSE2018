@@ -1,0 +1,9 @@
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient/plugin.xml
+providers/bundles/org.eclipse.ecf.provider.filetransfer/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.filetransfer/schema/browseFileTransferProtocolFactory.exsd
+providers/bundles/org.eclipse.ecf.provider.filetransfer/schema/retrieveFileTransferProtocolFactory.exsd
+providers/bundles/org.eclipse.ecf.provider.filetransfer/schema/sendFileTransferProtocolFactory.exsd
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/internal/provider/filetransfer/Activator.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/internal/provider/filetransfer/Messages.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/internal/provider/filetransfer/messages.properties

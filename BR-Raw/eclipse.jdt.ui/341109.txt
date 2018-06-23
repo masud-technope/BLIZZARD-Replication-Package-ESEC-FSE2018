@@ -1,0 +1,9 @@
+Bug 341109 – [package explorer] Remove filters on "Show In > Package Explorer" removes too many filters
+When invoking "Show In->Package Explorer" action on a Type that come from "Libraries from external", I choose "Yes" to remove some filters so that the Type can be shown.
+BUG:
+Both "Empty library containers" and "Libraries from external" filters are removed.
+EXPECTED:
+Only "Libraries from external" should be removed.
+I assume this is just a naive algorithm that removes filters until the Type can be shown.
+ Once it has removed enough filters to show the type, the algorithm should then go back and attempt to turn on all (except maybe the last) filters to see if they were unnecessarily removed.
+As a result, the User must re-enable 2 or more filters instead of just the one which allowed the Type to be shown.

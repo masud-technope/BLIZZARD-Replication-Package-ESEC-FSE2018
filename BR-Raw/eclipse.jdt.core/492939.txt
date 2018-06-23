@@ -1,0 +1,11 @@
+Bug 492939 – Type inference fails for a particularly complicated Optional / Stream chain
+We are upgrading an open source project to use the new Java 8 features.
+A committer using IntelliJ committed some code that extensively uses type inference to determine the type of an Optional / Stream / flatMap computation:
+https://github.com/jdbi/jdbi/blob/e6640356b33108876b31a8fd13175c1aa5d98aec/core/src/main/java/org/jdbi/v3/MappingRegistry.java#L64-L73
+This code works on both IntelliJ and javac, but Eclipse fails:
+Line 66: The method findFirstPresent(Supplier<Optional<RowMapper<?>>>...) in the type JdbiOptionals is not applicable for the arguments (Supplier<Optional<RowMapper<?>>>, () -> {})
+Line 70: Type mismatch: cannot convert from Optional<Object> to Optional<RowMapper<?>>	MappingRegistry.java
+Arguably the code should be rewritten to be less nested, but I suspect this is a bug in Eclipse's type inference?
+I've reduced the bug to a self contained code example here:
+https://gist.github.com/stevenschlansker/49563f1f57e9e429e485e3515eefc56b
+Compiles cleanly with javac 1.8.0_77 but fails with 4.5.2 20160218-0600

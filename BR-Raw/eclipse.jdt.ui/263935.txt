@@ -1,0 +1,14 @@
+Bug 263935 – [compare] compare holds on to deleted compilation unit
+build I20090203-1200
+1) checkout org.eclipse.jdt.core
+2) add a type org.eclipse.jdt.core.ZZZ.java
+3) select org.eclipse.jdt.core and synchronize with the repository
+4) from the synchronize view open ZZZ.java in compare editor
+5) in the synchronize view select ZZZ.java and do 'Override and Update'
+6) do ctrl+shift+T and type ZZZ
+ZZZ.java appear
+7) try to open ZZZ.java
+an error window appear
+The deleted type is also still visible in the package explorer
+The problem does not occur if i do not open ZZZ.java in compare editor.
+The problem is caused by a workingcopy of ZZZ.java which was not discarded.

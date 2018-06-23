@@ -1,0 +1,3 @@
+osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/META-INF/MANIFEST.MF
+osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/src/org/eclipse/ecf/osgi/services/remoteserviceadmin/EndpointDescriptionLocator.java
+osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/src/org/eclipse/ecf/osgi/services/remoteserviceadmin/IEndpointDescriptionLocator.java

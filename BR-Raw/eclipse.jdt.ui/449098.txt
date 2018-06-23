@@ -1,0 +1,6 @@
+Bug 449098 – [quick assist] "Convert to lambda expression" should enter linked mode for parameters
+The "Convert to lambda expression" quick assist should enter linked mode for the newly created parameters, so that the user can easily modify the names and references.
+Example:
+<T, S> BiFunction<java.util.List<S>, S, Object> foo() {
+return List<S>::add;
+}

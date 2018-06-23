@@ -1,0 +1,7 @@
+57837 – add "text/css" to default of compressableMimeType
+as per https://tomcat.apache.org/tomcat-7.0-doc/config/http.html
+I put compression="10" into the server.xml, but https://developers.google.com/speed/pagespeed claims gzip is not yet activated.
+I have also tried
+compression="on" compressionMinSize="512"
+with the same result.
+See https://p4u.ch/page_speed_rh

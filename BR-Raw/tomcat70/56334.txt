@@ -1,0 +1,39 @@
+56334 – Double Backslash Escaping in Attributes
+Created attachment 31462 [details]
+WAR file to reproduce exception
+EL expressions in jspx-files are Java-String-backslash-decoded twice when they're part of static template text.
+They're even decoded twice when they're part of certain JSP-Tag attributes, but they're only decoded once during processing when part of a JSTL tag attribute:
+<!-- Works as expected yielding \?resize as value of asd -->
+<c:set var="asd" value="${'\\?resize'}" />
+<!-- Won't work, but should -->
+<set data-value="${'\\?resize'}" />
+<!-- dito -->
+<jsp:element name="${'\\?resize'}"></jsp:element>
+<!-- Works, but yields actually invalid results -->
+<set data-value="${'\\\\?resize'}" />
+During JSP compiling the following exception is thrown (taken from Tomcat log):
+Apr 01, 2014 10:51:31 AM org.apache.catalina.core.StandardWrapperValve invoke
+Schwerwiegend: Servlet.service() for servlet [jsp] in context with path [/tomcat_test] threw exception [/index.jspx (line: 12, column: 37) "${'\\?resize'}" contains invalid expression(s): javax.el.ELException: Failed to parse the expression [${'\?resize'}]] with root cause
+org.apache.jasper.JasperException: /index.jspx (line: 12, column: 37) "${'\\?resize'}" contains invalid expression(s): javax.el.ELException: Failed to parse the expression [${'\?resize'}]
+at org.apache.jasper.compiler.DefaultErrorHandler.jspError(DefaultErrorHandler.java:42)
+at org.apache.jasper.compiler.ErrorDispatcher.dispatch(ErrorDispatcher.java:443)
+at org.apache.jasper.compiler.ErrorDispatcher.jspError(ErrorDispatcher.java:199)
+at org.apache.jasper.compiler.Validator$ValidateVisitor.getJspAttribute(Validator.java:1399)
+at org.apache.jasper.compiler.Validator$ValidateVisitor.visit(Validator.java:772)
+at org.apache.jasper.compiler.Node$UninterpretedTag.accept(Node.java:1251)
+at org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2375)
+at org.apache.jasper.compiler.Node$Visitor.visitBody(Node.java:2427)
+at org.apache.jasper.compiler.Validator$ValidateVisitor.visit(Validator.java:529)
+at org.apache.jasper.compiler.Node$JspRoot.accept(Node.java:564)
+at org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2375)
+at org.apache.jasper.compiler.Node$Visitor.visitBody(Node.java:2427)
+at org.apache.jasper.compiler.Node$Visitor.visit(Node.java:2433)
+at org.apache.jasper.compiler.Node$Root.accept(Node.java:474)
+at org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2375)
+at org.apache.jasper.compiler.Validator.validateExDirectives(Validator.java:1817)
+at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:217)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:353)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:340) [...]
+As you can see the \\ get processed to \ between the output of the line information and the actual EL parsing.
+In tomcat 7.0.27 the above examples work and produce the correct output.

@@ -1,0 +1,4 @@
+Bug 327994 – [remoteservices][test] TwitterRemoteServiceTest failing to connect to twitter service
+The TwitterRemoteServiceTest is failing in automated builds...apparently because of some issue with accessing the twitter API/service (possibly authentication/account in automated test environment, perhaps something changed in twitter service, etc).
+For an example of the test failures, see
+https://build.ecf-project.org/hudson/job/C-HEAD-remoteservice.rest.feature/16/testReport/

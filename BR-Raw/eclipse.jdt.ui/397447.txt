@@ -1,0 +1,2 @@
+Bug 397447 – [hovering] Code polishing for the package Javadoc hovering feature.
+Some minor miscellaneous code changes for the package hovering feature.

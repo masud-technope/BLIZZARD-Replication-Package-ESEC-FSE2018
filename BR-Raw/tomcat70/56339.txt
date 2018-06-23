@@ -1,0 +1,22 @@
+56339 – session listener invalidate session
+we have sessionlistener
+in sessionDestroyed method we call session.invalidate()
+in version 7.0.42 its ok but newer versions loops code
+public void sessionDestroyed(HttpSessionEvent arg0) {
+if(arg0 !=null && arg0.getSession() !=null)
+{
+HttpSession session = arg0.getSession();
+String sessionId = session.getId();
+if(sessionId != null)
+{
+UserPrincipal userPrincipal = (UserPrincipal)session.getAttribute(ContextVar.USERPRINCIPLE);
+if (userPrincipal != null)
+{
+UserOpBLO userOpBLO = new UserOpBLO(new ResourcePool());
+userOpBLO.processLogoutActivity(sessionId, userPrincipal.getUserId());
+CurrentSessions.SESSIONS.remove(sessionId);
+session.invalidate();
+}
+}
+}
+}

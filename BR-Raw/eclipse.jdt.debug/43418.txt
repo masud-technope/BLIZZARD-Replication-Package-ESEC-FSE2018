@@ -1,0 +1,9 @@
+Bug 43418 – No busy cursor after choosing JRE base directory
+20030917
+1.
+Go to the Installed JRE page, choose 'Add'
+2.
+Click on 'Browse..' for the 'JRE home directory' and choose a JRE folder
+3.
+When Ok is pressed, it takes several seconds to evaluate the system
+libraries: A busy cursor should be shown.

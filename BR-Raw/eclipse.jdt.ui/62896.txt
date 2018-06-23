@@ -1,0 +1,6 @@
+Bug 62896 – [misc] Quick Outline should not show override indicators if decorator disabled
+I20040519
+The quick outline shows override indicators no matter whether the Override
+indicator decorator is enabled in the prefs or not.
+We should only install the
+decorator if the prefs says so since this is a performance saver.

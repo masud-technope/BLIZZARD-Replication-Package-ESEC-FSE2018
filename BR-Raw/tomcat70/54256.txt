@@ -1,0 +1,70 @@
+54256 – Enhance Exception reporting on JAR file error
+(I posted this to the mailing list on Oct 28, 2011, but didn't end up creating a report on it until now.
+ I have the same error with Tomcat 7.)
+PROBLEM DESCRIPTION:
+I have an exception (appended below), and I think it would be nice to have more information about what is going on.
+If I had more context, it would help me find the cause of my problem much more quickly.
+ For example, if the exception indicated what the file/resource that was having the problem was, it would speed up troubleshooting immensely.
+HOW TO REPRODUCE:
+In a JAR file contained in WAR file's WEB-INF/lib folder:  Change the MANIFEST.MF file in the JAR file.
+ Put in a line with ONLY "Class-Path:".
+ Note there is no space after the period, which is what causes the error.
+ During load of the application, the exception which I have appended at the end of this message will show up.
+SUGGESTED IMPROVEMENT:
+My suggestion would be to modify ExtensionValidator.validateApplication(...), around line 195.
+ This is the location that actually knows about what the resource is.
+ It would be nice if the IOException was caught, and information about the Resource was added to the exception, probably by wrapping the exception.
+Because I have not gone through the overhead of getting a version of Tomcat running from source, these changes have not been compiled and tested, but I think the suggestion is relatively straight-forward.
+Here are the suggested code changes:
+First code change - move the definition of "resource" outside of the try/catch:
+// Locate the Manifests for all bundled JARs
+Resource resource = null; // ADDED
+NamingEnumeration<Binding> ne = null;
+Second code change - make the existing declaration of "resource" just an assignment:
+resource = (Resource) obj; // MODIFIED
+inputStream = resource.streamContent();
+Manifest jmanifest = getManifest(inputStream);
+Third code change: add a catch clause and re-throw:
+} catch (NamingException nex) {
+// Jump out of the check for this application because it
+// has no resources
+} catch (IOException ioex) { // ADDED
+throw new IOException("validation problem in " + resource.toString(), ioex); // ADDED
+} finally {
+The problem is that the resource may not have a proper toString().
+ I would suggest changing FileDirContext:898 (inner class=FileResource) to have a toString method, something along the lines of:
+public String toString() { // ADDED
+return file == null ? "null" : file.toString(); // ADDED
+} // ADDED
+Note: about this, in the original email thread, Konstantin Kolinko said:
+"Not sure about FileResource.toString(), but adding a catch for IOException looks like doable."
+Finally, here's the exception:
+28-Oct-2011 11:03:03 AM org.apache.catalina.core.StandardContext startInternal
+SEVERE: Error in dependencyCheck
+java.io.IOException: invalid header field
+at java.util.jar.Attributes.read(Attributes.java:410)
+at java.util.jar.Manifest.read(Manifest.java:199)
+at java.util.jar.JarInputStream.<init>(JarInputStream.java:83)
+at java.util.jar.JarInputStream.<init>(JarInputStream.java:60)
+at org.apache.catalina.util.ExtensionValidator.getManifest(ExtensionValidator.java:394)
+at org.apache.catalina.util.ExtensionValidator.validateApplication(ExtensionValidator.java:195)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5037)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:148)
+at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:1033)
+at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:774)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:148)
+at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:1033)
+at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:291)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:148)
+at org.apache.catalina.core.StandardService.startInternal(StandardService.java:443)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:148)
+at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:727)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:148)
+at org.apache.catalina.startup.Catalina.start(Catalina.java:621)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:616)
+at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:322)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:450)
+(And if only java.util.jar.Attributes.read reported WHICH attribute had the problem, we'd really be in business.)

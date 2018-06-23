@@ -1,0 +1,2 @@
+Bug 22081 – AST Exp Eval: variable declaration don't work for array type variables
+The current implementation don't manage variable declaration for array type

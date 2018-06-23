@@ -1,0 +1,7 @@
+Bug 54417 – Applet parameter name and value need to be quoted
+In my applet,I need some parameters.
+so,i configured the "Run Parameters"
+like this: selfModule="something,and another."
+but when i use "getParameter("selfModule")",i get "something,and" only.
+I mean it cann't read characters after a blank.
+Is this a bug? or my fault somewhere?

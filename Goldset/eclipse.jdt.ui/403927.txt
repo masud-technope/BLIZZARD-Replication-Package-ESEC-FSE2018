@@ -1,0 +1,23 @@
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/ASTNodes.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/GenericVisitor.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SefWorkSpace/SefTests/.classpath
+org.eclipse.jdt.ui.tests.refactoring/resources/SefWorkSpace/SefTests/.settings/org.eclipse.jdt.core.prefs
+org.eclipse.jdt.ui.tests.refactoring/resources/SefWorkSpace/SefTests/object_in/TestArrayAnnotations.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SefWorkSpace/SefTests/object_out/TestArrayAnnotations.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/SefTests.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/ASTFlattener.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/ASTNodeFactory.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/DimensionRewrite.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/util/JDTUIHelperClasses.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/TypeContextChecker.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/PromoteTempToFieldRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/sef/SelfEncapsulateFieldRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ChangeSignatureProcessor.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ExtractClassRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/HierarchyProcessor.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/util/AbstractExceptionAnalyzer.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/MethodExitsFinder.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/ASTResolving.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/QuickAssistProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/proposals/ChangeMethodSignatureProposal.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/proposals/TypeChangeCorrectionProposal.java

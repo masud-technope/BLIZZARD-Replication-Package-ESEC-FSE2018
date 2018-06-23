@@ -1,0 +1,3 @@
+Bug 74885 – Review all Threads created to see if they should be set as daemon
+We should review all our thread creation to correctly mark threads as deamon
+threads so that none of the threads could cause the VM not to terminate.

@@ -1,0 +1,4 @@
+Bug 234142 – [modelsync] DocShare plug-in should be split into core/ui
+Summary says it all.
+I also believe Scott was interested in abstracting out some kind of API around sending changes (or something like that).
+This would be a step forward in that direction in my opinion.

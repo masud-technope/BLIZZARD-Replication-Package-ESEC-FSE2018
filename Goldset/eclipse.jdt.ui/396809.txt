@@ -1,0 +1,7 @@
+org.eclipse.jdt.ui.tests/META-INF/MANIFEST.MF
+org.eclipse.jdt.ui.tests/testresources/PackageJavadocTests/JavadocHover_src.zip
+org.eclipse.jdt.ui.tests/testresources/PackageJavadocTests/testData.zip
+org.eclipse.jdt.ui.tests/testresources/PackageJavadocTests/testData_src.zip
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/AutomatedSuite.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/packageHover/PackageJavadocTests.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/hover/JavadocHover.java

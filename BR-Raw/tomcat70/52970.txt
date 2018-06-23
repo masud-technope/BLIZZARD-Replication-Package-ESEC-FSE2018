@@ -1,0 +1,21 @@
+52970 – MethodNotFoundException when using enum as one of method arguments
+Consider this JSF view snippet:
+----------------------------------------------------------------------
+<h:form>
+<h:commandButton value="submit" action="#{bean.submit('FOO')}" />
+</h:form>
+----------------------------------------------------------------------
+And this JSF bean snippet:
+----------------------------------------------------------------------
+@ManagedBean
+@RequestScoped
+public class Bean {
+public enum Type { FOO, BAR }
+public void submit(Type type) {
+System.out.println(type);
+}
+}
+----------------------------------------------------------------------
+This results in a javax.el.MethodNotFoundException.
+It works in Glassfish 3.
+EL 2.2 spec 1.18.6 tells that a string must be coerced to enum of type T.

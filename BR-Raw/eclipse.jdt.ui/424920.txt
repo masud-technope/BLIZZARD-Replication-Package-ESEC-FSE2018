@@ -1,0 +1,2 @@
+Bug 424920 – [1.8] Replace References to PackageQualifiedType by NameQualifiedType
+and associated changes as per bug 418979

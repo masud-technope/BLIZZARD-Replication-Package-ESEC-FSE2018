@@ -1,0 +1,4 @@
+51310 – Connector destroyInternal Execution
+In Tomcat 7.0.12 Connector#destroyInternal method has never been called while server is under shutdown.
+Therefore NIOBlockingSelector#close is never called.
+Is it bug or else?

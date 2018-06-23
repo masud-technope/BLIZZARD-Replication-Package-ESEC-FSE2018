@@ -1,0 +1,5 @@
+Bug 262877 – The JavaModel object needs to be handled by the JavaNavigatorLabelProvider
+With the addition of Go Into support in the Project Explorer, it is necessary to get the description of the JavaModel object (which is what the Package Explorer does in a hardwired manner).
+ The Project Explorer cannot do something similar, and has to resolve it through the normal label provider mechanism.
+A workaround was put in the ProjectExplorer class with bug 262606.
+To remove the workaround, see the lines in the ProjectExplorer that refer to bug 262606 and remove them.

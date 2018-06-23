@@ -1,0 +1,5 @@
+Bug 368015 – Support for source attachment encoding at classpath entry level
+Refer to bug #361356.
+We have to be able to specify encoding for classpath entries, which can be used for source attachments.
+The encoding will be stored on the classpath using an extra classpath attribute.
+For more details, look at bug 361356.

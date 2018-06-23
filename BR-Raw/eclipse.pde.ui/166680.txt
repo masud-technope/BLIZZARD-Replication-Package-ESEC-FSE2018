@@ -1,0 +1,11 @@
+Bug 166680 – META-INF should be seen as a package name in the bundle manifest
+In order to provide jsr199 support, I need to define a service which provides our implementation of the jsr199 as a possible java compiler.
+In order to do that I define a file called javax.tool.JavaCompiler inside the META-INF/services folder.
+This folder is located in a source folder in order to be copied to the output folder.
+Inside the package explorer META-INF/services is seen as a non-java resources.
+In order to make it visible to other plugins (like my test plugin), I need to add it as part of the Export-Package section of the bundle manifest.
+Export-Package: org.eclipse.jdt.compiler.tool,
+META-INF.services
+On the line that contains it, I get an error saying that "Package 'META-INF.services' does not exist in this plug-in".
+Since I need this line, I'd like it to be error-free.
+To reproduce the problem, check out the project org.eclipse.jdt.compiler.tool from dev.eclipse.org.

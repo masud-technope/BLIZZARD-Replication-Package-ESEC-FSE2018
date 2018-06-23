@@ -1,0 +1,7 @@
+Bug 29297 – Debug does not honor multiple output folders
+When project has multiple output folders, debug does not find new version of
+compiled class (Hot code replace).
+It looks like debugger searches only default
+output folder and not changed classe's own output folder.
+Project properties -> Java build path -> Source -> Source folders on build
+path -> Allow output folders per source folder

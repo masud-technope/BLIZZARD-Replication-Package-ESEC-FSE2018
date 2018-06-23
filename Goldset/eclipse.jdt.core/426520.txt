@@ -1,0 +1,5 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/RunAllJava8Tests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/RunFormatterTests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/RunOnlyJava8Tests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/formatter/FormatterBugs18Tests.java
+org.eclipse.jdt.core/formatter/org/eclipse/jdt/internal/formatter/CodeFormatterVisitor.java

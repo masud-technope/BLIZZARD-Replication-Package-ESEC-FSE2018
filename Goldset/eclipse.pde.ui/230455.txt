@@ -1,0 +1,4 @@
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/IDSService.java
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/text/DSComponent.java
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/text/DSService.java
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/IDSComponent.java

@@ -1,0 +1,27 @@
+Bug 272309 – [ds tooling] NPE in DSErrorReporter.reportIllegalCardinality(...)
+in i0414
+at various times the following appears in the log
+!MESSAGE Errors running builder 'Declarative Services Builder' on project 'org.e
+quinoxosgi.toast.swt.emergency'.
+!SUBENTRY 1 org.eclipse.pde.ds.core 2 75 2009-04-15 09:38:34.238
+!MESSAGE java.lang.NullPointerException encountered while running Declarative Se
+rvices Builder.
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.pde.internal.ds.core.builders.DSErrorReporter.reportIlleg
+alCardinality(DSErrorReporter.java:243)
+at org.eclipse.pde.internal.ds.core.builders.DSErrorReporter.validateRef
+erenceCardinality(DSErrorReporter.java:225)
+at org.eclipse.pde.internal.ds.core.builders.DSErrorReporter.validateRef
+erenceElements(DSErrorReporter.java:118)
+at org.eclipse.pde.internal.ds.core.builders.DSErrorReporter.validateCon
+tent(DSErrorReporter.java:76)
+at org.eclipse.pde.internal.ds.core.builders.DSBuilder.checkFile(DSBuild
+er.java:140)
+at org.eclipse.pde.internal.ds.core.builders.DSBuilder.access$2(DSBuilde
+r.java:131)
+at org.eclipse.pde.internal.ds.core.builders.DSBuilder$DeltaVisitor.visi
+t(DSBuilder.java:93)
+at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.j
+ava:68)
+at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.j

@@ -1,0 +1,16 @@
+Bug 72305 – JDIModelPresentation uses resource name with IJavaStratumLineBreakpoint
+When working with the stratum breakpoint support, I've run into scenarios where
+the configured source shown for a JSP doesn't map to a resource in the
+workspace.
+ We've managed to set a breakpoint by placing the marker on the
+workspace root, but the displayed text in the Breakpoints view doesn't reflect
+the source name and source path used when creating the breakpoint, just the name
+of the resource that was used.
+ Because we're using the workspace root, that
+ends up being "".
+ The breakpoint hits correctly and its properties dialog, when
+opened from the Breakpoints view, shows the correct title for the source name,
+but the text in the view itself is wrong.
+ I'd like to see
+JDIModelPresentation.getJavaStratumLineBreakpointText(IJavaStratumLineBreakpoint)
+modified to show the source name just like the properties dialog.

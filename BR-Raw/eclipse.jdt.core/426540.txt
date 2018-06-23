@@ -1,0 +1,11 @@
+Bug 426540 – [1.8][compiler] Inference/overload resolution failure
+// --
+import java.util.stream.Stream;
+import java.util.Collections;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+public class X {
+Object o = ((Stream<Integer>) null).collect(collectingAndThen(toList(), Collections::unmodifiableList));
+}
+This snippet fails to compile with HEAD.
+b123 likes the code fine.

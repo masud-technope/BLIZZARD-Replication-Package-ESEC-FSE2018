@@ -1,0 +1,1 @@
+ui/org.eclipse.ui.views.log/src/org/eclipse/ui/internal/views/log/LogView.java

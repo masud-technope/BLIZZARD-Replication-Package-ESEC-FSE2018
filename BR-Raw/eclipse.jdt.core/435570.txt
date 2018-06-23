@@ -1,0 +1,11 @@
+Bug 435570 – [1.8][null] @NonNullByDefault illegally tries to affect "throws E"
+//----
+@org.eclipse.jdt.annotation.NonNullByDefault
+public class Test<E> {
+void test() throws E {}
+}
+//----
+Error:
+void test() throws E {}
+^
+Nullness annotations are not applicable at this location

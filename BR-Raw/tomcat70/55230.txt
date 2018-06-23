@@ -1,0 +1,10 @@
+55230 – DirContextURLConnection.getInputStream() fails to reopen resources for ProxyDirContext
+There appears to be a bug in the DirContextURLConnection where it fails to reopen the resource in the getInputStream method when its context is a ProxyDirContext.
+The DirContextURLConnection's connect method has some special case code for the ProxyDirContext where it's stripping the hostName and the contextPath off of the path given by the URL, and then using that stripped path in its context.lookup call.
+This part works great.
+However, in the getInputStream method the DirContextURLConnection attempts to reopen the resource without doing this special case logic on the path used in the context lookup.
+It tries to look up the resource with the raw path from the URL object, which fails.
+A NamingException is thrown, which is swallowed, and the potentially stale resource from the initial call to connect is returned instead.
+In my application this isn't causing a logic issue because the resources I'm looking up aren't changing between the initial connection and the first call to getInputStream, but this bug is manifesting as a notable performance problem.
+Every time a bad path is passed into the ProxyDirContext it's actually causing quite a lot of NamingExceptions to be thrown as it tries alternative paths (see BaseDirContext.lookup).
+All of these exceptions are swallowed but what I'm seeing is that this is happening many times over the course of a request as my application is looking up different resources, and the time it takes to build all of these swallowed NamingExceptions has become significant.

@@ -1,0 +1,29 @@
+Bug 8683 – NPE after suspending VM attempting to step on system thread
+20020124++
+Suspend the VM
+Select the SignalDispatcher thread
+Hit step over
+Our code assumes that there is a top stack frame.
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$StepHandler.step(JDIThread.java:1510)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.stepReturn(JDIThread.java:1115)
+at org.eclipse.debug.internal.ui.actions.StepReturnActionDelegate.stepAction(StepReturnActionDelegate.java:29)
+at org.eclipse.debug.internal.ui.actions.StepActionDelegate.doAction(StepActionDelegate.java:22)
+at org.eclipse.debug.internal.ui.actions.ControlActionDelegate$1.run(ControlActionDelegate.java:91)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:56)
+at org.eclipse.debug.internal.ui.actions.ControlActionDelegate.run(ControlActionDelegate.java:86)
+at org.eclipse.debug.internal.ui.actions.ControlActionDelegate.run(ControlActionDelegate.java:123)
+at org.eclipse.ui.internal.PluginAction.runWithEvent(PluginAction.java:204)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:407)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetEvent(ActionContributionItem.java:361)
+at org.eclipse.jface.action.ActionContributionItem.access$0(ActionContributionItem.java:352)
+at org.eclipse.jface.action.ActionContributionItem$ActionListener.handleEvent(ActionContributionItem.java:47)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:74)
+at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:637)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:1413)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:1205)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:852)
+at org.eclipse.ui.internal.Workbench.run(Workbench.java:835)
+at org.eclipse.core.internal.boot.InternalBootLoader.run(InternalBootLoader.java:878)
+at org.eclipse.core.boot.BootLoader.run(BootLoader.java:321)
+at SlimLauncher.main(SlimLauncher.java:14)

@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.ui.templates/plugin.properties
+ui/org.eclipse.pde.ui.templates/src/org/eclipse/pde/internal/ui/templates/PDETemplateMessages.java
+ui/org.eclipse.pde.ui.templates/src/org/eclipse/pde/internal/ui/templates/ide/ViewTemplate.java
+ui/org.eclipse.pde.ui.templates/src/org/eclipse/pde/internal/ui/templates/pderesources.properties
+ui/org.eclipse.pde.ui.templates/templates_3.0/view/contexts.xml
+ui/org.eclipse.pde.ui.templates/templates_3.0/view/java/$className$.java

@@ -1,0 +1,83 @@
+51610 – Context fails to reload after an error in web.xml was corrected
+With current trunk.
+Steps to reproduce:
+1.
+Start Tomcat 7
+2.
+Go to webapps/examples/WEB-INF/web.xml and uncomment <filter-mapping> for "Timing Filter" (line 75).
+3.
+Wait several seconds.
+The examples webapp is reloaded, but fails to start.
+This happens because there is a typo.
+The <filter-name> value should be
+s/Timing Filter/Timing filter/.
+There is stack trace in the logs:
+[[[
+04.08.2011 8:09:39 org.apache.catalina.startup.HostConfig checkResources
+WARNING: Error during context [/examples] restart
+java.lang.IllegalArgumentException: Filter mapping specifies an unknown filter name Timing Filter
+at org.apache.catalina.core.StandardContext.validateFilterMap(StandardContext.java:2950)
+at org.apache.catalina.core.StandardContext.addFilterMap(StandardContext.java:2915)
+at org.apache.catalina.deploy.WebXml.configureContext(WebXml.java:1206)
+at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1343)
+at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:896)
+at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:322)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:89)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5103)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:145)
+at org.apache.catalina.startup.HostConfig.checkResources(HostConfig.java:1279)
+at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1360)
+at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:294)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:89)
+at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1240)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1398)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1408)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1387)
+at java.lang.Thread.run(Thread.java:662)
+]]]
+4.
+Go to web.xml and edit it once again.
+E.g.
+re-comment the mapping, or correct the typo.
+5.
+Wait several seconds.
+Here is an issue:
+EXPECTED: The examples webapp should reload successfully.
+ACTUAL: Reload fails.
+The following is printed in the logs:
+04.08.2011 8:09:59 org.apache.catalina.startup.HostConfig checkResources
+INFO: Reloading context [/examples]
+04.08.2011 8:09:59 org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/examples]] after start() had already been called.
+The second call will be ignored.
+6.
+Stop Tomcat.
+Here is the second issue:
+EXPECTED: Successful shutdown
+ACTUAL:
+[[[
+04.08.2011 8:14:10 org.apache.catalina.startup.Catalina stop
+SEVERE: Catalina.stop
+org.apache.catalina.LifecycleException: An invalid Lifecycle transition was attempted ([before_stop]) for component [StandardEngine[Catalina].StandardHost[localhost].StandardContext[/examples]] in state [STARTING_PREP]
+at org.apache.catalina.util.LifecycleBase.invalidTransition(LifecycleBase.java:387)
+at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:212)
+at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:1072)
+at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:225)
+at org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:1072)
+at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:225)
+at org.apache.catalina.core.StandardService.stopInternal(StandardService.java:502)
+at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:225)
+at org.apache.catalina.core.StandardServer.stopInternal(StandardServer.java:748)
+at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:225)
+at org.apache.catalina.startup.Catalina.stop(Catalina.java:694)
+at org.apache.catalina.startup.Catalina$CatalinaShutdownHook.run(Catalina.java:847)
+]]]
+This exception at shutdown happens only if examples webapp was correct when Tomcat started, but was broken afterwards.
+If it was already broken at startup time, nothing happens.
+7.
+Here is the third issue: when the above happens the shutdown sequence is apparently aborted abnormally.
+EXPECTED: "INFO: Stopping ProtocolHandler ["http-bio-8080"]" etc.
+messages
+ACTUAL: There are no messages after the "SEVERE: Catalina.stop" one that I cited above.

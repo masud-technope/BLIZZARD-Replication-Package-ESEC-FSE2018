@@ -1,0 +1,8 @@
+Bug 9241 – API - java launch configs should be headless
+Currently, the launch configs for launching java programs (local, remote) live
+in the java debug ui plug-in.
+It would be good to have these in the core or
+lanuching plug-in to allow headless launching.
+Issues:
+(1) source locator specification (UI source locator)
+(2) error reporting (dialog, when verifying attributes)

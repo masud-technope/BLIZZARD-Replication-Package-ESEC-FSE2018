@@ -1,0 +1,6 @@
+Bug 135612 – [clean up] Add and use common operator precedence code
+I found 3 spots where JDT/UI code explicitly deals with operator precedence:
+- AdvancedQuickAssistProcessor.getExpressionPrecedence(Expression)
+- ExpressionsFix.UnnecessaryParenthesisVisitor.getExpressionPrecedence(Expression)
+- OperatorPrecedence.getValue(Expression)
+These should be unified into one.

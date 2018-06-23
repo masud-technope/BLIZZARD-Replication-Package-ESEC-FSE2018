@@ -1,0 +1,10 @@
+org.apache.tomcat.websocket.pojo.PojoEndpointBase.doOnOpen
+org.apache.tomcat.websocket.pojo.PojoEndpointServer.onOpen
+org.apache.tomcat.websocket.server.WsHttpUpgradeHandler.init
+org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process
+org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun
+org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run
+java.util.concurrent.ThreadPoolExecutor.runWorker
+java.util.concurrent.ThreadPoolExecutor$Worker.run
+org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run
+java.lang.Thread.run

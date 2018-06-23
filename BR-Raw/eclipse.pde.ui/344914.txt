@@ -1,0 +1,7 @@
+Bug 344914 – API problems in 'org.eclipse.help.base'
+I20110505-0800 and 3.7 M7.
+Was OK in 3.7 M6.
+API Tools reports problems with 'org.eclipse.help.base':
+http://download.eclipse.org/eclipse/downloads/drops/I20110505-0800/apitools/apitoolsverifications/html/org.eclipse.help.base/report.html
+I don't know whether the breakage is expected.
+If so, those problems should be filtered.

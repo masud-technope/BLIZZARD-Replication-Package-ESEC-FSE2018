@@ -1,0 +1,11 @@
+Bug 489963 – Improve the performance of the Region class
+While profiling the code for the new index, I discovered a hotspot in the Region class.
+It appears that creating large Regions is quite expensive and degenerates to O(n^2) time to to all the linear-time insertions.
+I've implemented an alternative version that uses a tree representation instead of a flat list, which massively improves runtime performance (it drops from being a top hotspot to being too fast to measure with my sampling profiler).
+This makes sense because all the operations drop from O(n) time to O(d), where d is the path length, n is the number of elements, and d << n.
+Please see the attached patch.
+Note that this has a memory cost.
+The memory usage for small regions will increase by about a factor of 5 (estimated), but its growth rate for large regions should remain about the same.
+I don't believe the memory cost to be an issue, since I don't generally see a lot of Region instances in memory at once.
+If we believe this to be a problem, I know of a fix...
+but it would be complicated so we shouldn't go there unless we actually need it.

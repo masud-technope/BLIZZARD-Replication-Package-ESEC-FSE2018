@@ -1,0 +1,14 @@
+Bug 403457 – [1.8][compiler] NPE in WildcardBinding.signature
+BETA_JAVA8:
+The following program triggers an NPE:
+// ---
+//import java.util.Map;
+import java.lang.annotation.*;
+public class X {
+void foo(Map<@Marker ? super @Marker Object, @Marker ? extends @Marker String> m){}
+void goo(Map<@Marker ? extends @Marker Object, @Marker ? super @Marker String> m){}
+}
+@Target(ElementType.TYPE_USE)
+@interface Marker {
+}
+If the import is uncommented, it compiles OK.

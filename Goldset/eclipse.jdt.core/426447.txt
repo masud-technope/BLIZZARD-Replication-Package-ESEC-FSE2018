@@ -1,0 +1,4 @@
+org.eclipse.jdt.compiler.apt.tests/src/org/eclipse/jdt/compiler/apt/tests/FileManagerTests.java
+org.eclipse.jdt.compiler.apt/src/org/eclipse/jdt/internal/compiler/apt/util/EclipseFileManager.java
+org.eclipse.jdt.compiler.tool.tests/src/org/eclipse/jdt/compiler/tool/tests/CompilerToolTests.java
+org.eclipse.jdt.compiler.tool/src/org/eclipse/jdt/internal/compiler/tool/EclipseFileManager.java

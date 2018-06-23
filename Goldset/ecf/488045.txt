@@ -1,0 +1,9 @@
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/comm/tcp/SSLClient.java
+framework/bundles/org.eclipse.ecf.provider/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/core/util/ClassResolverObjectInputStream.java
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/internal/provider/ProviderPlugin.java
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/core/util/BundleClassResolver.java
+providers/bundles/org.eclipse.ecf.provider.remoteservice/src/org/eclipse/ecf/provider/remoteservice/generic/RegistrySharedObject.java
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/generic/SOContainer.java
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/comm/tcp/Client.java
+providers/bundles/org.eclipse.ecf.provider.remoteservice/META-INF/MANIFEST.MF

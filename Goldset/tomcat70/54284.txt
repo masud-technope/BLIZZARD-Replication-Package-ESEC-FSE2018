@@ -1,0 +1,9 @@
+java/org/apache/catalina/core/ApplicationContext.java
+java/org/apache/catalina/core/LocalStrings.properties
+java/org/apache/catalina/deploy/FilterDef.java
+java/org/apache/catalina/deploy/LocalStrings.properties
+java/org/apache/catalina/deploy/ServletDef.java
+test/org/apache/catalina/core/TestApplicationContext.java
+test/org/apache/catalina/deploy/TestFilterDef.java
+test/org/apache/catalina/deploy/TestServletDef.java
+webapps/docs/changelog.xml

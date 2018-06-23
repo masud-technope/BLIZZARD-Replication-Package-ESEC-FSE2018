@@ -1,0 +1,8 @@
+Bug 11317 – Won't export some files to .jar.
+Create a new java project called "Foo".
+In the file system, create a folder named "Foo scripts", and in this folder
+create a file named "foo.txt".
+Drag this folder into the eclipse packages view and add it to the "Foo" project.
+Now try to export the project "Foo" to a .jar file.
+ Only the manifest file
+shows up, even if the file "foo.txt" is checked!

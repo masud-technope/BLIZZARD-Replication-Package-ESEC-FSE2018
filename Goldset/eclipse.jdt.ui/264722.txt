@@ -1,0 +1,7 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/callhierarchy/SearchUtil.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/JavaSearchScopeFactory.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/SearchUtil.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/workingsets/WorkingSetComparator.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/workingsets/WorkingSetConfigurationDialog.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/workingsets/WorkingSetFilterActionGroup.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/workingsets/WorkingSetModel.java

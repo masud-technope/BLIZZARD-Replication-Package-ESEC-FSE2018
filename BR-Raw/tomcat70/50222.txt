@@ -1,0 +1,4 @@
+50222 – JreMemoryLeakPreventionListener should speculatively cause memory leaks using the system ClassLoader
+JreMemoryLeakPreventionListener intentionally invokes methods known to pin the context ClassLoader in memory in order to avoid having a WebappClassLoader unintentionally pin itself.
+This may cause undesirable behavior in embedded environments.
+Instead, JMLPL could use a security context to temporarily set the current context ClassLoader to be the system ClassLoader and solve the embedded situation without the client having to remember to take this care.

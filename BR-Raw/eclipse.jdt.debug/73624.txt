@@ -1,0 +1,13 @@
+Bug 73624 – Don't prompt for main class when main class is selected
+eclipse 3.1 build 200409070800
+Select a java compilation unit in the Package Explorer.
+Make sure it is one
+that contains a class with a main method (so we'll call it a "main class"),
+and that there are other main classes in the same package.
+Right-click to get
+a menu, and select Run -> Java Application.
+I do not expect to get a dialog at this time that asks me which class I would
+like to run, because I have already said which class I would like to run.
+Please look to see if the user has a main class or CU selected (or a method in
+a main class) and use this information to avoid bringing up the redundant
+dialog.

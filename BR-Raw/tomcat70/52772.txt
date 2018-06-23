@@ -1,0 +1,23 @@
+52772 – JspC : checking uriRoot option validness
+In org.apache.jasper.JspC#execute() method,
+if uriRoot is not null,
+it scans all jsp files under uriRoot,
+and then checks if uriRoot is a directory.
+It should be more desirable to check if uriRoot is a directory or not first and then scanning it.
+Here are my suggestion.
+if (uriRoot == null) {
+throw new JasperException(
+Localizer.getMessage("jsp.error.jspc.no_uriroot"));
+}
+File uriRootF = new File(uriRoot);
+if (!uriRootF.exists() || !uriRootF.isDirectory()) {
+throw new JasperException(
+Localizer.getMessage("jsp.error.jspc.uriroot_not_dir"));
+}
+if( context==null ) {
+initServletContext();
+}
+// No explicit pages, we'll process all .jsp in the webapp
+if (pages.size() == 0) {
+scanFiles(uriRootF);
+}

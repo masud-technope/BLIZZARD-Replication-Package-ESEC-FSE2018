@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PluginPathFinder.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/util/VersionUtil.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/launcher/EclipseApplicationLaunchConfiguration.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/launcher/JUnitLaunchConfigurationDelegate.java

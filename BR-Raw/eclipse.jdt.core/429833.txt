@@ -1,0 +1,29 @@
+Bug 429833 – [1.8][compiler] Missing types cause NPE in lambda analysis.
+From https://bugs.eclipse.org/bugs/show_bug.cgi?id=425152#c8
+--------------------------------------------
+package bug;
+interface I1 { int foo(String i); }
+class Y {
+I1 i = (a) -> {
+a.charAt(0);
+};
+}
+--------------------------------------------
+Place caret at end of "String" and press Backspace to delete 'g'.
+We get this exception:
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.analyseCode(MessageSend.java:123)
+at org.eclipse.jdt.internal.compiler.ast.Block.analyseCode(Block.java:52)
+at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.analyseCode(LambdaExpression.java:485)
+at org.eclipse.jdt.internal.compiler.ast.FieldDeclaration.analyseCode(FieldDeclaration.java:91)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.internalAnalyseCode(TypeDeclaration.java:703)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.analyseCode(TypeDeclaration.java:265)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.analyseCode(CompilationUnitDeclaration.java:122)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1211)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:693)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1187)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:813)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider$1.run(ASTProvider.java:548)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.createAST(ASTProvider.java:541)
+...

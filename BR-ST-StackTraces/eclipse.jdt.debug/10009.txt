@@ -1,0 +1,9 @@
+org.eclipse.swt.internal.motif.OS.XtOpenDisplay
+org.eclipse.swt.widgets.Display.createDisplay
+org.eclipse.swt.widgets.Display.create
+org.eclipse.swt.graphics.Device.<init>
+org.eclipse.swt.widgets.Display.<init>
+org.eclipse.swt.widgets.Display.<init>
+org.eclipse.swt.widgets.Display.getDefault
+org.eclipse.core.internal.plugins.PluginRegistry$2.run
+org.eclipse.core.internal.plugins.PluginRegistry.accept

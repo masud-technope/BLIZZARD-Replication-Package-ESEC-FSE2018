@@ -1,0 +1,12 @@
+Bug 259413 – [refactoring] Handler conflicts in refactoring previews
+Not yet in HEAD.
+There are handler conflicts in refactoring previews.
+1.
+select a Java element
+2.
+start Rename refactoring (using dialog)
+3.
+when the preview is visible press 'Back'
+4.
+press 'Preview'
+==> handler conflicts

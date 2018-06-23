@@ -1,0 +1,7 @@
+Bug 488461 – Javadoc for CompilationParticipant.isAnnotationProcessor() is not accurate
+Javadoc for CompilationParticipant#isAnnotationProcessor() is not accurate.
+It says:
+Returns whether this participant is interested in only Annotations.
+but that's not what it does.
+It only tells whether annotations are processed by calling CompilationParticipant#processAnnotations(BuildContext[]).
+Other APIs of the CompilationParticipant are not affected.

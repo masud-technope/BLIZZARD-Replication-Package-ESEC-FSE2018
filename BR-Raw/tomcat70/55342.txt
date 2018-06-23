@@ -1,0 +1,9 @@
+55342 – Lost interruption
+org.apache.tomcat.jdbc.pool.ConnectionPool#close should not call Thread.interrupted() because interrupt was already reset by code that thrown InterruptedException.
+} catch (InterruptedException ex) {
+if (getPoolProperties().getPropagateInterruptState()) {
+Thread.currentThread().interrupt();
+-     } else {
+-         Thread.interrupted();
+}
+}

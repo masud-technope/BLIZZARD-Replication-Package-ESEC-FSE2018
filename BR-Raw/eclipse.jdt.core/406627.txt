@@ -1,0 +1,25 @@
+Bug 406627 – [1.8][compiler][codegen] Annotations on lambda parameters go the way of /dev/null
+BETA_JAVA8:
+Given the program below, annotations on lambda parameters do not
+show up in the class file, despite the retention being runtime.
+Interestingly JDK 8b81 also has the same problem.
+// ----
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+interface I {
+void doit (Object o, Object p);
+}
+public class X {
+I i = (@Annotation Object o, @Annotation Object p) -> {
+};
+void foo(@Annotation Object o, @Annotation Object p) {
+}
+}
+@Target(ElementType.PARAMETER)
+@Retention(RetentionPolicy.RUNTIME)
+@interface Annotation {
+}
+// ---
+Problem is in org.eclipse.jdt.internal.compiler.ClassFile.generateMethodInfoAttributes(MethodBinding) - there is an expectation of AMD, which needs to be reconciled.

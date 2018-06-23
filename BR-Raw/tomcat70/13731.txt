@@ -1,0 +1,11 @@
+13731 – Final request, response, session and other variables.
+Provide a capability to declare request, response, session and other variables
+in jspService function as final.
+As tunable feature, just like others, in
+tomcat`s web.xml file.
+Why need this feature? To use request, response, session variables in anonymous
+implementations of classes.
+For example - declaration of iterator through
+elements, which includes some other JSP file (statically).
+And usage of this
+iterator in other JSP file.

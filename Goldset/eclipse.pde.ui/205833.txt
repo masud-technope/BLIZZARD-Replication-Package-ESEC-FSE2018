@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/exports/ProductExportOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/launcher/EclipseApplicationLaunchConfiguration.java

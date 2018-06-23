@@ -1,0 +1,18 @@
+Bug 113909 – Support for execution environments
+It would be advantageous to be able to install a JRE (i.e.
+have it listed in the
+Installed JREs list and usable in the IDE) via an extension point.
+ When
+packaging tools and/or runtime environment, we would like to be able to install
+the JRE that is associated with our runtime.
+ Currently, in requires a good
+amount of Java code to get the JRE installed programmatically.
+ Having an
+extension point that allows us to give the location of a JRE, the type of JRE
+and a name for the JRE would be useful to many tooling and RCP developers.
+ It
+would also be advantageous to add a description for the JRE (to the UI as well).
+Jeff and Wassim suggested that it would also be useful to point to the JRE
+profile from the extension point.
+ The PDE will be using the profile, so being
+able to specify this with the JRE would be very useful.

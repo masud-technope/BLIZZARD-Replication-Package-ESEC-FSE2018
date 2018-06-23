@@ -1,0 +1,6 @@
+50726 – Jasper can generate uncompilable source code if genStringAsCharArray is turned on
+Our jsp pages are compiled at build time.
+If I turn on genStringAsCharArray optimization switch, in some cases there will be longer lines in the generated java code than the javac compiler can process.
+It provides the following error message:
+[javac] Compiling 1609 source files to d:\...\jspc\classes
+[javac] d:\...\jspc\src\org\apache\jsp\WEB_002dINF\..._005fAPP\pages\termsconditions\TermsAndConditions_005fms_005fMY_jsp.java:96: constant string too long

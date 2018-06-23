@@ -1,0 +1,4 @@
+Bug 181997 – AbstractLauncherToolbar leaks menus
+I20070410-1043
+AbstractLauncherToolbar leaks the menus it creates in createValidateItem(..).
+createFilterItem(..) would also leak, but it seems to be unused.

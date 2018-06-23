@@ -1,0 +1,4 @@
+package Sample;
+
+class Sample {
+}

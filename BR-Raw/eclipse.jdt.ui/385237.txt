@@ -1,0 +1,37 @@
+Bug 385237 – [move member type] Moving a member interface to its own file adds the host's type parameters to it
+Build Identifier: I20120608 - 1400
+Interfaces are inherently static, therefore interfaces that are members of an enclosing type do not inherit type parameters from their hosts.
+ The Eclipse compiler knows this.
+ For example, given this code
+class Foo<T> {
+interface Bar {
+T baz();
+}
+}
+the compiler reports an error "Cannot make a static reference to the non-static type T".
+ Perfect.
+The refactoring engine seems to be confused on this issue, however.
+ If we correct the above code to
+class Foo<T> {
+interface Bar {
+void baz();
+}
+}
+and then attempt to refactor it to a top-level type via Refactor > Move Type to New File, then the original host class's type parameter(s) are added to the resulting top-level interface:
+interface Bar<T> {
+void baz();
+}
+The original, unparametrized interface is erroneously transformed into a parametrized one.
+ At least the refactoring engine is (maddeningly) consistent in that it adds the new type parameter to all declarations involving the moved interface type.
+ What a mess!
+For comparison, the refactoring engine gets it right with static classes: the host's type parameters do not get tagged onto a static member class when it is moved to top level.
+ In particular, if the example interface is changed to a pure abstract class then it does not get an added type parameter when it is moved.
+I am inclined to rate the severity of this issue as "Major", as it can do quite a lot of damage, but I leave it as "Normal" instead mainly because I suspect that this kind of refactoring is relatively uncommon.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Create a parametrized class with a member interface
+2.
+In the Java editor, right-click the name of the member interface and select "Refactor" > "Move Type to New File..." from the context menus
+3.
+Click "Ok" on the confirmation dialog

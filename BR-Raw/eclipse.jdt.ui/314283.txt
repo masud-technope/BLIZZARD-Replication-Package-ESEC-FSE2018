@@ -1,0 +1,17 @@
+Bug 314283 – [package explorer][render] Decorator on CUs for deprecated and package-visible
+Build Identifier: 20100318-1801
+In the Preferences window (General->Appearance->Label Decorations) user can set a check-box "Java Type Indicator".
+If the box is checked, small icons appear in the Package Explorer: I (interface), A (abstract), E (enum).
+I propose the following extensions:
+1) (more important).
+Add check-box "Java Deprecated Decorator" which means that deprecated classes will be highlighted somehow in Package Explorer.
+At once I can imagine 3 variants a) strike-out; b) italic; c) diagonal line like in Outline.
+As for me, (a) strike-out is the best variant (if the name of a class remains readable).
+2) (less important).
+Add the check-box "Java Throwable Indicator/Decorator"  for Throwable and possibly for abstract Throwable (because Throwable can be abstract also).
+It can be a) Indicator, so small icon will be shown for Throwable (maybe letter "T" and letters "AT" for abstract one).
+Or b) Decorator and the name of the class become italic for example (if deprecated decorator is not italic) or something like this.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Open Package Explorer.

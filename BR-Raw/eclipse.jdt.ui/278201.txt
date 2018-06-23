@@ -1,0 +1,19 @@
+Bug 278201 – [quick fix] 'Remove static modifier' is not a possible solution for constants in interfaces
+Build ID: Version: 3.4.2 Build id: M20090211-1700
+Steps To Reproduce:
+In
+interface I
+{
+int i = 2;
+}
+class IImpl implements I
+{
+public static void main( String[] args )
+{
+IImpl impl = new IImpl();
+System.out.println( impl.i );  // <-
+}
+}
+Eclipse gives a message on impl.i to remove the static modifier.
+This shouldn't be in the list of quick fixes.
+More information:

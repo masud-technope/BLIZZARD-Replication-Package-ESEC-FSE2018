@@ -1,0 +1,2 @@
+Bug 473448 – fix handling of chat tab identification and selection
+Currently the Messages chat tab identification is not done properly, leading to multiple chat tabs being created for each messaging dialog.

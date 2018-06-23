@@ -1,0 +1,14 @@
+org.eclipse.jdt.core/formatter/org/eclipse/jdt/internal/formatter/DefaultCodeFormatterOptions.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/rewrite/describing/ASTRewritingReferenceExpressionTest.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/formatter/FormatterBugsTests.java
+org.eclipse.jdt.core.tests.model/workspace/FormatterJSR308/test015/X_out.java
+org.eclipse.jdt.core.tests.model/workspace/FormatterJSR335/testMethodReference/A_out.java
+org.eclipse.jdt.core.tests.model/workspace/Formatter/test562/A_out.java
+org.eclipse.jdt.core.tests.model/workspace/FormatterJSR308/test033/X_out.java
+org.eclipse.jdt.core/formatter/org/eclipse/jdt/internal/formatter/SpacePreparator.java
+org.eclipse.jdt.core.tests.model/workspace/Formatter/test563/A_out.java
+org.eclipse.jdt.core.tests.model/workspace/Formatter/test581/A_out.java
+org.eclipse.jdt.core.tests.model/workspace/FormatterJSR308/test038/X_out.java
+org.eclipse.jdt.core.tests.model/workspace/FormatterJSR308/test034/X_out.java
+org.eclipse.jdt.core/formatter/org/eclipse/jdt/core/formatter/DefaultCodeFormatterConstants.java
+org.eclipse.jdt.core.tests.model/workspace/FormatterJSR308/test032/X_out.java

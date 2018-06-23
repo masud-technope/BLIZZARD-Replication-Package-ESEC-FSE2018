@@ -1,0 +1,3 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/JavaElementLine.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/OccurrencesSearchLabelProvider.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/OccurrencesSearchResultPage.java

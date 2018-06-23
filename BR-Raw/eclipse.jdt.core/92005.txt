@@ -1,0 +1,107 @@
+Bug 92005 – AIOBE during content assist
+I20050414-1107
+Sun JDK 1.5.0-b64
+Tried using content assist in the Display view (while debugging).
+Didn't work,
+got the following exception.
+Sorry, don't know how to reproduce.
+Will add more
+details if I have any.
+!ENTRY org.eclipse.ui 4 4 2005-04-19 17:56:32.501
+!MESSAGE Unhandled event loop exception
+!ENTRY org.eclipse.ui 4 0 2005-04-19 17:56:32.501
+!MESSAGE -1
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException: -1
+at
+org.eclipse.jdt.internal.compiler.parser.Parser.getUnspecifiedReference(Parser.java:7893)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionParser.buildMoreCompletionContext(CompletionParser.java:466)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionParser.attachOrphanCompletionNode(CompletionParser.java:356)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionParser.updateRecoveryState(CompletionParser.java:3291)
+at
+org.eclipse.jdt.internal.compiler.parser.Parser.resumeOnSyntaxError(Parser.java:9173)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:8355)
+at
+org.eclipse.jdt.internal.codeassist.impl.AssistParser.parseBlockStatements(AssistParser.java:1215)
+at
+org.eclipse.jdt.internal.codeassist.impl.Engine.parseBlockStatements(Engine.java:193)
+at
+org.eclipse.jdt.internal.codeassist.impl.Engine.parseBlockStatements(Engine.java:141)
+at
+org.eclipse.jdt.internal.codeassist.CompletionEngine.parseSnippeInitializer(CompletionEngine.java:1021)
+at
+org.eclipse.jdt.internal.codeassist.CompletionEngine.complete(CompletionEngine.java:930)
+at org.eclipse.jdt.internal.core.SourceType.codeComplete(SourceType.java:105)
+at org.eclipse.jdt.internal.core.SourceType.codeComplete(SourceType.java:75)
+at
+org.eclipse.jdt.internal.debug.ui.display.DisplayCompletionProcessor.computeCompletionProposals(DisplayCompletionProcessor.java:170)
+at
+org.eclipse.jdt.internal.debug.ui.display.DisplayCompletionProcessor.computeCompletionProposals(DisplayCompletionProcessor.java:143)
+at
+org.eclipse.jface.text.contentassist.ContentAssistant.computeCompletionProposals(ContentAssistant.java:1470)
+at
+org.eclipse.jface.text.contentassist.CompletionProposalPopup.computeProposals(CompletionProposalPopup.java:256)
+at
+org.eclipse.jface.text.contentassist.CompletionProposalPopup.access$7(CompletionProposalPopup.java:253)
+at
+org.eclipse.jface.text.contentassist.CompletionProposalPopup$1.run(CompletionProposalPopup.java:216)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:69)
+at
+org.eclipse.jface.text.contentassist.CompletionProposalPopup.showProposals(CompletionProposalPopup.java:211)
+at
+org.eclipse.jface.text.contentassist.ContentAssistant.showPossibleCompletions(ContentAssistant.java:1319)
+at org.eclipse.jface.text.source.SourceViewer.doOperation(SourceViewer.java:713)
+at
+org.eclipse.jdt.internal.debug.ui.display.DisplayViewAction.run(DisplayViewAction.java:51)
+at
+org.eclipse.jdt.internal.debug.ui.display.DisplayView$3.execute(DisplayView.java:273)
+at
+org.eclipse.ui.internal.handlers.LegacyHandlerWrapper.execute(LegacyHandlerWrapper.java:108)
+at org.eclipse.core.commands.Command.execute(Command.java:312)
+at
+org.eclipse.core.commands.ParameterizedCommand.execute(ParameterizedCommand.java:396)
+at
+org.eclipse.ui.internal.keys.WorkbenchKeyboard.executeCommand(WorkbenchKeyboard.java:452)
+at org.eclipse.ui.internal.keys.WorkbenchKeyboard.press(WorkbenchKeyboard.java:741)
+at
+org.eclipse.ui.internal.keys.WorkbenchKeyboard.processKeyEvent(WorkbenchKeyboard.java:784)
+at
+org.eclipse.ui.internal.keys.WorkbenchKeyboard.filterKeySequenceBindings(WorkbenchKeyboard.java:543)
+at
+org.eclipse.ui.internal.keys.WorkbenchKeyboard.access$3(WorkbenchKeyboard.java:486)
+at
+org.eclipse.ui.internal.keys.WorkbenchKeyboard$KeyDownFilter.handleEvent(WorkbenchKeyboard.java:110)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:82)
+at org.eclipse.swt.widgets.Display.filterEvent(Display.java:777)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:841)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:866)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:851)
+at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:879)
+at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:875)
+at org.eclipse.swt.widgets.Widget.wmChar(Widget.java:1182)
+at org.eclipse.swt.widgets.Control.WM_CHAR(Control.java:3125)
+at org.eclipse.swt.widgets.Control.windowProc(Control.java:3028)
+at org.eclipse.swt.widgets.Display.windowProc(Display.java:3467)
+at org.eclipse.swt.internal.win32.OS.DispatchMessageW(Native Method)
+at org.eclipse.swt.internal.win32.OS.DispatchMessage(OS.java:1629)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2526)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1570)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:1534)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:306)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:143)
+at org.eclipse.ui.internal.ide.IDEApplication.run(IDEApplication.java:103)
+at
+org.eclipse.core.internal.runtime.PlatformActivator$1.run(PlatformActivator.java:228)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:156)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.core.launcher.Main.invokeFramework(Main.java:316)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:269)
+at org.eclipse.core.launcher.Main.run(Main.java:948)
+at org.eclipse.core.launcher.Main.main(Main.java:932)

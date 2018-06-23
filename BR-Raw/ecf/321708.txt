@@ -1,0 +1,3 @@
+Bug 321708 – Modularize XMPP provider WRT to remoteservices and datashare dependencies
+provider.xmpp depends on remoteservices/provider.remoteservices as well as datashare/provider.datashare just to implement an adapter that gets activated iff consumers use the xmpp provider for remoteservices or datashare.
+Following the divide and conquer metapher, those two dependencies should be refactored into fragements that allow consumers to add remoteservice/datashare functionality at deploy time.

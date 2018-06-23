@@ -1,0 +1,22 @@
+Bug 461863 – [import rewrite] addImport creates .ypename for unqualified type from default package
+master
+- copy the following to the clipboard:
+------------------------------
+public class Default {
+Default d;
+}
+package p;
+public class C {
+C c;
+}
+------------------------------
+- open the Package Explorer, clear the selection, paste
+- go to Default.java
+- select line "Default d;"
+- copy
+- go to C.java
+- set caret to the empty line
+- paste
+=> expected: as in 4.4, you should get an "import Default;"
+=> was: you get an "import .efault;"
+If you copied multiple type references from the default package, and the preferences are set to create star-imports, then you can produce "import .*;".

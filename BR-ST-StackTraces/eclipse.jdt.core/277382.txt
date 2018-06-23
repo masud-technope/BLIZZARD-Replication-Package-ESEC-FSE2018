@@ -1,0 +1,5 @@
+org.eclipse.jdt.internal.compiler.parser.Parser.consumeClassHeaderName1
+org.eclipse.jdt.internal.compiler.parser.Parser.consumeRule
+org.eclipse.jdt.internal.compiler.parser.Parser.parse
+org.eclipse.jdt.internal.compiler.parser.Parser.parse
+org.eclipse.jdt.internal.compiler.parser.Parser.parse

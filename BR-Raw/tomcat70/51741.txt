@@ -1,0 +1,7 @@
+51741 – Eclipse WTP "Serve modules without publishing" broken with tc7, needs patch in tomcat
+Eclipse WTP has an option "Serve modules without publishing" that works well with tc6, but not with tc7.
+After investigation by the WTP team, there seem to be no way for them to fix this without modifying tomcat.
+The problem in WTP is reported here : https://bugs.eclipse.org/bugs/show_bug.cgi?id=333102
+Basically, their DirContext implementation (org.eclipse.jst.server.tomcat.loader.WtpDirContext) returns a ResourceAttributes that correctly points to an existing location, but org.apache.catalina.loader.WebappClassLoader.findResourceInternal(String, String) ignores it and returns a ResourceEntry whose codeBase and source fields point to a non-existing location.
+This breaks applications that call getResource(...) on the Thread ContextClassLoader and use the returned URL.
+A call to getResourceAsStream(...) on the Thread CCL is OK.

@@ -1,0 +1,41 @@
+Bug 422468 – [1.8][assist] Code assist issues with type elided lambda parameters
+BETA_JAVA8:
+At present, there are a set of problems in the way type elided lambda parameters
+are handled by SelectionEngine/SelectionParser.
+Similar but different issues
+exist with CompletionEngine/CompletionParser too.
+Given:
+// --
+interface I {
+String foo(String x, Integer y);
+}
+public class X {
+static void foo(I i) {}
+public static void main(String[] args) {
+foo((x, y) -> x + y);
+}
+}
+(1) if you hover on either of x or y in x + y, we claim those are of type
+Object - this is blatantly wrong, but happens because the selection parser
+builds minimal parse trees in which a good bit of the pertinent contextual
+information is lost.
+The flattened parse tree for the method looks like:
+public static void main(String[] args) {
+(<no type> x, <no type> y) -> <SelectOnName:y>;
+}
+See that the fact about lambda being a method parameter is completely
+lost.
+I see this as requiring good amount of work to get correctly.
+Because
+lambda's can occur is deeply nested subexpressions, involving numerous
+node types, this is not going to be easy solution to "enhance" the
+selection/completion parser
+(2) If you hover on the parameter declaration, you get nothing.
+This is
+problematic as users will identify this as a classic situation where the
+IDE should help clarify things for them.
+(3) The hover on the use actually claims:
+Object y - X.main(String[])
+This could perhaps be due to bug 416559 ?
+// --
+Discussions welcome on how to go about solving this or alternate strategies.

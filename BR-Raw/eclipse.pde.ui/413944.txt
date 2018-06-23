@@ -1,0 +1,3 @@
+Bug 413944 – Consider removing generics from the ImageBrowserView / IFilter code
+Currently in the new Image browser stuff the interface IFilter has been generified with type T, but there is no reason to do so - implementations can simply take an array of IFilter and the accept method can simply take a ImageElement (which is all it currently does).
+Feels to me like the use of generics in this case is adding complexity for complexity's sake.

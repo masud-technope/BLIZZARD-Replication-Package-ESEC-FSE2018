@@ -1,0 +1,42 @@
+54440 – TagPluginManager.init() throws NPE when used in Ant <jasper> task
+In 7.0.35, I see the following NPE when compiling JSPX files via the <jasper> Ant task:
+[jasper] java.lang.NullPointerException
+[jasper] 	at org.apache.jasper.compiler.TagPluginManager.init(TagPluginManager.java:83)
+[jasper] 	at org.apache.jasper.compiler.TagPluginManager.apply(TagPluginManager.java:57)
+[jasper] 	at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:240)
+[jasper] 	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:373)
+[jasper] 	at org.apache.jasper.JspC.processFile(JspC.java:1179)
+[jasper] 	at org.apache.jasper.JspC.execute(JspC.java:1329)
+[jasper] 	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+[jasper] 	at sun.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+[jasper] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[jasper] 	at java.lang.reflect.Method.invoke(Method.java:601)
+[jasper] 	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+[jasper] 	at org.apache.tools.ant.Task.perform(Task.java:348)
+[jasper] 	at org.apache.tools.ant.Target.execute(Target.java:390)
+[jasper] 	at org.apache.tools.ant.Target.performTasks(Target.java:411)
+[jasper] 	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
+[jasper] 	at org.apache.tools.ant.Project.executeTarget(Project.java:1368)
+[jasper] 	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+[jasper] 	at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
+[jasper] 	at org.apache.tools.ant.Main.runBuild(Main.java:809)
+[jasper] 	at org.apache.tools.ant.Main.startAnt(Main.java:217)
+[jasper] 	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:280)
+[jasper] 	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:109)
+This didn't happen in 7.0.34.
+Given the line and change from 7.0.34 (http://svn.apache.org/viewvc/tomcat/tc7.0.x/trunk/java/org/apache/jasper/compiler/TagPluginManager.java?r1=1402119&r2=1431228&diff_format=h) I assume that in...
+urls = ctxt.getClassLoader().getResources(
+84	 	                     META_INF_JASPER_TAG_PLUGINS_XML);
+the ClassLoader is null, since ctxt was used here before and evidently not null.
+Fall back to Thread.currentThread().getContextClassLoader() in this case?
+My Ant snippet:
+<import file="${tomcat.home}/bin/catalina-tasks.xml"/>
+...
+<jasper validateXml="false"
+failonerror="true"
+listerrors="true"
+trimspaces="true"
+uriroot="${module.web.basedir}/docs"
+outputDir="${module.web.basedir}/gen"
+package="*****"
+xpoweredBy="false"/>

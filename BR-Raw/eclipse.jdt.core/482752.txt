@@ -1,0 +1,60 @@
+Bug 482752 � [1.8][null] @NonNullByDefault does not apply to lambda parameter across classes
+It seems @NonNullByDefault on a functional interface is not considered when "implemented" using lambda expressions or method references in another class:
+======== Foo.java ========
+import org.eclipse.jdt.annotation.NonNull;
+public final class Foo {
+// Same method as in StringProcessor but does not compile
+public static StringProcessor createProcessorLambdaExpression() {
+// "Illegal redefinition of parameter value, inherited method from
+// StringProcessor does not constrain this parameter"
+return (@NonNull String value) -> Foo.test(value);
+}
+// Same method as in StringProcessor but emits warning
+public static StringProcessor createProcessorMethodReference() {
+// "Null type safety: parameter 1 provided via method descriptor
+// StringProcessor.process(String) needs unchecked conversion to
+// conform to '@NonNull String'"
+return Foo::test;
+}
+public static void test(@NonNull String value) {
+System.out.println(value);
+}
+}
+==========================
+== StringProcessor.java ==
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.NonNullByDefault;
+@NonNullByDefault
+public interface StringProcessor {
+void process(String value);
+// Same method as in Foo but compiles without warning
+public static StringProcessor createProcessorLambdaExpression() {
+return (@NonNull String value) -> Foo.test(value);
+}
+// Same method as in Foo but compiles without warning
+public static StringProcessor createProcessorMethodReference() {
+return Foo::test;
+}
+}
+==========================
+Steps to reproduce:
+1.
+Enable annotation-based null analysis
+2.
+Add the two Java files above to the project
+3.
+Copy library with default null annotations to build path (e.g.
+using quick fix)
+4.
+Modify (e.g.
+whitespace) in Foo.java and save to recompile it
+Notes:
+* Adding an explicit @NonNull to the parameter of process(…) fixes the problem but results in the expected warning "The nullness annotation is redundant with a default that applies to this location".
+* It does not matter if the classes are in the default package, together in another package or in different packages.
+* It does not matter where the @NonNullByDefault annotation is applied (at method level, class level or package level).
+* The problem appears only after an incremental build of Foo.java.
+After cleaning the project or disabling "Build Automatically" and running "Build All" the error and warning disappears until Foo.java is again built incrementally.
+* The @NonNullByDefault is respected when using a StringProcessor in class Foo: createProcessor…().process(null) fails (as expected) with "Null type mismatch: required '@NonNull String' but the provided value is null".
+* The @NonNullByDefault is also respected when implementing the interface using an anonymous inner class.
+Tested using "Eclipse Java Development Tools" 3.11.1.v20150904-0015 and 3.11.1.v20151118-1100 on Eclipse Mars 4.5.1 (20150924-1200).
+I hope this problem is not reported already, I did not find a matching bug report…

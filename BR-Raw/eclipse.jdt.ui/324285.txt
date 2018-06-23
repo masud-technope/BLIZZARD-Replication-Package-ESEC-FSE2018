@@ -1,0 +1,24 @@
+Bug 324285 – [JUnit] RemoteTestRunnerClient destroys line delimiters
+3.6 and HEAD.
+It took me quite a while to figure out why some of my tests failed until I noticed that the only difference were in the line delimiters.
+Test Case:
+1.
+paste this source:
+--- %< ---
+import junit.framework.TestCase;
+public class C extends TestCase {
+public void test1() {
+String s1= "a\nb";
+String s2= "a\r\nb";
+assertEquals(s2, s1);
+}
+}
+--- %< ---
+2.
+fix build path
+3.
+run it as JUnit Test
+4.
+compare the failing string result
+==> no diffs found and different line delimiters are not visible.
+JUnit delivers the correct results but the reader in RemoteTestRunnerClient hard-codes the line delimiters to '\n'.

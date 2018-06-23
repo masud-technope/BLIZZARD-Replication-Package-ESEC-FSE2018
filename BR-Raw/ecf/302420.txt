@@ -1,0 +1,6 @@
+Bug 302420 – [Discovery][JmDNS] Make listening interface configurable
+A new property should be added "net.mdns.interface" which make the listening interface configurable.
+E.g.
+-Dnet.mdns.interface=192.168.5.6 binds JmDNS to the interface with the IP address 192.168.5.6.
+Btw.
+"net.mdns.port" already allows to redefine the listening port.

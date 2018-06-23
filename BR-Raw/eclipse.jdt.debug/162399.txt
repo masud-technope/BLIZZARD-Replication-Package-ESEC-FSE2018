@@ -1,0 +1,18 @@
+Bug 162399 – Problem in the implementation of the support of JSR-045
+Suppose we have the JSP file:
+testSimpleTag.jsp:[<%@ page import="java.io.*" %> some string here]
+The valid SMAP for this JSP is:
+SMAP
+JEE_jsp_testSimpleTag_24890350_1152694486531_1152694491765.java
+JSP
+*S JSP
+*F
++ 0 testSimpleTag.jsp
+testSimpleTag.jsp
+*L
+1:38,0
+*E
+We use page directive before the String in order to be able to put a breakpoint on this line, otherwise eclipse offers to add a bookmark.
+The right behavior of the debugger should be when the jsp execution hits the breakpoint the IDE to stop on this line.
+However this does not happen.
+So the problem here is that although the SMAP is valid and a breakpoint is set on this single line of the JSP, when the JSP page is requested eclipse does not stop on this breakpoint.

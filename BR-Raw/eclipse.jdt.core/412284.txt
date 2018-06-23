@@ -1,0 +1,5 @@
+Bug 412284 – [1.8][compiler] Inspect all casts to/instanceof AbstractMethodDeclaration to eliminate potential CCEs
+Inspect all casts to and instance of checks for AbstractMethodDeclaration
+to eliminate potential CCEs" (when the operand of cast/instanceof is
+MethodScope.referenceContext)
+This is a follow up of bug 412155 comment 3

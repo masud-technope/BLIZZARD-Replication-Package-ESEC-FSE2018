@@ -1,0 +1,6 @@
+org.apache.tomcat.util.http.parser.HttpParser.parseMediaType
+org.apache.tomcat.util.http.parser.MediaTypeCache.parse
+org.apache.catalina.connector.Response.setContentType
+org.apache.catalina.connector.Response.checkSpecialHeader
+org.apache.catalina.connector.Response.setHeader
+org.apache.catalina.connector.ResponseFacade.setHeader

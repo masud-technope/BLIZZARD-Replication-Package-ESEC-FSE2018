@@ -1,0 +1,8 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/CompletionTests2.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/PackageFragmentRootInfo.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ReconcilerTests.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/PackageFragmentRoot.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JarPackageFragmentRoot.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/PackageFragment.java
+org.eclipse.jdt.core/codeassist/org/eclipse/jdt/internal/codeassist/CompletionEngine.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JarPackageFragment.java

@@ -1,0 +1,58 @@
+Bug 323208 – Distribution Provider exceeds startup time limit (5 sec) if existing services are present
+Created attachment 177060 [details]
+testcase
+I'm using Eclipse 3.6 with ECF 3.3
+I was trying to reproduce the problem I encountered with multiple hosts on the same machine with zookeeper when I ran into an exception when using jmdns.
+ To reproduce, unzip the attached workspace, run the consumer, run the first host, then run the second host.
+ You should get the following exception:
+!MESSAGE While loading class "org.eclipse.ecf.internal.osgi.services.distribution.DiscoveredServiceTrackerImpl$DiscoveredEndpointEvent", thread "Thread[JMDNS Discovery Thread,5,main]" timed out waiting (5000ms) for thread "Thread[Start Level Event Dispatcher,5,main]" to finish starting bundle "org.eclipse.ecf.osgi.services.distribution_1.2.0.v20100615-1451 [21]".
+To avoid deadlock, thread "Thread[JMDNS Discovery Thread,5,main]" is proceeding but "org.eclipse.ecf.internal.osgi.services.distribution.DiscoveredServiceTrackerImpl$DiscoveredEndpointEvent" may not be fully initialized.
+!STACK 0
+org.osgi.framework.BundleException: State change in progress for bundle "initial@reference:file:../../workspaces/osgi-remote-services/.metadata/.plugins/org.eclipse.pde.core/.bundle_pool/plugins/org.eclipse.ecf.osgi.services.distribution_1.2.0.v20100615-1451.jar/" by thread "Start Level Event Dispatcher".
+at org.eclipse.osgi.framework.internal.core.AbstractBundle.beginStateChange(AbstractBundle.java:1071)
+at org.eclipse.osgi.framework.internal.core.AbstractBundle.start(AbstractBundle.java:281)
+at org.eclipse.osgi.framework.util.SecureAction.start(SecureAction.java:440)
+at org.eclipse.osgi.internal.loader.BundleLoader.setLazyTrigger(BundleLoader.java:265)
+at org.eclipse.core.runtime.internal.adaptor.EclipseLazyStarter.postFindLocalClass(EclipseLazyStarter.java:106)
+at org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClass(ClasspathManager.java:453)
+at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.findLocalClass(DefaultClassLoader.java:216)
+at org.eclipse.osgi.internal.loader.BundleLoader.findLocalClass(BundleLoader.java:393)
+at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:469)
+at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:422)
+at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:410)
+at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:248)
+at org.eclipse.ecf.internal.osgi.services.distribution.DiscoveredServiceTrackerImpl.serviceChanged(DiscoveredServiceTrackerImpl.java:151)
+at org.eclipse.ecf.internal.osgi.services.discovery.ServicePublicationHandler.notifyDiscoveredServiceTrackers(ServicePublicationHandler.java:103)
+at org.eclipse.ecf.internal.osgi.services.discovery.ServicePublicationHandler.serviceDiscovered(ServicePublicationHandler.java:73)
+at org.eclipse.ecf.discovery.AbstractDiscoveryContainerAdapter.fireServiceDiscovered(AbstractDiscoveryContainerAdapter.java:120)
+at org.eclipse.ecf.provider.jmdns.container.JMDNSDiscoveryContainer.fireDiscovered(JMDNSDiscoveryContainer.java:366)
+at org.eclipse.ecf.provider.jmdns.container.JMDNSDiscoveryContainer$2.run(JMDNSDiscoveryContainer.java:327)
+at org.eclipse.ecf.provider.jmdns.container.JMDNSDiscoveryContainer$1.run(JMDNSDiscoveryContainer.java:125)
+at java.lang.Thread.run(Thread.java:637)
+Caused by: org.eclipse.osgi.framework.internal.core.AbstractBundle$BundleStatusException
+...
+21 more
+Root exception:
+org.eclipse.osgi.framework.internal.core.AbstractBundle$BundleStatusException
+at org.eclipse.osgi.framework.internal.core.AbstractBundle.beginStateChange(AbstractBundle.java:1071)
+at org.eclipse.osgi.framework.internal.core.AbstractBundle.start(AbstractBundle.java:281)
+at org.eclipse.osgi.framework.util.SecureAction.start(SecureAction.java:440)
+at org.eclipse.osgi.internal.loader.BundleLoader.setLazyTrigger(BundleLoader.java:265)
+at org.eclipse.core.runtime.internal.adaptor.EclipseLazyStarter.postFindLocalClass(EclipseLazyStarter.java:106)
+at org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClass(ClasspathManager.java:453)
+at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.findLocalClass(DefaultClassLoader.java:216)
+at org.eclipse.osgi.internal.loader.BundleLoader.findLocalClass(BundleLoader.java:393)
+at org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(BundleLoader.java:469)
+at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:422)
+at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:410)
+at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:107)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:248)
+at org.eclipse.ecf.internal.osgi.services.distribution.DiscoveredServiceTrackerImpl.serviceChanged(DiscoveredServiceTrackerImpl.java:151)
+at org.eclipse.ecf.internal.osgi.services.discovery.ServicePublicationHandler.notifyDiscoveredServiceTrackers(ServicePublicationHandler.java:103)
+at org.eclipse.ecf.internal.osgi.services.discovery.ServicePublicationHandler.serviceDiscovered(ServicePublicationHandler.java:73)
+at org.eclipse.ecf.discovery.AbstractDiscoveryContainerAdapter.fireServiceDiscovered(AbstractDiscoveryContainerAdapter.java:120)
+at org.eclipse.ecf.provider.jmdns.container.JMDNSDiscoveryContainer.fireDiscovered(JMDNSDiscoveryContainer.java:366)
+at org.eclipse.ecf.provider.jmdns.container.JMDNSDiscoveryContainer$2.run(JMDNSDiscoveryContainer.java:327)
+at org.eclipse.ecf.provider.jmdns.container.JMDNSDiscoveryContainer$1.run(JMDNSDiscoveryContainer.java:125)
+at java.lang.Thread.run(Thread.java:637)

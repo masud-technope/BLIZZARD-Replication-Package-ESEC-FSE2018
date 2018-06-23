@@ -1,0 +1,4 @@
+Bug 151501 – Vertical layout is weird on Extensions page
+The Extensions/Extension Points pages of the plug-in manifest editor have toolbar buttons on the top right of the page that toggle the orientation (horizontal/vertical).
+The vertical orientation looks weird, particularly on the Extensions page that also has a Body Text section.
+I suggest removing these two buttons, as the horizontal orientation is the only desirable setting.

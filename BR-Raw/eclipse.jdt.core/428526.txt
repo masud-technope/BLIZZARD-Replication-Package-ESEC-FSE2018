@@ -1,0 +1,8 @@
+Bug 428526 – [1.8] API to get the single abstract method in a functional interface
+An API could be provided in ITypeBinding to get the single abstract method (SAM) of a functional interface type corresponding to the internal implementation of ReferenceBinding#getSingleAbstractMethod and relevant checks from ReferenceBinding.isFunctionalInterface.
+The API ITypeBinding#isFunctionalInterface can be replaced with the new API returning SAM and at the client side a null check for SAM will tell if the type is a functional interface.
+The new API will help in avoiding with these checks at the client in the interface hierarchy (JSR 335 - 9.8 Functional Interfaces):
+- excluding methods that are also public methods in Object.
+- The signature of m is a subsignature (8.4.2) of every method's signature in M.
+- m is return-type-substitutable (8.4.5) for every method in M.
+See also bug 424509.

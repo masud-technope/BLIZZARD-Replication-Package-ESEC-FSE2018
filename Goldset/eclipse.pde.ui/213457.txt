@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/ExtensionsErrorReporter.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/ExtensionsSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/text/XMLUtil.java

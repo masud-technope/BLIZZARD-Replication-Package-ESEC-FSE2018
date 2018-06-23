@@ -1,0 +1,7 @@
+java/org/apache/catalina/session/JDBCStore.java
+webapps/docs/changelog.xml
+webapps/docs/config/manager.xml
+java/org/apache/catalina/session/JDBCStore.java
+java/org/apache/catalina/session/LocalStrings.properties
+webapps/docs/changelog.xml
+webapps/docs/config/manager.xml

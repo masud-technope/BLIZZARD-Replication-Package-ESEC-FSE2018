@@ -1,0 +1,21 @@
+Bug 383908 – [1.8][compiler] Explicit this parameter interferes with method overloading/resolution.
+BETA_JAVA8:
+Post support for explicit this parameter as a holder for receiver annotations,
+we now accept this program which we should not:
+// ------
+public class X {
+void foo(X this) {
+}
+void foo() {
+}
+}
+The other side of the coin is that the following should compile,
+but doesn't anymore:
+// --------
+public class X {
+void foo(X this) {
+}
+public static void main(String[] args) {
+new X().foo();
+}
+}

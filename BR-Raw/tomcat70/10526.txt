@@ -1,0 +1,34 @@
+10526 – Authenticators do not always cache the Principal
+Once a user is authenticated a Principal object is supposed to be cached for
+the duration of the user's session.
+This is especially important when using
+JDBCRealm or JNDIRealm to reduce the load on external authentication services.
+Most authenticators (BasicAuthenticator, SSLAuthenticator and
+DigestAuthenticator) call AuthenticatorBase.register()to cache the Principal.
+However register() does nothing if a session object does not already exist, so
+caching does not occur when the application does not create a session object
+itself.
+The problem can be seen by setting a security constraint on tomcat-docs
+and then browsing the Tomcat documentation - the external authentication
+service is hit on every request.
+The problem does not occur with form based login, because FormAuthenticator
+caches the Principal itself and creates a new session if necessary to do it.
+Probably the best fix would be to change AuthenticatorBase.register() to create
+a new session by calling getSession(request, true) instead of getSession
+(request, false).
+However, perhaps there is a reason why this is not being
+done - though if so I cannot see what it is.
+An alternative is to change the concrete authentication classes to make sure a
+session exists before calling register(), e.g.
+--- BasicAuthenticator.java     23 Mar 2002 17:52:16 -0000      1.12
++++ BasicAuthenticator.java     6 Jul 2002 12:46:30 -0000
+@@ -160,6 +160,7 @@
+String password = parsePassword(authorization);
+principal = context.getRealm().authenticate(username, password);
+if (principal != null) {
++           Session session = getSession(request, true);
+register(request, response, principal, Constants.BASIC_METHOD,
+username, password);
+return (true);
+Similar patches would be required for SSLAuthenticator and DigestAuthenticator
+of course.

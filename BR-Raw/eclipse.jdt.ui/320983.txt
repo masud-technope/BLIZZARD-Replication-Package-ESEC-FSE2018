@@ -1,0 +1,25 @@
+Bug 320983 – [hovering] Javadoc does not display properly on classes with a generic type that's also an HTML element name
+Build Identifier: M20090917-0800
+Using the following code:
+public abstract class Test<T> {
+public static void main(String[] args) {
+new Test<Button>() {
+void foo() {
+}
+};
+new Test<Strike>() {
+void foo() {
+}
+};
+}
+}
+When you hover over the name of either foo() method, the Javadoc rendering that shows is wrong: The first one displays an HTML button element containing everything after the class name, the second one strikes through that text.
+See attached screenshot.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Create an anonymous instance of a class with a generic type
+2.
+Implement a method in that class
+3.
+View the javadoc on that method

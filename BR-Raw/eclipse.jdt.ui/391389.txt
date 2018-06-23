@@ -1,0 +1,10 @@
+Bug 391389 – [ltk] Rename refactoring should give more control over new file name
+When using rename resource refactoring via resource rename dialog (see RenameResourceProcessor and RenameResourceWizard classes) my users frequently fail to keep the file extension.
+For example they rename "Screen1.screen" to "Screen2" which breaks things down the way.
+I'd like to have a say over the file name.
+Ideally it should be possible to append the required extension automatically.
+Another option would be to allow custom validations of the file name.
+If none of the above is possible then at least pre-select the file-name part (before the dot) the way Gnome does.
+This makes changing the name and leaving the extension in place a little easier.
+My current fix is to make check this condition in checkConditions method in my rename participant.
+However this is not ideal because the error is only shown on the next page and user has to return to fix the problem.

@@ -1,0 +1,10 @@
+40380 – Potential syncro problem in StandardSession.expire(boolean)
+public void expire(boolean notify) {
+// Mark this session as "being expired" if needed
+if (expiring)
+return;
+// No man's land here
+synchronized (this) {
+if (manager == null)
+return;
+expiring = true;

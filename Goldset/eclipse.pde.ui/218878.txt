@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/ConfigurationFileInfo.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/Product.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/iproduct/IConfigurationFileInfo.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/iproduct/IProduct.java

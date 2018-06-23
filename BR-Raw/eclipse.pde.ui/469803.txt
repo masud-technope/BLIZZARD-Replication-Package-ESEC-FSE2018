@@ -1,0 +1,3 @@
+Bug 469803 – [patch] Eclipse-SourceReferences not supported in ctrl+space suggestions
+When editing a manifest and completing on Eclipse-<ctrl+space>, the value Eclipse-SourceReferences is not supplied.
+This is used by the IDE to allow checking out source code.

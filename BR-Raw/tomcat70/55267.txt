@@ -1,0 +1,3 @@
+55267 – NIO thread locked
+Did some load test and thread got stuck, see dump.
+Basically I just simulate 100 users that connect and disconnect.

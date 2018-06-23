@@ -1,0 +1,24 @@
+57324 – Change in Expect100Continue behaviour in Tomcat is breaking existing clients with "keepalive" connections
+1) In the version of Tomcat 7.0.50, the behavior of Coyote handler is modified to handle "Expect: 100-continue" clients.
+To be specific look at this change in the following line, http://grepcode.com/file/repo1.maven.org/maven2/org.apache.tomcat/tomcat-coyote/7.0.50/org/apache/coyote/http11/AbstractHttp11Processor.java#1088
+2) In the above change, the fix was done to handle cases against misbehaving client while POST requests are submitted to Tomcat.
+3) While it is done with a "security" intent, the fix only takes into account status codes ranging in 2xx series.
+It breaks some legitimate cases where other status codes are returned for legitimate usecases.
+An example is given below.
+Example:
+* It is quite normal to have a keepalive connections with different resources having different authorization controls
+* HTTP 401 is typical of webservers to inform clients of unauthorized access to resources and triggering client to resubmit the request.
+Please refer http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html for 401 behavior.
+* The change done in Tomcat breaks this legitimate case.
+Steps to reproduce:
+1) Install a version of Tomcat 7.0.50 or above
+2) Write a client that uses Expect100Continue behavior along with KeepAlive
+3) Make atleast two requests with the first request succeeding and second request simulating a HTTP 401 scenario.
+4) Notice that the server closes the connection after the second response
+5) This will break clients which are in the process of responding to the second request with valid credentials
+Why blocker:
+1) .NET defaults to Expect 100 behaviour
+2) .NET clients optimize the keepalive connections and do not send credentials with every request going out on keepalive connections
+3) This induces 401 situation more often in communications between Tomcat and .NET clients
+4) Closing of server connections is causing existing connections to break and our customers are complaining this started happening after upgrading Tomcat (7.0.50)
+5) Hence, this needs attention.

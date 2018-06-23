@@ -1,0 +1,7 @@
+Bug 178855 – [refactoring] Cannot finish after trying to rename project to existing project
+the new plug-in refactoring functionality allows users to update their project name to the name as the new plug-in id.
+ Since we are changing project names, there is a chance the destination exists already.
+ I encountered this problem and was able to display an error when the user tried to go rename the project to an existing project.
+ Unfortunately, I was not able to fully test it.
+When the user tries to update the project name to an existing project, they see a new error page in the wizard that allows them to go back.
+ Unfortunately, after they go back the wizard never enables the OK button again so they have to exit and restart.

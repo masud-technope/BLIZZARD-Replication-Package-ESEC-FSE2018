@@ -1,0 +1,6 @@
+Bug 266831 – [navigation] Open Implementation hyperlink should not show up for non-overridable methods
+N20090302-2000
+The Open Implementation hyperlink should not show up for methods that cannot be overridden, i.e.
+- static methods
+- final methods
+- constructors

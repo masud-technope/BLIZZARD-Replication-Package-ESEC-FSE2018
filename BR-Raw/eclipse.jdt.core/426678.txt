@@ -1,0 +1,4 @@
+Bug 426678 – [1.8][compiler] Another issue with vararg type element accessibility
+Follow up of https://bugs.eclipse.org/bugs/show_bug.cgi?id=426534:
+I see another problem with vararg accessibility: I'll shortly release a regression
+test showing the problem.

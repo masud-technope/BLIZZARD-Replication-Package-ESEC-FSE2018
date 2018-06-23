@@ -1,0 +1,27 @@
+java.lang.ClassLoader.defineClass1
+java.lang.ClassLoader.defineClass
+org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.defineClass
+org.eclipse.osgi.baseadaptor.loader.ClasspathManager.defineClass
+org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findClassImpl
+org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClassImpl 
+org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClass_LockClassLoader
+org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClass
+org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.findLocalClass
+org.eclipse.osgi.internal.loader.BundleLoader.findLocalClass
+org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal
+org.eclipse.osgi.internal.loader.BundleLoader.findClass
+org.eclipse.osgi.internal.loader.BundleLoader.findClass
+org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass
+java.lang.ClassLoader.loadClass
+java.lang.ClassLoader.loadClassInternal
+proxy.fbipcahacoinformatikouni_hamburgode_jcicfc.de.c1wps.winterschool.domain.kunde.service.IKundenServiceImpl.erzeugeKunde 
+de.c1wps.winterschool.kundekontoverwalter.KundenVerwalter ._erstelleKunde
+sun.reflect.NativeMethodAccessorImpl.invoke0
+sun.reflect.NativeMethodAccessorImpl.invoke 
+sun.reflect.DelegatingMethodAccessorImpl.invoke 
+java.lang.reflect.Method.invoke
+org.eclipse.osgi.framework.internal.core.FrameworkCommandInterpreter.execute 
+org.eclipse.osgi.framework.internal.core.FrameworkConsole.docommand 
+org.eclipse.osgi.framework.internal.core.FrameworkConsole.console 
+org.eclipse.osgi.framework.internal.core.FrameworkConsole.run 
+java.lang.Thread.run

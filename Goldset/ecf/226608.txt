@@ -1,0 +1,10 @@
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/generic/ServerSOContainer.java
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/MultiRosterAccount.java
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/chatroom/ChatRoomManagerUI.java
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/chatroom/ChatRoomManagerView.java
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/internal/ui/deprecated/views/ChatRoomManagerView.java
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/generic/ClientSOContainer.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/smack/ECFConnection.java
+examples/bundles/org.eclipse.ecf.example.collab/launchconfigs/ECF Example Collab 1.launch
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/ui/SharedObjectContainerUI.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/internal/docshare/ECFStart.java

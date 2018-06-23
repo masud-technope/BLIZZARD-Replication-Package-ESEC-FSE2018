@@ -1,0 +1,16 @@
+Bug 424845 – [1.8] Wrong resolution of generic type with 1.8 compliance settings
+When using Java 8 compliance settings, the following code results in the compiler error "The method sort(List<T>, Comparator<? super T>) in the type Collections is not applicable for the arguments (List<Object>, Ordering<Object>)".
+Java 7 compliance settings work (Ordering and Function classes are from Google Guava):
+List<Object> list = new ArrayList<>();
+Function<Object, String> function = new Function<Object, String>() {
+public String apply(Object arg0) {
+return arg0.toString();
+}
+};
+Ordering<Comparable> natural = Ordering.natural();
+Collections.sort(list, natural.onResultOf(function));
+As a Workaround, extract the expression "natural.onResultOf(function)" to a variable:
+Ordering<Object> onResultOf = natural.onResultOf(function);
+Collections.sort(list, onResultOf);
+Version of used JDT patches:
+1.0.0.v20140103-0106_BETA_JAVA8

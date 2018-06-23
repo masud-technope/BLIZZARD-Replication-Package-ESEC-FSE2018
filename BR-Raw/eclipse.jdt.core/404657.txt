@@ -1,0 +1,22 @@
+Bug 404657 – [1.8][compiler] Analysis for effectively final variables fails to consider loops
+BETA_JAVA8 follow-up of bug 382721:
+The following program is currently accepted (except for the expected
+"Missing code implementation in the compiler" during code-gen):
+public class EffectivelyFinalInLoop {
+void executeLater(Runnable r) { /*...*/ }
+void test() {
+int n;
+for (int i=0; i<3; i++) {
+n=i;
+executeLater(()-> System.out.println(n));
+}
+}
+}
+The analysis incorrectly believes that n is assigned only once.
+I noticed this by analogy to definite-assignment analysis:
+The error duplicateInitializationOfFinalLocal() is triggered from 3 locations:
+- SingleNameReference.analyseAssignment()
+- FinallyFlowContext.complainOnDeferredChecks()
+- LoopingFlowContext.complainOnDeferredFinalChecks()
+Of these locations only the first resets IsEffectivelyFinal, whereas
+all of them should consider to do so.

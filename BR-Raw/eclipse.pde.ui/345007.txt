@@ -1,0 +1,13 @@
+Bug 345007 – NPE browsing external plugin on search path
+Build:
+- Running the SDK, added all plug-ins to the search path
+- Opened a class in an external plugin (Help from org.eclipse.help.base) in my case
+-> Error occurred:
+Caused by: java.lang.NullPointerException
+at org.eclipse.pde.internal.runtime.registry.model.ServiceRegistration.getUsingBundles(ServiceRegistration.java:76)
+at org.eclipse.pde.internal.runtime.registry.RegistryBrowserModelChangeListener.getTopLevelElement(RegistryBrowserModelChangeListener.java:63)
+at org.eclipse.pde.internal.runtime.registry.RegistryBrowserModelChangeListener.refreshTopLevelElements(RegistryBrowserModelChangeListener.java:99)
+at org.eclipse.pde.internal.runtime.registry.RegistryBrowserModelChangeListener.update(RegistryBrowserModelChangeListener.java:129)
+at org.eclipse.pde.internal.runtime.registry.RegistryBrowserModelChangeListener$1.run(RegistryBrowserModelChangeListener.java:26)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)

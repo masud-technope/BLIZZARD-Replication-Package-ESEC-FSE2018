@@ -1,0 +1,6 @@
+53725 – Some GZipped responses result in java.io.IOException: Corrupt GZIP trailer during gunzip.
+Created attachment 29238 [details]
+Please see description for purpose of attachment.
+FlushableGZIPOutputStream gives corrupt output in rare circumstances.
+ Tomcat 7 encounters this bug when compression is turned on.
+Please see the attachment:  Compile and run ErrorCase.java which uses FlushableGZIPOutputStream to GZIP the contents of data.bin (included in the attachment) and then uses GZIPInputStream to gunzip the output of FlushableGZIPOutputStream, resulting in java.io.IOException: Corrupt GZIP trailer.

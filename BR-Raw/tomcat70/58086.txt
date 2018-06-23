@@ -1,0 +1,37 @@
+58086 – Deploy WAR file using http:// throws FileNotFoundException
+Hi all.
+I have an Ant target which deploys WAR file to Tomcat7 instance using taskdef for DeployTask class.
+WAR file is passed as URL - http://
+I'm executing this on Windows 7 64bit with JDK 1.7
+Sample part of failing target:
+<tomcat-deploy url="http://localhost:8080/manager/text" path="/testdeploy" war="http://server.pl/app.war"
+username="user" password="pass"
+failOnError="true" logerror="true"/>
+This execution fails and exception is thrown (sorry for Polish message):
+test_deploy.xml:37: java.io.FileNotFoundException: http:\server.pl\app.war (Nazwa pliku, nazwa katalogu lub skladnia etykiety woluminu jest niepoprawna)
+at java.io.FileInputStream.open(Native Method)
+at java.io.FileInputStream.<init>(FileInputStream.java:146)
+at java.io.FileInputStream.<init>(FileInputStream.java:101)
+at org.apache.catalina.ant.DeployTask.execute(DeployTask.java:155)
+at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:292)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:606)
+at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+at org.apache.tools.ant.Task.perform(Task.java:348)
+at org.apache.tools.ant.Target.execute(Target.java:435)
+at org.apache.tools.ant.Target.performTasks(Target.java:456)
+at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1393)
+at org.apache.tools.ant.Project.executeTarget(Project.java:1364)
+at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+at org.apache.tools.ant.Project.executeTargets(Project.java:1248)
+at org.apache.tools.ant.Main.runBuild(Main.java:851)
+at org.apache.tools.ant.Main.startAnt(Main.java:235)
+at org.apache.tools.ant.launch.Launcher.run(Launcher.java:280)
+at org.apache.tools.ant.launch.Launcher.main(Launcher.java:109)
+== Question ==
+Does implementation of DeployTask is incorrect?
+I think there is error in content of this "if" - I think it should be replaced with "else" code:
+https://github.com/apache/tomcat/blob/trunk/java/org/apache/catalina/ant/DeployTask.java#L143
+Or I am using this task the wrong way?

@@ -1,0 +1,6 @@
+Bug 423496 – [1.8] Implement new incorporation rule once it becomes available
+On the EG list Dan mentioned [1] this spec bug:
+https://bugs.openjdk.java.net/browse/JDK-8028813
+He mentions: "We're planning to come up with an extra incorporation rule that will handle cases like this."
+This spec bug currently breaks our GenericsRegressionTest.testBug415734(), which I'm disabling for now, to be re-enabled once we have that new rule.
+[1] http://mail.openjdk.java.net/pipermail/lambda-spec-experts/2013-December/000450.html

@@ -1,0 +1,5 @@
+55656 – Server ClassLoader not used for Server creation
+Created attachment 30931 [details]
+proposed patch
+When configuring server.loader in catalina.properties with libraries containing valves or realms and their dependencies, if those classes are set in server.xml a CNFE is thrown.
+The reason is Digester using StandardServer's ClassLoader and not context ClassLoader.

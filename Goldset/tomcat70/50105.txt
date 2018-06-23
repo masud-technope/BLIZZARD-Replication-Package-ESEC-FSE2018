@@ -1,0 +1,4 @@
+webapps/docs/changelog.xml
+test/org/apache/el/TestValueExpressionImpl.java
+test/org/apache/el/TesterEnum.java
+java/org/apache/el/parser/AstCompositeExpression.java

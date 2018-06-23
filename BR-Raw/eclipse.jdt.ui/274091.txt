@@ -1,0 +1,5 @@
+Bug 274091 – [call hierarchy] Wrong behavior of Expand With Constructors on multi-selection with parent/child
+I20090428-0100.
+When having a multi-selection of children (not siblings) in the Call Hierarchy the behavior of 'Expand With Constructors' is wrong: it only applies it on the first selected item.
+Either we should not offer the action in this case or we apply the state to all selected elements, so that when I later expand one of the callers I get the constructors as well.
+NOTE: multi-selection on siblings works as expected.

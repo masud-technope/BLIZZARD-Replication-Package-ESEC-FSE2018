@@ -1,0 +1,13 @@
+56848 – Tomcat accept-language parsing doesn't properly handle IETF BCP47 language tags
+Microsoft started using IETF BCP 47 language tags in Windows 8, so for languages such as Chinese Traditional (formerly zh-CN) and Chinese Simplified (formerly zh-TW) the default language tags are now zh-hant-CN and zh-hans-TW respectively.
+The tomcat accept-language parsing method Request.parseLocalHeaders doesn't handle these tags properly.
+Here's the bcp 47 spec:
+http://tools.ietf.org/html/bcp47
+And here's a description of some of the changes in Java 7 for this:
+http://docs.oracle.com/javase/tutorial/i18n/locale/create.html
+Where Java 7 is involved, the Locale.forLanguageTag method
+http://docs.oracle.com/javase/7/docs/api/java/util/Locale.html#forLanguageTag(java.lang.String)
+works well assuming a fully compliant language tag.
+ Perhaps Tomcat should try to make use of this via reflection instead of parsing the entry?  The grammar for bcp47 tags doesn't make for easy parsing as various subsections of the tag are only valid if they match to particular ISO codes.
+see:
+http://tools.ietf.org/html/bcp47#section-2.1

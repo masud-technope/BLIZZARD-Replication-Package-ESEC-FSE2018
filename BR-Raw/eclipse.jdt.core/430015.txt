@@ -1,0 +1,42 @@
+Bug 430015 – [1.8] NPE trying to disassemble classfile with lambda method and MethodParameters
+NPE trying to disassemble classfile with lambda method and MethodParameters.
+------------------------------
+package jsr335.funint;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
+import java.util.Arrays;
+import java.util.function.IntConsumer;
+public class Snippet {
+IntConsumer xx(int a) {
+return i -> { };
+}
+public static void main(String[] args) {
+Method[] methods = Snippet.class.getDeclaredMethods();
+Parameter[] parameters = methods[2].getParameters();
+System.out.println(Arrays.asList(parameters));
+}
+}
+------------------------------
+For this snippet, ecj produces a classfile in which the lambda$xx$0(int) method has a MethodParameters attribute whose single parameter has a zero name and the "synthetic" flag.
+Problems:
+1.) Should we really produce a MethodParameters attribute for the lambda? Javac doesn't produce one.
+1.1) If yes, should the parameter really be synthetic? The lambda method is already synthetic, and I don't think that should make everything inside it synthetic as well.
+2.) Disassembler should not throw an NPE in this case.
+JVMS8 4.7.24 allows a zero parameter name.
+javap also supports it, but reflection is broken in 1.8.0-b131.
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2014-03-10 14:54:23.741
+!MESSAGE
+!STACK 0
+java.lang.NullPointerException
+at java.lang.AbstractStringBuilder.append(AbstractStringBuilder.java:504)
+at java.lang.StringBuffer.append(StringBuffer.java:314)
+at org.eclipse.jdt.internal.core.util.Disassembler.disassemble(Disassembler.java:604)
+at org.eclipse.jdt.internal.core.util.Disassembler.disassemble(Disassembler.java:910)
+at org.eclipse.jdt.internal.core.util.Disassembler.disassembleTypeMembers(Disassembler.java:2382)
+at org.eclipse.jdt.internal.core.util.Disassembler.disassemble(Disassembler.java:1154)
+at org.eclipse.jdt.internal.core.util.Disassembler.disassemble(Disassembler.java:261)
+at org.eclipse.jdt.internal.ui.javaeditor.ClassFileEditor$SourceAttachmentForm.updateCodeView(ClassFileEditor.java:410)
+at org.eclipse.jdt.internal.ui.javaeditor.ClassFileEditor$SourceAttachmentForm.createControl(ClassFileEditor.java:210)
+at org.eclipse.jdt.internal.ui.javaeditor.ClassFileEditor.verifyInput(ClassFileEditor.java:797)
+at org.eclipse.jdt.internal.ui.javaeditor.ClassFileEditor.createPartControl(ClassFileEditor.java:747)
+at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.createPartControl(CompatibilityPart.java:142)

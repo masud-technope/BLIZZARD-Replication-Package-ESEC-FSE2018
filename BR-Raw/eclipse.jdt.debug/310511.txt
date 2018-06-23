@@ -1,0 +1,21 @@
+Bug 310511 – Dialog font changes affects the 'Breakpoints' view
+Created attachment 166109 [details]
+Screenshot depicting the horro in question.
+I20100425-2000
+1.
+Window > Preferences > General > Appearance > Colors and Fonts
+2.
+Basic > Dialog Font
+3.
+Click the 'Edit...' button and increase the font size a bit.
+4.
+Click 'OK' to close the dialog.
+5.
+Create a Java breakpoint somewhere.
+6.
+Window > Show View > Other...
+> Debug > Breakpoints
+7.
+Select the breakpoint you added.
+8.
+Cower in fear at your super-sized view.

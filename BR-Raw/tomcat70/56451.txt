@@ -1,0 +1,19 @@
+56451 – JNDI lookups under java:comp/Resources do not access <Context aliases> resources
+1.
+Using JNDI lookup to access resources
+Given a resource accessible as
+request.getServletContext().getResourceAsStream("/some/path/myResource");
+it can also be accessed via JNDI (return type is different but equally useful)
+ic.lookup("java:comp/Resources/some/path/myResource")
+2.
+JNDI lookups ignores aliased resources
+Given a <Context aliases="/someAlias=/any/path" .../>, its resources are accessible
+request.getServletContext().getResourceAsStream("/someAlias/myOtherResource");
+BUT, the lookup
+ic.lookup("java:comp/Resources/someAlias/myOtherResource")
+fails throwing org.apache.naming.resources.ImmutableNameNotFoundException.
+Listing the java:comp/Resources context shows someAlias is NOT bound.
+3.
+Expected behavior
+Tomcat exposes resources under the java:comp/Resources JNDI context.
+Aliases should also apply to this alternate access interface.

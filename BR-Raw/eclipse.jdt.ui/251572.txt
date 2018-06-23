@@ -1,0 +1,20 @@
+Bug 251572 – [encapsulate field] encapsulate field refactoring fails with splitted array type
+N20081005-2000
+Invoking "Encapsulate field" refactoring on the follow snippet leads to an exception.
+public class A {
+boolean[] theField[];
+}
+Exception is:
+java.lang.IllegalArgumentException
+at org.eclipse.jdt.core.dom.AST.newArrayType(AST.java:1502)
+at org.eclipse.jdt.internal.corext.refactoring.sef.SelfEncapsulateFieldRefactoring.createGetterMethod(SelfEncapsulateFieldRefactoring.java:671)
+at org.eclipse.jdt.internal.corext.refactoring.sef.SelfEncapsulateFieldRefactoring.addGetterSetterChanges(SelfEncapsulateFieldRefactoring.java:581)
+at org.eclipse.jdt.internal.corext.refactoring.sef.SelfEncapsulateFieldRefactoring.checkFinalConditions(SelfEncapsulateFieldRefactoring.java:397)
+at org.eclipse.ltk.core.refactoring.CheckConditionsOperation.run(CheckConditionsOperation.java:85)
+at org.eclipse.ltk.core.refactoring.CreateChangeOperation.run(CreateChangeOperation.java:121)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1800)
+at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Not sure if this should be handled gracefully eg.
+rewriting it as "boolean[][]" or just disabling the refactoring.
+This may be related to bug 177099

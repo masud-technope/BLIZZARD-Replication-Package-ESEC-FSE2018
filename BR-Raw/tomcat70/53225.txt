@@ -1,0 +1,41 @@
+53225 – IllegalStateException "zip file closed" with resource from webfragment jar if JreMemoryLeakPreventionListener is removed
+Created attachment 28764 [details]
+icontest.war
+The issue was reported in the following thread on users@:
+http://markmail.org/thread/m6fimchl2jk2vyl4
+http://marc.info/?t=133665328700005&r=1&w=2
+I am able to reproduce the issue on current trunk with the following steps:
+1.
+Remove JreMemoryLeakPreventionListener from server.xml
+2.
+Deploy the attached war file, icontest.war
+It contains WEB-INF/lib/icon.jar with several copies of Tomcat icon
+3.
+Start Tomcat and access the following URL:
+http://localhost:8080/icontest/favicon.ico
+Expected behaviour:
+The icon is displayed
+Actual behaviour:
+[[[
+13-May-2012 00:23:05.906 SEVERE [http-bio-8080-exec-1] org.apache.coyote.http11.AbstractHttp11Processor.process Error processing request
+java.lang.IllegalStateException: zip file closed
+at java.util.jar.JarFile.getMetaInfEntryNames(Native Method)
+at java.util.jar.JarFile.maybeInstantiateVerifier(JarFile.java:279)
+at java.util.jar.JarFile.getInputStream(JarFile.java:383)
+at org.apache.naming.resources.WARDirContext$WARResource.streamContent(WARDirContext.java:990)
+at org.apache.naming.resources.ProxyDirContext.cacheLoad(ProxyDirContext.java:1621)
+at org.apache.naming.resources.ProxyDirContext.cacheLookup(ProxyDirContext.java:1501)
+at org.apache.naming.resources.ProxyDirContext.lookup(ProxyDirContext.java:262)
+at org.apache.tomcat.util.http.mapper.Mapper.internalMapWrapper(Mapper.java:996)
+at org.apache.tomcat.util.http.mapper.Mapper.internalMap(Mapper.java:808)
+at org.apache.tomcat.util.http.mapper.Mapper.map(Mapper.java:671)
+at org.apache.catalina.connector.CoyoteAdapter.postParseRequest(CoyoteAdapter.java:646)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:402)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:995)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:573)
+at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:145)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:311)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:662)
+]]]

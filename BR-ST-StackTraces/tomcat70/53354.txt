@@ -1,0 +1,10 @@
+org.apache.catalina.core.StandardContext.validateFilterMap
+org.apache.catalina.core.StandardContext.addFilterMap
+org.apache.catalina.deploy.WebXml.configureContext
+org.apache.catalina.startup.ContextConfig.webConfig
+org.apache.catalina.startup.ContextConfig.configureStart
+org.apache.catalina.startup.ContextConfig.lifecycleEvent
+org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent
+org.apache.catalina.util.LifecycleBase.fireLifecycleEvent
+org.apache.catalina.core.StandardContext.startInternal
+org.apache.catalina.util.LifecycleBase.start

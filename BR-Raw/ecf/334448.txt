@@ -1,0 +1,2 @@
+Bug 334448 – [remoteservices][api] simplify remote services Constants class
+As part of the major version change of the org.eclipse.ecf.remoteservice api that is to occur for ECF 3.5 release (and move to remote service admin), it would be useful to simplify and consolidate the Constants class entries.

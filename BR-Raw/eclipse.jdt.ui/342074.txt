@@ -1,0 +1,10 @@
+Bug 342074 – [move method] Refactor->Move an instance method to another causes IAE in SimpleName.setIdentifier
+Build Identifier: M20110210-1200
+I want to move some functionality of class A to a new composing class B.
+ I created a new class B, which has nothing in it.
+ I change A.method() to take a B as a parameter, so that I can use the instance method Move refactoring to move method() to B.
+ That fails with a NullPointerException, in the attached stack trace.
+Reproducible: Always
+Steps to Reproduce:
+I tried to create a new set of classes that demonstrate this problem, but haven't been able to find whatever makes this refactoring fail in this case.
+ I can however reproduce it every time with my code, but confidentiality prohibits my posting that code here.

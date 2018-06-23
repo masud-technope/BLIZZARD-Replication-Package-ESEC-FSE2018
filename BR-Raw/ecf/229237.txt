@@ -1,0 +1,30 @@
+Bug 229237 – [presence][ui] xmpps accounts can appear twice in contacts list
+When creating a connection to (e.g.) the XMPPS provider for the first time, when the contacts list view has not yet been shown, the same account (e.g.
+slewis@ecf.eclipse.org) can be added twice (MultiRosterView.addContainer called twice).
+When the connect ui opens the view i.e.
+in XMPPConnectWizard.performFinish (this block is executed via Display.asyncExec())
+private void openView() {
+try {
+final MultiRosterView view = (MultiRosterView) workbench.getActiveWorkbenchWindow().getActivePage().showView(MultiRosterView.VIEW_ID);
+view.addContainer(container);
+} catch (final PartInitException e) {
+e.printStackTrace();
+}
+}
+When showView(MultiRosterView.VIEW_ID) is called the first time, this triggers the MultiRosterView.setupTreeViewer, which calls MultiRosterView.retrieveServices().
+In MRV.retrieveServices is a block that looks for IPresenceServices and if found adds the associated container via MRV.addContainer:
+private void retrieveServices() {
+IPresenceService[] services = Activator.getDefault().getPresenceServices();
+for (int i = 0; i < services.length; i++) {
+IContainer container = (IContainer) services[i].getAdapter(IContainer.class);
+if (container != null && container.getConnectedID() != null) {
+addContainer(container);
+}
+}
+}
+Because the openView block is run asynchronously, retrieveServices can find the newly connected container exposed as an IPresenceService...immediately after the container connect notification (in xmpp provider).
+ Then, the 			view.addContainer(container) call is *also* made (via openView()), and the same container/account is added twice.
+Remy what do you think is the appropriate fix?  It's not changing the asyncExec to a syncExec (this can/does result in deadlock).
+ It could be
+1) removing retrieveServices() (but would this have other negative side effects?)
+2) Adding a check in addContainer for the prior existence of a given container and not adding it if already present?

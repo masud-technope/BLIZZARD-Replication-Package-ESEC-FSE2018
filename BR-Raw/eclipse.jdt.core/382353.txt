@@ -1,0 +1,16 @@
+Bug 382353 – [1.8][compiler] Implementation property modifiers should be accepted on default methods.
+BETA_JAVA8
+The following program should trigger only two errors, but triggers four
+instead.
+Basically strictfp and synchronized should not allowed only
+at interface abstract method declarations and should be accepted at
+default method declaration sites as these after all describe an
+implementation and are so suitable sites to annotate implementation
+concerns:
+// -----
+interface I {
+strictfp void foo() default {}
+synchronized void goo() default {}
+strictfp void boo();
+synchronized void zoo();
+}

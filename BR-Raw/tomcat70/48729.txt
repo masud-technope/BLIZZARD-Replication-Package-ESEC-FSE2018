@@ -1,0 +1,10 @@
+48729 – JNDIRealm.java not parsing roles correctly
+Created attachment 24972 [details]
+small patch for JNDIRealm.java
+According to the docs:
+http://tomcat.apache.org/tomcat-6.0-doc/realm-howto.html
+it says roles can be specified by both userRoleName, AND roleName
+mechanisms.
+But, if both are used then the result is that userRoleName roles are
+excluded.
+ I believe the correct approach is in the attached patch.

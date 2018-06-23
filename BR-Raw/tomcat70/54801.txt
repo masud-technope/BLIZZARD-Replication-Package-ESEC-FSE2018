@@ -1,0 +1,36 @@
+54801 – EL-like expressions in jsp:scriptlet break compilation of JSP XML documents
+Created attachment 30152 [details]
+helloWorld.tagx
+Steps to reproduce:
+1.
+Go to  webapps\examples\WEB-INF\tags\
+2.
+Delete "helloWorld.tag" file and put there "helloWorld.tagx" file attached to this issue.
+The file contains the following plus AL header:
+<?xml version="1.0" encoding="utf-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+<jsp:scriptlet><![CDATA[//
+// ${foo}
+out.println("Hello, world!!");
+]]></jsp:scriptlet>
+</jsp:root>
+3.
+Start Tomcat and try to open the following page in a browser:
+http://localhost:8080/examples/jsp/jsp2/tagfiles/hello.jsp
+ACTUAL result:
+in current TC8 trunk:
+org.xml.sax.SAXException: Body of scriptlet element must not contain any XML elements
+org.apache.jasper.compiler.JspDocumentParser.checkScriptingBody(JspDocumentParser.java:1332)
+org.apache.jasper.compiler.JspDocumentParser.endElement(JspDocumentParser.java:650)
+This behaviour is caused by "${foo}" being present inside the scriptlet.
+If I remove that line, the page is displayed successfully.
+EXPECTED RESULT
+I think EL expressions should not be recognized inside of jsp:scriptlet, jsp:declaration or jsp:expression and should not trigger such an error.
+As a confirmation, the following "helloWorld.tag" in JSP syntax compiles and executes successfully.
+Thus this issue is with XML syntax only,
+<%
+// ${foo}
+%>
+Hello, world!++
+Alternative solution could be to change the error message, but I think it is not the issue here,
+s/ any XML elements / any XML elements or EL expressions/

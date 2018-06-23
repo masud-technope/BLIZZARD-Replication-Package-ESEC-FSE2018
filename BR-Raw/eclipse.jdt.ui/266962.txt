@@ -1,0 +1,3 @@
+Bug 266962 – JUnit to consume hamcrest.core from orbit.
+Hamcrest core is now available in orbit (bug 260092).
+Please consider removing it from JUnit and consuming hamcrest core from orbit instead.

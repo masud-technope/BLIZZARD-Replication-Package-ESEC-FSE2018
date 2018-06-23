@@ -1,0 +1,8 @@
+org.postgresql.jdbc2.AbstractJdbc2Statement.execute
+org.postgresql.jdbc2.AbstractJdbc2Statement.executeWithFlags
+org.postgresql.jdbc2.AbstractJdbc2Statement.executeQuery
+org.apache.catalina.realm.JDBCRealm.getRoles
+org.apache.catalina.realm.JDBCRealm.getPrincipal
+org.apache.catalina.realm.RealmBase.authenticate
+org.apache.catalina.authenticator.DigestAuthenticator.findPrincipal
+org.apache.catalina.authenticator.DigestAuthenticator.authenticate

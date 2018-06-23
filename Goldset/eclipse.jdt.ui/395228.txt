@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test37/in/Test.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test37/out/Test.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test38/in/Test.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test38/out/Test.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/IntroduceIndirectionTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/IntroduceIndirectionRefactoring.java

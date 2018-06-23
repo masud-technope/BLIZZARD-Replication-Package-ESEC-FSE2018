@@ -1,0 +1,33 @@
+Bug 109392 – JavaRuntime.detectDefaultVM changes my options
+20050913
+When I run a JUnit plugin test case, all the JavaCore options (including the JRE
+compliance) are set in the setUp method.
+Unfortunatly these settings are
+overridden again by JavaRuntime.detectDefaultVM.
+- All my other options are overridden: Bug is probbaly that
+JavaRuntime.detectDefaultVM uses JavaCore.getDefaultOptions()
+- The timing seems to be very late.
+Maybe we in JavaUI should force the
+initialization with an earlier call.
+JavaCore.setOptions(Hashtable) line: 4087
+JavaRuntime.detectDefaultVM() line: 1555
+JavaRuntime.detectAndSaveVMDefinitions() line: 1566
+JavaRuntime.initializeVMConfiguration() line: 1391
+JavaRuntime.initializeVMTypes() line: 290
+JavaRuntime.getDefaultVMId() line: 468
+JavaRuntime.getDefaultVMInstall() line: 415
+JREContainerInitializer.resolveVM(IPath) line: 75
+JREContainerInitializer.initialize(IPath, IJavaProject) line: 49
+JavaModelManager.initializeContainer(IJavaProject, IPath) line: 1591
+JavaModelManager.initializeAllContainers(IJavaProject, IPath) line: 1551
+JavaModelManager.getClasspathContainer(IPath, IJavaProject) line: 1038
+JavaCore.getClasspathContainer(IPath, IJavaProject) line: 1326
+JavaProject.getResolvedClasspath(IClasspathEntry[], IPath, boolean, boolean,
+Map) line: 2046
+ClasspathEntry.validateClasspath(IJavaProject, IClasspathEntry[], IPath) line: 1273
+SetClasspathOperation.verify() line: 831
+SetClasspathOperation(JavaModelOperation).runOperation(IProgressMonitor) line: 771
+JavaProject.setRawClasspath(IClasspathEntry[], IPath, IProgressMonitor, boolean,
+IClasspathEntry[], boolean, boolean) line: 2846
+JavaProject.setRawClasspath(IClasspathEntry[], IProgressMonitor) line: 2862
+SerialVersionQuickFixTest.setUp() line: 113

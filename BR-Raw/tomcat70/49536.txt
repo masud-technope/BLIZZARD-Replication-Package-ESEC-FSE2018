@@ -1,0 +1,8 @@
+49536 – If no webapps deployed, accessing a URL returns 200 OK with no content instead of 404
+Hello
+I've just downloaded http://mirror.veriportal.com/apache/tomcat/tomcat-7/v7.0.0-beta/bin/apache-tomcat-7.0.0.zip
+If I start a Tomcat 7 instance with no webapps on it and access a URL, it returns HTTP code 200 OK with no content, instead of an HTTP error 404.
+Cheers
+S.
+Ali Tokmen
+http://ali.tokmen.com/

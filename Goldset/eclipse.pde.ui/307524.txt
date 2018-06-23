@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.core/plugin.xml
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/content/DefaultDocumentFactory.java

@@ -1,0 +1,3 @@
+java/org/apache/tomcat/util/buf/B2CConverter.java
+java/org/apache/tomcat/util/buf/CharChunk.java
+java/org/apache/catalina/connector/InputBuffer.java

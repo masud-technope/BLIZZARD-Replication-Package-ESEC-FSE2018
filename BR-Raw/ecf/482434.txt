@@ -1,0 +1,2 @@
+Bug 482434 – fix handling of exported service package version
+the package version for an exported service is calculated incorrectly if the service interface is implemented by a super class (rather than the service type class directly).

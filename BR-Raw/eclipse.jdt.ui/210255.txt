@@ -1,0 +1,5 @@
+Bug 210255 – [browsing] Collapse All button for the Java Browsing Perspective
+It might be a good idea to add a 'Collapse All' button to the Projects view
+of the Java Browsing Perspective.
+(cfr.
+Package Explorer view in Java Perspective)

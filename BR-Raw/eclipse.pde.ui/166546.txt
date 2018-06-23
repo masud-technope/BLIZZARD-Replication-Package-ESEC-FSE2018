@@ -1,0 +1,11 @@
+Bug 166546 – Exporting the default package of a plug-in project does not allow other plug-ins to use classes in the default package
+Build ID: I20061102-1715
+Steps To Reproduce:
+1.Create new class in the default package of a plug-in.
+2.Export the default package.
+Using the runtime tab, Add an Exported package, and choose (default pacakge); or add '.' to the export-package list in Manifest.MF.
+3.In a differnt plug-in, add the first plug-in to the required plug-in list.
+4.Try to reference a class from default package of the first bundle, in the second plug-in.
+More information:
+Also interesting, you can add the default package to the list of exported packages (in the Runtime tab) multiple times, which you can't do for actual packages.
+If you close and re-open the Manifest File, the extra packages will be removed.

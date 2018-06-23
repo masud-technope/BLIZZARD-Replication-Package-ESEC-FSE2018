@@ -1,0 +1,2 @@
+Bug 329252 – [preferences][content assist] Auto-activation delay does not mention what unit of time it is in
+Today someone on IRC mentioned that it was not clear what unit of time the 'Auto activation delay:' in the 'Java > Editor > Content Assist' preferences were in.

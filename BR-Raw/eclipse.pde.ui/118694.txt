@@ -1,0 +1,4 @@
+Bug 118694 – Simplify use of config.ini in launcher
+The Eclipse application launcher allows you to select a custom config.ini from the workspace, filesystem, or via a variable.
+ It would seem that many times, especially in RCP environments, the config.ini file from the target platform would be the best config.ini to use when launching the platform.
+ The launcher should make it easier to select a config.ini from the target platform.

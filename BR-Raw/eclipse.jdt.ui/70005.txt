@@ -1,0 +1,8 @@
+Bug 70005 – [content assist] Missing Getter/Setter code assist: proposals
+3.0
+it sometimes takes two tries to get the getter and setter methods
+This happens when the cu isn't reconciled so the avaiable fields are not found.
+1.
+enter a new field 'foo'
+2.
+start with getF, code assist > no getter proposal

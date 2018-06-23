@@ -1,0 +1,18 @@
+Bug 306392 – [syntax highlighting] No syntax coloring in enum type
+/*
+* Using syntax coloring in java editor:
+* The enum type name, when used to access a static metod, is not colorized,
+* while it is colorized rigth when used to access a static field.
+*/
+public class TestEnum {
+public enum EnumType { // "EnumType" is right colorized
+FIRST, SECOND;
+public static int staticField;
+public static void staticMetod() {
+};
+}
+public void test() {
+EnumType.staticField = 1; // "EnumType" is right colorized
+EnumType.staticMetod(); // "EnumType" is not colorized
+}
+}

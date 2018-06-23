@@ -1,0 +1,9 @@
+org.apache.tomcat.util.net.JIoEndpoint.init
+org.apache.tomcat.util.net.JIoEndpoint.start
+org.apache.coyote.http11.Http11Protocol.start
+org.apache.catalina.connector.Connector.start
+org.apache.catalina.core.StandardService.start
+org.apache.catalina.core.StandardServer.start
+org.apache.catalina.startup.Catalina.start
+sun.reflect.NativeMethodAccessorImpl.invoke0
+sun.reflect.NativeMethodAccessorImpl.invoke

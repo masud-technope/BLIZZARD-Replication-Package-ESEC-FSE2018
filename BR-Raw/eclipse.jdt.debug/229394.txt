@@ -1,0 +1,70 @@
+Bug 229394 – [CellEditors] NPE from JFace when using cell editor in variables view
+Steps do not consistently reproduce, but I have encontered the NPE multiple times while debugging.
+ Possible race condition in JFace.
+ There is a null check before the NPE location, but another thread could call dispose.
+1) Run a java program with an array of chars.
+2) Stop on a breakpoint, display the array of chars in the var view.
+3) Select an array entry's value in the var view to open cell editor
+4) Delete the value
+5) Click outside of the cell
+6) Two errors, first error (Invalid Type) is correct, second is NPE
+eclipse.buildId=I20080429-0100
+java.version=1.5.0_09
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+Error
+Tue Apr 29 11:40:28 CDT 2008
+Problems occurred when invoking code from plug-in: "org.eclipse.jface".
+java.lang.NullPointerException
+at org.eclipse.jface.viewers.ColumnViewerEditor.applyEditorValue(ColumnViewerEditor.java:343)
+at org.eclipse.jface.viewers.ColumnViewerEditor$2.applyEditorValue(ColumnViewerEditor.java:152)
+at org.eclipse.jface.viewers.CellEditor$1.run(CellEditor.java:329)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.core.runtime.Platform.run(Platform.java:880)
+at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:48)
+at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:175)
+at org.eclipse.jface.viewers.CellEditor.fireApplyEditorValue(CellEditor.java:327)
+at org.eclipse.jface.viewers.CellEditor.focusLost(CellEditor.java:712)
+at org.eclipse.jface.viewers.TextCellEditor$5.focusLost(TextCellEditor.java:185)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:136)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1002)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1026)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1007)
+at org.eclipse.swt.widgets.Control.sendFocusEvent(Control.java:2423)
+at org.eclipse.swt.widgets.Widget.wmKillFocus(Widget.java:1764)
+at org.eclipse.swt.widgets.Control.WM_KILLFOCUS(Control.java:4124)
+at org.eclipse.swt.widgets.Control.windowProc(Control.java:3814)
+at org.eclipse.swt.widgets.Text.windowProc(Text.java:2074)
+at org.eclipse.swt.widgets.Display.windowProc(Display.java:4498)
+at org.eclipse.swt.internal.win32.OS.CallWindowProcW(Native Method)
+at org.eclipse.swt.internal.win32.OS.CallWindowProc(OS.java:2259)
+at org.eclipse.swt.widgets.Tree.callWindowProc(Tree.java:1521)
+at org.eclipse.swt.widgets.Tree.WM_LBUTTONDOWN(Tree.java:6338)
+at org.eclipse.swt.widgets.Control.windowProc(Control.java:3816)
+at org.eclipse.swt.widgets.Tree.windowProc(Tree.java:5689)
+at org.eclipse.swt.widgets.Display.windowProc(Display.java:4498)
+at org.eclipse.swt.internal.win32.OS.DispatchMessageW(Native Method)
+at org.eclipse.swt.internal.win32.OS.DispatchMessage(OS.java:2345)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3377)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2380)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2344)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2210)
+at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:494)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:288)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:489)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:112)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:193)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:379)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:549)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:504)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1236)

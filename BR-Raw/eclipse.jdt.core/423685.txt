@@ -1,0 +1,13 @@
+Bug 423685 – [1.8] poly conditional expression must not use lub
+Consider an example like this:
+class A{/**/}
+class B extends A {/**/}
+class G<T> {
+G<B> gb=null;
+G<? super A> gsa=null;
+G<? super B> l = (true)? gsa : gb;
+}
+The conditional expression is a poly expression (appears in an assignment context) and hence should apply this rule from 15.25.3:
+"The type of a poly reference conditional expression is the same as its target type."
+ECJ, however still seems to use lub computation based on which the assignment is rejected.
+Avoiding lub in situations like this is important because lub(capture1,capture2) doesn't produce good results, whereas the new rules are much more permissive.

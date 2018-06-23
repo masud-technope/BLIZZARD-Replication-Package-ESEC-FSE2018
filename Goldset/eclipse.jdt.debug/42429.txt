@@ -1,0 +1,5 @@
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AutomatedSuite.java
+org.eclipse.jdt.debug.tests/testprograms/ArgumentPrinter.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/CommandArgumentTests.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/LaunchConfigurationArgumentTests.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/ExecutionArguments.java

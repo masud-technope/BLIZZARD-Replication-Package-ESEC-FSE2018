@@ -1,0 +1,3 @@
+org.eclipse.jdt.core.tests.performance/src/org/eclipse/jdt/core/tests/performance/FullSourceWorkspaceModelTests.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavaProjectElementInfo.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html

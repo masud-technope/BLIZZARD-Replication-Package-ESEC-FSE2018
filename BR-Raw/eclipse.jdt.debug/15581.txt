@@ -1,0 +1,6 @@
+Bug 15581 – Move source lookup resolution to AbstractJavaLaunchConfigurationDelegate
+Both JavaRemoteApplicationLaunchConfigurationDelegate and
+JavaLocalApplicationLaunchConfigurationDelegate have the same code to compute
+the source lookup from a ILaunchConfiguration.
+ A method could be created in
+AbstractJavaLaunchConfiguration to share this behaviour.

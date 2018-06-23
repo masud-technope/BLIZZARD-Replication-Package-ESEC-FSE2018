@@ -1,0 +1,17 @@
+Bug 462948 – [render] Abstract method in content assist should show "A" adornment
+Abstract method from interface or abstract class should show the "A" adornment in content assist proposal.
+For example:
+package test;
+abstract class C1 {
+public abstract void abst();
+}
+class C2 extends C1 {
+abs|
+}
+interface I {
+void abst();
+default void def() {}
+}
+class C implements I {
+abs|
+}

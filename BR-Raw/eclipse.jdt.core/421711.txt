@@ -1,0 +1,4 @@
+Bug 421711 – [1.8][compiler] '_' as identifier for a lambda parameter should be rejected
+At the moment, we issue a warning.
+Javac does it too, but when the identifier is  for a lambda parameter, Javac rejects the code.
+This bug is to discuss this behavioral difference between ECJ and Javac.

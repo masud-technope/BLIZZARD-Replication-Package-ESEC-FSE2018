@@ -1,0 +1,34 @@
+Bug 218431 – [inline] problem with fields from generic types
+Build ID: M20071023-1652
+Steps To Reproduce:
+1.
+Select identifier 'driver' on LINE 26.
+2.
+Try to inline that occurence of that constant.
+The resulting source code is illegal.
+--------------------- Bug.java -----------------------
+import static java.util.Arrays.asList;
+class Bug {
+private static abstract class Newby<Type extends Number>{}
+private static abstract class Way<Type extends Number>{
+static final String STATE="State";
+abstract Newby<Type>scrape();
+}
+private static class Finger extends Way<Integer>{
+@Override
+Newby<Integer>scrape(){
+return new Newby<Integer>(){};
+}
+}
+private static final Finger driver=new Finger(){
+void make(){asList(STATE,"License");}
+};
+{
+abstract class ArtifactPage<Type extends Integer>{
+{
+asList(Way.STATE,driver); //// LINE 26 ////
+}
+}
+}
+}
+More information:

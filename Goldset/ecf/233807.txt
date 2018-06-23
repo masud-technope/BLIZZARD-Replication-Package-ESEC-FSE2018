@@ -1,0 +1,7 @@
+providers/bundles/org.eclipse.ecf.provider.jslp/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/provider/jslp/identity/JSLPServiceTypeID.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/provider/jslp/identity/JSLPServiceTypeID.java
+framework/bundles/org.eclipse.ecf.identity/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.identity/src/org/eclipse/ecf/core/util/StringUtils.java
+providers/bundles/org.eclipse.ecf.provider.jslp/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/provider/jslp/identity/JSLPServiceTypeID.java

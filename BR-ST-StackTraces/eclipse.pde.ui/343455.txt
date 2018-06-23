@@ -1,0 +1,9 @@
+org.eclipse.pde.internal.core.ClasspathHelper.getDevPaths
+org.eclipse.pde.internal.core.ClasspathHelper.getDevEntriesProperties
+org.eclipse.pde.launching.EclipseApplicationLaunchConfiguration.getProgramArguments
+org.eclipse.pde.launching.AbstractPDELaunchConfiguration.launch
+org.eclipse.debug.internal.core.LaunchConfiguration.launch
+org.eclipse.debug.internal.core.LaunchConfiguration.launch
+org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch
+org.eclipse.debug.internal.ui.DebugUIPlugin$8.run
+org.eclipse.core.internal.jobs.Worker.run

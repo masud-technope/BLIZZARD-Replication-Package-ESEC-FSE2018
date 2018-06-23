@@ -1,0 +1,13 @@
+Bug 234141 – org.eclipse.ecf.docshare is missing license headers
+IdentityMapping
+SynchronizationStrategy
+ColaDeletion
+ColaInsertion
+ColaReplacement
+ColaSynchronizer
+ColaUpdateMessage
+TransformationStrategy
+DocShareRosterMenuContributionItem
+Activator
+ECFStart (license header is malformed)
+Marking as critical for IP reasons.

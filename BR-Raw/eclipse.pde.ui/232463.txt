@@ -1,0 +1,13 @@
+Bug 232463 – Target Platform pref page does not fully reset on 'Restore Defaults'
+I20080515-2000.
+1.
+start fresh workspace
+2.
+goto to PDE's 'Target Platform' preference page
+3.
+change some values
+4.
+uncheck: Build target platform based on the ....
+5.
+click 'Restore Defaults'
+==> BUG: check box from step 4 remains unchecked but should be checked again.

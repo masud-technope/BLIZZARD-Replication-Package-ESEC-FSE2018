@@ -1,0 +1,7 @@
+59189 – PerMessageDeflate leaves native memory allocated unnecessarily
+During websocket load tests we noticed that the resident memory usage of the tomcat process would grow and stay in use even after the sockets were closed when websocket compression was enabled.
+The java heap looked fine.
+It seems to be caused by PerMessageDeflate creating a Deflater and Inflater which in turn allocates native memory that isn't freed until the JVM decides to run their finalizers, which can take a long time before it happens.
+I propose calling .end() (which is what finalize() does) on the Deflater and Inflater when the websocket is closed.
+I have created a patch that does this and resident memory usage shrinks after the websockets are closed down with it.
+Would you be interested in this?

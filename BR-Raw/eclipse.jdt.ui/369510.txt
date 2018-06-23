@@ -1,0 +1,6 @@
+Bug 369510 – Unable to set the encoding without specifying the source attachment
+One can export a jar with source code.
+If this jar is added as a depndent external jar , it's source can be viewed without having an entry in the source attachment.
+I am unable to set the encoding for this kind of jars.
+If I change the encoding for this kind of jar and click OK, the dialog box gets dismissed, but If I open the dialog box again, I don't see the changes.
+UI should allow to set the encodings without the need to specify the source attachment.

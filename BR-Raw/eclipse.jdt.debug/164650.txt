@@ -1,0 +1,2 @@
+Bug 164650 – thread groups should implement ITerminate
+when you select a thread group in the launch view, you should be able to terminate the launch it is associated with.

@@ -1,0 +1,21 @@
+50413 – Tomcat returns 304 instead of 404 response for static custom 404 error file
+When using a static html file for 404 errors and the client sends a request to a file whoch doesn't exist, and adds a "If-Modified-Since" header with a date that is newer than the modification date of the static error file, then Tomcat returns "302 Not Modofied" instead of "404 Not Found".
+Steps to reproduce:
+1) Make a simple webapp that uses a static html file as custom error page for 404 errors, like this (web.xml):
+<error-page>
+<error-code>404</error-code>
+<location>/errorpages/404.html</location>
+</error-page>
+2) Do a GET request to a URL which points to a file that doesn't exist, and add a "If-Modified-Since" header with a date that is newer than the modification date of the 404 error file (the date may also be in the future), e.g.
+GET /MyWebApp/AUrlToAFileWhichDoesNotExist.gif HTTP/1.1
+Host: localhost
+Keep-Alive: 115
+Connection: keep-alive
+If-Modified-Since: Tue, 08 Nov 2015 15:07:52 GMT
+(replace "MyWebApp" with your webapp's name)
+3) Tomcat returns "HTTP/1.1 302 Not Modified" instead of "HTTP/1.1 404 Not Found".
+Actual Results: Tomcat returns a "302 Not Modified" response, because it seems to compare the date of the "If-Modified-Header" with the date of the static 404 error file.
+Expected Results: Tomcat returns a "404 Not Found" response, because the requested file does not exist.
+If you omit the "If-Modified-Since" header or use a date that is older than the date of the error file, Tomcat correctly returns "404 Not Found", but adds an "Last-Modified" header with the modification date of the 404 file.
+This behavior caused invalid 302 responses to be sent over the ISAPI redirector (bug 50363, with enabled chunked encoding support) when I was viewing my site in Firefox and pressed F5 to refresh it, because I think as of bug 49591, Tomcat uses chunked encoding for this response, which the ISAPI redirector didn't check.
+I tested on Tomcat 7.0.5 on 32-Bit Windows XP, with Tomcat Native 1.1.20, on Java 1.6.0_22.

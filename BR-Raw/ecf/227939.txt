@@ -1,0 +1,17 @@
+Bug 227939 – [wizards] While restoring password a Stack Overflow error ocurrs
+Build ID: I20080330-1350
+Steps To Reproduce:
+1.
+Login to a MSN account
+2.
+Logout
+3.
+Open MSN Wizard again
+4.
+Password won't be restored
+5.
+Try to write your password or rewrite your e-mail
+6.
+An Stack Overflow error will ocurr
+More information:
+This issue is fixed as part of the last patch on bug #196295

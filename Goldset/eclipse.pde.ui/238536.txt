@@ -1,0 +1,5 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/feature/Feature.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/ifeature/IFeature.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/feature/IncludedFeaturesSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties

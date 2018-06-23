@@ -1,0 +1,3 @@
+Bug 172569 – Ability to send custom JDWP commands
+Our debugger is built on top of JDT Debug.
+ It will be nice if we can send custom JDWP commands to the VM that is being debugged by JDT.

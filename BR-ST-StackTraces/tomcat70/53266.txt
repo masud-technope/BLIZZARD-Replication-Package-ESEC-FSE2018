@@ -1,0 +1,16 @@
+sun.reflect.annotation.AnnotationParser.parseClassArray
+sun.reflect.annotation.AnnotationParser.parseArray
+sun.reflect.annotation.AnnotationParser.parseMemberValue
+sun.reflect.annotation.AnnotationParser.parseAnnotation
+sun.reflect.annotation.AnnotationParser.parseAnnotations2
+sun.reflect.annotation.AnnotationParser.parseAnnotations
+java.lang.Class.initAnnotationsIfNecessary
+java.lang.Class.getAnnotation
+org.apache.catalina.startup.ContextConfig.processServletContainerInitializers
+org.apache.catalina.startup.ContextConfig.webConfig
+org.apache.catalina.startup.ContextConfig.configureStart
+org.apache.catalina.startup.ContextConfig.lifecycleEvent
+org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent
+org.apache.catalina.util.LifecycleBase.fireLifecycleEvent
+org.apache.catalina.core.StandardContext.startInternal
+org.apache.catalina.util.LifecycleBase.start

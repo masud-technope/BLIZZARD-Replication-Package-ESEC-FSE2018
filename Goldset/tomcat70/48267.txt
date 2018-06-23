@@ -1,0 +1,8 @@
+java/javax/annotation/Resource.java
+java/javax/ejb/EJB.java
+java/javax/el/BeanELResolver.java
+java/javax/el/ELContext.java
+java/javax/el/ListELResolver.java
+java/javax/el/MapELResolver.java
+java/javax/el/ResourceBundleELResolver.java
+java/javax/xml/ws/WebServiceRef.java

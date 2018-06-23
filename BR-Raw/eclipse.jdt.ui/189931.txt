@@ -1,0 +1,6 @@
+Bug 189931 – [misc] Class File Editor without source: message does not wrap
+I20070530-0010
+In this build, the source attachment for the JUnit3 container is not correctly resolved.
+When I add JUnit 3 to the build path and then open an editor on AboutDialog.class, I get a class file editor without source.
+The message below "Source not found" does not wrap, which forces the editor to become very wide.
+I initially didn't see the vertical scroll bar at all -- I've made the editor wider for the screenshot.

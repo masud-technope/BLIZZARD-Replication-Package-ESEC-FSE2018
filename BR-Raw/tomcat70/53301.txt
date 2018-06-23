@@ -1,0 +1,4 @@
+53301 – Servlet init method called twice with embedded Tomcat
+When using embedded Tomcat, the servlet init method is called twice by the container.
+This has been seen with an Apache DirectMemory unit test.
+I have checked with a normal Tomcat launched by the Tomcat Maven plugin (mvn tomcat7:run) and in this case, the init method is correctly called once.

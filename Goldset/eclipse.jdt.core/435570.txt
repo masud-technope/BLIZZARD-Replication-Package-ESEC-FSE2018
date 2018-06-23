@@ -1,0 +1,10 @@
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/ArrayTypeReference.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/SourceTypeBinding.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/NullTypeAnnotationTest.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/ParameterizedSingleTypeReference.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/TypeReference.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/AbstractMethodDeclaration.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/InstanceOfExpression.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/ParameterizedQualifiedTypeReference.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/Argument.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/ReferenceExpression.java

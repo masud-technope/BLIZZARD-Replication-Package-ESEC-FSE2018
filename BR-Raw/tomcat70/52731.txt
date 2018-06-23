@@ -1,0 +1,6 @@
+52731 – An incomplete fix for the resource leak bug in JDTCompiler.java
+The fix revision 1043157 was aimed to remove an resource leak bug on the BufferedReader object "reader " (created in line 115), the FileInputStream object "is" (created in line 112) in the method "getContents()" of the file "/tomcat/trunk/java/org/apache/jasper/compiler/JDTCompiler.java" , but it is incomplete.
+There are some problems:
+1.
+when "reader" is not created successfully but the temp InputStreamReader is created successfully at line 114, the temp InputStreamReader will be leaked.
+The best way to close such resource objects is putting such close operations in the finaly block of a try-catch-finally structure.

@@ -1,0 +1,22 @@
+org.eclipse.jdt.ui/plugin.xml
+org.eclipse.jdt.ui/icons/full/elcl16/swtassist_co.gif
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/templates/TemplateContributionTest.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/template/java/AbstractVariableResolver.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/template/java/JavaContext.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/template/java/SWTContextType.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/template/contentassist/TemplateEngine.java
+org.eclipse.jdt.ui/templates/default-templates.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaPluginImages.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/template/java/SWTContext.java
+org.eclipse.jdt.ui/templates/default-swttemplates.xml
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/PreferenceConstants.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/TemplateCompletionProposalComputer.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaPlugin.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/SWTTemplateCompletionProposalComputer.java
+org.eclipse.jdt.ui/plugin.properties
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/template/java/JavaFormatter.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/AbstractTemplateCompletionProposalComputer.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/template/java/LinkResolver.java
+org.eclipse.jdt.ui/icons/full/obj16/template_swt_obj.gif
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/template/java/ImportsResolver.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/JavaTemplateCompletionProposalComputer.java

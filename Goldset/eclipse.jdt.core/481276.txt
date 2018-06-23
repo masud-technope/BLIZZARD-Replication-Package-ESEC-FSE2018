@@ -1,0 +1,2 @@
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/classfmt/ClassFileReader.java
+org.eclipse.jdt.core.tests.builder/src/org/eclipse/jdt/core/tests/builder/IncrementalTests18.java

@@ -1,0 +1,3 @@
+Bug 372013 – [preferences] option to turn on warnings for missing null default annotation
+A new option is needed for bug 372012 to alert a user when no default annotation has been specified on a package/type, so that he can add those deaults manually.
+This is necessitated by the fix for bug 366063.

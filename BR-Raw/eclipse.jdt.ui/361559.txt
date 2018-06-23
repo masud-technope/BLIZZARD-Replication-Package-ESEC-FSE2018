@@ -1,0 +1,16 @@
+Bug 361559 – [ltk] DeleteArguments misses API getDeleteProjectContents()
+master
+DeleteArguments misses the API below.
+Without that, participants can't know whether contents will be deleted or not.
+/**
+* Returns whether projects contents will be deleted as well.
+This method
+* is not applicable for file and folder deletions.
+*
+* @return <code>true</code> if the refactoring will delete the project
+*         contents, <code>false</code> if it only removes the reference
+*         from the workspace
+*/
+public boolean getDeleteProjectContents() {
+return fDeleteProjectContents;
+}

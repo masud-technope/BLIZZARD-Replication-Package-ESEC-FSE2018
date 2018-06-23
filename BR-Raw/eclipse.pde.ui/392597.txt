@@ -1,0 +1,7 @@
+Bug 392597 – Create Ant Build file action fails silently on projects
+1) Right click on a PDE Project
+2) Plugin Tools > Create Ant Build File
+Result:
+Nothing happens
+The problem is that BaseBuildAction checks if a manifest file is selected and short circuits if a folder/project is selected.
+ The action used to be only available on certain files but with the move to commands it is available on the project as well.

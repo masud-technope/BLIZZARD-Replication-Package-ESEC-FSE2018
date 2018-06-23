@@ -1,0 +1,8 @@
+Bug 9861 – Double-click does not work for strings in scrapbook page
+Build 20020212
+- new scrapbook page
+- enter:
+System.getProperty("line.separator");
+- double click in the quotes
+- it has no effect
+- works OK in java editor

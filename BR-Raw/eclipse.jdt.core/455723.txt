@@ -1,0 +1,18 @@
+Bug 455723 – Nonnull argument not correctly inferred in loop
+The following class produces a compiler error:
+public class Problem {
+public void fubar(final @Nullable String arg) {
+if (arg == null) {
+return;
+}
+doSomething(arg);
+// no errors here
+while (true) {
+doSomething(arg);
+//          ^^^  compiler error
+}
+}
+private void doSomething(@NonNull String arg) {	}
+}
+The error is "Null type mismatch (type annotations): required '@NonNull String' but this expression has type '@Nullable String'".
+It seems that because the invocation of doSomething occurs within a loop (any kind of loop gives this result), the compiler no longer knows that the argument was already inferred as nonnull.

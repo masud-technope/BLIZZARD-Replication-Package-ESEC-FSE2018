@@ -1,0 +1,31 @@
+50159 – JNDI context returns new datasource instance each request
+Requesting a javax.sql.DataSource via JNDI results in a new instance each time.
+In my particular case I have defined a c3p0 connection pool as follows:
+<Resource auth="Container"
+name="jdbc/mydb"
+description="My Database"
+factory="org.apache.naming.factory.BeanFactory"
+type="com.mchange.v2.c3p0.ComboPooledDataSource"
+driverClass="org.gjt.mm.mysql.Driver"
+jdbcUrl="jdbc:mysql://localhost:3306/mydb?autoReconnect=true"
+user="myUserName"
+password="myPassword"
+minPoolSize="5"
+maxPoolSize="50"
+acquireIncrement="1"
+idleConnectionTestPeriod="100"
+maxIdleTime="1800"
+preferredTestQuery="SELECT 1;"
+/>
+I am using a 3rd party library to access the datasource.
+ Each time a request is made I can see a new connection pool being created.
+ With a simple test I was also able to see that the instance being returned was different each time.
+ Test code:
+Context initialContext = new InitialContext();
+return ((DataSource)initialContext.lookup(this.dataSource)).getConnection();
+When comparing the source code for org.apache.naming.NamingContext between 7.02 and 7.04 the following 4 lines of code were removed (line 808):
+if (obj != null) {
+entry.value = obj;
+entry.type = NamingEntry.ENTRY;
+}
+Adding this code back into the class fixes the issue.

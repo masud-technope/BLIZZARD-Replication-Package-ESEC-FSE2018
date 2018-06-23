@@ -1,0 +1,26 @@
+51386 – @HandlingType not correctly handled at server startup leads to incorrect classes set passed to initializers
+The following code in org.apache.catalina.startup.ContextConfig.checkHandlesTypes(JavaClass) looks very buggy :
+boolean match = false;
+for (Map.Entry<Class<?>, Set<ServletContainerInitializer>> entry :
+typeInitializerMap.entrySet()) {
+if (entry.getKey().isAnnotation()) {
+AnnotationEntry[] annotationEntries = javaClass.getAnnotationEntries();
+for (AnnotationEntry annotationEntry : annotationEntries) {
+if (entry.getKey().getName().equals(
+getClassName(annotationEntry.getAnnotationType()))) {
+match = true;
+break;
+}
+}
+} else if (entry.getKey().isAssignableFrom(clazz)) {
+match = true;
+}
+if (match) {
+for (ServletContainerInitializer sci : entry.getValue()) {
+initializerClassMap.get(sci).add(clazz);
+}
+}
+}
+Shouldn't "match" variable be reset to false at each iteration ?
+As it is for now, my SpringServletContainerInitializer (3.1M2), handling only WebApplicationInitializers, will finally receive a huge set of various applicative classes, starting from the first class parsed matching any type handled by any previously parsed ServletContainerInitializer !!!
+http://svn.apache.org/repos/asf/tomcat/trunk/java/org/apache/catalina/startup/ContextConfig.java

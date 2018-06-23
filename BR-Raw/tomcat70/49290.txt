@@ -1,0 +1,27 @@
+49290 – Using a JarScanner with scanAllDirectories=true causes Tomcat 7 not to start
+Created attachment 25437 [details]
+Possible "starter" patch to make ContextConfig tolerant of file URLs
+Currently ContextConfig's processServletContainerInitializers() and processResourceJARs() are hard coded to only accept jar URLs.
+ If they encounter a file URL due to a JarScanner with scanAllDirectories=true, they throw a ClassCastException.
+ The attached patch is what I used to update Tomcat 7 so it would start.
+ I've verified that the modified processServletContainerInitializers() picks up the "javax.servlet.ServletContainerInitializer" file from a directory.
+ As for processResourceJARs(), I was lazy and modified it to simply ignore file URLs as BaseDirContext doesn't currently accept non-jar URLs for these "META-INF/resources" locations.
+The Tomcat 7 support found in the Web Tools Platform would need this fixed (i.e.
+allow JarScanner with scanAllDirectories=true to be usable) for the feature of serving web application projects directly from the development workspace to work fully.
+ The patch as is would be sufficient.
+ A new feature in WTP 3.2 is multiple web content folders in web application projects.
+ The Tomcat 7 support in WTP has to enable a customized FileDirContext to handle this.
+ It's like VirtualDirContext, but with more hacks.
+ It is able to handle the "META-INF/resources" from directories that processResourceJARs() currently doesn't.
+ However, it may not get the order right.
+ So it would be a benefit if processResourceJARs() could add file URLs to BaseDirContext as well as jar URLs.
+I'm marking the severity as major mainly be cause I have a bit of a deadline.
+ I likely have a little less than a week to make the WTP change to use a JarScanner.
+ Without it the web-fragment.xml files won't be picked up when serving projects directly from the workspace.
+ However, this is all new "stuff".
+ So there probably won't be a critical need for this feature.
+ If I miss the deadline, I'll be able to fix it in the first WTP maintenance release which would be available in late September.
+ Serving web application projects directly from the workspace on Tomcat 7 wouldn't be fully functional for just a few months.
+ Addressing this later is also fine.
+Cheers,
+Larry

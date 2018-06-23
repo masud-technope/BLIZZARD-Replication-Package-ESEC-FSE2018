@@ -1,0 +1,29 @@
+Bug 303506 – [preferences] Labels for 'Line Wrapping Policies' may be misleading.
+While implementing new alignment for annotations (see bug 282030), I was surprised by the fact that even after having selected the 'Wrap all elements, every elements on a new line' line wrapping policy, the elements may finally not be placed on a new line as required...
+Let's set the 'Wrap all elements, every elements on a new line' line wrapping policy on Method Declarations -> Parameters.
+With a line width set to 80, none of the example parameters is put on a new line, instead they all stay at the initial line:
+/**
+* Parameters
+*/
+class Example {
+void foo(int arg1, int arg2, int arg3, int arg4, int arg5, int arg6) {
+}
+}
+If I change the line width to 40 or use the 'Force split' flag, then I get the expected output:
+/**
+* Parameters
+*/
+class Example {
+void foo(
+int arg1,
+int arg2,
+int arg3,
+int arg4,
+int arg5,
+int arg6) {
+}
+}
+I'm fine with this behavior as it let me decide how the formatter should work, but I think the label for this policy is a little bit misleading for a formatter non-expert user like me...
+;-)
+The confusion surely comes from the fact that just above in the policies list, there's a 'Wrap only when necessary' label.
+This label makes me feel that the other policies will wrap even if it's not necessary, but apparently this is not entirely true...

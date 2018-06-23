@@ -1,0 +1,5 @@
+Bug 10817 – configs in java packages get copied to output folder
+When a config is shared in a java package, it is copied to the output folder,
+and shows up twice in the launch config dialog.
+Is there a way that we can disallow copying selected resources to the output
+location?

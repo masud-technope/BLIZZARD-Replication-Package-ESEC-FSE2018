@@ -1,0 +1,15 @@
+Bug 401939 – [1.8][compiler] Incorrect shape analysis leads to method resolution failure
+BETA_JAVA8:
+The following program should compile, but doesn't:
+// ---
+interface I {
+int foo();
+}
+class X {
+void foo(I i) {}
+I i = ()->{ throw new RuntimeException(); }; // OK
+{
+foo(()->{ throw new RuntimeException(); }); // Error: Bad
+}
+}
+The lambda is value compatible, we conclude otherwise.

@@ -1,0 +1,19 @@
+53337 – IllegalStateException when trying to render a JSP after startAsync
+The scenario involves:
+1.
+ServletA forwards to Servlet B
+2.
+ServletB calls request.startAsync and starts thread
+3.
+New thread attempts to render a JSP
+I've tried JSP rendering via asyncContext.dispatch("") and via request.getRequestDispatcher("") plus forward or include.
+When using a RequestDispatcher, calling ServletA fails while calling ServletB directly succeeds.
+When using AsyncContext.dispatch, both ServletA and ServletB fail.
+The exception is always the same (while attempting to render the JSP):
+java.lang.IllegalStateException: Cannot create a session after the response has been committed
+I've created a project at:
+https://github.com/rstoyanchev/dispatch-test
+The project page contains instructions and attached is a .war although you might want to check the source out in order to try a couple of variations.
+Beyond the specifics of the bug, the more general question is whether it is ok to use request.getRequestDispatcher from an async thread? That seems to be the case in Tomcat, aside from this bug, but in other containers (Jetty in particular) it's clearly not recommended.
+Servlet Spec discussion on this question:
+http://java.net/projects/servlet-spec/lists/users/archive/2012-05/message/10.

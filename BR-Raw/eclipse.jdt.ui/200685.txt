@@ -1,0 +1,103 @@
+Bug 200685 – [templates] JavaContext sets wrong completion length when adding imports
+I20070815-1600
+Given:
+package test;
+public class E01 {
+public void foo() {
+"A foo bar text"
+}
+}
+1.
+Add a template 'Test' with pattern:
+foo(${word_selection});
+bar();
+to java context
+2.
+Select "A foo bar text"
+3.
+Ctrl-Space, Ctrl-Space
+4.
+Type 't'
+5.
+Enter
+Is:
+package test;
+public class E01 {
+public void foo() {
+foo("A foo bar text");
+bar();
+Should:
+package test;
+public class E01 {
+public void foo() {
+foo("A foo bar text");
+bar();
+}
+}
+Now do the same with:
+package test;
+public class E01 {
+public void foo() {
+"A foo bar text"
+}
+}
+Is:
+org.eclipse.jface.text.BadLocationException
+at org.eclipse.jface.text.AbstractDocument.addPosition(AbstractDocument.java:347)
+at org.eclipse.core.internal.filebuffers.SynchronizableDocument.addPosition(SynchronizableDocument.java:193)
+at org.eclipse.jface.text.AbstractDocument.addPosition(AbstractDocument.java:364)
+at org.eclipse.jdt.internal.corext.template.java.JavaContext.rewriteImports(JavaContext.java:476)
+at org.eclipse.jdt.internal.corext.template.java.JavaContext.evaluate(JavaContext.java:167)
+at org.eclipse.jdt.internal.ui.text.template.contentassist.TemplateProposal.apply(TemplateProposal.java:173)
+at org.eclipse.jface.text.contentassist.CompletionProposalPopup.insertProposal(CompletionProposalPopup.java:806)
+at org.eclipse.jface.text.contentassist.CompletionProposalPopup.insertSelectedProposalWithMask(CompletionProposalPopup.java:757)
+at org.eclipse.jface.text.contentassist.CompletionProposalPopup.verifyKey(CompletionProposalPopup.java:1165)
+at org.eclipse.jface.text.contentassist.ContentAssistant$InternalListener.verifyKey(ContentAssistant.java:788)
+at org.eclipse.jface.text.TextViewer$VerifyKeyListenersManager.verifyKey(TextViewer.java:460)
+at org.eclipse.swt.custom.StyledTextListener.handleEvent(StyledTextListener.java:60)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:938)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:962)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:947)
+at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:706)
+at org.eclipse.swt.custom.StyledText.handleKeyDown(StyledText.java:5052)
+at org.eclipse.swt.custom.StyledText$7.handleEvent(StyledText.java:4800)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:938)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:962)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:947)
+at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:975)
+at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:971)
+at org.eclipse.swt.widgets.Widget.wmChar(Widget.java:1285)
+at org.eclipse.swt.widgets.Control.WM_CHAR(Control.java:3772)
+at org.eclipse.swt.widgets.Control.windowProc(Control.java:3672)
+at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:291)
+at org.eclipse.swt.widgets.Display.windowProc(Display.java:4390)
+at org.eclipse.swt.internal.win32.OS.CallWindowProcW(Native Method)
+at org.eclipse.swt.internal.win32.OS.CallWindowProc(OS.java:2198)
+at org.eclipse.swt.internal.BidiUtil.windowProc(BidiUtil.java:647)
+at org.eclipse.swt.internal.win32.OS.DispatchMessageW(Native Method)
+at org.eclipse.swt.internal.win32.OS.DispatchMessage(OS.java:2284)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3317)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2389)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2353)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2219)
+at org.eclipse.ui.internal.Workbench$4.run(Workbench.java:466)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:289)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:461)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:106)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:169)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:106)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:76)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:363)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:176)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:508)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:447)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1173)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1148)
+Also the error dialog shown is ridiculous, will file separate bug...

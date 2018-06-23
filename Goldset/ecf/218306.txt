@@ -1,0 +1,5 @@
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/discovery/ServiceInfo.java
+server-side/examples/bundles/org.eclipse.ecf.examples.remoteservices.server/src/org/eclipse/ecf/internal/examples/remoteservices/server/Activator.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/provider/jmdns/container/JMDNSDiscoveryContainer.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/provider/jmdns/container/JMDNSServiceInfo.java
+server-side/examples/bundles/org.eclipse.ecf.examples.updatesite.server/src/org/eclipse/ecf/internal/examples/updatesite/Activator.java

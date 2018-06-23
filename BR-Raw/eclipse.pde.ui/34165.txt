@@ -1,0 +1,5 @@
+Bug 34165 – Manifest builder should keep build.properties and plugin.xml in sync or at least mark inconsistencies
+File build.properties has entries for the libraries that are listed in
+plugin.xml.
+Manifest builder should compare the two and report a warning when
+jar names are not the same.

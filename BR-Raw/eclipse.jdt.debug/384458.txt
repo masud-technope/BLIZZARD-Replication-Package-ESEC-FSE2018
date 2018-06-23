@@ -1,0 +1,21 @@
+Bug 384458 – debug shows value of variable in another scope
+Build Identifier: Version: Juno Release Build id: 20120614-1722
+If you have variables with same name in class and it's static method (class variable must be static too), and you stopped on breakpoint in this method and you want to see method's variable value, class's variable will be shown.
+Reproducible: Always
+Steps to Reproduce:
+1.
+create a project with one class with this code:
+public class Main {
+static String[] a = new String[] { "0", "1", "2" };
+public static void main(String[] args) {
+int[] a = new int[] { 101, 102 };
+System.err.println(a[1]);
+}
+}
+2.
+add breakpoint on println line
+3.
+debug the project as java application
+4.
+When debug will stop on breakpoint, try to inspect a's value.
+this will show value of class's scope a, but we definitely need value from method's scope.

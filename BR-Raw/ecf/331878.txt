@@ -1,0 +1,18 @@
+Bug 331878 – [Discovery][Zookeeper] Zookeeper unit tests crash the VM with system exit 10 due to FileNotFoundException
+2010-12-05 20:32:05,033 - FATAL [pool-1-thread-3:ZooKeeperServer@262] - Severe unrecoverable error, exiting
+java.io.FileNotFoundException: /tmp/zookeeperData/version-2/snapshot.0 (No such file or directory)
+at java.io.FileOutputStream.open(Native Method)
+at java.io.FileOutputStream.<init>(FileOutputStream.java:179)
+at java.io.FileOutputStream.<init>(FileOutputStream.java:131)
+at org.apache.zookeeper.server.persistence.FileSnap.serialize(FileSnap.java:224)
+at org.apache.zookeeper.server.persistence.FileTxnSnapLog.save(FileTxnSnapLog.java:211)
+at org.apache.zookeeper.server.ZooKeeperServer.takeSnapshot(ZooKeeperServer.java:260)
+at org.apache.zookeeper.server.ZooKeeperServer.loadData(ZooKeeperServer.java:255)
+at org.apache.zookeeper.server.ZooKeeperServer.startup(ZooKeeperServer.java:366)
+at org.eclipse.ecf.provider.zookeeper.core.ZooDiscoveryContainer.startStandAlone(ZooDiscoveryContainer.java:185)
+at org.eclipse.ecf.provider.zookeeper.core.ZooDiscoveryContainer$3.run(ZooDiscoveryContainer.java:164)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:662)
+Calling System.exit() in org.apache.zookeeper.server.ZooKeeperServer.takeSnapshot() is IMO not appropriate for a library bundle.
+It might be best to prevent Zookeeper from exiting by setting a special security manager

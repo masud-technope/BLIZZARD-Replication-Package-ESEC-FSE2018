@@ -1,0 +1,21 @@
+49669 – Static reference from javax.security.auth.Policy.contextClassLoader prevents an undeployed Web application from being garbage collected
+Overview
+The class javax.security.auth.Policy has a static member contextClassLoader that can refer to the WebappClassLoader of an application.
+If that happens, the web application cannot be garbage collected after undeploy.
+Steps to reproduce
+Create a web application that uses Axis 1 as SOAP server.
+Deploy the web application in Tomcat.
+Make a SOAP call to the webapplication.
+Undeploy the web application.
+Wait an hour.
+Make a memory dump using jmap, and inspect the memory using jhat.
+Actual results
+The WebappClassLoader for the web application is still present.
+Its "reference chains from rootset" shows a reference like this:
+System Class Reference :
+--> class javax.security.auth.Policy (84 bytes) (static field contextClassLoader:)
+--> org.apache.catalina.loader.WebappClassLoader@0xeb52ba60 (165 bytes)
+Expected results
+There is no WebappClassLoader for this web application anymore.
+Build date & platform
+Downloaded Core tar.gz from http://tomcat.apache.org/download-70.cgi

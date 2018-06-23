@@ -1,0 +1,2 @@
+java.lang.NullPointerException.<init>
+org.eclipse.jdt.internal.debug.ui.actions.BreakpointLocationVerifierJob.run

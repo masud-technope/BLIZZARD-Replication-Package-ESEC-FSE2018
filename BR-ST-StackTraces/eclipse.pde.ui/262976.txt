@@ -1,0 +1,4 @@
+org.eclipse.pde.internal.ui.PDELabelProvider.getObjectImage
+org.eclipse.pde.internal.ui.PDELabelProvider.getImage
+org.eclipse.pde.internal.ui.util.SharedLabelProvider.getColumnImage
+org.eclipse.jface.viewers.TableColumnViewerLabelProvider.update

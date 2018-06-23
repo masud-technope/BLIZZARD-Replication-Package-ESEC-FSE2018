@@ -1,0 +1,37 @@
+Bug 305155 – Java project wizard does not allow "nesting" in the workspace
+Build id: I20100309-0100
+1.
+Make a new workspace somewhere, in my case I used:
+C:\rcjsuen\eclipse-SDK-I20100309-0100-win32\ws2
+2.
+Make a new folder in it via Windows Explorer.
+C:\rcjsuen\eclipse-SDK-I20100309-0100-win32\ws2\test
+3.
+File > New > Other...
+> General > Project
+4.
+Uncheck default location.
+5.
+Use C:\rcjsuen\eclipse-SDK-I20100309-0100-win32\ws2\test\b
+6.
+Give the project a name 'b'.
+7.
+Click 'Finish'.
+8.
+Check Windows Explorer.
+The 'b' folder is created correctly, the .project file is generated.
+Things seem to be okay.
+9.
+File > New > Java Project
+10.
+Uncheck default location.
+11.
+Use C:\rcjsuen\eclipse-SDK-I20100309-0100-win32\ws2\test\a
+12.
+Give the project a name 'a'.
+13.
+Click 'Finish'.
+14.
+Check Windows Explorer.
+The project ends up being created as C:\rcjsuen\eclipse-SDK-I20100309-0100-win32\ws2\a.
+The C:\rcjsuen\eclipse-SDK-I20100309-0100-win32\ws2\test folder only has \b\ in it.

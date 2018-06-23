@@ -1,0 +1,51 @@
+Bug 337887 – [type hierarchy] MethodOverrideTester and Type Hierarchy don't consider flags etc.
+Created attachment 189532 [details]
+Fix
+HEAD
+MethodOverrideTester and the Type Hierarchy don't consider flags (private, static) and don't rule out constructors.
+Example:
+package javadoc;
+public class Outer {
+/**
+* Outer ctor.
+*/
+public Outer() {}
+/**
+* Outer method.
+*/
+public String Outer() { return ""; }
+private void foo() { }
+public static void bar() { }
+class Inner {
+/**
+* Inner method.
+*/
+public String Inner() { return ""; }
+/**
+* Inner ctor.
+*/
+public Inner() {}
+}
+}
+class OuterSub extends Outer {
+/**
+* OuterSub method.
+{@inheritDoc}
+*/
+@Override
+public String Outer() { return super.Outer(); }
+/**
+* foo method.
+{@inheritDoc}
+*/
+public static void foo() { }
+public static void bar() { }
+class InnerSub extends Outer.Inner {
+/**
+* InnerSub method.
+{@inheritDoc}
+*/
+@Override
+public String Inner() { return super.Inner(); }
+}
+}

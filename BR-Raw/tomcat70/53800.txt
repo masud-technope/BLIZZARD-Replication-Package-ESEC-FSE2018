@@ -1,0 +1,29 @@
+53800 – Infinte loop cause by FileDirContext in a CDI/Weld project when using Eclipse's "Server modules without publishing"
+Created attachment 29302 [details]
+Patch for FileDirContext.java
+Weld's TomcatListener is using the recurse method recited below.
+In the case I am encountering the DirContext that Tomcat provides is a FileDirContext.
+The discovery code used by Weld encounters what appears to be a bug in FileDirContext where FileDirContexts for child directories are created with the current FileDirContext's path.
+This causes an infinite loop while it searches the root directory over and over.
+Assuming the class discovery code Weld is using is correct, I tracked down the problem to a specific line in FileDirContext.java.
+ Fixing this line to set the path of the new child FileDirContext to the matching child directory fixes the issue I am encountering.
+With this change the project appears to still pass all the unit tests ran with "ant test".
+I have attached the patch to this issue.
+Here is Weld's recurse function which I am assuming is correct...
+protected static void recurse(DirContext context, Set<String> classes, Set<URL> urls, String prefix) throws Exception {
+if (prefix.length() > 0)
+prefix += ".";
+NamingEnumeration ne = context.listBindings("");
+while (ne.hasMoreElements()) {
+Binding next = (Binding) ne.nextElement();
+String name = prefix + next.getName();
+if (name.endsWith(".class")) {
+classes.add(name.substring(0, name.length() - 6));
+continue;
+}
+Object nextObject = next.getObject();
+if (nextObject instanceof DirContext) {
+recurse((DirContext) nextObject, classes, urls, name);
+}
+}
+}

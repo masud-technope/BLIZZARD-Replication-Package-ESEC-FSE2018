@@ -1,0 +1,2 @@
+Bug 264348 – move DOMParserWrapper to pde.ui.tests
+This class is in pde.ui and used by noone but pde.ui.tests

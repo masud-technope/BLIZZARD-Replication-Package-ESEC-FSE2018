@@ -1,0 +1,6 @@
+java/org/apache/tomcat/util/http/mapper/LocalStrings.properties
+java/org/apache/tomcat/util/http/mapper/Mapper.java
+test/org/apache/tomcat/util/http/mapper/TestMapper.java
+java/org/apache/catalina/connector/MapperListener.java
+test/org/apache/catalina/connector/TestMapperListener.java
+webapps/docs/changelog.xml

@@ -1,0 +1,5 @@
+Bug 426447 – JDT's implementation of JavaFilerManager#inferBinaryName() throws IAE
+Created attachment 239259 [details]
+Testcase
+As the attached test case demonstrates, EclipseFileManager.inferBinaryName(Location, JavaFileObject) throws an IAE when name for a file of OTHER kind is requested.
+The Javadoc in JavaFileManager#inferBinaryName() doesn't say anything about this scenario, although it doesn't talk anything about Kind.OTHER being not supported.

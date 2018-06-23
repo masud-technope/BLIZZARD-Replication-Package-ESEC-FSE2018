@@ -1,0 +1,1 @@
+framework/bundles/org.eclipse.ecf.remoteservice.rest/src/org/eclipse/ecf/remoteservice/rest/client/RestClientService.java

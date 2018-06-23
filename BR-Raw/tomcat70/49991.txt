@@ -1,0 +1,4 @@
+49991 – Tomcat 7 JAAS problem with CDI
+Tomcat is suffering from the same bug fixed in Glassfish:
+https://glassfish.dev.java.net/issues/show_bug.cgi?id=12642
+When the container redirects to a login page, CDI (Weld) tell that there is no active contexts for requestscope.

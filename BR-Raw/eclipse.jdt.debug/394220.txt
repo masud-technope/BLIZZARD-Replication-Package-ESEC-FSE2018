@@ -1,0 +1,40 @@
+Bug 394220 – JREContainer.RuleEntry#equals returns to early
+The equals check iterates through the double dimension IAccessRule-Array.
+Unfortunately if the first access rule equals it returns with true omitting access rule checks to other entries.
+for (int i = 0; i < fRules.length; i++) {
+originalrule = fRules[i];
+comparerule = rules[i];
+equal &= (originalrule == comparerule);
+if(!equal) {
+if (originalrule.length == comparerule.length) {
+for (int j = 0; j < originalrule.length; j++) {
+if (!originalrule[j].equals(comparerule[j])) {
+return false;
+}
+}
+return true;
+}
+else {
+return false;
+}
+}
+}
+The correct code should looks like this:
+for (int i = 0; i < fRules.length; i++) {
+originalrule = fRules[i];
+comparerule = rules[i];
+equal &= (originalrule == comparerule);
+if(!equal) {
+if (originalrule.length == comparerule.length) {
+for (int j = 0; j < originalrule.length; j++) {
+if (!originalrule[j].equals(comparerule[j])) {
+return false;
+}
+}
+// FIX return true;
+}
+else {
+return false;
+}
+}
+}

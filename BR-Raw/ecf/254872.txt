@@ -1,0 +1,3 @@
+Bug 254872 – Convert org.eclipse.ecf.core.identity.IDCreateException into RuntimeException
+As discussed offline, org.eclipse.ecf.core.identity.IDCreateException may not inherit from org.eclipse.ecf.core.util.ECFException, but from a (TODO) ECFRuntimeException.
+On the other hand, the checked Exception org.osgi.framework.InvalidSyntaxException might convince us to keep it as it is.

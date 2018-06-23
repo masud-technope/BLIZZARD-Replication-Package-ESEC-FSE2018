@@ -1,0 +1,67 @@
+50720 � When using jsp mapped as servlet in web.xml, cyrillic characters are not allowed in web.xml
+Created attachment 26605 [details]
+Simple test web application
+I am using web.xml in it simplest, incomlete form (note that making it
+100% Servlet API 3.0 compliant does not help)
+<?xml version="1.0" encoding="Windows-1251"?>
+<web-app>
+<!-- below are word testing Testoviy in cyrillic, try to use another symbols -->
+<display-name>Те�?товый web.xml</display-name>
+<servlet>
+<servlet-name>TestJSPMount</servlet-name>
+<jsp-file>/test.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+<servlet-name>TestJSPMount</servlet-name>
+<url-pattern>/test.html</url-pattern>
+</servlet-mapping>
+</web-app>
+During startup, tomcat throws exception:
+04/02/2011 16:07:39 S - - StandardContext.loadOnStartup: Servlet
+/testcyrwebxml threw load() exception
+com.sun.org.apache.xerces.internal.impl.io.MalformedByteSequenceException:
+Invalid byte 2 of 2-byte UTF-8 sequence.
+at com.sun.org.apache.xerces.internal.impl.io.UTF8Reader.invalidByte(Unknown Source)
+at com.sun.org.apache.xerces.internal.impl.io.UTF8Reader.read(Unknown Source)
+at com.sun.org.apache.xerces.internal.impl.XMLEntityScanner.load(Unknown Source)
+at com.sun.org.apache.xerces.internal.impl.XMLEntityScanner.peekChar(Unknown Source)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(Unknown Source)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(Unknown Source)
+at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(Unknown Source)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(Unknown Source)
+at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(Unknown Source)
+at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(Unknown Source)
+at org.apache.jasper.xmlparser.ParserUtils.parseXMLDocument(ParserUtils.java:96)
+at org.apache.jasper.compiler.JspConfig.processWebDotXml(JspConfig.java:83)
+at org.apache.jasper.compiler.JspConfig.init(JspConfig.java:231)
+at org.apache.jasper.compiler.JspConfig.findJspProperty(JspConfig.java:290)
+at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:113)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:365)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:345)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:332)
+at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:594)
+at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:342)
+at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:391)
+at org.apache.jasper.servlet.JspServlet.init(JspServlet.java:128)
+at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1133)
+at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1087)
+at org.apache.catalina.core.StandardWrapper.load(StandardWrapper.java:996)
+at org.apache.catalina.core.StandardContext.loadOnStartup(StandardContext.java:4741)
+at org.apache.catalina.core.StandardContext$3.call(StandardContext.java:5062)
+at org.apache.catalina.core.StandardContext$3.call(StandardContext.java:5057)
+at java.util.concurrent.FutureTask$Sync.innerRun(Unknown Source)
+at java.util.concurrent.FutureTask.run(Unknown Source)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+at java.lang.Thread.run(Unknown Source)
+Platform in use:
+Tomcat 7.0.6 binary windows release
+JDK 1.6.0_18 x86
+Windows 7 x64
+If I change encoding of web.xml to UTF-8 it does not help also.
+The only fix for this problem is to use only ISO-8859-1 characters.
+I believe it is somehow related to some early initialization sequence,
+when jsp is mapped as servlet.

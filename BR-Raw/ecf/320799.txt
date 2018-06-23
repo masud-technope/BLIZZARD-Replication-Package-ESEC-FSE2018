@@ -1,0 +1,4 @@
+Bug 320799 – [Discovery][JmDNS] JmDNS does not allow binding loopback interface
+javax.jmdns.impl.JmDNSImpl.JmDNSImpl() explicitly prevents the loopback interface from being bound to.
+Even if net.mdns.interface is set.
+On top of that, JREs < 1.6 fail to send multicast messages over the loopback interface even if the socket is bound to it.

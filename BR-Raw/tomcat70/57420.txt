@@ -1,0 +1,105 @@
+57420 – Wrong class names generated since URL_ENCODER in DirContextURLConnection is not thread safe
+We've been debugging this for a long time.
+Sometimes when tomcat starts up, it will fail to deploy a webapp since it cannot find a certain class.
+That class name is always complete garbage.
+The error stack trace always is:
+SEVERE: Unable to process resource element [jndi:/localhost/testapp/WEB-INF/classes/ch/blabli/dNlewrP.lculgiansDisalog$3.class] for annotations
+java.io.FileNotFoundException: jndi:/localhost/testapp/WEB-INF/classes/ch/blabli/dNlewrP.lculgiansDisalog$3.class
+at org.apache.naming.resources.DirContextURLConnection.getInputStream(DirContextURLConnection.java:389)
+From time to time we see, that the referenced class name is actually a mix of the real class name and one or more other classes that exist in the vicinity of that class.
+Finally I was able to catch this exception with the debugger.
+What I see is that the problem stems from rg.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1986):
+- dcUrlConn (DirContextURLConnection) contains the correct entries of the WAR file
+- Enumeration<String> dirs = dcUrlConn.list()  however does not.
+Calling list() again from the debugger yields the correct results.
+Here's the contents of that dirs variable:
+[lCsosn, oCrAopnpfliigcEadtiitoonr$AEpdpiltiocraMtoidoen.$c2l.acslsass, , tCioonnfi$gu4r.aticolnaLsosad, liconaftgiuroatni$o5n.LocadlLaisstsen, cCaotnifiognur$a6.clastsi, lCaonsfsig, s, cluaiss, CwoindgfetisegtEditorApplication$9.class, ConfigEditorApplication$ApplicationConfigLoadListener.class, ConfigEditorApplication$ConfigEditorToParameterHandlerIntegration.class, ConfigEditorApplication$EditorMode$1.class, ConfigEditorApplication$EditorMode$2.class, ConfigEditorApplication$EditorMode.class, ConfigEditorApplication.class, ConfigLoader$1.class, ConfigLoader.class, ConfigurationLoadListener$ConfigType.class, ConfigurationLoadListener$ConfigurationLoadedEvent.class, ConfigurationLoadListener$FailedToLoadConfigurationEvent.class, ConfigurationLoadListener.class, command, data, field, rendering, session, ui, util, widgetset]
+walking into the list() command leads to collection.list("/") which in turn is encoded using an URL_ENCODER (class UEncoder).
+This URL_ENCODER is *not* thread safe and can result in exactly such garbage if used concurrently.
+It is interesting to note that every single failure we had at this step was always caused by classes in the WEB-INF/classes directory, never in JAR files in WEB-INF/lib.
+To me it appears that there are two different DirContextURLConnections with rare concurrency issues when both use the same URL_ENCODER.
+Here's the full stacktrace when the error occurs:
+at org.apache.naming.resources.DirContextURLConnection.getInputStream(DirContextURLConnection.java:389)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1994)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1986)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1986)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1986)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1986)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1986)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1986)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsUrl(ContextConfig.java:1902)
+at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1298)
+at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:876)
+at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:374)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:117)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5378)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:901)
+at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:877)
+at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:649)
+at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1083)
+at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1880)
+at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at java.lang.Thread.run(Thread.java:744)
+Jan 06, 2015 3:43:44 PM org.apache.catalina.startup.ContextConfig processAnnotationsJndi
+SEVERE: Unable to process resource element [jndi:/localhost/medusa-config-editor-5.48.0/WEB-INF/classes/ch/ergon/medusa/configeditor/ui/dialog/TeerstRelgeaxsDialog.class] for annotations
+java.io.FileNotFoundException: jndi:/localhost/medusa-config-editor-5.48.0/WEB-INF/classes/ch/ergon/medusa/configeditor/ui/dialog/TeerstRelgeaxsDialog.class
+at org.apache.naming.resources.DirContextURLConnection.getInputStream(DirContextURLConnection.java:389)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1994)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1986)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1986)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1986)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1986)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1986)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1986)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsUrl(ContextConfig.java:1902)
+at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1298)
+at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:876)
+at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:374)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:117)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5378)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:901)
+at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:877)
+at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:649)
+at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1083)
+at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1880)
+at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at java.lang.Thread.run(Thread.java:744)
+Jan 06, 2015 3:43:44 PM org.apache.catalina.startup.ContextConfig processAnnotationsJndi
+SEVERE: Unable to process resource element [jndi:/localhost/medusa-config-editor-5.48.0/WEB-INF/classes/ch/ergon/medusa/configeditor/ui/dialog/aTsesxtAreaDialog$2.class] for annotations
+java.io.FileNotFoundException: jndi:/localhost/medusa-config-editor-5.48.0/WEB-INF/classes/ch/ergon/medusa/configeditor/ui/dialog/aTsesxtAreaDialog$2.class
+at org.apache.naming.resources.DirContextURLConnection.getInputStream(DirContextURLConnection.java:389)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1994)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1986)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1986)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1986)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1986)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1986)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1986)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsUrl(ContextConfig.java:1902)
+at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1298)
+at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:876)
+at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:374)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:117)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5378)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:901)
+at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:877)
+at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:649)
+at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:1083)
+at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1880)
+at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at java.lang.Thread.run(Thread.java:744)

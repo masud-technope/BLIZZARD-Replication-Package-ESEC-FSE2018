@@ -1,0 +1,6 @@
+Bug 232828 – [bidi] processing glitch in CodeTemplateContextType
+Created attachment 100934 [details]
+Fix
+I20080516-1333
+Bidi processing glitch in CodeTemplateContextType.validateVariables(TemplateVariable[]), see patch.
+Probably not a problem in practice, since users don't contribute these variables.

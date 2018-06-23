@@ -1,0 +1,12 @@
+java.lang.System.arraycopy
+org.apache.tomcat.util.buf.ByteChunk.append
+org.apache.tomcat.util.http.Parameters.processParameters
+org.apache.tomcat.util.http.Parameters.processParameters
+org.apache.tomcat.util.http.Parameters.handleQueryParameters
+org.apache.catalina.connector.Request.parseParameters
+org.apache.catalina.connector.Request.getParameterNames
+org.apache.catalina.connector.Request.getParameterMap
+org.apache.catalina.connector.RequestFacade.getParameterMap
+ru.agapemoda.servlet.ImageServlet.doGet
+java.lang.Thread.run
+Note: when logging level is "SEVERE", the troublesome code in org.apache.tomcat.util.http.Parameters.processParameters

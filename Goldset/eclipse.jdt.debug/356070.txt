@@ -1,0 +1,6 @@
+org.eclipse.jdt.debug.tests/META-INF/MANIFEST.MF
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/test/stepping/StepIntoSelectionWithGenerics.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AbstractDebugTest.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AutomatedSuite.java
+org.eclipse.jdt.debug.tests/testsource-j2se-1.5/a/b/c/StepIntoSelectionWithGenerics.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/StepIntoSelectionActionDelegate.java

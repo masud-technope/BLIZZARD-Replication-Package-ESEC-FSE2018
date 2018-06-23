@@ -1,0 +1,2 @@
+org.eclipse.ltk.ui.refactoring/src/org/eclipse/ltk/internal/ui/refactoring/RefactoringStatusDialog.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/CPVariableElementLabelProvider.java

@@ -1,0 +1,4 @@
+Bug 265312 – [Discovery][JMDNS] Replace binary jar with sources
+Replace lib/jmdns.jar in org.eclipse.ecf.provider.jmdns with sources.
+That way we can make fixes (e.g.
+the dreaded race conditions).

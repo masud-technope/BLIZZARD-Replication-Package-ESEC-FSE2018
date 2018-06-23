@@ -1,0 +1,11 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDEManager.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/TargetPlatformHelper.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/WorkspacePluginModelManager.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/ManifestConsistencyChecker.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/bundle/Bundle.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/bundle/BundlePluginModelBase.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/bundle/WorkspaceBundlePluginModelBase.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/plugin/WorkspaceExtensionsModel.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/plugin/WorkspacePluginModelBase.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/bundle/Bundle.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/model/bundle/BundleLocalizationTestCase.java

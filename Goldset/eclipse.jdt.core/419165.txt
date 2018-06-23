@@ -1,0 +1,5 @@
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/AnnotatableTypeSystem.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/LookupEnvironment.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/TypeBinding.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/TypeSystem.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/UnannotatedTypeSystem.java

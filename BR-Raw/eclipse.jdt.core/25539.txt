@@ -1,0 +1,8 @@
+Bug 25539 – Unexpected inaccurate search results
+Build 20021029
+When searching for references to Throwable (type references), I got back
+inaccurate matches, such as:
+org.eclipse.jdt.core.tests.compiler.parser.SingleCompletionTest.run(Class,
+String)
+org.eclipse.core.runtime.IStatus.getException()
+(got 51 inaccurate matches in total)

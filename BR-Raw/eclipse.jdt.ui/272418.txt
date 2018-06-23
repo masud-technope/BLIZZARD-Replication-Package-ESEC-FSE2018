@@ -1,0 +1,4 @@
+Bug 272418 – [JUnit] Support for JUnit 4.7
+JUnit 4.6 is available since April, 14 at
+http://sourceforge.net/project/showfiles.php?group_id=15278&package_id=12472
+It would be go to see that Eclipse 3.5 supports the latest version of JUnit -- instead of waiting until June 2010 when the next major release will be shipped.

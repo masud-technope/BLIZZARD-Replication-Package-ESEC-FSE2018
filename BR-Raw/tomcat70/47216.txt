@@ -1,0 +1,12 @@
+47216 – Possible NPE in Http11Processor.action()
+The code at around line 1075:
+} else if (actionCode == ActionCode.ACTION_REQ_LOCAL_ADDR_ATTRIBUTE) {
+if (localAddr == null)
+localAddr = socket.getLocalAddress().getHostAddress();
+fails to check if "socket != null".
+Since this is checked everywhere else in the method this is probably a bug.
+The method Http11Processor.parseHost() also references "socket" without checking for null.
+Within the class, it is only called by process(Socket), which guarantees that it won't be null.
+However once process() returns normally, socket will be set to null.
+The parseHost() method is public, so it may be called when socket == null.
+Perhaps the parseHost() method should be private?

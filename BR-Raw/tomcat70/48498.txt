@@ -1,0 +1,60 @@
+48498 – 6.0.22RC: ArrayIndexOutOfBoundsException from Jasper when compilation error inside a CDATA block
+Created attachment 24808 [details]
+/webapps/examples/WEB-INF/tags/panel.tagx
+Steps to reproduce:
+1.
+Remove /WEB-INF/tags/panel.tag
+from the Tomcat Examples webapp and replace it with the attached XML Tag file, panel.tagx
+2.
+Visit the following page:
+http://localhost:8080/examples/jsp/jsp2/tagfiles/panel.jsp
+3.
+The page contains a scriptlet, with a CDATA block that produces
+a compilatin error.
+Expected result:
+Compilation error being reported for line 39,
+Integer.parseInt(10);
+Actual result:
+java.lang.ArrayIndexOutOfBoundsException: 46
+org.apache.jasper.compiler.JavacErrorDetail.<init>(JavacErrorDetail.java:111)
+4.
+If I add sufficient number of empty lines after the CDATA block,
+ArrayIndexOutOfBoundsException disappears and I can see the compiler error,
+but the error lines shown are wrong.
+The shown lines are below the actual
+location of the error.
+It looks like this offset in line numbers is due to the size of the CDATA
+block.
+====================================================================
+Full stacktrace of the above ArrayIndexOutOfBoundsException exception:
+java.lang.ArrayIndexOutOfBoundsException: 46
+org.apache.jasper.compiler.JavacErrorDetail.<init>(JavacErrorDetail.java:111)
+org.apache.jasper.compiler.ErrorDispatcher.createJavacError(ErrorDispatcher.java:533)
+org.apache.jasper.compiler.JDTCompiler$2.acceptResult(JDTCompiler.java:377)
+org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:398)
+org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:429)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:334)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:312)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:299)
+org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:589)
+org.apache.jasper.servlet.JspServletWrapper.loadTagFile(JspServletWrapper.java:215)
+org.apache.jasper.compiler.TagFileProcessor.loadTagFile(TagFileProcessor.java:625)
+org.apache.jasper.compiler.TagFileProcessor.access$000(TagFileProcessor.java:52)
+org.apache.jasper.compiler.TagFileProcessor$TagFileLoaderVisitor.visit(TagFileProcessor.java:685)
+org.apache.jasper.compiler.Node$CustomTag.accept(Node.java:1530)
+org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2361)
+org.apache.jasper.compiler.Node$Visitor.visitBody(Node.java:2411)
+org.apache.jasper.compiler.Node$Visitor.visit(Node.java:2417)
+org.apache.jasper.compiler.Node$Root.accept(Node.java:495)
+org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2361)
+org.apache.jasper.compiler.TagFileProcessor.loadTagFiles(TagFileProcessor.java:703)
+org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:195)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:332)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:312)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:299)
+org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:589)
+org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:317)
+org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:313)
+org.apache.jasper.servlet.JspServlet.service(JspServlet.java:260)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+====================================================================

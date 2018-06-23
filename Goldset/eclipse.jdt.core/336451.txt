@@ -1,0 +1,3 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/BindingKeyTests.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/BindingKeyParser.java

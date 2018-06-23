@@ -1,0 +1,10 @@
+org.eclipse.jdi.internal.MirrorImpl.defaultReplyErrorHandler
+org.eclipse.jdi.internal.ObjectReferenceImpl.referenceType
+org.eclipse.jdt.internal.debug.core.model.JDIThread.determineIfDaemonThread
+org.eclipse.jdt.internal.debug.core.model.JDIThread.initialize
+org.eclipse.jdt.internal.debug.core.model.JDIThread.<init>
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.createThread
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget$ThreadStartHandler.handleEvent
+org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch
+org.eclipse.jdt.internal.debug.core.EventDispatcher.run
+java.lang.Thread.run

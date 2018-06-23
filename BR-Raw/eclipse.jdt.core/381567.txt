@@ -1,0 +1,41 @@
+Bug 381567 – [search] Unexpected results from SearchEngine#search
+Taken from the newsgroup:
+I'd like to find all constructors that are available in 'java.lang'.
+Therefore I do the following:
+IJavaSearchScope searchScope = SearchEngine.createJavaSearchScope(new IJavaElement[] { javaProject });
+SearchRequestor searchRequestor = new SearchRequestor() {
+@Override
+public void acceptSearchMatch(SearchMatch match) throws CoreException {
+Object element = match.getElement();
+if (element instanceof IMethod) {
+System.out.println(((IMethod) element).getElementName());
+} else if (element instanceof IType) {
+System.err.print("IType ??? ");
+System.err.println(((IType) element).getElementName());
+}
+}
+};
+doSearch(searchScope, searchRequestor);
+with
+public void doSearch(IJavaSearchScope searchScope, SearchRequestor searchRequestor) throws CoreException {
+SearchPattern pattern = new ConstructorDeclarationPattern("java.lang".toCharArray(), null, SearchPattern.R_PREFIX_MATCH);
+new SearchEngine().search(pattern, SearchUtils.getDefaultSearchParticipants(), searchScope, searchRequestor, new NullProgressMonitor());
+}
+I can see e.g.
+these entries in the dump (among others which follow a similar pattern).
+Where do they come from and what am I doing wrong to get constructor declarations instead of ITypes?
+// CNFE has 3 constructors but is listed 5 times
+IType ??? ClassNotFoundException
+IType ??? ClassNotFoundException
+IType ??? ClassNotFoundException
+IType ??? ClassNotFoundException
+IType ??? ClassNotFoundException
+// huh? results from an interface
+IType ??? CharSequence
+IType ??? CharSequence
+Answer by Satyam Kandula:
+This is  a bug.
+Looks like javadoc processing is causing this problem.
+Disabling the javadoc fixes the issue.
+Please file a bug for this.
+BTW, you may get some IType's as elements to indicate default constructor that is not in the source code.

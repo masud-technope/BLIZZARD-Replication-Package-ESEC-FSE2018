@@ -1,0 +1,10 @@
+Bug 159157 – [preferences][content assist] Enhance code assist by allowing more character triggers
+I have developed a minimal plugin that I use to great effect to maximize the use of code assist.
+The plugin merely sets the property for the auto-activation triggers to a long string (chars A-Z and a-z, as well as '.') in order to make all alpha keys plus the '.' triggers.
+The feature request, then, is trivial: please increase the limit on auto-activation triggers to 53 (26 + 26 + 1), or greater, to allow people to configure this functionality.
+I have been using it for over a year and really love it.
+I'm attaching the plugin if people would like to try it out.
+Once the plugin is in, type Ctrl-Alt-Shift-Z to have it set the auto-activation property.
+The plugin is called "HyperAssist" (org.popejoy.hyperassist).
+Thanks,
+Stuart

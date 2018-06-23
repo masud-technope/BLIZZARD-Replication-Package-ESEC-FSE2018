@@ -1,0 +1,14 @@
+framework/bundles/org.eclipse.ecf.remoteservice.rest.synd/.settings/org.eclipse.jdt.core.prefs
+framework/bundles/org.eclipse.ecf.remoteservice/src/org/eclipse/ecf/remoteservice/util/RemoteFilterImpl.java
+incubation/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/src/org/eclipse/ecf/internal/osgi/services/remoteserviceadmin/Activator.java
+providers/bundles/org.eclipse.ecf.provider.r_osgi/src/org/eclipse/ecf/internal/provider/r_osgi/RemoteFilterImpl.java
+providers/bundles/org.eclipse.ecf.provider.remoteservice/src/org/eclipse/ecf/provider/remoteservice/generic/RemoteFilterImpl.java
+compendium/bundles/org.eclipse.ecf.osgi.services.distribution/src/org/eclipse/ecf/internal/osgi/services/distribution/Activator.java
+examples/bundles/org.eclipse.ecf.examples.remoteservices.hello.host/.classpath
+examples/bundles/org.eclipse.ecf.examples.remoteservices.hello.host/.settings/org.eclipse.jdt.core.prefs
+examples/bundles/org.eclipse.ecf.examples.remoteservices.hello.host/META-INF/MANIFEST.MF
+incubation/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/src/org/eclipse/ecf/internal/osgi/services/remoteserviceadmin/Activator.java
+protocols/bundles/ch.ethz.iks.r_osgi.remote/src/main/java/ch/ethz/iks/r_osgi/impl/RemoteOSGiServiceImpl.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/DiscoveryActivator.java
+tests/bundles/org.eclipse.ecf.tests.osgi.services.discovery/src/org/eclipse/ecf/tests/osgi/services/discovery/PublishTest.java
+tests/bundles/org.eclipse.ecf.tests.osgi.services.distribution/src/org/eclipse/ecf/tests/osgi/services/distribution/AbstractDistributionTest.java

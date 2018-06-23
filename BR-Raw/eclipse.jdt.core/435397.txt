@@ -1,0 +1,47 @@
+Bug 435397 – [1.8][compiler] Ambiguous method while using Lambdas
+Created attachment 243343 [details]
+Ambiguous method JDT 8
+Given:
+public interface B {}
+public interface Config {}
+public interface M {
+void configure(B binder);
+}
+public class M2 implements M {
+public M2(final Config conf) {
+}
+@Override
+public void configure(final B binder) {
+}
+}
+// BootModule
+public class BaseModule implements M {
+// eager module creation
+public BaseModule module(final M m) {
+return this;
+}
+// lazy module creation
+public BaseModule module(final Function<Config, M> cons) {
+return this;
+}
+@Override
+public void configure(final B binder) {
+}
+}
+// Client with error
+public class M1 extends BaseModule {
+public static void main(final String[] args) {
+new M1()
+.module((c) -> new M2());
+^^^^^^^ // The method module(M) is ambiguous for the type M1
+}
+}
+The line .module((c) -> new M2()); cause the The method module(M) is ambiguous for the type M1 error.
+The problem (not sure) seems to be in the M.configure(B) interface.
+If I removed the configure method from it, the error goes away.
+Also, note that javac compiles the code without problem.
+Environment:
+MACOSX
+Java 8
+eclipse.buildId=4.3.2.M20140221-1700
+Eclipse JDT Patch with Java 8 support (for Kepler SR2)	1.0.0.v20140317-1956

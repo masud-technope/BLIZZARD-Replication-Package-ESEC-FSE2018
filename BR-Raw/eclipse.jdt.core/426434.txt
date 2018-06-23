@@ -1,0 +1,7 @@
+Bug 426434 – EclipseCompiler#run() crashes when null out/err passed by client
+EclipseCompiler#run() implements javax.tools.Tool#run(), which has following javadoc:
+* @param in "standard" input; use System.in if null
+* @param out "standard" output; use System.out if null
+* @param err "standard" error; use System.err if null
+EclipseCompiler doesn't take care of this, instead just passes along the parameters err and out.
+This needs to be fixed.

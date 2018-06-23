@@ -1,0 +1,38 @@
+Bug 427749 – [1.8][compiler]NullPointerException in ReferenceExpression.resolveType
+interface I {
+void foo(X<String> y);
+}
+public class X<T> {
+class Z<K> {
+Z(X<String> y) {
+System.out.println("Y<T>.Z<K>:: new");
+}
+public void bar() {
+I i = Y<String>.Z<Integer>::<String> new;
+i.foo(new Y<String>());
+}
+}
+public void foo() {
+Z<String> z = new Z<String>(null);
+z.bar();
+}
+public static void main(String[] args) {
+Y<String> y = new Y<String>();
+y.foo();
+}
+}
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.ast.ReferenceExpression.resolveType(ReferenceExpression.java:345)
+at org.eclipse.jdt.internal.compiler.ast.LocalDeclaration.resolve(LocalDeclaration.java:248)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:618)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:303)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:532)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1211)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1312)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1110)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1321)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:571)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1208)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:693)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1187)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:813)

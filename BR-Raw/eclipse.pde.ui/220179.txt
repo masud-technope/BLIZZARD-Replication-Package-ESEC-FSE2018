@@ -1,0 +1,10 @@
+Bug 220179 – [Manifest][Editors] XMLInputContext erase more characters when removing nodes
+Created attachment 90638 [details]
+a patch for the problem
+This happens in files where there are different line delimiters.
+The org.eclipse.pde.internal.ui.editor.context.XMLInputContext.getDeleteNodeOperation(IDocumentElementNode) method tries to defend itself against line delimiters by relying on each line to keep its delimiter.
+When a node is removed, the newline from the previous line is tried to be removed.
+However, when checking the line delimiter length, it checks the delimiter of the start line instead of the previous, which we try to remove.
+This leads to situation where more characters than needed are removed.
+(line: 386 in XMLInputContext.java; revision: 1.29)
+I'm attaching a patch to better illustrate my explanation which isn't exactly clear:)

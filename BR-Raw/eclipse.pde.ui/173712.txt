@@ -1,0 +1,13 @@
+Bug 173712 – Plug-in Project from jar wizard fails to enable the Finish button
+Build ID: I20070209-1006
+Steps To Reproduce:
+1.
+Use the wizard to create a plug-in project from a jar.
+2.
+Use an external jar.
+ May work with others but only tested the external path since that is what I need.
+3.
+ When filling in the Plug-in Properties, fill in any other field before specifying the project name.
+4.
+The "Finish" button will now not be enabled even if you add all the correct information.
+More information:

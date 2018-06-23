@@ -1,0 +1,28 @@
+Bug 241394 – [Console] Can not get input text properly in eclipse console panel
+Build ID: I20080617-2000
+Steps To Reproduce:
+1.Create a Java Project
+2.Create a class TryTest:
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+public class TryTest {
+public static void main(String[] args) {
+BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
+try {
+System.out.println(">" + buffer.readLine());
+} catch (IOException e) {
+e.printStackTrace();
+}
+}
+}
+3.
+Run as Java Application;
+4.
+In the console panel, input an "a" and del it, then a "b" and del it, last a "c" and hit enter;
+5.
+">abc" should be displayed, but ">c" is expected.
+In native console, the same class file runs properly.
+More information:
+This problem is introduced in version 3.4, in version 3.3 it works just fine as expected.
+This problem impacts applications using elcipse console when user uses IME to input texts, some IME's input suggestions, which are not part of the input text and will disapear after input complete, are also captured by eclipse console.

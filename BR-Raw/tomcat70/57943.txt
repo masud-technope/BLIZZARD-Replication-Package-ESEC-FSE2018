@@ -1,0 +1,11 @@
+57943 – NioEndpoint, one poller thread died
+when i restart tomcat,the tomcat can not process request soonï¼Œi find an error log
+Exception in thread "http-nio-7001-ClientPoller-1" java.util.ConcurrentModificationException
+at java.util.HashMap$HashIterator.nextEntry(HashMap.java:793)
+at java.util.HashMap$KeyIterator.next(HashMap.java:828)
+at java.util.Collections$UnmodifiableCollection$1.next(Collections.java:1010)
+at org.apache.tomcat.util.net.NioEndpoint$Poller.timeout(NioEndpoint.java:1421)
+at org.apache.tomcat.util.net.NioEndpoint$Poller.run(NioEndpoint.java:1215)
+at java.lang.Thread.run(Thread.java:662)
+tomcat poller thread is not catch this exception,so this thread is died.
+connection is accept but has no poller thread to process.

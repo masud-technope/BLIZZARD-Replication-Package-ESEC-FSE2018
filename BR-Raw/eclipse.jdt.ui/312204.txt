@@ -1,0 +1,10 @@
+Bug 312204 – [api][JUnit] Allow changing the default superclass in NewTestCaseWizardPageOne
+Build Identifier: 20100506-2000
+Groovy Eclipse is subclassing from NewTestCaseWizardPageOne to create JUnit wizard for Groovy.
+It is hard to change the default superclass used for a JUnit3 style testcase.
+Using setSuperClass doesn't quite work because there is a call to a private method  "internalSetJUnit4" which will reset it when a user clicks the JUnit radio buttons.
+I've attached a patch with a proposed solution that makes a minimal change NewTestCaseWizardPageOne class.
+The change is behavior preserving, but it delegates the choice of the default superclass for JUnit 3 tests to a protected method which can easily be overriden.
+Reproducible: Always
+Steps to Reproduce:
+NA

@@ -1,0 +1,30 @@
+Bug 327919 – [remoteservices][xmpp] containerID field in remote service registry is null
+In using the xmpp provider for remote services this bug was reported
+adapter.registerRemoteService(new String[] { serviceName }, impl, props);
+Calling this method caused the following exception:
+org.eclipse.ecf.core.identity.IDCreateException: Exception creating remoteID
+at org.eclipse.ecf.provider.remoteservice.generic.RemoteServiceNamespace.createInstance(RemoteServiceNamespace.java:39)
+at org.eclipse.ecf.core.identity.IDFactory.createID(IDFactory.java:211)
+at org.eclipse.ecf.provider.remoteservice.generic.RemoteServiceRegistryImpl.createRemoteServiceID(RemoteServiceRegistryImpl.java:207)
+at org.eclipse.ecf.provider.remoteservice.generic.RemoteServiceRegistrationImpl.publish(RemoteServiceRegistrationImpl.java:81)
+at org.eclipse.ecf.provider.remoteservice.generic.RegistrySharedObject.registerRemoteService(RegistrySharedObject.java:347)
+at org.remotercp.ecf.session.impl.SessionServiceImpl.registerRemoteService(SessionServiceImpl.java:218)
+at org.remotercp.ecf.session.impl.SessionServiceImpl.publishRemoteServicesToUser(SessionServiceImpl.java:331)
+at org.remotercp.ecf.session.impl.SessionServiceImpl.access$2(SessionServiceImpl.java:321)
+at org.remotercp.ecf.session.impl.SessionServiceImpl$1.handlePresence(SessionServiceImpl.java:298)
+at org.eclipse.ecf.internal.provider.xmpp.XMPPContainerPresenceHelper.firePresenceListeners(XMPPContainerPresenceHelper.java:568)
+at org.eclipse.ecf.internal.provider.xmpp.XMPPContainerPresenceHelper.handlePresenceEvent(XMPPContainerPresenceHelper.java:557)
+at org.eclipse.ecf.internal.provider.xmpp.XMPPContainerPresenceHelper.handleEvent(XMPPContainerPresenceHelper.java:135)
+at org.eclipse.ecf.provider.generic.SOWrapper.svc(SOWrapper.java:185)
+at org.eclipse.ecf.provider.generic.SOWrapper$2.run(SOWrapper.java:138)
+at java.lang.Thread.run(Thread.java:637)
+Hunting down the problem I realized that the class RemoteServiceRegistryImpl  apparently  caused the exception within the method:
+public IRemoteServiceID createRemoteServiceID(long serviceid) {
+return (IRemoteServiceID) IDFactory.getDefault().createID(IDFactory.getDefault().getNamespaceByName(RemoteServiceNamespace.NAME), new Object[] {containerID, new Long(serviceid)});
+}
+The parameter containerID is null.
+Diving in the ECF code the problem seems to be within the class ClientSOContainer.
+The method:
+public ID getConnectedID() {
+return remoteServerID;
+}

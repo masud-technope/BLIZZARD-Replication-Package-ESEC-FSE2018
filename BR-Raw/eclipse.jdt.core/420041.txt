@@ -1,0 +1,22 @@
+Bug 420041 – [1.8] @Deprecated on an annotation type not preserved in generated class file
+1.
+Have an annotation and it's container as below in a project, let's say A:
+@Deprecated
+public @interface FooContainer {
+Foo[] value();
+}
+@Repeatable(FooContainer.class)
+public @interface Foo {
+}
+2.
+In the same project have this in another unit:
+@FooContainer({@Foo(), @Foo()})
+public class Main {
+}
+You see the deprecated warning about FooContainer.
+3.
+Create another project whose build path includes the bin folder of project 'A'
+4.
+Create a similar class in the new project as step 2.
+5.
+Notice no warning about FooContainer being deprecated.

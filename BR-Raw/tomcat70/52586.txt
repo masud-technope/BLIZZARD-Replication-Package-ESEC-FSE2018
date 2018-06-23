@@ -1,0 +1,14 @@
+52586 – When requests are forwarded, the request attribute javax.servlet.forward.path_info is assigned an incorrect value.
+As per the servlet spec, the values for:
+javax.servlet.forward.request_uri
+javax.servlet.forward.context
+javax.servlet.forward.servlet_path
+javax.servlet.forward.path_info
+javax.servlet.forward.query_string
+MUST be set to the values from the very first servlet that serviced the current request.
+ However, it seems that Tomcat is populating path_info with the value of the LAST path_info serviced in the request (i.e.
+the final servlet that serviced the request).
+ It's possible the other value assignments are afflicted by similar defects, I've not explicitly tested for this.
+Because of this issue, it's impossible to correctly reconstruct the original request's URI piecemeal by concatenating context+servlet_path+path_info+?+query_string, since path_info will contain the path to another servlet and thus this concatenation will produce a probably invalid URI target.
+Therefore, creating "click here to retry" links is impossible without workaround code.
+The critical issue here is the deviation from the servlet spec, which spells out the behavior of those attributes.

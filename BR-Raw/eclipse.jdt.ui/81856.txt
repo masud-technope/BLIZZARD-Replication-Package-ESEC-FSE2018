@@ -1,0 +1,182 @@
+Bug 81856 – quote problems in property files (JDT)
+Our automated tool, chkpii, has detected a number of problems with quote
+handling in java property files being processed by the MessageFormat class.
+These problems need to be fixed in the english property files before they are
+sent for translation, and the bug is propogated to the translated version as
+well.
+ I'm including info from the tool on how to fix the problems for those
+who are outside of ibm and may not have access to it.
+In addition, when we process the files we add the line:
+# NLS_MESSAGEFORMAT_VAR
+to the beginning of each file.
+ This insturcts chkpii on how we are handling
+property strings in the code.
+ECLIPSE\PLUGINS\ORG.ECLIPSE.JDT.CORE\JDTCORE_JAR\ORG\ECLIPSE\JDT\INTERNAL\COMPIL
+ER\BATCH\
+MESSAGES.PROPERTIES  JAVA2-PRB
+918   Found 1 single quote in text handled by Java MessageFormat class.
+Double
+this quote.
+Line: 63
+ECLIPSE\PLUGINS\ORG.ECLIPSE.JDT.CORE\JDTCORE_JAR\ORG\ECLIPSE\JDT\INTERNAL\COMPIL
+ER\PROBLEM\
+MESSAGES.PROPERTIES  JAVA2-PRB
+919   Found 2 consecutive single quotes in text not handled by Java
+MessageFormat class.
+Remove 1 quote.
+Line: 108
+919   Found 2 consecutive single quotes in text not handled by Java
+MessageFormat class.
+Remove 1 quote.
+Line: 203
+919   Found 2 consecutive single quotes in text not handled by Java
+MessageFormat class.
+Remove 1 quote.
+Line: 333
+ECLIPSE\PLUGINS\ORG.ECLIPSE.JDT.CORE\JDTCORE_JAR\ORG\ECLIPSE\JDT\INTERNAL\CORE\U
+TIL\
+MESSAGES.PROPERTIES  JAVA2-PRB
+919   Found 2 consecutive single quotes in text not handled by Java
+MessageFormat class.
+Remove 1 quote.
+Line: 188
+ECLIPSE\PLUGINS\ORG.ECLIPSE.JDT.JUNIT\JUNITSUPPORT_JAR\ORG\ECLIPSE\JDT\INTERNAL\
+JUNIT\UI\
+JUNITMESSAGES.PROPERTIES  JAVA2-PRB
+918   Found 1 single quote in text handled by Java MessageFormat class.
+Double
+this quote.
+Line: 167
+ECLIPSE\PLUGINS\ORG.ECLIPSE.JDT.UI\JDT_JAR\ORG\ECLIPSE\JDT\INTERNAL\UI\
+JAVAUIMESSAGES.PROPERTIES  JAVA2-PRB
+918   Found 1 single quote in text handled by Java MessageFormat class.
+Double
+this quote.
+Line: 90
+ECLIPSE\PLUGINS\ORG.ECLIPSE.JDT.UI\JDT_JAR\ORG\ECLIPSE\JDT\INTERNAL\COREXT\REFAC
+TORING\
+REFACTORING.PROPERTIES  JAVA2-PRB
+919   Found 2 consecutive single quotes in text not handled by Java
+MessageFormat class.
+Remove 1 quote.
+Line: 465
+918   Found 1 single quote in text handled by Java MessageFormat class.
+Double
+this quote.
+Line: 768
+ECLIPSE\PLUGINS\ORG.ECLIPSE.JDT.UI\JDT_JAR\ORG\ECLIPSE\JDT\INTERNAL\UI\REFACTORI
+NG\
+REFACTORINGUI.PROPERTIES  JAVA2-PRB
+918   Found 1 single quote in text handled by Java MessageFormat class.
+Double
+this quote.
+Line: 74
+------------DESCRIPTION--------------
+918 Found 1 single quote in text handled by Java MessageFormat class.
+Double
+this quote.
+Line: nnn
+Description:
+In November, 2004, the translation process changed to allow development to
+indicate whether the message text will be processed by the Java MessageFormat
+class or not.
+If the text will be processed by MessageFormat, then all single
+quotes in the text must be doubled in order for the end user to see one single
+quote.
+MessageFormat assumes that the single quote character is an escape
+character.
+A single quote has been found which is not immediately followed by
+another single quote ('), a left brace ({), or a right brace (}).
+Possible causes are:
+The developer incorrectly coded the English text.
+The single quote should have
+been coded as 2 consecutive single quotes because the text will be processed by
+MessageFormat.
+The translator incorrectly entered a single quote in the text and the
+translation tools did not double this character.
+The wrong NLS_MESSAGEFORMAT_xxx comment is in effect for this text.
+This has
+caused CHKPII to check for the wrong usage of single quotes.
+The NLS_MESSAGEFORMAT_VAR comment is in effect for this text which incorrectly
+contains a replacement variable.
+When the text contains replacement variables,
+NLS_MESSAGEFORMAT_VAR indicates that all single quotes must exist as 2
+consecutive single quotes.
+When this message is listed as a warning (W), then the IBMJDK21 set of markup
+tables was used to translate this file, which assumes that
+NLS_MESSAGEFORMAT_VAR is the default process.
+A single quote exists in text
+which contains a replacement variable, and possibly should be doubled.
+Action:
+Locate the listed line number in the file and locate the incorrectly coded
+single quote.
+If the text will be processed by MessageFormat, then change the one single
+quote (') to 2 consecutive single quotes ('').
+Consider using a different character if this will not change the meaning of the
+text (like double quote ("), parenthesis (), bracket []).
+If the wrong NLS_MESSAGEFORMAT_xxx comment is in effect, contact development to
+determine if a different comment should be used for this text.
+If the NLS_MESSAGEFORMAT_VAR comment is in effect and the text contains text
+which is interpreted as a replacement variable, check the English to determine
+if a variable should exist in this text or not.
+Remove it if it should not be
+in this text.
+If the lab instructed you to use IBMJDK21, then change the one single quote (')
+to 2 consecutive single quotes ('').
+Otherwise, determine if IBMJDK11 should
+have been used to analyze this file or verify that 1 single quote is
+appropriate in this text.
+919 Found 2 consecutive single quotes in text not handled by Java MessageFormat
+class.
+Remove 1 quote.
+Line: nnn
+Description:
+In November, 2004, the translation process changed to allow development to
+indicate whether the message text will be processed by the Java MessageFormat
+class or not.
+If the text will be processed by MessageFormat, then all single
+quotes in the text must be doubled in order for the end user to see one single
+quote.
+MessageFormat assumes that the single quote character is an escape
+character.
+2 consecutive single quotes have been found in text which will not
+be processed by MessageFormat.
+Possible causes are:
+The developer incorrectly coded the English text.
+The 2 consecutive single
+quotes should have been coded as 1 single quote because the text will not be
+processed by MessageFormat.
+The translator incorrectly entered 2 consecutive single quotes in the text.
+The wrong NLS_MESSAGEFORMAT_xxx comment is in effect for this text.
+This has
+caused CHKPII to check for the wrong usage of single quotes.
+The NLS_MESSAGEFORMAT_VAR comment is in effect for this text which incorrectly
+does not contains a replacement variable.
+When the text does not contain
+replacement variables, NLS_MESSAGEFORMAT_VAR indicates that all single quotes
+must exist as 1 single quote.
+When this message is listed as a warning (W), then either (1) the IBMJDK21 set
+of markup tables was used to translate this file (which assumes that
+NLS_MESSAGEFORMAT_VAR is the default process) and 2 consecutive single quotes
+exist in text which does not contains a replacement variable and possibly
+should not be doubled, or (2) the IBMJDK11 set of markup tables was used to
+translate this file (which assumes that NLS_MESSAGEFORMAT_NONE is the default
+process) and 2 consecutive single quotes exist in the text and possibly should
+not be doubled.
+Action:
+Locate the listed line number in the file and locate the incorrectly coded
+single quote.
+If the text will not be processed by MessageFormat, then change the 2
+consecutive single quotes ('') to 1 single quote (').
+Consider using a different character if this will not change the meaning of the
+text (like double quote ("), parenthesis (), bracket []).
+If the wrong NLS_MESSAGEFORMAT_xxx comment is in effect, contact development to
+determine if a different comment should be used for this text.
+If the NLS_MESSAGEFORMAT_VAR comment is in effect and the text does not a
+replacement variable, check the English to determine if a variable should exist
+in this text or not.
+Add it if it should be in this text.
+If the lab instructed you to use IBMJDK21, then change the 2 consecutive single
+quote ('') to 1 single quote (').
+Otherwise, verify that 2 consecutive single
+quotes is appropriate in this text.

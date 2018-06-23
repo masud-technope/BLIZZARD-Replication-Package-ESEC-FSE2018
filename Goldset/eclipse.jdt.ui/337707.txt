@@ -1,0 +1,11 @@
+org.eclipse.jdt.ui.tests/testresources/JUnitWorkspace/JUnit4Tests/src/pack/ATestCase.java
+org.eclipse.jdt.ui.tests/testresources/JUnitWorkspace/JUnit4Tests/src/pack/Failures.java
+org.eclipse.jdt.ui.tests/testresources/JUnitWorkspace/JUnit4Tests/src/pack/OrderedRunner.java
+org.eclipse.jdt.ui.tests/testresources/JUnitWorkspace/JUnitTests/src/pack/ATestCase.java
+org.eclipse.jdt.ui.tests/testresources/JUnitWorkspace/JUnitTests/src/pack/ATestSuite.java
+org.eclipse.jdt.ui.tests/testresources/JUnitWorkspace/JUnitTests/src/pack/AllTests.java
+org.eclipse.jdt.ui.tests/testresources/JUnitWorkspace/JUnitTests/src/pack/Failures.java
+org.eclipse.jdt.ui.tests/testresources/rtstubs15.jar
+org.eclipse.jdt.ui.tests/testresources/rtstubs16.jar
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/junit/tests/TestRunListenerTest.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/binary/StubCreator.java

@@ -1,0 +1,19 @@
+Bug 309977 – Classpath variable initialization doesn't fail silently
+Build Identifier: 3.6.0 I20100312-1448
+We have a classpath variable initializer which may or may not set the actual variable depending on certain conditions.
+According to the Javadoc for the ClasspathVariableInitializer.initialize(), it is ok to fail silently:
+Binds a value to the workspace classpath variable with the given name, or fails silently if this cannot be done.
+When we fail silenty by having the method just return, the .log file contains an entry:
+!ENTRY org.eclipse.jdt.ui 4 10001 2010-04-21 10:52:23.125
+!MESSAGE VariableBlock: Classpath variable with null value: FOO_VAR
+This is not a silent failure - at least not to our product's users.
+Reproducible: Always
+Steps to Reproduce:
+1.
+In a self-hosting environment, create a simple variable initializer that does nothing.
+2.
+Launch an instance of the runtime configuration.
+3.
+Open Window => Preferences => Java => Build Path => Classpath Variables
+4.
+See the .log file

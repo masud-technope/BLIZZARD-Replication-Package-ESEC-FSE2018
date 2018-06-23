@@ -1,0 +1,8 @@
+50192 – performance issue after revision 746425
+Revision 746425 changed at least 2 files: ELResolverImpl and ELContextImpl.
+ I believe this causes an unnecessary performance regression in these two files.
+In ELResolverImpl, every time that getDefaultResolver is called with security enabled, a new Object is going to be created.
+ It appears as if getDefaultResolver is going to be called a lot and this could significantly hurt performance.
+ I understand changing the DefaultResolver to be private and allowing access to it through the getter method, however, I don't believe a new object needs to be created every time the method is called.
+In ELContextImpl, why does a new FunctionMapper need to be created for each ELContextImpl?
+Thanks.

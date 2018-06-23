@@ -1,0 +1,9 @@
+54888 – TagPlugin "ForEach" doesn't support CSV items
+Created attachment 30225 [details]
+Patch for "ForEach"
+In JSTL, "forEach" supports items with String value.
+The string can be a CSV format.
+For example,
+<c:foreach items="1,2,3,4,5" var="i"></c:foreach>
+However, it doesn't support in tagPlugin "ForEach".
+Provided a patch for this issue.

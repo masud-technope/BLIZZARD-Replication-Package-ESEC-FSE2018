@@ -1,0 +1,49 @@
+Bug 204187 – [spy] NPE when clicking hyperlink in spy
+I clicked on "GenericScriptableView" which is shown in the spy when the Eclipse Monkey's Web view is shown.
+ Apparently, this leads to a NPE if you do not restart after installing Eclipse Monkey.
+Steps:
+1.
+Install Monkey using the update manager, but don't restart - instead, click "Apply Changes"
+2.
+Scripts > Examples
+3.
+Scripts > Views > Google Web View
+4.
+Activate the new view
+5.
+Alt-Shift-F1
+6.
+Click on "GenericScriptableView".
+java.lang.NullPointerException
+at org.eclipse.pde.internal.core.SearchablePluginsManager.addToJavaSearch(SearchablePluginsManager.java:271)
+at org.eclipse.pde.internal.runtime.spy.SpyIDEUtil.openClass(SpyIDEUtil.java:39)
+at org.eclipse.pde.internal.runtime.spy.SpyFormToolkit$SpyHyperlinkAdapter.linkActivated(SpyFormToolkit.java:44)
+at org.eclipse.ui.forms.widgets.FormText.activateLink(FormText.java:1545)
+at org.eclipse.ui.forms.widgets.FormText.handleMouseClick(FormText.java:1348)
+at org.eclipse.ui.forms.widgets.FormText.access$16(FormText.java:1320)
+at org.eclipse.ui.forms.widgets.FormText$6.mouseUp(FormText.java:443)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:206)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:938)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3742)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3353)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2389)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2353)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2219)
+at org.eclipse.ui.internal.Workbench$4.run(Workbench.java:466)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:289)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:461)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:106)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:169)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:106)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:76)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:363)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:176)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:615)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:515)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:455)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1193)

@@ -1,0 +1,3 @@
+Bug 413434 – VMInstallTests destroys error reporting
+4.3.
+When having the jdt.debug tests installed, VMInstallTests destroys error reporting because AbstractDebugTest sets ErrorDialog.AUTOMATED_MODE = true when the library location resolvers is loaded.

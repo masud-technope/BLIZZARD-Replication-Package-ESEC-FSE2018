@@ -1,0 +1,6 @@
+Bug 232041 – Error Log view: boldening of session confusing
+I20080513-2000
+The Error Log view currently renders the first session in bold (when Group By > Session is selected).
+I don't see why this would be useful.
+It would be interesting to see the *current* session boldened.
+But when no log entries are generated during start up, the *last* session with errors is boldened.

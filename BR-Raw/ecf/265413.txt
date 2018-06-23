@@ -1,0 +1,2 @@
+Bug 265413 – [Discovery][JMDNS] Intermittent dead-lock issues in JMDNSDiscoveryContainer
+org.eclipse.ecf.provider.jmdns.container.JMDNSDiscoveryContainer must not use the same lock objects between threads that make calls on javax.jmdns.JmDNS and calls originating from javax.jmdns.JmDNS.

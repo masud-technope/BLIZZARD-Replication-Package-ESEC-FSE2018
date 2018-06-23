@@ -1,0 +1,14 @@
+Bug 290291 – [generic] add default URI for ecf generic provider manager creation
+Currently, if an ecf generic manager instance is created with
+IContainer container = containerFactory.createContainer("ecf.generic.server");
+an exception will be thrown
+...Caused by: java.lang.IllegalArgumentException: Port value out of range: -1
+at java.net.ServerSocket.<init>(ServerSocket.java:180)
+at java.net.ServerSocket.<init>(ServerSocket.java:141)
+at org.eclipse.ecf.provider.comm.tcp.Server.<init>(Server.java:39)
+at org.eclipse.ecf.provider.generic.TCPServerSOContainerGroup.putOnTheAir(TCPServerSOContainerGroup.java:65)
+...
+because their is no default URI for ecf generic manager provider.
+ It's currently necessary to give:
+IContainer container = containerFactory.createContainer("ecf.generic.server","ecftcp://localhost:3282/server");  <- note the protocol,host,port,path
+A default URI should be added to the creation of the ecf generic container manager (with probable value 'ecftcp://localhost:3282/server') so that calls as above can be made successfully.

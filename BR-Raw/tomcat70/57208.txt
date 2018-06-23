@@ -1,0 +1,30 @@
+57208 – NullPointerException on JNDIRealm when search finds no results - org.apache.catalina.realm.JNDIRealm
+When JNDIRealm does a "getUserBySearch", and no results are found, a null object is returned.
+ This causes a NPE in the next few lines where it tries to create a user.
+if (userPatternFormatArray != null && curUserPattern >= 0) {
+user = getUserByPattern(context, username, credentials, attrIds, curUserPattern);
+} else {
+user = getUserBySearch(context, username, attrIds);
+}
+if (userPassword == null && credentials != null) {
+// The password is available.
+Insert it since it may be required for
+// role searches.
+return new User(user.getUserName(), user.getDN(), credentials,
+user.getRoles(), user.getUserRoleId());
+}
+Should probably be changed to:
+if (userPatternFormatArray != null && curUserPattern >= 0) {
+user = getUserByPattern(context, username, credentials, attrIds, curUserPattern);
+containerLog.debug("Found user by pattern (" + user + ")");
+} else {
+user = getUserBySearch(context, username, attrIds);
+containerLog.debug("Found user by search (" + user + ")");
+}
+if (userPassword == null && credentials != null && user != null) {
+// The password is available.
+Insert it since it may be required for
+// role searches.
+return new User(user.getUserName(), user.getDN(), credentials,
+user.getRoles(), user.getUserRoleId());
+}

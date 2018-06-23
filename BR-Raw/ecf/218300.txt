@@ -1,0 +1,5 @@
+Bug 218300 – Priority and weight modeled to use "0" as unset
+Hi,
+org.eclipse.ecf.discovery.IServiceInfo.getPriority() and org.eclipse.ecf.discovery.IServiceInfo.getWeight()is modeled to return "0" if priority or weight is unset.
+I propose to use "-1" (and change the doc accordingly) instead, because the valid range for both is defined as 0-65535 (see http://www.ietf.org/rfc/rfc2782.tx).
+"0" is a valid value for priority and weight.

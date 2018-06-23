@@ -1,0 +1,80 @@
+57643 – jasper ant task fails when there is a space in uriroot
+Created attachment 32525 [details]
+zip file containing a simple web app and ant build file to compile the jsps
+When invoking the jasper ant task, it will fail if there is a space in the path specified by the uriroot attribute.
+Possibly a side effect from 57316.
+See attached example.
+Extract the attached zip file, then extract both the 7.0.57 and 7.0.59 versions of tomcat into the "jasper compile test" directory.
+I used the 64-bit Windows zip.
+Run ant.
+output:
+PS C:\work\jasper compile test> ant
+Buildfile: C:\work\jasper compile test\build.xml
+jsp_compile_both:
+jsp_compile:
+[echo] ********************* C:\work\jasper compile test/apache-tomcat-7.0.57 *********************
+[delete] Deleting directory C:\work\jasper compile test\tmp
+[jasper2] Feb 27, 2015 8:29:14 AM org.apache.jasper.compiler.TldLocationsCache tldScanJar
+[jasper2] INFO: At least one JAR was scanned for TLDs yet contained no TLDs.
+Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them.
+Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+[jasper2] Feb 27, 2015 8:29:14 AM org.apache.jasper.JspC processFile
+[jasper2] INFO: Built File: \index.jsp
+[delete] Deleting directory C:\work\jasper compile test\tmp
+[echo] ********************* Complete *********************
+jsp_compile:
+[echo] ********************* C:\work\jasper compile test/apache-tomcat-7.0.59 *********************
+[jasper2] Feb 27, 2015 8:29:14 AM org.apache.jasper.compiler.TldLocationsCache tldScanJar
+[jasper2] INFO: At least one JAR was scanned for TLDs yet contained no TLDs.
+Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them.
+Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+BUILD FAILED
+C:\work\jasper compile test\build.xml:11: The following error occurred while executing this line:
+C:\work\jasper compile test\build.xml:36: org.apache.jasper.JasperException: The absolute uri: http://java.sun.com/jsp/jstl/core cannot be resolved in either web.xml or the jar files deployed with this application
+at org.apache.jasper.compiler.DefaultErrorHandler.jspError(DefaultErrorHandler.java:56)
+at org.apache.jasper.compiler.ErrorDispatcher.dispatch(ErrorDispatcher.java:445)
+at org.apache.jasper.compiler.ErrorDispatcher.jspError(ErrorDispatcher.java:117)
+at org.apache.jasper.compiler.TagLibraryInfoImpl.generateTLDLocation(TagLibraryInfoImpl.java:325)
+at org.apache.jasper.compiler.TagLibraryInfoImpl.<init>(TagLibraryInfoImpl.java:154)
+at org.apache.jasper.compiler.Parser.parseTaglibDirective(Parser.java:410)
+at org.apache.jasper.compiler.Parser.parseDirective(Parser.java:475)
+at org.apache.jasper.compiler.Parser.parseElements(Parser.java:1410)
+at org.apache.jasper.compiler.Parser.parse(Parser.java:138)
+at org.apache.jasper.compiler.ParserController.doParse(ParserController.java:242)
+at org.apache.jasper.compiler.ParserController.parse(ParserController.java:102)
+at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:199)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:374)
+at org.apache.jasper.JspC.processFile(JspC.java:1213)
+at org.apache.jasper.JspC.execute(JspC.java:1364)
+at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+at sun.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:606)
+at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+at org.apache.tools.ant.Task.perform(Task.java:348)
+at org.apache.tools.ant.Target.execute(Target.java:392)
+at org.apache.tools.ant.Target.performTasks(Target.java:413)
+at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
+at org.apache.tools.ant.helper.SingleCheckExecutor.executeTargets(SingleCheckExecutor.java:38)
+at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
+at org.apache.tools.ant.taskdefs.Ant.execute(Ant.java:442)
+at org.apache.tools.ant.taskdefs.CallTarget.execute(CallTarget.java:105)
+at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:606)
+at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+at org.apache.tools.ant.Task.perform(Task.java:348)
+at org.apache.tools.ant.Target.execute(Target.java:392)
+at org.apache.tools.ant.Target.performTasks(Target.java:413)
+at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
+at org.apache.tools.ant.Project.executeTarget(Project.java:1368)
+at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
+at org.apache.tools.ant.Main.runBuild(Main.java:811)
+at org.apache.tools.ant.Main.startAnt(Main.java:217)
+at org.apache.tools.ant.launch.Launcher.run(Launcher.java:280)
+at org.apache.tools.ant.launch.Launcher.main(Launcher.java:109)
+Total time: 1 second
+PS C:\work\jasper compile test>

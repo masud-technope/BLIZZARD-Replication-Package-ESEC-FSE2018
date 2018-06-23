@@ -1,0 +1,17 @@
+Bug 289655 – [rename] Refactor rename in editor is slow with many matches
+test case:
+public class Test {
+public void test(Object asdf) {
+if (asdf == null) asdf = null;
+if (asdf == null) asdf = null;
+if (asdf == null) asdf = null;
+if (asdf == null) asdf = null;
+if (asdf == null) asdf = null;
+if (asdf == null) asdf = null;
+}
+}
+Use Alt-Shift-R refactoring to change the name of asdf variable.
+Type quickly and you'll notice the editor quickly falls behind your typing.
+While investigating this we found that RenameInformationPopup calls updatePopupLocation every time a textChanged or keyPressed event occurs.
+This means a lot of calls to pack the shell, then update the region and change the shell's height to be one pixel taller.
+Resizing the shell less would really improve perfomance here on all platforms.

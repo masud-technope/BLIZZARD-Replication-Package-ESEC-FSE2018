@@ -1,0 +1,12 @@
+Bug 490770 – Freeze report should mention compatible changes
+Bug 490658 changed
+public StructuredSelection(Object[] elements) {..}
+to
+public StructuredSelection(Object...
+elements) {..}
+https://git.eclipse.org/c/platform/eclipse.platform.ui.git/commit/?id=56fcb25766839e93cfb00924fc1dc00a2603db61
+This is a compatible API change that should have been reported in http://download.eclipse.org/eclipse/downloads/drops4/I20160330-1230/apitools/freeze_report.html
+Compare With > API Baseline...
+correctly says:
+"Replaced an array type with a variable argument type in constructor org.eclipse.jface.viewers.StructuredSelection.StructuredSelection(Object[])"
+Note that this change was only present in that build and has been reverted in master.

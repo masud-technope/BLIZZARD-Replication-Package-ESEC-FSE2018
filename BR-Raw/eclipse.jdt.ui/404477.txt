@@ -1,0 +1,22 @@
+Bug 404477 – [move method] Wrong detection of duplicate methods (can result in compile errors)
+Here is the original source code:
+public class A {
+public int i = 0;
+public void m(B b) {
+i++;
+}
+}
+public class B {
+public void m() {
+}
+}
+When method m of A is moved to B by applying move-refactoring,
+Eclipse error occurs saying that "A method with name 'm' already exists in the target type 'B'.
+But it should not be an error since method m will have different parameters in B:
+public class B {
+public void m() {
+}
+public void m(A a) {
+a.i++;
+}
+}

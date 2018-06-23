@@ -1,0 +1,11 @@
+Bug 459189 – [1.8][content assist] keyword return not proposed inside lambda for code completion
+interface I <T,R> {
+R apply(T t);
+}
+public class X {
+Integer bar(Integer x) { return null;}
+Integer foo(){
+I <Integer, X> i2 = (x) -> {ret /* type ctrl-space after ret */};
+return 0;
+}
+}

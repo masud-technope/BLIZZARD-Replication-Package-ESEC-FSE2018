@@ -1,0 +1,2 @@
+Bug 263505 – added/removed profile information no longer used
+We no longer use IApiAnnotations.getAdded/RemovedProfile() information, and it should be removed.

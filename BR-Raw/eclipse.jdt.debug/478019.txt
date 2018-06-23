@@ -1,0 +1,64 @@
+Bug 478019 – StringIndexOutOfBoundsException in BinaryBasedSourceGenerator.getReturnStatement (BinaryBasedSourceGenerator.java:531)
+The following incident was reported via the automated error reporting:
+code:                   120
+plugin:                 org.eclipse.jdt.debug_3.8.100.v20140522-1618
+message:                Exception processing async thread queue
+fingerprint:            47d6498a
+exception class:        org.eclipse.recommenders.internal.stacktraces.rcp.StandInStacktraceProvider$StandInException
+exception message:      Stand-In Stacktrace supplied by Eclipse Stacktraces & Error Reporting Tool
+number of children:     1
+org.eclipse.recommenders.internal.stacktraces.rcp.StandInStacktraceProvider$StandInException: Stand-In Stacktrace supplied by Eclipse Stacktraces & Error Reporting Tool
+at org.eclipse.core.internal.jobs.JobManager.endJob(JobManager.java:661)
+at org.eclipse.core.internal.jobs.WorkerPool.endJob(WorkerPool.java:105)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:71)
+---
+code:                   120
+plugin:                 org.eclipse.jdt.debug_3.8.100.v20140522-1618
+message:                Exception processing async thread queue
+fingerprint:            b96756d5
+exception class:        java.lang.StringIndexOutOfBoundsException
+exception message:      String index out of range: 1
+number of children:     0
+java.lang.StringIndexOutOfBoundsException: String index out of range: 1
+at java.lang.String.charAt(null:-1)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.BinaryBasedSourceGenerator.getReturnStatement(BinaryBasedSourceGenerator.java:531)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.BinaryBasedSourceGenerator.buildMethodDeclaration(BinaryBasedSourceGenerator.java:515)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.BinaryBasedSourceGenerator.buildTypeDeclaration(BinaryBasedSourceGenerator.java:331)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.BinaryBasedSourceGenerator.buildTypeDeclaration(BinaryBasedSourceGenerator.java:149)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.BinaryBasedSourceGenerator.buildSource(BinaryBasedSourceGenerator.java:75)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationSourceGenerator.getInstanceSourceMapper(EvaluationSourceGenerator.java:217)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationSourceGenerator.getSource(EvaluationSourceGenerator.java:238)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.getCompiledExpression(ASTEvaluationEngine.java:319)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.evaluate(ASTEvaluationEngine.java:131)
+at org.eclipse.jdt.internal.debug.ui.JavaWatchExpressionDelegate$EvaluationRunnable.run(JavaWatchExpressionDelegate.java:142)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run(JDIThread.java:3158)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+General Information:
+reported-by:      David Seide
+anonymous-id:     a648ccd8-dc5d-41ef-8480-42ef10c15824
+eclipse-build-id: 4.4.0.I20140606-1215
+eclipse-product:  org.eclipse.sdk.ide
+operating system: Windows8 6.3.0 (x86_64) - win32
+jre-version:      1.8.0_25-b18
+The following plug-ins were present on the execution stack (*):
+1.
+org.eclipse.core.jobs_3.6.0.v20140424-0053
+2.
+org.eclipse.jdt.debug_3.8.100.v20140522-1618
+3.
+org.eclipse.jdt_3.10.0.v20140606-1215
+4.
+org.eclipse.jdt.debug.ui_3.6.300.v20140512-1926
+Please note that:
+* Messages, stacktraces, and nested status objects may be shortened.
+* Bug fields like status, resolution, and whiteboard are sent
+back to reporters.
+* The list of present bundles and their respective versions was
+calculated by package naming heuristics.
+This may or may not reflect reality.
+Other Resources:
+* Report: https://dev.eclipse.org/recommenders/committers/confess/#/problems/54c8b274e4b095b6c75549fa
+* Manual: https://dev.eclipse.org/recommenders/community/confess/#/guide
+Thank you for your assistance.
+Your friendly error-reports-inbox.
+This bug was created on behalf of sarika.sinha@xxxxxxxxxxxx.

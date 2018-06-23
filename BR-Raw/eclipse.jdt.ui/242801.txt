@@ -1,0 +1,11 @@
+Bug 242801 – [build path] VariableCreationDialog has a misleading layout
+I20080716-1200
+1.
+Window > Preferences > Java > Build Path > Classpath Variables
+2.
+Click 'New...'
+3.
+The 'File...' and 'Folder...' buttons seem to be placed in an odd spot.
+One might even think the 'File...' button should match the first text entry and the 'Folder...' the second instead of having them both "down by one".
+Please see bug 20879 for a similar problem in Platform/UI's code.
+I think the two buttons should be on the same line as the 'Path:' text field or on their own line.

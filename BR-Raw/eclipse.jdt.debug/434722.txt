@@ -1,0 +1,29 @@
+Bug 434722 – error in ConditionalJump Instruction
+Created attachment 243009 [details]
+Bug ConditionalJump Instruction
+The ASTEvaluationEngine  failed to execute the ConditionalJump instructions , when the condition is an instance of java.lang.Boolean object (not a primitive value).
+Example (add TestHCR.java to any project) and apply the following steps:
+1- add a breakpoint on the first line of the main method
+2- open Display view in eclipse
+3- copy the block
+if (ifCondition) {
+System.out.println("if condition true");
+}
+and execute it.
+A new ClassCastException will be thrown.
+/**
+*
+* @author j.Saoumi
+*
+*/
+package java8;
+public class TestHCR {
+public static Boolean ifCondition = Boolean.TRUE;
+public static void main(String[] args) {
+System.out.println("begin main");
+if (ifCondition) {
+System.out.println("if condition true");
+}
+System.out.println("end main");
+}
+}

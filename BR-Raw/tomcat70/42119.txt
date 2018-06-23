@@ -1,0 +1,22 @@
+42119 – request.getCharacterEncoding misparses charset=UTF-8; xyz=3
+(This bug is also present in Coyote source 6.0.10.)
+If there is an HTTP header
+Content-Type: text/abc; charset=UTF-8; xyz=3
+request.getCharacterEncoding() returns "UTF-8; xyz=3" but Tomcat 4.1.24 returns
+"UTF-8".
+In Tomcat 4.1.24, request.getCharacterEncoding uses parseCharacterEncoding
+defined in
+jakarta-tomcat-4.1.24-src/catalina/src/share/org/apache/catalina/util/RequestUtil.java
+and it correctly handles the case of other Content-Type parameters.
+In Tomcat 5.5.23, however, request.getCharacterEncoding uses
+getCharsetFromContentType defined in
+from
+apache-tomcat-5.5.23-src/connectors/util/java/org/apache/tomcat/util/http/ContentType.java
+which does not search for a possible terminating semicolon in the charset, thus
+erroneously including additional characters in the charset.
+The code in 5.5.23 has a comment begins
+// Basically return everything after ";charset="
+Please consider using the code from 4.1.24
+This problem showed up when Content-Type was multipart/mixed and a client
+specified a charset parameter to Content-Type; however, it will occur in any
+Content-Type where charset is specified and is not the last parameter.

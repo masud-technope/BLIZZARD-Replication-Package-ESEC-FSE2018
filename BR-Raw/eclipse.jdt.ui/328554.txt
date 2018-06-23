@@ -1,0 +1,12 @@
+Bug 328554 – [move method] NPE during move method refactoring
+Build Identifier: M20090917-0800
+Manually (not using refactor assist) move a field F in class A to class B and this field is used by a method in class A.
+ The method will show an error because it doesn't know .
+Then try to use refactor move method from class A to class B.
+ You'll receive the error "an unhandled exception occurred while performing the refactoring."
+Reproducible: Always
+Steps to Reproduce:
+Manually (not using refactor assist) move a field F in class A to class B and this field is used by a method in class A.
+ The method will show an error because it doesn't know .
+Then try to use refactor move method from class A to class B.
+ You'll receive the error "an unhandled exception occurred while performing the refactoring."

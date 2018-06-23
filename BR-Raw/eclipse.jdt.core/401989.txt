@@ -1,0 +1,16 @@
+Bug 401989 – [1.8][compiler] hook lambda expressions into "can be static" analysis
+I was alerted by code in LocalDeclaration.analyzeCode() which relies on methodScope.referenceMethod() to perform "can be static" analysis, the latter method returning null within lambda expressions.
+While that particular piece of code might actually be OK, I noticed a problem with the following program:
+interface I {
+void make();
+}
+public class Nesting {
+int val;
+private I test() {
+return () -> System.out.print(val);
+}
+public void call() { test().make(); }
+}
+When enabled, the following bogus warning is issued:
+The method test() from the type Nesting can be declared as static
+We should check what exactly is missing to let lambda expressions participate in this analysis.

@@ -1,0 +1,6 @@
+54981 – ServletContext.getJspConfigDescriptor() should return null when there is no jsp configuration
+According to Servlet 3.0 javadoc ServletContext.getJspConfigDescriptor() must return NULL when there is no jsp configuration:
+"
+Returns:
+the <jsp-config> related configuration that was aggregated from the web.xml and web-fragment.xml descriptor files of the web application represented by this ServletContext, or null if no such configuration exists
+"

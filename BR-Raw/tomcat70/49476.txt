@@ -1,0 +1,18 @@
+49476 – Cannot expire selected session in Manager webapp
+Running 7.0.0.
+Steps to reproduce:
+1.
+Login to the Manager webapp.
+2.
+In the "Sessions" column click on the number (1) in the "/manager" row.
+The Sessions Administration page`[1] is opened.
+3.
+In the sessions list put a checkmark next to any session and press Invalidate selected Sessions button.
+4.
+Actual result: message:
+FAIL: Nonce mismatch.
+Command "/sessions" was ignored.
+and the page displays the list of webapps.
+Expected result: Invalidating a session and redisplaying the sessions list.
+[1] http://localhost:8080/manager/html/sessions?path=/manager
+Suspected cause is that [1] is opened with a GET query that does not include the nonce in its URL.

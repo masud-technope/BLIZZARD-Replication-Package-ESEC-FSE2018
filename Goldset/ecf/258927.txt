@@ -1,0 +1,4 @@
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/SLPMessage.java
+protocols/bundles/ch.ethz.iks.slp/src/test/java/ch/ethz/iks/slp/impl/AttributeParserTest.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/DiscoveryTest.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/internal/provider/jslp/ServicePropertiesAdapter.java

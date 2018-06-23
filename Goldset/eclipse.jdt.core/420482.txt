@@ -1,0 +1,6 @@
+org.eclipse.jdt.compiler.apt.tests/lib/apttestprocessors.jar
+org.eclipse.jdt.compiler.apt.tests/processors/org/eclipse/jdt/compiler/apt/tests/processors/elements/Java8ElementProcessor.java
+org.eclipse.jdt.compiler.apt.tests/resources/targets/model8/Z.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/Argument.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/AnnotationHolder.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/SourceTypeBinding.java

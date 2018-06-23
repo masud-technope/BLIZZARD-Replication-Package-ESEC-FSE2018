@@ -1,0 +1,4 @@
+Bug 483690 – IdeJavaSourceOutputStream always uses default charset
+IdeJavaSourceOutputStream always uses default charset via the inherited ByteArrayOutputStream#toString() call in line 68: "this.toString()".
+That discards all character encoding used via the IdeOutputJavaFileObject#openOutputStream() method, like: new OutputStreamWriter(openOutputStream(), encoding);
+Possible solution: write the collected bytes "as is" to the file?

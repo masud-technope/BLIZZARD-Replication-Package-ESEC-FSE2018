@@ -1,0 +1,8 @@
+Bug 399798 – StandardVMType should allow to contribute default source and Javadoc locations for ext libraries
+The current StandardVMType creates LibraryLocation instances for libs in the extension directory with empty and null values for:
+* sourcepath
+* packageRoot
+* javadocLocation
+Generally speaking this is correct because nobody should make use of those libraries on the extension classpath.
+The problem is with JDK8b75 javafx is put on the extension classpath and so people developing JavaFX applications with eclipse won't get javadoc informations with manually updating their library path which is not really user friendly.
+My proposal would be to provide an extension point which also plugins to contribute source and javadoc lookups for extension library locations.

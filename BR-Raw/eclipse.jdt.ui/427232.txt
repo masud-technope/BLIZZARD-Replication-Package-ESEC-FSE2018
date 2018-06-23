@@ -1,0 +1,4 @@
+Bug 427232 – [1.8]Replace newAnnotation() with ImportRewrite#addAnnotation()
+Ref bug 426510 comment 0
+To quote:
+"...We should remove the old org.eclipse.jdt.internal.corext.dom.ASTNodeFactory#newAnnotation(..) and turn ImportRewrite#newAnnotation(..) .."

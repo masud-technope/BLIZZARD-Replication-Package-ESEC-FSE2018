@@ -1,0 +1,17 @@
+Bug 443498 – [JUnit] support re-running 'virtual' suites, e.g. from the 'Parameterized' runner
+It would be awesome if the JDT JUnit View could re-run suites that are not explicitly backed by a Testclass, Suiteclass, or Method.
+Such 'virtual' suites are common if you use custom runners, such as
+org.junit.runners.Parameterized.
+Here, the each 'virtual' suite describes as set of parameters for which each test method is executed.
+A bug for it has been filed here: bug 434093.
+I'm filing this bug because I'd like to propose a solution that works with all custom runners and not just junit.Parameterized.
+Every JUnit runner first creates a tree of org.junit.runner.Description-Objects.
+Each Description represents a test or suite...
+currently, JDT can only re-run Descriptions that represent a Java Test- or Suite-Class or a test Method.
+I'd like to propose that, for other cases, i.e.
+when the Description is not backed by a class/method, the parent Description should be the root for test execution and all unwanted siblings of the to-be-executed test can be filtered out with org.junit.runner.manipulation.Filter.
+My personal use case is http://www.xpect-tests.org.
+There, 'virtual' tests represent a file or a Java method plus parameters.
+I've hacked a working solution and made it available in
+https://github.com/meysholdt/eclipse_jdt_junit_runners/tree/master/org.eclipse.jdt.junit4.runtime.patch
+I'd be happy to clean it up and make a contribution.

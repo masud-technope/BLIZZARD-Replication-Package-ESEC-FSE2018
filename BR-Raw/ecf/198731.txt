@@ -1,0 +1,13 @@
+Bug 198731 – Wrong underline in hyperlink recognition
+Build ID: I20070625-1500
+Steps To Reproduce:
+1.
+Open an IRC Chatroom
+2.
+Type "irc://foobar.com/#channel irc://foobar.com"
+3.
+Ctrl + move mouse over the second irc://
+4.
+Part of the first irc:// is underlined instead of the second irc://
+Ctrl + click in the second irc:// works fine, the problem is only in the text which is underlined.
+More information:

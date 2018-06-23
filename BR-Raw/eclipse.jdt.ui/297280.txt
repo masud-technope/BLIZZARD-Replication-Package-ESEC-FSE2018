@@ -1,0 +1,39 @@
+Bug 297280 – JUnit view not showing @BeforeClass exception when single test is run
+User-Agent:       Mozilla/5.0 (Windows; U; Windows NT 6.0; en-GB; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5 (.NET CLR 3.5.30729)
+Build Identifier: M20090917-0800
+This is a bug that only occurs when the user runs a single JUnit 4 test by selecting the test method name and chosing "Run As JUnit Test" from the context menu.
+If a @BeforeClass method is defined that throws an exception, the JUnit view shows a tree like this:
+-test method
+-"Unrooted Tests"
+|-test class
+None of the nodes are marked with crosses or ticks and none of them show a Failure Trace.
+I would expect to see a tree like this:
+- Test method [X]
+Or maybe one like this:
+-Test class [X]
+|-Test method
+Either way I would expect to see a red cross somewhere in the tree and be able to click on it to bring up the stack trace for the exception.
+Reproducible: Always
+Steps to Reproduce:
+import org.junit.BeforeClass;
+import org.junit.Test;
+public class BugExample {
+@BeforeClass
+public static void beforeClass() {
+throw new RuntimeException();
+}
+@Test
+public void test() throws Exception {
+}
+}
+1.
+Make sure you have JUnit4 on the project classpath.
+2.
+Create the class above in the default package.
+3.
+Select the name of the method named "test".
+4.
+Right-click, Run As, JUnit Test.
+5.
+Open the JUnit view and expand the "Unrooted Tests" node.
+You should find three nodes, none of them marked with crosses or ticks and no Failure Trace associated with any of them.

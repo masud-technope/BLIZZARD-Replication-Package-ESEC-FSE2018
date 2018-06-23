@@ -1,0 +1,5 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/ChangeTypeRefactoring/negative/A_InVisibleType.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ChangeTypeRefactoring/negative/A_VisibleType.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ChangeTypeRefactoring/negative/A_testInVisibleType_in.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ChangeTypeRefactoringTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ChangeTypeRefactoring.java

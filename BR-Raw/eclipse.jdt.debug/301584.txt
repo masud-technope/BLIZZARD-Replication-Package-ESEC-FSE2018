@@ -1,0 +1,26 @@
+Bug 301584 – com.sun.jdi.ObjectCollectedException during breakpoint condition evaluation
+Created attachment 157951 [details]
+fix
+I20100129-1300
+com.sun.jdi.ObjectCollectedException
+at org.eclipse.jdi.internal.MirrorImpl.defaultReplyErrorHandler(MirrorImpl.java:241)
+at org.eclipse.jdi.internal.ObjectReferenceImpl.referenceType(ObjectReferenceImpl.java:478)
+at org.eclipse.jdi.internal.ObjectReferenceImpl.type(ObjectReferenceImpl.java:494)
+at org.eclipse.jdi.internal.ValueImpl.checkValue(ValueImpl.java:180)
+at org.eclipse.jdi.internal.ValueImpl.checkValues(ValueImpl.java:160)
+at org.eclipse.jdi.internal.ClassTypeImpl.invokeMethod(ClassTypeImpl.java:160)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.invokeMethod(JDIThread.java:849)
+at org.eclipse.jdt.internal.debug.core.model.JDIClassType.sendMessage(JDIClassType.java:93)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.AbstractRuntimeContext.classForName(AbstractRuntimeContext.java:110)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.AbstractRuntimeContext.classForName(AbstractRuntimeContext.java:126)
+at org.eclipse.jdt.internal.debug.eval.ast.instructions.Instruction.getType(Instruction.java:204)
+at org.eclipse.jdt.internal.debug.eval.ast.instructions.PushStaticFieldVariable.execute(PushStaticFieldVariable.java:42)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.Interpreter.execute(Interpreter.java:66)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine$1$EvaluationRunnable.run(ASTEvaluationEngine.java:483)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.runEvaluation(JDIThread.java:681)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine$EvalRunnable.run(ASTEvaluationEngine.java:520)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run(JDIThread.java:2755)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Stepping through the problem I found that during a VM call to look up a class,
+the StringReferece we create to pass in to the message is being GC'd
+See bug 301412 for further information

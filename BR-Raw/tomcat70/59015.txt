@@ -1,0 +1,39 @@
+59015 – Endless loop in APR poller during connector shutdown
+While running the TC 8 test suite and endless loop int he APR poller occured during the test org.apache.catalina.core.TestStandardWrapper.
+The situation might be a race condition that is not related to the specific test.
+Code was TC 8 HEAD plus APR 1.2.4 based on OpenSSL 1.0.2f and APR 1.5.2.
+Platform Sun Solaris 10 Sparc.
+The machine was pretty busy, when the problem occured.
+Error message occuring before the loop starts (only one such message):
+[junit] 16-Feb-2016 17:30:31.285 SEVERE [http-apr-127.0.0.1-auto-6-Poller] org.apache.tomcat.util.net.AprEndpoint$Poller.run Poller failed with error [9] : [Bad file number]
+Relevant stacks:
+main seems to hang in
+[junit] "main" prio=3 tid=0x0002a400 nid=0x2 runnable [0xfdf7d000]
+[junit]    java.lang.Thread.State: RUNNABLE
+[junit]     at org.apache.tomcat.jni.Pool.destroy(Native Method)
+[junit]     at org.apache.tomcat.util.net.AprEndpoint$Sendfile.destroy(AprEndpoint.java:2147)
+[junit]     at org.apache.tomcat.util.net.AprEndpoint.stopInternal(AprEndpoint.java:781)
+[junit]     at org.apache.tomcat.util.net.AbstractEndpoint.stop(AbstractEndpoint.java:814)
+[junit]     at org.apache.coyote.AbstractProtocol.stop(AbstractProtocol.java:517)
+[junit]     at org.apache.catalina.connector.Connector.stopInternal(Connector.java:1011)
+[junit]     at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:224)
+[junit]     - locked <0xe6337060> (a org.apache.catalina.connector.Connector)
+[junit]     at org.apache.catalina.core.StandardService.stopInternal(StandardService.java:517)
+[junit]     - locked <0xe633eb28> (a java.lang.Object)
+[junit]     at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:224)
+[junit]     - locked <0xe633ea58> (a org.apache.catalina.core.StandardService)
+[junit]     at org.apache.catalina.core.StandardServer.stopInternal(StandardServer.java:790)
+[junit]     at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:224)
+[junit]     - locked <0xe633e2c8> (a org.apache.catalina.core.StandardServer)
+[junit]     at org.apache.catalina.startup.Tomcat.stop(Tomcat.java:355)
+[junit]     at org.apache.catalina.startup.TomcatBaseTest.tearDown(TomcatBaseTest.java:218)
+Poller seems to loop, whenever I look it is in:
+[junit] "http-apr-127.0.0.1-auto-6-Poller" daemon prio=3 tid=0x004fbc00 nid=0x4d runnable [0xb2aff000]
+[junit]    java.lang.Thread.State: RUNNABLE
+[junit]     at org.apache.tomcat.jni.Poll.create(Native Method)
+[junit]     at org.apache.tomcat.util.net.AprEndpoint.allocatePoller(AprEndpoint.java:881)
+[junit]     at org.apache.tomcat.util.net.AprEndpoint$Poller.run(AprEndpoint.java:1988)
+[junit]     at java.lang.Thread.run(Thread.java:745)
+[junit]
+Regards,
+Rainer

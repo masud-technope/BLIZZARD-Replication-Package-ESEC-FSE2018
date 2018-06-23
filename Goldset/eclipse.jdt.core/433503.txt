@@ -1,0 +1,8 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/AttachedJavadocTests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ClasspathTests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaSearchBugs8Tests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaSearchBugsTests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/TypeHierarchyTests.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/junit/extension/TestCase.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ResolveTests_1_5.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/SnippetCompletionTests.java

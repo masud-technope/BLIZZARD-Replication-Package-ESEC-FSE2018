@@ -1,0 +1,11 @@
+Bug 24839 – TimeoutException debugging org.eclipse.ui.tests
+build 20021015
+I ran the UITestSuite of org.eclipse.ui.tests in debug mode and got the
+attached log.
+The TimeoutException at the top of the log was also printed in
+the console.
+I ran the same test suite in debug mode a few times before without problems.
+Running with IBM JRE:
+java version "1.4.0"
+Java(TM) 2 Runtime Environment, Standard Edition (build 1.4.0)
+Classic VM (build 1.4.0, J2RE 1.4.0 IBM Windows 32 build cn140-20020902

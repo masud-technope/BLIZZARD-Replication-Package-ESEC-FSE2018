@@ -1,0 +1,27 @@
+Bug 267035 – ReplicaSharedObjectDescription#toString() is not thread safe
+Build ID: M20080911-1700
+Steps To Reproduce:
+Primary(GUID[Cq+I8tyQMDnXR9gyzYuCvllUYz4=]; org.acoveo.ecf.monitoringTool.AgentGroupInformation) says Hello java.util.ConcurrentModificationException
+at java.util.LinkedList$ListItr.checkForComodification(LinkedList.java:761)
+at java.util.LinkedList$ListItr.next(LinkedList.java:696)
+at java.util.AbstractCollection.toString(AbstractCollection.java:421)
+at java.lang.String.valueOf(String.java:2827)
+at java.lang.StringBuilder.append(StringBuilder.java:115)
+at java.util.AbstractMap.toString(AbstractMap.java:490)
+at java.lang.String.valueOf(String.java:2827)
+at java.lang.StringBuffer.append(StringBuffer.java:219)
+at org.eclipse.ecf.core.sharedobject.ReplicaSharedObjectDescription.toString(ReplicaSharedObjectDescription.java:108)
+at java.lang.String.valueOf(String.java:2827)
+at java.lang.StringBuffer.append(StringBuffer.java:219)
+at org.eclipse.ecf.provider.generic.SOContext.sendCreate(SOContext.java:188)
+at org.eclipse.ecf.core.sharedobject.BaseSharedObject.replicateToRemoteContainers(BaseSharedObject.java:569)
+at org.acoveo.ecf.BaseReflectionSharedObject.access$2(BaseReflectionSharedObject.java:1)
+at org.acoveo.ecf.BaseReflectionSharedObject$1.processEvent(BaseReflectionSharedObject.java:271)
+at org.eclipse.ecf.core.sharedobject.BaseSharedObject.fireEventProcessors(BaseSharedObject.java:185)
+at org.eclipse.ecf.core.sharedobject.BaseSharedObject.handleEvent(BaseSharedObject.java:122)
+at org.eclipse.ecf.provider.generic.SOWrapper.svc(SOWrapper.java:229)
+at org.eclipse.ecf.provider.generic.SOWrapper$2.run(SOWrapper.java:190)
+at org.eclipse.ecf.provider.generic.SOContainer$SharedObjectJobRunnable.run(SOContainer.java:142)
+at org.eclipse.equinox.internal.util.impl.tpt.threadpool.Executor.run(Executor.java:70)
+More information:
+toString should be synchronized

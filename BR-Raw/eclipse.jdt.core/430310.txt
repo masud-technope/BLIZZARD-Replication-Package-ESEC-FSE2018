@@ -1,0 +1,19 @@
+Bug 430310 – [1.8][compiler] Functional interface incorrectly rejected as not being.
+interface Func1<T1, R> {
+R apply(T1 v1);
+void other();
+}
+@FunctionalInterface // spurious error: F1<T, R> is not a functional interface
+interface F1<T1, R> extends Func1<T1, R> {
+default void other() {}
+}
+or more simply:
+@FunctionalInterface // spurious error: F2<T, R> is not a functional interface
+interface F2<T1, R> extends Func1<T1, R> {
+R apply(T1 v1);
+default void other() {}
+}
+Tested with:
+Version: Kepler Service Release 1
+Build id: 20130919-0819
+Eclipse Java Development Tools Patch for Java 8 Support (BETA)	1.0.0.v20140312-1826	org.eclipse.jdt.java8patch.feature.group	Eclipse.org

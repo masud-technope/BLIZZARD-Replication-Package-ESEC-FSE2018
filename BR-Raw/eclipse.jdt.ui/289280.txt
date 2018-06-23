@@ -1,0 +1,18 @@
+Bug 289280 – [introduce indirection] wizard uses wrong path for inner classes as target
+User-Agent:       Mozilla/5.0 (Windows; U; Windows NT 6.0; de; rv:1.9.1.2) Gecko/20090729 Firefox/3.5.2 (.NET CLR 3.5.30729)
+Build Identifier: 20090621-0832
+Open the select dialog in the "introduce indirection" dialog.
+When you choose some inner class as target (for example Y inner class of X), then the class "X$Y" instead of "X.Y" is selected.
+Reproducible: Always
+Steps to Reproduce:
+1.
+open "Introduce Indirection" dialog.
+2.
+select "Browse" button
+3.
+choose some inner class
+4.
+select "OK" button
+5.
+wonder why Eclipse displays "Class ...
+does not exist"

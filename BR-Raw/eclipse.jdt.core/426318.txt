@@ -1,0 +1,15 @@
+Bug 426318 – [1.8][compiler] Bogus name clash error in the presence of default methods and varargs
+// --
+abstract class Y {
+public abstract void foo(Object[] x);
+public abstract void goo(Object[] x);
+}
+interface I {
+default public <T> void foo(T...
+x) {};
+public abstract void goo(Object ...
+x);
+}
+public abstract class X extends Y implements I {
+}
+triggers an incorrect name clash error.

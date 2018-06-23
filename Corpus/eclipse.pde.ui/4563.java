@@ -1,0 +1,325 @@
+/*******************************************************************************
+ *  Copyright (c) 2000, 2016 IBM Corporation and others.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *
+ *  Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.pde.internal.core.plugin;
+
+import java.io.PrintWriter;
+import java.io.Serializable;
+import java.util.Locale;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.osgi.service.resolver.BundleDescription;
+import org.eclipse.osgi.service.resolver.BundleSpecification;
+import org.eclipse.osgi.service.resolver.VersionRange;
+import org.eclipse.osgi.util.ManifestElement;
+import org.eclipse.pde.core.plugin.IMatchRules;
+import org.eclipse.pde.core.plugin.IPluginImport;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
+import org.eclipse.pde.core.plugin.IPluginObject;
+import org.eclipse.pde.core.plugin.ISharedPluginModel;
+import org.eclipse.pde.internal.core.ICoreConstants;
+import org.eclipse.pde.internal.core.bundle.BundlePluginBase;
+import org.eclipse.pde.internal.core.ibundle.IBundle;
+import org.eclipse.pde.internal.core.ibundle.IBundleModel;
+import org.eclipse.pde.internal.core.ibundle.IBundlePluginModelBase;
+import org.eclipse.pde.internal.core.ibundle.IManifestHeader;
+import org.eclipse.pde.internal.core.text.bundle.ManifestHeader;
+import org.eclipse.pde.internal.core.text.bundle.RequireBundleObject;
+import org.osgi.framework.Constants;
+import org.w3c.dom.Node;
+
+public class PluginImport extends IdentifiablePluginObject implements IPluginImport, Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    private int match = NONE;
+
+    private boolean reexported = false;
+
+    private boolean optional = false;
+
+    private String version;
+
+    public  PluginImport() {
+    }
+
+    public  PluginImport(ISharedPluginModel model, String id) {
+        try {
+            setModel(model);
+            ensureModelEditable();
+            this.fID = id;
+        } catch (CoreException e) {
+        }
+    }
+
+    @Override
+    public boolean isValid() {
+        return getId() != null;
+    }
+
+    @Override
+    public int getMatch() {
+        return match;
+    }
+
+    @Override
+    public String getVersion() {
+        return version;
+    }
+
+    @Override
+    public boolean isReexported() {
+        return reexported;
+    }
+
+    @Override
+    public boolean isOptional() {
+        return optional;
+    }
+
+    public void load(BundleDescription description) {
+        this.fID = description.getSymbolicName();
+    }
+
+    public void load(ManifestElement element, int bundleManifestVersion) {
+        this.fID = element.getValue();
+        if (bundleManifestVersion >= 2) {
+            this.optional = Constants.RESOLUTION_OPTIONAL.equals(element.getDirective(Constants.RESOLUTION_DIRECTIVE));
+            this.reexported = Constants.VISIBILITY_REEXPORT.equals(element.getDirective(Constants.VISIBILITY_DIRECTIVE));
+        } else {
+            //$NON-NLS-1$
+            this.optional = "true".equals(element.getAttribute(ICoreConstants.OPTIONAL_ATTRIBUTE));
+            //$NON-NLS-1$
+            this.reexported = "true".equals(element.getAttribute(ICoreConstants.REPROVIDE_ATTRIBUTE));
+        }
+        String bundleVersion = element.getAttribute(Constants.BUNDLE_VERSION_ATTRIBUTE);
+        if (bundleVersion != null) {
+            try {
+                VersionRange versionRange = new VersionRange(bundleVersion);
+                this.version = bundleVersion;
+                this.match = PluginBase.getMatchRule(versionRange);
+            } catch (IllegalArgumentException e) {
+            }
+        }
+    }
+
+    public void load(BundleSpecification importModel) {
+        this.fID = importModel.getName();
+        this.reexported = importModel.isExported();
+        this.optional = importModel.isOptional();
+        VersionRange versionRange = importModel.getVersionRange();
+        if (versionRange == null || VersionRange.emptyRange.equals(versionRange)) {
+            this.version = null;
+            match = IMatchRules.NONE;
+        } else {
+            this.version = versionRange.getMinimum() != null ? versionRange.getMinimum().toString() : null;
+            match = PluginBase.getMatchRule(versionRange);
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (obj == null)
+            return false;
+        if (obj instanceof IPluginImport) {
+            IPluginImport target = (IPluginImport) obj;
+            // binary equal
+            if (target.getModel().equals(getModel()))
+                return false;
+            if (target.getId().equals(getId()) && target.isReexported() == isReexported() && stringEqualWithNull(target.getVersion(), getVersion()) && target.getMatch() == getMatch() && target.isOptional() == isOptional())
+                return true;
+        }
+        return false;
+    }
+
+    void load(Node node) {
+        //$NON-NLS-1$
+        String id = getNodeAttribute(node, "plugin");
+        //$NON-NLS-1$
+        String export = getNodeAttribute(node, "export");
+        //$NON-NLS-1$
+        String option = getNodeAttribute(node, "optional");
+        //$NON-NLS-1$
+        String version = getNodeAttribute(node, "version");
+        //$NON-NLS-1$
+        String match = getNodeAttribute(node, "match");
+        //$NON-NLS-1$
+        boolean reexport = export != null && export.toLowerCase(Locale.ENGLISH).equals("true");
+        //$NON-NLS-1$
+        boolean optional = option != null && option.toLowerCase(Locale.ENGLISH).equals("true");
+        this.match = NONE;
+        if (match != null) {
+            String lmatch = match.toLowerCase(Locale.ENGLISH);
+            if (//$NON-NLS-1$
+            lmatch.equals("exact"))
+                lmatch = RULE_EQUIVALENT;
+            for (int i = 0; i < RULE_NAME_TABLE.length; i++) {
+                if (lmatch.equals(RULE_NAME_TABLE[i])) {
+                    this.match = i;
+                    break;
+                }
+            }
+        }
+        this.version = version;
+        this.fID = id;
+        this.reexported = reexport;
+        this.optional = optional;
+    }
+
+    @Override
+    public void setMatch(int match) throws CoreException {
+        ensureModelEditable();
+        Integer oldValue = Integer.valueOf(this.match);
+        this.match = match;
+        firePropertyChanged(P_MATCH, oldValue, Integer.valueOf(match));
+    }
+
+    @Override
+    public void setReexported(boolean value) throws CoreException {
+        ensureModelEditable();
+        Boolean oldValue = Boolean.valueOf(reexported);
+        this.reexported = value;
+        firePropertyChanged(P_REEXPORTED, oldValue, Boolean.valueOf(value));
+    }
+
+    @Override
+    public void setOptional(boolean value) throws CoreException {
+        ensureModelEditable();
+        Boolean oldValue = Boolean.valueOf(this.optional);
+        this.optional = value;
+        firePropertyChanged(P_OPTIONAL, oldValue, Boolean.valueOf(value));
+    }
+
+    @Override
+    public void setVersion(String version) throws CoreException {
+        ensureModelEditable();
+        String oldValue = this.version;
+        this.version = version;
+        firePropertyChanged(P_VERSION, oldValue, version);
+    }
+
+    @Override
+    public void restoreProperty(String name, Object oldValue, Object newValue) throws CoreException {
+        if (name.equals(P_MATCH)) {
+            setMatch(((Integer) newValue).intValue());
+            return;
+        }
+        if (name.equals(P_REEXPORTED)) {
+            setReexported(((Boolean) newValue).booleanValue());
+            return;
+        }
+        if (name.equals(P_OPTIONAL)) {
+            setOptional(((Boolean) newValue).booleanValue());
+            return;
+        }
+        if (name.equals(P_VERSION)) {
+            setVersion(newValue != null ? newValue.toString() : null);
+            return;
+        }
+        super.restoreProperty(name, oldValue, newValue);
+    }
+
+    @Override
+    public void write(String indent, PrintWriter writer) {
+        // This is a round-about way to do this; but, leveraging existing
+        // functionality is key.  The fact we have to do this suggests a model
+        // limitation.
+        // Emulating the behaviour of the text edit operations.
+        // RequireBundleObjects are created from PluginImport objects and have
+        // access to the MANIFEST.MF write mechanism
+        // Get the model
+        IPluginModelBase modelBase = getPluginModel();
+        // Ensure the model is a bundle model
+        if ((modelBase instanceof IBundlePluginModelBase) == false) {
+            writer.print(indent);
+            //$NON-NLS-1$ //$NON-NLS-2$
+            writer.print("<import plugin=\"" + getId() + "\"");
+            if (isReexported())
+                //$NON-NLS-1$
+                writer.print(//$NON-NLS-1$
+                " export=\"true\"");
+            if (isOptional())
+                //$NON-NLS-1$
+                writer.print(//$NON-NLS-1$
+                " optional=\"true\"");
+            if (version != null && version.length() > 0)
+                //$NON-NLS-1$ //$NON-NLS-2$
+                writer.print(" version=\"" + version + "\"");
+            if (match != NONE && match != COMPATIBLE) {
+                String matchValue = RULE_NAME_TABLE[match];
+                //$NON-NLS-1$ //$NON-NLS-2$
+                writer.print(" match=\"" + matchValue + "\"");
+            }
+            //$NON-NLS-1$
+            writer.println("/>");
+            return;
+        }
+        IBundleModel bundleModel = ((IBundlePluginModelBase) modelBase).getBundleModel();
+        // Ensure the bundle manifest is present
+        if (bundleModel == null) {
+            return;
+        }
+        // Get the bundle
+        IBundle bundle = bundleModel.getBundle();
+        // Get the require bundle manifest header
+        IManifestHeader manifestHeader = bundle.getManifestHeader(Constants.REQUIRE_BUNDLE);
+        // of this method is a result of a copy operation)
+        if ((manifestHeader instanceof ManifestHeader) == false) {
+            return;
+        }
+        ManifestHeader header = (ManifestHeader) manifestHeader;
+        // Create the new temporary require bundle object (used only for
+        // writing)
+        RequireBundleObject element = new RequireBundleObject(header, fID);
+        // Get the manifest version for backwards compatibility
+        int bundleManifestVersion = BundlePluginBase.getBundleManifestVersion(bundle);
+        // Field:  Optional
+        if (optional) {
+            if (bundleManifestVersion > 1) {
+                element.setDirective(Constants.RESOLUTION_DIRECTIVE, Constants.RESOLUTION_OPTIONAL);
+            } else {
+                //$NON-NLS-1$
+                element.setAttribute(//$NON-NLS-1$
+                ICoreConstants.OPTIONAL_ATTRIBUTE, //$NON-NLS-1$
+                "true");
+            }
+        }
+        // Field:  Re-exported
+        if (reexported) {
+            if (bundleManifestVersion > 1) {
+                element.setDirective(Constants.VISIBILITY_DIRECTIVE, Constants.VISIBILITY_REEXPORT);
+            } else {
+                //$NON-NLS-1$
+                element.setAttribute(//$NON-NLS-1$
+                ICoreConstants.REPROVIDE_ATTRIBUTE, //$NON-NLS-1$
+                "true");
+            }
+        }
+        // Field:  Version
+        if ((version != null) && (version.trim().length() > 0)) {
+            element.setAttribute(Constants.BUNDLE_VERSION_ATTRIBUTE, version.trim());
+        }
+        // Write the textual representation
+        writer.print(element.write());
+    }
+
+    @Override
+    public void reconnect(ISharedPluginModel model, IPluginObject parent) {
+        super.reconnect(model, parent);
+    // No transient fields
+    }
+
+    @Override
+    public void writeDelimeter(PrintWriter writer) {
+        writer.println(',');
+        writer.print(' ');
+    }
+}

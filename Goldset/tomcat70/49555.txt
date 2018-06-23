@@ -1,0 +1,6 @@
+test/webapp-3.0/bug49555.jsp
+java/org/apache/jasper/compiler/ELFunctionMapper.java
+test/org/apache/el/TestELInJsp.java
+test/webapp-3.0/WEB-INF/bugs.tld
+webapps/docs/changelog.xml
+test/org/apache/el/TesterFunctions.java

@@ -1,0 +1,20 @@
+Bug 96828 – PDE Preference Target Platform is expensive
+When I do Window > Preferences > PDE > Target Platorm, it takes a long time to
+show the preference page (about 6 seconds for 3.1M7 while the UI is blocked
+and is unresponsive to any clicking - while not giving any feedback such as
+hour-glass cursor).
+When I do the same for RAD6.0 with 1049 plugins, my Eclipse is unresponsive
+for 30 seconds.
+Then, a ProgressMonitorDialog shows up that runs for 25
+seconds.
+Problem 1.
+This dialog should not leave the UI in an unresponsive state for so
+long.
+When I profile Window > Preferences > PDE > Target Platorm, roughly half the
+time is spent in the second tab ("Environment and JRE"), a tab I personally
+NEVER click on.
+The call to java.util.Locale.getAvailableLocales() uses 2,5
+seconds and makes 1,5 million methods calls while reading 27MB from disk.
+Problem 2.
+The Environment tab is hardly used and should be filled lazily or
+we should find a faster way to list available locales.

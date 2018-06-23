@@ -1,0 +1,20 @@
+51503 – Additional error checking required for connector port attribute (e.g. for port="")
+With 7.0.18 packaged as a candidate for release and finally unreleased, when I stop the Tomcat service (only 1 war deployed), the service takes a lot of time to stop and finally was killed by system.
+Having a look into the stderr log, I see it paused right after the folowing line :
+INFO: Stopping ProtocolHandler [http-apr-0]
+Then went into a slow loop and fill the log with these lines :
+13 juil.
+2011 14:30:30 org.apache.tomcat.util.net.AprEndpoint stopInternal
+ATTENTION: Acceptor thread [http-apr-0-Acceptor-0] failed to unlock.
+Forcing hard socket shutdown.
+13 juil.
+2011 14:30:31 org.apache.tomcat.util.net.AprEndpoint stopInternal
+ATTENTION: Acceptor thread [http-apr-0-Acceptor-0] failed to unlock.
+Forcing hard socket shutdown.
+13 juil.
+2011 14:30:32 org.apache.tomcat.util.net.AprEndpoint stopInternal
+ATTENTION: Acceptor thread [http-apr-0-Acceptor-0] failed to unlock.
+Forcing hard socket shutdown.
+etc.
+(about 30 times before it was killed)
+I think there was no such issue with 7.0.16.

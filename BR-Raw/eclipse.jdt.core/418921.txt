@@ -1,0 +1,5 @@
+Bug 418921 – [1.8][compiler] SE8 annotations in SE7 locations should be moved to type not copied if a pure SE8 annotation
+BETA_JAVA8:
+We presently copy, but we should move the SE8 annotations that feature in SE7
+locations so the field, local, parameter, method does not reflect this binding.
+See org.eclipse.jdt.internal.compiler.ast.ASTNode.copySE8AnnotationsToType(BlockScope, Binding, Annotation[])

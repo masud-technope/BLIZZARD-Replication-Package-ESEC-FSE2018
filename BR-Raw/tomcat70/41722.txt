@@ -1,0 +1,26 @@
+41722 � role-link tag in web.xml can not be omitted.
+The application with follwing web.xml can not be deployed.
+---
+<servlet>
+<servlet-name>sample</servlet-name>
+<servlet-class>sample.TheServlet</servlet-class>
+<security-role-ref>
+<role-name>users</role-name>
+</security-role-ref>
+</servlet>
+<servlet-mapping>
+....
+</servlet-mapping>
+<security-role>
+<role-name>users</role-name>
+</security-role>
+---
+"java.lang.IllegalArgumentException: Can't convert argument: null" occurred.
+The Specification says:
+---
+The security-role-ref element declares the security role reference in a
+component’s or in a deployment component’s code.
+It consists of an optional description, the security role name
+used in the code(role-name), and an optional link to a security role(role-link).
+---
+<role-link> is optional.

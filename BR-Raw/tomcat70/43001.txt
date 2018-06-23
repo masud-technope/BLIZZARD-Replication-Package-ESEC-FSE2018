@@ -1,0 +1,9 @@
+43001 – JspC lacks setMappedFile and setDie for use in Ant task
+The output files of the task (which defaults to false) will differ vs.
+what is
+generated at runtime with the web.xml 'mappedfile' parameter set true.
+ I just
+did a quick check and 'die' seemed to be the only other option that was
+missing that might make sense in the task.
+ These also occur in all versions
+of Tomcat and might be ported to 5.x.

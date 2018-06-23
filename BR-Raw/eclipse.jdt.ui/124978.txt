@@ -1,0 +1,47 @@
+Bug 124978 – [refactoring][convert anonymous] gets confused with generic methods
+in the example below, if you convert to nested and tick the static option then the resulting code doesn't compile and doesn't look quite right:
+------------------
+public interface A
+{
+<T> void a();
+<T> void b();
+}
+class Z
+{
+void m()
+{
+A a = new A()
+{ //convert to nested here
+public <T> void b()
+{
+}
+public <T> void a()
+{
+}
+};
+}
+}
+---------------------------------------
+Result:
+--------------------------------------
+public interface A
+{
+<T> void a();
+<T> void b();
+}
+class Z
+{
+private static final class AZ<T, T> implements A//This line is wrong
+{
+public <T> void b()
+{
+}
+public <T> void a()
+{
+}
+}
+void m()
+{
+A a = new AZ<T, T>();//This line is wrong
+}
+}

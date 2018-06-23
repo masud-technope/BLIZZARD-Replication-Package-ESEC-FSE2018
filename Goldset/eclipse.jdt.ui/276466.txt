@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/callhierarchy/CallHierarchyMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/callhierarchy/CallHierarchyContentProvider.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/callhierarchy/CallHierarchyMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/callhierarchy/ExpandWithConstructorsConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/callhierarchy/ExpandWithConstructorsDialog.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/PreferenceConstants.java

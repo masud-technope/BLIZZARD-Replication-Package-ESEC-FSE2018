@@ -1,0 +1,6 @@
+Bug 255031 – Missing EEs prevent project to build
+I20081111-0800
+I have projects that specify CDC1.1/Foundation1.1 as EE.
+When I load them in this week I build, the projects no longer compile despite having the project level warning set of ignore or warning.
+This results my project in having "a build path error" and nothing gets compiled.
+To reproduce, load the org.eclipse.equinox.p2.console and org.eclipse.equinox.p2.director from the /cvsroot/rt repo.

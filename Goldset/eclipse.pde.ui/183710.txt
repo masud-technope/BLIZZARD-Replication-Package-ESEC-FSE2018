@@ -1,0 +1,7 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/DependencyAnalysisSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/dependencies/DependenciesView.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/dependencies/OpenDependenciesAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/dependencies/OpenPluginDependenciesAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/dependencies/OpenPluginReferencesAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/plugins/PluginsView.java

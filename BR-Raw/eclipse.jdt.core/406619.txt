@@ -1,0 +1,12 @@
+Bug 406619 – [1.8][compiler] Incorrect suggestion that method can be made static.
+BETA_JAVA8:
+I get a hint from the compiler that default method foo of I can be declared
+static.
+Default methods cannot be static.
+// ---
+interface I {
+default int foo(int x, int y) {
+System.out.println("I.foo(" + x + "," + y + ")");
+return 10;
+}
+}

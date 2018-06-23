@@ -1,0 +1,13 @@
+Bug 217966 – Flags#toString API deserves improvements
+Source based, v_835.
+On the documentation front:
+- this refers to JLS2, which is dated;
+- this is talking about public, private etc.
+as flags, whereas the language
+spec calls them modifiers;
+- the notion of 'standard string representation' is somewhat odd since the same
+doc must confess that the ordering of modifiers, while inspired from the JLS,
+is a design choice (it is compatible with the spec, but the spec does not
+prescribe a fixed order).
+On the design front, the need for the API client to modify the flags when they come from a method is clumsy.
+There might be better solutions, but passing an extra parameter that tells which type of element the flags come from and reacting to it would be an obvious first step.

@@ -1,0 +1,6 @@
+Bug 112670 – Can't toggle selection of treeitem in variables view
+CTRL+SPACE should toggle the selection of treeitems in the variables view.
+Instead, it invokes content assist which blocks normal windows keystrokes in a
+platform widget.
+Commands in the details pane should only be active when it has
+focus.

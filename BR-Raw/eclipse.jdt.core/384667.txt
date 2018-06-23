@@ -1,0 +1,3 @@
+Bug 384667 – [1.8][compiler] better source positions for lambda expressions
+Is it OK to always just use one pair of sourceStart/sourceEnd? If a lambda has a - possibly large - block as its body, signaling an error against the lambda might be nicer when just highlighting the "header" not the entire construct, don't you think?
+What about a scheme that is a bit closer to how we handle method declarations?

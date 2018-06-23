@@ -1,0 +1,6 @@
+org.eclipse.jdt.internal.core.JavaElement.newNotPresentException
+org.eclipse.jdt.internal.core.JavaElement.openWhenClosed
+org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContentFromSource
+org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent
+org.eclipse.jdt.internal.ui.infoviews.JavadocView.getJavadocHtml
+org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeInput

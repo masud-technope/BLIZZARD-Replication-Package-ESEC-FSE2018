@@ -1,0 +1,8 @@
+Bug 222865 – Possible to connect the collaboration though nickname is empty.
+Build ID: 2.0.0.v20080310-1643
+Steps To Reproduce:
+1.
+Click Collaboration button in the toolbar
+2.
+Nickname is not specified in the Collaboration Connect dialog,
+and click Finish button

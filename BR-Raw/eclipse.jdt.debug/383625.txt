@@ -1,0 +1,10 @@
+Bug 383625 – JDT version of com.sun.jdi.event.EventSet doesn't extend java.util.set
+Build Identifier: Version: 3.7.2 Build id: M20120208-0800
+In jdi.jar from org.eclipse.jdt.debug, com.sun.jdi.event.EventSet is defined as such:
+public interface EventSet extends Mirror , Collection {
+...
+In all versions of the JDI javadoc since 1.4.2, it is defined as:
+public interface EventSet
+extends Mirror, Set
+Code that compiles against the Sun/Oracle version of JDI, and rely on the fact that it is a Set, doesn't run inside Eclipse.
+Reproducible: Always

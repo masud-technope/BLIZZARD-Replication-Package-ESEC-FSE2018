@@ -1,0 +1,2 @@
+55500 – AsyncListener.onTimeout is not called via AJP AjpNioProtocol connector
+The AsyncListener.onTimeout is not called, when timeout occurs, when traffic routed via AJP connector configured with AjpNioProtocol protocol.

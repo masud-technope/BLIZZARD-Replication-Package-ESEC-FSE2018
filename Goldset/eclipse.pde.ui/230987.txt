@@ -1,0 +1,5 @@
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/IDSObject.java
+ds/org.eclipse.pde.ds.ui/src/org/eclipse/pde/internal/ds/ui/editor/DSMasterTreeSection.java
+ds/org.eclipse.pde.ds.ui/src/org/eclipse/pde/internal/ds/ui/editor/actions/DSAddItemAction.java
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/text/DSObject.java
+ds/org.eclipse.pde.ds.ui/src/org/eclipse/pde/internal/ds/ui/editor/DSFormOutlinePage.java

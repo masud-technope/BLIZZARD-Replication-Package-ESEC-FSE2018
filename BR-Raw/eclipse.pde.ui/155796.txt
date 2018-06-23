@@ -1,0 +1,4 @@
+Bug 155796 – Patch to fix jface.text.Assert deprecation
+N20060901-0010.
+Platform Text has deprecated its Assert class.
+The attached patch fixes the deprecation warnings caused by this.

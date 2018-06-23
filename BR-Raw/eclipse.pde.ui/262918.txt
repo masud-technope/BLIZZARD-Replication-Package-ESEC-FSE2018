@@ -1,0 +1,15 @@
+Bug 262918 – org..eclipse.core.runtime is not always set with auto-start = true
+Using I20090129-0100, I have a case where on the first start the Eclipse application launching configuration doesn't work because the runtime bundle is not set with auto-start = true.
+Steps to reproduce:
+1) Use an existing eclipse application launching configuration
+2) Go to the Plug-ins tab
+3) Select the option: plug-ins selected below only
+4) Uncheck all bundles from workspace and the target platform
+5) Select only one or two bundles from the workspace set of plug-ins
+6) Click on "Add Required Plug-ins"
+7) Validate that no plug-ins are missing
+8) Run it.
+9) It will fail because org.eclipse.core.runtime auto-start is set to default and default is false.
+10) Go back to the launching configuration page and click Apply
+11) Now it works and you can see that org.eclipse.core.runtime auto-start is set to true.
+I consider this as a regression compare to 3.5M4.

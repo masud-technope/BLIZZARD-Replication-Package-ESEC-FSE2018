@@ -1,0 +1,9 @@
+Bug 82137 – [select] Code resolve doesn't work on static imports [5.0]
+import static java.lang.Math.PI;
+public class A {
+void bar() {
+}
+}
+- select PI
+- try code resolve
+observe: no element is returned.

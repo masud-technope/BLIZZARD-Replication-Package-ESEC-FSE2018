@@ -1,0 +1,24 @@
+Bug 116919 – Plug-in Manifest Editor loses dependency addition
+Build 3.2 M3
+WinXP
+My steps:
+1.
+I started with a 3.0-style (plugin.xml, not manifest.mf) plugin which was
+referencing 2 plugins that I'd just deleted from my workspace.
+2.
+Open plugin.xml in the plugin editor and go to the Dependencies tab.
+3.
+Add a new plugin dependency.
+4.
+(without saving first), remove the dependency on the 2 deleted plugins.
+5.
+Save.
+The Dependency tab correctly shows the added plugin and not the deleted
+plugins.
+6.
+Close the editor and reopen.
+7.
+The added plugin dependency is gone.
+This is a real nightmare for development because of the fact that (until you
+close and reopen) the editor shows the added plugin, but it's not actually added
+to the file so any references to code in this plugin won't compile.

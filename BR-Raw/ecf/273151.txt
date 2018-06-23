@@ -1,0 +1,2 @@
+Bug 273151 – [presence] Support for Message Search
+In some cases is necessary to search for messages from people on friend list or not, then it is interesting to have a mechanism on presence API to make the search message available in sync and asynchronous way.

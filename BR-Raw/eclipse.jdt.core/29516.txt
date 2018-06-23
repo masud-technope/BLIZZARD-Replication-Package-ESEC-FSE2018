@@ -1,0 +1,14 @@
+Bug 29516 – SearchEngine regressions in 20030114
+(these regressions are responsible for failing refactoring tests in 20030107)
+package p;
+class A{
+A A;
+A A(A A){
+A:
+for (;;){
+if (A.A(A)==A)
+break A;
+}
+return A;
+};
+}

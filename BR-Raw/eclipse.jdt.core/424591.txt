@@ -1,0 +1,16 @@
+Bug 424591 – [1.8][inference] capture-of-array causes resolution error
+Created attachment 238533 [details]
+Screenshot of spurious errors
+With 4.3.1 + JAVA8_Beta (1.0.0.v20131221-0104_BETA_JAVA8), there are a number of spurious local variable resolution errors in the Graal project source code.
+Unfortunately I cannot reproduce a small test case.
+However, checking out the code and reproducing the problem is fairly straightforward:
+hg clone http://hg.openjdk.java.net/graal/graal/rev/72e2ec923b7b
+cd graal
+unzip eclipse-config.zip # attached to this bug report
+Start Eclipse (running on top of JDK8) with new workspace directory being graal.
+Configure a JavaSE-1.8 Execution Environment.
+File | Import...
+| General | Existing Projects into Workspace
+Choose graal/graal subdirectory and import all discovered projects.
+Once "Building workspace" completes, you should see about 33 errors in the Problems View, most of which are obviously spurious variable resolution errors.
+See attached screenshot.

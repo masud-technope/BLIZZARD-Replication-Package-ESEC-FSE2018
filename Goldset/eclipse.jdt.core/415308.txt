@@ -1,0 +1,8 @@
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/NegativeTypeAnnotationTest.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/NullAnnotationTest.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/Annotation.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/Argument.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/LocalDeclaration.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/ParameterizedQualifiedTypeReference.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/QualifiedTypeReference.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/SourceTypeBinding.java

@@ -1,0 +1,11 @@
+Bug 274821 – HttpClientFieldSystem's throwing of LoginException causes problems.
+The HttpClientFieldSystem throws javax.security.auth.login.LoginException, and this class isn't in the Foundation 1.1 class library profile that p2 targets.
+Currently p2 has to check against the class name to process this exception.
+File system browser throws this exception on HTTP status 401, 403, and 407.
+It is questionable if a 403 is a login problem - The RFC [1] states, "The server understood the request,
+but is refusing to fulfill it.
+Authorization will not help and the request
+SHOULD NOT be repeated" - i.e.
+it does not help to login.
+Currently, p2 has to parse the exception message text to find the string "Forbidden" to differentiate.
+This also relates to Bug 274632 [HttpClientFileSystemBrowser#runRequest needs to return HTTP status code]

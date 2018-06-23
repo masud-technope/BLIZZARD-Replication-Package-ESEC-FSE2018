@@ -1,0 +1,5 @@
+org.apache.catalina.util.LifecycleBase.invalidTransition
+org.apache.catalina.util.LifecycleBase.stop
+org.apache.catalina.connector.Connector.stopInternal
+org.apache.catalina.util.LifecycleBase.stop
+org.apache.tomcat.util.net.TestXxxEndpoint.testStartStopBindOnStart

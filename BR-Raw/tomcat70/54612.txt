@@ -1,0 +1,11 @@
+54612 – Fatal Error when trying to send data to WebSocket with conection closed
+Created attachment 29997 [details]
+Crash report by Java VM
+Occures: When try to send data to WebSocet using  org.apache.catalina.websocket.WsOutbound but socket is closed and onClose method has not managed to work out and remove connection from the collection.
+Expected behavior: throw IOException;
+Actual behavior: Fatal Error EXCEPTION_ACCESS_VIOLATION
+Java: JDK-7.15
+Tomcat: 7.0.37
+Actual DLL version 1.1.27 (not 24)
+Note.
+This works well on Linux but crash Tomcat on Windows

@@ -1,0 +1,14 @@
+org.eclipse.jdt.internal.compiler.ast.ASTNode.resolveAnnotations
+org.eclipse.jdt.internal.compiler.ast.ASTNode.resolveAnnotations
+org.eclipse.jdt.internal.compiler.apt.dispatch.AnnotationDiscoveryVisitor.resolveAnnotations
+org.eclipse.jdt.internal.compiler.apt.dispatch.AnnotationDiscoveryVisitor.visit
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.traverse
+org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.traverse
+org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.traverse
+org.eclipse.jdt.internal.compiler.apt.dispatch.RoundEnvImpl.<init>
+org.eclipse.jdt.internal.compiler.apt.dispatch.BaseAnnotationProcessorManager.processAnnotations
+org.eclipse.jdt.internal.compiler.Compiler.processAnnotations
+org.eclipse.jdt.internal.compiler.Compiler.compile
+org.eclipse.jdt.internal.compiler.batch.Main.performCompilation
+org.eclipse.jdt.internal.compiler.batch.Main.compile
+org.eclipse.jdt.internal.compiler.batch.Main.main

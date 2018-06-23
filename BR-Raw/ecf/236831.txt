@@ -1,0 +1,2 @@
+Bug 236831 – [Discovery][SLP] JSLPNamespace discards IServiceID.getname()
+JSLPNamespace discards IServiceID.getname()

@@ -1,0 +1,6 @@
+Bug 411964 – [1.8][null] leverage null type annotation in foreach statement
+In JSE7 we have no way to figure out the nullness of a foreach element variable.
+Using type annotations this becomes (easily) possible, it just needs special treatment in the compiler since we don't have the AST that assigns the element variable.
+See also this TODO in ForeachStatement.analyseCode():
+" once we have JSR 308 fetch nullStatus from the collection element type
+and feed the result into the above check (instead of FlowInfo.UNKNOWN)"

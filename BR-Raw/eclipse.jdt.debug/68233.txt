@@ -1,0 +1,37 @@
+Bug 68233 – Null Pointer in JavaBreakpoint
+I was using RC3 and doing hyades development, hyades wasn't installed in my
+plugins but the hyades projects were open in my workspace.
+ The workspace I was
+using was originally produced by the M9 build if that's any help.
+ The null
+pointer occured during one of a long series of debugging sessions I had been
+running, the backtrace was
+$ java.lang.NullPointerException
+at
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.installableReferenceType(JavaBreakpoint.java:318)
+at
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleClassPrepareEvent(JavaBreakpoint.java:276)
+at
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:256)
+at
+org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:137)
+at
+org.eclipse.jdt.internal.debug.core.EventDispatcher.run(EventDispatcher.java:221)
+at java.lang.Thread.run(Thread.java:534)
+after the backtrace I cannot be sure but the debugging session seemed to stall,
+the runtime-workbench continued to refresh but actions would no longer have any
+effect.
+ I tried terminating the runtime-workbench and debugging again a number
+of times but again the application would go unresponsive in certain areas, it
+occurs to me that the unresponsive areas may of been in the same spots as some
+disabled Breakpoints but I can't confirm that either way the exact spot the
+program grew unresponsive varied, the state of the debugging window didn't
+reflect having hit any kind of breakpoint.
+ I shut down the program after noting
+the Null Pointer did show up once more later on (important to note that I
+debugged many times before and after with out the null pointer).
+ The problem
+appears to have desisted when I restarted eclipse.
+I'm sorry I can't give steps to reproduce but felt I might as well give what I
+have, I'll continue to play around with it and update this report if I find any
+more info.

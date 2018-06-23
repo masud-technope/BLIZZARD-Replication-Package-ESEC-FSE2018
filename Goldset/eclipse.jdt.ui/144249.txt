@@ -1,0 +1,5 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/RenameTemp/canRename/A_test64_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/RenameTemp/canRename/A_test64_out.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/RenameTempTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/rename/RenameAnalyzeUtil.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/util/RefactoringASTParser.java

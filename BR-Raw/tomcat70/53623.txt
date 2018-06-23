@@ -1,0 +1,16 @@
+53623 – Incorrect request properties after AsyncContext.dispatch
+In a scenario that involves a forward, a call to startAsync, and then dispatch(path), the properties of the request after the dispatch do not match the path and query params used to send the dispatch.
+A project demonstrating the issue:
+https://github.com/rstoyanchev/dispatch-test
+Build and deploy the sources in the 'tomcat-issue-repro' branch.
+From the home page of the deployed application, select the "Dispatch via AsyncContext" scenario.
+The scenario involves a couple of forwards from ServletA to Servlet B and then ServletC, which in turn starts a thread and dispatches to Servlet D that forwards to a JSP.
+See WebAppInitializer.setupDispatchScenario(ServletContext) for details on the setup.
+The log output shows the content of the request as each Servlet is entered.
+It all looks as expected until after the dispatch to ServletD where the requestUri, servletPath, and pathInfo are for ServletC.
+---
+The second scenario on the home page, "Dispatch via AsyncContext and wrap request", wraps the request and that yields slightly different (but also incorrect) results.
+The requestUri/servletPath/pathInfo and also the parameterMap, in the application thread and after dispatch, both match the state of the request in ServletA.
+---
+FWIW there are also a couple of similar scenarios that use forwarding instead of dispatching.
+The "Forward via RequestDispatcher" scenario appears to work all the way through while the "Forward via RequestDispatcher and wrap request" almost works except the state of the request in the async thread only matches that of ServletA.

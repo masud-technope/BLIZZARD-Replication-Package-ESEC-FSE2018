@@ -1,0 +1,9 @@
+Bug 270626 – [target] Change UI to separate content and location tabs
+When creating the UI we thought we could simplify the UI by having targets always broken down by the locations they came from.
+ So the contents of targets were displayed as a tree of locations with the plug-ins they contained as children.
+Unfortunately several cases have been brought up where users want to work with plug-ins in the target as one large group.
+ Features like "Select required", group by physical location, etc.
+require a different UI.
+There are a few other benefits to having separate tabs/sections for locations and content.
+ We will require one less level of modal dialog to edit plug-in content.
+ The display will more closely match what will eventually end up in the state.

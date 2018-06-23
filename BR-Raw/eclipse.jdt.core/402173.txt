@@ -1,0 +1,2 @@
+Bug 402173 – [1.8][formatter] Code formatter should understand lambda expressions.
+Code formatter should understand and process lambda expressions.

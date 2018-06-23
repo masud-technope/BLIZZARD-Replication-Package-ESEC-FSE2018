@@ -1,0 +1,2 @@
+Bug 257926 – [Discovery][SLP] JSLPServiceInfo(IServiceInfo) doesn't need to throw SecurityException
+org.eclipse.ecf.provider.jslp.container.JSLPServiceInfo.JSLPServiceInfo(IServiceInfo) doesn't need to throw java.lang.SecurityException

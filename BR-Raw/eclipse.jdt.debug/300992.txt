@@ -1,0 +1,4 @@
+Bug 300992 – Line breakpoint properties dialog has problems when target class is not available
+I20100127-0100
+The 'Suspend Policy' option is missing in the line breakpoint properties dialog.
+The option is available in the Breakpoints view details pane, but not in the dialog any more (it's there in latest 3.5.x build).

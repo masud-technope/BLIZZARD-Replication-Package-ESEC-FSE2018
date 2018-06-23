@@ -1,0 +1,3 @@
+Bug 234074 – Compliance_1_5#test088 fails when launched with JRE 6 and -Dcompliance=1.5
+3.4 RC2
+The expected compiler log is elaborated depending upon the current JRE instead of taking the current compliance into account, resulting into an error when those mismatch.

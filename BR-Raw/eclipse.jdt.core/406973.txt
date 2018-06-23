@@ -1,0 +1,3 @@
+Bug 406973 – [1.8] Parse MethodParameters attribute from classfiles
+The MethodParameters attribute must be recognized and correctly read by a class file reader in order to properly implement the Java SE platform class libraries (Â§2.12), if the class file's version number is 52.0 or above and the Java virtual machine implementation recognizes class files whose version number is 52.0 or
+above.

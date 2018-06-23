@@ -1,0 +1,30 @@
+Bug 444377 – cannot open an outgoing connection in environments where bind() is not allowed
+It is currently not possible to use ECF httpclient4 provider on environments (such as Openshift) where binding to the loopback address (for an outgoing connection) is not allowed.
+You get an exception like this:
+java.net.BindException: Permission denied
+at java.net.PlainSocketImpl.socketBind(Native Method)
+at java.net.AbstractPlainSocketImpl.bind(AbstractPlainSocketImpl.java:376)
+at java.net.Socket.bind(Socket.java:631)
+at org.eclipse.ecf.internal.provider.filetransfer.httpclient4.ECFHttpClientProtocolSocketFactory.connectSocket(ECFHttpClientProtocolSocketFactory.java:82)
+at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:180)
+at org.apache.http.impl.conn.AbstractPoolEntry.open(AbstractPoolEntry.java:151)
+at org.apache.http.impl.conn.AbstractPooledConnAdapter.open(AbstractPooledConnAdapter.java:125)
+at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:643)
+at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:479)
+at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:906)
+at org.apache.http.impl.client.AbstractHttpClient.execute(AbstractHttpClient.java:805)
+at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer.performConnect(HttpClientRetrieveFileTransfer.java:1077)
+at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer.access$0(HttpClientRetrieveFileTransfer.java:1068)
+at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer$1.performFileTransfer(HttpClientRetrieveFileTransfer.java:1064)
+at org.eclipse.ecf.filetransfer.FileTransferJob.run(FileTransferJob.java:73)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Apache HttpClient allows you to specify an explicit local address when establishing a (client) socket:
+http://hc.apache.org/httpcomponents-client-ga/httpclient/apidocs/org/apache/http/conn/params/ConnRoutePNames.html#LOCAL_ADDRESS
+If you don't, you get the loopback address as per the java.net.Socket documentation:
+http://docs.oracle.com/javase/7/docs/api/java/net/Socket.html#Socket(java.net.InetAddress,%20int,%20java.net.InetAddress,%20int)
+However, in some environments, a program may not have permission to use the loopback address as the local address when connecting to a server.
+That is the case for applications running on Openshift:
+https://www.openshift.com/forums/openshift/httpclient-permission-denied-when-making-outbound-call
+https://www.openshift.com/forums/openshift/httpclient-stopped-working-client-connection
+https://www.openshift.com/forums/openshift/commons-httpclient-permission-denied
+A reasonable solution would be to allow a user to specify an explicit local address via a system property.

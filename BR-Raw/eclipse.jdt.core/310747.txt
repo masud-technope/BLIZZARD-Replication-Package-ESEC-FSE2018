@@ -1,0 +1,13 @@
+Bug 310747 – [content assist] Irrelevant proposals while completing inside array initializer.
+3.6M7
+Follow up of bug# 292087
+public class Test {
+private Runnable member[] = {
+// completion here brings up useless proposals
+};
+}
+In the snippet above, completing at the indicated point
+proposes the methods of java.lang.Object.
+Choosing these
+proposals will immediately result in an error and as such
+make no sense there.

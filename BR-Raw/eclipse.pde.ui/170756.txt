@@ -1,0 +1,9 @@
+Bug 170756 – Quick fix 'Add missing packages' should add internal packages as x-internal:=true
+I20070116-1510
+- have org.eclipse.ui.navigator.resources tag I20061213-1608 from CVS
+- set PDE compiler problem severity for 'Non-exported packages' to Error
+- in the MANIFEST.MF, apply quick fix 'Add missing packages' to the error
+=> was: adds:
+org.eclipse.ui.internal.navigator.workingsets,
+=> expected: should add (same as PDE Tools > Organize Manifests...):
+org.eclipse.ui.internal.navigator.workingsets;x-internal:=true,

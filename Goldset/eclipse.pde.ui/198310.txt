@@ -1,0 +1,9 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/ExternalizeResolution.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/ExternalizeStringsOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/ExternalizeStringsProcessor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/ExternalizeStringsWizard.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/ExternalizeStringsWizardPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/GetNonExternalizedStringsAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/tools/OrganizeManifestsWizard.java

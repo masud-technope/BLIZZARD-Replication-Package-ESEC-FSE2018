@@ -1,0 +1,9 @@
+Bug 244742 – [organize imports] Add Import will add static import even when compliance is at 1.4
+Build id: I20080812-0800
+I have a project with compiler compliance set to 1.4.
+ I had a reference in my code to "Status.OK_STATUS", where the class Status was not imported.
+ With the cursor inside "OK_STATUS" I did Ctrl+Shift+M with the intention to import the Status class.
+Instead it added a static import to the field Status.OK_STATUS.
+This is illegal based on my compiler compliance so the resulting source code had a compile error.
+It should not insert a static import when the compliance is below 1.5.
+Ideally it could import the class in this case, but I understand this would lead to inconsistent behaviour depending on compliance setting, so alternatively it should not import anything.

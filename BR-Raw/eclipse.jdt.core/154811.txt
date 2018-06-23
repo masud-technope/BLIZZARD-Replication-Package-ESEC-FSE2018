@@ -1,0 +1,646 @@
+Bug 154811 – [compiler] Internal compiler error while parsing/formatting
+Simple mistake at 604:55 in the code listed at the bottom causes the following error:
+Internal compiler error java.lang.ClassCastException: org.eclipse.jdt.internal.compiler.parser.RecoveredBlock 
+at org.eclipse.jdt.internal.compiler.parser.Parser.consumeTypeHeaderNameWithTypeParameters(Parser.java:2109) 
+at org.eclipse.jdt.internal.compiler.parser.Parser.consumeRule(Parser.java:4961) 
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:8839) 
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:9160) 
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.parseStatements(MethodDeclaration.java:117) 
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.parseMethod(TypeDeclaration.java:805) 
+at org.eclipse.jdt.internal.compiler.parser.Parser.getMethodBodies(Parser.java:8111) 
+at org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:583) 
+at org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:411) 
+at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.compile(AbstractImageBuilder.java:300) 
+at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.compile(AbstractImageBuilder.java:237) 
+at org.eclipse.jdt.internal.core.builder.IncrementalImageBuilder.build(IncrementalImageBuilder.java:120) 
+at org.eclipse.jdt.internal.core.builder.JavaBuilder.buildDeltas(JavaBuilder.java:260) 
+at org.eclipse.jdt.internal.core.builder.JavaBuilder.build(JavaBuilder.java:185) 
+at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:603) 
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37) 
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:167) 
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:201) 
+at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:230) 
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37) 
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:233) 
+at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:252) 
+at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:285) 
+at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:145) 
+at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:208) 
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+-------------------- FactorStoreIndexed.java --------------------------
+import java.util.Iterator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.NoSuchElementException;
+/**
+* A place to store factors during computation.
+This indexes to find the the variable proposed by a heuristic efficiently.
+*
+* @param <T> type of the heuristic object.
+*
+* <p>
+* This file is part of CIspace.ve package.
+<br>
+* CIspace.ve package is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the
+* Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+<br>
+* CIspace.ve package is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+<br>
+* You should have received a copy of the GNU General Public License along with CIspace.ve package; if not, write to the Free Software Foundation,
+* Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+* </p>
+*
+* @author David Poole
+*
+* @version 1.1 22-August-2006
+*
+* <p>
+* TODO Remove bug in min-fill(?) - there are variables with no factors associated with<br>
+* *************************************
+* <ul>
+* Changes by Jacek Kisy&#324;ski:
+* <li>changed to abstract, heuristic value stored in parameterized type object - it allows to implement constraints on heuristic.
+* <li>remove(Variable) and willBeNext() methods added - used by {@link CIspace.ve.QueryStepByStep}.
+* <li>use of generics (update to J2SE 5.0)
+* <li>use of automatic boxing and unboxing (update to J2SE 5.0)
+* <li>use of generics (update to J2SE 5.0)
+* <li>uses Variable.compareTo(Object) instead of Variable.getId()
+* <li>uses Variable.equals(Object) instead of "=="
+* <li>uses Variable.getDomainSize() instead of Variable.getDomain().length
+* <li>implements (not extends) CIspace.ve.FactorStore
+* <li>many identifiers renamed
+* <li>unnecessary recomputing of neighbours removed (methods: clean_up() and compute_neighbours() removed)
+* <li>unnecessary recomputing of heuristics removed
+* <li><b>Interface change </b> heuristics added/renamed: "min-factor" (="min-weight") || "min-degree" (="min-size") || "min-fill"
+* (="min-deficiency", "min-discrepancy") || "max-cardinality" (constructor takes one more parameter)
+* <li>throws java.lang.IllegalArgumentException() if provided ordering heuristic is not one of listed above
+* <li>iterators are now ItrSafe not CIspace.ve.FactorIterators
+* <li>member VariableToEliminate.positionInPQ removed (never used)
+* <li>heap rebuilding debugged (it wasn't being rebuild after heuristics were updated)
+* <li>maxNumNeighs debugged (it was equal to numbers of variables to sum out)
+* <li>parameter Variables added in constructor
+* <li>private class FactorLink removed and Factor index created (so it can be used for min-fill heuristic)
+* <li>enumFacsRemaining class removed
+* </ul>
+*/
+public abstract class FactorStoreIndexed<T extends Comparable<T>> implements FactorStore {
+/** Priority queue of Variables to be eliminated stored as VariableToEliminate.
+*/
+protected VariableToEliminate<T>[] varsPQ;
+/** Number of Variables to be eliminated.
+*/
+protected int numVariablesToEliminate;
+/**
+* Elimination heuristic: <br>
+* "min-factor" (="min-weight") || "min-degree" (="min-size") || "min-fill" (="min-deficiency", "min-discrepancy") || "max-cardinality".
+*/
+String how;
+/** The last Variable returned.
+*/
+private VariableToEliminate<T> last = null;
+/** Maps Variable to VariableToEliminate */
+private HashMap<Variable, VariableToEliminate<T>> varToVarInQuery;
+/** Final factors.
+*/
+private Factor[] finalFacs;
+/** Number of final Factors.
+*/
+private int numFinalFacs;
+/** Index of factors.
+*/
+private HashMap<Variable, HashSet<Factor>> factorIndex;
+/**
+* Constructor.
+*
+* @param toSumOut - Variables to be summed out.
+* @param initFactorsIterator - initial Factors.
+* @param nrInitFactors - number of initial Factors.
+* @param variablesIterator - Variables in the network.
+* @param numVariables - number of Variables in the network.
+* @param how an ordering heuristic: min-factor (=min-weight), min-degree (=min-size), min-fill (=min-deficiency, min-discrepancy),
+* max-cardinality.
+*
+* @throws java.lang.IllegalArgumentException() if provided ordering heuristic is not one of listed above.
+*/
+public FactorStoreIndexed(Variable[] toSumOut, Iterator<Factor> initFactorsIterator, int nrInitFactors, Iterator<Variable> variablesIterator,
+int numVariables, String how) {
+this.numVariablesToEliminate = toSumOut.length;
+this.varToVarInQuery = new HashMap<Variable, VariableToEliminate<T>>(this.numVariablesToEliminate * 3 / 2);
+this.finalFacs = new Factor[nrInitFactors + 1];
+this.numFinalFacs = 0;
+// Determine heuristic
+if ((how.equals("min-degree")) || ((how.equals("min-size"))))
+this.how = "min-degree";
+else if ((how.equals("min-fill")) || (how.equals("min-deficiency")) || (how.equals("min-discrepancy")))
+this.how = "min-fill";
+else if ((how.equals("min-factor")) || (how.equals("min-weight")))
+this.how = "min-factor";
+else if (how.equals("max-cardinality"))
+this.how = "max-cardinality";
+else
+throw new IllegalArgumentException("Wrong ordering heuristic!");
+// Create VariablesToEliminate
+this.createHeapSpace(toSumOut, numVariables);
+// Create FactorIndex
+this.factorIndex = new HashMap<Variable, HashSet<Factor>>((int) Math.round(1.4 * numVariables));
+while (variablesIterator.hasNext())
+this.factorIndex.put(variablesIterator.next(), new HashSet<Factor>());
+while (initFactorsIterator.hasNext())
+this.add(initFactorsIterator.next());
+// Update heuristic
+if (this.how.equals("min-degree"))
+for (int i = 0; i < this.numVariablesToEliminate; i++)
+this.varsPQ[i].setMinDegree();
+else if (this.how.equals("min-fill"))
+for (int i = 0; i < this.numVariablesToEliminate; i++)
+this.varsPQ[i].setMinFill();
+else if (this.how.equals("min-factor"))
+for (int i = 0; i < this.numVariablesToEliminate; i++)
+this.varsPQ[i].setMinFactor();
+// else this.how.equals("max-cardinality")) - do nothing, all heuristics for max-cardinality are zero right now
+// Make into a heap
+for (int i = 1; i < this.numVariablesToEliminate; i++)
+shuffleUp(i);
+}
+/**
+* @param toSumOut
+* @param numVariables
+*/
+abstract protected void createHeapSpace(Variable[] toSumOut, int numVariables);
+/**
+* @see CIspace.ve.FactorStore#hasNext()
+*/
+public boolean hasNext() {
+return this.numVariablesToEliminate > 0;
+}
+/**
+* Used by {@link CIspace.ve.QueryStepByStep}.
+*
+* @return variable, which will be eliminated next.
+*/
+protected Variable nextToEliminate() {
+return this.varsPQ[0].var;
+}
+/**
+* @see CIspace.ve.FactorStore#next()
+*/
+public Variable next() {
+// System.out.println("\n" + varsPQ[0].var.getName() + " is at the top of the heap");
+// System.out.println(" num factors:" + varsPQ[0].numFactors + ".
+numNeighbours:" + varsPQ[0].numNeighbours);
+this.last = this.varsPQ[0];
+this.varsPQ[0] = this.varsPQ[--this.numVariablesToEliminate];
+// Update heuristic (if "max-cardinality" is a current heuristic)
+if (this.how.equals("max-cardinality")) {
+for (int i = 0; i < this.last.numNeighbours; i++) {
+VariableToEliminate vte = this.varToVarInQuery.get(this.last.neighbours[i]);
+if (vte != null)
+vte.setHeuristicValue(vte.recomputeMaxCardinality());
+}
+// Rebuild the heap
+for (int i = ((this.numVariablesToEliminate / 2) - 1); i >= 0; i--)
+shuffleDown(i);
+} else
+// Rebuild the heap
+shuffleDown(0);
+// Remove Factors on last from last's index (we remove those Factors from indexes of other Variables in
+// FactorStoreIndexed.EnumFacsRemoved.next()
+this.factorIndex.remove(this.last.var);
+return this.last.var;
+}
+/**
+* Removes variable from the FactorStore.
+Used by {@link CIspace.ve.QueryStepByStep}.
+Shouldn't be used during inference with this heuristic!
+*
+* @param variable to be removed from the FactorStore.
+*/
+protected void remove(Variable variable) {
+int i = 0;
+while (!variable.equals(this.varsPQ[i].var))
+i++;
+this.last = this.varsPQ[i];
+this.varsPQ[i] = this.varsPQ[--this.numVariablesToEliminate];
+// Update heuristic (if "max-cardinality" is a current heuristic)
+if (this.how.equals("max-cardinality")) {
+for (int j = 0; j < this.last.numNeighbours; j++) {
+VariableToEliminate vte = this.varToVarInQuery.get(this.last.neighbours[j]);
+if (vte != null)
+vte.setHeuristicValue(vte.recomputeMaxCardinality());
+}
+// Rebuild the heap
+for (int j = ((this.numVariablesToEliminate / 2) - 1); j >= 0; j--)
+shuffleDown(j);
+} else
+// Rebuild the heap
+shuffleDown(0);
+// Remove Factors on last from last's index
+this.factorIndex.remove(this.last.var);
+// Remove factors on last from other indexes
+Iterator<Factor> factorsIterator = this.last.factors.iterator();
+while (factorsIterator.hasNext()) {
+Factor factor = factorsIterator.next();
+ItrSafe<Variable> variablesIterator = factor.getVariables();
+while (variablesIterator.hasNext()) {
+Variable var = variablesIterator.next();
+VariableToEliminate vte = FactorStoreIndexed.this.varToVarInQuery.get(var);
+if (vte != null) {
+if (vte != FactorStoreIndexed.this.last)
+// Remove from index
+FactorStoreIndexed.this.factorIndex.get(var).remove(factor);
+// Update neighbours count (and neighbours list)
+vte.removeNeighbours(factor.variables);
+} else
+// Remove from index
+FactorStoreIndexed.this.factorIndex.get(var).remove(factor);
+}
+}
+}
+/**
+* Make into a heap by shuffling down the value at position pos.
+This assumes that varsPQ is a heap except maybe that the value at position pos is
+* larger than it's children.
+*
+* @param pos position of the value to be shuffled down.
+*/
+private void shuffleDown(int pos) {
+int smallest;
+if (2 * pos + 1 < this.numVariablesToEliminate && (this.varsPQ[2 * pos + 1].heuristicValue.compareTo(this.varsPQ[pos].heuristicValue) < 0))
+smallest = 2 * pos + 1;
+else
+smallest = pos;
+if (2 * pos + 2 < this.numVariablesToEliminate
+&& (this.varsPQ[2 * pos + 2].heuristicValue.compareTo(this.varsPQ[smallest].heuristicValue) < 0))
+smallest = 2 * pos + 2;
+if (smallest != pos) {
+// swap varsPQ[pos] & varsPQ[smallest]
+VariableToEliminate<T> tmp = this.varsPQ[pos];
+this.varsPQ[pos] = this.varsPQ[smallest];
+this.varsPQ[smallest] = tmp;
+shuffleDown(smallest);
+}
+}
+/**
+* Make into a heap by shuffling up the value at position pos.
+This assumes that varsPQ is a heap except maybe that the value at position pos is
+* smaller than it's parent.
+*
+* @param pos position of the value to be shuffled up.
+*/
+private void shuffleUp(int pos) {
+VariableToEliminate<T> tmp = this.varsPQ[pos];
+while (pos > 0 & (tmp.heuristicValue.compareTo(this.varsPQ[(pos - 1) / 2].heuristicValue) < 0)) {
+this.varsPQ[pos] = this.varsPQ[(pos - 1) / 2];
+pos = (pos - 1) / 2;
+}
+this.varsPQ[pos] = tmp;
+}
+/**
+* @see CIspace.ve.FactorStore#addFactorComputed(CIspace.ve.Factor)
+*/
+public void addFactorComputed(Factor factor) {
+this.add(factor);
+if (!this.how.equals("max-cardinality")) {
+// ---------------------- MIN-DEGREE --------------------------
+if (this.how.equals("min-degree")) {
+for (int i = 0; i < factor.variables.length; i++) {
+VariableToEliminate vte = this.varToVarInQuery.get(factor.variables[i]);
+if (vte != null)
+vte.setHeuristicValue(vte.recomputeMinDegree());
+}
+// ---------------------- MIN-FILL --------------------------------
+else if (this.how.equals("min-fill")) {
+// Find neigbours of eliminated node and their neighbours.
+HashSet<VariableToEliminate> toUpdate = new HashSet<VariableToEliminate>();
+for (int i = 0; i < factor.variables.length; i++) {
+VariableToEliminate vte = this.varToVarInQuery.get(factor.variables[i]);
+if (vte != null) {
+toUpdate.add(vte);
+for (int j = 0; j < vte.numNeighbours; j++) {
+VariableToEliminate vte2 = this.varToVarInQuery.get(vte.neighbours[i]);
+if (vte2 != null)
+toUpdate.add(vte2);
+}
+}
+}
+// Recompute min-fill heuristic for neigbours of eliminated node and their neighbours.
+Iterator<VariableToEliminate> toUpdateIterator = toUpdate.iterator();
+while (toUpdateIterator.hasNext())
+toUpdateIterator.next().setHeuristicValue(recomputeMinFill());
+}
+// ---------------------- MIN-FACTOR --------------------------
+else
+// (this.how.equals("min-factor"))
+for (int i = 0; i < factor.variables.length; i++) {
+VariableToEliminate vte = this.varToVarInQuery.get(factor.variables[i]);
+if (vte != null)
+vte.setHeuristicValue(vte.recomputeMinFactor());
+}
+// ----------------------- REBUILD THE HEAP ------------------
+for (int i = ((this.numVariablesToEliminate / 2) - 1); i >= 0; i--)
+shuffleDown(i);
+}
+// else - do nothing, heuristics for max-cardinality couldn't change.
+}
+/**
+* @see CIspace.ve.FactorStore#enumFactorsRemoved()
+*/
+public ItrSafe<Factor> enumFactorsRemoved() {
+return new EnumFacsRemoved();
+}
+/**
+* Simple Iterator class.
+Does not provide opportunity to remove elements from the container.
+* <p>
+* This code is based on the Iterator code in {@link java.util.AbstractList}.
+*
+* @author David Poole (original code) & Jacek Kisynski (adaptation for #CSP, update to Java2)
+*
+* @version 1.0 23-June-2004
+*/
+private class EnumFacsRemoved extends ItrSafe<Factor> {
+/** Factors for the last Variable returned.
+*/
+Iterator<Factor> factorsIterator = FactorStoreIndexed.this.last.factors.iterator();
+/**
+* @return true if the iterator has more elements.
+*/
+public boolean hasNext() {
+return this.factorsIterator.hasNext();
+}
+/**
+* @throws NoSuchElementException
+*
+* @return the next element in the iteration.
+*/
+public Factor next() {
+Factor res = this.factorsIterator.next();
+for (int i = 0; i < res.variables.length; i++) {
+VariableToEliminate vte = FactorStoreIndexed.this.varToVarInQuery.get(res.variables[i]);
+if (vte != null) {
+if (vte != FactorStoreIndexed.this.last)
+// Remove from index
+FactorStoreIndexed.this.factorIndex.get(res.variables[i]).remove(res);
+// else - we don't remove from current HashSet as it would cause ConcurrentModification Exception, we simply remove the whole
+// HashSet in FactorStoreIndexed.next() method and keep it only as a member of FactorStoreIndexed.last.
+// Update neighbours count (and neighbours list)
+vte.removeNeighbours(res.variables);
+} else
+// Remove from index
+FactorStoreIndexed.this.factorIndex.get(res.variables[i]).remove(res);
+}
+return res;
+}
+}
+/**
+* @see CIspace.ve.FactorStore#enumFactorsFinal()
+*/
+public ItrSafe<Factor> enumFactorsFinal() {
+return new ItrArray<Factor>(this.finalFacs, this.numFinalFacs);
+}
+/**
+* This class provides the infrastructure for the Variable in the priority queue.
+*
+* @param <T1> type of the heuristic object.
+*
+* @author David Poole (original code) & Jacek Kisynski (adaptation for #CSP, update to Java2)
+*
+* @version 1.0 26-January-2005
+*/
+protected abstract class VariableToEliminate<T1 extends T> {
+/** The Variable */
+private Variable var;
+/**
+* The Variables that are neighbours.
+In order.
+Note that this does not only include VariablesToEliminate but also all other Variables (but
+* does not include this.VariableToEliminate itself.
+*/
+private Variable[] neighbours;
+/** Number of factors which makes particular Variable to be a neighbour.
+In order.
+*/
+private int[] neighboursCount;
+/** The number of neighbours.
+*/
+protected int numNeighbours;
+/** The index of the Factors that involve this Variable.
+In no particular order.
+*/
+private HashSet<Factor> factors;
+/** The number of factors */
+private int numFactors;
+/** If heuristic is "max-cardinality" then it is equal to (0 - number of eliminated neighbours).
+*/
+protected long maxCardinality;
+/** Value of the current heuristic.
+*/
+private T1 heuristicValue;
+/**
+* Constructor.
+*
+* @param variable
+* @param maxNumNeighs
+*/
+protected VariableToEliminate(Variable variable, int maxNumNeighs) {
+this.var = variable;
+FactorStoreIndexed.this.varToVarInQuery.put(variable, (VariableToEliminate<T>) this);
+this.neighbours = new VariableNature[maxNumNeighs];
+this.numNeighbours = 0;
+}
+/**
+* Adds neighbours to VariableToEliminate.
+*
+* @param variables to be added.
+*/
+void addNeighbours(Variable[] variables) {
+Variable[] newNeighbours = new Variable[this.numNeighbours + variables.length];
+int[] newNeighboursCount = new int[this.numNeighbours + variables.length];
+// Merging algorithm
+int vPos = 0;
+int nbsPos = 0;
+int newPos = 0;
+while (vPos < variables.length && nbsPos < this.numNeighbours) {
+if (variables[vPos].equals(this.var))
+vPos++;
+else if (variables[vPos].equals(this.neighbours[nbsPos])) {
+newNeighbours[newPos] = variables[vPos++];
+newNeighboursCount[newPos++] = this.neighboursCount[nbsPos++] + 1;
+} else if (variables[vPos].compareTo(this.neighbours[nbsPos]) < 0) {
+newNeighbours[newPos] = variables[vPos++];
+newNeighboursCount[newPos++] = 1;
+} else {
+newNeighbours[newPos] = this.neighbours[nbsPos];
+newNeighboursCount[newPos++] = this.neighboursCount[nbsPos++];
+}
+}
+while (vPos < variables.length)
+if (variables[vPos].equals(this.var))
+vPos++;
+else {
+newNeighbours[newPos] = variables[vPos++];
+newNeighboursCount[newPos++] = 1;
+}
+while (nbsPos < this.numNeighbours) {
+newNeighbours[newPos] = this.neighbours[nbsPos];
+newNeighboursCount[newPos++] = this.neighboursCount[nbsPos++];
+}
+this.neighbours = newNeighbours;
+this.neighboursCount = newNeighboursCount;
+this.numNeighbours = newPos;
+}
+/**
+* Removes neighbours from VariableToEliminate (adjusts neighbourCount, neighbours and neigbourNum).
+*
+* @param variables to be removed.
+*/
+void removeNeighbours(Variable[] variables) {
+int vPos = 0;
+int nbsPos = 0;
+int newPos = 0;
+while (vPos < variables.length) {
+if (variables[vPos].equals(this.var)) // Skip Variable itself
+vPos++;
+else if (variables[vPos].equals(this.neighbours[nbsPos])) { // Neighbour
+if (this.neighboursCount[nbsPos] == 1) { // Variable is no longer a neighbour
+vPos++;
+nbsPos++;
+} else { // Variable is still a neighbour
+this.neighboursCount[newPos] = this.neighboursCount[nbsPos++] - 1;
+this.neighbours[newPos++] = variables[vPos++];
+}
+} else {
+// (variables[vPos].compareTo(this.neighbours[nbsPos]) > 0)
+this.neighboursCount[newPos] = this.neighboursCount[nbsPos];
+this.neighbours[newPos++] = this.neighbours[nbsPos++];
+}
+}
+// Copy remaining neighbours
+while (nbsPos < this.numNeighbours) {
+this.neighboursCount[newPos] = this.neighboursCount[nbsPos];
+this.neighbours[newPos++] = this.neighbours[nbsPos++];
+}
+this.numNeighbours = newPos;
+}
+/**
+* Computes "min-factor" (="min-weight") heuristic.
+*
+* @return the size of the resulting factor after this Variable has been eliminated.
+*/
+protected long recomputeMinFactor() {
+long heuristicValue = 1;
+for (int i = 0; i < this.numNeighbours; i++)
+heuristicValue *= this.neighbours[i].getDomainSize();
+return heuristicValue;
+}
+/**
+*
+*/
+abstract protected void setMinFactor();
+/**
+* Recomputing min-degree (=min-size) heuristic is unnecessary, it is equal to:
+* <p>
+* this.numNeighbours - number of Variables in the resulting factor after this Variable has been eliminated.
+*/
+/**
+*
+*/
+abstract protected void setMinDegree();
+/**
+* Recomputes min-fill" (="min-deficiency", "min-discrepancy") heuristic.
+*
+* @return number of edges to be added after this Variable has been eliminated.
+*/
+protected long recomputeMinFill() {
+long heuristicValue = 0;
+// Process each neighbour
+for (int i = 0; i < (this.numNeighbours - 1); i++) {
+boolean[] neighboursAdj = new boolean[this.numNeighbours - (i + 1)]; // Adjacency vector
+// Process all Factors on current neighbour
+Iterator<Factor> factorsIterator = FactorStoreIndexed.this.factorIndex.get(this.neighbours[i]).iterator();
+while (factorsIterator.hasNext()) {
+Factor factor = factorsIterator.next();
+// Set indexes
+int nbsAdjPos = 0;
+int nbsPos = i + 1;
+int fctPos = 0;
+// Find the current neighbour
+while (factor.variables[fctPos].compareTo(this.neighbours[i]) < 0)
+fctPos++;
+fctPos++;
+// if ((fctPos < factor.variables().length) && (factor.variables()[fctPos].equals(this.neighbours[i]))) {
+// fctPos++;
+// Find connections to other neigbours using merging-like scheme
+while ((fctPos < factor.variables.length) && (nbsPos < this.numNeighbours)) {
+if (factor.variables[fctPos].equals(this.neighbours[nbsPos])) {
+neighboursAdj[nbsAdjPos++] = true;
+fctPos++;
+nbsPos++;
+} else if (factor.variables[fctPos].compareTo(this.neighbours[nbsPos]) < 0)
+fctPos++;
+else { // (fl.factor.variables()[fctPos].compareTo(this.neighbours[nbsPos]) > 0)
+nbsPos++;
+nbsAdjPos++;
+}
+}
+// }
+}
+// Update heuristic
+for (int j = 0; j < neighboursAdj.length; j++)
+if (!(neighboursAdj[j]))
+heuristicValue++;
+}
+return heuristicValue;
+}
+/**
+*
+*/
+abstract protected void setMinFill();
+/**
+* Recomputes "max-cardinality" heuristic.
+*
+* @return (0 - number of eliminated neighbours).
+*/
+protected long recomputeMaxCardinality() {
+return this.maxCardinality--;
+}
+/**
+*
+*/
+abstract protected void setMaxCardinality();}
+/**
+* @see java.lang.Object#toString()
+*/
+public String toString() {
+StringBuffer buffer = new StringBuffer(this.var + " N[");
+for (int i = 0; i < this.numNeighbours; i++)
+buffer.append(this.neighbours[i] + "-" + this.neighboursCount[i] + " ");
+buffer.append("] F(" + this.numFactors + ") H(" + this.heuristicValue + ")");
+return buffer.toString();
+}
+}
+/**
+* Adds Factor to the index.
+*
+* @param factor to be added to the index.
+*/
+private void add(Factor factor) {
+boolean noVariablesToEliminate = true;
+for (int i = 0; i < factor.variables.length; i++) {
+HashSet<Factor> variableFactorsIndex = this.factorIndex.get(factor.variables[i]);
+variableFactorsIndex.add(factor);
+VariableToEliminate<T> vte = FactorStoreIndexed.this.varToVarInQuery.get(factor.variables[i]);
+if (vte != null) {
+noVariablesToEliminate = false;
+vte.factors = variableFactorsIndex;
+// Update neighbours count (and neighbours list)
+vte.addNeighbours(factor.variables);
+}
+}
+if (noVariablesToEliminate)
+// Add to final Factors
+FactorStoreIndexed.this.finalFacs[FactorStoreIndexed.this.numFinalFacs++] = factor;
+}
+}

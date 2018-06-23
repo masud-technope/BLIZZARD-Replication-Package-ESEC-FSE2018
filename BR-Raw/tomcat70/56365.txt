@@ -1,0 +1,16 @@
+56365 – Simplify use of Mapper in StandardJarScanner
+Looking at the code that performs jar names filtering in StandardJarScanner in 8.0.5, 7.0.53.
+This is in view of
+a) backporting it to Tomcat 6 to get rid of ecj-xxx.jar names in the lists of ignored files there,
+b) documenting what filename patterns are supported here.
+Essentially, the code calls "Matcher.matchPath(toSkip, jarName)" (see StandardJarScanFilter#check() in 8.0.5) where jarName is just a file name.
+This is an overkill.
+The matchPath() method is designed to work with Ant-style patterns matching against file paths.
+This method handles file names hierarchy (directory names and "**" directory name pattern).
+ The actual matching of the names is performed by Matcher.match(String pattern, String str, boolean caseSensitive), which is a rather more simple API.
+Thus the proposal is to get rid of Matcher.matchPath() and call Matcher.match() directly.
+This allows to remove a lot of unneeded code.
+For documentation, the file name patterns supported by Matcher.match() according to its javadoc are as follows:
+* The pattern may contain two special characters:<br>
+* '*' means zero or more characters<br>
+* '?' means one and only one character

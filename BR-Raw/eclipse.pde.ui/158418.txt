@@ -1,0 +1,3 @@
+Bug 158418 – Creating a new osgi bundle project adds lazy-start header
+If a new plug-in project is created that targets a starndard OSGi Framework then the Eclipse-LazyStart: true header is added to the new bundle manifest file.
+I thought Equinox specific headers where disabled by default when targeting a starndard OSGi Framework.

@@ -1,0 +1,8 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/BundleLauncherHelper.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/LaunchAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/LaunchPluginValidator.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/LauncherUtils.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/OSGiBundleBlock.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/PluginBlock.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/launcher/EclipseLaunchShortcut.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/launcher/OSGiLaunchConfigurationInitializer.java

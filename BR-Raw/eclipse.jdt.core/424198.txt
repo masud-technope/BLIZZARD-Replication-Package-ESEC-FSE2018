@@ -1,0 +1,40 @@
+Bug 424198 – [1.8][hover] IAE in Signature.createCharArrayTypeSignature when hovering on variable of wildcard type
+What steps will reproduce the problem?
+1.
+Open the test class from attachment in comment 1 and hover mouse over variables indicated with "NOT OK".
+2.
+Error log view shows new entries per each hover.
+3.
+The file contains several variations of code with and without compile errors that may be related.
+Tested with very recent BETA-JAVA8 binary plugins.
+-- Error Details --
+Date: Tue Dec 17 03:11:32 EET 2013
+Message: Unexpected runtime error while computing a text hover
+Severity: Error
+Product: Eclipse SDK 4.3.1.v20130911-1000 (org.eclipse.sdk.ide)
+Plugin: org.eclipse.jface.text
+Session Data:
+eclipse.buildId=4.3.0.M20130911-1000
+java.version=1.8.0-ea
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+This is a continuation of log file C:\Users\Timo\workspace\.metadata\.bak_0.log
+Created Time: 2013-12-17 01:20:52.886
+Exception Stack Trace:
+java.lang.IllegalArgumentException: capture#1-of ? extends java.lang.String
+at org.eclipse.jdt.core.Signature.createCharArrayTypeSignature(Signature.java:1076)
+at org.eclipse.jdt.core.Signature.createTypeSignature(Signature.java:1235)
+at org.eclipse.jdt.internal.core.SelectionRequestor.acceptLocalVariable(SelectionRequestor.java:458)
+at org.eclipse.jdt.internal.codeassist.SelectionEngine.selectFrom(SelectionEngine.java:1236)
+at org.eclipse.jdt.internal.codeassist.SelectionEngine.select(SelectionEngine.java:951)
+at org.eclipse.jdt.internal.core.Openable.codeSelect(Openable.java:162)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeSelect(CompilationUnit.java:377)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeSelect(CompilationUnit.java:371)
+at org.eclipse.jdt.internal.ui.text.java.hover.AbstractJavaEditorTextHover.getJavaElementsAt(AbstractJavaEditorTextHover.java:118)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.internalGetHoverInfo(JavadocHover.java:608)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo2(JavadocHover.java:604)
+at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:129)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:85)
+at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)

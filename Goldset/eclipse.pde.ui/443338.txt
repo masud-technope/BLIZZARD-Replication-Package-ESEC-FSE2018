@@ -1,0 +1,1 @@
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/plugin/PluginModelBase.java

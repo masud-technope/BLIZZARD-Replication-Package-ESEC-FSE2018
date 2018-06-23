@@ -1,0 +1,44 @@
+50713 – The "roles" command doesn't work
+Created attachment 26601 [details]
+patch for context.xml of the Manager application
+The Manager application has the "roles" command that list the security role names.
+But now this command doesn't work correctly.
+The "roles" command returns following message:
+FAIL - Cannot resolve user database reference
+And gets Exception:
+SEVERE: Manager: java:comp/env/users
+javax.naming.NamingException: Cannot create resource instance
+at org.apache.naming.factory.ResourceEnvFactory.getObjectInstance(ResourceEnvFactory.java:117)
+at javax.naming.spi.NamingManager.getObjectInstance(NamingManager.java:304)
+at org.apache.naming.NamingContext.lookup(NamingContext.java:826)
+at org.apache.naming.NamingContext.lookup(NamingContext.java:145)
+at org.apache.naming.NamingContext.lookup(NamingContext.java:814)
+at org.apache.naming.NamingContext.lookup(NamingContext.java:145)
+at org.apache.naming.NamingContext.lookup(NamingContext.java:814)
+at org.apache.naming.NamingContext.lookup(NamingContext.java:159)
+at org.apache.naming.SelectorContext.lookup(SelectorContext.java:158)
+at javax.naming.InitialContext.lookup(InitialContext.java:392)
+at org.apache.catalina.manager.ManagerServlet.roles(ManagerServlet.java:1055)
+at org.apache.catalina.manager.ManagerServlet.doGet(ManagerServlet.java:366)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:306)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:240)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:161)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:589)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:164)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:100)
+at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:541)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:382)
+at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:243)
+at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:188)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:288)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:619)
+Tomcat 6.x contains same issue.
+The workaround for this issue is to add <ResourceLink> to context.xml of the Manager application.
+And I made the patch for this issue.
+regards.

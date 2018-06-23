@@ -1,0 +1,9 @@
+Bug 172137 – Untranslated text in RCP mail app
+1.
+Create an RCP mail app
+2.
+Run it
+3.
+Open the Help > About dialog
+Note how the text says '%aboutText'
+The reason why the text is untranslated is because newly created plug-ins now no longer start off with a Bundle-Localization: plugin header.

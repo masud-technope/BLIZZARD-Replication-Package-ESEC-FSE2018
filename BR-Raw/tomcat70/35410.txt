@@ -1,0 +1,24 @@
+35410 – NullPointerException when using out scriptlet (<%= obj %>) on object with toString() returning null
+Here is a simple test case to reproduce the bug:
+<%!
+class MyTestClass {
+public String toString() {
+return null;
+}
+}
+%>
+<%
+String nullString = null;
+MyTestClass test = new MyTestClass();
+%>
+<%= (Object) null %><%-- works well --%>
+<%= nullString %><%-- works well --%>
+<%= test %> <%-- crash --%>
+this leads to:
+java.lang.NullPointerException
+org.apache.jasper.runtime.JspWriterImpl.write(JspWriterImpl.java:337)
+org.apache.jasper.runtime.JspWriterImpl.print(JspWriterImpl.java:475)
+org.apache.jsp.test_jsp._jspService(test_jsp.java:65)
+I consider this to be a bug cause nowhere in the behaviour of toString it is
+specified it should not return null.
+Therefore, it should not crash like that.

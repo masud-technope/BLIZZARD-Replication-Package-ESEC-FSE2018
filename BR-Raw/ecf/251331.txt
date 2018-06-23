@@ -1,0 +1,7 @@
+Bug 251331 – [Discovery][jSLP] Add ServiceURL.getHost() returning URI user-info part
+Fix which introduces ch.ethz.iks.slp.ServiceURL.getUserInfo() which return
+the user info part.
+ch.ethz.iks.slp.ServiceURL.getHost() has been altered
+to just return the host.
+Since this is an API change, the Bundle-Version
+has to be increased to 1.1.

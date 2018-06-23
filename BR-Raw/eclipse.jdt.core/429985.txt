@@ -1,0 +1,18 @@
+Bug 429985 – [1.8][compiler] Resolution of right method signature
+Using Eclipse 4.3.2, BETA_JAVA8 JDT plugins 1.0.0.v20140309-1413, Eclipse.org, jdk1.8 build 132,
+ECJ compiler fails with the
+ERROR MESSAGE: "The target type of this expression must be a functional interface".
+This worked a few days before.
+Jdk8 compiles fine.
+import java.util.function.Supplier;
+public class Main {
+public static void main(String[] args) {
+// This does not compile with ECJ
+test(() -> "hi");
+}
+// Note: when removing this code the main function compiles with ECJ
+static void test(String message) {
+}
+static void test(Supplier<String> messageSupplier) {
+}
+}

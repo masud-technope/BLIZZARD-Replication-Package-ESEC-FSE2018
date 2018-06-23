@@ -1,0 +1,37 @@
+Bug 391265 – [code templates] JavaDoc {@link} and @See are not generated correctly for generic method arguments
+In JavaDoc blocks, {@link}s to methods in other classes, where the method takes a generic argument, are not identified correctly by (I assume) the parser, resulting in two observed bugs.
+For example, given these classes:
+---
+package pk1;
+public class A {
+/**
+* Generic
+*/
+public <T> void method(T t) {}
+/**
+* Generic array
+*/
+public <T> void method(T[] t) {}
+}
+---
+package pk1;
+/**
+* {@link pk1.A#method(T)}.
+* {@link pk1.A#method(T[])}.
+*/
+public class B {}
+---
+package pk2;
+public class T {}
+---
+The following can be observed.
+1.
+ The ctrl+click navigation to the methods does not work.
+ For class B you can navigate to class A directly, but there is no active link available for the methods.
+2.
+On origination of imports for class B, the import pk2.T; is brought in.
+ (Additionally this effects the behavior of 1., ctrl+click will go to the correct methods, however the T becomes an active link to class T.)
+-- Configuration Details --
+Product: Eclipse 1.5.1.20120828-0743 (org.eclipse.epp.package.jee.product)
+Installed Features:
+org.eclipse.jdt 3.8.1.v20120814-104540-8-8nFqpFNOfwKDRVz-tXOcL5d_83

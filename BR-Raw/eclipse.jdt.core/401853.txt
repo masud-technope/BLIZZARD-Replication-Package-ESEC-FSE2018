@@ -1,0 +1,43 @@
+Bug 401853 – Eclipse Java compiler creates invalid bytecode (java.lang.VerifyError)
+Compiling the following code
+---
+import java.util.ArrayList;
+public class ForLoopBug {
+public static void main(String[] argv) {
+for (long l : new ArrayList<Long>()) {}
+}
+}
+---
+With  "Preserve unused (never read) local variables" turned OFF (in the "Java Compiler" properties) leads to invalid bytecode:
+---
+public class ForLoopBug extends java.lang.Object
+...
+public static void main(java.lang.String[]);
+Code:
+Stack=2, Locals=2, Args_size=1
+0:   aconst_null
+1:   invokeinterface #12,  1; //InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+6:   astore_1
+7:   goto    23
+10:  aload_1
+11:  invokeinterface #18,  1; //InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+16:  checkcast       #24; //class java/lang/Long
+19:  invokevirtual   #26; //Method java/lang/Long.longValue:()J
+22:  pop
+23:  aload_1
+24:  invokeinterface #30,  1; //InterfaceMethod java/util/Iterator.hasNext:()Z
+29:  ifne    10
+32:  return
+StackMapTable: number_of_entries = 2
+frame_type = 252 /* append */
+offset_delta = 10
+locals = [ class java/util/Iterator ]
+frame_type = 12 /* same */
+}
+---
+invokevirtual at pc=19 pushes a long onto the stack (using two stack entries) but the pop at cp=22 removes just a single entry from the stack.
+This is also reported by the JVM bytecode verifier when the JVM tries to load that class:
+---
+java.lang.VerifyError: (class: ForLoopBug, method: main signature: ([Ljava/lang/String;)V) Attempt to split long or double on the stack
+Exception in thread "main"
+---

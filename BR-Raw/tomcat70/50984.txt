@@ -1,0 +1,64 @@
+50984 – Manager application fails to report stranded artifacts when undeploying
+[NOTE: this is tomcat 7.0.11, not 7.0.10, but the version is not given as a choice, I therefore file it as 7.0.10, which I suspect has the same bug]
+Scenario:
+* tomcat starts, as user u1, with only the manager application in place;
+* it is configured as to not deploy automatically;
+* user u1 copies a webapp tree into $CATALINA_HOME/webapps, which it
+can since it has write/execute access to this directory;
+* the manager webapp is called to deploy that new web application;
+* [in between, credentials on the deployed webapp directory are
+changed so that user u1 cannot remove the webapp at all]
+* the manager webapp is called to undeploy that application, BUG: it
+answers OK, but it is not.
+The manager webapp documentation explicitly states that undeploying an
+application means that the webapp tree is removed - but of course, in
+this case it isn't.
+Use case below, where $CATALINA_HOME/webapps is a symlink to /var/lib/o3/tomcat/installs:
+----
+# Only manager webapp running initially
+[o3@tomcat-r8 cockpit]$ wget -O - -q --http-user=tomcat
+--http-password=tomcat  http://localhost:8080/manager/text/list|sed 1d
+/manager:running:6:/usr/share/tomcat7/webapps/manager
+# webapp tree is created by other means.
+Now deploying the application:
+[o3@tomcat-r8 cockpit]$ wget -O - -q --http-user=tomcat --http-password=tomcat http://localhost:8080/manager/text/deploy'?path=/cockpit&war=file:/var/lib/o3/tomcat/installs/cockpit'
+OK - Deployed application at context path /cockpit
+[...]
+# In another terminal:
+[root@tomcat-r8 installs]# pwd
+/var/lib/o3/tomcat/installs
+# All files are created with umask 022.
+Just change the owner:
+[root@tomcat-r8 installs]# chown -R root.root cockpit/
+[...]
+# Back to the first terminal:
+[o3@tomcat-r8 cockpit]$ wget -O - -q --http-user=tomcat --http-password=tomcat
+http://localhost:8080/manager/text/undeploy?path=/cockpit
+OK - Undeployed application at context path /cockpit
+# Here is the bug: even though the command returns OK, the tree still exists.
+# The webapp is stopped, but it is not undeployed.
+[o3@tomcat-r8 cockpit]$ wget -O - -q --http-user=tomcat
+--http-password=tomcat  http://localhost:8080/manager/text/list|sed 1d
+/manager:running:9:/usr/share/tomcat7/webapps/manager
+/cockpit:stopped:0:cockpit
+# Listing the contents of $CATALINA_HOME/webapps, we see that the tree is still
+# there:
+[o3@tomcat-r8 cockpit]$ ls /var/lib/o3/tomcat/installs
+cockpit
+----
+The documentation states:
+----
+WARNING - This command will delete any web application artifacts that exist within appBase directory (typically "webapps") for this virtual host.
+This will
+delete the the application .WAR, if present, the application directory resulting either from a deploy in unpacked form or from .WAR expansion as well as the XML Context definition from $CATALINA_BASE/conf/[enginename]/[hostname]/ directory.
+----
+This turns out to be false in this case.
+While the application is stopped, the web application artifacts are NOT removed.
+The
+undeploy command should have failed with, say "FAIL - context was stopped but some articats remain, check access rights".
+What's more, the logs
+don't mention that the webapp tree has failed to be removed at all.
+If I chown back the webapp tree to its rightful owner, then the webapp
+is indeed undeployed as intended: all artifacts are destroyed.
+The culprit code seems to be at org/apache/catalina/manager/ManagerServlet.java, methods undeploy() and undeployDir().
+Both use the .delete() method of File objects, but fail to check their return code.

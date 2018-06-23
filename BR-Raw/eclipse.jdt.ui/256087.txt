@@ -1,0 +1,16 @@
+Bug 256087 – [typing] Automatically close brace does not work properly
+Build I20081118-1720.
+I have the following simple line of code:
+if (condition) return false;
+I want to insert brace around the single statement of the if  block.
+For this, I only type a brace just before the return and simply hit 'Enter':
+if (condition) {return false;
+As my Java editor preference 'Automatically close {braces}' is checked,
+I would expect to get the following code:
+if (condition) {
+return false;
+}
+But I get the following code instead:
+if (condition) {
+}return false;
+As this code does not compile, it's a little bit annoying...

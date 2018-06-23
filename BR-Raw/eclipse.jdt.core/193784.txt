@@ -1,0 +1,20 @@
+Bug 193784 – Proprietary licenses
+Hi.
+Eclipse contains some proprietary files which are troublesome for distribution.
+First of all, in the source code:
+./plugins/org.eclipse.jdt.apt.core/src/com/sun/mirror/apt/AnnotationProcessors.java:
+/**
+* @(#)AnnotationProcessors.java  1.2 04/06/21
+*
+* Copyright 2004 Sun Microsystems, Inc.
+All rights reserved.
+* SUN PROPRIETARY/CONFIDENTIAL.
+Use is subject to license terms.
+*/
+And secondly the file:
+plugins/javax.servlet_2.4.0.v200705291052.jar
+contains
+./javax/servlet/resources/web-app_2_3.dtd
+./javax/servlet/resources/web-app_2_4.xsd
+./javax/servlet/jsp/resources/web-jsptaglibrary_2_0.xsd
+that are all under a proprietary sun license.

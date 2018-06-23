@@ -1,0 +1,13 @@
+54802 – Provide location information for exceptions thrown by JspDocumentParser [PATCH]
+Steps to reproduce - see bug 54801
+It causes an exception to be thrown by
+org.apache.jasper.compiler.JspDocumentParser.checkScriptingBody()
+The issue is that the exception in bug 54801 does not provide any information on the file where it occurred.
+It does not show in which tag file it happened, and thus it is hard to follow.
+There are four places in JspDocumentParser where it throws a "SAXException" without any location information.
+ I propose to replace
+throw new SAXException(msg);
+with
+throw new SAXParseException(msg, locator);
+I am not sure that line numbers will be correct in all four cases, but at least it will provide the name of the file.
+This is better than nothing.

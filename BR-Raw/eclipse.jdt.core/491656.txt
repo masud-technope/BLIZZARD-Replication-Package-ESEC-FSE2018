@@ -1,0 +1,10 @@
+Bug 491656 – [search] doesn't find reference to binary method with parameterized argument type in nested class
+Broken since 4.5, worked in 4.4.2
+In a 1.7 project configured with a 1.7 JDK, open method
+java.util.LinkedHashMap.Entry#addBefore(Entry<K, V>) and try to search for references.
+=> No matches found, although there is a reference in recordAccess a few lines down.
+Search still works fine for java.util.LinkedHashMap.Entry#remove()
+In 1.8, LinkedHashMap has been restructured, but there a similar examples:
+- references to java.util.LinkedHashMap.LinkedEntrySet#spliterator() are found
+- references to java.util.LinkedHashMap.LinkedEntrySet#forEach(Consumer<? super Entry<K, V>>) are not found
+=> Looks like the problem only happens for binary methods that have a parameterized argument type and that are declared in a nested class.

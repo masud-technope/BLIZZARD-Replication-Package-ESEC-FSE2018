@@ -1,0 +1,25 @@
+Bug 420525 – [1.8] [compiler] Incorrect error "The type Integer does not define sum(Object, Object) that is applicable here"
+I suspect this problem is related to type inference which is currently being worked on by the JDT team.
+Please see the attached .java file for the entire source.
+Specifically, the following compiles from the command line, but "Integer::sum" is flagged as an error, whose description is "The type Integer does not define sum(Object, Object) that is applicable here".
+code:
+CompletableFuture.allOf(futures.toArray(new CompletableFuture<?>[]{})).thenApplyAsync( (Void v) -> {
+Integer finalResult = futures.stream().map( (CompletableFuture<Integer> f) -> {
+try {
+return f.get();
+} catch (InterruptedException | ExecutionException e) {
+return 0;
+}
+}).reduce(0, Integer::sum);
+(This is not my code.
+I am exploring the code from this blog post: http://blog.maxant.co.uk/pebble/2013/10/13/1381695720000.html.
+The git repository for this code is: https://github.com/maxant/share.git.
+ See the source in "blog20131013_asyncJava8TrySuccessFailure/src/maxant/ch/async/blackboxtests/TestThreeCompletableFutureJava8.java".)
+-- Configuration Details --
+Product: Spring Tool Suite 3.4.0.201310051614-RELEASE (org.springsource.sts.ide)
+Installed Features:
+org.eclipse.jdt 3.9.1.v20130911-1000
+$ java -version
+java version "1.8.0-ea"
+Java(TM) SE Runtime Environment (build 1.8.0-ea-b112)
+Java HotSpot(TM) 64-Bit Server VM (build 25.0-b54, mixed mode)

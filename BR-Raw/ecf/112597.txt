@@ -1,0 +1,4 @@
+Bug 112597 – UI Features
+1) Need ability to specify nickname for xmpp chat group
+2) Should be able to handle/use nicknames that have '@' and ' ' in them (e.g.
+slewis @ home)

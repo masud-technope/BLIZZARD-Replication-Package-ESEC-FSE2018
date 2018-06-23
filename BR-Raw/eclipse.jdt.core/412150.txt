@@ -1,0 +1,2 @@
+Bug 412150 – [1.8] [compiler] Enable reflected parameter names during annotation processing
+If the annotation processing supports it, enable accessing the decoded method parameter names during processing of annotations.

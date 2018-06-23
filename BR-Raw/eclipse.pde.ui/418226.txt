@@ -1,0 +1,4 @@
+Bug 418226 – [patch] Add ability to allow Eclipse debug trace to stdout and stderr
+In the existing eclipse debug trace framework org.eclipse.osgi.service.debug.DebugTrace, the trace output can only have the option to generate to a particular file.
+In case there are components that are still using stdout and stderr for their trace and have not moved to the new debug trace framework yet, it is difficult to keep the correlation on traces on different components since the trace output will be on different location.
+This proposed feature is to provide an extra preference settings on the Trace settings GUI to allow the user to have an option to output the trace to the stdout and stderr.

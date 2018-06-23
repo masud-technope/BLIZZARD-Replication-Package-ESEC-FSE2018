@@ -1,0 +1,7 @@
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/JavaProjectHelper.java
+org.eclipse.jdt.debug.tests/testprograms/BreakpointsLocation.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AbstractDebugTest.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/ProjectCreationDecorator.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/ArgumentTests.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/launching/PListParserTests.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/JavaRuntime.java

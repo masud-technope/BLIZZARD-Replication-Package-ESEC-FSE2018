@@ -1,0 +1,25 @@
+Bug 334652 – Javadoc content not found for non-static inner class constructors
+We have an eclipse product where we have projects that have java
+build paths that include a Classpath Container that directs out to an external
+jar.
+The classpath container code attaches javadoc to that jar, and we have a
+class like this:
+package some.package:
+public class SomeException extends Exception
+public abstract class SomeClass
+public final class InnerClass extends SomeException
+when our end-users are typing
+InnerClass ic = new InnerClass([CTRL-SPACE]
+they just see arg0, arg1 and no javadoc.
+Note that the CLASS javadoc for InnerClass appears as they hover over the type
+string "InnerClass".
+If they hover over the "new InnerClass" portion, they will
+see:
+some.package.SomeClass.InnerClass.InnerClass(SomeClass arg0, String arg1,
+String arg2)
+which might be where the trouble stems from; technically, yes, the first
+argument is the pointer to the containing class, but shouldn't the javadoc
+layer know to unwind that? (I can look at the html file on disk that the
+javadoc setting resolves to and I can see the constructor documentation in the
+html)
+I ventured an educated guess that this might be related to bug 151500 but was asked to file separately.

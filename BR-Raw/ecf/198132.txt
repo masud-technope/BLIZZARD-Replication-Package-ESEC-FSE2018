@@ -1,0 +1,6 @@
+Bug 198132 – [IRC] client occassionally says "null"
+When using IRC client it occassionally says "null".
+Sometimes on public channel, sometimes on private.
+"null" is really sent to the irc server, as I observed it having conversation between two clients: chatzilla and ECF.
+Chatzilla printed that ECF client said "null".
+that may be effect of intensive BugDay efforts.

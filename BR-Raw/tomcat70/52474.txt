@@ -1,0 +1,5 @@
+52474 – Do not load listeners declared with blank spaces on tld file.
+Created attachment 28163 [details]
+debugging tomcat source
+Do not load listeners declared with blank spaces on tld file.
+Removing blank spaces the application run.

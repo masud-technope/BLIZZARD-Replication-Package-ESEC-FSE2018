@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PluginPathFinder.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/P2Utils.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/TargetWeaver.java

@@ -1,0 +1,7 @@
+Bug 170954 – void should not be proposed inside method
+I20070116-1510
+have:
+void foo() {
+vo<code assist>
+}
+==> proposes 'void'

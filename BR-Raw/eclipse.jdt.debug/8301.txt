@@ -1,0 +1,3 @@
+Bug 8301 – Evaluation actions need in the context menus of the details panes
+Display and Inspect are needed in the context menus of the details panes of
+both the variables view and expression view.

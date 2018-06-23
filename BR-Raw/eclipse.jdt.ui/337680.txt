@@ -1,0 +1,18 @@
+Bug 337680 – [inline][getter setter] Fix creation of unnecessary/missing parentheses
+See the TODOs in AccessAnalyzer and GetterSetterUtil and bug 335173 comment 20.
+Copying part of bug 335173 comment 20 for easy reference
+> The problem can be solved by passing additional information to
+> NecessaryParenthesesChecker#needsParentheses(..).
+The additional information is
+> only needed if the parentNode is a new InfixExpression node (not from a
+> resolved AST), and it would be enough to just pass
+> - the operator and
+> - the type of the other operands to needParentheses(..), or null if not all
+> operands have the same type.
+> You'd have to refactor needsParenthesesInInfixExpression(..) a bit and probably
+> turn isAllOperandsHaveSameType(..) into getCommonOperandsType(..).
+> 
+> Most callers of
+> NecessaryParenthesesChecker#needsParentheses(..) won't need to be touched, but
+> special cases like AccessAnalyzer will have to call a new method (which will
+> share most of the implementation with the current needsParentheses(..)).

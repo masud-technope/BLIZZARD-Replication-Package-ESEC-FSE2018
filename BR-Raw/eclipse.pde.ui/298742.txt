@@ -1,0 +1,11 @@
+Bug 298742 – Duplicate and unordered problems in build.properties
+Created attachment 155218 [details]
+test project
+HEAD, follow-up to bug 296457
+- import the attached project (modified version of org.eclipse.core.filebuffers)
+- open build.properties
+- go to source page
+- click the quick fix light bulb on line 1
+=> There are 2 fixes called "Add all missing java compiler build entries" (should only be one)
+=> "Java" should have uppercase "J"
+=> The entries are not always in the same order.

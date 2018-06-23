@@ -1,0 +1,4 @@
+providers/bundles/org.eclipse.ecf.provider.jmdns/jmdns/javax/jmdns/impl/DNSConstants.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/jmdns/javax/jmdns/impl/JmDNSImpl.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/jmdns/javax/jmdns/impl/tasks/Responder.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/jmdns/javax/jmdns/impl/tasks/TypeResolver.java

@@ -1,0 +1,27 @@
+Bug 413592 – [1.8] Default method not formatted via ASTRewriteFormatter
+On extracting a default method in an interface [WIP, bug 406786], the new extracted default method is not formatted.
+For example, selecting "return 0;" and extracting it to a method:
+interface A_test1 {
+default int foo() {
+return 0; // extract to method
+}
+}
+Results in:
+interface A_test1 {
+default int foo() {
+return extracted(); // extract to method
+}
+default int extracted(){return 0;}
+}
+-------------------------------------------
+However, standalone formatting (Ctrl+Shift+F) of the above created default method works properly.
+Select "default int extracted(){return 0;}".
+Pressing Ctrl+Shift+F, results in:
+default int extracted() {
+return 0;
+}
+------------------------------------------
+On debugging, it was found that the 'kind' passed to DefaultCodeFormatter.format(int kind, String source, IRegion[] regions, int indentationLevel, String lineSeparator) is K_COMPILATION_UNIT in stand-alone case (via org.eclipse.jdt.internal.ui.text.java.JavaFormattingStrategy.format()).
+And, the 'kind' is K_CLASS_BODY_DECLARATIONS (for MethodDeclaration via ASTRewriteFormatter.formatNode(ASTNode node, String str, int indentationLevel)) where it does not work.
+In the latter case, in DefaultCodeFormatter#formatClassBodyDeclarations(..), parseClassBodyDeclarations(..) returns null.
+So it could be that parser encounters some error and hence further formatting is not done.

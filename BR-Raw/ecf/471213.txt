@@ -1,0 +1,2 @@
+Bug 471213 – bug in Activator when no registry present
+When no registry present there is a NullPointerException in the org.eclipse.ecf.provider.datashare Activator class.

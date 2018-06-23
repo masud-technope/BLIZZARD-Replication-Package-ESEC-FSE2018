@@ -1,0 +1,10 @@
+org.eclipse.jdt.apt.tests/pom.xml
+org.eclipse.jdt.apt.tests/src/org/eclipse/jdt/apt/tests/annotations/valueconversion/ValueConversionProcessor.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/rewrite/describing/StringAsserts.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/Requestor.java
+org.eclipse.jdt.apt.tests/src/org/eclipse/jdt/apt/tests/annotations/readannotation/ReadAnnotationProcessor.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/eval/JDIStackFrame.java
+org.eclipse.jdt.compiler.apt.tests/src/org/eclipse/jdt/compiler/apt/tests/BatchTestUtils.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/GetKeyVisitor.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/ClassFileComparatorTest.java
+org.eclipse.jdt.apt.tests/META-INF/MANIFEST.MF

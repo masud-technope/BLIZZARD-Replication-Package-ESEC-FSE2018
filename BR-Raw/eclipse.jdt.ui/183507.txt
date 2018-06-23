@@ -1,0 +1,14 @@
+Bug 183507 – [misc] Enabling mark occurences sometimes doesn't work
+Build ID: M20060629-1905
+Steps To Reproduce:
+1.
+Open new Java Editor (or switch to other editor) with "mark occurences" button off
+2.
+Position the caret on the valid Java Element
+3.
+Press the button "Mark occurences"
+4.
+Nothing will be marked!
+More information:
+"Mark occurences" doesn't work for the first time (when the new editor is opened).
+It will work only if I select another Java Element with the button switched on.

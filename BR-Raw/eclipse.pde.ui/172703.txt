@@ -1,0 +1,19 @@
+Bug 172703 – Make the list of launch shortcuts in the PDE editor extensible
+The Testing section on the Overview page of the plug-in editor contains two hard-coded links for launching an Eclipse application.
+It would be interesting to make the list of launch shortcuts to be extensible via a PDE extension point.
+Suggested markup:
+<extension point="org.eclipse.pde.ui.launchShortcuts">
+<shortcut id="org.eclipse.pde.ui.runtimeWorkbenchShortcut"              label="Launch an Eclipse application"
+mode="run"/>
+</extension>
+All three attributes are required.
+id refers to the ID of a legitimate/existing org.eclipse.debug.ui.launchShortcuts extension.
+We will use the id to locate/instantiate the extension shortcut and call its launch(IEditorPart, mode) method.
+Label is the translatable string that will go on the link.
+Value for mode is one of three possibilities: run, debug, profile.
+ It dictates the mode that we call the shortcut with and the icon that will appear next to the link.
+You can find the icon for 'profile' under Window > Customize Perspective...
+> Commands > Profile.
+when showing the list of launch shortcuts, we should organize them by mode: run then debug then profile.
+within each mode category, we should arrange the shortcuts in lexicographical order.
+As a good test for this extension point, we should refactor out the hardcoded logic in launching an Eclipse application into standalone extensions.

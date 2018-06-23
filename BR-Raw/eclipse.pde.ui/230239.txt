@@ -1,0 +1,4 @@
+Bug 230239 – [ds] plugin org.eclipse.pde.ds.core should use Interface where possible
+Created attachment 98661 [details]
+IDSDocumentFactory, IDSModel changes and impacted classes
+plugin org.eclipse.pde.ds.core should use POJO Interfaces where possible

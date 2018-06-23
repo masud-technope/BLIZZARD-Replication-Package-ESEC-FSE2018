@@ -1,0 +1,18 @@
+Bug 417758 – [1.8][null] Null safety compromise during array creation.
+BETA_JAVA8:
+// --
+import org.eclipse.jdt.annotation.NonNull;
+public class X<T> {
+public static void main(String[] args) {
+@NonNull String @NonNull [] s = new @NonNull String [] { null };
+if (s != null && s[0] != null) {
+System.out.println("Not null");
+}
+System.out.println("Length = " + s[0].length());
+}
+}
+// ---
+Program generates an NPE.
+The warnings about redundant null check from previous
+lines give false assurance, since we don't warn at the array creation site,
+where a null sneaks in.

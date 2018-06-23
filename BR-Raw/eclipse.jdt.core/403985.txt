@@ -1,0 +1,3 @@
+Bug 403985 – [1.8][ast rewrite] AST Rewrite support for default interface methods
+This probably needs no additional rewrite work.
+But needs to be investigated and new tests can be added.

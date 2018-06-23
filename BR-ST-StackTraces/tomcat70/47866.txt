@@ -1,0 +1,2 @@
+org.apache.catalina.loader.WebappClassLoader.findResources
+java.lang.ClassLoader.getResources

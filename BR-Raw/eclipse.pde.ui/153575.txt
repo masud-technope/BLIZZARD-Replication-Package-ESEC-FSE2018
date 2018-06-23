@@ -1,0 +1,5 @@
+Bug 153575 – refactor actions
+move the actions into a new package within the parent package
+ie., org.eclipse.pde.internal.ui.view.HistoryAction to org.eclipse.pde.internal.ui.view.actions.HistoryAction
+org.eclipse.pde.internal.ui.view.actions
+org.eclipse.pde.internal.ui.search.actions

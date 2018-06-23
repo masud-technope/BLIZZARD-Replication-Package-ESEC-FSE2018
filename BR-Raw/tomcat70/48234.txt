@@ -1,0 +1,8 @@
+48234 – org.apache.catalina.core.ContainerBase.getLogger() not thread-safe?
+org.apache.catalina.core.ContainerBase.getLogger() is not synchronised, yet all the other methods which access org.apache.catalina.core.ContainerBase.logger are synch.
+This seems wrong.
+org.apache.catalina.core.ContainerBase.logger should probably be private to prevent unsynch.
+access by subclasses.
+Similar considerations apply to logName and logName()
+The Javadoc for getLogger() states that it can return null - that does not appear to be possible.
+[Not sure if the method ever returns the parent logger either.]

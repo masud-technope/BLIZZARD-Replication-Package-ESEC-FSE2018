@@ -1,0 +1,24 @@
+Bug 406859 – [1.8][compiler] Bad hint that method could be declared static
+BETA_JAVA8:
+In the following program, the compiler hints the user that X.foo could
+be declared as static.
+This is wrong and will result in the code not
+continuing to compile:
+// ---
+interface I {
+void foo(int i);
+}
+public class X {
+public static void main(String[] args) {
+X x = null;
+I i = x::foo;
+try {
+i.foo(10);
+} catch (NullPointerException npe) {
+System.out.println(npe.getMessage());
+}
+}
+int foo(int x) {
+return x;
+}
+}

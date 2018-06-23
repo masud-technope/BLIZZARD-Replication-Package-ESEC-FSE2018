@@ -1,0 +1,2 @@
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/SpellCheckingTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/PerformanceTestSuite.java

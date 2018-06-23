@@ -1,0 +1,3 @@
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/wizards/MethodStubsSelectionButtonGroup.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/junit/wizards/NewTestCaseWizardPageOne.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/junit/wizards/NewTestCaseWizardPageOne.java

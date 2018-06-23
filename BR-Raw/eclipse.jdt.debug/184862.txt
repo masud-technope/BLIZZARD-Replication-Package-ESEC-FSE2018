@@ -1,0 +1,49 @@
+Bug 184862 – [evaluation] evaluation in static method with generics does not work
+I20070501-0010
+* Using the following source
+* Debug to a breakpoint in deal()
+* evaluate "deck.subList(deckSize-n, deckSize)"
+> error: Evaluations must contain either an expression or a block of well formed statements 
+public class Deal {
+public static void main(String args[]) {
+int numHands = Integer.parseInt(args[0]);
+int cardsPerHand = Integer.parseInt(args[1]);
+List<Card> deck  = Card.newDeck();
+Collections.shuffle(deck);
+for (int i=0; i < numHands; i++)
+System.out.println(deal(deck, cardsPerHand));
+}
+public static ArrayList<Card> deal(List<Card> deck, int n) {
+int deckSize = deck.size();
+List<Card> handView = deck.subList(deckSize-n, deckSize);
+ArrayList<Card> hand = new ArrayList<Card>(handView);
+handView.clear();
+return hand;
+}
+}
+and
+import java.util.*;
+public class Card {
+public enum Rank { DEUCE, THREE, FOUR, FIVE, SIX,
+SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE }
+public enum Suit { CLUBS, DIAMONDS, HEARTS, SPADES }
+private final Rank rank;
+private final Suit suit;
+private Card(Rank rank, Suit suit) {
+this.rank = rank;
+this.suit = suit;
+}
+public Rank rank() { return rank; }
+public Suit suit() { return suit; }
+public String toString() { return rank + " of " + suit; }
+private static final List<Card> protoDeck = new ArrayList<Card>();
+// Initialize prototype deck
+static {
+for (Suit suit : Suit.values())
+for (Rank rank : Rank.values())
+protoDeck.add(new Card(rank, suit));
+}
+public static ArrayList<Card> newDeck() {
+return new ArrayList<Card>(protoDeck); // Return copy of prototype deck
+}
+}

@@ -1,0 +1,15 @@
+Bug 295320 – [change method signature] Error attempting to change method signature when method uses generic exception
+User-Agent:       Mozilla/5.0 (X11; U; Linux i686; en-GB; rv:1.9.0.10) Gecko/2009042708 Fedora/3.0.10-1.fc10 Firefox/3.0.10
+Build Identifier: I20090611-1540
+I have a method like this, string is unused to I went to use the refactor chanage method signature (using shift+alt+c) to remove it.
+private static <E extends Exception> void foo(final String string) throws E {
+}
+If you try this in my build of eclipse you always get an error, interesting bit of the stack included:-
+java.lang.ClassCastException: org.eclipse.jdt.internal.core.TypeParameter cannot be cast to org.eclipse.jdt.core.IType
+at org.eclipse.jdt.internal.corext.refactoring.structure.ChangeSignatureProcessor.createExceptionInfoList(ChangeSignatureProcessor.java:782)
+at org.eclipse.jdt.internal.corext.refactoring.structure.ChangeSignatureProcessor.checkInitialConditions(ChangeSignatureProcessor.java:759)
+at org.eclipse.jdt.internal.corext.refactoring.RefactoringExecutionStarter.startChangeSignatureRefactoring(RefactoringExecutionStarter.java:184)
+If you do this via the toolbar refactor menu rather than directly using the keyboard shortcut as I tend to then you don't see an error dialog but an error is still logged.
+Reproducible: Always
+Steps to Reproduce:
+As per details.

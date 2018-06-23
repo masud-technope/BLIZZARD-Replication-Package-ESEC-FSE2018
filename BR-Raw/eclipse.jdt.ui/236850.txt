@@ -1,0 +1,5 @@
+Bug 236850 – [misc] Show Java Annotations in the Javadoc hover and view
+I would like there to be a way to get eclipse to
+display annotations (that the required retention policy) to be visible in package explorer, in the outline and text editor as a pop up the way the javadoc comments are seen.
+ Since annotations can be reflected I don't see why eclipse does not have an option to display them the way it can display javadoc comments.
+This would allow developers to communicate infromation through annotations.

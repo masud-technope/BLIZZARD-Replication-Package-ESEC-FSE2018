@@ -1,0 +1,5 @@
+java.security.AccessControlContext.checkPermission
+java.security.AccessController.checkPermission
+java.lang.SecurityManager.checkPermission
+java.lang.Class.getClassLoader
+org.apache.catalina.loader.JdbcLeakPrevention.clearJdbcDriverRegistrations

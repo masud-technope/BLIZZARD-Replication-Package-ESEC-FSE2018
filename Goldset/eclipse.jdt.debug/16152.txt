@@ -1,0 +1,16 @@
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/RuntimeClasspathEntry.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/snippeteditor/SnippetMessages.properties
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/sourcelookup/JavaSourceLocator.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/ThreadReferenceImpl.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/LaunchingMessages.properties
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIDebugModelMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/SourceAttachmentBlock.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/SourceLookupBlock.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/DebugUIMessages.properties
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/JDIMessages.properties
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/ReferenceTypeImpl.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/ActionMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/LauncherMessages.properties
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/sourcelookup/ArchiveSourceLocation.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/MethodImpl.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/snippeteditor/SelectImportsDialog.java

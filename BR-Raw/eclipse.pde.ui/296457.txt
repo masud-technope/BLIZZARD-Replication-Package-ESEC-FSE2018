@@ -1,0 +1,18 @@
+Bug 296457 – Problems with new problems and quick fixes for build.properties
+N20091129-2000
+The new Quick Fixes for build.properties (bug 253950, bug 154292) need some polish:
+- Quick fix label should not have a '.' at the end
+- 'Add all...' is missing the '+' image
+- check out org.eclipse.core.expressions with tag v20090429-1800
+=> order of the quick fixes should be predictable (I've seen different order in different workspaces)
+- execute quick fix 'Add bin/ to the output..
+build entry.'
+=> after this, quick fix 'Add all missing java compiler build entries.' is redundant and should not be shown
+- revert build.properties to version from CVS
+- execute quick fix 'Add all missing java compiler build entries.'
+=> only "jre.compilation.profile = J2SE-1.3" got added
+=> there's still an error: "The 'jre.compilation.profile' build entry does not match the 'Compiler compliance level' project setting.".
+That sentence is wrong, since the compiler compliance DOES match the entry.
+Maybe this is about the EE.
+Please fix the message or the error detection.
+=> the 'Change the value...' quick fix does nothing

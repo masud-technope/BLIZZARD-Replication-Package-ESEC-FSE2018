@@ -1,0 +1,16 @@
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/launching/TestLaunchDelegate1.java
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/launching/ContributedTestTab1.java
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/launching/TestJavaApplicationTabGroup.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/launching/LaunchModeTests.java
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/launching/ContributedTestTab3.java
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/launching/TestLaunchShortcut.java
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/launching/TestModeLaunchDelegate.java
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/launching/TestLaunchDelegate2.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/launching/LaunchDelegateTests.java
+org.eclipse.jdt.debug.tests/plugin.xml
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/launching/TestLaunchDelegate.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/launching/ContributedTabTests.java
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/launching/ParticipantLaunchShortcut.java
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/launching/TestTabGroup.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/launching/LaunchConfigurationManagerTests.java
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/launching/ContributedTestTab2.java

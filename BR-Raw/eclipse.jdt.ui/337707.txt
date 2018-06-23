@@ -1,0 +1,4 @@
+Bug 337707 – [JUnit] JUnitJunitTests depend on the method ordering
+HEAD.
+The JUnitJunitTests depend on the method ordering.
+We were just lucky that they all passed on different JREs so far but not some of them fail on JRE 1.7.

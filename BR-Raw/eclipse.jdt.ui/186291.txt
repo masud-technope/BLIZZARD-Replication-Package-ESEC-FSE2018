@@ -1,0 +1,22 @@
+Bug 186291 – [build path] Output folder on source folders gets stripped when project established in IDE
+When a .classpath file for a java project has different output folders for each source folder.
+ e.g.:
+<classpathentry kind="src" output="build/classes/core" path="core"/>
+<classpathentry kind="src" output="build/classes/datamodel" path="build/datamodel"/>
+<classpathentry kind="src" output="build/classes/dao" path="dao3"/>
+<classpathentry kind="src" output="build/classes/app" path="app3"/>
+<classpathentry kind="src" output="build/classes/dao" path="dao"/>
+<classpathentry kind="src" output="build/classes/app" path="app"/>
+<classpathentry kind="src" output="build/classes/web" path="web"/>
+And the project is either:
+1.
+Committed to SVN and checked out into a new machine.
+or
+2.
+Project created on a machine that has existing project contents in workspace but project not yet established/registered in package explorer.
+The Eclipse strips out all of the output="" lines above and begins compiling all the source folders into the same output folder.
+ After 1.
+or 2.
+above you need to revert the .classpath file to what it was before Eclipse mangled it then refresh the project in Eclipse - this restores it.
+A feature we use widely and a gotcha that gets every developer.
+ Keen to see if fixed.

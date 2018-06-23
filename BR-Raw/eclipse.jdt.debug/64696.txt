@@ -1,0 +1,5 @@
+Bug 64696 – Allow interfaces in detail formatter
+It would be great if the detail formatter would allow an interface to be
+specified and all implementing classes would be displayed using this formatter.
+I'd like to be able to specify a Debuggable interface with a debugString()
+method that would be used as a detail formatter.

@@ -1,0 +1,100 @@
+Bug 75843 – Deadlock arised when calling JDIDebugModel.createMethodEntryBreakpoint
+We are now having quite a few cases where a deadlock occurred when we were
+trying to created an internal breakpoint by calling
+JDIDebugModel.createMethodEntryBreakpoint.
+The deadlock will freeze the entire
+UI.
+The situation can be summarized into the following:
+1.
+The UI thread (main thread) is in the process of displaying a GUI component,
+e.g.
+a dialog
+2.
+The processing of the UI component triggers our debugger to call
+JDIDebugModel.createMethodEntryBreakpoint to set an internal breakpoint.
+3.
+The process of creating the method entry breakpoint results in the
+WorkbenchContentProvider.resourceChanged(IResourceChangeEvent) to be executed,
+which calls Display.syncExec(Runnable).
+4.
+And we have a deadlock.
+Since I have already discussed this issue with folks from both the JDT team and
+UI team, I just want to reemphasize a few points:
+1.
+Delay the displaying of the GUI component is not a valid solution, because
+it is the displaying of the GUI component that triggers the rest of the
+reaction chain.
+2.
+The process of displaying the GUI component is pending because the
+information required by the GUI component cannot be completed due to the
+breakpoint creation.
+I am including the thread snapshots when the deadlock is occurred:
+The main thread shows:
+Thread [main] (Suspended)
+OS.DispatchMessageW(MSG) line: not available [native method]
+OS.DispatchMessage(MSG) line: 1467
+Display.readAndDispatch() line: 2429
+Workbench.runEventLoop(Window$IExceptionHandler, Display) line: 1377
+Workbench.runUI() line: 1348
+Workbench.createAndRunWorkbench(Display, WorkbenchAdvisor) line: 254
+PlatformUI.createAndRunWorkbench(Display, WorkbenchAdvisor) line: 141
+IDEApplication.run(Object) line: 96
+PlatformActivator$1.run(Object) line: 335
+EclipseStarter.run(Object) line: 273
+EclipseStarter.run(String[], Runnable) line: 129
+NativeMethodAccessorImpl.invoke0(Method, Object, Object[]) line: not
+available [native method]
+NativeMethodAccessorImpl.invoke(Object, Object[]) line: 85
+NativeMethodAccessorImpl.invoke(Method, Object, Object[]) line: 58
+DelegatingMethodAccessorImpl.invoke(Method, Object, Object[]) line: 60
+Method.invoke(Object, Object[]) line: 391
+Main.basicRun(String[]) line: 185
+Main.run(String[]) line: 684
+Main.main(String[]) line: 668
+The thread that is responsible for the creation of the java method entry
+breakpoint shows:
+Thread [org.eclipse.jdt.debug: JDI Event Dispatcher] (Suspended)
+Semaphore(Object).wait(long, int) line: not available [native method]
+Semaphore(Object).wait(long) line: 223
+Semaphore.acquire(long) line: 37
+UISynchronizer.syncExec(Runnable) line: 42
+Display.syncExec(Runnable) line: 3096
+WorkbenchContentProvider.resourceChanged(IResourceChangeEvent) line: 107
+NotificationManager$2.run() line: 283
+InternalPlatform.run(ISafeRunnable) line: 615
+Platform.run(ISafeRunnable) line: 747
+NotificationManager.notify(ResourceChangeListenerList$ListenerEntry[],
+IResourceChangeEvent, boolean) line: 277
+NotificationManager.broadcastChanges(ElementTree, int, boolean) line:
+151
+Workspace.broadcastChanges(int, boolean) line: 172
+Workspace.endOperation(ISchedulingRule, boolean, IProgressMonitor)
+line: 900
+Workspace.run(IWorkspaceRunnable, ISchedulingRule, int,
+IProgressMonitor) line: 1682
+JavaMethodEntryBreakpoint(JavaBreakpoint).run(ISchedulingRule,
+IWorkspaceRunnable) line: 769
+JavaMethodEntryBreakpoint.<init>(IResource, String, String, String,
+int, int, int, int, boolean, Map) line: 87
+JDIDebugModel.createMethodEntryBreakpoint(IResource, String, String,
+String, int, int, int, int, boolean, Map) line: 553
+WSAJavaMethodEntryBreakpoint.setBreakpoint(IResource, IDebugTarget)
+line: 35
+WSAJavaMethodEntryBreakpoint
+(WSAJavaMethodBreakpoint).setTemporaryBreakpoint(IResource, IDebugTarget) line:
+35
+WSABreakpointManager.setMethodEntryBreakpoint(String, String, String)
+line: 893
+WSAJavaThread.handleBreakpointHit(IBreakpoint) line: 468
+WSAJavaThread.handleDebugEvents(DebugEvent[]) line: 255
+WSAJavaDebugTarget.filterJavaEvents(DebugEvent[]) line: 731
+WSAJavaDebugTarget.filterDebugEvents(DebugEvent[]) line: 705
+DebugPlugin$EventNotifier.run() line: 936
+InternalPlatform.run(ISafeRunnable) line: 615
+Platform.run(ISafeRunnable) line: 747
+DebugPlugin$EventNotifier.dispatch(DebugEvent[]) line: 960
+DebugPlugin.fireDebugEventSet(DebugEvent[]) line: 337
+EventDispatcher.fireEvents() line: 296
+EventDispatcher.dispatch(EventSet) line: 181
+EventDispatcher.run() line: 221
+Thread.run() line: 813

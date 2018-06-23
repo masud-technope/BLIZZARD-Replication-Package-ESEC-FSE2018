@@ -1,0 +1,14 @@
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ClasspathTests.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/IJavaModelMarker.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/IJavaModelStatusConstants.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/JavaConventions.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/JavaCore.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/ClasspathEntry.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/ClasspathValidation.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavaCorePreferenceInitializer.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavaModelManager.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavaProject.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/SetClasspathOperation.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/builder/State.java

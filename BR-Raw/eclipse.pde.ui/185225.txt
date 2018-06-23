@@ -1,0 +1,4 @@
+Bug 185225 – State of State view doesn't refresh with plug-in changes
+Wassim found this bug during testing.
+ It appears the fool who developed the State of State view must have just blindly forgot to implement IPluginModelChangeListener.
+ This causes the view to become out of sync with the actual state of the state very quickly.

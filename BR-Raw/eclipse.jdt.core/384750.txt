@@ -1,0 +1,20 @@
+Bug 384750 – [1.8] Compiler should reject invalid method reference expressions
+BETA_JAVA8
+The following invalid reference expressions are currently accepted
+interface I {
+}
+public class Action<T> {
+class Inner {
+}
+public void f1(Object[] o[][]) {}
+public void foo() {
+I len = Action()::bar;
+I len2 = foo()::bar;
+I len3 = Action.class::bar;
+I len5 = foo(Action<i)::bar;
+I len6 = foo()[]::bar;
+}
+}
+Basically, any kind of expression is accepted on LHS.
+The first two expressions can be eliminated during semantic analysis depending on what they return, but the third one should be rejected by the parser I think.
+Or is it actually valid?

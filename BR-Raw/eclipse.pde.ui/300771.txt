@@ -1,0 +1,13 @@
+Bug 300771 – Dead code in pde.ui
+I20100125-1800.
+There's two places of dead code in pde.ui:
+1) org.eclipse.pde.internal.ui.launcher.FilteredCheckboxTree.FilterableCheckboxTreeViewer.getCheckedElements():
+This looks fishy:
+Widget testFindItem = getViewer().testFindItem(item.data);
+testFindItem = null;
+if (testFindItem == null) {
+2) org.eclipse.pde.internal.ui.wizards.product.ProductIntroOperation.generateFiles(IProgressMonitor):
+Useless code:
+if (locationUrl == null) {
+return;
+}

@@ -1,0 +1,34 @@
+Bug 400556 – [1.8][compiler] Visibility checks are missing for lambda/reference expressions.
+BETA_JAVA8:
+The following program compiles silently with HEAD:
+// ---- X.java
+import p.I;
+public class X {
+I i = (p) -> { return null; };
+}
+// ---- I.java
+package p;
+public interface I {
+ReturnType doit(ParameterType p) throws ExceptionType;
+}
+class ReturnType {
+}
+class ParameterType {
+}
+class ExceptionType extends Exception {
+}
+// ----------------------
+It should report three errors, one each about ReturnType, ParameterType
+and Exception type as they are not visible at the lambda definition site.
+Interestingly javac 8b74 complains:
+X.java:6: error: ParameterType is not public in p; cannot be accessed from outsi
+de package
+X.java:4: error: ParameterType is not public in p; cannot be accessed from outsi
+de package
+I i = (p) -> { return null; };
+^
+2 errors
+// ----
+Here is the relevant wording:
+For each checked exception that can result from execution of the body of the lambda expression, a compile-time error occurs unless that exception type or a supertype of that exception type is mentioned in the throws clause of the descriptor of T'.
+It is a compile-time error if any class or interface mentioned by either T' or the descriptor of T' is not accessible from the class in which the lambda expression appears.

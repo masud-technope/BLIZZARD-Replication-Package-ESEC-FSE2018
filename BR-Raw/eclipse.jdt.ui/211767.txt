@@ -1,0 +1,9 @@
+Bug 211767 – [hovering] focus control in information controls not correct
+N20071203-0010.
+The following method don't do what's intended but instead check the keyboard focus for just one widget:
+org.eclipse.jface.text.IInformationControl.isFocusControl()
+org.eclipse.jface.text.IInformationControl.addFocusListener(FocusListener)
+org.eclipse.jface.text.IInformationControl.removeFocusListener(FocusListener)
+isFocusControl() has been fixed for N20071204-0010.
+Patches need to be made for non-Text and non JDT UI code.
+Focus listners should be based on shell activation.

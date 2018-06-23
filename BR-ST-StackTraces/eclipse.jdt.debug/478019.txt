@@ -1,0 +1,16 @@
+Bug 478019 – StringIndexOutOfBoundsException in BinaryBasedSourceGenerator.getReturnStatement 
+org.eclipse.core.internal.jobs.JobManager.endJob
+org.eclipse.core.internal.jobs.WorkerPool.endJob
+org.eclipse.core.internal.jobs.Worker.run
+org.eclipse.jdt.internal.debug.eval.ast.engine.BinaryBasedSourceGenerator.getReturnStatement
+org.eclipse.jdt.internal.debug.eval.ast.engine.BinaryBasedSourceGenerator.buildMethodDeclaration
+org.eclipse.jdt.internal.debug.eval.ast.engine.BinaryBasedSourceGenerator.buildTypeDeclaration
+org.eclipse.jdt.internal.debug.eval.ast.engine.BinaryBasedSourceGenerator.buildTypeDeclaration
+org.eclipse.jdt.internal.debug.eval.ast.engine.BinaryBasedSourceGenerator.buildSource
+org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationSourceGenerator.getInstanceSourceMapper
+org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationSourceGenerator.getSource
+org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.getCompiledExpression
+org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.evaluate
+org.eclipse.jdt.internal.debug.ui.JavaWatchExpressionDelegate$EvaluationRunnable.run
+org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run
+org.eclipse.core.internal.jobs.Worker.run

@@ -1,0 +1,3 @@
+framework/bundles/org.eclipse.ecf.discovery.ui.model/src/org/eclipse/ecf/discovery/ui/model/resource/ServiceResource.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/provider/jmdns/container/JMDNSDiscoveryContainer.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/provider/jmdns/container/JMDNSDiscoveryContainer.java

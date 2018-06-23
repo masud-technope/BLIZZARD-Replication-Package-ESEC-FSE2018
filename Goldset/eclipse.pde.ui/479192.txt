@@ -1,0 +1,5 @@
+ui/org.eclipse.pde.junit.runtime/src/org/eclipse/pde/internal/junit/runtime/RemotePluginTestRunner.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/NLResourceHelper.java
+ui/org.eclipse.pde.junit.runtime/src/org/eclipse/pde/internal/junit/runtime/PDEJUnitRuntimePlugin.java
+ui/org.eclipse.pde.junit.runtime/src/org/eclipse/pde/internal/junit/runtime/NonUIThreadTestApplication.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/search/UseScanManager.java

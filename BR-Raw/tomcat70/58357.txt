@@ -1,0 +1,19 @@
+58357 – Read failed with APR/native error code [20,014]
+Created attachment 33090 [details]
+Solr webapp log
+Tomcat throws exception while reading from SSL/TLS APR connector.
+I attached detailed log.
+04-Sep-2015 01:14:15.665 SEVERE [http-apr-9443-exec-6] org.apache.solr.common.SolrException.log org.apache.solr.common.SolrException: Read failed with APR/native error code [20,014]
+at org.apache.solr.handler.loader.XMLLoader.load(XMLLoader.java:176)
+...
+Caused by: com.ctc.wstx.exc.WstxIOException: Read failed with APR/native error code [20,014]
+at com.ctc.wstx.sr.StreamScanner.throwFromIOE(StreamScanner.java:708)
+at com.ctc.wstx.sr.BasicStreamReader.next(BasicStreamReader.java:1086)
+at org.apache.solr.handler.loader.XMLLoader.readDoc(XMLLoader.java:391)
+...
+Caused by: java.io.IOException: Read failed with APR/native error code [20,014]
+at org.apache.coyote.http11.InternalAprInputBuffer.fill(InternalAprInputBuffer.java:607)
+at org.apache.coyote.http11.InternalAprInputBuffer$SocketInputBuffer.doRead(InternalAprInputBuffer.java:688)
+at org.apache.coyote.http11.filters.ChunkedInputFilter.readBytes(ChunkedInputFilter.java:314)
+The serverside exception cause an exception on the SolrJ client.
+Additional logs and server.xml forthcoming.

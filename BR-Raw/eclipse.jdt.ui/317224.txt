@@ -1,0 +1,7 @@
+Bug 317224 – [refactoring] Fix enablement and precondition checking of Extract... refactorings for packages names and annotations
+I20100608-0911
+While looking at bug 303617, I found that we have a few bugs in enablement and precondition checking of Extract...
+refactorings with certain selections.
+E.g.
+if you select a package name or an annotation, the refactorings are available in the quick menu and don't even stop in the initial condition checking.
+Same problem for Extract Local and Extract Method for selections in an annotation's arguments.

@@ -1,0 +1,12 @@
+51436 – ServletRequestListener fails to access request parameters when an Expect-Header is sent
+Created attachment 27209 [details]
+Acknowledge a request before any listeners are called.
+I wrote a ServletRequestListener that tries to access a Request Parameter in requestInitialized(.) with:
+sre.getServletRequest().getParameter("x");
+This works fine with POST-Requests.
+But when I send the "Expect: 100-continue" HTTP Header the Listener hangs, waiting for the Request Body.
+See the stacktrace at:
+http://pastebin.com/r2J0P3qx
+This happens because the Request isn't acknowledged and thus the body (containing the parameters) isn't send.
+The attached patch fixes this by acknowledging the request before the listeners are called.
+With the patch applied everything works fine and all tests pass.

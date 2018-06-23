@@ -1,0 +1,4 @@
+Bug 313047 – [remoteservices][rest] create example for rest provider based upon Atom/RSS
+Build Identifier:
+This bundle demonstrate how to use SyndFeedResonseDeserializer: gets data from rss feed and writes it's content on console,
+Reproducible: Always

@@ -1,0 +1,28 @@
+Bug 427538 – [1.8][infrastructure] Enable CompletionTests18 & ResolveTests18 to run with rtstubs18.jar
+Presently writing completion and selection tests from user provided problem
+snippets is a pain because these tests run against minimal version of libraries
+(JCLMIN) that don't even have java.lang.String in some incarnations of them.
+For example given:
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+public class Bug419048 {
+void test1(List<Person> roster) {
+Map<String, Person> map =
+roster
+.stream()
+.collect(
+Collectors.toMap(
+p -> p.getLast(), //[1]
+p -> p            //[2]
+));
+}
+}
+one needs to transform all the symbols that originate from JRE into local
+types or otherwise rewrite the test into shape.
+Historically the UI project has maintained their some of their tests against
+a stubbed version of JRE and recently Markus created the JDK8 version of it.
+See http://git.eclipse.org/c/jdt/eclipse.jdt.ui.git/commit/?h=BETA_JAVA8&id=4505fb3550ef580808061e75a5a925cfe9d3b9d2
+We need CompletionTests18 and ResolveTests18 to similarly run against
+a version of library that has all the types in tact (but for method
+bodies which are stubbed out) to make it easy to write tests.

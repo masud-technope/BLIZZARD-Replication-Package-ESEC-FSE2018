@@ -1,0 +1,2 @@
+org.eclipse.jdt.core/batch/org/eclipse/jdt/internal/compiler/batch/Main.java
+org.eclipse.jdt.core/batch/org/eclipse/jdt/internal/compiler/batch/messages.properties

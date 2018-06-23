@@ -1,0 +1,26 @@
+Bug 219636 – Cannot use the SCP filetransfer to some linux boxes
+Created attachment 90221 [details]
+The SCP command project
+I've attached an SCP command.
+ self host, and then use CTRL+3 to go to the Get File command.
+enter some values, like:
+scp://luigir.ottawa.ibm.com/opt/gir/tests.txt
+gir
+<password>
+If you goof up your credentials you'll get a Auth failure, but if you are OK you get an exception.
+This is against the ECF feature for 3.4, for example the ft.scp plugin is v1.1.0.v20080107-1038
+Exception:
+org.eclipse.ecf.filetransfer.IncomingFileTransferException: Exception connecting to scp://luigir.ottawa.ibm.com/opt/gir/tests.txt
+at org.eclipse.ecf.internal.provider.filetransfer.scp.ScpRetrieveFileTransfer.openStreams(ScpRetrieveFileTransfer.java:103)
+at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:489)
+at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:309)
+at org.eclipse.ecf.provider.filetransfer.retrieve.MultiProtocolRetrieveAdapter.sendRetrieveRequest(MultiProtocolRetrieveAdapter.java:95)
+at z.ex.scp.GetFileHandler$1.run(GetFileHandler.java:85)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+org.eclipse.ecf.filetransfer.IncomingFileTransferException[0]: java.io.IOException: Exception in scp protocol
+at org.eclipse.ecf.internal.provider.filetransfer.scp.ScpRetrieveFileTransfer.openStreams(ScpRetrieveFileTransfer.java:88)
+at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:489)
+at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:309)
+at org.eclipse.ecf.provider.filetransfer.retrieve.MultiProtocolRetrieveAdapter.sendRetrieveRequest(MultiProtocolRetrieveAdapter.java:95)
+at z.ex.scp.GetFileHandler$1.run(GetFileHandler.java:85)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

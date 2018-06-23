@@ -1,0 +1,8 @@
+framework/bundles/org.eclipse.ecf.provider/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/generic/SSLGenericContainerInstantiator.java
+framework/bundles/org.eclipse.ecf.provider/.classpath
+framework/bundles/org.eclipse.ecf.provider/.settings/org.eclipse.jdt.core.prefs
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/generic/TCPServerSOContainerGroup.java
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/generic/SSLServerSOContainer.java
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/generic/SSLServerSOContainerGroup.java
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/comm/tcp/Client.java

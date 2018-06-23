@@ -1,0 +1,6 @@
+Bug 258916 – [Discover][SLP] "_" is an invalid char for service property keys in SLP
+attr-tag 		= 1*safe-tag;
+safe-tag 		= %x20 / %x22-27 / %x2B    / %x2D-3B / %x3F-5B / %x5D-5E / %x60-7D; #Any character except reserved, star and bad-tag.
+reserved 		= "(" / ")" / "," / "\" / "!"  / "<" / "=" / ">" / "~" / CTL;
+escape-val 		= "\" HEXDIG HEXDIG;
+bad-tag 		= CR / LF / HTAB / "_";

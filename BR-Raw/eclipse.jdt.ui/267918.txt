@@ -1,0 +1,3 @@
+Bug 267918 – [toString] dialog should center widgets
+I20090310-0100.
+The dialog should center its widgets.

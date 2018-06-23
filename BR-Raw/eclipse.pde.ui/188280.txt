@@ -1,0 +1,4 @@
+Bug 188280 – [Dependencies][Views] Fragment host shown twice
+3.3RC1
+Show dependencies view for fragment org.eclipse.jdt.compiler.apt in Callees mode.
+org.eclipse.jdt.core is shown twice in the tree.

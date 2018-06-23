@@ -1,0 +1,8 @@
+Bug 266092 – Extract Superclass, Pull Up and Push Down window cuts off text when more than 9 items are selected
+Created attachment 126692 [details]
+Snap -shot  of Bug scenario,
+Select Java class having more than 10 methods in package explorer.
+Right click-->Refactor Menu-->Extract Superclass.
+Extract Superclass Dialog box opens up.Press Select All button,Message on dialog box appears indicating number of members selected.
+This message appears to be truncated.
+Same is the case with Pull Up ,Push Down Refactor context menus.

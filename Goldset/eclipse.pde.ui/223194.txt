@@ -1,0 +1,2 @@
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/problems/tests/ApiProblemTests.java
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/tests/ApiToolsPluginTestSuite.java

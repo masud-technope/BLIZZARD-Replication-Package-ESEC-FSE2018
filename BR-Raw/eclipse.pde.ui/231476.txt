@@ -1,0 +1,3 @@
+Bug 231476 – [ds] properties entry needs to be browseable
+In DS, the properties elements refers to some properties file in a bundle.
+This should be browseable just like you can browse for a class.

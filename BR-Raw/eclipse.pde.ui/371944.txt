@@ -1,0 +1,9 @@
+Bug 371944 – [target] Software site (IU) locations don't remember included software settings
+Found while working on bug 351417
+1) Create a target definition on the preference page
+2) Add a software site location
+3) Modify some of the included software settings
+4) Hit finish on the the edit software site and edit target definition dialogs (returns to the preference page)
+5) Open the same target definition again
+Result:
+The settings have reverted

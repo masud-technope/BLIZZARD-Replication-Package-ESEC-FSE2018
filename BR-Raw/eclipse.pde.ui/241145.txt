@@ -1,0 +1,4 @@
+Bug 241145 – [refactoring] move UA code into separate plug-ins
+As part of the PDE incubator, I explored refactoring out the user assistance code from PDE.
+This is now almost complete and we will need to make the move.
+http://wiki.eclipse.org/PDE/Incubator/UA

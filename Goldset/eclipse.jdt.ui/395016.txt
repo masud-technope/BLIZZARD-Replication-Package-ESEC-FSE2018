@@ -1,0 +1,10 @@
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/IntroduceFactoryTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/refactoring.properties
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceFactory/Bugzilla/395016_1/AbstractClass.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceFactory/Bugzilla/395016_1/AbstractClass_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceFactory/Bugzilla/395016_2/AbstractMethod.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceFactory/Bugzilla/395016_2/AbstractMethod_out.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/IntroduceFactoryTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/RefactoringCoreMessages.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/IntroduceFactoryRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/refactoring.properties

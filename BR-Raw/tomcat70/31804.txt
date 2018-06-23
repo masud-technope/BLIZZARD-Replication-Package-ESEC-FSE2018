@@ -1,0 +1,31 @@
+31804 – setParent() is not called on nested tags in a tag file (.tagx)
+Hi, everybody.
+Suppose I have a tag file (.tagx to be precise).
+I have some custom tags of mine
+included in that tag file.
+If I override setParent() in such a custom tag, then
+I see, that it's invoked with "null" parameter.
+Custom tag is a "Classic" tag
+(extends TagSupport).
+Simplified example: This tag file is called "submit.tagx"
+<?xml version="1.0" encoding="UTF-8"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:custom="http://my.com/
+tags-html" version="2.0" >
+<jsp:directive.tag body-content="empty"/>
+<jsp:directive.attribute name="action" required="true" rtexprvalue="true"/>
+<jsp:directive.attribute name="label" required="true" rtexprvalue="true"/>
+<custom:submit action="${action}" label="${label}" name="submitButton" />
+</jsp:root>
+In debug output from setParent(Tag) of custom:submit I see, that it's called
+with "null" value.
+If, instead of custom:submit, I put there another custom tag, which follows
+SimpleTagSupport model, then setParent(JspTag) is not called at all!!!
+I would expect a reference to something, representing translated class of Tag
+File (submit.tagx) is passed.
+As the result, tag nesting tree is broken.
+I need to access Struts html:form tag, which is the embracing tag from my inner
+<custom:submit> tag to obtain form name, but this is not possible.
+<nested:form action="/Action">
+<ctrl:submit action="save" label="Save"/>
+</nested:form>
+(where ctrl:submit is submit.tagx)

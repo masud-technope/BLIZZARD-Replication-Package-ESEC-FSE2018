@@ -1,0 +1,17 @@
+55454 – NullPointerException caused by invalid contentType, e.g. trailing semicolon
+possible related to 53353
+When having an invalid contenttype like:
+<jsp:directive.page language="java" contentType="text/html;"/>
+(note the trailing ";") Tomcat throws a NullPointerException like this:
+java.lang.NullPointerException
+org.apache.tomcat.util.http.parser.HttpParser.parseMediaType(HttpParser.java:217)
+org.apache.tomcat.util.http.parser.MediaTypeCache.parse(MediaTypeCache.java:54)
+org.apache.catalina.connector.Response.setContentType(Response.java:805)
+org.apache.catalina.connector.ResponseFacade.setContentType(ResponseFacade.java:245)
+javax.servlet.ServletResponseWrapper.setContentType(ServletResponseWrapper.java:123)
+After removing the extra ";" or entering a charset like this:
+<jsp:directive.page language="java" contentType="text/html; charset=UTF-8"/>
+it works as expected.
+My desired behaviour would be:
+Don't crash with a NPE.
+Other Tomcat versions seem to handly this different.

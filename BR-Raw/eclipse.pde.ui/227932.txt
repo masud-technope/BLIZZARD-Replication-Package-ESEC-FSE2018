@@ -1,0 +1,2 @@
+Bug 227932 – Non-externalized Strings
+3 Strings are not externalized in org.eclipse.pde.internal.ui.preferences.ProjectSelectionDialog.

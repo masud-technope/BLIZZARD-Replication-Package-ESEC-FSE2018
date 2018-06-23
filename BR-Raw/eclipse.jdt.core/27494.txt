@@ -1,0 +1,5 @@
+Bug 27494 – Source folder output folder shown in Package explorer
+20021202
+1.
+The JavaModel returns a source folder output location as a resource folder.
+This is not consistent with the default output folder.

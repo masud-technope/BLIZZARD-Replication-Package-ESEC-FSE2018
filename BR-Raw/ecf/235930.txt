@@ -1,0 +1,4 @@
+Bug 235930 – Updating org.eclipse.ecf.mylyn.ui to Mylyn 3.0 API
+Build ID: I20080523-0100
+Steps To Reproduce:
+More information:

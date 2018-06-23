@@ -1,0 +1,3 @@
+Bug 149382 – [getter setter] Generated getters and setters in order of fields instead of alphabetical
+Currently if generating getters and setters for multiple attributes they are always in alphabetical order.
+It would be nice if they would be in the same order as the corresponding attribtutes.

@@ -1,0 +1,18 @@
+Bug 201369 – Deleting Extension Point (and file) causes problems
+I stumbled upon this while testing Adam's patch for another bug.
+ Steps to reproduce:
+1.
+Create new Plug-in Project (without a template)
+2.
+Switch to Extension Point tab
+3.
+Add new Extension Point.
+4.
+Schema editor opens, go back to Manifest Editor.
+ Save file
+5.
+Delete schema.
+Note how the object does not go away.
+ It appears to be a side effect from fixing some selection work in this area.
+ But the problem actually is that the underlying listeners are getting unregistered.
+ When the Schema file is deleted, the plug-in listeners in the Manifest Editor are removed and hence the page does not get the updates since the corresponding listeners are removed.

@@ -1,0 +1,3 @@
+Bug 332047 – Clicking 'Edit...' on 'Workspace Cannot Be Locked' dialog should select workspace location
+I20101206-1800.
+Clicking 'Edit...' on 'Workspace Cannot Be Locked' dialog should select the workspace location field.

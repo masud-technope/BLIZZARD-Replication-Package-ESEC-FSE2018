@@ -1,0 +1,2 @@
+tests/bundles/org.eclipse.ecf.tests.osgi.services.distribution.r-osgi/src/org/eclipse/ecf/tests/osgi/services/distribution/r_osgi/R_OSGiRemoteServiceAccessTest.java
+tests/bundles/org.eclipse.ecf.tests.osgi.services.distribution.r-osgi/src/org/eclipse/ecf/tests/osgi/services/distribution/r_osgi/R_OSGiServiceRegisterListenerTest.java

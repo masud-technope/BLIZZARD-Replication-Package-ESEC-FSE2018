@@ -1,0 +1,2 @@
+Bug 314500 – [Discovery] Zookeeper tests fail
+Due to the fact that the zookeeper discovery was added to the examples and had to run two instances on the same machine, various tests break.

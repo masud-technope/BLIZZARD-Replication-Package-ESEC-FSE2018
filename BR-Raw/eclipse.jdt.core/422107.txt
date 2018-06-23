@@ -1,0 +1,12 @@
+Bug 422107 – [1.8][code assist] Invoking code assist just before and after a variable initialized using lambda gives different result
+Consider the below code snippet:
+import java.io.Serializable;
+interface I {
+void doit();
+}
+public class X {
+// Invoke code assist<Ctrl+space> in this location gives 20+ suggestions
+Object o = (I & Serializable) () -> {};
+// Invoke code assist<Ctrl+space> in this location gives just 4 template proposals
+}
+Invoking code assist just before and after a variable initialized using lambda gives different result.

@@ -1,0 +1,26 @@
+Bug 171075 – Java Editor Disconnecting Debug Session
+Build ID: Build id: M20060921-0945
+Steps To Reproduce:
+1.
+As multi threading problem no easy way to reproduce
+2.
+Provided information and stack trace should allow problem investigation
+More information:
+Scenario/Symptom:
+Remote debug session.
+Clicking into the Java Editor might lead to a disconnection to the remote VM.
+Severity major although obviously a rare problem, because it makes debugging impossible in affected scenarios.
+We were confronted with a debug scenario in which the problem was reproducable within minutes.
+This allowed following finding:
+Involved classes
+org.eclipse.jface.text.TextViewerHoverManager
+org.eclipse.jdt.internal.debug.ui.JavaDebugHover
+org.eclipse.jdi.internal.connect.PacketReceiveManager
+What happens is:
+The TextViewerHoverManager in the Java Editor tries to compute hover information content in a seperated Thread.
+While debugging the JavaDebugHover is used.
+The implementation tries to recieves information from remote VM.
+By clicking in the Java Editor a TextEvent is created.
+As a result the TextViewerHoverManager tries to force the termination of the current hover information computation by interrupting the related thread.
+If in this moment the JavaDebugHover is receiving remote information waiting in PacketReceiveManager the PacketReceiveManager disconnects the VM connection.
+See attached text file for related stack trace and related code snippets.

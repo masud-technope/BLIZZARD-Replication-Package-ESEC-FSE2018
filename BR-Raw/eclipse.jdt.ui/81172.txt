@@ -1,0 +1,7 @@
+Bug 81172 – [spell checking][preferences] Spell checking only works if 'report problems as you type' is enabled
+3.1 M4
+I've always disabled the Java editor preference to report problems as I type.
+After enabling spell checking, the java editor doesn't show spell checking
+problems unless this preference is enabled.
+I would like to use spell checking
+without having to enable this preference.

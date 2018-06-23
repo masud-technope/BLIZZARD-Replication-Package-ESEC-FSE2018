@@ -1,0 +1,4 @@
+Bug 119824 – Strange structure comparison of MANIFEST.MF
+I20051206-1200
+First let me say this: the new support for structural comparison of MANIFEST.MF is cool!
+Now to the specific problem I saw: when comparing org.eclipse.jdt.ui/META-INF/MANIFEST.MF 1.14 with 1.16 I get a strange result (see attached picture).

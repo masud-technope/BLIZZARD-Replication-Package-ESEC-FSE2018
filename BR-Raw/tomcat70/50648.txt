@@ -1,0 +1,16 @@
+50648 – RpcChannel improvements
+Created attachment 26545 [details]
+svn diff
+This enhancement proposal addresses three separate issues with the RpcChannel tribes component.
+1.
+There is a minor bug in a catch(InterruptedException) clause, in which a call to Thread#interrupted() is made, as opposed to Thread#interrupt(), as it should be.
+2.
+The RpcChannel API user registers an RpcCallback to be notified of communication events.
+However, there is no callback method for the case where the sending of a response message fails.
+This proposal includes the addition of a corresponding callback for such cases.
+To ensure backwards-compatibility, the additional callback method has been declared in a sub-interface of RpcCallback, named RpcCallback2 for the time being.
+3.
+Since the tribes classes are loaded by the tomcat loader, if the messages sent through tribes are instances of classes defined in the webapp, attemps to deserialize them will fail.
+AbstractReplicatedMap includes a mechanism for the API user to specify class loaders to be used when deserializing map entries.
+This enhancement proposal includes a similar mechanism for the RpcChannel.
+Please find the proposed modifications attached.

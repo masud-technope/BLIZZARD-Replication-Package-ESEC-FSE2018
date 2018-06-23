@@ -1,0 +1,6 @@
+Bug 290491 – [preferences] EE/JRE vs. compiler compliance inconsistency should be better visible
+R3.5.
+We show a message at the bottom of the 'Java Compiler' page if the JRE/EE doesn't fit well together with the compiler compliance.
+Unfortunately this can easily be overseen.
+We should either show a warning icon along with a small text pointing to the longer version at the bottom or put a warning icon in front of the current message.
+The latter might be a better solution.

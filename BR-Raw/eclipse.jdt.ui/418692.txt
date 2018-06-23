@@ -1,0 +1,5 @@
+Bug 418692 – [extract method] Does not replace duplicates that span the whole method body
+Created attachment 236121 [details]
+the semicolon makes the difference
+The result of detecting so called 'additional occurences' depends on whether or not the selection includes the semicolon.
+See Screenshot.

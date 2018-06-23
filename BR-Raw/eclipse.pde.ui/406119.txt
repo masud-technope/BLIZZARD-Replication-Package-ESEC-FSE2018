@@ -1,0 +1,8 @@
+Bug 406119 – Javadoc tag autocomplete does not work at the end of a tag
+Version: 4.3.0
+Build id: I20130416-0800
+(also before this)
+If you type in the complete tag and then try to autocomplete it nothing happens.
+For example you type @noextend (carat next to 'd') and try to auto complete it nothing happens.
+We should be able to auto-complete the tag + fragment even if the tag is already typed.
+The problem was in our completion proposal computer #acceptTag method, where we short-circuit when the tag name appears in a listing of existing names.

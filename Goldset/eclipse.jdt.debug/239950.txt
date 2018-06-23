@@ -1,0 +1,3 @@
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/instructions/ArrayAccess.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/instructions/InstructionsEvaluationMessages.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/instructions/InstructionsEvaluationMessages.properties

@@ -1,0 +1,13 @@
+Bug 479629 – RemoteCallParameter.Builder does not preserve parameter order
+Remote callable parameter order is not preserved in org.eclipse.ecf.remoteservice.client.RemoteCallParameter.Builder:
+public static class Builder {
+private final Map<String, Object> nameDefaultValueMap;
+public Builder() {
+*****			this.nameDefaultValueMap = new HashMap<String, Object>(); *****
+}
+public Builder addParameter(String name, Object defaultValue) {
+this.nameDefaultValueMap.put(name, defaultValue);
+return this;
+}
+The HashMap does not guarantee to preserve order, and the parameter order is lost.
+Workaround is to assemble the params array without RemoteCallParameter.Builder.

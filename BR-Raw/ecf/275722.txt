@@ -1,0 +1,3 @@
+Bug 275722 – [rest] REST abstraction for ECF
+This bug acts as the main bug for the gsoc 2009 project "REST abstraction for ECF".
+See http://wiki.eclipse.org/REST_abstraction_for_ECF for more details

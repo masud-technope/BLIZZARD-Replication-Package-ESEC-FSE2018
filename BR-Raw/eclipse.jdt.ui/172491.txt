@@ -1,0 +1,5 @@
+Bug 172491 – [dnd] Allow to move into another project
+I20070130-0800.
+It would be nice if I could select the project or source folder when moving a type.
+In that case it would create the package structure for me and drop it there.
+This is very useful when splitting an existing project.

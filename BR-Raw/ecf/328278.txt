@@ -1,0 +1,3 @@
+Bug 328278 – [Discovery][Composite] CompositeDiscoveryContainer not correctly disposed on ServiceFactory.ungetService(...)
+The CompositeDiscoveryContainer is never disposed of by the ServiceFactory in org.eclipse.ecf.internal.provider.discovery.Activator.start(BundleContext).
+This leaves lingering container around with nested even more discovery containers (that still fire events).

@@ -1,0 +1,5 @@
+Bug 243139 – Need a way to open stacktrace console with an initial text
+Created attachment 109143 [details]
+patch
+There's a need to open stacktrace console with an initial stacktrace text from PDE log view - see bug 217752.
+Attached is JDT-debug specific part of patch originally created by Curtis Windatt in bug 217644.

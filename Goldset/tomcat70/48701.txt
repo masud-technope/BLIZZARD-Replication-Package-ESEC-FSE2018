@@ -1,0 +1,9 @@
+test/webapp-3.0/bug48701-TVI-NFA.jsp
+test/webapp-3.0/bug48701-TVI-NG.jsp
+test/webapp-3.0/bug48701-UseBean.jsp
+test/webapp-3.0/bug48701-fail.jsp
+webapps/docs/config/systemprops.xml
+test/webapp-3.0/WEB-INF/bugs.tld
+java/org/apache/jasper/compiler/Generator.java
+test/org/apache/jasper/compiler/TestGenerator.java
+test/webapp-3.0/bug48701-VI.jsp

@@ -1,0 +1,21 @@
+Bug 426112 – [move method] NPE on moving instance method having non-public array type argument
+package p;
+class X {
+public void foo(B [] arg, A a) { }
+}
+class A {
+}
+class B {
+}
+------------------------------------
+Move method #foo to A.
+We get the following exception:
+java.lang.reflect.InvocationTargetException
+at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:422)
+at org.eclipse.ltk.internal.ui.refactoring.RefactoringWizardDialog2.run(RefactoringWizardDialog2.java:331)
+...
+Caused by: java.lang.NullPointerException
+at org.eclipse.jdt.internal.corext.dom.Bindings.equals(Bindings.java:91)
+at org.eclipse.jdt.internal.corext.refactoring.structure.MoveInstanceMethodProcessor$VisibilityAdjustingArgumentFactory.adjustTypeVisibility(MoveInstanceMethodProcessor.java:1011)
+at org.eclipse.jdt.internal.corext.refactoring.structure.MoveInstanceMethodProcessor$1.getArgumentNode(MoveInstanceMethodProcessor.java:2062)
+...

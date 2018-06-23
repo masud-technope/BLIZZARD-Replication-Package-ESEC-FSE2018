@@ -1,0 +1,1 @@
+Bug 222609 – [misc] adopt schema identifier from PDE

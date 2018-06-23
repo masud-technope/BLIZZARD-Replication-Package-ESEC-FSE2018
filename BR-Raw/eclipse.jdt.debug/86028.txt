@@ -1,0 +1,83 @@
+Bug 86028 – JDIDebugTarget adds breakpoints when terminated/disconnect
+If you changes the enablement of the breakpoint manager with several
+disconnected/terminated targets still in the debug view you get numersous
+exceptions logged.
+Would seem to be able to be shortcutted if the target is
+terminated or disconnect to not try add the breakpoint.
+org.eclipse.debug.core.DebugException: Unable to create class prepare request -
+VM disconnected.
+at
+org.eclipse.jdt.internal.debug.core.model.JDIDebugElement.throwDebugException
+(JDIDebugElement.java:253)
+at
+org.eclipse.jdt.internal.debug.core.model.JDIDebugElement.requestFailed
+(JDIDebugElement.java:211)
+at
+org.eclipse.jdt.internal.debug.core.model.JDIDebugElement.requestFailed
+(JDIDebugElement.java:182)
+at
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.createClassPrepareRequ
+est(JDIDebugTarget.java:1009)
+at
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.createClassPrepareRequ
+est(JDIDebugTarget.java:985)
+at
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.createClassPrepareRequ
+est(JDIDebugTarget.java:964)
+at
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.createRequests
+(JavaBreakpoint.java:494)
+at
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.addToTarget
+(JavaBreakpoint.java:475)
+at
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.breakpointManagerEnabl
+ementChanged(JDIDebugTarget.java:2144)
+at
+org.eclipse.debug.internal.core.BreakpointManager$BreakpointManagerNotifier.run
+(BreakpointManager.java:954)
+at org.eclipse.core.internal.runtime.InternalPlatform.run
+(InternalPlatform.java:1015)
+at org.eclipse.core.runtime.Platform.run(Platform.java:757)
+at
+org.eclipse.debug.internal.core.BreakpointManager$BreakpointManagerNotifier.not
+ify(BreakpointManager.java:969)
+at org.eclipse.debug.internal.core.BreakpointManager.setEnabled
+(BreakpointManager.java:915)
+at org.eclipse.debug.internal.ui.actions.SkipAllBreakpointsAction.run
+(SkipAllBreakpointsAction.java:53)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:1003)
+at
+org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection
+(ActionContributionItem.java:557)
+at org.eclipse.jface.action.ActionContributionItem.access$2
+(ActionContributionItem.java:507)
+at org.eclipse.jface.action.ActionContributionItem$7.handleEvent
+(ActionContributionItem.java:462)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:82)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:842)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:2908)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2541)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1612)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:1578)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench
+(Workbench.java:293)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:144)
+at org.eclipse.ui.internal.ide.IDEApplication.run
+(IDEApplication.java:102)
+at org.eclipse.core.internal.runtime.PlatformActivator$1.run
+(PlatformActivator.java:228)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run
+(EclipseStarter.java:333)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run
+(EclipseStarter.java:150)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke
+(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke
+(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at org.eclipse.core.launcher.Main.invokeFramework(Main.java:268)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:260)
+at org.eclipse.core.launcher.Main.run(Main.java:887)
+at org.eclipse.core.launcher.Main.main(Main.java:871)

@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/JavaSearchPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/JavaSearchOperation.java
+org.eclipse.jdt.ui/buildnotes_jdt-ui.html
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/FindDeclarationsAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/FindDeclarationsInWorkingSetAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/SearchMessages.properties

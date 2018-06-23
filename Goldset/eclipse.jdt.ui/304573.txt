@@ -1,0 +1,4 @@
+org.eclipse.jdt.junit.core/META-INF/MANIFEST.MF
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/buildpath/BuildPathSupport.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/buildpath/P2Utils.java
+org.eclipse.jdt.junit/META-INF/MANIFEST.MF

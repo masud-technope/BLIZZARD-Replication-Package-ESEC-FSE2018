@@ -1,0 +1,9 @@
+Bug 37942 – Launch config dialog should have some way to determine the full location of JARs that are listed on the classpath
+In the dialog for setting up Java application launch configurations, the
+Classpath tab shows only the names of JARs that are included.
+It is impossible,
+AFAICT, to determine where those JARs are located.
+The Project classpath tab has
+this info nicely displayed next to the JAR name - the launch config dialog
+should likewise display the full location of JARs, or have an option to show
+details of an included JAR.

@@ -1,0 +1,133 @@
+Bug 476738 – ClassCastException in MatchLocator.getMostApplicableMethod (MatchLocator.java:1043)
+The following incident was reported via the automated error reporting:
+code:                   10.001
+plugin:                 org.eclipse.jdt.ui_3.11.0.v20150527-0925
+message:                HIDDEN
+fingerprint:            b4dc998a
+exception class:        java.lang.reflect.InvocationTargetException
+exception message:      HIDDEN
+number of children:     0
+java.lang.reflect.InvocationTargetException: HIDDEN
+at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:420)
+at org.eclipse.ui.internal.WorkbenchWindow$14.run(WorkbenchWindow.java:2156)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+at org.eclipse.ui.internal.WorkbenchWindow.run(WorkbenchWindow.java:2152)
+at org.eclipse.jdt.internal.ui.refactoring.RefactoringExecutionHelper.perform(RefactoringExecutionHelper.java:191)
+at org.eclipse.jdt.internal.ui.refactoring.RefactoringExecutionHelper.perform(RefactoringExecutionHelper.java:151)
+at org.eclipse.jdt.ui.refactoring.RenameSupport.perform(RenameSupport.java:198)
+at org.eclipse.jdt.internal.ui.refactoring.reorg.RenameLinkedMode.doRename(RenameLinkedMode.java:362)
+at org.eclipse.jdt.internal.ui.refactoring.reorg.RenameLinkedMode$EditorSynchronizer.left(RenameLinkedMode.java:119)
+at org.eclipse.jface.text.link.LinkedModeModel.exit(LinkedModeModel.java:341)
+at org.eclipse.jface.text.link.LinkedModeUI$4.run(LinkedModeUI.java:1193)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4155)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3772)
+at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1127)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:337)
+at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1018)
+at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:156)
+at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:654)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:337)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:598)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:139)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:380)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:235)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(null:-2)
+at sun.reflect.NativeMethodAccessorImpl.invoke(null:-1)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(null:-1)
+at java.lang.reflect.Method.invoke(null:-1)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:669)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:608)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1515)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1488)
+caused by: java.lang.ClassCastException: HIDDEN
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.getMostApplicableMethod(MatchLocator.java:1043)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.getMethodBinding0(MatchLocator.java:1125)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.getMethodBinding(MatchLocator.java:925)
+at org.eclipse.jdt.internal.core.search.matching.MethodLocator.matchMethod(MethodLocator.java:361)
+at org.eclipse.jdt.internal.core.search.matching.MethodLocator.resolveLevel(MethodLocator.java:749)
+at org.eclipse.jdt.internal.core.search.matching.MethodLocator.resolveLevel(MethodLocator.java:679)
+at org.eclipse.jdt.internal.core.search.matching.OrLocator.resolveLevel(OrLocator.java:317)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.reportMatching(MatchLocator.java:2599)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.process(MatchLocator.java:1849)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.locateMatches(MatchLocator.java:1258)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.locateMatches(MatchLocator.java:1299)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.locateMatches(MatchLocator.java:1416)
+at org.eclipse.jdt.internal.core.search.JavaSearchParticipant.locateMatches(JavaSearchParticipant.java:122)
+at org.eclipse.jdt.internal.core.search.BasicSearchEngine.findMatches(BasicSearchEngine.java:232)
+at org.eclipse.jdt.internal.core.search.BasicSearchEngine.search(BasicSearchEngine.java:516)
+at org.eclipse.jdt.core.search.SearchEngine.search(SearchEngine.java:584)
+at org.eclipse.jdt.internal.corext.refactoring.rename.RenameMethodProcessor.searchForOuterTypesOfReferences(RenameMethodProcessor.java:423)
+at org.eclipse.jdt.internal.corext.refactoring.rename.RenameMethodProcessor.doCheckFinalConditions(RenameMethodProcessor.java:338)
+at org.eclipse.jdt.internal.corext.refactoring.rename.RenameVirtualMethodProcessor.doCheckFinalConditions(RenameVirtualMethodProcessor.java:146)
+at org.eclipse.jdt.internal.corext.refactoring.rename.JavaRenameProcessor.checkFinalConditions(JavaRenameProcessor.java:48)
+at org.eclipse.ltk.core.refactoring.participants.ProcessorBasedRefactoring.checkFinalConditions(ProcessorBasedRefactoring.java:224)
+at org.eclipse.ltk.core.refactoring.Refactoring.checkAllConditions(Refactoring.java:162)
+at org.eclipse.jdt.internal.ui.refactoring.RefactoringExecutionHelper$Operation.run(RefactoringExecutionHelper.java:80)
+at org.eclipse.jdt.internal.core.BatchOperation.executeOperation(BatchOperation.java:39)
+at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:729)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2241)
+at org.eclipse.jdt.core.JavaCore.run(JavaCore.java:5409)
+at org.eclipse.jdt.internal.ui.actions.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:106)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
+General Information:
+reported-by:      Paul Austin
+anonymous-id:     ec0143c2-afd9-441c-bf40-a429bfc17683
+eclipse-build-id: 4.5.0.I20150603-2000
+eclipse-product:  org.eclipse.epp.package.jee.product
+operating system: Windows8 6.3.0 (x86_64) - win32
+jre-version:      1.8.0_45-b14
+The following plug-ins were present on the execution stack (*):
+1.
+org.eclipse.core.databinding.observable_1.5.0.v20150422-0725
+2.
+org.eclipse.core.databinding_1.5.0.v20150422-0725
+3.
+org.eclipse.core.resources_3.10.0.v20150423-0755
+4.
+org.eclipse.core.runtime_3.11.0.v20150405-1723
+5.
+org.eclipse.e4.ui.workbench_1.3.0.v20150531-1948
+6.
+org.eclipse.e4.ui.workbench.swt_0.13.0.v20150504-0621
+7.
+org.eclipse.equinox.app_1.3.300.v20150423-1356
+8.
+org.eclipse.equinox.launcher_1.3.100.v20150511-1540
+9.
+org.eclipse.jdt.core_3.11.0.v20150602-1242
+10.
+org.eclipse.jdt_3.11.0.v20150603-2000
+11.
+org.eclipse.jdt.ui_3.11.0.v20150527-0925
+12.
+org.eclipse.jface_3.11.0.v20150602-1400
+13.
+org.eclipse.jface.text_3.10.0.v20150603-1752
+14.
+org.eclipse.ltk.core.refactoring_3.6.200.v20140826-0859
+15.
+org.eclipse.swt_3.104.0.v20150528-0211
+16.
+org.eclipse.ui_3.107.0.v20150507-1945
+17.
+org.eclipse.ui.ide.application_1.1.0.v20150422-0725
+18.
+org.eclipse.ui.ide_3.11.0.v20150510-1749
+Please note that:
+* Messages, stacktraces, and nested status objects may be shortened.
+* Bug fields like status, resolution, and whiteboard are sent
+back to reporters.
+* The list of present bundles and their respective versions was
+calculated by package naming heuristics.
+This may or may not reflect reality.
+Other Resources:
+* Report: https://dev.eclipse.org/recommenders/committers/confess/#/problems/55a6f043e4b0cf2e4bf602c1
+* Manual: https://dev.eclipse.org/recommenders/community/confess/#/guide
+Thank you for your assistance.
+Your friendly error-reports-inbox.

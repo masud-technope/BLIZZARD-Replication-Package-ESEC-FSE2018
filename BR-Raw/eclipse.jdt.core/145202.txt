@@ -1,0 +1,9 @@
+Bug 145202 – False positive in null reference analyzer after negated instanceof
+Null reference analyzer raises a false positive for the following code, saying that element value can't be null in line after negative instanceof
+public void aa(Object element) {
+if( !(element instanceof String)
+|| element == null) {  // <-- false positive
+return;
+}
+System.err.println(element);
+}

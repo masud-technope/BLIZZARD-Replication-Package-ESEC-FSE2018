@@ -1,0 +1,12 @@
+java.net.PlainSocketImpl.socketBind
+java.net.PlainSocketImpl.bind
+java.net.ServerSocket.bind
+java.net.ServerSocket.<init>
+javax.net.ssl.SSLServerSocket.<init>
+com.privasphere.net.ssl.SSLServerSocketImpl.<init>
+com.privasphere.net.ssl.SSLServerSocketFactoryImpl.createServerSocket
+org.apache.tomcat.util.net.jsse.JSSESocketFactory.createSocket
+org.apache.tomcat.util.net.PoolTcpEndpoint.initEndpoint
+org.apache.coyote.http11.Http11BaseProtocol.init
+org.apache.catalina.connector.Connector.initialize
+org.apache.catalina.core.StandardService.initialize

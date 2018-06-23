@@ -1,0 +1,8 @@
+Bug 246001 – [ds] DSEditPropertyDialog redesign
+The DSEditPropertyDialog should be changed to this:
+Name:
+Type:
+Values:
+The values field should be just a text area where you can type multiple values.
+Internally, we should parse these fields and decide if we should set the "value" attribute or put things in the "body" element.
+This should be decided if there are one or more values (according to the spec)

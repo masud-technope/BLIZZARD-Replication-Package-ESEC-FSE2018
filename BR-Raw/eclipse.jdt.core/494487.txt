@@ -1,0 +1,28 @@
+Bug 494487 – Another ArrayIndexOutOfBoundsException in ClassFile.generateBootstrapMethods
+(In reply to Janusz Chorko from bug 465330 comment #5)
+> Created attachment 261987 [details]
+> File reproducing bug
+>
+> I can still reproduce this bug using ecj 4.5.1 and 4.5.2 (and aspectj
+> 1.8.7-1.8.9 compilers):
+>
+> java -jar ecj-4.5.2.jar -1.8 -encoding UTF-8 -source 1.8 -target 1.8
+> Bug465330.java
+>
+> ----------
+> 1.
+ERROR in (...)\Bug465330.java (at line 0)
+>         package com.example;
+>         ^
+> Internal compiler error: java.lang.ArrayIndexOutOfBoundsException: 3000 at
+> org.eclipse.jdt.internal.compiler.ClassFile.generateBootstrapMethods(ClassFile.java:3034)
+>
+> ----------
+>
+> It seems that in generateBootstrapMethods, resizeContents is called before
+> the loop making sure contents will fit 10 bytes per bootstrap.
+Then inside
+> the loop for serializable lambdas more memory is used (and while it fits,
+> content is not resized), leaving less than required 10 bytes memory for
+> non-serializable lambda in some cases.
+Still happens in HEAD as of Neon release candidates.

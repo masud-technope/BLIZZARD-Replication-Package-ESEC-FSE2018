@@ -1,0 +1,5 @@
+Bug 168417 – Generated Ant Script to export plugin projects not working
+Using export option in Manifest.mf file of eclipse I exported a plugin project
+and with the option "Save as Ant Script" checked.
+On running the saved ant script using the eclipse antrunner the jar file is not getting exported in the specified destination directory.
+But I'm getting a message of Build-Successfull.

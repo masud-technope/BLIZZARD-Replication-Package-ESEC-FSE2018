@@ -1,0 +1,19 @@
+56463 – Allow to disable ServerInfo in directory listings in DefaultServlet
+Discussion on dev@:
+http://tomcat.markmail.org/thread/mh3yaptw7rlw2zcv
+[quote]
+Looking at Tomcat bug 56383 - "Securing ErrorReportValve" (
+https://issues.apache.org/bugzilla/show_bug.cgi?id=56383 ), i think a
+similar thing can also be done for the Tomcat version number reported by
+the DefaultServlet.
+This servlet will show the version information from ServerInfo when the
+listings are enabled.
+Currently it seems there is no way of disabling
+version reporting other than 'hacking' the ServerInfo.
+[/quote]
+There is a way to customize those listings: define an XSLT style sheet.
+That said, it is possible to introduce a configuration option for DefaultServlet.
+Places to patch:
+- DefaultServlet.java
+- webapps/docs/default-servlet.xml
+- webapps/docs/security-howto.xml

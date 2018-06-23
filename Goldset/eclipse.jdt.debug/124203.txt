@@ -1,0 +1,4 @@
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/ContextView.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AutomatedSuite.java
+org.eclipse.jdt.debug.tests/plugin.xml
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/ui/ViewMangementTests.java

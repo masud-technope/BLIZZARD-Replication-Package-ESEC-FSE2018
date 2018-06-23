@@ -1,0 +1,7 @@
+49095 – org.apache.tomcat.util.net.AprEndpoint.unlockAccept does not wakeup accepts with deferred accept or BSD filters
+Created attachment 25266 [details]
+Patch to fix issue
+org.apache.tomcat.util.net.AprEndpoint.unlockAccept does not wakeup accepts with deferred accept or BSD filters.
+This is because it only connects to its connector for causing the accept call to return.
+This is not enough in the case of a deferred accept / BSD filters as the accept call only returns from the kernel if data was sent / a HTTP request was sent.
+The attached patch fixes that by sending and OPTIONS * in this case.

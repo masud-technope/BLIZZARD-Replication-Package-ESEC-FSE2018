@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackager/JarPackageWizardPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackager/JarPackagerMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/jarpackager/JarWriter.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackager/JarPackagerUtil.java

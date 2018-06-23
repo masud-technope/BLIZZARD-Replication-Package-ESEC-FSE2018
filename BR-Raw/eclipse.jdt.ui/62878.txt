@@ -1,0 +1,10 @@
+Bug 62878 – [misc] Mark Occurrences of exceptions/types inconsistent
+I200405190010
+- disable Mark Exceptions
+- enable Mark Types
+- in TestCase:
+- position cursor on Throwable of runBare() declaration
+-> type Throwable is marked
+- posititon cursor on Throwable of runTest() delcaration
+-> type Throwable is not marked
+This is inconsistent.

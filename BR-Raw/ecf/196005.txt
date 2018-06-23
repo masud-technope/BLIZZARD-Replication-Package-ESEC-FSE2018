@@ -1,0 +1,4 @@
+Bug 196005 – [UI] Add Contact Dialog Rework
+The Add Contact dialog needs some beautification.
+Also, it needs to be a bit smarter in regards to how it handles adding contacts.
+For example, if I'm highlighting an account like xxx@gmail.com, it should realize that I want to add an account based on my current selection.

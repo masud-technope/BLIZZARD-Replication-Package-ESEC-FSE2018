@@ -1,0 +1,8 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/LoadTargetOperation.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PluginModelManager.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/SourceLocationManager.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/TargetPlatformHelper.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/TargetPlatformResetJob.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/util/PDEJavaHelper.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/TargetPluginsTab.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/dependencies/StateViewPage.java

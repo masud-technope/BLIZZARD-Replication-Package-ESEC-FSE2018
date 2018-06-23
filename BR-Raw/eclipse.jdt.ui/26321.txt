@@ -1,0 +1,10 @@
+Bug 26321 – Quick fix via Ctrl+1: chooses last error if no errors left to cursor
+Build I20021113
+- create
+TestCase() {
+fNam= null;  fNme= null;
+}
+- position cursor at beginning of line fNam=....
+- avtivate quick fix
+==> quick fix opens on fNme= null; I would expect that quick fix opens on the
+"nearest" error

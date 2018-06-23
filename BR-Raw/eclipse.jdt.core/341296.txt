@@ -1,0 +1,4 @@
+Bug 341296 – .classpath file is read-only, many modifications later and ok, can not write error
+Build Identifier: 20100917-0705
+It would be great if instead of telling you at the end of modifying a 100 classpath entries and clicking ok and then ignoring all those changes it would either remind you up front or give you the option to overwrite.
+Reproducible: Always

@@ -1,0 +1,22 @@
+Bug 401769 – [1.8][compiler] Explore solutions with better performance characteristics than LambdaExpression#copy()
+BETA_JAVA8:
+As outlined in https://bugs.eclipse.org/bugs/show_bug.cgi?id=400874#c12,
+in order to determine whether a lambda is compatible with a type T from
+its context, we need to compute the set of all "results expressions".
+These
+are the types of the expressions in return statements of the lambda body
+in all possible paths of execution.
+Computing this set requires us to traverse the lambda more than once,
+one time each for possible target types from an overloaded call context.
+The present solution adopted is from https://bugs.eclipse.org/bugs/show_bug.cgi?id=400874#c18.
+While this is a super clean solution, it is not also super
+efficient.
+The method LambdaExpression#isComptaibleWith is coded to
+minimize the copies - for example if the lambda is not even potentially
+applicable, we will not traverse it multiple times.
+Another opportunity
+is for isComptaibleWith to always return true, IFF we are in a INVOCATION_CONTEXT
+but not in an overload resolution scenario (i.e singleton potentially
+applicable method) - this could allow resolution to succeed where it should
+not, but the error will surface itself during resolve.
+Even better solutions could exist - This bug is to explore them.

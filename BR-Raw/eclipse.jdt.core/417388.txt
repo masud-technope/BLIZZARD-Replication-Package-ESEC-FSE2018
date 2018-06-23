@@ -1,0 +1,8 @@
+Bug 417388 – TypeBinding on a TypeReference for parameter does not have type use annotations
+Here is a simple code:
+class X {
+public void foo(@Marker int p) {}
+}
+Now, for parameter 'p', Argument#type#resolvedType (which is a BaseTypeBinding)doesn't contain the type use annotations.
+Interestingly, Argument#binding#type (which is also a BaseTypeBinding) contains the annotations correctly.
+Ideally, they should be referencing the same object.

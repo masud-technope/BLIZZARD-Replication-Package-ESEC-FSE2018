@@ -1,0 +1,1 @@
+Bug 154739 – PDE editor tab tooltip does not show fully qualified name when opened from the plugin deps view

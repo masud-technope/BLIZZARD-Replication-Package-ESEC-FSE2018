@@ -1,0 +1,3 @@
+test/javax/servlet/jsp/TestPageContext.java
+test/webapp-3.0/bug49196.jsp
+java/javax/servlet/jsp/PageContext.java

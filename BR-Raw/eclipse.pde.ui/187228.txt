@@ -1,0 +1,11 @@
+Bug 187228 – [RCP]: Available templates missing.
+Build ID: 3.2
+Steps To Reproduce:
+1.Open creation of Plug-in project wizard, give the project name and proceed to the Next page, Click the radio button to create the RCP application and press Next button.
+2.You can see all the list of Available templates.
+3.Now close the wizard and open again.This time select the 'OSGI Framework' radio button in the 'Target Platform' and click Next button.
+3.Now press Back button and select the Eclipse Version Radio button under 'Target Platform' and go to the next page and select radio button to create the RCP Application and click Next.
+4.
+Surprisingly, we notice the Templates related to RCP are missing (Compare the result after point 1 and point 3)
+More information:
+Above steps are sufficient to reproduce the problem.

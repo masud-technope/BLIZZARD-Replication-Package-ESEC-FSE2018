@@ -1,0 +1,13 @@
+org.eclipse.jdt.launching.AbstractVMInstallType.findVMInstallByName
+org.eclipse.jdt.internal.launching.JREContainerInitializer.resolveVM
+org.eclipse.jdt.internal.launching.JREContainerInitializer.initialize
+org.eclipse.jdt.internal.launching.LaunchingPlugin$VMChanges.rebind
+org.eclipse.jdt.internal.launching.LaunchingPlugin$VMChanges.access$0
+org.eclipse.jdt.internal.launching.LaunchingPlugin$1.run
+org.eclipse.jdt.internal.core.BatchOperation.executeOperation
+org.eclipse.jdt.internal.core.JavaModelOperation.run
+org.eclipse.core.internal.resources.Workspace.run
+org.eclipse.jdt.core.JavaCore.run
+org.eclipse.jdt.internal.launching.LaunchingPlugin$VMChanges.doit
+org.eclipse.jdt.internal.launching.LaunchingPlugin$JREUpdateJob.run
+org.eclipse.core.internal.jobs.Worker.run

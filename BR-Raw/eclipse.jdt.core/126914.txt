@@ -1,0 +1,19 @@
+Bug 126914 – [1.5][compiler] extraneous bound mismatch error
+Build id: I20060131-1200
+The following test case raises a bound mismatch error for X into Y declaration (all source in a single file):
+X.java [
+interface I<T extends J<T,U>, U extends I<T,U>> {
+// empty
+}
+interface J<T extends J<T,U>, U extends I<T,U>> {
+// empty
+}
+abstract class X<T, U> implements J<X<T, U>, Y<T, U>> {
+// empty
+}
+final class Y<T, U> extends X<T, U> implements I<X<T, U>, Y<T, U>> {
+// empty
+}
+Bound mismatch: The type X<T,U> is not a valid substitute for the bounded parameter <T extends J<T,U>> of the type I<T,U>
+However, inverting X and Y declarations in the source file gets it to compile.
+See GenericTypeTest #903 and 904.

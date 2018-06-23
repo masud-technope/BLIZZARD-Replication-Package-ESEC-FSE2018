@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/ChangeTypeRefactoring/positive/A_testArrayValuedAnnotations_out.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ChangeTypeRefactoringTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/typeconstraints/ConstraintCollector.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ChangeTypeRefactoring/positive/A_testArrayValuedAnnotations_in.java

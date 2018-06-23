@@ -1,0 +1,7 @@
+org.eclipse.jdt.core.JavaCore.setClasspathContainer
+org.eclipse.jdt.core.JavaCore$1.run
+org.eclipse.core.runtime.Platform.run
+org.eclipse.jdt.core.JavaCore.getClasspathContainer
+org.eclipse.core.runtime.Platform.run
+org.eclipse.core.internal.resources.Workspace.run
+java.lang.Thread.run

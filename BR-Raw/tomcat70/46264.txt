@@ -1,0 +1,6 @@
+46264 – Shutting down tomcat with large number of contexts is slow
+Shutting down tomcat with large number of contexts is slow
+On some of our sandbox testing environments, we have tomcat loaded with 30-40 contexts, and run a very large heap (2-3GB).
+ Most of these contexts are large applications which take anywhere from 5-10 seconds to shutdown each.
+ Most of the time spent shutting down each application is not spent using the local app server CPU, but shutting down remote resources (Announcing the application is going down over JMS, flushing write buffers, closing DB connections, closing JMS connections, closing log connections, etc.).
+ Shutting down tomcat typically takes minutes, because it shuts down one context at a time.

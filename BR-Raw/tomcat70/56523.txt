@@ -1,0 +1,11 @@
+56523 – SPNEGO auth failures are leading to stack trace prints of PrivilegedActionExceptions
+Created attachment 31620 [details]
+GNU Unified diff format of proposed fix
+In the event of a privilegedactionexception in SpnegoAuthenticator, the error is always logged.
+Hence the stack trace of the error always appears in catalina.out.
+This leads to spurious logs even when debugging is not enabled
+In the event of GSSException, its logged only when debugging is enabled.
+It is imperative to note that The privilegedactions are AcceptAction and action both of which only have the capacity to throw GSSException.
+Hence I am suggesting a fix which logs privileged action exception only when debugging is enabled in tomcat.
+This is added as an attachment and is a unified diff of the SpnegoAuthenticator before and after the change.
+Please let me know if you have any doubts about the fix or if you need a sample catalina.out highlighting the problem.

@@ -1,0 +1,53 @@
+49196 – NPE in PageContext.getErrorData()
+This bug is present in some older versions also, but I haven't had time until now to file the report.
+Here it is:
+I've got
+<error-page>
+<error-code>403</error-code>
+<location>/free/login/denied.jsp</location>
+</error-page>
+in web.xml and call pageContext.getErrorData() in denied.jsp.
+THIS WORKS FINE!
+What does not work is if the user is HTTP-redirected to denied.jsp or simply calls it by entering the URL in his browser.
+In this case the JSP throws
+java.lang.NullPointerException
+at javax.servlet.jsp.PageContext.getErrorData(PageContext.java:515)
+at org.apache.jsp.free.login.denied_jsp._jspService(denied_jsp.java:389)
+at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:377)
+at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:313)
+at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:260)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at com.folgmann.filters.AuthFilter.doFilter(AuthFilter.java:446)
+at com.folgmann.filters.HttpFilterSupport.doFilter(HttpFilterSupport.java:41)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at com.folgmann.filters.ValidatingThreadPoolFilter.doFilter(ValidatingThreadPoolFilter.java:138)
+at com.folgmann.filters.HttpFilterSupport.doFilter(HttpFilterSupport.java:41)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at com.folgmann.filters.CharsetFilter.doFilter(CharsetFilter.java:114)
+at com.folgmann.filters.HttpFilterSupport.doFilter(HttpFilterSupport.java:41)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:465)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:298)
+at org.apache.jk.server.JkCoyoteHandler.invoke(JkCoyoteHandler.java:190)
+at org.apache.jk.common.HandlerRequest.invoke(HandlerRequest.java:291)
+at org.apache.jk.common.ChannelSocket.invoke(ChannelSocket.java:769)
+at org.apache.jk.common.ChannelSocket.processConnection(ChannelSocket.java:698)
+at org.apache.jk.common.ChannelSocket$SocketConnection.runIt(ChannelSocket.java:891)
+at org.apache.tomcat.util.threads.ThreadPool$ControlRunnable.run(ThreadPool.java:690)
+at java.lang.Thread.run(Thread.java:619)
+I'm sure that this wasn't intended by the JSP spec.
+I suggest that pageContext.getErrorData() returns null instead when an error page is not called like an error page should be called.
+Tnx,
+boris

@@ -1,0 +1,13 @@
+Bug 95167 – [content assist] Spurious "Access restriction" error during code assist
+build I20050512-1200
+- OSGi, Runtime, SWT, JFace, UI, Text loaded from head
+- open type on AbstractTextEditor
+- at start of createPartContro method, type:
+PartSite<Ctrl+Space>
+- it has no effect in the editor, but the status line flashes in red: Access
+restriction: The type SerializableCompatibility is not accessible due to
+restriction on required project org.eclipse.swt
+The type name doesn't seem to matter.
+ "abcd" has the same effect.
+I notice that org.eclipse.ui.workbench.texteditor's classpath has an access rule
+forbidding **/internal/** refs.

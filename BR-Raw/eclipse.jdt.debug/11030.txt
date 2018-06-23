@@ -1,0 +1,34 @@
+Bug 11030 – JDIStackFrame data caching
+The debugger performance is greatly impacted by the number of JDI requests made.
+To improve stepping performance (in particular), we try to cache JDI stack frame
+values that don't change during the step.
+For example, if the frame doesn't
+change, the frame's declaring type name doesn't need to be recomputed.
+We currently clear the cached data whenever the JDIStackFrame's underlying frame
+(com.sun.jdi.StackFrame) is set.
+This worked fine until we discovered that VM
+implementations don't have to return the same stack frame objects (distinguished
+by stack frame ID) when the VM is resumed and then suspended again (during
+stepping, for instance).
+We now set each JDIStackFrame's underlying frame with
+each step.
+This nullifies the caching enhancement.
+To restore the caching performance, I propose the following:
+1.
+Add a Cache object (inner type) to the JDIStackFrame to centralize the cached
+data setting/getting.
+The Cache contains all the cached values and associated
+setter/getter methods plus a "valid" flag which determines whether or not the
+Cached data will be returned to clients.
+2.
+Whenever the JDIStackFrame's underlying frame is set to null (as happens
+during a step), the Cache object is set to invalid.
+The Cached data is still
+retained in the object, but if clients ask for it, they will receive null.
+3.
+Whenever the JDIStackFrame's underlying frame is set non-null, it checks to
+see if the new stack frame is "equal" (based on location, not object equality)
+to the previous underlying frame.
+If it is equal, the Cache is set to valid.
+If
+it is not equal, the Cache is cleared.

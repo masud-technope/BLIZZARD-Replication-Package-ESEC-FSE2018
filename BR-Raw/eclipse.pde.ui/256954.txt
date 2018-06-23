@@ -1,0 +1,3 @@
+Bug 256954 – Add new quickfix for problem reporting an api component resolution error
+Fup of bug 252386, when such problem is reported against a project, we should propose a quickfix that would change the configuration settings to ignore for the project.
+No need to add a filter for this problem.

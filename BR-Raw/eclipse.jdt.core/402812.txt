@@ -1,0 +1,21 @@
+Bug 402812 – [1.8][completion] Code Completion problems with static/default interface methods.
+BETA_JAVA8:
+Java 8 allows code carrying methods in interfaces in the form of static methods (not inherited by subtypes even though public; They can be accessed only
+statically using the declaring interface's type reference.) and default instance
+methods.
+There are various issues in completing on these method names as shown
+by the snippet below:  | indicates cursor position.
+// ---
+interface I {
+static void staticMethod() {}
+default void defaultMethod() {
+stat|  // no proposals here
+}
+}
+public class X implements I {
+public void foo(I i) {
+i.defaultMethod(); // proposal for defaultMethod offered here
+I.stat|  // no proposals here.
+this.d| // no proposals here.
+}
+}

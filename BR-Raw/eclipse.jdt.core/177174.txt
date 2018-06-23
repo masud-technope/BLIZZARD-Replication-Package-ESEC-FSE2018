@@ -1,0 +1,10 @@
+Bug 177174 – [assist] Wrong names are proposed as unresolved local variable
+Build id: I20070306-1200
+public class X {
+void foo () {
+label : {
+la| // do ctrl+space at |
+}
+}
+}
+'label' is proposed and should not.

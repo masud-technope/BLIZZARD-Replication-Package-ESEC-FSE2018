@@ -1,0 +1,2 @@
+java/org/apache/catalina/mbeans/MBeanFactory.java
+java/org/apache/catalina/mbeans/mbeans-descriptors.xml

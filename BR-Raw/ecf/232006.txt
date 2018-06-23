@@ -1,0 +1,4 @@
+Bug 232006 – cannot connect to xmpp chat room
+When attempt to connect to a chat room a InvalidArgumentException is thrown.
+This seems to be because of a NPE in org.eclipse.ecf.presence.ui.chatroom.ChatRoomViewerConfiguration.getHyperlinkDetectorTargets
+.

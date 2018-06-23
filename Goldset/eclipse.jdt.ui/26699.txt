@@ -1,0 +1,2 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackager/JarPackagerMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackager/JarFileExportOperation.java

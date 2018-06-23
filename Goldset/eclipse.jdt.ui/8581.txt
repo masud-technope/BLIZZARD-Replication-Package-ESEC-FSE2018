@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/WorkingSetAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/FindImplementorsAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/GotoMarkerAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/JavaSearchPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/JavaSearchSubGroup.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/JavaElementAction.java

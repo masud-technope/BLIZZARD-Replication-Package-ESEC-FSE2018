@@ -1,0 +1,35 @@
+Bug 430027 – [1.8][model] Mitigate issues due to Lambda model element hierarchy lacking support for binary elements.
+- select java.util.function.Function#apply(T)
+- Search > References > In Hierarchy
+-> NPE
+AFAICS, the problem happens with the lambda in java.util.function.Function#compose(..).
+The LambdaExpression extends SourceType, although that lambda is actually for a binary type.
+Therefore, the implementation in SourceType#getPrimaryElement(boolean) doesn't make sense.
+!ENTRY org.eclipse.core.jobs 4 2 2014-03-10 17:20:42.837
+!MESSAGE An internal error occurred during: "Java Search".
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.core.SourceType.getPrimaryElement(SourceType.java:445)
+at org.eclipse.jdt.internal.core.JavaElement.getPrimaryElement(JavaElement.java:359)
+at org.eclipse.jdt.internal.core.search.HierarchyScope.enclosesType(HierarchyScope.java:391)
+at org.eclipse.jdt.internal.core.search.HierarchyScope.encloses(HierarchyScope.java:356)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.encloses(MatchLocator.java:775)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.reportMatching(MatchLocator.java:2230)
+at org.eclipse.jdt.internal.core.search.matching.MemberDeclarationVisitor.visit(MemberDeclarationVisitor.java:216)
+at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.traverse(LambdaExpression.java:636)
+at org.eclipse.jdt.internal.compiler.ast.ReturnStatement.traverse(ReturnStatement.java:376)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.traverse(MethodDeclaration.java:351)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.reportMatching(MatchLocator.java:2304)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.reportMatching(MatchLocator.java:2858)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.reportMatching(MatchLocator.java:2572)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.process(MatchLocator.java:1755)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.locateMatches(MatchLocator.java:1164)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.locateMatches(MatchLocator.java:1205)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.locateMatches(MatchLocator.java:1337)
+at org.eclipse.jdt.internal.core.search.JavaSearchParticipant.locateMatches(JavaSearchParticipant.java:122)
+at org.eclipse.jdt.internal.core.search.BasicSearchEngine.findMatches(BasicSearchEngine.java:232)
+at org.eclipse.jdt.internal.core.search.BasicSearchEngine.search(BasicSearchEngine.java:516)
+at org.eclipse.jdt.core.search.SearchEngine.search(SearchEngine.java:584)
+at org.eclipse.jdt.internal.ui.search.JavaSearchQuery.run(JavaSearchQuery.java:144)
+at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)

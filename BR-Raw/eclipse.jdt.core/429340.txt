@@ -1,0 +1,12 @@
+Bug 429340 – [content assist] No Javadoc proposals anywhere before @deprecated tag
+4.4.0.I20140225-1430
+Content assist doesn't show any Javadoc proposals after "@see #" when the next line is "@deprecated", e.g.
+here:
+/**
+*
+* @see #
+* @deprecated
+*/
+public class Depr {
+public void foo() { }
+}

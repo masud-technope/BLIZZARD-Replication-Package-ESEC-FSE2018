@@ -1,0 +1,26 @@
+Bug 273499 – [quick assist] exchange operands: unavailable for infix != operator
+Build ID: N20090422-2000
+Steps To Reproduce:
+Using the code provided below in a JDT editor window:
+1.
+Hilight the expression within the first if conditional (with == operator).
+2.
+Open "Quick Fix" (I use Ctrl+1)
+3.
+Note "Exchange left and right operands..." item is available and works as expected.
+4.
+Hilight the expression within the second if conditional (with != operator).
+5.
+Open "Quick Fix"
+6.
+Note "Exchange left and right operands..." item is NOT available.
+Sample Code:
+Object o = new Object();
+if (o == null) {
+}
+if (o != null) {
+}
+More information:
+I've thought about it a little (and searched for prior reported bugs on the issue) and can't think of a technical reason that exchanging operands around != would be different to doing so around ==, but there may be something I haven't thought of.
+For now, my workaround is to either edit manually or apply "Invert Conditions", "Exchange Operands" and "Invert Conditions" quick fixes, in that order.
+ The first will of course convert != to == allowing Exchange Operands to be used.

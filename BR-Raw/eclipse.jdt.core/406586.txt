@@ -1,0 +1,15 @@
+Bug 406586 – [1.8][compiler] Missing error about unavailable enclosing instance.
+BETA_JAVA8:
+The following program should trigger an error about missing enclosing
+instance but doesn't:
+// ----
+interface I {
+X.Y makeY();
+}
+public class X {
+public class Y {
+}
+static void foo() {
+I i = Y::new;
+}
+}

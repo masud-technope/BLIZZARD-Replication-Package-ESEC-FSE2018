@@ -1,0 +1,2 @@
+framework/bundles/org.eclipse.ecf.remoteservice.rest/src/org/eclipse/ecf/remoteservice/rest/identity/RestNamespace.java
+framework/bundles/org.eclipse.ecf.remoteservice.rest/META-INF/MANIFEST.MF

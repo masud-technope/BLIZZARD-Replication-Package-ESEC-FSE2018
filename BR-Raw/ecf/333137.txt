@@ -1,0 +1,4 @@
+Bug 333137 – [UI] Discovery view should be able to open the properties view
+The service discovery view works together with the properties view.
+However, this is not noted anywhere.
+The elements should have a context menu action "Show properties view" or the view menu should contain this action.

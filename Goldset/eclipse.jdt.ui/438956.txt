@@ -1,0 +1,31 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/SurroundWithWorkSpace/SurroundWithTests/trycatch18_in/TestLambda1.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SurroundWithWorkSpace/SurroundWithTests/trycatch18_in/TestLambda2.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SurroundWithWorkSpace/SurroundWithTests/trycatch18_in/TestLambda3.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SurroundWithWorkSpace/SurroundWithTests/trycatch18_in/TestLambda4.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SurroundWithWorkSpace/SurroundWithTests/trycatch18_in/TestMethodReference1.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SurroundWithWorkSpace/SurroundWithTests/trycatch18_in/TestMethodReference2.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SurroundWithWorkSpace/SurroundWithTests/trycatch18_in/TestMethodReference3.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SurroundWithWorkSpace/SurroundWithTests/trycatch18_in/TestMethodReference4.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SurroundWithWorkSpace/SurroundWithTests/trycatch18_in/TestMethodReference5.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SurroundWithWorkSpace/SurroundWithTests/trycatch18_in/TestMethodReference6.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SurroundWithWorkSpace/SurroundWithTests/trycatch18_out/TestLambda1.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SurroundWithWorkSpace/SurroundWithTests/trycatch18_out/TestLambda3.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SurroundWithWorkSpace/SurroundWithTests/trycatch18_out/TestLambda4.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SurroundWithWorkSpace/SurroundWithTests/trycatch18_out/TestMethodReference1.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SurroundWithWorkSpace/SurroundWithTests/trycatch18_out/TestMethodReference2.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SurroundWithWorkSpace/SurroundWithTests/trycatch18_out/TestMethodReference4.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SurroundWithWorkSpace/SurroundWithTests/trycatch18_out/TestMethodReference6.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/SurroundWithTests18.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/LocalCorrectionsQuickFixTest18.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/surround/ExceptionAnalyzer.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/surround/LocalDeclarationAnalyzer.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/surround/SurroundWithAnalyzer.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/surround/SurroundWithTryCatchAnalyzer.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/surround/SurroundWithTryCatchRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/util/SelectionAwareSourceRangeComputer.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/ASTResolving.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/LocalCorrectionsSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/QuickAssistProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/QuickTemplateProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/SurroundWith.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/template/contentassist/SurroundWithTemplateProposal.java

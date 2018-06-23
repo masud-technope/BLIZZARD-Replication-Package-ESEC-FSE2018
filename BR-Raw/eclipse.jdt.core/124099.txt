@@ -1,0 +1,6 @@
+Bug 124099 – [compiler] incorrect merge of flowInfo into UnconditionalFlowInfo#addInitializationsFrom in case of very long flow info
+Build id: I20051215-1506
+When both the receiver and otherInits have extraDefiniteInits but the receiver ones are longer than otherInits ones, the receiver info is reset while it should remain unchanged.
+The test case is quite a bit long and is attached in a patch (need a lot of fields to get in the considered area).
+Crafted XLargeTest#test009, for which the compiler complains on l not being initialized, which is wrong.
+Added a suggested fix to the patch.

@@ -1,0 +1,6 @@
+Bug 188910 – [clean up] Clean Up wizard needs too much space/is ugly
+I20070524-0010
+Very ugly dialog, needs polish.
+Idea is to
+- Move tab folder to a dialog
+- Show bullet list for selected custom clean ups

@@ -1,0 +1,10 @@
+Bug 30412 – ClassCastException selecting package in java browsing perspective
+Build: I20030122
+I have the java browsing perspective open.
+ I selected a package in the packages
+view, and there was an error trying to open the type browsing view.
+ I can't
+seem to reproduce it, but hopefully the stack trace will be useful.
+ The result
+was that the types view could not be initialized (the view contained an error
+message saying it could not be created.

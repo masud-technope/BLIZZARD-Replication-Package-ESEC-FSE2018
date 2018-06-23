@@ -1,0 +1,2 @@
+org.eclipse.jdt.core.tests.model/workspace/Converter15/src/testBug420894/TestClass.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/ParameterizedSingleTypeReference.java

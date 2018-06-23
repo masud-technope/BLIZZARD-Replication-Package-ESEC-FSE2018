@@ -1,0 +1,8 @@
+59145 – Incorrect warning logging on invalidate session when using SingleSignOn valve
+Created attachment 33650 [details]
+Zip file containing java and xml sources
+I have created a simple Servlet which is configured to use the SingleSignOn valve in combination with BASIC authentication.
+When the servlet invalidates the session it results in a warning:
+Mar 08, 2016 12:20:06 PM org.apache.catalina.authenticator.SingleSignOn expire
+WARNING: SSO unable to expire session [Host: [localhost], Context: [/webproject], SessionID: [B2F3A538F5971CA3FC1EEE38CC2FFE95]] because the Session could not be found
+The problem can also be reproduced on Tomcat 8.0.32

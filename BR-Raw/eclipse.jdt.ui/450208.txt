@@ -1,0 +1,25 @@
+Bug 450208 – [quick fix] Create method quickfix not working for methods using type variables
+Normally when I have an error because my code is calling a non-existant method, then CTRL+1 will show me a quickfix to create the method.
+This is mighty useful :-)
+Unfortunately when the method that needs to be created has a generic method signature than the quickfix is not suggested.
+This is fairly annoying if you have gotten used to having this quickfix available.
+To reproduce here is a concrete example:
+---------------------------------------------------------------->8
+package bork.it;
+public class Bork<T> {
+Class<T> type;
+private Help help = new Help();
+public void method() {
+help.help(this);
+}
+}
+class Help {
+<T> void help(T requestor) {
+return;
+}
+}
+---------------------------------------------------------------->8
+Comment the method Help.help.
+Try to invoke quick fixes on the error that appears on the call to help.help.
+You will see the option to create the method
+is missing.

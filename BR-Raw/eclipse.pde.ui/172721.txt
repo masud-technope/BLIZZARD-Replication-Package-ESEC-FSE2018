@@ -1,0 +1,12 @@
+Bug 172721 – Extension point schema editor opens as read-only from plugin.xml editor
+Build ID:  I20061214-1445
+Steps To Reproduce:
+1.
+Open a plugin.xml file for a plugin which declares 1 or more extension points
+2.
+From the 'Extension Points' tab in the editor select the 'Open extension point schema' link.
+3.
+The editor opens read-only.
+Is this intentional?  If so it was surprising.
+ You are in an editor that is modifiable editing a resource that is associated with the contents of that editor.
+More information:

@@ -1,0 +1,5 @@
+providers/bundles/org.eclipse.ecf.provider.r_osgi/src/org/eclipse/ecf/internal/provider/r_osgi/R_OSGiContainerInstantiator.java
+providers/bundles/org.eclipse.ecf.provider.r_osgi/src/org/eclipse/ecf/internal/provider/r_osgi/R_OSGiWSSRemoteServiceContainer.java
+providers/bundles/org.eclipse.ecf.provider.r_osgi/src/org/eclipse/ecf/internal/provider/r_osgi/R_OSGiWSRemoteServiceContainer.java
+providers/bundles/org.eclipse.ecf.provider.r_osgi/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.r_osgi/src/org/eclipse/ecf/internal/provider/r_osgi/R_OSGiRemoteServiceContainer.java

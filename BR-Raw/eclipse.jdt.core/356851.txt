@@ -1,0 +1,6 @@
+Bug 356851 – [formatter] Default line size of Java code formatter should be increased to 120
+I suggest to change the default line size of the Java Editor to 120.
+I did a poll in my blog and the majority would like to see this change.
+http://www.vogella.de/blog/2011/09/06/eclipse-default-line-length-of-80-chars-outdate
+Comments on Google+ seemed to follow the same pattern:
+https://plus.google.com/104044918586174763681/posts/EydgeWHdvyX

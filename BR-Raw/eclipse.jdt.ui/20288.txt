@@ -1,0 +1,13 @@
+Bug 20288 – JAR export does not explain problem
+Select a source folder.
+Right-menu/Export...
+JAR File, Next
+Type in a relative path (or so I thought), e.g.
+"myproject/lib/myjar.jar"
+Next, Next, Finish
+At this point, I get a dialog box which asks me if I want to create the
+directory.
+ (Would be helpful to tell what directory it's actually thinking of
+creating.)  If I click "Yes", I'm taken back to the last dialog with no
+explanation of what went wrong.
+If, instead, I answer "No", it actually tells me what directory was missing.

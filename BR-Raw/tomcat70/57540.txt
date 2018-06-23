@@ -1,0 +1,21 @@
+57540 – report TLS protocol version
+There is org.apache.tomcat.util.net.SSLSupport.CIPHER_SUITE_KEY and with
+request.getAttribute(SSLSupport.CIPHER_SUITE_KEY) , one can find out with cipher suite has been used between the client and the tomcat.
+However, it doesn't seem possible to do the same on the TLS version, therefore my suggestions:
+1) in SSLSuport create
+a) public static final String PROTOCOL_VERSION_KEY =
+"javax.servlet.request.secure_protocol_version";
+b) public String getProtocol() throws IOException;
+2) in org.apache.tomcat.util.net.jsse.JSSESupport add
+public String getProtocol() throws IOException {
+if (session == null)
+return null;
+return session.getProtocol();
+}
+}
+3) in  org.apache.coyote.http11.Http11Processor.action() add
+sslO = sslSupport.getProtocol();
+if (sslO != null) {
+request.setAttribute
+(SSLSupport.PROTOCOL_VERSION_KEY, sslO);
+}

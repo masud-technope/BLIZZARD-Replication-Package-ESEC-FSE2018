@@ -1,0 +1,8 @@
+org.eclipse.jdt.core/formatter/org/eclipse/jdt/internal/formatter/DefaultCodeFormatterOptions.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/formatter/FormatterRegressionTests.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavaModelManager.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/OptionTests.java
+org.eclipse.jdt.core/batch/org/eclipse/jdt/internal/compiler/batch/messages.properties
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavaProject.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavaCorePreferenceInitializer.java

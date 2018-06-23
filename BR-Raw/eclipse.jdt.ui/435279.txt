@@ -1,0 +1,6 @@
+Bug 435279 – [Hover] NPE when Annotation not visible on classpath
++++ This bug was initially created as a clone of Bug #435213 +++
+> The hover is not shown.
+Instead of that a NPE is shown in the errorlog.
+Manju, please prepare a patch that avoids the NPE in JavadocHover#addAnnotation(..).
+It's OK if the link is not resolvable, but an unresolvable link should not block the Javadoc hover.

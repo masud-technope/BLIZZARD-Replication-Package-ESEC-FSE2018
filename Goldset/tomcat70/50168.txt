@@ -1,0 +1,7 @@
+java/org/apache/catalina/Lifecycle.java
+java/org/apache/catalina/LifecycleState.java
+java/org/apache/catalina/core/AprLifecycleListener.java
+java/org/apache/catalina/core/ContainerBase.java
+java/org/apache/catalina/startup/ContextConfig.java
+java/org/apache/catalina/util/LifecycleBase.java
+webapps/docs/changelog.xml

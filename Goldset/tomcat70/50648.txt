@@ -1,0 +1,5 @@
+java/org/apache/catalina/tribes/transport/ReceiverBase.java
+java/org/apache/catalina/tribes/transport/bio/util/SingleRemoveSynchronizedAddLock.java
+java/org/apache/catalina/tribes/transport/RxTaskPool.java
+java/org/apache/catalina/tribes/group/RpcChannel.java
+webapps/docs/changelog.xml

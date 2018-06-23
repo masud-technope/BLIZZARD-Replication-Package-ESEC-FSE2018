@@ -1,0 +1,7 @@
+Bug 267829 – [working sets] [package explorer] Working sets not resorted when name changes
+I20090310-0100
+Have Package Explorer in working set mode, sorted.
+Change the name of a working set via context menu > Properties.
+=> Working sets are not sorted alphabetically any more in the Package Explorer.
+Open the Configure Working Sets dialog and edit a working set's name
+=> Working sets are not sorted alphabetically any more in the dialog.

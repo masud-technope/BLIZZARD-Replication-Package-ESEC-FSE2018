@@ -1,0 +1,7 @@
+Bug 267264 – [target] Add group by location to EditProfileContainerWizard
+People have been asking for the ability to see the bundles in their target grouped by location.
+ This was possible before the new target story.
+ While we already separate this in a more transparent manner for directories and features, installations can come from multiple locations.
+ Users with installations that point to multiple extension locations want to be able to include/exclude different locations.
+In M7 we may have to rethink the UI to support this scenario better (alogn with other enhancements like adding required bundles).
+ However, for M6 we should offer a group by location option when editing a Profile/Installation container.

@@ -1,0 +1,6 @@
+java/org/apache/catalina/loader/WebappClassLoader.java
+test/org/apache/catalina/loader/TestWebappClassLoader.java
+test/webapp-3.0/WEB-INF/classes/org/apache/tomcat/Bug58096.class
+test/webapp-3.0/WEB-INF/classes/org/apache/tomcat/Bug58096.java
+test/webapp-3.0/bug5nnnn/bug58096.jsp
+webapps/docs/changelog.xml

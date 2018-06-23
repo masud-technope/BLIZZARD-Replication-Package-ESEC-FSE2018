@@ -1,0 +1,6 @@
+Bug 220215 – [hovers] Bad API: IInformationControlExtension5#allowMoveIntoControl()
+I20080222-1622
+IInformationControlExtension5#allowMoveIntoControl() is a bad API, since it relies on ITextHoverExtension2#getInformationPresenterControlCreator() to supply an appropriate control creator.
+If a control creator is not available we currently fall back to a default information control (in AbstractTextEditor and in StickyHoverManager), which will render garbage if the input is not HTML text.
+Should get rid of ITextHoverExtension2#getInformationPresenterControlCreator() and   add IInformationControlExtension5#getInformationPresenterControlCreator() instead.
+The only necessary bug compatibility fallback will be the check for IInformationProviderExtension2 in the F2 code if the info control does not implement IInformationControlExtension5.

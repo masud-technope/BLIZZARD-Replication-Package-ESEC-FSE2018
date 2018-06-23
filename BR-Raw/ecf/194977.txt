@@ -1,0 +1,10 @@
+Bug 194977 – Inconsitency in parameter name in org.eclipse.ecf.core.IContainerFactory.createContainer(descriptionName)
+Build ID: I20070625-1500
+Steps To Reproduce:
+1.
+See source.
+More information:
+The extension point "org.eclipse.ecf.containerFactory" has the attribute "name" which nicely explains what the attribute is about.
+The org.eclipse.ecf.core.IContainerFactory has a method createContainer(descriptionName) where the descriptionName describes the "name" attribute in the containerFactory extension point.
+It is misleading to read descriptionName here as there is also a description attribute in the containerFactory.
+So either the attribute is entitled "descriptionName" or the parameter descriptionName is entitled "name" (which i would prefer).

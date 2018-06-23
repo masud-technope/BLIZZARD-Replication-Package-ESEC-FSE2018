@@ -1,0 +1,7 @@
+Bug 466252 – [templates] new 'finally' template does not appear when there's no catch block
+I20150503-2000.
+The new 'finally' template introduced via bug 184222 does not work when there's no catch block:
+void foo() {
+try {
+} f<Ctrl+Space>
+}

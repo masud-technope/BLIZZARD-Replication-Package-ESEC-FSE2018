@@ -1,0 +1,4 @@
+java/javax/servlet/http/HttpServlet.java
+test/javax/servlet/http/TestHttpServlet.java
+test/org/apache/catalina/startup/TomcatBaseTest.java
+webapps/docs/changelog.xml

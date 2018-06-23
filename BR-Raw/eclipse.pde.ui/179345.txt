@@ -1,0 +1,8 @@
+Bug 179345 – import plugin dialog: unable to cancel operation
+Build id: I20070323-1616
+Steps to reproduce: start RAD and import all RAD plugins
+the wizard opens, select Project with source folders
+click next: I suspect the importable resources are being parsed / scanned
+Note that the wizard has not Cancel button enabled.
+I would like to Cancel my import and click on the top right red cross to close the import dialog.
+--> in the to be attached screen shot, please note that there is nothing I can do to Cancel this import, but wait for the background operation to complete.

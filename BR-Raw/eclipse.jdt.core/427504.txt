@@ -1,0 +1,44 @@
+Bug 427504 – [1.8][compiler] TypeVariableBinding cannot be cast to ArrayBinding
+Hi, EJC does not compile the following snippet:
+public class Test {
+public static <T> Tree<T> model(T o) {
+return Node(Leaf(o), Leaf(o));
+}
+interface Tree<T> {}
+static <T> Tree<T> Node(Tree<T>...
+children) { return null; }
+static <T> Tree<T> Leaf(T o) { return null; }
+}
+java.lang.ClassCastException: org.eclipse.jdt.internal.compiler.lookup.TypeVariableBinding cannot be cast to org.eclipse.jdt.internal.compiler.lookup.ArrayBinding
+at org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.varArgTypes(InferenceContext18.java:1076)
+at org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.addConstraintsToC(InferenceContext18.java:454)
+at org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.addConstraintsToC_OneExpr(InferenceContext18.java:480)
+at org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.addConstraintsToC(InferenceContext18.java:462)
+at org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.inferInvocationType(InferenceContext18.java:396)
+at org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.inferInvocationType(InferenceContext18.java:516)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.inferInvocationType(Scope.java:5047)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.findDefaultAbstractMethod(Scope.java:1262)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.findMethod0(Scope.java:1732)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.findMethod(Scope.java:1627)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getImplicitMethod(Scope.java:2572)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.findMethodBinding(MessageSend.java:861)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.resolveType(MessageSend.java:694)
+at org.eclipse.jdt.internal.compiler.ast.ReturnStatement.resolve(ReturnStatement.java:331)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:621)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:303)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:532)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1211)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1321)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:571)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1208)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:693)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1187)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:813)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider$1.run(ASTProvider.java:548)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.createAST(ASTProvider.java:541)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.getAST(ASTProvider.java:484)
+at org.eclipse.jdt.ui.SharedASTProvider.getAST(SharedASTProvider.java:132)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:170)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$3.run(SelectionListenerWithASTManager.java:155)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)

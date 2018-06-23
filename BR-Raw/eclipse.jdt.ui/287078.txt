@@ -1,0 +1,11 @@
+Bug 287078 – [content assist] Overwrite mode not rendered after filtering proposals
+I20090818-0800
+void m(String s) {
+s.endsWth(s);
+}
+- enable Java > Editor > Content Assist > Completion overwrites
+- set caret after 's.e'
+- Ctrl+Space
+=> word gets yellow bg (good)
+- type 'q'
+=> after a second, the yellow bg is not drawn any more

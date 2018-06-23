@@ -1,0 +1,1 @@
+protocols/bundles/org.jivesoftware.smack/src/org/jivesoftware/smackx/provider/VCardProvider.java

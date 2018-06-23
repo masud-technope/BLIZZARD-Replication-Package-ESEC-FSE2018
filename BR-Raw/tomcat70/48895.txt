@@ -1,0 +1,9 @@
+48895 – WebAppClassLoader.clearThreadLocalMap() concurrency issues
+I think that the memory leak protection of WebAppClassLoader.clearReferencesThreadLocals() which detects and clears ThreadLocals that would prevent GC the WebAppClassLoader instance has issues regarding concurrency :
+- It enumerates Threads and looks into internal structures of the Thread class, but there are no "memory barrier" that would ensure a consistent state of the ThreadLocalMap being examined.
+So, it is theoretically possible that a ThreadLocal in Thread A was properly cleaned up by the application, but the current thread B (that is undeploying the application) does not see the up to date state because there's no synchronization between those threads.
+- Much more severe : after detecting such a leak, it invokes java.lang.ThreadLocal.ThreadLocalMap.remove(ThreadLocal) on Thread A's ThreadLocalMap instance but the invocation is done by Thread B (the thread that undeploys the app).
+The remove() method is not thread safe at all, and nor is the expungeStaleEntries() method which may also be invoked in clearThreadLocalMap().
+So, if a webapp is being undeployed while other applications continue to receive a heavy load of requests, this could corrupt the internal structures of the ThreadLocalMap instance !
+I propose to keep the detection of leaks as it is, but to make the actual clearing optional (and disabled by default) to avoid encountering big problems in production.
+Idea to improve the clearing in a safe way : if the thread that is "provoking" the leak is one of tomcat's worker threads, we could mark it as "dirty", and then have a background task that would end such threads (renew those threads in the pool).

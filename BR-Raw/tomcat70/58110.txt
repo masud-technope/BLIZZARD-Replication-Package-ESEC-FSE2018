@@ -1,0 +1,68 @@
+58110 � JSP compiler points error to wrong line number when there are two same return statements.
+Created attachment 32888 [details]
+Apache Tomcat_7.0.61 - Error report.html
+I forgot to delete the last return "" statement, and JSP compile point error to line number #8 which is same as the last return statement.
+Code:
+----------------------------------------------------------------------------------------------------
+<%@ page pageEncoding='UTF-8' contentType='text/html'%>
+<%@ page import = 'java.util.*' %>
+<%!
+String test ()
+{
+List<Object> listObjectClasses = null;
+if (listObjectClasses==null || listObjectClasses.size()==0)
+return "";
+String sImageIconFile = null;
+for (Object objectClass : listObjectClasses)
+{
+//sImageIconFile = "active-directory-objectClass-" + (String)objectClass + ".png";
+}
+boolean isImageIconFileExist = false;
+if (! (sImageIconFile==null || sImageIconFile.isEmpty()))
+{
+sImageIconFile = "images/" + sImageIconFile;
+//File fileImageIcon = new File (application.getRealPath (sImageIconFile));
+//isImageIconFileExist = fileImageIcon.exists ();
+}
+return (sImageIconFile==null || sImageIconFile.isEmpty()) ? "" : "<img src='" + sImageIconFile + "'/>";
+return "";
+// This statement above will cause tomcat JDT compiler point error to line #8。 But if move this line into the above line, then compiler will point error to the right line number #23
+}
+%>
+----------------------------------------------------------------------------------------------------
+JSP compile exception
+----------------------------------------------------------------------------------------------------
+org.apache.jasper.JasperException: Unable to compile class for JSP:
+An error occurred at line: 8 in the jsp file: /test.jsp
+Unreachable code
+5: {
+6: 	List<Object> listObjectClasses = null;
+7: 	if (listObjectClasses==null || listObjectClasses.size()==0)
+8: 		return "1";
+9:
+10: 	String sImageIconFile = null;
+11: 	for (Object objectClass : listObjectClasses)
+Stacktrace:
+org.apache.jasper.compiler.DefaultErrorHandler.javacError(DefaultErrorHandler.java:103)
+org.apache.jasper.compiler.ErrorDispatcher.javacError(ErrorDispatcher.java:366)
+org.apache.jasper.compiler.JDTCompiler.generateClass(JDTCompiler.java:485)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:379)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:354)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:341)
+org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:657)
+org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:357)
+org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:395)
+org.apache.jasper.servlet.JspServlet.service(JspServlet.java:339)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:731)
+org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+org.apache.catalina.filters.SetCharacterEncodingFilter.doFilter(SetCharacterEncodingFilter.java:108)
+----------------------------------------------------------------------------------------------------
+If I put the test() function into a .java file and use javac to compile it, javac will point error to right line number.
+----------------------------------------------------------------------------------------------------
+$ javac Test.java
+Picked up _JAVA_OPTIONS: -Dawt.useSystemAAFontSettings=lcd
+Test.java:24: 错误: 无法访问的语�?�
+return "";
+^
+1 个错误
+----------------------------------------------------------------------------------------------------

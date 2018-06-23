@@ -1,0 +1,2 @@
+Bug 472769 – improve connect handling in generic provider server
+The connect handling in the generic provider server is overly complicated and should be improved.

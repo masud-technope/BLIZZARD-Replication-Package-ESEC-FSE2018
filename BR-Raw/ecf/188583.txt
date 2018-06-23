@@ -1,0 +1,14 @@
+Bug 188583 � [msn] Msn retrieve Buddy List error
+I use ecf msn protocol org.eclipse.ecf.protocol.msn_0.3.1.200705231606.jar.
+The Exception:
+java.lang.ArrayIndexOutOfBoundsException: 5
+at org.eclipse.ecf.protocol.msn.NotificationSession.retrieveBuddyList(NotificationSession.java:164)
+at org.eclipse.ecf.protocol.msn.NotificationSession.login(NotificationSession.java:114)
+at org.eclipse.ecf.protocol.msn.MsnClient.connect(MsnClient.java:147)
+at org.eclipse.ecf.internal.provider.msn.MSNContainer.connect(MSNContainer.java:299)
+at imclient.connect.XIMClient.createAndConnectClient(XIMClient.java:104)
+at imclient.connect.URIClientConnectControl$ClientConnectJob.run(URIClientConnectControl.java:75)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+I debug the parameter input value is: LST N=stonewang888@hotmail.com F=stone-æ„Ÿåº�?å®ˆæŠ¤ç¥&#65533;C=7f646cbf-7a6b-437c-8b1e-3b0a0a55f153 11.
+The F is Chinese.
+Then F and C not space.

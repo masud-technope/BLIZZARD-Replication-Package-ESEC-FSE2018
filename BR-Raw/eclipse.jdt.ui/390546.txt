@@ -1,0 +1,6 @@
+Bug 390546 – [rulers] Quick fix invoked even if warning/error is not shown in vertical ruler
+A line of java can have multiple markers, e.g.
+the yellow warning marker AND the up arrow marker for opening the 'super' declaration.
+The general annotation preferences can be set such that the yellow warning marker will not appear in the left margin, and then the only thing that appears is the up arrow for opening the supertype declaration.
+However, if I click that up arrow, what pops up is still the set of proposals to fix the warning.
+Eclipse simply does not react to what is actually displayed.

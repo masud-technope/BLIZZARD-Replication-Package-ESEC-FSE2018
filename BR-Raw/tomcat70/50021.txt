@@ -1,0 +1,4 @@
+50021 – ExceptionUtils class missing from bootstrap.jar
+o.a.c.startup.Bootstrap uses o.a.jasper.util.ExceptionUtils, but this class is not placed in bootstrap.jar, causing rather nasty failures if anything goes wrong during initial bootstrapping.
+This should be a fairly simple matter of updating build.xml to include it, but I wasn't sure whether including Jasper classes in the bootstrap was the done thing.
+There's an o.a.tomcat.util.ExceptionUtils that is identical, but that too looks like the wrong thing to grab.

@@ -1,0 +1,12 @@
+Bug 480462 – [null] Cannot add external annotations to Guava libraries
+Created attachment 257450 [details]
+full error log
+I'm trying to add external annotations, using the procedure at [1], to Guava libraries.
+I've done it successfully for JVM classes before, like Map.get() as I described in Bug 467305.
+Now I'm trying to do the same thing with com.google.common.collect.Table#get for example, but it does not work, I select the "Annotate" option but no pop-up shows up.
+The following error is added to the Error Log however:
+Error during computation of Annotate proposals: The type javax.annotation.Nullable cannot be resolved.
+It is indirectly referenced from required .class files
+I've attached the full stack trace of that error.
+Guava uses its own set of Nullable/Nonnull annotation that they ship under the "javax.annotation" package, maybe this is what is confusing JDT?
+[1] https://www.eclipse.org/eclipse/news/4.5/M6/#annotate-command

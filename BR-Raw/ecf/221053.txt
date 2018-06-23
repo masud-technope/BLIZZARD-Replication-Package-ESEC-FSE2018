@@ -1,0 +1,17 @@
+Bug 221053 – The message from the XMPP Server is not displayed.
+I use Openfire 3.4.5 server.
+The message from the XMPP Server is not displayed.
+On XMPPContainerPresenceHelper.handleMessageEvent(),
+fromID is null.
+org.jivesoftware.smack.packet.Message
+body	"000\n"
+error	null
+==>	from	"w2k-tw"
+packetExtensions	null
+packetID	"ID_NOT_AVAILABLE"
+properties	null
+subject	null
+thread	null
+to	null
+type	Message$Type  (ID=1014)
+It is because there is no the from field in the form of user@server.

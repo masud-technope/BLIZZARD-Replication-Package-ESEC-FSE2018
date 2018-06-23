@@ -1,0 +1,6 @@
+Bug 410371 – [generalize type] Generalize Type adds import that changes semantics of existing simple names
+Created attachment 232190 [details]
+Fix
+4.3 RC4
+In BETA_JAVA8 in org.eclipse.jdt.core.dom.ASTConverter, I tried to generalize a type reference "org.eclipse.jdt.internal.compiler.ast.LambdaExpression" to "org.eclipse.jdt.internal.compiler.ast.Expression".
+The refactoring added an import for "Expression", although a homonym from the enclosing package org.eclipse.jdt.core.dom was already in use.

@@ -1,0 +1,4 @@
+Bug 10282 – Rendering of changed variables
+Need to render changed variables in "accessible" way.
+Using color is not a good
+solution.

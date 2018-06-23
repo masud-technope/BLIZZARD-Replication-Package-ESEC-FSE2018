@@ -1,0 +1,10 @@
+Bug 430150 – [1.8][null] stricter checking against type variables
+When writing a generic class as
+class Foo<T> {
+}
+we want to be able to instantiate this class as either
+Foo<@NonNull String> nns;
+or
+Foo<@Nullable String> nus;
+Inside Foo usage of the type variable T should be checked more strictly to reflect that not only the type but also its nullness is unknown.
+To enable the desired genericity, dereferencing a T value must assume @Nullable and assignment to a T variable must ensure @NonNull.

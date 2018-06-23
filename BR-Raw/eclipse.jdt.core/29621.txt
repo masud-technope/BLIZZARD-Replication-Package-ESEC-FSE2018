@@ -1,0 +1,19 @@
+Bug 29621 – Wrong Delta When Adding to Filtered Folder
+Build I20030115
+1.
+Start fresh workspace
+2.
+Add J project "Test"
+3.
+Add source folder "src"
+4.
+Add folder "icons" to "src"
+5.
+Ensure only "src" is on the build path and exclude folder "icons"
+6.
+Add file "my.txt" to "icons" folder
+==> the delta which is sent out looks like:
+Java Model[*]: {CHILDREN}
+Test[*]: {CHILDREN}
+src/icons/my.txt[+]: {}
+There should be a resource delta.

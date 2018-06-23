@@ -1,0 +1,12 @@
+Bug 285568 – [content assist] No getter/setter proposal for field if fields named the same with different casing
+I20090803-1800 and R3.5.
+Works in R3.4.x.
+1.
+paste this into Package Explorer:
+public class Bug {
+private String FIELD = "field";
+private String field= "";
+}
+2.
+generate getter/setter for both fields
+==> compile errors

@@ -1,0 +1,15 @@
+java/org/apache/coyote/http11/Http11Processor.java
+test/org/apache/coyote/http11/TestAbstractHttp11Processor.java
+webapps/docs/changelog.xml
+java/org/apache/catalina/connector/CoyoteAdapter.java
+java/org/apache/catalina/connector/LocalStrings.properties
+java/org/apache/coyote/ajp/AjpAprProcessor.java
+java/org/apache/coyote/ajp/AjpAprProtocol.java
+java/org/apache/coyote/ajp/AjpProcessor.java
+java/org/apache/coyote/ajp/AjpProtocol.java
+java/org/apache/coyote/http11/Http11AprProcessor.java
+java/org/apache/coyote/http11/Http11AprProtocol.java
+java/org/apache/coyote/http11/Http11NioProcessor.java
+java/org/apache/coyote/http11/Http11Processor.java
+java/org/apache/coyote/http11/Http11Protocol.java
+java/org/apache/coyote/http11/Http11Processor.java

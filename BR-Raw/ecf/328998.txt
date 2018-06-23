@@ -1,0 +1,2 @@
+Bug 328998 – [Discovery][Composite] CompositeDiscoveryContainer uses advertisers when set to be a locator
+org.eclipse.ecf.provider.discovery.CompositeDiscoveryContainerInstantiator.createInstance(ContainerTypeDescription, Object[]) must not add advertisers to the CompositeDiscoveryContainer when CDC is set to be a locator (and vice versa).

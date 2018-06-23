@@ -1,0 +1,10 @@
+Bug 311183 – additional plug-in in feature launch gets silently removed
+I20100429-1549
+* Create a plug-in in the workspace called "a.b.c" based on the "plug-in with a view" example
+* Create an Eclipse Application launch using "features selected below" on the Plug-ins tab
+* Select all features and add additional plug-in "a.b.c"
+* Select the "External" radio button for "Default plug-in location"
+* Apply
+* Close/re-open
+The additional plug-in is gone.
+Looks like the bundle is removed from the list since it does not exist externally.

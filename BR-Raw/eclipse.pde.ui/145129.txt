@@ -1,0 +1,4 @@
+Bug 145129 – [Product Editor] Add progress and message bar feature in Splash page is incomplete
+"Note that by default, no progress will be reported at startup.
+To enable startup progress reporting, set the following preference to true, for example in the preference customization file: IWorkbenchPreferenceConstants.SHOW_PROGRESS_ON_STARTUP"
+This was added to org.eclipse.platform.doc.isv/guide/product_configproduct.htm, and should probably be repeated in org.eclipse.pde.doc.user/guide/tools/editors/product_editor/branding.htm

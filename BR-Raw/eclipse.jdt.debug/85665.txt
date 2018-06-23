@@ -1,0 +1,5 @@
+Bug 85665 – New JRE container dialog shows empty combo
+20050215
+When adding a new JRE container to a project the dialog shows up with the
+'Alternate JRE' radio button selected, but the combo is empty.
+See screenshot.

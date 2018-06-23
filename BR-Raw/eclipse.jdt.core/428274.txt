@@ -1,0 +1,9 @@
+Bug 428274 – [1.8] [compiler] Cannot cast from Number to double
+The JDK8 compiler accepts this cast but Eclipse JDK8 does not:
+package junk;
+public class Junk4 {
+private void setValue(Number n) {
+int rounded = (int) Math.round((double) n);
+}
+}
+I expect other casts such as (float) and (int) should be accepted.

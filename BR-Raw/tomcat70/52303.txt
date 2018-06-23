@@ -1,0 +1,12 @@
+52303 – NonLoginAuthenticator does not honour session timeout with SingleSignOn Valve
+Created attachment 28052 [details]
+proposed diff to fix org.apache.catalina.authenticator.NonLoginAuthenticator
+This problem has been explored and discussed on the tomcat-users mailing list under the title "SingleSignonValve and webapp session timeout".
+Basically, a webapp that does not need to define a <login-config> is valid under the servlet 3.0 spec and therefore should be able to participate in a single signon realm.
+It should be able to inherit the security principal established by another webapp within the same realm.
+Its own <session-timeout> value should be honoured, even when all the other sessions in the same SingleSignOnEntry have expired.
+The problem is with NonLoginAuthenticator - at some time it had SSO helper logic that was too primitive.
+This logic was completely commented-out in tomcat 6.0.0.
+I have two fairly simple webapps (not quite drop-ins) that demonstrate the problem and my proposed fix.
+I have heavily commented my proposed fix to explain the surrounding dependent logic that it relies on.
+At the moment I have not found an SSO-based unit test for any of the AuthenticatorBase concrete classes, but I will try to create one (eventually).

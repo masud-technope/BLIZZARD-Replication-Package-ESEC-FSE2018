@@ -1,0 +1,4 @@
+Bug 215314 – manifest editor content assist: additional info has wrong status text
+3.3 and 3.4 builds
+If you trigger content assist in a manifest.mf file you get nice additional info for each entry on the right side.
+This window shows a wrong hint in the status line: "Press 'F2' for focus".

@@ -1,0 +1,6 @@
+org.eclipse.jdt.core.manipulation/META-INF/MANIFEST.MF
+org.eclipse.jdt.core.manipulation/refactoring/org/eclipse/jdt/core/refactoring/participants/IRefactoringProcessorIds.java
+org.eclipse.jdt.ui/META-INF/MANIFEST.MF
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ChangeSignatureProcessor.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/IntroduceParameterObjectProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/refactoring/IRefactoringProcessorIds.java

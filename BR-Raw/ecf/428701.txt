@@ -1,0 +1,3 @@
+Bug 428701 – move to new endpoint.id structure in anticipation of RSA 1.1
+When/If RFC 203 is adopted for OSGi R6, ECF will be supporting it in our RSA implementation.
+  To prepare for this, it would be useful to have the endpoint.id structure changed as per the RFC 203 commentary.

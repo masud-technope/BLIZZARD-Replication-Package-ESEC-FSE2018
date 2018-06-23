@@ -1,0 +1,10 @@
+Bug 75628 – [performance test] filling context launch menu
+20041005 smoke test
+1.
+Create a project with the JUnit sources and samples
+2.
+In the package explorer select SimpleTest or AllTests and open the context
+menu - No 'Run as JUnit' available
+It is possible to manually create a launch config, but then the test type name
+has to be entered manually
+Also note that opening the run menu seems to have become much slower

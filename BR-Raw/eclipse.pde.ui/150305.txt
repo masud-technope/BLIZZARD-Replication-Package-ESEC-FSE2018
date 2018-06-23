@@ -1,0 +1,6 @@
+Bug 150305 – Combo box seems to lose cursor in Linux
+The cursor seems to disappear during tabbing in Linux.
+ This happens in the PDE Feature editor (Dependencies page > Dependencies Properties section) and the Product Editor on the main page.
+The common contributing factor seems to be when the user is tabbing out of a text box field into a combo field, the cursor disappears never to come back.
+Since the tab order is fine in Windows and PDE does nothing special for these editors, it was suggested I open the bug on forms.
+ If this is incorrect, please redirect the bug as you see fit.

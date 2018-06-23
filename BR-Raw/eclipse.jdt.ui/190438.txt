@@ -1,0 +1,14 @@
+Bug 190438 – [working sets] Assign Working Sets dialog forgets settings after adding and moving new working set
+I20070601-0010
+I had the platform and jdt doc plugins in two different working sets:
+- WS JDT: jdt.doc
+- WS Platform: platform.doc
+- selected all doc plug-ins
+- Assign Working Sets...
+- New..., create WS "Doc" with selection
+- uncheck both grey-checked WS (JDT & Platform)
+- click link "Package Explorer working sets"
+- move WS Doc up or down
+- OK
+=> WS JDT and WS Platform are grey-checked again
+=> Expected: check state should not be changed when working sets are moved around

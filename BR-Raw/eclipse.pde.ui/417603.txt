@@ -1,0 +1,8 @@
+Bug 417603 – Unjustified @since tag error during incremental build
+Version: 4.4.0
+Build id: I20130918-2000
+prior to applying the patch for bug 411773, I formatted the class AntCorePreferences and after an incremental build I get the following error:
+Description	Resource	Path	Location	Type
+Invalid @since 2.1 tag on org.eclipse.ant.core.AntCorePreferences; expecting @since 3.3	AntCorePreferences.java	/org.eclipse.ant.core/src/org/eclipse/ant/core	line 76	@since tag problem
+If I clean the project the error goes away.
+I reproduced on Mac and Win 7.

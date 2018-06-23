@@ -1,0 +1,22 @@
+54207 – javaURLContextFactory javadoc refers to defunct package names in initial context properties
+Javadoc for org.apache.naming.java.javaURLContextFactory:
+/**
+* Context factory for the "java:" namespace.
+* <p>
+* <b>Important note</b> : This factory MUST be associated with the "java" URL
+* prefix, which can be done by either :
+* <ul>
+* <li>Adding a
+* java.naming.factory.url.pkgs=org.apache.catalina.util.naming property
+* to the JNDI properties file</li>
+* <li>Setting an environment variable named Context.URL_PKG_PREFIXES with
+* its value including the org.apache.catalina.util.naming package name.
+* More detail about this can be found in the JNDI documentation :
+* {@link javax.naming.spi.NamingManager#getURLContext(java.lang.String, java.util.Hashtable)}.</li>
+* </ul>
+*
+* @author Remy Maucherat
+* @version $Id$
+*/
+org.apache.catalina.util.naming is a very old package name.
+ The correct name for both TC6 and TC7 is org.apache.naming .

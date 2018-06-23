@@ -1,0 +1,3 @@
+Bug 322672 – Use PDE API to create build model
+With the fix to bug 308623 there is now API to create a build model.
+API tools could use this new API to avoid an internal access.

@@ -1,0 +1,15 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target/impl/ResolvedBundle.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target/impl/DirectoryBundleContainer.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/TargetEnvironmentPreferenceNode.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/imports/PluginImportOperation.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/BundleManifestSourceLocationManager.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/imports/BaseImportWizardSecondPage.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/SourceLocationKey.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/SourceLocationManager.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/imports/AlternateSourceLocations.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/imports/PluginImportWizardFirstPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/SourceCodeLocationsPreferenceNode.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/imports/PluginImportWizard.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/TargetPlatformPreferenceNode.java

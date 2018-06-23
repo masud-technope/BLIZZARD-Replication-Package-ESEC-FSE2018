@@ -1,0 +1,4 @@
+51466 – typos in comments of HostManagerServlet
+Created attachment 27244 [details]
+correct typos
+Comment of method stop says "start" and two instances of "if" are written as "of".

@@ -1,0 +1,11 @@
+org.eclipse.jdt.apt.tests/src/org/eclipse/jdt/apt/tests/annotations/messager/MessagerAnnotationProcessor.java
+org.eclipse.jdt.apt.tests/src/org/eclipse/jdt/apt/tests/AptBuilderTests.java
+org.eclipse.jdt.apt.tests/src/org/eclipse/jdt/apt/tests/annotations/helloworld/HelloWorldAnnotationProcessor.java
+org.eclipse.jdt.apt.tests/src/org/eclipse/jdt/apt/tests/annotations/helloworld/HelloWorldAnnotation.java
+org.eclipse.jdt.apt.tests/src/org/eclipse/jdt/apt/tests/annotations/BaseProcessor.java
+org.eclipse.jdt.apt.tests/src/org/eclipse/jdt/apt/tests/FileGenerationTests.java
+org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/env/BuildFilerImpl.java
+org.eclipse.jdt.apt.tests/src/org/eclipse/jdt/apt/tests/annotations/filegen/TextGenAnnotationProcessor.java
+org.eclipse.jdt.apt.tests/src/org/eclipse/jdt/apt/tests/annotations/nestedhelloworld/NestedHelloWorldAnnotationProcessor.java
+org.eclipse.jdt.apt.tests/src/org/eclipse/jdt/apt/tests/APTTestBase.java
+org.eclipse.jdt.apt.tests/src/org/eclipse/jdt/apt/tests/annotations/filegen/TextGenAnnotation.java

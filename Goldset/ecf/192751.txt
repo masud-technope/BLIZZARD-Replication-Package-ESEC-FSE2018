@@ -1,0 +1,3 @@
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/internal/ui/actions/SelectProviderAction.java
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/internal/ui/Messages.java
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/internal/ui/messages.properties

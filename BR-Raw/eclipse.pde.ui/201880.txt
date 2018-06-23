@@ -1,0 +1,24 @@
+Bug 201880 – Plugin Registry view shows incorrect information from other versions
+Created attachment 77453 [details]
+Suggested bugfix
+Build ID: I20070625-1500 (Affects cvs head as of today too)
+Steps To Reproduce:
+1.
+Install a plugin with multiple versions in a packaged Eclipse installation (NOT in Runtime Workbench!)
+2.
+Open the view PDE Runtime > Plug-In Registry (Registry Browser)
+3.
+Expand both plugin versions.
+Both show same location although they should differ.
+Example:
+org.example.plugin_1.0.0 points to plugins/org.example.plugin_1.0.0.jar
+org.example.plugin_1.0.1 points to plugins/org.example.plugin_1.0.0.jar
+org.example.plugin_1.0.2 points to plugins/org.example.plugin_1.0.0.jar
+org.example.plugin_1.0.3 points to plugins/org.example.plugin_1.0.0.jar
+More information:
+This is a bug in the UI only!
+The RegistryBrowserContentProvider identifes the items to be displayed solely on the symbolic name of a Bundle and does not take the version into account.
+The content provider should use another identification of the bundle, e.g.
+the bundle reference itself or at least the bundleId.
+Fix is easy: fPluginMap should contain <BundleId,Object[]> instead of <BundleSymbolicName,Object[]>.
+See attached patch.

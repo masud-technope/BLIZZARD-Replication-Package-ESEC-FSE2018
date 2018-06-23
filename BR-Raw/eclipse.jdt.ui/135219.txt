@@ -1,0 +1,19 @@
+Bug 135219 – [clean up][code style] Does not qualify field if method parameter
+N20060405-0010
+Given:
+package test;
+public class E {
+public int i;
+public void print(int j) {}
+public void foo() {
+print(i);
+}
+}
+1.
+'Source -> Clean Up...'
+2.
+Enable 'Use allways 'this' for method and field accesses'
+Is:
+this.print(i);
+Should:
+this.print(this.i);

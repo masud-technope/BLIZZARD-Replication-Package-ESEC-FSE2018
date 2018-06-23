@@ -1,0 +1,5 @@
+Bug 150916 – Plug-in Import wizard resizes to full screen height
+I20060711-1100
+Plug-in Export wizard resizes to full screen height.
+As soon as you get to the last page of the plug-in import wizard where you can select the plug-ins an fragments the wizard expands to full screen height.
+I can manually resize the dialog but that's futile since next time it gets huge again.

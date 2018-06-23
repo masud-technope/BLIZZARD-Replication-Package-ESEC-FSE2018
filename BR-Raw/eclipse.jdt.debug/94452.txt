@@ -1,0 +1,10 @@
+Bug 94452 – Timeout exceptions
+I20050509-2010
+I am able to produce timeout exceptions by stepping in a method while a
+logical structure is displayed for a Vector.
+Stepping quickly - allow the UI
+to start to update and then step again - seems to cause the problem.
+I am not
+holding down the step key.
+This may be flooding the target with requests as
+the views are attempting to update as the next step starts.

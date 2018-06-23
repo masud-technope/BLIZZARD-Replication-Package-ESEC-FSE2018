@@ -1,0 +1,2 @@
+Bug 255352 – [Discovery][JMDNS] JMDNS exchanges priority and weight
+JMDNS exchanges priority and weight in org.eclipse.ecf.provider.jmdns.container.JMDNSDiscoveryContainer.createServiceInfoFromIServiceInfo(IServiceInfo)

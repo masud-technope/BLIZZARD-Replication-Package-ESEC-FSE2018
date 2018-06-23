@@ -1,0 +1,15 @@
+Bug 444964 – [1.7+][resource] False resource leak warning (try-with-resources for ByteArrayOutputStream - return inside for loop)
+False resource leak warning:
+try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+for (;;) {
+return;
+}
+} catch (Exception e) {
+}
+Same code but no warning:
+try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+while (true) {
+return;
+}
+} catch (Exception e) {
+}

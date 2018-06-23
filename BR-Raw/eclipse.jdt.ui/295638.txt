@@ -1,0 +1,5 @@
+Bug 295638 – [refactoring][actions] Use ImportRewriteContext everywhere
+I20091118-1342
+We often use ImportRewrite#add*(..) methods without an ImportRewriteContext.
+The fix for bug 235253 reveals many more places where we have to add it.
+I've already released the fix for ExtractConstantRefactoring.

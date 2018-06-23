@@ -1,0 +1,30 @@
+Bug 30907 – Code assist doesn't work in first case statement of a switch statement
+Using 0129, try the following test case:
+1) Create a new Java Project P.
+2) In P, create the following interface:
+public interface Inter {
+int INT = 0;
+int FLOAT = 1;
+}
+3) In P, create the following class:
+public class A {
+public static void main(String[] args) {
+int i = 0;
+switch(i) {
+case Int<cursor here>
+}
+}
+}
+Try to use the code assist where <cursor here> is located.
+You won't have any
+completion.
+Now replace:
+case Int<cursor here>
+with:
+case Inter.INT:
+case Int<cursor here>:
+And using the code assist again, you will got some completions.
+I should be able
+to get the same completions the first time.
+This is pretty annoying.
+From my perspective, this needs to be fixed for 2.1.

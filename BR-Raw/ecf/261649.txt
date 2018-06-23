@@ -1,0 +1,3 @@
+Bug 261649 – Compiler error in org.eclipse.ecf.tutorial.datashare.MyChannel.initialize()
+org.eclipse.ecf.tutorial.datashare.MyChannel.initialize() [1] tries to call a non existing method getGroupID().
+[1] /org.eclipse.ecf.tutorial/src/org/eclipse/ecf/tutorial/datashare/MyChannel.java

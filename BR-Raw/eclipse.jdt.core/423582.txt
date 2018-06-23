@@ -1,0 +1,38 @@
+Bug 423582 – [1.8] CCE in TypeBinding.isCastCompatible for PolyTypeBinding
+CCE when hovering over the reference to 'goo'.
+Note that 'I' is not a functional interface, and the compiler correctly reports errors for that.
+interface I { }
+public class X {
+static void goo(I i) {
+System.out.println("goo(I)");
+}
+public static void main(String[] args) {
+goo(s -> 0); // hover over 'goo' -> CCE
+}
+}
+java.lang.ClassCastException: org.eclipse.jdt.internal.compiler.lookup.PolyTypeBinding cannot be cast to org.eclipse.jdt.internal.compiler.lookup.ReferenceBinding
+at org.eclipse.jdt.internal.compiler.ast.Expression.checkCastTypesCompatibility(Expression.java:504)
+at org.eclipse.jdt.core.dom.TypeBinding.isCastCompatible(TypeBinding.java:1056)
+at org.eclipse.jdt.internal.ui.text.correction.UnresolvedElementsSubProcessor.doEqualNumberOfParameters(UnresolvedElementsSubProcessor.java:1599)
+at org.eclipse.jdt.internal.ui.text.correction.UnresolvedElementsSubProcessor.addParameterMissmatchProposals(UnresolvedElementsSubProcessor.java:1336)
+at org.eclipse.jdt.internal.ui.text.correction.UnresolvedElementsSubProcessor.getMethodProposals(UnresolvedElementsSubProcessor.java:1109)
+at org.eclipse.jdt.internal.ui.text.correction.QuickFixProcessor.process(QuickFixProcessor.java:337)
+at org.eclipse.jdt.internal.ui.text.correction.QuickFixProcessor.getCorrections(QuickFixProcessor.java:300)
+at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:378)
+at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:339)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:335)
+at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:468)
+at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:225)
+at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getCompletionProposals(ProblemHover.java:199)
+at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover$AnnotationInformationControl.deferredCreateContent(AbstractAnnotationHover.java:285)
+at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover$AnnotationInformationControl.setInput(AbstractAnnotationHover.java:186)
+at org.eclipse.jface.text.AbstractInformationControlManager.internalShowInformationControl(AbstractInformationControlManager.java:1181)
+at org.eclipse.jface.text.AbstractInformationControlManager.presentInformation(AbstractInformationControlManager.java:1150)
+at org.eclipse.jface.text.AbstractHoverInformationControlManager.presentInformation(AbstractHoverInformationControlManager.java:902)
+at org.eclipse.jface.text.TextViewerHoverManager.doPresentInformation(TextViewerHoverManager.java:243)
+at org.eclipse.jface.text.TextViewerHoverManager$5.run(TextViewerHoverManager.java:233)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4145)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3762)

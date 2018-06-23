@@ -1,0 +1,1 @@
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/internal/docshare/Activator.java

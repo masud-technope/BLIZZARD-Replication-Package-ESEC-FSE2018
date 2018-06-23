@@ -1,0 +1,6 @@
+53713 – Performance tuning solution for JspReader
+Created attachment 29223 [details]
+patch for JspReader.java
+mark() is called so many times when doing JSP or tag files compilation.
+This can be reduced by a little bit code changes.
+Attached files contain this solution.

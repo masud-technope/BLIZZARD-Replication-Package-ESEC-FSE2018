@@ -1,0 +1,8 @@
+Bug 480086 – [formatter] unwanted spaces in generic diamond operator
+Created attachment 257342 [details]
+INFOLOG Java code formatter
+List< String > l = new ArrayList< >();
+Our code formatter adds spaces after the opening brace and before the closing brace.
+For other types of braces you can set an option to not add spaces when the braces are empty.
+This option is missing for the diamond.
+Mars will add an unwanted space between the generic brackets (diamond) for ArrayList.

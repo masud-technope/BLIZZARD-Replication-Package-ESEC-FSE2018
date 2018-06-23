@@ -1,0 +1,22 @@
+Bug 63287 – Flickering in the â€œImport plug-insâ€? dialog on the Mac
+I am using Build id: 200405201226.
+This only happens on the Mac (and Linux I believe).
+Steps:
+- Go to "File->Import"
+- Select "External Plug-ins and Fragments" and press "Next"
+- Uncheck the "Target platform" box
+- Type random characters in the "Plug-in Location" field
+- Notice the flickering of the dialog's error message
+I have traced this back to "PluginImportWizardFirstPage#validateDropLocation()".
+I put print statements in "WizardPage#setErrorMessage(String newMessage)".
+It
+turns out that the "validateDropLocatoin()" method is calling the
+"setErrorMessage()" twice on every keystroke.
+By looking at the code, I noticed you call a "setErrorMessage(null)" at the
+beginning, then the error message is set again later in the code.
+I commented
+out the "setErrorMessage(null)" call at the beginning of the method and the
+flickering went away.
+I am unaware of the reasons behind having the "setErrorMessage(null)â€? at the
+beginning of the method even though the message is set again in that same
+method, so I am logging this to your team.

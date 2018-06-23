@@ -1,0 +1,21 @@
+Bug 259348 – [plug-in registry] show service properties
+Created attachment 120927 [details]
+pde-runtime-serviceproperties-1.patch
+Build ID: I20081211-1908
+Steps To Reproduce:
+1.
+Create a (RCP) app exposing some OSGi services
+2.
+Launch it with the PDE Runtime oplugin included
+3.
+Open the PDE Plugin Registry
+4.
+Open Properties view
+5.
+Locate the OSGi service in the Plugin Registry
+6.
+No service properties shown
+More information:
+The Plugin registry is an invaluable tool, when inspecting and diagnosing problems from within a RCP application.
+Unfortunately it is very difficult to determine whether a specific OSGI service is registered or used, as the Plugin Registry simply shows the service by its registered interfaces.
+The attached patch for the PDE Runtime plugin provides a simple IPropertySource and adapter for the Properties View, which lists the service properties.

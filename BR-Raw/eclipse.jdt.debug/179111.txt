@@ -1,0 +1,8 @@
+Bug 179111 – Numerous fixes for All Instances / All References features
+A number of bugs have been found affecting the 'all instances' and 'all references' features.
+ As most of the bugs/issues are related, they will be coalesced into this bug and fixed at the same time.
+Issues:
+- Global actions and key bindings must be improved
+- The style between all instances and references popups should be similar and have similar functionality.
+- The user must be informed if the displayed instances/references are being limited by preference settings.
+- Other Miscellaneous problems

@@ -1,0 +1,12 @@
+Bug 113731 – [refactoring] preview page gets bigger and bigger
+Hi
+I am not quite sure if this is the right Component to report this bug - for an
+outsider it is quite difficult to determine which Component causes a "strange"
+behaviour.
+Here is my bug:
+Calling the refactoring on and on again causes the "Rename Package" Window to
+get a little bit bigger every time.
+I use IBM RAD 6.0.1 but I think this feature has nothing to do with the extra
+stuff from IBM.
+Cheers,
+Thomas

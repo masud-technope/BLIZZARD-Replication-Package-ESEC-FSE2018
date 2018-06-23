@@ -1,0 +1,93 @@
+49372 – 7.0.0RC: Starting second instance of Tomcat on the same port results in "An invalid Lifecycle transition was attempted"
+Using the current pre-7.0.0 trunk as of now (r950811),
+to reproduce:
+1) start an instance of Tomcat
+2) start the second instance of Tomcat using the same configuration
+The start fails (as expected), but the messages are accompanied with
+LifecycleException:  An invalid Lifecycle transition was attempted ([before_stop]) for component [StandardServer[8005]] in state [STARTING]
+See the log below.
+03.06.2010 3:14:08 org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 3145 ms
+03.06.2010 3:14:09 org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+03.06.2010 3:14:09 org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.0-dev
+03.06.2010 3:14:09 org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory docs
+03.06.2010 3:14:11 org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory examples
+03.06.2010 3:14:12 org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory host-manager
+03.06.2010 3:14:13 org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory manager
+03.06.2010 3:14:13 org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory ROOT
+03.06.2010 3:14:13 org.apache.coyote.http11.Http11Protocol init
+SEVERE: Error initializing endpoint
+java.net.BindException: Address already in use: JVM_Bind <null>:8080
+at org.apache.tomcat.util.net.JIoEndpoint.init(JIoEndpoint.java:368)
+at org.apache.coyote.http11.Http11Protocol.init(Http11Protocol.java:125)
+at org.apache.catalina.connector.Connector.startInternal(Connector.java:866)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:137)
+at org.apache.catalina.core.StandardService.startInternal(StandardService.java:437)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:137)
+at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:648)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:137)
+at org.apache.catalina.startup.Catalina.start(Catalina.java:576)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:288)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:415)
+Caused by: java.net.BindException: Address already in use: JVM_Bind
+at java.net.PlainSocketImpl.socketBind(Native Method)
+at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:365)
+at java.net.ServerSocket.bind(ServerSocket.java:319)
+at java.net.ServerSocket.<init>(ServerSocket.java:185)
+at java.net.ServerSocket.<init>(ServerSocket.java:141)
+at org.apache.tomcat.util.net.DefaultServerSocketFactory.createSocket(DefaultServerSocketFactory.java:52)
+at org.apache.tomcat.util.net.JIoEndpoint.init(JIoEndpoint.java:357)
+...
+14 more
+03.06.2010 3:14:13 org.apache.catalina.startup.Catalina start
+SEVERE: Catalina.start:
+LifecycleException:  Protocol handler initialization failed: java.net.BindException: Address already in use: JVM_Bind <null>:8080
+at org.apache.catalina.connector.Connector.startInternal(Connector.java:868)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:137)
+at org.apache.catalina.core.StandardService.startInternal(StandardService.java:437)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:137)
+at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:648)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:137)
+at org.apache.catalina.startup.Catalina.start(Catalina.java:576)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:288)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:415)
+03.06.2010 3:14:13 org.apache.catalina.startup.Catalina start
+INFO: Server startup in 4737 ms
+03.06.2010 3:14:13 org.apache.catalina.core.StandardServer await
+SEVERE: StandardServer.await: create[localhost:8005]:
+java.net.BindException: Address already in use: JVM_Bind
+at java.net.PlainSocketImpl.socketBind(Native Method)
+at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:365)
+at java.net.ServerSocket.bind(ServerSocket.java:319)
+at java.net.ServerSocket.<init>(ServerSocket.java:185)
+at org.apache.catalina.core.StandardServer.await(StandardServer.java:359)
+at org.apache.catalina.startup.Catalina.await(Catalina.java:654)
+at org.apache.catalina.startup.Catalina.start(Catalina.java:608)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:288)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:415)
+03.06.2010 3:14:13 org.apache.catalina.startup.Catalina stop
+SEVERE: Catalina.stop
+LifecycleException:  An invalid Lifecycle transition was attempted ([before_stop]) for component [StandardServer[8005]] in state [STARTING]
+at org.apache.catalina.util.LifecycleBase.invalidTransition(LifecycleBase.java:315)
+at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:204)
+at org.apache.catalina.startup.Catalina.stop(Catalina.java:641)
+at org.apache.catalina.startup.Catalina$CatalinaShutdownHook.run(Catalina.java:783)

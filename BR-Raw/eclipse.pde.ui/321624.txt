@@ -1,0 +1,18 @@
+Bug 321624 – Pgm & Vm Arguments get duplicated when launching from product editor
+I20100802-1800
+Steps:
+* Create an RCP application project named "a.prod" based on the "Hello RCP" Template
+* After the project is created, launch the project by pressing the "run" button in the project's manifest editor.
+This creates a launch configuration named "a.prod.application", and on Windows has Pgm & Vm args as follows:
+-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -consoleLog
+-Xms40m -Xmx384m
+* Create a new Product Configuration in project "a.prod", named "def.prod".
+Initialize the content from the "a.prod.application" launch configuration.
+The product's "Launching" tab is correctly initialized with Pgm and VM args as follows:
+-consoleLog
+-Xms40m -Xmx384m
+* Launch the product by pressing the "Run" button in the product editor.
+The resulting launch configuration named "def.product" has Pgm and VM args as follows:
+-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -consoleLog -consoleLog
+-Xms40m -Xmx384m -Xms40m -Xmx384m
+* The consoleLog and memory arguments are duplicated

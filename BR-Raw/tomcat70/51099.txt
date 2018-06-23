@@ -1,0 +1,25 @@
+51099 – SPNEGO loginConfigName does not work
+As reported by fhanik on the dev list:
+2.
+com.sun.security.jgss.krb5.accept is not configurable
+While the authenticator has the attribute loginConfigName, there seems to be a place in the code where it omits this entry.
+renaming this entry in jaas.conf and setting the loginConfigName will fail to validate a ticket
+The problem code is here:
+gssContext = manager.createContext(manager.createCredential(null,
+GSSCredential.DEFAULT_LIFETIME,
+new Oid("1.3.6.1.5.5.2"),
+GSSCredential.ACCEPT_ONLY));
+should look like
+final GSSManager manager = GSSManager.getInstance();
+final PrivilegedExceptionAction<GSSCredential> action =
+new PrivilegedExceptionAction<GSSCredential>() {
+public GSSCredential run() throws GSSException {
+return manager.createCredential(null,
+GSSCredential.DEFAULT_LIFETIME,
+new Oid("1.3.6.1.5.5.2"),
+GSSCredential.ACCEPT_ONLY);
+}
+};
+gssContext = manager.createContext(Subject.doAs(lc.getSubject(), action));||
+best
+Filip

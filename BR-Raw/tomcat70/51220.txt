@@ -1,0 +1,5 @@
+51220 – Add system property that makes it possible for jsp pages with the extends page directive to take advantage of tag pooling
+Created attachment 27022 [details]
+Patch file
+I would like to propose that a system property be added which would allow a JSP page that uses the extends page directive to take advantage of tag pooling.
+Patch file included.

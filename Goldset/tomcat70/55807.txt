@@ -1,0 +1,5 @@
+java/org/apache/jasper/JspCompilationContext.java
+test/org/apache/jasper/compiler/TestCompiler.java
+test/webapp-3.0/WEB-INF/classes/META-INF/bug55807.tld
+test/webapp-3.0/bug5nnnn/bug55807.jsp
+webapps/docs/changelog.xml

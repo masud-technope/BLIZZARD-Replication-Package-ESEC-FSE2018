@@ -1,0 +1,18 @@
+Bug 347587 – [package explorer] Empty parent packages are not filtered correctly if they contain .svn folder
+Build Identifier: 20110218-0911
+org
+|
+`-.svn (filtered)
+org.test
+|
+`-.svn (filtered)
+The filter "Empty parent packages" does not hide a parent package if it contains filtered .svn ressource folders.
+So logically they are empty but the filter does not think that.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Check out a project from svn in Windows 7 with TortoriseSVN
+2.
+Import the project in eclipse (without using subclipse or subversive etc.)
+3.
+Enable the .ressources and empty parent packages filters

@@ -1,0 +1,35 @@
+Bug 275308 – [JUnit] @RunWith(Parameterized) results don't navigate
+Build ID: 3.5M7
+** This is trivial and safe (a 1 liner).
+ Can you please get it in 3.5 before release **
+Steps To Reproduce:
+1.
+Compile and run the test below in with JUnit4, JDK5+
+2.
+Double-click on the failed test in the JUnit view
+Expected result: Should open the testIsFirst() method
+Actual result: "Method 'testIsFirst[1]' not found"
+Proposed (quick, safe) solution: trim to first "[" if search for the method fails, and try again.
+Could prob trim to first "[" straight away, but I'm no expert on what chars are allowed in function names by the JVM.
+----
+import static org.junit.Assert.assertEquals;
+import java.util.Collection;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+@RunWith(Parameterized.class)
+public class SimpleParamTest {
+@Parameters
+public static Collection<?> data() {
+return Parameterized.eachOne("First", "Second");
+}
+private final String o;
+public SimpleParamTest(String o) {
+this.o = o;
+}
+@Test
+public void testIsFirst() throws Exception {
+assertEquals("First", o);
+}
+}

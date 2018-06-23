@@ -1,0 +1,12 @@
+java.io.FileInputStream.readBytes
+java.io.FileInputStream.read
+sun.nio.cs.StreamDecoder.readBytes
+sun.nio.cs.StreamDecoder.implRead
+sun.nio.cs.StreamDecoder.read
+java.io.InputStreamReader.read
+java.io.BufferedReader.fill
+java.io.BufferedReader.readLine
+java.io.BufferedReader.readLine
+org.apache.catalina.servlets.CGIServlet$CGIRunner.sendToLog
+org.apache.catalina.servlets.CGIServlet$CGIRunner.access$400
+org.apache.catalina.servlets.CGIServlet$CGIRunner$1.run

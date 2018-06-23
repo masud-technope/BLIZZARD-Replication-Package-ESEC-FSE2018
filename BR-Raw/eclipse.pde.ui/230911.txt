@@ -1,0 +1,104 @@
+Bug 230911 – Lookup of Extension Point descriptions fail with source plugin in directory with spaces
+Build ID: I20080502-0100
+Steps To Reproduce:
+1.
+Define a 'source' plugin in a target platform that is in a directory that contains spaces:
+e.g.
+<extension
+point="org.eclipse.pde.core.source">
+<location path="."/>
+</extension>
+The plugin contains schema definitions e.g.
+org.eclipse.ant.core_3.2.0.v20080319\schema
+org.eclipse.ant.core_3.2.0.v20080319\schema\antProperties.exsd
+org.eclipse.ant.core_3.2.0.v20080319\schema\antTasks.exsd
+org.eclipse.ant.core_3.2.0.v20080319\schema\antTypes.exsd
+org.eclipse.ant.core_3.2.0.v20080319\schema\extraClasspathEntries.exsd
+2.
+Set a target platform (through Windows > Preferences > Plug-in Development > Target Platform
+3.
+Verify that plugin contributing source is present in the source locations section of the target platform.
+4.
+Create plugin project.
+5.
+Go to extensions and select Add, and then select one of the extension points whose description is present in the source plugin.
+If the target platform is in a directory with spaces, the description lookup fails with the following error logged:
+eclipse.buildId=I20080502-0100
+java.fullversion=J2RE 1.5.0 IBM J9 2.3 Windows XP x86-32 j9vmwi3223-20070201 (JIT enabled)
+J9VM - 20070131_11312_lHdSMR
+JIT  - 20070109_1805ifx1_r8
+GC   - 200701_09
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+Error
+Wed May 07 09:57:11 CDT 2008
+C:\program%20files\ibm\lotus\expeditor\rcp\eclipse\plugins\com.ibm.rcp.eclipse.source_6.1.0.0-200805051258\org.eclipse.ant.core_3.2.0.v20080319\schema\antProperties.exsd (The system cannot find the path specified.)
+java.io.FileNotFoundException: C:\program%20files\ibm\lotus\expeditor\rcp\eclipse\plugins\com.ibm.rcp.eclipse.source_6.1.0.0-200805051258\org.eclipse.ant.core_3.2.0.v20080319\schema\antProperties.exsd (The system cannot find the path specified.)
+at java.io.FileInputStream.<init>(FileInputStream.java:135)
+at java.io.FileInputStream.<init>(FileInputStream.java:95)
+at org.eclipse.pde.internal.core.util.SchemaUtil.getInputStream(SchemaUtil.java:38)
+at org.eclipse.pde.internal.core.util.SchemaUtil.parseURL(SchemaUtil.java:46)
+at org.eclipse.pde.internal.ui.wizards.extension.PointSelectionPage.handlePointSelection(PointSelectionPage.java:512)
+at org.eclipse.pde.internal.ui.wizards.extension.PointSelectionPage.selectionChanged(PointSelectionPage.java:478)
+at org.eclipse.jface.viewers.Viewer$2.run(Viewer.java:162)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.core.runtime.Platform.run(Platform.java:880)
+at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:48)
+at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:175)
+at org.eclipse.jface.viewers.Viewer.fireSelectionChanged(Viewer.java:160)
+at org.eclipse.jface.viewers.StructuredViewer.updateSelection(StructuredViewer.java:2062)
+at org.eclipse.jface.viewers.StructuredViewer.handleSelect(StructuredViewer.java:1138)
+at org.eclipse.jface.viewers.StructuredViewer$4.widgetSelected(StructuredViewer.java:1168)
+at org.eclipse.jface.util.OpenStrategy.fireSelectionEvent(OpenStrategy.java:227)
+at org.eclipse.jface.util.OpenStrategy.access$3(OpenStrategy.java:221)
+at org.eclipse.jface.util.OpenStrategy$1.handleEvent(OpenStrategy.java:388)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1002)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3782)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3381)
+at org.eclipse.jface.window.Window.runEventLoop(Window.java:825)
+at org.eclipse.jface.window.Window.open(Window.java:801)
+at org.eclipse.pde.internal.ui.editor.plugin.ExtensionsSection$5.run(ExtensionsSection.java:503)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:67)
+at org.eclipse.pde.internal.ui.editor.plugin.ExtensionsSection.handleNew(ExtensionsSection.java:492)
+at org.eclipse.pde.internal.ui.editor.plugin.ExtensionsSection.buttonSelected(ExtensionsSection.java:270)
+at org.eclipse.pde.internal.ui.editor.TreeSection$PartAdapter.buttonSelected(TreeSection.java:41)
+at org.eclipse.pde.internal.ui.parts.SharedPartWithButtons$SelectionHandler.buttonSelected(SharedPartWithButtons.java:39)
+at org.eclipse.pde.internal.ui.parts.SharedPartWithButtons$SelectionHandler.widgetSelected(SharedPartWithButtons.java:30)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:227)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1002)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3782)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3381)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2394)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2358)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2210)
+at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:494)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:288)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:489)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:112)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:193)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:379)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:615)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:549)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:504)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1236)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1212)
+If the target platform is in a directory with no spaces, then the description lookup succeeds.
+More information:
+In org.eclipse.pde.internal.core.SourceLocationManager.findSourceFile, searchExtensionLocations returns the correct URL, but the last part of this method:
+if (result != null) {
+try {
+return result.toFile().toURI().toURL();
+} catch (MalformedURLException e) {
+PDECore.log(e);
+}
+}
+converts the path from c:\program<space>files to c:\program%20files, which then fails in the actual file access in SchemaUtil.parseURL

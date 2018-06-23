@@ -1,0 +1,13 @@
+Bug 128236 – [Manifest Editor] Opening plugin.xml then Manifest.mf no longer shares same editor
+build I20060216-0800
+- open the plugin.xml in a plugin project (e.g.
+org.eclipse.ui)
+- it opens the manifest editor
+- open the Manifest.mf
+- it opens a second manifest editor
+- open the build.properties
+- it reuses the second editor
+Expectation:
+- only one manifest editor is opened, and it's reused for all 3 files
+Separate issue: this expectation also breaks down if build.properties is opened first, as it still opens a dedicated build properties editor if there was no matching manifest editor.
+ So opening build.properties then plugin.xml has a different effect than opening plugin.xml then build.properties.

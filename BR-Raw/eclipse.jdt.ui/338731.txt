@@ -1,0 +1,6 @@
+Bug 338731 – [quick fix] Quick fixes with linked mode in different editor jump to a wrong end position
+Created attachment 190200 [details]
+Fix
+HEAD
+Quick fixes with linked mode in different editor jump to a wrong default end position, e.g.
+in scenario from bug 338439.

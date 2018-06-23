@@ -1,0 +1,45 @@
+Bug 13028 – F3 in Java editor caused NPE in snippet editor
+Build 20020404
+Had a snippet editor open.
+Closed it
+Opened a Java file
+Selected a type name and hit F3.
+Got the following walkback:
+java.lang.NullPointerException
+at
+org.eclipse.jdt.internal.debug.ui.snippeteditor.JavaSnippetEditor.codeResolve
+(JavaSnippetEditor.java:510)
+at
+org.eclipse.jdt.internal.debug.ui.snippeteditor.SnippetOpenOnSelectionAction.ru
+n(SnippetOpenOnSelectionAction.java:59)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:590)
+at
+org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection
+(ActionContributionItem.java:407)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetEvent
+(ActionContributionItem.java:361)
+at org.eclipse.jface.action.ActionContributionItem.access$0
+(ActionContributionItem.java:352)
+at
+org.eclipse.jface.action.ActionContributionItem$ActionListener.handleEvent
+(ActionContributionItem.java:47)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java
+(Compiled Code))
+at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java(Compiled
+Code))
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java
+(Compiled Code))
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java
+(Compiled Code))
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java
+(Compiled Code))
+at org.eclipse.ui.internal.Workbench.run(Workbench.java:738)
+at org.eclipse.core.internal.boot.InternalBootLoader.run
+(InternalBootLoader.java:777)
+at org.eclipse.core.boot.BootLoader.run(BootLoader.java:319)
+at java.lang.reflect.Method.invoke(Native Method)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:190)
+at org.eclipse.core.launcher.Main.run(Main.java:549)
+at org.eclipse.core.launcher.Main.main(Main.java:390)
+Looks like an accelerator / keybinding association problem, similar to what we
+saw with Backspace.

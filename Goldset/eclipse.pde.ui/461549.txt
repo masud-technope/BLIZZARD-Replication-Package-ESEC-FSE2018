@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target/P2TargetUtils.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/shared/target/TargetLocationsGroup.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/shared/target/Messages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/shared/target/messages.properties

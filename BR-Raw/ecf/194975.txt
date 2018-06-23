@@ -1,0 +1,7 @@
+Bug 194975 – Method to connect to providers is not obvious
+I think I've had at least three people talk to me on IRC, confused over how they can connect to IRC with ECF.
+Apparently, the little man icon just don't seem to catch people's eyes for some reason.
+Somewhere in our release notes, we need the awe-inspiring red rectangle, to capture the masses' attention.
+<nitind> I hear red rounded corner rectangles are all the rage...: http://www.eclipse.org/webtools/community/tutorials/XMLValidation/images/project-properties.png
+We may also want to redesign this whole deal so that the little man appears in other places.
+Or at least, provide IPCA connections through the MRV as you would kinda expect it to be there.

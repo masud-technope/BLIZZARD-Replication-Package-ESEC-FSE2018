@@ -1,0 +1,3 @@
+Bug 183072 – [Manifest][Editors] Add Sort button to Dependencies page
+The Dependencies sections of the manifest editor could use a 'Sort' button in the header like the Extensions page.
+Of course, the Up/Down buttons should be disabled when this action is selected.

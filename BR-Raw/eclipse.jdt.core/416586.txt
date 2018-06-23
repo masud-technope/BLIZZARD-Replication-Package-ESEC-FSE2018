@@ -1,0 +1,13 @@
+Bug 416586 – The doc for TagElement#fragments is confusing
+While generifying API tools I came across some use of TagElement#fragments and while trying to update our code I realized IDocElement is not an API (or even visible) class - which is mentioned in the API docs as the list type:
+* @return the live list of doc elements in this tag element
+* (element type: {@link IDocElement})
+*/
+public List fragments() {
+...
+}
+The doc does mention what kinds of nodes (implementations of IDocElement) can appear in the list, but it does not make sense to mention a private class in the API docs.
+Consumers basically have to do the following:
+List<ASTNode> fragments = tagelement.fragments();
+when they are expecting to be able to do (according to the docs):
+List<IDocElement> fragments = tagelement.fragments();

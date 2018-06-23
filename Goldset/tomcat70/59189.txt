@@ -1,0 +1,5 @@
+java/org/apache/tomcat/websocket/WsRemoteEndpointImplBase.java
+java/org/apache/tomcat/websocket/WsFrameBase.java
+java/org/apache/tomcat/websocket/PerMessageDeflate.java
+webapps/docs/changelog.xml
+java/org/apache/tomcat/websocket/Transformation.java

@@ -1,0 +1,4 @@
+Bug 421383 – [Graphics] Scaling issues on high DPI displays
+When using Eclipse on a high-resolution, high DPI monitor (such as the 3200x1800 display on the Lenovo Yoga 2 Pro) interface elements, primarily image buttons, do not scale correctly.
+They display much smaller than they should, and they are almost impossible to see.
+Using Eclipse on high-DPI displays is very difficult.

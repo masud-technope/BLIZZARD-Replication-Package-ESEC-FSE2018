@@ -1,0 +1,5 @@
+Bug 19623 – [ExternalTools] Display full command line for external tool
+It would be really, really great if you could see the full command line
+actually being run when you launch an external tool.
+ This makes debugging
+external tool setup way easier.

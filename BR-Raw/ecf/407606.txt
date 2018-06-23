@@ -1,0 +1,3 @@
+Bug 407606 – [TCK] Insufficient EndpointListener support
+In ECF 3.6.0 the EndpointListener support does not do all that the R5 spec requires.
+ This was discovered through TCK testing.

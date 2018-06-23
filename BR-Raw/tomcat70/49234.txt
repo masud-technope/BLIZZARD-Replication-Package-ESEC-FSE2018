@@ -1,0 +1,9 @@
+49234 – JMX Descriptor Modifications
+Created attachment 25378 [details]
+Descriptor Modification
+Package: org.apache.catalina
+I have slightly modified mbeans-descriptor.xml in above package as below.
+1.
+Removed username and password attributes from the User mbean object since it exposes username and the password of the users.
+2.
+Modified some attributes as non writeable according to the context.

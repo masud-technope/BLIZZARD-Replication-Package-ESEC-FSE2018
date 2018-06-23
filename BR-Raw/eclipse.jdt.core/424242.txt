@@ -1,0 +1,16 @@
+Bug 424242 – [1.8][compiler] Lambda expression signature mismatch message should include interface method signature
+Created attachment 238407 [details]
+Fix
+Example:
+void foo(java.util.Set<Integer> set) {
+set.removeIf((a, b) -> { });
+}
+See bug 424154 about the first error message.
+The second error is:
+set.removeIf((a, b) -> { });
+^^^^^^^^^
+Lambda expression's signature does not match the signature of the functional interface method
+This message doesn't contain enough information to quickly fix the problem.
+It would be good to include the actual functional interface method, so that a user (or a quick fix) immediately knows what's expected.
+Improved message:
+Lambda expression's signature does not match the signature of the functional interface method test(Integer)

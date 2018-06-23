@@ -1,0 +1,6 @@
+org.eclipse.jface.text.ListLineTracker.getLineInformation
+org.eclipse.jface.text.AbstractLineTracker.getLineInformation
+org.eclipse.jface.text.AbstractDocument.getLineInformation
+org.eclipse.core.internal.filebuffers.SynchronizableDocument.getLineInformation
+org.eclipse.jdt.internal.debug.ui.actions.ToggleBreakpointAdapter$2.run
+org.eclipse.core.internal.jobs.Worker.run

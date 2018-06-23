@@ -1,0 +1,20 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test49/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test49/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test50/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test50/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test51/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test51/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test52/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test52/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test53/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test53/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test54/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test54/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test55/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test55/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test56/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test56/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test57/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInstanceMethod/canMove/test57/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/MoveInstanceMethodTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/MoveInstanceMethodProcessor.java

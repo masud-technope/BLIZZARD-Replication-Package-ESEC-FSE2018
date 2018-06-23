@@ -1,0 +1,26 @@
+Bug 66413 – Illegal thread state when debugging to conditional BP on startup
+Further strangeness to bug 64951
+* condition is i == 57
+* change to Java perspective
+* shutdown workspace
+* restart workspace
+* re-launch last (debug mode)
+* Error dialog appears claiming a runtime exception occurred in the condition.
+The error dialog appears 4 to 6 times (stacked) and this is in the log:
+com.sun.jdi.IncompatibleThreadStateException: Thread was not suspended
+at java.lang.Throwable.<init>(Throwable.java)
+at java.lang.Throwable.<init>(Throwable.java)
+at com.sun.jdi.IncompatibleThreadStateException.<init>(IncompatibleThreadStateException.java:17)
+at org.eclipse.jdi.internal.ThreadReferenceImpl.frameCount(ThreadReferenceImpl.java:152)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.getUnderlyingFrameCount(JDIThread.java:629)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.computeStackFrames(JDIThread.java)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.computeNewStackFrames(JDIThread.java:528)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.handleConditionalBreakpointEvent(JavaLineBreakpoint.java:441)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.handleBreakpointEvent(JavaLineBreakpoint.java:367)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:263)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.run(EventDispatcher.java:221)
+at java.lang.Thread.run(Thread.java:806)
+Terminating and restarting the target works OK.
+Seems to be a problem with
+evaluating the condition on startup.

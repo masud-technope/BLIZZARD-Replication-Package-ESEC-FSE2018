@@ -1,0 +1,15 @@
+Bug 437847 – [type hierarchy] invoking Quick Type Hierarchy between import declarations yields an error
+Attempting to trigger Quick Type Hierarchy (Ctrl+T) on a blank line (or a line containing only comments) between two import declarations results in an empty Quick Type Hierarchy popup and an Error event in the log.
+I would expect Quick Type Hierarchy triggered in this location either
+a) to display the type hierarchy of the compilation unit's main type, as is done when QTH is triggered on other blank lines,
+b) to display the type hierarchy of one of the adjacent imports, or
+c) to do nothing (show no popup)
+I've attached a minimal Java file where this issue occurs.
+I've reproduced this on 4.3.2 and 4.4.RC4.
+Here are the Event Details for the event that gets logged:
+Severity:
+Error
+Message:
+Element unsupported by the hierarchy: class org.eclipse.jdt.internal.core.ImportContainer
+Exception Stack Trace:
+An exception stack trace is not available.

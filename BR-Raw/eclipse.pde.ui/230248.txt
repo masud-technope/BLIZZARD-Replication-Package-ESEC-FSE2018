@@ -1,0 +1,9 @@
+Bug 230248 – [open plug-in artifact] dialog should sort items better
+Created attachment 98668 [details]
+Screenshot
++++ This bug was initially created as a clone of Bug #214246 +++
+I20080502-0100
+The Open Plug-in Artifact dialog should sort its items
+- by kind (done with bug 214246)
+- by the fully qualified item name
+- by the name of the declaring plug-in (requested but not done with bug 214246)

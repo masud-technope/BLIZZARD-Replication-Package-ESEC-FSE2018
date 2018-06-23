@@ -1,0 +1,6 @@
+framework/bundles/org.eclipse.ecf/javadoc.xml
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/generic/ServerSOContainer.java
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/generic/TCPServerSOContainer.java
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/core/security/IConnectHandlerPolicy.java
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/generic/ClientSOContainer.java
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/app/ServerApplication.java

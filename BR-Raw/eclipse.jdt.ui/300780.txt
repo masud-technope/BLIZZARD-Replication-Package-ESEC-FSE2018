@@ -1,0 +1,25 @@
+Bug 300780 – [spell checking] NPE in SpellCheckEngine.resetUserDictionary on shutdown
+I20100124-2000
+- new workspace
+- paste a dummy class
+- Exit
+=> NPE in log:
+!ENTRY org.eclipse.ui.workbench.texteditor 4 2 2010-01-26 10:48:52.254
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.workbench.texteditor".
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.ui.text.spelling.SpellCheckEngine.resetUserDictionary(SpellCheckEngine.java:400)
+at org.eclipse.jdt.internal.ui.text.spelling.SpellCheckEngine.getSpellChecker(SpellCheckEngine.java:312)
+at org.eclipse.jdt.internal.ui.text.spelling.SpellingEngine.check(SpellingEngine.java:88)
+at org.eclipse.jdt.internal.ui.text.spelling.DefaultSpellingEngine.check(DefaultSpellingEngine.java:75)
+at org.eclipse.ui.texteditor.spelling.SpellingService$1.run(SpellingService.java:104)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.ui.texteditor.spelling.SpellingService.check(SpellingService.java:109)
+at org.eclipse.ui.texteditor.spelling.SpellingReconcileStrategy.reconcile(SpellingReconcileStrategy.java:198)
+at org.eclipse.jdt.internal.ui.text.spelling.JavaSpellingReconcileStrategy.reconcile(JavaSpellingReconcileStrategy.java:126)
+at org.eclipse.ui.texteditor.spelling.SpellingReconcileStrategy.initialReconcile(SpellingReconcileStrategy.java:169)
+at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.initialReconcile(CompositeReconcilingStrategy.java:114)
+at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.initialReconcile(JavaCompositeReconcilingStrategy.java:133)
+at org.eclipse.jface.text.reconciler.MonoReconciler.initialProcess(MonoReconciler.java:105)
+at org.eclipse.jdt.internal.ui.text.JavaReconciler.initialProcess(JavaReconciler.java:398)
+at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:173)

@@ -1,0 +1,29 @@
+Bug 160233 – PDE does not understand package import/export groupings
+The syntax for Import-Package and Export-Package allow for a list of packages to be grouped together to allow for a set of attributes to be applied to the complete group of packages.
+ For example, the icu bundle exports 4 packages each of which should have the version="3.4.5" attribute associated with it.
+ The way packages are grouped together is done by using the ';' char instead of the ',' char to separate the packages in a group.
+ For example:
+Export-Package:
+com.ibm.icu.lang;
+com.ibm.icu.math;
+com.ibm.icu.text;
+com.ibm.icu.util; version="3.4.5"
+instead of the following:
+Export-Package:
+com.ibm.icu.lang; version="3.4.5",
+com.ibm.icu.math; version="3.4.5",
+com.ibm.icu.text; version="3.4.5",
+com.ibm.icu.util; version="3.4.5"
+When a ',' char is found separating a package name that indicates a new group of packages.
+ See the OSGi R4 specification for more details on the syntax.
+When the first syntax is used PDE does not understand and will either give warnings or will show the packages incorrectly in the runtime and dependencies tabs in the manifest editor.
+ Strangely enough it seems that the correct data is being fed to the resolver because the packages get correctly exported from the bundle and can be successfull imported from another plug-in project using something like the following
+Import-Package:
+com.ibm.icu.lang;
+com.ibm.icu.math;
+com.ibm.icu.text;
+com.ibm.icu.util; version="3.4.5"
+I realize this syntax may be hard to model in the current manifest editor, but it should at least be able to handle reading the syntax and not giving strange errors.
+ If you are using the ManifestElement class from org.eclipse.osgi.util package then you should be able to handle parsing out the different packages when they are grouped together.
+ Then you can display the correct attributes for each package.
+ If the developer uses the UI to change the attributes of one package then it is likely ok to revert back the a ',' comma separated list of packages with duplicated attrs acrossed the different packages.

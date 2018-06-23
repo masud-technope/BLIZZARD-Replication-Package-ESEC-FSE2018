@@ -1,0 +1,9 @@
+Bug 170510 – [UI] No notifications are provided when IRC operators leaves the channel
+1.
+Join a new channel so you become an operator.
+2.
+Join the same channel on a different account using the org.eclipse.ecf.ui/org.eclipse.ecf.example.collab setup.
+3.
+Have your first account leave the channel with /part.
+4.
+No text messages are displayed in the channel's window to indicate that that user has left the channel.

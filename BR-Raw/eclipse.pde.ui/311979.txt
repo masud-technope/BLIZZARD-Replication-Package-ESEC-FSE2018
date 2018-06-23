@@ -1,0 +1,18 @@
+Bug 311979 – Validate/Add Required on junit plug-in launch does not consider both 'application' and 'app to test'
+1) Open a new junit plug-in launch configuration and select a test that can run headless
+2) Uncheck run in UI thread
+3) Set the application to [No Application]
+4) Open the plug-ins tab, deselect all
+5) Check a non-UI plug-in
+6) Hit select all required
+7) Hit validate (everything should be good to go)
+8) Launch
+Result:
+Launch fails because it can't find the "org.eclipse.pde.junit.runtime.nonuithreadtestapplication" application.
+The above steps will illustrate the problem, but there are other configurations that can have the same result.
+In Eclipse Launch configs there is a single application to launch.
+ In JUnit Plug-in configs there can be two applications to launch -application and -testApplication.
+ The plugins tab only checks -application when validating and adding required plug-ins.
+The solution is not as straightforward as checking both applications during validate.
+ When the "Run in UI thread" checkbox is unchecked, only -application is set, but the launch delegate will change the attributes.
+ The solution is probably to move the logic from the delegate to the Main Tab (which we are already subclassing).

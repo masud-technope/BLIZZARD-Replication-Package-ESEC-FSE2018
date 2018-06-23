@@ -1,0 +1,3 @@
+Bug 402892 – [1.8][formatter] Code formatter should understand type annotations
+BETA_JAVA8:
+We need formatter support for JSR308 style annotations.

@@ -1,0 +1,3 @@
+Bug 414029 – Adapt to new Platform Debug API
+With the changes in bug 352626 the launch config API has been generified and JDT debug uses some of it.
+This bug is to make sure I update to use it.

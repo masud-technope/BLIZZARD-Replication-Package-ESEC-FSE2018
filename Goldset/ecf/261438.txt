@@ -1,0 +1,1 @@
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/internal/provider/filetransfer/Activator.java

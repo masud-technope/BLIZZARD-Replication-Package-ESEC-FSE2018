@@ -1,0 +1,7 @@
+Bug 76439 – Classfile editor: Allow source attachment option for classes in class folders
+20041017
+When you open a class file for a class folder that has no source attchment you
+see a message 'No source available...' but no button that brings you to the
+source attachment page like it is done for JARs.
+ClassfileEditor line 225 is too restrictive, the test .isArchive() seems to be
+too much

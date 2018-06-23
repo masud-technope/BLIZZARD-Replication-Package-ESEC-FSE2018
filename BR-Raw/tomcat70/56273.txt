@@ -1,0 +1,5 @@
+56273 – Manager webapp: when command is skipped because web application is being serviced, say about it
+Looking at deploy/undeploy/upload methods in ManagerServlet, HtmlManagerServlet
+The methods call "if (!isServiced(name))"  and if the web application is being serviced (e.g.
+by another command running in parallel) the methods skip their work and report success.
+Instead of that they should report that they skipped their work.

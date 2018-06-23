@@ -1,0 +1,9 @@
+Bug 263514 – Support docshare in certain multi-page editors
+Created attachment 124590 [details]
+patch
+3.0.0.v20090127-1900
+DocShare collaboration is terrific, but it's limited to ITextEditor parts.
+ One idiom that we've adopted in WTP, and our adopter product, is to allow a mutli-page editor which doesn't implement ITextEditor itself to return ITextEditor as an adapter, providing access to its source page (assuming it only has one such page, we never worked out the semantics beyond that).
+ Most of the time this is the actual editor part embedded as the source page, providing a straightforward way to enable support in editors like WTP's XML Editor.
+I intend to add docshare to the WTP Source Editing M6 plan, but it would be a shame for our multi-page editors to not support this properly.
+ Patch attached adding the various calls in the DocShare plug-in to make use of this pattern, and remove an unnecessary restriction on its use with IFileEditorInput.

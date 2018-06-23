@@ -1,0 +1,6 @@
+Bug 309469 – Self-hosting eclipse starts update.configurator at start-level 3
+see bug280186 comment 16
+The old update.configurator bundle is getting the following in the bundles.info used for self-hosting ...
+org.eclipse.update.configurator/,3,true
+For the SDK this is set to
+org.eclipse.update.configurator/,4,false

@@ -1,0 +1,13 @@
+Bug 277382 – NPE and other failures in Parser
+I20090520-2000
+I got into a strange state while viewing the class file org.eclipse.team.ui.synchronize.SaveableCompareEditorInput.
+I did not have this project in my workspace.
+In my workspace I have org.eclipse.jface, and various core/equinox projects.
+I also had several other text editors open on HTML doc files.
+I will attach the log file, but here is a sample error:
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.parser.Parser.consumeClassHeaderName1(Parser.java:2258)
+at org.eclipse.jdt.internal.compiler.parser.Parser.consumeRule(Parser.java:5284)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:9338)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:9568)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:9525)

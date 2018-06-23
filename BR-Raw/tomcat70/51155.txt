@@ -1,0 +1,5 @@
+51155 – Missing @deprecated comments
+Created attachment 26961 [details]
+Patch to add the missing comments
+There are several @deprecated tags without any information at all.
+The tags should say when the deprecation was added and what the replacement is.

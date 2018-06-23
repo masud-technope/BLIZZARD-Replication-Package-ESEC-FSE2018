@@ -1,0 +1,4 @@
+tests/bundles/org.eclipse.ecf.tests.provider.xmpp/src/org/eclipse/ecf/tests/provider/xmpp/remoteservice/RemoteServiceTest.java
+tests/bundles/org.eclipse.ecf.tests.remoteservice/src/org/eclipse/ecf/tests/remoteservice/AbstractRemoteServiceTest.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/XMPPRemoteServiceAdapterFactory.java
+providers/bundles/org.eclipse.ecf.provider.remoteservice/src/org/eclipse/ecf/provider/remoteservice/generic/RegistrySharedObject.java

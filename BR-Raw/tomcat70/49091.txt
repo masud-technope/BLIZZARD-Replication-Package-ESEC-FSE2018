@@ -1,0 +1,2 @@
+49091 – Util.specialCharactersRepresentation should be private
+jasper.tagplugins.jstl.Util.specialCharactersRepresentation is a mutable public static array; it is not used outside the class as far as I can tell and so should be made private

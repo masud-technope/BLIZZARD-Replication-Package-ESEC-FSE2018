@@ -1,0 +1,49 @@
+Bug 441790 – AnnotationValue.toString is creating incorrect and truncated text that cannot be used in source code
+Created attachment 245994 [details]
+Example project showing the difference between javac reference apt and jdt apt
+I am using annotations containing multiple attributes.
+In an AnnotationProcessor I create a copy of the class together with all ist annotations.
+According to the APT specs the method AnnotationValue#toString() should:
+"Returns a string representation of this value.
+This is returned in a form suitable for representing this value
+in the source code of an annotation."
+http://docs.oracle.com/javase/7/docs/api/javax/lang/model/element/AnnotationValue.html#toString()
+In the standard javac processor this works as expected.
+However the jdt apt implementation is not really creating such text.
+I created an example hello world application with an Annotation processor that creates and shows the differences between javac apt and eclipse jdt apt.
+The eclipse apt is run implicitly using a local lib/....jar of the processor.
+The javac apt is run using Junit-Run.
+There are threee examples in that test project.
+The first Looks like this:
+@CreateCopy
+@TestAnnotation1(
+annotationValue = @SuppressWarnings("unused"),
+booleanValue = true,
+enumValue = RoundingMode.UP,
+intValue = 1,
+stringValue = "hello",
+typeValue = ArrayList.class)
+public class TestClass1 {
+}
+javac apt generates valid source code:
+@org.eclipse.apt.example.TestAnnotation1(
+annotationValue = @java.lang.SuppressWarnings({"unused"}),
+booleanValue = true,
+enumValue = java.math.RoundingMode.UP,
+intValue = 1,
+stringValue = "hello",
+typeValue = java.util.ArrayList.class
+)
+public class TestClass1CopyByJavacProcessingEnvironment{
+}
+eclipse apt generates invalid source code:
+@org.eclipse.apt.example.TestAnnotation1(
+annotationValue = @java.lang.SuppressWarnings,
+booleanValue = true,
+enumValue = UP,
+intValue = 1,
+stringValue = hello,
+typeValue = java.util.ArrayList
+)
+public class TestClass1CopyByIdeBuildProcessingEnvImpl{
+}

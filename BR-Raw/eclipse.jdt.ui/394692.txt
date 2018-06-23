@@ -1,0 +1,2 @@
+Bug 394692 – [quick fix] Fix several visibility issues
+Top-Level Bug for several quick-fix visibility bugs which can be fixed in one go.

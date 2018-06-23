@@ -1,0 +1,15 @@
+Bug 374605 – Unreasonable warning for enum-based switch statements
+With 3.8M6 the following code produces the warning "The switch on the enum type Test.TestEnum should have a default case".
+Why is default case necessary if all enum values are covered by the switch?
+public class Test {
+private static enum TestEnum { ONE, TWO }
+public void test(TestEnum p) {
+switch (p) {
+case ONE:
+break;
+case TWO:
+break;
+}
+}
+}
+The warning is new in M6 and was not present in M5.

@@ -1,0 +1,16 @@
+49570 – The CompressionFilter example should support HTTP proxies to cache gzipped content better by sending Vary: Accept-Encoding header
+At the moment the Compression Filter example doesn't send the header "Vary: Accept-Encoding" with the compressed content (see method writeToGZip(..) in http://svn.apache.org/repos/asf/tomcat/trunk/webapps/examples/WEB-INF/classes/compressionFilters/CompressionResponseStream.java).
+From many sources like
+1.
+http://httpd.apache.org/docs/2.0/mod/mod_deflate.html#proxies
+2.
+http://developer.yahoo.net/blog/archives/2007/07/high_performanc_3.html
+it looks like a "Vary: Accept-Encoding" header should be sent with the compressed content to make sure proxy servers can serve gzipped content correctly.
+To enhance this example, the method writeToGzip(..) should be updated to send Vary: Accept-Encoding header like below:
+public void writeToGZip(byte b[], int off, int len) throws IOException {
+...
+response.addHeader("Content-Encoding", "gzip");
+response.addHeader("Vary", "Accept-Encoding");
+gzipstream = new GZIPOutputStream(output);
+...
+}

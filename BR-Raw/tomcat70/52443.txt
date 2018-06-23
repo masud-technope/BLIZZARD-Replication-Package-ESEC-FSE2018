@@ -1,0 +1,33 @@
+52443 – Tomcat#defaultRealm shares Realm instance between web applications, resulting in INFO log message from lifecycle
+Created attachment 28129 [details]
+2012-01-09_trunk_TestTomcat_twoapps.patch
+Inspired by this thread on dev@:
+http://tomcat.markmail.org/thread/5qxa7gjsaav4ytcd
+"problem using default Realm in new unit tests"
+The problem is the following:
+1.
+Tomcat.getDefaultRealm() is effectively a factory method for some Realm instance.
+It creates this Realm once and caches it as Tomcat#defaultRealm
+2.
+Tomcat.addWebapp() method calls ctx.setRealm(defaultRealm); for every Context that it creates.
+Thus the Realm instance is shared between web applications.
+3.
+When Context starts it calls start() method on the realm.
+When the above method was used to create several web applications then during the start of the second and later ones the following message is logged:
+09.01.2012 19:19:29 org.apache.catalina.util.LifecycleBase start
+INFO: The start() method was called on component [Realm[Simple]] after start() had already been called.
+The second call will be ignored.
+To reproduce:
+1) Apply attached patch to org.apache.catalina.startup.TestTomcat of trunk.
+2) Run the test.
+3) See the above "The start() method was called" message in the logs.
+I think there are several ways to resolve this:
+a) Do not call start() on the Realm if it is already started, as indicated by Lifecycle.getState()
+b) Change Tomcat class to do not share the Realm instance between Contexts.
+b.1) assign it to the Engine, or
+b.2) create a new instance every time.
+The a) way may lead to problems when the Context is stopped.
+It is not clear whether the Realm shall be stopped or not.
+It it is stopped it will affect another webapp.
+It may also cause problems with asynchronous start of contexts implemented in 7.0.23+.
+The b) way is consistent with what happens when server.xml is parsed.

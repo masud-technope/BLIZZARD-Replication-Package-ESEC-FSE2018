@@ -1,0 +1,7 @@
+48870 – avoid parallel arrays of base types
+Created attachment 25103 [details]
+patch_parallelArrays.txt
+having kind of 'synchronized' arrays, i.e.
+one of Strings and another one of Integers appears to be a questionable programming pattern to me.
+Pls find attached a hopefully more OO approach
+see also bug 48158

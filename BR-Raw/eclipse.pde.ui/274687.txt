@@ -1,0 +1,3 @@
+Bug 274687 – [target] Reloading a target platform containing delta-pack always out of synch
+I20090430-2300
+If I press re-load on a target platform that contains ${eclipse_home} and the delta-pack, PDE always thinks its out of synch and re-sets the target platform.

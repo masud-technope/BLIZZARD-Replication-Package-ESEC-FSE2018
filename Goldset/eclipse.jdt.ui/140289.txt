@@ -1,0 +1,6 @@
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/model/TestRunSession.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/model/TestRunSession.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/model/TestElement.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/TestSessionLabelProvider.java
+org.eclipse.jdt.junit4.runtime/src/org/eclipse/jdt/internal/junit4/runner/JUnit4TestListener.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/model/TestElement.java

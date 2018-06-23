@@ -1,0 +1,5 @@
+Bug 424166 – [quick assist] Add key binding for Extract method Quick Assist
+Cannot bind inplace (dialogless) extract method refactoring to keyboard shortcut, it is only available in quick fix menu.
+This minor issue is, probably, an accidental omission, so quick fix action is not registered for key binding.
+Could be fixed in a manner demonstrated by commit in my JDT fork
+https://github.com/elucash/eclipse2013/commit/0d762ef3f951d828e688dfdc10b225aa976e2b47

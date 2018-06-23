@@ -1,0 +1,13 @@
+java/org/apache/catalina/ant/RolesTask.java
+java/org/apache/catalina/ant/antlib.xml
+java/org/apache/catalina/ant/catalina.tasks
+java/org/apache/catalina/manager/LocalStrings.properties
+java/org/apache/catalina/manager/LocalStrings_de.properties
+java/org/apache/catalina/manager/LocalStrings_es.properties
+java/org/apache/catalina/manager/LocalStrings_fr.properties
+java/org/apache/catalina/manager/LocalStrings_ja.properties
+java/org/apache/catalina/manager/ManagerServlet.java
+webapps/docs/changelog.xml
+webapps/docs/html-manager-howto.xml
+webapps/docs/manager-howto.xml
+webapps/manager/WEB-INF/web.xml

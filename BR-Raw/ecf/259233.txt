@@ -1,0 +1,2 @@
+Bug 259233 – [Discovery][JMDNS] URI path is lost over discovery
+URI path segment is lost over discovery

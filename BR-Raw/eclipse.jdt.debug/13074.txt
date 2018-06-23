@@ -1,0 +1,23 @@
+Bug 13074 – NPE evaluating fully qualified array declaration
+Build 20020402
+IBM JRE 1.3.0
+1) I had a breakpoint in
+org.eclipse.core.internal.events.NotificationManager#broadCastChanges(ElementTre
+e, int, boolean, boolean)
+2) Then I modified and saved a file in the Eclipse test instance, which causes
+the breakpoint to be hit.
+3) I stepped over the line where the field "IResourceDelta delta" was defined.
+4) Then in the display view I tried to evaluate the following snippet (bugzilla
+will wrap it, but I had one statement per line):
+org.eclipse.core.resources.IResourceDelta[] children =
+delta.getAffectedChildren();
+System.out.println(children[0].toString());
+This causes the following internal error (top of stack shown below, complete
+stack attached).
+java.lang.NullPointerException
+at
+org.eclipse.jdt.internal.debug.eval.ast.engine.ASTInstructionCompiler.getQualifi
+edName(ASTInstructionCompiler.java:2168)
+at
+org.eclipse.jdt.internal.debug.eval.ast.engine.ASTInstructionCompiler.visit(ASTI
+nstructionCompiler.java:944)

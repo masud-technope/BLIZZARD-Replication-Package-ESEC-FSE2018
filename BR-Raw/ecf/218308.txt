@@ -1,0 +1,7 @@
+Bug 218308 – [Discovery][jSLP] org.eclipse.ecf.discovery.IDiscoveryContainerAdapter.getServices() doesn't return all "reachable" services
+Contrary to JMDNS, org.eclipse.ecf.discovery.IDiscoveryContainerAdapter.getServices() doesn't return all "reachable" (in terms of network reachability etc.) services.
+This is because per RFC a ServiceRequest/ServiceTypeRequest cannot be set to be valid for all scopes.
+Only the default scope (if omitted) or the given scope list is considered.
+Unfortunately manually discovering of all available scopes before sending the ServiceRequest isn't possible, because it is unsupported by the RFC.
+Technically jSLP itself could be enhanced to at least use all known scopes (e.g.
+obtained via a DAAdvertisement), but a DAAdv doesn't necessarily contain all scopes.

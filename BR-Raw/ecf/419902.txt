@@ -1,0 +1,2 @@
+Bug 419902 – [r-OSGi] NPE ch.ethz.iks.r_osgi.impl.ChannelEndpointImpl.updateTopics(String[], String[])
+ch.ethz.iks.r_osgi.impl.ChannelEndpointImpl.updateTopics(String[], String[]) potentially causes a subsequent NPE if the String[] of topicsAdded is null.

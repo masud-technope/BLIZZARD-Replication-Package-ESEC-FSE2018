@@ -1,0 +1,15 @@
+java.lang.System.arraycopy
+org.apache.coyote.http11.AbstractOutputBuffer.write
+org.apache.coyote.http11.AbstractOutputBuffer.sendStatus
+org.apache.coyote.http11.AbstractHttp11Processor.prepareResponse
+org.apache.coyote.http11.AbstractHttp11Processor.action
+org.apache.coyote.Response.action
+org.apache.coyote.http11.AbstractOutputBuffer.endRequest
+org.apache.coyote.http11.InternalOutputBuffer.endRequest
+org.apache.coyote.http11.AbstractHttp11Processor.endRequest
+org.apache.coyote.http11.AbstractHttp11Processor.process
+org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process
+org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run
+java.util.concurrent.ThreadPoolExecutor.runWorker
+java.util.concurrent.ThreadPoolExecutor$Worker.run
+java.lang.Thread.run

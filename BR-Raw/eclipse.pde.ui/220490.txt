@@ -1,0 +1,5 @@
+Bug 220490 – [prov] Rename bundles.txt and source.bundles.txt
+Created attachment 90816 [details]
+patch doing the rename
+p2 is renaming the bundles.txt and the source.bundles.txt.
+As a consequence PDE needs to be updated.

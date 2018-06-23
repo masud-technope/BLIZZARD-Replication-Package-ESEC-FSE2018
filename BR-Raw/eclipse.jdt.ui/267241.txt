@@ -1,0 +1,21 @@
+Bug 267241 – RenameTypePerfAcceptanceTests (aka "Rename of Control") bogus
+Created attachment 127681 [details]
+Fix for HEAD
+I20090304-0834, probably been like this during whole 3.5
+RenameTypePerfAcceptanceTests (aka "Rename of Control") fails:
+junit.framework.AssertionFailedError: expected:<true> but was:<false>
+at org.eclipse.jdt.ui.tests.refactoring.infra.RefactoringPerformanceTestCase.executeRefactoring(RefactoringPerformanceTestCase.java:53)
+at org.eclipse.jdt.ui.tests.refactoring.infra.RefactoringPerformanceTestCase.executeRefactoring(RefactoringPerformanceTestCase.java:38)
+at org.eclipse.jdt.ui.tests.refactoring.infra.RefactoringPerformanceTestCase.executeRefactoring(RefactoringPerformanceTestCase.java:34)
+at org.eclipse.jdt.ui.tests.refactoring.reorg.RenameTypePerfAcceptanceTests.testCold(RenameTypePerfAcceptanceTests.java:68)
+at junit.extensions.TestDecorator.basicRun(TestDecorator.java:24)
+at junit.extensions.TestSetup$1.protect(TestSetup.java:21)
+at junit.extensions.TestSetup.run(TestSetup.java:25)
+at org.eclipse.test.EclipseTestRunner.run(EclipseTestRunner.java:354)
+at org.eclipse.test.EclipseTestRunner.run(EclipseTestRunner.java:206)
+at org.eclipse.test.UITestApplication$3.run(UITestApplication.java:195)
+Problem is that the tests are now run on a 1.5 JRE.
+The tests create a project and fill it with SWT source, but they don't set a compiler compliance.
+This makes the refactoring fail because e.g.
+GridLayout uses 'enum' as identifier.
+Fix is in org.eclipse.jdt.ui.tests.performance.SWTTestProject and could also affect other tests.

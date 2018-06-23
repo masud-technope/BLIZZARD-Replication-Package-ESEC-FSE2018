@@ -1,0 +1,11 @@
+Bug 132893 – Extension points declared in fragments get wrong namespace
+I20060321-1210
+When I create an extension point in a fragment, and then try to create an extension for this extension point, the extension point wizaard will indicate <framgnetId>.xptId instead of <pluginId>.xptId.
+For example try the following markup:
+<fragment>
+<extension-point id="pascal" name="pascal xpt" schema="schema/pascal.exsd"/>
+<extension
+point="org.eclipse.core.runtime.pascal">
+<Generic/>
+</extension>
+</fragment>

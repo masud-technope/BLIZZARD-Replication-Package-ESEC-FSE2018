@@ -1,0 +1,2 @@
+Bug 446237 – [examples][remoteservices] Remote Service Example - GitHub
+Create an example to hook into the GitHub API with remote services.

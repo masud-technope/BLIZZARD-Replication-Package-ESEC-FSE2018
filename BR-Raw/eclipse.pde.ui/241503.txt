@@ -1,0 +1,9 @@
+Bug 241503 – Cycles in Dependency Graph should be resizable
+Created attachment 107898 [details]
+cycles dependency graph
+Build ID: 3.4
+Steps To Reproduce:
+Plugin dependencies View
+Show Cycles in Dependency Graph
+More information:
+see screenshot: the window should be resizable to see all or to make screenshots from these cycles

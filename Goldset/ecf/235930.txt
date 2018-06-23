@@ -1,0 +1,3 @@
+incubation/bundles/org.eclipse.ecf.mylyn.ui/src/org/eclipse/ecf/internal/mylyn/ui/Activator.java
+incubation/bundles/org.eclipse.ecf.mylyn.ui/src/org/eclipse/ecf/internal/mylyn/ui/CompoundContextActivationContributionItem.java
+incubation/bundles/org.eclipse.ecf.mylyn.ui/src/org/eclipse/ecf/internal/mylyn/ui/IncomingSharedTaskNotificationPopup.java

@@ -1,0 +1,14 @@
+Bug 7845 – API needed in Combo class to specify # of items visible
+We need an API for org.eclipse.swt.widgets.Combo that will allow us to specify
+the number of visible elements.
+This is needed for usability enhancement.
+It is
+acceptable if this feature is not supported on all platforms.
+We are primarily
+concerned with the feature working on Windows systems.
+This issue was raised because the setBounds(int, int, int, int, int) method in
+Combo in the Windows version of Eclipse automatically sets the number of
+elements visible to 5.
+For the drop down perspectives list on the Eclipse
+toolbar in particular, we wanted to be able to specify the number of elements
+that would be shown without a scrollbar appearing.

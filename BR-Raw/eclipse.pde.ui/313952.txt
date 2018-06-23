@@ -1,0 +1,16 @@
+Bug 313952 – NPE from import page crashes Eclipse
+1) Get or create a plug-in project that has the PDE nature, but no manifest
+2) File > Import > Plug-ins and Fragments
+3) Error occurs
+4) Hit cancel button, another error occurs
+5) Hit the cancel button at top right
+Result:
+My Eclipse session bombs.
+The import wizard can't open because of
+java.lang.NullPointerException
+at org.eclipse.pde.internal.ui.wizards.imports.PluginImportLabelProvider.getStyledText(PluginImportLabelProvider.java:57)
+at org.eclipse.pde.internal.ui.wizards.imports.PluginImportLabelProvider.getText(PluginImportLabelProvider.java:39)
+The import wizard then can't close because of
+java.lang.NullPointerException
+at org.eclipse.pde.internal.ui.wizards.imports.PluginImportWizardDetailedPage.dispose(PluginImportWizardDetailedPage.java:647)
+at org.eclipse.jface.wizard.Wizard.dispose(Wizard.java:188)

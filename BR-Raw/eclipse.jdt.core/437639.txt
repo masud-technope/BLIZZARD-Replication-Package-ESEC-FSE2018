@@ -1,0 +1,16 @@
+Bug 437639 – [formatter] ArrayIndexOutOfBoundsException while formatting source code
+While formatting the source code it gives following exception -
+java.lang.ArrayIndexOutOfBoundsException: -1
+at org.eclipse.jdt.internal.formatter.Scribe.getNewLineString(Scribe.java:1137)
+at org.eclipse.jdt.internal.formatter.Scribe.getEmptyLines(Scribe.java:1062)
+at org.eclipse.jdt.internal.formatter.Scribe.printEmptyLines(Scribe.java:3050)
+at org.eclipse.jdt.internal.formatter.Scribe.preserveEmptyLines(Scribe.java:1584)
+at org.eclipse.jdt.internal.formatter.Scribe.printComment(Scribe.java:2584)
+at org.eclipse.jdt.internal.formatter.Scribe.printComment(Scribe.java:2414)
+at org.eclipse.jdt.internal.formatter.CodeFormatterVisitor.format(CodeFormatterVisitor.java:714)
+at org.eclipse.jdt.internal.formatter.CodeFormatterVisitor.visit(CodeFormatterVisitor.java:3294)
+With analysis I found out the root cause to be commented import statement as shown below -
+import org.hibernate.validator.HibernateValidator;
+import org.hibernate.validator.HibernateValidatorConfiguration;
+//import javax.validation.*;
+import javax.validation.Configuration;

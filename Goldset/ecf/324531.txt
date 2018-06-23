@@ -1,0 +1,4 @@
+tests/bundles/org.eclipse.ecf.tests.sharedobject/src/org/eclipse/ecf/tests/sharedobject/TransactionSharedObjectTest.java
+framework/bundles/org.eclipse.ecf.sharedobject/src/org/eclipse/ecf/core/sharedobject/events/SharedObjectCommitEvent.java
+framework/bundles/org.eclipse.ecf.sharedobject/META-INF/MANIFEST.MF
+tests/bundles/org.eclipse.ecf.tests.sharedobject/src/org/eclipse/ecf/tests/sharedobject/TestTransactionSharedObject.java

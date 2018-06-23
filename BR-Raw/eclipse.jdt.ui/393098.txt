@@ -1,0 +1,22 @@
+Bug 393098 – [extract method] Extracted method should be declared static if extracted expression is also used in another static method
+Extracted method should be declared static if extracted expression is also used in another static method.
+Steps to reproduce:
+1.
+In the example below invoke "Extract Method" on "shared()" expression in non-static method (nsm).
+2.
+New method will not be declared as static.
+3.
+There will be a compilation error because non-static method is invoked from static context.
+Note: Originally the bug was encountered when extracting "getTestConstructor(theClass)" on line 136 in junit.framework.TestSuite, JUnit commit e8b91fa9f797dfe16aff66ed6ad5d6104e5133fe.
+public class ExtractMethodBug {
+public static void sm() {
+// Compilation error will be on the next line
+shared();
+}
+public void nsm() {
+// Invoke Extract Method refactoring on the "shared()" expression
+shared();
+}
+public static void shared() {
+}
+}

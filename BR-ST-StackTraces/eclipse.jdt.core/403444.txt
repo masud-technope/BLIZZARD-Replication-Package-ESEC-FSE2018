@@ -1,0 +1,3 @@
+org.eclipse.jdt.core.dom.DefaultBindingResolver.resolveExpressionType
+org.eclipse.jdt.core.dom.Expression.resolveTypeBinding
+org.eclipse.jdt.astview.views.ASTViewContentProvider.getNodeChildren

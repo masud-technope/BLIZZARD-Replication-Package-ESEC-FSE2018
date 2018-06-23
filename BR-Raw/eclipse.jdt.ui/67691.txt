@@ -1,0 +1,3 @@
+Bug 67691 – NLS: JavaEditor has a non-nlsed string (job name)
+RC2
+"Override indicator installation job"

@@ -1,0 +1,14 @@
+org.eclipse.jdt.internal.junit.buildpath.P2Utils.findBundle
+org.eclipse.jdt.internal.junit.buildpath.P2Utils.findBundle
+org.eclipse.jdt.internal.junit.buildpath.BuildPathSupport.getJUnitLibraryEntry
+org.eclipse.jdt.internal.junit.buildpath.BuildPathSupport.getJUnit3LibraryEntry
+org.eclipse.jdt.internal.junit.buildpath.JUnitContainerInitializer.getNewContainer
+org.eclipse.jdt.internal.junit.buildpath.JUnitContainerInitializer.initialize
+org.eclipse.jdt.internal.core.JavaModelManager.initializeContainer
+org.eclipse.jdt.internal.core.JavaModelManager$11.run
+org.eclipse.core.internal.resources.Workspace.run
+org.eclipse.jdt.internal.core.JavaModelManager.initializeAllContainers
+org.eclipse.jdt.internal.core.JavaModelManager.getClasspathContainer
+org.eclipse.jdt.core.JavaCore.initializeAfterLoad
+org.eclipse.jdt.internal.ui.InitializeAfterLoadJob$RealJob.run
+org.eclipse.core.internal.jobs.Worker.run

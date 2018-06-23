@@ -1,0 +1,3 @@
+Bug 93567 – ContextInformationPopup leaks CompletionEngines?
+N20050503-0010
+Yourkit memory snapshot N20050503-0010_1.5.0_20050503-1905.memory on my machine.

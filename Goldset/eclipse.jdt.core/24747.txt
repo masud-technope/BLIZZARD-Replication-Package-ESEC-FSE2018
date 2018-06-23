@@ -1,0 +1,4 @@
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/BaseTypeBinding.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/ArrayBinding.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/TypeBinding.java

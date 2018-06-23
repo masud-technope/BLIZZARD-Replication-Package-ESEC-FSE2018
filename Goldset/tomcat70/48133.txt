@@ -1,0 +1,11 @@
+java/org/apache/catalina/core/ApplicationDispatcher.java
+java/org/apache/catalina/core/ApplicationFilterFactory.java
+java/org/apache/catalina/core/ApplicationHttpRequest.java
+java/org/apache/catalina/core/ContainerBase.java
+java/org/apache/catalina/core/StandardContext.java
+java/org/apache/catalina/core/StandardEngine.java
+java/org/apache/catalina/core/StandardHost.java
+java/org/apache/catalina/core/StandardPipeline.java
+java/org/apache/catalina/core/StandardService.java
+java/org/apache/catalina/core/StandardWrapperFacade.java
+java/org/apache/catalina/core/StandardWrapperValve.java

@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/WorkspaceProductModel.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/site/WorkspaceSiteModel.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/ProductInfoSection.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/cheatsheet/comp/CompCSWorkspaceModel.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target/WorkspaceTargetModel.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/feature/WorkspaceFeatureModel.java

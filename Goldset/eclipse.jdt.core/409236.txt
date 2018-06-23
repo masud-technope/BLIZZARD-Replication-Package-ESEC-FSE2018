@@ -1,0 +1,6 @@
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/TypeAnnotationTest.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ClassFile.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/IntersectionCastTypeReference.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/TypeReference.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/codegen/CodeStream.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/ExtendedAnnotation.java

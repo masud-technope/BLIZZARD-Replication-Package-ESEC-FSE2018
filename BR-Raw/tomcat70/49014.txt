@@ -1,0 +1,5 @@
+49014 – Add RemoteIpFilter test case
+Created attachment 25204 [details]
+TestRemoteIpFilter.java
+I didn't attach test cases to the RemoteIpFilter when I proposed it because I didn't know how to use  the embedded Tomcat.
+I learned how to use it so here are the test cases.

@@ -1,0 +1,7 @@
+Bug 210026 – Problem in PluginModelManager
+There is a scenario that allows an external model to the resolver state even if there is an equivalent workspace model.
+ The resolver state should contain only workspace bundles when there are equivalent external models.
+ This is so the resolver state will resolve dependencies using the workspace instance.
+When a model change event comes through the PluginModelManager, if the oldId and newId equal each other, the model is automatically added to the state if it is enabled, or removed if it is disabled.
+ The model should be added/removed only if it is one of the active models.
+ Otherwise, we have an inactive model (external model with equivalent workspace model) being added to the state when it is checked in the target platform preference page.

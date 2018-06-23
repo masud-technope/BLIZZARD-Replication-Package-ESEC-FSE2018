@@ -1,0 +1,13 @@
+38113 – getQueryString returns null instead of empty-string
+The method getQueryString in class org.apache.catalina.connector.Request returns
+null, instead of an empty string for a URL of the form http://foo/bar? as
+required by the specification.
+ A correct implementation of the method is as
+follows:
+/**
+* Return the query string associated with this request.
+*/
+public String getQueryString() {
+Object qStrObj = coyoteRequest.queryString();
+return ((qStrObj == null) ? null : qStrObj.toString());
+}

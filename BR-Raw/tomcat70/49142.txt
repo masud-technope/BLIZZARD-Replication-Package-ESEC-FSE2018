@@ -1,0 +1,8 @@
+49142 – Missing serialVersionUIDs
+org.apache.catalina.ha.ClusterMessageBase is Serializable; consider declaring a serialVersionUID
+Similarly for:
+org.apache.catalina.ha.session.ReplicatedSession
+org.apache.catalina.ha.session.SerializablePrincipal
+org.apache.catalina.session.StandardSession
+org.apache.catalina.tribes.tipis.AbstractReplicatedMap.MapMessage
+org.apache.tomcat.util.modeler.ManagedBean

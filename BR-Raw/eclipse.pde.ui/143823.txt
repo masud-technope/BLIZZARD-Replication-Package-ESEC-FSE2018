@@ -1,0 +1,14 @@
+Bug 143823 – XML parser is instantiated and utilized for only one XML instance document parse and discarded
+XML parsers are utilized throughout PDE to perform many tasks.
+XML parsers are heavyweight items that are designed to be instantiated
+and configured once and used to parse many different XML instance documents
+before being discarded.
+Noticed in PDE that XML parsers are instantiated and utilized for
+only one XML instance document parse and discarded.
+ This causes an
+unnecessary degradation of performance.
+One situation where this is particularly bad is during Plug-in manifest
+source edits where the content is constantly being revalidated causing
+new XML parsers to be constantly created and discarded.
+Solution is to create a parser once for a particular task and store it
+for reuse

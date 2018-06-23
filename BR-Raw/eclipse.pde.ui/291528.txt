@@ -1,0 +1,4 @@
+Bug 291528 – Synchronize project warning/error settings to build.properties
+JDT added the ability in the batch compiler to specify that some warnings should instead be errors (bug 280784).
+PDE/Build will add support for specifying errors in the build.properties, support already exists for warnings.
+If a project has project specific settings for warning/error levels, we should synchronize these to the build.properties file.

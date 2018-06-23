@@ -1,0 +1,95 @@
+Bug 202245 – [typing] Indent multi line action should behave like the formatter does
+Created attachment 77694 [details]
+failing test cases
+I20070828-0800
+1.
+test case:
+Formatter options
+- Indent empty lines: false
+- never indent block comments on first column: true
+- never indent line comments on first column: true
+Given:
+public class Bug {
+____public int field;
+//
+/*
+_*_
+_*/
+}
+Is:
+public class Bug {
+____public int field;
+____/*
+_____*_
+_____*/
+}
+Should:
+no changes
+2.
+test case:
+Formatter options
+- Indent empty lines: true
+- never indent block comments on first column: true
+- never indent line comments on first column: true
+Given:
+public class Bug {
+____public int field;
+//
+/*
+_*_
+_*/
+}
+Is:
+public class Bug {
+____public int field;
+____
+//__
+____/*
+_____*_
+_____*/
+}
+Should:
+Not sure, the formatter does not add the indentation after the single line comment.
+The indent action does, I guess it is a feature and makes sense when commenting code to tread such a line as an empty line.
+But formatter should do the same.
+But then strictly spoken: this is not an empty line...
+public class Bug {
+____public int field;
+____
+//
+/*
+_*_
+_*/
+}
+3.
+test case:
+Formatter options
+- Indent empty lines: true
+- never indent block comments on first column: false
+- never indent line comments on first column: false
+Given:
+public class Bug {
+____public int field;
+//__
+/*
+_*_
+_*/
+}
+Is:
+public class Bug {
+____public int field;
+____
+//__
+____/*
+_____*_
+_____*/
+}
+Should:
+public class Bug {
+____public int field;
+____
+____//__
+____/*
+_____*_
+_____*/
+}

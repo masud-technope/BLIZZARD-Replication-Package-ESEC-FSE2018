@@ -1,0 +1,6 @@
+org.apache.catalina.startup.HostConfig.filterAppPaths
+org.apache.catalina.startup.HostConfig.deployApps
+org.apache.catalina.startup.HostConfig.start
+org.apache.catalina.startup.HostConfig.lifecycleEvent
+org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent
+org.apache.catalina.util.LifecycleBase.fireLifecycleEvent

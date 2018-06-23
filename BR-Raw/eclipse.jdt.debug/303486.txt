@@ -1,0 +1,10 @@
+
+Bug 303486 – testDeclaringTypes is failing on Linux/Mac
+Since N20100218, testDeclaringTypes seems to be failing on Mac/Linux.
+junit.framework.AssertionFailedError: Program did not suspend.
+at org.eclipse.jdt.debug.tests.AbstractDebugTest.resume(AbstractDebugTest.java:697)
+at org.eclipse.jdt.debug.tests.AbstractDebugTest.resume(AbstractDebugTest.java:678)
+at org.eclipse.jdt.debug.tests.core.TypeTests.testDeclaringTypes(TypeTests.java:73)
+at org.eclipse.jdt.debug.tests.AbstractDebugTest.runBare(AbstractDebugTest.java:1763)
+at org.eclipse.jdt.debug.tests.DebugSuite$1.run(DebugSuite.java:54)
+at java.lang.Thread.run(Thread.java:595)

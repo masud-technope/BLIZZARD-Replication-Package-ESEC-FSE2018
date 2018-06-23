@@ -1,0 +1,14 @@
+53169 – [patch] don't do chunking with Connection: close
+Created attachment 28702 [details]
+patch against trunk
+The attached patch disables chunking on if there is a Connection: close header, we're on HTTP 1.1 and there's no Content-Length header.
+This helps to implement Server-Sent Events [1].
+Server-Sent Event are conceptually similar to the forever streaming iframe in the sense that there's an "infinite" response from the server that always gets updated.
+But they're easier to use and with less issues.
+They are also easier to use than WebSockets if you don't need a back channel.
+The specification reccoments to disable chunking.
+Jetty implements the same behavior, when there's a Connection: close header it doesn't do chunking.
+The following discussion [2] leads me to believe that patches would be welcome.
+The patch comes with unit tests that verify that there is still chunking happending when there is no Connection: close header.
+[1] http://dev.w3.org/html5/eventsource/#notes
+[2] http://tomcat.10.n6.nabble.com/How-to-disable-chunked-encoding-for-the-Http11NioProtocol-connector-td2038448.html

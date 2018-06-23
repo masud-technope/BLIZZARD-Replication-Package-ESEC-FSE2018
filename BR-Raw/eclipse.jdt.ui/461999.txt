@@ -1,0 +1,5 @@
+Bug 461999 – Warning option for "Unlikely argument type for collection methods using 'Object'" (bug 410218)
+The new warning being prepared via bug 410218 needs to be configurable in the UI.
+Current proposals look like this:
+Unlikely argument type for Map.get() et al [Ignore/Warning/Error]
+[X] Accept arguments that could be cast to the expected type

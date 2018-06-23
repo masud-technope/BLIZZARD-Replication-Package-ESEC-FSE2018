@@ -1,0 +1,2 @@
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/packageview/ContentProviderTests6.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/packageview/PackageExplorerTests.java

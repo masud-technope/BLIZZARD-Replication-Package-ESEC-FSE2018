@@ -1,0 +1,4 @@
+Bug 267358 – [package explorer][working sets][dnd] When sorted, should not show drop target for WS
+I20090304-0834
+When the Package Explorer shows working sets and sorting is enabled, rearranging them via drag and drop makes no sense.
+The drop targets before and after working sets should be inactive then (but DND of an element into another WS should still work).

@@ -1,0 +1,3 @@
+Bug 405071 – [1.8][compiler][codegen] Generate code for array constructor references
+BETA_JAVA8:
+This ER will be used to implement/track generate code for array constructor references.

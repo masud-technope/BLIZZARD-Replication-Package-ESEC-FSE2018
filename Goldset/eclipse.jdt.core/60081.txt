@@ -1,0 +1,15 @@
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/codegen/Label.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/LabeledStatement.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/TryStatement.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/codegen/ResetStateForCodeGenerationVisitor.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/ConstructorDeclaration.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/SwitchStatement.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/AbstractMethodDeclaration.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/DoStatement.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/ForStatement.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/SynchronizedStatement.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/WhileStatement.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/Clinit.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/SubRoutineStatement.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/BranchStatement.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/Statement.java

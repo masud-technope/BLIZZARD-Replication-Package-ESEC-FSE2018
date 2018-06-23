@@ -1,0 +1,5 @@
+Bug 399791 – [1.8][dom ast] AST APIs should support code carrying interfaces (static & default methods)
+BETA_JAVA8:
+Interfaces can have default methods and static methods beginning Java 8.
+We should stop tagging the AST as being malformed (see org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(TypeDeclaration, AbstractTypeDeclaration, boolean)) and add tests to verify that the construction
+looks ok.

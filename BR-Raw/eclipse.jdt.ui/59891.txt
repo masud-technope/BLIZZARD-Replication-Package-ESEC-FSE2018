@@ -1,0 +1,48 @@
+Bug 59891 – [formatter] improve lines wrapping in nested method calls
+Build 3.0M8
+I'm using the Code formatter with the Java Conventions profile (with only the
+maximum line width changed to 40 characters) to format this class:
+public class Main {
+public static void main(
+String[] args) {
+foo(bar(1, 2, 3), baz(4, 5, 6, 7));
+}
+}
+The result looks like this:
+public class Main {
+public static void main(
+String[] args) {
+foo(bar(1, 2, 3), baz(4, 5, 6,
+7));
+}
+}
+I was expecting something like this:
+public class Main {
+public static void main(
+String[] args) {
+foo(bar(1, 2, 3),
+baz(4, 5, 6, 7));
+}
+}
+The formatter should break the line in  between the calls to bar and baz, so
+that each line can be read by itself (almost).
+In general, this means that lines
+should be broken at the highest level possible.
+Btw, I've noticed that lines with arithmetic expressions are already split this
+way, so subexpressions contained in paranthesis are usually kept on the same
+line.
+Witth the same settings, the following code:
+public class Main {
+public static void main(
+String[] args) {
+int a = (1 + 2 + 3) + (4 + 5 + 6 + 7);
+}
+}
+gets formatted like this:
+public class Main {
+public static void main(
+String[] args) {
+int a = (1 + 2 + 3)
++ (4 + 5 + 6 + 7);
+}
+}

@@ -1,0 +1,7 @@
+Bug 92838 – [api] add missing @since 3.1 tags on API added in 3.1 cycles
+3.1 HEAD
+My first random probe of a field added in 3.1,
+IDebugUIConstants.ID_PROCESS_CONSOLE_TYPE, was missing it's @since 3.1 tag.
+All committers need to be keeping this information up to date at all time.
+Please review all API added across Debug plug-ins and ensure that they are
+tagged properly.

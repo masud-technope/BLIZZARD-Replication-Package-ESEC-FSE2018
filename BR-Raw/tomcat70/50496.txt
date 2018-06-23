@@ -1,0 +1,97 @@
+50496 – AccessLogValve not logging size correctly for %B with enabled compression
+During a log analysis of before and after enabling http/1.1 compression in tomcat 6.0.29 (and also earlier) we see that the access-logs do NOT sow a difference in sizes reported.
+Drilling down into the issue it seems as if the size reported with %B is not taking compression into account even though the documentation says:
+%B - Bytes sent, excluding HTTP headers
+A quick comparison with the apache httpd 2.2 shows that httpd IS logging compressed data sizes.
+Here an easy means to replicate:
+* take a stock tomcat 6.0.29
+* configure tomcat to use compression and enable access logging
+* start tomcat
+* do 2 web-requests with (say curl) to http://127.0.0.1:8080/ one time without the header "Acccept-encoding: gzip" the other time with the header added
+* look at the access-logfile and you see that both get reported as 7777 Bytes sent
+This is a bit of a pain, as there is no way to report the compressed size in any other way with tomcat (like with logging notes with apache httpd) and it would be very helpful if the real size was available for reporting on efficiency without having to resort to use tcpdump estimates...
+Thanks,
+Martin Sperl
+P.s: Here the glory details of the way this can get replicated:
+msmac:apache-tomcat-6.0.29 sperl$ diff -u conf/server.xml.orig conf/server.xml--- conf/server.xml.orig        2010-07-19 15:01:51.000000000 +0200
++++ conf/server.xml     2010-12-18 11:09:17.000000000 +0100
+@@ -68,6 +68,7 @@
+-->
+<Connector port="8080" protocol="HTTP/1.1"
+connectionTimeout="20000"
++compression="on"
+redirectPort="8443" />
+<!-- A "Connector" using the shared thread pool-->
+<!--
+@@ -137,10 +138,8 @@
+<!-- Access log processes all example.
+Documentation at: /docs/config/valve.html -->
+-        <!--
+<Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
+prefix="localhost_access_log." suffix=".txt" pattern="common" resolveHosts="false"/>
+-        -->
+</Host>
+</Engine>
+msmac:apache-tomcat-6.0.29 sperl$ bin/catalina.sh start
+Using CATALINA_BASE:   /Users/sperl/noTimeMachine/apache-tomcat-6.0.29
+Using CATALINA_HOME:   /Users/sperl/noTimeMachine/apache-tomcat-6.0.29
+Using CATALINA_TMPDIR: /Users/sperl/noTimeMachine/apache-tomcat-6.0.29/temp
+Using JRE_HOME:        /System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
+Using CLASSPATH:       /Users/sperl/noTimeMachine/apache-tomcat-6.0.29/bin/bootstrap.jar
+msmac:apache-tomcat-6.0.29 sperl$ curl -vv http://127.0.0.1:8080/ |wc * About to connect() to 127.0.0.1 port 8080 (#0)
+*   Trying 127.0.0.1...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+Dload  Upload   Total   Spent    Left  Speed
+0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0connected
+* Connected to 127.0.0.1 (127.0.0.1) port 8080 (#0)
+> GET / HTTP/1.1
+> User-Agent: curl/7.21.2 (x86_64-apple-darwin10.4.0) libcurl/7.21.2 OpenSSL/1.0.0a zlib/1.2.5 libidn/1.19
+> Host: 127.0.0.1:8080
+> Accept: */*
+> 
+< HTTP/1.1 200 OK
+< Server: Apache-Coyote/1.1
+< Accept-Ranges: bytes
+< ETag: W/"7777-1279544386000"
+< Last-Modified: Mon, 19 Jul 2010 12:59:46 GMT
+< Content-Type: text/html
+< Content-Length: 7777
+< Date: Sun, 19 Dec 2010 12:17:30 GMT
+<
+{ [data not shown]
+100  7777  100  7777    0     0   134k      0 --:--:-- --:--:-- --:--:--  138k* Connection #0 to host 127.0.0.1 left intact
+* Closing connection #0
+213     623    7777
+msmac:apache-tomcat-6.0.29 sperl$ tail -1 logs/localhost_access_log.2010-12-19.txt
+127.0.0.1 - - [19/Dec/2010:13:17:30 +0100] "GET / HTTP/1.1" 200 7777
+msmac:apache-tomcat-6.0.29 sperl$ curl -vv --header "Accept-Encoding: gzip" http://127.0.0.1:8080/ | wc
+* About to connect() to 127.0.0.1 port 8080 (#0)
+*   Trying 127.0.0.1...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+Dload  Upload   Total   Spent    Left  Speed
+0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0connected
+* Connected to 127.0.0.1 (127.0.0.1) port 8080 (#0)
+> GET / HTTP/1.1
+> User-Agent: curl/7.21.2 (x86_64-apple-darwin10.4.0) libcurl/7.21.2 OpenSSL/1.0.0a zlib/1.2.5 libidn/1.19
+> Host: 127.0.0.1:8080
+> Accept: */*
+> Accept-Encoding: gzip
+> 
+< HTTP/1.1 200 OK
+< Server: Apache-Coyote/1.1
+< Accept-Ranges: bytes
+< ETag: W/"7777-1279544386000"
+< Last-Modified: Mon, 19 Jul 2010 12:59:46 GMT
+< Content-Type: text/html
+< Transfer-Encoding: chunked
+< Content-Encoding: gzip
+< Vary: Accept-Encoding
+< Date: Sun, 19 Dec 2010 12:18:02 GMT
+<
+{ [data not shown]
+100  2750    0  2750    0     0   455k      0 --:--:-- --:--:-- --:--:--  671k* Connection #0 to host 127.0.0.1 left intact
+* Closing connection #0
+8      87    2750
+msmac:apache-tomcat-6.0.29 sperl$ tail -1 logs/localhost_access_log.2010-12-19.txt
+127.0.0.1 - - [19/Dec/2010:13:18:02 +0100] "GET / HTTP/1.1" 200 7777
+msmac:apache-tomcat-6.0.29 sperl$

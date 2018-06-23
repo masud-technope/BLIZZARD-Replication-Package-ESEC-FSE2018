@@ -1,0 +1,17 @@
+Bug 427463 – [1.8][content assist] No completions available in throw statement within lambda body
+@FunctionalInterface
+interface FI1 {
+int foo(int x) throws Exception;
+}
+class Test {
+FI1 fi1= (int x) -> {
+throw new Ex|
+};
+private void test() throws Exception {
+throw new Ex|
+}
+}
+------------------------------------------------------------------
+In the above example, replace '|' with the caret in lambda expr and in #test method.
+Press Ctrl+space.
+Completions are available in the method but not in the lambda expression body.

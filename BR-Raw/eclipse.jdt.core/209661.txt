@@ -1,0 +1,6 @@
+Bug 209661 – ILocalVariable for method parameter misses annotations
+HEAD
+The the method parameter 'arg' misses its annotations in the model (ILocalVariable#getAnnotations() is empty):
+void m(@SuppressWarnings("unused") int arg) { // annotations missing
+@SuppressWarnings("unused") int local; // annotations OK
+}

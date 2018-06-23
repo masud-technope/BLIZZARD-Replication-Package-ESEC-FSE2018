@@ -1,0 +1,16 @@
+Bug 395919 – [preferences][syntax coloring] Preview incorrect for parameter variables setting
+Build id: 20120920-0800
+Steps to reproduce:
+1.
+Go to Syntax Coloring [Window -> Preferences -> Java -> Editor -> Syntax Coloring]
+2.
+Enable coloring of parameter variables [Java -> Parameter variables]
+3.
+Turn on strike-through.
+4.
+Check in Preview that the parameter declaration has changed but a reference to the parameter has not.
+5.
+Click Apply.
+6.
+Check in a Java Editor that both parameter declarations and parameter references have changed.
+There are two settings for local variables, Local variable declarations and Local variable references, so from the way the Preview pane works it seems like there should be a separate setting called Parameter variable references but it is missing.

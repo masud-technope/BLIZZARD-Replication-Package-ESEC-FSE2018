@@ -1,0 +1,5 @@
+Bug 249240 – [remotesvcs] Implement RFC 119
+ECF can/could be the first reference implementation for RFC 119.
+ We should work with the alliance, and RFC authors to create such a reference implementation using the ECF remote services API (and/or modify as necessary).
+ An early draft of RFC 119 is available here
+http://www.osgi.org/download/osgi-4.2-early-draft.pdf

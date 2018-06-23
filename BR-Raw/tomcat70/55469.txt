@@ -1,0 +1,4 @@
+55469 – Missing HTML closing tags in Manager application
+Created attachment 30751 [details]
+Patch to fix it on trunk for Tomcat 7 trunk.
+In the "WAR file to deploy" that allows you to upload a war file, after the closing form tag, it is missing closing off the td and tr tag opened before form tag.

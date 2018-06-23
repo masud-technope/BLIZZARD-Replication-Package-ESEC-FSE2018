@@ -1,0 +1,18 @@
+Bug 408937 – [1.8][rename] Unable to rename variables in lambda expression field
+Consider the following example and try to rename the variables mentioned in comments using "Alt+Shift+R":
+@FunctionalInterface
+interface I {
+int foo (int x);
+}
+public class C1 {
+I i= (int x) -> { // Unable to Rename "x"
+int p= 10; // Unable to Rename "p"
+I ii= (int a) -> a+100; // Unable to Rename "ii", "a"
+return ii.foo(x) + p;
+};
+void foo() {
+I i= (int x) -> x; // works here
+}
+}
+We get the error, "Only local variables declared in methods and initializers can be renamed".
+However, it should be possible to rename variables in any type of lambda expr also.

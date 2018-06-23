@@ -1,0 +1,4 @@
+Bug 164677 – [EditorMgmt] can we remove IURIEditorInput?
+URI cannot be resolved to a type	org.eclipse.ui.workbench/Eclipse UI/org/eclipse/ui	IURIEditorInput.java	line 39	1163611136718	748662
+This is API that was added in 3.3.
+ Since URI is not part of J2ME Foundation 1.0, can we do without this API?

@@ -1,0 +1,7 @@
+Bug 256343 – update API tooling tags to avoid errors
+Created attachment 118631 [details]
+patch
+With the addition of the @noextend tag for interfaces, PDE needs to make these minimal changes.
+This adds the @noextend to to interfaces already documented as @noimplement.
+We should probably re-visit other API types, as it looks like not all tags were added in 3.4 that should have been.
+For example, IPlugin does not specify @noimplement, but I don't think a client is ever expected to implement this interface.

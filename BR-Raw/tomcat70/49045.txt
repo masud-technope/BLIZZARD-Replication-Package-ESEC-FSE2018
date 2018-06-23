@@ -1,0 +1,4 @@
+49045 – JMX Enhancement- Provision of MBeanFactory createStandardService
+Currently MBeanFactory doesn't have a method for creating a new StandardService MBean.
+This would become an issue for future enhancements of JMX support in Tomcat.
+As per discussions with Mark, this enhancement is suggested as a starting point for possible future enhancements in JMX support.

@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/ShowDescriptionAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/product/ProductDefinitonWizardPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/SourceBlock.java

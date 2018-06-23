@@ -1,0 +1,5 @@
+Bug 136172 – quickfix to remove redundant x-internal
+When a package in the Export-Package header declares both a x-internal and x-friends directive as such
+Export-Package: com.example.abc;x-friends="bla";x-internal:=true
+The x-internal directive is flagged with a warning as redundant, since x-friends implies x-internal.
+We should provide a quickfix for this problem to remove the x-internal directive.

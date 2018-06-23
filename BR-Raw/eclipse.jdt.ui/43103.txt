@@ -1,0 +1,6 @@
+Bug 43103 – RenameType Refactoring - detected information not shown
+Test failures in
+http://download.eclipse.org/downloads/drops/S-3.0M3-200308281813/testResults.php
+are not visible if the tests are executed manually in Eclipse.
+The information is not shown because primary != working copy ...
+I'll attach a patch.

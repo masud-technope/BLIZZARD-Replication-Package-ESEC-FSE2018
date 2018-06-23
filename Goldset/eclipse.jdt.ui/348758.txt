@@ -1,0 +1,2 @@
+org.eclipse.ltk.core.refactoring/src/org/eclipse/ltk/core/refactoring/resource/DeleteResourceChange.java
+org.eclipse.ltk.core.refactoring/src/org/eclipse/ltk/internal/core/refactoring/RefactoringCoreMessages.properties

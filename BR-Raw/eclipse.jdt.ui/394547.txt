@@ -1,0 +1,15 @@
+Bug 394547 – [extract class] Extract class refactoring on a field in an inner non-static class yields compilation error
+Steps to reproduce:
+1.
+Invoke "Extract Class..." on "m" in code below
+2.
+Specify "Nested Class in 'C'
+3.
+There is a compilation error in the resulting file ("cannot be declared static")
+class ExtractClassBug {
+class C {
+// Invoke "Extract Class..." on "m" (and specify "Nested Class in 'C'"
+int m;
+}
+}
+(Thanks to Yilong Li for helping with the bug report.)

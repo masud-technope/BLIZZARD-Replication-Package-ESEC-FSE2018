@@ -1,0 +1,12 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/console/JavaStackTracePageParticipant.java
+org.eclipse.jdt.debug.ui/plugin.xml
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/console/JavaExceptionHyperLink.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/console/JavaNativeStackTraceHyperlink.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/console/J9StackTraceHyperlink.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/ConsoleTests.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/console/JavaConsoleTracker.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/console/JavaStackTraceHyperlink.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/console/JavaExceptionConsoleTracker.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/console/ConsoleMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/console/JavaStackTraceConsoleFactory.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/console/JavaNativeConsoleTracker.java

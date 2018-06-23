@@ -1,0 +1,45 @@
+Bug 225210 – Plug-in Manifest builder throws IllegalArgumentException when "./" is on "Bundle-Classpath"
+Build ID: M20080221-1800
+Please note that following report is censored for corporate legal concerns.
+ "<project>" is just a project name, not that literal string.
+Steps To Reproduce:
+1.
+Create new plug-in project
+2.
+Edit MANIFEST.MF, adding "./" to Bundle-Classpath
+3.
+Clean project to trigger full build
+Error Log view shows new item with two sub items:
+"Error during build"
+"Errors running builder 'Plug-in Manifest Builder' on project '<project>'".
+"Path must include project and resource name: /<project>/
+This also happens if you use the PDE project conversion right-click menu item.
+More information:
+This only happens on Linux for me -- it works fine on Windows.
+ This isn't a show stopper, since it's easy enough to move our plug-in's class files to a nested directory (instead of the project root), but it seems like an arbitrary requirement.
+ Also, the error message was *not* helpful when trying to determine the cause of the error.
+Full stack trace:
+java.lang.IllegalArgumentException: Path must include project and resource name: /<project>/
+at org.eclipse.core.runtime.Assert.isLegal(Assert.java:62)
+at org.eclipse.core.internal.resources.Workspace.newResource(Workspace.java:1631)
+at org.eclipse.core.internal.resources.Container.getFile(Container.java:116)
+at org.eclipse.pde.internal.core.util.ManifestUtils.findPackageFragmentRoots(ManifestUtils.java:54)
+at org.eclipse.pde.internal.core.builders.BundleErrorReporter.validateExportPackages(BundleErrorReporter.java:123)
+at org.eclipse.pde.internal.core.builders.BundleErrorReporter.validateContent(BundleErrorReporter.java:104)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.validateFiles(ManifestConsistencyChecker.java:288)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.validateProject(ManifestConsistencyChecker.java:236)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.build(ManifestConsistencyChecker.java:174)
+at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:624)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:166)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:197)
+at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:246)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:249)
+at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:302)
+at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:334)
+at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:137)
+at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:235)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Thanks,
+Zach

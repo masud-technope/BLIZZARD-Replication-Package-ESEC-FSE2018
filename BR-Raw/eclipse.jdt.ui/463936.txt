@@ -1,0 +1,4 @@
+Bug 463936 – ExternalAnnotationsAttachmentDialog should not allow virtual folders
+In bug 462768 I noticed that a virtual folder is not a good match for annotationpath, because internally we need a resolved file system path, in order to work with java.io.File.
+Since a virtual folder answers null to getLocation(), we should report an error when a user tries to configure a virtual folder as an annotationpath.
+This doesn't affected non-virtual *linked* resources, though.

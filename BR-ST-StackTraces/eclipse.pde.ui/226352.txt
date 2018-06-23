@@ -1,0 +1,11 @@
+java.lang.ProcessImpl.create
+java.lang.ProcessImpl.<init>
+java.lang.ProcessImpl.start
+java.lang.ProcessBuilder.start
+java.lang.Runtime.exec
+java.lang.Runtime.exec
+org.eclipse.core.launcher.Main.runCommand
+org.eclipse.core.launcher.Main.handleSplash
+org.eclipse.core.launcher.Main.basicRun
+org.eclipse.core.launcher.Main.run
+org.eclipse.core.launcher.Main.main

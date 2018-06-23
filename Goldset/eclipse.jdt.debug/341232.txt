@@ -1,0 +1,17 @@
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AutomatedSuite.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/breakpoints/ConditionalBreakpointsWithGenerics.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/eval/GenericsEvalTests.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/eval/SnippetsWithGenericsEvalTests.java
+org.eclipse.jdt.debug.tests/testsource-j2se-1.5/a/b/c/ConditionalsNearGenerics.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AutomatedSuite.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/breakpoints/ConditionalBreakpoints15Tests.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/breakpoints/ConditionalBreakpointsWithGenerics.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/eval/SnippetsWithGenericsEvalTests.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/engine/ASTInstructionCompiler.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AbstractDebugTest.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AutomatedSuite.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/breakpoints/ConditionalBreakpoints15Tests.java
+org.eclipse.jdt.debug.tests/testsource-j2se-1.5/a/b/c/ConditionalsNearGenerics.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/engine/ASTEvaluationEngine.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/engine/EvaluationSourceGenerator.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/engine/SourceBasedSourceGenerator.java

@@ -1,0 +1,5 @@
+Bug 348758 – [ltk] DeleteResourceChange should tell which resource could not be deleted
+Created attachment 197606 [details]
+Fix
+HEAD
+DeleteResourceChange should tell which resource could not be deleted.

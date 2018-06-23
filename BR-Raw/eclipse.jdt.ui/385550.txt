@@ -1,0 +1,35 @@
+Bug 385550 – [move method] Update reference to inherited field
+Here is original source codes:
+public class A {
+public int i = 0;
+}
+public class B extends A{
+public void m(C target)
+{
+i++;
+}
+}
+public class C {
+}
+Now we apply MOVE refactoring to method "m()" with delegate.
+The result is shown below:
+public class A {
+public int i = 0;
+}
+public class B extends A{
+public void m(C target)
+{
+target.m(this);
+}
+}
+public class C {
+public void m(B b)
+{
+i++;		//error
+}
+}
+The inherited variable "i" should be updated to "b.i".
+-- Configuration Details --
+Product: Eclipse 1.5.0.20120131-1544 (org.eclipse.epp.package.jee.product)
+Installed Features:
+org.eclipse.jdt 3.8.0.v20120525-1249-8-8nFqlFNOfwKDRGz-pXLdGxEM83

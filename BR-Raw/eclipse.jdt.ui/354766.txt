@@ -1,0 +1,18 @@
+Bug 354766 – Javadoc content does not appear in content assist info window for non-static inner class constructors
+Build Identifier: 20110615-0604
+Bug 334652 missed fixing one spot -- the content-assist informational window does not display the javadoc, although the editor will be capable of doing so.
+Hopefully this can find its way into 3.7.1 or 3.7.2 as it affects the usability of our commercial product; it makes it tricky for users to understand one of our API points, which method to call.
+Reproducible: Always
+Steps to Reproduce:
+To reproduce, take the attachments from bug 334652 and simply add a new constructor, say:
+/**
+* javadoc for InnerFinalException(String property, Throwable cause)
+* @param property the property argument
+* @param cause the chained exception
+*/
+public InnerFinalException(String property, Throwable cause) {
+}
+then, you will notice that any call like
+InnerFinalException e = new InnerFinalException([invoke-content-assist]
+will display both constructors, but fail to display javadoc during the content
+assist chooser.

@@ -1,0 +1,8 @@
+Bug 40707 – Breakpoint remains enabled after disabling & setting hit count
+* Open the (new) properties dialog on a watchpoint
+* Enable the hit count, and set to "3"
+* Disable the breakpoint
+* Press OK
+Note: the breakpoint is still enabled.
+Re-opening the properties dialog shows
+the breakpoint as still enabled.

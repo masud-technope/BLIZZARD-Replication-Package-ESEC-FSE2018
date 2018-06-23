@@ -1,0 +1,28 @@
+38570 – if docBase path contains "webapps", a backslash is inserted
+There seem to be a problem when interpreting docBase in context definitions, if
+it contains the string "webapps".
+For testing, I moved tomcat-docs to a separate directory outside of webapps,
+then defined a file tomcat-docs.xml in CATALINA_HOME/conf/Catalina/localhost :
+<Context
+docBase="${catalina.home}/../something/tomcat-docs">
+</Context>
+When I name that directory "something" as above, everything works ok,
+http://localhost:12345/tomcat-docs displays the documentation (my tomcat runs on
+port 12345).
+When I name that directory "webappsSomething", it is interpreted as
+"webapps/Something" and loading the application (tomcat docu) fails on start of
+Tomcat:
+<Context
+docBase="${catalina.home}/../webappsSomething/tomcat-docs">
+</Context>
+08.02.2006 15:25:30 org.apache.catalina.core.StandardContext resourcesStart
+SCHWERWIEGEND: Error starting static Resources
+java.lang.IllegalArgumentException: Document base
+D:\be\JAVA_IDE\jakarta-tomcat-5.5.9\..\webapps\Something\tomcat-docs does not
+exist or is not a readable directory
+at org.apache.naming.resources.FileDirContext.setDocBase(FileDirContext.java:140)
+at
+org.apache.catalina.core.StandardContext.resourcesStart(StandardContext.java:3754)
+at org.apache.catalina.core.StandardContext.start(StandardContext.java:3925)
+Apparently Tomcat is fiddling around with the docBase path as soon as it
+contains the string webapps - why?

@@ -1,0 +1,32 @@
+49957 – Work directories of deployed webapps are deleted at shutdown
+Created attachment 26050 [details]
+stacktrace
+Observing this with the current trunk (at rev.
+998656).
+It does not happen with 7.0.2, so it is some recent regression.
+The problem is that when I stop Tomcat all subdirectories in ${catalina.base}/work/Catalina/localhost are deleted.
+Steps to reproduce:
+1.
+Build Tomcat 7.0
+2.
+Set JRE_HOME variable.
+Go to output/build/bin/ and run catalina.bat start
+3.
+Access http://localhost:8080/examples/jsp/jsp2/el/basic-arithmetic.jsp
+4.
+Note, that there is compiled class file in
+output/build/work/Catalina/localhost/examples/org/apache/jsp/jsp/jsp2/el/
+5.
+Run catalina.bat stop
+6.
+Actual behaviour: output/build/work/Catalina/localhost/ is now empty.
+Expected behaviour: see step 4.
+The catalina.log file has "INFO: Deploying web application directory" lines it it, but there are no logs about any webapps being undeployed.
+I have run TC7 in debug mode with breakpoints in ExpandWar.delete(..) and the deletion happens in ContextConfig.destroy().
+// Changed to getWorkPath per Bugzilla 35819.
+String workDir = ((StandardContext) context).getWorkPath();
+if (workDir != null)
+ExpandWar.delete(new File(workDir));
+I am attaching the full stacktrace.
+The code itself looks old.
+I suspect that the destroy event was not passed to ContextConfig until recently.

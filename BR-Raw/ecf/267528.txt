@@ -1,0 +1,2 @@
+Bug 267528 – [Discovery][WebBrowser] Add command to discovery ui that opens (internal) web browser for "http|https" service type
+Add a new bundle org.eclipse.ecf.discovery.ui.browser that provides an "Open Web Browser" command for the Discovery UI.

@@ -1,0 +1,8 @@
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/EqualExpression.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/flow/FlowContext.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/NullReferenceTestAsserts.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/TypeConstants.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/ReferenceBinding.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/MessageSend.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/NullAnnotationTest.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/TypeIds.java

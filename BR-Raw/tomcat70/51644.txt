@@ -1,0 +1,66 @@
+51644 – Unable to deploy applications with the name a#b.xml
+When I try to deploy a context with the name "a#b.xml" I get the following exception.
+SEVERE: Unable to process JNDI URL [jndi:/localhost/sample/one/WEB-INF/classes]
+for annotations
+java.io.FileNotFoundException: jndi:/localhost/sample/one/WEB-INF/classes
+at org.apache.naming.resources.DirContextURLConnection.list(DirContextURLConnection.java:452)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1901)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsUrl(ContextConfig.java:1828)
+at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1295)
+at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:896)
+at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:322)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:89)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5103)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:145)
+at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:812)
+at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:787)
+at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:607)
+at org.apache.catalina.startup.HostConfig.deployDescriptor(HostConfig.java:633)
+at org.apache.catalina.startup.HostConfig.deployDescriptors(HostConfig.java:558)
+at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:468)
+at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1363)
+at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:294)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:89)
+at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1233)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1391)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1401)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1380)
+at java.lang.Thread.run(Thread.java:619)
+I would have expected the application to be available in the URI a/b.
+The bug seems to be in the "list()" method "of DirContextURLConnection.java.
+The method assumes that context name does not have any "/" characters in it.
+See the developer note just before the "if" block.
+I have added the "else if" condition that seems to have solved the problem for me.
+try {
+String file = getURL().getFile();
+// This will be of the form /<hostname>/<contextpath>/file name
+// if <contextpath> is not empty otherwise this will be of the
+// form /<hostname>/file name
+// Strip off the hostname and the contextpath
+int start;
+if(context instanceof ProxyDirContext &&
+"".equals(((ProxyDirContext)context).getContextPath())){
+start = file.indexOf('/',1);
+}
+else if(context instanceof ProxyDirContext){
+start="/".length()
++((ProxyDirContext)context).getHostName().length()
++((ProxyDirContext)context).getContextPath().length();
+/*
+* Seems like a bug in Tomcat.
+below was the code in Tomcat.
+* How can it handle contextpath like "/sample/one".
+It cannot
+*/
+//start = file.indexOf('/', file.indexOf('/', 1) + 1);
+} else
+start = file.indexOf('/', file.indexOf('/', 1) + 1);
+NamingEnumeration<NameClassPair> enumeration =
+context.list(file.substring(start));
+while (enumeration.hasMoreElements()) {
+NameClassPair ncp = enumeration.nextElement();
+result.addElement(ncp.getName());
+}
+} catch (NamingException e) {

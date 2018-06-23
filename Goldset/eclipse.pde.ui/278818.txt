@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDEState.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PluginModelManager.java

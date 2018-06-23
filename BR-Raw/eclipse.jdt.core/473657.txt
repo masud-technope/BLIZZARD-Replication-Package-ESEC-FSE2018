@@ -1,0 +1,38 @@
+Bug 473657 – [1.8][compile][inference] Bad type inference applied to raw type arguments when javac compiles code just fine
+The following example can be compiled with javac 1.8.0_51 but not with Eclipse 4.5.0:
+------------------------------------------------------------
+interface I<T> {
+}
+@SuppressWarnings({"unchecked", "rawtypes"})
+abstract class T1<T> implements I<T> {
+public I<T> t(I<? extends Number> l2) {
+return T2.m((I) this, (I) l2);
+}
+public I<T> t(Number l2) {
+return T2.m((I) this, (I) T2.t(l2));
+}
+}
+abstract class T2 {
+public static <T> I<T> t(T t) {
+return null;
+}
+public static <T extends Number> I<T> m(I<T> l1, I<? extends Number> l2) {
+return null;
+}
+public static <T extends Number> I<T> m(T l1, Number l2) {
+return null;
+}
+}
+------------------------------------------------------------
+Eclipse reports in both T1.t() methods:
+> Type mismatch: cannot convert from I<Number> to I<T>
+A workaround using an explicit raw type cast can be seen here:
+------------------------------------------------------------
+public I<T> t(I<? extends Number> l2) {
+return (I) T2.m((I) this, (I) l2);
+}
+public I<T> t(Number l2) {
+return (I) T2.m((I) this, (I) T2.t(l2));
+}
+------------------------------------------------------------
+However, this workaround doesn't work well as Eclipse's "remove unnecessary casts" save action will remove the two raw type casts, as they're indeed not needed.

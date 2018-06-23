@@ -1,0 +1,4 @@
+Bug 230447 – Invalid warning saying that a class is not in the bundle's classpath
+When a project doesn't have a JDT nature, PDE cannot compute the project's classpath and, hence, cannot check if a class used in the plugin.xml is available to the bundle or not.
+I believe PDE should only flag classpath problems if it is able to check the classpath.
+The way it is now, thw warning is not doing me any good and I would need to add the JDT nature just to make it go away.

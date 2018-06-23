@@ -1,0 +1,7 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/AbstractFoldingStructureProvider.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/IFoldingStructureProvider.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/PDEProjectionSourcePage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/ManifestEditor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/IFoldingStructureProvider.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/PDEProjectionSourcePage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/ManifestEditor.java

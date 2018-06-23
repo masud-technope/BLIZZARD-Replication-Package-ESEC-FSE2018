@@ -1,0 +1,13 @@
+Bug 305236 – feature based target with 'feature locations' does not work properly
+Steps:
+* Create a target definition with two feature locations, managed by features:
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.6"?>
+<target includeMode="feature" name="Copy RCP with Source">
+<locations>
+<location id="org.eclipse.rcp" path="${eclipse_home}" type="Feature"/>
+<location id="org.eclipse.rcp.source" path="${eclipse_home}" type="Feature"/>
+</locations>
+</target>
+It shows that all features in the installation will be added to the target, rather than just the ones from the feature locations.
+I created this target definition based on the 'RCP with Source' template.

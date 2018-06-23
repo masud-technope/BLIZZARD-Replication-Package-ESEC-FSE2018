@@ -1,0 +1,7 @@
+Bug 285801 – Remove unnecessary host name lookups
+Build ID: 20090619-0625
+In org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/comm/tcp/Client.java there are two calls to InetAddress.getHostName(), used to build a string representation of the endpoint.
+ This method forces a reverse name lookup.
+ When running on a network without DNS servers, this introduces connection delays of 30-60 seconds depending on OS configuration.
+I'd like to propose that these be replaced with calls to InetAddress.getHostAddress() or even toString(), depending on how this string is actually used elsewhere in the system.
+ Neither of these will result in a reverse name lookup, and the latter will include the hostname if it's already been cached by the system.

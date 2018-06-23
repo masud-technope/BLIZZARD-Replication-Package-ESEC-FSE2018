@@ -1,0 +1,20 @@
+Bug 421712 – [1.8][compiler] java.lang.NoSuchMethodError with lambda expression in interface default method.
+BETA_JAVA8:
+// --
+interface F {
+void foo();
+}
+interface I {
+default void foo() {
+F f = () -> {
+};
+}
+}
+public class X implements I {
+public static void main(String argv[]) {
+X x = new X();
+x.foo();
+}
+}
+This program triggers a NoSuchMethodError because we emit invokeInterface instead
+of invokestatic - fix is trivial, will follow shortly.

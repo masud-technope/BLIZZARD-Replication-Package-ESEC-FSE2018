@@ -1,0 +1,5 @@
+test/org/apache/coyote/http11/filters/bug52121-part2
+test/org/apache/coyote/http11/filters/TestFlushableGZIPOutputStream.java
+test/org/apache/coyote/http11/filters/bug52121-part1
+java/org/apache/coyote/http11/filters/FlushableGZIPOutputStream.java
+webapps/docs/changelog.xml

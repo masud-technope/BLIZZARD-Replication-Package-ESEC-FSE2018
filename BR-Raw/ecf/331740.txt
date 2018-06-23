@@ -1,0 +1,2 @@
+Bug 331740 – [Discovery][Composite] CompositeDiscoveryContainer misses out on DiscoveryContainers
+CompositeDiscoveryContainer misses out on DiscoveryContainers if new CompositeDiscoveryContainer() causes the instantiation of new DiscoveryContainers.

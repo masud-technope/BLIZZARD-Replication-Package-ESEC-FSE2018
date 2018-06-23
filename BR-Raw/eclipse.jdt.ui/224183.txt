@@ -1,0 +1,6 @@
+Bug 224183 – [hovering] Hover popups do not allocate a sufficient amount of space
+Created attachment 93666 [details]
+Screenshot depicting the horror in question.
+I20080325-0100
+If I hover over a marker annotation, wait for the popup to appear (which is miniscule to begin with), and then hit F2, I am presented with an equally miniscule popup dialog.
+The control doesn't even have a scrollbar for me to use the scrollwheel on, so I am forced to click inside and hit the down key or use my mouse to select text downwards to scroll.

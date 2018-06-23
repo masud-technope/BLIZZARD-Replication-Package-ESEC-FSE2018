@@ -1,0 +1,54 @@
+Bug 338809 – [quick fix] for bogus Javadoc errors (incorrect reference to nested type)
+HEAD, follow-up to bug 222188
+Add quick fix to fully-qualify references to nested types (to work around implementation bugs in Javadoc.exe).
+package pack2;
+import pack.Test;
+import pack.Test.Inner;
+public class X {
+//    Test t;
+//    Inner i;
+/**
+* {@link pack.Test.Inner}.
+*/
+public Object a;
+/**
+* {@link Test.Inner}.
+*/
+public Object b;
+/**
+* {@link Inner}.
+*/
+public Object c;
+/**
+* {@link pack.Test.Inner#foo()}.
+*/
+public Object d;
+/**
+* {@link Test.Inner#foo()}.
+*/
+public Object e;
+/**
+* {@link Inner#foo()}.
+*/
+public Object f;
+/**
+* {@link pack.Test#bar(pack.Test.Inner)}.
+*/
+public Object g;
+/**
+* {@link pack.Test#bar(Test.Inner)}}.
+*/
+public Object h;
+/**
+* {@link pack.Test#bar(Inner)}}.
+*/
+public Object i;
+}
+package pack;
+public class Test {
+public interface Inner {
+void foo();
+}
+public void bar(Inner i) {
+}
+}

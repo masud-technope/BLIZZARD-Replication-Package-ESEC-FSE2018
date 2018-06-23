@@ -1,0 +1,3 @@
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/generic/SOContext.java
+framework/bundles/org.eclipse.ecf.sharedobject/src/org/eclipse/ecf/core/sharedobject/util/SimpleFIFOQueue.java
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/comm/tcp/Client.java

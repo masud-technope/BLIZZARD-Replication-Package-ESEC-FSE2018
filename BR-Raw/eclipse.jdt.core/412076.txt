@@ -1,0 +1,19 @@
+Bug 412076 – [compiler] @NonNullByDefault doesn't work for varargs parameter when in generic interface
+We get an compiler error with the following code (one file for each interface / class):
+@NonNullByDefault
+public interface Foo<V> {
+V bar(String...
+values);
+}
+@NonNullByDefault
+public class FooImpl implements Foo<String> {
+@Override
+public String bar(final String...
+values) {
+return ("");
+}
+}
+The compiler reports the following error for the class:
+"Illegal redefinition of parameter values, inherited method from Foo<String> does not constrain this parameter".
+Adding a @NonNull to the "values" parameter in Foo helps, but generates a warning because of a redundant annotation.
+In 4.2.2 it works fine.

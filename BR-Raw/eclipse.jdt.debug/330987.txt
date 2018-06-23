@@ -1,0 +1,2 @@
+Bug 330987 – Missing @since tags and increment bundle version
+With the fix to bug 254677 applied, the jdt.debug bundle version needs to be incremented and @since tags need to be added to the newly added methods.

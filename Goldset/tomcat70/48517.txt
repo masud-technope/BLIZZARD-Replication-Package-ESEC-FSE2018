@@ -1,0 +1,10 @@
+java/javax/el/BeanELResolver.java
+java/javax/el/ELContext.java
+java/javax/el/ResourceBundleELResolver.java
+java/org/apache/catalina/loader/WebappClassLoader.java
+java/org/apache/el/lang/ELSupport.java
+java/org/apache/el/lang/EvaluationContext.java
+java/org/apache/el/parser/AstIdentifier.java
+java/org/apache/el/parser/AstValue.java
+java/org/apache/el/parser/SimpleNode.java
+java/org/apache/naming/resources/VirtualDirContext.java

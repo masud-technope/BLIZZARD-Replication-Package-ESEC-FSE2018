@@ -1,0 +1,5 @@
+ds/org.eclipse.pde.ds.ui/src/org/eclipse/pde/internal/ds/ui/editor/DSProvideSection.java
+ds/org.eclipse.pde.ds.ui/src/org/eclipse/pde/internal/ds/ui/editor/DSTypeSelectionExtension.java
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/messages.properties
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/builders/DSErrorReporter.java
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/Messages.java

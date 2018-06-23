@@ -1,0 +1,7 @@
+49102 – coyote.ajp.Constants - 3 "constant" arrays are mutable
+The class coyote.ajp.Constants contains 3 public static non-empty String[] arrays:
+methodTransArray
+responseTransArray
+headerTransArray
+responseTransArray only appears to be locally, so could be made private.
+The others are used in index lookups, so get(index) methods could be used to protect them.

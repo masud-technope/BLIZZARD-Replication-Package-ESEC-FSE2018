@@ -1,0 +1,5 @@
+48287 – ApplicationContextFacade - generics fixes
+Created attachment 24618 [details]
+Patch
+ApplicationContextFacade generates lots of "Type safety: Unchecked cast ..." warnings which are caused by the doPrivileged() method wrapper.
+These can be suppressed with the patch to follow.

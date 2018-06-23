@@ -1,0 +1,13 @@
+42579 – [Patch] JNDIRealm fails to parse absolute names
+Active Directory can respond to a query with SearchResult's that are not
+relative.
+ We discovered this happening with a directory hosted across many
+servers when the userBase was not sufficient to identify a single server.
+In getUserBySearch, JNDIRealm assumes that the SearchResult is relative and goes
+about creating a DN for the user by appending together the various bits of names
+it gets back.
+ This is definitely wrong for absolute names which are URL's of
+the form:  ldap://server/encoded_user_dn
+I discovered this issue in Tomcat 5.5 and a cursory look at the SVN repo for
+Tomcat 6.0 reveals that this bug is also present there.
+I have a patch for this issue which I will attach.

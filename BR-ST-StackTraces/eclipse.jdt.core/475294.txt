@@ -1,0 +1,8 @@
+org.eclipse.jdt.internal.formatter.TextEditsBuilder.appendIndentationString
+org.eclipse.jdt.internal.formatter.TextEditsBuilder.bufferIndent
+org.eclipse.jdt.internal.formatter.TextEditsBuilder.handleSingleLineComment
+org.eclipse.jdt.internal.formatter.TextEditsBuilder.token
+org.eclipse.jdt.internal.formatter.TokenTraverser.traverse
+org.eclipse.jdt.internal.formatter.TokenManager.traverse
+org.eclipse.jdt.internal.formatter.DefaultCodeFormatter.format
+org.eclipse.jdt.internal.formatter.DefaultCodeFormatter.format

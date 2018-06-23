@@ -1,0 +1,22 @@
+Bug 374264 – [clean up] Convert for loop to enhanced applied to iterator produces broken code
+Build Identifier: 20120216-1857
+public static void main(String[] args) {
+List<String> list = new ArrayList<String>(Arrays.asList("first", "second", "third"));
+for (Iterator<String> iterator = list.iterator(); iterator.hasNext();) {
+removeSecond(iterator);
+}
+System.out.println(list);
+}
+private static void removeSecond(Iterator<String> iterator) {
+if ("second".equals(iterator.next())) {
+iterator.remove();
+}
+}
+Reproducible: Always
+Steps to Reproduce:
+1.Enter the code from details into any class
+2.Check that "Convert for loop to enhanced" is checked in Save actions.
+3.Save.
+Detected: "for (Iterator<String> iterator = list.iterator(); iterator.hasNext();)" string is changed to "for (String string : list)", the code becomes broken - compilation error.
+Expected: Code should not be changed.
+Workaround: not using "Convert for loop to enhanced" functionality.

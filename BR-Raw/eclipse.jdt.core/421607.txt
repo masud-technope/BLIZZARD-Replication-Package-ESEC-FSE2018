@@ -1,0 +1,24 @@
+Bug 421607 – [1.8][compiler] Verify Error with intersection casts
+This program when compiled with ECJ and run produces a verify error:
+interface I {
+public void foo();
+}
+class C implements I {
+public void foo() {
+System.out.println("You won't get here");
+}
+}
+public class X {
+public static void main(String[] args) {
+((C & I) (I) new C()).foo();
+}
+}
+I am not sure if this is a valid program, but the code is compiled without any errors.
+When run, an exception with the following reason is thrown:
+Reason:
+Type 'I' (current frame, stack[0]) is not assignable to 'C'
+Current Frame:
+bci: @13
+flags: { }
+locals: { '[Ljava/lang/String;' }
+stack: { 'I' }

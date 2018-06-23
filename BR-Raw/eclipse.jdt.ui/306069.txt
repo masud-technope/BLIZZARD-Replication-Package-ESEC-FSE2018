@@ -1,0 +1,4 @@
+Bug 306069 – [preferences] Make new constants from bug 299514 API in PreferenceConstants
+Make new constants from bug 299514 API in PreferenceConstants:
+- APPEARANCE_ABBREVIATE_PACKAGE_NAMES
+- APPEARANCE_PKG_NAME_ABBREVIATION_PATTERN_FOR_PKG_VIEW

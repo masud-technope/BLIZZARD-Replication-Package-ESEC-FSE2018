@@ -1,0 +1,2 @@
+Bug 9026 – Compilation error breakpoints are showing in breakpoints view
+Summary says it all.

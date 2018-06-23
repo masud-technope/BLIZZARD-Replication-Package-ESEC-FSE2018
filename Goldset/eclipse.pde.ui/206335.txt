@@ -1,0 +1,5 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/plugin/AbstractExtensions.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/plugin/PluginBase.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/plugin/PluginElement.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/plugin/PluginExtension.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/plugin/PluginExtensionPoint.java

@@ -1,0 +1,4 @@
+Bug 312966 – [hovering] Some text in Javadoc hover/view not visible using Ubuntu 10.04
+I20100513-1500
+I am using the default colors on Ubuntu 10.04 and some of the tooltips display black text on black background.
+Will attach a screenshot.

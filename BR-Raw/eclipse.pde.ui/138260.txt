@@ -1,0 +1,10 @@
+Bug 138260 – Enforce META-INF to be included in build.properties
+Using Eclipse 3.2 RC1
+NOTE: This report is an ENHACEMENT, not a bug, so it should probably be left until after Eclipse 3.2 is released.
+Neglecting to include META-INF in build.properties causes the following fatal error for the plugin:
+!ENTRY org.eclipse.update.configurator 2006-04-24 16:02:55.584
+!MESSAGE Plugin does not have a valid identifier: plugins/<id>_<version>/
+Since all plugins are really OSGi bundles, and since OSGi requires every bundle to have a META-INF, it seems sensible for the PDE to verify that build.properties includes META-INF.
+ For Java projects the PDE already ensures that '.' is included in build.properties.
+Ideally, if the project has no errors or warnings the resulting plugin/bundle should "just work".
+ A problem such as this should really be detected by the tooling.

@@ -1,0 +1,9 @@
+Bug 226788 – PDEModelUtility does not cache correctly
+PDEModelUtility has a cache it uses to track which editors are currently open.
+ This cache is implemented with the key being a project and the value is a list of the open editors.
+When an editor opens, it calls connect.
+ When it is closed, it calls disconnect.
+ Unfortunately, if the editor is closing as a result of a project being deleted PDE does not correctly remove the editor from its cache.
+ Instead, when it tries to get the project from the editor it returns null (as all its inputContexts have been removed) and we ignore it.
+The solution is to try to do more searching in this case.
+ To use the input if it is a FileEditorInput to find the project and thereby be able to remove it.

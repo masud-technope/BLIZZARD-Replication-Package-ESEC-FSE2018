@@ -1,0 +1,5 @@
+Bug 19145 – [Wizards] Make wizards resizable and keep bounds
+Both the Checkbox Tree and the Checkbox List have horizontal scrollbars because
+mose package names and type names don't fit in the default size.
+It would be nice to be able to size this dialog bigger, and have it have a
+wider default size (I assume it is sized for 640x480? but is could be wider).

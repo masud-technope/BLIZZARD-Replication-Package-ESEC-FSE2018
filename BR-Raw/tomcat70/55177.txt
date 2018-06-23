@@ -1,0 +1,12 @@
+55177 – connectionTimeout=-1 causes high CPU
+Created attachment 30514 [details]
+fix
+Setting connectionTimeout to -1 in server.xml causes each request to have high CPU
+java full version "1.6.0_51-b11-457"
+Example:
+<Connector port="8080" protocol="HTTP/1.1"
+connectionTimeout="-1"
+redirectPort="8443" />
+Everywhere I looked there seemed to be a if statement looking to see if it was below zero except in Http11Processor class.
+Attached is patch file.
+Which has resolved the issue on my server.

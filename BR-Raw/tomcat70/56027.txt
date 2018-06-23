@@ -1,0 +1,14 @@
+56027 – Unable to use TCN on RHEL6 boxes if box is booted in fips mode
+There are two problems here.
+#1) A RHEL6 box can be configured to boot in FIPS 140 mode automatically, and the underlying openssl packages will detect this when they initialize.
+ If Tomcat is configured to use the APR listener with 'FIPSMode="on"' set, then the APRLifecycleListener in initializeSSL calls down to TCN to explicitly do a fipsModeSet.
+ However, *if* a RHEL box is configured to be in fips mode at boot then this call will fail in the openssl libraries, where it claims that fips mode is already set.
+Looking at the openssl source (openssl-1.0.0-27.el6.src.rpm) the FIPS_mode_set() call does not allow for being 'set' more than once.
+ Putting a check in TCN src/ssl.c in the fipsModeCheck() to see if the mode is already set solves this one.
+#2) Second issue is in the SSL_TMP_KEYS_INIT macro (called from the TCN src/ssl.c initialize() method) looks like it trying to pre-initialize a 512 bit RSA key.
+ This key appears to be invalid (the underlying ssl_tmp_key_init_rsa() call fails), and this winds up with the entire initialize code throwoing an error about this platform having an unsupported function and exiting.
+ Deleting the 512 RSA init line solves this one.
+Not sure the best solution for #2.
+ Discussing with a few folks here indicated that a 512 bit RSA key is invalid for FIPS mode, so perhaps this call needs to be wrapped in a 'if (FIPS_Mode()==0)' check.
+ Out of my depth there on the best solution.
+My initial debug wound up exposing the FIPS_Mode() call thru JNI so the AprLifecycleListner class could check this and display an intelligent message, but this would involve changes to both TC6/7(/8?) as well as TCN, and may not be worth that extra involvement.

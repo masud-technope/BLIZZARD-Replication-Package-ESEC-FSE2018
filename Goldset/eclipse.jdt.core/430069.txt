@@ -1,0 +1,6 @@
+org.eclipse.jdt.core.tests.model/META-INF/MANIFEST.MF
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/Activator.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/NullAnnotationModelTests.java
+org.eclipse.jdt.core.tests.builder/src/org/eclipse/jdt/core/tests/builder/IncrementalTests18.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/GenericsRegressionTest_1_7.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/GenericsRegressionTest_1_8.java

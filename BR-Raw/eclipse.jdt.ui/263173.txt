@@ -1,0 +1,24 @@
+Bug 263173 – [clean up] [actions] Member sort can break code when initializers are moved
+Build ID: M20080911-1700
+Steps To Reproduce:
+Given this class:
+class Test {
+static int someInt;
+static {
+someInt = 1;
+}
+static int anotherInt = someInt;
+}
+1.
+Source->Sort Members...->Do not sort fields...->Ok
+The sorted code will be:
+class Test {
+static int someInt;
+static int anotherInt = someInt;
+static {
+someInt = 1;
+}
+}
+This breaks the code because order of initialization has changed.
+More information:
+If the user has selected "Do not sort fields, enum constants, and initializers", eclipse should not move initializers (including static or instance initializer blocks).

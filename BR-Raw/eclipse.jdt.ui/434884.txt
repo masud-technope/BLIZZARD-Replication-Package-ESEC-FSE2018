@@ -1,0 +1,50 @@
+Bug 434884 – [1.8][clean up] Converting nested anonymous classes to lambda does not convert inner anonymous class
+Place the following files in respective packages:
+////////////////////////////////
+package p4a;
+@FunctionalInterface
+public interface FI1<R> {
+public R foo1();
+}
+////////////////////////////////
+package p4a;
+@FunctionalInterface
+public interface FI2 {
+public void foo2();
+}
+////////////////////////////////
+package p4b;
+import p4a.FI1;
+import p4a.FI2;
+public class Test {
+{
+FI1 fi1 = new FI1<FI2>() {
+@Override
+public FI2 foo1() {
+return new FI2() {
+@Override
+public void foo2() {}
+};
+}
+};
+}
+}
+////////////////////////////////
+Apply clean-up on Test.java to use lambda where possible.
+The result is:
+////////////////////////////////
+package p4b;
+import p4a.FI1;
+public class Test {
+{
+FI1 fi1 = () -> new FI2() {
+@Override
+public void foo2() {}
+};
+}
+}
+////////////////////////////////
+The issues are:
+- Only the outer anonymous class is converted to lambda
+- Import statement for FI2 is removed.
+- Hovering on FI2 in the resultant code does not provide the quick fix to import FI2.

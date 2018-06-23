@@ -1,0 +1,4 @@
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/ProjectCreationDecorator.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/breakpoints/ConditionalBreakpointsTests.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/breakpoints/JavaBreakpointListenerTests.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIThread.java

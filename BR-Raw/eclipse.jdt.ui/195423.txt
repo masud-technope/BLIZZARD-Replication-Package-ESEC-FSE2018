@@ -1,0 +1,8 @@
+Bug 195423 – [content assist] computes type hierarchy when filtering prefixes
+N20070704-0010
+For unknown reasons, my content assist became unusably slow when I invoked it on a Composite and then started filtering the proposals:
+void m(Composite c) {
+c.|   // press Ctrl+Space here and then type "g"
+}
+I took a performance trace in which I found that much of the time was burned in the type hierarchy computation triggered by ParameterGuessingProposal.computeReplacementString()
+I think this has been introduced the fix for bug 188851.

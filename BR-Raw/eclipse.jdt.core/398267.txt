@@ -1,0 +1,2 @@
+Bug 398267 – [1.8][compiler] Variables in the body of the lambda expression should be valid
+Arbitrary and meaningless variable specifications  in the body of lambda should have error reported.

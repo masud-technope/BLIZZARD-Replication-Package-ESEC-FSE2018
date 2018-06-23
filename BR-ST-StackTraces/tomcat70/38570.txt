@@ -1,0 +1,3 @@
+org.apache.naming.resources.FileDirContext.setDocBase
+org.apache.catalina.core.StandardContext.resourcesStart
+org.apache.catalina.core.StandardContext.start

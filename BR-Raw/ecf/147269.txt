@@ -1,0 +1,36 @@
+Bug 147269 – The "send file" functionality fails and launches the exception org.eclipse.ecf.core.SharedObjectCreateException
+>>> Environment: WinXP + Java 1.5.0_06 + Eclipse 3.2 RC/ + EMF 2.2.0 RC7 + ECF 0.8.5 
+Furthermore,  we have downloaded from CVS the projects
+- org.eclipse.ecf
+- org.eclipse.ecf.discovery
+- org.eclipse.ecf.example.collab
+- org.eclipse.ecf.presence
+- org.eclipse.ecf.provider
+- org.eclipse.ecf.ui
+>>> Steps to reproduce: 
+- Start the ServerApplication: we have started the ServerApplication
+- BOTH from the projects in the workspace by the menu â€œRunâ€? AND from the installed package by command shell
+(once at a time, of course) and we have the above mentioned exception.
+- Start the clients: we have started
+- BOTH the client installed IN Eclipse AND the â€œECF Example Collab Clientâ€?
+once at a time and at the same time, on the same pc and on several pc, and we have the same exception.
+-  Start the collaboration: we select â€œConnect Workspace (new Dialog)â€? from ECF menu and specify the protocol â€œECF Genericâ€? and Group ID   	      â€œecftcp://***.***.***.***:3282/serverâ€?.
+The connection and presence awareness work well.
+- Select â€œsend fileâ€?: Both â€œSend file to Xâ€? and â€œSend Fileâ€? (to group) allow to choose the file and then they fail launching an exception (that follows) on the client who has requested to send the file.
+After the communication error, the client goes on (doesnâ€™t crash) while others clients donâ€™t notice anything.
+>>> The exception is the following:
+org.eclipse.ecf.core.SharedObjectCreateException: Container GUID[ea_dOe1hV.l_79dNeFQuDN0R9L0-] had exception creating shared object GUID[P9MuuQAIDVCBlkXh3fyhNCgVXP4-]: java.lang.ClassNotFoundException: org.eclipse.ecf.example.collab.share.io.EclipseFileTransfer
+at org.eclipse.osgi.framework.internal.core.BundleLoader.findClass(BundleLoader.java:407)
+at org.eclipse.osgi.framework.internal.core.BundleLoader.findClass(BundleLoader.java:352)
+at org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(DefaultClassLoader.java:83)
+at java.lang.ClassLoader.loadClass(Unknown Source)
+at java.lang.ClassLoader.loadClassInternal(Unknown Source)
+at java.lang.Class.forName0(Native Method)
+at java.lang.Class.forName(Unknown Source)
+at org.eclipse.ecf.provider.generic.SOManager.loadSharedObject(SOManager.java:135)
+at org.eclipse.ecf.provider.generic.SOManager.createSharedObject(SOManager.java:171)
+at org.eclipse.ecf.example.collab.share.GenericSharedObject.createObject(GenericSharedObject.java:478)
+at org.eclipse.ecf.example.collab.share.EclipseCollabSharedObject.createObject(EclipseCollabSharedObject.java:1217)
+at org.eclipse.ecf.example.collab.ui.LineChatClientView.createObject(LineChatClientView.java:322)
+at org.eclipse.ecf.example.collab.ui.ChatComposite$37.run(ChatComposite.java:1126)
+- 	at java.lang.Thread.run(Unknown Source)

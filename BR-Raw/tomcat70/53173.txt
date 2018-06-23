@@ -1,0 +1,48 @@
+53173 – maxConnections feature hangs the system
+Created attachment 28704 [details]
+fix missing count down for maxConnections latch
+We've run into a scenario where the JIO Acceptor thread hangs as connections are not counted down properly.
+<Executor name="tomcatThreadPool"
+namePrefix="tomcat-8080-"
+minSpareThreads="50"
+maxThreads="300"/>
+<Connector port="8080"
+redirectPort="${bio.https.port}"
+protocol="org.apache.coyote.http11.Http11Protocol"
+maxKeepAliveRequests="15"
+executor="tomcatThreadPool"
+connectionTimeout="20000"
+acceptCount="100"/>
+Thread dump yields
+"http-bio-8080-Acceptor-0" daemon prio=3 tid=0xXXXXXXXX nid=0xXX waiting on condition [0xXXXXXXXX..0xXXXXXXXX]
+java.lang.Thread.State: WAITING (parking)
+at sun.misc.Unsafe.park(Native Method)
+- parking to wait for  <0xXXXXXXXX> (a org.apache.tomcat.util.threads.LimitLatch$Sync)
+at java.util.concurrent.locks.LockSupport.park(LockSupport.java:158)
+at java.util.concurrent.locks.AbstractQueuedSynchronizer.parkAndCheckInterrupt(AbstractQueuedSynchronizer.java:747)
+at java.util.concurrent.locks.AbstractQueuedSynchronizer.doAcquireSharedInterruptibly(AbstractQueuedSynchronizer.java:905)
+at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireSharedInterruptibly(AbstractQueuedSynchronizer.java:1217)
+at org.apache.tomcat.util.threads.LimitLatch.countUpOrAwait(LimitLatch.java:99)
+at org.apache.tomcat.util.net.AbstractEndpoint.countUpOrAwaitConnection(AbstractEndpoint.java:660)
+at org.apache.tomcat.util.net.JIoEndpoint$Acceptor.run(JIoEndpoint.java:210)
+at java.lang.Thread.run(Thread.java:619)
+This, as you may imagine, is a fairly hard use case to reproduce into a simple test case.
+The easiest way to reproduce it is to create the following configuration
+<Executor name="tomcatThreadPool"
+namePrefix="catalina-exec-"
+maxThreads="5"
+minSpareThreads="0"
+maxQueueSize="15"/>
+<Connector port="8080"
+protocol="HTTP/1.1" executor="tomcatThreadPool"
+connectionTimeout="10000"
+redirectPort="8443"
+maxConnections="30"/>
+This reproduces one test case, where the state machine is not taking into account that connections may be rejected by the queue, but it doesn't count down the latch.
+I'm attaching a patch to fix this specific use case, but it may not be a complete fix.
+As a workaround, the patch also introduces the maxConnections="-1" configuration that disables the usage of maxConnections.
+The -1 setting is important to give administrator a workaround while the other edge cases are tracked down.
+I have not been able to reproduce this error with NIO connector.
+There is one more place in the JioEndpoint that requires handling of RejectedExecutionException in the
+public boolean processSocketAsync(SocketWrapper<Socket> socket,SocketStatus status)
+This is currently unhandled.

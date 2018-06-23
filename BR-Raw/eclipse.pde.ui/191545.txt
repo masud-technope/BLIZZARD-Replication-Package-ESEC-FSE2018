@@ -1,0 +1,4 @@
+Bug 191545 – bin.excludes does not propery update
+With a plugin project the bin.excludes does not update when a jar file is deleted from the project.
+ With bin.includes, the manifest gets updated with a yellow warning triangle.
+ But this does not happen with bin.excludes.

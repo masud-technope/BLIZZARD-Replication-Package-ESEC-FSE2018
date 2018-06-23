@@ -1,0 +1,16 @@
+Bug 484479 – [content assist] Cannot insert a proposal after method reference ::
+Reproducible with Eclipse 4.5.
+------------------------------------------
+package snippet;
+import java.util.function.Supplier;
+public interface Bar {
+static public Bar print() {
+return null;
+}
+}
+class A {
+Supplier<Bar> c = Bar::|
+}
+------------------------------------------
+In the given example, press Ctrl+space after :: and select a proposal to enter.
+=> Nothing is inserted after ::

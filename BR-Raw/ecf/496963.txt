@@ -1,0 +1,3 @@
+Bug 496963 – AbstractConsumerContainerSelector.matchSupportedConfigs should test for both null and empty array
+The current code in AbstractConsumerContainerSelector.matchSupportedConfigs tests for null and returns false.
+ It should also check for array length 0 and also return false if array length is 0 but non-null.

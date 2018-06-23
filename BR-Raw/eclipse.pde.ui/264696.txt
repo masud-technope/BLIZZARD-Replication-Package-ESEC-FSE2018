@@ -1,0 +1,13 @@
+Bug 264696 – [target] No information on current target if backing target definition file deleted
+Steps:
+1) Create a new target definition in local metadata
+2) Set it as the target platform
+3) Close Eclipse
+4) Delete the backing target definition in pde.core metadata
+5) Open Eclipse, open target preference page
+Result:
+Nothing is selected, but there is still a target platform.
+Once we remove the old target platform preference page we will have to handle this case where something happens to the fiel backing the current target platform.
+ We should probably log an exception and create a new target platform based on the current settings.
+This should happen for workspace files as well.
+ If we add support to open external files and set them as the target platform this problem will get worse (bug 264056).

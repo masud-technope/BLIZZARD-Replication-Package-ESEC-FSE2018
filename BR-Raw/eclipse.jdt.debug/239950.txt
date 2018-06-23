@@ -1,0 +1,51 @@
+Bug 239950 – Debugging Spring app causes ClassCastException
+Build ID: I20080617-2000
+Steps To Reproduce:
+1.TestCase for spring application extends AbstractTransactionalSpringContextTests
+2.
+Run as: JUnit Test
+3.
+Error "'JDI thread evaluations' has encountered a problem.
+Exception processing async thread queue"
+More information:
+!SESSION 2008-07-08 13:45:06.737 -----------------------------------------------
+eclipse.buildId=I20080617-2000
+java.version=1.5.0_15
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=de_AT
+Command-line arguments:  -os linux -ws gtk -arch x86 -clean
+!ENTRY org.eclipse.ui 2 0 2008-07-08 13:45:52.324
+!MESSAGE Warnings while parsing the key bindings from the 'org.eclipse.ui.commands' extension point
+!SUBENTRY 1 org.eclipse.ui 2 0 2008-07-08 13:45:52.324
+!MESSAGE Cannot bind to an undefined command: plug-in='org.eclipse.tm.terminal', id='org.eclipse.tm.terminal.command1'
+!SUBENTRY 1 org.eclipse.ui 2 0 2008-07-08 13:45:52.324
+!MESSAGE Cannot bind to an undefined command: plug-in='org.eclipse.tm.terminal', id='org.eclipse.tm.terminal.command1'
+!SUBENTRY 1 org.eclipse.ui 2 0 2008-07-08 13:45:52.324
+!MESSAGE Cannot bind to an undefined command: plug-in='org.eclipse.tm.terminal', id='org.eclipse.tm.terminal.command1'
+!SUBENTRY 1 org.eclipse.ui 2 0 2008-07-08 13:45:52.324
+!MESSAGE Cannot bind to an undefined command: plug-in='org.eclipse.tm.terminal', id='org.eclipse.tm.terminal.command1'
+!SUBENTRY 1 org.eclipse.ui 2 0 2008-07-08 13:45:52.324
+!MESSAGE Cannot bind to an undefined command: plug-in='org.eclipse.tm.terminal', id='org.eclipse.tm.terminal.command1'
+!SUBENTRY 1 org.eclipse.ui 2 0 2008-07-08 13:45:52.324
+!MESSAGE Cannot bind to an undefined command: plug-in='org.eclipse.tm.terminal', id='org.eclipse.tm.terminal.command1'
+!SUBENTRY 1 org.eclipse.ui 2 0 2008-07-08 13:45:52.324
+!MESSAGE Cannot bind to an undefined command: plug-in='org.eclipse.tm.terminal', id='org.eclipse.tm.terminal.command1'
+!SUBENTRY 1 org.eclipse.ui 2 0 2008-07-08 13:45:52.324
+!MESSAGE Cannot bind to an undefined command: plug-in='org.eclipse.tm.terminal', id='org.eclipse.tm.terminal.command1'
+!SUBENTRY 1 org.eclipse.ui 2 0 2008-07-08 13:45:52.324
+!MESSAGE Cannot bind to an undefined command: plug-in='org.eclipse.tm.terminal', id='org.eclipse.tm.terminal.command1'
+!SUBENTRY 1 org.eclipse.ui 2 0 2008-07-08 13:45:52.324
+!MESSAGE Cannot bind to an undefined command: plug-in='org.eclipse.tm.terminal', id='org.eclipse.tm.terminal.command1'
+!ENTRY org.eclipse.jdt.debug 4 120 2008-07-08 13:46:39.919
+!MESSAGE Exception processing async thread queue
+!SUBENTRY 1 org.eclipse.jdt.debug 4 120 2008-07-08 13:46:39.937
+!MESSAGE Exception processing async thread queue
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.internal.debug.core.model.JDINullValue
+at org.eclipse.jdt.internal.debug.eval.ast.instructions.ArrayAccess.execute(ArrayAccess.java:36)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.Interpreter.execute(Interpreter.java:61)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine$1$EvaluationRunnable.run(ASTEvaluationEngine.java:481)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.runEvaluation(JDIThread.java:640)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine$EvalRunnable.run(ASTEvaluationEngine.java:517)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run(JDIThread.java:2614)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

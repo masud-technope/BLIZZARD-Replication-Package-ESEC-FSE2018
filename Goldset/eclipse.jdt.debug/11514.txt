@@ -1,0 +1,6 @@
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaBreakpoint.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/JDIDebugPlugin.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/debug/core/IJavaBreakpointListener.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaPatternBreakpoint.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIType.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaDebugOptionsManager.java

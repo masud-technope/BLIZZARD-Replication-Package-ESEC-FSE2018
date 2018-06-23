@@ -1,0 +1,3 @@
+tests/bundles/org.eclipse.ecf.tests.provider.xmpp/src/org/eclipse/ecf/tests/provider/xmpp/remoteservice/ExampleService.java
+tests/bundles/org.eclipse.ecf.tests.provider.xmpp/src/org/eclipse/ecf/tests/provider/xmpp/remoteservice/IExampleService.java
+tests/bundles/org.eclipse.ecf.tests.provider.xmpp/src/org/eclipse/ecf/tests/provider/xmpp/remoteservice/RemoteServiceRetrieval.java

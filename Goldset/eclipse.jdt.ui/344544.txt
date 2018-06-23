@@ -1,0 +1,10 @@
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/StubUtility.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/CodeGeneration.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test17/out/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test21/out/Foo.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/JavadocTagsSubProcessor.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test20/out/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test30/out/MultiGenerics.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test22/out/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceIndirection/test19/out/Foo.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/IntroduceIndirectionTests.java

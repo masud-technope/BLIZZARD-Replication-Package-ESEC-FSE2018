@@ -1,0 +1,3 @@
+Bug 72371 – Streams potentially left open on exception(s)
+We have two locations where potentially a stream could be left open if an
+exception occurs.

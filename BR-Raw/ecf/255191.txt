@@ -1,0 +1,6 @@
+Bug 255191 – [RemoteServices][UI] MethodInvocationDialog's parameter setting is clumsy and unwieldy
+Created attachment 117783 [details]
+Patch to make the cell editing selection only require one click.
+Right now, it seems you have to click on the left column ('Parameter'), then after you've selected the parameter, you have to click on the right column ('Value'), to edit it.
+This is very unwieldy and hard to use.
+Please see the attached patch for a suggested fix.

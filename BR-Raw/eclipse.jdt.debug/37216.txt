@@ -1,0 +1,35 @@
+Bug 37216 – test failed due to "zip file closed"
+Intermitently, the "ConditionBreakpointTests.testSimpleConditionalBreakpoint()"
+test fails.
+I noticed that this appears in the test .logs.
+It indicates that
+the compilation of the conditional BP failed:
+[echo] Running org.eclipse.jdt.debug.tests.AutomatedSuite
+[java] java.lang.IllegalStateException: zip file closed
+[java] 	at java.util.zip.ZipFile$2.hasMoreElements(ZipFile.java:301)
+[java] 	at
+org.eclipse.jdt.launching.sourcelookup.ArchiveSourceLocation.autoDetectRoot
+(ArchiveSourceLocation.java:179)
+[java] 	at
+org.eclipse.jdt.launching.sourcelookup.ArchiveSourceLocation.findSourceElement
+(ArchiveSourceLocation.java:149)
+[java] 	at
+org.eclipse.jdt.launching.sourcelookup.JavaSourceLocator.getSourceElement
+(JavaSourceLocator.java:256)
+[java] 	at
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.getJavaProjec
+t(JavaLineBreakpoint.java:466)
+[java] 	at
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.handleConditi
+onalBreakpointEvent(JavaLineBreakpoint.java:434)
+[java] 	at
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.handleBreakpo
+intEvent(JavaLineBreakpoint.java:359)
+[java] 	at
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent
+(JavaBreakpoint.java:261)
+[java] 	at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch
+(EventDispatcher.java:170)
+[java] 	at org.eclipse.jdt.internal.debug.core.EventDispatcher.run
+(EventDispatcher.java:211)
+[java] 	at java.lang.Thread.run(Thread.java:536)

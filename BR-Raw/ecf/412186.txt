@@ -1,0 +1,4 @@
+Bug 412186 – [Distributed EventAdmin] Add API for custom Serialization per event topic
+Bug #412180 makes clear that not all consumers/users of OSGi EventAdmin follow the OSGi EventAdmin spec guideline and only send primitives as event data.
+Thus, for event data not implementing serializable, we should use "SmartSerialization" (see http://git.eclipse.org/c/ecf/org.eclipse.ecf.git/tree/protocols/bundles/ch.ethz.iks.r_osgi.remote/src/main/java/ch/ethz/iks/util/SmartObjectOutputStream.java).
+(Also see bug #385740)

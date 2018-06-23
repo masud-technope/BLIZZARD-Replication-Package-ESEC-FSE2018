@@ -1,0 +1,2 @@
+Bug 303030 – Add getChatRoomContainers() to ChatRoomManagerView
+It would be nice to get a list of all open channels from the view.

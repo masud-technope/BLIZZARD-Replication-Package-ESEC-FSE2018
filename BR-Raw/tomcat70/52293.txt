@@ -1,0 +1,11 @@
+52293 – antiResourceLocking and unpackWARs
+Created attachment 28034 [details]
+ContextConfig.java
+It appears that Tomcat is attempting to copy the WAR from the $CATALINA_HOME/webapps directory to the $CATALINA_HOME/temp directory without the .war extension (e.g., original docBase is $CATALINA_HOME/webapps/example.war and a new docBase of $CATALINA_HOME/temp/1-example ).
+ I think that line 973 in ContextConfig.java method antiLocking never evaluates correctly because the docBase gets set to the value of path on line 969, which removes the .war extension so the file ends up being $CATALINA_HOME/temp/1-example instead of 1-example.war.
+Additionally, applications with sub-context paths (e.g., foo#bar.war) never get deployed to temp correctly with antiResourceLocking="true" regardless of the unpackWARs setting because of the above scenario and because the docBase gets set to the context path in the antiLocking method which converts the # separator to /.
+ There appears to be a fix on line 882 of fixDocBase that converts the / character to # in the path but that doesn't make it to the antiLocking method.
+Both 6.0.35 and 7.0.23 exhibit the same behaviour.
+ In 7.0.23, the docBase is changed back to the context path via the ContextName now instead of the context.getPath() but the result is the same.
+ Interestingly enough, there is a comment in the 7.0.23 source on line 750 that suggests the code to copy the .war file is never reached and that it's possibly a bug.
+ This code is never reached because the docBase is changed to the path without the .war extension.

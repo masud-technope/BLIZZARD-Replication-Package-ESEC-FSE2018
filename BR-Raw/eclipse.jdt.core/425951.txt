@@ -1,0 +1,55 @@
+Bug 425951 – java.lang.NullPointerException in InferenceContext18.leavePolyInvocation(InferenceContext18.java:853)
+Hello,
+I encountered this problem while compiling my workspace with java 8 ea b123 and
+Eclipse Java Development Tools Patch for Java 8 Support (BETA)	        1.0.0.v20140117-0105_BETA_JAVA8	org.eclipse.jdt.java8patch.feature.group	Eclipse.org
+Eclipse Plugin-in Development Environment Patch for Java 8 Support (BETA)	1.0.0.v20140117-0105_BETA_JAVA8	org.eclipse.pde.java8patch.feature.group	Eclipse.org
+Eclipse RCP Patch for Java 8 Support (BETA)	                                1.0.0.v20140117-0105_BETA_JAVA8	org.eclipse.rcp.java8patch.feature.group	Eclipse.org
+(I followed http://wiki.eclipse.org/JDT/Eclipse_Java_8_Support_(BETA) )
+!ENTRY org.eclipse.core.resources 4 2 2014-01-17 08:14:09.968
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.leavePolyInvocation(InferenceContext18.java:853)
+at org.eclipse.jdt.internal.compiler.lookup.ConstraintExpressionFormula.reduce(ConstraintExpressionFormula.java:121)
+at org.eclipse.jdt.internal.compiler.lookup.BoundSet.reduceOneConstraint(BoundSet.java:642)
+at org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.reduce(InferenceContext18.java:545)
+at org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.solve(InferenceContext18.java:530)
+at org.eclipse.jdt.internal.compiler.lookup.ParameterizedGenericMethodBinding.computeCompatibleMethod(ParameterizedGenericMethodBinding.java:114)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod(Scope.java:720)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod(Scope.java:676)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.findMethod(Scope.java:1659)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getMethod(Scope.java:2794)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.findMethodBinding(MessageSend.java:857)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.resolveType(MessageSend.java:689)
+at org.eclipse.jdt.internal.compiler.ast.ReturnStatement.resolve(ReturnStatement.java:331)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:620)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:303)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:531)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1211)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1296)
+at org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveTypeForQualifiedAllocationExpression(QualifiedAllocationExpression.java:538)
+at org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java:283)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.resolveType(MessageSend.java:641)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.resolveType(MessageSend.java:594)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.resolveType(MessageSend.java:594)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java:1016)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:620)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:303)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:531)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1211)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1296)
+at org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveTypeForQualifiedAllocationExpression(QualifiedAllocationExpression.java:538)
+at org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java:283)
+at org.eclipse.jdt.internal.compiler.ast.FieldDeclaration.resolve(FieldDeclaration.java:264)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1147)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1321)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:570)
+at org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:770)
+at org.eclipse.jdt.internal.compiler.ProcessTaskManager.run(ProcessTaskManager.java:137)
+at java.lang.Thread.run(Thread.java:744)
+eclipse.buildId=unknown
+java.version=1.8.0-ea
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=fr_FR
+Framework arguments:  -product org.eclipse.platform.ide
+Command-line arguments:  -product org.eclipse.platform.ide -data C:\java\data\dev\headjava8 -dev file:C:/java/data/dev/AnalyseJava8/.metadata/.plugins/org.eclipse.pde.core/Eclipse Infologic Java8/dev.properties -os win32 -ws win32 -arch x86 -consoleLog

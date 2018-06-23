@@ -1,0 +1,7 @@
+52846 – Programmatic login using UserDatabaseRealm returns 403 error.
+IMHO,HttpServletRequest#login does not need to define a <login-config>.
+NonLoginAuthenticator is used when <login-config> is not specified in HttpServletRequest#login.
+When UserDatabaseRealm is used, not GenericPrincipal but Memory User is set to a session.
+In AuthenticatorBase#invoke, principal registered into a session is set to a request.
+Because MemoryUser is set to a request as principal, RealmBase#hasRole always returns false.
+As a result, 403 error is returned.

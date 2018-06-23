@@ -1,0 +1,2 @@
+Bug 474220 – Update org.eclipse.pde.launching to Java 1.7
+Because @Override for interface methods

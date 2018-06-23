@@ -1,0 +1,2 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/TypeBindingTests308.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/MethodBinding.java

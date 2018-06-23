@@ -1,0 +1,6 @@
+java/org/apache/catalina/connector/Request.java
+java/org/apache/catalina/core/ApplicationHttpRequest.java
+java/org/apache/catalina/core/StandardContext.java
+java/org/apache/catalina/ha/authenticator/ClusterSingleSignOnListener.java
+java/org/apache/catalina/ha/session/ClusterSessionListener.java
+java/org/apache/catalina/startup/ContextConfig.java

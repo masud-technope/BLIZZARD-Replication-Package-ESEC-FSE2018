@@ -1,0 +1,3 @@
+Bug 148328 – javadoc contains nested unescaped XML tags
+The javadoc comment on class org.eclipse.jdt.apt.core.build.JdtApt contains nested XML tags that are not escaped.
+ The resulting javadoc HTML is defective.

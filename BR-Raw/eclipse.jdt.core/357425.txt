@@ -1,0 +1,24 @@
+Bug 357425 – DeltaProcessor misses state changes in archive files
+Build Identifier: I20110613-1736
+The recent performance patch for the DeltaProcessor code resets the resolved classpath _only_ if it encounters a jar that contains chained jars in the resource delta.
+ This can miss two types of state change:
+1) An archive that had chained jars is updated to contain no chained jars.
+ In this case the chained jars should get removed from the resolved classpath, if they are not pulled in by other jars.
+2) setRawClasspath() is called with library jars that do not yet exist, so they are added to the invalid archive cache.
+ The missing jars subsequently get built, triggering the delta processor code.
+ Since the invalid archive cache only gets cleared when removing per-project info or when resetting the resolved classpath, the newly appearing jars remain in the invalid archive list and any classes within them remain unresolved.
+For #1, to determine if a previously chained jar entry should be removed from the resolved classpath you need to either keep a reference count for each jar on the classpath, or just reset the resolved classpath and recalculate it.
+ Resetting the resolved classpath once per delta processor invocation doesn't appear to be a performance problem and is the simplest solution, so I will attach an initial patch that does that.
+For #2 it seems like ClasspathEntry.validateClasspathEntry() should always clear the invalid archive list, but JavaModelManager.resetClasspathListCache() resets both that list and the non-chaining jars list, so attach a second patch that adds a new JavaModelManager.resetInvalidArchiveListCache() function and calls it in the beginning of ClasspathEntry.validateClasspathEntry().
+Strictly speaking, patch #1 will fix both issues when dealing with invocations of the delta processor code, but not resetting the invalid archive list from Classpath.validateClasspathEntry() seems like a potential bug, given that that function attempts to update that state.
+Also, I'd be happy to add a regression test for this issue if you point me at the appropriate place to add it.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Call setRawClasspath() with a library archive jar that doesn't exist
+2.
+Validate that class files contained in the missing jar cause compilation erros/missing imports
+3.
+Copy the missing jar into place, and refresh the project to pick it up
+4.
+After the delta processor code executes, the new jar should resolve the missing classes, but it doesn't because the jar still exists in the invalid archive cache

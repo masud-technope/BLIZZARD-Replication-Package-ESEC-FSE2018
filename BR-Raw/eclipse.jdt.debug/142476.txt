@@ -1,0 +1,30 @@
+Bug 142476 – TVT3.2:TCT535: Text boxes ovelap with borders
+OS : RHEL 3.1
+Must fix or not a must fix: YES
+Build date: 0516
+Component name: EMFT
+Blocking: NO
+Language: el
+Bitmap Location:Y:\defects\el\EMFT_1110b.JPG
+Tester Name: Peppy Florou
+Steps to recreate the problem:
+Start eclipse
+File->New->Project
+Expand Java Emitter Templates
+Click Next
+Enter a project name (tvt.tests)
+Click Finish
+In the project created, right click over the file ?sample.xml?, and choose Run As.
+From the menu, choose Run ->Run?
+Select JET Transform in the right-hand tree
+Click the New icon
+Click 'Common' tab
+Problem Description:
+1.
+Text box for the value of 'File:' field overlapps with right border.
+2.
+'Variables...' button overlapps with right border
+Kindly please adjust the coordinates/width of those boxes.
+thx
+Peppy
+This article was reassigned from Category:''TVT/Testing''.

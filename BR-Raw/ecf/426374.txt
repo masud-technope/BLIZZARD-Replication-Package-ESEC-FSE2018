@@ -1,0 +1,2 @@
+Bug 426374 – Notify IServiceListeners of previously registered services
+IServiceListeners, which are registered via the OSGi whiteboard pattern, should (optionally) be notified about (matching) IServiceInfo instances even if the ISI instances have been discovered _before_ the listener.

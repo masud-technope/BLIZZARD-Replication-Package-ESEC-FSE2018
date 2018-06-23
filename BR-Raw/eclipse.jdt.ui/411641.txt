@@ -1,0 +1,8 @@
+Bug 411641 – [content assist] Unnecessary content assist popup after decimal
+If you are typing a floating point number say 3.14 then content assist window pops up after typing '.', e.g.
+in this situation below
+void bar() {
+System.out.println(3.);
+}
+Tried this with 4.3 RC4.
+(Likely a consequence of changes for showing Template and keyword proposals without prefix)

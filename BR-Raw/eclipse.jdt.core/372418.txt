@@ -1,0 +1,29 @@
+Bug 372418 – Another problem with inner classes referenced from jars or class folders: "The type ... cannot be resolved"
+Build Identifier: I20120125-1800
+This bug is similar to bug 357110 and occurs when an inner class in a .class or .jar file references an inner class in a file on Eclipse's source path, as follows:
+// This class is mapped into Eclipse as source
+public class BaseClass {
+public static class Builder<T> {
+public Builder(T t) {}
+}
+}
+// This class is in a jar on Eclipse's classpath
+public class DerivedClass extends BaseClass {
+public static class Builder<T> extends BaseClass.Builder<T> {
+public Builder(T t) {
+super(t);
+}
+}
+}
+However, this bug only gets triggered when batch/incremental compilation segments the builds into multiple chunks.
+ That can cause an order-of-compilation issue where a class referencing DerivedClass is compiled before  BaseClass.
+ Normally this is handled in  org.eclipse.jdt.internal.core.builder.NameEnvirionment.findClass() by looking up the Java source file in its "additionalUnits" (to be compiled) map, but since that maps top-level classes to Java source files, the lookup of the inner class fails.
+Reproducible: Always
+Steps to Reproduce:
+Will attach a sample project to reproduce this.
+1)To trigger the bug on the small sample project, change the org.eclipse.jdt.internal.core.builder.BatchImageBuilder.MAX_AT_ONCE constant to equal "1".
+2) Open the attached LookupEnvironmentNestedClass workspace in Eclipse and import its existing projects
+3) Build all projects (ignore the initial errors for DerivedClass.Builder)
+4) Project > Clean the BaseClassAndReferencingClasses project, then rebuild the workspace.
+ That triggers the bug and yields the error "The type com.google.baseclass.BaseClass$Builder cannot be resolved.
+It is indirectly referenced from required .class files"

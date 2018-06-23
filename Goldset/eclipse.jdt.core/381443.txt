@@ -1,0 +1,10 @@
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/JavaCore.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/problem/messages.properties
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/ImplicitNullAnnotationVerifier.java
+org.eclipse.jdt.core/batch/org/eclipse/jdt/internal/compiler/batch/Main.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/impl/IrritantSet.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/impl/CompilerOptions.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/CompilerInvocationTests.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/NullAnnotationTest.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/BatchCompilerTest.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/problem/ProblemReporter.java

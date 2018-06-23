@@ -1,0 +1,31 @@
+54190 – TestNonLoginAndBasicAuthenticator does not test session timeout properly
+Created attachment 29621 [details]
+Extensive update to the test class to demonstrate session timeout properly
+While working on a new test case for a different Authenticator, I decided to follow the timeout test case in this class.
+Although all the test cases currently run successfully, I discovered three fundamental flaws in the existing timeout test case:
+1.
+The BasicAuthenticator does not create a session by default, so there was no session to actually timeout.
+2.
+Context.setSessionTimeout() was called with a timeout in seconds, but this method expects a timeout argument in minutes.
+3.
+The presence of 401 Unauthorized status was intended to confirm a session timeout, but it was erroneously succeeding because no credentials were supplied when attempting to re-access the protected resource.
+The attached patch is quite extensive, but cannot easily be broken into smaller units:
+1.
+The AuthenticatorBase.setAlwaysUseSession variable can now be manipulated by test cases.
+2.
+The doTestBasic method has been reimplemented so that it only makes a single HTTP GET request (instead of two).
+3.
+doTestBasic can now be controlled to authenticate or not, and it will also harvest a session cookie and can also supply that cookie in subsequent requests.
+4.
+The doTestNonLogin method can be controlled to send a saved session cookie.
+5.
+The erroneous timeout test case has been reimplemented has been renamed and properly commented to explain that it is not testing a timeout.
+6.
+A new session persistence test case has been added.
+7.
+A new session persistence timeout test case has been added.
+8.
+Raw boolean control flags have been replaced with self-documenting constants.
+9.
+Helpful comments have been added in some places where the logic is not self-evident.
+The enclosed patch file is backward compatible and passes checkstyle.

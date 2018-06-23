@@ -1,0 +1,3 @@
+Bug 127656 – [api] remove 'selection' from IQuickAssistInvocationContext API methods
+I20060214-0010.
+Remove 'selection' from IQuickAssistInvocationContext API methods.

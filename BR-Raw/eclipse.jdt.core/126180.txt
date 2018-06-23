@@ -1,0 +1,52 @@
+Bug 126180 – [1.5][compiler] NPE reporting invalid enclosing type
+Build 3.2m4
+The problem below is causing a NPE to be raised by compiler.
+public class X {
+static String foo;
+public static void main(String[] args) {
+C2 c2 = null;
+C3 c3 = null;
+// method access
+m1(c2, c3).c1m1();
+m1(c2, c3).i1m1();
+m1(c2, c3).i2m1();
+// field access
+int ic1 = m1(c2, c3).c1f1;
+int ii1 = m1(c2, c3).i1f1;
+int ii2 = m1(c2, c3).i2f1;
+// member type access
+Object oc1 = m1(c2, c3).new C1Member();
+Object oi1 = m1(c2, c3).new I1Member();
+Object oi2 = m1(c2, c3).new I2Member();
+}
+public static <T> T m1(T t1, T t2) {
+return null;
+}
+class C1 {
+void c1m1() {}
+int c1f1 = 0;
+class C1Member {}
+}
+interface I1 {
+void i1m1();
+int i1f1 = 1;
+class I1Member {}
+}
+interface I2 {
+void i2m1();
+int i2f1 = 2;
+class I2Member {}
+}
+class C2 extends C1 implements I1, I2 {
+public void i1m1() {
+}
+public void i2m1() {
+}
+}
+class C3 extends C1 implements I1, I2 {
+public void i1m1() {
+}
+public void i2m1() {
+}
+}
+}

@@ -1,0 +1,8 @@
+Bug 458852 – [search] Speed up JDT text searches by supporting parallelism in its TextSearchRequestors
+Bug 458704 introduced new API to TextSearchRequestor to support faster text searches.
+Update the JDT's TextSearchRequestors to support collecting results from multiple jobs running in parallel.
+I see three subclasses of TextSearchRequestor:
+1) org.eclipse.jdt.internal.corext.refactoring.util.QualifiedNameFinder.ResultCollector, which is used in package rename refactorings
+2) org.eclipse.jdt.internal.ui.propertiesfileeditor.PropertyKeyHyperlink.ResultCollector, which is used to find hyperlink targets to keys in .properties files
+3) An anonymous class in org.eclipse.jdt.ui.examples.MyRenameTypeParticipant.createChange(), which is in the org.eclipse.jdt.ui.tests plug-in
+Dani, do you know of any other subclasses?

@@ -1,0 +1,23 @@
+Bug 276111 – [JUnit] classpath container doesn't pick up JUnit jars in shared installations
+Build ID: I20090430-2300
+Steps To Reproduce:
+1.
+have an Eclipse shared install (for example on Linux), in a read only dir (eg /usr/local/eclipse)
+2.
+make sure you don't have a ~/.eclipse dir yet (more specifically, no bundles.txt in that for your configuration)
+3.
+start Eclipse
+4.
+load a Java project with JUnit container added to the build path
+5.
+see that JUnit container didn't find the junit.jar - test cases won't compile
+More information:
+I think this is related to the 'bundles.txt' file, the JUnit classpath container looks for that in the user's home (~/.eclipse) to find 'junit.jar' in the org.junit bundle.
+I guess the problem is either that:
+* it should not look at there at all, just use the shared bundles.txt (as suggested by http://wiki.eclipse.org/Equinox_p2_Shared_Install_Plan), or
+* P2 should make sure the user-level bundles.txt exists.
+Earlier milestones (like 3.5M6) seems to work like that.
+One thing that suggest the problem may be in Junit plugin's side, is this comment:
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/buildpath/P2Utils.java:
+// This class currently uses provisional p2 API for which //official API has been requested:
+// https://bugs.eclipse.org/bugs/show_bug.cgi?id=269496

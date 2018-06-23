@@ -1,0 +1,10 @@
+examples/bundles/org.eclipse.ecf.examples.eventadmin.app/src/org/eclipse/ecf/examples/internal/eventadmin/app/ExampleSerializationHandler.java
+server-side/bundles/org.eclipse.ecf.remoteservice.eventadmin/META-INF/MANIFEST.MF
+server-side/bundles/org.eclipse.ecf.remoteservice.eventadmin/src/org/eclipse/ecf/remoteservice/eventadmin/EventMessage.java
+examples/bundles/org.eclipse.ecf.examples.eventadmin.app/src/org/eclipse/ecf/examples/internal/eventadmin/app/TestEventHandler.java
+examples/bundles/org.eclipse.ecf.examples.eventadmin.app/src/org/eclipse/ecf/examples/internal/eventadmin/app/TestSender.java
+server-side/bundles/org.eclipse.ecf.remoteservice.eventadmin/src/org/eclipse/ecf/remoteservice/eventadmin/DistributedEventAdmin.java
+examples/bundles/org.eclipse.ecf.examples.eventadmin.app/src/org/eclipse/ecf/examples/internal/eventadmin/app/AbstractEventAdminApplication.java
+examples/bundles/org.eclipse.ecf.examples.eventadmin.app/src/org/eclipse/ecf/examples/internal/eventadmin/app/NonSerializable.java
+server-side/bundles/org.eclipse.ecf.remoteservice.eventadmin/src/org/eclipse/ecf/internal/remoteservice/eventadmin/DefaultSerializationHandler.java
+server-side/bundles/org.eclipse.ecf.remoteservice.eventadmin/src/org/eclipse/ecf/remoteservice/eventadmin/serialization/SerializationHandler.java

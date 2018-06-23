@@ -1,0 +1,3 @@
+Bug 315897 – org.eclipse.ecf.filetransfer.IncomingFileTransferException: File not found
+IncomingFileTransferReceiveDoneEvent[bytesReceived=0;fileLength=-1;exception=org.eclipse.ecf.filetransfer.IncomingFileTransferException: File not found: http://ftp.osuosl.org/pub/eclipse/rt/ecf/update/features/org.eclipse.ecf.examples_1.2.0.v20071019-1300.jar]
+This has been caused by the recent archival of older ECF builds.

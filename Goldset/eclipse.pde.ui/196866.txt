@@ -1,0 +1,11 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/ischema/ISchema.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/ischema/ISchemaElement.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/Schema.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/SchemaElement.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/SchemaElementReference.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/NewAttributeAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/NewElementAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/SchemaAttributeDetails.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/SchemaElementDetails.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/SchemaRearranger.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/util/PDELabelUtility.java

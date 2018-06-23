@@ -1,0 +1,6 @@
+Bug 164438 – Signed features mistaken for plug-ins
+Build: N-20061113
+When you import features from the Target platform via the Feature Import wizard, the imported features do not recognized by PDE as features in the workspace.
+Upon investigation, it turns out that this is due to the fact that the imported features are signed.
+The META-INF/MANIFEST.MF folder in the imported feature causes confusion between the feature project structure and the plug-in project structure.
+PDE is treating signed feature projects as plug-in projects.

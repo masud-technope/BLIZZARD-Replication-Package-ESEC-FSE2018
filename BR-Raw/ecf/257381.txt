@@ -1,0 +1,3 @@
+Bug 257381 – [Discovery] Reduce BREE to Java 1.4
+The new discovery ui currently requires Java5 (because of generated EMF code as well as the new java.util.concurrent).
+This dependency should be reduced to Java 1.4.

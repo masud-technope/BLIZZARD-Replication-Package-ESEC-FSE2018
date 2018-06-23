@@ -1,0 +1,8 @@
+Bug 429966 – [1.8] CUD#functionalExpressions may record lambda copies in nested lambda situations
+From bug 429948 comment 5:
+Digging deeper the following root cause looks suspicious to me, see this block in LE.resolveType():
+if (this.expectedType != null && this.original == this) {  // final resolution.
+this.ordinal = blockScope.referenceCompilationUnit().record(this);
+}
+This check misses the fact, that we might be within a copy-resolve process of an enclosing lambda, i.e., our entire universe is only fake, still the current lambda is final resolved, sure, but still this final resolve in a fake universe shouldn't count and shouldn't be recorded in the CUD.
+In fact in test429948() the CUD contains 4 elements in CUD#functionalExpressions, although the source has only two lambdas.

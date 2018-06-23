@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ChangeSignatureProcessor.java
+org.eclipse.jdt.ui.tests.refactoring/resources/RenameTests18/testMethodReference0/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/RenameTests18/testMethodReference0/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/RenameTests18.java

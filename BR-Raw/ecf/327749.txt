@@ -1,0 +1,17 @@
+Bug 327749 – [r-OSGi] NPE on shutdown (in TCPChannelFactory)
+Build Identifier: Helios Service Release 1 - 20100917-0705
+Seems to be a revival of BUG 234444...
+https://bugs.eclipse.org/bugs/show_bug.cgi?format=multiple&id=234444
+ch.ethz.iks.r_osgi.remote_1.0.0.RC4_v20100913-1814) which is installed together with the current ECF version seems to still contain the problematic code:
+ch.ethz.iks.r_osgi.impl.TCPChannelFactory.deactivate(TCPChannelFactory.java:96):
+thread.interrupt();
+Instead it presumably should be:
+if (thread != null) {
+thread.interrupt();
+}
+Reproducible: Always
+Steps to Reproduce:
+1.
+Create Project with R_OSGI-Remoting (In my case RCP-Client, OSGI-Backend with Hibernate and ECF with DS and R_OSGI remoting)
+2.
+Exit Client after remoting is successfully working

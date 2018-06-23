@@ -1,0 +1,5 @@
+java/org/apache/catalina/core/StandardContext.java
+java/org/apache/catalina/loader/LocalStrings.properties
+java/org/apache/catalina/loader/WebappClassLoader.java
+java/org/apache/catalina/loader/WebappLoader.java
+webapps/docs/config/context.xml

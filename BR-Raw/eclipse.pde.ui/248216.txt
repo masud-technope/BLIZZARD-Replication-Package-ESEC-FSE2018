@@ -1,0 +1,2 @@
+Bug 248216 – [ds tooling] up/down buttons for properties section
+Order matters in the properties section, so we need up/down buttons -_-

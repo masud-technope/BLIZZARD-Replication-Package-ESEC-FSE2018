@@ -1,0 +1,16 @@
+Bug 217984 – [quick assist] Wrong type inferred by assign to new local variable
+If type parameter is ?, quickfix ignores bounds placed on it.
+Below it is known that T is a subtype of Number, therefore ArrayList<T>.get() returns a Number, yet the quickfix offers the type Object.
+The code compiles with both Eclipse and javac (1.6.0_03).
+Version: 3.3.0
+Build id: I20070621-1340
+import java.util.ArrayList;
+public class NumberThing<T extends Number> extends ArrayList<T> {
+void test() {
+NumberThing<?> questionmarkThing = new NumberThing<Double>();
+// produced by 'Assign statement to new local variable'
+Object object = questionmarkThing.get(0);
+// although this is valid, too
+Number n = questionmarkThing.get(0);
+}
+}

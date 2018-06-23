@@ -1,0 +1,4 @@
+Bug 232706 – [Organize Manifest] "Mark as internal package" always done with *.internal* pattern
++++ This bug was initially created as a clone of Bug #232693 +++
+While investigating a bit for bug #232693, I got the very sad surprise to see that whatever pattern I used in the package field, the refactoring was always done with the default pattern (*.internal*).
+There is no listener on the package text field and the attached patch will fix this odd issue.

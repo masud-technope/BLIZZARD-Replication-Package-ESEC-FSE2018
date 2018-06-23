@@ -1,0 +1,5 @@
+examples/bundles/org.eclipse.ecf.examples.loadbalancing.servicehost/META-INF/MANIFEST.MF
+examples/bundles/org.eclipse.ecf.examples.loadbalancing.servicehost/src/org/eclipse/ecf/internal/examples/loadbalancing/servicehost/DataProcessorServiceHostApplication.java
+examples/bundles/org.eclipse.ecf.examples.loadbalancing.consumer/src/org/eclipse/ecf/internal/examples/loadbalancing/consumer/DataProcessorConsumerApplication.java
+examples/bundles/org.eclipse.ecf.examples.loadbalancing.servicehost/products/Data Processor Service Host (activemq).product
+examples/bundles/org.eclipse.ecf.examples.loadbalancing.consumer/META-INF/MANIFEST.MF

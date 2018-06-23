@@ -1,0 +1,4 @@
+Bug 388800 – [1.8] adjust tests to 1.8 JRE
+BETA_JAVA8
+When using a current beta of a lambda-enabled JRE (lambda-8-b50), some tests fail due to changes in class libraries.
+During the first bunch of testing I found that List.remove() is now a default method, which triggers a warning re missing @Override in some tests in MethodVerifierTest.

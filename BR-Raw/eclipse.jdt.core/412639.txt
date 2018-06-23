@@ -1,0 +1,74 @@
+Bug 412639 – ResourceLeakTests.testBug381445_1b failed
+N20130709-2000.
+ResourceLeakTests.testBug381445_1b failed.
+http://download.eclipse.org/eclipse/downloads/drops4/N20130709-2000/testresults/html/org.eclipse.jdt.core.tests.compiler_linux.gtk.x86_6.0.html
+Invalid problem log .
+----------- Expected ------------ ----------\n 1.
+ERROR in Bug381445.java (at line 8)\n ResultSet rset2 = stat.executeQuery(q2);\n ^^^^^\n Potential resource leak: 'rset2' may not be closed\n ----------\n ------------ but was ------------ ----------\n 1.
+ERROR in Bug381445.java (at line 15)\n Closeables.closeQuietly(rset2);\n ^^^^^^^^^^^^\n The method closeQuietly(AutoCloseable) from the type Closeables refers to the missing type AutoCloseable\n ----------\n 2.
+ERROR in Bug381445.java (at line 30)\n public static void closeQuietly(java.lang.AutoCloseable closeable) {}\n ^^^^^^^^^^^^^^^^^^^^^^^\n java.lang.AutoCloseable cannot be resolved to a type\n ----------\n --------- Difference is ---------- expected:<...81445.java (at line [8)\n ResultSet rset2 = stat.executeQuery(q2);\n ^^^^^\n Potential resource leak: 'rset2' may not be closed]\n ----------\n > but was:<...81445.java (at line [15)\n Closeables.closeQuietly(rset2);\n ^^^^^^^^^^^^\n The method closeQuietly(AutoCloseable) from the type Closeables refers to the missing type AutoCloseable\n ----------\n 2.
+ERROR in Bug381445.java (at line 30)\n public static void closeQuietly(java.lang.AutoCloseable closeable) {}\n ^^^^^^^^^^^^^^^^^^^^^^^\n java.lang.AutoCloseable cannot be resolved to a type]\n ----------\n >
+junit.framework.ComparisonFailure: Invalid problem log .
+----------- Expected ------------
+----------\n
+1.
+ERROR in Bug381445.java (at line 8)\n
+ResultSet rset2 = stat.executeQuery(q2);\n
+^^^^^\n
+Potential resource leak: 'rset2' may not be closed\n
+----------\n
+------------ but was ------------
+----------\n
+1.
+ERROR in Bug381445.java (at line 15)\n
+Closeables.closeQuietly(rset2);\n
+^^^^^^^^^^^^\n
+The method closeQuietly(AutoCloseable) from the type Closeables refers to the missing type AutoCloseable\n
+----------\n
+2.
+ERROR in Bug381445.java (at line 30)\n
+public static void closeQuietly(java.lang.AutoCloseable closeable) {}\n
+^^^^^^^^^^^^^^^^^^^^^^^\n
+java.lang.AutoCloseable cannot be resolved to a type\n
+----------\n
+--------- Difference is ----------
+expected:<...81445.java (at line [8)\n
+ResultSet rset2 = stat.executeQuery(q2);\n
+^^^^^\n
+Potential resource leak: 'rset2' may not be closed]\n
+----------\n
+> but was:<...81445.java (at line [15)\n
+Closeables.closeQuietly(rset2);\n
+^^^^^^^^^^^^\n
+The method closeQuietly(AutoCloseable) from the type Closeables refers to the missing type AutoCloseable\n
+----------\n
+2.
+ERROR in Bug381445.java (at line 30)\n
+public static void closeQuietly(java.lang.AutoCloseable closeable) {}\n
+^^^^^^^^^^^^^^^^^^^^^^^\n
+java.lang.AutoCloseable cannot be resolved to a type]\n
+----------\n
+>
+at org.eclipse.jdt.core.tests.junit.extension.TestCase.assertStringEquals(TestCase.java:238)
+at org.eclipse.jdt.core.tests.junit.extension.TestCase.assertEquals(TestCase.java:214)
+at org.eclipse.jdt.core.tests.compiler.regression.AbstractRegressionTest.checkCompilerLog(AbstractRegressionTest.java:873)
+at org.eclipse.jdt.core.tests.compiler.regression.AbstractRegressionTest.runTest(AbstractRegressionTest.java:2285)
+at org.eclipse.jdt.core.tests.compiler.regression.AbstractRegressionTest.runTest(AbstractRegressionTest.java:2120)
+at org.eclipse.jdt.core.tests.compiler.regression.AbstractRegressionTest.runNegativeTest(AbstractRegressionTest.java:1922)
+at org.eclipse.jdt.core.tests.compiler.regression.ResourceLeakTests.testBug381445_1b(ResourceLeakTests.java:4098)
+at org.eclipse.jdt.core.tests.util.CompilerTestSetup.run(CompilerTestSetup.java:55)
+at org.eclipse.test.EclipseTestRunner.run(EclipseTestRunner.java:655)
+at org.eclipse.test.EclipseTestRunner.run(EclipseTestRunner.java:310)
+at org.eclipse.test.CoreTestApplication.runTests(CoreTestApplication.java:36)
+at org.eclipse.test.CoreTestApplication.run(CoreTestApplication.java:32)
+at org.eclipse.equinox.internal.app.EclipseAppContainer.callMethodWithException(EclipseAppContainer.java:587)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:198)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:109)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:80)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:372)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:226)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:636)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1450)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1426)
+at org.eclipse.core.launcher.Main.main(Main.java:34)

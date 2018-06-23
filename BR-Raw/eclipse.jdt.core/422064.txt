@@ -1,0 +1,8 @@
+Bug 422064 – [1.8][tests] errors compiler.regression tests when run with run.javac
+Running TestAll of compiler.regression with -Drun.javac and -Djdk.root pointing to 8b115 I get errors in two suites:
+EnumTest.test180 / test180a throw NPE in AbstractRegressionTest.runJavac()
+BatchCompilerTest:
+- test230_sourcepath_vs_classpath
+- test236_classpath - test238_classpath
+All through StringIndexOutOfBoundsException
+I'm not sure whether this is specific to BETA_JAVA8.

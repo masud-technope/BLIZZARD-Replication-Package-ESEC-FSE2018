@@ -1,0 +1,11 @@
+Bug 304041 – Compiler warnings in I20100225-1936
+1.
+WARNING in /src/org/eclipse/pde/internal/core/P2Utils.java
+(at line 337)
+if (agent == null) { throw new CoreException(new Status(IStatus.ERROR, PDECore.PLUGIN_ID, PDECoreMessages.P2Utils_UnableToAcquireP2Service)); }
+Dead code
+2.
+WARNING in /src/org/eclipse/pde/internal/core/P2Utils.java
+(at line 368)
+if (agent == null) { throw new CoreException(new Status(IStatus.ERROR, PDECore.PLUGIN_ID, PDECoreMessages.P2Utils_UnableToAcquireP2Service)); }
+Dead code

@@ -1,0 +1,13 @@
+Bug 67439 – Support for hidden launches so they don't show in launch view.
+We have a daemon that listens for new connections.
+ When it gets a new
+connection it creates a special launch configuration and launches it.
+ The
+launch delegate for this configuration creates the correct debug target and then
+adds it to our wrapper debug target which is already running.
+ This allows us to
+add new sub debug targets to our wrapper debug target dynamically.
+ However the
+launch for the sub debug target shows up in the launch view whereas we would
+like it to be hidden - the user should only see the launch for the wrapper debug
+adapter.

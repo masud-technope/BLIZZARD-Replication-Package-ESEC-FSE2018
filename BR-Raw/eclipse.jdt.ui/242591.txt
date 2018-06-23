@@ -1,0 +1,34 @@
+Bug 242591 – [build path] BuildPathsPropertyPage element --> IProject adapter logic is flawed
+org.eclipse.jdt.internal.ui.preferences.BuildPathsPropertyPage.getProject() logic is flawed.
+ The current scheme adapts to IJavaElement then runs the getProject() method to return the project.
+This logic requires any custom navigator content provider to have an IJavaElement adapter and a dependancy on JDT.
+ Proper logic could continue to check for IJavaElement adapter, but if that fails try an IProject adapter.
+The issue is vissible inside the JSDT script explorer perspective with Dynamic Web Projects.
+ JavaScriptProject elements exist in the viewer but do not adopt to IJavaElement.
+ This causes the Buildpath properties page to not be visible from this perspective.
+ JavaScriptProject elements correctly adopt to IProject.
+Suggested change:
+org.eclipse.jdt.internal.ui.preferences.BuildPathsPropertyPage.getProject() goes from:
+private IProject getProject() {
+IAdaptable adaptable= getElement();
+if (adaptable != null) {
+IJavaElement elem= (IJavaElement) adaptable.getAdapter(IJavaElement.class);
+if (elem instanceof IJavaProject) {
+return ((IJavaProject) elem).getProject();
+}
+}
+return null;
+}
+to:
+private IProject getProject() {
+IAdaptable adaptable= getElement();
+if (adaptable != null) {
+IJavaElement elem= (IJavaElement) adaptable.getAdapter(IJavaElement.class);
+if (elem instanceof IJavaProject) {
+return ((IJavaProject) elem).getProject();
+}
+IProject project = (IProject)adaptable.getAdapter(IProject.class);
+return project;
+}
+return null;
+}

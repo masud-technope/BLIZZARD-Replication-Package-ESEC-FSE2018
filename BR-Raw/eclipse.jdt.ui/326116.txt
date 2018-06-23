@@ -1,0 +1,6 @@
+Bug 326116 – [preferences] Add UI for new compiler warning option org.eclipse.jdt.core.compiler.problem.suppressNullInfoFromAsserts
+See bug 325342 which adds a new compiler option (enabled/disabled - default disabled) to suppress null warnings arising because of assert statements.
+The new option has to be added in Java>Compiler>Errors/warnings, preferably in a new option group with these 3 options together -
+Null pointer access
+Potential Null Pointer access
+Redundant null check

@@ -1,0 +1,5 @@
+48973 – Don't create SESSIONS.ser when no session exists
+Created attachment 25171 [details]
+Patch skiping SESSIONS.ser file creation if no session exists
+When a webapp is unloaded, a SESSIONS.ser file is created even if no session exists for the application.
+This is useless.

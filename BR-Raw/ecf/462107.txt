@@ -1,0 +1,12 @@
+Bug 462107 – [r-OSGi] add system property to allow for customization of ChannelEndpointImpl.TIMEOUT
+In the class:
+/ch.ethz.iks.r_osgi.remote/src/main/java/ch/ethz/iks/r_osgi/impl/ChannelEndpointImpl.java
+is a TIMEOUT static member variable (int) that determines how long sendAndWait method waits for a message response.
+ It is currently set:
+/**
+* Timeout.
+*/
+private static final int TIMEOUT = 120000;
+A system property should be added to allow user-configuration of this TIMEOUT value.
+ Once created the property should be documented on the R-osgi properties wiki page:
+http://wiki.eclipse.org/R-OSGi_Properties

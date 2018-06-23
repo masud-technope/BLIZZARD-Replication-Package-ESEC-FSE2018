@@ -1,0 +1,26 @@
+Bug 427337 – [1.8][dom ast] Type annotation is appearing in parameter annotation
+Since the fix for bug 426515 did not resolve the issue reported in bug 426515, comment #1, I am raising a new bug to track it.
+package pack1;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+@Target({ ElementType.TYPE_USE })
+public @interface ReadOnly {
+}
+package pack1;
+import java.util.List;
+public interface I1 {
+public @ReadOnly
+String bar2(@ReadOnly String s, @ReadOnly List<@ReadOnly String> l2);
+}
+package pack1;
+import java.util.List;
+public class AImpl implements I1, InnerA {}//Invoke the quick fix to Add Unimplemented methods
+interface InnerA{
+public @ReadOnly
+String bar1(@ReadOnly String s, @ReadOnly List<@ReadOnly String> l2);
+}
+Inspect the IMethodBinding corresponding to InnerA#bar1().
+binding.getParameterTypes()[0].getTypeAnnotations() returns the AnnotationBinding corresponding to @ReadOnly()
+Now inspect the IMethodBinding corresponding to I1#bar2().
+binding.getParameterTypes()[0].getTypeAnnotations() returns empty AnnotationBinding.
+Now inspect with the same binding binding.getParameterAnnotations(0), this returns the AnnotationBinding corresponding to @ReadOnly(), which seems wrong as the Javadoc for getParameterAnnotations() says that this is supposed to return the declaration annotation and not the type annotation.

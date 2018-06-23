@@ -1,0 +1,6 @@
+Bug 240737 – [product] be able to set start levels on a product
+For people who use DS in their applications or have any need to start things...
+it's currently painful to do so.
+Product Customization (Equinox Transforms) also suffers this fate.
+For 3.5, we need to allow the product editor to define startlevels along with maybe some other properties.
+As an example, 'osgi.framework.extensions' needs to be set to org.eclipse.equinox.transforms.hook for product customization.

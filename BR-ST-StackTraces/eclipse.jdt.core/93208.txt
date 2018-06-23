@@ -1,0 +1,8 @@
+org.eclipse.jface.text.Assert.isTrue
+org.eclipse.jface.text.Assert.isTrue
+org.eclipse.text.edits.TextEdit.<init>
+org.eclipse.text.edits.CopySourceEdit.<init>
+org.eclipse.jdt.core.dom.ASTNode.accept
+org.eclipse.jdt.core.dom.ASTNode.accept
+org.eclipse.jdt.core.dom.AST.rewrite
+jdt.tests.AstRewriteBug.testAstRewriteBug

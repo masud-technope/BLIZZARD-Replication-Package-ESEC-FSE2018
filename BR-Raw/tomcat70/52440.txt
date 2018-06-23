@@ -1,0 +1,34 @@
+52440 – Wrong getValueReference behaviour with Facelets parameter expressions
+ValueExpression method getValueReference should return base object and property.
+But it returns null if ValueExpression is Facelets parameter.
+Example:
+someVar = #{concreteObject.property}
+ValueExpression for #{someVar} return null from method getValueReference (guess because it is simple expression #{someVar}), but logicaly it should return parent expressions ValueReference (need hierachical ValueReference lookup).
+I made workaround with Java Reflect API in my code and it illustrates problem:
+ELContext elContext = FacesContext.getCurrentInstance().getELContext();
+ValueReference reference = exp.getValueReference(elContext);
+if (reference == null && exp instanceof TagValueExpressionUEL) {
+ValueExpressionImpl origExp = (ValueExpressionImpl) ((TagValueExpressionUEL) exp).getWrapped();
+// TODO: JR: find better way to get base and property.
+! Code is not portable because uses Tomcat EL implementation details.
+!
+Field field = ReflectionUtils.findField(origExp.getClass(), EL_IMPL_VAR_PROPERTY);
+field.setAccessible(true);
+VariableMapper varMapper = (VariableMapper) ReflectionUtils.getField(field, origExp);
+field = ReflectionUtils.findField(origExp.getClass(), EL_IMPL_NODE_PROPERTY);
+field.setAccessible(true);
+SimpleNode node = (SimpleNode) ReflectionUtils.getField(field, origExp);
+if (varMapper != null && node != null) {
+ValueExpression parentExp = varMapper.resolveVariable(node.getImage());
+if (parentExp != null) {
+try {
+reference = parentExp.getValueReference(elContext);
+if (reference == null) {
+reference = getValueReference(parentExp);
+}
+} catch (PropertyNotFoundException e) {
+LOG.warn("Property not found: " + e.getMessage());
+}
+}
+}
+}

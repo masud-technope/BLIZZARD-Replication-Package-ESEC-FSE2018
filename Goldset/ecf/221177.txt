@@ -1,0 +1,10 @@
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/provider/filetransfer/retrieve/AbstractRetrieveFileTransfer.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/provider/filetransfer/retrieve/HttpHelper.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/provider/filetransfer/retrieve/UrlConnectionRetrieveFileTransfer.java
+framework/bundles/org.eclipse.ecf.filetransfer/src/org/eclipse/ecf/filetransfer/IIncomingFileTransfer.java
+tests/bundles/org.eclipse.ecf.tests.filetransfer/src/org/eclipse/ecf/tests/filetransfer/FileSendTest.java
+tests/bundles/org.eclipse.ecf.tests.filetransfer/src/org/eclipse/ecf/tests/filetransfer/GetRemoteFileNameTest.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/filetransfer/XMPPFileTransferRequestListener.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/filetransfer/XMPPIncomingFileTransfer.java
+providers/bundles/org.eclipse.ecf.provider.bittorrent/src/org/eclipse/ecf/internal/provider/bittorrent/TorrentFileTransfer.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient/src/org/eclipse/ecf/provider/filetransfer/httpclient/HttpClientRetrieveFileTransfer.java

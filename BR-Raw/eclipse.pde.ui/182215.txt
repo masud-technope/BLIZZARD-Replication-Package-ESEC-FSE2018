@@ -1,0 +1,13 @@
+Bug 182215 – [Plug-in Dependencies view] Initial empty state may be confusing
+When opening the awesome plug-in dependencies view, there is no plug-in acting as a focal point, so it opens empty.
+This can be confusing, since the only way to populate it is via a hidden context menu item.
+Suggestions:
+1.
+Initially populate it with the state of the state.
+2.
+Add a toolbar icon (showing glasses - I'm sure we have one in the database), that would invoke the Plug-in selection dialog when pressed (ie a more visible alternate to 'focus...' in the context menu).
+3.
+Also, would it be possible to have the menu that shows/hides resolved bundles to be part of the 'Show state' toolbar item.
+ It would look nicer and tighter.
+ e.g.
+kind of like the drop down on the History button in the view.

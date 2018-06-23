@@ -1,0 +1,3 @@
+Bug 387536 – [type wizards] generate main method stub ignores generate comments setting
+The new class wizard allows to create a main(String[]) method stub.
+However it ignores the "Do you want to add comments?" setting and always adds a comment.

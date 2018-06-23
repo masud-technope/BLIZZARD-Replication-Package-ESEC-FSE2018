@@ -1,0 +1,13 @@
+47050 – StandardHostValve.status unnecessarily HTML-escapes the error message
+I have written a JSP page that prints all request attributes verbatimly to the output.
+When I access it as
+http://localhost:8100/roland/404&amp;
+it outputs the following HTML code:
+<body>
+javax.servlet.error.message=/roland/404&amp;amp;<br>
+javax.servlet.error.request_uri=/roland/404&amp;<br>
+...
+</body>
+I was surprised that the error.message has been HTML-escaped, but the error.request hasn't.
+What's the intention of this escaping? It feels like Catalina is imitating PHP's magic-quotes here, which it shouldn't.
+In my opinion, the error message should be copied to the request attribute as-is and not being passed through RequestUtil.filter, so the programmer can write it to log files or a text/plain error page without unfiltering it first.

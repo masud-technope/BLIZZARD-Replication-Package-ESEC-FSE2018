@@ -1,0 +1,5 @@
+Bug 3881 – minor: menu order inconsistency (1GF24TF)
+AK (6/9/01 4:22:24 PM)
+in the editor it is: inspect and then display
+in the display view - it is the other way around
+NOTES:

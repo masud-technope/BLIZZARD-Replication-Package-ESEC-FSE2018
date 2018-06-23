@@ -1,0 +1,22 @@
+Bug 65204 – XSLT web index of site.xml not supported by Mac Safari
+Given that we were just getting good functionality in xsl transformations of
+site.xml on new browsers, it's not surprising that some browsers haven't reached
+this benchmark.
+Try making an update site with generated web page.
+ Open the web page in system
+editor (i.e.
+Safari in the case of MacOS X).
+It's a blank page.
+:(
+I did some debugging and found that the code was failing when I was trying to
+import site.xml.
+ Upon researching this phenomenon, I discovered Safari simply
+does not support controlled XML data importing at this point in time.
+References:
+http://weblogs.mozillazine.org/mt/mt-comments.cgi?entry_id=3340
+http://www.xs4all.nl/~zanstra/inTec/safariIdea/documentLoad.htm
+The second link has test for document loading in Safari.
+ There is no workaround
+but they do encourage responsive UI by indicating document.load() is not supported.
+Proposed solution:  add alert for nil-support of document loading if it fails
+instead of having safari hide the failure and leave the user with a blank webpage.

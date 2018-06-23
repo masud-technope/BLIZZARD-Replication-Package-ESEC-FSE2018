@@ -1,0 +1,5 @@
+Bug 203914 – jars.extra.classpath should not mark entries starting with ANT variables as Errors
+This was found when going through the use case for bug 203375.
+ User should be able to use ANT variables to reference jars in the extra.jars.classpath property in the build.properties.
+ Right now, if the user does this there is an error.
+ We should treat this the same way as we do when validating bin.includes and not mark it as an error.

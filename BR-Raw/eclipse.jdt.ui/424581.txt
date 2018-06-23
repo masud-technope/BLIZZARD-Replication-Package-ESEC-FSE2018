@@ -1,0 +1,17 @@
+Bug 424581 – [1.8][inline] Method creating and returning a lambda that contains a return statement can't be inlined
+Using this class, try to inline the method combine.
+It fails with error message "return statement in method declaration interrupts execution flow".
+Tested with BETA_JAVA8 binaries updated yesterday.
+import java.util.function.Function;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
+class Streamer {
+public static <T, R> Supplier<Stream<R>> map(Supplier<Stream<T>> supplierOfT, Function<T, R> mapperOfTToR) {
+Supplier<Stream<R>> changed = combine(supplierOfT, mapperOfTToR); // Inline method combine here
+return changed;
+}
+private static <T, R> Supplier<Stream<R>> combine(Supplier<Stream<T>> supplierOfT, Function<T, R> mapperOfTToR) {
+Supplier<Stream<R>> supplierOfR = () -> { return supplierOfT.get().map(mapperOfTToR); };
+return supplierOfR;
+}
+}

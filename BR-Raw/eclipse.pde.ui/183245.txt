@@ -1,0 +1,18 @@
+Bug 183245 – Incorrect button state after sort in FeatureSection of Product Editor
+Steps to reproduce:
+1.
+create a new product
+2.
+base the product on features
+3.
+add three features.
+ Arrange the features so the last feature will be sorted to the top (ex.
+org.eclipse.pde.source, org.eclipse.jdt, org.eclipse.cvs).
+4.
+Select the last feature.
+ Note how the up button is enabled and the down button is disabled.
+5.
+Sort using action in section header
+6.
+Unsort using action in section header
+Result: order and selection is restored to same state as step 4, except the down button is now enabled and the up button is disabled.

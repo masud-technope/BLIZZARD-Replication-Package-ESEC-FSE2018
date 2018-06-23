@@ -1,0 +1,4 @@
+providers/bundles/org.eclipse.ecf.provider.jmdns/jmdns/javax/jmdns/impl/JmDNSImpl.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/internal/provider/jmdns/JMDNSPlugin.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/provider/jmdns/container/ContainerInstantiator.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/provider/jmdns/container/JMDNSDiscoveryContainer.java

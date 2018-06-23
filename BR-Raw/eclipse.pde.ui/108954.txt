@@ -1,0 +1,12 @@
+Bug 108954 – Error at project creation - no manifest file created with classpath contains '&'
+To reproduce (on Windows):
+1) Use plug-in project creation wizard
+2) On the second page ("Plug-in content" page), enter classpath containing '&',
+such as "abc&.jar"
+3) Click on "Finish".
+The project is created, but there is no manifest.mf file under the project
+resource.
+The editor attempts to open manifest file, with the following message
+displayed: "File project_name/META-INF/MANIFEST.MF does not exist".
+If '&' is not allowed in the jar name, some validation is needed to prevent
+wizard to go forward.

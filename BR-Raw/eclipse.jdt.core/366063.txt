@@ -1,0 +1,4 @@
+Bug 366063 – Compiler should not add synthetic @NonNull annotations
+From bug 365387 comment 47, I learned that the compiler creates synthetic @NonNull annotations if an enclosing element is annotated with @NonNullByDefault.
+This makes the Eclipse compiler incompatible with a standard Java compiler, since the generated class files are not equivalent any more.
+We should not deviate unless absolutely necessary.

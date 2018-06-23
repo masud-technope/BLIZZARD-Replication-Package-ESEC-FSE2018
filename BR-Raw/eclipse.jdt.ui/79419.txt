@@ -1,0 +1,5 @@
+Bug 79419 – [Preferences] Need a link component
+We need to create a some sort of component for preference pages to use for
+linking.
+We should look into pushing down the org.eclipse.ui.views.framelist
+mechanism possibly.

@@ -1,0 +1,2 @@
+Bug 420785 – [async] Register proxy service with *Async additionally to original interface
+At yesterday's ECF talk one person in the audience suggested that the service proxy gets registered under the *Async (AsyncRemoteServiceProxy) type additionally to the original interface.

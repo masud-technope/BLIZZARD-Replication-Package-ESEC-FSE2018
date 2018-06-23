@@ -1,0 +1,60 @@
+Bug 427433 – [1.8][compiler] NPE at org.eclipse.jdt.internal.compiler.lookup.Scope.parameterCompatibilityLevel(Scope.java:4755)
+Hello,
+I have an NPE while compiling this piece of code:
+public class B {
+public void testError()
+{
+assertEquals(A.e(null,null,null),null);
+}
+public static boolean assertEquals(String a, String b)
+{
+return false;
+}
+public static boolean assertEquals(Object a, Object b)
+{
+return false;
+}
+}
+public class A
+{
+public static <T, V> V e(T[] t, V[] v, T object)
+{
+return null;
+}
+}
+A and B are two classes within two different files.
+Should it be considered as a bug ? I understand that the compiler is not able to choose between the two equals methods.
+I am using :
+Eclipse Java Development Tools Patch for Java 8 Support (BETA)		1.0.0.v20140205-0104_BETA_JAVA8
+Eclipse Plugin-in Development Environment Patch for Java 8 Support (BETA)	1.0.0.v20140205-0104_BETA_JAVA8
+Eclipse RCP Patch for Java 8 Support (BETA)					1.0.0.v20140205-0104_BETA_JAVA8
+This is the stack:
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.lookup.Scope.parameterCompatibilityLevel(Scope.java:4755)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.parameterCompatibilityLevel(Scope.java:4724)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.parameterCompatibilityLevel(Scope.java:4657)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.mostSpecificMethodBinding(Scope.java:4337)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.findMethod0(Scope.java:1895)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.findMethod(Scope.java:1627)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getImplicitMethod(Scope.java:2572)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.findMethodBinding(MessageSend.java:861)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.resolveType(MessageSend.java:694)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java:1018)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:621)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:303)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:532)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1211)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1321)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:571)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1208)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:693)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1187)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:813)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider$1.run(ASTProvider.java:548)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.createAST(ASTProvider.java:541)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.getAST(ASTProvider.java:484)
+at org.eclipse.jdt.ui.SharedASTProvider.getAST(SharedASTProvider.java:132)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:170)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$3.run(SelectionListenerWithASTManager.java:155)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)

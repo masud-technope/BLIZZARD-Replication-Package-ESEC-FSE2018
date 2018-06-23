@@ -1,0 +1,6 @@
+Bug 17025 – Adding JREs
+If you add a JRE off of the installed JRE pref page, the button is
+labelled "Add..." and the dialog is titled "Add JRE"
+Off of the Launch config dialog JRE tab, the button is labelled "New..." and
+the dialog is titled "Edit JRE".
+We should be consistent...I like "Add..." and  "Add JRE"

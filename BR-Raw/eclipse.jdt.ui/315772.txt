@@ -1,0 +1,25 @@
+Bug 315772 – [preferences] Better UI to find preferences on Java > Compiler > Errors/Warnings
+I always have a difficult time finding the correct preference on this page - scrolling and twisties are painful.
+(Plus we do not have mnemonics for all the preferences - I don't care for mnemonics too much but someone else might)
+Possible solutions:
+1.
+Sub pages for each category
+- Preferences in each category (except potential programming problems) fit in one screen, hence (almost) no scrolling required.
+- Lesser mouse clicks - Opening and closing a twistie is 2 mouse clicks, selecting a sub page would be only one mouse click
+Pros
+- Simple to implement!
+Cons
+- Names of 3 categories are longer than 2 words, hence the subpages names in the tree will not look too good.
+- You still have to know the category to find the preference quickly - and except for very frequently used preferences this will not be true.
+2.
+Create a filter box in this page
+- This might be useful in other preference pages as well?
+3.
+Use the existing filter box on the left side to reveal and highlight individual preferences.
+- I do not know how easy or difficult it is going to be with existing UI
+4.
+Mozilla provides Power User preference management where you can filter by single pref.
+Maybe we can add a node 'All' at the bottom of the tree in left pane, which just lists all the preferences available in a filterable table containing 3 columns - key, type, default value?, value.
+- A command can be added to directly go to this 'All' page
+- This 'All' page is something similar to what is suggested for Properties View on http://wiki.eclipse.org/index.php/UI_Best_Practices_v3.x#Properties_View.
+My favorite is option 4, but would settle for Option 2 as well.

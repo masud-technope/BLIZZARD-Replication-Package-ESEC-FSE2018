@@ -1,0 +1,2 @@
+Bug 450286 – Introduce Parameter dialog: table of parameters does not scroll into view
+If the 'Introduce Parameter' dialog is opened for a method with a large number of parameters (~7 or more), the to-be-created parameter should be scrolled into view.

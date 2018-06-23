@@ -1,0 +1,3 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/BreakpointLocationVerifierJob.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/ToggleBreakpointAdapter.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/BreakpointMarkerUpdater.java

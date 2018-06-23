@@ -1,0 +1,3 @@
+Bug 258904 – [Discovery] Remove throw declarations for runtime IDCreateException
+With bug #254872 org.eclipse.ecf.core.identity.IDCreateException has been turned into a runtime exception.
+Thus downstream bundles should be updated to not throw IDCreateExceptions any longer.

@@ -1,0 +1,1 @@
+Bug 395663 – [1.8][ast rewrite] Add rewrite support for annotations on varargs

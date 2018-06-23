@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/dependencies/StateViewPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/AbstractPluginBlock.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/RegistryBrowser.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/FilteredCheckboxTree.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/ExtensionsSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/FormFilteredTree.java

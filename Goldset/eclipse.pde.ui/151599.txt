@@ -1,0 +1,15 @@
+ui/org.eclipse.pde.ui/JavadocHoverStyleSheet.css
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/contentassist/InfoControlTextPresenter.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/contentassist/ManifestContentAssistProcessor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/contentassist/TypeCompletionProposal.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/contentassist/display/AbstractReusableInformationControlCreator.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/contentassist/display/BrowserInformationControl.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/contentassist/display/HTML2TextReader.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/contentassist/display/HTMLTextPresenter.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/contentassist/display/InfoControlTextPresenter.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/contentassist/display/JavaDocCommentReader.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/contentassist/display/SingleCharReader.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/contentassist/display/SubstitutionTextReader.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/text/HTMLPrinter.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/text/ManifestConfiguration.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/text/PluginXMLConfiguration.java

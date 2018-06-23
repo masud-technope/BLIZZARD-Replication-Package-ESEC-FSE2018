@@ -1,0 +1,8 @@
+Bug 49054 – Bootpath incorrect when no project specified
+I20031216
+* Create a Java Application launch configuration with no projetc specified.
+* The classpath tab defaults to showing only bootstrap entries with no user
+entries.
+* I am unable to add user entries
+-> The debug button is disabled
+-> Adding user entries does not enable the "Apply" button

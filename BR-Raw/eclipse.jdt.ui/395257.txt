@@ -1,0 +1,4 @@
+Bug 395257 – [typing] Indentation after String literal split not always as specified by the formatter
+3.8.
+The indentation after String literal split is not always as specified by the formatter.
+See also bug 48433 and 375844.

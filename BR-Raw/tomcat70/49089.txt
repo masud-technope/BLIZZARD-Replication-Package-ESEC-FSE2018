@@ -1,0 +1,4 @@
+49089 – ChannelData.USE_SECURE_RANDOM_FOR_UUID public static mutable field
+catalina.tribes.io.ChannelData.USE_SECURE_RANDOM_FOR_UUID is a mutable public static field.
+It's only used by an instance method, so there's no need for it to be static.
+Probably no need for it to be public either; it could be a private field with a setter - or better a final field set by the constructor.

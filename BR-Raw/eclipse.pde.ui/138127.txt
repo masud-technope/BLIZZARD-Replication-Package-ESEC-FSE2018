@@ -1,0 +1,2 @@
+Bug 138127 – Put Dependecy Analysis on right side when edit plugin.xml file
+See my attached file.

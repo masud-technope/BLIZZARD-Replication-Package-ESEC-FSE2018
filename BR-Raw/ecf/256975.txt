@@ -1,0 +1,12 @@
+Bug 256975 – [remoteservices] add RemoteServiceTracker utility class
+A normal service tracker is used like this:
+ServiceTracker st = new ServiceTracker(...);
+st.open();
+IMyInterface service = (IMyInterface) st.getService();
+...use service here...
+The idea is that with a RemoteServiceTracker the usage would be similar:
+RemoteServiceTracker rst = new RemoteServiceTracker(...);
+rst.open();
+IRemoteService rservice = rst.getService();
+...use rservice here...e.g.
+IMyInterface intf = (IMyInterface) rservice.getProxy(), or rservice.callAsynch(...), or others.

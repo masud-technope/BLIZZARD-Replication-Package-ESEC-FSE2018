@@ -1,0 +1,75 @@
+Bug 426048 – [1.8] NPE in TypeVariableBinding.internalBoundCheck when parentheses are not balanced
+This semantically invalid class causes the IDE to go into error-spewing mode when parentheses are not balanced, specifically when one is missing between the two annotations on the return value's type.
+While reducing the test case the NPEs started shifting to a different operation stage and thus this report is a combination of two Error Log events.
+What steps will reproduce the problem?
+1.
+Copy-Paste the code below into workspace and save.
+2.
+Make sure that the line containing the compose method's return value with its annotations has not been split at least up to the method's name.
+3.
+Remove one of the parentheses from  before::apply))
+4.
+Then Error Log displays a lot of errors.
+import java.lang.annotation.Annotation;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+@Target(ElementType.TYPE_USE)
+@interface Throws {
+Class<? extends Throwable>[] value() default Throwable.class;
+Returns method() default @Returns(Annotation.class);
+}
+@Target(ElementType.TYPE_USE)
+@interface Returns {
+Class<? extends Annotation> value() default Annotation.class;
+}
+@FunctionalInterface public interface CopyOfFunction<T, @Returns R> {
+@Returns  R apply(T t);
+default <V> @Throws(((CopyOfFunction<? super V, ? extends T>) before::apply)) @Returns CopyOfFunction<V, @Returns R>
+compose(CopyOfFunction<? super V, ? extends T> before) {
+return (V v) -> apply(before.apply(v));
+}
+}
+Here is the trace:
+-- Error Details --
+Date: Sun Jan 19 04:27:11 EET 2014
+Message: Error in JDT Core during AST creation
+Severity: Error
+Product: Eclipse SDK 4.3.1.v20130911-1000 (org.eclipse.sdk.ide)
+Plugin: org.eclipse.jdt.ui
+Session Data:
+eclipse.buildId=4.3.0.M20130911-1000
+java.version=1.8.0-ea
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+Exception Stack Trace:
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.lookup.TypeVariableBinding.internalBoundCheck(TypeVariableBinding.java:165)
+at org.eclipse.jdt.internal.compiler.lookup.TypeVariableBinding.boundCheck(TypeVariableBinding.java:84)
+at org.eclipse.jdt.internal.compiler.lookup.ParameterizedTypeBinding.boundCheck(ParameterizedTypeBinding.java:96)
+at org.eclipse.jdt.internal.compiler.ast.ParameterizedSingleTypeReference.internalResolveLeafType(ParameterizedSingleTypeReference.java:291)
+at org.eclipse.jdt.internal.compiler.ast.ParameterizedSingleTypeReference.internalResolveType(ParameterizedSingleTypeReference.java:147)
+at org.eclipse.jdt.internal.compiler.ast.ParameterizedSingleTypeReference.resolveType(ParameterizedSingleTypeReference.java:359)
+at org.eclipse.jdt.internal.compiler.ast.TypeReference.resolveType(TypeReference.java:551)
+at org.eclipse.jdt.internal.compiler.ast.CastExpression.resolveType(CastExpression.java:517)
+at org.eclipse.jdt.internal.compiler.ast.MemberValuePair.resolveTypeExpecting(MemberValuePair.java:92)
+at org.eclipse.jdt.internal.compiler.ast.Annotation.resolveType(Annotation.java:743)
+at org.eclipse.jdt.internal.compiler.ast.ASTNode.resolveAnnotations(ASTNode.java:850)
+at org.eclipse.jdt.internal.compiler.ast.ASTNode.resolveAnnotations(ASTNode.java:720)
+at org.eclipse.jdt.internal.compiler.lookup.MethodBinding.getAnnotationTagBits(MethodBinding.java:625)
+at org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.resolveTypesFor(SourceTypeBinding.java:1772)
+at org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.methods(SourceTypeBinding.java:1465)
+at org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.faultInTypesForFieldsAndMethods(SourceTypeBinding.java:853)
+at org.eclipse.jdt.internal.compiler.lookup.CompilationUnitScope.faultInTypes(CompilationUnitScope.java:424)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1200)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:692)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1186)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:812)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider$1.run(ASTProvider.java:549)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.createAST(ASTProvider.java:542)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.getAST(ASTProvider.java:485)
+at org.eclipse.jdt.ui.SharedASTProvider.getAST(SharedASTProvider.java:132)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:170)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$3.run(SelectionListenerWithASTManager.java:155)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)

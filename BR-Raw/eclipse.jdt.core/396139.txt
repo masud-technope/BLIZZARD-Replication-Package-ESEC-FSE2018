@@ -1,0 +1,16 @@
+Bug 396139 – [1.8] define which JRE8 build we are targeting in BETA_JAVA8
+Various regressions in the BETA_JAVA8 branch are caused by incompatible changes in the lambda-enabled JRE8.
+Examples:
+JavadocTestForClass had to be change back-and-forth in commits cc1c110e9641a2cecfab702ac9383376aefe030a and 5da4268a6e911ad3865241747a8e9714544fc990.
+Manoj reported 103 test failures regarding the following types:
+- java.util.Fillable
+- java.util.functions.Mapper and sub-types
+- java.util.functions.* vs.
+java.util.function.*
+At a closer look this problem was caused by using a *newer* JRE8 than other team members.
+I can currently reproduce this kind of failure using a build 67 JRE.
+Since the download page of project lambda only offers the latest beta build at any point in time, it is difficult to reproduce the exact same environment of another team member, unless we coordinate this upgrade process.
+I propose to use this bug for tracking the current build version of the JRE8 against which all tests in BETA_JAVA8 should be green.
+In HEAD I observe that b50 is too old for the current state of JavadocTestForClass.
+OTOH, b67 is too new for the current state of many other tests.
+Unfortunately, I don't have the builds in between.

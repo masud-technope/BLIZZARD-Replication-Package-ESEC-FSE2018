@@ -1,0 +1,2 @@
+Bug 405025 – [1.8][ast rewrite] Add rewrite support for cast with intersection types
+After bug 399792 is released, AST rewrite support should be added to casts with intersection types.

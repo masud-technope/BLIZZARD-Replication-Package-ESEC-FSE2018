@@ -1,0 +1,57 @@
+55333 – JDBCRealm Digest authentication Flow is not working throws Function sequence error
+Issue: Digest authentication flow is not working
+Error Thrown : Function sequence error
+PackageName: org.apache.catalina.realm
+ClassName : JDBCRealm
+MethodName: String getPassword(String username)
+Snapshot from above mentioned method
+===================================
+stmt = credentials(dbConnection, username);
+rs = stmt.executeQuery();
+// Due to this connection commit,  resultset is nullified
+dbConnection.commit();
+// While executing this statement it throws Function sequence error
+if (rs.next()) {
+dbCredentials = rs.getString(1);
+}
+===================================
+Above explanation has been validate by placing 7.0.41 catalina.jar where the above changes are not there due to fix of 55071 bug
+Below snapshot is the error observed while trying for Digest authentication
+==========================================================================
+Jul 31, 2013 3:43:40 PM org.apache.catalina.realm.JDBCRealm getPassword
+SEVERE: Exception performing authentication
+java.sql.SQLException: [TimesTen][TimesTen 11.2.2.5.0 ODBC Driver]Function sequence error
+at com.timesten.jdbc.JdbcOdbc.createSQLException(JdbcOdbc.java:3238)
+at com.timesten.jdbc.JdbcOdbc.standardError(JdbcOdbc.java:3387)
+at com.timesten.jdbc.JdbcOdbc.SQLFetch(JdbcOdbc.java:921)
+at com.timesten.jdbc.JdbcOdbcResultSet.next(JdbcOdbcResultSet.java:409)
+at org.apache.catalina.realm.JDBCRealm.getPassword(JDBCRealm.java:558)
+at org.apache.catalina.realm.RealmBase.getDigest(RealmBase.java:1189)
+at org.apache.catalina.realm.RealmBase.authenticate(RealmBase.java:409)
+at com.kodiak.digest.authentication.KnDigestAuthenticator$KnDigestInfo.authenticate(KnDigestAuthenticator.java:733)
+at com.kodiak.digest.authentication.KnDigestAuthenticator.authenticate(KnDigestAuthenticator.java:275)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:574)
+at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1023)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at java.lang.Thread.run(Thread.java:724)
+Jul 31, 2013 3:43:40 PM org.apache.catalina.realm.JDBCRealm getPassword
+SEVERE: Exception performing authentication
+java.sql.SQLException: [TimesTen][TimesTen 11.2.2.5.0 ODBC Driver]Function sequence error
+at com.timesten.jdbc.JdbcOdbc.createSQLException(JdbcOdbc.java:3238)
+at com.timesten.jdbc.JdbcOdbc.standardError(JdbcOdbc.java:3387)
+at com.timesten.jdbc.JdbcOdbc.SQLFetch(JdbcOdbc.java:921)
+at com.timesten.jdbc.JdbcOdbcResultSet.next(JdbcOdbcResultSet.java:409)
+at org.apache.catalina.realm.JDBCRealm.getPassword(JDBCRealm.java:558)
+at org.apache.catalina.realm.RealmBase.getDigest(RealmBase.java:1189)
+at org.apache.catalina.realm.RealmBase.authenticate(RealmBase.java:409)
+"localhost.2013-07-31.log" 50L, 3800C
+Cheers,
+Mahaaboob

@@ -1,0 +1,9 @@
+47866 – NullPointerException in embedded tomcat
+It seems that the WebappClassLoader was stopped?
+{noformat}
+Caused by: java.lang.NullPointerException
+at org.apache.catalina.loader.WebappClassLoader.findResources(WebappClassLoader.java:994)
+at java.lang.ClassLoader.getResources(ClassLoader.java:1016)
+{noformat}
+All I did was launch a server add a context and then ask it to load a resource from its classpath.
+ It's a bit more complicated than that, so I'll try and narrow it down if needed.

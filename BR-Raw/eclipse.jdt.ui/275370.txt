@@ -1,0 +1,3 @@
+Bug 275370 – [toString] Generator uses wrong suffixes and prefixes
+Steps To Reproduce:
+When "Limit number of items..." option is selected, the maxLen variable in generated toString() method has parameter prefix and suffix appended instead of local variable ones.

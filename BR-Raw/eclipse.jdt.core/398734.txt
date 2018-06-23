@@ -1,0 +1,20 @@
+Bug 398734 – [1.8][compiler] Lambda expression type or return type should be checked against the target functional interface method's result type
+BETA_JAVA8
+The following program should be rejected due to the mismatch between int and String.
+interface I {
+String foo();
+}
+public class X {
+public static void main(String[] args) {
+I i = () -> 42;
+}
+}
+However, this should be allowed, due to boxing.
+interface I {
+Integer baz();
+}
+public class X {
+public static void main(String[] args) {
+I i = () -> 10;
+}
+}

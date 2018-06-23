@@ -1,0 +1,11 @@
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/source/GenerateToStringTest.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/CodeGenerationMessages.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/CodeGenerationMessages.properties
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/tostringgeneration/ApacheBuilderSpringCreatorGenerator.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/tostringgeneration/CustomBuilderGenerator.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/tostringgeneration/GenerateToStringOperation.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/tostringgeneration/ToStringGenerationContext.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/tostringgeneration/ToStringGenerationSettings.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaUIMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaUIMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/dialogs/GenerateToStringDialog.java

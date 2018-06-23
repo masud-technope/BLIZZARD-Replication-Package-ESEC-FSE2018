@@ -1,0 +1,11 @@
+Bug 405125 – [1.8][code assist] static members of an interface appearing after the declaration of a static member lambda expression are not being suggested.
+public interface Foo {
+int run(int s1, int s2);
+}
+interface X {
+static Foo f = (int s5, int s6) -> x<ctrl-space>
+static int x1 = 2;
+}
+x1 should have been suggested in assist; but not happening that way.
+Thanks
+Anirban

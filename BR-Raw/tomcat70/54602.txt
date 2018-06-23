@@ -1,0 +1,26 @@
+54602 – B2CConverter character decode underflow leaves bytes in buffer
+If a request contains a uri that ends in a multi byte character which is missing a byte the extra bytes are left in a buffer which is reused by a future request.
+The problem comes from two different things:
+1) If B2CConverter tries to convert a ByteChunk which ends in a character underflow it does not convert that last character and it is left in a buffer in B2CConver.
+2) The B2CConverter in org.apache.catalina.connector.Request is not recycled with the rest of the objects.
+It looks like this is done intentionally based on the comment above it's declaration.
+The issue with B2CConverter can be demonstrated with the code below, which is a simplification of what is done inside of CoyoteAdapter.convertURI():
+<code>
+B2CConverter conv = new B2CConverter("UTF-8");
+ByteChunk bc = new ByteChunk();
+CharChunk cc = new CharChunk();
+byte[] bytes = { 0x61, 0x62, 0x63, 0x64, -8, -69, -73, -77 };
+bc.append(bytes, 0, bytes.length);
+cc.allocate(bc.getLength(), -1);
+conv.convert(bc, cc, cc.getBuffer().length - cc.getEnd());
+System.out.println(cc);
+cc.recycle();
+bc.recycle();
+bc.append(bytes, 0, bytes.length);
+cc.allocate(bc.getLength(), -1);
+conv.convert(bc, cc, cc.getBuffer().length - cc.getEnd());
+System.out.println(cc);
+</code>
+If the B2CConverter was recycled with everything else in Request this would prevent a previous request from corrupting the next request but it doesn't fix the issue that a character is dropped from the initial decode.
+I tried playing with B2CConverter and the only way I could get the convert to get everything was by ignoring the limit argument and reading to the end of the stream.
+It looks like tomcat8 is moving in this direction with the move to NIO, however I tried playing with the latest B2CConverter and was still seeing issues with the given byte sequence.

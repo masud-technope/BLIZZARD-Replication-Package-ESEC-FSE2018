@@ -1,0 +1,7 @@
+org.eclipse.jdt.core/search/org/eclipse/jdt/internal/core/index/impl/CodeByteStream.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaSearchTests.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/search/org/eclipse/jdt/internal/core/index/impl/InMemoryIndex.java
+org.eclipse.jdt.core/search/org/eclipse/jdt/internal/core/index/impl/GammaCompressedIndexBlock.java
+org.eclipse.jdt.core.tests.model/workspace/JavaSearch/src/c9/X.java
+org.eclipse.jdt.core/search/org/eclipse/jdt/internal/core/index/impl/IIndexConstants.java

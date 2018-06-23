@@ -1,0 +1,3 @@
+Bug 372840 – [quick fix] Add a quick fix to add the missing default in a switch statement
+See bug 265744
+We should add a quick fix to add the missing default for IProblem.MissingEnumDefaultCase.

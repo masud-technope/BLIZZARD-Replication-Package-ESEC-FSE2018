@@ -1,0 +1,2 @@
+Bug 209547 – [spy] improve logging
+The spy needs to log in the proper way.

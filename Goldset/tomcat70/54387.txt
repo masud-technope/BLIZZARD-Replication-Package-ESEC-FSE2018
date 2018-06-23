@@ -1,0 +1,4 @@
+java/org/apache/catalina/deploy/LocalStrings.properties
+java/org/apache/catalina/deploy/WebXml.java
+test/org/apache/catalina/deploy/TestWebXml.java
+webapps/docs/changelog.xml

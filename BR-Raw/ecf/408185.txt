@@ -1,0 +1,3 @@
+Bug 408185 – [TCK] Bug in handling of multiple versioned exports of a single package
+In the TCK, the manifest for the test bundle exports version 1.0.0 and 2.0.0 of the org.osgi.tests.remoteserviceadmin.common package.
+ The ECF RSA logic does not properly account for this possibility and this results in a failed test RemoteServiceAdminTest.testExportImportManually

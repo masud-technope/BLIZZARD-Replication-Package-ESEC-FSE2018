@@ -1,0 +1,59 @@
+Bug 308313 – Plug-in Manifest Builder fails with errors/exceptions during build of workspace
+I20100406-1034 (did not happen before with same dev workspace).
+After importing, the builder started to build and I got a a dialog:
+Errors occurred during the build.
+Errors running builder 'Plug-in Manifest Builder' on project 'org.junit4'.
+Index: 0, Size: 0
+Plus .log entries:
+!ENTRY org.eclipse.core.resources 4 2 2010-04-07 12:25:43.497
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+at java.util.ArrayList.RangeCheck(ArrayList.java:547)
+at java.util.ArrayList.get(ArrayList.java:322)
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validateSourceEntries(BuildErrorReporter.java:682)
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validateBuild(BuildErrorReporter.java:221)
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validate(BuildErrorReporter.java:136)
+at org.eclipse.pde.internal.core.builders.ErrorReporter.validateContent(ErrorReporter.java:127)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.validateBuildProperties(ManifestConsistencyChecker.java:316)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.validateProject(ManifestConsistencyChecker.java:231)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.build(ManifestConsistencyChecker.java:157)
+at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:628)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:171)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:202)
+at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:254)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:257)
+at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:310)
+at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:342)
+at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:140)
+at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:238)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!ENTRY org.eclipse.core.resources 4 75 2010-04-07 12:27:27.852
+!MESSAGE Errors occurred during the build.
+!SUBENTRY 1 org.eclipse.pde.core 4 75 2010-04-07 12:27:27.852
+!MESSAGE Errors running builder 'Plug-in Manifest Builder' on project 'org.junit4'.
+!STACK 0
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+at java.util.ArrayList.RangeCheck(ArrayList.java:547)
+at java.util.ArrayList.get(ArrayList.java:322)
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validateSourceEntries(BuildErrorReporter.java:682)
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validateBuild(BuildErrorReporter.java:221)
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validate(BuildErrorReporter.java:136)
+at org.eclipse.pde.internal.core.builders.ErrorReporter.validateContent(ErrorReporter.java:127)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.validateBuildProperties(ManifestConsistencyChecker.java:316)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.validateProject(ManifestConsistencyChecker.java:231)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.build(ManifestConsistencyChecker.java:157)
+at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:628)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:171)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:202)
+at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:254)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:257)
+at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:310)
+at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:342)
+at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:140)
+at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:238)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)

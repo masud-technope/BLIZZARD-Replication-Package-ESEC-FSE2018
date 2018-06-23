@@ -1,0 +1,19 @@
+Bug 364539 – [generate constructor] Generate constructor using fields globally sets access modifier to private
+Build Identifier: 20110916-0149
+When using 'Generate Constructor using fields...' on an enum with private field the access modifier is disabled and set to private (which is perfectly ok).
+Afterwards the access modifier is always set to private, even if you use 'Generate Constructor using fields...' on a class.
+Eclipse should not remember the private access modifier when it is given and disabled.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Create an Enum
+2.
+Create a private field
+3.
+Use 'Generate Constructor using fields...' to create the constructor
+4.
+Create a class
+5.
+Create a private field
+6.
+Use 'Generate Constructor using fields...' to create the constructor -> the access modifier is now set to private regardless of the previous setting

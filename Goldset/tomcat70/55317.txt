@@ -1,0 +1,7 @@
+java/org/apache/catalina/loader/LocalStrings.properties
+java/org/apache/catalina/loader/WebappClassLoader.java
+java/org/apache/tomcat/InstrumentableClassLoader.java
+test/org/apache/catalina/loader/TestWebappClassLoaderWeaving.java
+test/org/apache/catalina/loader/TesterNeverWeavedClass.java
+test/org/apache/catalina/loader/TesterUnweavedClass.java
+webapps/docs/changelog.xml

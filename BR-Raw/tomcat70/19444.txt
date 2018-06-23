@@ -1,0 +1,25 @@
+19444 – JNDI Authentication roles must be anonymous accessible
+It appears that for the JNDIRealm to be able to locate roles, they must be
+anonymous accessible.
+I believe that for security purposes this should not be
+necessary if we are validating the user by binding to the directory.
+In that
+case the roles could be accessible to any bound user or that particular user.
+I
+discussed this very briefly on the Tomcat user list.
+It sounds like this had
+been discussed previously and for whatever reason, the idea rejected.
+Anyhow I
+submit that there is a bug, either in the code - which requires the roles to be
+anonymous, or in the documentation which does not make it clear that this is
+the case (at least in "Tomcat 4 Servlet/JSP Container - Realm Configuration HOW-
+TO).
+It seems reasonable to me that if we are binding to the directory to
+authenticate, we would have that user's access to roles.
+Perhaps the
+documentation should more explicetly state that this is not the case.
+In the hope that it would be accepted as an enhancement, I am going to attempt
+to attach a modified JNDIRealm that uses the authenticated connection to obtain
+the roles.
+Thank You,
+Art

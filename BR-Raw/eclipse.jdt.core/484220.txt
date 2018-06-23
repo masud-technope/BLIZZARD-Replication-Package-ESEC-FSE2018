@@ -1,0 +1,16 @@
+Bug 484220 – [dom][ast][compiler] Invalid AST structure
+Reproducible on latest Eclipse Luna version
+Steps to reproduce:
+-create following class
+import java.util.Collection;
+public class InvalidTree {
+public void foo(Collection collection) {
+/** javadoc */
+for (final Object obj : collection) {
+}
+}
+}
+-use AST View to inspect AST tree
+-EnhancedForStatement has correct position 123+42
+-PARAMETER represented by SingleVariableDeclaration node which is a child of EnhancedForStatement is corrupted and has following invalid position: 105+39
+It looks like removing javadoc or final modifier fixes the problem with invalid SingleVariableDeclaration, but of course it is not acceptable workaround.

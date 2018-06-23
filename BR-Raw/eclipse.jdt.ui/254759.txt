@@ -1,0 +1,49 @@
+Bug 254759 – Search declarations in working sets should not fail if no working set is specified
+Using eclipse.buildId=I20081104-0916
+java.version=1.6.0_10
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=fr_CA
+Command-line arguments:  -os win32 -ws win32 -arch x86 -debug -consolelog -console
+I got:java.lang.IllegalArgumentException: data must not be null
+at org.eclipse.jdt.internal.ui.search.JavaSearchQuery.<init>(JavaSearchQuery.java:62)
+at org.eclipse.jdt.ui.actions.FindAction.performNewSearch(FindAction.java:276)
+at org.eclipse.jdt.ui.actions.FindAction.run(FindAction.java:267)
+at org.eclipse.jdt.ui.actions.FindAction.run(FindAction.java:230)
+at org.eclipse.jdt.ui.actions.SelectionDispatchAction.dispatchRun(SelectionDispatchAction.java:278)
+at org.eclipse.jdt.ui.actions.SelectionDispatchAction.run(SelectionDispatchAction.java:250)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:498)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:584)
+at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:501)
+at org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:412)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1003)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3848)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3446)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2382)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2346)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2198)
+at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:493)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:333)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:488)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:113)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:193)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:370)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:549)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:504)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1236)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1212)
+Steps to reproduce:
+1) select a method declaration
+2) in the search menu, select Search>Declarations>Working sets
+3) Select No working sets
+4) Do the seach.
+It fails.
+Selecting Search>References> with no working sets seems to do something.

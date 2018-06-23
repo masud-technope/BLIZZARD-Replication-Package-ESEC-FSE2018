@@ -1,0 +1,4 @@
+Bug 308908 – [irc] [bot] Bot forgets preset commands if it fails to write browseable version
+org.eclipse.ecf.internal.presence.bot.kosmos.ChatRoomMessageHandler#ChatRoomMessageHandler() , after parsing the preset command regexps attempts to write out a HTML reference version to disk for later use.
+ If that write fails, it clears the list of known commands and renders the bot inert.
+ It should only clear the list if there's a problem in loading the commands.

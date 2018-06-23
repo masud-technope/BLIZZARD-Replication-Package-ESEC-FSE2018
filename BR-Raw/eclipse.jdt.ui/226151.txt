@@ -1,0 +1,29 @@
+Bug 226151 – [search] constructor declaration match reported as synthetic method reference
+I20080401-0851
+(I'm trying to remove ugly old workarounds for bug 27236 to get a reasonable fix for bug 182346).
+package m;
+class A{
+A(){
+}
+}
+class B extends A{
+B(){
+}
+void m() {
+new A();
+}
+}
+Search for occurrences of constructor A().
+Results:
+- MethodReferenceMatch on A() (synthetic)
+=> wrong, should be MethodDeclarationMatch
+- MethodReferenceMatch on B() (synthetic) => correct
+- MethodReferenceMatch on new A() => correct
+The problem is that ConstructorLocator.newDeclarationMatch(..) creates reference matches and that
+boolean synthetic = call != null && call.isImplicitSuper();
+is wrong in this case.
+Note that the same method is also used to create the correct MethodReferenceMatch on B(), so just changing
+if (this.pattern.findReferences) {
+into
+if (this.pattern.findReferences && !this.pattern.findDeclarations) {
+will not work.

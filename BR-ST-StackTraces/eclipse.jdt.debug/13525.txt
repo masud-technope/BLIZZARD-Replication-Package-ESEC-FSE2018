@@ -1,0 +1,15 @@
+org.eclipse.jdt.core.dom.AST.parseCompilationUnit
+org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.getCompiledExpression
+org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.evaluate
+org.eclipse.jdt.internal.debug.ui.actions.EvaluateAction.run
+org.eclipse.jdt.internal.debug.ui.actions.DisplayAction.run
+org.eclipse.jdt.internal.debug.ui.actions.EvaluateAction.run
+org.eclipse.ui.internal.PluginAction.runWithEvent
+org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection
+org.eclipse.ui.internal.Workbench.run
+org.eclipse.core.internal.boot.InternalBootLoader.run
+org.eclipse.core.boot.BootLoader.run
+java.lang.reflect.Method.invoke
+org.eclipse.core.launcher.Main.basicRun
+org.eclipse.core.launcher.Main.run
+org.eclipse.core.launcher.Main.main

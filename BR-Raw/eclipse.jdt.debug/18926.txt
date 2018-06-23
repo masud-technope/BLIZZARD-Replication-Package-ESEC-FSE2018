@@ -1,0 +1,24 @@
+Bug 18926 – unable to add JDK 1.1.8 to Installed JRE's in Preferences
+In 20020528 on Windows 2000, I am unable to add Sun JDK 1.1.8 to the list of
+Installed JRE's and then select it as the default JRE.
+ Here are steps I take.
+1.
+ Go to Window/Preferences/Java/Installed JREs
+2.
+ Click Add...
+3.
+ Set JRE Name to "Sun 1.1.8", Set JRE home directory to "D:\java\jdk1.1.8"
+4.
+ Click OK
+5.
+ Click the checkbox to set it as default.
+An error window pops up stating "Installed JRE location no longer exists.
+ JRE
+will be removed.
+ Reason: JRE removed"
+This is a pretty big problem in that I can't get any development done.
+Here is the weird part, I have an old workspace where this was working, and I
+can use that workspace with any of the current builds without experiencing this
+problem.
+ It has no problem using the JDK, it just can't add it on a clean
+workspace.

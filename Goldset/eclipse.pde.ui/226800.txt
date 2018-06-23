@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/DocumentHandler.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/model/xml/BasicXMLTestCase.java

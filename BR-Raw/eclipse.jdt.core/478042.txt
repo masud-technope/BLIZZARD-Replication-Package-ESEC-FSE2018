@@ -1,0 +1,2 @@
+Bug 478042 – [search] Support for Open Method using a single api
+Ref bug 470763 - This bug investigates the possibility of a single API for achieving the same.

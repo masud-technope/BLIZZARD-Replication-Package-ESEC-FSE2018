@@ -1,0 +1,17 @@
+49555 – Custom Taglibs should support all parameters
+I added two method <function>s with the same name but with an addition parameters.
+ I get this error:
+org.apache.jasper.JasperException: Duplicate function name list in tag library /WEB-INF/dataStore.tld
+Crap!  It is not even looking at the parameters.
+ Ok, Java matches on method names and method parameters.
+ It is commonly called a method signature.
+Well, Jasper is in the Google SDK, so it could perhaps be smarter than I am -- so maybe I overlooked something.
+ Is that the case?
+Why can't the Jasper compiler match on parameters like Java?  This is after all Java.
+ I'm only using TLDs because they are cleaner then escaping Java code in JSP.
+ I have already wrote a considerable amount of TLD code and it does not easily mix with the expression language.
+ This is the reason why it is so important to have this implementation work as expected.
+Please let me know how I can help.
+ Lets get this fixed.
+-Jimmy
+AppEngine SDK 1.3.2 (sorry, I don't know the embedded Jasper version)

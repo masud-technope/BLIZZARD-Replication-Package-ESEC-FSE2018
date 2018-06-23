@@ -1,0 +1,37 @@
+47515 – Tomcat can't replicate session when it is started.
+System
+two Tomcat Server(AP1,AP2)
+Tomcat's version is 6.0.18.
+Replication method is Delta Manager
+I stopped Tomcat of AP1.
+Then, I restarted Tomcat of AP1.
+Then, for AP1, Tomcat's log is as follows.
+Jul 2, 2009 4:51:04 PM
+org.apache.catalina.ha.session.DeltaManager getAllClusterSessions
+WARNING: Manager [/tpcw]: Drop message SESSION-DELTA
+inside GET_ALL_SESSIONS sync phase start date 7/2/09 4:51 PM message date 1/1/70 9:00 AM
+Jul 2, 2009 4:51:04 PM
+org.apache.catalina.ha.session.DeltaManager getAllClusterSessions
+WARNING: Manager [/tpcw]: Drop message SESSION-ACCESSED
+inside GET_ALL_SESSIONS sync phase start date 7/2/09 4:51 PM message date 1/1/70 9:00 AM
+TimeStamp is incorrect when SESSION-DELTA or SESSION-ACCESSED because "1/1/70 9:00 AM" isn't created time of session.
+In this case, AP1's Tomcat may drop all session data.
+As a result, AP1's Tomcat can't replicate session.
+If TimeStamp is updated when update last replicated time, it goes well.
+I made patch.
+DeltaManager's patch.
+Index: java/org/apache/catalina/ha/session/DeltaManager.java
+===================================================================
+--- java/org/apache/catalina/ha/session/DeltaManager.java	(revision 792004)
++++ java/org/apache/catalina/ha/session/DeltaManager.java	(working copy)
+@@ -1162,7 +1162,10 @@
+}
+//update last replicated time
+-            if (msg != null) session.setLastTimeReplicated(System.currentTimeMillis());
++            if (msg != null){
++            	session.setLastTimeReplicated(System.currentTimeMillis());
++            	msg.setTimestamp(session.getLastTimeReplicated());
++            }
+return msg;
+} catch (IOException x) {
+log.error(sm.getString("deltaManager.createMessage.unableCreateDeltaRequest",sessionId), x);

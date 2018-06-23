@@ -1,0 +1,6 @@
+org.eclipse.jdt.internal.debug.core.model.JDIDebugElement.throwDebugException
+org.eclipse.jdt.internal.debug.core.model.JDIDebugElement.requestFailed
+org.eclipse.jdt.internal.debug.core.model.JDIThread.runEvaluation
+org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine$EvalRunnable.run
+org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run
+org.eclipse.core.internal.jobs.Worker.run

@@ -1,0 +1,11 @@
+51887 – Speedup sessionid generation when running testsuite
+Created attachment 27581 [details]
+2011-09-24_tc8_DummySecureRandom.patch
+When I run the Tomcat tests on Windows, I see a lot of following messages in the logs:
+[junit] 24.09.2011 17:23:56 org.apache.catalina.util.SessionIdGenerator createSecureRandom
+[junit] INFO: Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [5,019] milliseconds.
+It is OK whan starting a single Tomcat instance, but when running tests it adds 5 seconds to each startup of Tomcat.
+I am attaching patch that
+1) Adds new DummySecureRandom class.
+2) Hardcodes SessionIdGenerator to use this class.
+The SessionIdGenerator part of the patch cannot be committed as is.

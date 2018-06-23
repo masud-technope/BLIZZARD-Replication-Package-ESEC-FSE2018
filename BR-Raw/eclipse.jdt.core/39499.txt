@@ -1,0 +1,14 @@
+Bug 39499 – keyword completion does not work in anonymous inner classes
+Build I20030625:
+Do not get completion proposals at indicated cursor position:
+public void createPartControl(Composite parent) {
+super.createPartControl(parent);
+getEditorSite().getSelectionProvider
+().addSelectionChangedListener(new ISelectionChangedListener() {
+public void selectionChanged(SelectionChangedEvent
+event) {
+ISelection selection= event.getSelection();
+if (selection inst>I< )
+}
+});
+}

@@ -1,0 +1,3 @@
+Bug 257852 – Clean up PDEPerspective
+In PDEPerspective, we're doing a ton of things that should be done declarative via the perspectiveExtensions extension point.
+for examples see the addViewShortcuts and addNewWizardShortcuts methods.

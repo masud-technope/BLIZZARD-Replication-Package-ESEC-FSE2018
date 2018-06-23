@@ -1,0 +1,4 @@
+java/org/apache/catalina/filters/CorsFilter.java
+test/org/apache/catalina/filters/TestCorsFilter.java
+test/org/apache/catalina/filters/TesterHttpServletRequest.java
+webapps/docs/changelog.xml

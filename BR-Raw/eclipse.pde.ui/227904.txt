@@ -1,0 +1,5 @@
+Bug 227904 – [ds] editor polish
++++ This bug was initially created as a clone of Bug #223739 +++
+Now that we have a basic editor...
+we will use this bug to come up with polish items.
+The other bug was getting crowded with patches.

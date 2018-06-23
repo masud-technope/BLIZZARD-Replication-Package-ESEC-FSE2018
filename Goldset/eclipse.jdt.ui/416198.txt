@@ -1,0 +1,5 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/enum_in/Test_416198.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/enum_out/Test_416198.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/InlineMethodTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/CallInliner.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/TargetProvider.java

@@ -1,0 +1,4 @@
+57338 – SingleSignOnEntry cache of ClusterSingleSignOn valve is not synchronized on Tomcat startup
+When using the ClusterSingleSignOn valve, it looks like the single sign on session state is not synchronized to cluster nodes when they start.
+The state is instead only replicated at the moment that an action is performed, so any nodes that come online after that action are out of sync.
+See mailing list discussion here: http://www.mail-archive.com/users@tomcat.apache.org/msg115472.html

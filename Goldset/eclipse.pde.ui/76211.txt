@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/build/RuntimeInfoSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/RenameDialog.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/LibrarySection.java

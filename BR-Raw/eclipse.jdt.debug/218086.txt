@@ -1,0 +1,6 @@
+Bug 218086 – Filtering statics also filters constants
+When working on bug 169359 and  bug 214744 we changed the way that the show constants and show statics actioned filtered the view.
+ The logic used to filter the variables should work differently.
+Right now, if the user wants to filter statics, all statics are removed including constants (static finals).
+ While constants are technically statics, the actions are named Show Constants and Show Statics.
+ Having Show Statics turned off should not filter constants.

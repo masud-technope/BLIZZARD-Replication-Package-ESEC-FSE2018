@@ -1,0 +1,6 @@
+50232 – org.apache.catalina.session.StoreBase has a hidden dependency on PersistentManager
+Created attachment 26270 [details]
+Removes hidden dependency on PersistentStore
+StoreBase.java depends explicitly on the Manager interface, however, it later casts the manager object to the PersistentManager class with out any check.
+This removes that dependency, therefore allowing the usage of this store with any manager that does not extend PersistentManager.
+I will later attach a path that removes the offending isLoaded() method as that may induce the same problem further along...

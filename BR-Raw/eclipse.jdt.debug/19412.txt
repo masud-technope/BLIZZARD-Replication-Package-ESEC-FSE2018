@@ -1,0 +1,10 @@
+Bug 19412 – more than one JRE on classpath
+If a project has required projects that use a different build time JRE, all the
+JREs show up on the bootpath and source lookup path in the launch config.
+For example, create two projetcs, using container libraries, pointing to two
+different JREs.
+Create a main class in one of the projects (leaf project), and
+create a launch config for the class.
+Look on the bootpath and source lookup
+tabs - both JREs appear.
+Only the launch config's project's JRE should appear.

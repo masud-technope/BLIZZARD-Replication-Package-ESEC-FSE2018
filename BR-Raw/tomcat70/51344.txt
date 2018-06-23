@@ -1,0 +1,22 @@
+51344 – org.apache.catalina.startup.Embedded overrides Lifecycle incorrectly?
+Not sure if this is a bug or just my mis-coding...
+I've been using the Embedded component in Tomcat 6.0.29 for integration testing.
+Something like this:
+server = new EmbeddedTomcat("/test", 7890, "JVM-1");
+PeerToPeerCacheLifecycleListener p2pListener = new PeerToPeerCacheLifecycleListener();
+p2pListener.setProperty("mcast-port", "19991");
+server.getEmbedded().addLifecycleListener(p2pListener);
+sessionManager = new DeltaSessionManager();
+server.getRootContext().setManager(sessionManager);
+Here the EmbeddedTomcat class is simply a wrapper for Embedded - I'm passing in the context, port and 'JVM route' - nothing special.
+Then I add a listener which should be the programmatic equivalent of having the following server.xml snippet:
+<Server>
+<Listener className="PeerToPeerCacheLifecycleListener"/>
+</Server>
+DeltaSessionManager performs custom session management and thus extends ManagerBase and implements Lifecycle and SessionManager.
+During the start of DeltaSessionManager I initialize the listener by doing
+this.lifecycle.fireLifecycleEvent(START_EVENT, null);
+The listener picks up this event and starts.
+All works nicely under Tomcat 6, but breaks under Tomcat 7.0.12.
+My initial investigation shows that the LifecycleEvent, being fired, is not reaching the Embedded component which is where the listener is registered.
+Removing the overridden Lifecycle methods from Embedded (so that the Lifecyle processing happens in LifecycleBase) seems to work as the triggered event then reaches my listener.

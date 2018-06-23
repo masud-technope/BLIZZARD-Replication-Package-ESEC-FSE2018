@@ -1,0 +1,3 @@
+tests/bundles/org.eclipse.ecf.tests.provider.xmpp/META-INF/MANIFEST.MF
+tests/bundles/org.eclipse.ecf.tests.provider.xmpp/src/org/eclipse/ecf/tests/provider/xmpp/RosterTest.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/XMPPContainerPresenceHelper.java

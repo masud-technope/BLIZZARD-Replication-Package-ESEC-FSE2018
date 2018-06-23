@@ -1,0 +1,3 @@
+Bug 266640 – [Discovery][ui] simplify discovery ui host and service labels
+Currently the discovery view ui has "Host " preceeding every host instance, and "Service preceeding every service instance".
+ This results in some visual clutter.

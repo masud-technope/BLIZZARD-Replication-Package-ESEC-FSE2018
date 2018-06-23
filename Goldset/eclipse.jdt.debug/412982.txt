@@ -1,0 +1,2 @@
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/ConditionalBreakpointHandler.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/breakpoints/ConditionalBreakpointsTests.java

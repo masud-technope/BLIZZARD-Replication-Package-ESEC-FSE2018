@@ -1,0 +1,28 @@
+Bug 339614 – [search] JavaElementLine crashes with ArrayIndexOutOfBoundsException when there is EOF encountered
+The constructor org.eclipse.jdt.internal.ui.search.JavaElementLine.JavaElementLine(ITypeRoot, int, int) expects that the end of the line ends with a \n or a \r char.
+ However, there are situations where an EOF is reached with no \r or \n.
+The only time I have encountered this in Java code is with a syntax error.
+ See this class:
+class Foo {
+int x
+Now, select the x field and do CTRL-Shift-U.
+ And the result is an exception in the log:
+eclipse.buildId=M20110210-1200
+java.version=1.6.0_22
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=cocoa, NL=en_US
+Framework arguments:  -product com.springsource.sts.ide
+Command-line arguments:  -os macosx -ws cocoa -arch x86 -product com.springsource.sts.ide -data /users/Andrew/Eclipse/Workspaces/workspaceAJDT36
+Error
+Thu Mar 10 14:42:35 PST 2011
+An internal error occurred during: "Search for Occurrences in File".
+java.lang.ArrayIndexOutOfBoundsException
+at org.eclipse.jdt.internal.ui.javaeditor.DocumentAdapter.getChar(DocumentAdapter.java:369)
+at org.eclipse.jdt.internal.ui.search.JavaElementLine.<init>(JavaElementLine.java:70)
+at org.eclipse.jdt.internal.ui.search.OccurrencesSearchQuery.getLineElement(OccurrencesSearchQuery.java:113)
+at org.eclipse.jdt.internal.ui.search.OccurrencesSearchQuery.run(OccurrencesSearchQuery.java:79)
+at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+The fix is simple.
+ In the condition for the while loop on line 64, add a check for EOF:
+while (i < length && !IndentManipulation.isLineDelimiterChar(ch) && !IndentManipulation.isEOFChar(ch)) {

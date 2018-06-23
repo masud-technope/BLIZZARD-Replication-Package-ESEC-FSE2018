@@ -1,0 +1,6 @@
+Bug 218697 – dynamic plug-in project API description and API component
+As plug-ins are modified in the workspace, the associated API descriptions, components, and workspace profile need to be kept up-to-date.
+Implemented a new API description for plug-in projects that dynamically retrieve API description information from the workspace, using modification timestamps to know when the data is stale.
+Modified the API profile manager to dispose the workspace API profile when a manifest, build.properties, or classpath changes.
+This way our OSGi state stays up to date.
+A new workspacep profile is created on demand.

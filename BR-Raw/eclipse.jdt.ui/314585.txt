@@ -1,0 +1,28 @@
+Bug 314585 – [hovering] NPE in JavadocHover when annotation value is a primitive type
+Build Identifier: I20100429-1549
+From within the java editor, hovering over the interface (Service1Soap) of an implementation such as:
+"public class Service1_Service1SoapImpl implements Service1Soap
+{..."
+Produces the following stack trace:
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.ui.viewsupport.JavaElementLabelComposer.appendElementLabel(JavaElementLabelComposer.java:263)
+at org.eclipse.jdt.internal.ui.viewsupport.JavaElementLinks.getElementLabel(JavaElementLinks.java:514)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.addValue(JavadocHover.java:1013)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.addValue(JavadocHover.java:1040)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.addAnnotation(JavadocHover.java:1003)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getAnnotations(JavadocHover.java:980)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.addAnnotations(JavadocHover.java:928)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo(JavadocHover.java:595)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.internalGetHoverInfo(JavadocHover.java:546)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo2(JavadocHover.java:538)
+at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:141)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:82)
+at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
+The interface class is contained within a jar.
+Reproducible: Always
+Steps to Reproduce:
+1.Create a Dynamic Web Project
+2.Import a jar with a webservice endpoint interface
+3.Create a service implementation that references this interface
+4.Hover over the interface name from the implementation
+(I have a jar and implementation available let me know thxs)

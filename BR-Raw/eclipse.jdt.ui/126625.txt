@@ -1,0 +1,5 @@
+Bug 126625 – Added missing options for formatting annotation types
+Right now the formatter is sharing the same options to format the annotation type declaration and the type declaration.
+We could add the following two options to make the formatting of annotation consistent with enum and type declarations.
+FORMATTER_INDENT_BODY_DECLARATIONS_COMPARE_TO_ANNOTATION_DECLARATION_HEADER
+FORMATTER_INSERT_NEW_LINE_IN_EMPTY_ANNOTATION_DECLARATION

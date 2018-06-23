@@ -1,0 +1,7 @@
+Bug 388342 – [type wizards] Main Method Stub Check Box in the Class Wizard Stays Checked the Next Time It Loads
+Back in version 3.7 of the Eclipse Java IDE, when you checked the box "public static void main(String[] args)", it would generate the main method, but the next time you created a class with the wizard, that box would not be checked.
+Now that I am using version 4.2, I am noticing that the check box stays checked.
+This is annoying because most of the time, when creating a class, you don't need a main.
+It is a special case.
+So the default should be unchecked, not whatever the previous state of the box was.
+It would be nice if the behaviour returned to the original, that is, that the box always starts out as unchecked.

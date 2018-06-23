@@ -1,0 +1,8 @@
+Bug 332019 – [quick assist] Exchange operands must add parentheses sometimes
+I20101206-1800
+Exchange operands quick assist must add parentheses sometimes, e.g.
+when invoked on the second != in these statements:
+static void foo(int a, long b) {
+System.out.println(b != 0 != (a == b));
+System.out.println(b != 0 != true);
+}

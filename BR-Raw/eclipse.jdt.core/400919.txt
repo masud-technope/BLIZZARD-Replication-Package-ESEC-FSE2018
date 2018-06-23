@@ -1,0 +1,20 @@
+Bug 400919 – [1.8][search] Search engine fails to annotation matches in type variable bounds.
+BETA_JAVA8:
+Searching for references to Existing in the following program brings up
+only one - it should show two:
+// ---
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+import java.util.Map;
+import java.util.List;
+import java.util.Collection;
+interface I {
+I doit();
+}
+class X {
+class Folder<F extends @Existing File> {  }
+Collection<? super @Existing File> s;
+}
+@Target(ElementType.TYPE_USE)
+@interface Existing {
+}

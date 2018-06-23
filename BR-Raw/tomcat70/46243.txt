@@ -1,0 +1,43 @@
+46243 – Filter init() fails, still put into service
+Using securityfilter, I misconfigured the filter to use a non-existent class for my Realm.
+This causes a ClassNotFoundException in securityfilter's init() method.
+When attempting to authenticate, I get this error:
+2008-11-19 10:26:26,111 [TP-Processor8] ERROR org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/diagnosis].[default]- Servlet.service() for servlet default threw exception
+java.lang.NullPointerException
+at org.securityfilter.filter.SecurityFilter.doFilter(SecurityFilter.java:125)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:215)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:188)
+at org.securityfilter.filter.CheckIPAddressFilter.doFilter(CheckIPAddressFilter.java:130)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:215)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:188)
+at org.childhealthcare.diagnosis.servlet.BrokenLocaleFilter.doFilter(BrokenLocaleFilter.java:115)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:215)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:188)
+at org.childhealthcare.diagnosis.servlet.EncodingFilter.doFilter(EncodingFilter.java:64)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:215)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:188)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:213)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:174)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:117)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:108)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:174)
+at org.apache.jk.server.JkCoyoteHandler.invoke(JkCoyoteHandler.java:200)
+at org.apache.jk.common.HandlerRequest.invoke(HandlerRequest.java:283)
+at org.apache.jk.common.ChannelSocket.invoke(ChannelSocket.java:773)
+at org.apache.jk.common.ChannelSocket.processConnection(ChannelSocket.java:703)
+at org.apache.jk.common.ChannelSocket$SocketConnection.runIt(ChannelSocket.java:895)
+at org.apache.tomcat.util.threads.ThreadPool$ControlRunnable.run(ThreadPool.java:689)
+at java.lang.Thread.run(Thread.java:595)
+Now, the exception itself is legitimate: there's an uninitialized object in the filter that's being dereferenced, and an NPE is thrown.
+The problem is that Tomcat should be successfully initializing the filter /before/ the doFilter method is ever called.
+Since init() will always fail given my configuration, the filter should never come into service, and the NPE should not be observed.
+Section 6.2.1 of the 2.4 servlet spec states:
+"
+The container must ensure that it has instantiated a filter of the appropriate class for each filter in the list, and called its init(FilterConfig config) method.
+The filter may throw an exception to indicate that it cannot function properly.
+If the exception is of type UnavailableException, the container may examine the isPermanent attribute of the exception and may choose to retry the filter at some later time.
+"
+While not explicitly stated here, it seems that the call to init() should be successful (i.e.
+no exceptions are thrown) before the filter is put into service -- similar to the way a servlet is handled.
+Filters should be able to rely on objects being properly initialized in init().

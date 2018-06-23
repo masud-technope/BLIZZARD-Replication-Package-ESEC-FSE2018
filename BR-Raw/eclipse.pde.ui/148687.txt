@@ -1,0 +1,7 @@
+Bug 148687 – Extension Point enhancement
+When using the "New Extension" wizard and want to add a new perspective, it would be great to improve the filter.
+The name "filter" means in my eyes that the e.g.
+the "org.eclipse.ui.perspectives" extension point can be found with the filter "per".
+This would be a great thing to select the extension points faster.
+It should filter the extension points like the  "Superclass Selection".
+If you are interested, i would like to try to write a patch for this enhancement.

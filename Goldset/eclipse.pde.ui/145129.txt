@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/SplashConfigurationSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/product/UpdateSplashProgressOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/product/ProductDefinitionOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/SplashInfo.java

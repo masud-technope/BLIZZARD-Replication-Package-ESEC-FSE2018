@@ -1,0 +1,7 @@
+Bug 307109 – All JREs are a perfect match for JavaSE-1.6 on OS X
+Build Identifier: 3.6M6, I20100312-1448
+The execution environment preference pane shows all JREs as perfect match for JavaSE-1.6.
+Happens in 3.5.2 and 3.6M6 for me.
+See attached screenshot.
+Because of this it picks 1.4 when launching with EE JavaSE-1.6.
+Reproducible: Always

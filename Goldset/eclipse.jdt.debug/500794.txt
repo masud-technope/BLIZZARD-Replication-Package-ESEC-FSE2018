@@ -1,0 +1,6 @@
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/hcr/JavaHotCodeReplaceManager.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/DebugUIMessages.properties
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/JDIDebugPlugin.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaDebugPreferencePage.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/DebugUIMessages.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/JDIDebugPluginPreferenceInitializer.java

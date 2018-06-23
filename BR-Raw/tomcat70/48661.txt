@@ -1,0 +1,68 @@
+48661 – inconsistent error page behavior
+There seems to be a bug or at least an inconsistency in how tomcat handles the error page.
+In Tomcat 6.0.20, if I define my error page like this in web.xml:
+<error-page>
+<exception-type>java.lang.Exception</exception-type>
+<location>/unexpectedErrors.jsp</location>
+</error-page>
+Then, if the response has already been committed, Tomcat does this on
+the system console:
+Feb 1, 2010 5:59:04 PM org.apache.catalina.core.StandardWrapperValve invoke
+SEVERE: Servlet.service() for servlet jsp threw exception
+java.lang.NullPointerException
+at org.apache.jsp.cpe_jsp._jspService(cpe_jsp.java:693)
+at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:374)
+at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:342)
+at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:267)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at com.eaglecreektech.expedience.provisioning.web.servletFilters.AuthFilter.doFilter(AuthFilter.java:133)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at com.eaglecreektech.expedience.provisioning.web.servletFilters.RequestVolumeFilter.doFilter(RequestVolumeFilter.java:141)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at com.eaglecreektech.expedience.provisioning.web.servletFilters.StartupCheckFilter.doFilter(StartupCheckFilter.java:65)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:128)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:293)
+at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:849)
+at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:583)
+at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:454)
+at java.lang.Thread.run(Thread.java:619)
+Feb 1, 2010 5:59:04 PM org.apache.catalina.core.StandardHostValve custom
+SEVERE: Exception Processing
+ErrorPage[exceptionType=java.lang.Exception,
+location=/unexpectedErrors.jsp]
+java.lang.IllegalStateException: Cannot reset buffer after response
+has been committed
+at org.apache.catalina.connector.Response.resetBuffer(Response.java:691)
+at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:409)
+at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:271)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:142)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:293)
+at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:849)
+at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:583)
+at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:454)
+at java.lang.Thread.run(Thread.java:619)
+And it doesn't put any error text into the broken page - the page just
+shows how ever far it got before it encountered the error.
+This behavior doesn't seem correct - it seems like it should at least
+behave the same way as it does when the error page is defined in a jsp
+page:
+<%@ page errorPage="unexpectedErrors.jsp" %>
+If the response has already been committed, then it just appends the
+error page onto the end of the response (not ideal, but nothing else can be done, as far as I know)
+If the response has not been committed, it clears the buffer and
+writes the error page (which looks nice and pretty , like it should)
+I'd suggest that the error handling code for the error page as defined in web.xml should check if the response has been committed, and not try to clear the buffer if it is already committed - just append to the end, the same way that the jsp error handler does.

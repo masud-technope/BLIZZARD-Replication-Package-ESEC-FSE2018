@@ -1,0 +1,34 @@
+Bug 27687 – Jar export: Cannot export java project as a jar when manifest file is present
+Steps to reproduce:
+1.
+Create a java project
+2.
+Create a simple folder in your project.
+ Call it "META-INF".
+3.
+Create a simple file in the META-INF folder.
+ Call it "MANIFEST.MF".
+4.
+In the context menu of your java project, click "Export" and select JAR
+file.
+5.
+Fill in the export destination path and click Next.
+6.
+Click Next again to go to the JAR Manifest Specification page of the wizard.
+The same thing happens whether you choose "Generate the manifest file" or "Use
+existing manifest from workspace" and select the file, then click Finish.
+ The
+popup appears:
+Confirm Replace
+The file 'E:\eclipse_workbench\eclipse\workspace\Test.jar' already exists.
+Do you want to overwrite it?
+Yes    No
+No: takes you back to the JAR Manifest Specification page of the JAR Export
+wizard.
+Yes: brings up the following error popup:
+JAR Export
+JAR creation failed.
+ See details for additional information
+Details:
+Problem writing /<project name>/META-INF/MANIFEST.MF to JAR: duplicate entry:
+META-INF/MANIFEST.MF

@@ -1,0 +1,8 @@
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/internal/provider/jslp/Activator.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/internal/provider/jslp/JSLPDiscoveryJob.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/internal/provider/jslp/LocatorDecorator.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/internal/provider/jslp/LocatorDecoratorImpl.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/internal/provider/jslp/NullPatternAdvertiser.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/internal/provider/jslp/NullPatternLocator.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/provider/jslp/container/JSLPDiscoveryContainer.java
+tests/bundles/org.eclipse.ecf.tests.provider.jslp/src/org/eclipse/ecf/tests/provider/jslp/JSLPDiscoveryTest.java

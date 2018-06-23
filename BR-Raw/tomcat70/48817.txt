@@ -1,0 +1,4 @@
+48817 – Skip validation query and use JDBC API for validation
+The jdbc-pool should allow, if Java 6 is present, to not have to configure the validationQuery, but instead use the
+java.sql.Connection.isValid(int timeout)
+method call

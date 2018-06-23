@@ -1,0 +1,11 @@
+Bug 398158 – Receiver qualifier can only be a simple name and not a qualified name
+From bug 391893, comment #15:
+The ECJ grammar at the moment reads:
+VariableDeclaratorIdOrThis ::= 'this'
+VariableDeclaratorIdOrThis ::= UnannotatableName '.' 'this'
+UnannotatableName -> SimpleName
+UnannotatableName ::= UnannotatableName '.' SimpleName
+This is the bug for the grammar fix that is needed.
+The second
+rule needs to change to be
+VariableDeclaratorIdOrThis ::= SimpleName '.' 'this'

@@ -1,0 +1,11 @@
+Bug 201572 – [Manifest][Editors] Package Friends are not selected after addition
+1.
+Create a new Plug-in Project or open an existing one with exported packages.
+2.
+Select a package that is either internal or visible.
+(It must have been that way before you opened the manifest editor)
+3.
+In the Package Visibility section on the top-right, ensure that the "hidden from all plug-ins except" radio button is selected.
+4.
+Click "Add..." and add a plug-in to this list.
+--> Bug: The added plug-in is not selected

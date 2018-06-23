@@ -1,0 +1,9 @@
+Bug 181093 – [Plug-in Dependencies View] Show/Hide Fragments and their dependencies
+Right now, the view does not show me fragments.
+So if I depend on SWT, I don't see swt.win32 in the view.
+Sometimes dependencies are brought in via fragments.
+ For example, org.eclipse.ui.workbench.compatibility brings in core.resources.
+ So it would be good to show fragments and what they bring to the party.
+We could have an option in a pull-down menu to show/hide fragments.
+P.S.
+ The new implementation of the view is awesome.

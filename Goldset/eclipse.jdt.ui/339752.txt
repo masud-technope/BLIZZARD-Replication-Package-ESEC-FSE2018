@@ -1,0 +1,3 @@
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/ChangeExceptionHandler.java
+org.eclipse.ltk.core.refactoring/src/org/eclipse/ltk/core/refactoring/CompositeChange.java
+org.eclipse.ltk.ui.refactoring/src/org/eclipse/ltk/internal/ui/refactoring/ChangeExceptionHandler.java

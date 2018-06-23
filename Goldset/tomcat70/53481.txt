@@ -1,0 +1,6 @@
+java/org/apache/coyote/http11/Http11AprProtocol.java
+java/org/apache/tomcat/util/net/AprEndpoint.java
+webapps/docs/config/http.xml
+java/org/apache/tomcat/util/net/res/LocalStrings.properties
+webapps/docs/changelog.xml
+TOMCAT-NEXT.txt

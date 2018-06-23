@@ -1,0 +1,5 @@
+Bug 138377 – [patch] [console] [source lookup] Clicking on Java stack trace hyperlink in console is unusably slow again
+N20060425-0010
+With the fix for bug 112774, perfomance of target resolution became acceptable (at least for the second and later clicks).
+But in lastest builds, perfomance has become unusable again.
+I am blocked for about 30 seconds for each click now.

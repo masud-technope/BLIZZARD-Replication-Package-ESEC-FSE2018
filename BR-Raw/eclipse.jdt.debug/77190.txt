@@ -1,0 +1,22 @@
+Bug 77190 – nightly test failures due to empty stack exception in eval engine
+Three nighly tests failed (which are reproduceable).
+The following exception
+appears in the .log several times:
+!ENTRY org.eclipse.jdt.debug 4 120 2004-10-28 09:10:38.859
+!MESSAGE Exception processing async thread queue
+!SUBENTRY 1 org.eclipse.jdt.debug 4 120 2004-10-28 09:10:38.859
+!MESSAGE Exception processing async thread queue
+!STACK 0
+java.util.EmptyStackException
+at java.lang.Throwable.<init>(Throwable.java)
+at java.util.Stack.peek(Stack.java)
+at java.util.Stack.pop(Stack.java)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.Interpreter.pop(Interpreter.java:89)
+at org.eclipse.jdt.internal.debug.eval.ast.instructions.Instruction.popValue(Instruction.java:111)
+at org.eclipse.jdt.internal.debug.eval.ast.instructions.PushFieldVariable.execute(PushFieldVariable.java:54)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.Interpreter.execute(Interpreter.java:50)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine$1$EvaluationRunnable.run(ASTEvaluationEngine.java:341)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.runEvaluation(JDIThread.java:659)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine$EvalRunnable.run(ASTEvaluationEngine.java:375)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run(JDIThread.java:2514)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:66)

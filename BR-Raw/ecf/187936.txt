@@ -1,0 +1,3 @@
+Bug 187936 – IChat should provide a simpler means for sending out chat messages
+IChatMessageSender has two methods for sending out messages, a simple sendChatMessage(ID, String) and a longer sendChatMessage(ID, ID, IChatMessage.Type, String, String, Map).
+IChat should provide a similar method like the former with a sendChatMessage(String) so that developers only have to specify the body without filling in the other details like they currently have to with the sendChatMessage(IChatMessage.Type, String, String, Map) metohd.

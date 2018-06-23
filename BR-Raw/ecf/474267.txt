@@ -1,0 +1,4 @@
+Bug 474267 – [RSA] For RemoteServiceAdmin.importService prevent providers from throwing uncaught runtime exception
+In RemoteServiceAdmin.importService, there is a call to the consumerContainerSelector.selectConsumerContainer that may throw a runtime exception...e.g.
+if the provider container creation throws a runtime exception and this propogates all the way to the RemoteServiceAdmin.improtService caller.
+  Rather, importService should catch the exception and return an error ImportRegistration.

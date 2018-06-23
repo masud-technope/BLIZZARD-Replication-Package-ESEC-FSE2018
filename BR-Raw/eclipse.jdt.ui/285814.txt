@@ -1,0 +1,19 @@
+Bug 285814 – [clean up] 'Remove unnecessary $NLS-TAGS$' removes necessary ones in case of syntax errors
+The save action 'Remove unnecessary $NLS-TAGS$' has removed all my neccessary tags of a file more than once.
+This now stops me from using the otherwise great feature.
+Here is an example how to reproduce the issue:
+1) Enable the save action.
+2) Start with the following code and save it.
+public class Test {
+String bla= "";  //$NON-NLS-1$
+}
+3) Change the keyword 'void' and save the file:
+public class Test {
+void
+String bla= "";  //$NON-NLS-1$
+}
+4) The tag is removed :-(.
+public class Test {
+void
+String bla= "";
+}

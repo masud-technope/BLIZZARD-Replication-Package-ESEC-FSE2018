@@ -1,0 +1,38 @@
+Bug 21769 – Invalid code index stepping in junit code
+Build: eclipse 2.0
+IBM JRE 1.3.0 (build cn130-20010502)
+This is consistently reproducible for me.
+ We have junit tests that are launched
+using the eclipse platform testing framework (org.eclipse.core.tests.harness).
+If I do the following:
+1) Add a breakpoint in junit.framework.TestResult.run(TestCase) on the line
+"runProtected(test, p)".
+2) Run any junit test
+3) When the breakpoint is hit, step into "runProtected".
+ Then step into
+"p.protect()".
+ When this happens, a new stack frame appears in the debug view
+that looks like this:
+<not responding>
+4) After that point, every attempt to step fails.
+ The log file quickly fills
+with stack traces that say either:
+!MESSAGE Internal Error
+!STACK 1
+org.eclipse.debug.core.DebugException[5010]:
+com.sun.jdi.InvalidCodeIndexException: Invalid code index of a location given
+OR:
+!MESSAGE Internal Error
+!STACK 1
+org.eclipse.debug.core.DebugException: Thread not suspended, stack frame
+unavailable.
+After this has happened, the debugger is not responsive.
+ Attempting to
+terminate the program has no response at this point.
+"Terminate and remove" will
+make it disappear from the debug view though.
+I will attach a log file that shows the complete stack traces.
+ I've trimmed the
+log (it was over 100K), but I've left some duplicates in case the timing is
+interesting (there are several errors within a second, so presumably they're all
+triggered by a single step attempt).

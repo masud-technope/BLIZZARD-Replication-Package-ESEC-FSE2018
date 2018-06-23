@@ -1,0 +1,5 @@
+java/org/apache/catalina/connector/LocalStrings.properties
+java/org/apache/catalina/connector/MapperListener.java
+java/org/apache/catalina/core/mbeans-descriptors.xml
+java/org/apache/catalina/mbeans/ContainerMBean.java
+webapps/docs/changelog.xml

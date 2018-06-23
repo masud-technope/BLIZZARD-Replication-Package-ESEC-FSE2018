@@ -1,0 +1,30 @@
+57779 – Deadlock if using separate thread to write to ServletOutputStream
+If using a separate (non-container) thread to write to a ServletOutputStream, a deadlock can occur, if an io-error occurs during write.
+For example, if the client drops the connection.
+This is caused by a synchronized operation on the the underlying socket-object.
+The servlet handling thread is blocked, while waiting for the end of output from the separate thread, and holds a lock on the socket-object:
+"http-bio-25030-exec-10" daemon prio=10 tid=0x0000000001804800 nid=0x3fd0 waiting on condition [0x00007f767aeeb000]
+java.lang.Thread.State: WAITING (parking)
+at sun.misc.Unsafe.park(Native Method)
+- parking to wait for  <0x00000000c3b273b8> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+...
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:314)
+- locked <0x00000000c38ef6d8> (a org.apache.tomcat.util.net.SocketWrapper)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+at java.lang.Thread.run(Thread.java:745)
+The separate thread trys to write, but an io-error occurs:
+"Thread-13" daemon prio=10 tid=0x00007f767c5c8000 nid=0x3fda waiting for monitor entry [0x00007f767a4e2000]
+java.lang.Thread.State: BLOCKED (on object monitor)
+at org.apache.tomcat.util.net.JIoEndpoint.processSocketAsync(JIoEndpoint.java:560)
+- waiting to lock <0x00000000c38ef6d8> (a org.apache.tomcat.util.net.SocketWrapper)
+at org.apache.coyote.AbstractProcessor.setErrorState(AbstractProcessor.java:84)
+at org.apache.coyote.http11.AbstractHttp11Processor.action(AbstractHttp11Processor.java:802)
+at org.apache.coyote.Response.action(Response.java:172)
+at org.apache.catalina.connector.OutputBuffer.doFlush(OutputBuffer.java:363)
+at org.apache.catalina.connector.OutputBuffer.flush(OutputBuffer.java:331)
+at org.apache.catalina.connector.CoyoteOutputStream.flush(CoyoteOutputStream.java:101)
+Now it trys to get a lock on the socket-object and both threads are blocked forever.
+In the former tomcat version we used (7.0.53) this was not an issue.
+I had a look in the source code and saw that the failing code was invented later.

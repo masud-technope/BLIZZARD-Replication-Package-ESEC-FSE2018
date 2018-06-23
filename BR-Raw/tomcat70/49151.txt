@@ -1,0 +1,20 @@
+49151 – ClassCastException in BackupManager#stopInternal.
+In BackupManager#startInternal,
+When constructor of LazyReplicatedMap throws exception,
+sessions is not LazyReplicatedMap.
+Actually, AbstractReplicatedMap#init has the possibility of throwing RuntimeException.
+In BackupManager#stopInternal ClassCastException is thrown
+because AbstractReplicatedMap#breakdown is executed regardless of the type of sessions.
+should be changed as follows to avoid ClassCastException.
+===
+skip.
+if (sessions instanceof LazyReplicatedMap) {
+LazyReplicatedMap map = (LazyReplicatedMap)sessions;
+if ( map!=null ) {
+map.breakdown();
+}
+}
+skip.
+===
+This problem exists in Tomcat7.0 and 6.0.
+Best Regards.

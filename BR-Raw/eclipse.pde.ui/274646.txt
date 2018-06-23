@@ -1,0 +1,3 @@
+Bug 274646 – Progress reporting for API comparison only hits 10%
+The progress reporting when doing an API compare never gets past 10%, and then it's finished.
+Would be good to have better progress reporting.

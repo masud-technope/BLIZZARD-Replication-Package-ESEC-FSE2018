@@ -1,0 +1,5 @@
+Bug 261803 – Increment org.eclipse.ecf.docshare minor version number and mark new API
+org.eclipse.ecf.docshare has undergone a major refactoring in 3.0.
+Various packages have been moved/renamed and the exported-packages header has  been extended.
+From the APITooling perspective, this justifies a bundle minor version increment.
+Addtionally new API should be marked with @since.

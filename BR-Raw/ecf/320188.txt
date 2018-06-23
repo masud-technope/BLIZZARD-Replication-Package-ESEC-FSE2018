@@ -1,0 +1,2 @@
+Bug 320188 – [Discovery][DNS-SD] IDiscoveryAdvertiser must use registration domains
+IDiscoveryAdvertiser must use registration domains

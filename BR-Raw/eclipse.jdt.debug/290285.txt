@@ -1,0 +1,5 @@
+Bug 290285 – API for custom JDWP commands and model state refresh
+There is currently an internal API for sending custom JDWP commands via JDIDebugTarget#sendJDWPCommand(...).
+This should become offical API and in addition, there should be an API to refresh the debug model state.
+For example, a custom JDWP command/event could change the target's state, and the Java debug model state as presented in the UI is no longer up to date.
+Clients need to be able to programmatically request a full model refresh when this occurs.

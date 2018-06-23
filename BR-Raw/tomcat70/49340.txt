@@ -1,0 +1,12 @@
+49340 – Webapp unavailable after deploy then stop then start
+Occurs with tomcat 7.0 RC3 but not with 6.0.26
+Using the manager/html :
+- deploy a war
+- test one of its page, it should be deployed properly
+- stop the webapp
+- start the webapp
+- test one of its page : FAILURE : tomcat returns a 404.
+Notes :
+- if using "reload" instead of stop/start it's OK, but it does not fix the unavailability
+- if the webapp is present when tomcat is started, then the stop/start works normally
+- The work around is to undeploy the webapp and redeploy it.

@@ -1,0 +1,16 @@
+org.eclipse.pde.internal.core.text.AbstractEditingModel.getInputStream
+org.eclipse.pde.internal.core.text.AbstractEditingModel.load
+org.eclipse.pde.internal.ui.util.PDEModelUtility.prepareAbstractEditingModel
+org.eclipse.pde.internal.ui.util.PDEModelUtility.generateModelEdits
+org.eclipse.pde.internal.ui.util.PDEModelUtility.modifyModel
+org.eclipse.pde.internal.ds.ui.wizards.DSCreationOperation.writeBuildProperties
+org.eclipse.pde.internal.ds.ui.wizards.DSCreationOperation.execute
+org.eclipse.ui.actions.WorkspaceModifyOperation$1.run
+org.eclipse.core.internal.resources.Workspace.run
+org.eclipse.ui.actions.WorkspaceModifyOperation.run
+org.eclipse.jface.operation.ModalContext.runInCurrentThread
+org.eclipse.jface.operation.ModalContext.run
+org.eclipse.jface.wizard.WizardDialog.run
+org.eclipse.pde.internal.ds.ui.wizards.DSNewWizard.performFinish
+org.eclipse.jface.wizard.WizardDialog.finishPressed
+org.eclipse.jface.wizard.WizardDialog.buttonPressed

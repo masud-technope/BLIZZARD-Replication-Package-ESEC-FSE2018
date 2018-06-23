@@ -1,0 +1,16 @@
+Bug 421536 – [1.8][compiler] Verify error with small program when preserved unused variables is off.
+BETA_JAVA8:
+The following program triggers a verify error: Inconsistent stackmap frames at branch target 9, Current frame's stack size doesn't match stackmap.
+// --
+interface I {
+I foo();
+}
+public class X {
+public static void main(String[] args) {
+try {
+I i = () -> null;
+} catch (NullPointerException npe) {}
+}
+}
+// --
+The try/catch blocks seem to be required to reproduce.

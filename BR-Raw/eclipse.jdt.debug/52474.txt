@@ -1,0 +1,11 @@
+Bug 52474 – UI Blocked when opening Java Perspective during CVS check out
+build I20040218
+- start eclipse with a new workspace
+- switch to CVS Repository Exploring perspective
+- check out a number of projects ( i checkout Platform UI module)
+- now attempt to switch to the Java Perspective
+NOTE that at this point the "UI is blocked" dialog is opened.
+Probably due to the fact that starting the Java Perspective requires the
+workbench lock?
+The point here is that this will be a common pattern and it would be nice if
+we could investigate makeing this scenario work more smoothly.

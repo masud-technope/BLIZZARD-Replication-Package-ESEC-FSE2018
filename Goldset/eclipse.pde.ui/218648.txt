@@ -1,0 +1,6 @@
+ui/org.eclipse.ui.views.log/src/org/eclipse/ui/internal/views/log/Group.java
+ui/org.eclipse.ui.views.log/src/org/eclipse/ui/internal/views/log/LogFilesManager.java
+ui/org.eclipse.ui.views.log/src/org/eclipse/ui/internal/views/log/LogSession.java
+ui/org.eclipse.ui.views.log/src/org/eclipse/ui/internal/views/log/LogView.java
+ui/org.eclipse.ui.views.log/src/org/eclipse/ui/internal/views/log/Messages.java
+ui/org.eclipse.ui.views.log/src/org/eclipse/ui/internal/views/log/messages.properties

@@ -1,0 +1,9 @@
+Bug 330057 – [call hierarchy] Improve 'Remove from view' action's UI
+Created attachment 182957 [details]
+screenshot
+See attached screenshot of context menus of Call Hierarchy view and Search View
+2 things..
+1) 'Remove from view' should use the same icon as the one is search view
+2) The placement of this action is inconsistent with the Search view.
+In Search view the action is placed along with Copy actions, but in Call Hierarchy view it is not.
+(I am fine if this is fixed in the Search view, I just want the placement to be consistent)

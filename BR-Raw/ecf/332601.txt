@@ -1,0 +1,10 @@
+Bug 332601 – Request for API addition to support remote service call authorization
+Build Identifier: ECF 3.4
+In order to support remote service call authorization additional API would be needed on remote services:
+- Interface with method to be able to check authorization of remote service call, something like:
+public interface IRemoteServiceCallPolicy {
+public void checkRemoteCall(IRemoteServiceRegistration registration, IRemoteCall remoteCall, ID fromID) throws SecurityException;
+}
+- Method to set IRemoteServiceCallPolicy on IRemoteServiceContainerAdapter
+- [ECF generic] Adapt RegistrySharedObject to perform checkRemoteCall just before the remote service method call
+Reproducible: Always

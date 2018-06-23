@@ -1,0 +1,54 @@
+Bug 460422 – IllegalStateException: Bad AST node structure at ASTConverter
+- In Debug configurations, enable Tracing for org.eclipse.jdt.core.
+- Check "debug" and "debug/dom/ast" on the right pane.
+- Click Apply and Debug.
+- Paste the code snippet from the error message below to Package explorer.
+- Edit the file.
+Following exception is logged in Error Log view:
+eclipse.buildId=4.5.0.N20150216-2000
+java.version=1.8.0
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.sdk.ide
+Command-line arguments:  -product org.eclipse.sdk.ide -data C:\ProjectWork\Workspace6/../runtime-J8 -dev file:C:/ProjectWork/Workspace6/.metadata/.plugins/org.eclipse.pde.core/Runtime-J8/dev.properties -debug C:\ProjectWork\Workspace6\.metadata\.plugins\org.eclipse.pde.core\Runtime-J8/.options -os win32 -ws win32 -arch x86_64 -consoleLog
+org.eclipse.jdt.core
+Error
+Fri Feb 20 13:20:27 IST 2015
+Bad AST node structure:
+- parent [75, 119] org.eclipse.jdt.core.dom.EnumConstantDeclaration
+arguments [109, 120] org.eclipse.jdt.core.dom.ArrayCreation
+----------------------------------- SOURCE BEGIN -------------------------------------
+package p1;
+public enum TestEnum {
+FIRST_ENUM("a", null),
+FOURTH_ENUM("b",
+new X[] { });
+private TestEnum(String s, Object o) {
+}
+}
+class X {
+Runnable r= new R
+}
+----------------------------------- SOURCE END -------------------------------------
+java.lang.IllegalStateException: Bad AST node structure
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1419)
+at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:270)
+at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:202)
+at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:259)
+at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:579)
+at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1085)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:171)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:90)
+at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:729)
+at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:789)
+at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1250)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:126)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:108)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:89)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:87)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:151)
+at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:86)
+at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:104)
+at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:77)
+at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:206)

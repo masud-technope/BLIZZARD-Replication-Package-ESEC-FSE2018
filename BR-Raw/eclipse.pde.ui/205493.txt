@@ -1,0 +1,18 @@
+Bug 205493 – Invalid Manifests cause multiple BundleDescription per project
+If a developer modifies a Manifest so it becomes invalid and the state can no longer create a BundleDescription, we leave the old BundleDescription in the state.
+ This causes multiple copies of the plug-in to be contained in the resolver state.
+Steps to recreate:
+1.
+Open the Plug-in Dependencies View with "Show State Status" enabled, this allows you to see the current resolver state information.
+2.
+create a basic plug-in project with only a bundle activator
+3.
+create the following version range on a require bundle entry "[3.3.0,4.0)" and save the file
+4.
+modify the version range to "[3.3.0,4.0.a)" and save the file.
+5.
+modify the version range back to "[3.3.0,4.0)" and save the file
+Note how there are two copies of the plug-in created in step #2.
+ This is because the model manager tries create/add a new BundleDescription with the same id as the original.
+ If the new BundleDescription is not created correctly, the old BundleDescription stays in the resolver state.
+ When the problem is corrected we look at the cached BundleDescription (which is null) and create a new entry in the state for the bundle, hence the two copies.

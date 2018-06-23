@@ -1,0 +1,7 @@
+Bug 272317 – Illegal reference to URI.compareTo(URI) in org.eclipse.ecf.identity
+Looking at the last N-build results, I saw:
+The method java.net.URI.compareTo(URI) referenced in org.eclipse.ecf.core.identity.URIID.namespaceCompareTo(BaseID) is not defined in bundle's required execution environment: J2SE-1.4
+Indeed java.net.URI.compareTo(URI) is not defined in a J2SE1.4.
+It is only defined in 1.5 and above.
+You could get such binaries if you build org.eclipse.ecf.identity on a 1.5 VM even if you are setting the compiler settings to 1.4.
+That bundle must be built using a 1.4 libraries.

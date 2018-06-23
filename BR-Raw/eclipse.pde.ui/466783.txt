@@ -1,0 +1,11 @@
+Bug 466783 – [apitools] Add New API Baseline wizard opened with wrong parent shell
+Build Id: 4.5.0.I20150506-2000
+Found another location in ApiBaselinePreferencePage wrongly using ApiUIPlugin#getShell() to set the parent shell for a dialog.
+1.
+Window > Preferences > Plug-in Development > API Baselines
+2.
+Click on Add Baseline
+3.
+Hit escape
+Focus does not go back to the Preferences dialog.
+Only seen on Windows; OS X seems to do the right thing.

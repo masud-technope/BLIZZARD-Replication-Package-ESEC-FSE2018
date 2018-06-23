@@ -1,0 +1,19 @@
+Bug 271228 – [encapsulate field] Encapsulate field on multi-variable declarations drops modifiers
+Created attachment 130923 [details]
+Patch for SelfEncapsulateFieldRefactoring
+Build ID:  I20090313-0100
+Steps To Reproduce:
+To reproduce the bug apply the refactoring on field 'zip' in the following example:
+public class Foo {
+public volatile static int zip, zap;
+}
+More information:
+The refactoring transforms the program into
+...
+public volatile static int zap;
+private int zip;
+public static void setZip(int zip) { ...}
+public static int getZip() { ...
+}
+A correct transformation would declare field zip as
+private volatile static int zip;

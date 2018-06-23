@@ -1,0 +1,22 @@
+Bug 426680 – [1.8][compiler] Incorrect handling of poly conditional leads to CCE
+// --
+interface BinaryOperation<T> {
+T operate(T x, T y);
+}
+class StringCatenation implements BinaryOperation<String> {
+public String operate(String x, String y) { return x + y; }
+}
+public class X {
+public static void main(String argv[]) {
+foo(false ? (a,b)->a+b :new StringCatenation());
+}
+static void foo(BinaryOperation<Integer> x) {
+x.operate(5, 15);
+}
+}
+results in CCE from the generated code.
+JDK 8b123 rejects this code correctly:
+X.java:10: error: incompatible types: bad type in conditional expression
+foo(false ? (a,b)->a+b :new StringCatenation());
+^
+StringCatenation cannot be converted to BinaryOperation<Integer>

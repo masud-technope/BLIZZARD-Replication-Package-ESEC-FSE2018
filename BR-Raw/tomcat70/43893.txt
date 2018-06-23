@@ -1,0 +1,36 @@
+43893 – WebdavServlet returns incorrect values for the "href" property when it is mapped with / url prefix, instead of /*
+Deploy the attached WAR file under a vanilla installation of Tomcat 6.0.14,
+then send the following WebDAV request (I simply pasted it in netcat, maybe
+telnet will work too if you don't have netcat):
+PROPFIND /webdav/file.txt HTTP/1.1
+Content-Type: text/xml; charset=utf-8
+User-Agent: Jakarta Commons-HttpClient/3.0
+Host: localhost:8080
+Depth: 0
+Don't forget to press enter twice at the end.
+Observe the result:
+<?xml version="1.0" encoding="utf-8" ?>
+<multistatus xmlns="DAV:"><response><href>/webdav/file.txt/file.txt</href>
+<propstat><prop><creationdate>2007-11-18T07:42:14Z</creationdate>
+<displayname><![CDATA[file.txt]]></displayname>
+<getlastmodified>Sun, 18 Nov 2007 07:42:14 GMT</getlastmodified>
+<getcontentlength>0</getcontentlength>
+<getcontenttype>text/plain</getcontenttype>
+<getetag>W/"0-1195371734000"</getetag>
+<resourcetype/><source></source>
+<supportedlock><lockentry><lockscope><exclusive/></lockscope><locktype><write/
+></locktype></lockentry><lockentry><lockscope><shared/></
+lockscope><locktype><write/></locktype></lockentry></supportedlock>
+</prop>
+<status>HTTP/1.1 200 OK</status>
+</propstat>
+</response>
+</multistatus>
+Note in particular the incorrect value in <href>/webdav/file.txt/file.txt</
+href>, paths are being duplicated.
+This wouldn't usually be a big problem as many WebDAV clients don't rely so
+much on this "href" value, but the Apache slide-webdavlib client library relies
+on it and breaks if it's incorrect, so any WebDAV enabled applications using
+this library will not work with Tomcat 6.
+That's the only reason I marked this
+bug as major, apologies if it's a wrong classification.

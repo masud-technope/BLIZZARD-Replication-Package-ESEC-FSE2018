@@ -1,0 +1,18 @@
+Bug 239494 – [api] [templates] allow another entry point for template wizards
+The new plug-in wizard provides the ability to contribute templates to aid the user when developing specific types of plug-ins.
+ This template selection is performed on the third page of the plug-in wizard, once the user has entered details regarding their plug-in.
+ The template contributes additional pages in which the user can enter additional details for their plug-in.
+ These details are incorporated into the plug-in by the template during the plug-in creation process.
+In certain cases, the plug-in wizard isn't the desired entry point into this workflow.
+ In order to make a specific plug-in template more visible and discoverable, it is desirable to have the template appear in the new project wizard.
+This can currently be accomplished by re-contributing the plug-in wizard class to the new project wizard extension point using a different label, description, icon etc.
+ This has its limitations though:
+1) The contribution references an internal class (NewPluginProjectWizard)
+2) The user is still forced to choose from a list of templates (e.g.
+the TemplateListSelectionPage still appears in the wizard)
+It would be ideal if a mechanism could be provided to allow the contribution of a new wizard which provides the same capabilities as the new plug-in wizard, but with a specific template in mind.
+ In this workflow, the user wouldn't need to select a template from the list of templates, invoking the specific wizard would indicate which template is selected.
+One considered approach would be to provide a plug-in wizard class that:
+1) Is a non-internal implementation that can be extended by other wizards who wish to provide the same functionality of the new plug-in wizard
+2) Provides a method which can be overriden to indicate which template(s) (by ID) are to be shown in the list of selected templates.
+ If a single template is provided, then the template selection page does not appear as the user navigates the wizard.

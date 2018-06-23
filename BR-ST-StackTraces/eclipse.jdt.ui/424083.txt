@@ -1,0 +1,6 @@
+org.eclipse.jdt.internal.corext.codemanipulation.StubUtility2.createParameters
+org.eclipse.jdt.internal.corext.codemanipulation.StubUtility2.createImplementationStub
+org.eclipse.jdt.internal.corext.fix.LambdaExpressionsFix$CreateAnonymousClassCreationOperation.rewriteAST
+org.eclipse.jdt.internal.corext.fix.CompilationUnitRewriteOperationsFix.createChange
+org.eclipse.jdt.internal.ui.text.correction.proposals.FixCorrectionProposal.createTextChange
+org.eclipse.jdt.ui.text.java.correction.CUCorrectionProposal.createChange

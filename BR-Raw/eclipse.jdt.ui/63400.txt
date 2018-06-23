@@ -1,0 +1,11 @@
+Bug 63400 – elements not removed from hierarchical search
+20040520
+Ensure that you are use the hierarchical presentation for search.
+1.
+Do a search with several hits: references to toString, or JavaCore, or ...
+2.
+Remove one of the leaf elements from the list (one method or type).
+ The
+count of search items decreases, however, the view is not updated.
+When I remove the last element from the package, the entire package is removed
+(but not before)

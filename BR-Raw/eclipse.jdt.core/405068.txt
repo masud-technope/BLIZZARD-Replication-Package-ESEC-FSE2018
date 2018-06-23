@@ -1,0 +1,5 @@
+Bug 405068 – [1.8][compiler][codegen] Generate code for lambdas that capture locals from enclosing/outer contexts
+BETA_JAVA8:
+This ER will be used to implement/track code generation for lambda
+expressions that refer to effectively final variables or fields of
+its enclosing class.

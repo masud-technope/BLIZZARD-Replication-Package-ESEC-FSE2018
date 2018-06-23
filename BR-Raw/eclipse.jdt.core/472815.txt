@@ -1,0 +1,3 @@
+Bug 472815 – [formatter] 'Indent Empty lines' option doesn't work inside empty blocks
+New in Mars:
+If I create a new class or interface the class body (consisting of one empty line so far) is not indented.

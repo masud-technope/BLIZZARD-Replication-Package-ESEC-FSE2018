@@ -1,0 +1,6 @@
+tests/bundles/org.eclipse.ecf.tests.osgi.services.distribution/src/org/eclipse/ecf/tests/osgi/services/distribution/AbstractDistributionTest.java
+tests/bundles/org.eclipse.ecf.tests.osgi.services.distribution/src/org/eclipse/ecf/tests/osgi/services/distribution/AbstractDistributionTest.java
+tests/bundles/org.eclipse.ecf.tests.osgi.services.distribution/src/org/eclipse/ecf/tests/osgi/services/distribution/AbstractDistributionTest.java
+tests/bundles/org.eclipse.ecf.tests.osgi.services.distribution.generic/org.eclipse.ecf.tests.osgi.services.distribution.generic.launch
+tests/bundles/org.eclipse.ecf.tests.osgi.services.distribution.r-osgi/org.eclipse.ecf.tests.osgi.services.distribution.r-osgi.launch
+tests/bundles/org.eclipse.ecf.tests.osgi.services.distribution/src/org/eclipse/ecf/tests/osgi/services/distribution/AbstractRemoteServiceRegisterTest.java

@@ -1,0 +1,7 @@
+Bug 216937 – Missing "singleton:=true" directive does not result in a warning
+Removing the "singleton:=true" directive from the Bundle-SymbolicName header no longer results in a warning.
+ This worked in Eclipse 3.3, and is a regression in Eclipse 3.4 M4.
+To reproduce, simply create a bundle that has a plugin.xml file.
+ This is a case where the directive is required.
+ When the directive is removed the warning should be issued, but it is not.
+Unfortunately, when the directive is missing, the plugin.xml seems to be completely ignored at runtime, which as you can imagine, makes for some frustrating hours of plugin.xml debugging.

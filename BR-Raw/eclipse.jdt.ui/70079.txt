@@ -1,0 +1,2 @@
+Bug 70079 – [rulers] override indicators for anonymous classes
+Must have function override indicators for Anonymous classes as well

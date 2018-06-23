@@ -1,0 +1,12 @@
+56096 – Setting rmiBindAddress on JmxRemoteLifecycleListener prevents tomcat from starting
+Adding this Listener to the Server:
+<Listener className="org.apache.catalina.mbeans.JmxRemoteLifecycleListener"
+rmiRegistryPortPlatform="10001" rmiServerPortPlatform="10002" rmiBindAddress="${ip.address}" />
+Along with this setenv.sh:
+CATALINA_OPTS="${CATALINA_OPTS} -Dcom.sun.management.jmxremote.password.file=$CATALINA_HOME/conf/jmxremote.password"
+CATALINA_OPTS="${CATALINA_OPTS} -Dcom.sun.management.jmxremote.access.file=$CATALINA_HOME/conf/jmxremote.access"
+CATALINA_OPTS="${CATALINA_OPTS} -Dcom.sun.management.jmxremote.ssl=false"
+Prevents tomcat from starting as the two RMI components cannot talk to each other, producing this error:
+java.io.IOException: Cannot bind to URL [rmi://localhost:10001/jmxrmi]: javax.naming.ServiceUnavailableException [Root exception is java.rmi.ConnectException: Connection refused to host: localhost; nested exception is:
+This is caused by the preparation of the URL in createServer, which doesn't take into account that rmiBindAddress has been used and useLocalPorts has not.
+I believe that if useLocalPorts was used tomcat would start, but this would force different instances to use different ports, which is what I'm trying to avoid.

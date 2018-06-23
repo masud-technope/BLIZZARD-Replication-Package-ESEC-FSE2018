@@ -1,0 +1,15 @@
+framework/bundles/org.eclipse.ecf.discovery/build.properties
+framework/bundles/org.eclipse.ecf.discovery/plugin.xml
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/discovery/AbstractDiscoveryContainerAdapter.java
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/internal/discovery/DiscoveryNamespace.java
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/internal/discovery/DiscoveryServiceListener.java
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/internal/discovery/ServiceTypeComparator.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/DiscoveryServiceTest.java
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/discovery/AbstractDiscoveryContainerAdapter.java
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/internal/discovery/DiscoveryPlugin.java
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/internal/discovery/DiscoveryServiceListener.java
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/internal/discovery/ServiceTypeComparator.java
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/discovery/AbstractDiscoveryContainerAdapter.java
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/internal/discovery/DiscoveryPlugin.java
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/internal/discovery/DiscoveryServiceListener.java
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/internal/discovery/ServiceTypeComparator.java

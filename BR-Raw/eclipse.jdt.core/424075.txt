@@ -1,0 +1,11 @@
+Bug 424075 – [1.8] Compiler regression
+After latest updates to 400874
+The following piece of code no longer compiles.
+(works fine with javac and eclipse 1.7)
+public static void main(String[] args) {
+Consumer<Object> c = null;
+Arrays.asList(pred(), c);
+}
+static <T> Predicate<T> pred() {
+return null;
+}

@@ -1,0 +1,4 @@
+51862 – JreMemoryLeakPreventionListener enhancement to load configurable classes
+Enhancement proposed : add a "classesToInitialize" parameter to JreMemoryLeakPreventionListener to provoke the loading of arbitrary classes.
+This will allow users to tune the memory leak protection features to avoid leaks triggered when loading JRE classes not yet identified as leaky, or even third-party classes.
+I'll commit a patch in the next days...

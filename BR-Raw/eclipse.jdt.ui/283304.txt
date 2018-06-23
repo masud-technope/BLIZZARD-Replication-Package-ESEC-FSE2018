@@ -1,0 +1,7 @@
+Bug 283304 – [JUnit] ITestRunSession should return launched project
+Please add access for getLaunchedProject() of org.eclipse.jdt.internal.junit.model.TestRunSession in org.eclipse.jdt.junit.model.ITestRunSession.
+My problem is that i need the launched project to reproduce and analyse the testCases (ITestCaseElement).
+The only "data" i get is the testClassName and testMethodName but that is not unique in the workspace.
+If you make getLaunchedProject() public over ITestRunSession, i will find the correct testCase everytime correct.
+Workaround is so cast the org.eclipse.jdt.junit.model.ITestRunSession object into org.eclipse.jdt.internal.junit.model.TestRunSession and invoke getLaunchedProject().
+But this is the bad way cause TestRunSession is internal.

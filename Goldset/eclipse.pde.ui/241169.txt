@@ -1,0 +1,9 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/LicenseInfo.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/LicenseInfo.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/IHelpContextIds.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEPluginImages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/LicenseSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/LicensingPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/ProductEditor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties

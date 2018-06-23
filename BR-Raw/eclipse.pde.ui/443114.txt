@@ -1,0 +1,5 @@
+Bug 443114 – extension editor no longer shows custom icons
+Created attachment 246629 [details]
+example project
+Regression caused by bug 429420, see bug 429420 comment 11.
+I'm attaching a small test project for reproduction.

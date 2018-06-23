@@ -1,0 +1,15 @@
+54438 – Bug fix 52953 introduces NullPointerException in RealmBase.java line 409 when user not found in JDBC
+The fix to bug 52953 introduces a NullPointerException at line 409
+in RealBase.java
+For example compare:
+http://svn.apache.org/repos/asf/tomcat/tc7.0.x/tags/TOMCAT_7_0_26/java/org/apache/catalina/realm/RealmBase.java
+and
+http://svn.apache.org/repos/asf/tomcat/tc7.0.x/tags/TOMCAT_7_0_27/java/org/apache/catalina/realm/RealmBase.java
+String md5a1 = getDigest(username, realm);
+was changed to
+String md5a1 = getDigest(username, realm).toLowerCase(Locale.ENGLISH);
+If getDigest(username,realm) returns null if the user is not found
+and as a result you get a NPE when toLowerCase() is invoked on the null.
+I looked in the trunk, and the code hasn't changed.
+Seems like there should already be a bug posted on this as it makes digest
+authentication useless, but I can't find one!

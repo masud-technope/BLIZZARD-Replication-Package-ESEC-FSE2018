@@ -1,0 +1,10 @@
+Bug 193795 – [implementation] JavadocHover logs incomplete message
+HEAD
+I just had a bunch of useless messages in my log:
+!ENTRY org.eclipse.jdt.core 4 969 2007-06-21 19:04:12.500
+!MESSAGE   does not exist
+Using a magic spell, I found that JavadocHover is the culprit.
+Please replace
+JavaPlugin.log(ex.getStatus());
+with
+JavaPlugin.log(ex);

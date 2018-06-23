@@ -1,0 +1,9 @@
+48795 – Tomcat tries to use cache when compilation failed
+Created attachment 25037 [details]
+Full error log.
+After compilation of a JSP fails, Tomcat will often still try to use the (non-existant) cached version.
+For example, I have a simple JSP containing only "Hello, <%=name%>".
+When accessing for the first time, Tomcat throws "org.apache.jasper.JasperException: Unable to compile class for JSP".
+Subsequent requests will alternate between this error, and "java.lang.ClassNotFoundException: org.apache.jsp.jsp.test_jsp".
+In the case of editing existing JSPs which have compiled fine, the response will alternate between the original error, and the cache of the last-good JSP.
+I'm using Sun JVM 1.6.0_18-b07.

@@ -1,0 +1,5 @@
+Bug 304083 – [build path] Source attachments wrong for automatically added libraries (UI changes)
+Created attachment 160355 [details]
+First fixes (just for testing, not ready for release)
+Use new APIs from bug 281551 in the UI.
+Here's a first patch that implements Properties pages on referenced JARs.

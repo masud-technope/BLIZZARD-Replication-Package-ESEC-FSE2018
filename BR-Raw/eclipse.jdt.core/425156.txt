@@ -1,0 +1,18 @@
+Bug 425156 – [1.8] Lambda as an argument is flagged with incompatible error
+This happens only when the parameter of the method being invoked is a parameterized type with wildcard.
+Here is an example:
+interface I<T> {
+void foo(T t);
+}
+public class X {
+void bar(I<?> i) {
+i.foo(null);
+}
+void run() {
+bar((X x) -> {}); // Incompatible error reported
+}
+}
+The reported error:
+The method bar(I<?>) in the type X is not applicable for the arguments ((X x) -> {
+})
+The error goes away when bar() is rewritten to be "void bar(I<X> i)"

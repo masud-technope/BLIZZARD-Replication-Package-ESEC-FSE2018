@@ -1,0 +1,7 @@
+Bug 183710 – [Dependency Analysis] Clean up editor section
+1.
+The 'Find plug-ins and fragments that reference this plug-in' should move up to second place.
+ The label should be made shorter to something like 'Show dependent plug-ins'.
+ Icon should be changed to the callers hierarchy icon from the dependencies view.
+2.
+The icon next to the first link should be changed to the callees hierarchy icon from the dependencies view

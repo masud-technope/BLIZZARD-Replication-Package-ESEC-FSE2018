@@ -1,0 +1,16 @@
+57581 – request.getBytesRead() should be long
+Class org.apache.coyote.Request has bytesRead variable's return type is int.
+When file upload (grater than 2 GB), it returns negative value.
+Return type should be change to long.
+This bug affected all version of tomcat 6, 7, 8, 9.
+---------------------------------------------------------
+* AS-IS
+private int bytesRead=0;
+public int getBytesRead() {
+return bytesRead;
+}
+* TO-BE
+private long bytesRead=0;
+public long getBytesRead() {
+return bytesRead;
+}

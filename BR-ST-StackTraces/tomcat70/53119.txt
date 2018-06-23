@@ -1,0 +1,17 @@
+java.nio.DirectByteBuffer.put
+org.apache.coyote.ajp.AjpAprProcessor.output
+org.apache.coyote.ajp.AbstractAjpProcessor$SocketOutputBuffer.doWrite
+org.apache.coyote.Response.doWrite
+org.apache.catalina.connector.OutputBuffer.realWriteBytes
+org.apache.tomcat.util.buf.ByteChunk.flushBuffer
+org.apache.catalina.connector.OutputBuffer.doFlush
+org.apache.catalina.connector.OutputBuffer.close
+org.apache.catalina.connector.Response.finishResponse
+org.apache.catalina.connector.CoyoteAdapter.service
+org.apache.coyote.ajp.AjpAprProcessor.process
+org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process
+org.apache.tomcat.util.net.AprEndpoint$SocketProcessor.run
+java.util.concurrent.ThreadPoolExecutor.runWorker
+java.util.concurrent.ThreadPoolExecutor$Worker.run
+java.lang.Thread.run
+before that exception occurs, a regular "ClientAbortException:  java.io.IOException: Failed to send AJP message" is thrown by org.apache.catalina.connector.OutputBuffer.realWriteBytes

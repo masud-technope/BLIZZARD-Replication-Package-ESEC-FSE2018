@@ -1,0 +1,4 @@
+Bug 392119 – [1.8][compiler] Annotations with hybrid SE7 & SE8 targets don't make it to class files.
+In head of BETA_JAVA8 I see 38 regressions (9 in NullAnnotationTest times 4 compliance levels + 2 in AnnotationDependencyTests).
+Contrary to my first impression this is not necessarily caused by bug 391331 but a simple bug in Annotation.isRuntimeInvisible().
+Fix to follow shortly.

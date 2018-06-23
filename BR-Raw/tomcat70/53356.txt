@@ -1,0 +1,20 @@
+53356 – Mapping a servlet to the applicatioâ€‹n's context root results in IAE
+Created attachment 28881 [details]
+test web app
+Hi,
+I have an application and I want to map my servlet to the application's context root, but I do not want to override the "/" mapping for the "default" servlet.
+It is specified in the Servlet spec that there is a "special" url mapping that can be used for such purposes and it is an empty string ("").
+I tried several approaches to specify this via web.xml and annotation, unfortunately all of them results in IAE:
+Caused by: java.lang.IllegalArgumentException: Invalid <url-pattern>  in servlet mapping
+at org.apache.catalina.core.StandardContext.addServletMapping(StandardContext.java:3208)
+at org.apache.catalina.core.StandardContext.addServletMapping(StandardContext.java:3183)
+at org.apache.catalina.deploy.WebXml.configureContext(WebXml.java:1302)
+at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1305)
+at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:855)
+at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:346)
+The issue was started as mail thread in the users list - http://marc.info/?t=133883470600003&r=1&w=2
+Can you please provide this feature?
+Thanks in advance
+Regards
+Violeta
+PP: test application is attached.

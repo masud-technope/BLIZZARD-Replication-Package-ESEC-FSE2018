@@ -1,0 +1,2 @@
+49181 – Exception thrown incorrectly when dynamically adding a Listener
+ApplicationContext.addListener(instance) always throws an exception if the listener is a ServletContextListener or an HttpSessionListener because successful instanceof checks don't finish with a return.

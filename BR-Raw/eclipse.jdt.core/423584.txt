@@ -1,0 +1,17 @@
+Bug 423584 – [1.8][dom ast] NPE in LambdaExpression#getMethodBinding() for lambda with unresolved type
+NPE in LambdaExpression#getMethodBinding() for lambda with unresolved type.
+The example is the same as in bug 423582.
+interface I { }
+public class X {
+static void goo(I i) {
+System.out.println("goo(I)");
+}
+public static void main(String[] args) {
+goo(s -> 0);
+}
+}
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.getMethodBinding(LambdaExpression.java:912)
+at org.eclipse.jdt.core.dom.DefaultBindingResolver.resolveMethod(DefaultBindingResolver.java:886)
+at org.eclipse.jdt.core.dom.LambdaExpression.resolveMethodBinding(LambdaExpression.java:319)
+at org.eclipse.jdt.astview.views.ASTViewContentProvider.getNodeChildren(ASTViewContentProvider.java:149)

@@ -1,0 +1,8 @@
+Bug 271139 – [rename] button clipped in Rename dialog
+20090401
+In Eclipse,
+select a java file,
+refactor->rename
+note the 4 buttons at bottom: back|next|cancel|finish
+the right edge of next is cut off.
+Kevin indicates that this can be a problem caused by JDT-UI (by using negative numbers for horizonal alignment).

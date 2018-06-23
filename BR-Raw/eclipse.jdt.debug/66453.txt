@@ -1,0 +1,19 @@
+Bug 66453 – String concatenation gives unexpected result in conditional breakpoint expression
+build I20040609-0800
+- set a breakpoint in SWT's Decorations.restoreFocus() method
+- make it conditional with the following condition:
+System.out.println("restoreFocus savedFocus="+savedFocus);
+return false;
+- launch target and active and deactivate the target window a few times
+- it prints something like:
+restoreFocus savedFocus= (id=36)
+- bug: this does not correspond to the savedFocus control's toString()
+- change the condition to:
+System.out.println("restoreFocus savedFocus="+String.valueOf(savedFocus));
+return false;
+- it now prints:
+restoreFocus savedFocus=Tree {}
+Expected behaviour:
+- string concatenation in breakpoint expressions should work the same as regular
+Java string concatenation: ("foo" + obj) is equivalent to ("foo" +
+String.valueOf(obj)), or at least it used to be in JDK 1.3.

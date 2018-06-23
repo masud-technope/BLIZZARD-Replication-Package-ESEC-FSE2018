@@ -1,0 +1,4 @@
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/JavaCore.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavaElement.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ClasspathInitializerTests.java

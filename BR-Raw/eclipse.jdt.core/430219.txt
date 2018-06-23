@@ -1,0 +1,66 @@
+Bug 430219 – [1.8][compiler][null] NPE: Null Annotation on Parameter Type
+import org.eclipse.jdt.annotation.NonNullByDefault;
+@NonNullByDefault
+public class X {
+void foo(int @NonNull [] x) {}
+}
+Null Pointer Exception.
+Stack Trace.
+LookupEnvironment.createAnnotatedType(TypeBinding, AnnotationBinding[]) line: 976
+MethodBinding.fillInDefaultNonNullness18(AbstractMethodDeclaration, LookupEnvironment) line: 524
+ImplicitNullAnnotationVerifier.checkImplicitNullAnnotations(MethodBinding, AbstractMethodDeclaration, boolean, Scope) line: 155
+SourceTypeBinding.createArgumentBindings(MethodBinding, CompilerOptions) line: 2004
+SourceTypeBinding.resolveTypesFor(MethodBinding) line: 1971
+SourceTypeBinding.methods() line: 1465
+SourceTypeBinding.faultInTypesForFieldsAndMethods() line: 853
+CompilationUnitScope.faultInTypes() line: 424
+AbstractRegressionTest$26(Compiler).process(CompilationUnitDeclaration, int) line: 764
+AbstractRegressionTest$26.process(CompilationUnitDeclaration, int) line: 2601
+AbstractRegressionTest$26(Compiler).compile(ICompilationUnit[]) line: 471
+NullAnnotationTest(AbstractRegressionTest).runTest(boolean, String[], String[], String[], Map, boolean, ICompilerRequestor, boolean, String, String[], boolean, String[], String, String, ASTVisitor, AbstractRegressionTest$JavacTestOptions) line: 2610
+NullAnnotationTest(AbstractRegressionTest).runTest(boolean, String[], String[], Map, boolean, ICompilerRequestor, boolean, String, boolean, String[], String, String, AbstractRegressionTest$JavacTestOptions) line: 2429
+NullAnnotationTest(AbstractRegressionTest).runNegativeTest(String[], String, String[], boolean) line: 2126
+NullAnnotationTest(AbstractNullAnnotationTest).runNegativeTestWithLibs(String[], String) line: 114
+NullAnnotationTest.testNullNPETest() line: 7013
+NativeMethodAccessorImpl.invoke0(Method, Object, Object[]) line: not available [native method]
+NativeMethodAccessorImpl.invoke(Object, Object[]) line: 62
+DelegatingMethodAccessorImpl.invoke(Object, Object[]) line: 43
+Method.invoke(Object, Object...) line: 483
+NullAnnotationTest(TestCase).runTest() line: 176
+NullAnnotationTest(TestCase).runBare() line: 141
+TestResult$1.protect() line: 122
+TestResult.runProtected(Test, Protectable) line: 142
+TestResult.run(TestCase) line: 125
+NullAnnotationTest(TestCase).run(TestResult) line: 129
+RegressionTestSetup(TestSuite).runTest(Test, TestResult) line: 255
+RegressionTestSetup(TestSuite).run(TestResult) line: 250
+RegressionTestSetup(CompilerTestSetup).run(TestResult) line: 55
+TestSuite.runTest(Test, TestResult) line: 255
+TestSuite.run(TestResult) line: 250
+JUnit3TestReference.run(TestExecution) line: 131
+TestExecution.run(ITestReference[]) line: 38
+RemotePluginTestRunner(RemoteTestRunner).runTests(String[], String, TestExecution) line: 467
+RemotePluginTestRunner(RemoteTestRunner).runTests(TestExecution) line: 683
+RemotePluginTestRunner(RemoteTestRunner).run() line: 390
+RemotePluginTestRunner.main(String[]) line: 62
+CoreTestApplication.run(Object) line: 23
+NativeMethodAccessorImpl.invoke0(Method, Object, Object[]) line: not available [native method]
+NativeMethodAccessorImpl.invoke(Object, Object[]) line: 62
+DelegatingMethodAccessorImpl.invoke(Object, Object[]) line: 43
+Method.invoke(Object, Object...) line: 483
+EclipseAppContainer.callMethodWithException(Object, String, Class[], Object[]) line: 587
+EclipseAppHandle.run(Object) line: 198
+EclipseAppLauncher.runApplication(Object) line: 110
+EclipseAppLauncher.start(Object) line: 79
+EclipseStarter.run(Object) line: 354
+EclipseStarter.run(String[], Runnable) line: 181
+NativeMethodAccessorImpl.invoke0(Method, Object, Object[]) line: not available [native method]
+NativeMethodAccessorImpl.invoke(Object, Object[]) line: 62
+DelegatingMethodAccessorImpl.invoke(Object, Object[]) line: 43
+Method.invoke(Object, Object...) line: 483
+Main.invokeFramework(String[], URL[]) line: 636
+Main.basicRun(String[]) line: 591
+Main.run(String[]) line: 1450
+Main.main(String[]) line: 1426
+------------------------------------------------------------------
+I will put up the fix in a few minutes.

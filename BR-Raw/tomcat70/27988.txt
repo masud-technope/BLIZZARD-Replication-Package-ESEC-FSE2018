@@ -1,0 +1,8 @@
+27988 – Unhelpful FileNotFoundException raised
+org.apache.naming.resources.DirContextURLConnection raises FileNotFoundException
+on lines 311, 344, 382 and 396.
+ It would be more helpful if these provided a
+message string.
+For example, change line 344 to
+throw new FileNotFoundException(getURL().getFile());
+This would make it easier to diagnose mistakes in server configurations.

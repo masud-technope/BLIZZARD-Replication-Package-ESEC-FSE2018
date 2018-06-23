@@ -1,0 +1,15 @@
+Bug 280205 – P2 Installer fails sometimes to install large products from P2 repositories whose artefacts are compressed with pack200
+Installing large products Using P2 Installer 3.5RC3 or RC4, Sun JDK 1.5.0 or 1.6.0 fails because pack200 problems.
+I'm getting the following log entry
+!ENTRY org.eclipse.equinox.p2.engine 4 4 2009-06-10 17:42:21.635
+!MESSAGE An error occurred while collecting items to be installed
+!SUBENTRY 1 org.eclipse.equinox.p2.engine 4 0 2009-06-10 17:42:21.635
+!MESSAGE session context was:(profile=/tmp/epp.test, phase=org.eclipse.equinox.internal.provisional.p2.engine.phases.Collect, operand=, action=).
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2009-06-10 17:42:21.635
+!MESSAGE Problems downloading artifact: osgi.bundle,org.eclipse.mat.ui.help,0.7.0.200812101332.
+!SUBENTRY 2 org.eclipse.equinox.p2.artifact.repository 4 0 2009-06-10 17:42:21.635
+!MESSAGE Unpacking fails because intermediate file is empty: /tmp/work3836011058302307064/p2.optimizers.incoming329218385641150253.jar
+The JarProcessor produces an empty jar file although the downloaded compressed artifact is not empty.
+This error cannot be reproduced each time.
+It occurs with different artifacts while installing the same product.
+I haven't found where exactly the problem is or how to reproduce it.

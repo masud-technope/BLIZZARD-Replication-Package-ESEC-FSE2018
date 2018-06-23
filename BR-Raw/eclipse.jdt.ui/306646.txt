@@ -1,0 +1,5 @@
+Bug 306646 – [painting] Print margin should differentiate on file type
+Build Identifier: I20090611-1540
+In my company, we have style rules that C++ files should be at most 80 columns, while Java files should be at most 100 columns.
+The "Help > Preferences > General > Editors > Text Editors > Print margin column" is helpful to adhere to the style rule, but it's the same for all file types, which means it can be either 80 or 100 columns, but not auto-adjustable according to the file type I'm currently editing.
+Reproducible: Always

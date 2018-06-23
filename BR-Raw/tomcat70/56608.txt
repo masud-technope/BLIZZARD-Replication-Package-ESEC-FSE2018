@@ -1,0 +1,10 @@
+56608 – WatchedResource configured in $TomcatHome\conf\Catalina\localhost context XML file not triggering context reload after working for several days
+Created attachment 31700 [details]
+Log files for the day the error occurred and context reloading stopped being automatic.
+ Context file for app in question included.
+I have set up a context XML file within $TOMCAT_HOME\conf\Catalina\localhost which has a docbase on a network fileshare.
+ I have set up a WatchedResource for a handful of files on this fileshare so that whenever one of the files is updated, the context is refreshed.
+ This works fine for sometime, but after a while, I see an error in the logs saying "java.io.IOException: The semaphore timeout period has expired" (Log file with full stack trace is uploaded).
+After we notice this error, I had to start the context back via the Tomcat manager (to be expected, since it appears that a short network unavailability caused the issue).
+ However, once the application is started manually, the WatchedResources being updated no longer force the context to reload.
+ We have to reload the context manually until we do a full restart of the Tomcat service.

@@ -1,0 +1,76 @@
+56771 – Avoid throwing NameNotFoundException in BaseDirContext#lookup()
+Created attachment 31848 [details]
+The issue
+NameNotFoundException is thrown when the resource can't be found in this DirContext.
+In the method BaseDirContext, it also goes through all the alternate or backup DirContexts to lookup the resource one by one until the resource is found.
+A NameNotFoundException is thrown in the alternate DirContext when the given resource name isn't in this DirContext.
+ï»¿  public final Object lookup(String name) throws NamingException {
+// First check for aliases
+if (!aliases.isEmpty()) {
+AliasResult result = findAlias(name);
+if (result.dirContext != null) {
+return result.dirContext.lookup(result.aliasName);
+}
+}
+// Next do a standard lookup
+Object obj = doLookup(name);
+if (obj != null)
+return obj;
+// Check the alternate locations
+for (DirContext altDirContext : altDirContexts) {
+try {
+obj = altDirContext.lookup("/META-INF/resources" + name);
+if (obj != null)
+return obj;
+} catch ( NamingException ex) {
+// ignore
+}
+}
+// Really not found
+throw new NameNotFoundException(
+sm.getString("resources.notFound", name));
+}
+It takes much CPU time.
+  It could be optimized by checking result is null or not.
+Here is the optimized code,
+public final Object lookup(String name) throws NamingException {
+// First check for aliases
+Object obj = doLookupWithoutNFE(name);
+if (obj != null) {
+return obj;
+}
+// Really not found
+throw new NameNotFoundException(
+sm.getString("resources.notFound", name));
+}
+protected Object doLookupWithoutNFE(String name) throws NamingException {
+if (!aliases.isEmpty()) {
+AliasResult result = findAlias(name);
+if (result.dirContext != null) {
+return result.dirContext.lookup(result.aliasName);
+}
+}
+// Next do a standard lookup
+Object obj = doLookup(name);
+if (obj != null)
+return obj;
+// Check the alternate locations
+String resourceName = "/META-INF/resources" + name;
+for (DirContext altDirContext : altDirContexts) {
+if (altDirContext instanceof BaseDirContext) {
+obj = ((BaseDirContext)altDirContext).doLookupWithoutNFE(resourceName);
+}
+else {
+try {
+obj = altDirContext.lookup(resourceName);
+} catch ( NamingException ex) {
+// ignore
+}
+}
+if (obj != null) {
+return obj;
+}
+}
+//Return null instead
+return null;
+}

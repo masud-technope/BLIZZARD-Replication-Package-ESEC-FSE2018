@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/plugin/PluginLibrary.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/NewProjectCreationOperation.java

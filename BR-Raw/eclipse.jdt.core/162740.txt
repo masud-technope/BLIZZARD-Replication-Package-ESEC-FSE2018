@@ -1,0 +1,2 @@
+Bug 162740 – Error on website
+main(dir-links.html): failed to open stream: No such file or directory in www.eclipse.org/html/equinox/documents/coding.php on line 138, referer: http://www.eclipse.org/equinox/documents/index.php

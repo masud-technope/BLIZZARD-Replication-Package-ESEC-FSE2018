@@ -1,0 +1,5 @@
+Bug 150081 – [content assist] ImportPkg completions include already imported pkgs
+Import-Package completions include packages the user already specified in the Import-package header.
+ There is also a problem with this for Require-Bundle.
+Currently rely in ManifestElement to parse Manifest, but when the , is included the header becomes invalid and does not get parsed.
+Also need to find a solution that allows user to insert elements other than just on the end of the line

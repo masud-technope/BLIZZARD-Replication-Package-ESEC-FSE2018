@@ -1,0 +1,5 @@
+Bug 52964 – Persist size of debug pop-ups (or size better)
+The debug popups for inspect/display should persist/reuse their size if the
+user modifies them.
+We should also look into the issue of wrapping text in
+the "display" popup.

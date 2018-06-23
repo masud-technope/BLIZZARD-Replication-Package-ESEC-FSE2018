@@ -1,0 +1,6 @@
+48662 – context.xml expansion on deployment improvements
+Two parts:
+1.
+Log a warning/info message if Tomcat ignores a bundled context.xml in favour of one in CATALINA_BASE/<engine name>/<host name>
+2.
+Make the extraction/copying of context.xml configurable, probably via a new attribute extractXml on the host

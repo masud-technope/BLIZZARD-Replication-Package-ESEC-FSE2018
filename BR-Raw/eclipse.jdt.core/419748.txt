@@ -1,0 +1,24 @@
+Bug 419748 – [1.8][dom ast] MethodDeclaration's receiverType cannot be AnnotatableType
+MethodDeclaration's receiverType cannot be an AnnotatableType, since ParameterizedType is not an AnnotatableType.
+Example:
+package jsr335.invalid;
+public class C {
+class A<T> {
+class Inner {
+public Inner(A<T> A.this) { }
+}
+}
+}
+java.lang.ClassCastException: org.eclipse.jdt.core.dom.ParameterizedType cannot be cast to org.eclipse.jdt.core.dom.AnnotatableType
+at org.eclipse.jdt.core.dom.ASTConverter.convertAndSetReceiver(ASTConverter.java:888)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:543)
+at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:201)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2956)
+at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:206)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2956)
+at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:206)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2956)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1374)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.convert(CompilationUnitResolver.java:295)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1212)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:812)

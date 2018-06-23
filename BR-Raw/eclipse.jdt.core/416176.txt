@@ -1,0 +1,12 @@
+Bug 416176 – [1.8][compiler][null] null type annotations cause grief on type variables
+// --
+import org.eclipse.jdt.annotation.NonNull;
+public class X<@NonNull T> {
+T foo(T t) {
+return t;
+}
+}
+// ---
+produces a stack overflow error.
+Probably due to a missing unannotated()
+implementation in TVB.

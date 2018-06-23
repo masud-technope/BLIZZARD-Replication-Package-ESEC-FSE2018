@@ -1,0 +1,9 @@
+java/org/apache/catalina/Host.java
+java/org/apache/catalina/core/StandardHost.java
+java/org/apache/catalina/core/mbeans-descriptors.xml
+java/org/apache/catalina/startup/HostConfig.java
+java/org/apache/catalina/startup/LocalStrings.properties
+java/org/apache/catalina/startup/mbeans-descriptors.xml
+webapps/docs/changelog.xml
+webapps/docs/config/context.xml
+webapps/docs/config/host.xml

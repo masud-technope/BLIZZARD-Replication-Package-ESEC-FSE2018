@@ -1,0 +1,8 @@
+java.util.StringTokenizer.<init>
+org.osgi.framework.Version.<init>
+org.eclipse.pde.internal.core.SourceLocationManager.searchBundleManifestLocations
+org.eclipse.pde.internal.core.SourceLocationManager.findSourceFile
+org.eclipse.pde.internal.core.schema.SchemaRegistry.getSchemaFromSourceExtension
+org.eclipse.pde.internal.core.schema.SchemaRegistry.getSchemaURL
+org.eclipse.pde.internal.ui.editor.actions.OpenSchemaAction.findSchema
+org.eclipse.pde.internal.ui.editor.actions.OpenSchemaAction.setInput

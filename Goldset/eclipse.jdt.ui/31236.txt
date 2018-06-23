@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/CodeTemplateBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/TemplatePreferencePage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/PreferencesMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/IJavaStatusConstants.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/template/TemplateMessages.properties
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/template/TemplateSet.java

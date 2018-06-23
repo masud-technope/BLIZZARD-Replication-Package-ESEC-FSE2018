@@ -1,0 +1,14 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/PDEFormEditor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/LauncherUtils.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/PDERefactor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/RenamePluginAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/RenamePluginRefactor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/util/PDEModelUtility.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/tools/OrganizeManifest.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/tools/OrganizeManifestsAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/tools/OrganizeManifestsOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/tools/OrganizeManifestsProcessor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/tools/OrganizeManifestsWizard.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/tools/OrganizeManifestsWizardPage.java

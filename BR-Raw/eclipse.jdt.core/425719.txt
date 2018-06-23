@@ -1,0 +1,20 @@
+Bug 425719 – [1.8][compiler] Bogus ambiguous call error from compiler.
+BETA_JAVA8:
+This is probably a recent regression.
+// --
+interface I {
+default void foo(Object obj) {
+System.out.println("interface method");
+}
+}
+class Base {
+public void foo(Object obj) {
+System.out.println("class method");
+}
+}
+public class X extends Base implements I {
+public static void main(String argv[]) {
+new X().foo(null);
+}
+}
+Patch will follow shortly.

@@ -1,0 +1,11 @@
+Bug 402831 – [1.8][compiler][internal] ReferenceExpression should not implement ReferenceContext.
+BETA_JAVA8:
+There is an abstraction/modeling problem in that ReferenceExpression
+implements ReferenceContext (through its parent FunctionalExpression)
+Only LambdaExpression needs to implement ReferenceContext to trap errors
+and signal incompatibility during applicability check phase of overload
+resolution.
+ReferenceExpressions do not introduce a scope and their congruence with
+the target type is limited to there being a single compile time declaration
+with suitable return types and hence these need/should not implement ReferenceContext.
+Patch will follow shortly.

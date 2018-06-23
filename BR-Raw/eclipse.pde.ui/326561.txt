@@ -1,0 +1,5 @@
+Bug 326561 – Tracing tab is the new new dirty button
+I20100928-0800
+Open a PDE launch configuration and navigate to the tracing tab, and notice the dirty button becomes enabled.
+Clicking the revert button does not do anything - and leaves the button enabled.
+In my test case I have tracing enabled for one bundle.

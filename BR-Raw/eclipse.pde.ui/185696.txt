@@ -1,0 +1,6 @@
+Bug 185696 – [Manifest][Editors] Automated Management of Dependencies: Title disappears
+Build ID: The next integration build.
+In the Dependencies section of the Plug-in Editor, the Automated Management of Dependencies section occasionally does not show its title until you click on it.
+This was no doubt cause by my fix for bug 185406.
+Whoops!
+Please assign to me.

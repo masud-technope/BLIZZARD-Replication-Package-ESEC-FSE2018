@@ -1,0 +1,8 @@
+Bug 305232 – [feature] [launching] When choosing features to launch, counter does not update with filtering
+1) Open launch config, plugins tab, choose "Selected features below"
+2) Have a subset of features checked (counter is correct)
+3) Apply a text filter that changes the visible checked
+Result:
+Counter only considers what is checked and visible
+The fix will be to use the filtered checkbox tree's getCheckedLeafCount() method.
+ It was implemented specifically to get a count that ignores the filters.

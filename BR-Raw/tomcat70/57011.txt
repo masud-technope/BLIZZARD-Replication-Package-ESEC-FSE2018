@@ -1,0 +1,17 @@
+57011 – Exception when writing HTTP response in the AsyncListener onTimeout method (servlet 3 HTTP-NIO)
+Created attachment 32050 [details]
+Servlet
+Get the following exception every time the onTimeout method has been called
+INFO: Encountered a non-recycled request and recycled it forcedly.
+org.apache.catalina.connector.CoyoteAdapter$RecycleRequiredException
+at org.apache.catalina.connector.CoyoteAdapter.checkRecycled(CoyoteAdapter.java:717)
+at org.apache.coyote.http11.AbstractHttp11Processor.recycle(AbstractHttp11Processor.java:1791)
+at org.apache.coyote.http11.Http11NioProtocol$Http11ConnectionHandler.release(Http11NioProtocol.java:239)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:733)
+at org.apache.coyote.http11.Http11NioProtocol$Http11ConnectionHandler.process(Http11NioProtocol.java:222)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1566)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1523)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+at java.lang.Thread.run(Thread.java:724)

@@ -1,0 +1,4 @@
+java.lang.Class.getDeclaredMethods0
+java.lang.Class.privateGetDeclaredMethods
+java.lang.Class.getMethod0
+java.lang.Class.getMethod

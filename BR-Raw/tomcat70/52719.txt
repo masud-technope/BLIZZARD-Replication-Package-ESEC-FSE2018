@@ -1,0 +1,40 @@
+52719 – An incomplete fix for the resource leak bug in WebappClassLoader.java
+The fix revision 423920 was aimed to remove an resource leak bug on the  JarFile "jarFile "  in the method "validateJarFile" of the file "/tomcat/tc6.0.x/trunk/java/org/apache/catalina/loader/WebappClassLoader.java" , but it is incomplete.
+When the statements at lines 3226-3245 throw any eception, the object "jarFile " can not be closed as expected.
+The best way to close such resource object is putting such close operations in the finaly block of a try-catch-finally structure.
+The buggy code is copies as bellows:
+3220 protected boolean validateJarFile(File jarfile)
+throws IOException {
+if (triggers == null)
+return (true);
+3225        JarFile jarFile = new JarFile(jarfile);
+3226        for (int i = 0; i < triggers.length; i++) {
+Class clazz = null;
+try {
+if (parent != null) {
+clazz = parent.loadClass(triggers[i]);
+} else {
+clazz = Class.forName(triggers[i]);
+}
+} catch (Throwable t) {
+clazz = null;
+}
+if (clazz == null)
+continue;
+String name = triggers[i].replace('.', '/') + ".class";
+if (log.isDebugEnabled())
+log.debug(" Checking for " + name);
+JarEntry jarEntry = jarFile.getJarEntry(name);
+if (jarEntry != null) {
+log.info("validateJarFile(" + jarfile +
+") - jar not loaded.
+See Servlet Spec 2.3, "
++ "section 9.7.2.
+Offending class: " + name);
+3246                jarFile.close();
+return (false);
+}
+}
+jarFile.close();
+return (true);
+}

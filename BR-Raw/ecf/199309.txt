@@ -1,0 +1,13 @@
+Bug 199309 – [IRC] Wrong connection id after click on hyperlink
+Build ID: I20070625-1500
+Steps To Reproduce:
+1.
+Open an editor or chatroom
+2.
+Write: irc://foobar@freenode.net/#eclipse-bugs
+3.
+<Ctrl> + Click
+4.
+IRC Connection Wizard shows as connection id: "modlost@freenode.net/" instead of "irc://foobar@freenode.net/#eclipse-bugs"
+More information:
+This problems appears only if '#' is used to specify the channel.

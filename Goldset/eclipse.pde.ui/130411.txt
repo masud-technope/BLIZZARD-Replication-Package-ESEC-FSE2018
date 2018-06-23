@@ -1,0 +1,8 @@
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/IBundlePrerequisite.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/IConfigurationAttribute.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/RegistryBrowserContentProvider.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/IBundleLibrary.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/ConfigurationAttributeAdapter.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/ConfigurationElementAdapter.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/RegistryBrowserLabelProvider.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/IBundleFolder.java

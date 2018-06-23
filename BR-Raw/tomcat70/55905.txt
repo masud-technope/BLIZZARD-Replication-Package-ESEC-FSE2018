@@ -1,0 +1,19 @@
+55905 – Error message unhelpful when web.xml references a tld file that doesn't exist
+In your web-application web.xml add a taglib element but get the taglib-location wrong or forgot to include *.tld when packaging your archive
+<jsp-config>
+<taglib>
+<taglib-uri>http://www.example.org/mytaglib</taglib-uri>
+<taglib-location>/WEB-INF/wrong.tld</taglib-location>
+</taglib>
+</jsp-config>
+Start you web-app.
+Expected:
+Get a helpful message like
+WARN  org.apache.catalina.startup.TldConfig - Failed to process TLD with path [/WEB-INF/wrong.tld] and URI [http://www.example.org/mytaglib]
+java.io.FileNotFoundException: /WEB-INF/wrong.tld
+...
+Actual:
+WARN  org.apache.catalina.startup.TldConfig - Failed to process TLD with path [http://www.example.org/mytaglib] and URI [/WEB-INF/wrong.tld]
+java.net.MalformedURLException: null
+...
+Note also that with the current error message the path is labelled at the URI and vice versa, adding to the confusion.

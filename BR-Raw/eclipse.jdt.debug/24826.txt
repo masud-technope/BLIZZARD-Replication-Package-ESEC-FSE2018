@@ -1,0 +1,6 @@
+Bug 24826 – Console hyperlinks on java type names/line numbers
+Select a fully qualified type name in the console
+For example (in JUnit output)
+2) testListener(org.eclipse.ant.tests.core.tests.OptionTests)
+Right click and then open on declaration
+Beep.

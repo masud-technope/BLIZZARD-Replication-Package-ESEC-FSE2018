@@ -1,0 +1,3 @@
+Bug 433111 – [TCK] Handling multiple exports of serviceReference needs correcting
+The ECF RSA behavior for the TCK test org.osgi.test.cases.remoteserviceadmin.junit.RemoteServiceAdminExportTest.testExportMultipleRegistrations() was succeeding  against R5 TCK, but was nonetheless incorrect relative to specification.
+The behavior should be corrected.

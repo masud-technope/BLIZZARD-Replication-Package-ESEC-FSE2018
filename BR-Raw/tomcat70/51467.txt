@@ -1,0 +1,4 @@
+51467 – usage of method run instead of start to start a thread
+In StandardContext method Thread#run is used.
+This is most probably a mistake, since a few lines below Thread#join is called to wait for the completion of the thread.
+So we could either remove the join and get rid of the thread by using just a runnable, or start the thread.

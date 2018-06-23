@@ -1,0 +1,7 @@
+protocols/bundles/ch.ethz.iks.slp/META-INF/MANIFEST.MF
+protocols/bundles/ch.ethz.iks.slp/pom.xml
+protocols/bundles/ch.ethz.iks.slp/src/site/xdoc/index.xml
+protocols/bundles/ch.ethz.iks.slp/runtimeTests/pom.xml
+protocols/bundles/ch.ethz.iks.slp/src/test/java/ch/ethz/iks/slp/impl/ServiceURLTest.java
+protocols/bundles/ch.ethz.iks.slp/test/init.xargs
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/ServiceURL.java

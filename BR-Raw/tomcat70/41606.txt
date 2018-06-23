@@ -1,0 +1,27 @@
+41606 – The jspInit method is called twice.
+The problem is:
+The jspInit method is called twice.
+The definition is:
+-The JSP background compilations are enable.
+(In default web.xml, define checkInterval and define development false.)
+-Define the JSP with <servlet> and <load-on-startup> tag in web.xml.
+The proposing:
+org/apache/jasper/compiler/Compiler.java
+----
+public void compile(boolean compileClass, boolean jspcMode)
+throws FileNotFoundException, JasperException, Exception
+{
+....
+if( compileClass ) {
+File targetFile = new File(ctxt.getClassFileName());
+if (targetFile.exists()) {
+long targetLastModified = targetFile.lastModified();
+if (jsw != null) {
+jsw.setServletClassLastModifiedTime(targetLastModified);
+}
+}
+}
+}// last of the method.
+----
+Regards,
+Yuichiro

@@ -1,0 +1,32 @@
+Bug 388724 – [surround with try/catch][quick fix] Multi-Catch QuickFix creates compiler error
+This somehow looks like #348860 which should be fixed since a long time but I see this on 4.2.0
+----8<----
+package test;
+import java.io.IOException;
+import java.net.MalformedURLException;
+public class TestException {
+private static void call() throws MalformedURLException, IOException {
+}
+public static void main(String[] args) {
+call();
+}
+}
+----8<----
+when executing the multi-catch quickfix it creates code like this:
+----8<----
+package test;
+import java.io.IOException;
+import java.net.MalformedURLException;
+public class TestException {
+private static void call() throws MalformedURLException, IOException {
+}
+public static void main(String[] args) {
+try {
+call();
+} catch (MalformedURLException | IOException e) {
+// TODO Auto-generated catch block
+e.printStackTrace();
+}
+}
+}
+----8<----

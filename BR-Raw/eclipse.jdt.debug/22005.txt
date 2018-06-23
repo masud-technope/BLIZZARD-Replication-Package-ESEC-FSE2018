@@ -1,0 +1,5 @@
+Bug 22005 – Review UI runnables
+We should review the runnables we post to the UI thread via calls to
+Display.asynchExec and Display.synchExec.
+It is important to Eclipse's UI
+performance that we run as little code as necessary in the UI thread.

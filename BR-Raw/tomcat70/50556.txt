@@ -1,0 +1,5 @@
+50556 – improve JreMemoryLeakPreventionListener against leak caused by LdapPoolManager
+When class com.sun.jndi.ldap.LdapPoolManager is initialized, if if the system property com.sun.jndi.ldap.connect.pool.timeout is set to a value greater than 0, a PoolCleaner thread is spawned, without fixing a specific context class loader.
+If the initialization of the class is triggered by a web application, its class loader will be used by the PoolCleaner thread.
+If that web app is stopped, its class loader will leak.
+We can improve JreMemoryLeakPreventionListener to prevent that leak.

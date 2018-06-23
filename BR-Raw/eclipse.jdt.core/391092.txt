@@ -1,0 +1,14 @@
+Bug 391092 – [1.7][compiler] ECJ accepts invalid union type reference
+HEAD
+The following program should trigger three errors, but triggers only two.
+In effect array of union types is accepted as a valid catch parameter type.
+// ---------------
+public class X {
+public static void main(String[] args) {
+try {
+} catch (NullPointerException | ArrayIndexOutOfBoundsException  e []) {
+} catch (ClassCastException [] c) {
+} catch (ArrayStoreException a[]) {
+}
+}
+}

@@ -1,0 +1,23 @@
+Bug 416379 – [1.8][parser] Should allow type annotations on return type of generic methods
+I was day dreaming along these lines (see bug 416304):
+<N extends Annotation> @N B f(@N A a)
+Much to my surprise ecj didn't call me nuts but simply answered:
+<N extends Annotation> @N B f(@N A a)
+^^
+Syntax error, type annotations are illegal here
+Oops, this seems to be derived from (JSR 308 draft):
+MethodOrFieldDecl:
+UnannType Identifier MethodOrFieldRest
+where in fact these original rule should apply:
+GenericMethodOrConstructorDecl:
+TypeParameters GenericMethodOrConstructorRest
+GenericMethodOrConstructorRest:
+(Type | void) Identifier MethodDeclaratorRest
+Identifier ConstructorDeclaratorRest
+in the second rule, unchanged for JSR 308, the NT Type now expands to
+[Annotations] UnannType
+Ergo: the above syntax should be accepted, leaving the question *why* the above
+snippet is illegal as an exercise for the reader :)
+As an aside, this implies that the following is legal though totally crazy:
+@NonNull <T> @Nullable String foo() { return null; }
+Bonus question: Can @NonNull in this example still be interpreted as a type annotation?

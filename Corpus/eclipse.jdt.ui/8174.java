@@ -1,0 +1,4 @@
+package fred;
+
+class A {
+}

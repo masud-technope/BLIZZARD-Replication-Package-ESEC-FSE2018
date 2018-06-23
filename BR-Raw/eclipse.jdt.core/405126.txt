@@ -1,0 +1,15 @@
+Bug 405126 – [1.8][code assist] Lambda parameters incorrectly recovered as fields.
+public interface Foo {
+int run(int s1, int s2);
+}
+interface X {
+static Foo f = (int x5, int x11) -> x
+static int x1 = 2;
+}
+class C {
+void method1(){
+int p = X.<ctrl-space>
+}
+}
+Wrongly suggesting x5, x11.
+Only x1 should have been suggested.

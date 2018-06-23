@@ -1,0 +1,43 @@
+50460 – First access to a jspx page causes classloader leak in JspDocumentParser
+Running latest 6.0.x,
+To reproduce:
+1.
+Stop Tomcat
+2.
+Deploy the examples webapp
+3.
+Create /webapps/examples/foo.jsp file containing the following text:
+<jsp:include page="/jsp/jsp2/jspx/basic.jspx"/>
+4.
+Make sure that the work folder of Tomcat is empty.
+5.
+Start Tomcat
+6.
+Go to http://localhost:8080/examples/foo.jsp
+7.
+Go to the Manager web application and stop the examples webapp.
+8.
+Press the "Find leaks" button there.
+ACTUAL RESULT:
+It is reported that "/examples" causes a leak.
+EXPECTED RESULT:
+No leaks.
+This issue is apparently caused by an instance of org.apache.jasper.compiler.JspDocumentParser$EnableDTDValidationException
+that is being kept in a static final field.
+More discussion of such leaks can be found in thread [1] on dev@.
+[1] http://tomcat.markmail.org/thread/v4xmg5v5t6oa4mrs
+http://marc.info/?l=tomcat-dev&m=129211856426188&w=2
+Additional comments:
+1) This issue affects the first request that loads the JspDocumentParser class.
+Subsequent requests do not cause the issue.
+Thus only a single webapp is affected.
+2) The issue does not happen when there is no webapp code in the call stack.
+I.e., it does not happen if the JSPX page was requested directly.
+That is why the reproduction recipe uses <jsp:include/>.
+Possible solutions:
+1) Preload the JspDocumentParser class when Tomcat starts.
+2) Do not cache the Exception.
+Create a new instance each time.
+3) Override the fillInStackTrace() method, like it was done in AbstractDOMParser$Abort in Apache Xerces [2].
+I do not know, whether that helps or not.
+[2] http://svn.apache.org/viewvc/xerces/java/trunk/src/org/apache/xerces/parsers/AbstractDOMParser.java?annotate=782187#l162

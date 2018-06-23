@@ -1,0 +1,8 @@
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/detailpane/TestDetailPaneFactory.java
+org.eclipse.jdt.debug.ui/META-INF/MANIFEST.MF
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/breakpoints/BreakpointDetailPaneFactory.java
+org.eclipse.jdt.debug/META-INF/MANIFEST.MF
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaBreakpointImportParticipant.java
+org.eclipse.jdt.launching/META-INF/MANIFEST.MF
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/AbstractJavaLaunchConfigurationDelegate.java
+org.eclipse.jdt.launching/pom.xml

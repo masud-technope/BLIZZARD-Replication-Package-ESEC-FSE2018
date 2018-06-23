@@ -1,0 +1,12 @@
+Bug 177177 – Extension points from import-package dependencies are not shown
+If I use Import-Package to depend on another bundle then the extension points from that bundle are not available when I add an extension.
+ I must uncheck "Show only extension points from the required plug-ins" in order to see available extension points.
+Steps to recreate:
+1.
+Create an Equinox OSGi bundle
+2.
+Add org.eclipse.equinox.app to the Import-Package manifest header and save the manifest.
+3.
+Goto the Extensions tab and add an extension.
+ Notice that no extensions are available to select.
+ I would expect the org.eclipse.core.runtime.applications extension point to be available from the org.eclipse.equinox.app bundle.

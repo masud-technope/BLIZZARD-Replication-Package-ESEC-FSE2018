@@ -1,0 +1,13 @@
+51403 – Avoid NullPointerException in JULI FileHandler if formatter is misconfigured
+If formatter assigned to org.apache.juli.FileHandler in logging.properties is misconfigured and fails to load,
+the FileHandler starts without formatter and fails with an NPE later.
+To reproduce: assign some bogus value to
+1catalina.org.apache.juli.FileHandler.formatter
+When Tomcat starts, the following will be printed at the console:
+java.util.logging.ErrorManager: 4
+java.lang.NullPointerException
+at org.apache.juli.FileHandler.openWriter(FileHandler.java:377)
+at org.apache.juli.FileHandler.<init>(FileHandler.java:99)
+at org.apache.juli.FileHandler.<init>(FileHandler.java:90)
+I think we can be more tolerant to this configuration error and fall back to the default formatter.
+I will commit a fix shortly.

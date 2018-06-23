@@ -1,0 +1,5 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/AbstractSchemaDetails.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/SchemaAttributeDetails.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/SchemaElementDetails.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/SchemaRootElementDetails.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties

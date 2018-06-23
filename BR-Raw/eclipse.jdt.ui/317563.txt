@@ -1,0 +1,4 @@
+Bug 317563 – [JUnit] Add option to always show latest run in all JUnit views
+3.6.
+I'd like to see the latest run in all JUnit views.
+Please add an option to enable this.

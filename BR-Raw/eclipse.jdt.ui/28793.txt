@@ -1,0 +1,8 @@
+Bug 28793 – code generation tool for forwarding methods to fields [code manipulation]
+It would be nice to have a tool to forward method calls to delegates in my
+class.
+use case
+class BookList implements List{
+AbstractList fDelegate=null;
+}
+the tool should generate all needed calls to fDelegate.

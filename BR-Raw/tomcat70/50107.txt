@@ -1,0 +1,32 @@
+50107 – StandardPipeline is destroyed two times.
+Created attachment 26181 [details]
+patch for MBeanFactory.java
+When I call MBeanFactory#removeHost operation via JMX(jconsle), I get the following message.
+INFO: The destroy() method was called on component [Pipeline[StandardHost[localhost]]] after destroy() had already been called.
+The second call will be ignored.
+StandardPipeline is destroyed two times.
+At first, pipeline is destroyed at ContainerBase.java L.1096:
+<<ContainerBase.java destroyInternal() L.1094-1097>>
+1094         // Stop the Valves in our pipeline (including the basic), if any
+1095         if (pipeline instanceof Lifecycle) {
+1096             ((Lifecycle) pipeline).destroy();
+1097         }
+<<ContainerBase.java destroyInternal() L.1104-1107>>
+1104         // Required if the child is destroyed directly.
+1105         if (parent != null) {
+1106             parent.removeChild(this);
+1107         }
+When above-mentioned "parent" is StandardEngine, the parent.removeChild() calls the  LifecycleBase#child.destroy(), and child.destroy() calls ContainerBase#destroyInternal().
+At this time ContainerBase is StandardHost.
+<<ContainerBase.java removeChild() L.960-964>>
+960         // Set child's parent to null to prevent a loop
+961         child.setParent(null);
+962         try {
+963             child.destroy();
+964         } catch (LifecycleException e) {
+As a result, pipeline is destroyed again(, and get the above-mentioned info message).
+In Tomcat 6.0, child.destroy() is not called from ContainerBase#removeChild().
+But, as seen above, the removeChild() that is contained in Tomcat7.0 calls the child.destroy().
+IMHO, it might not be better to call the child.destroy() from removeHost().
+I made the patch that removed host.destroy() from removeHost().
+Best regards.

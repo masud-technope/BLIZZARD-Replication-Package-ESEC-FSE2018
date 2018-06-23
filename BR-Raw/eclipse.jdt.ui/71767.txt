@@ -1,0 +1,15 @@
+Bug 71767 – Semantic highlighting does not update scanners on property changes
+3.0
+- enable semantic highlighting (with field/static field highlighting enabled)
+- create CU:
+public class A {
+public static int fValue;
+public void foo() {
+fValue= 0;
+}
+}
+- keep CU open
+- change color of keywords on the Java editor preference page
+- remove 'static' from the CU
+-> 'public void' gets colored in the old color because the background
+PresentationReconciler's scanners are not notified about the property change

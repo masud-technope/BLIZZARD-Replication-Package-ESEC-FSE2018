@@ -1,0 +1,28 @@
+Bug 298520 – [5.0][content assist] Constructor completion ignores outer type when completing type arguments
+Build Identifier: M20090917-0800
+When completing initializer of variable, which is of generalized type, content assist ignores outer type of type parameter.
+For example, if I type
+List<SelectDirective.Option> r = new
+then type Ctrl+Space and select ArrayList from the list, the following gets inserted:
+List<SelectDirective.Option> r = new ArrayList<Option>
+As you may see, outer type SelectDirective has been skipped, which is wrong.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Create following class structure:
+class SelectDirective {
+class Option() {
+}
+}
+public class Main () {
+public static void main(String[] args) {
+}
+}
+2.
+Type inside method main :
+List<SelectDirective.Option> r = new
+3.
+Press Ctrl+Space and select ArrayList from the dropdown list.
+4.
+Code with errors gets inserted:
+List<SelectDirective.Option> r = new ArrayList<Option>

@@ -1,0 +1,3 @@
+Bug 311835 – [preferences] Add option for FORMATTER_USE_ON_OFF_TAGS (bug 311582)
+HEAD
+Add option for FORMATTER_USE_ON_OFF_TAGS (bug 311582) in the UI.

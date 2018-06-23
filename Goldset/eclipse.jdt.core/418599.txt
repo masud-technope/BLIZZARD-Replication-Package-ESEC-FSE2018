@@ -1,0 +1,17 @@
+org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/declaration/AnnotationMirrorImpl.java
+org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/declaration/AnnotationDeclarationImpl.java
+org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/env/EnvUtil.java
+org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/env/BuildEnv.java
+org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/util/Visitors.java
+org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/declaration/EclipseDeclarationImpl.java
+org.eclipse.jdt.apt.core/.settings/org.eclipse.jdt.core.prefs
+org.eclipse.jdt.apt.ui/.settings/org.eclipse.jdt.core.prefs
+org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/declaration/ClassDeclarationImpl.java
+org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/declaration/ASTBasedExecutableDeclarationImpl.java
+org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/declaration/ExecutableUtil.java
+org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/env/BaseProcessorEnv.java
+org.eclipse.jdt.compiler.tool/src/org/eclipse/jdt/internal/compiler/tool/EclipseCompilerImpl.java
+org.eclipse.jdt.compiler.tool/.settings/org.eclipse.jdt.core.prefs
+org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/declaration/TypeDeclarationImpl.java
+org.eclipse.jdt.apt.ui/src/org/eclipse/jdt/apt/ui/internal/preferences/AptConfigurationBlock.java
+org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/env/AbstractCompilationEnv.java

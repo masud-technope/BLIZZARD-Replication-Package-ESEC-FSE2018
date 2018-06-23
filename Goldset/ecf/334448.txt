@@ -1,0 +1,30 @@
+server-side/examples/bundles/org.eclipse.ecf.examples.remoteservices.server/META-INF/MANIFEST.MF
+tests/bundles/org.eclipse.ecf.tests.remoteservice.generic/src/org/eclipse/ecf/tests/remoteservice/generic/ServiceTrackerTest.java
+server-side/examples/bundles/org.eclipse.ecf.examples.remoteservices.server/launch/r-OSGi Remote EnvironmentInfo Server.launch
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/internal/remoteservices/ui/handlers/ConnectRemoteServicehandler.java
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/internal/remoteservices/ui/handlers/ConnectionHandler.java
+compendium/bundles/org.eclipse.ecf.osgi.services.discovery/src/org/eclipse/ecf/internal/osgi/services/discovery/ServicePublicationHandler.java
+tests/bundles/org.eclipse.ecf.tests.osgi.services.distribution.r-osgi/.gitignore
+tests/bundles/org.eclipse.ecf.tests.osgi.services.distribution.generic/.gitignore
+providers/bundles/org.eclipse.ecf.provider.remoteservice/src/org/eclipse/ecf/provider/remoteservice/AbstractRemoteServiceDescription.java
+providers/bundles/org.eclipse.ecf.provider.remoteservice/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/internal/remoteservices/ui/handlers/DisonnectRemoteServicehandler.java
+server-side/examples/bundles/org.eclipse.ecf.examples.remoteservices.server/src/org/eclipse/ecf/internal/examples/remoteservices/server/RemoteEnvironmentInfoImpl.java
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/internal/remoteservices/ui/RemoteServiceHandlerUtil.java
+server-side/examples/bundles/org.eclipse.ecf.examples.remoteservices.server/build.properties
+server-side/examples/bundles/org.eclipse.ecf.examples.remoteservices.server/launch/Generic Remote EnvironmentInfo Server.launch
+compendium/bundles/org.eclipse.ecf.osgi.services.distribution/src/org/eclipse/ecf/internal/osgi/services/distribution/EventHookImpl.java
+server-side/examples/bundles/org.eclipse.ecf.examples.remoteservices.server/plugin.xml
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/internal/remoteservices/ui/property/ConnectedTester.java
+providers/bundles/org.eclipse.ecf.provider.remoteservice/src/org/eclipse/ecf/provider/remoteservice/ServiceTypeListener.java
+server-side/examples/bundles/org.eclipse.ecf.examples.remoteservices.server/src/org/eclipse/ecf/internal/examples/remoteservices/server/DiscoveryProperties.java
+tests/bundles/org.eclipse.ecf.tests.remoteservice.generic/.gitignore
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/remoteservices/ui/MethodInvocationDialog.java
+framework/bundles/org.eclipse.ecf.remoteservice.ui/plugin.xml
+framework/bundles/org.eclipse.ecf.remoteservice/src/org/eclipse/ecf/remoteservice/Constants.java
+tests/bundles/org.eclipse.ecf.tests.remoteservice.generic/src/org/eclipse/ecf/tests/remoteservice/generic/TransparentProxyTest.java
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/internal/remoteservices/ui/Activator.java
+server-side/examples/bundles/org.eclipse.ecf.examples.remoteservices.server/src/org/eclipse/ecf/internal/examples/remoteservices/server/Activator.java
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/internal/remoteservices/ui/handlers/ReflectiveRemoteServiceHandler.java
+server-side/examples/bundles/org.eclipse.ecf.examples.remoteservices.server/src/org/eclipse/ecf/internal/examples/remoteservices/server/DiscoverableServer.java
+providers/bundles/org.eclipse.ecf.provider.remoteservice/src/org/eclipse/ecf/provider/remoteservice/generic/RegistrySharedObject.java

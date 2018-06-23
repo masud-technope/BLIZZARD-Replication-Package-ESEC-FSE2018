@@ -1,0 +1,8 @@
+Bug 40744 – Java Classpath tab is huge
+Build: 3.0 M2
+The classpath viewer should set a reasonable heightHint.
+ Currently, if the
+workspace contains many binary projects (and consequently many libraries),
+when a new launch configuration containing a Classpath tab is created, the
+dialog expands to an unreasonably large size taking up almost the whole screen
+length.

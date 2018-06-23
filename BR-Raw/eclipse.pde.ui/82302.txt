@@ -1,0 +1,6 @@
+Bug 82302 – Export > Deployable plug-ins .. deletes build.xml without prompt
+If the plugin has 'build.xml' file, and do :
+Export > Deployable plug-ins and fragments, this actions deletes
+build.xml file.
+The same problem happens when Export > Deplyable features, PDE Tools >
+Build Site on site.xml are done.

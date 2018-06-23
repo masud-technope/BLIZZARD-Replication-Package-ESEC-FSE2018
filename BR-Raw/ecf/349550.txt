@@ -1,0 +1,6 @@
+Bug 349550 – R-OSGi needs to generate URLs with full host name, not just name
+The R-OSGi provider generates URLs like:
+r-osgi://host:9280#1_2.3.4
+However, it really should use the canonical host name e.g.
+r-osgi://host.example.com:9280#1_2.3.4
+since 'host' may not be resolvable by other machines on different DNS subdomain setups.

@@ -1,0 +1,4 @@
+Bug 324769 – Adopt new APIs on ILocalVariable
+Created attachment 178423 [details]
+Fix
+Follow-up to bug 48420: Adopt new APIs on ILocalVariable.

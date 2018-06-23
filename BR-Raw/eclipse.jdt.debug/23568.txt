@@ -1,0 +1,6 @@
+Bug 23568 – Ctrl-Space is not working in the Scrapbook
+20020911
+Attempting to invoke code assist with Ctrl-Space is no longer working in the
+scrapbook.
+Using the Edit menu Content Assist and auto activation does provide content
+assist.

@@ -1,0 +1,2 @@
+Bug 317811 – [Discovery][DNS-SD] Fix class name typo (DnsSdDisocoveryLocator > DnsSdDiscoveryLocator)
+Rename org.eclipse.ecf.provider.dnssd.DnsSdDisocoveryLocator to org.eclipse.ecf.provider.dnssd.DnsSdDiscoveryLocator

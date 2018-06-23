@@ -1,0 +1,6 @@
+Bug 57258 – Option to show toString values in Variables View
+It would really be nice if there were a "Show toString()" option in the drop-
+down menu for the Variables View that would display toString() values next to
+each item in the variable tree.
+ This would prevent me from having to click on
+every item to see its toString() value in the Details pane.

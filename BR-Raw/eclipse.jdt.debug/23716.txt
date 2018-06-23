@@ -1,0 +1,5 @@
+Bug 23716 – Reporting "formatter errors"
+When there is a runtime error in a detail formatter, the details area displays
+the error message.
+It might be nice to qualify the message with a prefix
+like "Detail formatter error: ".

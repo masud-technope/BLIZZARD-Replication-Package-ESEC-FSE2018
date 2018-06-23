@@ -1,0 +1,13 @@
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/util/Logger.java
+examples/bundles/org.eclipse.ecf.examples.remoteservices.hello.consumer/products/Hello Service Consumer (zookeeper,r-osgi).product
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/core/DiscoverdService.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/node/internal/NodeReader.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/node/internal/INode.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/node/internal/WriteRoot.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/node/internal/NodeWriter.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/core/AdvertisedService.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/core/ZooDiscoveryContainer.java
+examples/bundles/org.eclipse.ecf.examples.remoteservices.hello.host/products/Hello Service Host (zookeeper,rosgi).product
+examples/bundles/org.eclipse.ecf.examples.remoteservices.hello.host/products/Hello Service Host (zookeeper,generic).product
+examples/bundles/org.eclipse.ecf.examples.remoteservices.hello.consumer/products/Hello Service Consumer (zookeeper,generic).product
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/core/internal/IService.java

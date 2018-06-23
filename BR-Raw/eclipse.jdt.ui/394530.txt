@@ -1,0 +1,18 @@
+Bug 394530 – [convert local] Convert local creates duplicate field name
+Steps to reproduce:
+1.
+Invoke "Convert Local to Field" refactoring on "m" local variable in code below
+2.
+The resulting code cannot be compiled ("Duplicate field")
+class ConvertLocalToFieldBug {
+void g() {
+new Object() {
+int m;
+void f() {
+// Invoke "Convert Local Variable to Field" on "m"
+int m;
+}
+};
+}
+}
+(Thanks to Yilong Li for helping with the bug report.)

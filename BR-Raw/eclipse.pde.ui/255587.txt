@@ -1,0 +1,42 @@
+Bug 255587 – Resolution issue with the ant task
+When running the ant task for api tooling verification using HEAD,
+I got the following lookup errors in the .log file.
+Unable to resolve super interface org.eclipse.ui.IPartListener for org.eclipse.ui.internal.editorsupport.win32.OleEditor$4
+Unable to resolve super interface org.eclipse.core.resources.IResourceChangeListener for org.eclipse.ui.internal.editorsupport.win32.OleEditor$1
+This is one stack trace leading to the problem:
+org.eclipse.core.runtime.CoreException: Unable to resolve super interface org.eclipse.ui.IPartListener for org.eclipse.ui.internal.editorsupport.win32.OleEditor$4
+at org.eclipse.pde.api.tools.internal.model.ApiType.getSuperInterfaces(ApiType.java:225)
+at org.eclipse.pde.api.tools.internal.search.IllegalImplementsProblemDetector.considerReference(IllegalImplementsProblemDetector.java:71)
+at org.eclipse.pde.api.tools.internal.search.ReferenceAnalyzer$Visitor.visit(ReferenceAnalyzer.java:113)
+at org.eclipse.pde.api.tools.internal.ArchiveApiTypeContainer.accept(ArchiveApiTypeContainer.java:169)
+at org.eclipse.pde.api.tools.internal.AbstractApiTypeContainer.accept(AbstractApiTypeContainer.java:57)
+at org.eclipse.pde.api.tools.internal.AbstractApiComponent.accept(AbstractApiComponent.java:56)
+at org.eclipse.pde.api.tools.internal.search.ReferenceAnalyzer.extractReferences(ReferenceAnalyzer.java:260)
+at org.eclipse.pde.api.tools.internal.search.ReferenceAnalyzer.analyze(ReferenceAnalyzer.java:167)
+at org.eclipse.pde.api.tools.internal.search.ReferenceAnalyzer.analyze(ReferenceAnalyzer.java:404)
+at org.eclipse.pde.api.tools.internal.builder.BaseApiAnalyzer.checkApiUsage(BaseApiAnalyzer.java:574)
+at org.eclipse.pde.api.tools.internal.builder.BaseApiAnalyzer.analyzeComponent(BaseApiAnalyzer.java:192)
+at org.eclipse.pde.api.tools.internal.tasks.APIToolsVerificationTask.execute(APIToolsVerificationTask.java:540)
+at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:288)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+at org.apache.tools.ant.Task.perform(Task.java:348)
+at org.apache.tools.ant.Target.execute(Target.java:357)
+at org.apache.tools.ant.Target.performTasks(Target.java:385)
+at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1337)
+at org.apache.tools.ant.Project.executeTarget(Project.java:1306)
+at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+at org.eclipse.ant.internal.core.ant.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:32)
+at org.apache.tools.ant.Project.executeTargets(Project.java:1189)
+at org.eclipse.ant.internal.core.ant.InternalAntRunner.run(InternalAntRunner.java:623)
+at org.eclipse.ant.internal.core.ant.InternalAntRunner.run(InternalAntRunner.java:456)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.eclipse.ant.core.AntRunner.run(AntRunner.java:378)
+at org.eclipse.ant.internal.ui.launchConfigurations.AntLaunchDelegate$1.run(AntLaunchDelegate.java:248)
+at java.lang.Thread.run(Thread.java:619)

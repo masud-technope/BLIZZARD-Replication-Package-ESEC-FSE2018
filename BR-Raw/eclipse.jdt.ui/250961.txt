@@ -1,0 +1,50 @@
+Bug 250961 – [build path] NPE attaching source JAR
+build I20081007-1600
+- create new Java project
+- go to the project properties via the context menu
+- edit the Java build path
+- add external JARs
+- navigate to your install dir and select org.eclipse.update* (not the source JARs)
+- OK
+- select first JAR and edit the source attachment
+- try and add the source JAR
+- hit OK
+- note that the dialog is not updated and nothing happens
+I checked my log and had the following message.
+Also got the same stack trace when opening a class file in an editor and trying to attach source to it there.
+!ENTRY org.eclipse.ui 4 0 2008-10-15 11:01:56.567
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.ui.wizards.buildpaths.CPListElement.createFromExisting(CPListElement.java:579)
+at org.eclipse.jdt.internal.ui.wizards.buildpaths.CPListElement.createFromExisting(CPListElement.java:544)
+at org.eclipse.jdt.internal.ui.wizards.buildpaths.SourceAttachmentBlock.getNewEntry(SourceAttachmentBlock.java:180)
+at org.eclipse.jdt.internal.ui.wizards.buildpaths.SourceAttachmentDialog.getResult(SourceAttachmentDialog.java:103)
+at org.eclipse.jdt.ui.wizards.BuildPathDialogAccess.configureSourceAttachment(BuildPathDialogAccess.java:108)
+at org.eclipse.jdt.internal.ui.javaeditor.ClassFileEditor$2.widgetSelected(ClassFileEditor.java:285)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:228)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1003)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3848)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3446)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2382)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2346)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2198)
+at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:493)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:333)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:488)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:113)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:193)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:370)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:45)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:37)
+at java.lang.reflect.Method.invoke(Method.java:599)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:549)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:504)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1236)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1212)

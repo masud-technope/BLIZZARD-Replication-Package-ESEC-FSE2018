@@ -1,0 +1,6 @@
+Bug 32494 – Insp/Display actions in Run menu not enabled for scrapbook
+In 20030221:
+* Select a snippet in the scrapbook
+* Context menu and toolbar actions for Inspect/Display/Execute enable
+* Global actions in Run menu do not enable
+* Effect is that the key bindings are not available

@@ -1,0 +1,21 @@
+Bug 451660 – [compiler][null] Wrong "Null pointer access: The variable can only be null at this location" warning
+This example gives a "Null pointer access: The variable s can only be null at this location" warning for "s.toString()":
+public static void main(String[] args)
+{
+String s = null;
+for(; true;) // ok with "while(true)"
+{
+switch(0)
+{
+default:
+s = "Hello!";
+case 1:
+System.out.println(s.toString());
+}
+return;
+}
+}
+But of course this prints a friendly "Hello!".
+This is a minimal testcase as far as I can see.
+If anything is removed, there's no warning anymore.
+There are a couple similar open bugreports, but they seem to be about different issues.

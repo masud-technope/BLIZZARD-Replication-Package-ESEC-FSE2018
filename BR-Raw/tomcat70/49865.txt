@@ -1,0 +1,20 @@
+49865 – ExceptionUtils throw NoClassDefFoundError during startup
+Remove conf/catalina.properties and get:
+SEVERE: Class loader creation threw exception
+java.lang.NoClassDefFoundError: org/apache/tomcat/util/ExceptionUtils
+at org.apache.catalina.startup.CatalinaProperties.loadProperties(CatalinaProperties.java:112)
+at org.apache.catalina.startup.CatalinaProperties.<clinit>(CatalinaProperties.java:52)
+at org.apache.catalina.startup.Bootstrap.createClassLoader(Bootstrap.java:110)
+at org.apache.catalina.startup.Bootstrap.initClassLoaders(Bootstrap.java:93)
+at org.apache.catalina.startup.Bootstrap.init(Bootstrap.java:207)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:392)
+Caused by: java.lang.ClassNotFoundException: org.apache.tomcat.util.ExceptionUtils
+at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+at java.security.AccessController.doPrivileged(Native Method)
+at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:303)
+at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:301)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:248)
+at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:316)
+org.apache.tomcat.util.ExceptionUtils is not available for the class loader during this early stage.
+Observed in r991965, added TODO marks in CatalinaProperties.java.

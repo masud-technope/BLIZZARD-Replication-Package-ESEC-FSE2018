@@ -1,0 +1,5 @@
+Bug 342391 – New Java Project wizard and 'Java Compiler' property page misleading when 1.7 EE is used
+HEAD.
+The 'Java Compiler' preference/property page is misleading when a 'JavaSE-1.7' EE is used on a project: it says that we use the compliance from the EE but we don't support 1.7 compliance.
+Though we show '1.6' below this can be misleading, especially when one creates a new Java projects and selects 'JavaSE-1.7'.
+We should show a warning on that page and also on the new Java project wizard.

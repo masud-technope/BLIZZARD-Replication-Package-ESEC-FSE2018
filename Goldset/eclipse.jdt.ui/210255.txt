@@ -1,0 +1,8 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/ActionMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/ActionMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/CollapseAllAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/browsing/ProjectsView.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/packageview/PackageExplorerActionGroup.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/packageview/CollapseAllAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/packageview/PackagesMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/packageview/PackagesMessages.properties

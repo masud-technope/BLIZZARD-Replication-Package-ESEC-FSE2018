@@ -1,0 +1,2 @@
+Bug 139037 – PDE can't resolve translated names for plugins in directory format
+In the plug-ins view, plug-ins in directory format from the target platform show up with their tag (even when the .properties file is available).

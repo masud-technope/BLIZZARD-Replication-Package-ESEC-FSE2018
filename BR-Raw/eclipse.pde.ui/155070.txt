@@ -1,0 +1,8 @@
+Bug 155070 – Exporting feature and saving as an Ant script generates non-functional script
+When you export "Deployable features" an option is given to create an Ant script that can be used to repeat the export at a later time.
+ This is a rather useful option, but sadly the generated Ant script is not what I would expect:
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="feature_export" name="build">
+<target name="feature_export"/>
+</project>
+This is all you get and there are no error reported by the UI or in the .log file.

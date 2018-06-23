@@ -1,0 +1,20 @@
+49235 – ServletContainerInitializer onStartup(Set<Class<?>> classSet is not expect class
+I builder tomcat 7.0.0 from svn r939221
+below is my code:
+@MySomeAnn
+public class MySomeClass{...}
+@HandlesTypes(MySomeAnn.class)
+public class ModuleInitializer implements ServletContainerInitializer
+{
+@Override
+public void onStartup(Set> classSet, ServletContext ctx) throws ServletException
+{
+for (Class targetClass : classSet)
+{
+System.out.println(targetClass.getName());
+...
+Here output is "MySomeAnn".
+But I expect output "MySomeClass".
+It's not yet imp Servlet 3.0 spec.
+My code work fine on Glassfish 3.0.
+The output is "MySomeClass".

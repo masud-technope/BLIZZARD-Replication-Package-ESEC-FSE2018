@@ -1,0 +1,1 @@
+providers/bundles/org.eclipse.ecf.provider.msn/src/org/eclipse/ecf/internal/provider/msn/MSNContainer.java

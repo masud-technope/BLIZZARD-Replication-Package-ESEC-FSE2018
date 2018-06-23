@@ -1,0 +1,16 @@
+Bug 338018 – [quick fix] "Replace with Collections.emptyMap()" et al. can need explicit type arguments
+Created attachment 189638 [details]
+Fix & test
+HEAD
+The "Replace with Collections.empty*()" quick fix can need explicit type arguments in some cases:
+package p;
+import java.util.*;
+public class C {
+public C(List<String> list) { }
+public void bar(Map<String, Integer> map) { }
+void foo() {
+new C(Collections.EMPTY_LIST);
+bar(Collections.EMPTY_MAP);
+Set<String> var= Collections.EMPTY_SET;
+}
+}

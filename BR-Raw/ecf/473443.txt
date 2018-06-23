@@ -1,0 +1,4 @@
+Bug 473443 – Base64 classname has to be disambiguated with Java8
+In java8 there is a Base64 class and the JSLP provider references Base64 on line 78 of ServiePropertiesAdapter class.
+ This was fine in Java7 as it refered to org.eclipse.ecf.util.Base64 unambiguously.
+ This reference in the jslp provider should be disambiguated to refer to org.eclipse.ecf.util.Base64 specifically.

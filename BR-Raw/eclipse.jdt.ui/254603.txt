@@ -1,0 +1,5 @@
+Bug 254603 – [package explorer][working sets] Package Explorer should support "Show All" Working Sets
+When top-level elements are set to working sets, the most obvious usage of this would be to show all of the working sets defined.
+ This is currently not supported.
+The user can configure PE to show all *current* working sets, but as new working sets are created, for example, when checking out sets of projects code from an SCM system, the user must constantly reconfigure the view to show all working sets again.
+I propose that if all of the current sets are selected (in the configure dialog), and the user presses OK, then this should be persisted as the single choice "all" rather than as the list of the currently defined sets.

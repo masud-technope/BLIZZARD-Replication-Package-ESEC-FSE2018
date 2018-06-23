@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/properties/PluginDevelopmentPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/properties/SelfHostingPropertyPage.java

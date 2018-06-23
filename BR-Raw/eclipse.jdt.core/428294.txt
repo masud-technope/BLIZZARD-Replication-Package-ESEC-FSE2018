@@ -1,0 +1,31 @@
+Bug 428294 – [1.8][compiler] Type mismatch: cannot convert from List<Object> to Collection<Object[]>
+This bug is impacting OpenJFX project builds.
+The following snippet shows a method that fails (//FAILS) to compile under Eclipse compiler but works under the JDK8.
+ It can be worked around by assigning to a local variable.
+package junk;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+public class Junk5 {
+class TestTouchDevice {
+public Object [] points;
+}
+public static List<TestTouchDevice> getTouchDevices() {
+return null;
+}
+//WORKS
+public static Collection<Object[]> getTouchDeviceParameters2(int minPoints) {
+Collection c = getTouchDevices().stream()
+.filter(d -> d.points.length >= minPoints)
+.map(d -> new Object[] { d })
+.collect(Collectors.toList());
+return c;
+}
+//FAILS
+public static Collection<Object[]> getTouchDeviceParameters3(int minPoints) {
+return getTouchDevices().stream()
+.filter(d -> d.points.length >= minPoints)
+.map(d -> new Object[] { d })
+.collect(Collectors.toList());
+}
+}

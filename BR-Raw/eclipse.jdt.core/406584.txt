@@ -1,0 +1,25 @@
+Bug 406584 – [1.8][compiler][codegen] ClassFormatError: Invalid method signature
+BETA_JAVA8:
+From bug 406388 comment 5:
+// ----
+interface I {
+Object copy();
+}
+class X  {
+public static void main(String [] args) {
+int [] x = new int[10];
+I i = x::<String>clone;
+System.out.println(i.copy());
+}
+}
+// ----
+produces:
+Exception in thread "main" java.lang.ClassFormatError: Invalid method signature in class X referenced from constant pool index 19 in method X.main([Ljava/lang/String;)V
+at java.lang.Class.getDeclaredMethods0(Native Method)
+at java.lang.Class.privateGetDeclaredMethods(Class.java:2474)
+at java.lang.Class.getMethod0(Class.java:2715)
+at java.lang.Class.getMethod(Class.java:1622)
+at sun.launcher.LauncherHelper.validateMainClass(LauncherHelper.java:555)
+at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:537)
+// -------------
+javac is OK.

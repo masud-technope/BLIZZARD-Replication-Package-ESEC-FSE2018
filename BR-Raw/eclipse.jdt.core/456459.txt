@@ -1,0 +1,23 @@
+Bug 456459 – Discrepancy between Eclipse compiler and javac - Enums, interfaces, and generics
+The following code compiles (and runs tests as expected) in Eclipse:
+import java.util.EnumSet;
+public class EnumTest {
+static enum Cloneables implements Cloneable {
+One, Two, Three;
+}
+public <T extends Cloneable> T getOne(Class enumType) {
+EnumSet<? extends T> set = EnumSet.allOf(enumType);
+return set.iterator().next();
+}
+}
+However, compiling with either `javac` (JDK 7) directly or via Maven fails with the following error:
+type argument ? extends T is not within bounds of type-variable E
+To be honest, the complexity of enums + interfaces + type-parameters (generics) all at play at once threw me off as I was writing the code, but I thought I had finally gotten it right.
+I'm not sure if this *should* work or not, if the discrepancy is a bug in Eclipse or javac.
+The goal is to write calling code like this:
+Cloneable something = enumTest.getOne(Cloneables.class);
+For example, in Eclipse the following test compiles and passes:
+@Test
+public void testGetFirst() {
+assertSame(Cloneables.One, getOne(Cloneables.class));
+}

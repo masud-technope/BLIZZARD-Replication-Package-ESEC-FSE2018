@@ -1,0 +1,24 @@
+Bug 232699 – TVT34:TCT330: TVT FR - Space missing before colon sign in French
+<response_by> martine marin at 2008.05.16.08.00.20 </response_by>
+OS: Linux
+Build: 0514
+Testcase: 16.000240
+Steps to reproduce
+Click on Window -> Preferences
+Expand Run/Debug
+Click to select Launching
+While you are on the Debug view perspective, click on the Debug Drop down icon
+Click on Debug Configurations..
+rom the left pane select and double-click on Remote Java Application
+Under the Connect tab --> under Connection Type:
+click on the drop-down arrow
+Space is missing before colon sign.
+Fixed in RSE by David but still there in Platform.
+Thanks,
+Martine
+<response_by> John Ryding at 2008.05.18.12.30.58 </response_by>
+This truncation does not occur in the english build.
+ The strings are located in the following file:
+eclipse/plugins/org.eclipse.jdt.debug/jdimodel_jar/org/eclipse/jdi/internal/connect/ConnectMessages.properties	SocketAttachingConnectorImpl_Host_2=
+<response_by> John Ryding at 2008.05.18.12.31.10 </response_by>
+This article was reassigned from Category:''TVT/Testing,Inbox''.

@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/SetFilterWizardPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/SourceContainerWorkbookPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/UserLibraryWizardPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/dialogfields/ListDialogField.java

@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/site/CategorySection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/site/SynchronizePropertiesAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/site/SynchronizePropertiesWizard.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/site/SynchronizePropertiesWizardPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties

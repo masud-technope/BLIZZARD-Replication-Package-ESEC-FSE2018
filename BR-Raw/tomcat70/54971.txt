@@ -1,0 +1,45 @@
+54971 – javax.servlet.http.Part.write(String fileName) is not properly implemented
+1.
+fileName parameter / relative vs absolute
+filaName parameter specification in
+<1><JSR-000315 Java Servlet 3.0 Final Release javadocs>
+is different from the <2><javax API tomcat refers to>.
+<1> <JSR-000315 Java Servlet 3.0 Final Release javadocs>
+Parameters:fileName - the name of the file to which the stream will be written.
+The file is created relative to the location as specified in the MultipartConfig
+<2> javax.
+API tomcat refers to
+* @param fileName  The location into which the uploaded part should be
+*                  stored.
+Relative locations are relative to {@link
+*                  javax.servlet.MultipartConfigElement#getLocation()}
+Tomcat is implemented as specified in <2> so that it can process "absolute path",
+but it should only accept "relative path" as specified in <1>
+<JSR-000315 Java Servlet 3.0 Final Release javadocs>
+2.
+If MultiPartConfig.location is not set,
+write( String relative path ) throws FileNotFound Exception.
+A default location needs to be set in order to avoid such exception.
+example) os: windows8
+part.write("/test");
+java.io.IOException: java.io.FileNotFoundException: \test (Access is denied)
+at org.apache.catalina.core.ApplicationPart.write(ApplicationPart.java:123)
+at servlet.multipart.MultipleUploadServlet.doPost(MultipleUploadServlet.java:76)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:647)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:947)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1009)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:312)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+at java.lang.Thread.run(Thread.java:662)

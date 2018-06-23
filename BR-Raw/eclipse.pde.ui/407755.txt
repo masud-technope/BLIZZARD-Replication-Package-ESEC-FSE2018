@@ -1,0 +1,7 @@
+Bug 407755 – More forceful wording about adding OSGi bundle manifest in manifest editor
+If you open the plugin manifest editor on a plugin with no OSGi bundle manifest, there is a section that says, "For this plug-in to take advantage of additional runtime capabilities, create an OSGi bundle manifest"
+However Equinox is planning to completely remove support for plug-ins with no manifest in the Luna release (bug 407312).
+For the Kepler release we should at least change this wording to be more forceful.
+It currently sounds like an optional extra thing you don't have to create.
+I suggest something like:
+"For this plug-in to be able to run in future releases, it is highly recommended that you create an OSGI bundle manifest"

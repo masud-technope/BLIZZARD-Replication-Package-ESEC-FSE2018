@@ -1,0 +1,6 @@
+Bug 227570 – Extending non-API class is not always an API problem
+I got set of these problems for org.eclipse.core.resources
+Extends non-API type org.eclipse.core.internal.events.InternalBuilder	IncrementalProjectBuilder.java	org.eclipse.core.resources/src/org/eclipse/core/resources
+line 31
+API Usage Problem
+John added to add some comments.

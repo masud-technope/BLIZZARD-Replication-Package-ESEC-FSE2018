@@ -1,0 +1,42 @@
+55749 – Disabling SSLEngine in AprLifecycleListener leads to misleading error message at startup when SSL Connector is delcared
+Put a <Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="off" /> in you server.xml.
+Put the APR connector some weeks later in your server.xml:
+<Connector protocol="org.apache.coyote.http11.Http11AprProtocol"
+port="@HTTPS_PORT@" connectionTimeout="20000" maxHttpHeaderSize="24576"
+maxThreads="250" URIEncoding="UTF-8" bufferSize="4096"
+scheme="https" secure="true" SSLEnabled="true" SSLProtocol="TLSv1"
+SSLCipherSuite="HIGH:!ADH" SSLCertificateFile="@SSL_CERT_FILE@"
+SSLCertificateKeyFile="@SSL_CERT_KEY_FILE@" SSLPassword="@SSL_PASSWORD@" />
+Start your Tomcat and receive following confusing message:
+Nov 06, 2013 1:30:39 PM org.apache.coyote.http11.Http11AprProtocol start
+SEVERE: Error starting endpoint
+java.lang.Exception: Socket bind failed: [226] Adresse bereits im Zugriff
+at org.apache.tomcat.util.net.AprEndpoint.init(AprEndpoint.java:671)
+at org.apache.tomcat.util.net.AprEndpoint.start(AprEndpoint.java:851)
+at org.apache.coyote.http11.Http11AprProtocol.start(Http11AprProtocol.java:139)
+at org.apache.catalina.connector.Connector.start(Connector.java:1196)
+at org.apache.catalina.core.StandardService.start(StandardService.java:540)
+at org.apache.catalina.core.StandardServer.start(StandardServer.java:754)
+at org.apache.catalina.startup.Catalina.start(Catalina.java:595)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:606)
+at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:289)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:414)
+Nov 06, 2013 1:30:39 PM org.apache.catalina.core.StandardService start
+SEVERE: Failed to start connector [Connector[HTTP/1.1-8444]]
+LifecycleException:  service.getName(): "Catalina";  Protocol handler start failed: java.lang.Exception: Socket bind failed: [226] Adresse bereits im Zugriff
+at org.apache.catalina.connector.Connector.start(Connector.java:1203)
+at org.apache.catalina.core.StandardService.start(StandardService.java:540)
+at org.apache.catalina.core.StandardServer.start(StandardServer.java:754)
+at org.apache.catalina.startup.Catalina.start(Catalina.java:595)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:606)
+at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:289)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:414)
+This is of course not correct.
+The port IS availble but the SSL engine has been turned off.
+There should be a check at stratup which says that this is an illegal state.

@@ -1,0 +1,4 @@
+providers/bundles/org.eclipse.ecf.provider.remoteservice/src/org/eclipse/ecf/internal/provider/remoteservice/Activator.java
+providers/bundles/org.eclipse.ecf.provider.remoteservice/src/org/eclipse/ecf/internal/provider/remoteservice/Messages.java
+providers/bundles/org.eclipse.ecf.provider.remoteservice/src/org/eclipse/ecf/internal/provider/remoteservice/messages.properties
+providers/bundles/org.eclipse.ecf.provider.remoteservice/src/org/eclipse/ecf/provider/remoteservice/generic/RegistrySharedObject.java

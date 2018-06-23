@@ -1,0 +1,24 @@
+36923 – Deactivated EL expressions are not parsed for jsp expressions/scriptlets/etc
+JavaServer Pages Specification 2.0, section JSP.3.3.2 says:
+---
+Since the syntactic pattern ${expr} was not reserved in the JSP specifications
+before JSP 2.0, there may be situations where such a pattern appears but the
+intention is not to activate EL expression evaluation but rather to pass through
+the pattern verbatim.
+To address this, the EL evaluation machinery can be
+deactivated as indicated in this section.
+[...]
+The default mode for JSP pages in a Web Application delivered using a web.xml
+using the Servlet 2.3 or earlier format is to ignore EL expressions; this
+provides for backward compatibility.
+---
+However, even with deactivated EL expression evaluation, jsp code like:
+<%@ page isELIgnored="true" %>${<%= "Hello, world!" %>}
+will produce output like:
+${<%= "Hello, world!" %>}
+which is of course not backwards-compatible with Servlet 2.3 / JSP 1.2 container
+(e.g., Tomcat 4.x), where the output would be:
+${Hello, world!}
+The ${...} syntax is widely used, and any pre-2.0 jsp pages having it would be
+incompatible with Tomcat 5.x even though the standard tries to ensure the
+compatibility.

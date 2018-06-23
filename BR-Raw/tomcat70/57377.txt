@@ -1,0 +1,19 @@
+57377 – Incorrect use of standard SSL properties for JMX in JMXRemoteLifecycleListener
+This ticket references some older bugs and changes related to them as below:
+- https://issues.apache.org/bugzilla/show_bug.cgi?id=55017 - Ability to provide an RMI bind address (so that the RMI server can be selectively bound to loopback only)
+- https://issues.apache.org/bugzilla/show_bug.cgi?id=56039 - This is a symptom to my problem, but was fixed and works fine.
+Here is the problem:
+The standard JMX properties (http://docs.oracle.com/javase/7/docs/technotes/guides/management/agent.html, http://docs.oracle.com/javase/7/docs/technotes/guides/management/agent.html#gdevf) are different for enabling SSL/TLS for the RMI registry (where jmxrmi is registered) and the JMX RMI server (which carries the JMX operations), being com.sun.management.jmxremote.registry.ssl and com.sun.management.jmxremote.ssl respectively.
+When 55017 was done, the RMI server factories thus created were used in creating the RMI registry (http://svn.apache.org/viewvc/tomcat/trunk/java/org/apache/catalina/mbeans/JmxRemoteLifecycleListener.java?revision=1498340&view=markup, line number 274)
+This works fine as long as we are not using SSL and I guess this is one of the reasons Alexey Noskov said "rmiBindAddress incompatible with rmiSSL".
+This side effect was noticed in bug# 56039 and was fixed to allow RMI registry clients to use com.sun.jndi.rmi.factory.socket.
+Recommendation:
+Would it be possible to have separate RMIServerSocketFactory for JMX/RMI and RMI registry, one dictated by com.sun.management.jmxremote.ssl (which results in the rmiSSL flag) and the other by com.sun.management.jmxremote.registry.ssl.
+This way the agent will be more compliant and we'd still have the ability to leave the RMI registry non SSL (which is to get the JMX/RMI connection stub).
+We can also fix the "rmiBindAddress incompatible with rmiSSL" problem by creating a custom SslRMIServerSocketFactory (basically extending the one in JDK and re-implementing the createServerSocket method to use the given rmiBindAddress.
+I'd be happy to do these changes, and can provide the changed version of this file, if this request seems reasonable.
+May be a patch as well if I learn SVN quickly.
+PS: The whole reason I reached here is that we in our products use custom JMX authentication and SSL/TLS implementation.
+We implement the jmx.remote.protocol.provider.pkgs approach to inject our SSL factories for JMXConnnectorServer.
+This recently broke because we have no control over how the server socket for RMI registry is created.
+We ended up setting com.sun.management.jmxremote.ssl to false to avoid this JMXRemoteLifecycleListener to stop doing SSL anywhere.

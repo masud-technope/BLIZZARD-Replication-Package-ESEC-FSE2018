@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/launcher/EclipseLaunchShortcut.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/templates/ComboChoiceOption.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/templates/AbstractTemplateSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/launcher/EclipseLauncherTabGroup.java

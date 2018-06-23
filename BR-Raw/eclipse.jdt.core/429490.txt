@@ -1,0 +1,29 @@
+Bug 429490 – [1.8] The method addListener(Junk11.ExpressionHelper<Object>, Junk11.ObservableValue<Object>, Junk11.InvalidationListener) is ambiguous for the type Junk11
+The following code compiles under JDK8 but not under Eclipse 8:
+package junk;
+public class Junk11 {
+class Observable<T> {}
+class ObservableValue<T> {}
+interface InvalidationListener {
+public void invalidated(Observable observable);
+}
+public interface ChangeListener<T> {
+void changed(ObservableValue<? extends T> observable, T oldValue, T newValue);
+}
+class ExpressionHelper<T> {}
+public static <T> ExpressionHelper<T> addListener(ExpressionHelper<T> helper, ObservableValue<T> observable, InvalidationListener listener) {
+return helper;
+}
+public static <T> ExpressionHelper<T> addListener(ExpressionHelper<T> helper, ObservableValue<T> observable, ChangeListener<? super T> listener) {
+return helper;
+}
+void junk() {
+addListener(null, null, new InvalidationListener () {
+public void invalidated(Observable o) {throw new RuntimeException();}
+});
+addListener(null, null, (o) -> {throw new RuntimeException();});
+}
+}
+NOTE:  This is a recent regression.
+ I updated this morning and got the compile error.
+ A guess: The single abstract method invalidated() should be selected based on the number of arguments?

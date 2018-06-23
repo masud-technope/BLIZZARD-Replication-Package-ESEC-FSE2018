@@ -1,0 +1,8 @@
+Bug 181883 – [Manifest Content Assist] Self-referencing Fragment-Host Proposal
+1.
+Create a new plug-in 'org.eclipse.bauman'
+2.
+On the manifest.mf source page, enter Fragment-Host (with the help of the content assist, of course).
+3.
+Bring up the list of proposals for the fragment host.
+ Note how 'org.eclipse.bauman' shows up in the list.

@@ -1,0 +1,10 @@
+52547 – incorrect byeswritten log after completed async request under http1.0
+AbstractHttp11Processor does not call nextRequest() if the socket will be closed because keepAlive=false (i.e.
+http/1.0).
+See line 1539 in
+http://svn.apache.org/repos/asf/tomcat/tc7.0.x/tags/TOMCAT_7_0_25/java/org/apache/coyote/http11/AbstractHttp11Processor.java
+Presumably the recycle() caused by the socket close is expected to subsume the behaviour of nextRequest()
+But in AbstractOutputBuffer recycle() does not have byteCount = 0, whereas nextRequest() does.
+See lines 260, 280 in
+http://svn.apache.org/repos/asf/tomcat/tc7.0.x/tags/TOMCAT_7_0_25/java/org/apache/coyote/http11/AbstractOutputBuffer.java
+The result is that the bytesWritten log of the following request will be incorrectly increased by the size of the async http/1.0 request

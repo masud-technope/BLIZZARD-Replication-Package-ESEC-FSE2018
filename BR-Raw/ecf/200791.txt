@@ -1,0 +1,52 @@
+Bug 200791 – [Discovery] Deprecate "String IServiceID#getServiceType" in favor of "IServiceTypeID IServiceID#getServiceTypeID"
+<lemmy>  slewis2: What do you think about introducing the IServiceType instead of String serviceType?
+<lemmy>  btw.
+i've started to implemented the IServiceType thingy already.
+<slewis2> would be OK.
+ What would be on IServiceType
+<slewis2> yeah...don't have any problem with addition of IServiceType in general...but needs to add value of course
+<lemmy>  http://pastebin.ca/664562
+<slewis2> hmm...what's getInternal()?
+<lemmy>  slewis2: getInternal() returns the implementation specific representation and is used by the impl to create the underlying servicetype
+<slewis2>  lemmy: a thought...another way to approach this would be to create an IServiceTypeID (since it uniquely identifies a service type within a certain Namespace)...and have IServiceTypeID extend ID, with these methods (getInternal() == getName())
+<lemmy>  this means however, that IServiceID would contain a IServiceTypeID
+<slewis2>  and IServiceTypeID could have getNamingAuthority(), getProtocols(), getServices()
+<slewis2>  yeah, IServiceID.getServiceType() would return IServiceTypeID I would expect
+<slewis2>  And providers would have to deal with that
+<slewis2>  just a thought...let's mull it over a bit
+<slewis2>  Then probably need to add a method Namespace IDiscoveryContainerAdapter.getServiceTypeNamespace()
+<slewis2>  So that IDFactory.getDefault().createID(ns,String serviceType) could be used to create instances...but this would have the advantage of using same mech (IDFactory) for parsing of identifiers (serviceTypes in this case)
+<lemmy>  ns would be either zeroconf or slp?
+<lemmy>  or whatever string those two are registered with.
+<slewis2>  ya...provider specific
+<lemmy>  btw.
+do i have to keep the old api or can 1.1 break 1.0?
+<slewis2>  well, we're supposed to not break old api until 2.0.0M1 (i.e.
+only add)
+<lemmy>  OK
+<lemmy>  IServiceID.getServiceTypeID it is
+<slewis2>  but we can start a branch for this at the right point
+<lemmy>  with getServiceType() still delegating of IServiceTypeID.getInteral() because getInternal() will be the old behavior.
+<lemmy>  getServiceType() will then be deprecated?!
+<slewis2>  I would expect
+<slewis2>  but if you have IServiceTypeID extend ID, you might as well just use getName() == getInternal()
+<lemmy>  true, getInternal() could be removed in favor of getName();
+<lemmy>  slewis2: but adding new providers is possible in between minor releases?
+<slewis2>  yes
+<slewis2>  addl impl
+<lemmy>  k, for the IServiceTypeID i'll create an enhancement in bugzilla and attach a patch.
+for my slp provider i can do the same once it is done?
+<slewis2>  lemmy: yes, that sounds good
+<slewis2>  thanks for your efforts, if you want to be an ECF committer to maintain let us know
+<lemmy>  lets see if the patches get accepted.
+ ;)
+<slewis2>  well, the major issue is timing...i.e.
+2.0.0
+<lemmy>  I plan to get the patches done by the end of next week.
+<lemmy>  Is this still in the 1.1 window?
+<lemmy>  cause i need the same code for a rcp product
+<slewis2>  what I would suggest is that we add new API with IServiceTypeID without deprecating anything for 1.1
+<slewis2>  1.1 is targeting Friday Aug 24, but I think I'm going to have move that back a week because I'm taking the end of this week off
+<lemmy>  If I don't make it for 1.1, 1.2 is due when?
+<slewis2>  and we can move 1.1 to Aug 31
+<slewis2>  1.2 Oct 5...here's schedule currently: http://wiki.eclipse.org/ECF_Ganymede_Roadmap

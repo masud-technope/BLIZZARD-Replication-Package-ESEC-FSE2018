@@ -1,0 +1,27 @@
+Bug 415043 – [1.8][null] Follow-up re null type annotations after bug 392099
+Once bug 392099 has resolved the bulk of the work for null type annotations,
+the following list of TODOs must be investigated:
+(1) Check para in Annotation.resolveType() starting
+if ((annotationType.tagBits & TagBits.AnnotationTargetMASK) == TagBits.AnnotationForTypeUse) {
+-> Needed? When, why introduced? Overlap with 1.8 treatment below??
+(2) ConditionalExpression: FIXME: we need t1 == t2 comparison,
+but don't yet handle mixed scenarios of types with nullTagBits + arguments
+-> also use unannotated() instead of original()!!
+(3) ReturnStatement:
+more detailed checking (incomp.
+due to annot on type detail)
+-> use findNullTypeAnnotationMismatch() & write more tests
+-> this method still needs to descend into type parameters
+(4) Statement.findNullTypeAnnotationMismatch(..)
+- maybe int return can be replaced with boolean (isDefiniteConflict)
+- if so, maybe the method can actually do less for non-definite cases
+(5) TypeDeclaration:
+-> Need to check if synth default constructors need treatment for JSR308
+(6) LookupEnvironment.createAnnotatedType: + handle PolyTypeBinding
+(7) SourceTypeBinding.resolveTypeFor()
+- here we translate NonNullByDefault into type annotation after the fact.
+should we use different strategies up-front?
+(8) ReferenceBinding.nullAnnotatedReadableName(..)
+- respect annotatable enclosing type
+(9) NullTypeAnnotationTest: expect (and implement) more error messages
+(individually marked "FIXME").

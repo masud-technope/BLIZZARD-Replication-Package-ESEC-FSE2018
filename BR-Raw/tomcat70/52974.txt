@@ -1,0 +1,32 @@
+52974 – NameNotFoundException is thrown when field/method is annotated with @Resource annotation
+Created attachment 28500 [details]
+Patch proposal
+Hi,
+I have a web application (attached) that has a Servlet with an annotated (@Resource) field and an annotated (@Resource) method.
+When I request the Servlet I'm receiving:
+javax.naming.NameNotFoundException: Name test.TestServlet is not bound in this Context
+org.apache.naming.NamingContext.lookup(NamingContext.java:820)
+org.apache.naming.NamingContext.lookup(NamingContext.java:168)
+org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472)
+org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98)
+I searched the sources and found that org.apache.catalina.startup.WebAnnotationSet processes and prepares for binding only @Resource annotation on a class level.
+However org.apache.catalina.core.DefaultInstanceManager tries to process @Resource annotation on field/method level and to inject the necessary Object.
+Unfortunately as the information is not processed and bound in the naming previously, NameNotFoundException is thrown.
+I would like to propose a patch (attached).
+I'm looking forward to your comments.
+Thanks in advance.
+Regards
+Violeta Georgieva
+Steps to reproduce the issue:
+1.
+Deploy the attached web application
+2.
+Request http://localhost:8080/test/TestServlet
+3.
+NameNotFoundException is thrown
+4.
+Apply the patch and restart Tomcat
+5.
+Request http://localhost:8080/test/TestServlet
+6.
+You should see in the browser "Annotated field: test Annotated method: test1"

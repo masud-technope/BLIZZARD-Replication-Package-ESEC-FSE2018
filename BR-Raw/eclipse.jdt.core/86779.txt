@@ -1,0 +1,4 @@
+Bug 86779 – AST#resolveWellKnownType(..) should support primitive type wrappers
+AST#resolveWellKnownType(..) should support all 8 primitive type wrappers
+(java.lang.Integer, etc.).
+That would be rather convenient when dealing with autoboxing/unboxing.

@@ -1,0 +1,1 @@
+framework/bundles/org.eclipse.ecf.discovery.ui.model/src/org/eclipse/ecf/discovery/ui/model/resource/ServiceResource.java

@@ -1,0 +1,2 @@
+Bug 24934 – Move top level doesn't optimize the imports[refactoring]
+After a Move to top level refactoring you end up with unused import errors.

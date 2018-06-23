@@ -1,0 +1,16 @@
+Bug 335132 – [actions] Override / Implement dialog size / position are not saved
+Build Identifier: 20100917-0705
+The size and position of "override/implement method" dialog box is not saved.
+If I make the dialog larger to see more methods at once (I have a large monitor), then on subsequent invocations the dialog resets to default size / position.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Bring up override/implement method dialog.
+2.
+Resize the dialog, e.g.
+make it larger.
+3.
+Finish by overriding a method (clicking "Ok)
+4.
+Bring up the dialog again.
+---> The dialog has the old, default size - its size and position are not saved.

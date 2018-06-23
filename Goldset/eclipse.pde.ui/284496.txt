@@ -1,0 +1,5 @@
+ua/org.eclipse.pde.ua.core/src/org/eclipse/pde/internal/ua/core/ctxhelp/text/CtxHelpDocumentHandler.java
+ua/org.eclipse.pde.ua.core/src/org/eclipse/pde/internal/ua/core/ctxhelp/text/CtxHelpMarkerManager.java
+ua/org.eclipse.pde.ua.core/src/org/eclipse/pde/internal/ua/core/ctxhelp/text/CtxHelpModel.java
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/ctxhelp/CtxHelpEditor.java
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/ctxhelp/CtxHelpPage.java

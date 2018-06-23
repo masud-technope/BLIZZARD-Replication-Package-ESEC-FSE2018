@@ -1,0 +1,5 @@
+Bug 341820 – ContainerFactoryTracker tracks wrong class
+Build Identifier: 3.1.200.v20110313-1843
+ContainerFactoryTracker tracks IContainerManager instead of IContainerFactory.
+ See ContainerFactoryTracker line 25.
+Reproducible: Always

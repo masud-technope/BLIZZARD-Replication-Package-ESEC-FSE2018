@@ -1,0 +1,5 @@
+48387 – Make RemoteIpFilter parameters consistent with RemoteIpValve
+Created attachment 24705 [details]
+Rename RemoteIpFilter#protocolHeaderSslValue into protocolHeaderHttpsValue
+RemoteIpFilter field 'protocolHeaderSslValue' is not consistent with RemoteIpValve where it is named 'protocolHeaderHttpsValue'.
+Proposed patch renames 'protocolHeaderSslValue' into 'protocolHeaderHttpsValue' (field + getter and setter) and enhance one javadoc sentence.

@@ -1,0 +1,6 @@
+Bug 21801 – ThreadGroupReference related data should be cached
+In the current implementation of the JDI client, a jdwp command is send each
+time the thread group of a thread, the name or the parent of a thread group is
+asked.
+These data are never modify (there is no API for that in the base java library),
+they should be cached for reduce the number of jdwp command.

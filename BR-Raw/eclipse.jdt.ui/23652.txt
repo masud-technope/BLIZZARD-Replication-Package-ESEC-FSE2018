@@ -1,0 +1,10 @@
+Bug 23652 – Refactor Move doesn't handle inner classes correctly [refactoring]
+After moving the class com.objfac.xmleditor.XMLValidator to the package
+com.objfac.xmleditor.actions, a referencing class was left with the following
+import statements:
+import com.objfac.xmleditor.XMLValidator.ErrorCallback;
+import com.objfac.xmleditor.XMLValidator.LocatorInfo;
+import com.objfac.xmleditor.actions.XMLValidator;
+The class itself is correctly named, but its two inner classes are not.
+(All of
+these imports were originally added by Organize Imports.)

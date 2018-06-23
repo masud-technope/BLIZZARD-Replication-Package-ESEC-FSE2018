@@ -1,0 +1,18 @@
+46011 – Cannot access to Principal via Subject.getSubject(AccessController.getContext())
+Cannot access to Principal via Subject.getSubject(AccessController.getContext()).
+Problem is that in method internalDoFilter of ApplicationFilterChain in call of filter chain the code determinate the Principal but don't use it:
+if( Globals.IS_SECURITY_ENABLED ) {
+final ServletRequest req = request;
+final ServletResponse res = response;
+Principal principal =
+((HttpServletRequest) req).getUserPrincipal();
+Object[] args = new Object[]{req, res, this};
+SecurityUtil.doAsPrivilege
+("doFilter", filter, classType, args);
+args = null;
+} else {
+In this manner a SecurityUtil.doAsPrivilege will be called with Principal == null
+and method execute create a Subject with no Principals.
+Then call a Subject.doAsPrivileged(subject, pea, null);  and this do not propagate Principals.
+I obtain a Subject without Principals calling Subject.getSubject(AccessController.getContext()).
+In attachment we send our solution

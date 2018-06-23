@@ -1,0 +1,42 @@
+40817 – servlet-cgi throws index out of bounds exception on certain cgi
+First, servlets-cgi.jar needs to exist and the servlet must be mapped:
+for example:
+<servlet-mapping>
+<servlet-name>cgi</servlet-name>
+<url-pattern>*.pl</url-pattern>
+</servlet-mapping>
+Test perl cgi script:
+#!/usr/bin/perl
+print "Content-type: text/plain", "\n\n";
+print "Hello world, from Perl\n";
+One perl script is placed in www-root ("/test.pl") and the other in any
+subfolder ("/test/test.pl" or "/cgi-bin/test.pl", etc.)
+The cgi script in the subfolder will run fine.
+The cgi script in the www-root will generate an exception:
+java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+java.lang.String.substring(String.java:1768)
+java.lang.String.substring(String.java:1735)
+org.apache.catalina.servlets.CGIServlet$CGIEnvironment.findCGI(CGIServlet.java:948)
+org.apache.catalina.servlets.CGIServlet$CGIEnvironment.setCGIEnvironment(CGIServlet.java:1015)
+org.apache.catalina.servlets.CGIServlet$CGIEnvironment.<init>(CGIServlet.java:766)
+org.apache.catalina.servlets.CGIServlet.doGet(CGIServlet.java:584)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:689)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:802)
+The problem is this line (line 948 in CGIServlet.java):
+cginame =
+currentLocation.getParent().substring(webAppRootDir.length())+ File.separator +
+name;
+The problem is that webAppRootDir is 1 char longer than
+currentLocation.getParent() because webAppRootDir ends with a File.separator (in
+this case, a "/").
+ And removing the extra File.separator from webAppRootDir
+will result in a different String related exception elsewhere.
+And here's a fix that works:
+cginame = (currentLocation.getParent() +
+File.separator).substring(webAppRootDir.length()) + name;
+(If necessary, the fix can be made more adaptive by checking to see if it really
+does have a File.separator at the end and if not...add it...otherwise, let it
+be, etc.)
+(on a side note, I have one more bug to fix; the ENV_VAR "SCRIPT_FILENAME" isn't
+defined as it should be [required for PHP4/5] but I'll submit a different
+bug/fix for that.)

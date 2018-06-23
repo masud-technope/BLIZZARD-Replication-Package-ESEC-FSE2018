@@ -1,0 +1,2 @@
+Bug 486675 – [ecf.generic] Improve server-side keepAlive handling
+The keepAlive handing on the server-side of the connection is not done properly in the constructor of this class org.eclipse.ecf.provider.comm.tcp.Client

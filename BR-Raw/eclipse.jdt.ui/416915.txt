@@ -1,0 +1,3 @@
+Bug 416915 – Allow to run tests with tycho-surefire-plugin
++++ This bug was initially created as a clone of Bug #416904 +++
+In order to lower entry barrier for contribution and execution of unit tests, it would be quite helpful to make it possible to run tests with tycho-surefire-plugin and a simple "mvn clean verify".

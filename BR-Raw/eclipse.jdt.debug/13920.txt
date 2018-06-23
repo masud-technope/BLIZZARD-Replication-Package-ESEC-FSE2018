@@ -1,0 +1,71 @@
+Bug 13920 – NPE evaluating in local type in field declaration
+When I evaluated the keyCode of KeyListener that I had defined I got the
+following Null PointerException from the debugger
+java.lang.NullPointerException
+at
+org.eclipse.jdt.internal.debug.eval.ast.engine.SourceBasedSourceGenerator.endVis
+it(SourceBasedSourceGenerator.java:491)
+at org.eclipse.jdt.core.dom.ClassInstanceCreation.accept0
+(ClassInstanceCreation.java:107)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:957)
+at org.eclipse.jdt.core.dom.VariableDeclarationFragment.accept0
+(VariableDeclarationFragment.java:90)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:986)
+at org.eclipse.jdt.core.dom.FieldDeclaration.accept0
+(FieldDeclaration.java:113)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:986)
+at org.eclipse.jdt.core.dom.TypeDeclaration.accept0
+(TypeDeclaration.java:153)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:986)
+at org.eclipse.jdt.core.dom.CompilationUnit.accept0
+(CompilationUnit.java:138)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:906)
+at
+org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationSourceGenerator.createE
+valuationSourceFromSource(EvaluationSourceGenerator.java:75)
+at
+org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationSourceGenerator.getSour
+ce(EvaluationSourceGenerator.java:106)
+at
+org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.getCompiledEx
+pression(ASTEvaluationEngine.java:261)
+at
+org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.evaluate
+(ASTEvaluationEngine.java:63)
+at org.eclipse.jdt.internal.debug.ui.actions.EvaluateAction.run
+(EvaluateAction.java:225)
+at org.eclipse.jdt.internal.debug.ui.actions.DisplayAction.run
+(DisplayAction.java:122)
+at org.eclipse.jdt.internal.debug.ui.actions.EvaluateAction.run
+(EvaluateAction.java:499)
+at org.eclipse.ui.internal.PluginAction.runWithEvent
+(PluginAction.java:202)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection
+(ActionContributionItem.java:407)
+at
+org.eclipse.jface.action.ActionContributionItem$ActionListener.handleEvent
+(ActionContributionItem.java(Compiled Code))
+at
+org.eclipse.jface.action.ActionContributionItem$ActionListener.handleEvent
+(ActionContributionItem.java(Compiled Code))
+at
+org.eclipse.jface.action.ActionContributionItem$ActionListener.handleEvent
+(ActionContributionItem.java(Compiled Code))
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java
+(Compiled Code))
+at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java(Compiled
+Code))
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java
+(Compiled Code))
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java
+(Compiled Code))
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java
+(Compiled Code))
+at org.eclipse.ui.internal.Workbench.run(Workbench.java:819)
+at org.eclipse.core.internal.boot.InternalBootLoader.run
+(InternalBootLoader.java:777)
+at org.eclipse.core.boot.BootLoader.run(BootLoader.java:319)
+at java.lang.reflect.Method.invoke(Native Method)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:190)
+at org.eclipse.core.launcher.Main.run(Main.java:549)
+at org.eclipse.core.launcher.Main.main(Main.java:390)

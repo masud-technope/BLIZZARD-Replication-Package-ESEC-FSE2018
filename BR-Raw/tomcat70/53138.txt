@@ -1,0 +1,19 @@
+53138 – Not able to download a file size of 740KB using NIO connector in tomcat version 7.0.27. But with the same configuration I was able to download that in tomcat 7.0.26.
+We have an application that uses a java script file of size around 700Kb that will be downloaded as part of the client.
+The connector used was NIO .
+All these days we did not see any issue till Tomcat 7.0.26.
+When we upgraded it to the latest Tomcat version 7.0.27 we started getting this problem.
+The file is never getting downloaded the connection will be broken in middle.
+And we used fiddler to see what is happening and it gives us a message as below
+â€œContent-Length mismatch: Response Header indicated 757,692 bytes, but server sent 262,142 bytes.â€?
+If I use the default connector there is no issues.
+it works fine.
+To reproduce this we have created a sample application.
+Please follow the steps below.
+Clean up all the browser cash:
+1.	Deploy  TestNIOConnector app in tomcat.
+2.	In server.xml change to connect to NIO as shown below.
+<Connector port="9880" protocol="org.apache.coyote.http11.Http11NioProtocol" maxThreads="150" connectionTimeout="70000"
+acceptCount="100" compression="on" acceptorThreadCount="2" redirectPort="8443" />
+3.	Start the service and try to access this file using the following URL in IE.
+http://localhost:9880/TestNIOConnector/apidocs.js

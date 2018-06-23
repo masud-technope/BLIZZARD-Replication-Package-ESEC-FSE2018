@@ -1,0 +1,9 @@
+Bug 31110 – Debbugger Source Lookup does not work with variables
+In the Debugger Source Lookup dialog I can also select variables for source
+lookup.
+(Advanced...
+> Add Variables).
+I selected the variable which points to
+the archive containing the source file for the type, but the debugger still
+claims that he cannot find the source.
+Eclipse Build 200212181304 (M4).

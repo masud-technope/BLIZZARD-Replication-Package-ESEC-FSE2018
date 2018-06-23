@@ -1,0 +1,14 @@
+Bug 27555 – [startup] PackageFragmentRoot - source attached too early (?)
+20021127
+PackageFragmentRoot calls attachSource on openWhenClosed
+which happens in the following scenario:
+1.
+'collapse all' in package explorer
+2.
+restart eclipse
+3.
+expand one project (i tried a source project - probably true for any)
+4.
+you wait a long time and 40% of that time is spent on attaching source to a
+binary file that you have not touched yet
+will attach profile

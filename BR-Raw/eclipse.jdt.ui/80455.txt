@@ -1,0 +1,8 @@
+Bug 80455 – [5.0] ITypeBinding.canAssign not aware of type boxing
+20041208
+With the latest changes for type boxing (in N20041207) our tests for the assign
+compatibility fail:
+boolean b= true;
+Object o;
+o= b;  // valid code, no compiler error
+but typeBindingOfB.isAssignCompatible(typeBindingOfO) is false

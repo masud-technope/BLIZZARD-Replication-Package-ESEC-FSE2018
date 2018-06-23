@@ -1,0 +1,13 @@
+55158 – Wasted work in AttributeNamesEnumerator constructor
+Created attachment 30498 [details]
+patch
+The problem appears in version 7.0.41 and in revision 1497999.
+ I
+attached a two-line patch  that fixes it.
+In the "AttributeNamesEnumerator" constructor, the loop over
+"specials" keeps overriding "last" with "i".
+ Therefore, only the last
+written value is visible out of the loop and all the other writes and
+iterations are not necessary.
+ The patch iterates from the end of
+"specials" and breaks the first time when "last" is set.

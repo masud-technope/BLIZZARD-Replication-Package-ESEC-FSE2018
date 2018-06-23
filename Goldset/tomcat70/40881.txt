@@ -1,0 +1,14 @@
+java/org/apache/catalina/ha/session/DeltaRequest.java
+java/org/apache/catalina/ha/session/DeltaSession.java
+java/org/apache/catalina/ha/session/SerializablePrincipal.java
+java/org/apache/catalina/ha/session/SimpleTcpReplicationManager.java
+java/org/apache/catalina/realm/DataSourceRealm.java
+java/org/apache/catalina/realm/GenericPrincipal.java
+java/org/apache/catalina/realm/JAASRealm.java
+java/org/apache/catalina/realm/JDBCRealm.java
+java/org/apache/catalina/realm/JNDIRealm.java
+java/org/apache/catalina/realm/MemoryRealm.java
+java/org/apache/catalina/realm/RealmBase.java
+java/org/apache/catalina/realm/UserDatabaseRealm.java
+java/org/apache/catalina/startup/Tomcat.java
+test/org/apache/catalina/ha/session/TestSerializablePrincipal.java

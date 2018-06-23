@@ -1,0 +1,9 @@
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/IBinding.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/IBinding.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ITypeBinding.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ASTParser.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/AnnotatableType.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/IBinding.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/IMethodBinding.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ITypeBinding.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/Type.java

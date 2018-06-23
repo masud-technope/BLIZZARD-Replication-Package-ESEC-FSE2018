@@ -1,0 +1,36 @@
+Bug 424742 – [1.8] NPE in LambdaExpression.isCompatibleWith
+package two.test;
+class TestInlineLambdaArray {
+TestInlineLambdaArray h = new TestInlineLambdaArray(x -> x++);	// [9]
+public TestInlineLambda(FI fi) {}
+}
+interface FI {
+void foo();
+}
+-------------------------------------------------
+Place the above example in a java file and save.
+We get the following exception:
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.isCompatibleWith(LambdaExpression.java:628)
+at org.eclipse.jdt.internal.compiler.lookup.PolyTypeBinding.isCompatibleWith(PolyTypeBinding.java:37)
+at org.eclipse.jdt.internal.compiler.lookup.TypeBinding.isCompatibleWith(TypeBinding.java:556)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolveTypeExpecting(Expression.java:1050)
+at org.eclipse.jdt.internal.compiler.ast.FunctionalExpression.checkAgainstFinalTargetType(FunctionalExpression.java:140)
+at org.eclipse.jdt.internal.compiler.ast.ASTNode.resolvePolyExpressionArguments(ASTNode.java:693)
+at org.eclipse.jdt.internal.compiler.ast.Statement.findConstructorBinding(Statement.java:339)
+at org.eclipse.jdt.internal.compiler.ast.AllocationExpression.resolveType(AllocationExpression.java:458)
+at org.eclipse.jdt.internal.compiler.ast.FieldDeclaration.resolve(FieldDeclaration.java:264)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1145)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1319)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:570)
+at org.eclipse.jdt.internal.compiler.Compiler.resolve(Compiler.java:920)
+at org.eclipse.jdt.internal.compiler.Compiler.resolve(Compiler.java:965)
+at org.eclipse.jdt.internal.core.CompilationUnitProblemFinder.process(CompilationUnitProblemFinder.java:204)
+at org.eclipse.jdt.internal.core.CompilationUnitProblemFinder.process(CompilationUnitProblemFinder.java:270)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:190)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:89)
+at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:728)
+at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:788)
+at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1247)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:126)
+...

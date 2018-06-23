@@ -1,0 +1,14 @@
+Bug 255448 – [preferences] 'Code Style' preference page should have a single selection table
+I20081112-1200
+1.
+Window > Preferences > Java > Code Style
+2.
+Click on an entry in the table, the 'Edit' button is enabled.
+3.
+Ctrl+Click on another entry in the table, the 'Edit' button is disabled.
+4.
+Look at the other preferences and see how they apply to the selection in the table.
+5.
+Conclude that they have nothing to do with variable names.
+6.
+Conclude that multiselection appears to serve no purpose in this table.

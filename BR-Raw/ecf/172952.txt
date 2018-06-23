@@ -1,0 +1,3 @@
+Bug 172952 – [xmpp provider] XMPP provider does not implement IChatRoomManager.createChatRoom
+The 0.9.6 implementation of IChatRoomManager.createChatRoom in xmpp provider currently does nothing.
+  Need to provide implementation.

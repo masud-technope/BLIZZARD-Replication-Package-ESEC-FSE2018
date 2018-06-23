@@ -1,0 +1,12 @@
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/META-INF/MANIFEST.MF
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/src/org/eclipse/ecf/tests/provider/discovery/SingleCompositeDiscoveryServiceContainerTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/org.eclipse.ecf.tests.provider.discovery.launch
+releng/features/org.eclipse.ecf.discovery.feature/buckminster.cspex
+releng/features/org.eclipse.ecf.discovery.feature/buckminster.cspex
+releng/features/org.eclipse.ecf.discovery.feature/buckminster.cspex
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/src/org/eclipse/ecf/tests/provider/discovery/CompositeDiscoveryServiceContainerTest.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/Activator.java
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/META-INF/MANIFEST.MF
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/src/org/eclipse/ecf/tests/provider/discovery/SingleCompositeDiscoveryServiceContainerTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/src/org/eclipse/ecf/tests/provider/discovery/WithoutJMDNSCompositeDiscoveryServiceContainerTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/src/org/eclipse/ecf/tests/provider/discovery/WithoutJSLPCompositeDiscoveryServiceContainerTest.java

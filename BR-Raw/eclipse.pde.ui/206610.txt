@@ -1,0 +1,13 @@
+Bug 206610 – Cannot build fresh workspace with I20071016
+3.4
+I20071016
+When I load all of platform-ui and platform-ui-tests into a fresh workspace none of the dependencies are resolved and as a result I get almost 90,000 errors.
+If I take an existing workspace I don't have this problem.
+STEPS
+1) Start I20071016 with a fresh workspace
+2) Load platform-ui and platform-ui-tests
+3) 90,000 errors
+4) Go to a I20071010 build and create a new workspace
+5)  Load platform-ui and platform-ui-tests
+6) Shutdown and then re-open the I20071016 build with the workspace
+7) No errors

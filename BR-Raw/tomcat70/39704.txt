@@ -1,0 +1,59 @@
+39704 – context with privileged="true" do not setup properly inner loaders
+Tomcat 5.5.17.
+When specifying in TOMCAT/conf/context.xml a loader tag, context
+with privileged="true" are not properly setup.
+For example with this TOMCAT/conf/context.xml:
+[quote]
+<!-- The contents of this file will be loaded for each web application -->
+<Context>
+<!-- Default set of monitored resources -->
+<WatchedResource>WEB-INF/web.xml</WatchedResource>
+<!-- * ADD THIS *  -->
+<Loader />
+<!-- Uncomment this to disable session persistence across Tomcat restarts-->
+<!--
+<Manager pathname="" />
+-->
+</Context>
+[/quote]
+gives the following error at startup:
+ERROR Exception starting filter BalancerFilter -
+org.apache.catalina.core.StandardContext.filterStart(StandardContext.java:3604)
+java.lang.NoClassDefFoundError: org/apache/tomcat/util/digester/Digester
+at org.apache.webapp.balancer.RulesParser.createDigester(RulesParser.java:65)
+at org.apache.webapp.balancer.RulesParser.<init>(RulesParser.java:43)
+at org.apache.webapp.balancer.BalancerFilter.init(BalancerFilter.java:79)
+at org.apache.catalina.core.ApplicationFilterConfig.getFilter(ApplicationFilterConfig.java:223)
+at org.apache.catalina.core.ApplicationFilterConfig.setFilterDef(ApplicationFilterConfig.java:304)
+at org.apache.catalina.core.ApplicationFilterConfig.<init>(ApplicationFilterConfig.java:77)
+at org.apache.catalina.core.StandardContext.filterStart(StandardContext.java:3600)
+at org.apache.catalina.core.StandardContext.start(StandardContext.java:4193)
+at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:759)
+at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:739)
+at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:524)
+at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:904)
+at org.apache.catalina.startup.HostConfig.deployDirectories(HostConfig.java:867)
+at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:474)
+at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1122)
+at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:310)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+at org.apache.catalina.core.ContainerBase.start(ContainerBase.java:1021)
+at org.apache.catalina.core.StandardHost.start(StandardHost.java:718)
+at org.apache.catalina.core.ContainerBase.start(ContainerBase.java:1013)
+at org.apache.catalina.core.StandardEngine.start(StandardEngine.java:442)
+at org.apache.catalina.core.StandardService.start(StandardService.java:450)
+at org.apache.catalina.core.StandardServer.start(StandardServer.java:709)
+at org.apache.catalina.startup.Catalina.start(Catalina.java:551)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:294)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:432)
+ERROR Error filterStart -
+org.apache.catalina.core.StandardContext.start(StandardContext.java:4194)
+ERROR Context [/balancer] startup failed due to previous errors -
+org.apache.catalina.core.StandardContext.start(StandardContext.java:4215)
+Note that this is a default install w/o any custom webapps just with the empty
+loader tag added.
+It seems that the digester rules do not handle this case appropriately.

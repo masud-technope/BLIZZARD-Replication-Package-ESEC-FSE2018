@@ -1,0 +1,23 @@
+Bug 296589 – [breadcrumb] Opening a file via breadcrumb does not retarget the status line
+User-Agent:       Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; GTB0; .NET CLR 1.1.4322; .NET CLR 3.0.04506.30; .NET CLR 3.0.04506.648; InfoPath.1; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)
+Build Identifier: 20090920-1017
+When I choose a class via the breadcrumb, the line numbers at the bottom of the screen do not update themselves.
+In addition, Source -> Clean Up fails to work until I've fixed the problem.
+The only way for the line numbers to update themselves again (and for Source -> Clean Up) is for me to select a document not using breadcrumbs and go back to my document.
+Another way is to control+pageup and control+pagedown to get back to where I'm at.
+Reproducible: Always
+Steps to Reproduce:
+1.I'm in the Java Perspective.
+My breadcrumb bar looks like the following:
+ncoserver-business-cbservices -> src/main/java -> com.ncogroup.ncoserver.business.service -> NcoDeceasedService
+2.
+I observe the line number at the bottom of the screen.
+It reflects the current file I'm in, for this example line 10 of NcoDeceasedService.java.
+3.
+I click on the 4th item in the breadcrumb to choose another file.
+For this example, I choose NcoDependentService.
+4.
+The cursor focus moves to line 3 and hilites the class name.
+The bottom of the screen still shows that I'm on line number 10 of the previous file.
+5.
+When I move the cursor around the screen via keyboard or mouse, the line number does not update.

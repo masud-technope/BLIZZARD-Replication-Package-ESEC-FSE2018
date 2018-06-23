@@ -1,0 +1,9 @@
+49426 – Manager app wrongly localized
+Created attachment 25582 [details]
+Patch (with unit test) fixing the problem for the ManagerServlet
+The manager app shows message using the server's default locale whereas it should react on the request Locale.
+The cause is that the ManagerServlet uses StringManager what is fine for messages that are logged but not for those that are sent as responses.
+The attached patch fixes the problem for the ManagerServlet but not for the HTMLManagerServlet.
+It will require a bit more refactoring there because the same messages may be intended for log or for output to the response.
+I can propose a second patch for it once the problem has been fixed for the ManagerServlet.
+For info: same problem occurs in Tomcat 6.

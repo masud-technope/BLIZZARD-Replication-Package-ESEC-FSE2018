@@ -1,0 +1,5 @@
+Bug 398490 – Don't show source for .class file outside build path
+3.8.
+In the special case where source folder == output folder == project, we show the source when opening the class file from the output folder.
+This is not good.
+Yes, I know this code was added on request, but it is wrong.

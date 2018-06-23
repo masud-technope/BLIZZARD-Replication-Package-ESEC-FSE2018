@@ -1,0 +1,10 @@
+java.util.Hashtable.remove
+org.eclipse.jdi.internal.request.EventRequestManagerImpl.removeRequestIDMapping
+org.eclipse.jdi.internal.request.EventRequestImpl.disable
+org.eclipse.jdi.internal.request.EventRequestManagerImpl.deleteEventRequest
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.removeRequests
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.recreate
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.recreate
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.setEnabled
+org.eclipse.debug.internal.ui.views.breakpoints.BreakpointsView$3.run
+org.eclipse.core.internal.jobs.Worker.run

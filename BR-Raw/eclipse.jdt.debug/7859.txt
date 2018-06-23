@@ -1,0 +1,2 @@
+Bug 7859 – Feature: method exit breakpoints
+Super debug adapter developers require method exit breakpoints.

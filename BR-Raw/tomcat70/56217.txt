@@ -1,0 +1,8 @@
+56217 – Regarding Tomcat Manager Application Status Page
+Created attachment 31366 [details]
+Tomcat Managet Status Page Screenshot
+In Tomcat Manager Status Page, please make "Request" as Left align.
+Currently "Request" column is Center align due to which if there are links with larger in length (Links with GET method) could not display in Desktop Screen.
+To view these links, horizonatal scrollbar has to use.
+If we could make it Left align, all links could be viewed in screen (atleast starting points of links).
+Screenshot attached for more clarity and reference.

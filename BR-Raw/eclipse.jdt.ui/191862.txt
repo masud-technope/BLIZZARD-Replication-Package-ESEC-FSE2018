@@ -1,0 +1,13 @@
+Bug 191862 – [clean up] use modifier "final" where possible removes annotations
+The "Use modifier 'final' where possible" removes all annotations in fields.
+To reproduce this bug, just create a simple class with some annotation in a field and do the clean up task.
+Example:
+public static class OutjectionTestClass {
+@SuppressWarnings("unused")
+@Out
+private int x = 5;
+private int w = 3;
+public int getW() {
+return w;
+}
+}

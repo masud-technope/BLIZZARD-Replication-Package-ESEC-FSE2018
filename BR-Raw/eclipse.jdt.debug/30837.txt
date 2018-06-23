@@ -1,0 +1,7 @@
+Bug 30837 – Loss of suspended at breakpoint information
+Set an exception breakpoint for NPE.
+Debug some code that will throw an NPE.
+When suspended at the breakpoint, select an object variable in the variables
+view.
+The thread loses the information about being suspended at a breakpoint as a
+result of the evalution.

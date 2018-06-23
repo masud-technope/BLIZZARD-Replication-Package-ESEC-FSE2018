@@ -1,0 +1,17 @@
+org.eclipse.jdt.debug.jdi.tests/.settings/org.eclipse.jdt.core.prefs
+org.eclipse.jdt.debug.jdi.tests/tests/org/eclipse/debug/jdi/tests/AbstractJDITest.java
+org.eclipse.jdt.debug.jdi.tests/tests/org/eclipse/debug/jdi/tests/ClassTypeTest.java
+org.eclipse.jdt.debug.jdi.tests/tests/org/eclipse/debug/jdi/tests/EventReader.java
+org.eclipse.jdt.debug.jdi.tests/tests/org/eclipse/debug/jdi/tests/EventRequestTest.java
+org.eclipse.jdt.debug.jdi.tests/tests/org/eclipse/debug/jdi/tests/EventTest.java
+org.eclipse.jdt.debug.jdi.tests/tests/org/eclipse/debug/jdi/tests/HeapWalkingTests.java
+org.eclipse.jdt.debug.jdi.tests/tests/org/eclipse/debug/jdi/tests/LocatableTest.java
+org.eclipse.jdt.debug.jdi.tests/tests/org/eclipse/debug/jdi/tests/MirrorTest.java
+org.eclipse.jdt.debug.jdi.tests/tests/org/eclipse/debug/jdi/tests/ObjectReferenceTest.java
+org.eclipse.jdt.debug.jdi.tests/tests/org/eclipse/debug/jdi/tests/ReferenceTypeTest.java
+org.eclipse.jdt.debug.jdi.tests/tests/org/eclipse/debug/jdi/tests/StackFrameTest.java
+org.eclipse.jdt.debug.jdi.tests/tests/org/eclipse/debug/jdi/tests/TestAll.java
+org.eclipse.jdt.debug.tests/.settings/org.eclipse.jdt.core.prefs
+org.eclipse.jdt.debug.ui/.settings/org.eclipse.jdt.core.prefs
+org.eclipse.jdt.debug/.settings/org.eclipse.jdt.core.prefs
+org.eclipse.jdt.launching/.settings/org.eclipse.jdt.core.prefs

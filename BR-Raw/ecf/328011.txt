@@ -1,0 +1,2 @@
+Bug 328011 – Use OSGi whiteboard pattern for IServiceListener|IServiceTypeListener registration
+Additionally to registering an IServiceListener|IServiceTypeListener with the IDiscoveryLocator directly, it should be possible to register it with the OSGi service registry and have the IDiscoveryLocator pick listeners up via the whiteboard pattern.

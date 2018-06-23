@@ -1,0 +1,10 @@
+48678 – org.apache.catalina.startup.Catalina incorrectly duplicates super class member
+Catalina declares its own protected member variable "server" and a corresponding "setServer" method, while Catalina's super class Embedded has a private member "server" and a "getServer" method, so that Catalina sets its "service" member, but when asking, will return super.server which is consistently null.
+This means that Catalina cannot be used as Tomcat embedding directly but at least requires an extension like so:
+public class MyCatalina extends Catalina {
+public Server getServer() {
+return this.server;
+}
+}
+It might have other ramifications though and was most likely not intended.
+See also: http://marc.info/?l=tomcat-user&m=126502245412565&w=2

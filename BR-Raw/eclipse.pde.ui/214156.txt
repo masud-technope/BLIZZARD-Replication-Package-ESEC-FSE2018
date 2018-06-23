@@ -1,0 +1,2 @@
+Bug 214156 – Quickfix to remove Bundle-Activator if there's no lazy start
+This is an enhancement for part of the work in bug 209432

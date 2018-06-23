@@ -1,0 +1,8 @@
+java.net.URI$Parser.fail
+java.net.URI$Parser.checkChars
+java.net.URI$Parser.parseHierarchical
+java.net.URI$Parser.parse
+java.net.URI.<init>
+org.apache.catalina.core.ApplicationContext.getResource
+org.apache.catalina.core.ApplicationContextFacade.getResource
+org.springframework.web.context.support.ServletContextResource.exists

@@ -1,0 +1,8 @@
+java.util.HashMap.getEntry
+java.util.HashMap.containsKey
+org.apache.catalina.security.SecurityUtil.doAsPrivilege
+org.apache.catalina.core.ApplicationFilterChain.internalDoFilter
+org.apache.catalina.core.ApplicationFilterChain.access$000
+org.apache.catalina.core.ApplicationFilterChain$1.run
+java.security.AccessController.doPrivileged
+org.apache.catalina.core.ApplicationFilterChain.doFilter

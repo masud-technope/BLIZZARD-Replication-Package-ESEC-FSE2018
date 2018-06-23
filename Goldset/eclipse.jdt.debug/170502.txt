@@ -1,0 +1,3 @@
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/launching/LaunchDelegateTests.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/VariableClasspathEntry.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/debug/ui/launchConfigurations/JavaClasspathTab.java

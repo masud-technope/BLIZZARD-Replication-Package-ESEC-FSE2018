@@ -1,0 +1,6 @@
+org.eclipse.jdt.internal.compiler.lookup.CompilationUnitScope.recordQualifiedReference
+org.eclipse.jdt.internal.compiler.lookup.ReferenceBinding.getSingleAbstractMethod
+org.eclipse.jdt.internal.compiler.ast.ReferenceExpression.isPertinentToApplicability
+org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.createInitialConstraintsForParameters
+org.eclipse.jdt.internal.compiler.lookup.ConstraintExpressionFormula.inferInvocationApplicability
+org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.inferInvocationApplicability

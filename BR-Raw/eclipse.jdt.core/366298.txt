@@ -1,0 +1,11 @@
+Bug 366298 – please publish the new org.eclipse.jdt.annotation bundle
+As discussed on http://blog.deepakazad.com/2011/12/annotation-based-null-analysis-with-jdt.html it would be great if the tiny new annotation bundle org.eclipse.jdt.annotation would be available from maven repos.
+The said bundle has no dependencies on anything beside a JRE >= 1.5.
+It has an OSGi manifest so it should be a one click action to deploy using tycho
+for those you are sufficiently familiar with Maven/Tycho, which I'm not.
+Of course, if generally publishing Eclipse SDK bundles as maven artifacts is
+making progress this might actually be a no-op, since the bundle is already
+available from the I-Build p2 site and soon from the Milestones p2 site.
+BTW: My attempts to comment on the blog forced me into creating a new blog
+account which I certainly don't want, so I moved to a medium I have access to :)
+@Deepak, maybe you can link from your blog to this bug?

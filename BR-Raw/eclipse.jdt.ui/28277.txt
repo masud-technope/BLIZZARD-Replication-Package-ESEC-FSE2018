@@ -1,0 +1,5 @@
+Bug 28277 – Double-clicking in the Types view refreshes decorators
+In build I20021210, with CVS decorators turned on, in the Java browing
+perspective, if I double click on a class in the Types view, the decorators in
+the view undergo a visible refresh (i.e.
+they go away and then reappear).

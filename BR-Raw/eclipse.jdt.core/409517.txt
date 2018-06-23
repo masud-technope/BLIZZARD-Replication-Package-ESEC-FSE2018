@@ -1,0 +1,14 @@
+Bug 409517 – [1.8][compiler] Type annotation problems on more elaborate array references
+The following styles of array references with type annotations need some work:
+// inner types with multi dimensional arrays
+@B AA.@A BB[] @C[] field;
+Object o = new @B(1) Outer.@B(2) Inner @B(3) [2];
+Object o = new @B(1) Outer.@B(2) Inner @B(3) [2] @B(4)[4];
+// new multi dim array with initializer
+X[][] x = new @A X @B [] @C[]{ { null }, { null } };
+// new multi dim
+X[][] x = new @A X @B [1] @C[2];
+// new multi dim, not all dimensions specified
+X [][][] x = new @A X @B[10] @C[10] @D[];
+// fully qualified names when inner types and multi dim arrays in use
+Object o = new org.foo.bar.@B(1) Outer.@B(2) Inner @B(3) [2] @B(4)[4];

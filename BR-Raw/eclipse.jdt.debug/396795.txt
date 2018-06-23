@@ -1,0 +1,9 @@
+Bug 396795 – Prevent breakpoint detail panes from changing background colour on selection
+1) Open breakpoints view with at least one breakpoint
+2) Click on a breakpoint a few times
+Result:
+One each selection the background colour changes
+The parent sashform colour is changed based on the detail pane colour.
+ The detail pane colour currently depends on the sash form colour.
+ This results in toggling each time.
+Solution is to set the background colour explicitly.

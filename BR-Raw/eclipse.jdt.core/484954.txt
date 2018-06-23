@@ -1,0 +1,18 @@
+Bug 484954 – [1.8][null] declaration null annotation on lambda argument is not interpreted
+In a project using
+- compliance 1.8
+- "old" (declaration) null annotations
+The following code raises a bogus warning:
+//---
+package testNullAnnotations;
+import java.util.function.*;
+import org.eclipse.jdt.annotation.NonNull;
+public class Snippet {
+public void test() {
+doStuff((@NonNull Object[] data) -> updateSelectionData(data));
+}
+private void doStuff(Consumer<Object[]> postAction) { }
+private void updateSelectionData(final @NonNull Object data) { }
+}
+//---
+Reason: LE.analyseCode incorrectly assumes the use of null type annotations, unconditionally invoking AbstractMethodDeclaration.analyseArguments18().

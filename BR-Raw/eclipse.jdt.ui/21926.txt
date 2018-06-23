@@ -1,0 +1,14 @@
+Bug 21926 – [templates][preferences] Can't trigger templates beginning with non-JavaIdentifierStart
+I entered the following template into the Java Templates preferences page:
+name = $NON-NLS-1$
+desc = insert $NON-NLS-1$
+body = $$NON-NLS-1$$
+Although the template page allowed me to enter this template, I could find no
+way to trigger its insertion.
+If I typed '$N' and hit Ctrl+Space, it was not
+offered as a possible completion.
+I think that there are two problems here:
+1) $ is a valid Java identifier char.
+It should be permitted in template names.
+2) The template page should not allow me to name a template in such a way that
+it cannot be triggered

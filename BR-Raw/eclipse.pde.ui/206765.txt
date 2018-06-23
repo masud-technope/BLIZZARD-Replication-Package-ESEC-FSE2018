@@ -1,0 +1,5 @@
+Bug 206765 – PDE shoud ignore non-osgi Manifests in workspace projects
+PDE currently assumes all META-INF/MANIFEST.MF files in the root of a project are OSGi manifests.
+ There are scenarios in some products which a non-plug-in project has a Manifest file.
+When saving the cache of the workspace state, PDE currently assumes that if a Manifest file does not have an Bundle-SymbolicName that something is wrong and does not save the cache.
+ We need to be more flexible and save caches when the user has non-OSGi Manifests in their workspace.

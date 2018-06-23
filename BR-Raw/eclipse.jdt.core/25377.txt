@@ -1,0 +1,21 @@
+Bug 25377 – Error location is not correct for empty array initializer
+build 20021022
+1) Create the following class
+----------------------------
+public class X {
+public void foo() {
+if(true) {
+}
+Object o = {};
+}
+}
+----------------------------
+2) Compile this class
+There 1 error "Type mismatch: cannot convert from Object[] to Object"
+3) select this error in task view
+The selected text is :
+----------------------------
+{
+}
+Object o = {}
+----------------------------

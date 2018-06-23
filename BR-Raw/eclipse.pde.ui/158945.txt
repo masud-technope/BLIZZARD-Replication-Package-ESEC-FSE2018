@@ -1,0 +1,11 @@
+Bug 158945 – PDE cannot handle space after ',' in the required bundle version
+I20060926-0930
+Take a MANIFEST.MF and add a space after the ',' in the required bundle version, e.g.
+in a bundle MANIFEST.MF change:
+org.eclipse.core.filesystem;bundle-version="[1.1.0,2.0.0)"
+to
+org.eclipse.core.filesystem;bundle-version="[1.1.0, 2.0.0)"
+and save
+==>
+The specified version does not have the correct format (major.minor.micro.qualifier) or contains invalid characters
+NOTE: I can start and use the bundle without problems, hence I assume that the space allowed.

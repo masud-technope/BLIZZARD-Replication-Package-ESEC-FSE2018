@@ -1,0 +1,20 @@
+52543 – Exception
+SEVERE: Error finishing response
+java.lang.ArrayIndexOutOfBoundsException
+at java.lang.System.arraycopy(Native Method)
+at org.apache.coyote.http11.AbstractOutputBuffer.write(AbstractOutputBuffer.java:495)
+at org.apache.coyote.http11.AbstractOutputBuffer.sendStatus(AbstractOutputBuffer.java:337)
+at org.apache.coyote.http11.AbstractHttp11Processor.prepareResponse(AbstractHttp11Processor.java:1418)
+at org.apache.coyote.http11.AbstractHttp11Processor.action(AbstractHttp11Processor.java:756)
+at org.apache.coyote.Response.action(Response.java:168)
+at org.apache.coyote.http11.AbstractOutputBuffer.endRequest(AbstractOutputBuffer.java:310)
+at org.apache.coyote.http11.InternalOutputBuffer.endRequest(InternalOutputBuffer.java:158)
+at org.apache.coyote.http11.AbstractHttp11Processor.endRequest(AbstractHttp11Processor.java:1586)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1022)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:579)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+at java.lang.Thread.run(Thread.java:722)
+big application i dont know why its happens
+may be due to the fact that twice as add some cookie

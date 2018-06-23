@@ -1,0 +1,7 @@
+Bug 285556 – [call hierarchy] Remove from View fails if grandchild is in progress
+I20090803-1800
+FUP to bug 41702: When I expand a grandchild node and while the node is still in progress execute Remove from View on the grandparent, I get a "Multiple problems have occurred" dialog with items:
+Adding children
+Clear
+Clear
+Nothing in the log.

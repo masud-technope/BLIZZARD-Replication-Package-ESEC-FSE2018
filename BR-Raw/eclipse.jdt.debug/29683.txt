@@ -1,0 +1,10 @@
+Bug 29683 – Re-naming a VM causes prompt for JRE resolution
+Use case:
+* Have more than one JRE defined in a workspace
+* Rename a JRE (i.e.
+in the Edit VM dialog) that is on the build path of a
+project as an explicit (non-default) container.
+* Press OK (save preferences)
+The user is prompted to choose a JRE with which to build the project (since the
+classpath container on the project is now refering to a non-existant JRE).
+We have the info to fix up the classpath, so we should do it for free.

@@ -1,0 +1,2 @@
+Bug 165346 – [compiler][null] org.eclipse.jdt.internal.compiler.ast.OperatorExpression.nullStatus(FlowInfo) too conservative
+During our exploration at the DSRG of integrating JML with Eclipse, we found that OperatorExpression.nullStatus(FlowInfo) should return NON_NULL instead of UNKNOWN: no operators other than the conditional operator can produce a null result, and that case is covered by an overriding method in ConditionalExpression.

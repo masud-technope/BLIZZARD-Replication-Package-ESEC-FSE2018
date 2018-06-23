@@ -1,0 +1,4 @@
+Bug 273943 – Usage of pools inside api baseline xml files is causing problems
+Using pools is causing grief on api baseline restore.
+The pools are assumed to be used by concatenating the bundle version with the bundle name in order to read an api component from the pool's location.
+This assumption is not expected when initializing the baseline on a folder location.

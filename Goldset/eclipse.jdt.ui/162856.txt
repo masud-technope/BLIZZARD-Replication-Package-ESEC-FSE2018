@@ -1,0 +1,3 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/JavaProjectWizardFirstPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/NewWizardMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/NewWizardMessages.properties

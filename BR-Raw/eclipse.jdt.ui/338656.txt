@@ -1,0 +1,5 @@
+Bug 338656 – [quick fix] "Change type of '*' to *" should offer matching type with type arguments first
+Created attachment 190134 [details]
+Fix
+HEAD
+The "Change type of '*' to *" Quick Fix should offer matching type with type arguments first in the linked mode proposals.

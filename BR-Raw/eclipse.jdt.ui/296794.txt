@@ -1,0 +1,28 @@
+Bug 296794 – [ltk] DocumentChange fails if document is not thread safe
+User-Agent:       Mozilla/5.0 (Windows; U; Windows NT 5.1; ru; rv:1.9.1.2) Gecko/20090729 Firefox/3.5.2
+Build Identifier: I20090611-1540
+This code worked in Eclipse 3.4 but throws org.eclipse.swt.SWTException: Invalid thread access in Eclipse 3.5.
+Seems like this is because of you try to run the refactoring changes in non ui thread when possible.
+Reproducible: Always
+Steps to Reproduce:
+final Document doc; //SynchronizableDocument
+final Point position;
+Refactoring ref = new Refactoring(){
+@Override
+public Change createChange(IProgressMonitor pm){
+DocumentChange change = new DocumentChange("test", doc);
+TextEdit replaceEdit = new ReplaceEdit(position.x, position.y, "replaced");
+change.setEdit(replaceEdit);
+return change;
+}
+...};
+RefactoringWizard wizard = new RefactoringWizard(ref, RefactoringWizard.DIALOG_BASED_USER_INTERFACE){
+@Override
+protected void addUserInputPages() {
+UserInputWizardPage page = new UserInputWizardPage("wizard_title"){
+public void createControl(Composite parent) {...}};
+addPage(page);
+}
+};
+IWorkbenchWindow win = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+new RefactoringStarter().activate(wizard, win.getShell(), "wizard_title", RefactoringSaveHelper.SAVE_ALL)

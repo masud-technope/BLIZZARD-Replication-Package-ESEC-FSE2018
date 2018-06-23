@@ -1,0 +1,11 @@
+Bug 279043 – Exception when trying to serialize ServiceInfo
+ServiceInfo implements Serializable, and when I try to serialize it to a byte array, I get:
+java.io.NotSerializableException: org.eclipse.ecf.discovery.ServiceProperties
+at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1081)
+at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1375)
+at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1347)
+at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1290)
+at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1079)
+at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:302)
+Because ServiceProperties is not serializable.
+ This is preventing me from sending a ServiceInfo to a remote discovery directory.

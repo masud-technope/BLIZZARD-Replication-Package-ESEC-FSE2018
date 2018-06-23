@@ -1,0 +1,14 @@
+Bug 334622 – Eclipse compiler allows access to private fields for typed variables
+Build Identifier: 20100917-0705
+The Eclipse compiler allows the following to compile.
+According to JLS section 4.4 this should result in a compile-time exception.
+http://java.sun.com/docs/books/jls/third_edition/html/typesValues.html#4.4 (Discussion)
+public class Wtf {
+private Object foo;
+public <T extends Wtf> void test(T t) {
+System.out.println(t.foo);
+}
+}
+Reproducible: Always
+Steps to Reproduce:
+Compile the source code

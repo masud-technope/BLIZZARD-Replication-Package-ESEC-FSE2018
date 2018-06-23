@@ -1,0 +1,3 @@
+Bug 265408 – [Discovery][Composite] Make CompositeService*ContainerEvent public API
+org.eclipse.ecf.provider.discovery.CompositeServiceTypeContainerEvent and org.eclipse.ecf.provider.discovery.CompositeServiceContainerEvent wrap the containerID of the original discovery provider from which a discovery event originated.
+This is useful to introspect the CompositeDiscoveryContainer and should thus be made public API.

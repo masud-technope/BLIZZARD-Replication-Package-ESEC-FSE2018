@@ -1,0 +1,4 @@
+Bug 178039 – Separate advanced verbose for container and variable initialization from regular verbose
+I20070313-1051
+The verbose mode for container and variable initializations is too verbose (can lead to huge verbose traces).
+We should separate the advanced mode (where we log calling traces) from a more user oriented mode (where an initializer implementor can get usefull information without knowing about the internals of jdt.core)

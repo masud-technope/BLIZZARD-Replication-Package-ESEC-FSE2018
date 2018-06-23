@@ -1,0 +1,3 @@
+tests/bundles/org.eclipse.ecf.tests.provider.jmdns/src/org/eclipse/ecf/tests/provider/jmdns/JMDNSDiscoveryServiceTest.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/DiscoveryTest.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/listener/TestListener.java

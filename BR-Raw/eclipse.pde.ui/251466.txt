@@ -1,0 +1,3 @@
+Bug 251466 – IApiComponent should be an IApiElement
+most of the model elements for the API tooling have been migrated over to be the new IApiElements, except for IApiComponent.
+This should be done so it can be correctly used in the heirarchy of elements and so that we can alleviate some of the many handles to API components

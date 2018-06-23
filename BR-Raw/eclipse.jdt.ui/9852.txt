@@ -1,0 +1,12 @@
+Bug 9852 – StringMatcher does not match more than *.(extension)
+I believe that there is a bug in StringMatcher.java.
+We are using this class for more sophisticated file name matching for the
+search scope, but it was not matching all cases that it should.
+I believe that the code change should be as follows:
+In method match
+Change:
+/* process middle segments */
+for ( ; i < segCount && tCurPos <= bound; ++i) {
+To:
+/* process middle segments */
+for ( ; i < segCount && tCurPos <= fBound; ++i) {

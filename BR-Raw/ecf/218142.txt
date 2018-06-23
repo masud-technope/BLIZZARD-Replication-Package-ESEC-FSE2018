@@ -1,0 +1,2 @@
+Bug 218142 – Add documentation/javadoc for service priority and weight
+http://dev.eclipse.org/mhonarc/lists/ecf-dev/msg01355.html

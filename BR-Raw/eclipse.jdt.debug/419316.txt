@@ -1,0 +1,11 @@
+Bug 419316 – All References or All instances may throw NPE in Eclipse
+The features 'all references' and 'all instances' may not work properly and throw NPE in Eclipse.
+Cause: JDIDebugTarget.getJavaTypes(String) returns null if requested object was not loaded.
+The JDI Model implementation assumes that java.lang.Object[] is loaded whenever 'all references' or 'all instances' features are executed.
+Fix suggestion: Check for a null value in constructors JDIReferenceListValue.<init>(IJavaObject) and JDIAllInstancesValue.<init>(JDIDebugTarget, JDIReferenceType).
+The null value can be returned by JDIDebugTarget.getJavaTypes(String) method.
+I must admit I cannot proof what exactly is in accordance with the JVM Specification but I am deeply convinced the Object[] is not guaranteed to be loaded before the main method of the application is entered.
+How to reproduce this bug: Use a VM that doesn't load java.lang.Object[] by default such as Java PathFinder (http://babelfish.arc.nasa.gov/trac/jpf).
+I will create a pull request on Github to fix this bug.
+Thanks,
+Stepan

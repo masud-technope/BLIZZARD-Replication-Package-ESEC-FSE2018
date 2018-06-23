@@ -1,0 +1,5 @@
+Bug 420004 – [1.8][compiler] @Target meta annotations not restored properly on binary annotation types.
+BETA_JAVA8:
+When calling getAnnotations() on an annotation type, I don't see TYPE_USE
+and TYPE_PARAMETER targets being restored properly.
+Patch will follow shortly.

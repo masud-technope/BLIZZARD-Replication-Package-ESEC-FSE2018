@@ -1,0 +1,18 @@
+Bug 220069 – 'Plug-ins' view has a "malformed" content description
+Build id: I20080212-0800
+1.
+Make sure all instances of the 'Plug-ins' view is closed across all perspectives.
+2.
+Open the 'Plug-ins' view.
+3.
+See a weird content description for the view like 'Plug-ins: org.eclipse.pde.internal.ui.views.PluginsView$22@57479d'.
+Needless to say, that's a toString() call on some anonymous inner class.
+The root cause is line 203 of the PluginsView class...
+fTreeViewer.setInput(fRoot = getDeferredTreeRoot());
+...which sets an IDeferredWorkbenchAdapter implementation as the input.
+The label provider being used for the tree viewer does not support this per lines 778 - 780...
+String name = ((LabelProvider) fTreeViewer.getLabelProvider()).getText(newInput);
+setContentDescription(viewName + ": " + name); //$NON-NLS-1$
+setTitleToolTip(getInputPath(newInput));
+...name, in this case, becomes org.eclipse.pde.internal.ui.views.PluginsView$22@57479d.
+This is likely caused by the "lazy loading" change that was added to make the view to populate itself in a background job.

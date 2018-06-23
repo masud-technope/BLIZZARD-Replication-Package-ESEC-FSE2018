@@ -1,0 +1,4 @@
+Bug 180169 – Add protection against missbehaving container (returning null entries)
+I20070327
+As reported in bug 180112, some containers can return null entries (even if it is again the spec).
+We should protect ourselves and log the missbehaving container if in trace mode.

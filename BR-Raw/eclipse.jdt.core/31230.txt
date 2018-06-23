@@ -1,0 +1,11 @@
+Bug 31230 – Code assist on variable names: uses prefix and suffix together
+20030106
+1.
+configure the field prefix to 'f', and the suffix to '_m'
+2.
+code assist on private Vector
+-> fVector_m
+I think a better solution would be if code assist offers several suggestions:
+fVector, vector_m, vector, (fVector_m)
+I think it is important that also the non-prefixed field is suggested.
+(vector)

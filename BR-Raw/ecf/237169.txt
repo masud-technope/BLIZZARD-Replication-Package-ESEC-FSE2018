@@ -1,0 +1,4 @@
+Bug 237169 – [docshare] all docshare packages should be set to internal
+All the docshare packages should be exported with x-internal in manifest.mf.
+ These package/this API should be considered provisional and so needs to be marked as such in meta-data.
+ We can discuss whether it makes sense to change the package naming as well (to org.eclipse.ecf.internal.provisional.* for relevant packages).

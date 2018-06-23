@@ -1,0 +1,2 @@
+java/org/apache/tomcat/websocket/WsRemoteEndpointImplBase.java
+test/org/apache/tomcat/websocket/TestWsRemoteEndpoint.java

@@ -1,0 +1,6 @@
+Bug 285637 – [JUnit] Improve discoverability of the ability to run a single method under JUnit Tests
+I'm happy to write the patch.
+The problem is that it's rather undiscoverable that you can run a single method from a single test -- only through the launch shortcut.
+I propose a solution that makes it clear you can select a single method: The method name is still only shown as a label, but it's _always_ visible, and says something like "(all)" as a default.
+There's a "Search..." button that uses the test name to find available candidate methods.
+Thoughts?

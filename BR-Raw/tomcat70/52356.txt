@@ -1,0 +1,6 @@
+52356 – Prevent potential data races on "org.apache.catalina.tribes.transport.bio.util.FastQueue.size".
+Even though accesses to "org.apache.catalina.tribes.transport.bio.util.FastQueue.size" are synchronized inside "org.apache.catalina.tribes.transport.bio.util.FastQueue.add(ChannelMessage, Member[], InterceptorPayload)" and "org.apache.catalina.tribes.transport.bio.util.FastQueue.remove()", the read access in "org.apache.catalina.tribes.transport.bio.util.FastQueue.getSize()" is not properly synchronized and thus can lead to a race condition.
+However, "org.apache.catalina.tribes.transport.bio.util.FastQueue.getSize()" is not used, so this bug never manifests.
+Nevertheless, we suggest that Tomcat developers either remove "org.apache.catalina.tribes.transport.bio.util.FastQueue.getSize()" or make it access the shared field safely.
+Field "org.apache.catalina.tribes.transport.bio.util.FastQueue.size" is declared at
+<http://svn.apache.org/repos/asf/!svn/bc/1220560/tomcat/trunk/java/org/apache/catalina/tribes/transport/bio/util/FastQueue.java>.

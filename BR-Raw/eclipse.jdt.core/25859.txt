@@ -1,0 +1,14 @@
+Bug 25859 – Error doing Java Search
+Build 20021105
+Start Search by clicking Search tool bar item.
+Java Search
+Search string = "IMenuCreator", Case Sensitive = NO, Search For = Type, Limit
+To = Implementors, Scope = Workspace.
+Search.
+I get the following somewhat useless message:
+"An error occurred during the search operation.
+255"
+NOTE that if I specify Case Sensitive = YES, I do not get the error.
+ Also, if
+I select IMenuCreator in a CU and execute Search-->Implementors via the context
+menu, I do not get the error.

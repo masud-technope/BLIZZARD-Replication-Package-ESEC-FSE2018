@@ -1,0 +1,9 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/JavaSearchQuery.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/JavaSearchResult.java
+org.eclipse.jdt.ui/icons/full/elcl16/file_mode.gif
+org.eclipse.jdt.ui/icons/full/clcl16/prj_mode.gif
+org.eclipse.jdt.ui/icons/full/elcl16/package_mode.gif
+org.eclipse.jdt.ui/icons/full/clcl16/package_mode.gif
+org.eclipse.jdt.ui/icons/full/clcl16/file_mode.gif
+org.eclipse.jdt.ui/icons/full/elcl16/prj_mode.gif
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/JavaSearchResultPage.java

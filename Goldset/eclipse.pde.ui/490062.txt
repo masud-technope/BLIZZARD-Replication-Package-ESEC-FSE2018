@@ -1,0 +1,5 @@
+ds/org.eclipse.pde.ds.annotations/src/org/eclipse/pde/ds/internal/annotations/Activator.java
+ds/org.eclipse.pde.ds.annotations/src/org/eclipse/pde/ds/internal/annotations/Messages.java
+ds/org.eclipse.pde.ds.annotations/src/org/eclipse/pde/ds/internal/annotations/DSAnnotationCompilationParticipant.java
+ds/org.eclipse.pde.ds.annotations/src/org/eclipse/pde/ds/internal/annotations/messages.properties
+ds/org.eclipse.pde.ds.annotations/src/org/eclipse/pde/ds/internal/annotations/DSAnnotationPropertyPage.java

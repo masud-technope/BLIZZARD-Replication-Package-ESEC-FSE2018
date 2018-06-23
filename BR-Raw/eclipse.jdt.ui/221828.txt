@@ -1,0 +1,7 @@
+Bug 221828 – [performance] Regression in performance test PackageExplorerColdPerfTest#testOpen()
+Verifying build I20080305-1100, it looks like there's a serious regression
+on test PackageExplorerColdPerfTest#testOpen(): between -69.0% and -103.2%
+Note that the +3.1% result should not be considered as it looks more than a bad result on the baseline.
+Next baseline (3.3_200706251500_200802221710) is back to normal and so, also shows a big regression on this box.
+Set as minor because the test time is less than 100ms so, it should not be noticeable by user.
+However, I think it could be interesting to increase the test time to have more precise numbers (100ms is the minimum, I would say that 200ms for the fastest box would be great!)

@@ -1,0 +1,22 @@
+57969 – @PathParam annotation captures incorrect value under high load
+Under high load, given a @ServerEndpoint like
+@ServerEndpoint(value="/websocket/{key}", configurator=MyConfigurator.class)
+public class ExecutionMonitoringEndpoint{
+...
+@OnMessage
+public void onMessage(@PathParam("key") String key, String payload) {
+...
+}
+}
+//where MyConfigurator is used to only inject a custom property like ServerEndpointConfig.conf.getUserProperties().put(...);
+we noticed that the captured PathParam ("key" in this case) was sometimes mixed up with another concurrent request - causing double subscriptions in our pub/sub application.
+Changing the above to
+@ServerEndpoint(value="/websocket/{key}", configurator=MyConfigurator.class)
+public class ExecutionMonitoringEndpoint{
+...
+@OnMessage
+public void onMessage(Session session, String payload) {
+String key = session.getPathParameters().get("key");
+}
+}
+fixed the problem.

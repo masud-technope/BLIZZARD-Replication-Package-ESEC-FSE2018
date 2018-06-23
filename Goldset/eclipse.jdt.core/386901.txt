@@ -1,0 +1,4 @@
+org.eclipse.jdt.compiler.tool/forceQualifierUpdate.txt
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavaModelManager.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/builder/AbstractImageBuilder.java
+org.eclipse.jdt.core.tests.builder/src/org/eclipse/jdt/core/tests/builder/BasicBuildTests.java

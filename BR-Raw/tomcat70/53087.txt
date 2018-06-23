@@ -1,0 +1,8 @@
+53087 – BackupManager does not replicate session access time.
+Created attachment 28619 [details]
+BackupManager does not replicate session access time.
+BackupManager does not replicate session access time.
+If a primary session does not change an attribute but it is only access ,
+non-primary session(backup node) expire session.
+I made a patch to replicate session access time.
+Best Regards.

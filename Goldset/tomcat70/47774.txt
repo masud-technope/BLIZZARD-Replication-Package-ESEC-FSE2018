@@ -1,0 +1,3 @@
+java/org/apache/catalina/session/StandardSession.java
+java/org/apache/catalina/connector/Request.java
+java/org/apache/catalina/security/SecurityClassLoad.java

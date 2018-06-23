@@ -1,0 +1,9 @@
+Bug 471062 – Formatter inserts space before line comment
+Every time I edit a source file, all my line comments have an extra space inserted between the semicolon and the double slash.
+This is causing havoc with my github repo.
+Checked items in the formatter:
+Enable line comment formatting
+Format line comments on first column
+Preserve white space between code and line comments
+Never join lines
+This only started to happen after I installed Mars.

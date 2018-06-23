@@ -1,0 +1,13 @@
+51197 – sendError/sendRedirect don't work with AsyncContext
+For some reason, response.sendRedirect and response.sendError are not producing expected behavior when using an AsyncContext.
+ On the server side, the async request completes normally, and everything looks hunky dory, but the client never gets ANY response from the server.
+ It appears that Tomcat simply times out after the default 10 seconds and closes the connection.
+ No headers are returned, no content, nothing.
+ I've confirmed with thread dumps that the server isn't stuck.
+Yet...if you use response.setStatus and response.setHeader instead, it works absolutely fine.
+ The client gets the response every time.
+I put together a very simple test that isolates the issue reliably:
+https://github.com/dcheckoway/async-test
+See the README in there for details.
+NOTE: the behavior for sendError changed slightly from 7.0.12 to 7.0.14.
+ As of 7.0.14, sendError seems to close the connection immediately, but the client still never gets any response of any kind.

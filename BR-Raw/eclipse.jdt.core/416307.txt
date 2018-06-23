@@ -1,0 +1,14 @@
+Bug 416307 – [1.8][compiler][null] subclass with type parameter substitution confuses null checking
+In this snipped:
+// ===
+import java.util.Map;
+import org.eclipse.jdt.annotation.*;
+abstract public class X<Y> implements Map<@NonNull String,Y> {
+void foo(X<Object> x) {
+Map<@NonNull String, Object> m1 = x; // OK
+Map<@Nullable String, Object> m2 = x; // NOK
+}
+}
+// ===
+we should see one error at (NOK), but the compiler fails to see that X specifies
+type parameter Map.K as @NonNull.

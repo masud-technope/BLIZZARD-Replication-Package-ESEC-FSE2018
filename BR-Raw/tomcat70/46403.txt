@@ -1,0 +1,10 @@
+46403 – Persistent cookies written by 6.0.18 do not work in Internet Explorer or Safari
+This blog post shows up in Google when searching for this problem, and is a better explanation that I can give here:
+http://cephas.net/blog/2008/11/18/tomcat-6018-version-1-cookies-acegi-remember-me-and-ie/
+To summarize, in 6.0.18, the way Tomcat writes persistent cookie headers was changed from:
+Set-Cookie: yankeessuck=YWFyb246MTIyODI0ODEwMjk5NjoyOGM5ODc4YzExOGZiOGZjZTBkZDE0ZTA1ZWRhZTM3Nw==; Expires=Thu, 19-Nov-2009 02:29:29 GMT;
+to:
+Set-Cookie: yankeessuck="YWFyb246MTIyODI0ODEwMjk5NjoyOGM5ODc4YzExOGZiOGZjZTBkZDE0ZTA1ZWRhZTM3Nw=="; Version=1; Max-Age=31536000;
+The value was enclosed in quotes, a "Version=1" parameter was added, and the Expires parameter was replaced with a Max-Age parameter.
+Though cookies are written correctly to specification, Internet Explorer (6 and 7) and Safari do not support the Max-Age parameter.
+As a result, an application writing persistent cookies in this version of Tomcat won't work for Internet Explorer or Safari.

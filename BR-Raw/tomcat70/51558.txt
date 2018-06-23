@@ -1,0 +1,31 @@
+51558 – Tomcat Embedded: using tomcat.addWebapp always overrides programmatic context-settings with default values for the context at start of tomcat server
+when i deploy an webapp with a tomcat server, i use the Function "tomcat.addWebapp".
+I looked into the code of this function and it makes the following call:
+ctx.addLifecycleListener(new DefaultWebXmlListener());
+When i start tomcat, this DefaultWebXmlListener is activated automatically, and always does the following code, so the manager i set for my context gets overriden with this code:
+public static void initWebappDefaults(Context ctx) {
+...
+// Sessions
+ctx.setManager( new StandardManager());
+ctx.setSessionTimeout(30);
+...
+}
+so when i set a StandardManager programatically, it gets overriden by this code.
+The workaround i used, is to unregister the DefaultWebXmlListener, and than add my own context.xml specific settings, like a custom manager for deactivating session persistance:
+Context warContext = tomcat.addWebapp(warContextPath, warLocation);
+LifecycleListener[] lclisteners = warContext.findLifecycleListeners();
+LifecycleListener defaultWebXMLListener = null;
+for (int i=0; i < lclisteners.length; i++){
+if (lclisteners[i] instanceof DefaultWebXmlListener){
+defaultWebXMLListener = lclisteners[i];
+}
+}
+warContext.removeLifecycleListener(defaultWebXMLListener);
+...
+StandardManager manager = new StandardManager();
+manager.setPathname(null); // disable session persistance:
+//manager.setPathname("SESSIONS.ser");
+warContext.setCookies(true);
+warContext.setCrossContext(true);
+warContext.setManager(manager);
+i think its a bug that using the "tomcat.addWebapp" method makes it impossible to set context.xml specific settings programmatically, because they always get overriden by default values at the tomcat start.

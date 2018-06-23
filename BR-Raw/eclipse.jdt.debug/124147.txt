@@ -1,0 +1,7 @@
+Bug 124147 – [jres] Changing installed JRE doesn't warn when compiler compliance is not compatible
+R3.2M4
+If I start eclipse with a 1.5 JRE and initialize the Java environment the global compiler compliance preference is set to 5.0
+If I now add a 1.4 JRE to the list of installed JRE's and make it the default I don't get any warning that the compiler compliance is set to build classes that won't run on the selected JRE.
+   Only at runtime will I discover the problem.
+There is a warning/link on the Java->Compiler->JDK complicance preference to the installed JRE's when the user selects 5.0 compliance.
+One fix could be to reduce the compliance to the max supported by the selected JRE or a warning/link to the compiler compliance could be shown to alert the user to the potential problem.

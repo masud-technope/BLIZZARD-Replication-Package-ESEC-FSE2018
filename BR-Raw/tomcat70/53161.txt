@@ -1,0 +1,7 @@
+53161 – Need better error message for annotation scanning errors
+See this question on SO:
+http://stackoverflow.com/questions/10373077/tomcat-7-severe-a-child-container-failed-during-start
+There is a problem scanning a class but no info on which one.
+It could be fault input of BCEL could need updating for a newer Java version.
+If the error message identified the class triggering the problem, it could be analysed.
+A better error message is required that names the class having the problem.

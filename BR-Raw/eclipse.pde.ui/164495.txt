@@ -1,0 +1,5 @@
+Bug 164495 – Remove garbage when imported signed plug-ins
+When importing signed JARd plug-ins WITH source, we should remove all the signing-related garbage from the manifest.mf upon importing.
+This can simply be done by reading the signed manifest and then regurgitating the keys/values and saving them
+Note that the problem does not occur when importing plug-ins as binary because we already write the manifest.mf file upon importing in that mode to modify the Bundle-Classpath header.
+ So we should do the same here wrt reading/writing the manifest, except that we don't have to modify the Bundle-Classpath header in this case.

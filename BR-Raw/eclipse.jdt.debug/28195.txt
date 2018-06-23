@@ -1,0 +1,47 @@
+Bug 28195 – NPE on shutdown debug remote launch
+Debugging a remote KVM (WTK) vm that had not exited cleanly.
+On shutdown of the target workspace:
+Thread [main] (Suspended)(exception java.lang.NullPointerException))
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.disconnect()
+line: 600
+org.eclipse.debug.core.Launch.terminate() line: 229
+org.eclipse.debug.internal.core.LaunchManager.shutdown() line: 443
+org.eclipse.debug.core.DebugPlugin.shutdown() line: 419
+org.eclipse.core.internal.plugins.PluginRegistry$2.run() line: 279
+org.eclipse.core.internal.runtime.InternalPlatform.run
+(org.eclipse.core.runtime.ISafeRunnable) line: 850
+org.eclipse.core.internal.plugins.PluginRegistry$1.visit
+(org.eclipse.core.runtime.IPluginDescriptor) line: 292
+org.eclipse.core.internal.plugins.PluginRegistry.accept
+(org.eclipse.core.internal.plugins.IPluginVisitor, boolean) line: 51
+org.eclipse.core.internal.plugins.PluginRegistry.shutdownPlugins()
+line: 295
+org.eclipse.core.internal.plugins.PluginRegistry.shutdown
+(org.eclipse.core.runtime.IProgressMonitor) line: 261
+org.eclipse.core.internal.runtime.InternalPlatform.loaderShutdown()
+line: 513
+sun.reflect.NativeMethodAccessorImpl.invoke0(java.lang.reflect.Method,
+java.lang.Object, java.lang.Object[]) line: not available [native method]
+sun.reflect.NativeMethodAccessorImpl.invoke(java.lang.Object,
+java.lang.Object[]) line: 39 [local variables unavailable]
+sun.reflect.DelegatingMethodAccessorImpl.invoke(java.lang.Object,
+java.lang.Object[]) line: 25 [local variables unavailable]
+java.lang.reflect.Method.invoke(java.lang.Object, java.lang.Object[])
+line: 324 [local variables unavailable]
+org.eclipse.core.internal.boot.InternalBootLoader.shutdown() line: 962
+org.eclipse.core.internal.boot.InternalBootLoader.run(java.lang.String,
+java.net.URL, java.lang.String, java.lang.String[], java.lang.Runnable) line:
+850
+org.eclipse.core.boot.BootLoader.run(java.lang.String, java.net.URL,
+java.lang.String, java.lang.String[], java.lang.Runnable) line: 462
+sun.reflect.NativeMethodAccessorImpl.invoke0(java.lang.reflect.Method,
+java.lang.Object, java.lang.Object[]) line: not available [native method]
+sun.reflect.NativeMethodAccessorImpl.invoke(java.lang.Object,
+java.lang.Object[]) line: 39 [local variables unavailable]
+sun.reflect.DelegatingMethodAccessorImpl.invoke(java.lang.Object,
+java.lang.Object[]) line: 25 [local variables unavailable]
+java.lang.reflect.Method.invoke(java.lang.Object, java.lang.Object[])
+line: 324 [local variables unavailable]
+org.eclipse.core.launcher.Main.basicRun(java.lang.String[]) line: 247
+org.eclipse.core.launcher.Main.run(java.lang.String[]) line: 703
+org.eclipse.core.launcher.Main.main(java.lang.String[]) line: 539

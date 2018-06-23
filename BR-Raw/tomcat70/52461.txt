@@ -1,0 +1,68 @@
+52461 – java.lang.IllegalArgumentException: URI scheme is not "file" is thrown in ContextConfig.getDefaultWebXmlFragment
+Hello,
+I have a project that embeds Apache Tomcat in OSGi.
+I provide the default web.xml from my bundles (jar files) directly; I do not provide it in a separate folder on the file system.
+I am using Apache Tomcat 7.0.21, but now I want to migrate to Apache Tomcat 7.0.23.
+Unfortunately there is a change between these two versions and with Apache Tomcat 7.0.23 the following exception is thrown:
+Caused by: java.lang.IllegalArgumentException: URI scheme is not "file"
+at java.io.File.<init>(File.java:366)
+at org.apache.catalina.startup.ContextConfig.getDefaultWebXmlFragment(ContextConfig.java:1317)
+at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1168)
+at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:828)
+at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:302)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5148)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+...
+71 more|
+In OSGi environment URI scheme is not "file", but "bundleresource".
+The call "globalWebXml.getSystemId()" in OSGi environment returns "bundleresource://94.fwk2102834054/conf/web.xml"
+I would like to propose a change (below) in ContextConfig.getDefaultWebXmlFragment() method because there is no guarantee that the URI scheme will always be "file".
+The patch is made against 7.0.x trunc.
+Iâ€™m looking forward to your comments.
+Best Regards
+Violeta Georgieva
+Patch proposal:
+Index: ContextConfig.java
+===================================================================
+--- ContextConfig.java	(revision 1230565)
++++ ContextConfig.java	(working copy)
+@@ -29,7 +29,6 @@
+import java.io.UnsupportedEncodingException;
+import java.net.JarURLConnection;
+import java.net.MalformedURLException;
+-import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLConnection;
+@@ -1324,20 +1323,24 @@
+if (globalWebXml != null) {
+try {
+-                File f = new File(new URI(globalWebXml.getSystemId()));
+-                globalTimeStamp = f.lastModified();
+-            } catch (URISyntaxException e) {
++                URL f = new URL(globalWebXml.getSystemId());
++                globalTimeStamp = f.openConnection().getLastModified();
++            } catch (MalformedURLException e) {
+globalTimeStamp = -1;
+-            }
++            } catch (IOException e) {
++            	globalTimeStamp = -1;
++			}
+}
+if (hostWebXml != null) {
+try {
+-                File f = new File(new URI(hostWebXml.getSystemId()));
+-                hostTimeStamp = f.lastModified();
+-            } catch (URISyntaxException e) {
++                URL f = new URL(hostWebXml.getSystemId());
++                hostTimeStamp = f.openConnection().getLastModified();
++            } catch (MalformedURLException e) {
+hostTimeStamp = -1;
+-            }
++            } catch (IOException e) {
++            	globalTimeStamp = -1;
++			}
+}
+if (entry != null && entry.getGlobalTimeStamp() == globalTimeStamp &&

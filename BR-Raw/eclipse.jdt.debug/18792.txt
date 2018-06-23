@@ -1,0 +1,5 @@
+Bug 18792 – Minor: caught/uncaught only enabled for single selection
+The caught/uncaught toggles are only enabled for single selections in the
+breakpoints view.
+They could be enabled for multi-selections when the selection
+only contains exception breakpoints.

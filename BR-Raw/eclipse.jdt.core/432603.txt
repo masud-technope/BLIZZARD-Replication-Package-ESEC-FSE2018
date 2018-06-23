@@ -1,0 +1,19 @@
+Bug 432603 – [compile][1.7] ecj reports an Error while javac doesn't
+Problem has been reported and discussed on Stackoverflow:
+http://stackoverflow.com/questions/23006777/eclipse-fails-to-compile-generic-code-but-mvn-compile-works
+In general ECJ reports and error where Javac does not and code runs succefully without any problems.
+{code}
+package testit;
+import java.util.Map;
+import java.util.Map.Entry;
+import com.google.common.base.Optional;
+public class Test {
+private static final Object NO_VALUE = new Object();
+public void method(Map<String, ?> map) {
+for (Entry<String, ?> entry : map.entrySet()) {
+Optional.fromNullable(entry.getValue()).or(NO_VALUE);
+//                                                  ^^ error here
+}
+}
+}
+{code}

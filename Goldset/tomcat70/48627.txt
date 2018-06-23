@@ -1,0 +1,6 @@
+java/org/apache/jasper/compiler/AttributeParser.java
+test/webapp/WEB-INF/tags/echo-noel.tag
+test/org/apache/jasper/compiler/TestAttributeParser.java
+java/org/apache/jasper/compiler/Parser.java
+test/org/apache/jasper/compiler/TestParser.java
+test/webapp/bug48627.jsp

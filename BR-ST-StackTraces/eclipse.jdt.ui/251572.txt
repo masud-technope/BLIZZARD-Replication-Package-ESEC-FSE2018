@@ -1,0 +1,9 @@
+org.eclipse.jdt.core.dom.AST.newArrayType
+org.eclipse.jdt.internal.corext.refactoring.sef.SelfEncapsulateFieldRefactoring.createGetterMethod
+org.eclipse.jdt.internal.corext.refactoring.sef.SelfEncapsulateFieldRefactoring.addGetterSetterChanges
+org.eclipse.jdt.internal.corext.refactoring.sef.SelfEncapsulateFieldRefactoring.checkFinalConditions
+org.eclipse.ltk.core.refactoring.CheckConditionsOperation.run
+org.eclipse.ltk.core.refactoring.CreateChangeOperation.run
+org.eclipse.core.internal.resources.Workspace.run
+org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run
+org.eclipse.jface.operation.ModalContext$ModalContextThread.run

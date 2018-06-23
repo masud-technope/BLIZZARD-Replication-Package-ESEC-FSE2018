@@ -1,0 +1,11 @@
+45628 – ExtensionValidator doesn't handle wrapped lines in MANIFEST.MF
+Deploying webapps that contain commons-attributes-api.jar or commons-attributes-compiler.jar (downloaded from the Maven repository) fail with a message from ExtensionValidator along the lines of 'Required extension "ant" not found'.
+This happens because the MANIFEST.MF file in these jars contain wrapped lines.
+Per the JAR spec, lines longer than 72 bytes have to wrap.
+These MANIFEST.MF files contain lines like:
+ant-Implementation-URL: http://www.ibiblio.org/maven/ant/jars/ant-1.5.
+jar
+which evidently cause ExtensionValidator to complain.
+If you edit the MANIFEST.MF files to eliminate the continuation line:
+ant-Implementation-URL: http://www.ibiblio.org/maven/ant/jars/ant-1.5.jar
+there are no errors.

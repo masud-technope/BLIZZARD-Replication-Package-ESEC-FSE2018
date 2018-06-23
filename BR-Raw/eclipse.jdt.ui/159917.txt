@@ -1,0 +1,36 @@
+Bug 159917 – [convert anonymous] Convert Anonymous to nested generates wrong code
+Eclipse 3.1.1
+If you convert the anonymous class to nested in the following example the generated code doesn't compile:
+----------------------------------------------------
+import java.awt.Point;
+public class Sup
+{
+interface ISup
+{
+void m();
+}
+public Sup(ISup isup)
+{
+}
+}
+class Sub extends Sup
+{
+public Sub(final Point p)
+{
+super(new ISup()
+{//convert here
+final int x = p.x;
+final int y = p.y;
+public void m()
+{
+System.out.println(x + y);
+}
+});
+}
+}
+----------------------------------------------------------------
+There are 2 things that go wrong:
+1.
+The generate inner class should be static.
+2.
+the generated fields should be assigned properly.

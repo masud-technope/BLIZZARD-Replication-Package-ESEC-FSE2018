@@ -1,0 +1,12 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/CSSInfo.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/product/ProductDefinitionOperation.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/iproduct/IProductModelFactory.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/iproduct/ICSSInfo.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/CustomizationPage.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/ProductModelFactory.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/Product.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/CSSSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/iproduct/IProduct.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/PreferencesSection.java

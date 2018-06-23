@@ -1,0 +1,2 @@
+Bug 199129 – Bundle-Localization header not added to Fragments when externalized
+When using the Externalization wizard in PDE, Manifest.MFs from Fragment projects don't get updated with a Bundle-Localization header.

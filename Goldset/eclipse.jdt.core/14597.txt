@@ -1,0 +1,3 @@
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/util/CompilationUnitSorter.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/SortElementBuilder.java

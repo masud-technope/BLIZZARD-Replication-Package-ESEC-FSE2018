@@ -1,0 +1,6 @@
+Bug 333654 – AIOOBE in IdentityHashSet.getInsertionIndex(*)
+On of the test teams reported intermittent failures from ArrayIndexOutOfBoundsExceptions on 64 bit JVMs in
+org.eclipse.jdt.ui.leaktest.reftracker.IdentityHashSet.getInsertionIndex(Object, Object[]).
+It seems System.identityHashCode(*) is returning an extremely large number, which results in the modulo being negative.
+ It should probably be protected against numbers larger than 0x7FFFFFFF
+PW

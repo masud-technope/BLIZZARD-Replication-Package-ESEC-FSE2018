@@ -1,0 +1,4 @@
+Bug 272654 – [Manifest][Editors] Select all text in "name" after creating new attribute or element
+Currently the editor only sets the focus to the name field after you created a new element or name.
+It should select the text in the name field so overwriting it is quicker possible.
+I could provide a patch.

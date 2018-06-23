@@ -1,0 +1,2 @@
+Bug 259389 – [Discovery][SLP] DA lookup by scope should be done case insensitive
+http://sourceforge.net/tracker/index.php?func=detail&aid=1886268&group_id=151721&atid=781930

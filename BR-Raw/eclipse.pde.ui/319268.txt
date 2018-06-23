@@ -1,0 +1,6 @@
+Bug 319268 – PDE is confused about non-PDE projects
+In my development workspace I have a combination of PDE and regular java projects.
+Some of my non-PDE projects *happen* to have META-INF/MANIFEST.MF.
+Even though the projects do not have PDE.PLUGIN_NATURE, PDE still parses META-INF/MANIFEST.MF files and considers whatever it is able to find there during resolution of dependencies of (proper) PDE projects.
+These unexpected and often invalid dependencies pollute compile classpath inside workspace and, more importantly, cause runtime problems for Eclipse applications and JUnit Plug-in tests launched from the workspace.
+I have rather trivial fix (check for PDE natures in org.eclipse.pde.internal.core.WorkspaceModelManager isXXXProject methods), if you are interested.

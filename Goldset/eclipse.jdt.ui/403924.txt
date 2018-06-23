@@ -1,0 +1,26 @@
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/ASTNodes.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/JavadocTagsSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/LocalCorrectionsSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/proposals/ChangeMethodSignatureProposal.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/ImportReferencesCollector.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/StubUtility2.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/ConvertAnonymousToNestedRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/ExtractMethodRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/IntroduceFactoryRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/IntroduceIndirectionRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/flow/FlowAnalyzer.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ChangeSignatureProcessor.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ChangeTypeRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/HierarchyProcessor.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ReferenceFinderUtil.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/constraints/SuperTypeConstraintsCreator.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/surround/ExceptionAnalyzer.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/JavadocTagsSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/LocalCorrectionsSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/QuickAssistProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/proposals/AbstractMethodCorrectionProposal.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/proposals/ChangeMethodSignatureProposal.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/proposals/ConstructorFromSuperclassProposal.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/proposals/NewCUUsingWizardProposal.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/proposals/NewDefiningMethodProposal.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/proposals/NewMethodCorrectionProposal.java

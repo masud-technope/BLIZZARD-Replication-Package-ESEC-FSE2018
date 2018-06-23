@@ -1,0 +1,29 @@
+Bug 410114 – [1.8] CCE when trying to parse method reference expression with inappropriate type arguments
+BETA_JAVA8
+CCE when trying to parse method reference expression with inappropriate type arguments:
+//---------------------
+package jsr335;
+import java.io.Serializable;
+import java.util.concurrent.Callable;
+public class MethodReference {
+class Inner<E> {
+}
+void foo() {
+Callable<Inner<String>> fi = MethodReference.Inner::<Serializable> new;
+}
+}
+//---------------------
+Note that the example doesn't make sense, and I didn't try to make it "right".
+Similar exceptions happen when I remove the <Serializable> or add type arguments after MethodReference.Inner.
+java.lang.ClassCastException: org.eclipse.jdt.internal.compiler.lookup.RawTypeBinding cannot be cast to org.eclipse.jdt.internal.compiler.lookup.NestedTypeBinding
+at org.eclipse.jdt.internal.compiler.ast.ReferenceExpression.generateCode(ReferenceExpression.java:119)
+at org.eclipse.jdt.internal.compiler.ast.LocalDeclaration.generateCode(LocalDeclaration.java:143)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.generateCode(AbstractMethodDeclaration.java:304)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.generateCode(AbstractMethodDeclaration.java:249)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode(TypeDeclaration.java:566)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode(TypeDeclaration.java:635)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.generateCode(CompilationUnitDeclaration.java:367)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1213)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:692)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1186)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:812)

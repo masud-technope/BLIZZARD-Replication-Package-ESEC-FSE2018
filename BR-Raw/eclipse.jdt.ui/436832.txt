@@ -1,0 +1,3 @@
+Bug 436832 – [1.8] Add quick fix for 'Duplicate default methods' error
+4.4 RC4.
+We should add quick fixes for 'Duplicate default methods' error which override the method and calls one of the available default methods.

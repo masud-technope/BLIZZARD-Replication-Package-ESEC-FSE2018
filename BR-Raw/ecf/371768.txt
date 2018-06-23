@@ -1,0 +1,2 @@
+Bug 371768 – [Zoodiscovery] NPE when unpublishing a service
+Harmless but annoying NPE is thrown when watchmanager needed to unpublish a service.

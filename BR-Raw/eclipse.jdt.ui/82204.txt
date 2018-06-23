@@ -1,0 +1,9 @@
+Bug 82204 – [key binding] Shortcut for "Open Declaration" doesn't show in context menu of Java Editor
+Version: 3.1.0
+Build id: I20050104-1600
+When you open the context menu of a java element (in the java perspective) no
+shortcut for Open Declaration is shown.
+ The keybindings preference page shows
+the Open Declaration action as being bound to F3.
+ Pressing F3 correctly invokes
+the action.

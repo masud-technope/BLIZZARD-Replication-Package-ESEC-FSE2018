@@ -1,0 +1,28 @@
+49802 – Shutdown of AJP Connector do not work
+Created attachment 25927 [details]
+Catalina log
+Hi,
+when Tomcat is under load from an Apache httpd server (through mod_jk and ajp13) and I shutdown it, I get NullPointerException:
+^C
+23-ago-2010 11.06.47 org.apache.coyote.http11.AbstractHttp11Protocol pause
+INFO: Pausing Coyote HTTP/1.1 on http-9080
+23-ago-2010 11.06.47 org.apache.coyote.ajp.AjpProtocol pause
+INFO: Pausing Coyote AJP/1.3 on ajp-9009
+23-ago-2010 11.06.48 org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+23-ago-2010 11.06.48 org.apache.catalina.connector.CoyoteAdapter service
+GRAVE: An exception or error occurred in the container during the request processing
+java.lang.NullPointerException
+at org.apache.catalina.connector.CoyoteAdapter.postParseRequest(CoyoteAdapter.java:638)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:397)
+at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:450)
+at org.apache.coyote.ajp.AjpProtocol$AjpConnectionHandler.process(AjpProtocol.java:385)
+...
+I think the stopping of the Coyote AJP Connector doesn't work.
+In fact, if you go with jconsole on MBean Catalina->Connector->8009 and do "Stop" on "operation tab", nothing happens.
+To reproduce this bug:
+* Download Tomcat 7.0.2
+* Confingure an Apache httpd with a JkMount /examples/*
+* Use ab to generate request (ex:  ab -c 3 -n 1000000 "http://localhost/examples/jsp/jsp2/el/basic-arithmetic.jsp")
+Thank you,
+Domenico Briganti

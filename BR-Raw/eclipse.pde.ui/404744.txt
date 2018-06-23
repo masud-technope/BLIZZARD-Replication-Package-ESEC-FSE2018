@@ -1,0 +1,21 @@
+Bug 404744 – Flag tags as invalid if parent type is private or package default
+From Bug 402393
+I found an issue with our invalid tag scanner, it appears it does not thoroughly check the visibility of the a member.
+Consider the following example:
+public class PublicStaticInner {
+static class Inner {
+/**
+* @noinstantiate This class is not intended to be instantiated by clients.
+* @noextend This class is not intended to be subclassed by clients.
+*/
+public static class OpenInner {
+/**
+* @noreference This method is not intended to be referenced by clients.
+*/
+public static void one() {
+System.out.println("one");
+}
+}
+}
+}
+Those tags are not flagged as invalid when they should be.

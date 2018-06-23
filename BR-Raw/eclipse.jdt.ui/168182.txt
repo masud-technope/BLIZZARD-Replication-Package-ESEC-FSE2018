@@ -1,0 +1,5 @@
+Bug 168182 – [spell checking] spell checking in .properties files should ignore mnemonics &
+I20061214-1445
+Spell checking in .properties files should ignore the mnemonics character '&'.
+E.g.
+"NewTypeWizardPage_modifiers_default=defa&ult" is perfectly valid.

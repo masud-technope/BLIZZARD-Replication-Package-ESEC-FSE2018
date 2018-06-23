@@ -1,0 +1,28 @@
+49726 – JSP 2.2 new configuration element <default-content-type> under <jsp-property-group> works incorrectly on tomcat trunk
+Created attachment 25863 [details]
+There are no java files in this project, so I only uploaded the war file.
+And its importance is the web.xml file.
+I wrote a test case which have been attached to test some new configuration elements under <jsp-property-group> which are added in JSP2.2.
+But it runs incorrectly.
+The error stack:
+org.apache.jasper.JasperException: /defaultCtype/page1.jsp(17,1) Page directive: illegal to have multiple occurrences of contentType with different values (old: text/xml, new: text/html)
+org.apache.jasper.compiler.DefaultErrorHandler.jspError(DefaultErrorHandler.java:40)
+org.apache.jasper.compiler.ErrorDispatcher.dispatch(ErrorDispatcher.java:407)
+org.apache.jasper.compiler.ErrorDispatcher.jspError(ErrorDispatcher.java:236)
+org.apache.jasper.compiler.Validator$DirectiveVisitor.visit(Validator.java:133)
+org.apache.jasper.compiler.Node$PageDirective.accept(Node.java:590)
+org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2376)
+org.apache.jasper.compiler.Node$Visitor.visitBody(Node.java:2428)
+org.apache.jasper.compiler.Node$Visitor.visit(Node.java:2434)
+org.apache.jasper.compiler.Node$Root.accept(Node.java:475)
+org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2376)
+org.apache.jasper.compiler.Validator.validateDirectives(Validator.java:1733)
+org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:195)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:360)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:340)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:327)
+org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:594)
+org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:315)
+org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:320)
+org.apache.jasper.servlet.JspServlet.service(JspServlet.java:265)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:668)

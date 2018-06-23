@@ -1,0 +1,4 @@
+Bug 273654 – [target] Allow multiselection and delete key on target location tab
+Right now on the locations tab of the target editor/wizard you only get single selection.
+ There is a removeall button, but out of habit I always hit Ctrl-A, Del to remove things (and sometimes I want to remove one or two specific containers).
+Adding this should be an easy polish item, we just have to be careful in the button handling/enablement.

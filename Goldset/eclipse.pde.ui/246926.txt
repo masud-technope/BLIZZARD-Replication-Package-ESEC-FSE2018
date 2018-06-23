@@ -1,0 +1,8 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDELabelProvider.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/ProductFeature.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/ProductPlugin.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/FeatureSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/PluginSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/VersionDialog.java

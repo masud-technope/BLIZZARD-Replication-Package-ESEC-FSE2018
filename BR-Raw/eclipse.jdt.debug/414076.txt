@@ -1,0 +1,13 @@
+Bug 414076 – CME Running test suite
+While running the test suite on Windows on I20130730-0800 I got the following exception in the console:
+java.util.ConcurrentModificationException
+at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:819)
+at java.util.ArrayList$Itr.next(ArrayList.java:791)
+at org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.removeAllBreakpoints(JDIDebugTarget.java:1567)
+at org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.cleanup(JDIDebugTarget.java:1526)
+at org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.terminated(JDIDebugTarget.java:1493)
+at org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.handleVMDeath(JDIDebugTarget.java:1001)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:158)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:100)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:249)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)

@@ -1,0 +1,6 @@
+Bug 479109 – [formatter] Add option to group aligned fields with blank lines
+With Mars.1 the formatter now does NOT restart the alignment after whitespace.
+So now ALL fields in the file are aligned.
+This is quite annoying to me since my files are divided in 'functional blocks'.
+Please fix this so that the alignment is restarted after whitespace
+See also https://bugs.eclipse.org/bugs/show_bug.cgi?id=474918#c12

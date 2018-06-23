@@ -1,0 +1,16 @@
+org.eclipse.jdt.compiler.tool/src/org/eclipse/jdt/internal/compiler/tool/EclipseCompilerImpl.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/AbstractRegressionTest.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/AnnotationTest.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/NegativeLambdaExpressionsTest.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/util/Util.java
+org.eclipse.jdt.core/batch/org/eclipse/jdt/internal/compiler/batch/Main.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/DefaultErrorHandlingPolicies.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/IErrorHandlingPolicy.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/FunctionalExpression.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/LambdaExpression.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/ReferenceExpression.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/Parser.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/problem/ProblemHandler.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/CompilationUnitResolver.java
+org.eclipse.jdt.core/eval/org/eclipse/jdt/internal/eval/CodeSnippetParser.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/CodeSnippetParsingUtil.java

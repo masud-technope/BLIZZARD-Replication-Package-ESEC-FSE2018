@@ -1,0 +1,2 @@
+Bug 422792 – [quick assist] "Convert to 'for' loop using Iterator" on raw collection
+"Convert to 'for' loop using Iterator" should also work on a raw collection.

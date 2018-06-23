@@ -1,0 +1,41 @@
+Bug 134865 – VMDisconnectedException not caught by breakpoint
+3.2M6
+* Debug the following sample program (from bug 114725) using 1.5
+* Ensure the options to catch uncaught exceptions & compilation errors are on
+* while the program is being debugged, termiante the program
+> the process terminates but the target does not update, an exception in the console
+public class DebugTest {
+static Throwable ex = new Error() {
+private static final long serialVersionUID = 1L;
+};
+public static void main(String[] args) {
+long time = System.currentTimeMillis();
+for (int i = 0; i < 1000000; i++) {
+try {
+throwException(true);
+} catch (Throwable e) {
+// do nothing
+}
+}
+System.out.println("Elapsed time = " + (System.currentTimeMillis() - time));
+}
+private static boolean throwException(boolean foobar) throws Throwable {
+if(foobar) {
+throw ex;
+}
+return false;
+}
+}
+com.sun.jdi.VMDisconnectedException: Got IOException from Virtual Machine
+at org.eclipse.jdi.internal.connect.PacketReceiveManager.getReply(PacketReceiveManager.java:162)
+at org.eclipse.jdi.internal.connect.PacketReceiveManager.getReply(PacketReceiveManager.java:177)
+at org.eclipse.jdi.internal.MirrorImpl.requestVM(MirrorImpl.java:174)
+at org.eclipse.jdi.internal.MirrorImpl.requestVM(MirrorImpl.java:192)
+at org.eclipse.jdi.internal.MirrorImpl.requestVM(MirrorImpl.java:207)
+at org.eclipse.jdi.internal.ObjectReferenceImpl.referenceType(ObjectReferenceImpl.java:426)
+at org.eclipse.jdi.internal.ObjectReferenceImpl.type(ObjectReferenceImpl.java:443)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaExceptionBreakpoint.handleBreakpointEvent(JavaExceptionBreakpoint.java:305)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:259)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:140)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.run(EventDispatcher.java:232)
+at java.lang.Thread.run(Thread.java:816)

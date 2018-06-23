@@ -1,0 +1,14 @@
+Bug 204329 – [remoteservice] registry not updated if adapter accessed after connect
+If the remote services adapter is accessed *before* container connect, then all is well with the replication of a remote registry.
+ If, however, the adapter is first accessed *after* the container connect, then remote replica contents are not automatically distributed and won't appear.
+so, this works:
+final IRemoteServiceContainerAdapter remoteContainerTwo = (IRemoteServiceContainerAdapter) clientTwo.getAdapter(IRemoteServiceContainerAdapter.class);
+clientTwo.connect(serverID, null);
+Thread.sleep(1000);
+final IRemoteServiceReference[] refs = remoteContainerTwo.getRemoteServiceReferences(null, IConcat.class.getName(), null);
+while this does not:
+clientTwo.connect(serverID, null);
+final IRemoteServiceContainerAdapter remoteContainerTwo = (IRemoteServiceContainerAdapter) clientTwo.getAdapter(IRemoteServiceContainerAdapter.class);
+Thread.sleep(1000);
+final IRemoteServiceReference[] refs = remoteContainerTwo.getRemoteServiceReferences(null, IConcat.class.getName(), null);
+because of the ordering of the getAdapter and connect calls.

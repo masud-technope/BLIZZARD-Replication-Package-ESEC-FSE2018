@@ -1,0 +1,15 @@
+Bug 433455 – StandardVMType.generateLibraryInfo() failed to detect libraries Oracle JRockit VM [Luna]
+After upgrading to Luna, we notice the JDT code we are using to detect installed VM throw error on Oracle JRockit VM.
+After some debugging, it seems caused by the logic in  StandardVMType.generateLibraryInfo(), where following command is executed with the JVM to list the libraries:
+E:\WLS1036\jrockit_160_29_D1.2.0-10\bin\java.exe  -Xmx4m -classpath D:\kepler\workspace_luna_src\.metadata\.plugins\org.eclipse.pde.cor
+e\New_configuration\org.eclipse.osgi\489\0\.cp\lib\launchingsupport.jar org.eclipse.jdt.internal.launching.support.LibraryDetector
+Notice the VM argument -Xmx4m is the one causing problem.
+On Jrockit, it ends up with
+[ERROR] Argument error: -Xmx4m
+[ERROR] Specified maximum heap size (4MB) is less than minimum required (16MB).
+Could not create the Java virtual machine.
+To Reproduce:
+- Download and install JRockit from
+http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-jrockit-2192437.html
+- In Preference \ Java \ Installed JRE
+- Add the JRockit from installation location

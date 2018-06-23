@@ -1,0 +1,10 @@
+Bug 163161 – PDE Extension Wizard creates bad plugin.xml file
+When you use the PDE Add Extension (at least for hello, world action) the plugin.xml file is messed up.
+steps to reproduce:
+1) create a new plugin project (call it test)
+2) open the Manifest edtor
+3) open the extension tab
+4) add a new extension (select action set -> hello, world)
+5) save the file
+look the plugin.xml file.
+ Some of the xml is outside the <plugin> </plugin> tags.

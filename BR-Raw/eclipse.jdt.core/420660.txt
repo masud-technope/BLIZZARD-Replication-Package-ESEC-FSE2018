@@ -1,0 +1,5 @@
+Bug 420660 – [1.8][api] Make "effectively final" state of local variables available
+Make the "effectively final" state of local variables available.
+Should be easy to do in IVariableBinding.
+Would also be very handy in ILocalVariable if possible.
+We could sneak this into getModifiers()/getFlags() with an internal flag, but I guess it's better to add a boolean isEffectivelyFinal() API instead.

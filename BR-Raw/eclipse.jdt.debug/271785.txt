@@ -1,0 +1,2 @@
+Bug 271785 – Migrate compilation error/uncaught exception handling to breakpoint listener extension
+With the addition of the breakpointListeners extension, support for handling suspend on compilation errors and uncaught exceptions could me migrated to use extensions (breakpoint specific listeners).

@@ -1,0 +1,10 @@
+Bug 265448 – [inline] Inlining long constants may change semantics
+If the variable "two" in the snippet below is inlined using "Refactor -> Inline...", the result will change from 2^32-2 to -2.
+The 2 should be suffixed with 'L' when inlined.
+This type of bug (in the code below, not the JDT bug) is quite tricky to spot.
+long two = 2;
+long much = two * Integer.MAX_VALUE;
+JDT Version:
+Eclipse Java Development Tools
+Version: 3.4.0.v20080603-2000-7o7tEAXEFpPqqoXxgaBhhhq
+Build id: I20080617-2000

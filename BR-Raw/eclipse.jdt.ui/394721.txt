@@ -1,0 +1,13 @@
+Bug 394721 – [inline] Inline local variable with initializer generates assignment where left-hand side is not a variable
+Steps to reproduce:
+1.
+Invoke "Inline" on "m" in code below
+2.
+The resulting file cannot be compiled ("The left-hand side of an assignment must be a variable")
+class InlineLocalVariableBug1 {
+void f() {
+// Invoke "Inline..." on "m" result in "new int[10][0] = 0;"
+int[] m = new int[10];
+m[0] = 0;
+}
+}

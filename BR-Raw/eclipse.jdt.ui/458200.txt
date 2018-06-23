@@ -1,0 +1,3 @@
+Bug 458200 – [null] "Annotate" proposals for adding external null annotations to library classes
+Sibling of bug 458186, but now we want to support adding annotations without any compile errors/warnings.
+Rationale: by pointing to the library method in an editor when adding annotations, we can completely hide the attached external annotations.

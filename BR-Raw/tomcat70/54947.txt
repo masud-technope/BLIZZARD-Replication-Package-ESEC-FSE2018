@@ -1,0 +1,26 @@
+54947 – Http11NioProtocol generates HTTP 505 responses on valid requests if request is split across multiple packets
+If an HTTP request is broken up across multiple packets *and* the first packet contains a GET request up to "\r" AND the "\n" terminating the first line of the request is included in the next packet Tomcat incorrectly throws an HTTP "505 Version Not Supported" response.
+ This is with the Http11NioProtocol connector only - the default HTTP/1.1 connector does not exhibit this problem.
+An example request:
+Packet 1: GET / HTTP/1.1\r
+Packet 2: \nHost: localhost\r\n
+Packet 3: Connection: Close\r\n\r\n
+Response:
+HTTP/1.1 505 HTTP Version Not Supported
+Server: Apache-Coyote/1.1
+Date: Thu, 09 May 2013 20:23:58 GMT
+Connection: close
+The following Python program reproduces the problem for me in both Tomcat 6.0.37 and Tomcat 7.0.39:
+"""
+#!/usr/bin/python
+import socket
+import time
+s = socket.socket()
+s.connect(("localhost",8080))
+s.sendall("GET / HTTP/1.1\r")
+time.sleep(1.5) # make sure the above goes out in its own packet
+s.sendall("\nHost: localhost\r\n")
+s.sendall("Connection: close\r\n\r\n")
+print s.makefile().read()
+"""
+Moving the "\n" to from the second sendall to the end of the first sendall causes Tomcat to respond correctly.

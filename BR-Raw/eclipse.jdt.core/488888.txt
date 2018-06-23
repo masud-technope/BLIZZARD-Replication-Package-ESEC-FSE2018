@@ -1,0 +1,74 @@
+Bug 488888 – Resource '/ ' does not exist
+I20160223-0800
+With this build, I often see such unacceptable log entries that don't identify themselves:
+!ENTRY org.eclipse.core.resources 4 368 2016-03-01 11:26:40.577
+!MESSAGE Resource '/ ' does not exist.
+I tracked them down to this stack trace:
+at org.eclipse.core.internal.runtime.Log.log(Log.java:65)
+at org.eclipse.pde.internal.core.PDECore.log(PDECore.java:96)
+at org.eclipse.pde.internal.core.PDECore.log(PDECore.java:108)
+at org.eclipse.pde.internal.core.natures.PDE.hasPluginNature(PDE.java:32)
+at org.eclipse.pde.ds.internal.annotations.DSAnnotationCompilationParticipant.isActive(DSAnnotationCompilationParticipant.java:94)
+at org.eclipse.jdt.internal.core.JavaModelManager$CompilationParticipants.getCompilationParticipants(JavaModelManager.java:421)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.notifyParticipants(ReconcileWorkingCopyOperation.java:239)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:95)
+at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:724)
+at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:790)
+at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1250)
+at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1211)
+at org.eclipse.jdt.internal.corext.util.JavaModelUtil.reconcile(JavaModelUtil.java:609)
+at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitDocumentProvider.createFakeCompiltationUnit(CompilationUnitDocumentProvider.java:1142)
+at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitDocumentProvider.createFakeCompiltationUnit(CompilationUnitDocumentProvider.java:1055)
+at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitDocumentProvider.connect(CompilationUnitDocumentProvider.java:1280)
+at org.eclipse.ui.texteditor.AbstractTextEditor.doSetInput(AbstractTextEditor.java:4178)
+at org.eclipse.ui.texteditor.StatusTextEditor.doSetInput(StatusTextEditor.java:229)
+at org.eclipse.ui.texteditor.AbstractDecoratedTextEditor.doSetInput(AbstractDecoratedTextEditor.java:1466)
+at org.eclipse.jdt.internal.ui.javaeditor.JavaEditor.internalDoSetInput(JavaEditor.java:2557)
+at org.eclipse.jdt.internal.ui.javaeditor.JavaEditor.doSetInput(JavaEditor.java:2544)
+at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor.doSetInput(CompilationUnitEditor.java:1399)
+at org.eclipse.jdt.internal.ui.compare.JavaMergeViewer$CompilationUnitEditorAdapter.doSetInput(JavaMergeViewer.java:613)
+at org.eclipse.ui.texteditor.AbstractTextEditor$5.run(AbstractTextEditor.java:3154)
+at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:435)
+at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:351)
+at org.eclipse.ui.internal.WorkbenchWindow$14.run(WorkbenchWindow.java:2181)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+at org.eclipse.ui.internal.WorkbenchWindow.run(WorkbenchWindow.java:2177)
+at org.eclipse.ui.texteditor.AbstractTextEditor.internalInit(AbstractTextEditor.java:3172)
+at org.eclipse.ui.texteditor.AbstractTextEditor.init(AbstractTextEditor.java:3197)
+at org.eclipse.jdt.internal.ui.compare.JavaMergeViewer.getSourceViewerConfiguration(JavaMergeViewer.java:276)
+at org.eclipse.jdt.internal.ui.compare.JavaMergeViewer.configureTextViewer(JavaMergeViewer.java:215)
+at org.eclipse.compare.contentmergeviewer.TextMergeViewer.configureSourceViewer(TextMergeViewer.java:3047)
+at org.eclipse.compare.contentmergeviewer.TextMergeViewer.updateContent(TextMergeViewer.java:2988)
+at org.eclipse.compare.contentmergeviewer.ContentMergeViewer.internalRefresh(ContentMergeViewer.java:788)
+at org.eclipse.compare.contentmergeviewer.ContentMergeViewer.inputChanged(ContentMergeViewer.java:688)
+at org.eclipse.jface.viewers.ContentViewer.setInput(ContentViewer.java:286)
+at org.eclipse.jdt.internal.ui.compare.JavaMergeViewer.setInput(JavaMergeViewer.java:152)
+at org.eclipse.compare.CompareViewerSwitchingPane.setInput(CompareViewerSwitchingPane.java:277)
+at org.eclipse.compare.internal.CompareContentViewerSwitchingPane.setInput(CompareContentViewerSwitchingPane.java:191)
+at org.eclipse.compare.CompareEditorInput.internalSetContentPaneInput(CompareEditorInput.java:845)
+at org.eclipse.compare.CompareEditorInput.access$7(CompareEditorInput.java:843)
+at org.eclipse.compare.CompareEditorInput$11.run(CompareEditorInput.java:779)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+at org.eclipse.compare.CompareEditorInput.feed1(CompareEditorInput.java:773)
+at org.eclipse.compare.CompareEditorInput.feedInput(CompareEditorInput.java:751)
+at org.eclipse.compare.CompareEditorInput.createContents(CompareEditorInput.java:555)
+at org.eclipse.compare.internal.CompareEditor.createCompareControl(CompareEditor.java:462)
+at org.eclipse.compare.internal.CompareEditor.access$6(CompareEditor.java:422)
+at org.eclipse.compare.internal.CompareEditor$3.run(CompareEditor.java:378)
+at org.eclipse.ui.internal.UILockListener.doPendingWork(UILockListener.java:162)
+at org.eclipse.ui.internal.UISynchronizer$3.run(UISynchronizer.java:154)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:182)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4167)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3783)
+at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1118)
+...
+To reproduce in master (with bug 488464 fixed), you have to enable open "Preferences > DS Annotations" and check the checkbox.
+Then select a *.java file in a repository and open an old version from the history.
+The fake compilation unit for such a file is in the non-existing Java project called " ".
+* Problem 1: org.eclipse.pde.internal.core.PDECore#log(Throwable) violates the Javadoc of CoreException#getStatus(), which explains why the result of that call must not be used for logging.
+This is a very common mistake all over PDE.
+* Problem 2: PDE#hasPluginNature(IProject) is apparently not intended to be called with a non-existing project.
+I'm not sure that was a good idea, but I don't have time to check all callers of PDE#has*Nature(..) methods.
+I'll push a fix for these problems.
+Peter: Please make sure you avoid the anti-pattern in Problem 1 in new code, and use Activator#log(Throwable) in the future.

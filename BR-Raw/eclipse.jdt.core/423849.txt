@@ -1,0 +1,146 @@
+Bug 423849 – [1.8][compiler] cannot implement java.nio.file.Path because of compiler name clash
+It is impossible to extend java.nio.file.Path because of a compiler error
+The type MyPath must implement the inherited abstract method Path.register(WatchService, WatchEvent.Kind<?>[], WatchEvent.Modifier...)
+The method register(WatchService, WatchEvent.Kind<?>[], WatchEvent.Modifier...) of type MyPath must override or implement a supertype method
+Name clash: The method register(WatchService, WatchEvent.Kind<?>[], WatchEvent.Modifier...) of type MyPath has the same erasure as register(WatchService, WatchEvent.Kind<?>[], WatchEvent.Modifier...) of type Path but does not override it
+The following two methods are the culprit
+WatchKey register(WatchService watcher, Kind<?>[] events, Modifier...
+modifiers) throws IOException
+WatchKey register(WatchService watcher, Kind<?>...
+events) throws IOException
+---Full Source----
+public class MyPath implements Path {
+/** {@inheritDoc} */
+@Override
+public FileSystem getFileSystem() {
+return null;
+}
+/** {@inheritDoc} */
+@Override
+public boolean isAbsolute() {
+return false;
+}
+/** {@inheritDoc} */
+@Override
+public Path getRoot() {
+return null;
+}
+/** {@inheritDoc} */
+@Override
+public Path getFileName() {
+return null;
+}
+/** {@inheritDoc} */
+@Override
+public Path getParent() {
+return null;
+}
+/** {@inheritDoc} */
+@Override
+public int getNameCount() {
+return 0;
+}
+/** {@inheritDoc} */
+@Override
+public Path getName(int index) {
+return null;
+}
+/** {@inheritDoc} */
+@Override
+public Path subpath(int beginIndex, int endIndex) {
+return null;
+}
+/** {@inheritDoc} */
+@Override
+public boolean startsWith(Path other) {
+return false;
+}
+/** {@inheritDoc} */
+@Override
+public boolean startsWith(String other) {
+return false;
+}
+/** {@inheritDoc} */
+@Override
+public boolean endsWith(Path other) {
+return false;
+}
+/** {@inheritDoc} */
+@Override
+public boolean endsWith(String other) {
+return false;
+}
+/** {@inheritDoc} */
+@Override
+public Path normalize() {
+return null;
+}
+/** {@inheritDoc} */
+@Override
+public Path resolve(Path other) {
+return null;
+}
+/** {@inheritDoc} */
+@Override
+public Path resolve(String other) {
+return null;
+}
+/** {@inheritDoc} */
+@Override
+public Path resolveSibling(Path other) {
+return null;
+}
+/** {@inheritDoc} */
+@Override
+public Path resolveSibling(String other) {
+return null;
+}
+/** {@inheritDoc} */
+@Override
+public Path relativize(Path other) {
+return null;
+}
+/** {@inheritDoc} */
+@Override
+public URI toUri() {
+return null;
+}
+/** {@inheritDoc} */
+@Override
+public Path toAbsolutePath() {
+return null;
+}
+/** {@inheritDoc} */
+@Override
+public Path toRealPath(LinkOption...
+options) throws IOException {
+return null;
+}
+/** {@inheritDoc} */
+@Override
+public File toFile() {
+return null;
+}
+/** {@inheritDoc} */
+@Override
+public WatchKey register(WatchService watcher, Kind<?>[] events, Modifier...
+modifiers) throws IOException {
+return null;
+}
+/** {@inheritDoc} */
+@Override
+public WatchKey register(WatchService watcher, Kind<?>...
+events) throws IOException {
+return null;
+}
+/** {@inheritDoc} */
+@Override
+public Iterator<Path> iterator() {
+return null;
+}
+/** {@inheritDoc} */
+@Override
+public int compareTo(Path other) {
+return 0;
+}
+}

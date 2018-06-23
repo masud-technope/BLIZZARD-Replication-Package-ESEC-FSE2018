@@ -1,0 +1,2 @@
+Bug 192574 – Communications preference page isn't empty enough
+The Restore Defaults and Apply buttons are there, but have no settings to affect.

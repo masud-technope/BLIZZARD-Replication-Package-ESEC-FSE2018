@@ -1,0 +1,4 @@
+org.eclipse.jdt.compiler.apt.tests/src/org/eclipse/jdt/compiler/apt/tests/FilerTests.java
+org.eclipse.jdt.compiler.apt.tests/lib/apttestprocessors.jar
+org.eclipse.jdt.compiler.apt/src/org/eclipse/jdt/internal/compiler/apt/dispatch/BatchFilerImpl.java
+org.eclipse.jdt.compiler.apt.tests/processors/org/eclipse/jdt/compiler/apt/tests/processors/filer/FilerProc.java

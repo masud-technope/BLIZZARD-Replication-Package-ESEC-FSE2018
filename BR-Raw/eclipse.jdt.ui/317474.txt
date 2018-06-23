@@ -1,0 +1,4 @@
+Bug 317474 – [render] Javadoc view has 'Open Declaration' tooltip but image is not a link
+Created attachment 172340 [details]
+Fix
+Javadoc view has 'Open Declaration' tooltip but image is not a link.

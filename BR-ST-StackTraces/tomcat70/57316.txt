@@ -1,0 +1,11 @@
+java.io.File.<init>
+org.apache.jasper.JspC.initClassLoader
+org.apache.jasper.JspC.processFile
+org.apache.jasper.JspC.execute
+org.apache.tools.ant.UnknownElement.execute
+sun.reflect.NativeMethodAccessorImpl.invoke0
+sun.reflect.NativeMethodAccessorImpl.invoke
+sun.reflect.DelegatingMethodAccessorImpl.invoke
+java.lang.reflect.Method.invoke
+org.apache.tools.ant.dispatch.DispatchUtils.execute
+groovy.util.AntBuilder.performTask

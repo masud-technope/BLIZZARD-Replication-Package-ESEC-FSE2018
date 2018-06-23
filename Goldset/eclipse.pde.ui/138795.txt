@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDELabelProvider.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/ifeature/IFeatureObject.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDELabelProvider.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/feature/FeatureEditor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/feature/FeatureInputContext.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/site/SiteLabelProvider.java

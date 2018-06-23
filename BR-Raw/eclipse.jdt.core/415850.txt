@@ -1,0 +1,4 @@
+Bug 415850 – [1.8] Ensure RunJDTCoreTests can cope with null annotations enabled
+As a big test to catch potential regressions caused by null analysis using type annotations, I ran all JDT/Core tests at 1.8 with null annotations enabled.
+Currently this produces 124 errors and 37 failures.
+I'm going to work through these regressions and provide patches via this bug.

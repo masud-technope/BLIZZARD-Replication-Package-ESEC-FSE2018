@@ -1,0 +1,5 @@
+Bug 30224 – No JavaElement delta when renaming non-Java project
+Setup: PackageExplorer showing non-Java projects
+1) select the non-Java project
+2) rename
+->no JavaElementDelta is sent out

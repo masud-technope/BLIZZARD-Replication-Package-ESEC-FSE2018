@@ -1,0 +1,3 @@
+Bug 229070 – PDE should ignore API errors when launching
+Currently, if you have API usage scanning option set to 'error' and you try to launch a Java application it will prompt you asking if you want to continue the launch.
+The Java launchers (java & applet) should ignore API use errors when launching

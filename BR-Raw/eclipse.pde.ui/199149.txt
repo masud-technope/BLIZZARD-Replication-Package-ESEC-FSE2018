@@ -1,0 +1,4 @@
+Bug 199149 – Manifest highlighting needed in other PDE refactoring areas
+There are a few areas in PDE where we refactor Manifest files which do not have Manifest syntax highlighting.
+ Adam has been working hard to make the Organize Manifest and Externalize Wizards so pretty, it has made the other PDE refactoring look ugly by comparison.
+We need to help spread the beauty though more of PDE refactoring so none of the current refactoring classes feel like ugly step children.

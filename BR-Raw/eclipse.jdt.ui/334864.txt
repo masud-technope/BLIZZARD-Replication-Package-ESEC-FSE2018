@@ -1,0 +1,19 @@
+Bug 334864 – [JUnit] Opening @Ignored test classes from JUnit view leads to "Method '...' not found. Opening the test class." warning
+Build Identifier:  20100917-0705
+I have some JUnit 4 unit tests where I've marked the whole class with @Ignore.
+This gives a (correct) output on the JUnit view.
+If I want to open those tests via double-click in the JUnit view, I get a "Method '...' not found.
+Opening the test class." warning.
+This is not ok, since I never indended to open a method but the whole class.
+Clicking on ok opens the class (which is again ok)
+--> please don't show that warning in that case since it makes no sense
+Reproducible: Always
+Steps to Reproduce:
+1.
+write a Junit 4 unit test
+2.
+mark the whole class with @Ignore
+3.
+run your tests
+4.
+double-click on the ignored test in the Junit view

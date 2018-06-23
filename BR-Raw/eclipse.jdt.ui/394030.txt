@@ -1,0 +1,16 @@
+Bug 394030 – [extract method] Extracting expression of parameterized type that is passed as argument to this constructor yields compilation error
+Steps to reproduce:
+1.
+Invoke "Extract Method" refactoring on "c.size()" expression in the example below.
+2.
+Resulting file does not compile ("Cannot make a static reference to the non-static type V").
+ The problem is that the extracted method must be static because it is used as argument to "this" and at the same time it needs type parameter "V" which is non-static.
+public class ExtractMethodBug<V> {
+public ExtractMethodBug(Map<?, ? extends V> c) {
+// Invoke "Extract Method" on "c.size()"
+this(c.size());
+}
+public ExtractMethodBug(int size) {
+}
+}
+(Thanks to Anirudh Balagopal for helping with this bug report.)

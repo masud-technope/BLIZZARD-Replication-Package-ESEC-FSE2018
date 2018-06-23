@@ -1,0 +1,4 @@
+Bug 260528 – [compare] wrong caret on right side
+HEAD (regression from last I-build).
+Now that we use enhanced compare on the left we also have to use it on the right side because otherwise it looks strange the UI is different.
+Most prominent example being the different carets.

@@ -1,0 +1,10 @@
+Bug 428741 – [1.8][quick assist] convert method reference expression to lambda
+Now that bug 427169 works nicely (thanks!) "wouldn't it be cool" if the next level of conversion be supported, too:
+from
+people.map(Person::getLastName)
+to
+people.map(p -> p.getLastName())
+This direction shouldn't require too much analysis (just needs a new name 'p').
+The opposite direction would be even cooler, but for that you'd need to analyse which lambdas are amenable to this conversion.
+That could be tricky.
+I believe such quick assists would be highly educational for J8 newbies :)

@@ -1,0 +1,15 @@
+Bug 297840 – Strange Code in ExpressionInputDialog.dispose
+User-Agent:       Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.1.1) Gecko/20090715 Firefox/3.5.1
+Build Identifier:
+Three things make ExpressionInputDialog.dispose not "standard":
+1) it contains a misleading dispose method although it is not a SWT widget.
+It seems that this kind of code is usually located in close();
+2) dispose was called twice (bug #296552 - verified fixed)
+3) it is not necessary to dispose widgets since they are automatically disposed when closing the dialog (from Window.close()).
+For instance, almost no other dialog uses "getTextWidget().dispose()".
+Cf.
+discussion around bug #296494.
+This seems to be a code smell and deserves a high degree of strangeness by our strange code detector.
+Is it worth cleaning it?
+Best regards, -- Martin
+Reproducible: Always

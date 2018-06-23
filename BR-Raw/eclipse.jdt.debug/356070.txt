@@ -1,0 +1,22 @@
+Bug 356070 – [patch] Step into selection does not work for generic types
+Build Identifier: 20100917-0705
+For generic types (e.g.
+Foo<T>) the "step into selection" functionality of the Java debugger does not work.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Example code:
+public class Foo<T> {
+private void sayHello() {
+System.out.println("Hello!");
+}
+public static void main(String[] args) {
+new Foo<String>().sayHello();
+}
+}
+2.
+Place a breakpoint in the main method
+3.
+When the breakpoint hits, put the cursor on the call tio sayHello and choose step into selection from the context menu.
+The bug is that this does *not* steps into the sayHello method.
+Note that this functionality works fine for the non-generic case.

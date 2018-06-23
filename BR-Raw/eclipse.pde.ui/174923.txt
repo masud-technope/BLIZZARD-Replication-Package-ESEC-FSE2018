@@ -1,0 +1,2 @@
+Bug 174923 – Rename bundle id action
+It would be cool if there would be a rename bundle id operation that would update all references to a bundle if the bundle id is renamed.

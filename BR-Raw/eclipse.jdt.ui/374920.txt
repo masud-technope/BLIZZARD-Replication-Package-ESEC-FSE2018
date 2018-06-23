@@ -1,0 +1,10 @@
+Bug 374920 – [preferences] Non-intuitive tab order on editor preferences dialog
+1.
+Open preferences.
+2.
+Go to the Editor option.
+3.
+Tab through the various preferences.
+The Bracket highlighting radio buttons come before any of the checkboxes above them.
+It should probably be made so it is consistent with the rest of the preference dialogs, i.e.
+so that the tab order has the higher up controls first.

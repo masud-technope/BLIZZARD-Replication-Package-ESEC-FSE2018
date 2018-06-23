@@ -1,0 +1,6 @@
+Bug 261805 – [Collab] Change major version of org.eclipse.ecf.example.collab from 1.3 to 2.0 and mark new API
+API incompatible changes:
+- Added org.eclipse.ecf.example.collab.share.RosterListener to public API
+- Remove org.eclipse.ecf.example.collab.share.TreeItem and org.eclipse.ecf.example.collab.share.User from public API
+- Major overhaul to org.eclipse.ecf.example.collab.share.EclipseCollabSharedObject containing non API compatible changes
+- Changed bundle dependencies in bundle manifest

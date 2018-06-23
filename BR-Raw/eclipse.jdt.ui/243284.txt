@@ -1,0 +1,30 @@
+Bug 243284 – [inline] Inline constant gives IAE: Index out of bounds
+I20080805-1307.
+Found this while verifying bug 237547: Inline constant results in IAE: Index out of bounds.
+1.
+paste this:
+package bug;
+public class Constant { public static final String
+constant //LINE 3
+=""; }
+package bug;
+import static bug.Constant.constant;
+public enum EntityType {Address;}
+package bug2;
+import static bug.Constant.constant;
+import bug.EntityType;
+class LeafReflex{
+String editorId(final EntityType type){
+switch(type){
+case Address:return constant;
+}
+throw null;
+}
+}
+2.
+delete all whitespace in EntityType (==> caret after '}')
+3.
+save
+4.
+inline Constant.constant
+==> exception

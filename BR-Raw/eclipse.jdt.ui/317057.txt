@@ -1,0 +1,2 @@
+Bug 317057 – [create on paste] Paste to Working Set should work
+Pasting a source snippet to a working set in the the Package Explorer should paste the snippet to a new project and add the project to the working set.

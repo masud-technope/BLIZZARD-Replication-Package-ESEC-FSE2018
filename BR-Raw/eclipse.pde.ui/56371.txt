@@ -1,0 +1,11 @@
+Bug 56371 – Registry View does not show all activated plugins
+Open the plug-in registry viewer and notice activated plug-ins such as o.e.swt
+are NOT in the list.
+ Go to the toolbar, drop-down menu, uncheck 'Show Active
+Plug-ins Only'.
+ Click on o.e.swt and notice that it actually has been activated
+but the viewer never illustrated this fact.
+Scrolling down the viewer, I noticed other plug-ins become activated as they're
+selected (i.e.
+jdt.source, jdt, jdt.doc.isv, pde.source, etc.)
+Investigate why certain activated plug-ins aren't identified as being activated.

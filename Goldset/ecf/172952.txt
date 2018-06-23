@@ -1,0 +1,3 @@
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/XMPPChatRoomManager.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/identity/XMPPRoomID.java
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/ui/views/RosterView.java

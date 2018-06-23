@@ -1,0 +1,4 @@
+Bug 125580 – IResourceChangeDescriptionFactory should support building a simple add delta
+Some of the refactoring create new resources (for example a package rename if the package to be renamed has subpackages).
+However I can't flag those elements in the delta.
+Since I also move files form the old package into the newly created folder the delta will contain the newly created folder with a changed flag which is wrong from a delta perspective.

@@ -1,0 +1,37 @@
+49170 – Transmission of duplicated session in DeltaManager#handleGET_ALL_SESSIONS.
+Created attachment 25333 [details]
+patch against trunk.
+Config
+<Manager className="org.apache.catalina.ha.session.DeltaManager"
+sendAllSessions="false"
+sendAllSessionsSize="XXXX" />
+DeltaManager#handleGET_ALL_SESSIONS is as follows.
+=====
+...skip...
+if (isSendAllSessions()) {
+sendSessions(sender, currentSessions, findSessionTimestamp);
+} else {
+// send session at blocks
+int len = currentSessions.length < getSendAllSessionsSize() ? currentSessions.length : getSendAllSessionsSize();        Session[] sendSessions = new Session[len];
+for (int i = 0; i < currentSessions.length; i += getSendAllSessionsSize()) {
+len = i + getSendAllSessionsSize() > currentSessions.length ? currentSessions.length - i : getSendAllSessionsSize();
+System.arraycopy(currentSessions, i, sendSessions, 0, len);
+sendSessions(sender, sendSessions,findSessionTimestamp);
+...skip...
+}
+...skip...
+}
+=====
+sendSessions maintains previous Session.
+For instance,
+currentSessions=[ssA, ssB, ssC, ssD, ssE]
+sendAllSessionsSize=3
+loop1 : sendSessions=[ssA, ssB, ssC]
+loop2 : sendSessions=[ssD, ssE, ssC]
+ssC is transmitted two times.
+It should be the following.
+loop1 :  sendSessions=[ssA, ssB, ssC]
+loop2 : sendSessions=[ssD, ssE]
+This problem exists in TC5.5, TC6.0, and TC7.0.
+I made a patch against trunk.
+Best Regards.

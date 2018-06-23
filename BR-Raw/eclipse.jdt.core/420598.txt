@@ -1,0 +1,24 @@
+Bug 420598 – [1.8][compiler] Incorrect error about intersection cast type not being a functional interface.
+BETA_JAVA8:
+The following program triggers an incorrect error message: The target type of
+this expression is not a functional interface: more than one of the intersecting
+interfaces are functional
+The intersection should collapse to the most specific type when there is a
+supertype - subtype relationship between two constituents.
+// --
+import java.io.Serializable;
+interface I {
+void foo();
+}
+interface J extends I {
+void foo();
+}
+interface K {
+}
+public class X {
+public static void main(String[] args) {
+I i = (I & Serializable) () -> {};
+i = (I & J & K) () -> {};
+i = (J & I & K) () -> {};
+}
+}

@@ -1,0 +1,18 @@
+50683 – Servlet 3.0 annotations not scanned if unpackWars="false"
+Created attachment 26572 [details]
+minimal test case war with source
+Overview:
+Given a very simple HelloServlet using @WebServlet annotation, and packed in a war file without a web.xml, the container does not scan for annotations if unpackWars="false" in the <Host> element of server.xml and the servlet is never added to the context.
+Steps to Reproduce:
+1) Set unpackWars="fase"
+2) copy attached war file to webapps
+3) launch Tomcat
+4) navigate to:  http://<servername>/Hello/SayHello
+Actual Results:
+HTTP Status 404 - /Hello/SayHello
+type Status report
+message /Hello/SayHello
+description The requested resource (/Hello/SayHello) is not available.
+Apache Tomcat/7.0.6
+Expected Results:
+Hello

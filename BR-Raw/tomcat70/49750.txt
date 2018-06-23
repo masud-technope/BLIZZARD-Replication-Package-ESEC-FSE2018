@@ -1,0 +1,4 @@
+49750 – WebappClassLoader.validate(name) does not validate javax.servlet.
+The method does not validate the class name as described in the method documentation.
+"Validate a classname.
+As per SRV.9.7.2, we must restrict loading of classes from J2SE (java.*) and classes of the servlet API (javax.servlet.*) "

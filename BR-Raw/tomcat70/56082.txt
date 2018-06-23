@@ -1,0 +1,14 @@
+56082 – ConcurrentModificationException with org.apache.juli.ClassLoaderLogManager
+Created attachment 31267 [details]
+Source to reproduce
+In Tomcat, java.util.logging.LogManager.getLogManager() is in general an instance of org.apache.juli.ClassLoaderLogManager.
+In a webapp, when iterating over the result of LogManager.getLogManager().getLoggerNames(), a ConcurrentModification can sometimes occur.
+To reproduce :
+- download attached test-1.0.zip
+- run "mvn clean package" using Maven
+- copy "target/test-1.0.war" into tomcat/webapps
+- start Tomcat
+- see a lot of "Issue reproduced: java.util.ConcurrentModificationException" in the System output
+This webapp uses simple Logger.getLogger(String) and LogManager.getLoggerNames() in threads.
+I my case, this is reproduced using Tomcat 7.0.42 and JDK 1.7.
+I suppose that a copy of the result could be made in org.apache.juli.ClassLoaderLogManager.getLoggerNames()

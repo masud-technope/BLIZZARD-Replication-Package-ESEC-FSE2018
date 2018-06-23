@@ -1,0 +1,23 @@
+Bug 110596 – [assist] don't rank java.lang types lower if a simple name duplicate exists
+3.2 M2
+TYPE_REF proposal ranking...
+I noticed that String is ranked lower than StringBuffer and (worse!)
+StringIndexOutOfBoundsException in the following situation (| = caret):
+class X {
+St|
+}
+which is especially unlucky in this situation:
+class X {
+CharSequence cs= St|
+}
+Since I cannot refine the proposal list any further by typing in more characters
+(since String is a prefix of the higher-ranked proposals), this means the only
+way to select the proposal is by using the arrow keys / mouse.
+--
+The reason why String is ranked lower is that there are other types in the type
+universe that have the same simple name, which causes the
+AcceptedType.mustBeQualified flag to come true.
+This seems "unjust" for
+java.lang types.
+Types that do not require imports should be treated almost like
+already imported types.

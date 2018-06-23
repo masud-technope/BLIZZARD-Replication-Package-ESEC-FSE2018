@@ -1,0 +1,4 @@
+Bug 411543 – Imports of org.xml.* and javax.xml need to be added to manifest
+In this class:  org.eclipse.ecf.internal.osgi.services.remoteserviceadmin.EndpointDescriptionParser
+there are references to classes in packages javax.xml.parser.* and org.xml.sax.*.
+ These packages should be explicitly imported in the manifest (even though they are dynamically imported successfully, it is best to import them explicitly).

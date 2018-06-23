@@ -1,0 +1,258 @@
+Bug 33746 – Error on adding a new JRE in Windows=>Preferences=>Java=>Installed JREs settings
+I am using Eclipse Version: 2.1.0
+Build id: 200302211557
+I add a new JRE viz.
+the path for the folder where JDK is installed.
+If I try to access the JRE dialog, I get the error msg.
+The contents of the
+.log file are given below.
+I remember being able to add other JRE in the previous versions of Eclipse.
+Why does this cause error now? I am running jboss using the EASIE pugin.
+******************************************************************************
+!ENTRY org.eclipse.ui 4 4 Mar 04, 2003 13:05:51.355
+!MESSAGE Unhandled exception caught in event loop.
+!ENTRY org.eclipse.ui 4 0 Mar 04, 2003 13:05:51.385
+!MESSAGE java.lang.NullPointerException
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.core.runtime.Path.append(Path.java:146)
+at
+org.eclipse.jdt.internal.launching.LaunchingPlugin$VMChanges.vmChanged(Launc
+hingPlugin.java:153)
+at
+org.eclipse.jdt.launching.JavaRuntime.fireVMChanged(JavaRuntime.java:1676)
+at
+org.eclipse.jdt.launching.AbstractVMInstall.setName(AbstractVMInstall.java:7
+2)
+at
+com.instantiations.assist.eclipse.core.eclipse20.launch.VMInstall20.setName(
+VMInstall20.java:54)
+at org.eclipse.jdt.launching.VMStandin.convertToRealVM(VMStandin.java:76)
+at
+org.eclipse.jdt.internal.launching.LaunchingPlugin.processVMPrefsChanged(Lau
+nchingPlugin.java:491)
+at
+org.eclipse.jdt.internal.launching.LaunchingPlugin.propertyChange(LaunchingP
+lugin.java:421)
+at
+org.eclipse.core.runtime.Preferences.firePropertyChangeEvent(Preferences.jav
+a:578)
+at org.eclipse.core.runtime.Preferences.setValue(Preferences.java:1181)
+at
+org.eclipse.jdt.internal.debug.ui.launcher.VMPreferencePage.saveVMDefinition
+s(VMPreferencePage.java:479)
+at
+org.eclipse.jdt.internal.debug.ui.launcher.VMPreferencePage.performOk(VMPref
+erencePage.java:465)
+at
+org.eclipse.jface.preference.PreferenceDialog.okPressed(PreferenceDialog.jav
+a:668)
+at
+org.eclipse.jface.preference.PreferenceDialog.buttonPressed(PreferenceDialog
+.java:220)
+at
+org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog.buttonPressed(Work
+benchPreferenceDialog.java:103)
+at org.eclipse.jface.dialogs.Dialog$1.widgetSelected(Dialog.java:417)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:87)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:77)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:836)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:1775)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:1483)
+at org.eclipse.jface.window.Window.runEventLoop(Window.java:577)
+at org.eclipse.jface.window.Window.open(Window.java:557)
+at
+org.eclipse.ui.internal.OpenPreferencesAction.run(OpenPreferencesAction.java
+:53)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:841)
+at
+org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(Action
+ContributionItem.java:456)
+at
+org.eclipse.jface.action.ActionContributionItem.handleWidgetEvent(ActionCont
+ributionItem.java:403)
+at
+org.eclipse.jface.action.ActionContributionItem.access$0(ActionContributionI
+tem.java:397)
+at
+org.eclipse.jface.action.ActionContributionItem$ActionListener.handleEvent(A
+ctionContributionItem.java:72)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:77)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:836)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:1775)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:1483)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1271)
+at org.eclipse.ui.internal.Workbench.run(Workbench.java:1254)
+at
+org.eclipse.core.internal.boot.InternalBootLoader.run(InternalBootLoader.jav
+a:845)
+at org.eclipse.core.boot.BootLoader.run(BootLoader.java:461)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39
+)
+at
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl
+.java:25)
+at java.lang.reflect.Method.invoke(Method.java:324)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:247)
+at org.eclipse.core.launcher.Main.run(Main.java:703)
+at org.eclipse.core.launcher.Main.main(Main.java:539)
+!ENTRY org.eclipse.core.runtime 4 2 Mar 04, 2003 13:24:51.590
+!MESSAGE Plug-in "org.eclipse.jdt.debug.ui" was unable to instantiate class
+"org.eclipse.jdt.internal.debug.ui.launcher.VMPreferencePage".
+!STACK 0
+java.lang.NullPointerException
+at
+org.eclipse.jdt.internal.launching.VMDefinitionsContainer.verifyInstallLocat
+ion(VMDefinitionsContainer.java:148)
+at
+org.eclipse.jdt.internal.launching.VMDefinitionsContainer.addVM(VMDefinition
+sContainer.java:114)
+at
+org.eclipse.jdt.internal.debug.ui.launcher.VMPreferencePage.<init>(VMPrefere
+ncePage.java:122)
+at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at
+sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAcces
+sorImpl.java:39)
+at
+sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstruc
+torAccessorImpl.java:27)
+at java.lang.reflect.Constructor.newInstance(Constructor.java:274)
+at java.lang.Class.newInstance0(Class.java:306)
+at java.lang.Class.newInstance(Class.java:259)
+at
+org.eclipse.core.internal.plugins.PluginDescriptor.createExecutableExtension
+(PluginDescriptor.java:138)
+at
+org.eclipse.core.internal.plugins.PluginDescriptor.createExecutableExtension
+(PluginDescriptor.java:167)
+at
+org.eclipse.core.internal.plugins.ConfigurationElement.createExecutableExten
+sion(ConfigurationElement.java:103)
+at
+org.eclipse.ui.internal.WorkbenchPlugin.createExtension(WorkbenchPlugin.java
+:151)
+at
+org.eclipse.ui.internal.dialogs.WorkbenchPreferenceNode.createPage(Workbench
+PreferenceNode.java:43)
+at
+org.eclipse.jface.preference.PreferenceDialog.showPage(PreferenceDialog.java
+:992)
+at
+org.eclipse.jface.preference.PreferenceDialog.selectSavedItem(PreferenceDial
+og.java:700)
+at
+org.eclipse.jface.preference.PreferenceDialog$4.run(PreferenceDialog.java:34
+1)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:65)
+at
+org.eclipse.jface.preference.PreferenceDialog.createContents(PreferenceDialo
+g.java:336)
+at org.eclipse.jface.window.Window.create(Window.java:296)
+at
+org.eclipse.ui.internal.OpenPreferencesAction.run(OpenPreferencesAction.java
+:51)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:841)
+at
+org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(Action
+ContributionItem.java:456)
+at
+org.eclipse.jface.action.ActionContributionItem.handleWidgetEvent(ActionCont
+ributionItem.java:403)
+at
+org.eclipse.jface.action.ActionContributionItem.access$0(ActionContributionI
+tem.java:397)
+at
+org.eclipse.jface.action.ActionContributionItem$ActionListener.handleEvent(A
+ctionContributionItem.java:72)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:77)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:836)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:1775)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:1483)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1271)
+at org.eclipse.ui.internal.Workbench.run(Workbench.java:1254)
+at
+org.eclipse.core.internal.boot.InternalBootLoader.run(InternalBootLoader.jav
+a:845)
+at org.eclipse.core.boot.BootLoader.run(BootLoader.java:461)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39
+)
+at
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl
+.java:25)
+at java.lang.reflect.Method.invoke(Method.java:324)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:247)
+at org.eclipse.core.launcher.Main.run(Main.java:703)
+at org.eclipse.core.launcher.Main.main(Main.java:539)
+!ENTRY org.eclipse.core.runtime 4 2 Mar 04, 2003 13:26:20.371
+!MESSAGE Problems occurred when invoking code from plug-in:
+"org.eclipse.core.runtime".
+!STACK 0
+java.lang.NullPointerException
+at
+org.eclipse.jdt.internal.launching.VMDefinitionsContainer.verifyInstallLocat
+ion(VMDefinitionsContainer.java:148)
+at
+org.eclipse.jdt.internal.launching.VMDefinitionsContainer.addVM(VMDefinition
+sContainer.java:114)
+at org.eclipse.jdt.launching.JavaRuntime.getVMsAsXML(JavaRuntime.java:1243)
+at
+org.eclipse.jdt.launching.JavaRuntime.saveVMConfiguration(JavaRuntime.java:1
+217)
+at
+org.eclipse.jdt.internal.launching.LaunchingPlugin.shutdown(LaunchingPlugin.
+java:323)
+at
+org.eclipse.core.internal.plugins.PluginRegistry$2.run(PluginRegistry.java:2
+83)
+at
+org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java
+:867)
+at
+org.eclipse.core.internal.plugins.PluginRegistry$1.visit(PluginRegistry.java
+:296)
+at
+org.eclipse.core.internal.plugins.PluginRegistry.accept(PluginRegistry.java:
+55)
+at
+org.eclipse.core.internal.plugins.PluginRegistry.shutdownPlugins(PluginRegis
+try.java:299)
+at
+org.eclipse.core.internal.plugins.PluginRegistry.shutdown(PluginRegistry.jav
+a:265)
+at
+org.eclipse.core.internal.runtime.InternalPlatform.loaderShutdown(InternalPl
+atform.java:517)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39
+)
+at
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl
+.java:25)
+at java.lang.reflect.Method.invoke(Method.java:324)
+at
+org.eclipse.core.internal.boot.InternalBootLoader.shutdown(InternalBootLoade
+r.java:979)
+at
+org.eclipse.core.internal.boot.InternalBootLoader.run(InternalBootLoader.jav
+a:850)
+at org.eclipse.core.boot.BootLoader.run(BootLoader.java:461)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39
+)
+at
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl
+.java:25)
+at java.lang.reflect.Method.invoke(Method.java:324)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:247)
+at org.eclipse.core.launcher.Main.run(Main.java:703)
+at org.eclipse.core.launcher.Main.main(Main.java:539)
+!ENTRY org.vssplugin 1 0 Mar 04, 2003 13:26:20.521
+!MESSAGE Using jawin library
+E:/_vedas/Eclipse_RC1/plugins/org.vssplugin_1.3.0/lib/jawin.dll

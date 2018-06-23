@@ -1,0 +1,5 @@
+50459 – StandardContext.bindThread() and unbindThread() are not symmetrical and not limited to current thread
+As a side effect of my commit, I think I found a bug in StandardContext.bindThread() and unbindThread() methods in both tomcat 6 and 7 :
+- the methods should be symmetrical : unbindThread should restore the Thread CCL after calling DirContextURLStreamHandler.unbind() and ContextBindings.unbindThread()
+- StandardContext.bindThread() should call DirContextURLStreamHandler.bindThread() instead of DirContextURLStreamHandler.bind()
+- StandardContext.unbindThread() should call DirContextURLStreamHandler.unbindThread() instead of DirContextURLStreamHandler.unbind()

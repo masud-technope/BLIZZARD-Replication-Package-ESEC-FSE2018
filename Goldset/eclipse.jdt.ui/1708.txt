@@ -1,0 +1,5 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/ClassFileEditorActionContributor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/CompilationUnitEditorActionContributor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/snippeteditor/JavaSnippetEditor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/JavaEditor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/JavaEditorMessages.properties

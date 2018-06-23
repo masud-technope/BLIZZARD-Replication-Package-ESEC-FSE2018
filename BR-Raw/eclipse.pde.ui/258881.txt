@@ -1,0 +1,5 @@
+Bug 258881 – Switching to new FilteredTree look causes issues on Mac
++++ This bug was initially created as a clone of Bug #258236 +++
+Switching to the new look causes a white background for the filtered text control.
+This happens on Eclipse application launch configurations.
+What is strange is that this doesn't happen to OSGi launch configurations which reuse the same filtered control.

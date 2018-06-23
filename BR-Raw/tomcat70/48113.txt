@@ -1,0 +1,34 @@
+48113 – Member hostname components are printed as signed 8bits
+Created attachment 24467 [details]
+Patch to print hostname IP components as unsigned int
+Hey,
+Take the following member for example: 192.168.1.61:4000, when it's hostname is
+printed (like in toString()), it shows as:
+tcp://{-64, -88, 1, 61}:4000
+Like in:
+16:23:17,773 INFO  [TcpFailureDetector] Received
+memberDisappeared[org.apache.catalina.tribes.membership.MemberImpl[tcp://{-64,
+-88, 1, 61}:4000,{-64, -88, 1, 61},4000, alive=1814258,id={50 18 86 10 111 -47
+79 83 -108 -4 82 -8 26 82 -79 -59 }, payload={-84 -19 0 5 115 114 0 50 111
+...(423)}, command={}, domain={74 79 84 84 65 95 87 65 68 ...(10)}, ]] message.
+Will verify.
+16:23:17,897 INFO  [TcpFailureDetector] Verification complete.
+Member still
+alive[org.apache.catalina.tribes.membership.MemberImpl[tcp://{-64, -88, 1,
+61}:4000,{-64, -88, 1, 61},4000, alive=1814258,id={50 18 86 10 111 -47 79 83
+-108 -4 82 -8 26 82 -79 -59 }, payload={-84 -19 0 5 115 114 0 50 111 ...(423)},
+command={}, domain={74 79 84 84 65 95 87 65 68 ...(10)}, ]]
+I attached a patch which takes the Arrays.toString(byte[]) and creates another
+one with a second argument "unsigned".
+Then the original delegates to this new
+one with a default of "false" for unsigned.
+So existing code will continue to
+behave as is, but the getHostname() code in MemberImpl passes "true" for this
+argument, which will make the name print as:
+tcp://{192, 168, 1, 61}:4000
+So this code updates:
+java/org/apache/catalina/tribes/util/Arrays.java
+java/org/apache/catalina/tribes/membership/MemberImpl.java
+I generated the patch from trunk with a root of:
+java/org/apache/catalina/
+So it needs to be applied from this directory.

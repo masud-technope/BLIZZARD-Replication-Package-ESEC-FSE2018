@@ -1,0 +1,39 @@
+Bug 356687 – [move method] super method invocation does not compile after refactoring
+Build Identifier: 20110615-0604
+Applying the move method refactoring introduces a compilation error
+Reproducible: Always
+Steps to Reproduce:
+1.
+Create the classes
+public class A {
+public B b;
+private long m(long l) {
+return 0;
+}
+public long m(int i) {
+return 1;
+}
+}
+public class B extends A {
+public long test() {
+return super.m(2);
+}
+}
+2.
+Apply the move method refactoring to move m to B
+public class A {
+public B b;
+private long m(long l) {
+return 0;
+}
+}
+public class B extends A {
+public long test() {
+return super.m(2);
+}
+public long m(int i) {
+return 1;
+}
+}
+3.
+The resulting program does not compile: The method m from the type A is not visible

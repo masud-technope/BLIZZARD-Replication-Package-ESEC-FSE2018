@@ -1,0 +1,8 @@
+Bug 258129 – manipulator.loadConfiguration(...) can return empty array
+Build: I20081208-1800
+1) Install the build into C:\Program Files\eclipse
+2) Startup
+3) Open the target platform preference page
+-> There are no plugins listed.
+It is not correctly finding the user-local bundles.info, which is under the user's home directory because this is a shared install.
+Should have the same behaviour on Linux/Mac when the install directory is read-only.

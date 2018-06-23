@@ -1,0 +1,12 @@
+java/org/apache/catalina/deploy/WebXml.java
+java/org/apache/catalina/startup/ContextConfig.java
+java/org/apache/catalina/Wrapper.java
+java/org/apache/catalina/core/ApplicationContext.java
+java/org/apache/catalina/core/ApplicationServletRegistration.java
+java/org/apache/catalina/core/StandardWrapper.java
+java/org/apache/catalina/deploy/ServletDef.java
+java/org/apache/catalina/deploy/WebXml.java
+java/org/apache/catalina/startup/ContextConfig.java
+test/org/apache/catalina/startup/TestContextConfig.java
+test/webapp-3.0/index.html
+webapps/docs/changelog.xml

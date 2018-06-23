@@ -1,0 +1,24 @@
+Bug 269001 – [ds tooling]: Problems with unnamed reference elements
+(Eclipse 3.5M6 on Mac OS X/Cocoa/x86_64)
+The Referenced Services tab of the DS component editor uses the name attribute of the <reference> elements for display, along with the bind/unbind method names (if applicable) and an icon.
+However in DS1.1.
+the name attribute is optional, so the entry the list may display no useful information, e.g.
+just "[<none>,<none>]"
+Also when in this state, if we switch to the Source tab and back to Services tab, a NPE is thrown.
+Stack trace follows.
+!ENTRY org.eclipse.jface 4 2 2009-03-17 15:06:53.281
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jface".
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.jface.viewers.StyledString.append(StyledString.java:264)
+at org.eclipse.jface.viewers.StyledString.<init>(StyledString.java:133)
+at org.eclipse.jface.viewers.StyledString.<init>(StyledString.java:118)
+at org.eclipse.pde.internal.ds.ui.editor.sections.DSReferenceSection$ReferenceLabelProvider.update(DSReferenceSection.java:83)
+at org.eclipse.jface.viewers.ViewerColumn.refresh(ViewerColumn.java:145)
+at org.eclipse.jface.viewers.AbstractTableViewer.doUpdateItem(AbstractTableViewer.java:399)
+at org.eclipse.jface.viewers.StructuredViewer$UpdateItemSafeRunnable.run(StructuredViewer.java:481)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.core.runtime.Platform.run(Platform.java:888)
+at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:48)
+at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:175)
+at org.eclipse.jface.viewers.StructuredViewer.updateItem(StructuredViewer.java:2111)

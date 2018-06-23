@@ -1,0 +1,207 @@
+Bug 125013 – [misc] deadlock in PreferencesAdapter.firePropertyChangeEvent
+I20060119 + ZRH plug-ins from 20060124
+- started target workbench, but it never came up
+- selected threads from the vm dump below.
+- the trace shows that the syncExec call from PreferenceForwarder waits forever while holding the JavaModelManager waited for by the main thread
+-> the main thread waits for the lock
+-> the reconciler waits forever and is never woken up by the main thread
+-> Not exactly a deadlock, but similar in result.
+org.eclipse.core.launcher.Main at localhost:32917 (Suspended)
+Thread [main] (Suspended)
+waiting for: JavaModelManager  (id=80)
+JavaModelManager.containerGet(IJavaProject, IPath) line: 337
+JavaModelManager.getClasspathContainer(IPath, IJavaProject) line: 1163
+ClasspathEntry.validateClasspathEntry(IJavaProject, IClasspathEntry, boolean, boolean) line: 1560
+JavaProject.getResolvedClasspath(IClasspathEntry[], IPath, boolean, boolean, Map) line: 2120
+DeltaProcessingState$ProjectUpdateInfo.updateProjectReferencesIfNecessary() line: 98
+DeltaProcessingState.performClasspathResourceChange(JavaProject, IClasspathEntry[], IClasspathEntry[], IClasspathEntry[], boolean) line: 228
+SetClasspathOperation.updateProjectReferencesIfNecessary() line: 799
+SetClasspathOperation.executeOperation() line: 254
+SetClasspathOperation(JavaModelOperation).run(IProgressMonitor) line: 720
+Workspace.run(IWorkspaceRunnable, ISchedulingRule, int, IProgressMonitor) line: 1714
+SetClasspathOperation(JavaModelOperation).runOperation(IProgressMonitor) line: 784
+JavaProject.setRawClasspath(IClasspathEntry[], IPath, IProgressMonitor, boolean, IClasspathEntry[], boolean, boolean) line: 2995
+JavaCore$5.run(IProgressMonitor) line: 4167
+BatchOperation.executeOperation() line: 39
+BatchOperation(JavaModelOperation).run(IProgressMonitor) line: 720
+Workspace.run(IWorkspaceRunnable, ISchedulingRule, int, IProgressMonitor) line: 1714
+JavaCore.run(IWorkspaceRunnable, ISchedulingRule, IProgressMonitor) line: 3976
+JavaCore.setClasspathContainer(IPath, IJavaProject[], IClasspathContainer[], IProgressMonitor) line: 4150
+JREContainerInitializer.initialize(IPath, IJavaProject) line: 56
+JavaModelManager.initializeContainer(IJavaProject, IPath) line: 1748
+JavaModelManager$7.run(IProgressMonitor) line: 1694
+Workspace.run(IWorkspaceRunnable, ISchedulingRule, int, IProgressMonitor) line: 1714
+JavaModelManager.initializeAllContainers(IJavaProject, IPath) line: 1703
+JavaModelManager.getClasspathContainer(IPath, IJavaProject) line: 1170
+JavaCore.getClasspathContainer(IPath, IJavaProject) line: 1458
+JavaProject.getResolvedClasspath(IClasspathEntry[], IPath, boolean, boolean, Map) line: 2154
+JavaProject.getResolvedClasspath(boolean, boolean, boolean) line: 2058
+DeltaProcessingState.initializeRoots() line: 271
+BatchOperation(JavaModelOperation).run(IProgressMonitor) line: 717
+Workspace.run(IWorkspaceRunnable, ISchedulingRule, int, IProgressMonitor) line: 1714
+JavaCore.run(IWorkspaceRunnable, ISchedulingRule, IProgressMonitor) line: 3976
+JavaCore.setClasspathContainer(IPath, IJavaProject[], IClasspathContainer[], IProgressMonitor) line: 4150
+JREContainerInitializer.initialize(IPath, IJavaProject) line: 56
+JavaModelManager.initializeContainer(IJavaProject, IPath) line: 1748
+JavaModelManager.getClasspathContainer(IPath, IJavaProject) line: 1172
+JavaCore.getClasspathContainer(IPath, IJavaProject) line: 1458
+JavaProject.getResolvedClasspath(IClasspathEntry[], IPath, boolean, boolean, Map) line: 2154
+JavaProject.getResolvedClasspath(boolean, boolean, boolean) line: 2058
+JavaModelManager.determineIfOnClasspath(IResource, IJavaProject) line: 735
+JavaModelManager.create(IFolder, IJavaProject) line: 624
+JavaModelManager.create(IResource, IJavaProject) line: 553
+JavaCore.create(IResource) line: 1372
+ResourceAdapterFactory.getAdapter(Object, Class) line: 32
+AdapterFactoryProxy.getAdapter(Object, Class) line: 63
+AdapterManager.getAdapter(Object, Class) line: 253
+Folder(PlatformObject).getAdapter(Class) line: 65
+NamePatternFilter.select(Viewer, Object, Object) line: 62
+PackageExplorerPart$PackageExplorerProblemTreeViewer.filter(Object, Object, ViewerFilter[]) line: 324
+PackageExplorerPart$PackageExplorerProblemTreeViewer.isExpandable(Object) line: 313
+PackageExplorerPart$PackageExplorerProblemTreeViewer(AbstractTreeViewer).updatePlus(Item, Object) line: 2021
+PackageExplorerPart$PackageExplorerProblemTreeViewer(AbstractTreeViewer).createTreeItem(Widget, Object, int) line: 541
+AbstractTreeViewer$1.run() line: 519
+BusyIndicator.showWhile(Display, Runnable) line: 69
+PackageExplorerPart$PackageExplorerProblemTreeViewer(AbstractTreeViewer).createChildren(Widget) line: 499
+PackageExplorerPart$PackageExplorerProblemTreeViewer(TreeViewer).createChildren(Widget) line: 794
+AbstractTreeViewer$5.run() line: 1002
+PackageExplorerPart$PackageExplorerProblemTreeViewer(StructuredViewer).preservingSelection(Runnable) line: 1259
+PackageExplorerPart$PackageExplorerProblemTreeViewer.preservingSelection(Runnable) line: 624
+PackageExplorerPart$PackageExplorerProblemTreeViewer(AbstractTreeViewer).inputChanged(Object, Object) line: 992
+PackageExplorerPart$PackageExplorerProblemTreeViewer(ContentViewer).setInput(Object) line: 249
+PackageExplorerPart$PackageExplorerProblemTreeViewer(StructuredViewer).setInput(Object) line: 1475
+PackageExplorerPart.createPartControl(Composite) line: 854
+ViewReference.createPartHelper() line: 330
+ViewReference.createPart() line: 195
+ViewReference(WorkbenchPartReference).getPart(boolean) line: 552
+ViewPane(PartPane).setVisible(boolean) line: 285
+ViewPane.setVisible(boolean) line: 503
+PresentablePart.setVisible(boolean) line: 140
+PresentablePartFolder.select(IPresentablePart) line: 266
+LeftToRightTabOrder.select(IPresentablePart) line: 65
+TabbedStackPresentation.selectPart(IPresentablePart) line: 394
+ViewStack(PartStack).refreshPresentationSelection() line: 1140
+ViewStack(PartStack).createControl(Composite, StackPresentation) line: 621
+ViewStack(PartStack).createControl(Composite) line: 530
+ViewSashContainer(PartSashContainer).createControl(Composite) line: 557
+PerspectiveHelper.activate(Composite) line: 242
+Perspective.onActivate() line: 813
+WorkbenchPage.onActivate() line: 2221
+WorkbenchWindow$6.run() line: 2460
+BusyIndicator.showWhile(Display, Runnable) line: 69
+WorkbenchWindow.setActivePage(IWorkbenchPage) line: 2442
+WorkbenchWindow.restoreState(IMemento, IPerspectiveDescriptor) line: 1881
+Workbench.doRestoreState(IMemento, MultiStatus) line: 2704
+Workbench.access$14(Workbench, IMemento, MultiStatus) line: 2653
+Workbench$17.run() line: 1569
+Workbench.runStartupWithProgress(int, Runnable) line: 1321
+Workbench.restoreState(IMemento) line: 1567
+Workbench.access$12(Workbench, IMemento) line: 1546
+Workbench$15.run() line: 1429
+SafeRunner.run(ISafeRunnable) line: 37
+Platform.run(ISafeRunnable) line: 785
+Workbench.restoreState() line: 1373
+WorkbenchConfigurer.restoreState() line: 183
+IDEWorkbenchAdvisor(WorkbenchAdvisor).openWindows() line: 700
+Workbench.init(Display) line: 989
+Workbench.runUI() line: 1723
+Workbench.createAndRunWorkbench(Display, WorkbenchAdvisor) line: 400
+PlatformUI.createAndRunWorkbench(Display, WorkbenchAdvisor) line: 143
+IDEApplication.run(Object) line: 106
+PlatformActivator$1.run(Object) line: 109
+EclipseAppLauncher.runApplication(Object) line: 92
+EclipseAppLauncher.start(Object) line: 68
+EclipseStarter.run(Object) line: 373
+EclipseStarter.run(String[], Runnable) line: 168
+NativeMethodAccessorImpl.invoke0(Method, Object, Object[]) line: not available [native method]
+NativeMethodAccessorImpl.invoke(Object, Object[]) line: 39
+DelegatingMethodAccessorImpl.invoke(Object, Object[]) line: 25
+Method.invoke(Object, Object...) line: 585
+Main.invokeFramework(String[], URL[]) line: 338
+Main.basicRun(String[]) line: 282
+Main.run(String[]) line: 977
+Main.main(String[]) line: 952
+Thread [Framework Event Dispatcher] (Suspended)
+owns: HashMap<K,V>  (id=163)
+waiting for: RunnableLock  (id=162)
+Object.wait(long) line: not available [native method]
+RunnableLock(Object).wait() line: 474
+UISynchronizer(Synchronizer).syncExec(Runnable) line: 169
+UISynchronizer.syncExec(Runnable) line: 28
+Display.syncExec(Runnable) line: 3622
+WorkingSetManager(AbstractWorkingSetManager).firePropertyChange(String, Object, Object) line: 301
+WorkingSetManager(AbstractWorkingSetManager).getUpdater(WorkingSetDescriptor) line: 585
+WorkingSetManager(AbstractWorkingSetManager).bundleChanged(BundleEvent) line: 546
+BundleContextImpl.dispatchEvent(Object, Object, int, Object) line: 1205
+EventManager.dispatchEvent(EventListeners$ListElement[], EventDispatcher, int, Object) line: 189
+EventManager$EventThread.run() line: 291
+Thread [org.eclipse.jdt.internal.ui.text.JavaReconciler] (Suspended)
+owns: JavaModelManager  (id=80)
+owns: Object  (id=132)
+waiting for: RunnableLock  (id=131)
+Object.wait(long) line: not available [native method]
+RunnableLock(Object).wait() line: 474
+UISynchronizer(Synchronizer).syncExec(Runnable) line: 169
+UISynchronizer.syncExec(Runnable) line: 28
+Display.syncExec(Runnable) line: 3622
+PreferencesAdapter.firePropertyChangeEvent(String, Object, Object) line: 127
+PreferencesAdapter$PropertyChangeListener.propertyChange(Preferences$PropertyChangeEvent) line: 46
+Preferences$1.run() line: 519
+SafeRunner.run(ISafeRunnable) line: 37
+PreferenceForwarder(Preferences).firePropertyChangeEvent(String, Object, Object) line: 522
+PreferenceForwarder.preferenceChange(IEclipsePreferences$PreferenceChangeEvent) line: 101
+EclipsePreferences$2.run() line: 746
+SafeRunner.run(ISafeRunnable) line: 37
+InstancePreferences(EclipsePreferences).firePreferenceEvent(String, Object, Object) line: 749
+InstancePreferences(EclipsePreferences).put(String, String) line: 762
+JavaModelManager.variablePut(String, IPath) line: 3844
+JavaModelManager.updateVariableValues(String[], IPath[], IProgressMonitor) line: 3736
+JavaCore.setClasspathVariables(String[], IPath[], IProgressMonitor) line: 4285
+JavaCore.setClasspathVariable(String, IPath, IProgressMonitor) line: 4250
+EclipseHomeInitializer.resetEclipseHomeVariable() line: 31
+EclipseHomeInitializer.initialize(String) line: 24
+JavaCore.getClasspathVariable(String) line: 1577
+JavaCore.getResolvedVariablePath(IPath) line: 2725
+JavaCore.getResolvedClasspathEntry(IClasspathEntry) line: 2687
+JavaProject.getResolvedClasspath(IClasspathEntry[], IPath, boolean, boolean, Map) line: 2134
+JavaProject.getResolvedClasspath(boolean, boolean, boolean) line: 2058
+DeltaProcessingState.initializeRoots() line: 271
+BatchOperation(JavaModelOperation).run(IProgressMonitor) line: 717
+Workspace.run(IWorkspaceRunnable, ISchedulingRule, int, IProgressMonitor) line: 1714
+JavaCore.run(IWorkspaceRunnable, ISchedulingRule, IProgressMonitor) line: 3976
+JavaCore.setClasspathContainer(IPath, IJavaProject[], IClasspathContainer[], IProgressMonitor) line: 4150
+ModelEntry.updateClasspathContainer(boolean) line: 107
+RequiredPluginsInitializer.initialize(IPath, IJavaProject) line: 40
+JavaModelManager.initializeContainer(IJavaProject, IPath) line: 1748
+JavaModelManager.getClasspathContainer(IPath, IJavaProject) line: 1172
+JavaCore.getClasspathContainer(IPath, IJavaProject) line: 1458
+JavaProject.getResolvedClasspath(IClasspathEntry[], IPath, boolean, boolean, Map) line: 2154
+JavaProject.getResolvedClasspath(boolean, boolean, boolean) line: 2058
+JavaProject.buildStructure(OpenableElementInfo, IProgressMonitor, Map, IResource) line: 333
+JavaProject(Openable).generateInfos(Object, HashMap, IProgressMonitor) line: 235
+JavaProject(JavaElement).openWhenClosed(Object, IProgressMonitor) line: 503
+JavaProject(JavaElement).getElementInfo(IProgressMonitor) line: 247
+JavaProject(JavaElement).getElementInfo() line: 233
+JavaProject.getJavaProjectElementInfo() line: 1624
+JavaProject.newNameLookup(ICompilationUnit[]) line: 2537
+CancelableNameEnvironment(SearchableEnvironment).<init>(JavaProject, ICompilationUnit[]) line: 53
+CancelableNameEnvironment(SearchableEnvironment).<init>(JavaProject, WorkingCopyOwner) line: 67
+CancelableNameEnvironment.<init>(JavaProject, WorkingCopyOwner, IProgressMonitor) line: 26
+CompilationUnitProblemFinder.process(CompilationUnitDeclaration, ICompilationUnit, char[], Parser, WorkingCopyOwner, HashMap, boolean, boolean, IProgressMonitor) line: 156
+CompilationUnitProblemFinder.process(ICompilationUnit, char[], WorkingCopyOwner, HashMap, boolean, boolean, IProgressMonitor) line: 239
+ReconcileWorkingCopyOperation.makeConsistent(CompilationUnit, IProblemRequestor) line: 146
+ReconcileWorkingCopyOperation.executeOperation() line: 71
+ReconcileWorkingCopyOperation(JavaModelOperation).run(IProgressMonitor) line: 720
+ReconcileWorkingCopyOperation(JavaModelOperation).runOperation(IProgressMonitor) line: 779
+CompilationUnit.reconcile(int, boolean, boolean, WorkingCopyOwner, IProgressMonitor) line: 1114
+CompilationUnit.reconcile(int, boolean, WorkingCopyOwner, IProgressMonitor) line: 1089
+JavaReconcilingStrategy$1.run() line: 97
+SafeRunner.run(ISafeRunnable) line: 37
+Platform.run(ISafeRunnable) line: 785
+JavaReconcilingStrategy.reconcile(boolean) line: 82
+JavaReconcilingStrategy.initialReconcile() line: 172
+JavaCompositeReconcilingStrategy(CompositeReconcilingStrategy).initialReconcile() line: 114
+JavaCompositeReconcilingStrategy.initialReconcile() line: 120
+JavaReconciler(MonoReconciler).initialProcess() line: 103
+JavaReconciler.initialProcess() line: 328
+AbstractReconciler$BackgroundThread.run() line: 170

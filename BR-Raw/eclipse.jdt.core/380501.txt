@@ -1,0 +1,9 @@
+Bug 380501 – [1.8][compiler] Add support for default methods (JSR 335)
+Add support for Default methods aka Virtual extension methods
+aka Defender methods.
+Other than enabling the wider adoption of lambda expressions in
+existing libraries, this feature bears no connection to lambda expressions
+per se and so is best tracked as a separate project.
+Bug 380194 concerns itself with grammar changes for all of JSR 335.
+Thus the grammar changes to support the current topic will be published
+in bug 380194 (shortly.)

@@ -1,0 +1,10 @@
+Bug 88397 – [5.0] OpenAction does not select whole ITypeParameter
+I20050315-1100
+OpenAction does not select whole ITypeParameter.
+public class Cell {
+public <T> void f(T arg) { }
+}
+In a source editor, set the caret around a T and press F3
+Was: caret is before T
+Expected: T is selected
+Note that ITypeParameter#getSourceRange() is broken for binary types (bug 88394).

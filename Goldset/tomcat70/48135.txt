@@ -1,0 +1,2 @@
+java/org/apache/naming/factory/webservices/ServiceProxy.java
+java/org/apache/naming/factory/webservices/ServiceRefFactory.java

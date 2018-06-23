@@ -1,0 +1,36 @@
+59219 – AsyncListener#onError not called on exception during async processing
+There are a couple of problems relating to error handling during exception
+processing.
+Basically, Tomcat should ensure that the AsyncListener onError
+and onComplete methods are correctly called if an exception occurs during
+async processing in order to allow the listener code to release resources
+and do clean-up.
+This does not seem to happen.
+A sample servlet demonstrating the problem, AsyncDebugListener, is provided
+at the following location:
+https://github.com/msnicklous/AsyncDebug
+Build the AsyncDebugListener module using 'mvn install' and deploy it on Tomcat.
+The service method and each of the AsyncListener methods logs output to the
+AsyncListener.log file.
+You can follow execution by looking at the logs.
+Assuming Tomcat is installed locally, you can use the following URLs:
+1) No error - works correctly:
+http://localhost:8080/AsyncDebugListener/ltest?reps=3
+2) Exception during service method
+http://localhost:8080/AsyncDebugListener/ltest?err
+If async processing is started and an exception is thrown before the end of
+the service method, AsyncListener#onError is not called, however onTimeout
+followed by onComplete are both called.
+This is incorrect, as onError followed by onComplete should be called.
+3) Exception during processing of AsyncContext#dispatch() target
+http://localhost:8080/AsyncDebugListener/ltest?reps=3&err
+Precondition: Async processing is started and the request is dispatched using
+AsyncContext#dispatch().
+The service method returns to the container.
+If the container performs the resulting async dispatch and an exception is
+thrown, Tomcat drops the connection to the browser and no AsyncListener method
+is called.
+This is incorrect.
+Tomcat should flush the contents of the buffer to the
+browser and call the AsyncListener onError followed by the onComplete methods.
+Thanks for having a look at this!

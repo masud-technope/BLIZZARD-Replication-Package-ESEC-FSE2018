@@ -1,0 +1,7 @@
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ChangeSignatureProcessor.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ChangeSignature/canModify/A_testGenerics06_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ChangeSignature/canModify/A_testGenerics06_out.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ChangeSignatureTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/TestChangeMethodSignaturParticipant.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/ExceptionInfo.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/ChangeExceptionsControl.java

@@ -1,0 +1,13 @@
+Bug 69581 – [templates] Templates view
+Hello,
+I would like to propose a new kind of view we can find in other IDE like sharp
+develop for instance.
+It is the scout view (in #develop idiom) and consists in
+proposing in a palette vieww by category code snipets that we can drag and drop
+into the current editor.
+For some kind of works, it is better than code assist
+because we can't recall in mind every key shortcuts, and it is a good help to
+have  that presented visually.
+http://www.icsharpcode.net/OpenSource/SD/Tour/094/ToolScout.aspx
+best regards
+Xavier

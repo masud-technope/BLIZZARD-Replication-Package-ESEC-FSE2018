@@ -1,0 +1,13 @@
+Bug 286934 – [xmpp] Disconnected users with resource IDs not removed from roster
+Created attachment 144809 [details]
+Test case
+Steps To Reproduce:
+1.
+Connect a user with a resource ID (user@host/resource).
+2.
+Disconnect the user.
+3.
+Connect the same user with a different resource ID (user@host/resource2).
+=> The user now appears twice in the roster, once with the old and once with the new resource.
+If resource IDs are generated randomly, this causes disconnected entries to be never removed.
+The attached patch contains a new test case that fails due to this problem.

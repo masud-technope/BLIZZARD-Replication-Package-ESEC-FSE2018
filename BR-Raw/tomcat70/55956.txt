@@ -1,0 +1,6 @@
+55956 – Regarding Tomcat Manager Application Status
+In Tomcat Manager Application, when we browse status page report for currently running request, there is column name which shows Client IP address.
+If my tomcat is running Behind Proxy or Behind NGINX or Behind Apache Mod Proxy, then Client IP is IP address of Last Proxy.
+I have tried to pass X-Forwarded-For parameter but there is no change in Client IP address.
+Same problem exist in request.getRemoteAddr() (always returns proxy IP address) and Access Log Configuration (logs proxy IP address in access log file).
+It would be nice if we can incorporate X-Forwarded-For (or like wise HTTP_X_FORWARDED_FOR,Proxy-Client-IP etc) in above situations.

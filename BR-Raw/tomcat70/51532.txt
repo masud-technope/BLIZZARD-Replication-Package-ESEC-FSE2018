@@ -1,0 +1,29 @@
+51532 – Performance Issue when retriving JAR files during TLD file parsing.
+Migrating from Tomcat 6.0.29 to 7.0.19 a large performance hit was noticed on pages containing lots of custom tags.
+Page rendering time jumped by an order of magnitude.
+Profiling the webapp through Netbeans, we narrowed down the problem to the getJarFile() method inside org.apache.jasper.compiler.ParseController.
+Screenshots of the Profiler Hotspots and Call Tree from both versions of Tomcat are available here: http://imgur.com/a/ZmeWM
+The URL path used to load the JAR file has changed from Tomcat 6.
+Below are the values as output by the debugger:
+Tomcat 6: "file:/C:/svn/[PATH_TO_PROJECT]/server/target/snapshot/WEB-INF/lib/[OUR_JAR].jar!/"
+Tomcat 7: "jndi:/localhost/snapshot/WEB-INF/lib/[OUR_JAR].jar!/"
+A comparison of the getJarFile() methods shows few differences aside from the URL path that could contribute to the problem:
+Tomcat 7: org.apache.jasper.compiler.JarURLResource
+public JarFile getJarFile() throws IOException {
+URL jarFileUrl = new URL("jar:" + jarUrl + "!/");
+JarURLConnection conn = (JarURLConnection) jarFileUrl.openConnection();
+conn.setUseCaches(false);
+conn.connect();
+return conn.getJarFile();
+}
+Tomcat 6: org.apache.japser.compiler.ParserController
+private JarFile getJarFile(URL jarFileUrl) throws IOException {
+JarFile jarFile = null;
+if (jarFileUrl != null) {
+JarURLConnection conn = (JarURLConnection) jarFileUrl.openConnection();
+conn.setUseCaches(false);
+conn.connect();
+jarFile = conn.getJarFile();
+}
+return jarFile;
+}

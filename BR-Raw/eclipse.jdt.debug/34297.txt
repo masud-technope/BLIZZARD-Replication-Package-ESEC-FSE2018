@@ -1,0 +1,15 @@
+Bug 34297 – allow a launch configuration classpath to be "default plus"
+I often want to launch a program using its default classpath plus one or two
+additional jars or directories.
+ The first time this is easy - just turn on
+the "use default classpath" checkbox, then turn it off and add the additional
+entries.
+But after that, if the default classpath for the project changes, the
+launch config's classpath is now wrong.
+I must either manually edit the launch
+config's cp, or I must turn on the "use default" checkbox and re-add the
+additional directories again.
+If I have several of these configs, this can be
+quite time-consuming.
+So, this is a request to add a feature whereby I can
+say "use the default classpath plus these extra entries".

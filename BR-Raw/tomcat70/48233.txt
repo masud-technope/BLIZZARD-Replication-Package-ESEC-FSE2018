@@ -1,0 +1,9 @@
+48233 – Loggers should be private
+Created attachment 24560 [details]
+Patch to fix many of the non-private loggers.
+Loggers are intialised with the class name, so it does not make sense to me to
+allow them to be used by other classes, i.e.
+the logger should be private and
+final.
+Note that the ReceiverBase class had a setLog() method which I removed in order
+to make the log final.

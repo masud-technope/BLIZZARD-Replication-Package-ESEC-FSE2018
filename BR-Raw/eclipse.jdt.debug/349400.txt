@@ -1,0 +1,5 @@
+Bug 349400 – [1.7] Add Java 7 support to Debug
+3.7.
+For 3.7.1 we need to add Java 7 support to Debug, e.g.
+update the evaluation support.
+This should be done by end of June, so that we have enough time for team wide testing and fixing in July.

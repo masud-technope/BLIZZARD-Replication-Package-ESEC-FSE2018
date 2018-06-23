@@ -1,0 +1,7 @@
+Bug 450861 – Test failures in PackageJavadocTests
+http://download.eclipse.org/eclipse/downloads/drops4/N20141108-1500/testresults/html/org.eclipse.jdt.ui.tests_linux.gtk.x86_64_8.0.html
+Test failures in
+org.eclipse.jdt.ui.tests.packageHover.PackageJavadocTests.testGetPackageAttacheddoc(PackageJavadocTests.java:231) and
+org.eclipse.jdt.ui.tests.packageHover.PackageJavadocTests.testFailToAccessAttachedJavadoc(PackageJavadocTests.java:330)
+Base reason is bug 450684.
+I'll update the tests (and thereby found bug 450859).

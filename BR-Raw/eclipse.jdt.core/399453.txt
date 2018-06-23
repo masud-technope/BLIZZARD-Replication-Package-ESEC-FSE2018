@@ -1,0 +1,6 @@
+Bug 399453 – [1.8][compiler] Annotation preceding the first dimension in array creation expression is added to the type
+It should, instead, be added to the TypeReference#annotationsOnDimensions at index '0'.
+Consider this code:
+new int @Marker [bar()] @Marker2 [] @Marker3 []
+The parser attaches @Marker to the TypeReference#annotations and not to the ArrayAllocationExpression#annotationsOnDimensions.
+As a result the first element of the annotationsOnDimensions is always empty, even though the rest of the annotations seem to be attached at appropriate indexes.

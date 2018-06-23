@@ -1,0 +1,16 @@
+54628 – there is something wrong when send binary data by websocket.
+there is something wrong when send binary data by websocket.
+see org.apache.catalina.websocket.WsOutbound.doWriteBytes(ByteBuffer, boolean)
+I think
+// Write the content
+upgradeOutbound.write(buffer.array(), 0, buffer.limit());
+upgradeOutbound.flush();
+should change to :
+// Write the content
+upgradeOutbound.write(buffer.array(), buffer.arrayOffset(), buffer.limit());
+upgradeOutbound.flush();
+For example:
+byte[] bts = new byte[]{1,2,3,4,5}
+ByteBuffer bf = ByteBuffer.wrap(bts, 2, 2);
+out.writeBinaryMessage(bf);
+I mean write [3,4] to the client, but in fact [1,2,3,4] be sent;

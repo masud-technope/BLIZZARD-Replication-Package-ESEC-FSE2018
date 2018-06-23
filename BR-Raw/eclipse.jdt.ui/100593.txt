@@ -1,0 +1,9 @@
+Bug 100593 – [quick fix] proposes wrong cast from Object to primitive int
+I20050617-0010
+void m(Object obj) {
+int i= obj;
+}
+In a 5.0 project, a quick fix proposes 'Add cast to (int)', which is wrong.
+The
+right cast here would be to (Integer), which would then be autounboxed.
+In a 1.4 project, no 'Add cast ..' quick fix is proposed, which is correct.

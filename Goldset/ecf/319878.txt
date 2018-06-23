@@ -1,0 +1,13 @@
+tests/bundles/org.eclipse.ecf.tests.discovery/META-INF/MANIFEST.MF
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/src/org/eclipse/ecf/tests/provider/dnssd/DnsSdAdvertiserComparator.java
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/src/org/eclipse/ecf/tests/provider/dnssd/DnsSdDiscoveryComparator.java
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/src/org/eclipse/ecf/tests/provider/dnssd/DnsSdTestHelper.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdDiscoveryAdvertiser.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdDiscoveryLocator.java
+framework/bundles/org.eclipse.ecf.discovery/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/discovery/IServiceInfo.java
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/discovery/ServiceInfo.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/AbstractDiscoveryTest.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/DiscoveryTestHelper.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/ServiceInfoComparator.java

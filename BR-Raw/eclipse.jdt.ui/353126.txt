@@ -1,0 +1,8 @@
+Bug 353126 – improve StubCreator
+Created attachment 200367 [details]
+Fix
+HEAD
+The patch fixes problems with generated super(..) calls in constructor stubs:
+- tries to find a super constructor that doesn't throw an exception
+- tries to avoid calling overloaded constructors
+- adds cast to null where necessary to avoid ambiguous method invocation

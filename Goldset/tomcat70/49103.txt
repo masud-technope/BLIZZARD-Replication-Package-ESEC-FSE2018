@@ -1,0 +1,5 @@
+java/org/apache/coyote/http11/Http11NioProtocol.java
+java/org/apache/coyote/http11/Http11Protocol.java
+java/org/apache/tomcat/util/net/AprEndpoint.java
+java/org/apache/tomcat/util/net/NioEndpoint.java
+java/org/apache/tomcat/util/net/jsse/JSSEImplementation.java

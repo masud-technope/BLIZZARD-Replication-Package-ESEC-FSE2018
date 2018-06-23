@@ -1,0 +1,5 @@
+java/org/apache/jasper/runtime/JspWriterImpl.java
+test/webapp-3.0/bug5nnnn/bug54241b.jsp
+test/org/apache/jasper/runtime/TestJspWriterImpl.java
+test/webapp-3.0/bug5nnnn/bug54241a.jsp
+webapps/docs/changelog.xml

@@ -1,0 +1,4 @@
+framework/bundles/org.eclipse.ecf.remoteservice/src/org/eclipse/ecf/remoteservice/IRemoteServiceContainerAdapter.java
+tests/bundles/org.eclipse.ecf.tests.remoteservice/src/org/eclipse/ecf/tests/remoteservice/AbstractRemoteServiceTestCase.java
+tests/bundles/org.eclipse.ecf.tests.remoteservice/src/org/eclipse/ecf/tests/remoteservice/presence/RemoteServiceContainerAdapterTest.java
+providers/bundles/org.eclipse.ecf.provider.remoteservice/src/org/eclipse/ecf/provider/remoteservice/generic/RemoteServiceContainer.java

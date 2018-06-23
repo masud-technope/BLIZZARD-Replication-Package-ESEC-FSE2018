@@ -1,0 +1,10 @@
+Bug 391500 – [1.8][compiler] Type annotations on Qualified Allocation Expressions dropped.
+BETA_JAVA8:
+The following program should report 4 errors, but reports only two:
+// --------
+public class X {
+class Y {
+}
+Y y1 = new @Marker X().new @Marker Y();
+Y y2 = new @Marker X().new <String> @Marker Y();
+}

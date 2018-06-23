@@ -1,0 +1,2 @@
+Bug 463524 – [r-OSGi] add R_OSGiWSSRemoteServiceContainer class
+The existing attempt to use only a single R_OSGiWSRemoteServiceContainer class for both the secure/https and insecure/http transports does not work propperly and ends up confusing the type of the target ID (because of the call to getConnectNamespace() in the R_OSGiRemoteServiceContainer constructor.

@@ -1,0 +1,85 @@
+Bug 349176 – [provider] Allow generic server instantiator to use any port as default
+Both the R-OSGi and ECF Generic server suffer from the problem that they expect/want a specific port number on start-up.
+This should not be necessary if discovery is used, since the whole point of discovery is supposed to be able to announce the host/port that the service is available on.
+So this restriction, coupled with firing up multiple services on the same host, fails unless you explicitly manage the set of ports.
+I'd argue that both the R-OSGi and ECF containers should, if created with the default arguments, should Just Work (TM).
+Below is the stacktrace of an example which is attempting to auto-create an ECF generic container, and failing, because something else is already on that port (another instance on the same machine):
+It shouldn't be necessary to set a random property to make this work, it should Just Work out of the box.
+So, it should be possible to do:
+a = ContainerFactory.getDefault().createContainer("ecf.generic.server");
+b = ContainerFactory.getDefault().createContainer("ecf.generic.server");
+and have them both be successful in the same VM.
+On the other hand, if someone explicitly requests a port then this should fail of the port can't be reused:
+c = ContainerFactory.getDefault().createContainer("ecf.generic.server","localhost","1234");
+d = ContainerFactory.getDefault().createContainer("ecf.generic.server","localhost","1234");
+I think this can be achieved (in the GenericContainerInstantiator) by changing the logic (155-160) from:
+if (newID == null) {
+int defaultPort = TCPServerSOContainer.DEFAULT_PORT;
+boolean useFallbackPort = TCPServerSOContainer.DEFAULT_FALLBACK_PORT;
+if (useFallbackPort && !defaultPortIsFree(defaultPort)) {
+defaultPort = getFreePort();
+}
+to:
+if (newID == null) {
+int defaultPort = TCPServerSOContainer.DEFAULT_PORT;
+if (!defaultPortIsFree(defaultPort)) {
+defaultPort = getFreePort();
+}
+Note that the 'getFreePort' here suffers from a race condition if two servers are starting up at once; they may both report that port (default) is free, but when it comes to it, find out that the other has gotten there first.
+I'd almost prefer to get rid of the whole concept of 'default port' and replace it with a dynamically allocated port in any case, if it's not specified:
+if(newID == null) {
+ServerSocket ss = new ServerSocket();
+ss.bind(null);
+defaultPort = ss.getLocalPort();
+ss.close();
+ss = null;
+}
+Since the bound server address will be from an ever-incrementing number of port numbers, you should be able to close this socket and then reuse it later (but I'd be tempted to do socket.setReuseAddress(true) when you recreate it).
+Alternatively, could you pass the ServerSocket into the config and let that reuse the ServerSocket as is? I don't know enough of the wiring under the covers to know if that's feasible.
+--- excerpt below ---
+osgi> [log;+0100 2011.06.13 11:24:30:228;ERROR;org.eclipse.ecf.osgi.services.remoteserviceadmin;org.eclipse.core.runtime.Status[plugin=org.eclipse.ecf.osgi.services.remoteserviceadmin;code=4;message=org.eclipse.ecf.internal.osgi.services.distribution.BasicTopologyManager:handleInvalidExportRegistration:exportRegistration=org.eclipse.ecf.osgi.services.remoteserviceadmin.RemoteServiceAdmin$ExportRegistration@122dad5;severity4;exception=org.eclipse.ecf.osgi.services.remoteserviceadmin.SelectContainerException: Exception creating or configuring container;children=[]]]
+org.eclipse.ecf.osgi.services.remoteserviceadmin.SelectContainerException: Exception creating or configuring container
+at org.eclipse.ecf.osgi.services.remoteserviceadmin.AbstractContainerSelector.createContainer(AbstractContainerSelector.java:153)
+at org.eclipse.ecf.osgi.services.remoteserviceadmin.AbstractHostContainerSelector.createRSContainer(AbstractHostContainerSelector.java:333)
+at org.eclipse.ecf.osgi.services.remoteserviceadmin.AbstractHostContainerSelector.createMatchingContainer(AbstractHostContainerSelector.java:319)
+at org.eclipse.ecf.osgi.services.remoteserviceadmin.AbstractHostContainerSelector.createAndConfigureHostContainers(AbstractHostContainerSelector.java:244)
+at org.eclipse.ecf.osgi.services.remoteserviceadmin.HostContainerSelector.selectHostContainers(HostContainerSelector.java:60)
+at org.eclipse.ecf.osgi.services.remoteserviceadmin.RemoteServiceAdmin.exportService(RemoteServiceAdmin.java:219)
+at org.eclipse.ecf.osgi.services.remoteserviceadmin.AbstractTopologyManager.handleServiceRegistering(AbstractTopologyManager.java:305)
+at org.eclipse.ecf.osgi.services.remoteserviceadmin.AbstractTopologyManager.handleEvent(AbstractTopologyManager.java:257)
+at org.eclipse.ecf.internal.osgi.services.distribution.BasicTopologyManager.event(BasicTopologyManager.java:87)
+at org.eclipse.osgi.internal.serviceregistry.ServiceRegistry.notifyEventHooksPrivileged(ServiceRegistry.java:1143)
+at org.eclipse.osgi.internal.serviceregistry.ServiceRegistry.publishServiceEventPrivileged(ServiceRegistry.java:743)
+at org.eclipse.osgi.internal.serviceregistry.ServiceRegistry.publishServiceEvent(ServiceRegistry.java:711)
+at org.eclipse.osgi.internal.serviceregistry.ServiceRegistrationImpl.register(ServiceRegistrationImpl.java:130)
+at org.eclipse.osgi.internal.serviceregistry.ServiceRegistry.registerService(ServiceRegistry.java:206)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl.registerService(BundleContextImpl.java:507)
+at org.eclipse.equinox.internal.ds.InstanceProcess.registerService(InstanceProcess.java:504)
+at org.eclipse.equinox.internal.ds.InstanceProcess.buildComponents(InstanceProcess.java:212)
+at org.eclipse.equinox.internal.ds.Resolver.buildNewlySatisfied(Resolver.java:441)
+at org.eclipse.equinox.internal.ds.Resolver.enableComponents(Resolver.java:213)
+at org.eclipse.equinox.internal.ds.SCRManager.performWork(SCRManager.java:800)
+at org.eclipse.equinox.internal.ds.SCRManager$QueuedJob.dispatch(SCRManager.java:767)
+at org.eclipse.equinox.internal.ds.WorkThread.run(WorkThread.java:89)
+at java.lang.Thread.run(Thread.java:619)
+Caused by: org.eclipse.ecf.core.ContainerCreateException: Create of containerType=ecf.generic.server failed.
+at org.eclipse.ecf.provider.generic.GenericContainerInstantiator.createInstance(GenericContainerInstantiator.java:220)
+at org.eclipse.ecf.core.ContainerFactory.createContainer(ContainerFactory.java:296)
+at org.eclipse.ecf.core.ContainerFactory.createContainer(ContainerFactory.java:387)
+at org.eclipse.ecf.core.ContainerFactory.createContainer(ContainerFactory.java:374)
+at org.eclipse.ecf.osgi.services.remoteserviceadmin.AbstractContainerSelector.createContainer(AbstractContainerSelector.java:135)
+...
+22 more
+Caused by: java.net.BindException: Address already in use: JVM_Bind
+at java.net.PlainSocketImpl.socketBind(Native Method)
+at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+at java.net.ServerSocket.bind(ServerSocket.java:319)
+at java.net.ServerSocket.<init>(ServerSocket.java:185)
+at java.net.ServerSocket.<init>(ServerSocket.java:141)
+at org.eclipse.ecf.provider.comm.tcp.Server.<init>(Server.java:40)
+at org.eclipse.ecf.provider.generic.TCPServerSOContainerGroup.putOnTheAir(TCPServerSOContainerGroup.java:53)
+at org.eclipse.ecf.provider.generic.TCPServerSOContainer.<init>(TCPServerSOContainer.java:76)
+at org.eclipse.ecf.provider.generic.TCPServerSOContainer.<init>(TCPServerSOContainer.java:112)
+at org.eclipse.ecf.provider.generic.GenericContainerInstantiator.createInstance(GenericContainerInstantiator.java:215)
+...
+26 more

@@ -1,0 +1,3 @@
+Bug 209554 – check out problems for platform-ui
+Using the code from HEAD, after checking out platform-ui many of the projects could not find any of their extension points.
+ This ended up with over half the projects having errors.

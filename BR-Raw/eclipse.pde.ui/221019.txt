@@ -1,0 +1,4 @@
+Bug 221019 – Duplicated entries in classpath container
+When a bundle is added as a Require-Bundle to the Manifest and is included in the dependency management section, the jar is added to the classpath twice.
+ This causes errors in JDT.
+ PDE should update its logic to not include a jar if it is already included in the classpath container.

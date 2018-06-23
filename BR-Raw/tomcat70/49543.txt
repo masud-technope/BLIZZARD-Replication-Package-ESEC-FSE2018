@@ -1,0 +1,3 @@
+49543 – Request for a "shared" datasource configuration as in DBCP
+The ability to configure the datasource at the server level and have it shared amongst all applications on that server with each application supplying their own credentials for the datasource.
+This type of configuration is supported by DBCP and is called a "shared" datasource configuration.

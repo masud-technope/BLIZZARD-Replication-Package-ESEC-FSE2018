@@ -1,0 +1,19 @@
+Bug 61189 – Error messages with "AssignmentOperator ArrayInitializer" could be improved
+build 20040506
+With the following test case
+public class X {
+public void foo() {
+(X) foo();
+}
+}
+the error messages are
+Syntax error, insert ";" to complete BlockStatements
+Syntax error, insert "AssignmentOperator ArrayInitializer" to complete
+ArrayInitializerAssignement
+The corresponding grammar rule is
+InvalidArrayInitializerAssignement ::= PostfixExpression AssignmentOperator
+ArrayInitializer
+This rule exist to perform better diagnose for expression like
+x = {0}
+But it would not be suggested as possible correction.
+(original bug is bug 12287)

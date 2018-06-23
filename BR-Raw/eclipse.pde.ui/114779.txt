@@ -1,0 +1,18 @@
+Bug 114779 – PDE UI doesnt allow plug-in exporting unless target platform environment matches the plug-in platform filter
+A couple of issues here...
+I have several plug-ins that make use of the Eclipse-PlatformFilter header,
+filtering on os/ws/arch.
+ Trying to export all of these plug-ins at once from
+the workspace results in only one os/ws/arch combination to be produced, with
+no indication as to why the others aren't being exported.
+ Seems I can only
+export a plug-in if it matches the current target platform environment, and
+that only allows me to set one configuration (not multiple configurations like
+I'm able to do in PDE build).
+Also, I have noticed that when I modify a value in the target platform
+environmnet (say, the Architecture from win32 to arm -- typed in, since it's
+editable and arm is not available in the dropdown) the setting does not take
+effect until the target platform is reloaded.
+ And when I close the
+preferences and then reopen and return to the target platform environment
+settings, the Architecture dropdown now shows "arm,arm".

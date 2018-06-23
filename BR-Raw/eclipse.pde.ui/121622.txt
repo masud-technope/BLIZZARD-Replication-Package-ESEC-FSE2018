@@ -1,0 +1,2 @@
+Bug 121622 – Os specific tabs in the product editor should open on the current os
+When opening the product editor, I might be interesting to have the tabs for the platform selected in the target platform be enabled first.

@@ -1,0 +1,8 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/IHelpContextIds.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/provisioner/DirectorySelectionPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/provisioner/AddTargetPluginsWizard.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/provisioner/DirectorySelectionPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/provisioner/FileSystemProvisionerWizard.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/IProvisionerWizard.java

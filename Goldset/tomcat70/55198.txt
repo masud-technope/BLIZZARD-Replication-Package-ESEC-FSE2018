@@ -1,0 +1,5 @@
+test/webapp-3.0/WEB-INF/tags/bug55198.tagx
+test/webapp-3.0/bug5nnnn/bug55198.jsp
+java/org/apache/jasper/compiler/Generator.java
+test/org/apache/jasper/compiler/TestParser.java
+webapps/docs/changelog.xml

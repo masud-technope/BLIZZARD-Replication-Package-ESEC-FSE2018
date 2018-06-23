@@ -1,0 +1,18 @@
+Bug 481276 – [null] Error markers not removed after fixing some null annotations
+Using Eclipse 4.6-I20151029-1100.
+1.
+Import the attached project
+2.
+Open Snippet.java
+3.
+Open NonNullUtils.java
+4.
+In NonNullUtils, remove the first @Nullable from the checkNotNull method declaration
+5.
+Save the file.
+At this point, the Problems view still shows errors ("Null type mismatch")
+6.
+Go back to the Snippet.java editor, the error disappears from the editor but is still in the Problems view
+7.
+Modify Snippet.java just to make it dirty and save.
+The errors disappear.

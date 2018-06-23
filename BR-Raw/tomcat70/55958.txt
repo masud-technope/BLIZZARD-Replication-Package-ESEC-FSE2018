@@ -1,0 +1,2 @@
+55958 – Tomcat tries to deploy dir as zip archive even when it is a directory if the name ends with .war
+Webapp deployment fails if the dirname ends with .war because it is automatically considered as zip archive.

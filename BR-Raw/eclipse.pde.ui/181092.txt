@@ -1,0 +1,6 @@
+Bug 181092 – [Plug-in Dependencies View] Show/Hide optional dependencies
+It would be good to have an option (via a pull-down view menu) to show/hide optional dependencies.
+Depending on how creative Brian feels, it may be cool to play around with SWT/JFace to have an option display optional dependencies in a different font/color.
+ But that's for extra coolness credit.
+P.S.
+ The new implementation of the view is awesome.

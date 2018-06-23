@@ -1,0 +1,8 @@
+org.eclipse.jdt.core.util.ExternalAnnotationUtil.match
+org.eclipse.jdt.core.util.ExternalAnnotationUtil.updateType
+org.eclipse.jdt.core.util.ExternalAnnotationUtil.annotateParameterType
+org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals$ParameterAnnotationRewriteProposal.dryRun
+org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals$SignatureAnnotationChangeProposal.initializeOperation
+org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals$ProposalCreator.create
+org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals.createProposalsForType
+org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals.collectExternalAnnotationProposals

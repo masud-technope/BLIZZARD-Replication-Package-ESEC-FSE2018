@@ -1,0 +1,17 @@
+Bug 417076 – [1.8][compiler] Eclipse compiler rejects multiple annotations for varargs
+BETA_JAVA8:
+Eclispe compiler has trouble with the following code:
+package p;
+public class XX {
+public @Marker("1") String foo(int @Marker @Marker2 ...
+args) {
+return null;
+}
+}
+The following is compiled with no issues:
+package p;
+public class XX {
+public @Marker("1") String foo(int @Marker @Marker2 [] args) {
+return null;
+}
+}

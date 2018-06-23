@@ -1,0 +1,4 @@
+providers/bundles/org.eclipse.ecf.provider.dnssd/.options
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/Activator.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdDebugOptions.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdDiscoveryAdvertiser.java

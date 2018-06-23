@@ -1,0 +1,4 @@
+Bug 382960 – Java problem markers deleted in whole package after change in package-info.java
+I20120608-1200
+Removing @SuppressWarnings("all") from package-info.java does not trigger a rebuild.
+When I add the annotation and save, then the warnings in the package disappear, but when I remove it, then the warnings don't reappear until I rebuild manually.

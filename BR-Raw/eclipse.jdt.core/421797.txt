@@ -1,0 +1,22 @@
+Bug 421797 – [1.8][compiler] ClassFormatError with default methods & I.super::foo syntax
+BETA_JAVA8
+Tested with 8b115:
+// --
+interface I {
+int m();
+public default int foo() { return 0; }
+}
+interface T extends I {
+public default int m() {
+I i = I.super::foo;
+return i.foo();
+}
+}
+public class X {
+public static void main(String argv[]) {
+new T(){}.m();
+}
+}
+triggers an class format error.
+JVM does not like the synthetic being
+a static method.

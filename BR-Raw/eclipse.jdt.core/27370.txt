@@ -1,0 +1,9 @@
+Bug 27370 – code assist not working with "new .."
+Discovered in I20021127 (wasn't in 20021119)
+- complete new workspace
+- create new project "test"
+- create new class "test" (extends Object) in package "test" with "add
+constructors from superclass"
+- type under constructor:
+private List myList = new ArrayL<crtl+space>
+error: no completions available, allthough ArrayList ist visible

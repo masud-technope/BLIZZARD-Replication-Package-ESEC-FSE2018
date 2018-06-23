@@ -1,0 +1,10 @@
+Bug 193909 – improve content assist after 'instanceof'
+3.3
+The following code is quite common:
+Object x= selection.getFirstElement();
+if (x instanceof IType) {
+x.get|code assist
+Code assist should suggest methods of Object ('getClass') and of IType ('getFullyQualifiedName').
+If a method of IType is selected, a cast should be added to x (and IType imported if necessary)
+if (x instanceof IType) {
+((IType) x).getFullyQualifiedName

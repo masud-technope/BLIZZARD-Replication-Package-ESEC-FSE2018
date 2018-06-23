@@ -1,0 +1,4 @@
+Bug 10894 – Unable to get a super field from a IJavaObject object
+The API doesn't allow to access a field on the super type (i.e.
+super.foo).
+I suggest a method getField(String name, boolean superField)

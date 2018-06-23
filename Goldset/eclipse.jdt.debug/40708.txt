@@ -1,0 +1,4 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/DebugUIMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JDIDebugUIPlugin.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/propertypages/JavaBreakpointPage.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaBreakpointWorkbenchAdapterFactory.java

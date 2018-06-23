@@ -1,0 +1,2 @@
+org.apache.catalina.util.ParameterMap.put
+org.apache.jsp.test2_jsp._jspService

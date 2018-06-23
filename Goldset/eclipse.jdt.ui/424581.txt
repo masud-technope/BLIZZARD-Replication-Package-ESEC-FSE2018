@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/simple18_in/TestLambda1.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/simple18_out/TestLambda1.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/AllRefactoringTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/InlineMethodTestSetup18.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/InlineMethodTests18.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/SourceAnalyzer.java

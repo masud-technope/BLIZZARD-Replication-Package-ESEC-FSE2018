@@ -1,0 +1,11 @@
+Bug 434159 – [1.8][quick fix] does not provide a "correct" fix when a static and a default method in interface
+interface I {
+public static void bar(int i) { }
+public default void bar() {}
+}
+class Y implements I{
+public static void main(String[] args) {
+new Y().ba(0);//Use quick assist for this error
+}
+}
+quick fix changes just the ba to bar (without mentioning / changing the parameter), but bar(int i) being static is not applicable in the context of new Y().

@@ -1,0 +1,5 @@
+48861 – Files without AL headers
+Created attachment 25084 [details]
+list of files that don't have AL headers
+Attachment is a list of files that don't have AL headers.
+As far as I can make out, all of these files should have headers.

@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/UseSupertypeWherePossible/testNew31/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/UseSupertypeWherePossible/testNew31/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/MultiMoveTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/reorg/MoveCuUpdateCreator.java

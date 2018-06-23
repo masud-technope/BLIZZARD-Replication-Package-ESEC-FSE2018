@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/PDERuntimePluginImages.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/pderuntimeresources.properties
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/logview/LogView.java

@@ -1,0 +1,6 @@
+Bug 296878 – [quick fix] Quick fix that adds exception doesn't check if @throws javadoc element exists
+User-Agent:       Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_8; en-US) AppleWebKit/532.4 (KHTML, like Gecko) Chrome/4.0.244.0 Safari/532.4
+Build Identifier: I20090611-1540
+If a piece of code that throws an exception not declared in the throws clause is quick-fixed, it adds the exception to the throws clause, and also adds an entry to the javadoc.
+If the javadoc already has a @throws element for that exception, it adds a second, useless one.
+Reproducible: Always

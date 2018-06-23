@@ -1,0 +1,47 @@
+Bug 10096 – Eclipse not aware of launched JVM (JRockit 3.1.3)
+When installing JRockit 3.1.3 (http://www.jrockit.com/download/) as JRE, and
+launching Java applications in Eclipse (stable build 20020214), Eclipse never
+understands that the JVM is launched.
+This worked well in the previous stable
+build.
+It also works well with older versions of JRockit.
+The problems demonstrates itself in the following ways:
+* When pressing the "Running man" button, and starting the run wizard, after
+clicking Finish the following happens:
+- The program starts
+- The run wizard flashes briefly, but stays at the last page.
+Each press
+on "Finish" starts a new instance of the program.
+- The program does not show up in the debug view.
+* When relaunching a program from the Run History with the JRE set to JRockit
+3.1.3, the program starts, but it does not show up in the debug view.
+As suggested by Darin Swanson, I tried copying the command line for the working
+JRockit 2.2, modifying it for JRockit 3.1.3, and running it with cmd.exe.
+That
+succeeded without problems, after I had "" around the command name due to
+spaces in the path, and changed from javaw.exe to java.exe for getting better
+feedback.
+(I've also tried renaming javaw.exe to force Eclipse to use java.exe -
+- perhaps it should be possible to specify the executable more explicitly in
+the JRE settings?) Resulting output for JRockit 2.2:
+L:\>"C:\Program Files\JRockit\JRE_1.3.1\bin\java.exe" -classpath C:\Workspace\Sl
+ask;C:\Workspace\ToolsConsole;C:\Workspace\JUnit;C:\Workspace\ToolsCommon;C:\Wor
+kspace\Xerces;C:\Workspace\Xerces\xercesImpl.jar;C:\Workspace\Xerces\xmlParserAP
+Is.jar;C:\Workspace\JFreeChart;C:\Workspace\JavaMail;C:\Workspace\JavaMail\imap.
+jar;C:\Workspace\JavaMail\mail.jar;C:\Workspace\JavaMail\mailapi.jar;C:\Workspac
+e\JavaMail\pop3.jar;C:\Workspace\JavaMail\smtp.jar;C:\Workspace\JavaMail\activat
+ion.jar net.ihse.test.RunAndQuit
+JRockit build 2.2.1-EXCELSIOR-20011023-1345, Thin Threads, Generational Concurre
+nt Garbage Collector, started.
+L:\>
+Resulting output for JRockit 3.1.3:
+L:\>"C:\Program Files\JRockit\JRE\1.3.1 noWin\bin\java.exe" -classpath C:\Worksp
+ace\Slask;C:\Workspace\ToolsConsole;C:\Workspace\JUnit;C:\Workspace\ToolsCommon;
+C:\Workspace\Xerces;C:\Workspace\Xerces\xercesImpl.jar;C:\Workspace\Xerces\xmlPa
+rserAPIs.jar;C:\Workspace\JFreeChart;C:\Workspace\JavaMail;C:\Workspace\JavaMail
+\imap.jar;C:\Workspace\JavaMail\mail.jar;C:\Workspace\JavaMail\mailapi.jar;C:\Wo
+rkspace\JavaMail\pop3.jar;C:\Workspace\JavaMail\smtp.jar;C:\Workspace\JavaMail\a
+ctivation.jar net.ihse.test.RunAndQuit
+JRockit build 3.1.3-CROSIS-20020207-1213, Native Threads, Generational Concurren
+t Garbage Collector, started.
+L:\>

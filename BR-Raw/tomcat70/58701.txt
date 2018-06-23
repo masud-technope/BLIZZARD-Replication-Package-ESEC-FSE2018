@@ -1,0 +1,48 @@
+58701 – JSP Reloading Initialization Problem
+Created attachment 33332 [details]
+The logs for the tomcat reloading bug.
+My company uses a custom inhouse tomcat library for hotloading generated source into tomcat at runtime.
+This custom classloader requires tomcat's JSP engine to perform a reload, so that it can recognize the newly generated classes.
+We are performing the following code to facilitate this:
+Context context = this.getContext();
+Wrapper jspWrapper = (Wrapper)context.findChild("jsp");
+// There might not be any jsps if we're just getting started.
+if (jspWrapper==null) return;
+jspWrapper.unload();
+jspWrapper.load();
+This code works just fine on Tomcat 6.
+However, when migrating this custom classloader to Tomcat 8, a subsequent JSP page load fails with the attached stacktrace.
+I have investigated this stack trace and come to the conclusion that, in StandardWrapper.java on line 1473, although the instance itself is set to null, the field "instanceInitialized" is still set to true.
+This means that my next call to load will recreate the JspServlet, but it will not be initialized correctly, thus causing the error in the attached stacktrace.
+I have seen in the debugger that it is indeed the case that the JspServlet is not being initialized properly.
+A fix for this bug is to simply add this line:
+instanceInitialized = false;
+to line 1474 in StandardWrapper.java.
+I have successfully been able to work around this bug in my own code with the following hack:
+Context context = this.getContext();
+Wrapper jspWrapper = (Wrapper)context.findChild("jsp");
+// There might not be any jsps if we're just getting started.
+if (jspWrapper==null) return;
+jspWrapper.unload();
+// tomcat-catalina 8.0.29
+// This custom hack is required to fix a bug in the StandardWrapper catalina sourcecode.
+This custom field in their source was not reset back to false
+// after calling unload, so the underlying JspServlet (the instance) did not get initialized properly upon calling load.
+// This bug happens in tomcat 7 and 8.
+AccessController.doPrivileged(new PrivilegedAction<Boolean>() {
+public Boolean run() {
+try
+{
+Field field = ((StandardWrapper)jspWrapper).getClass().getDeclaredField("instanceInitialized");
+field.setAccessible(true);
+field.setBoolean(jspWrapper, false);
+}
+catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e)
+{
+throw new RuntimeException(e);
+}
+return Boolean.TRUE;
+}
+});
+jspWrapper.load();
+Although as you can see it is far from ideal.

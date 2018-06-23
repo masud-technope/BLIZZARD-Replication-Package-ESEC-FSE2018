@@ -1,0 +1,4 @@
+Bug 401848 – ASTRewrite on type annotations adds an additional <CR>
+Created attachment 227640 [details]
+Testcase to reproduce the error
+A "\n" introduced when an additional Annotation is added using rewrite

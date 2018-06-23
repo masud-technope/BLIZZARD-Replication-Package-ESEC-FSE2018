@@ -1,0 +1,8 @@
+50189 – AJP connector sends GET BODY CHUNK when reading after response closed
+If a servlet (probably incorrectly) closes the writer/outputstream of a response, and then attempts to read from the request, the AJP connector sends GET BODY CHUNK to the mod_jk worker.
+This then starts a series of very confusing communication between the worker and tomcat.
+ The worker doesn't read it until it makes its next request.
+ After making its next request, it reads it, and then sends a response with 0 length.
+ At the same time, Tomcat responds to the request made by the worker with another GET BODY CHUNK, which the worker also responds with a message of 0 length.
+ Then the really weird thing happens, Tomcat replays the first request made by that worker.
+ At this point, based on what I'm looking at with tcpdump, I get too confused to work out exactly what is happening.

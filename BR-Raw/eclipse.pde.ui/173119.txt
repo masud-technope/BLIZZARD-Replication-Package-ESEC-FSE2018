@@ -1,0 +1,3 @@
+Bug 173119 – Calculate Uses button not enabled after initial add in Export Package section
+Build: I20070206-0010
+The first time a user adds a exported package, the 'Calculate Uses' button remains disabled.

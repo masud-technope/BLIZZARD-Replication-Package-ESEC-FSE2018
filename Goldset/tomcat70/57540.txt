@@ -1,0 +1,9 @@
+java/org/apache/catalina/connector/Request.java
+java/org/apache/coyote/ajp/AbstractAjpProcessor.java
+java/org/apache/coyote/ajp/Constants.java
+java/org/apache/coyote/http11/Http11AprProcessor.java
+java/org/apache/coyote/http11/Http11NioProcessor.java
+java/org/apache/coyote/http11/Http11Processor.java
+java/org/apache/tomcat/util/net/SSLSupport.java
+java/org/apache/tomcat/util/net/jsse/JSSESupport.java
+webapps/docs/changelog.xml

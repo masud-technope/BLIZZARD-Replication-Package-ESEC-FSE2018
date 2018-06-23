@@ -1,0 +1,5 @@
+Bug 416935 – [JUnit] Initialize JUnit container & JUNIT_HOME doesn't work when there is no bundle.info
+In the context of running JDT tests with Tycho, I noticed that the implementation of JUnitHomeInitializer relies on SimpleConfigurator and assumes that the product uses a bundles.info file to work.
+However, it's not the case with Tycho Surefire tests, bundles are instead passed in the config.ini file, using the "osgi.bundles" property.
+So it seems like current implementation is based on the wrong assumption that all RCP products use a bundles.info.
+Instead, it should leverage the OSGi APIs, as we can more safely assume that any application using JDT is started in an OSGi container.

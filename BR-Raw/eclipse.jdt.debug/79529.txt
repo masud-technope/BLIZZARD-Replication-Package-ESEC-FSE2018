@@ -1,0 +1,27 @@
+Bug 79529 – [java debug] Step Into Outermost method invocation
+During stepwise debugging, I often encounter code patterns like this:
+void doStuff(IProgressMonitor pm) {
+...
+something= somethingElse;
+doRealStuff(getName(), new SubProgressMonitor(pm, 1);
+...
+}
+When I get to the call doRealStuff(..), I'm rarely interested in stepping into
+getName() and new SubProgressMonitor(..).
+Instead, the most common action is to
+manually place the caret into the outermost method doRealStuff and invoke Run >
+Step Into Selection.
+What I request is a command 'Step Into Outermost' with which I can do 'step
+into' without stepping into method invocations inside the outermost method
+invocation.
+This doesn't need to be a new command - it could also be combined with Step Into
+Selection: When the caret is not at a place where you can step into, that action
+could just step into the next method invocation to the right of the current
+caret position.
+I.e.
+when the caret is at the beginnig of the line
+doRealStuff(getName(), new SubProgressMonitor(pm, 1);
+, I could:
+a) Step Into: goes into getName()
+b) Step Over: goes to next line
+c) Step Into Selection / Step Into Outermost: goes into doRealStuff(..)

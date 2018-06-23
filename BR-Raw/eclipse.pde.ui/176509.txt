@@ -1,0 +1,42 @@
+Bug 176509 – AssertionFailedException when clicking on dependencies link
+N20070302-0010
+- Open Plug-in Development perspective
+- In Plug-ins view, double click on com.ibm.icu to view the manifest
+- In Plug-in Content section, click on Dependencies or Runtime link
+Nothing happens, and I get this exception in the error log:
+org.eclipse.core.runtime.AssertionFailedException: null argument:
+at org.eclipse.core.runtime.Assert.isNotNull(Assert.java(Inlined Compiled Code))
+at org.eclipse.core.runtime.Assert.isNotNull(Assert.java(Compiled Code))
+at org.eclipse.jface.viewers.StructuredSelection.<init>(StructuredSelection.java:66)
+at org.eclipse.pde.internal.ui.editor.plugin.OverviewPage.linkActivated(OverviewPage.java:255)
+at org.eclipse.ui.forms.widgets.FormText.activateLink(FormText.java:1533)
+at org.eclipse.ui.forms.widgets.FormText.handleMouseClick(FormText.java:1338)
+at org.eclipse.ui.forms.widgets.FormText.access$16(FormText.java:1310)
+at org.eclipse.ui.forms.widgets.FormText$6.mouseUp(FormText.java:443)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:194)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java(Compiled Code))
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java(Inlined Compiled Code))
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java(Compiled Code))
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java(Compiled Code))
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java(Compiled Code))
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2270)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2145)
+at org.eclipse.ui.internal.Workbench$4.run(Workbench.java:460)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:289)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:455)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:101)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:146)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:106)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:76)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:354)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:169)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:85)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:58)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:60)
+at java.lang.reflect.Method.invoke(Method.java:391)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:476)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:416)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1124)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1099)

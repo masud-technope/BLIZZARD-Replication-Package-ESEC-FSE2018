@@ -1,0 +1,3 @@
+Bug 199938 – [core] Simplify startup extension point
+ECF has an extension point: org.eclipse.ecf.startup that allows other plugins to run their own code when the core ECF plugin is started.
+This extension point should be simplified via name refactoring and enhanced to add optional synchronous and asynchronous invocation.

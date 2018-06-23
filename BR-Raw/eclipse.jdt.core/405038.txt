@@ -1,0 +1,11 @@
+Bug 405038 – [formatter] infix expression formatting broken without spaces before/after binary operator
+If you set FORMATTER_INSERT_SPACE_BEFORE_BINARY_OPERATOR and
+FORMATTER_INSERT_SPACE_AFTER_BINARY_OPERATOR to DO_NOT_INSERT, then code like this:
+int foo(int a, int b, int c) {
+return a + b + ++c;
+}
+gets mangled into:
+return a+b+++c;
+Note that the compiler parses this as:
+return (a)+(b++)+(c);
+=> The ++ moved from ++c to b++ !

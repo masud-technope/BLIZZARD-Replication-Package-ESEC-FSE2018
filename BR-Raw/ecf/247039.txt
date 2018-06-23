@@ -1,0 +1,4 @@
+Bug 247039 – [xmpp] add JID escaping support in XMPPID
+There is a JEP draft standard JEP-0106
+http://www.xmpp.org/extensions/xep-0106.html
+ECF's XMPPID class should support this draft standard.

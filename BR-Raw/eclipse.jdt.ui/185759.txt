@@ -1,0 +1,15 @@
+Bug 185759 – [introduce parameter object] should test if class already exists
+M7
+- in the following example use 'Introduce Parameter Object' on 'add'
+- name the new class E
+- create it as inner class
+- the result doesn't compile as 'E' as the new class conflicts with the existing 'E'
+- The input dialog should make sure that no class exists at the destination with the same name
+package e;
+public class A {
+class E {
+}
+public int add(int x, int y) {
+return x + y;
+}
+}

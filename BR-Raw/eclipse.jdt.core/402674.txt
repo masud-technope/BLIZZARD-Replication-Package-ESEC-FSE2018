@@ -1,0 +1,4 @@
+Bug 402674 – [1.8][dom ast] LambdaExpression#resolveTypeBinding() returns null
+LambdaExpression#resolveTypeBinding() (inherited from Expression) always returns null.
+E.g.
+in examples from bug 402665 comment 0.

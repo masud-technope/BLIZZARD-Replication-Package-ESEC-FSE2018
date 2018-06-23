@@ -1,0 +1,13 @@
+Bug 1569 – Would like to inspect from the context of an inspect result (1GDKNZ7)
+After inspecting new Main(), I would like to send foo() to the result.
+Currently this is not possible.
+NOTES:
+JW (5/11/01 12:26:21 PM) Not a show stopper, but a nice improvement.
+DW (5/11/01 2:32:56 PM)
+I believe this would require a new evaluation context - i.e.
+we have a stack
+frame context and a global context, but we would need a way to tell the compiler
+about the inspected result, and how to resolve/refer to it.
+Would also need a UI to allow the snippet to be associated with the
+inspect item - i.e.
+like a VAJ or Smalltalk inspector.

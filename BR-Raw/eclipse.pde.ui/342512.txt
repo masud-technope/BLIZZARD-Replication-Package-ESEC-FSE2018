@@ -1,0 +1,23 @@
+Bug 342512 – Plug-in Manifest Editor adds garbage after '&' mnemonics when saving.
+Build Identifier: I20110407-2200
+OS: RedHat Linux Enterprise 6.0
+Eclipse SDK
+Version: 4.1.0
+Build id: I20110407-2200
+Plug-in Manifest Editor add garbage after '&' + mnemonics
+when it save plugin.xml.
+For example.
+"Sample Menu(&M)" is changed into "Sample Menu(&M)Menu".
+"Sample Action(&S)" is changed into "Sample Action(&S)tion".
+Expressions (&M),(&S) are important and popular formats
+for DBCS to use mnemonics
+Reproducible: Always
+Steps to Reproduce:
+1.Import Project 'bugXXXXX.zip" attached to this report.
+2.This project is a plug-in project generated from Template 'Hello, World'.
+3.Open 'plugin.xml' with Plug-in Manifest Editor.
+4.Click Tab 'Extensions',
+5.Verify Menu 'Sample Menu(&M)Menu", Action 'Sample Action(&S)tion'.
+6.Those have been already corrupted.
+7.Edit them into 'Sample Menu(&M)', 'Sample Action(&S)'.
+8.Save the file, but the labels are corrupted again.

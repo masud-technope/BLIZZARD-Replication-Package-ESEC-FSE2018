@@ -1,0 +1,19 @@
+Bug 417759 – [1.8][null] NPE during null analysis
+BETA_JAVA8:
+Following program causes the compiler to cause an NPE:
+// --
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+import org.eclipse.jdt.annotation.NonNull;
+@Target(ElementType.TYPE_USE)
+@interface TypeAnnotation {
+}
+public class X<T> {
+class Y {}
+void foo(@NonNull X<@NonNull ?> l) {
+}
+public static void main(String[] args) {
+X<String> s = new X<>();
+s.foo(s);
+}
+}

@@ -1,0 +1,28 @@
+29936 – XML parser loading problems by container
+I'm trying to use JSTL 1.1 with this version of tomcat and have both saxon and
+crimson in my web-app.
+If we have crimson and saxon in our webapp lib then tomcat tries to use crimson
+as the xml parser when reading the web.xml and compiling the jsp and we get the
+prefix error:
+org.apache.jasper.JasperException: <h3>Validation error messages from
+TagLibraryValidator for c</h3><p>null: java.lang.IllegalStateException: can't
+declare any more prefixes in this context</p><h3>Validation error messages from
+TagLibraryValidator for fmt</h3><p>null: java.lang.IllegalStateException: can't
+declare any more prefixes in this context</p>
+If we remove crimson, tomcat uses saxon (aelfred parser) and this fails on
+reading the web.xml (javax.xml.parsers.ParserConfigurationException: AElfred
+parser is namespace-aware)
+If we remove saxon and crimson then we are okay (defaults to xerces in the
+tomcat endorsed directory?)
+It seems to me that tomcat is using the parser in my web-app to read the
+web.xml rather than using xerces from the endorsed directory.
+The same web-app runs without problems in version 5.0.16.
+Tomcat seems to be using the service provider mechanism in 5.0.25 as I have
+property files in C:\Java\jakarta-tomcat-5.0.25
+\work\Catalina\localhost\diabetes\loader\META-INF\services (can't find any
+documents on this).
+If I'm using more than one parser won't this cause problems as tomcat is
+setting only one parser and xslt processor here?
+Any comments are gratefully received.
+Thanks,
+Peter Neville

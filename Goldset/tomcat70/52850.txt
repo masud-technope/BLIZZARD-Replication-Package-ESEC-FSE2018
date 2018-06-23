@@ -1,0 +1,4 @@
+java/org/apache/catalina/loader/WebappClassLoader.java
+test/org/apache/catalina/loader/TestWebappClassLoaderExecutorMemoryLeak.java
+test/org/apache/catalina/loader/TestWebappClassLoaderThreadLocalMemoryLeak.java
+webapps/docs/changelog.xml

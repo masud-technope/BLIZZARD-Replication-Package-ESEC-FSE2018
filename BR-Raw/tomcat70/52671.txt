@@ -1,0 +1,88 @@
+52671 – NIO Connector: Exception invoking method readBufSize / writeBufSize in the JMX Proxy Servlet
+JDK versions tested with: 1.7.0_02 (x64) and 1.7.0_03 (x64)
+I am using the new NIO connector, configured like this:
+<Connector protocol="org.apache.coyote.ajp.AjpNioProtocol"
+port="8009" redirectPort="8443" URIEncoding="UTF-8"
+maxThreads="50" minSpareThreads="10"
+connectionTimeout="600000"
+acceptorThreadCount="2" />
+I query the JMX proxy for the thread pool status like this:
+http://www.mydomain.com/manager/jmxproxy/?qry=Catalina:type=ThreadPool,name=%22ajp-nio-8009%22
+The JMX proxy servlet returns a valid response, and the server's general operation is not affected in any way.
+But at the same time, Tomcat logs the following two exceptions to catalina.out:
+Feb 15, 2012 12:26:49 PM org.apache.catalina.mbeans.MBeanDumper dumpBeans
+Schwerwiegend: Error getting attribute Catalina:type=ThreadPool,name="ajp-nio-8009" readBufSize
+javax.management.RuntimeOperationsException: Exception invoking method readBufSize
+at org.apache.tomcat.util.modeler.BaseModelMBean.getAttribute(BaseModelMBean.java:197)
+at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.getAttribute(DefaultMBeanServerInterceptor.java:647)
+at com.sun.jmx.mbeanserver.JmxMBeanServer.getAttribute(JmxMBeanServer.java:668)
+at org.apache.catalina.mbeans.MBeanDumper.dumpBeans(MBeanDumper.java:81)
+at org.apache.catalina.manager.JMXProxyServlet.listBeans(JMXProxyServlet.java:166)
+at org.apache.catalina.manager.JMXProxyServlet.doGet(JMXProxyServlet.java:121)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+at org.apache.catalina.filters.SetCharacterEncodingFilter.doFilter(SetCharacterEncodingFilter.java:108)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:224)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:581)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407)
+at org.apache.coyote.ajp.AjpNioProcessor.process(AjpNioProcessor.java:184)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:579)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1600)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+at java.lang.Thread.run(Thread.java:722)
+Caused by: java.lang.NullPointerException
+at org.apache.tomcat.util.net.SocketProperties.getRxBufSize(SocketProperties.java:251)
+at org.apache.tomcat.util.net.NioEndpoint.getReadBufSize(NioEndpoint.java:613)
+at sun.reflect.GeneratedMethodAccessor1196.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:601)
+at org.apache.tomcat.util.modeler.BaseModelMBean.getAttribute(BaseModelMBean.java:190)
+...
+25 more
+Feb 15, 2012 12:26:49 PM org.apache.catalina.mbeans.MBeanDumper dumpBeans
+Schwerwiegend: Error getting attribute Catalina:type=ThreadPool,name="ajp-nio-8009" writeBufSize
+javax.management.RuntimeOperationsException: Exception invoking method writeBufSize
+at org.apache.tomcat.util.modeler.BaseModelMBean.getAttribute(BaseModelMBean.java:197)
+at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.getAttribute(DefaultMBeanServerInterceptor.java:647)
+at com.sun.jmx.mbeanserver.JmxMBeanServer.getAttribute(JmxMBeanServer.java:668)
+at org.apache.catalina.mbeans.MBeanDumper.dumpBeans(MBeanDumper.java:81)
+at org.apache.catalina.manager.JMXProxyServlet.listBeans(JMXProxyServlet.java:166)
+at org.apache.catalina.manager.JMXProxyServlet.doGet(JMXProxyServlet.java:121)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+at org.apache.catalina.filters.SetCharacterEncodingFilter.doFilter(SetCharacterEncodingFilter.java:108)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:243)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:224)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:169)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:581)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:168)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407)
+at org.apache.coyote.ajp.AjpNioProcessor.process(AjpNioProcessor.java:184)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:579)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1600)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+at java.lang.Thread.run(Thread.java:722)
+Caused by: java.lang.NullPointerException
+at org.apache.tomcat.util.net.SocketProperties.getTxBufSize(SocketProperties.java:283)
+at org.apache.tomcat.util.net.NioEndpoint.getWriteBufSize(NioEndpoint.java:609)
+at sun.reflect.GeneratedMethodAccessor1151.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:601)
+at org.apache.tomcat.util.modeler.BaseModelMBean.getAttribute(BaseModelMBean.java:190)
+...
+25 more

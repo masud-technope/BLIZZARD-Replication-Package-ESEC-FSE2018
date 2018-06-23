@@ -1,0 +1,49 @@
+Bug 250042 – [ds tooling] Validate <service> element
+Using Eclipse 3.5M2 from HEAD
+Section 112.4.6 of the OSGi spec discusses the <service> element.
+The <service> element has an optional servicefactory attribute, which has the following constraint:
+"The servicefactory attribute MUST NOT be true if the component is a factory
+component or an immediate component."
+The spec goes on, rather redundantly to say:
+"A component description is ILL-FORMED if it specifies that the component is a
+factory component or an immediate component and servicefactory is set to
+true."
+In cases where a component is ill-formed it seems appropriate to issue an error rather than a warning.
+Here are two examples of an ill-formed component.
+1.
+The <component> element's immediate attribute is set to "true" and its <service> element's servicefactory attribute set to "true":
+<?xml version="1.0" encoding="UTF-8"?>
+<component immediate="true" name="com.ibm.foo">
+<implementation class="com.ibm.foo.internal.Component"/>
+<service servicefactory="true">
+<provide interface="com.ibm.foo.IBar"/>
+</service>
+</component>
+2.
+The <component> element's factory attribute set and its <service> element's servicefactory attribute set to "true":
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="com.ibm.foo" factory="bar.factory">
+<implementation class="com.ibm.foo.internal.Component"/>
+<service servicefactory="true">
+<provide interface="com.ibm.foo.IBar"/>
+</service>
+</component>
+Finally, the spec goes on to say this about the body of the <service> element:
+"The service element MUST have one or more provide elements that define the service interfaces."
+A couple of examples:
+1.
+There is nothing between <service> and </service>:
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="com.ibm.foo">
+<implementation class="com.ibm.foo.internal.Component"/>
+<service>
+</service>
+</component>
+2.
+There is simply a <service/> element:
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="com.ibm.foo">
+<implementation class="com.ibm.foo.internal.Component"/>
+<service/>
+</component>
+I think it is appropriate to issue an error when the <service> element does not contain any <provide> elements.

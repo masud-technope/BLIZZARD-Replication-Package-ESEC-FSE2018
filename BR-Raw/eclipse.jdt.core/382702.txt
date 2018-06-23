@@ -1,0 +1,19 @@
+Bug 382702 – [1.8][compiler] Lambda expressions should be rejected in disallowed contexts.
+BETA_JAVA8.
+The following program uses lambda expressions, method references and
+constructor references in syntactically allowed, but semantically
+illegal locations.
+All these uses should be rejected and at the
+moment they are not.
+From proposed amends to JLS 15.27:
+"It is a compile-time error if a lambda expression occurs in a program in
+someplace other than an assignment context (5.2), an invocation context
+(5.3), or a casting context (5.5)."
+// ------------------- 8< -------------------
+public class X {
+public static void main(String[] args) {
+System.out.println("Lambda in illegal context: " + () -> "Illegal Lambda");
+System.out.println("Method Reference in illegal context: " + System::exit);
+System.out.println("Constructor Reference in illegal context: " + X::new);
+}
+}

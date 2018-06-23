@@ -1,0 +1,15 @@
+Bug 426851 – [1.8][content assist] content assist for a type use annotation
+package test.pack1;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+@Target(ElementType.TYPE_USE)
+@interface TypeUse {
+}
+@T|
+interface I {
+default @T| void foo() { }
+}
+-----------------------------------------------
+In the above example, replace '|' with the caret at both the locations and press Ctrl+space.
+At 1st location (before interface), @TypeUse is not suggested, though it is valid there.
+At 2nd location (before 'void'), @TypeUse is suggested, and selecting that results in compilation error.

@@ -1,0 +1,2 @@
+Bug 149076 – [preferences] Use step filtering pref is not persisted over workbench restart
+If you check on step filtering (either in the pref page, the keyboard shortcut or the debug view action) and restart the workbench, the state of step filtering is not retained and always reverts to no step filtering.

@@ -1,0 +1,22 @@
+51447 – Session type changes from Backup to Primary
+Created attachment 27223 [details]
+patch
+Steps to reproduce:
+(1) Start 3 Tomcat instances that are using BackupManager.
+(2) Run 3 HTMLManagers corresponding to each node.
+(3) Run web application that has distributable in its web.xml.
+(4) Click the link of the number of sessions for this application.
+(5) If the displayed session type is Backup, click the link of session id.
+And return to sessions list page soon.
+Then, the session type change to Primary.
+When the session detail page is displayed, getSessionForNameAndId() calls ctxt.getManager().findSession(), and findSession() calls session.get(id).
+If the cluster is using BackupManager, "session" is instance of LazyReplicatedMap.
+And LazyReplicatedMap.get() set session type to "primary".
+I thought the solutions of this issue.
+(A) Not use findSession().
+Retrieve session information from local map.
+-> see attached patch
+Or
+(B) Write the note as follows to the sessions list page.
+"If you click the backup type's sessionid, then the type change to primary."
+Regards.

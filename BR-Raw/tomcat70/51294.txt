@@ -1,0 +1,8 @@
+51294 – Since 7.0.12 do not work option unpackWARs=true for WARs outside appBase
+In 7.0.12 was added in Changelog this line:
+--
+Don't unpack WAR files if they are not located in the Host's appBase.
+(markt)
+--
+It's change method of deployment from older versions of Tomcat (5.5, 6.0, 7.0.11) and forced to change logics on early configured servers.
+May be need to add new parameter like 'unpackExternalWARs=true' to be able to configure this? (Why outside WARs is worse than inside?)

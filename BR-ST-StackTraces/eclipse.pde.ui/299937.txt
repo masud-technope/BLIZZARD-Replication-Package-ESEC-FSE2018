@@ -1,0 +1,3 @@
+org.eclipse.pde.api.tools.internal.model.BundleComponent.createApiDescription
+org.eclipse.pde.api.tools.internal.model.Component.getApiDescription
+org.eclipse.pde.api.tools.internal.comparator.ClassFileComparator.collectAllInterfaces

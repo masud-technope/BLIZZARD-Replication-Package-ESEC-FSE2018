@@ -1,0 +1,4 @@
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/internal/provider/jslp/ServicePropertiesAdapter.java
+providers/bundles/org.eclipse.ecf.provider.jslp/.settings/org.eclipse.jdt.core.prefs
+providers/bundles/org.eclipse.ecf.provider.jslp/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.jslp/build.properties

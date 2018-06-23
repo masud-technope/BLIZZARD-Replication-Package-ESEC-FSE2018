@@ -1,0 +1,24 @@
+Bug 244059 – [breakpoints] Allow breakpoints to specify when they should be overwritten on import
+Steps to reproduce:
+1.
+ Create multiple exception breakpoints
+2.
+ Export the breakpoints
+3.
+ Import the breakpoints back to the workspace
+If you try this a few times, you will find duplicated exception breakpoints being created.
+The import breakpoint logic where it tries to find an existing breakpoint to overwrite is the source of the problem.
+ When import is done, we are given the resource name from IImportExportConstants.IE_NODE_PATH.
+ The importer then tries to find the resource, and asks the resource for a list of markers that are associated with it.
+ Given this list, we try to find a marker that may be associated with the breakpoint based on the marker type, the resource, the line number and charstart.
+ If these attributes match, then we assume that the marker is associated with the breakpoint that we are trying to import.
+ This marker is then passed to the breakpoint manager for it to create a breakpoint if a breakpoint does not already exist.
+The problem with exception breakpoint is that exception breakpoints do not have line numbers / char start and they are tied to the workspace root.
+ The workspace root can have multiple markers of the same type associated with it.
+ Since we are only checking a subset of attributes when trying to find an existing marker, we can be giving a mismatched marker to the breakpoint manager when we actually try to recreate the breakpoint.
+ Since the breakpoint manager cannot match the marker with an existing breakpoint, it creates a new one and results in duplicates.
+We also see similar problems with other types of our breakpoints.
+ With our JSP breakpoints, we can have multiple JSP breakpoints set at a line.
+ This logic also causes duplicated JSP breakpoints to be created when they are imported into the workspace.
+Since this is affecting many breakpoint types, and there is no way for us to get around this.
+ I am requesting this to be fixed in 3.4.1.

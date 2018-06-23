@@ -1,0 +1,9 @@
+Bug 275286 – [compare] createStructure is called three times for both sides when opening compare editor
+3.5M7
+Select two Java files in PE and do Compare With > Each Other.
+org.eclipse.compare.structuremergeviewer.StructureCreator.createStructure(Object, IProgressMonitor) is called 3 times for each side resulting in creating AST 6 times total.
+- first, when setting input on structure pane
+- second, when updating content of content pane
+- third,  called by JavaReconciler
+Individual stacks will follow.
+The issue is similar to what Dani observed in bug 262557, comment 7, bullet 2.

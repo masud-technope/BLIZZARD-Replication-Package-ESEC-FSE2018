@@ -1,0 +1,2 @@
+Bug 155158 – Product editor doesn't support the delete key
+Wassim cries when the delete key doesn't work

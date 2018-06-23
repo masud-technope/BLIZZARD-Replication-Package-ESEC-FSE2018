@@ -1,0 +1,78 @@
+Bug 218437 – [extract local] Extract Local gives ArrayIndexOutOfBoundsException
+Build ID: M20071023-1652
+Steps To Reproduce:
+1.
+Select all of the text on LINE 27, excluding the comment.
+2.
+Refactor by extracting a local.
+ See crash below...
+--------------------- Bug.java -------------------
+import org.eclipse.swt.widgets.*;
+class Bug{
+{
+abstract class LeafPage<Type extends Short>{
+abstract class Row{
+final Button radio;
+final Control[]children;
+Row(final Composite left,final String name,
+final Composite rite,
+final boolean lastFocus,final Control...kids){
+children=kids;
+(radio=new Button(left,0)).getBackground();
+radio.setText(name+':');
+radio.setData(this);
+}
+}
+Combo pickWay;
+public void createControl(final Composite parent){
+final Composite a=new Composite(parent,0);
+//////////////
+new Row(a,"",a,true,(Control)null){} //// LINE 27 ////
+/////////////
+.children[0]=pickWay=new Combo(a,0);
+}
+}}}
+--------------------------------------------------
+java.lang.ArrayIndexOutOfBoundsException: 0
+at org.eclipse.jdt.internal.corext.codemanipulation.StubUtility.getVariableNameSuggestions(StubUtility.java:1020)
+at org.eclipse.jdt.internal.corext.codemanipulation.StubUtility.getVariableNameSuggestions(StubUtility.java:906)
+at org.eclipse.jdt.internal.corext.refactoring.code.ExtractTempRefactoring.guessTempNames(ExtractTempRefactoring.java:878)
+at org.eclipse.jdt.internal.ui.refactoring.ExtractTempWizard.addUserInputPages(ExtractTempWizard.java:54)
+at org.eclipse.ltk.ui.refactoring.RefactoringWizard.addPages(RefactoringWizard.java:334)
+at org.eclipse.ltk.internal.ui.refactoring.RefactoringWizardDialog2.<init>(RefactoringWizardDialog2.java:173)
+at org.eclipse.ltk.ui.refactoring.RefactoringUI.createRefactoringWizardDialog(RefactoringUI.java:136)
+at org.eclipse.ltk.ui.refactoring.RefactoringWizardOpenOperation$1.run(RefactoringWizardOpenOperation.java:132)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:67)
+at org.eclipse.ltk.ui.refactoring.RefactoringWizardOpenOperation.run(RefactoringWizardOpenOperation.java:154)
+at org.eclipse.jdt.internal.ui.refactoring.actions.RefactoringStarter.activate(RefactoringStarter.java:49)
+at org.eclipse.jdt.ui.actions.ExtractTempAction.run(ExtractTempAction.java:81)
+at org.eclipse.jdt.ui.actions.SelectionDispatchAction.dispatchRun(SelectionDispatchAction.java:272)
+at org.eclipse.jdt.ui.actions.SelectionDispatchAction.run(SelectionDispatchAction.java:244)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:498)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:546)
+at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:490)
+at org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:402)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:938)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3682)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3293)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2389)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2353)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2219)
+at org.eclipse.ui.internal.Workbench$4.run(Workbench.java:466)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:289)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:461)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:106)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:169)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:106)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:76)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:363)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:176)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:508)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:447)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1173)

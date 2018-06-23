@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/InlineConstantTests.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline/test25/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline/test25/out/A.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/InlineConstantRefactoring.java

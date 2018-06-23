@@ -1,0 +1,7 @@
+Bug 475855 – [patch] TVT_IES45_Platform: String concatenation appeared on Polish Language
+Created attachment 256114 [details]
+concatenation
+Description:
+In highlighted strings normal word is used as variable.
+Translation of normal words in Polish is context dependent so normal words cannot be used as variables.
+Current construction can mislead end user.

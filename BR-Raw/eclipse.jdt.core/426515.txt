@@ -1,0 +1,39 @@
+Bug 426515 – [1.8][dom ast] Bindings from reconciler are sometimes missing type annotations
+Bindings from reconciler are sometimes missing type annotations.
+- launch a clean runtime workspace with a 1.8 JRE
+- copy all the code below to the clipboard and paste it into the Package Explorer in one batch
+- put the caret after "bug.imports.Outer.getInner();" and press Ctrl+1, Enter
+=> The created field type is "@A(1) Outer<Random>.Inner<Date> inner", which misses most of the type annotations.
+The problem is that the AST from the SharedASTProvider is missing these type annotations in the binding for the ...getInner() expression.
+This can also be seen in the ASTView if you switch to "Use SharedASTProvider.getAST" or "Use ICompilationUnit.reconcile".
+Workaround to get correct bindings: Switch to another Java editor and then switch back.
+In this case, an ASTParser is used to feed the SharedASTProvider.
+If you modify the active editor, then the bindings become wrong again.
+=============================
+package bug.imports;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+@Target(ElementType.TYPE_USE)
+public @interface A {
+int value() default 0;
+}
+package bug.imports;
+public class Outer<O> {
+public class Inner<I> {
+}
+public static @A(1) Outer<java.util.@A(2) Random>.@A(3) Inner<java.util.@A(4) Date> getInner() {
+return null;
+}
+}
+package bug.imports;
+public class Client {
+//    class Random {}
+//    class Date {}
+//    class Outer {}
+//    class Inner {}
+//    class A {}
+void foo() {
+bug.imports.Outer.getInner();
+}
+}
+======================================

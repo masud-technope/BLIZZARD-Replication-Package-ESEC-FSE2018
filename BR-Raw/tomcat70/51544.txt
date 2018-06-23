@@ -1,0 +1,37 @@
+51544 – EL parser problem for EmptyList
+When I return Collections.emptyList() and then use ${list.isEmpty()} in a JSP, a problem occurs (see below).
+It didn't occur in older Tomcat 7 versions (like 7.0.5).
+15:             ${user.names}<br />
+16:         </div>
+17:     </c:forEach>
+18:     <c:if test="${users.isEmpty()}">
+19:         <div>${msg.noResults}</div>
+20:     </c:if>
+21: </div>
+Stacktrace:] with root cause
+java.lang.IllegalAccessException: Class javax.el.BeanELResolver can not access a member of class java.util.Collections$EmptyList with modifiers "public"
+at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:95)
+at java.lang.reflect.Method.invoke(Method.java:607)
+at javax.el.BeanELResolver.invoke(BeanELResolver.java:467)
+at javax.el.CompositeELResolver.invoke(CompositeELResolver.java:161)
+at org.apache.el.parser.AstValue.getValue(AstValue.java:159)
+at org.apache.el.ValueExpressionImpl.getValue(ValueExpressionImpl.java:189)
+at org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate(PageContextImpl.java:985)
+at org.apache.jsp.WEB_002dINF.jsp.externalUsers_jsp._jspx_meth_c_005fif_005f2(externalUsers_jsp.java:2060)
+at org.apache.jsp.WEB_002dINF.jsp.externalUsers_jsp._jspService(externalUsers_jsp.java:396)
+at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:433)
+at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:389)
+at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:333)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:304)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:684)
+at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:471)
+at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:402)
+at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:329)
+at org.springframework.web.servlet.view.InternalResourceView.renderMergedOutputModel(InternalResourceView.java:238)
+at org.springframework.web.servlet.view.AbstractView.render(AbstractView.java:262)
+at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1120)
+at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:890)

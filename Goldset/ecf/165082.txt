@@ -1,0 +1,7 @@
+framework/bundles/org.eclipse.ecf.identity/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.identity/build.properties
+framework/bundles/org.eclipse.ecf.ui/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/ui/wizards/AbstractConnectWizardPage.java
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/ui/wizards/ConfigurationWizardSelectionPage.java
+framework/bundles/org.eclipse.ecf/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf/build.properties

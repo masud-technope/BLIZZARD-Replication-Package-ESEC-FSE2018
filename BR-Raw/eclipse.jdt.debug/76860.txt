@@ -1,0 +1,38 @@
+Bug 76860 – watch expression tests fail
+With the new support for varargs, the watch expression tests fail:
+* testDeferredExpression()
+* testNonDeferredExpression()
+These exceptions appear in the log:
+!ENTRY org.eclipse.jdt.debug 4 120 2004-10-22 14:12:50.78
+!MESSAGE Exception processing async thread queue
+!SUBENTRY 1 org.eclipse.jdt.debug 4 120 2004-10-22 14:12:50.78
+!MESSAGE Exception processing async thread queue
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException
+at java.lang.Throwable.<init>(Throwable.java)
+at java.lang.Throwable.<init>(Throwable.java)
+at java.lang.ArrayIndexOutOfBoundsException.<init>(ArrayIndexOutOfBoundsException.java)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTInstructionCompiler.visit(ASTInstructionCompiler.java:2435)
+at org.eclipse.jdt.core.dom.MethodInvocation.accept0(MethodInvocation.java)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java)
+at org.eclipse.jdt.core.dom.ReturnStatement.accept0(ReturnStatement.java:135)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java)
+at org.eclipse.jdt.core.dom.Block.accept0(Block.java)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java)
+at org.eclipse.jdt.core.dom.MethodDeclaration.accept0(MethodDeclaration.java:504)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java)
+at org.eclipse.jdt.core.dom.TypeDeclaration.accept0(TypeDeclaration.java:477)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java)
+at org.eclipse.jdt.core.dom.CompilationUnit.accept0(CompilationUnit.java:291)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.createExpressionFromAST(ASTEvaluationEngine.java:264)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.getCompiledExpression(ASTEvaluationEngine.java:159)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.evaluate(ASTEvaluationEngine.java:76)
+at org.eclipse.jdt.internal.debug.ui.JavaWatchExpressionDelegate$EvaluationRunnable.run(JavaWatchExpressionDelegate.java:144)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run(JDIThread.java:2514)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:66)

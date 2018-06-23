@@ -1,0 +1,8 @@
+Bug 179259 – PDE editor should show fragments in Runtim - Package Visibility - Add...
+3.3M6
+Create a workspace with one plug-in and one fragment that is registered to another host but depends on the created plug-in.
+Create a package in the plug-in.
+Now open a PDE editor on the plug-in manifest and go to Runtime, add the package and select it.
+In "Package Visibility" select "hidden from...." and click "Add...".
+-> The dialog does not show the fragment.
+IMHO the fragment should be shown because it has a different host and it is a totally legal request to make internal packages from another bundle visible to it.

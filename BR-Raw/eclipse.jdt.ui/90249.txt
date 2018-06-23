@@ -1,0 +1,3 @@
+Bug 90249 – remove workaround code for bug 85005
+bug 85005 has been fixed - remove the workaround code in
+JavaEditor.ToggleFoldingRunner

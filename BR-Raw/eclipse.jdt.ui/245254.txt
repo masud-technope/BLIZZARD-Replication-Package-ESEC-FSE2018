@@ -1,0 +1,125 @@
+Bug 245254 – [clean up] Convert control statement bodies to use blocks fails on if(true }
+The save action "Convert control statement bodies to block" crashes when saving the following code:
+public class AClass {
+void aMethod() {
+if (true
+}
+}
+This seems to be a bug, because there is no crash if one removes the "true".
+To activate the save action, check "Use blocks in if/while/for/do statements" and select "Always" in the additional save action configuration dialog.
+-- Error Details --
+Date: Tue Aug 26 15:43:10 CEST 2008
+Message: Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+Severity: Error
+Plugin: org.eclipse.jdt.ui
+Session Data:
+eclipse.buildId=I20080617-2000
+java.version=1.6.0_06
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=de_DE
+Command-line arguments:  -os win32 -ws win32 -arch x86
+Exception Stack Trace:
+java.lang.IllegalArgumentException: Document does not match the AST
+at org.eclipse.jdt.internal.core.dom.rewrite.ASTRewriteAnalyzer.handleException(ASTRewriteAnalyzer.java:3309)
+at org.eclipse.jdt.internal.core.dom.rewrite.ASTRewriteAnalyzer.visit(ASTRewriteAnalyzer.java:2097)
+at org.eclipse.jdt.core.dom.IfStatement.accept0(IfStatement.java:186)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2478)
+at org.eclipse.jdt.core.dom.rewrite.ASTRewrite.internalRewriteAST(ASTRewrite.java:262)
+at org.eclipse.jdt.core.dom.rewrite.ASTRewrite.rewriteAST(ASTRewrite.java:251)
+at org.eclipse.jdt.internal.corext.refactoring.structure.CompilationUnitRewrite.attachChange(CompilationUnitRewrite.java:241)
+at org.eclipse.jdt.internal.corext.refactoring.structure.CompilationUnitRewrite.createChange(CompilationUnitRewrite.java:206)
+at org.eclipse.jdt.internal.corext.fix.CompilationUnitRewriteOperationsFix.createChange(CompilationUnitRewriteOperationsFix.java:102)
+at org.eclipse.jdt.internal.corext.fix.CleanUpRefactoring.calculateChange(CleanUpRefactoring.java:784)
+at org.eclipse.jdt.internal.corext.fix.CleanUpPostSaveListener.saved(CleanUpPostSaveListener.java:263)
+at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitDocumentProvider$5.run(CompilationUnitDocumentProvider.java:1539)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitDocumentProvider.notifyPostSaveListeners(CompilationUnitDocumentProvider.java:1534)
+at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitDocumentProvider.commitWorkingCopy(CompilationUnitDocumentProvider.java:1331)
+at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitDocumentProvider$4.execute(CompilationUnitDocumentProvider.java:1400)
+at org.eclipse.ui.editors.text.TextFileDocumentProvider$DocumentProviderOperation.run(TextFileDocumentProvider.java:130)
+at org.eclipse.ui.actions.WorkspaceModifyDelegatingOperation.execute(WorkspaceModifyDelegatingOperation.java:69)
+at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(WorkspaceModifyOperation.java:104)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1800)
+at org.eclipse.ui.actions.WorkspaceModifyOperation.run(WorkspaceModifyOperation.java:116)
+at org.eclipse.ui.internal.editors.text.WorkspaceOperationRunner.run(WorkspaceOperationRunner.java:73)
+at org.eclipse.ui.internal.editors.text.WorkspaceOperationRunner.run(WorkspaceOperationRunner.java:63)
+at org.eclipse.ui.editors.text.TextFileDocumentProvider.executeOperation(TextFileDocumentProvider.java:454)
+at org.eclipse.ui.editors.text.TextFileDocumentProvider.saveDocument(TextFileDocumentProvider.java:770)
+at org.eclipse.ui.texteditor.AbstractTextEditor.performSave(AbstractTextEditor.java:4790)
+at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor.performSave(CompilationUnitEditor.java:1228)
+at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor.doSave(CompilationUnitEditor.java:1281)
+at org.eclipse.ui.texteditor.AbstractTextEditor$TextEditorSavable.doSave(AbstractTextEditor.java:6889)
+at org.eclipse.ui.Saveable.doSave(Saveable.java:212)
+at org.eclipse.ui.internal.SaveableHelper.doSaveModel(SaveableHelper.java:339)
+at org.eclipse.ui.internal.SaveableHelper$2.run(SaveableHelper.java:185)
+at org.eclipse.ui.internal.SaveableHelper$4.run(SaveableHelper.java:266)
+at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:446)
+at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:354)
+at org.eclipse.jface.window.ApplicationWindow$1.run(ApplicationWindow.java:758)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+at org.eclipse.jface.window.ApplicationWindow.run(ApplicationWindow.java:755)
+at org.eclipse.ui.internal.WorkbenchWindow.run(WorkbenchWindow.java:2483)
+at org.eclipse.ui.internal.SaveableHelper.runProgressMonitorOperation(SaveableHelper.java:274)
+at org.eclipse.ui.internal.SaveableHelper.runProgressMonitorOperation(SaveableHelper.java:253)
+at org.eclipse.ui.internal.SaveableHelper.saveModels(SaveableHelper.java:196)
+at org.eclipse.ui.internal.SaveableHelper.savePart(SaveableHelper.java:136)
+at org.eclipse.ui.internal.EditorManager.savePart(EditorManager.java:1350)
+at org.eclipse.ui.internal.WorkbenchPage.savePart(WorkbenchPage.java:3291)
+at org.eclipse.ui.internal.WorkbenchPage.saveEditor(WorkbenchPage.java:3304)
+at org.eclipse.ui.texteditor.SaveAction.run(SaveAction.java:48)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:498)
+at org.eclipse.ui.commands.ActionHandler.execute(ActionHandler.java:185)
+at org.eclipse.ui.internal.handlers.LegacyHandlerWrapper.execute(LegacyHandlerWrapper.java:109)
+at org.eclipse.core.commands.Command.executeWithChecks(Command.java:476)
+at org.eclipse.core.commands.ParameterizedCommand.executeWithChecks(ParameterizedCommand.java:508)
+at org.eclipse.ui.internal.handlers.HandlerService.executeCommand(HandlerService.java:169)
+at org.eclipse.ui.internal.keys.WorkbenchKeyboard.executeCommand(WorkbenchKeyboard.java:471)
+at org.eclipse.ui.internal.keys.WorkbenchKeyboard.press(WorkbenchKeyboard.java:822)
+at org.eclipse.ui.internal.keys.WorkbenchKeyboard.processKeyEvent(WorkbenchKeyboard.java:880)
+at org.eclipse.ui.internal.keys.WorkbenchKeyboard.filterKeySequenceBindings(WorkbenchKeyboard.java:569)
+at org.eclipse.ui.internal.keys.WorkbenchKeyboard.access$3(WorkbenchKeyboard.java:511)
+at org.eclipse.ui.internal.keys.WorkbenchKeyboard$KeyDownFilter.handleEvent(WorkbenchKeyboard.java:126)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+at org.eclipse.swt.widgets.Display.filterEvent(Display.java:1184)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1002)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1027)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1012)
+at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1040)
+at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1036)
+at org.eclipse.swt.widgets.Widget.wmChar(Widget.java:1352)
+at org.eclipse.swt.widgets.Control.WM_CHAR(Control.java:3894)
+at org.eclipse.swt.widgets.Canvas.WM_CHAR(Canvas.java:341)
+at org.eclipse.swt.widgets.Control.windowProc(Control.java:3787)
+at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:337)
+at org.eclipse.swt.widgets.Display.windowProc(Display.java:4528)
+at org.eclipse.swt.internal.win32.OS.DispatchMessageW(Native Method)
+at org.eclipse.swt.internal.win32.OS.DispatchMessage(OS.java:2370)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3420)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2382)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2346)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2198)
+at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:493)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:288)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:488)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:113)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:193)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:382)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:549)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:504)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1236)
+Caused by: org.eclipse.core.runtime.CoreException: End Of File
+at org.eclipse.jdt.internal.core.dom.rewrite.TokenScanner.readNext(TokenScanner.java:92)
+at org.eclipse.jdt.internal.core.dom.rewrite.TokenScanner.readToToken(TokenScanner.java:149)
+at org.eclipse.jdt.internal.core.dom.rewrite.TokenScanner.readToToken(TokenScanner.java:162)
+at org.eclipse.jdt.internal.core.dom.rewrite.TokenScanner.getTokenEndOffset(TokenScanner.java:187)
+at org.eclipse.jdt.internal.core.dom.rewrite.ASTRewriteAnalyzer.visit(ASTRewriteAnalyzer.java:2082)
+...
+93 more

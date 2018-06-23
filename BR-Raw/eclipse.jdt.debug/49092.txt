@@ -1,0 +1,10 @@
+Bug 49092 – 'User entries' classpath top element should be always displayed, even if empty
+If the user classpath is empty (for example, a launch configuration without
+project, or if the user removes everything),the 'User entries' top element is
+not displayed when the classpath tab is recreated.
+I see two problems:
+- if a new user sees that, he won't know that there should be a 'User entries'
+element.
+- the only way I found to add back the element, is to select 'Restore Default
+Entries', which delete all changes done on the boot classpath.
+I think 'User entries' should be always displayed.

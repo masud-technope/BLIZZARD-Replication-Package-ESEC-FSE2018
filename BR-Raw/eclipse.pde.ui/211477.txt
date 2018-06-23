@@ -1,0 +1,4 @@
+Bug 211477 – Preference Pages opened from Import Plug-in Wizard have wrong parent
+The shell specified when opening the preferences page from the Plug-in Import wizard is incorrect.
+ The one currently specified is the one from the main IDE.
+ Since we are in a wizard, we need to instead specify the Shell of the wizard dialog.

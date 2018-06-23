@@ -1,0 +1,5 @@
+Bug 33893 – Preference import can import non-existant JREs
+The update code in the launching plug-in that updates JREs when the preference
+changes, will incorrectly defined JREs that do not exist.
+We should ignore JREs
+that are invalid.

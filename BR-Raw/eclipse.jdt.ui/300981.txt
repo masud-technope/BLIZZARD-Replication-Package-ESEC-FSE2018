@@ -1,0 +1,6 @@
+Bug 300981 – [ccp] "Paste" is enabled in jars
+Build Identifier: I20100127-0100
+Open a JAR in the Package Explorer.
+Right click on any resource in the jar, 'Paste' is enabled though nothing can be pasted.
+(Follow up from Bug 297449)
+Reproducible: Always

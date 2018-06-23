@@ -1,0 +1,9 @@
+Bug 201063 – [save actions] Allow to 'Only format changed regions'
+I20070821-0800
+When enabling format on save the high amount of outgoing changes due to formating changes is a major annoyance/makes it unusable for me.
+The ability to format (and maybe other actions) only changed regions would be a substantial improvement for this feature.
+I've wrote a prototype which does use the LastSaveReferenceProvider to determine the change region between the current and last save.
+I'll attach a patch.
+This enhancement has another nice side effect: Sometimes the formatter does format code to a form one does not want.
+Currently with format on save there is no way out, another major annoyance.
+With this patch all you do is 'undo' save action and format on save will not change the formatting next time you save (unless you change the region again of course).

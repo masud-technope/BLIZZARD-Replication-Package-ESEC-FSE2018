@@ -1,0 +1,7 @@
+Bug 1695 – DCR: support process/thread specific breakpoints (1GIYJTQ)
+EG (24.08.2001 12:10:42)
+This is a request for another flavor of conditional breakpoints.
+We should support that a user can constrain a breakpoint to a particular process or thread.
+This is useful for multi-thread/multi-process debugging when both are executing the same
+code.
+NOTES:

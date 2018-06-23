@@ -1,0 +1,9 @@
+Bug 368390 – [preferences] UI for null analysis for fields
+This bug can be used for the discussion and work around the new UI preferences related to the work in bug 247564.
+The current proposal is as follows:
+Only one additional option will be surfaced in the UI
+[  ] Include fields in null analysis
+Each null analysis related warning viz.
+null pointer access, pot.
+NPA, redundant null check, redundant assignment, etc.
+in the case of fields will respect the existing settings for these options.

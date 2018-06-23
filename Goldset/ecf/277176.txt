@@ -1,0 +1,17 @@
+framework/bundles/org.eclipse.ecf.remoteservice.ui.dosgi/fragment.xml
+framework/bundles/org.eclipse.ecf.remoteservice.ui.dosgi/plugin.properties
+server-side/examples/bundles/org.eclipse.ecf.examples.remoteservices.client/fragment.xml
+framework/bundles/org.eclipse.ecf.remoteservice.ui.dosgi/.classpath
+framework/bundles/org.eclipse.ecf.remoteservice.ui.dosgi/.project
+framework/bundles/org.eclipse.ecf.remoteservice.ui.dosgi/.settings/org.eclipse.jdt.core.prefs
+framework/bundles/org.eclipse.ecf.remoteservice.ui.dosgi/.settings/org.eclipse.pde.core.prefs
+framework/bundles/org.eclipse.ecf.remoteservice.ui.dosgi/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.remoteservice.ui.dosgi/build.properties
+framework/bundles/org.eclipse.ecf.remoteservice.ui.dosgi/fragment.xml
+framework/bundles/org.eclipse.ecf.remoteservice.ui.dosgi/plugin.properties
+framework/bundles/org.eclipse.ecf.remoteservice.ui.dosgi/src/org/eclipse/ecf/remoteservice/ui/dosgi/handlers/DOSGiReflectiveRemoteServiceHandler.java
+framework/bundles/org.eclipse.ecf.remoteservice.ui.dosgi/src/org/eclipse/ecf/remoteservice/ui/dosgi/handlers/Messages.java
+framework/bundles/org.eclipse.ecf.remoteservice.ui.dosgi/src/org/eclipse/ecf/remoteservice/ui/dosgi/handlers/messages.properties
+framework/bundles/org.eclipse.ecf.remoteservice.ui/plugin.xml
+framework/bundles/org.eclipse.ecf.remoteservice.ui/plugin.xml
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/internal/remoteservices/ui/handlers/ReflectiveRemoteServiceHandler.java

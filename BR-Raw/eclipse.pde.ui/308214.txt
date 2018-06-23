@@ -1,0 +1,7 @@
+Bug 308214 – Allow bundle selection via features in OSGi launch configuration
+The OSGi Framework launch configuration should also support bundle selection via features.
+This simplifies the work of the developer when selecting bundles to launch if they use features to group bundles.
+The features are not actually installed/provisioned into the running application - it's just a convenient way to select bundles from the development environment.
+We'll need to add a drop-down on the top of the "Bundles" tab to specify how bundles are selected (with two options):
+* bundles selected below
+* features selected below

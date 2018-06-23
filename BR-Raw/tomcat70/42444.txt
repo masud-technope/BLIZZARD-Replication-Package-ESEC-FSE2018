@@ -1,0 +1,24 @@
+42444 – Potential NullPointerException in org.apache.catalina.valves.AccessLogValve
+In the class AccessLogValve.RequestElement in the method addElement there is an
+access of the form: request.getProtocol(), even though the variable request is
+known to be 'null' which will cause a NullPointerException.
+Patch below:
+---
+Index:
+F:/Workspace/Apache2/tomcat6/java/org/apache/catalina/valves/AccessLogValve.java
+===================================================================
+---
+F:/Workspace/Apache2/tomcat6/java/org/apache/catalina/valves/AccessLogValve.java	(revision
+538877)
++++
+F:/Workspace/Apache2/tomcat6/java/org/apache/catalina/valves/AccessLogValve.java	(working
+copy)
+@@ -1035,7 +1035,7 @@
+buf.append(request.getProtocol());
+} else {
+buf.append("- - ");
+-                buf.append(request.getProtocol());
++                // buf.append(request.getProtocol());
+}
+}
+}

@@ -1,0 +1,21 @@
+Bug 325777 – Eclipse JRE/JDK detection on Mac OS X should detect .jdk bundles
+Build Identifier: I20100608-0911
+Java for Mac OS X is transitioning to delivering the JDK as a bundle with the .jdk extension.
+The bundles cause the Contents/Home directory to be opaque and inaccessible to standard file chooser dialogs.
+A reasonable workaround (for Mac OS X VMs) would be to configure the dialog to select directories or .jdk "files", and tack on Contents/Home if it's a .jdk bundle.
+Ideally, JVM detection can be done by simply running /usr/libexec/java_home -X, which reports all JVMs detected by the OS as an XML plist.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Install <https://connect.apple.com/cgi-bin/WebObjects/MemberSite.woa/wa/getSoftware?bundleID=20703>
+2.
+Launch Eclipse, and open Preferences.
+3.
+Select Java > Installed JREs, and click Add...
+4.
+Choose "Mac OS X VM"
+5.
+Click "Directory..."
+6.
+Attempt to select /Library/Java/JavaVirtualMachines/1.6.0_21-b07-298.jdk/Contents/Home
+(it's not possible with the current UI)

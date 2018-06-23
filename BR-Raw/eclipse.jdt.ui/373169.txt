@@ -1,0 +1,26 @@
+Bug 373169 – [open type] Annotation types find way into history of 'Implemented Interfaces Selection' dialog
+Build Identifier: Version: 3.7.0 Build id: I20110613-1736
+In 'New Java Class' wizard, dialog 'Implemented Interfaces Selection' normally does not allow to select an annotation type.
+But an annotation type worms its way into history section of this dialog, after it was selected in 'Enclosing Type Selection' dialog.
+While an annotation type is in its history, 'Implemented Interfaces Selection' dialog considers it as a valid option, so that finally 'New Java Class' wizard successfully creates Java class implementing an annotation type (with a warning 'The annotation type {0} should not be used as a superinterface for {1}).
+Reproducible: Always
+Steps to Reproduce:
+1.
+Create a Java project, and an annotation type MyAnnotation in it.
+2.
+Open 'New Java Class' wizard.
+3.
+Click 'Add...' button at 'Interfaces' input - 'Implemented Interfaces Selection' dialog appears.
+4.
+Make sure that there is no way to select MyAnnotation in it.
+That is ok.
+5.
+Check 'Enclosing type' input and click 'Browse...' button to the right of it - 'Enclosing Type Selection' dialog appears.
+Select MyAnnotation in it and click 'OK' - 'Enclosing type' is populated.
+That is ok.
+6.
+Repeat step 3.
+('New Java Class' wizard may be reopened, that does not matter).
+7.
+Make sure that MyAnnotation now is present in History section, and can be selected as valid option.
+That is a bug.

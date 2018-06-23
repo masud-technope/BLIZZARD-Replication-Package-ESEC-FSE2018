@@ -1,0 +1,2 @@
+Bug 227346 – PDECompletionProposal should implement ICompletionProposalExtension3
+To support html styled text, PDECompletionProposal should ICompletionProposalExtension3 and use a BrowserInformationControl

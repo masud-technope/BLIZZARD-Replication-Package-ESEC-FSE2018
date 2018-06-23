@@ -1,0 +1,14 @@
+Bug 321592 – [quick fix] Dead code fix forget that conditional has a special way to compute resulting type
+Build Identifier: I20100706-0800
+If a dead code appears in a conditional, the fix can generate the wrong code
+because conditonal use the type of the two branches to compute the resulting type.
+In the following code, eclipse rightly detects that new Double(0, 0) is a
+dead code but when fix it, it wrongly assume that there is no conversion.
+The result should be a double (conditional does unboxing see JLS3 15.25).
+Object o = true ? new Integer(1) : new Double(0.0);
+//Object o = new Integer(3); // wrong fix done by eclipse
+//Object o = 1.0   // correct fix
+System.out.println(o);
+Reproducible: Always
+Steps to Reproduce:
+run the snippet of code and fix the dead code.

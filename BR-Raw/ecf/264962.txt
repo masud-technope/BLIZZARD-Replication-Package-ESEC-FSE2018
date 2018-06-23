@@ -1,0 +1,2 @@
+Bug 264962 – Transient @PersistenceContext annotated field in @Entity causes EntityManagerSetupException
+Simply make those two exceptions distinguishable

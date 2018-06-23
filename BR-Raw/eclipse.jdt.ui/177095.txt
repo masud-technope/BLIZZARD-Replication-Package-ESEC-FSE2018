@@ -1,0 +1,26 @@
+Bug 177095 – [encapsulate field] Encapsulating parenthesized field assignment yields compilation error
+Build ID: I20070222-0951
+Steps To Reproduce:
+Encapsulate field f on the following:
+class A {
+int f;
+void m() {
+(f) = 0;
+}
+}
+Yields the following refactored class:
+class A {
+private int f;
+void m() {
+(getF()) = 0;
+}
+void setF(int f) {
+this.f = f;
+}
+int getF() {
+return f;
+}
+}
+Note that "(getF()) = 0;" does not compile.
+More information:
+May be related to bug #177093: https://bugs.eclipse.org/bugs/show_bug.cgi?id=177093

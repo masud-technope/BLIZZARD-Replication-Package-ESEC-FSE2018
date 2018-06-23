@@ -1,0 +1,12 @@
+Bug 248519 – [ds tooling] Component Definition Information -- Fields should use SWT.BORDER style
+Created attachment 113431 [details]
+Screen shots
+Using Eclipse 3.5M2
+The "Component Definition Information" group, as created by DSFileWizardPage.java, does NOT use the SWT.BORDER style for the Name and Class fields, which looks wrong along side other fields that do.
+ You might not see this on all windowing systems...
+I see it on Win XP running the Win2K skin.
+See the attached screen shot.
+Not only is the SWT.BORDER style missing, but the layout is overly complicated and things don't quite line up right if you look carefully to the "decorated" versions of the screen shots.
+ Also, when I applied the SWT.BORDER style to the Text controls the lower edge of the Group was clipped.
+Please see the attached patch that resolves these problems.
+ Thanks.

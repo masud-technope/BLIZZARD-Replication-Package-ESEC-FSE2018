@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.ui.tests/build.properties
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/nls/AllNLSTests.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/nls/StringHelperTestCase.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/AllPDETests.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/StringHelper.java
+ui/org.eclipse.pde.ui.tests/.settings/org.eclipse.core.resources.prefs

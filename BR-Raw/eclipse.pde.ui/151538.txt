@@ -1,0 +1,2 @@
+Bug 151538 – flag bin.includes if it does not include plugin.xml/fragment.xml
+In the same spirit as bug 138260, we should flag the bin.includes key if a plug-in has a plugin.xml/fragment.xml and it is not included in bin.includes.

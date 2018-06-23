@@ -1,0 +1,9 @@
+Bug 341499 – [compiler][null] allocate extra bits in all methods of UnconditionalFlowInfo
+The patch in bug 247564 contains a few fixes that are actually independent
+of the issue of field references: currently some methods in
+UnconditionalFlowInfo fail to allocate the extra bits used for handling more
+than 64 locals, namely:
+markAsDefinitelyNonNull
+markAsDefinitelyNull
+markAsDefinitelyUnknown
+IMO these fixes should be released for 3.7.

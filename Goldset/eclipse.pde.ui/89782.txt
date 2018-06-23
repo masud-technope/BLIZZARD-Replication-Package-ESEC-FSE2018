@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/ICoreConstants.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDECore.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/ManifestConsistencyChecker.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/PluginRebuilder.java

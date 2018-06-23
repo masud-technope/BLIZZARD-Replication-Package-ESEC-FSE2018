@@ -1,0 +1,3 @@
+providers/bundles/org.eclipse.ecf.provider.xmpp/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/smack/ECFConnection.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/provider/xmpp/XMPPContainer.java

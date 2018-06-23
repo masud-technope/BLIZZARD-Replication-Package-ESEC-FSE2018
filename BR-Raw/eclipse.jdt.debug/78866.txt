@@ -1,0 +1,7 @@
+Bug 78866 – Using new registry API
+Following some rework of the registry, please apply this patch to make use of
+the new method called getNamespace() on IConfigurationElement.
+This patch will convert most occurrences of:
+configurationElement.getDeclaringExtension().getNamespace()
+into
+configurationElement.getNamespace()

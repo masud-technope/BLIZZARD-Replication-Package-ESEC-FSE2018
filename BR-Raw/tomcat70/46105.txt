@@ -1,0 +1,13 @@
+46105 – URIEncoding doesn't affect after form-authentication redirect
+How to reproduce bug.
+Configure tomcat connector with URIEncoding=UTF-8 attribute.
+Make a simple page that write out any request parameter.
+Configure this page as protected with form-based authentication.
+Try to access page, e.g.
+/site/page.jsp?q=%xx%yy%zz%tt
+where q=%xx%yy%zz is value in UTF-8 charset.
+When page is being accessed for the first time, then after authentication, parameter "q" is incorrectly interpreted (it seems as it was in ISO8859-1 or anything else, but not UTF-8).
+But subsequent access to the _same_ URI, i.e.
+/site/page.jsp?q=%xx%yy%zz%tt
+gives perfect result.
+I also tried useBobyEncodingForURI=true and request.setCharacterEncoding("UTF-8") - nothing is changed.

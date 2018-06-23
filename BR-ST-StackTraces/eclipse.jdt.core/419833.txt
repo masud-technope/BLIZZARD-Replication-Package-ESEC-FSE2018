@@ -1,0 +1,14 @@
+org.eclipse.jdt.internal.compiler.ast.ASTNode.copySE8AnnotationsToType
+org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.resolveTypesFor
+org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.methods
+org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.faultInTypesForFieldsAndMethods
+org.eclipse.jdt.internal.compiler.lookup.CompilationUnitScope.faultInTypes
+org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve
+org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve
+org.eclipse.jdt.internal.core.CompilationUnitProblemFinder.process
+org.eclipse.jdt.internal.core.CompilationUnit.buildStructure
+org.eclipse.jdt.internal.core.Openable.generateInfos
+org.eclipse.jdt.internal.core.JavaElement.openWhenClosed
+org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent
+org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent
+org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation

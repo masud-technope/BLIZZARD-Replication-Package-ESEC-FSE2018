@@ -1,0 +1,2 @@
+Bug 179570 – Extend Launch Shortcut on Product Editor
+Similar to Manifest Editor extension in 3.3, it would be useful if others could add links to the Testing section of the Product Editor.

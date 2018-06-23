@@ -1,0 +1,11 @@
+48172 – JspRuntimeContext synch. problems.
+JspRuntimeContext.jspReloadCount is synchronised when updated, but not when read by getJspReloadCount().
+If the instance is accessed from multiple threads, then the returned value may not be the current value, it could be arbitrarily stale.
+If this is acceptable, then the Javadoc should say so; otherwise the getter needs to be synch.
+(or the field needs to be volatile) Or just use AtomicInteger.
+==
+Various other fields are neither final nor synchronized, e.g.
+classpath
+codeSource
+etc.
+As far as I can tell, these could easily be made final as they are only written by the constructor.

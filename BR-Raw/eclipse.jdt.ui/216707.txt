@@ -1,0 +1,13 @@
+Bug 216707 – [compare] Toggle comment causes noisy diff in Compare editor
+Created attachment 87979 [details]
+A screenshot of the cluttered diff
+Build ID: I20071213-1700
+Steps To Reproduce:
+1.
+Toggle the comment of a block of code
+2.
+Compare the two versions
+More information:
+The diff-view is cluttered with a lot of "different" braces and some "changed" constants whose name includes an underscore.
+Expected:
+Since not a even the spaces/tabs are changed, the only thing to highlight in gray are the comment-markers // on each line.

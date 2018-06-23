@@ -1,0 +1,22 @@
+Bug 231652 – NPE building a fragment
+java.lang.NullPointerException
+at org.eclipse.pde.api.tools.internal.util.Util.getDocument(Util.java:968)
+at org.eclipse.pde.api.tools.internal.builder.BaseApiAnalyzer.createCompatibilityProblem(BaseApiAnalyzer.java:878)
+at org.eclipse.pde.api.tools.internal.builder.BaseApiAnalyzer.processDelta(BaseApiAnalyzer.java:995)
+at org.eclipse.pde.api.tools.internal.builder.BaseApiAnalyzer.checkCompatibility(BaseApiAnalyzer.java:628)
+at org.eclipse.pde.api.tools.internal.builder.BaseApiAnalyzer.analyzeComponent(BaseApiAnalyzer.java:191)
+at org.eclipse.pde.api.tools.internal.builder.ApiAnalysisBuilder.buildAll(ApiAnalysisBuilder.java:391)
+at org.eclipse.pde.api.tools.internal.builder.ApiAnalysisBuilder.build(ApiAnalysisBuilder.java:301)
+at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:633)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:170)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:201)
+at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:253)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:256)
+at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:309)
+at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:341)
+at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:140)
+at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:238)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Using latest.

@@ -1,0 +1,7 @@
+Bug 258969 – New API Baseline dialog: Browse... should start at current install
+I20081211-1908
+New API Baseline dialog: The Browse...
+button should start the dialog near the current install.
+Currently, the chooser always opens at the root, and I have to dig down in the file system to find the install.
+Chances are very high that the install I want to use is very close to the current install, i.e.
+in a sibling directory.

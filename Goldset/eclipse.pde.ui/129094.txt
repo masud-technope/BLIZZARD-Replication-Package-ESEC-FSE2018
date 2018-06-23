@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/product/BaseProductCreationOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/IntroSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/FeatureSection.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/Product.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/PluginSection.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/iproduct/IProduct.java

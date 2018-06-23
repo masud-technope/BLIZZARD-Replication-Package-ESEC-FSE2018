@@ -1,0 +1,5 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaElement8Tests.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/LambdaExpression.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/SourceTypeElementInfo.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaElement8Tests.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/LambdaExpression.java

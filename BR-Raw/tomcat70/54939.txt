@@ -1,0 +1,13 @@
+54939 – No useful logging when maxHeaderCount hit
+Recent versions of tomcat 6 & 7 added the maxHeaderCount parameter to the connector configuration with a default value of 100.
+When this limit is hit Tomcat returns a HTTP 400 response with a blank page and in the default configuration nothing is logged by the server.
+The org.apache.coyote.ajp.AjpProcessor class logs the error at DEBUG level but that doesn't get written anywhere using the default configuration.
+The use case for more than 100 headers is the use of SSO systems that provide user attributes via HTTP headers.
+The Internet2 Shibboleth project is one good example, it is quite common to have well over 100 headers getting passed to Tomcat when using these systems.
+I'd like to propose one of the following fixes:
+- Write a message to the response explaining why the 400 response was returned.
+This would make it much easier for application deployers to determine the cause of the non-functional application.
+- Have a default logger setup for the AJP connector and change the log level to INFO.
+Perhaps this gets treated as a one time warning and the first request that hits this limit is logged as WARN and the subsequent requests are logged at DEBUG to avoid log clutter.
+- Increase the default value of maxHeaderCount to 1000 which would more easily accommodate the use of HTTP headers to pass user attributes.
+I'd be happy to provide a patch for any of these solutions or other proposed ideas.

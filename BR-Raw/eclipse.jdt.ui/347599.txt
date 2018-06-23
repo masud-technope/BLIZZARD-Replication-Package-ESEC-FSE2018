@@ -1,0 +1,13 @@
+Bug 347599 – [refactoring] Provide a way to implement refactorings that depend on resources that have to be explicitly released
+Created attachment 196865 [details]
+Refactoring#dispose() method
+C++ refactorings must hold a lock on C++ index.
+Currently it is pretty hard to determine when the lock should be released.
+Under normal circumstances the lock has to be released at the end of createChange method, but in case of errors it may have to be released in checkFinalConditions or checkInitialConditions.
+The situation is further complicated by possibility that check*Conditions and createChange methods may be called multiple times.
+This life cycle uncertainty makes reliable release of C++ index in CDT refactorings virtually impossible.
+The proposed solution is to add org.eclipse.ltk.core.refactoring.Refactoring#dispose() method and call that method before the refactoring object goes out of scope.
+C++ rafactorings would override the dispose method and release the index lock there.
+The attached patch adds dispose method to Refactoring class and calls to this method to PerformRefactoringHistoryOperation and RefactoringHistoryWizard.
+There are more places where dispose calls should be added, but none of these places would cause problems even with a missing dispose call since they don't deal with refactorings that override the dispose method.
+The patch is intended for Eclipse 3.8.

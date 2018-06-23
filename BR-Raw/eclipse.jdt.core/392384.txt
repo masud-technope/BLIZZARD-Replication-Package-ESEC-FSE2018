@@ -1,0 +1,2 @@
+Bug 392384 – [1.8][compiler][null] Restore nullness info from type annotations in class files
+Once type annotations are stored in class files, I'll need to add code to BinaryTypeBinding et al for restoring nullness info (tagbits, parameterNonNullness) from these attributes.

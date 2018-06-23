@@ -1,0 +1,8 @@
+ui/org.eclipse.pde.runtime/plugin.properties
+ui/org.eclipse.pde.runtime/plugin.xml
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/PDERuntimeMessages.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/pderuntimeresources.properties
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/spy/SpyFormToolkit.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/spy/dialogs/MenuSpyDialog.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/spy/handlers/MenuSpyHandler.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/spy/sections/ActiveMenuSection.java

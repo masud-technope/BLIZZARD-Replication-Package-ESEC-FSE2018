@@ -1,0 +1,13 @@
+Bug 270342 – [toString] can't add new format template
+Created attachment 130156 [details]
+patch
+Steps To Reproduce:
+1.
+Select 'Generate  toString()...' action
+2.
+Click 'Edit...' button next to 'String format' combo box
+3.
+Click 'New...' to add a template - nothing happens
+More information:
+The template is not added because of an error that sneaked in with bug 267916.
+Here's a patch to fix it.

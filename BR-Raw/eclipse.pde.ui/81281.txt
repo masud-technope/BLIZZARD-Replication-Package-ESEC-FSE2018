@@ -1,0 +1,16 @@
+Bug 81281 – automatically add target plugins to Java search?
+Would it make sense to (optionally) add all the plugins in the target to the
+Java search path?
+Currently when you manage your target and add plugins you then have to go and
+open a Plugins view (which means you need to know that such a thing exists),
+select the newly added plugins (or some superset) and say Add to Java Search.
+Failure to do this results in somewhat incomplete search results and some
+confusion for the developer.
+Perhaps either there could be an Add to Java Search button in the prefs page or
+an option to simply have PDE manage the Java Search additions/removals.
+ Are
+there any problems with the latter approach?  The eliminates two more things
+(Plugins view and Java Search Path) that normal developers have to know
+about/manage.
+Would we have to add only the ones that are not shadowed by workspace plugins
+to prevent duplicate search results?

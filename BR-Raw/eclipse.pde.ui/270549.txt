@@ -1,0 +1,20 @@
+Bug 270549 – [ds tooling] "Provided Services" label does not always get rendered
+Created attachment 130344 [details]
+Screen shot.
+Using Eclipse 3.5 M6.
+See the attached screen shot that shows that sometimes the "Provided Services" label on the "Services" tab of the DS editor does not always get rendered.
+Steps to reproduce:
+1.
+Open any DS component XML document.
+2.
+Turn to the Source page.
+3.
+Close the editor.
+4.
+Reopen the DS component XML document.
+5.
+The document should be opened on the Source page.
+6.
+Change to the Services page.
+7.
+Observe that the "Provided Services" label is missing.

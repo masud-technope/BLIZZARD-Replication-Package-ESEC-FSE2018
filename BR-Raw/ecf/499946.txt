@@ -1,0 +1,2 @@
+Bug 499946 – [remoteservice][r-osgi] remote service unregistration needs to clean up properly
+In R-OSGiRemoteServiceContainer, upon registerRemoteService adds the newly created registration to the remoteServiceRegs map, but it is never removed.

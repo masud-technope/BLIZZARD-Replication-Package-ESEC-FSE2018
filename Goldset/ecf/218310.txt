@@ -1,0 +1,9 @@
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/AbstractDiscoveryTest.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/identity/ServiceIDTest.java
+providers/bundles/org.eclipse.ecf.provider.jslp/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/provider/jslp/container/JSLPDiscoveryContainer.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/provider/jslp/identity/JSLPNamespace.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/provider/jslp/identity/JSLPServiceTypeID.java
+tests/bundles/org.eclipse.ecf.tests.provider.jslp/META-INF/MANIFEST.MF
+tests/bundles/org.eclipse.ecf.tests.provider.jslp/src/org/eclipse/ecf/tests/provider/jslp/identity/JSLPServiceIDTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.jmdns/src/org/eclipse/ecf/tests/provider/jmdns/identity/JMDNSServiceIDTest.java

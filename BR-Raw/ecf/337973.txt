@@ -1,0 +1,44 @@
+Bug 337973 – [zoodiscovery] Remote service undiscovered and not rediscovered due to concurrency bug
+Build Identifier: 3.4
+Hi,
+While using zoodiscovery I got a remote service undiscovered and it was not rediscovered again.
+Following error has been reported at the moment of undiscovery:
+22-02-2011 20:47:04 [pool-1-thread-5] [org.apache.zookeeper.server.NIOServerCnxn] ERROR - Thread Thread[pool-1-thread-5,5,main] died
+org.eclipse.core.runtime.AssertionFailedException: null argument:
+at org.eclipse.core.runtime.Assert.isNotNull(Assert.java:85)
+at org.eclipse.core.runtime.Assert.isNotNull(Assert.java:73)
+at org.eclipse.ecf.provider.zookeeper.node.internal.WatchManager.addZooKeeper(WatchManager.java:238)
+at org.eclipse.ecf.provider.zookeeper.node.internal.ReadRoot$1.run(ReadRoot.java:70)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Unknown Source)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+at java.lang.Thread.run(Unknown Source)
+I had a quick look at the zoodiscovery code and it seems that the above exception happened because ReadRoot.this.readKeeper is null on line 70 in ReadRoot.java.
+I think the reason why readKeeper is null is because there's a race condition in the ReadRoot.process method.
+Although the process method is synchronized it uses a separate thread to process the WatchedEvent and the code within this thread is not thread safe.
+For example, you get two ReadRoot.process calls quite fast after each other:
+- one with WatchedEvent state Disconnected or Expired (A)
+- one with WatchedEvent state SyncConnected (B)
+Then you can have following:
+enter ReadRoot.process(A)
+/
+start thread for A -
+|           exit ReadRoot.process(A)
+|           enter ReadRoot.process(B)
+enter case Disconnected                       \
+ReadRoot.this.isConnected=false                \
+enter connect()                                 - start thread for B
+...
+                                                       |
+this.readKeeper.close()                                    |
+|                                  enter case SyncConnected
+|                                  if (!ReadRoot.this.isConnected)
+this.readKeeper = null                                     |
+|                                   ReadRoot.this.isConnected=true
+watchManager.removeZooKeeper(null) ????                    |
+|                                  watchManager.addZooKeeper(null) --> !!! AssertionFailedException !!!
+???? --> That's another bug: in connect method removeZooKeeper will have no effect because this.readKeeper is already set to null.
+This means that the list of zooKeepers in watchManager will only grow.
+I've put the severity on Major because the remote service is not rediscovered.
+Reproducible: Sometimes
+Steps to Reproduce:
+As for any concurrency bug it's hard to reproduce and I don't have any idea how I could increase the probability to reproduce it.

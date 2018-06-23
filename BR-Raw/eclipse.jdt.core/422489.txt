@@ -1,0 +1,28 @@
+Bug 422489 – [1.8][compiler] NPE in CompoundAssignment.analyseCode when creating AST for java.util.stream.Collectors
+BETA_JAVA8, JDK 1.8.0-ea-b115
+Open java.util.stream.Collectors and try to create an AST for it.
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.ast.CompoundAssignment.analyseCode(CompoundAssignment.java:52)
+at org.eclipse.jdt.internal.compiler.ast.Block.analyseCode(Block.java:43)
+at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.doesNotCompleteNormally(LambdaExpression.java:309)
+at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.isCompatibleWith(LambdaExpression.java:506)
+at org.eclipse.jdt.internal.compiler.lookup.PolyTypeBinding.isCompatibleWith(PolyTypeBinding.java:37)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.parameterCompatibilityLevel(Scope.java:4435)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.parameterCompatibilityLevel(Scope.java:4404)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod(Scope.java:678)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod(Scope.java:620)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getStaticFactory(Scope.java:4616)
+at org.eclipse.jdt.internal.compiler.ast.AllocationExpression.inferElidedTypes(AllocationExpression.java:501)
+at org.eclipse.jdt.internal.compiler.ast.AllocationExpression.resolveType(AllocationExpression.java:437)
+at org.eclipse.jdt.internal.compiler.ast.ReturnStatement.resolve(ReturnStatement.java:321)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:620)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:303)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:531)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1209)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1319)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:570)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1207)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:692)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1186)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:812)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider$1.run(ASTProvider.java:548)

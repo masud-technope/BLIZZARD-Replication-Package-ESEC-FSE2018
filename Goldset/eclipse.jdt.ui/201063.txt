@@ -1,0 +1,19 @@
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CommentFormatFix.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/SaveParticipantTest.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/CleanUpSaveParticipantPreferenceConfiguration.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/CompilationUnitDocumentProvider.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/EditorUtility.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/CommentFormatCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/saveparticipant/SaveParticipantRegistry.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/SaveParticipantMessages.properties
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CleanUpPostSaveListener.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/saveparticipant/SaveParticipantMessages.properties
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CleanUpConstants.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CodeFormatFix.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/IMultiLineCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/saveparticipant/SaveParticipantMessages.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/CleanUpTestCase.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/ICleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/SaveParticipantMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/saveparticipant/IPostSaveListener.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/CodeFormatCleanUp.java

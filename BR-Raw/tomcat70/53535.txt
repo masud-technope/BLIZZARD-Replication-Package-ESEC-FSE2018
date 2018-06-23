@@ -1,0 +1,6 @@
+53535 – Out of memory while performing ContextConfig.webConfig
+Created attachment 29047 [details]
+Suggested solution to improve ContextConfig
+JavaClassCacheEntry objects are using too much memory causing eventually (all kinds of) out of memory errors during container startup.
+There is no need to save whole JavaClass in cache since only superclass name and interface names are needed in later processing.
+Suggested solution is attached.

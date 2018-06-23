@@ -1,0 +1,20 @@
+56449 – WebSocket session get closed if in onOpen will sendText (sync mode)
+Created attachment 31552 [details]
+The exception captured
+@ServerEndpoint("/push/echo")
+public class EchoAnnotation {
+@OnOpen
+public void open(Session session) {
+try {
+if(session.isOpen()) session.getBasicRemote().sendText(
+"Welcome!");
+} catch(Exception e) {
+try {
+session.close();
+} catch (IOException e1) {
+// Ignore
+}
+}
+}
+Doing session.getAsynRemote() is working.
+Important: This errors happens with thousands of websockets.

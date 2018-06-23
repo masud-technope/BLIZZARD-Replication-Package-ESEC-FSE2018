@@ -1,0 +1,47 @@
+54448 – Field of primitive type, annotated with @Resource is not recognized as env entry
+Hi,
+I have a servlet with one field of primitive type.
+The field is annotated with @Resource.
+public class MyServlet extends HttpServlet {
+@Resource(mappedName = "1")
+private int envEntry;
+protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+throws ServletException, IOException {
+...
+}
+}
+When I request this servlet I receive the following exception:
+SEVERE: Allocate exception for servlet MyServlet
+javax.naming.NamingException: Cannot create resource instance
+at org.apache.naming.factory.ResourceEnvFactory.getObjectInstance(ResourceEnvFactory.java:117)
+at javax.naming.spi.NamingManager.getObjectInstance(NamingManager.java:304)
+at org.apache.naming.NamingContext.lookup(NamingContext.java:843)
+at org.apache.naming.NamingContext.lookup(NamingContext.java:154)
+at org.apache.naming.NamingContext.lookup(NamingContext.java:831)
+at org.apache.naming.NamingContext.lookup(NamingContext.java:168)
+at org.apache.catalina.core.DefaultInstanceManager.lookupFieldResource(DefaultInstanceManager.java:581)
+at org.apache.catalina.core.DefaultInstanceManager.processAnnotations(DefaultInstanceManager.java:470)
+at org.apache.catalina.core.DefaultInstanceManager.newInstance(DefaultInstanceManager.java:157)
+at org.apache.catalina.core.DefaultInstanceManager.newInstance(DefaultInstanceManager.java:138)
+at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1137)
+at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:858)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:136)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1004)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:680)
+That's because in the method below the primitive types are not 'converted' to their corresponding wrappers and this field is interpreted not as env entry but as resource env ref.
+org.apache.catalina.startup.WebAnnotationSet.addResource(Context, Resource,
+String, String)
+I'm attaching a patch that solves this issue and a test case.
+I'm looking forward to your comments.
+Regards
+Violeta

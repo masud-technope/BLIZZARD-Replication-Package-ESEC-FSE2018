@@ -1,0 +1,31 @@
+54249 – Fix JSP compilation problem when application context root contains white spaces
+Created attachment 29698 [details]
+Test web application.
+Hello,
+I noticed that there is a jsp compilation problem when the application context root contains white spaces.
+Steps to reproduce:
+Deploy the attached application and request:
+http://<host>:<port>/Space%20AppTest/testClassInvoker.jsp
+Then the following exception is received in response:
+org.apache.jasper.JasperException: Unable to compile class for JSP
+org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:661)
+org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:357)
+org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:390)
+org.apache.jasper.servlet.JspServlet.service(JspServlet.java:334)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+root cause
+java.lang.IllegalArgumentException: Negative time
+java.io.File.setLastModified(File.java:1258)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:376)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:353)
+org.apache.jasper.compiler.Compiler.compile(Compiler.java:340)
+org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:646)
+org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:357)
+org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:390)
+org.apache.jasper.servlet.JspServlet.service(JspServlet.java:334)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+I would like to propose a small patch that fixes this.
+The fix simply moves the decoding in org.apache.naming.resources.DirContextURLConnection.connect() method a little bit earlier.
+Without the fix path.startsWith(contextPath + "/") check returns false in our case, as contexPath is in decoded form, while path is not decoded yet.
+Thanks and Best Regards,
+Polina

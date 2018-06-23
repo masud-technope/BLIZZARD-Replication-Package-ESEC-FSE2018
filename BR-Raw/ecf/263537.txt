@@ -1,0 +1,33 @@
+Bug 263537 – Lots of warnings in Problem View
+This effects more than just ecf.core, but bugzilla made me choose one
+I am using Eclipse 3.4.1 plus Java 1.6.0 SR1 (J9) as my environment.
+Otherwise I am following the steps described at http://www.eclipse.org/ecf/dev_resources.php.
+In summary:
+1.
+Make a CVS connection to ':pserver:anonymous@dev.eclipse.org:/cvsroot/rt'
+2.
+check out from HEAD of project at org.eclipse.ecf/releng/plugins/org.eclipse.ecf.releng
+3.
+Import project set projectSet-anonymous.psf
+The instruction of step 2 seem wrong on the wiki as it says to go to get org.eclipse.releng from org.eclipse.ecf/builds/plugins/ which does not exist.
+After the subsequent build there are 1376 Warnings in the Problems View.
+I am aware that ECF uses Equinox Coding Conventions and presumably all its projects have the proper JDT Core and JDT UI preferences in the project specific preferences linked from http://www.eclipse.org/equinox/documents/coding.php.
+Shouldn't there be 0 warnings?
+One possibility would be to adjust the coding conventions to eliminate some non problematic warnings.
+A particular candidate is the warning about being able to increase performance by increasing visibility or enclosing class members.
+I would think this is questionable advice.
+Here is an example:
+Read access to enclosing field ChatRoomManagerView.ChatRoomTab.tabItem is emulated by a synthetic accessor method.
+Increasing its visibility will improve your performance
+ChatRoomManagerView.java line 1531
+There are similar warnings for access to constructor/methods and also for write access.
+I counted a total of 389 similar warnings:
+125 synthetic ctor/message
+237 synthetic read of fields
+27 synthetic write access.
+Some of the warnings probably relate to incomplete setup steps on the wiki:
+95 warnings: Build path specifies execution environment CDC-1.0/Foundation-1.0.
+There are no JREs in the workspace strictly compatible with this environment.
+81 warnings: An API baseline has not been set for the current workspace.
+Of course there are lots of other warnings as well many of which should probably be addressed by making the appropriate code changes.
+What to do?

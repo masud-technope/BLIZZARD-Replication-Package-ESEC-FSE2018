@@ -1,0 +1,8 @@
+java/org/apache/catalina/websocket/StreamInbound.java
+java/org/apache/coyote/ajp/AjpAprProtocol.java
+java/org/apache/coyote/http11/Http11AprProtocol.java
+java/org/apache/coyote/http11/upgrade/UpgradeAprProcessor.java
+java/org/apache/coyote/http11/upgrade/UpgradeBioProcessor.java
+java/org/apache/coyote/http11/upgrade/UpgradeInbound.java
+java/org/apache/coyote/http11/upgrade/UpgradeNioProcessor.java
+java/org/apache/tomcat/util/net/AprEndpoint.java

@@ -1,0 +1,4 @@
+Bug 198309 – Preview is not granular enough
+The new Preview page in the Organize Manifests wizard is cool, but it is not granular enough.
+ It stops at the file (manifest.mf/plugin.xml) level.
+In contrast, a Java preview shows you every individual change inside a file as a separate node, allowing you to control at a very granular level what changes you want applied to your files.

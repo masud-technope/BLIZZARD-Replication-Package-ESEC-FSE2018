@@ -1,0 +1,5 @@
+modules/jdbc-pool/src/main/java/org/apache/tomcat/jdbc/pool/FairBlockingQueue.java
+modules/jdbc-pool/src/main/java/org/apache/tomcat/jdbc/pool/MultiLockFairBlockingQueue.java
+modules/jdbc-pool/src/main/java/org/apache/tomcat/jdbc/pool/interceptor/StatementDecoratorInterceptor.java
+modules/jdbc-pool/src/main/java/org/apache/tomcat/jdbc/pool/interceptor/SlowQueryReport.java
+webapps/docs/changelog.xml

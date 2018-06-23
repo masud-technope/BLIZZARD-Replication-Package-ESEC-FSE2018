@@ -1,0 +1,2 @@
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/cheatsheet/simple/SimpleCSMasterTreeSection.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/DocumentObject.java

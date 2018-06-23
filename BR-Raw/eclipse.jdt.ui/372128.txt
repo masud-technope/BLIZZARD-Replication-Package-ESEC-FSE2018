@@ -1,0 +1,7 @@
+Bug 372128 – [syntax highlighting] "Highlight enclosing brackets" has massive performance problems
+N20120217-2000
+"Highlight enclosing brackets" has massive performance problems:
+- open CleanUpTest
+- go to the last test and set caret in front of "public"
+- hold down ArrowRight
+=> takes multiple seconds to move caret

@@ -1,0 +1,21 @@
+Bug 384666 – [1.8][compiler] improve debuggability of the Parser wrt lambda expressions
+While reviewing bug 380194 I have some small suggestions that might help
+during future debugging of this code:
+(1) Scanner.toString()
+How about including this.nextToken in the output, e.g.,:
+if (this.nextToken != TerminalTokens.TokenNameNotAToken) {
+buffer.append("<-- Ends here [regettable="+toStringAction(this.nextToken)+"]\n===============================\n"); //$NON-NLS-1$ //$NON-NLS-2$
+} else {
+buffer.append("<-- Ends here\n===============================\n"); //$NON-NLS-1$
+}
+(2) LambdaExpression.printExpression():
+In "this.body.print(tab, output);" 'tab' should perhaps be passed only
+conditionally, like if body is a Block?
+(3) LambdaExpressionSyntaxTest:
+I'd personally prefer more explicit method names.
+Or, ensure that actually
+all contained methods test lambda expressions (and move other tests like for
+reference expressions to a separate file).
+I was trying to debug parsing of lambda expressions and was surprised that
+some tests didn't contain any, yet I found no pattern for selecting only
+the relevant tests.

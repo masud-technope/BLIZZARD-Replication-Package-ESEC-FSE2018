@@ -1,0 +1,9 @@
+Bug 197077 – [Schema][Editors] Read-only description section is writable
+Latest code from head
+1.
+Open a .exsd file directly from the CVS Repositories view (ie.
+a read-only schema).
+2.
+Go to the Definition tab of the schema editor and select an attribute.
+Note how the description section is editable.
+ It should be read-only like the the other editor sections.

@@ -1,0 +1,11 @@
+Bug 430704 – ConcurrentModificationException in HttpClientRetrieveFileTransfer.cancel
+When installing a plug-in I got the following error, it looks like an bug in ECF:
+java.util.ConcurrentModificationException
+at java.util.HashMap$HashIterator.nextEntry(HashMap.java:926)
+at java.util.HashMap$KeyIterator.next(HashMap.java:960)
+at java.util.Collections$UnmodifiableCollection$1.next(Collections.java:1067)
+at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer.cancel(HttpClientRetrieveFileTransfer.java:251)
+at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer$3.cancel(HttpClientRetrieveFileTransfer.java:1016)
+at org.eclipse.equinox.internal.p2.transport.ecf.FileReader$CancelHandler.run(FileReader.java:152)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Occurred in Luna build I20140318-0830 / filetransfer.httpclient4 1.0.300

@@ -1,0 +1,3 @@
+Bug 179125 – Secondary Dependencies' access rules are incorrect
+Though I have not witness it myself, a wise man told me the secondary dependencies access rules are not correct.
+ I will investigate this for 3.3M7.

@@ -1,0 +1,15 @@
+Bug 490337 – Technically incorrect language in quick fix for inheriting multiple interface methods
+The language for the quick fix is technically incorrect in the following situation.
+Suppose we have the following:
+interface I {
+void m();
+}
+interface J {
+default void m() {
+}
+}
+class A implements I, J {
+}
+Here, A must choose to either implement I.m() or override J.m().
+However, the two quick fix options state to override I.m() or override J.m().
+Technically, the first option should be to *implement* I.m() (the language for the J.m() option is correct).

@@ -1,0 +1,35 @@
+Bug 385137 – [1.8][compiler] Type annotations must not be allowed on static member access.
+BETA_JAVA8:
+JSR308: section 2.1.1 states:
+Static member accesses are preceded by a type name, but that type name
+may not be annotated:
+@Illegal Outer .
+StaticNestedClass // illegal!
+@Illegal Outer .
+staticField // illegal!
+It further states:
+A static member access may itself be a type use, in which case the used
+type may be annotated by annotating the last component of the static member
+access, which is the simple name of the type being used.
+Outer .
+@Legal StaticNestedClass x = ...; // legal
+Note however that support for annotations on nested type names is still
+in the works (bug 383596)
+At the moment, the following program triggers two errors:
+// --------------------------------------------
+import java.lang.annotation.Target;
+public class X {
+static class Y {};
+public static void main(String[] args) {
+Object o = (@Marker X.Y) null;
+}
+}
+@Target(TYPE_USE)
+@interface Marker {
+}
+//----------------------------------------------
+(1) The annotation @Marker is disallowed for this location
+(2) TYPE_USE cannot be resolved to a variable
+The latter is due to the absence of a JRE that supports TYPE_USE.
+But once a good JRE becomes available, (1) would go away too and
+the program would start compiling while it should not.

@@ -1,0 +1,13 @@
+48629 – JNDIRealm and roleNested doesn't work with roleSearch="(member={1})"
+Created attachment 24898 [details]
+patch
+roleNested introduced with Tomcat 6.0.24 works well with roleSearch="(member={0})", but not with roleSearch="(member={1})"
+From tomcat doc :
+"Use {0} to substitute the distinguished name (DN) of the user, and/or {1} to substitute the username."
+I've attached a patch to change line :
+filter = roleFormat.format(new String[] { groupDN });
+into :
+filter = roleFormat.format(new String[] { groupDN, groupDN });
+Like that it handles both {0} and {1}.
+Regards,
+Gabriel.

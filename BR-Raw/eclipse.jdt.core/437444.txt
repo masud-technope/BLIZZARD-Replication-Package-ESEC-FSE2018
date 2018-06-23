@@ -1,0 +1,4 @@
+Bug 437444 – [1.8][compiler] Evaluate alternate integration between overload resolution and type inference
+When investigating differences between javac and ecj, we can identify situation(s) where ecj finds an acceptable solution, which javac does not find, while in fact JLS does not provide an explicit path towards that solution.
+This bug shall collect deviations that match the above description.
+Users will typically *not* complain about these, but still being more in line with JLS is desirable.

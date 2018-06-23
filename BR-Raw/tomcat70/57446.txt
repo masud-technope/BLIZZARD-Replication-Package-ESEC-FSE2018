@@ -1,0 +1,10 @@
+57446 – Catalina presents a wrapped ServletContext in de-init phase to application listeners
+JSF Applications (Mojarra 2.2.x) fail to shutdown properly, because Catalina presents a wrapped ServletContext (NoPluggabilityServletContext) in de-init phase (e.g.
+stop webapp cmd issued via jmx).
+The problem here is that the wrapped ServletContext (NoPluggabilityServletContext) does not appear to be "equal" (equals, etc.
+methods not delegated) as the one in the init phase (start).
+I filed a bug on the mojarra JIRA: https://java.net/jira/browse/JAVASERVERFACES-3687 but it was not accepted, because they argue this is a container issue.
+Maybe a workaround could fix it for context "comparing" webapps.
+In this case the mojarra implementation uses a List (CopyOnWriteArrayList) to match (contains) if the ServletContext has been initialized.
+So a delegation of the "equals" method in the NoPluggabilityServletContext class could do the fix, but might cause other sideeffects in the container, which i didn't lookout.
+A more detailed approach would be to get a light on the specification - what doues it say about the ServletContext instance and presented proxies in the application lifecycle.

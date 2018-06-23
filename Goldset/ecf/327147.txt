@@ -1,0 +1,2 @@
+protocols/bundles/ch.ethz.iks.r_osgi.remote/src/main/java/ch/ethz/iks/util/SmartObjectInputStream.java
+protocols/bundles/ch.ethz.iks.r_osgi.remote/src/main/java/ch/ethz/iks/util/SmartObjectOutputStream.java

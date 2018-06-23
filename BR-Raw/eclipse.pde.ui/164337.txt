@@ -1,0 +1,2 @@
+Bug 164337 – exceptions in PDE refactoring participant
+I tried to rename a plug-in project and got a number of exceptions in my log.

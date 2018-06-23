@@ -1,0 +1,5 @@
+ds/org.eclipse.pde.ds.ui/src/org/eclipse/pde/internal/ds/ui/editor/sections/DSReferenceSection.java
+ds/org.eclipse.pde.ds.ui/src/org/eclipse/pde/internal/ds/ui/editor/sections/DSProvideSection.java
+ds/org.eclipse.pde.ds.ui/src/org/eclipse/pde/internal/ds/ui/editor/dialogs/DSEditReferenceDialog.java
+ds/org.eclipse.pde.ds.ui/src/org/eclipse/pde/internal/ds/ui/editor/DSServicesPage.java
+ds/org.eclipse.pde.ds.ui/src/org/eclipse/pde/internal/ds/ui/editor/sections/DSPropertiesSection.java

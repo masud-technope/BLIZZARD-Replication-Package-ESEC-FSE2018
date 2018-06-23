@@ -1,0 +1,112 @@
+Bug 83236 – ClassCastException using code assist in a javadoc comment
+I got this stack trace using Build I20050118-1015:
+java.lang.ClassCastException:
+org/eclipse/jdt/internal/compiler/ast/TypeParameter incompatible with
+org/eclipse/jdt/internal/compiler/ast/TypeReference
+at
+org.eclipse.jdt.internal.compiler.parser.Parser.consumeTypeArguments(Parser.java:6974)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionParser.consumeTypeArguments(CompletionParser.java:2478)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionParser.attachOrphanCompletionNode(CompletionParser.java:237)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionParser.updateRecoveryState(CompletionParser.java:3101)
+at
+org.eclipse.jdt.internal.compiler.parser.Parser.resumeOnSyntaxError(Parser.java:9239)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:8421)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:8634)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:8599)
+at org.eclipse.jdt.internal.compiler.parser.Parser.dietParse(Parser.java:7347)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionParser.dietParse(CompletionParser.java:2725)
+at
+org.eclipse.jdt.internal.codeassist.CompletionEngine.complete(CompletionEngine.java:1109)
+at org.eclipse.jdt.internal.core.Openable.codeComplete(Openable.java:119)
+at
+org.eclipse.jdt.internal.core.CompilationUnit.codeComplete(CompilationUnit.java:287)
+at
+org.eclipse.jdt.internal.core.CompilationUnit.codeComplete(CompilationUnit.java:202)
+at
+org.eclipse.jdt.internal.core.CompilationUnit.codeComplete(CompilationUnit.java:192)
+at
+org.eclipse.jdt.internal.ui.text.javadoc.JavaDocCompletionEvaluator.evalTypeNameCompletions(JavaDocCompletionEvaluator.java:391)
+at
+org.eclipse.jdt.internal.ui.text.javadoc.JavaDocCompletionEvaluator.evalSeeTag(JavaDocCompletionEvaluator.java:341)
+at
+org.eclipse.jdt.internal.ui.text.javadoc.JavaDocCompletionEvaluator.addArgumentProposals(JavaDocCompletionEvaluator.java:306)
+at
+org.eclipse.jdt.internal.ui.text.javadoc.JavaDocCompletionEvaluator.evalProposals(JavaDocCompletionEvaluator.java:219)
+at
+org.eclipse.jdt.internal.ui.text.javadoc.JavaDocCompletionEvaluator.computeCompletionProposals(JavaDocCompletionEvaluator.java:176)
+at
+org.eclipse.jdt.internal.ui.text.javadoc.JavaDocCompletionProcessor.computeCompletionProposals(JavaDocCompletionProcessor.java:199)
+at
+org.eclipse.jface.text.contentassist.ContentAssistant.computeCompletionProposals(ContentAssistant.java:1470)
+at
+org.eclipse.jface.text.contentassist.CompletionProposalPopup.computeProposals(CompletionProposalPopup.java:250)
+at
+org.eclipse.jface.text.contentassist.CompletionProposalPopup.access$7(CompletionProposalPopup.java:247)
+at
+org.eclipse.jface.text.contentassist.CompletionProposalPopup$1.run(CompletionProposalPopup.java:206)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:69)
+at
+org.eclipse.jface.text.contentassist.CompletionProposalPopup.showProposals(CompletionProposalPopup.java:201)
+at
+org.eclipse.jface.text.contentassist.ContentAssistant.showPossibleCompletions(ContentAssistant.java:1319)
+at
+org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor$AdaptedSourceViewer.doOperation(CompilationUnitEditor.java:180)
+at org.eclipse.ui.texteditor.ContentAssistAction$1.run(ContentAssistAction.java:82)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:69)
+at org.eclipse.ui.texteditor.ContentAssistAction.run(ContentAssistAction.java:80)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:989)
+at org.eclipse.ui.commands.ActionHandler.execute(ActionHandler.java:188)
+at org.eclipse.ui.internal.commands.Command.execute(Command.java:130)
+at
+org.eclipse.ui.internal.keys.WorkbenchKeyboard.executeCommand(WorkbenchKeyboard.java:445)
+at org.eclipse.ui.internal.keys.WorkbenchKeyboard.press(WorkbenchKeyboard.java:724)
+at
+org.eclipse.ui.internal.keys.WorkbenchKeyboard.processKeyEvent(WorkbenchKeyboard.java:767)
+at
+org.eclipse.ui.internal.keys.WorkbenchKeyboard.filterKeySequenceBindings(WorkbenchKeyboard.java:536)
+at
+org.eclipse.ui.internal.keys.WorkbenchKeyboard.access$2(WorkbenchKeyboard.java:479)
+at
+org.eclipse.ui.internal.keys.WorkbenchKeyboard$1.handleEvent(WorkbenchKeyboard.java:221)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:82)
+at org.eclipse.swt.widgets.Display.filterEvent(Display.java:758)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:832)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:857)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:842)
+at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:870)
+at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:866)
+at org.eclipse.swt.widgets.Widget.wmChar(Widget.java:1172)
+at org.eclipse.swt.widgets.Control.WM_CHAR(Control.java:3115)
+at org.eclipse.swt.widgets.Control.windowProc(Control.java:3018)
+at org.eclipse.swt.widgets.Display.windowProc(Display.java:3377)
+at org.eclipse.swt.internal.win32.OS.DispatchMessageW(Native Method)
+at org.eclipse.swt.internal.win32.OS.DispatchMessage(OS.java:1578)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2453)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1575)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:1541)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:287)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:144)
+at org.eclipse.ui.internal.ide.IDEApplication.run(IDEApplication.java:102)
+at
+org.eclipse.core.internal.runtime.PlatformActivator$1.run(PlatformActivator.java:220)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:274)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:129)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:85)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:58)
+at
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:60)
+at java.lang.reflect.Method.invoke(Method.java:391)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:185)
+at org.eclipse.core.launcher.Main.run(Main.java:684)
+at org.eclipse.core.launcher.Main.main(Main.java:668)
+Steps to reproduce:
+1) Check out org.eclipse.update.core from CVS HEAD
+2) Open org.eclipse.update.configuration.LocalSystemInfo.java
+3) Go to line 52:
+* @see LocalSystemInfo<CODE ASSIST HERE>#getType(File)
+You should get the log in the error log view.

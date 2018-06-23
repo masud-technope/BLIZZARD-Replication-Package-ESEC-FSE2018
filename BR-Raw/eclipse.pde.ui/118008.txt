@@ -1,0 +1,9 @@
+Bug 118008 – Default field should be disabled.
+New schema editor
+1.
+Check out org.eclipse.help.ui from HEAD
+2.
+Open schema/searchEngine.exsd
+3.
+Select the 'category' attribute under the 'subpage' element.
+Note how in the Attribute details section, the 'Use' is required, yet the 'default' field is enabled.

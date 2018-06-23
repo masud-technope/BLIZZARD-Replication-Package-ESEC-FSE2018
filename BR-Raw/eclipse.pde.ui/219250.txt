@@ -1,0 +1,29 @@
+Bug 219250 – NPE opening non-feature.xml feature file
+in 0212
+- create a feature using the normal process.
+- rename the feature.xml to features.xml (not sure the name really matters but this is what I did)
+- drag and drop the file into the editor area
+- observe the following NPE
+java.lang.NullPointerException
+at org.eclipse.pde.internal.ui.editor.feature.FeatureEditor.createResourceContexts(FeatureEditor.java:93)
+at org.eclipse.pde.internal.ui.editor.PDEFormEditor.createInputContexts(PDEFormEditor.java:196)
+at org.eclipse.pde.internal.ui.editor.PDEFormEditor.createPages(PDEFormEditor.java:248)
+at org.eclipse.ui.part.MultiPageEditorPart.createPartControl(MultiPageEditorPart.java:304)
+at org.eclipse.ui.internal.EditorReference.createPartHelper(EditorReference.java:661)
+at org.eclipse.ui.internal.EditorReference.createPart(EditorReference.java:428)
+at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:594)
+at org.eclipse.ui.internal.PartPane.setVisible(PartPane.java:300)
+at org.eclipse.ui.internal.presentations.PresentablePart.setVisible(PresentablePart.java:180)
+at org.eclipse.ui.internal.presentations.util.PresentablePartFolder.select(PresentablePartFolder.java:270)
+at org.eclipse.ui.internal.presentations.util.LeftToRightTabOrder.select(LeftToRightTabOrder.java:65)
+at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation.selectPart(TabbedStackPresentation.java:473)
+at org.eclipse.ui.internal.PartStack.refreshPresentationSelection(PartStack.java:1256)
+at org.eclipse.ui.internal.PartStack.setSelection(PartStack.java:1209)
+at org.eclipse.ui.internal.PartStack.showPart(PartStack.java:1608)
+at org.eclipse.ui.internal.PartStack.add(PartStack.java:499)
+at org.eclipse.ui.internal.EditorStack.add(EditorStack.java:103)
+at org.eclipse.ui.internal.PartStack.add(PartStack.java:485)
+at org.eclipse.ui.internal.EditorStack.add(EditorStack.java:112)
+at org.eclipse.ui.internal.EditorSashContainer.addEditor(EditorSashContainer.java:63)
+at org.eclipse.ui.internal.EditorAreaHelper.addToLayout(EditorAreaHelper.java:217)
+at org.eclipse.ui.internal.EditorAreaHelper.addEditor(EditorAreaHelper.java:207)

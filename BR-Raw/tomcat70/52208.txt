@@ -1,0 +1,22 @@
+52208 – NullPointerException in tribes.transport.nio.NioReceiver.listen() in test run
+Created attachment 27968 [details]
+TEST-org.apache.catalina.tribes.group.interceptors.TestOrderInterceptor.BIO.txt
+Running tests for 7.0.23 release candidate I noted that there was a NullPointerException in one of tribes tests:
+TEST-org.apache.catalina.tribes.group.interceptors.TestOrderInterceptor.BIO.txt
+18.11.2011 9:27:56 org.apache.catalina.tribes.transport.nio.NioReceiver listen
+SEVERE: Unable to process request in NioReceiver
+java.lang.NullPointerException
+at org.apache.catalina.tribes.transport.nio.NioReceiver.listen(NioReceiver.java:274)
+at org.apache.catalina.tribes.transport.nio.NioReceiver.run(NioReceiver.java:414)
+at java.lang.Thread.run(Thread.java:662)
+------------- ---------------- ---------------
+The test case did not fail, so it likely occurred during tearDown.
+The line in source code is
+268        while (doListen() && selector != null) {
+(..)
+272                events();
+273                socketTimeouts();
+274                int n = selector.select(getSelectorTimeout());
+It is likely that selector field referenced on line 274 became null because of NioReceiver#stopListening() call.
+This issue was not observed on reruns.
+I am attaching complete log file from this test.

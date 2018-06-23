@@ -1,0 +1,103 @@
+Bug 1674 – always show values of method params (1GI3NEE)
+When a method frame is selected in the debugger, the variables view should always include
+the parameter values.
+This information is crucial to see what values a method is being passed,
+and is ESPECIALLY CRUCIAL
+- when source code for the method is not available
+- when debug info for the method is not available
+Currently, the debugger shows the value of the pseudo variable "this" but only includes the
+values of the parameter variable when source code is available for the method.
+When the
+names of parameter variables cannot be determined from the class file debug info or source
+code, use meaningful invented names like "arg1", "arg2", etc.
+so that the user will immediately
+understand what's going on.
+NOTES:
+DW (8/7/01 1:28:01 PM)
+JDI will not allow us to retrieve parameter values unless debug info is present.
+It is not
+dependent on source code.
+@see javadoc for com.sun.jdi.StackFrame.visibleVariables().
+In order to retrieve the value of a variable, we require a LocalVariable object.
+If these are not returned from #visibleVariables, we are unable to show any info.
+jeem (8/7/01 3:03:01 PM)
+This is an unfortunate limitation of JDI.
+I recommend submitting a PR to Sun for this one.
+JDPA could provide argument LocalVariable objects for parameter variables even when there is no
+debug info for the method.
+The number and types of the parameter variables is given by the type
+info in the method header; the offsets of the parameter variables is predictable and can be readily
+calculated from info in the method header.
+DW (8/10/01 1:33:21 PM)
+Bug submitted to Sun:
+************************************************
+Your report has been assigned an internal review ID of: 129819
+This review ID is NOT visible on the "Java Developer Connection" (JDC).
+We greatly appreciate your interest in improving the quality
+of Java(tm) Technology from Sun Microsystems.
+Please be aware that the large volume of reports we receive
+sometimes prevents us from responding individually to each
+message.
+We currently have a three week response time for responding to
+Bug Reports.
+ If the information is determined to be a new bug,
+or a duplicate of a known bug, you will receive a followup email
+containing a seven digit bug number.
+ You may search for this bug
+number on the "Java Developer Connection" (JDC) at this URL:
+http://developer.java.sun.com/developer/bugParade/index.html.
+If you just reported an issue that could have a major
+impact on your project and you require a response,
+please consider purchasing one of the support offerings
+at this URL:
+http://java.sun.com/support/index.html
+--------------------------------------------
+dateCreated: Fri Aug 10 12:54:33 MDT 2001
+type: rfe
+cust_name: Darin Wright
+cust_email: Darin_Wright@oti.com
+jdcid:
+status: Waiting
+category: java
+subcategory: debugger
+company: Object Technology International
+release: 1.3
+hardware: generic
+OSversion: generic
+priority: 4
+synopsis: JDI - provide arguments when no debug attributes present
+description: java version "1.3.0"
+Java(TM) 2 Runtime Environment, Standard Edition (build 1.3.0-C)
+Java HotSpot(TM) Client VM (build 1.3.0-C, mixed mode)
+Request for argument LocalVariables when no debug attributes present.
+Currently, the JDI specification and implementaion of
+com.sun.jdi.StackFrame.visibleVariables() throws an AbsentInformationException
+if there is no line number information for a method.
+However, it would seem
+that it should be possible to return LocalVariable objects for the method
+arguments in this case, as the number and types of the parameter variables is
+given by the type info in the method header; the offsets of the parameter
+variables is predictable and can be readily calculated from info in the method
+header.
+Variable names may have to be invented - i.e.
+"arg1", etc.
+It would be advantageous to display arguments & their values in a debugger even
+when debug attributes are not present.
+workaround:
+comments: (company - Object Technology International , email - Darin_Wright@oti.com)
+DW (8/10/01 3:43:05 PM)
+The report you submitted has been determined to
+be a new RFE.
+It has been entered into our internal
+bug tracking system with the assigned Bug Id: 4490824.
+The state of the bug can be monitored via the The Java
+Developer Connection Bug Parade at:
+http://developer.java.sun.com/developer/bugParade/index.jshtml
+It may take a day or two before your bug shows up in this
+external database.
+The Java Developer Connection is a free channel that is maintained
+by staff here at Sun.
+ Access this web page to join:
+http://developer.java.sun.com/servlet/RegistrationServlet
+The home page for the Java Developer Connection is:
+http://java.sun.com/jdc

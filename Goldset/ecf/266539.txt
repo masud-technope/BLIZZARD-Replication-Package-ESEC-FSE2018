@@ -1,0 +1,7 @@
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/internal/provider/jmdns/JMDNSPlugin.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/internal/provider/jmdns/Messages.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/internal/provider/jmdns/messages.properties
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/provider/jmdns/container/JMDNSDiscoveryContainer.java
+framework/bundles/org.eclipse.ecf.discovery.ui.model/src/org/eclipse/ecf/discovery/ui/model/resource/Messages.java
+framework/bundles/org.eclipse.ecf.discovery.ui.model/src/org/eclipse/ecf/discovery/ui/model/resource/ServiceResource.java
+framework/bundles/org.eclipse.ecf.discovery.ui.model/src/org/eclipse/ecf/discovery/ui/model/resource/messages.properties

@@ -1,0 +1,3 @@
+Bug 183250 – [Product][Editor] Can add duplicate features
+When creating a product based on features, the user is allowed to add features which are already present in the product configuration.
+ Solution is to filter out the current features from the options in the "Add..." menu of the FeaturesSection.

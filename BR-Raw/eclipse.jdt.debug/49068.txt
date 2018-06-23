@@ -1,0 +1,4 @@
+Bug 49068 – Large space at top of Installed JREs pref page
+The installed JREs preference page has a large amount of empty space between
+the description of the page and the functional widgets on the page.
+This amount of space is not needed.

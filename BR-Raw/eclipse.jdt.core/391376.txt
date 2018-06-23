@@ -1,0 +1,8 @@
+Bug 391376 – [1.8] check interaction of default methods with bridge methods and generics
+The failure reported in bug 382347 comment 6 showed that the method verifier made some assumptions regarding interface methods which no longer hold when default methods enter the picture.
+The immediate problem could be fixed via bug 390761 by cleanly filtering the bogus error messages, thus leaving the delicate parts of the logic unchanged, viz.
+code that handled corner cases involving generics and/or bridge methods.
+We should still check whether this logic produces the desired behavior if default methods meet those situations with generics/bridge methods.
+During analysis I found these bugs to be relevant:
+- bug 302358
+- bug 194034

@@ -1,0 +1,7 @@
+Bug 84271 – Dialog font use: Java logical structure Add dialog
+The Java logical structure Add dialog (Window>preferences>Java>Debug>Logical
+Structures>Add>variables)
+The buttons down the right hand side (Add, Remove, Up Down) do not use the
+Dialog font.
+The Variable Name and Code widgets are not using the dialog font either
+The Value Code title does not use the dialog font.

@@ -1,0 +1,4 @@
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/instructions/PostfixPlusPlusOperator.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/instructions/PrefixMinusMinusOperator.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/instructions/PostfixMinusMinusOperator.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/instructions/PrefixPlusPlusOperator.java

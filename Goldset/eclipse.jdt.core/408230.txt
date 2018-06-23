@@ -1,0 +1,11 @@
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/SelectionTest.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ResolveTests18.java
+org.eclipse.jdt.core/codeassist/org/eclipse/jdt/internal/codeassist/impl/AssistParser.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/LambdaExpression.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/Parser.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/RecoveredBlock.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/RecoveredElement.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/RecoveredLambdaExpression.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/RecoveredLocalVariable.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/RecoveredStatement.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/SelectionRequestor.java

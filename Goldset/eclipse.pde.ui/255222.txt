@@ -1,0 +1,15 @@
+apitools/org.eclipse.pde.api.tools.tests/test-source/a/b/c/InvalidTagScanClass2.java
+apitools/org.eclipse.pde.api.tools.tests/test-source/a/b/c/InvalidTagScanField2.java
+apitools/org.eclipse.pde.api.tools.tests/test-source/a/b/c/InvalidTagScanMethod2.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/BaseApiAnalyzer.java
+apitools/org.eclipse.pde.api.tools.tests/test-source/a/b/c/InvalidTagScanMethod3.java
+apitools/org.eclipse.pde.api.tools.tests/test-source/a/b/c/InvalidTagScanField1.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/comparator/ClassFileComparator.java
+apitools/org.eclipse.pde.api.tools.tests/test-source/a/b/c/InvalidTagScanMethod1.java
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/comparator/tests/ClassDeltaTests.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/provisional/scanner/TagScanner.java
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/model/tests/TagScannerTests.java
+apitools/org.eclipse.pde.api.tools.tests/test-source/a/b/c/InvalidTagScanInterface.java
+apitools/org.eclipse.pde.api.tools.tests/test-source/a/b/c/InvalidTagScanClass1.java
+apitools/org.eclipse.pde.api.tools.tests/test-source/a/b/c/InvalidTagScanClass3.java
+apitools/org.eclipse.pde.api.tools.tests/test-source/a/b/c/InvalidTagScanField3.java

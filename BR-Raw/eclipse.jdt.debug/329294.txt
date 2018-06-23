@@ -1,0 +1,24 @@
+Bug 329294 – "Unable to resolve binding" error on inspect, display, or watch of a variable
+Build Identifier: Version: Helios Service Release 1, Build id: 20100917-0705
+Portion of code with comments about the problem:
+boolean handleDeclarations() {
+if (!bLinkageSectionSeen) {
+linkageSectionMatcher = linkageSectionPattern.matcher(srcIn.strLine);
+bLinkageSectionSeen   = linkageSectionMatcher.find();
+if (bLinkageSectionSeen) {
+// TODO: Fix bug in HELIOS SR1 that does not occur in GALILEO SR2
+// Can't do watch, inspect, or display on this variable
+// Gets error: "Unable to resolve binding for: "
+srcOut.bCommentLine = true;
+}
+}
+return bEndLinkageSectionSeen;
+} // HandleDeclarations
+Reproducible: Always
+Steps to Reproduce:
+1.
+Build project with attached source HeliosBug.java
+2.
+Set breakpoint on the line:  srcOut.bCommentLine = true;
+3.
+Attempt display, inspect, or watch on that variable

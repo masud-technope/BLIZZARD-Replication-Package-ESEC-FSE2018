@@ -1,0 +1,9 @@
+sun.misc.Unsafe.park
+java.util.concurrent.locks.LockSupport.park
+java.util.concurrent.locks.AbstractQueuedSynchronizer.parkAndCheckInterrupt
+java.util.concurrent.locks.AbstractQueuedSynchronizer.doAcquireSharedInterruptibly
+java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireSharedInterruptibly
+org.apache.tomcat.util.threads.LimitLatch.countUpOrAwait
+org.apache.tomcat.util.net.AbstractEndpoint.countUpOrAwaitConnection
+org.apache.tomcat.util.net.JIoEndpoint$Acceptor.run
+java.lang.Thread.run

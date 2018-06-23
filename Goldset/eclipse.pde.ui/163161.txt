@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/context/XMLInputContext.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/plugin/PluginObjectNode.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/plugin/PluginBaseNode.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/IDocumentNode.java

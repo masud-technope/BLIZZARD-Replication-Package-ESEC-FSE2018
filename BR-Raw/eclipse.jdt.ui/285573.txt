@@ -1,0 +1,10 @@
+Bug 285573 – [quick fix] Wrong quickfix proposal for operations involving double and Integer
+Build ID: I20090803-1800
+Steps To Reproduce:
+Integer value = 4711;
+double test = 47d;
+value = value + test; //Line3: Error
+Line 3 is marked with a compilation error (Type mismatch: cannot convert from double to Integer) and one of the quick fixes suggest "Add a cast to
+'Integer'".
+However, this is wrong and will not fix the compilation error as double to Integer cast is not allowed.
+More information:

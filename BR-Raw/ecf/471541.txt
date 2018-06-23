@@ -1,0 +1,23 @@
+Bug 471541 – ClassCastException in JUnit integration tests
+Created attachment 254869 [details]
+typical CCE for this problem
+We switched our remote services from RMI to ECF and now we get strange errors in JUnit tests.
+We are using JUnit for integration tests.
+That means we start client and server code inside the unit test and run the full business logic there.
+We also use "real" remote services; that means we call ECF in a way that we get a remote proxy and do a remote call, the same way as if the server would run in a separate JVM.
+This gives us the possibility to find serialization problems.
+It also happens very often that the implementation of a remote service calls another remote service.
+And now we come to the problem.
+Our integration tests (a few thousands) are grouped into about 100 tests suits.
+Every tests suite is executed in its own JVM, so they don't have any side effects on each other.
+In almost every run of the whole package, one ore two suites are failing with the same problem: the call of a remote service fails with an java.lang.ClassCastException.
+I attached the complete stack trace of such an exception.
+It is non-deterministic, which suite or test is failing and which service is called.
+Only a small number of tests are failing with this problem (about 1%).
+But the problem is always the same: the return type of the method is A, but the return object is of type B.
+So we get "B cannot be cast to A".
+The question is: where does the object of type B come from?
+Another observation is, that the problem occurs, if one remote service calls another one.
+Is it possible that the problem occurs because of the fact that we do remote calls, but caller and callee are in the same JVM?
+I wrote special unit tests to reproduce the problem, but was not able to do so.
+See also https://www.eclipse.org/forums/index.php/t/1067624/

@@ -1,0 +1,15 @@
+Bug 213457 – erroneous extension validation and content assist
+Created attachment 85564 [details]
+plugin project to show the bug
+Build ID: e3311
+Steps To Reproduce:
+import attached test plugin project.
+open plugin.xml.
+you will see a warning on "elementB" tag, but the tag is correct defined as a child of tag b -> or.
+when trying to add another tag elementB with the content assist (context menu new on the "or" tag within the extensions tab), only elementA is shown wich is wrong!
+after adding a tag b and a subtag or, the minimum of 2 elementB tags are correctly added.
+elementA, which is not correct within b->or seems to be correct in plugin.xml, but it isn't.
+the html docu of the extension point "test" is correct.
+More information:
+it must be possible to define multiple tags within an extension point, having the same name, but depending on their parent, they should have the possibility to have different childs.
+the extension point schema allowes this, but the extension varification and the content assist fo rnew extension point erroneous doesn't!

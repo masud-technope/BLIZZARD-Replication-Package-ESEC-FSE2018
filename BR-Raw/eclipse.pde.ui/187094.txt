@@ -1,0 +1,17 @@
+Bug 187094 – NPE opening feature manifest
+build i0515-0800
+Whenever I open the a feature manifest on the Orbit feature I get a ton of NPEs in my log and a dialog saying that multiple errors occurred.
+repo - dev.eclipse.org
+path - /cvsroot/tools
+file - /org.eclipse.orbit/org.eclipse.orbit.build.feature.set1/feature.xml
+!ENTRY org.eclipse.jface 4 2 2007-05-15 15:38:24.629
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jface".
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.pde.internal.core.feature.FeaturePlugin.getPluginBase(FeaturePlugin.java:55)
+at org.eclipse.pde.internal.ui.PDELabelProvider.getObjectImage(PDELabelProvider.java:759)
+at org.eclipse.pde.internal.ui.PDELabelProvider.getImage(PDELabelProvider.java:493)
+at org.eclipse.pde.internal.ui.editor.FormOutlinePage$BasicLabelProvider.getImage(FormOutlinePage.java:72)
+at org.eclipse.jface.viewers.WrappedViewerLabelProvider.getImage(WrappedViewerLabelProvider.java:117)
+at org.eclipse.jface.viewers.WrappedViewerLabelProvider.update(WrappedViewerLabelProvider.java:165)
+at org.eclipse.jface.viewers.ViewerColumn.refresh(ViewerColumn.java:135)

@@ -1,0 +1,18 @@
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/buildpath/ClasspathModifier.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/util/JavaModelUtil.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/BuildPathsPropertyPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/ClasspathContainerPreferencePage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/ComplianceConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/CompliancePreferencePage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/OptionsConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/PreferencesMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/PreferencesMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/BuildPathSupport.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/BuildPathWizard.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/BuildPathsBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/CPListElement.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/LibrariesWorkbookPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/newsourcepage/AddLibraryToBuildpathAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/wizards/JavaCapabilityConfigurationPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/wizards/NewJavaProjectWizardPageOne.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/wizards/NewJavaProjectWizardPageTwo.java

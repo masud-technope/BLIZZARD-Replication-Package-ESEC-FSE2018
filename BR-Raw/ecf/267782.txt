@@ -1,0 +1,2 @@
+Bug 267782 – [Discovery][jSLP][JmDNS] Providers don't clean up at bundle stop
+Neither jSLP nor JmDNS disconnect/dispose their respective DiscoveryContainers causing resource leaks (thread...).

@@ -1,0 +1,21 @@
+Bug 260865 – [compare] Clicking on the structure view breaks the compare editor viewers
+Build id: N20090110-2000
+Steps:
+1) Create a java project and two classes inside (A.java and B.java).
+They can be very simple, e.g.
+public class A {
+// class A
+}
+2) Compare them using Compare With > Each Other
+3) In the compare editor, change something in A.java, e.g.
+// comment
+public class A {
+// class A
+}
+4) Double click on a node in the structure view
+5) Notice that the content of the viewer with A.java changed to
+// comment
+public class A {
+//
+6) Save, still the content is wrong
+7) Open A.java in the java editor, it looks ok

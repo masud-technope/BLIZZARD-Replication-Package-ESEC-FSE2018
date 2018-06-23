@@ -1,0 +1,9 @@
+Bug 314354 – [common navigator] Project Explorer does not refresh on adding/removing library to a project
+I20100520-1744
+Steps
+- New Workspace
+- New Java project
+- In 'Project Explorer' right click on the java project -> Build Path -> Configure Build Path
+- 'Libraries' tab -> 'Add Library' -> add JUnit 3 and click Ok to close the dialog => The newly added library does not show up in Project Explorer
+- Manually refresh the project (F5) => Library added in last step shows up
+Auto refresh also does not happen when the library is removed.

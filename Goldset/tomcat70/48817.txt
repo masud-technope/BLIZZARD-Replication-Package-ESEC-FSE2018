@@ -1,0 +1,13 @@
+modules/jdbc-pool/java/org/apache/tomcat/jdbc/pool/jmx/ConnectionPool.java
+modules/jdbc-pool/src/main/java/org/apache/tomcat/jdbc/pool/PoolConfiguration.java
+modules/jdbc-pool/doc/jdbc-pool.xml
+modules/jdbc-pool/java/org/apache/tomcat/jdbc/pool/PoolConfiguration.java
+modules/jdbc-pool/src/main/java/org/apache/tomcat/jdbc/pool/PoolProperties.java
+modules/jdbc-pool/src/main/java/org/apache/tomcat/jdbc/pool/DataSourceProxy.java
+modules/jdbc-pool/src/main/java/org/apache/tomcat/jdbc/pool/jmx/ConnectionPool.java
+modules/jdbc-pool/java/org/apache/tomcat/jdbc/pool/DataSourceFactory.java
+modules/jdbc-pool/java/org/apache/tomcat/jdbc/pool/PooledConnection.java
+modules/jdbc-pool/java/org/apache/tomcat/jdbc/pool/Validator.java
+modules/jdbc-pool/src/main/java/org/apache/tomcat/jdbc/pool/ConnectionPool.java
+modules/jdbc-pool/java/org/apache/tomcat/jdbc/pool/PoolProperties.java
+modules/jdbc-pool/java/org/apache/tomcat/jdbc/pool/DataSourceProxy.java

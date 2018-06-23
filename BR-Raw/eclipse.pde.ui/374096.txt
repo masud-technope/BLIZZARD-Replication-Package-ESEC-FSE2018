@@ -1,0 +1,7 @@
+Bug 374096 – Cheese in the manifest editor
+Created attachment 212567 [details]
+screen shot
+Version: 4.2.0
+Build id: I20120312-1200
+On the extensions tab next to the filter box there is a shrunk-up version of a search button.
+See the screen shot.

@@ -1,0 +1,3 @@
+framework/bundles/org.eclipse.ecf.filetransfer/src/org/eclipse/ecf/filetransfer/events/IIncomingFileTransferReceiveStartEvent.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/provider/filetransfer/UrlRetrieveFileTransfer.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/provider/filetransfer/AbstractRetrieveFileTransfer.java

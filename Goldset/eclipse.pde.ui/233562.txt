@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/search/IPluginSearchResultCollector.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/search/ISearchResultCollector.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/search/PluginSearchOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/ISearchResultCollector.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/PluginSearchOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/PluginSearchQuery.java

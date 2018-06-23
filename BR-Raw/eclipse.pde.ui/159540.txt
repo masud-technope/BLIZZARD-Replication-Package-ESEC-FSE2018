@@ -1,0 +1,18 @@
+Bug 159540 – Add source location dialog in the target platform preferences page use workbench as its parent shell
+1.
+Select 'Plug-in Development' -> 'Target platform' page in the Preferences dialog.
+2.
+On right side of this page, click the 'Source code location' tab.
+3.
+Click 'Add...' button to invoke the directory selection dialog.
+This directory dialog should have the preference page as its parent shell, but it does not, thus may be switched to hide behind the preferences page and make the page behaves in a strange way ( see attachment screenshots for details ).
+I studied the source and found the following code in class org.eclipse.pde.internal.ui.preferences.TargetSourceTab:
+private DirectoryDialog getDirectoryDialog(String filterPath) {
+DirectoryDialog dialog = new DirectoryDialog(PDEPlugin.getActiveWorkbenchShell());
+...
+I think the dialog's parent should be the preference dialog shell, but not the workbench shell.
+As a comparison, the browse button on the upper right corner of the same page use DialogPage.getShell() as its parent, and it behaves in the correct way:
+org.eclipse.pde.internal.ui.preference.TargetPlatformPreferencePage:
+private void handleBrowse() {
+DirectoryDialog dialog = new DirectoryDialog(getShell());
+...

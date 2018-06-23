@@ -1,0 +1,11 @@
+Bug 63256 – NPE when adding a breakpoint in an external Java file
+The following NPE is thrown when adding a breakpoint to an external Java file.
+java.lang.NullPointerException
+at java.lang.Throwable.<init>(Throwable.java)
+at java.lang.Throwable.<init>(Throwable.java)
+at java.lang.NullPointerException.<init>(NullPointerException.java:60)
+at
+org.eclipse.jdt.internal.debug.ui.actions.BreakpointLocationVerifierJob.run(BreakpointLocationVerifierJob.java:96)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java)
+The fixe is to add 'project != null &&' in the condition of the if, line 96 of
+BreakpointLocationVerifierJob.run().

@@ -1,0 +1,9 @@
+Bug 27499 – Bogus ClasspathVariableInitializer is found in JavaModel
+Build 20021126
+Java files in non-Java project seems to get indexed.
+1- Load project jdt-core-home (non-java project)
+2- Open type (ctrl-shift-T) and type in "ClasspathVariableInitializer".
+3- Observe that one match is found inside a non-java project - should not
+(means it got incorrectly indexed)!!!
+4- Select it, a dialog will open, claiming the unit could not be opened.
+Step (4) also occurs when manually navigating to the file in jdt-core-home.

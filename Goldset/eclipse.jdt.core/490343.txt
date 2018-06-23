@@ -1,0 +1,2 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ExternalAnnotations18Test.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/classfmt/ExternalAnnotationProvider.java

@@ -1,0 +1,4 @@
+Bug 363293 – resource leaks in org.eclipse.jdt.compiler.tool.tests
+When compiled using 3.8M3 the test suite org.eclipse.jdt.compiler.tool.tests
+raises 8 warnings like "Resource leak: 'fileManager' is never closed".
+It seems that all these warnings are justified and should be fixed in the code.

@@ -1,0 +1,2 @@
+Bug 483163 – Remove unnecessary whitespace from eclipse.pde.ui repo
++++ This bug was initially created as a clone of Bug #480743 +++

@@ -1,0 +1,234 @@
+/*******************************************************************************
+ * Copyright (c) 2000, 2013 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *     Nikolay Botev - Bug 348507
+ *******************************************************************************/
+package org.eclipse.jdt.internal.core.search;
+
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.jdt.core.IClasspathEntry;
+import org.eclipse.jdt.core.IJavaElement;
+import org.eclipse.jdt.core.IJavaElementDelta;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IPackageFragmentRoot;
+import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.internal.compiler.env.AccessRuleSet;
+import org.eclipse.jdt.internal.core.DeltaProcessor;
+import org.eclipse.jdt.internal.core.ExternalFoldersManager;
+import org.eclipse.jdt.internal.core.JavaModel;
+import org.eclipse.jdt.internal.core.JavaModelManager;
+import org.eclipse.jdt.internal.core.JavaProject;
+import org.eclipse.jdt.internal.core.util.Util;
+
+/**
+ * A Java-specific scope for searching the entire workspace.
+ * The scope can be configured to not search binaries. By default, binaries
+ * are included.
+ */
+@SuppressWarnings({ "rawtypes", "unchecked" })
+public class JavaWorkspaceScope extends AbstractJavaSearchScope {
+
+    private IPath[] enclosingPaths = null;
+
+    public  JavaWorkspaceScope() {
+    // As nothing is stored in the JavaWorkspaceScope now, no initialization is longer needed
+    }
+
+    public boolean encloses(IJavaElement element) {
+        /*A workspace scope encloses all java elements (this assumes that the index selector
+	 * and thus enclosingProjectAndJars() returns indexes on the classpath only and that these
+	 * indexes are consistent.)
+	 * NOTE: Returning true gains 20% of a hierarchy build on Object
+	 */
+        return true;
+    }
+
+    public boolean encloses(String resourcePathString) {
+        /*A workspace scope encloses all resources (this assumes that the index selector
+	 * and thus enclosingProjectAndJars() returns indexes on the classpath only and that these
+	 * indexes are consistent.)
+	 * NOTE: Returning true gains 20% of a hierarchy build on Object
+	 */
+        return true;
+    }
+
+    /* (non-Javadoc)
+ * @see org.eclipse.jdt.core.search.IJavaSearchScope#enclosingProjectsAndJars()
+ */
+    public IPath[] enclosingProjectsAndJars() {
+        IPath[] result = this.enclosingPaths;
+        if (result != null) {
+            return result;
+        }
+        long start = BasicSearchEngine.VERBOSE ? System.currentTimeMillis() : -1;
+        try {
+            IJavaProject[] projects = JavaModelManager.getJavaModelManager().getJavaModel().getJavaProjects();
+            // use a linked set to preserve the order during search: see bug 348507
+            Set paths = new LinkedHashSet(projects.length * 2);
+            for (int i = 0, length = projects.length; i < length; i++) {
+                JavaProject javaProject = (JavaProject) projects[i];
+                // Add project full path
+                IPath projectPath = javaProject.getProject().getFullPath();
+                paths.add(projectPath);
+            }
+            for (int i = 0, length = projects.length; i < length; i++) {
+                JavaProject javaProject = (JavaProject) projects[i];
+                // Add project libraries paths
+                IClasspathEntry[] entries = javaProject.getResolvedClasspath();
+                for (int j = 0, eLength = entries.length; j < eLength; j++) {
+                    IClasspathEntry entry = entries[j];
+                    if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY) {
+                        IPath path = entry.getPath();
+                        Object target = JavaModel.getTarget(/*don't check existence*/
+                        path, false);
+                        if (// case of an external folder
+                        target instanceof IFolder)
+                            path = ((IFolder) target).getFullPath();
+                        paths.add(entry.getPath());
+                    }
+                }
+            }
+            result = new IPath[paths.size()];
+            paths.toArray(result);
+            return this.enclosingPaths = result;
+        } catch (JavaModelException e) {
+            Util.log(e, "Exception while computing workspace scope's enclosing projects and jars");
+            return new IPath[0];
+        } finally {
+            if (BasicSearchEngine.VERBOSE) {
+                long time = System.currentTimeMillis() - start;
+                int length = result == null ? 0 : result.length;
+                //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                Util.verbose("JavaWorkspaceScope.enclosingProjectsAndJars: " + length + " paths computed in " + time + "ms.");
+            }
+        }
+    }
+
+    public boolean equals(Object o) {
+        // use the singleton pattern
+        return o == this;
+    }
+
+    public AccessRuleSet getAccessRuleSet(String relativePath, String containerPath) {
+        // Do not consider access rules on workspace scope
+        return null;
+    }
+
+    public int hashCode() {
+        return JavaWorkspaceScope.class.hashCode();
+    }
+
+    /**
+ * @see AbstractJavaSearchScope#packageFragmentRoot(String, int, String)
+ */
+    public IPackageFragmentRoot packageFragmentRoot(String resourcePathString, int jarSeparatorIndex, String jarPath) {
+        HashMap rootInfos = JavaModelManager.getDeltaState().roots;
+        DeltaProcessor.RootInfo rootInfo = null;
+        if (jarPath != null) {
+            IPath path = new Path(jarPath);
+            rootInfo = (DeltaProcessor.RootInfo) rootInfos.get(path);
+        } else {
+            IPath path = new Path(resourcePathString);
+            if (ExternalFoldersManager.isInternalPathForExternalFolder(path)) {
+                IResource resource = JavaModel.getWorkspaceTarget(path.uptoSegment(/*linked folders for external folders are always of size 2*/
+                2));
+                if (resource != null)
+                    rootInfo = (DeltaProcessor.RootInfo) rootInfos.get(resource.getLocation());
+            } else {
+                rootInfo = (DeltaProcessor.RootInfo) rootInfos.get(path);
+                while (rootInfo == null && path.segmentCount() > 0) {
+                    path = path.removeLastSegments(1);
+                    rootInfo = (DeltaProcessor.RootInfo) rootInfos.get(path);
+                }
+            }
+        }
+        if (rootInfo == null)
+            return null;
+        return rootInfo.getPackageFragmentRoot(null);
+    }
+
+    public void processDelta(IJavaElementDelta delta, int eventType) {
+        if (this.enclosingPaths == null)
+            return;
+        IJavaElement element = delta.getElement();
+        switch(element.getElementType()) {
+            case IJavaElement.JAVA_MODEL:
+                IJavaElementDelta[] children = delta.getAffectedChildren();
+                for (int i = 0, length = children.length; i < length; i++) {
+                    IJavaElementDelta child = children[i];
+                    processDelta(child, eventType);
+                }
+                break;
+            case IJavaElement.JAVA_PROJECT:
+                int kind = delta.getKind();
+                switch(kind) {
+                    case IJavaElementDelta.ADDED:
+                    case IJavaElementDelta.REMOVED:
+                        this.enclosingPaths = null;
+                        break;
+                    case IJavaElementDelta.CHANGED:
+                        int flags = delta.getFlags();
+                        if ((flags & IJavaElementDelta.F_CLOSED) != 0 || (flags & IJavaElementDelta.F_OPENED) != 0) {
+                            this.enclosingPaths = null;
+                        } else {
+                            children = delta.getAffectedChildren();
+                            for (int i = 0, length = children.length; i < length; i++) {
+                                IJavaElementDelta child = children[i];
+                                processDelta(child, eventType);
+                            }
+                        }
+                        break;
+                }
+                break;
+            case IJavaElement.PACKAGE_FRAGMENT_ROOT:
+                kind = delta.getKind();
+                switch(kind) {
+                    case IJavaElementDelta.ADDED:
+                    case IJavaElementDelta.REMOVED:
+                        this.enclosingPaths = null;
+                        break;
+                    case IJavaElementDelta.CHANGED:
+                        int flags = delta.getFlags();
+                        if ((flags & IJavaElementDelta.F_ADDED_TO_CLASSPATH) > 0 || (flags & IJavaElementDelta.F_REMOVED_FROM_CLASSPATH) > 0) {
+                            this.enclosingPaths = null;
+                        }
+                        break;
+                }
+                break;
+        }
+    }
+
+    public String toString() {
+        //$NON-NLS-1$
+        StringBuffer result = new StringBuffer("JavaWorkspaceScope on ");
+        IPath[] paths = enclosingProjectsAndJars();
+        int length = paths == null ? 0 : paths.length;
+        if (length == 0) {
+            //$NON-NLS-1$
+            result.append("[empty scope]");
+        } else {
+            //$NON-NLS-1$
+            result.append("[");
+            for (int i = 0; i < length; i++) {
+                //$NON-NLS-1$
+                result.append("\n\t");
+                result.append(paths[i]);
+            }
+            //$NON-NLS-1$
+            result.append("\n]");
+        }
+        return result.toString();
+    }
+}

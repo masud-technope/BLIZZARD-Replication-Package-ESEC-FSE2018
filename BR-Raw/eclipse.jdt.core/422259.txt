@@ -1,0 +1,3 @@
+Bug 422259 – [1.8][dom ast] AST Formatter removes blanks around annotations
+int[] @Annot1 [] = new int[1] @Annot1 [2]; gets reduced to
+int[]@Annot1[] = new int[1]@Annot1[2];

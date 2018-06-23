@@ -1,0 +1,3 @@
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/LaunchingPlugin.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/JREContainerInitializer.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/JavaRuntime.java

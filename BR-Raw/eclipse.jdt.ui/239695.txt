@@ -1,0 +1,22 @@
+Bug 239695 – [jar exporter] Cannot export JAR to a project folder of a project outside the workspace
+Build ID: I20080617-2000
+Steps To Reproduce:
+1.
+Create a new Java project, and delete it again (do not delete contents)
+2.
+Move the java project somewhere outside the workspace using Windows Explorer
+3.
+Create a new Java project from existing source, select that place.
+4.
+File->Export->Jar file, Next
+5.
+Select that project in the "resources to export"
+6.
+Browse for export destination, select the project folder and some filename (example.jar).
+7.
+Click Finish.
+Actual result:
+Eclipse asks if it should create the folder inside the workspace (in the Explorer selector, I selected the existing folder outside the workspace) and if I say yes, the Jar is exported into the new folder in the workspace.
+Expected result:
+The jar is stored in the project directory outside the workspace
+Workaround: Type the full path to the project directory into the export destination box manually.

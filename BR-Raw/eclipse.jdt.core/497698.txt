@@ -1,0 +1,42 @@
+Bug 497698 – java.lang.IllegalStateException at org.eclipse.jdt.internal.compiler.lookup.AnnotatableTypeSystem.getParameterizedType(AnnotatableTypeSystem.java:114)
+I'm getting this error almost every second, mostly on save actions.
+Surely something is in a mess, must Eclipse must be able to cope with this problem, or fix it itself.
+Working became totally impractical.
+java.lang.IllegalStateException
+at org.eclipse.jdt.internal.compiler.lookup.AnnotatableTypeSystem.getParameterizedType(AnnotatableTypeSystem.java:114)
+at org.eclipse.jdt.internal.compiler.lookup.LookupEnvironment.createParameterizedType(LookupEnvironment.java:998)
+at org.eclipse.jdt.internal.compiler.lookup.Scope$Substitutor.substitute(Scope.java:597)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.substitute(Scope.java:432)
+at org.eclipse.jdt.internal.compiler.lookup.ParameterizedMethodBinding.<init>(ParameterizedMethodBinding.java:123)
+at org.eclipse.jdt.internal.compiler.lookup.ParameterizedTypeBinding.createParameterizedMethod(ParameterizedTypeBinding.java:389)
+at org.eclipse.jdt.internal.compiler.lookup.RawTypeBinding.createParameterizedMethod(RawTypeBinding.java:98)
+at org.eclipse.jdt.internal.compiler.lookup.ParameterizedTypeBinding.getMethods(ParameterizedTypeBinding.java:695)
+at org.eclipse.jdt.internal.compiler.lookup.ParameterizedTypeBinding.getExactMethod(ParameterizedTypeBinding.java:605)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.findExactMethod(Scope.java:1231)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getMethod(Scope.java:2830)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.findMethodBinding(MessageSend.java:915)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.resolveType(MessageSend.java:729)
+at org.eclipse.jdt.internal.compiler.ast.Assignment.resolveType(Assignment.java:206)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java:1026)
+at org.eclipse.jdt.internal.compiler.ast.Block.resolve(Block.java:117)
+at org.eclipse.jdt.internal.compiler.ast.IfStatement.resolve(IfStatement.java:276)
+at org.eclipse.jdt.internal.compiler.ast.Block.resolve(Block.java:117)
+at org.eclipse.jdt.internal.compiler.ast.ForeachStatement.resolve(ForeachStatement.java:576)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:634)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:306)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:544)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1195)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1308)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:593)
+at org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:867)
+at org.eclipse.jdt.internal.compiler.ProcessTaskManager.run(ProcessTaskManager.java:141)
+at java.lang.Thread.run(Thread.java:745)
+session data:
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_92
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=de_DE
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -clean
+This is a continuation of log file /Users/bojanantonovic/workspace-smood/.metadata/.bak_2.log
+Created Time: 2016-07-11 17:33:50.297

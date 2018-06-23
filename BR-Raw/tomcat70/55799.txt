@@ -1,0 +1,218 @@
+55799 – [websocket] Stability issues when concurrently sending large messages
+Created attachment 31055 [details]
+Test case (modifications to the Chat example)
+Hi,
+a thread on the Users List [1] described that problems can occur when sending large messages over a WebSocket connection using getBasicRemote().sendText(String).
+The ChatAnnotation class does not synchronize when using this method, which means that multiple threads could call RemoteEndpoint.Basic#sendText() concurrently.
+The JavaDoc of RemoteEndpoint.Basic says:
+"If the websocket connection underlying this RemoteEndpoint is busy sending a message when a call is made to send another one, for example if two threads attempt to call a send method concurrently, or if a developer attempts to send a new message while in the middle of sending an existing one, the send method called while the connection is already busy may throw an IllegalStateException."
+(I thought I had read earlier that the implementation should synchronize calls to methods of RemoteEndpoint.Basic instead of throwing an ISE, but maybe that has changed).
+When sending large Messages over Websocket using RemoteEndpoint.Basic from different threads without or with synchronization, some problems happen like:
+a) The WebSocket connection is suddenly closed (I guess the browser
+actually aborts the connections due to data corruption or Timeout errors,
+but I have not examined the raw data sent over TCP)
+b) Various Exceptions occur (see below)
+c) Sometimes when I open the chat.xhtml example in my browser, it shows what
+seems to be a raw WebSocket response instead of the .xhtml file (see
+added screenshots)
+These issues also happen after synchronizing calls to RemoteEndpoint.Basic#sendText(), but are then harder to reproduce.
+To reproduce:
+1) Checkout Tomcat 8 trunk (r1543467) and apply the attached patch.
+It applies some modifications to the Chat Websocket Example, so that the Javascript sends messages in a regular interval (50 ms), and the ChatAnnotation modifies the message to be 256 times as large as the original message, and sends it back using session.getBasicRemote()#sendText(msg).
+2) Build Tomcat and run it on a Windows machine (I used Windows 8.1 x64, Java 1.7.0_45 x64), using the NIO HTTP connector (default configuration).
+3) Open Firefox and IE 11.
+With both browsers, open the Chat example (http://localhost:8080/examples/websocket/chat.xhtml).
+4) Repeat the following actions in a regular interval:
+a) Wait several seconds (it might be that Tomcat already closes one of
+the two WebSocket connections in that time).
+b) On one of the browsers (e.g.
+IE), press F5 several times.
+5) After some time, you can see that in one of the browsers, the WebSocket connection is suddenly closed.
+Tomcat will show one or more of the following exceptions (I think the IOException and ClosedChannelException are expected if the browser aborts the connection):
+19-Nov-2013 23:18:39.809 SEVERE [http-nio-8080-ClientPoller-0] org.apache.tomcat.util.net.NioEndpoint.processSocket Error allocating socket processor
+java.lang.NullPointerException
+at org.apache.tomcat.util.net.NioEndpoint.processSocket(NioEndpoint.java:624)
+at org.apache.tomcat.util.net.NioEndpoint$Poller.processKey(NioEndpoint.java:1165)
+at org.apache.tomcat.util.net.NioEndpoint$Poller.run(NioEndpoint.java:1122)
+at java.lang.Thread.run(Thread.java:744)
+19-Nov-2013 23:32:16.601 SEVERE [http-nio-8080-exec-3] websocket.chat.ChatAnnotation.onError Chat Error: java.nio.channels.ClosedChannelException
+java.nio.channels.ClosedChannelException
+at sun.nio.ch.SocketChannelImpl.ensureReadOpen(SocketChannelImpl.java:252)
+at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:295)
+at org.apache.tomcat.util.net.NioChannel.read(NioChannel.java:136)
+at org.apache.coyote.http11.upgrade.NioServletInputStream.fillReadBuffer(NioServletInputStream.java:136)
+at org.apache.coyote.http11.upgrade.NioServletInputStream.doIsReady(NioServletInputStream.java:49)
+at org.apache.coyote.http11.upgrade.AbstractServletInputStream.isReady(AbstractServletInputStream.java:62)
+at org.apache.tomcat.websocket.server.WsFrameServer.onDataAvailable(WsFrameServer.java:44)
+at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler$WsReadListener.onDataAvailable(WsHttpUpgradeHandler.java:192)
+at org.apache.coyote.http11.upgrade.AbstractServletInputStream.onDataAvailable(AbstractServletInputStream.java:180)
+at org.apache.coyote.http11.upgrade.AbstractProcessor.upgradeDispatch(AbstractProcessor.java:95)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:640)
+at org.apache.coyote.http11.Http11NioProtocol$Http11ConnectionHandler.process(Http11NioProtocol.java:223)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1597)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1555)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at java.lang.Thread.run(Thread.java:744)
+19-Nov-2013 23:32:19.658 SEVERE [http-nio-8080-exec-2] websocket.chat.ChatAnnotation.onError Chat Error: java.lang.IllegalArgumentException: java.lang.reflect.InvocationTargetException
+java.lang.IllegalArgumentException: java.lang.reflect.InvocationTargetException
+at org.apache.tomcat.websocket.pojo.PojoMessageHandlerWholeBase.onMessage(PojoMessageHandlerWholeBase.java:82)
+at org.apache.tomcat.websocket.WsFrameBase.sendMessageText(WsFrameBase.java:369)
+at org.apache.tomcat.websocket.WsFrameBase.processDataText(WsFrameBase.java:468)
+at org.apache.tomcat.websocket.WsFrameBase.processData(WsFrameBase.java:272)
+at org.apache.tomcat.websocket.WsFrameBase.processInputBuffer(WsFrameBase.java:116)
+at org.apache.tomcat.websocket.server.WsFrameServer.onDataAvailable(WsFrameServer.java:55)
+at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler$WsReadListener.onDataAvailable(WsHttpUpgradeHandler.java:192)
+at org.apache.coyote.http11.upgrade.AbstractServletInputStream.onDataAvailable(AbstractServletInputStream.java:180)
+at org.apache.coyote.http11.upgrade.AbstractProcessor.upgradeDispatch(AbstractProcessor.java:95)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:640)
+at org.apache.coyote.http11.Http11NioProtocol$Http11ConnectionHandler.process(Http11NioProtocol.java:223)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1597)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1555)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at java.lang.Thread.run(Thread.java:744)
+Caused by: java.lang.reflect.InvocationTargetException
+at sun.reflect.GeneratedMethodAccessor38.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:606)
+at org.apache.tomcat.websocket.pojo.PojoMessageHandlerWholeBase.onMessage(PojoMessageHandlerWholeBase.java:80)
+...
+15 more
+Caused by: java.nio.charset.CoderMalfunctionError: java.nio.BufferOverflowException
+at java.nio.charset.CharsetEncoder.encode(CharsetEncoder.java:565)
+at org.apache.tomcat.websocket.WsRemoteEndpointImplBase$TextMessageSendHandler.write(WsRemoteEndpointImplBase.java:624)
+at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendPartialString(WsRemoteEndpointImplBase.java:197)
+at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.sendString(WsRemoteEndpointImplBase.java:154)
+at org.apache.tomcat.websocket.WsRemoteEndpointBasic.sendText(WsRemoteEndpointBasic.java:37)
+at websocket.chat.ChatAnnotation.broadcast(ChatAnnotation.java:96)
+at websocket.chat.ChatAnnotation.incoming(ChatAnnotation.java:83)
+...
+19 more
+Caused by: java.nio.BufferOverflowException
+at java.nio.Buffer.nextPutIndex(Buffer.java:513)
+at java.nio.HeapByteBuffer.put(HeapByteBuffer.java:163)
+at org.apache.tomcat.util.buf.Utf8Encoder.encodeNotHasArray(Utf8Encoder.java:177)
+at org.apache.tomcat.util.buf.Utf8Encoder.encodeLoop(Utf8Encoder.java:40)
+at java.nio.charset.CharsetEncoder.encode(CharsetEncoder.java:561)
+...
+25 more
+19-Nov-2013 23:32:23.353 SEVERE [http-nio-8080-exec-10] websocket.chat.ChatAnnotation.onError Chat Error: java.io.IOException: Eine vorhandene Verbindung wurde vom Remotehost geschlossen
+java.io.IOException: Eine vorhandene Verbindung wurde vom Remotehost geschlossen
+at sun.nio.ch.SocketDispatcher.read0(Native Method)
+at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:43)
+at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379)
+at org.apache.tomcat.util.net.NioChannel.read(NioChannel.java:136)
+at org.apache.coyote.http11.upgrade.NioServletInputStream.fillReadBuffer(NioServletInputStream.java:136)
+at org.apache.coyote.http11.upgrade.NioServletInputStream.doRead(NioServletInputStream.java:80)
+at org.apache.coyote.http11.upgrade.AbstractServletInputStream.read(AbstractServletInputStream.java:124)
+at org.apache.tomcat.websocket.server.WsFrameServer.onDataAvailable(WsFrameServer.java:46)
+at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler$WsReadListener.onDataAvailable(WsHttpUpgradeHandler.java:192)
+at org.apache.coyote.http11.upgrade.AbstractServletInputStream.onDataAvailable(AbstractServletInputStream.java:180)
+at org.apache.coyote.http11.upgrade.AbstractProcessor.upgradeDispatch(AbstractProcessor.java:95)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:640)
+at org.apache.coyote.http11.Http11NioProtocol$Http11ConnectionHandler.process(Http11NioProtocol.java:223)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1597)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1555)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at java.lang.Thread.run(Thread.java:744)
+If you try to press F5, then it might be that the Websocket connection is closed as soon as it was opened, or that the browser doesn't get a response for the request to chat.xhtml.
+Now, add synchronization by modifying ChatAnnotation's broadcast() method:
+private static void broadcast(String msg) {
+for (ChatAnnotation client : connections) {
+synchronized (client) {
+try {
+client.session.getBasicRemote().sendText(msg);
+} catch (Exception e) {
+}
+}
+}
+}
+and repeat the above steps.
+Now, if you open chat.xhtml with both IE and Firefox and do nothing, the WebSocket connection will not be closed.
+Even if you start to repeatedly press F5, most of the time everything will appear normal (besides getting IOExceptions and ClosedChannelExceptions).
+However, after I tried this several minutes, I still got the problems that the WebSocket connections are closed just after opening it (or after some time), or that the browser didn't get a response to its HTTP request, or that the browser got a raw WebSocket reply instead of the XHTML page reply (see added screenshots).
+I also got these exceptions:
+20-Nov-2013 00:18:20.037 SEVERE [http-nio-8080-exec-9] websocket.chat.ChatAnnotation.onError Chat Error: java.io.IOException: java.util.concurrent.ExecutionException: java.io.IOException: Key must be cancelled
+java.io.IOException: java.util.concurrent.ExecutionException: java.io.IOException: Key must be cancelled
+at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.startMessageBlock(WsRemoteEndpointImplBase.java:226)
+at org.apache.tomcat.websocket.WsSession.sendCloseMessage(WsSession.java:476)
+at org.apache.tomcat.websocket.WsSession.onClose(WsSession.java:439)
+at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler.close(WsHttpUpgradeHandler.java:172)
+at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler.access$200(WsHttpUpgradeHandler.java:45)
+at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler$WsReadListener.onDataAvailable(WsHttpUpgradeHandler.java:194)
+at org.apache.coyote.http11.upgrade.AbstractServletInputStream.onDataAvailable(AbstractServletInputStream.java:180)
+at org.apache.coyote.http11.upgrade.AbstractProcessor.upgradeDispatch(AbstractProcessor.java:95)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:640)
+at org.apache.coyote.http11.Http11NioProtocol$Http11ConnectionHandler.process(Http11NioProtocol.java:223)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1597)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1555)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at java.lang.Thread.run(Thread.java:744)
+Caused by: java.util.concurrent.ExecutionException: java.io.IOException: Key must be cancelled
+at org.apache.tomcat.websocket.FutureToSendHandler.get(FutureToSendHandler.java:102)
+at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.startMessageBlock(WsRemoteEndpointImplBase.java:222)
+...
+14 more
+Caused by: java.io.IOException: Key must be cancelled
+at org.apache.coyote.http11.upgrade.NioServletOutputStream.doWriteInternal(NioServletOutputStream.java:83)
+at org.apache.coyote.http11.upgrade.NioServletOutputStream.doWrite(NioServletOutputStream.java:60)
+at org.apache.coyote.http11.upgrade.AbstractServletOutputStream.writeInternal(AbstractServletOutputStream.java:118)
+at org.apache.coyote.http11.upgrade.AbstractServletOutputStream.write(AbstractServletOutputStream.java:85)
+at org.apache.tomcat.websocket.server.WsRemoteEndpointImplServer.onWritePossible(WsRemoteEndpointImplServer.java:94)
+at org.apache.tomcat.websocket.server.WsRemoteEndpointImplServer.doWrite(WsRemoteEndpointImplServer.java:81)
+at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.writeMessagePart(WsRemoteEndpointImplBase.java:362)
+at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.startMessage(WsRemoteEndpointImplBase.java:259)
+at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.startMessageBlock(WsRemoteEndpointImplBase.java:217)
+...
+14 more
+20-Nov-2013 00:32:53.483 SEVERE [http-nio-8080-exec-3] org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun
+java.lang.NullPointerException
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:593)
+at org.apache.coyote.http11.Http11NioProtocol$Http11ConnectionHandler.process(Http11NioProtocol.java:223)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1597)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1555)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at java.lang.Thread.run(Thread.java:744)
+20-Nov-2013 00:35:19.333 SEVERE [http-nio-8080-exec-15] org.apache.tomcat.websocket.server.WsHttpUpgradeHandler.destroy Failed to close WebConnection while destroying the WebSocket HttpUpgradeHandler
+java.lang.NullPointerException
+at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler.destroy(WsHttpUpgradeHandler.java:143)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:715)
+at org.apache.coyote.http11.Http11NioProtocol$Http11ConnectionHandler.process(Http11NioProtocol.java:223)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1597)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1555)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at java.lang.Thread.run(Thread.java:744)
+20-Nov-2013 00:35:19.327 SEVERE [http-nio-8080-exec-15] org.apache.coyote.http11.AbstractHttp11Processor.process Error processing request
+java.lang.IllegalArgumentException
+at java.nio.Buffer.position(Buffer.java:236)
+at sun.nio.ch.IOUtil.write(IOUtil.java:68)
+at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:487)
+at org.apache.tomcat.util.net.NioChannel.write(NioChannel.java:123)
+at org.apache.tomcat.util.net.NioBlockingSelector.write(NioBlockingSelector.java:101)
+at org.apache.tomcat.util.net.NioSelectorPool.write(NioSelectorPool.java:174)
+at org.apache.coyote.http11.InternalNioOutputBuffer.writeToSocket(InternalNioOutputBuffer.java:140)
+at org.apache.coyote.http11.InternalNioOutputBuffer.addToBB(InternalNioOutputBuffer.java:198)
+at org.apache.coyote.http11.InternalNioOutputBuffer.commit(InternalNioOutputBuffer.java:178)
+at org.apache.coyote.http11.AbstractHttp11Processor.action(AbstractHttp11Processor.java:739)
+at org.apache.coyote.Response.action(Response.java:180)
+at org.apache.coyote.Response.sendHeaders(Response.java:368)
+at org.apache.catalina.connector.OutputBuffer.doFlush(OutputBuffer.java:335)
+at org.apache.catalina.connector.OutputBuffer.close(OutputBuffer.java:290)
+at org.apache.catalina.connector.Response.finishResponse(Response.java:411)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:560)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1015)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:642)
+at org.apache.coyote.http11.Http11NioProtocol$Http11ConnectionHandler.process(Http11NioProtocol.java:223)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1597)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1555)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at java.lang.Thread.run(Thread.java:744)
+[1] http://markmail.org/message/ee3jch4zj2orltzs

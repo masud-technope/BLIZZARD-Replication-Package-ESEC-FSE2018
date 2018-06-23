@@ -1,0 +1,7 @@
+org.eclipse.pde.internal.core.feature.Feature.getImports
+org.eclipse.pde.internal.ui.shared.target.TargetContentsGroup.getFeatureDependencies
+org.eclipse.pde.internal.ui.shared.target.TargetContentsGroup.getFeatureDependencies
+org.eclipse.pde.internal.ui.shared.target.TargetContentsGroup.getFeatureDependencies
+org.eclipse.pde.internal.ui.shared.target.TargetContentsGroup.getFeatureDependencies
+org.eclipse.pde.internal.ui.shared.target.TargetContentsGroup.getFeatureDependencies
+org.eclipse.pde.internal.ui.shared.target.TargetContentsGroup.getFeatureDependencies

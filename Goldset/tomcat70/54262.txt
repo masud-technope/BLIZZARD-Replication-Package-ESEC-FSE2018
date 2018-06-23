@@ -1,0 +1,6 @@
+java/org/apache/catalina/deploy/WebXml.java
+java/org/apache/catalina/startup/WebRuleSet.java
+test/org/apache/catalina/startup/TestContextConfig.java
+test/webapp-3.0-fragments-empty-absolute-ordering/WEB-INF/lib/resources.jar
+test/webapp-3.0-fragments-empty-absolute-ordering/WEB-INF/web.xml
+webapps/docs/changelog.xml

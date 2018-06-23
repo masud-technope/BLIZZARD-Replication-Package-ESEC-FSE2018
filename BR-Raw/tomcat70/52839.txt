@@ -1,0 +1,5 @@
+52839 – New unit test for DigestAuthenticator and SingleSignOn
+Created attachment 28425 [details]
+complete new class file
+New test class for SingleSignOn and the Digest Authenticator.
+Code passes validation and executes successfully against trunk svn commit: r1297158.

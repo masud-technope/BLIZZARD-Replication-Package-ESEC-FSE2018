@@ -1,0 +1,19 @@
+Bug 307756 – [compare] Compare with local history reverts changes in dirty editor
+I20100330-0800
+Compare with local history reverts changes in a dirty Java editor.
+This leads to data loss if the user doesn't notice it.
+Steps:
+- Paste this:
+package xy;
+public class Try {
+public static void main(String[] args) {
+//        System.out.println();
+}
+}
+- uncomment the sysout
+- Save
+- add "Hello" as argument of println()
+- context menu > Compare With > Local History...
+- double-click the most recent revision (the bold one)
+=> compare editor is opened and "Hello" is removed in the local revision (in both editors)
+This works fine for a plain text compare editor.

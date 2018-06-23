@@ -1,0 +1,15 @@
+Bug 321891 – Missing import-package quick fix
+Created attachment 175951 [details]
+Project showing missing quick fix
+PDE has lots of validation errors and quick fixes.
+When a problem is due to missing dependencies in the manifest and PDE knows which bundle the missing package is from, there are usually two (or more) quick fixes:
+- add an import-package (listed first, as per the best practise)
+- add a require-bundle
+Unfortunately, we've found one case where the first quick-fix is missing.
+This has caused some of our testers to chose the require-bundle option, which caused problems later on (import-package was a better option, and works more often in our runtime).
+I've attached a project that shows this issue.
+It is a bit contrived, but I was trying to simplify a more complex testcase.
+I think I've determined that this issue only appears when the missing dependency is a package from a bundle you are already importing a different package from (i.e.
+the bundle is already in the PDE classpath container).
+To see the issue, open BrokenClass.java and look at the compile errors on lines 3 and 8.
+The quick fix for line 3 has both options, but the quick fix for line 8 only shows require-bundle.

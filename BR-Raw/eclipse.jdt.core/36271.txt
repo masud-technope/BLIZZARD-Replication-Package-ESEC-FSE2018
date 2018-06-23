@@ -1,0 +1,25 @@
+Bug 36271 – CodeAssist should treat array.clone() as visible
+Build R2.1
+From EclipseCorner:
+Sorry for my oversight...thanks Tom.
+http://java.sun.com/docs/books/jls/second_edition/html/names.doc.html#27725
+for anyone else that is interested.
+I would log the problem against JDT Core (or UI?) for not presenting the
+clone method as a possible completion
+Darins
+"SteveNi" <steveneo@21cn.com> wrote in message
+news:b6vq5i$fno$1@rogue.oti.com...
+> So, it's a requirement of eclipse, right?
+>
+>
+> "Tom Tromey" <tromey@redhat.com> wrote in message
+> news:87wui4fy2u.fsf@fleche.redhat.com...
+> > >>>>> "Darin" == Darin Swanson <Darin_Swanson@us.ibm.com> writes:
+> >
+> > Darin> "clone()" is a protected method in this context.
+> >
+> > The clone method of an array is public.
+> > See Java Language Specification, 2nd Ed, section 6.4.4.
+> >
+> > Tom
+>

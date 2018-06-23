@@ -1,0 +1,27 @@
+51306 – NPE in DeltaRequest.writeExternal
+java.io.ObjectOutputStream$BlockDataOutputStream.getUTFLength
+java.io.ObjectOutputStream$BlockDataOutputStream.writeUTF
+java.io.ObjectOutputStream.writeUTF
+org.apache.catalina.ha.session.DeltaRequest.writeExternal
+org.apache.catalina.ha.session.DeltaRequest.serialize
+org.apache.catalina.ha.session.DeltaManager.serializeDeltaRequest
+org.apache.catalina.ha.session.DeltaManager.requestCompleted
+org.apache.catalina.ha.session.DeltaSession.expire
+org.apache.catalina.ha.session.DeltaManager.handleSESSION_EXPIRED
+org.apache.catalina.ha.session.DeltaManager.messageReceived
+org.apache.catalina.ha.session.DeltaManager.messageDataReceived
+org.apache.catalina.ha.session.ClusterSessionListener.messageReceived
+org.apache.catalina.ha.tcp.SimpleTcpCluster.messageReceived
+org.apache.catalina.ha.tcp.SimpleTcpCluster.messageReceived
+org.apache.catalina.tribes.group.GroupChannel.messageReceived
+org.apache.catalina.tribes.group.ChannelInterceptorBase.messageReceived
+org.apache.catalina.tribes.group.interceptors.TcpFailureDetector.messageReceived
+org.apache.catalina.tribes.group.ChannelInterceptorBase.messageReceived
+org.apache.catalina.tribes.group.ChannelInterceptorBase.messageReceived
+org.apache.catalina.tribes.group.ChannelCoordinator.messageReceived
+org.apache.catalina.tribes.transport.ReceiverBase.messageDataReceived
+org.apache.catalina.tribes.transport.nio.NioReplicationTask.drainChannel
+org.apache.catalina.tribes.transport.nio.NioReplicationTask.run
+java.util.concurrent.ThreadPoolExecutor$Worker.runTask
+java.util.concurrent.ThreadPoolExecutor$Worker.run
+java.lang.Thread.run

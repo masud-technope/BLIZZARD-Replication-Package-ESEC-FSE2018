@@ -1,0 +1,27 @@
+46819 – Remove redundant object instantiations in JspRuntimeLibrary
+Created attachment 23353 [details]
+Patch file to replace new with valueOf, and some valueOf with parse
+While perusing the code, I noticed that java\org\apache\jasper\runtime\JspRuntimeLibrary.java code was doing a few things that I think can be improved:
+1.
+ coerce methods were instantiating new objects, only to convert them to primitives.
+ For example:
+return Boolean.valueOf(s).booleanValue();
+This can be rewritten (and simplified) as:
+return Boolean.parseBoolean(s);
+This pattern was repeated for numerous primitive types.
+2.
+ Objects were being instantiated using new instead of calling valueOf.
+ For example:
+return new Byte((byte) 0);
+instead of:
+return Byte.valueOf((byte) 0);
+According to the Java API, valueOf should generally be used in preference to the constructor as this method is likely to yield significantly better space and time performance.
+3.
+ toString methods are instantiating a temporary object just to turn it into a string value.
+ For example:
+return new Integer(i).toString();
+This can be rewritten (and simplified) as:
+return Integer.toString(i);
+This pattern was repeated for numerous primitive types.
+I took the liberty of creating a patch.
+ These changes should yield improved performance and reduce the memory footprint.

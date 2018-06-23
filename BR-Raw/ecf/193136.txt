@@ -1,0 +1,2 @@
+Bug 193136 – [IRC] Add default IRC server
+Similar to how we populate the default fields for collaboration groups, we should do the same for IRC to encourage people to join irc.freenode.net, #eclipse

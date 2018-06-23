@@ -1,0 +1,16 @@
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/attr/README.txt
+protocols/bundles/ch.ethz.iks.slp/runtimeTests/src/main/java/ch/ethz/iks/slp/impl/SelfDiscoveryTest.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/AttributeReply.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/DAAdvertisement.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/SLPMessage.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/ServiceDeregistration.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/ServiceRegistration.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/attr/AttributeListVisitor.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/attr/README.txt
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/attr/attributes.abnf
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/attr/gen/Displayer.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/attr/gen/Parser.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/attr/gen/ParserException.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/attr/gen/Rule.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/attr/gen/Visitor.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/internal/provider/jslp/ServicePropertiesAdapter.java

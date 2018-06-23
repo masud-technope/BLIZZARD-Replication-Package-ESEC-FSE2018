@@ -1,0 +1,5 @@
+Bug 223530 – Step into Selection hyperlink is broken
+I20080320-0800.
+The Step into Selection hyperlink is broken.
+I suspect this got broken by our new multi-hyperlink support.
+Needs to be investigated.

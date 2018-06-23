@@ -1,0 +1,9 @@
+56611 – No need to call method.isAnnotationPresent() then call method.getAnnotation.
+Created attachment 31702 [details]
+org.apache.catalina.core.DefaultInstanceManager
+Just call method.getAnnotation(EJB.class) once, since isAnnotationPresent is also implmented by calling getAnnotation.
+java.lang.reflect.AccessibleObject:
+public boolean isAnnotationPresent(
+Class<? extends Annotation> annotationClass) {
+return getAnnotation(annotationClass) != null;
+}

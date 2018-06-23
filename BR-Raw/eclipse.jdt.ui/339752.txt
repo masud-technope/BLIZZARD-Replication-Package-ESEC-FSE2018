@@ -1,0 +1,54 @@
+Bug 339752 – [ltk] Improve error reporting when deleting a project fails
+Build ID: Eclipse 3.6.1
+CQ:WIND00252893
+When deleting a project fails because one of its directories is still hoged by a process (such as a cmd shell), the delete operation fails ungracefully with the stacktrace pasted below.
+Eclipse should improve its error reporting, telling the user what folder could not be deleted such that the user can investigate the problem.
+Steps to reproduce:
+1.
+Create a project foo with a contained folder bar
+2.
+Open Windows cmd prompt and chdir into .../foo/bar
+3.
+Delete Project foo
+--> Error message is unfriendly.
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+at org.eclipse.core.internal.resources.Resource.delete(Resource.java:799)
+at org.eclipse.core.internal.resources.Project.delete(Project.java:331)
+at org.eclipse.ltk.core.refactoring.resource.DeleteResourceChange.perform(DeleteResourceChange.java:130)
+at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:258)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:306)
+at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.executeChange(UIPerformChangeOperation.java:92)
+at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:218)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Could not delete '/SIM64-SMP-VSB/h'.
+org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources.
+at org.eclipse.core.internal.localstore.FileSystemResourceManager.delete(FileSystemResourceManager.java:270)
+at org.eclipse.core.internal.resources.ResourceTree.internalDeleteFolder(ResourceTree.java:352)
+at org.eclipse.core.internal.resources.ResourceTree.internalDeleteProject(ResourceTree.java:387)
+at org.eclipse.core.internal.resources.ResourceTree.standardDeleteProject(ResourceTree.java:837)
+at org.eclipse.core.internal.resources.Resource.unprotectedDelete(Resource.java:1944)
+at org.eclipse.core.internal.resources.Resource.delete(Resource.java:786)
+at org.eclipse.core.internal.resources.Project.delete(Project.java:331)
+at org.eclipse.ltk.core.refactoring.resource.DeleteResourceChange.perform(DeleteResourceChange.java:130)
+at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:258)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:306)
+at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.executeChange(UIPerformChangeOperation.java:92)
+at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:218)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Problems encountered while deleting files.
+Contains: Could not delete: D:\NoScan\ws33\SIM64-SMP-VSB\h\config\vxConfig\cavium.
+Contains: Could not delete: D:\NoScan\ws33\SIM64-SMP-VSB\h\config\vxConfig\ipmpls.
+Contains: Could not delete: D:\NoScan\ws33\SIM64-SMP-VSB\h\config\vxConfig.
+Contains: Could not delete: D:\NoScan\ws33\SIM64-SMP-VSB\h\config.
+Contains: Could not delete: D:\NoScan\ws33\SIM64-SMP-VSB\h.
+Contains: Could not delete 'D:\NoScan\ws33\SIM64-SMP-VSB'.

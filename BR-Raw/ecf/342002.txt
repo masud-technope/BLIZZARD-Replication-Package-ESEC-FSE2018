@@ -1,0 +1,26 @@
+Bug 342002 – RestClientService.invokeRemoteCall throws exception on successful HTTP operation that returns HTTP status other than 200
+Build Identifier: org.eclipse.ecf.remoteservice.rest_2.1.0.v20110313-1843
+I use ECF's remote service API to access a remote REST service.
+New resources are created using a POST request.
+Upon successful creation of the remote resource the service returns HTTP stauts code 201 (Created) which falls into the "Successful" category of HTTP status codes.
+The invokeRemoteCall method in RestClientService only checks for HTTP status 200 though (line 70) and throws an exception for any other status code.
+This logic should be extended a bit to allow all other 2xx status codes.
+Reproducible: Always
+Steps to Reproduce:
+Sample code using a PUT method to a local couchdb:
+String dbUrl = COUCH_DB_URL + "sample_database/";
+IContainerFactory containerFactory = Activator.getDefault().getContainerFactory();
+IContainer container = containerFactory.createContainer(REST_CONTAINER_TYPE, dbUrl);
+IRemoteServiceClientContainerAdapter adapter  = (IRemoteServiceClientContainerAdapter) container.getAdapter(IRemoteServiceClientContainerAdapter.class);
+IRemoteCallParameter[] parameters = RemoteCallParameterFactory.createParameters("body", null);
+HttpPutRequestType requestType = new HttpPutRequestType(HttpPutRequestType.STRING_REQUEST_ENTITY, "text/plain");
+String uuid = "/8f1f43ef03683be7b24b0de9db001632";
+IRemoteCallable callable = RestCallableFactory.createCallable("createDocument", uuid, parameters, requestType);
+String[] serviceInterfaceNames = new String[] { ICouchDB.class.getName() };
+IRemoteCallable[][] remoteCallables = new IRemoteCallable[][] { { callable } };
+IRemoteServiceRegistration registration = adapter.registerCallables(serviceInterfaceNames, remoteCallables, null);
+IRemoteService remoteService = adapter.getRemoteService(registration.getReference());
+Object[] callParameters = new Object[] { "{ \"name\" : \"Dirk Olmes\" }" };
+IRestCall restCall = RestCallFactory.createRestCall(ICouchDB.class.getName() + ".createDocument", callParameters );
+Object result = remoteService.callSync(restCall);
+System.out.println(result);

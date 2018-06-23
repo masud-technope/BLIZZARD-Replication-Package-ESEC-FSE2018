@@ -1,0 +1,17 @@
+Bug 402081 – [1.8][code complete] No proposals while completing at method/constructor references
+BETA_JAVA8:
+No proposals offered at |
+//-----
+interface I {
+String foo(String x);
+}
+public class X {
+public  String longMethodName(String x) {
+return null;
+}
+void foo()
+{
+X x = new X();
+I i = x::longMethodN|
+}
+}

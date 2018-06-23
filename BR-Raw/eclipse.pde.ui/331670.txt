@@ -1,0 +1,9 @@
+Bug 331670 – "Workspace Cannot Be Locked" dialog should have an edit button
+HEAD
+When you try to launch an Eclipse Application or JUnit Plug-in Test launch configuration and the workspace is already in use, you get a "Workspace Cannot Be Locked" dialog with just an OK button.
+That dialog should contain a second button "Edit...", which opens the launch configuration dialog and selects the current workspace.
+I quickly looked into the implementation:
+LauncherUtils.WORKSPACE_LOCKED is used to trigger the dialog from LauncherUtils#clearWorkspace(ILaunchConfiguration, String, IProgressMonitor) and show it in LauncherUtilsStatusHandler#handleStatus(IStatus, Object).
+For the edit button action, we need the launch configuration and the launch mode, but the passed 'source' object is just the workspace name.
+=> Do you expect that there are third-party clients that rely on getting just the workspace name in the LauncherUtils.WORKSPACE_LOCKED message?
+If yes, then we need to hack something up to maintain backwards compatibility.

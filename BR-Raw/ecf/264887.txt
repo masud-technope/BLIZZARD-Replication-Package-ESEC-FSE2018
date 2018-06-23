@@ -1,0 +1,15 @@
+Bug 264887 – correct/remove warnings on ECF projects
+As part of ECF 3.0 release, I would like to remove the remaining compiler and manifest warnings from all ECF projects.
+As of 2/13/2009 10:30am, here are the projects that are showing warnings that are *not deprecations* (I would like to leave the platform api deprecation warnings until they are properly dealt with).
+ Note that this is with 3.5M5 platform and api baseline set to ECF 2.1.
+discovery.ui.model
+discovery.ui.properties.tabbed
+(Markus lead?)
+presence.ui
+protocol.bittorrent
+protocol.msn
+org.eclipse.team.ecf.core
+org.eclipse.team.ecf.ui
+(Remy lead?)
+Please either make the necessary code changes (if possible), or change the project-specific compiler settings (only if necessary) to eliminate the warnings.
+Thanks

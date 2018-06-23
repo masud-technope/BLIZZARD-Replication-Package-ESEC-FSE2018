@@ -1,0 +1,4 @@
+Bug 35525 – unable to step when suspended at breakpoint during evaluation
+RC3a
+When suspended at a breakpoint during an evaluation (for example, in the
+scrapbook or from the display view), the step actions are disabled.

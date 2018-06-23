@@ -1,0 +1,23 @@
+Bug 331028 – [typing] Indentation broken in enhanced for loop
+Broken in M3, HEAD, and in HEAD with patch from bug 330556 comment 8
+OK up to at least 3.7 M1.
+Auto-indentation is broken when copying lines with Ctrl+Alt+ArrowDown.
+Example (using default code formatter):
+package p;
+import java.util.List;
+class A {
+void x() {
+List<? extends Number> nums = getNums();
+for (Number n : nums) {
+Number n2 = (Number) n; // copy with Ctrl+Alt+ArrowDown
+System.out.println(n);
+}
+}
+private List getNums() {
+return null;
+}
+}
+=> Copied line indented too much:
+for (Number n : nums) {
+Number n2 = (Number) n;
+Number n2 = (Number) n;

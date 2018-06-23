@@ -1,0 +1,4 @@
+Bug 432063 – 184 test failures in N builds
+There are 184 test failures in the last few N builds:
+http://download.eclipse.org/eclipse/downloads/drops4/N20140403-2230/testresults/html/org.eclipse.pde.api.tools.tests_win32.win32.x86_7.0.html
+I'm guessing related to the new Java 8 tests that have been added recently.

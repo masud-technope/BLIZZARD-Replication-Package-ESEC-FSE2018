@@ -1,0 +1,40 @@
+Bug 16702 – Unhandled NPE in HCR manager
+Build M5
+I just noticed the following stack trace in my cmd window.
+I could not find
+the stack trace in my .log file.
+My target VM is a J9 2.0 beta.
+java.lang.NullPointerException
+Stack trace:
+java/lang/Throwable.<init>()V
+java/lang/Throwable.<init>(Ljava/lang/String;)V
+java/lang/NullPointerException.<init>(Ljava/lang/String;)V
+org/eclipse/jdt/internal/debug/core/hcr/JavaHotCodeReplaceManager.getAffected
+Frame(Lorg/eclipse/jdt/internal/debug/core/model/JDIThread;
+[Lorg/eclipse/core/re
+sources/IResource;Ljava/util/List;)
+Lorg/eclipse/jdt/internal/debug/core/model/JD
+IStackFrame;
+org/eclipse/jdt/internal/debug/core/hcr/JavaHotCodeReplaceManager.getAffected
+Frames([Lorg/eclipse/debug/core/model/IThread;Ljava/util/List;Ljava/util/List;)
+L
+java/util/List;
+org/eclipse/jdt/internal/debug/core/hcr/JavaHotCodeReplaceManager.attemptPopF
+rames
+(Lorg/eclipse/jdt/internal/debug/core/model/JDIDebugTarget;Ljava/util/List;
+Ljava/util/List;Ljava/util/List;)V
+org/eclipse/jdt/internal/debug/core/hcr/JavaHotCodeReplaceManager.doHotCodeRe
+place(Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
+org/eclipse/jdt/internal/debug/core/hcr/JavaHotCodeReplaceManager.access$0
+(Lo
+rg/eclipse/jdt/internal/debug/core/hcr/JavaHotCodeReplaceManager;Ljava/util/Lis
+t
+;Ljava/util/List;Ljava/util/List;)V
+org/eclipse/jdt/internal/debug/core/hcr/JavaHotCodeReplaceManager$1.run
+(Lorg/
+eclipse/core/runtime/IProgressMonitor;)V
+org/eclipse/core/internal/resources/Workspace.run
+(Lorg/eclipse/core/resources
+/IWorkspaceRunnable;Lorg/eclipse/core/runtime/IProgressMonitor;)V
+org/eclipse/jdt/internal/debug/core/hcr/JavaHotCodeReplaceManager$3.run()V
+java/lang/Thread.run()V

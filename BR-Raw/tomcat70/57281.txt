@@ -1,0 +1,45 @@
+57281 – Tomcat fails to call method of non-public filter class configured via Servlet 3.0 API when running with SecurityManager
+There is a report on StackOverflow that Spring Boot (1.1.6) application fails on Tomcat 7.0.52 when running with SecurityManager enabled.
+https://stackoverflow.com/questions/27189047/springboot-webapp-under-java-securitymanager-throws-exceptions-when-granted-allp
+The error is
+[[[
+java.lang.IllegalAccessException: Class org.apache.catalina.security.SecurityUtil$1 can not access a member of class org.springframework.boot.context.web.ErrorPageFilter with modifiers "public"
+at sun.reflect.Reflection.ensureMemberAccess(Reflection.java:109) ~[na:1.7.0_65]
+at java.lang.reflect.AccessibleObject.slowCheckMemberAccess(AccessibleObject.java:261) ~[na:1.7.0_65]
+at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:253) ~[na:1.7.0_65]
+at java.lang.reflect.Method.invoke(Method.java:599) ~[na:1.7.0_65]
+at org.apache.catalina.security.SecurityUtil$1.run(SecurityUtil.java:277) ~[catalina.jar:7.0.52]
+at org.apache.catalina.security.SecurityUtil$1.run(SecurityUtil.java:274) ~[catalina.jar:7.0.52]
+at java.security.AccessController.doPrivileged(Native Method) ~[na:1.7.0_65]
+at javax.security.auth.Subject.doAsPrivileged(Subject.java:536) ~[na:1.7.0_65]
+at org.apache.catalina.security.SecurityUtil.execute(SecurityUtil.java:309) ~[catalina.jar:7.0.52]
+at org.apache.catalina.security.SecurityUtil.doAsPrivilege(SecurityUtil.java:249) ~[catalina.jar:7.0.52]
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:237) ~[catalina.jar:7.0.52]
+at org.apache.catalina.core.ApplicationFilterChain.access$000(ApplicationFilterChain.java:55) ~[catalina.jar:7.0.52]
+at org.apache.catalina.core.ApplicationFilterChain$1.run(ApplicationFilterChain.java:191) ~[catalina.jar:7.0.52]
+at org.apache.catalina.core.ApplicationFilterChain$1.run(ApplicationFilterChain.java:187) ~[catalina.jar:7.0.52]
+at java.security.AccessController.doPrivileged(Native Method) ~[na:1.7.0_65]
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:186) ~[catalina.jar:7.0.52]
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:220) ~[catalina.jar:7.0.52]
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:122) [catalina.jar:7.0.52]
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:501) [catalina.jar:7.0.52]
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:170) [catalina.jar:7.0.52]
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98) [catalina.jar:7.0.52]
+at org.apache.catalina.valves.RemoteIpValve.invoke(RemoteIpValve.java:683) [catalina.jar:7.0.52]
+at ch.qos.logback.access.tomcat.LogbackValve.invoke(LogbackValve.java:178) [logback-access-1.0.13.jar:na]
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:116) [catalina.jar:7.0.52]
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408) [catalina.jar:7.0.52]
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1040) [tomcat-coyote.jar:7.0.52]
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:607) [tomcat-coyote.jar:7.0.52]
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:313) [tomcat-coyote.jar:7.0.52]
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_65]
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_65]
+at java.lang.Thread.run(Thread.java:745) [na:1.7.0_65]
+]]]
+Looking at the current sources of Spring Boot, the org.springframework.boot.context.web.ErrorPageFilter class is not public, but package-visible.
+Reflection call fails, as Java Language rules prohibit access to that class.
+Such filter cannot be configured via web.xml (as its constructor is not accessible), but can be configured programmatically via ServletContext.addFilter(String, Filter).
+It is a rare situation, but I think that it is a valid one.
+My idea of the fix is that method lookup in catalina SecurityUtil shall not use targetObject.getClass().getMethod(..), but Filter.class.getMethod().
+My expectation is that it will be allowed to invoke java.lang.reflect.Method declared by javax.servlet.Filter class on the targetObject object regardless of accessibility of targetObject class, but testing is needed.
+A bonus point is that the method cache shall become smaller.

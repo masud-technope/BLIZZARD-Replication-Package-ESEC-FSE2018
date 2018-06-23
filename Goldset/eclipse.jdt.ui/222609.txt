@@ -1,0 +1,5 @@
+org.eclipse.jdt.ui/plugin.xml
+org.eclipse.jdt.ui/schema/javaCompletionProposalComputer.exsd
+org.eclipse.jdt.ui/plugin.properties
+org.eclipse.jdt.ui/schema/quickFixProcessors.exsd
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/spelling/CoreSpellingProblem.java

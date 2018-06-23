@@ -1,0 +1,12 @@
+Bug 195824 – JMDNSDiscoveryContainer$1 doesn't forward getProperty()?
+I had a piece of code in the service resolved which was printing out a property
+public void serviceResolved(IServiceEvent arg0) {
+System.out.println("Resolved service "
++ arg0 + "\n" +
+arg0.getServiceInfo().getServiceProperties().getProperty("RandomName"));
+}
+This was returning null, despite me setting it when I registered the service (via new ServiceProperties).
+To avoid user idiociy (well, I had to rule that out first), I debugged it and the value was there.
+Turns out getServiceProperties().getStringProperty("RandomName") gives me a value, but getProperty("RandomName") gives null.
+I wonder if there's a missing forward?
+It's in the JMDNSDiscoveryContainer$1 class, which is likely to be the IServicePRoperties implementation in the JMDNSDiscoveryContainer class, I'm guessing.

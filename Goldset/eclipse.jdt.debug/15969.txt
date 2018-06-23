@@ -1,0 +1,3 @@
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/StandardClasspathProvider.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/StandardSourcePathProvider.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/JavaRuntime.java

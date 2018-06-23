@@ -1,0 +1,14 @@
+Bug 230209 – [api tooling] "Illegally instantiates" should not be flagged when extending an @noinstantiate class
+Build Id: I20080502-0100 (3.4M7)
+In following example, an API Usage Problem "Illegally instantiates org.eclipse.dstore.core.miners.Miner" is flagged on the class declaration of CommandMiner.
+Am I misunderstanding the meaning of @noinstantiate, or is this a bug?
+My understanding is that clients are allowed to extend the Miner and have it registered by some means (extension point or similar), as long as they leave instanatiating the class to the Framework.
+We have a separate @noextend tag for disallowing extension, so I cannot see why this is folded into @noinstantiate.
+/** @noinstantiate Clients should not instantiate this class.
+The framework
+*                 will take care of instantiating the Miners.
+*/
+public abstract class Miner {
+}
+public class CommandMiner extends Miner {
+}

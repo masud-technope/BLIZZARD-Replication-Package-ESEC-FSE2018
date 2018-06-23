@@ -1,0 +1,3 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaHierarchyPerspectiveFactory.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaPerspectiveFactory.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/browsing/JavaBrowsingPerspectiveFactory.java

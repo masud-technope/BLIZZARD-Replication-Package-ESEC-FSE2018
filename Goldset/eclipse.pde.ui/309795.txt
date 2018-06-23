@@ -1,0 +1,5 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/ExternalModelManager.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/ICoreConstants.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PluginModelManager.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/TargetPreferenceModifyListener.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target/provisional/LoadTargetDefinitionJob.java

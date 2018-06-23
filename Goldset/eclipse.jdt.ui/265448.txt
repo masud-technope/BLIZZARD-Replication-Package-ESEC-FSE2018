@@ -1,0 +1,13 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline/test31/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline/test31/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline/test32/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline/test32/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline/test5/in/PartOfDeclNameSelected.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline/test5/out/PartOfDeclNameSelected.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline/A_test36_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline/A_test36_out.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/InlineConstantTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/InlineTempTests.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/ASTNodes.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/InlineConstantRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/InlineTempRefactoring.java

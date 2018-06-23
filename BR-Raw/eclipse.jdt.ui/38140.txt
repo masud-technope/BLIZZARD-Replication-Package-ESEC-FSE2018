@@ -1,0 +1,8 @@
+Bug 38140 – SnippetOpenOnSelectionAction subclasses OpenAction although OpenAction isn't made for subclassing
+Build 20030527
+SnippetOpenOnSelectionAction subclasses JDT/UI's OpenAction.
+To fix bug 37846
+we have to make all run and selectionChanged methods public.
+Please adjsut the
+visibility of the selectionChanged(ITextSelection selection) method from
+protected to public.

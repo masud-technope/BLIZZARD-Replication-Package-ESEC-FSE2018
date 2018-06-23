@@ -1,0 +1,3 @@
+48176 – Fields that should be final
+Created attachment 24517 [details]
+Patch fields that should be final

@@ -1,0 +1,2 @@
+Bug 318075 – [Discovery] Whitespaces not allowed in property keys
+IServiceProperty keys must not contain Whitespaces

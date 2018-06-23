@@ -1,0 +1,3 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/JavaStringAutoIndentStrategy.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/JavaIndenter.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/JavaHeuristicScannerTest.java

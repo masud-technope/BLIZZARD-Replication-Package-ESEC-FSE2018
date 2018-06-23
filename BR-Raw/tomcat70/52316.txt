@@ -1,0 +1,49 @@
+52316 – AccessLog does not log size for files sent with sendfile
+Confirming a problem reported on the users@ list.
+This affects both NIO and APR protocols when file is delivered with sendfile.
+Note, that the file have to be >48kb to trigger use of sendfile.
+Steps to reproduce:
+1) Configure three connectors:
+<Connector port="8081" protocol="org.apache.coyote.http11.Http11Protocol"
+connectionTimeout="20000"
+redirectPort="8443" />
+<Connector port="8082" protocol="org.apache.coyote.http11.Http11NioProtocol"
+connectionTimeout="20000"
+redirectPort="8443" />
+<Connector port="8083" protocol="org.apache.coyote.http11.Http11AprProtocol"
+connectionTimeout="20000"
+redirectPort="8443" />
+and configure AccessLogValve in a <Host>:
+<Valve className="org.apache.catalina.valves.AccessLogValve"
+directory="logs"
+prefix="localhost_access_log." suffix=".txt"
+pattern="%h %l %u %t &quot;%r&quot; %s %b (%D ms)" />
+The difference from common pattern is that I added "(%D ms)" at the end.
+2) Put some big file (>48k) as webapps/ROOT/file
+3) Download it 3 times:
+http://localhost:8081/file?8081
+http://localhost:8082/file?8082
+http://localhost:8083/file?8083
+4) Access Log:
+127.0.0.1 - - [10/Dec/2011:01:05:08 +0300] "GET /file?8081 HTTP/1.1" 200 15027784 (4766 ms)
+127.0.0.1 - - [10/Dec/2011:01:05:23 +0300] "GET /file?8082 HTTP/1.1" 200 - (31 ms)
+127.0.0.1 - - [10/Dec/2011:01:05:48 +0300] "GET /file?8083 HTTP/1.1" 200 - (16 ms)
+Note that '-' is printed instead of file size for Nio and Apr connectors.
+Workarounds:
+------------
+A).
+Disable sendfile with useSendfile="false" on a connector
+B).
+Add the following pattern to AccessLogValve:
+"%{org.apache.tomcat.sendfile.start}r %{org.apache.tomcat.sendfile.end}r"
+That will log the range of bytes sent by sendfile.
+E.g.:
+127.0.0.1 - - [10/Dec/2011:01:05:08 +0300] "GET /file?8081 HTTP/1.1" 200 15027784 (4766 ms) - -
+127.0.0.1 - - [10/Dec/2011:01:05:23 +0300] "GET /file?8082 HTTP/1.1" 200 - (31 ms) 0 15027784
+127.0.0.1 - - [10/Dec/2011:01:05:48 +0300] "GET /file?8083 HTTP/1.1" 200 - (16 ms) 0 15027784
+--------------
+Overall, looking at the timing value printed by %D I would say that logging occurs before data are sent.
+So the value of 0 bytes is correct.
+It could be possible to log file size from request attributes set by sendfile, but that cannot account for aborted downloads.
+Though I think that would be better than the current logging of '0'.
+At least this limitation can be mentioned in documentation for %b and %B patterns in AccessLogValve section in valve.html and in Javadoc.

@@ -1,0 +1,3 @@
+51688 – JreMemoryLeakPreventionListener should protect against AWT thread creation
+Any webapp that calls java.awt.Toolkit.getDefaultToolkit will launch a new thread (AWT-Windows, AWT-XAWT, etc.) which will capture the ContextClassLoader, pinning the webapp in memory after an undeploy/redeploy.
+A simple addition to JreMemoryLeakPreventionListener can alleviate this condition.

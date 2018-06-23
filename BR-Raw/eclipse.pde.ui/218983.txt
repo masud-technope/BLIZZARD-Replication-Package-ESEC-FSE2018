@@ -1,0 +1,4 @@
+Bug 218983 – Save cycle causes out of sync resources
+currently for persisting api filters, we are using a java.io.File to do saving.
+This has the net effect of causing out of sync errors in the workspace as no notification is sent to indicate that the underlying file has been changed.
+We should be using IFile and IFile.setContents(..)

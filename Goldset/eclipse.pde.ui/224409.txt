@@ -1,0 +1,13 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDECoreMessages.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PreferenceInitializer.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/CompilerFlags.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/ExtensionsErrorReporter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/ischema/ISchemaRootElement.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/pderesources.properties
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/Schema.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/SchemaElement.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/SchemaRootElement.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/SchemaRootElementDetails.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/PDECompilersConfigurationBlock.java

@@ -1,0 +1,18 @@
+Bug 406467 – [1.8][dom ast] Wrong type binding for qualifier of QualifiedType and PackageQualifiedType
+Follow-up to bug 404489.
+package jsr308.bug;
+public class X {
+@java.lang.annotation.Target(java.lang.annotation.ElementType.TYPE_USE)
+@interface Marker {
+}
+class Y {
+class Z {
+}
+}
+jsr308.bug.X.Y.Z z0;
+jsr308.bug.@Marker X.@Marker Y.@Marker Z z;
+}
+^
+The QualifiedType for Y here     ^ has a type binding for Z, but should be for Y, like its "name" child.
+The PackageQualifiedType for X also has a type binding for Z.
+The qualifier of X has the correct package binding for jsr308.bug.

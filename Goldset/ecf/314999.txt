@@ -1,0 +1,12 @@
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/src/org/eclipse/ecf/tests/provider/dnssd/DnsSdAdvertiserServiceTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/src/org/eclipse/ecf/tests/provider/dnssd/DnsSdAdvertiserServiceTest.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdDiscoveryAdvertiser.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdServiceID.java
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/src/org/eclipse/ecf/tests/provider/dnssd/DnsSdAdvertiserComparator.java
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/src/org/eclipse/ecf/tests/provider/dnssd/DnsSdAdvertiserServiceTest.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdDiscoveryAdvertiser.java
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/META-INF/MANIFEST.MF
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/src/org/eclipse/ecf/tests/provider/dnssd/DnsSdAdvertiserComparator.java
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/src/org/eclipse/ecf/tests/provider/dnssd/DnsSdAdvertiserServiceTest.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdDiscoveryAdvertiser.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdDiscoveryException.java

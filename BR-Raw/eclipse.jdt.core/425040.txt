@@ -1,0 +1,25 @@
+Bug 425040 – [1.8][formatter] Add option: "Insert new line after type annotation"
+The formatter should have an option "Insert new line after type annotation", which should be disabled by default.
+E.g.
+for the following source, the formatter should only insert a new line after "@Deprecated", but not after any occurrence of @Annot (even if all other "Insert new line after annotations on ..." options are enabled):
+package xy;
+import java.lang.annotation.*;
+import java.util.List;
+public class Try extends@Annot Object {
+@Deprecated public @Annot int b;
+public@Annot()int foo(@Annot  List<@Annot()Object> a) {
+return 0;
+}
+}
+@Documented
+@Target(ElementType.TYPE_USE)
+@interface Annot {
+}
+Bug 401848 / bug 403816 have already discussed the problem that type annotations cannot be distinguished from declaration annotations in all cases, e.g.:
+@Deprecated @Annot boolean hardToDecide() {
+return true;
+}
+I don't think the formatter should resolve types, so the next best solution is to rely on a heuristic:
+In ambiguous cases, consider annotations as type annotations
+iff they appear after the last keyword in a modifier list.
+This heuristic fails for the hardToDecide() example, but that's acceptable (and still way better than the current state, where the formatter produces bad results in many more cases).

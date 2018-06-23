@@ -1,0 +1,12 @@
+Bug 338675 – [quick assist] 'Put expression in parentheses' is offered unnecessarily
+--------------------------------------------------
+public static void main(String[] args) {
+int[] a = new int[10];
+for (int i = 0; i < 10; i++) {
+a[i] = i;
+}
+}
+--------------------------------------------------
+- Select "i" or "i <" in the for loop condition
+- Ctrl+1
+=> 'Put '<' expression in parentheses' quick assist is offered, this is incorrect as the quick assist does not work on the selection.

@@ -1,0 +1,5 @@
+ui/org.eclipse.pde.core/META-INF/MANIFEST.MF
+ui/org.eclipse.pde.core/META-INF/MANIFEST.MF
+ui/org.eclipse.pde.core/plugin.properties
+ui/org.eclipse.pde.core/plugin.xml
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/variables/TargetHomeDynamicVariableResolver.java

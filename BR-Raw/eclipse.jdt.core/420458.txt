@@ -1,0 +1,8 @@
+Bug 420458 – [1.8][dom ast] JLS8 ASTParser gives up on multi-dimensional array reference in Javadoc
+BETA_JAVA8
+For JLS8, the ASTParser gives up on multi-dimensional array references in a MethodRefParameter and leaves the whole Javadoc node without any children.
+Still Works fine for JLS4.
+/**
+* Hello.
+* @see #foo(Object[][][])
+*/

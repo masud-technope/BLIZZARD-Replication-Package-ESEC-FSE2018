@@ -1,0 +1,1 @@
+providers/bundles/org.eclipse.ecf.provider.discovery/src/org/eclipse/ecf/internal/provider/discovery/CompositeServiceID.java

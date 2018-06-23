@@ -1,0 +1,9 @@
+Bug 406319 – [1.8][compiler][codegen] Generate code for enclosing instance capture in lambda methods
+BETA_JAVA8:
+This is spawned by splitting Bug 405068.
+I'll retain that bug for capture
+of locals from enclosing context and use the present one for enclosing instance
+capture as these two topics are unconnected and involve altogether different
+implementation concerns.
+When this is resolved, we should also reenable the tests disabled via:
+eclipse.org/c/jdt/eclipse.jdt.core.git/commit/?h=BETA_JAVA8&id=92dfd6c989831ab263c5667f92428e6c9943c027

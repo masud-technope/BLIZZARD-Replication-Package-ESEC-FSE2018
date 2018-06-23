@@ -1,0 +1,73 @@
+42650 – PooledParallelSender.sendMessage throws NullpointerException
+org.apache.catalina.tribes.transport.PooledSender.getSender() has the
+possibility of returning Null.
+However,
+org.apache.catalina.tribes.transport.nio.PooledParallelSender.sendMessage
+doesn't check Null.
+(PooledParallelSender.sendMessage calls getSender())
+Therefore, NullpointerException is thrown.
+Finally, NullpointerException is thrown in the finally block.
+The following are the stack traces.
+org.apache.catalina.tribes.ChannelException: java.lang.NullPointerException;
+No faulty members identified.
+at org.apache.catalina.tribes.group.GroupChannel.send
+(GroupChannel.java:225)
+at org.apache.catalina.tribes.group.GroupChannel.send
+(GroupChannel.java:175)
+at org.apache.catalina.ha.tcp.SimpleTcpCluster.send
+(SimpleTcpCluster.java:835)
+at org.apache.catalina.ha.tcp.SimpleTcpCluster.sendClusterDomain
+(SimpleTcpCluster.java:814)
+at org.apache.catalina.ha.tcp.ReplicationValve.send
+(ReplicationValve.java:551)
+at org.apache.catalina.ha.tcp.ReplicationValve.sendMessage
+(ReplicationValve.java:535)
+at
+org.apache.catalina.ha.tcp.ReplicationValve.sendSessionReplicationMessage
+(ReplicationValve.java:517)
+at org.apache.catalina.ha.tcp.ReplicationValve.sendReplicationMessage
+(ReplicationValve.java:428)
+at org.apache.catalina.ha.tcp.ReplicationValve.invoke
+(ReplicationValve.java:362)
+at org.apache.catalina.connector.CoyoteAdapter.service
+(CoyoteAdapter.java:261)
+at org.apache.jk.server.JkCoyoteHandler.invoke(JkCoyoteHandler.java:190)
+at org.apache.jk.common.HandlerRequest.invoke(HandlerRequest.java:283)
+at org.apache.jk.common.ChannelSocket.invoke(ChannelSocket.java:767)
+at org.apache.jk.common.ChannelSocket.processConnection
+(ChannelSocket.java:697)
+at org.apache.jk.common.ChannelSocket$SocketConnection.runIt
+(ChannelSocket.java:889)
+at org.apache.tomcat.util.threads.ThreadPool$ControlRunnable.run
+(ThreadPool.java:686)
+at java.lang.Thread.run(Thread.java:595)
+Caused by: java.lang.NullPointerException
+at org.apache.catalina.tribes.transport.PooledSender.returnSender
+(PooledSender.java:48)
+at
+org.apache.catalina.tribes.transport.nio.PooledParallelSender.sendMessage
+(PooledParallelSender.java:52)
+at org.apache.catalina.tribes.transport.ReplicationTransmitter.sendMessage
+(ReplicationTransmitter.java:80)
+at org.apache.catalina.tribes.group.ChannelCoordinator.sendMessage
+(ChannelCoordinator.java:78)
+at org.apache.catalina.tribes.group.ChannelInterceptorBase.sendMessage
+(ChannelInterceptorBase.java:75)
+at
+org.apache.catalina.tribes.group.interceptors.TcpFailureDetector.sendMessage
+(TcpFailureDetector.java:87)
+at org.apache.catalina.tribes.group.ChannelInterceptorBase.sendMessage
+(ChannelInterceptorBase.java:75)
+at
+org.apache.catalina.tribes.group.interceptors.MessageDispatchInterceptor.sendMe
+ssage(MessageDispatchInterceptor.java:73)
+at org.apache.catalina.tribes.group.ChannelInterceptorBase.sendMessage
+(ChannelInterceptorBase.java:75)
+at org.apache.catalina.tribes.group.GroupChannel.send
+(GroupChannel.java:216)
+When Sender cannot be acquired, it is necessary to throw ChannelException.
+Otherwise, because the exception can not catch with interceptor such as
+org.apache.catalina.tribes.group.interceptors.TcpFailureDetector,
+the exception handling cannot be done.
+The same processing of
+org.apache.catalina.tribes.transport.bio.PooledMultiSender checks Null.

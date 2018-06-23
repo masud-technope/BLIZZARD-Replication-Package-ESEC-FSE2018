@@ -1,0 +1,4 @@
+org.eclipse.pde.internal.ui.wizards.imports.PluginImportLabelProvider.getStyledText
+org.eclipse.pde.internal.ui.wizards.imports.PluginImportLabelProvider.getText
+org.eclipse.pde.internal.ui.wizards.imports.PluginImportWizardDetailedPage.dispose
+org.eclipse.jface.wizard.Wizard.dispose

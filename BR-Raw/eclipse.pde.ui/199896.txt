@@ -1,0 +1,7 @@
+Bug 199896 – [Import][Wizard] The layout of the express page is wasteful
+Created attachment 76054 [details]
+patch
+- Open the "Import Plug-ins and Fragments" wizard.
+- On the first page, select "Import plug-ins and fragments required by existing workspace plug-ins" and click next.
+There is a big open area in the middle below the only two buttons.
+The buttons should be moved below to avoid wasting space.

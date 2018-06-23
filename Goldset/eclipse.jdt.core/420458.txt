@@ -1,0 +1,6 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTConverter15JLS4Test.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTConverter15JLS4Test.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTConverter18Test.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/DocCommentParser.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/AbstractCommentParser.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/DocCommentParser.java

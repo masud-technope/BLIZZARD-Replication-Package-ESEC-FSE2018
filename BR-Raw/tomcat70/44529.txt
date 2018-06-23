@@ -1,0 +1,50 @@
+44529 – RealmBase authorization via hasResourcePermission not fully servlet spec compliant
+The authorization implementation in RealmBase, in the hasResourcePermission method is not fully servlet specification compliant.
+The spec (both 2.4 and 2.5) states:
+"...
+A security constraint that does not contain an authorization constraint shall combine with authorization constraints that name or imply roles to allow unauthenticated access.
+The special case of an authorization constraint that names no roles shall combine with any other constraints to override their affects and cause access to be precluded.
+..."
+In Tomcat this works fine as long as there aren't weird (but legal!) combinations or security-constraints on the same URLs.
+Example:
+<security-constraint>
+<web-resource-collection>
+<url-pattern>/someUrl/*</url-pattern>
+<http-method>POST</http-method>
+</web-resource-collection>
+<!-- no auth-constraint, to allow everyone -->
+</security-constraint>
+<security-constraint>
+<web-resource-collection>
+<url-pattern>/someUrl/*</url-pattern>
+<http-method>POST</http-method>
+</web-resource-collection>
+<!-- no roles, to allow noone -->
+<auth-constraint />
+</security-constraint>
+(if we ignore that this kind of configuration is pretty pointless,)
+the spec dictates that a POST to /someUrl/index.html should be denied access.
+Tomcat grants it.
+(both 5.5.23 and 6.0.14 do)
+Example 2:
+<security-constraint>
+<web-resource-collection>
+<url-pattern>/someUrl/*</url-pattern>
+<http-method>POST</http-method>
+</web-resource-collection>
+<!-- no roles, to allow noone -->
+<auth-constraint />
+</security-constraint>
+<security-constraint>
+<web-resource-collection>
+<url-pattern>/someUrl/*</url-pattern>
+<http-method>POST</http-method>
+</web-resource-collection>
+<auth-constraint>
+<role-name>*</role-name>
+</auth-constraint>
+</security-constraint>
+Now it gets interesting.
+In "strict" mode, access to /someUrl/index.html is denied (regardless of the web.xml-configured security roles and the roles the user has).
+In "auth-only" mode, access is always granted, and in "strict auth-only" mode access is granted if there are no web.xml-configured security roles.
+Now these modes are a Tomcat addition to the spec, but I feel access should have been denied in all modes, both to stay in line with the spec and to keep the behaviour predictable.

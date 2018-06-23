@@ -1,0 +1,5 @@
+org.eclipse.jdt.debug.ui/plugin.xml
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/core/refactoring/WatchpointTypeChange.java
+org.eclipse.jdt.debug.ui/META-INF/MANIFEST.MF
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/core/refactoring/WatchpointTypeRenameChange.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/core/refactoring/BreakpointRenameTypeParticipant.java

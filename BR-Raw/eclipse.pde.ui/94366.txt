@@ -1,0 +1,8 @@
+Bug 94366 – Feature appears twice in the feature selection dialog
+I20050510-0010
+- Create a new RCP app using the mail template
+- Create a feature F, including the plugin previously created
+- In F, create a product file called foo.product.
+- In the product editor, change the product configuration to use 'features'
+- Move to the configuration tab of the product editor and try to "add..." a
+feature, you will notice that F appears twice.

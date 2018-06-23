@@ -1,0 +1,4 @@
+test/org/apache/catalina/startup/SimpleHttpClient.java
+test/org/apache/catalina/core/TestStandardContext.java
+test/org/apache/catalina/startup/TomcatBaseTest.java
+test/org/apache/catalina/connector/TestRequest.java

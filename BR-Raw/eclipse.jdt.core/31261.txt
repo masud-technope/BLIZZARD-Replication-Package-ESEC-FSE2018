@@ -1,0 +1,12 @@
+Bug 31261 – Strange behavior when there is more errors than max errors per compilation unit
+1) Create a class X.java
+public class X {
+{#} // error 1
+{#} // error 2
+{#} // error 3
+{#} // error 4
+}
+2) Limit the number of errors reported per compilation unti to 3
+3) do a full build
+There is only 3 errors (as expected), but it is errors 1, 2 and 4.
+It should be errors 1, 2 and 3.

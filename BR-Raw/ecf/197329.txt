@@ -1,0 +1,4 @@
+Bug 197329 – [IRC] Action should be supported better in the UI
+For example, if a user sends an action in IRC like, "/me yawns"
+In the UI we get a <user> ACTION yawns
+We should style the text like most IRC clients do with italicized text.

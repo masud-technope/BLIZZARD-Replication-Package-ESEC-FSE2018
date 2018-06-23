@@ -1,0 +1,5 @@
+Bug 53383 – incorrect progress message in new search view
+1) perform a file search for "deprecated" in *.java files in the workspace.
+-> while the search is running the following message is shown:
+running)(deprecated - 123 match in Workspace
+The parenthesis aren't match and no plural is used.

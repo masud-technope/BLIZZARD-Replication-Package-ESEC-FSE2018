@@ -1,0 +1,3 @@
+Bug 336421 – [remoteserviceadmin] simplify handling of remote service id
+The remote service id should be used in endpoint.service.id standard property.
+ It is not currently.

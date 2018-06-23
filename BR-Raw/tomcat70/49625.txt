@@ -1,0 +1,22 @@
+49625 – Tomcat doesn't send Vary consistently when gzip enabled
+HTTP requires that the Vary response header be sent consistently for all responses if they change based upon different aspects of the request.
+My pages has both compressed and uncompressed variants available, negotiated by the Accept-Encoding request header, but it sends different Vary headers for each;
+"accept-encoding" when the response is compressed, and
+"" when it is not.
+This can cause problems for downstream caches, because they cannot consistently determine what the cache key for a given URI is.
+My server.xml content:
+<Service name="Catalina">
+<Connector port="8080" proxyPort="80" maxHttpHeaderSize="8192" protocol="org.apache.coyote.http11.Http11Protocol"
+maxThreads="200" minSpareThreads="25" maxPostSize="8"
+maxSpareThreads="75" enableLookups="false" keepAliveTimeout="3000" maxKeepAliveRequests="100"
+redirectPort="8443" acceptCount="100"
+connectionTimeout="8000" disableUploadTimeout="true"
+compression="on" compressionMinSize="2048"
+compressableMimeType="text/html,text/xml,text/javascript,text/css" />
+<Engine name="Catalina" defaultHost="localhost">
+<Host name="localhost" appBase="webapps" unpackWARs="false" autoDeploy="false"
+debug="0"
+xmlValidation="false" xmlNamespaceAware="false">
+</Host>
+</Engine>
+</Service>

@@ -1,0 +1,2 @@
+test/org/apache/catalina/authenticator/TestSSOnonLoginAndDigestAuthenticator.java
+webapps/docs/changelog.xml

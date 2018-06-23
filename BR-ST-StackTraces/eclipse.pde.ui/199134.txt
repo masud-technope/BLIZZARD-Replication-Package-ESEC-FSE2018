@@ -1,0 +1,6 @@
+org.eclipse.pde.internal.ui.editor.plugin.ExtensionsSection.getCustomImage
+org.eclipse.pde.internal.ui.editor.plugin.ExtensionsSection.resolveObjectImage
+org.eclipse.pde.internal.ui.editor.plugin.ExtensionsSection.access$1
+org.eclipse.pde.internal.ui.editor.plugin.ExtensionsSection$ExtensionLabelProvider.getImage
+org.eclipse.jface.viewers.WrappedViewerLabelProvider.getImage
+org.eclipse.jface.viewers.WrappedViewerLabelProvider.update

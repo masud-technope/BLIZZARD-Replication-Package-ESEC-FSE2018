@@ -1,0 +1,5 @@
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/internal/provider/filetransfer/DebugOptions.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/provider/filetransfer/events/socket/SocketEventCreateUtil.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient/src/org/eclipse/ecf/provider/filetransfer/httpclient/HttpClientFileSystemBrowser.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient/src/org/eclipse/ecf/provider/filetransfer/httpclient/HttpClientRetrieveFileTransfer.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer/.options

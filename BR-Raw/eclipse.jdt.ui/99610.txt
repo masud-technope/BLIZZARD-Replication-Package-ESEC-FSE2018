@@ -1,0 +1,9 @@
+Bug 99610 – [api] add API to file buffers that allows to specify whether a file is internal or external
+3.1 RC2
+The current file buffer API accepts internal file paths and external file
+locations to get a file buffer.
+This can impact performance (see bug 91508).
+In
+most cases clients know up-front whether the given path points to an external or
+an internal file.
+We should allow to pass this information via API.

@@ -1,0 +1,9 @@
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/MoveMembersWizard.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/PullUpMemberPage.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/PullUpMethodPage.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/PushDownWizard.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/refactoringui.properties
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/refactoring.properties
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/reorg/ReorgPolicyFactory.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/NewSourceFolderWizardPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/NewWizardMessages.properties

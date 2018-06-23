@@ -1,0 +1,19 @@
+57331 – Allow ExpiresFilter to use "year" as synonym for "years" in its configuration
+The current code is
+if ("years".equalsIgnoreCase(currentToken)) {
+durationUnit = DurationUnit.YEAR;
+} else if ("month".equalsIgnoreCase(currentToken) ||
+"months".equalsIgnoreCase(currentToken)) {
+durationUnit = DurationUnit.MONTH;
+...
+The above if/else tree misses "year" case.
+All other time units have support for singular form, e.g.
+"months"/"month" above.
+This was observed by a stackoverflow user [1].
+The following configuration fails:
+<init-param>
+<param-name>ExpiresDefault</param-name>
+<param-value>access plus 1 year</param-value>
+</init-param>
+but succeeds if one replaces s/year/years/.
+[1] http://stackoverflow.com/questions/27353512/how-to-configure-expires-filter-in-tomcat-7

@@ -1,0 +1,4 @@
+48150 – some misspellings I found in the "javax.servlet" package
+Created attachment 24497 [details]
+svn patch file for the javax.servlet package
+see atached svn patch file

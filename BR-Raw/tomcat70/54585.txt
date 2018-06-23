@@ -1,0 +1,6 @@
+54585 – WebappLoader doesn't honor delegate attr while constructing jsp_classpath
+If custom WebappClassLoader is created with delegate=true then parent-first classloading model is used.
+Everything works here as expected.
+However jsp_classpath is always constructed in the following manner:
+customWebappClassLoader.urls;parent.urls;parent...parent.urls
+Whereas it is expected to me that if delegate=true then parent's urls should come first.

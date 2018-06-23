@@ -1,0 +1,3 @@
+Bug 312363 – [remoteservices][osgi] incomplete handling of proxy clean up
+On the remote service proxy side there is improper clean up of the remote service proxy registration.
+ This is in DiscoveredServiceTrackerImpl in org.eclipse.ecf.osgi.service.distribution bundle.

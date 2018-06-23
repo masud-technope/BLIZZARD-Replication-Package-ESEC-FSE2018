@@ -1,0 +1,9 @@
+java/org/apache/catalina/realm/LocalStrings.properties
+java/org/apache/catalina/realm/LocalStrings_es.properties
+java/org/apache/catalina/startup/ContextConfig.java
+java/org/apache/catalina/startup/LocalStrings.properties
+java/org/apache/jasper/resources/LocalStrings.properties
+java/org/apache/jasper/resources/LocalStrings_es.properties
+java/org/apache/jasper/resources/LocalStrings_ja.properties
+java/org/apache/tomcat/util/net/res/LocalStrings.properties
+java/org/apache/tomcat/util/net/res/LocalStrings_es.properties

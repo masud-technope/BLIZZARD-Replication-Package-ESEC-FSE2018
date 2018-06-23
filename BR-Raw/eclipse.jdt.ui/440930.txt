@@ -1,0 +1,30 @@
+Bug 440930 – Java member types which are implicitly static should have consistent icons
+Member classes are non-static by default (unless they are members of interfaces or annotation types, in which case they are static by default) but they may be marked static explicitly.
+Member enums, member interfaces, and member annotation types are static by default but they may be marked static explicitly.
+However, Eclipse displays a different type icon for these if they are marked static explicitly.
+Since the addition of the modifier does not change the meaning of the code, it should not change the icon.
+class C {
+class C1 {}
+static class C2 {}
+enum E1 { X }
+static enum E2 { X }
+interface I1 {}
+static interface I2 {}
+@interface A1 {}
+static @interface A2 {}
+}
+interface I {
+class C3 {}
+static class C4 {}
+enum E3 { X }
+static enum E4 { X }
+interface I3 {}
+static interface I4 {}
+@interface A3 {}
+static @interface A4 {}
+}
+In this example, types C1, E1, I1, A1 have no 'S' in their icon.
+Types C2, E2, I2, A2 have an 'S' in their icon.
+However, E1, I1, A1 are static too, so they should also have the 'S' in their icon.
+For comparison, all of the *3 and *4 types (the members of I) are static, and do consistently display the 'S', even though the *3 are only static implicitly.
+Note that the only member type in the example code that is not static is C1.

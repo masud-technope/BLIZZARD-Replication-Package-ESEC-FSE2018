@@ -1,0 +1,1 @@
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/preferences/ApiErrorsWarningsConfigurationBlock.java

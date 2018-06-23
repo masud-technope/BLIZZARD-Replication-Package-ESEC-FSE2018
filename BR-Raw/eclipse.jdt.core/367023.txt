@@ -1,0 +1,30 @@
+Bug 367023 – Error in JDT Core during AST creation
+I have decompiled some .class with jad.
+I made it then a Java project in Eclipse, and the JDT continuously fail to compile with the following error:
+Error in JDT Core during AST creation:
+java.lang.IllegalArgumentException: info cannot be null
+at org.eclipse.jdt.internal.compiler.codegen.StackMapFrame.addStackItem(StackMapFrame.java:81)
+at org.eclipse.jdt.internal.compiler.ClassFile.traverse(ClassFile.java:4474)
+at org.eclipse.jdt.internal.compiler.ClassFile.generateStackMapTableAttribute(ClassFile.java:3363)
+at org.eclipse.jdt.internal.compiler.ClassFile.completeCodeAttribute(ClassFile.java:1187)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.generateCode(AbstractMethodDeclaration.java:257)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.generateCode(AbstractMethodDeclaration.java:182)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode(TypeDeclaration.java:543)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode(TypeDeclaration.java:605)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode(TypeDeclaration.java:536)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode(TypeDeclaration.java:612)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.generateCode(CompilationUnitDeclaration.java:360)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1197)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:681)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1181)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:807)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider$1.run(ASTProvider.java:544)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.createAST(ASTProvider.java:537)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.getAST(ASTProvider.java:480)
+at org.eclipse.jdt.ui.SharedASTProvider.getAST(SharedASTProvider.java:128)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:170)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$3.run(SelectionListenerWithASTManager.java:155)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+I have been able to isolate the class that make the JDT fails.
+See it attached.

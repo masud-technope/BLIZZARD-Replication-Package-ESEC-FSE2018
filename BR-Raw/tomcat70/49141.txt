@@ -1,0 +1,3 @@
+49141 – Impossible cast in naming.factory.SendMailFactory.getObjectInstance
+naming.factory.SendMailFactory.getObjectInstance contains an impossible cast from javax.mail.internet.MimeMessage to javax.mail.internet.MimePart
+[Findbugs]

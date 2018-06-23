@@ -1,0 +1,3 @@
+Bug 131391 – Provide Lightbulb Quick Fixes in build.properties source page
+Now that the api is available, we should add light bulb quick fixes to the
+build properties source page in the manifest editor.

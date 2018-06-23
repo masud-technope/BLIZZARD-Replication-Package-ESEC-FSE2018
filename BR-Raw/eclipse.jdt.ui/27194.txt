@@ -1,0 +1,4 @@
+Bug 27194 – StringMatcher bug - matches too much
+See [Bug 26998] for more information.
+ JDT's copies of this class need to
+change.

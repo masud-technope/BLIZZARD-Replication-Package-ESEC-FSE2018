@@ -1,0 +1,32 @@
+Bug 313519 – Suggest reference to the ECF system properties in the error message
+Build Identifier: 20100218-1602
+Maybe a duplicate of #299444, but since I did not debug eclipse to find out more, I am not sure.
+When using the update manager to get new plugins,it seems any download of a plugin jar greater than 4-5Mo leads to the following error (or similar) :
+!ENTRY org.eclipse.equinox.p2.engine 4 4 2010-05-19 09:31:11.383
+!MESSAGE An error occurred while collecting items to be installed
+!SUBENTRY 1 org.eclipse.equinox.p2.engine 4 0 2010-05-19 09:31:11.383
+!MESSAGE session context was:(profile=epp.package.jee, phase=org.eclipse.equinox.internal.p2.engine.phases.Collect, operand=, action=).
+!SUBENTRY 1 org.eclipse.equinox.p2.repository 4 1002 2010-05-19 09:31:11.383
+!MESSAGE Unable to read repository at http://downloads.sourceforge.net/eclipse-cs/com.atlassw.tools.eclipse.checkstyle_4.4.3.jar.
+!STACK 0
+java.io.InterruptedIOException: Timeout while reading input stream
+at org.eclipse.ecf.provider.filetransfer.util.PollingInputStream.read(PollingInputStream.java:161)
+at java.io.FilterInputStream.read(Unknown Source)
+at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer$1.performFileTransfer(AbstractRetrieveFileTransfer.java:161)
+at org.eclipse.ecf.filetransfer.FileTransferJob.run(FileTransferJob.java:74)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+During the whole update process, I can see the small jars properly downloaded.
+The "big" jars seem to be properly downloaded, but for an unknown reason, it fails at the very end of the download process.
+My company runs a proxy.
+It is set as "native" in eclipse.
+I tried to download one of the problematic jars with firefox.
+It works properly, but just before it finishes the download, it pauses for an unknown reason several seconds before finishing properly.
+The file is then readable and contains everything it is intended to contain.
+What I am supposing is the following: the proxy is blocking the last chunk of the file for an internal process (maybe an antivirus analysis), and p2 times out during that "tiny" interval.
+I suggest adding a timeout preference to handle an abnormally long pause from the proxy (or anything else)
+AFAIK, this problem affects last galileo release (fully updated) and helios M7 (last one I tried).
+It did not happen before a week or so: something must have changed in the proxy configuration but I do not think the issue should be dealt on the proxy since firefox handles it flawlessly.
+I file it as Major since I am unable to get any new meaningful plugin as of now.
+Reproducible: Sometimes
+Steps to Reproduce:
+Seems to happens when one of the downloaded jars are big enough.

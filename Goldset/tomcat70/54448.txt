@@ -1,0 +1,6 @@
+java/org/apache/catalina/deploy/NamingResources.java
+java/org/apache/catalina/startup/WebAnnotationSet.java
+java/org/apache/catalina/util/Introspection.java
+test/org/apache/catalina/startup/TestContextConfig.java
+test/org/apache/catalina/startup/TesterServletWithAnnotations.java
+webapps/docs/changelog.xml

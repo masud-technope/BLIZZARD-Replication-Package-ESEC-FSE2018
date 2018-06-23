@@ -1,0 +1,6 @@
+Bug 358823 – Checkbox wrongly enabled on Clean up preference page
+Created attachment 203971 [details]
+screenshot
+Win 7 and Eclipse 4.2 (I20110916-1615).
+In the past I have also seen this on Linux, but I think this used to work correctly on Win XP.
+See attached screenshot.

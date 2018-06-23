@@ -1,0 +1,6 @@
+Bug 207530 – [Collab] Cola - Real-Time Shared Editor does not support multi-character operations
+Cola is operating on single character insertions and deletions as atomic modification units.
+It does not support the insertion of multiple characters (via the clipboard) at once.
+The same applies to other multi-character operations such as deletion of text > single character by for instance marking a section of text and hitting "Delete/Backspace".
+If an editing session participant executes an unsupported modification of this kind on her/his local document, remote sites discard the modification upon receipt - essentially resulting in documents being out-of-sync.
+Cola should be extended/adapted to allow for insertions and deletions of texts greater than a single character in length.

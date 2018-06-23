@@ -1,0 +1,10 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/RemoveNodeXMLResolution.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/ExternalizeResolution.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/build/RuntimeInfoSection.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/RegistryBrowserLabelProvider.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/build/AddLibraryDialog.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/ExternalizeStringsOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/RegistryBrowser.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/AbstractPDEMarkerResolution.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java

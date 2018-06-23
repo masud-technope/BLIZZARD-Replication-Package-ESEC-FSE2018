@@ -1,0 +1,29 @@
+49922 – ApplicationFilterChain more than the same filter
+When i web.xml like this:
+<filter>
+<filter-name>Seam Filter</filter-name>
+<filter-class>org.jboss.seam.servlet.SeamFilter</filter-class>
+</filter>
+<filter-mapping>
+<filter-name>Seam Filter</filter-name>
+<url-pattern>/app/yofc/*</url-pattern>
+</filter-mapping>
+<filter-mapping>
+<filter-name>Seam Filter</filter-name>
+<url-pattern>*.seam</url-pattern>
+</filter-mapping>
+then ApplicationFilterChain have two same Seam Filter.
+this would cause some app error.
+Patch:
+void addFilter(ApplicationFilterConfig filterConfig) {
+for(ApplicationFilterConfig filter:filters)
+if(filter==filterConfig)
+return;
+if (n == filters.length) {
+ApplicationFilterConfig[] newFilters =
+new ApplicationFilterConfig[n + INCREMENT];
+System.arraycopy(filters, 0, newFilters, 0, n);
+filters = newFilters;
+}
+filters[n++] = filterConfig;
+}

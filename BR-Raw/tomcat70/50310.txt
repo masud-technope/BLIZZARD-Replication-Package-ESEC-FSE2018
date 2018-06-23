@@ -1,0 +1,10 @@
+50310 – Manager detailed status page does not display servlets
+To reproduce:
+1.
+Login to the Manager webapp
+2.
+Click "Server Status" and then "Complete Server Status" links.
+In TC6 the "Complete Server Status" page lists servlets for each deployed application.
+In the current TC7 it does not list them.
+Only summary information on each webapp is displayed.
+Looking at the StatusManagerServlet and StatusTransformer classes, the code to iterate over servlets is still there, but probably the JMX names have changed and are not working any more.

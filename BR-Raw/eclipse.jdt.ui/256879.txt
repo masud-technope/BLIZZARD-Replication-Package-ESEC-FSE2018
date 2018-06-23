@@ -1,0 +1,4 @@
+Bug 256879 – [package explorer] Assign Working Sets dialog should preserve check box setting
+N20081126-2000.
+The dialog to assign working sets has a check box (show only package explorer working sets).
+This setting is not preserved but it should be.

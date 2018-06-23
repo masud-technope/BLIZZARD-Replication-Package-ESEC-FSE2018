@@ -1,0 +1,26 @@
+Bug 277968 – [inline] Inline local variable gets type parameters on static methods wrong
+Build ID: I20090522-1710
+java.version=1.6.0_13
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+Steps To Reproduce:
+1.
+Create a class like:
+class InlineMethodParam
+{
+String foo()
+{
+String t = bar();
+return t;
+}
+static <T> T bar()
+{
+return null;
+}
+}
+2.
+Attempt to inline t.
+3.
+You'll get: return <String>bar();
+To be legal, you need return InlineMethodParam.<String>bar();.

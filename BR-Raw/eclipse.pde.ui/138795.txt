@@ -1,0 +1,15 @@
+Bug 138795 – Presentation names for features
+I am trying to display the translated feature presentation names, but it does not appear to be working.
+ Displaying plug-in names works fine though.
+ Here are the calls I am making:
+IFeatureModel model = PDECore.getDefault().getFeatureModelManager().findFeatureModel(((ITargetFeature)obj).getId());
+IFeature feature = model.getFeature();
+if (feature != null && isFullNameModeEnabled()) {
+return (((FeatureObject)feature).getTranslatableLabel());
+}
+return super.getText(obj);
+It seems that getTranslatableLabel always returns the %feature.name key from the feature.xml file.
+ I traced through the code and eventually AbstractModel.createNLResourceHelper() gets called, but it simply returns null.
+ Is this the expected behavior?  Can you recommend another way to get the translated feature name from the target platform by starting with the feature id or the associated ITargetFeature?
+I looked at the feature import process (import external feature from target platform), but it does not seem to honor the presentation name preference either.
+ I did not trace it, but I would guess it is the same or a similar problem.

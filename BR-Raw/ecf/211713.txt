@@ -1,0 +1,8 @@
+Bug 211713 – Suggested remoteservices API change: IRemoteServiceContainerAdapter.getRemoteServiceReferences should throw InvalidSyntaxException
+More information:
+In the spirit of other examples from the OSGi space, IRemoteServiceContainerAdapter.getRemoteServiceReferences should throw InvalidSyntaxException.
+The point is that this method accepts filters as Strings, so the implementation has to create a filter object from the string.
+If syntax errors in the filter are masked from the application, it makes them inherently harder to debug because the result of an invalid filter and a non-matching filter are the same.
+The Javadoc comment of IRemoteServiceContainerAdapter.getRemoteServiceReferences explicitly mentions the possibility of an InvalidSyntaxException but since it is not a RuntimeException, the interface has to state that this exception is possibly thrown.
+This problem did not occur with the DSO implementation of remoteservices, since the corresponding IRemoteFilter creation part seems to be unimplemented so far.
+(See org.eclipse.ecf.provider.remoteservice.generic.RegistrySharedObject.createRemoteFilterFromString).

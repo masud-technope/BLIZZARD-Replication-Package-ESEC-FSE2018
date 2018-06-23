@@ -1,0 +1,14 @@
+51736 – Make rpcTimeout configurable in BackupManager.
+Default rpcTimeout that BackupManager sets to AbstractReplicatedMap is 15000 msec.
+This is not configurable.
+When receiving MapMessage.MSG_START (and after a new member is added),
+publishEntryInfo is called for all sessions where primary and backup node are not included.
+And, the backup node is set to the session.
+When only one Tomcat starts in cluster, publishEntryInfo will be called for all sessions.
+As a result, the RPC message has the possibility of the timeout.
+When acquiring session from restarting Tomcat,
+warning of "Unable to retrieve remote object for key:XXX" is logged.
+And the session cannot be continued.
+I make rpcTimeout configurable in BackupManager.
+Additionally, if RPC message timeouted in AbstractReplicatedMap#broadcast, add warning message.
+Best Regards.

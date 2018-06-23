@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/XMLDefaultHandler.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target/TargetModel.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/feature/AbstractFeatureModel.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/site/AbstractSiteModel.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/Schema.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/ProductModel.java

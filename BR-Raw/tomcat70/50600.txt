@@ -1,0 +1,17 @@
+50600 – ConcurrentModificationException removing WAR via FarmWarDeployer
+The following exception was reported via $work
+WARNING: Exception processing cluster org.apache.catalina.ha.tcp.SimpleTcpCluster@68e4e358 background process
+java.util.ConcurrentModificationException
+at java.util.HashMap$HashIterator.nextEntry(HashMap.java:810)
+at java.util.HashMap$EntryIterator.next(HashMap.java:851)
+at java.util.HashMap$EntryIterator.next(HashMap.java:849)
+at org.apache.catalina.ha.deploy.WarWatcher.check(WarWatcher.java:87)
+at org.apache.catalina.ha.deploy.FarmWarDeployer.backgroundProcess(FarmWarDeployer.java:609)
+at org.apache.catalina.ha.tcp.SimpleTcpCluster.backgroundProcess(SimpleTcpCluster.java:596)
+at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1302)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1601)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1610)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1590)
+at java.lang.Thread.run(Thread.java:636)
+The root cause is removing the entry directly from the Map rather than from the iterator.
+I have a patch that I'll apply shortly.

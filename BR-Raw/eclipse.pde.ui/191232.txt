@@ -1,0 +1,4 @@
+Bug 191232 – Binary compatibility breakage: public method removed from EquinoxPluginsTab
+3.3 RC3
+The public method getDefaultStartLevel() got removed from the API class EquinoxPluginsTab.
+Even if this class is now deprecated it breaks binary compatibility.

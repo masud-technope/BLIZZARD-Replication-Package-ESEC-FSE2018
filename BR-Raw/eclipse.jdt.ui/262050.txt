@@ -1,0 +1,10 @@
+Bug 262050 – Unclear directions in New Java Project wizard
+Build ID: I20080617-2000
+Steps To Reproduce:
+1.
+File->New->Java Project.
+2.
+In the first panel, in the frame entitled "Contents", the option "Create project from existing source" should be renamed to "Create project files in specific directory."
+More information:
+I am suggesting this change because the new text more closely matches the function of this item: the project files are put in the selected directory, and code can be linked in from any location regardless of where the project files are.
+ You are not actually bound to put the source in the same directory as the project files.

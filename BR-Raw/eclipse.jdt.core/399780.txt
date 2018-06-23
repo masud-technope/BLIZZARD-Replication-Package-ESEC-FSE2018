@@ -1,0 +1,14 @@
+Bug 399780 – [1.8][compiler] Compiler should allow static methods and disallow synchronized methods in interfaces.
+BETA_JAVA8:
+Lambda spec part H:
+...
+An interface may also declare static methods, which work in much the same way as static methods in classes, except that they are not inherited.
+Often, an interface is the most appropriate place to declare methods that produce or manipulate objects of the interface type.
+An interface method that is neither default nor static is implicitly abstract.
+...
+So the following program should compile and does with 8b74:
+// ----
+interface I {
+static void doit() {}
+}
+// ---

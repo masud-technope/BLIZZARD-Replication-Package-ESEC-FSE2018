@@ -1,0 +1,13 @@
+providers/bundles/org.eclipse.ecf.provider.local/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.remoteservice/src/org/eclipse/ecf/remoteservice/IRemoteServiceContainerAdapter.java
+framework/bundles/org.eclipse.ecf.remoteservice.rpc/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.remoteservice.rest/src/org/eclipse/ecf/remoteservice/rest/client/RestClientContainer.java
+framework/bundles/org.eclipse.ecf.remoteservice/src/org/eclipse/ecf/remoteservice/IRemoteServiceCallPolicy.java
+providers/bundles/org.eclipse.ecf.provider.remoteservice/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.remoteservice.rpc/src/org/eclipse/ecf/remoteservice/rpc/client/RpcClientContainer.java
+providers/bundles/org.eclipse.ecf.provider.remoteservice/src/org/eclipse/ecf/provider/remoteservice/generic/RemoteServiceContainer.java
+framework/bundles/org.eclipse.ecf.remoteservice.rest/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.local/src/org/eclipse/ecf/internal/provider/local/container/LocalRemoteServiceContainer.java
+providers/bundles/org.eclipse.ecf.provider.r_osgi/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.remoteservice/src/org/eclipse/ecf/provider/remoteservice/generic/RegistrySharedObject.java
+providers/bundles/org.eclipse.ecf.provider.r_osgi/src/org/eclipse/ecf/internal/provider/r_osgi/R_OSGiRemoteServiceContainer.java

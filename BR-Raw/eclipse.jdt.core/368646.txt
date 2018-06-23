@@ -1,0 +1,34 @@
+Bug 368646 – [rename] rejects LocalVariable with initializer
+Build Identifier: 20110218-0911
+When invoking a rename refactoring programmatically with a proper IJavaElement as a parameter, the refactoring reports a fatal error "A local variable declaration or reference must be selected to activate this refactoring" in case of local variables with initializer.
+Reproducible: Always
+Steps to Reproduce:
+Build an AST from the snippet
+public class A {
+public void m(String strX) {
+String strB = strX;
+}
+}
+and find the VariableDeclarationFragment 'strB = strX'.
+Resolve the according IJavaElement (LocalVariable) by
+IVariableBinding binding = fragment.resolveBinding();
+IJavaElement element = binding.getJavaElement();
+and pass it to a rename refactoring
+RefactoringContribution contribution = RefactoringCore.getRefactoringContribution(IJavaRefactorings.RENAME_LOCAL_VARIABLE);
+RenameJavaElementDescriptor descriptor = (RenameJavaElementDescriptor) contribution.createDescriptor();
+descriptor.setJavaElement(element);
+descriptor.setNewName(name);
+descriptor.setUpdateReferences(true);
+RenameSupport.create(descriptor).openDialog(getShell());
+This will result in the fatal error stated above which is inappropriate since a proper IJavaElement was passed.
+This bug should be easy to fix: The debugger reveals that it is caused by the method
+RenameLocalVariableProcessor#initAST()
+where
+ASTNode name= NodeFinder.perform(fCompilationUnitNode, sourceRange);
+returns the VariableDeclarationFragment 'strB=strX' for the case above.
+The next statemet
+if (name.getParent() instanceof VariableDeclaration)
+fTempDeclarationNode= (VariableDeclaration) name.getParent();
+expects 'name' to be SimpleName (as a child of VariableDeclaration).
+This assumption is correct for a local variable without initializer only.
+There should also be a check whether 'name' is a VariableDeclarationFragment.

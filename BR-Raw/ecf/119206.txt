@@ -1,0 +1,9 @@
+Bug 119206 – Add 'event history' as hyperlinks to collab text chat output
+A problem with the shared editor in the collab example is that there is no history.
+ If a participant opens a shared editor the receiver does not have any record of that shared editor opening, and no way to 'replay' that event under there own control.
+The shared editor in the ECF collab example can use the following features:
+1) The display of editor opening and editor selection events in the chat text output (as hyperlinks)
+2) The ability to have the receiver click on the hyperlinks and to locally (and/or remotely) 'replay' the event.
+3) Allow the receiver to specify (as a preference) whether the received events will be immediately executed (as the shared editor is now) OR not immediately executed by presented in the text chat history
+4) Provide some additional UI for specifying what events (and associated resources) to share (e.g.
+key board?)

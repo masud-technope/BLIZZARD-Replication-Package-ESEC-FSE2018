@@ -1,0 +1,11 @@
+java.util.TimSort.mergeLo
+java.util.TimSort.mergeAt
+java.util.TimSort.mergeCollapse
+java.util.TimSort.sort
+java.util.Arrays.sort
+java.util.ArrayList.sort
+java.util.Collections.sort
+org.apache.tomcat.jdbc.pool.interceptor.SlowQueryReport.removeOldest
+org.apache.tomcat.jdbc.pool.interceptor.SlowQueryReport.getQueryStats
+org.apache.tomcat.jdbc.pool.interceptor.SlowQueryReport.reportQuery
+org.apache.tomcat.jdbc.pool.interceptor.AbstractQueryReport$StatementProxy.invoke

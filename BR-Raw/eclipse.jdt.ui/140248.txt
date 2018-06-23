@@ -1,0 +1,4 @@
+Bug 140248 – JUnit4 support should be disabled if launched with 1.4 VM
+3.2 RC2
+The JUnit4 support does not work if the workbench is launched with a 1.4 VM.
+We should disable the JUnit4 support in the UI in that scenario.

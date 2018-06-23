@@ -1,0 +1,14 @@
+Bug 42984 – No way to set working directory, VM args for Ant processes
+When running an ant script in a different JRE, I cannot seem to select the
+working directory for that JVMs process - the following script always prints out
+the eclipse install directory.
+ One would think that setting the "Base
+Directory" field on the Main tab of Run ant dialog would set the working
+directory as well as the ${basedir} variable - though I can't see a need for
+overriding the basedir variable, ant ALWAYS defines ${basedir} as the directory
+containing the script you are running.
+<project default="all">
+<target name="all">
+<echo message="user.dir: ${user.dir}"/>
+</target>
+</project>

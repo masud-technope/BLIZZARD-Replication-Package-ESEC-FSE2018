@@ -1,0 +1,30 @@
+58232 – PojoMethodMapping needed - Programatically adding ServerEndpointConfig not possible
+Hello,
+I'm currently trying to register my own WebsocketEndpoint programatically, i.e.
+not using the annotations.
+JSR-356 says this is possible by using the ServerContainer which can be obtained from the ServletContext (see section 6.4).
+The ServerContainer provides two methods that can be used to add a new endpoint.
+I do not want to use the one that takes a Class<?>, but I need to use the one that takes a ServerEndpointConfig.
+This is because I want to add some UserProperties to the ServerEndpointConfig before it is added - and I cannot do that when using the method that takes the Class<?>.
+When I'm doing this and try it, I get the following exception:
+Aug 11, 2015 2:23:52 PM org.apache.coyote.AbstractProtocol$AbstractConnectionHandler process
+SEVERE: Error reading request, ignored
+java.lang.NullPointerException
+at org.apache.tomcat.websocket.pojo.PojoEndpointBase.doOnOpen(PojoEndpointBase.java:59)
+at org.apache.tomcat.websocket.pojo.PojoEndpointServer.onOpen(PojoEndpointServer.java:70)
+at org.apache.tomcat.websocket.server.WsHttpUpgradeHandler.init(WsHttpUpgradeHandler.java:138)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:696)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1521)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1478)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+at java.lang.Thread.run(Thread.java:745)
+When looking at the source of Tomcat, it seems that the method taking the Class<?> adds a userProperty to the ServerEndpointConfig, which contains an instance of PojoMethodMapping.
+This is not done when directly calling the method that takes the ServerEndpointConfig - and exactly that PojoMethodMapping seems to be missing in my case.
+As PojoMethodMapping is not defined by the JSR, but is a Tomcat class, I  would like to not instantiate it myself, but I think the instantiation of PojoMethodMapping should be done in Tomcat in the method taking the ServerEndpointConfig, as the one with the Class<?> parameter calls that one anyway.
+I patched tomcat locally and it seems to work for me after that adjustment.
+I therefore propose that this adjustment be integrated into trunk.
+I will upload my changes to GitHub right away and add a comment with the link here.
+Thanks,
+Basti

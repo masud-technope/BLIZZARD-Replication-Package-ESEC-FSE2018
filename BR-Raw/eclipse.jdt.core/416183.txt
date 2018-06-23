@@ -1,0 +1,14 @@
+Bug 416183 – [1.8][compiler][null] Overload resolution fails with null annotations
+// --
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+public class X<T> {
+T foo(@NonNull T t) {
+return t;
+}
+public static void main(String[] args) {
+X<String> xs = new X<String>();
+xs.foo("");
+}
+}
+// without null analysis enabled, compiles ok.

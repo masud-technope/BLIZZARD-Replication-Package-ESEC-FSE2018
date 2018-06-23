@@ -1,0 +1,8 @@
+Bug 45356 – [typing] IndentAction: Pressing Tab at document begin gives IAE
+Build 200310150800:
+Having a multi-line comment starting at document offset 0, the caret as well
+at offset 0 and pressing tab, the indent action gives an IAE.
+Reason: The constructor of status called at IndentAction#run() requires a non-
+null message parameter.
+The exception that was triggered in the first place
+results from a taking the previous line of the first one.

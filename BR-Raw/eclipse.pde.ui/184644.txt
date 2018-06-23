@@ -1,0 +1,3 @@
+Bug 184644 – [Feature][Editor] Sorting is incorrect
+On the 'Plug-ins' and 'Included Features' of the feature editor, sorting is incorrect.
+'org.eclipse.pde.source' appears before 'org.eclipse.pde'

@@ -1,0 +1,6 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/DebugUIMessages.properties
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/logicalstructures/LogicalStructuresMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/DebugUIMessages.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaDetailFormattersManager.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/logicalstructures/LogicalStructuresMessages.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/logicalstructures/JavaLogicalStructure.java

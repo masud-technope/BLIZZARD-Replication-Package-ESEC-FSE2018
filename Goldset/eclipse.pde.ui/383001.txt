@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/ExtensionsErrorReporter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/BundleErrorReporter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDEManager.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/pderesources.properties

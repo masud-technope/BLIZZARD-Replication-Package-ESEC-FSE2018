@@ -1,0 +1,66 @@
+Bug 94956 – NPE when creating extension point schema with PDE wizard
+hello,
+I wanted to create a new extension point using the wizard to create a new
+extension point schema file.
+I filled the extenion point Id and name, plugin id
+and container.
+and cliqued finished to get the follonwing NPE :
+java.lang.NullPointerException
+at
+org.eclipse.pde.internal.ui.wizards.extension.BaseExtensionPointMainPage$8.execute(BaseExtensionPointMainPage.java:305)
+at
+org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(WorkspaceModifyOperation.java:98)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1714)
+at
+org.eclipse.ui.actions.WorkspaceModifyOperation.run(WorkspaceModifyOperation.java:110)
+at
+org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:346)
+at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:291)
+at org.eclipse.jface.wizard.WizardDialog.run(WizardDialog.java:830)
+at
+org.eclipse.pde.internal.ui.wizards.extension.NewSchemaFileMainPage.finish(NewSchemaFileMainPage.java:51)
+at
+org.eclipse.pde.internal.ui.wizards.extension.NewSchemaFileWizard.performFinish(NewSchemaFileWizard.java:65)
+at org.eclipse.jface.wizard.WizardDialog.finishPressed(WizardDialog.java:676)
+at org.eclipse.jface.wizard.WizardDialog.buttonPressed(WizardDialog.java:349)
+at org.eclipse.jface.dialogs.Dialog$2.widgetSelected(Dialog.java:556)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:89)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:82)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:842)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:2894)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2527)
+at org.eclipse.jface.window.Window.runEventLoop(Window.java:803)
+at org.eclipse.jface.window.Window.open(Window.java:781)
+at org.eclipse.ui.actions.NewWizardAction.run(NewWizardAction.java:181)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:996)
+at
+org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:538)
+at
+org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:488)
+at
+org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:400)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:82)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:842)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:2894)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2527)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1570)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:1534)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:306)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:143)
+at org.eclipse.ui.internal.ide.IDEApplication.run(IDEApplication.java:103)
+at
+org.eclipse.core.internal.runtime.PlatformActivator$1.run(PlatformActivator.java:228)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:344)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:156)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.core.launcher.Main.invokeFramework(Main.java:315)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:268)
+at org.eclipse.core.launcher.Main.run(Main.java:942)
+at org.eclipse.core.launcher.Main.main(Main.java:926)
+This container validation on the GUI does no seem to work, when I choose a
+project it displays the full path of the project instead of the name.
+And sometimes allows me to click finish or not without real consistency.
+SeB.

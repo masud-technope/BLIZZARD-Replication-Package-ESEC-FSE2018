@@ -1,0 +1,6 @@
+Bug 136372 – Remove transient 3.2 JRE container EE formats
+See bug 136146.
+When a JRE container is bound to an execution environment (new in 3.2), the 3.1.x tooling will not be able to correctly resolve a JRE.
+If a team uses mixed development environments (i.e.
+a mix of 3.1 and 3.2 clients) to develop the same Java project, there could be problems here.
+We can provide a fix to 3.1.x to allow the tooling to be compatible.

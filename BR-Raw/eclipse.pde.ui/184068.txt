@@ -1,0 +1,2 @@
+Bug 184068 – PDE Tooling does not support Import of own Exports
+http://www.osgi.org/blog/2007/04/importance-of-exporting-nd-importing.html

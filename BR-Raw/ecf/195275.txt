@@ -1,0 +1,21 @@
+Bug 195275 – can't connect to MSN
+can't connect to msn with an email address not ended with "@hotmail.com".
+i have this log :
+!ENTRY org.eclipse.core.jobs 4 2 2007-07-03 16:35:05.058
+!MESSAGE An internal error occurred during: "Container connect".
+!STACK 0
+java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+at java.lang.String.substring(String.java:1938)
+at org.eclipse.ecf.internal.provider.msn.MSNID.<init>(MSNID.java:33)
+at org.eclipse.ecf.internal.provider.msn.MSNNamespace.createInstance(MSNNamespace.java:26)
+at org.eclipse.ecf.internal.provider.msn.MSNRosterEntry.<init>(MSNRosterEntry.java:53)
+at org.eclipse.ecf.internal.provider.msn.MSNContainer$3.contactAdded(MSNContainer.java:175)
+at org.eclipse.ecf.protocol.msn.ContactList.fireContactAdded(ContactList.java:73)
+at org.eclipse.ecf.protocol.msn.ContactList.addContact(ContactList.java:133)
+at org.eclipse.ecf.protocol.msn.ContactList.internalAddContact(ContactList.java:118)
+at org.eclipse.ecf.protocol.msn.NotificationSession.retrieveBuddyList(NotificationSession.java:157)
+at org.eclipse.ecf.protocol.msn.NotificationSession.login(NotificationSession.java:114)
+at org.eclipse.ecf.protocol.msn.MsnClient.connect(MsnClient.java:147)
+at org.eclipse.ecf.internal.provider.msn.MSNContainer.connect(MSNContainer.java:299)
+at org.eclipse.ecf.ui.actions.AsynchContainerConnectAction$AsynchActionJob.run(AsynchContainerConnectAction.java:127)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

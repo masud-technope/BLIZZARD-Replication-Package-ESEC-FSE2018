@@ -1,0 +1,1 @@
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/Activator.java

@@ -1,0 +1,6 @@
+Bug 146711 – PDE > Externalize Strings tool to allow folders to be specified in Localization field
+Using Eclipse 3.2 RC7
+When using the PDE > Externalize Strings tool it would be useful if the Localization field allowed you to enter a path structure as well as a name for the properties file, such as "OSGI-INF/l10n/bundles".
+ Of course PDE would have to take care of creating the folder structure when creating the properties file.
+ It might also be useful to provide a Browse...
+button to let the user navigate into an existing folder structure.

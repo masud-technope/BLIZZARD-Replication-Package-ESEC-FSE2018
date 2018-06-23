@@ -1,0 +1,19 @@
+Bug 346116 – Java files open when inspecting the code, instead of Class file
+Created attachment 195885 [details]
+testcase
+I found a regression from 342 to 362, similar to what bug# 297039 describes.
+I made sure that I have the changes for bug# 297039 in my environment when I use 362.
+The scenario:
+When I debug the code for my application I see that the java files is open instead of the class file and I can't inspect the content of the 'this' variable.
+I get an error saying "Unable to evaluate the selected expression: ...."
+The setup:
+I have two projects, JavaPrj (a Java project) contains my code and it makes use of a class inside of jar.
+The jar is located inside of SimplePrj\lib (a simple project).
+The jar contains the source and the binary code.
+JavaPrj makes a reference to the jar through the Java Build Path -> Libraries > Add Jars...
+button
+The Run: (using the attach testcase)
+- Add a breakpoint to RunMe.java at the initUtil method.
+- Debug the application
+- When the Eclipse stops at the breakpoint step inside of u.putAttributes
+- Once inside try to inspect 'this'

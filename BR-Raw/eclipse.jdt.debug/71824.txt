@@ -1,0 +1,12 @@
+Bug 71824 – Allow choice of stratum when stepping
+The user should be able to change the default stratum being used, based on the
+available strata of a reference type.
+Setting the stratum being displayed
+should set the default stratum for the target (not just the type).
+The user
+should also have the choice of reverting to "default" stratum per type.
+This
+could be shown as a cascade context menu in the debug view for
+IJavaStackFrames.
+The action should only appear if there is > 1 available
+strata.

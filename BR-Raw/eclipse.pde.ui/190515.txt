@@ -1,0 +1,1 @@
+Bug 190515 – "Add to Java Search" - nothing in progress dialog

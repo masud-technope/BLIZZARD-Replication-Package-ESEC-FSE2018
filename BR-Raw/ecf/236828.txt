@@ -1,0 +1,2 @@
+Bug 236828 – [Discovery] Composite container may register previously registered services with new providers
+If a discovery provider is dynamically added the composite discovery container may register all previously registered services with this new provider

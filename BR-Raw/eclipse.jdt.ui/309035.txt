@@ -1,0 +1,5 @@
+Bug 309035 – [JUnit] TestCaseElement does not handle ignored status correctly
+According to Javadoc, ITestElement.getTestResult(boolean) should return ITestElement.Result.IGNORED for ignored/skipped tests.
+But the current implementation returns a result of OK and only sets the 'ignored' property in TestCaseElement, which is internal API.
+Optimally, the implementation of TestCaseElement.getTestResult(boolean) should be fixed to return an IGNORED result.
+Failing that due to backward compatibility concerns, isIgnored() should be added to the interface.

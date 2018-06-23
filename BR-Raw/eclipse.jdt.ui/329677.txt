@@ -1,0 +1,11 @@
+Bug 329677 – [type hierarchy] view must honor package name abbreviation setting
+Created attachment 182620 [details]
+screenshot
+I use package name abbreviation to make it easier to parse information in Java views, and to reduce clutter.
+But Type Hierarchy view does not respect this setting...
+this is irritating
+(Call Hierarchy works correctly)
+Steps
+- Enable 'Show qualified type names' from the Type Hierarchy view menu
+- Enable package name abbreviation
+- Open type hierarchy on something

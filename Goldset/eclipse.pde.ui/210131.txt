@@ -1,0 +1,13 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDERegistryStrategy.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/JavadocLocationManager.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDEExtensionRegistry.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDERegistryStrategy.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/SourceLocationManager.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/TargetPlatformHelper.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/search/ExtensionPluginSearchScope.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/search/PluginSearchScope.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/IntroSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/LaunchConfigurationHelper.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/TargetSourceTab.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/RenameExtensionPointProcessor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/product/ProductIntroWizardPage.java

@@ -1,0 +1,6 @@
+57326 – AsyncContextImpl doesn't allow AsyncListener to re-register themselves when firing onStartAsync
+According to the official Java EE Javadoc (cf.
+https://docs.oracle.com/javaee/7/api/javax/servlet/AsyncListener.html#onStartAsync%28javax.servlet.AsyncEvent%29), AsyncListeners should be allowed to re-register themselves when the event "onStartAsync" is started : "This AsyncListener will not receive any events related to the new asynchronous cycle unless it registers itself (via a call to AsyncContext.addListener(javax.servlet.AsyncListener)) with the AsyncContext that is delivered as part of the given AsyncEvent.".
+In tomcat 7.0.x, the actual implementation prevents this behavior since the listeners list is cleared *after* firing the event (cf.
+AdyncContextImpl.java:366).
+If the list was cleared before firing the event, listeners would be able to re-register themselves if needed.

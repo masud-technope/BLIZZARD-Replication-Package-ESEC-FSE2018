@@ -1,0 +1,7 @@
+Bug 218878 – [prov] Need to extend product definition
+We need to extend the product file definition to include:
+- per platform config.ini
+- product version (bug 218672)
+There are multiple copies of the product file parser which will need to be modified:
+- pde parser
+- p2 parser

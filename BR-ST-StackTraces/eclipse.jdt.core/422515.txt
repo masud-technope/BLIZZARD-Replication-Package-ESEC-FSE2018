@@ -1,0 +1,16 @@
+org.eclipse.jdt.internal.compiler.problem.ProblemReporter.needImplementation
+org.eclipse.jdt.internal.compiler.codegen.CodeStream.generateOuterAccess
+org.eclipse.jdt.internal.compiler.codegen.StackMapFrameCodeStream.generateOuterAccess
+org.eclipse.jdt.internal.compiler.ast.SingleNameReference.generateCode
+org.eclipse.jdt.internal.compiler.ast.ArrayReference.generatePostIncrement
+org.eclipse.jdt.internal.compiler.ast.PostfixExpression.generateCode
+org.eclipse.jdt.internal.compiler.ast.Expression.generateCode
+org.eclipse.jdt.internal.compiler.ast.Block.generateCode
+org.eclipse.jdt.internal.compiler.ast.LambdaExpression.generateCode
+org.eclipse.jdt.internal.compiler.ast.LambdaExpression.generateCode
+org.eclipse.jdt.internal.compiler.ClassFile.addSpecialMethods
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode
+org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.generateCode
+org.eclipse.jdt.internal.compiler.Compiler.process
+org.eclipse.jdt.internal.compiler.ProcessTaskManager.run

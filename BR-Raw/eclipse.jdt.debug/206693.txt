@@ -1,0 +1,5 @@
+Bug 206693 – JRE location looks wrong after installing j9 using ee description file
+I configured an installed JRE for j9, as described here:
+http://wiki.eclipse.org/index.php/J9
+I simply copied the ee description from the wiki, and pasted into c:\vm\j9\bin.
+However, the "Location" column on the Installed JREs preference page gives the JRE location as "c:\eclipse\${ee.home}\.."  In my case "c:\eclipse" is the PWD, so I suspect somewhere you have created a relative path "${ee.home}\..", which java.io.File then resolves based on the PWD.

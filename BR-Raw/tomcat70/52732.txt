@@ -1,0 +1,7 @@
+52732 – An incomplete fix for the resource leak bug in ExpressionFactory.java
+The fix revision 1043157 was aimed to remove an resource leak bug on the BufferedReader object "br " (created in line 231), the InputStream  object "is" (created in line 222 or 224) in the method "getClassNameServices()" of the file
+"/tomcat/trunk/java/javax/el/ExpressionFactory.java" , but it is incomplete.
+There are some problems:
+1.
+when "br" is not created successfully but the temp InputStreamReader is created successfully at line 231, the temp InputStreamReader will be leaked.
+The best way to close such resource objects is putting such close operations for each resource object in the finaly block of a try-catch-finally structure.

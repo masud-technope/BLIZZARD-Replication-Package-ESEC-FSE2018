@@ -1,0 +1,4 @@
+43080 – Suspicious url pattern warning logged to wrong webapp
+"Suspicious url pattern" warnings are logged to the wrong webapp, not the one
+actually using them.
+These log events are coming from SecurityCollection.java.

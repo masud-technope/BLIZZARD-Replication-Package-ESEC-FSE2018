@@ -1,0 +1,6 @@
+53654 – JSP file is always recompiled for using file based TLD URL
+Now, in Jasper codes, it only supports jar URL and relative URL, that may be enough for common web applications.
+While, it is possible that the third-party uses other protocol URL, like file: protocol based URL.
+So, the JSP files will be always recompiled for each access for the target page.
+The codes are located in Compiler.isOutDated() method.
+Is it possible to provide more generic handlering for the URL ?

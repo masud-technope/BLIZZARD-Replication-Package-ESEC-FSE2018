@@ -1,0 +1,7 @@
+48517 – @SuppressWarnings("unchecked") - document and reduce scope
+Created attachment 24826 [details]
+Patch - see description
+@SuppressWarnings("unchecked") is occasionally necessary to stop the compiler complaining unnecessarily.
+The attached patch ensures that all the existing tags have comments explaining why they are OK - or necessary (because the API is not generic).
+It also restricts the scope of the annotation so that it only applies to the specific warning.
+The intention is to make code maintenance easier and safer.

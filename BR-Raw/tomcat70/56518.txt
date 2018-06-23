@@ -1,0 +1,76 @@
+56518 – NIO async servlet limit latch leak
+Created attachment 31613 [details]
+the sample webapp to reproduce the bug
+we have encouter this bug in a real product webapp.
+I have tested this in linux x86, oracle jdk jdk1.7.0_55, tomcat 7.0.53 and tomcat 8.0.5.
+CONFIG:
+we change HTTP Connector to NIO in "server.xml",
+e.g.
+protocol="org.apache.coyote.http11.Http11NioProtocol"
+WEBAPP LOGIC:
+the simplified situation:
+1.
+call "req.startAsync()" to start async serlvet, then execute the async logic in our user thread.
+2.
+sometimes the user thread be interrupted (by some timeout logic of our code).
+3.
+some user code call "resp.flushBuffer()" to send response to client
+PROBLEM:
+in the situation descibed above, the "LimitLatch.countDown()" is not called.
+when the connections limit latch count up to max ( default "10000" ),
+tomcat DO not accept any connection, all incoming client hangs.
+REPRODUCER:
+in a clean tomcat-7.0.53 installation:
+1.
+change the default "server.xml" Connector config.
+(1) change protocol="org.apache.coyote.http11.Http11NioProtocol"
+(2) Optional, add maxConnections="100" to reproduce the bug faster.
+2.
+copy the sample webapp in the attachment to "webapps/ROOT.war"
+3.
+start tomcat.
+4.
+make plenty request to "/async.html",
+for (( i = 0; i < 15000; ++i )) ; do echo $i; curl localhost:8080/async.html; done
+each request is likely cause a limit latch leak.
+when the requests reaches maxConnections (100 as we set above) or some more,
+the client ( curl ) hangs.
+TECHNIC-DETAILS:
+after some debug, wo found these:
+1.
+when the thread was interrupted, when the user code call "resp.flushBuffer()",
+the NioChannel was Closed by jdk NIO code, and a ClosedByInterruptException is thrown.
+2.
+when the channel closed, the SelectionKey was removed by Poller thread,
+stack trace:
+Daemon Thread [http-nio-8080-ClientPoller-0] (Suspended)
+owns: Object  (id=3346)
+owns: HashSet<E>  (id=3354)
+owns: EPollSelectorImpl  (id=82)
+owns: Collections$UnmodifiableSet<E>  (id=3355)
+owns: Util$2  (id=3356)
+SocketChannelImpl(AbstractSelectableChannel).removeKey(SelectionKey) line: 114
+EPollSelectorImpl(AbstractSelector).deregister(AbstractSelectionKey) line: 168
+EPollSelectorImpl.implDereg(SelectionKeyImpl) line: 162
+EPollSelectorImpl(SelectorImpl).processDeregisterQueue() line: 131
+EPollSelectorImpl.doSelect(long) line: 69
+EPollSelectorImpl(SelectorImpl).lockAndDoSelect(long) line: 69
+EPollSelectorImpl(SelectorImpl).select(long) line: 80
+NioEndpoint$Poller.run() line: 1163
+Thread.run() line: 662
+3.
+when we call "ctx.complete()", it run to "org.apache.tomcat.util.net.NioEndpoint.processSocket(NioChannel, SocketStatus, boolean)", code is below:
+public boolean processSocket(NioChannel socket, SocketStatus status, boolean dispatch) {
+try {
+KeyAttachment attachment = (KeyAttachment)socket.getAttachment(false);
+if (attachment == null) {
+return false;
+}
+since the SelectionKey was removed, the "attachment" returns null.
+the logic is break, "AbstractEndpoint.countDownConnection()" is not called, a limit latch leak happens.
+WORK-AROUND:
+some work-around:
+1.
+switch to the stable BIO connector.
+2.
+avoid call "resp.flushBuffer()" in the user thread.

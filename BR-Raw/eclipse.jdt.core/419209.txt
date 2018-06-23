@@ -1,0 +1,9 @@
+Bug 419209 – [1.8] Repeating container annotations should be rejected in the presence of annotation it contains
+The spec says:
+It is a compile-time error if a declaration is annotated with any annotations of
+a repeatable annotation type T and more than one annotation of the containing
+annotation type of T.
+Assuming FooContainer is itself a repeatable annotation type with a containing
+annotation type of FooContainerContainer, one might expect the following code to be legal:
+@Foo(1) @FooContainer({@Foo(2)}) @FooContainer({@Foo(3)}) class A {}
+But this code is allowed by eclipse compiler.

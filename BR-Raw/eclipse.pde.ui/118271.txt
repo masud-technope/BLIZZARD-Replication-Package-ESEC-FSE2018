@@ -1,0 +1,4 @@
+Bug 118271 – SchemaEditor - enhancements
+To do list:
+- handling double-clicks on schema includes referencing external schemas
+- opening element references from external schemas (and selecting them on the appropriate page)

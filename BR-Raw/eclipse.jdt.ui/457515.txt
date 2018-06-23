@@ -1,0 +1,26 @@
+Bug 457515 – eclipse JUnit runner hangs when @Parameters name attribute contains a newline
+Problem can be reproduced using a simplified, "stringified" version of the example in the junit docs:  https://github.com/junit-team/junit/wiki/Parameterized-tests
+Attached screenshot shows what the hang screen looks like.
+ No errors in the error log.
+ Test works fine on the command line.
+```
+@RunWith(Parameterized.class)
+public class BugDemoTest {
+@Parameters(name = "{index}: fib({0})={1}")
+public static Iterable<Object[]> data() {
+return Arrays.asList(new Object[][] { { "0", "0" }, { "1", "1" },
+{ "2", "1" }, { "3", "2" }, { "4", "3" }, { "5", "5\n" },  // any newline in any one of these will cause the debugger to hang indefinitely
+{ "6", "8" } });
+}
+private String input;
+private String expected;
+public BugDemoTest(String input, String expected) {
+this.input = input;
+this.expected = expected;
+}
+@Test
+public void test() {
+assertEquals(expected, new BugDemo().compute());
+}
+}
+```

@@ -1,0 +1,9 @@
+Bug 430451 – Tests fail in org.eclipse.jdt.compiler.tool.tests.CompilerInvocationTests with JRE 1.8
+Created attachment 240928 [details]
+Patch to fix failing tests
+The following tests are failing with JRE 1.8.
+They fail because the in 1.8, Iterable.toString has a surrounding "[]".
+The patch fixes the failing ones:
+test002_dash_d_option
+test003_dash_d_option
+test005_dash_d_option_custom_file_manager

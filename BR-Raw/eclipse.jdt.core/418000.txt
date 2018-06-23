@@ -1,0 +1,2 @@
+Bug 418000 – [1.8][compiler] Support language model API for repeated annotations
+We must support the extension to the language model API - specifically javax.lang.model.AnnotatedConstruct.getAnnotationsByType(Class<A>) - in order to support annotation processing of repeated annotations.

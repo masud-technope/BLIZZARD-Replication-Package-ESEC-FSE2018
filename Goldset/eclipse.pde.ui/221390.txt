@@ -1,0 +1,17 @@
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/model/tests/ComponentManifestTests.java
+apitools/org.eclipse.pde.api.tools.ui/icons/full/wizban/profile_wiz.png
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/wizards/ApiProfileWizardPage.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/CoreMessages.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/provisional/IApiProfile.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/wizards/WizardMessages.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/util/Util.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/IApiXmlConstants.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/coremessages.properties
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/ApiUIPlugin.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/ApiProfile.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/IApiToolsConstants.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/provisional/Factory.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/ApiProfileManager.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/wizards/wizardmessages.properties
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/model/tests/TestSuiteHelper.java
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/util/tests/ApiProfileManagerTests.java

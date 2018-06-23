@@ -1,0 +1,20 @@
+Bug 175756 – PDE imports signatures with source
+Build ID: I20070209-1006
+Steps To Reproduce:
+Steps To Reproduce:
+1.
+File->import->plugins and fragments
+2.
+Import projects with source folders
+3.
+Choose to import org.eclipse.update.configurator or another
+4.
+In the META-INF dir you will find ECLIPSE.RSA and ECLIPSE.SF files.
+5.
+Export this into the sdk (replace existing plugin) and restart
+6.
+Help->software updates->Manage Configuration.
+7.
+No sites will be listed under Eclipse SDK in left panel.
+More information:
+In About Eclipse SDK Plug-ins dialog will have ? in signed column.

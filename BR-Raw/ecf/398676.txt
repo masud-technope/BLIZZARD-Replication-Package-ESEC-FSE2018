@@ -1,0 +1,4 @@
+Bug 398676 – Remove system property to change default protocol
+Currently, there is a system property that allows the TCPServerSOContainer.DEFAULT_PROTOCOL and the SSLServerSOContainer.DEFAULT_PROTOCOL to be set/reset via system property.
+ These two defaults (i.e.
+"ecftcp" and "ecfssl" as the default protocols), cannot and should not be changed (via system property or any other way), so the system properties are not needed in this case.

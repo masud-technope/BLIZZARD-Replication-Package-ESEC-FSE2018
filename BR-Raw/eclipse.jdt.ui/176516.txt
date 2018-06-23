@@ -1,0 +1,14 @@
+Bug 176516 – [build path] Compiler Compliance should follow Execution Environment
+From bug 134257 comment 2:
+When a Java project is bound to an EE (via JRE container), changing
+the EE should update the compliance setting.
+For example, I had a project bound
+to J2SE1.5, and later changed it to J2SE1.4.
+The compliance settings remained
+at 5.0 - I was confused when I could not run programs on a 1.4 VM due to
+incompatible settings (i.e.
+running 1.5 code on 1.4 VM).
+I expected that the
+compliance settings would have updated automatically.
+Best would be a setting on the Compiler properties page that links the compiler compliance to the EE of the project (caveat: there's currently no default EE for a workspace).
+The problem is again that JDT/Core does not know about EEs, so JDT/UI would have to listen to classpath changes to update the compiler settings.

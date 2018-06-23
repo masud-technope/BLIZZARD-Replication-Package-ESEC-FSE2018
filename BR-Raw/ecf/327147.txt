@@ -1,0 +1,3 @@
+Bug 327147 – [r-OSGi][RemoteSrvs] Smart Serialization fails for Object[]s of non-Serializable objects
+Class Foo which does not implement Serializable successfully gets smart serialized by r-OSGi (if no native code is present).
+However, smart serialization fails for Foo[].

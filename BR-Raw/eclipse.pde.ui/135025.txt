@@ -1,0 +1,8 @@
+Bug 135025 – improve the import plugins/fragments filter
+Eclipse 3.2M6
+When you try to import plugins/fragments you are provided with a filter where you can type the plugin name or wild cards like "*".
+The problem is when using wildcards the plugins from the list are only selected and not filtered out.
+If you have 300 plugins and you type "*ui" as the filter, you still have to scroll the list of 300 plugins in order to find the ones that match your filter.
+Besides being hard to use it is inconsistent with other filters provided by PDE.
+For example, when you want to add a dependency to your plugin, when you type "*ui" all plugins that do not match the filter are removed from the list.
+This is the behavior I would expect from the import wizard.

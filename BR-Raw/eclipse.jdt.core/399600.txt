@@ -1,0 +1,12 @@
+Bug 399600 – ASTConverter#retrieveEndOfRightParenthesisPosition fails for certain cases
+From bug 391895, comment #29:
+The *existing* method ASTConverter#retrieveEndOfRightParenthesisPosition
+is totally bogus and will fail for a test case like:
+public class X {
+static void foo(@ReadOnly("Blah") int z) {
+}
+}
+@interface ReadOnly {
+String value() default "Blah";
+}
+The method must discount balanced parentheses.

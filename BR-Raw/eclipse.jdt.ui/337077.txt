@@ -1,0 +1,39 @@
+Bug 337077 – [move member type] Move Type to New File ignores code template when inner class has class level comments
+Build Identifier: Build id: 20100917-0705
+If I have an inner-class and it has javadoc in it.
+I select the inner class, go to Refactor, Move Type to New File, and the new file is created.
+Looking at the new file though, you'll see that the code template for Comments -> Files is ignored, and my document starts immediately with the package declaration
+Reproducible: Always
+Steps to Reproduce:
+1.
+Go to Window | Preferences, Java\Code Style\Code Templates.
+2.
+Define a pattern for Comments\Files
+3.
+Create a class containing an inner class.
+Be sure to create a comment at the class level for the inner class.
+E.g.
+/**
+* Hello World
+*
+*/
+public class Foo
+{
+/**
+* Goodbye World
+*/
+public static class Bar
+{
+}
+}
+4.
+Select the inner class element, and go to Refactor | Move Type to New File.
+Have a look at the new file.
+It's missing your file comment at the beginning of the file prior to package declaration.
+5.
+Undo your refactor
+6.
+Remove the comment for Bar.
+Try refactoring again.
+This time Bar will have the proper file level comment prior to the package declaration.
+I haven't gone as far as checking other code template stuff, but perhaps there's problems with other templates too?

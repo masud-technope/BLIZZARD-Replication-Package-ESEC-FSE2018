@@ -1,0 +1,4 @@
+Bug 368052 – Chats view should make its intent clear
+When the chats view is opened, there is no hint to what you can do there.
+It is just an empty view.
+Please provide a simple text in the body of the view to state its intent.

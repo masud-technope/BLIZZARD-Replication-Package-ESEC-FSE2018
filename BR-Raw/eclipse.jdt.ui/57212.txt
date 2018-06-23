@@ -1,0 +1,7 @@
+Bug 57212 – Views should adapt their orientation depending on the view size
+Users can now change the orientation of a fast view and we should be smart to
+adapt the inner view orientation as well.
+see the TestRunnerViewPart for an example.
+This needs to be fixed in both the Call hierarchy and the type hierarchy.
+We should consider whether we add an "automatic" layout mode to the menu and
+make it the default.

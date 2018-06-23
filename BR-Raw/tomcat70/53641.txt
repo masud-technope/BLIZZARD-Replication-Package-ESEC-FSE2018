@@ -1,0 +1,4 @@
+53641 – Wrong websocket's subprotocol implementation
+According to RFC6455 Section 4.3.
+the handling of subprotocol requests is not correct.
+It must be checked for "Sec-WebSocket-Protocol" instead of "Sec-WebSocket-Protocol-Client" in WebSocketServlet class.

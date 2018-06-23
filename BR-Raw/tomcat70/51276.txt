@@ -1,0 +1,5 @@
+51276 – Startup time is too high if there are few JARs in "lib/" and a few webapps.
+Startup time in tomcat 7.0.14 is 10x higher than 7.0.12, if there are a few shared JARs in tomcat/lib and a few webapps.
+The issue is very simple to reproduce, simply add 10 empty directories in tomcat/webapps and (for example) the Metro webservices jars in tomcat/lib.
+On my machine the startup time increase from 0.5 secs (default installation) to 35.2 secs.
+When using tomcat 7.0.12 the startup time is about 3 secs on my machine in this test case.

@@ -1,0 +1,14 @@
+Bug 422832 – Class file triggers StackOverflowError when creating type hierarchy
+Created attachment 237840 [details]
+Example project to reproduce the StackOverflow
+When I add the Aspose PDF library to my build path and I declare a class that extends one of the classes contained in the Aspose PDF JAR, I get a Stackoverflow error.
+The same problem occurrs when I create a type hierarchy.
+I stripped the Aspose library down to one class and removed all methods and fields.
+The problem is caused by the type signature.
+I think class A is declared to implement itself, which is strange as one cannot implement classes, but interfaces only.
+However, the code obfuscator used by Aspose has somehow managed to create such a class file.
+I know the class file is seriously damaged, but nonetheless Eclipse should not crash when dealing with such class files.
+I'll attach an example project to repoduce the behavior.
+The stack overflow contains these two methods:
+org.eclipse.jdt.internal.compiler.lookup.BinaryTypeBinding.superInterfaces(BinaryTypeBinding.java:1384)
+org.eclipse.jdt.internal.compiler.lookup.ParameterizedTypeBinding.superInterfaces(ParameterizedTypeBinding.java:1008)

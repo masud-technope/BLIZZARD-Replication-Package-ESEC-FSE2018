@@ -1,0 +1,22 @@
+Bug 423467 – [1.8][compiler] wrong error for functional interface with @Override default method
+ecj reports a wrong compile error for a functional interface with an "@Override default" method that implements an abstract method from a superclass:
+package jsr335.funint4;
+@FunctionalInterface
+interface I {
+int foo(String s);
+}
+@FunctionalInterface
+interface A extends I { // wrong compile error (A *is* a functional interface)
+@Override
+default int foo(String s) {
+return -1;
+}
+Integer foo(java.io.Serializable s);
+}
+@FunctionalInterface
+interface B { // OK
+default int foo(String s) {
+return -1;
+}
+Integer foo(java.io.Serializable s);
+}

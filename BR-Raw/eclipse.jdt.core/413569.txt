@@ -1,0 +1,46 @@
+Bug 413569 – [1.8][dom ast] AST for annotated multi-dimensional array type is not well-formed
+The AST for a multi-dimensional array type with annotations on the array dimensions is not well-formed.
+The problem is that for ArrayType nodes, the linearization of the AST (i.e.
+the source order of AST nodes) doesn't correspond to the language model.
+This is a new problem, not bug 403834 or bug 391894 comment 4.
+Example:
+import java.lang.annotation.*;
+@Target(ElementType.TYPE_USE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@interface A {
+int value() default 0;
+}
+public class TestArrayAnnotations {
+@A(3) String @A(1)[] @A(2)[] arr =
+new @A(3) String @A(1)[11] @A(2)[12];
+}
+The AST node for the type of field 'arr' is:
+ASTNode type/property  Source range
+---------------------  ---------------------------------
+ArrayType              String @A(1)[] @A(2)[]
++annotations                          @A(2)
++componentType         String @A(1)[]
++annotations                 @A(1)
++componentType        String
++name                String
+The problem is that this componentType is just a parsing artifact, but it doesn't make sense from a semantic point of view.
+As http://types.cs.washington.edu/jsr308/specification/java-annotation-design.html#array-syntax explains, the type nesting in the language model is actually going like this:
+ArrayType        @A(3) String @A(1)[] @A(2)[]
++annotations                  @A(1)
++componentType   @A(3) String         @A(2)[]
++annotations                         @A(2)
++componentType  @A(3) String
++annotations   @A(3)
++name                String
+As long as nobody could actually distinguish the different array brackets, we could live with that.
+I.e.
+it usually doesn't matter whether the component type of String[][] is String[] with the first or with the second set of brackets.
+But as soon as we add annotations, the picture changes.
+With the current AST node structure, it's e.g.
+impossible to implement bug 409586 correctly, because the top-level ArrayType's annotation is "@A(2)", but the binding of the top-level ArrayType must have annotation "@A(1)", because that's the annotation on the outermost array brackets.
+The type "String @A(1)[]" doesn't exist from a language point of view, because the annotation "@A(1)" annotates the type String[][], not a String[].
+The only way I see how we could reconcile AST nodes and bindings would be to replace the nestable ArrayType by a FlatArrayType node with these properties:
++componentType: Type (cannot be another FlatArrayType)
++dimensions: List<ExtraDimension>
+Then, the binding of the FlatArrayType would be identical to the binding of the leftmost dimension.

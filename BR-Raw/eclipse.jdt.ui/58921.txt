@@ -1,0 +1,5 @@
+Bug 58921 – Texts created with unsupported styles
+- org.eclipse.jdt.internal.ui.text.AbstractInformationControl.createFilterText
+creates a Text with style SWT.FLAT
+- org.eclipse.jdt.internal.ui.filters.CustomFiltersDialog.createCheckBoxList
+creates a Text with style SWT.VERTICAL (perhaps V_SCROLL was meant?)

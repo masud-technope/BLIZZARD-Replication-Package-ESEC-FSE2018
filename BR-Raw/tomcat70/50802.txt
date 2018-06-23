@@ -1,0 +1,30 @@
+50802 – Deviation from servlet3 spec concerning resource lookup from META-INF/resources
+Created attachment 26675 [details]
+test application to reproduce.
+extract, deploy the war, make a query to root URL, see the system-out for evidence of standard-deviating behavior
+Hi!
+I'm writing you from ZeroTurnaround and we are currently building JRebel integration with new containers aiming to implement the servlet3 standard.
+I've stumbled on a bug in your implementation that is actually at the very core of the servlet standard and thus quite important, and actually a major issue for our integration.
+Namely, i'm copy-pasting you a fragment of the reference javadoc of the servlet3 spec for the method ServletContext#getResourcePaths():
+============= SPEC START =================
+For example, for a web application containing:
+/welcome.html
+/catalog/index.html
+/catalog/products.html
+/catalog/offers/books.html
+/catalog/offers/music.html
+/customer/login.jsp
+/WEB-INF/web.xml
+/WEB-INF/classes/com.acme.OrderServlet.class
+/WEB-INF/lib/catalog.jar!/META-INF/resources/catalog/moreOffers/books.html
+getResourcePaths("/") would return {"/welcome.html", "/catalog/", "/customer/", "/WEB-INF/"}, and getResourcePaths("/catalog/") would return {"/catalog/index.html", "/catalog/products.html", "/catalog/offers/", "/catalog/moreOffers/"}.
+============= SPEC END =================
+Now run my test-application, you'll discover immediately that Tomcat doesn't respect that standard.
+getResourcesPath("/catalog") would not return "/catalog/moreOffers" if there were 2 embedded jars containing web-fragments.
+And even more importantly, had there been a new folder coming solely from a jar's META-INF/resources, this wouldn't get listed with getResourcePaths("/").
+Please note that these are important issues! Many frameworks rely on various scanning techniques for recursive resource lookup, and so forth.
+I've tested this thing with Tomcat 7.0.6 and 7.0.8, problems are present with both.
+(Btw, we've received information about the same problems from users of latest glassfish version as well..
+i think they are just re-using this part of tomcat and thus getting the same problems...
+not sure.)
+Thanks a lot if you can have a look at this!

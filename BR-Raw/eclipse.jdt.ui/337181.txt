@@ -1,0 +1,17 @@
+Bug 337181 – [inline] returned value is not cast
+HEAD
+-Inline foo()
+- Expected: long much = (long) (1+1) * Integer.MAX_VALUE;
+- Actual: long much = (1+1) * Integer.MAX_VALUE;
+------------------------------------------------------------------
+package p;
+class A {
+void x() {
+long much = foo() * Integer.MAX_VALUE;
+}
+private long foo() {
+return 1 + 1;
+}
+}
+------------------------------------------------------------------
+See also InlineTempTests#test36, InlineConstantTests#test32.

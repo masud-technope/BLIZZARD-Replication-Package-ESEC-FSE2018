@@ -1,0 +1,48 @@
+56710 – IllegalStateException: The resources may not be accessed during webapp reload
+I encountered this while testing 8.0.10 release candidate while investigating bug 56658 regression.
+Steps to reproduce - see Comment 3 in bug 56658, but skip step 4,
+https://issues.apache.org/bugzilla/show_bug.cgi?id=56658#c3
+That is: cause reload of the examples webapp, but ask for "index.html" while reloading has not been completed yet.
+Expected: The request shall wait for web application reload to complete and then display the page (or error 404 in case of that bug that I was investigating).
+There is a loop in CoyoteAdapter that waits while context is being reloaded.
+Actual: A blank page is rendered, and an IllegalStateException is logged.
+A snippet from catalina.2014-07-11.log:
+[[[
+11-Jul-2014 00:45:08.124 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.startup.HostConfig.reload Reloading context [/examples]
+11-Jul-2014 00:45:08.125 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.core.StandardContext.reload Reloading Context with name [/examples] has started
+11-Jul-2014 00:45:08.164 SEVERE [http-nio-8080-exec-1] org.apache.coyote.http11.AbstractHttp11Processor.process Error processing request
+java.lang.IllegalStateException: The resources may not be accessed if they are not currently started
+at org.apache.catalina.webresources.StandardRoot.validate(StandardRoot.java:245)
+at org.apache.catalina.webresources.StandardRoot.getResource(StandardRoot.java:212)
+at org.apache.catalina.webresources.StandardRoot.getResource(StandardRoot.java:206)
+at org.apache.catalina.mapper.Mapper.internalMapWrapper(Mapper.java:946)
+at org.apache.catalina.mapper.Mapper.internalMap(Mapper.java:765)
+at org.apache.catalina.mapper.Mapper.map(Mapper.java:635)
+at org.apache.catalina.connector.CoyoteAdapter.postParseRequest(CoyoteAdapter.java:861)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:521)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1078)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:658)
+at org.apache.coyote.http11.Http11NioProtocol$Http11ConnectionHandler.process(Http11NioProtocol.java:222)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1566)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1523)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+at java.lang.Thread.run(Thread.java:745)
+11-Jul-2014 00:45:09.007 INFO [ContainerBackgroundProcessor[StandardEngine[Catalina]]] org.apache.catalina.core.StandardContext.reload Reloading Context with name [/examples] is completed
+]]]
+A snippet from localhost.2014-07-11.log:
+[[[
+127.0.0.1 - - [11/Jul/2014:00:44:10 +0400] "GET /examples/index.html HTTP/1.1" 200 1156
+127.0.0.1 - - [11/Jul/2014:00:44:21 +0400] "GET /examples/index.html HTTP/1.1" 304 -
+127.0.0.1 - - [11/Jul/2014:00:44:21 +0400] "GET /favicon.ico HTTP/1.1" 304 -
+127.0.0.1 - - [11/Jul/2014:00:44:24 +0400] "GET /examples/index.html HTTP/1.1" 304 -
+127.0.0.1 - - [11/Jul/2014:00:44:50 +0400] "GET /examples/index.html HTTP/1.1" 404 1000
+127.0.0.1 - - [11/Jul/2014:00:44:50 +0400] "GET /favicon.ico HTTP/1.1" 304 -
+127.0.0.1 - - [11/Jul/2014:00:45:08 +0400] "GET /examples/index.html HTTP/1.1" 500 -
+127.0.0.1 - - [11/Jul/2014:00:45:11 +0400] "GET /examples/index.html HTTP/1.1" 404 1000
+127.0.0.1 - - [11/Jul/2014:00:45:16 +0400] "GET /examples/index.html HTTP/1.1" 404 1000
+]]]
+The 404 are from the bug that I was investigating.
+The 500 is from this bug.
+I was running with jpda debugging enabled, so webapp reload was a bit slower than usual.

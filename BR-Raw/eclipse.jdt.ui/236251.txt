@@ -1,0 +1,7 @@
+Bug 236251 – [implementation] failure when launching headless
+3.4 RC3.
+When launching in headless mode it might still load the jdt.ui plug-in due to org.eclipse.core.filebuffers.documentSetup extensions being triggered.
+When it then wants to initialize the preferences it will fail due to calls to JFaceResources.getColorRegistry().getRGB(String).
+We should protect that code with:
+if (PlatformUI.isWorkbenchRunning()) {
+} // else don't initialize the colors

@@ -1,0 +1,10 @@
+50667 – Tribes | RpcChannel | Add a callback for cases when an error occured sending a reply to an RP call
+The RpcChannel API user registers an RpcCallback to be notified of
+communication events.
+However, there is no callback method for the case where
+the sending of a response message fails.
+This entry proposes the addition of a callback method for such cases.
+CAVEAT: this proposal modifies the RpcCallback interface.
+RpcCallback is currently implemented by at least four tomcat classes, EchoRpcTest in org.apache.catalina.tribes.demos, and AbstractReplicatedMap, ReplicatedMap ad LazyReplicatedMap in org.apache.catalina.tribes.tipis.
+The attached patch does not include the implementation of the additional interface method for those classes, as this coder did not feel qualified to tell how it should be implemented.
+They could probably simply be NOOPs, however.

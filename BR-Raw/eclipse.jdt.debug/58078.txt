@@ -1,0 +1,3 @@
+Bug 58078 – detail formatter dialog missing code assist hint
+Although the code assist keybinding works in the detail formatter page,
+the "code assist" hint is missing from the details area editor.

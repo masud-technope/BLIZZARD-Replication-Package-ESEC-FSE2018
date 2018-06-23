@@ -1,0 +1,3 @@
+Bug 472661 – add TRACEALL option for debugging in non-equinox/non-DebugOptions frameworks
+Currently, the org.eclipse.ecf.core.util.Trace class depends upon the org.eclipse.osgi.service.debug.DebugOptions framework.
+  This means that tracing currently cannot be done successfully in non-equinox environments like Karaf-over-Felix.

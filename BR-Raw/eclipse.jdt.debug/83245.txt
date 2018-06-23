@@ -1,0 +1,7 @@
+Bug 83245 – [Breakpoint Groups] Improve icons for breakpoint type groups
+With the fix to bug 75891 we can now provide custom adpaters for breakpoint
+type categories.
+We can use this to provide specialized images for the Java
+breakpoint type categories.
+I have requested artwork for the different
+categories.

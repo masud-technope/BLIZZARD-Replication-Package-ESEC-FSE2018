@@ -1,0 +1,2 @@
+53057 – Add OpenSSL version number to INFO log message when initializing
+It would be nice to see a message confirming the initialization of OpenSSL including its version number.

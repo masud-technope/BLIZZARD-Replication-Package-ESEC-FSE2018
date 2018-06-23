@@ -1,0 +1,6 @@
+Bug 426565 – [1.8][compiler] Use standard syntax in AnnotationBinding#toString()
+Created attachment 239302 [details]
+Fix (tests green)
+Can we use the standard syntax in org.eclipse.jdt.internal.compiler.lookup.AnnotationBinding#toString()?
+I find the "@A{ value = (int)1}" form hard to read in the debugger.
+Secret plan: I'd like to abuse this toString() method in the ASTView to render type bindings with type annotations.

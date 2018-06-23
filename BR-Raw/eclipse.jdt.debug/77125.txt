@@ -1,0 +1,6 @@
+Bug 77125 – Preference for suspending VM on breakpoint
+build i1026.
+You are able to configure a breakpoint's properties so it suspends either the
+thread or the whole VM when it is hit.
+I would like to have a preference so I can change my default to be the VM.
+(useful when tracking down concurrency problems)

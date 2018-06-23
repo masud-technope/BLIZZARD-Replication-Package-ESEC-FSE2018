@@ -1,0 +1,37 @@
+Bug 417017 – [1.8] Incorrect parameters in resolved method binding for LambdaExpression
+---------------------------
+package test.bugs;
+@FunctionalInterface
+interface FI {
+int foo1(int a);
+}
+class FI_1 {
+void fun(int a) {
+FI i1 = x1-> x1;
+FI i2 = xxx-> {
+i1.foo1(a);
+return xxx;
+};
+}
+}
+---------------------------
+Steps:
+1.
+To get the JLS8 AST, set org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.SHARED_AST_LEVEL to AST.JLS8.
+2.
+Open the file with above example or edit it so that reconciler is called.
+3.
+Run this code after the call to unit.reconcile(..) in org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy#reconcile(ICompilationUnit, boolean):
+AbstractTypeDeclaration test= (AbstractTypeDeclaration) ast.types().get(1);
+MethodDeclaration meth= (MethodDeclaration) test.bodyDeclarations().get(0);
+VariableDeclarationFragment vdf= (VariableDeclarationFragment) ((VariableDeclarationStatement) meth.getBody().statements().get(1)).fragments().get(0);
+LambdaExpression lambda= (LambdaExpression) vdf.getInitializer();
+List<VariableDeclaration> parameters= lambda.parameters();
+System.out.println(parameters.size());
+ITypeBinding[] parameterTypes= lambda.resolveMethodBinding().getParameterTypes();
+System.out.println(parameterTypes.length);
+for (ITypeBinding paramType : parameterTypes) {
+System.out.println(paramType.getName());
+}
+4.
+You can see that the number of parameters obtained from resolved method binding for lambda expr ('i2' in the example) is 3 instead of 1, which is incorrect.

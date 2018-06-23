@@ -1,0 +1,24 @@
+Bug 238392 – [Preferences] NPE when starting eclipse
+Build ID: I20080613-2000
+Steps To Reproduce:
+I started eclipse and got the following NPE
+More information:
+java.lang.NullPointerException
+at org.eclipse.pde.core.plugin.TargetPlatform.getDefaultLocation(TargetPlatform.java:64)
+at org.eclipse.pde.internal.core.PreferenceInitializer.initializeDefaultPreferences(PreferenceInitializer.java:34)
+at org.eclipse.core.internal.preferences.PreferenceServiceRegistryHelper.runInitializer(PreferenceServiceRegistryHelper.java:276)
+at org.eclipse.core.internal.preferences.PreferenceServiceRegistryHelper.applyRuntimeDefaults(PreferenceServiceRegistryHelper.java:130)
+at org.eclipse.core.internal.preferences.PreferencesService.applyRuntimeDefaults(PreferencesService.java:367)
+at org.eclipse.core.internal.preferences.DefaultPreferences.applyRuntimeDefaults(DefaultPreferences.java:163)
+at org.eclipse.core.internal.preferences.DefaultPreferences.loadDefaults(DefaultPreferences.java:236)
+at org.eclipse.core.internal.preferences.DefaultPreferences.load(DefaultPreferences.java:232)
+at org.eclipse.core.internal.preferences.EclipsePreferences.create(EclipsePreferences.java:307)
+at org.eclipse.core.internal.preferences.EclipsePreferences.internalNode(EclipsePreferences.java:543)
+at org.eclipse.core.internal.preferences.DefaultPreferences.node(DefaultPreferences.java:150)
+at org.eclipse.core.internal.preferences.legacy.PreferenceForwarder.getDefaultPreferences(PreferenceForwarder.java:130)
+at org.eclipse.core.internal.preferences.legacy.PreferenceForwarder.getString(PreferenceForwarder.java:636)
+at org.eclipse.pde.internal.core.EclipseHomeInitializer.resetEclipseHomeVariable(EclipseHomeInitializer.java:33)
+at org.eclipse.pde.internal.core.EclipseHomeInitializer.initialize(EclipseHomeInitializer.java:27)
+at org.eclipse.jdt.core.JavaCore.getClasspathVariable(JavaCore.java:2677)
+at org.eclipse.jdt.core.JavaCore.getResolvedVariablePath(JavaCore.java:3297)
+at org.eclipse.jdt.core.JavaCore.getResolvedClasspathEntry(JavaCore.java:3259)

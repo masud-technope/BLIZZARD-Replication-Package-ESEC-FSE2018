@@ -1,0 +1,22 @@
+Bug 406181 – [1.8][compiler][codegen] IncompatibleClassChangeError when running code with lambda method.
+BETA_JAVA8:
+The following program triggers an IncompatibleClassChangeError very likely
+due to the fact that ECJ at this point does not generate a synthetic bridge
+method to paper over signature differences.
+// ---------------
+interface I {
+void foo(int x, int y);
+}
+public class X {
+public static void main(String[] args) {
+BinaryOperator<String> binOp = (x,y) -> { return x+y; };
+System.out.println(binOp.apply("SUCC", "ESS")); // when lambdas run\n" +
+}
+}
+@FunctionalInterface
+interface BiFunction<T, U, R> {
+R apply(T t, U u);
+}
+@FunctionalInterface
+interface BinaryOperator<T> extends BiFunction<T,T,T> {
+}

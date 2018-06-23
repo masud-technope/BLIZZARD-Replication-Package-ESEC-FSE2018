@@ -1,0 +1,23 @@
+Bug 395231 – [introduce indirection] ClassCastException when introducing indirection on method in generic class
+Steps to reproduce:
+1.
+Invoke "Introduce Indirection" on 'g' method in code below
+2.
+ClassCastException is throws (see part of the log below)
+class IntroduceIndirectionBug3<T extends IntroduceIndirectionBug3<T>> {
+// Invoke "Introduce Indirection" on 'g'
+void g(T t) {
+}
+void f(T t) {
+t.g(null);
+}
+}
+(Thanks to Yilong Li for helping with the bug report.)
+java.lang.ClassCastException: org.eclipse.jdt.internal.core.TypeParameter cannot be cast to org.eclipse.jdt.core.IType
+at org.eclipse.jdt.internal.corext.refactoring.code.IntroduceIndirectionRefactoring.checkFinalConditions(IntroduceIndirectionRefactoring.java:545)
+at org.eclipse.ltk.core.refactoring.CheckConditionsOperation.run(CheckConditionsOperation.java:85)
+at org.eclipse.ltk.core.refactoring.CreateChangeOperation.run(CreateChangeOperation.java:121)
+at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:209)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)

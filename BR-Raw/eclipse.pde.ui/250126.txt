@@ -1,0 +1,9 @@
+Bug 250126 – [p2] Use p2 to provision for launching, support self-hosting
+Some discussion on bug 236719.
+Currently when self-hosting (launching an Eclipse workbench from host) there is no p2 profile available.
+ This means that p2 code that interacts with the profile (installing, updating, introspecting, etc.) does not function when self-hosting.
+If PDE can provision a profile during launch, p2 self-hosting should be possible.
+ It will also allow PDE to use p2 to setup config.ini/bundles.info and other files, rather than having duplicating code.
+One major area of concern will be backwards compatibility.
+ In PDE, users want to be able to build against and launch previous versions of Eclipse (based on the contents of the target platform).
+ If we are using p2 to generate the configuration information, p2 may need to be provision in a backwards compatible way.

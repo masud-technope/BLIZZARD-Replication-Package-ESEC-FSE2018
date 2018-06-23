@@ -1,0 +1,9 @@
+Bug 62564 – A runnable may not be run, if the previous one throws an exception
+To fix bugs 61958 and bug 61960, we removed the Throwable catch clauses in the
+Jobs of DebugPlugin and of JDIThread.
+These Jobs are implemented to execute one or more runnables.
+With this change,
+it's possible that some runnable will never be run.
+When a Job has a set of runnables to execute, if one runnable throws an
+exception, the execution of the Job is stopped, the runnables still to be
+executed in this Job will never be run.

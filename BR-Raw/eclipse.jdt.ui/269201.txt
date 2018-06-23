@@ -1,0 +1,19 @@
+Bug 269201 ñ [jar exporter] ant file produced by Export runnable jar contains absolute paths instead of relative to workspace
+Build ID: I20090313-0100
+Steps To Reproduce:
+1.
+Open project with a launch configuration
+2.
+File -> Export -> Java -> Runnable JAR file
+3.
+Fill out fields (we use the new Copy required libraries into a sub-folder) and check Save as ANT script with a filename (e.g.
+c:\test.xml)
+Open test.xml with a editor
+See that all file and directory references are absolute including C:\...
+More information:
+It would be very beneficial if the paths put in the ant file are relative (if possible) from the workspace folder, and that that folder was stored in an ant variable
+The same with the target directory.
+This will allow us to put the generated ant script in our source repository, instead of having each developer generating the file themselves each time they start a new workspace.
+This is such an important facility to us, that I am willing to help getting this ready for the release version of 3.5, if the Eclipse folks do not already have this in place.
+Best regards,
+/Thorbj√∏rn

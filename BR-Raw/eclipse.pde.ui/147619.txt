@@ -1,0 +1,5 @@
+Bug 147619 – The value of the Bundle-Localization header is not validated
+Using Eclipse 3.2 RC7
+The Bundle-Localization header is not validated by the manifest editor, resulting in a possible header value that does not represent a properties file in the bundle.
+This problem is also not detected when you click the "Validate Plug-in Set" button from the Equinox launch configuration.
+The result being that at runtime the bundle's localized values are not found.

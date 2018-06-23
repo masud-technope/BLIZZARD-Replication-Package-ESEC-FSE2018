@@ -1,0 +1,3 @@
+org.apache.tomcat.jni.Socket.accept
+org.apache.tomcat.util.net.AprEndpoint$Acceptor.run
+java.lang.Thread.run

@@ -1,0 +1,40 @@
+52954 – Allowing for broken android HTTP DIGEST support
+Android's browser has a slightly broken implementation of DIGEST support, causing it to fail authentication against Tomcat.
+There are 2 issues here which if bypassed in DigestAuthenticator, allow Android devices to authenticate successfully.
+1.
+nc (nonce-count) is 6 digits instead of 8
+nonce-count      = "nc" "=" nc-value
+nc-value         = 8LHEX
+Fail as per RFC, however:
+"The nc-value is the hexadecimal
+count of the number of requests (including the current request)
+that the client has sent with the nonce value in this request."
+So Android is sending a 24 bit number instead of a 32 bit number.
+Tomcat is failing auth based on (nc.length() != 8) which means the request must match the RFC, but I can't see anything saying that it's necessary to fail based on a shorter nc-value.
+Additionally, if this value wrapped due to being too short (the client would have to send the same nonce 16777216 times in a single request), we'd fail it anyway because of the nc check (count <= info.getCount()).
+2.
+uri is specified as an absolute URI, whereas browsers and examples show it as a relative URI.
+However, the RFC specifies this as:
+digest-uri       = "uri" "=" digest-uri-value
+digest-uri-value = request-uri   ; As specified by HTTP/1.1
+But in RFC 2616 (HTTP/1.1):
+Request-URI    = "*" | absoluteURI | abs_path | authority
+...
+"To allow for transition to absoluteURIs in all requests in future
+versions of HTTP, all HTTP/1.1 servers MUST accept the absoluteURI
+form in requests, even though HTTP/1.1 clients will only generate
+them in requests to proxies."
+So this one is a bit vague as to whether an absolute uri should cause a validation fail.
+There is an issue listed here showing similar problems against Apache.
+http://code.google.com/p/android/issues/detail?id=21239
+---------
+I've only listed this as an enhancement, as Tomcat isn't broken here, but I'm interested in opinions:
+We could:
+1.
+patch Tomcat to allow the two above situations
+2.
+make the above allowable via a setting in the Realm
+3.
+just continue to block digest auth for all Android devices until they fix the problem.
+Best Regards,
+Neale Rudd

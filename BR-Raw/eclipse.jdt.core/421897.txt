@@ -1,0 +1,29 @@
+Bug 421897 – [1.8][compiler] Errors in lambda body should not influence overload resolution.
+BETA_JAVA8
+----------
+An earlier draft of JSR 335 required the compiler to eliminate overloaded
+method candidates based on whether the choice of that method would trigger
+errors in lambda body.
+The latest draft has eliminated this requirement.
+As a result, the following
+program is no longer legal and should be flagged with an ambiguous method
+invocation error: 8b115 correctly exhibits this behavior, while eclipse compiles
+it fine and resolves the call to foo(I).
+// --
+interface I {
+int foo(int [] a);
+}
+interface J  {
+int foo(int a);
+}
+public class X {
+public static void main(String[] args) {
+System.out.println(foo((a)->a.length));
+}
+static String foo(I i) {
+return("foo(I)");
+}
+static String foo(J j) {
+return("foo(J)");
+}
+}

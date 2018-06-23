@@ -1,0 +1,5 @@
+Bug 200428 – [Site][Editor] Add enablement to "build all" header button
+Created attachment 76333 [details]
+patch
+As far as I could tell, the only one of the new forms header buttons that requires enablement is the build all button on the site editor.
+A patch is attached.

@@ -1,0 +1,13 @@
+org.apache.catalina.startup.CatalinaProperties.loadProperties
+org.apache.catalina.startup.CatalinaProperties.<clinit>
+org.apache.catalina.startup.Bootstrap.createClassLoader
+org.apache.catalina.startup.Bootstrap.initClassLoaders
+org.apache.catalina.startup.Bootstrap.init
+org.apache.catalina.startup.Bootstrap.main
+java.net.URLClassLoader$1.run
+java.security.AccessController.doPrivileged
+java.net.URLClassLoader.findClass
+java.lang.ClassLoader.loadClass
+sun.misc.Launcher$AppClassLoader.loadClass
+java.lang.ClassLoader.loadClass
+java.lang.ClassLoader.loadClassInternal

@@ -1,0 +1,2 @@
+Bug 218159 – [Discovery][jSLP] Tests fail because localhost/127.0.0.1 != external hostname
+Equality fails in org.eclipse.ecf.tests.provider.jslp.JSLPTestComparator because localhost/127.0.0.1 != external hostname

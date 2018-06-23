@@ -1,0 +1,33 @@
+48123 – 4 misspellings in the javadoc of class "org.apache.catalina.startup.WebRuleSet"
+No.1
+Line: 99
+/**
+* Construct an instance of this <code>RuleSet</code> with the default
+* matching pattern prefix and default fargment setting.
+*/
+public WebRuleSet() {
+'fragment' was misspelled as 'fargment'
+No.2
+Line: 614
+/**
+* Rule to check that the <code>login-config</code> is occuring
+* only 1 time within the web.xml
+*/
+final class SetLoginConfig extends Rule {
+'occurring' was misspelled as 'occuring'
+No.3
+Line 635
+/**
+* Rule to check that the <code>jsp-config</code> is occuring
+* only 1 time within the web.xml
+*/
+final class SetJspConfig extends Rule {
+'occurring' was misspelled as 'occuring'
+No.4
+Line 656
+/**
+* Rule to check that the <code>session-config</code> is occuring
+* only 1 time within the web.xml
+*/
+final class SetSessionConfig extends Rule {
+'occurring' was misspelled as 'occuring'

@@ -1,0 +1,16 @@
+56010 – JspFactory.getPageContext with JspWriter.DEFAULT_BUFFER throws IllegalArgumentException
+When a servlet calls JspFactory.getPageContext() with JspWriter.DEFAULT_BUFFER, Tomcat Japser throws IllegalArgumentException.
+PageContext pageContext = JspFactory.getDefaultFactory().getPageContext(this, req, resp, null, false, JspWriter.DEFAULT_BUFFER, true);
+java.lang.IllegalArgumentException: Buffer size <= 0
+org.apache.jasper.runtime.JspWriterImpl.<init>(JspWriterImpl.java:81)
+org.apache.jasper.runtime.PageContextImpl._initialize(PageContextImpl.java:154)
+org.apache.jasper.runtime.PageContextImpl.initialize(PageContextImpl.java:125)
+org.apache.jasper.runtime.JspFactoryImpl.internalGetPageContext(JspFactoryImpl.java:112)
+org.apache.jasper.runtime.JspFactoryImpl.getPageContext(JspFactoryImpl.java:65)
+dvt.jsp.jaspertest.JspFactoryTestServlet.doGet(JspFactoryTestServlet.java:21)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+Based on the description of JspFactory.getPageContext(), if buffer size is JspWriter.DEFAULT_BUFFER(-1), PageContext must treat it as implementation default, which in case is org.apache.jasper.Constants#DEFAULT_BUFFER_SIZE(8192).
+buffer - size of buffer in bytes, JspWriter.NO_BUFFER if no buffer, JspWriter.DEFAULT_BUFFER if implementation default.
+from http://docs.oracle.com/javaee/7/api/javax/servlet/jsp/JspFactory.html#getPageContext(javax.servlet.Servlet, javax.servlet.ServletRequest, javax.servlet.ServletResponse, java.lang.String, boolean, int, boolean)
+Note that -Dorg.apache.jasper.runtime.JspFactoryImpl.USE_POOL=false should be specified.

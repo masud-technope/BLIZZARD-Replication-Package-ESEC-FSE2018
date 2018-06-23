@@ -1,0 +1,4 @@
+Bug 231329 – [decorators] decorator for native methods
+It would be good to have a decoration in the Outline view etc..
+showing if a method is native.
+If there is no remaining real-estate for this, then maybe applying a filter to the entire icon so it appears in grayscale would be the way to go.

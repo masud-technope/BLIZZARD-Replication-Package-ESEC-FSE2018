@@ -1,0 +1,2 @@
+Bug 430286 – [1.8][render] Rendering of Lambda types; use #isLambda() APIs
+Adapt to APIs from bug 430195.

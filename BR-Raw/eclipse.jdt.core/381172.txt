@@ -1,0 +1,45 @@
+Bug 381172 – VerifyError "Inconsistent stackmap frames" for switch nested within try-catch
+Build Identifier: 20120216-1857, I20120524-2100
+Using Indigo (20120216-1857) OR Eclipse 4.2 (I20120524-2100) with Java 7:
+--------------------------------------------------------------------------------
+Exception in thread "main" java.lang.VerifyError: Inconsistent stackmap frames at branch target 58 in method EclipseVerifyError.method()V at offset 1
+at java.lang.Class.getDeclaredMethods0(Native Method)
+at java.lang.Class.privateGetDeclaredMethods(Class.java:2442)
+at java.lang.Class.getMethod0(Class.java:2685)
+at java.lang.Class.getMethod(Class.java:1620)
+at sun.launcher.LauncherHelper.getMainMethod(LauncherHelper.java:488)
+at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:480)
+--------------------------------------------------------------------------------
+Similar to Bug 356002- but other nesting construct.
+Reproducible: Always
+Steps to Reproduce:
+Take following code- compile it and run it on a Java7 RT.
+public class EclipseVerifyError {
+public static void main(String[] args){
+System.out.println("Test");
+}
+public void method() {
+try {
+int rc;
+switch ( 0 )
+{
+case 0:
+rc = 0;
+setRC( rc );
+break;
+case 1:
+rc = 1;
+setRC( 0 );
+break;
+case 2:
+rc = 2;
+setRC( 0 );
+break;
+default:
+break;
+}
+}
+catch ( final Exception ex ) {}
+}
+private void setRC(int rc) {}
+}

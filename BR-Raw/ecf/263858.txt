@@ -1,0 +1,37 @@
+Bug 263858 – Missing project specific settings
+Created attachment 124867 [details]
+Image
+Working on a patch affecting bundles:
+org.eclipse.ecf.provider.filetransfer.httpclient
+org.eclipse.ecf.provider.filetransfer.httpclient.ssl
+While reviewing my changes I noticed that there were a lot more changes than the lines that I edited.
+This should be caused by the missing setup of some project specific settings.
+When I go through the property pages for project org.eclipse.ecf the following pages have 'Enable project specific settings' checked:
+Java Code Style
+Formatter [x]
+Organize Imports [x]
+Java Compiler [x]
+Building [x]
+Errors/Warnings[x]
+Javadoc [x]
+Java Editor
+Save Actions [x]
+See also attachments for a snapshot of the values I see.
+However in project org.eclipse.ecf.provider.filetransfer.httpclient only
+Java Compiler
+Errors/Warnings[x]
+Java Editor
+Save Actions [x]
+For project org.eclipse.ecf.provider.filetransfer.httpclient.ssl
+Java Code Style
+Organize Imports [x]
+Java Compiler
+Building [x]
+Errors/Warnings[x]
+Java Editor
+Save Actions [x]
+Assuming that project org.eclipse.ecf is a good role model I copied
+/org.eclipse.ecf/.settings/org.eclipse.jdt.core.prefs into the two projects (overwriting existing settings).
+I had to restart my workbench to have the settings take effect in the property pages UI! Is this a known issue?
+Anyway if these changed settings are the way to go, please save each file in these projects to normalize their current content.
+This way we will have a simpler time to figure out things that actually changed.

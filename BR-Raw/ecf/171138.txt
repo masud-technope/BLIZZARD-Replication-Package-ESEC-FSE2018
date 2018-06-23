@@ -1,0 +1,7 @@
+Bug 171138 – Static collection of created IContainers needed
+Currently, the RosterView disconnects all connected IContainers when the view is closed (in the dispose()) method.
+This is unintuitive as all modern IM applications allows the user to minimize the contacts listings window to the system tray.
+While Eclipse does not have a "system tray" (fast view-ing doesn't count), it doesn't mean that we should automagically disconnect.
+This is a grave violation of the "principle of least astonishment".
+We should introduce some concept of a "ContainerManager".
+I'm guessing we can hook created IContainers onto the manager right before the ContainerFactory's createContainer(ContainerTypeDescription, Object[]) method call returns?

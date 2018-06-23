@@ -1,0 +1,19 @@
+Bug 272354 – [JUnit] NPE while initializing Java tooling
+Got that while launching an Eclipse workspace in debug mode.
+Version: 3.5.0
+Build id: I20090407-1430
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.junit.buildpath.P2Utils.findBundle(P2Utils.java:166)
+at org.eclipse.jdt.internal.junit.buildpath.P2Utils.findBundle(P2Utils.java:142)
+at org.eclipse.jdt.internal.junit.buildpath.BuildPathSupport.getJUnitLibraryEntry(BuildPathSupport.java:81)
+at org.eclipse.jdt.internal.junit.buildpath.BuildPathSupport.getJUnit3LibraryEntry(BuildPathSupport.java:67)
+at org.eclipse.jdt.internal.junit.buildpath.JUnitContainerInitializer.getNewContainer(JUnitContainerInitializer.java:100)
+at org.eclipse.jdt.internal.junit.buildpath.JUnitContainerInitializer.initialize(JUnitContainerInitializer.java:90)
+at org.eclipse.jdt.internal.core.JavaModelManager.initializeContainer(JavaModelManager.java:2609)
+at org.eclipse.jdt.internal.core.JavaModelManager$11.run(JavaModelManager.java:2515)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1800)
+at org.eclipse.jdt.internal.core.JavaModelManager.initializeAllContainers(JavaModelManager.java:2555)
+at org.eclipse.jdt.internal.core.JavaModelManager.getClasspathContainer(JavaModelManager.java:1774)
+at org.eclipse.jdt.core.JavaCore.initializeAfterLoad(JavaCore.java:3407)
+at org.eclipse.jdt.internal.ui.InitializeAfterLoadJob$RealJob.run(InitializeAfterLoadJob.java:35)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

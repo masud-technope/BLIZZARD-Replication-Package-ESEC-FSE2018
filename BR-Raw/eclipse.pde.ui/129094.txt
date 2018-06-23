@@ -1,0 +1,5 @@
+Bug 129094 – Polish: Remove/Remove All should not be always enabled.
+In the Product editor,
+On the Plug-ins tab and the Features tab, the remove button should be enabled only when there is at least one item selected in the table.
+The Remove All button should only be enabled when the table contains >= 1 item(s).
+Right now, these two buttons are always enabled.

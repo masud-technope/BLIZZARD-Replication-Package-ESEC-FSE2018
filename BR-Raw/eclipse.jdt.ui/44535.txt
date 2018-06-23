@@ -1,0 +1,3 @@
+Bug 44535 – [misc] Wrong message displayed while opening a class file outside classapth
+This error is a consequence of fix applied on bug 42370.
+See this bug comment for full details of the problem.

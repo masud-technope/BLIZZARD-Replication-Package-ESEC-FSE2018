@@ -1,0 +1,4 @@
+Bug 280119 – TOC Editor should debug XML errors
+When you open an XML file that contains errors in the TOC editor, you can see the file in the source view, but when you click the Definition tab you get a message that there are errors so it can't open.
+It would be helpful to know what the errors are.
+Perhaps the source view could act like other XML editors and provide debug support.

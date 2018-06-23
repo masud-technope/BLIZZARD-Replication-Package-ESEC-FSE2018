@@ -1,0 +1,14 @@
+Bug 404784 – "Open popup when suspended on exception" doesn't work
+Preferences>Java>Debug>Open popup when suspended on exception
+doesn't work.
+Even if it is checked, ExceptionInspector won't popup.
+Maybe because...
+It is stored at
+org.eclipse.jdt.internal.debug.ui.JavaDebugPreferencePage.performOk()
+with JDIDebugUIPlugin.getDefault().getPreferenceStore().
+So I can see it in org.eclipse.jdt.debug.ui.prefs under .metadata.
+However,
+org.eclipse.jdt.internal.debug.ui.breakpoints.ExceptionInspector.ExceptionInspector()
+refers JDIDebugPlugin.getUniqueIdentifier().
+I cannot see the option in org.eclipse.jdt.debug.prefs of course.
+(Sorry if I misunderstood)

@@ -1,0 +1,10 @@
+Bug 465614 – Many more fields in Product editor that would need bidi-processing
+While reviewing for Bug 465249 , Markus found out out bidi processing for other fields as well
+Copy-paste of current bidi issues in product editor
+"there are many more fields in Product editor that would need bidi-processing, e.g.
+- Configuration > Use and existing config.ini file
+- Launching & Branding > all image file fields
+- Licensing > URL field
+Hint: to make processed fields easy to see, you can go to the Tracing tab in the launch configuration and enable options:
+org.eclipse.jface/debug=true
+org.eclipse.jface/debug/bidiUtils=true"

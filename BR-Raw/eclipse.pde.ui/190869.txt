@@ -1,0 +1,7 @@
+Bug 190869 – new configuration becomes dirty on arguments tab
+3.3RC3
+* Open debug dialog
+* Creata new Eclipse Application
+* Select "Arguments" tab
+> Config becomes dirty.
+> Does not happen for Java Application.

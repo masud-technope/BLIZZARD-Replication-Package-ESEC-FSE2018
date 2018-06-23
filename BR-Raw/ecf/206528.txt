@@ -1,0 +1,19 @@
+Bug 206528 – [bot] (KOS-MOS) should privately provide list of commands when asked
+Build ID: n/a
+Steps To Reproduce:
+1.
+Join #eclipse
+2.
+Type ~list
+3.
+Nothing happens!
+More information:
+A Better option:
+1.
+Join #eclipse
+2.
+Type ~list
+3.
+KOS-MOS responds via private msg with list of available commands.
+Alternatively, command could be ~commands (or both ~list and ~commands could work).
+Note: ~commands is currently mapped to point to the wiki with the promise of a list of commands, except <https://bugs.eclipse.org/bugs/show_bug.cgi?id=201751> prevents the wiki from being a useful provider of mapped commands.

@@ -1,0 +1,4 @@
+org.eclipse.jdt.internal.compiler.ast.LambdaExpression.getMethodBinding
+org.eclipse.jdt.core.dom.DefaultBindingResolver.resolveMethod
+org.eclipse.jdt.core.dom.LambdaExpression.resolveMethodBinding
+org.eclipse.jdt.astview.views.ASTViewContentProvider.getNodeChildren

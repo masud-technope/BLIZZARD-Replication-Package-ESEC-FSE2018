@@ -1,0 +1,11 @@
+Bug 295577 – [target] Target args do not get added to configs created from product configurations
+- On the Mac with Cocoa 32bit on Snow Leopard...
+- Create a target platform
+- Flip to the environment tab and set -d32 as a VM arg to cause the a launched JRE to be in 32 bit mode
+- Create a product/launch config that uses SWT (so it has 32 bit libs as per the defaults for a 32bit SDK)
+- Run the launch/product
+- Notice that you get an error saying that you cannot run 32bit libs on a 64bit VM
+- Now add -d32 to the VM args on the product/launch
+- Run again and notice that everything works
+Summary, -d32 on the launcher/product does the trick but the VM args (well at least that VM arg) set on the target are ignored.
+Note that I don't think this is anything specific to the Mac, I just happen to have a scenario on the Mac that surfaces the problem

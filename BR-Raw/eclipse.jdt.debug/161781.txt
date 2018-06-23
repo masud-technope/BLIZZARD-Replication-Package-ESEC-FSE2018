@@ -1,0 +1,10 @@
+Bug 161781 – Suspend status ignored on initial remote debug connection
+I have a modified VM with a "waitForDebugger()" function that suspends the current thread.
+ The idea is to leave it suspended until the debugger arrives, so the debugger can inspect the current state before continuing.
+When Eclipse attaches (through a socket on port 8000), it queries with a JDWP ThreadReference.Status message.
+ The VM sends back RUNNING/SUSPEND_STATUS_SUSPENDED for the main thread and WAIT/0 for the other (VM) threads.
+ However, Eclipse shows all threads as "running".
+If I ask Eclipse to suspend the thread, everything works as expected, but when I hit "resume" it won't actually resume because the "suspend count" is still nonzero.
+ At no time does Eclipse issue a SuspendCount query.
+I can modify the VM to "fake" the first suspend, which will leave the books in order, but it doesn't help with the initial condition -- you still have to suspend the thread (or VM) manually.
+Eclipse should use the suspend status from the Status call to set its initial concept of thread state.

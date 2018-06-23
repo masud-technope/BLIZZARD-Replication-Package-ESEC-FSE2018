@@ -1,0 +1,74 @@
+51713 – Bad Connector protocol causes NullPointerException when using Executor
+Under the following configuration, an NPE is thrown because _setExecutor() calls con.getProtocolHandler().getClass() when the protocol handler is null.
+It would be nice to report a bad configuration instead of suffering an NPE.
+server.xml:
+<Executor name="tomcatThreadPool" namePrefix="catalina-exec-"
+maxThreads="150" minSpareThreads="4"/>
+<Connector port="12345"
+redirectPort="443" protocol="HTTP"
+secure="true" scheme="https" proxyPort="80"
+URIEncoding="UTF-8" executor="tomcatThreadPool" />
+catalina.out:
+Aug 23, 2011 5:18:30 PM org.apache.catalina.connector.Connector <init>
+SEVERE: Protocol handler instantiation failed
+Aug 23, 2011 5:18:30 PM org.apache.tomcat.util.digester.Digester startElement
+SEVERE: Begin event threw exception
+java.lang.NullPointerException
+at org.apache.catalina.startup.ConnectorCreateRule._setExecutor(ConnectorCreateRule.java:69)
+at org.apache.catalina.startup.ConnectorCreateRule.begin(ConnectorCreateRule.java:63)
+at org.apache.tomcat.util.digester.Digester.startElement(Digester.java:1276)
+at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(AbstractSAXParser.java:501)
+at com.sun.org.apache.xerces.internal.parsers.AbstractXMLDocumentParser.emptyElement(AbstractXMLDocumentParser.java:179)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(XMLDocumentFragmentScannerImpl.java:1343)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2755)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:511)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:808)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:119)
+at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1205)
+at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:522)
+at org.apache.tomcat.util.digester.Digester.parse(Digester.java:1537)
+at org.apache.catalina.startup.Catalina.load(Catalina.java:555)
+at org.apache.catalina.startup.Catalina.load(Catalina.java:596)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.apache.catalina.startup.Bootstrap.load(Bootstrap.java:281)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:449)
+Aug 23, 2011 5:18:30 PM org.apache.catalina.startup.Catalina load
+WARNING: Catalina.start using conf/server.xml: Error at (104, 66) : null
+Aug 23, 2011 5:18:30 PM org.apache.catalina.connector.Connector <init>
+SEVERE: Protocol handler instantiation failed
+Aug 23, 2011 5:18:30 PM org.apache.tomcat.util.digester.Digester startElement
+SEVERE: Begin event threw exception
+java.lang.NullPointerException
+at org.apache.catalina.startup.ConnectorCreateRule._setExecutor(ConnectorCreateRule.java:69)
+at org.apache.catalina.startup.ConnectorCreateRule.begin(ConnectorCreateRule.java:63)
+at org.apache.tomcat.util.digester.Digester.startElement(Digester.java:1276)
+at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(AbstractSAXParser.java:501)
+at com.sun.org.apache.xerces.internal.parsers.AbstractXMLDocumentParser.emptyElement(AbstractXMLDocumentParser.java:179)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanStartElement(XMLDocumentFragmentScannerImpl.java:1343)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2755)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:511)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:808)
+at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:119)
+at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1205)
+at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:522)
+at org.apache.tomcat.util.digester.Digester.parse(Digester.java:1537)
+at org.apache.catalina.startup.Catalina.load(Catalina.java:555)
+at org.apache.catalina.startup.Catalina.start(Catalina.java:609)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:322)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:450)
+Aug 23, 2011 5:18:31 PM org.apache.catalina.startup.Catalina load
+WARNING: Catalina.start using conf/server.xml: Error at (104, 66) : null
+Aug 23, 2011 5:18:31 PM org.apache.catalina.startup.Catalina start
+SEVERE: Cannot start server.
+Server instance is not configured.

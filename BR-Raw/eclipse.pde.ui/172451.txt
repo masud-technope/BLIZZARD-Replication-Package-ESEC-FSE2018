@@ -1,0 +1,9 @@
+Bug 172451 – Missing build.properties file paralyzes PDE tooling
+I20070130-0800.
+I wanted to use PDE Tools > Organize Manifest...
+but it did nothing.
+It took a while to notice that I forgot to add a build.properties file and hence  the action did nothing.
+From such a cool tool I would expect that it either warns me or generates a build.properites file.
+I know, I know I should have used the PDE wizard to create the project in the first place but I started off a normal Java project.
+The missing build.properites file also affects the PDE compiler, which no longer creates the problems for some of the MANIFEST.MF sections.
+The compiler could add a warning or error on the project if the build.properties is missing and the corresponding 'Problems in build.properties files' is set to warning or error.

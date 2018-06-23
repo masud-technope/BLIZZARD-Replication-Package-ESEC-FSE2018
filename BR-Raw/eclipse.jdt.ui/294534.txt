@@ -1,0 +1,10 @@
+Bug 294534 – [hashcode/equals] Code generation for equals() where an enum attribute is used should not use .equals but ==
+User-Agent:       Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.15) Gecko/2009102815 Ubuntu/9.04 (jaunty) Firefox/3.0.15
+Build Identifier: I20090611-1540
+This is more of an enhancement to the code generation feature in JDT.
+I have a class that has an enum attribute and when I use the "source->Generate hashCode() and equals()..." action.
+The equals method treated the enum attribute as a standard class with null checks and made use of .equals(..) etc.
+It should just have generated the following instead:
+if(other.enumValue!=enumValue)
+return false;
+Reproducible: Always

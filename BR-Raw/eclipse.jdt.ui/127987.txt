@@ -1,0 +1,13 @@
+Bug 127987 – [hovering] BIDI: wrong ordering of Hebrew text in tooltip code window
+1.
+Create a java project and java class including main method.
+2.
+Type in the main method the following text: System.out.print("ABC" + DEF);
+where capital are Hebrew characters.
+2.
+Folding the region the main method, i.e click on the minus icon in the vertical left side of the editor to collapse the code.
+3.
+Hovering over the folded Java element (on the â€œ+â€? icon).
+Result: When peeking the hidden code the ordering is changed as following:
+System.out.print("DEF + "ABC);
+Expected result: The text in editor and text in code tooltip should be consistent.

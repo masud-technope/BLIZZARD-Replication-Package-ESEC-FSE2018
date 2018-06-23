@@ -1,0 +1,6 @@
+Bug 416559 – [1.8][dom ast] variable binding for LambdaExpression parameter has non-unique key
+The IVariableBinding for a LambdaExpression parameter has a non-unique key:
+IntPredicate f = (i) -> i == 1;
+IntPredicate g = (i) -> i != 2;
+Key for both variables 'i' is just '#i'.
+Should be prefixed with the LambdaExpression's method binding key.

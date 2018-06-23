@@ -1,0 +1,9 @@
+Bug 426411 – [1.8][compiler] NoSuchMethodError at runtime due to emission order of casts in intersection casts
+From https://bugs.eclipse.org/bugs/show_bug.cgi?id=424211#c5
+// --
+public class X {
+public static void main(String argv[]) throws Exception {
+((Serializable & AutoCloseable) (() -> {})).close();
+}
+}
+This program fails at runtime.

@@ -1,0 +1,5 @@
+Bug 184647 – [Feature][Wizards] Initialize from OSGi config
+The New Feature Project wizard can now support initializing a feature from an existing OSGi launch configuration.
+See BundleLauncherHelper#getMergedBundles()
+Also, contractions like 'config' should not be used.
+ Please use the full word with a colon at the end

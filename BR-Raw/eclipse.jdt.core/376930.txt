@@ -1,0 +1,57 @@
+Bug 376930 – FUP of bug 24804: Organize imports does not work when folding imports into on-demand import
+HEAD.
+The following test case, when run in ImportRewriteTest, fails
+public void testAddImportsX() throws Exception {
+IPackageFragment pack1= this.sourceFolder.createPackageFragment("pack1", false, null);
+StringBuffer buf= new StringBuffer();
+buf.append(
+"package pack1;\n" +
+"\n" +
+"import java.util.*; // test\n" +
+"import java.util.Map.Entry;\n" +
+"//comment 2\n" +
+"import java.util.Map.SomethingElse;\n" +
+"// commen 3\n" +
+"\n" +
+"public class C {\n" +
+"    public static void main(String[] args) {\n" +
+"        HashMap h;\n" +
+"\n" +
+"        Map.Entry e= null;\n" +
+"        Entry e2= null;\n" +
+"\n" +
+"        PrintWriter pw;\n" +
+"        System.out.println(\"hello\");\n" +
+"    }\n" +
+"}");
+ICompilationUnit cu= pack1.createCompilationUnit("C.java", buf.toString(), false, null);
+String[] order= new String[] { "java", "java.util", "com", "pack" };
+ImportRewrite imports= newImportsRewrite(cu, order, 1, 1, true);
+imports.setUseContextToFilterImplicitImports(true);
+imports.addImport("java.io.PrintWriter");
+apply(imports);
+buf= new StringBuffer();
+buf.append(
+"package pack1;\n" +
+"\n" +
+"import java.io.*;\n" +
+"\n" +
+"import java.util.*;\n" +
+"import java.util.Map.Entry;\n" +
+"\n" +
+"public class C {\n" +
+"    public static void main(String[] args) {\n" +
+"        HashMap h;\n" +
+"\n" +
+"        Map.Entry e= null;\n" +
+"        Entry e2= null;\n" +
+"\n" +
+"        PrintWriter pw;\n" +
+"        System.out.println(\"hello\");\n" +
+"    }\n" +
+"}");
+assertEqualString(cu.getSource(), buf.toString());
+}
+This is because of bad calculation of comment ranges before and after an import in org.eclipse.jdt.internal.core.dom.rewrite.ImportRewriteAnalyzer.addExistingImports(CompilationUnit)
+lines 281 - 297.
+This blows up in org.eclipse.jdt.internal.core.dom.rewrite.ImportRewriteAnalyzer.getResultingEdits(IProgressMonitor) line 775

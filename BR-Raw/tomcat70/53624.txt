@@ -1,0 +1,15 @@
+53624 – sendRedirect doesn't work after a dispatch through the AsyncContext
+A call to sendRedirect after AsyncContext.dispatch doesn't redirect and returns with a 200 status code instead.
+A project demonstrating the issue:
+https://github.com/rstoyanchev/dispatch-test
+Build and deploy the source in the 'tomcat-issue-repro'.
+From the home page of the deployed application, select the "Redirect" scenario.
+The scenario involves Servlet "RedirectA" that creates a thread and dispatches to Servlet "RedirectB", which in turn redirects to Servlet "RedirectC" and that forwards to a simple JSP page.
+Instead of the JSP page rendering, you should see a blank page and the log output will show that processing ended at ServletC.
+For details on the setup see WebAppInitializer.setupRedirectScenario(ServletContext).
+---
+FWIW if a forward is used instead of a dispatch from the async thread, the scenario works.
+To do that, modify the line that creates servlet "RedirectA" to be ForwardingAsyncServlet instead of DispatchingAsyncServlet.
+---
+This issue is very similar to 51197, which was marked resolved in 7.0.25.
+The current issue was tested against 7.0.29.

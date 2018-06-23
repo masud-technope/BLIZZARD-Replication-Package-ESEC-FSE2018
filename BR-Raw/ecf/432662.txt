@@ -1,0 +1,22 @@
+Bug 432662 – ECFRuntimeException: Unable to instantiate schemes for HttpClient
+In my multi-threaded application I get many exceptions like the following for a short period after startup:
+org.eclipse.ecf.core.util.ECFRuntimeException: Unable to instantiate schemes for HttpClient.
+at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer.registerSchemes(HttpClientRetrieveFileTransfer.java:200)
+at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer.<init>(HttpClientRetrieveFileTransfer.java:176)
+at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransferFactory.newInstance(HttpClientRetrieveFileTransferFactory.java:22)
+at org.eclipse.ecf.internal.provider.filetransfer.Activator.getFileTransfer(Activator.java:608)
+at org.eclipse.ecf.provider.filetransfer.retrieve.MultiProtocolRetrieveAdapter.sendRetrieveRequest(MultiProtocolRetrieveAdapter.java:92)
+at org.eclipse.oomph.internal.setup.util.ECFURIHandlerImpl.createInputStream(ECFURIHandlerImpl.java:129)
+Finding the cause was a little difficult because ECFRuntimeException.printStackTrace() doesn't show the nested causes, but I found the cause nevertheless.
+It's in org.eclipse.ecf.internal.provider.filetransfer.httpclient4.Activator:
+public SSLSocketFactory getSSLSocketFactory() {
+if (sslSocketFactoryTracker == null) {
+sslSocketFactoryTracker = new ServiceTracker(this.context, SSLSocketFactory.class.getName(), null);
+sslSocketFactoryTracker.open();
+}
+return (SSLSocketFactory) sslSocketFactoryTracker.getService();
+}
+The method is *not* thread-safe.
+Adding a "synchronized" modifier solves the problem.
+I noticed that the getLogService() method might suffer from the same problem, but if so it didn't manifest itself for me.
+I used org.eclipse.ecf.provider.filetransfer.httpclient4_1.0.300.v20140228-1838 and found that the bug is still present in the master branch.

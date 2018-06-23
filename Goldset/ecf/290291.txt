@@ -1,0 +1,2 @@
+tests/bundles/org.eclipse.ecf.tests/src/org/eclipse/ecf/tests/core/ContainerFactoryCreateTest.java
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/generic/GenericContainerInstantiator.java

@@ -1,0 +1,16 @@
+57509 – maxHttpHeaderSize maybe case ArrayIndexOutOfBoundsException
+Modify the server.xml, add the maxHttpHeaderSize attribute:
+<Connector port="8080" protocol="HTTP/1.1"
+connectionTimeout="20000"
+redirectPort="8443" maxHttpHeaderSize="24"/>
+I deliberately modify the maxHttpHeaderSize to a small value, then I make a normal request, Sure, the request header is more than 24 bytes.
+Then the server is report following error:
+28-Jan-2015 16:08:01.870 SEVERE [http-nio-8080-exec-1] org.apache.coyote.http11.AbstractHttp11Processor.endRequest Error finishing response
+java.lang.ArrayIndexOutOfBoundsException: 24
+at org.apache.coyote.http11.AbstractOutputBuffer.sendStatus(AbstractOutputBuffer.java:445)
+at org.apache.coyote.http11.AbstractHttp11Processor.prepareResponse(AbstractHttp11Processor.java:1554)
+at org.apache.coyote.http11.AbstractHttp11Processor.action(AbstractHttp11Processor.java:739)
+at org.apache.coyote.Response.action(Response.java:179)
+...
+Is not check the maxHttpHeaderSize? Normal circumstances, it's should response 413-request entity is too large.
+I think this is better and reasonable.

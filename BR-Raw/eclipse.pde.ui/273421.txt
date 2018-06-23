@@ -1,0 +1,3 @@
+Bug 273421 – Failing LocalTargetDefinitionTests because a bundle has been added to the JDT feature
+The LocalTargetDefinitionTests fail since N20090421-2000, because the test contains a hard-coded list of plug-ins expected in the JDT feature.
+We've added org.hamcrest.core as a separate bundle, see bug 272942.

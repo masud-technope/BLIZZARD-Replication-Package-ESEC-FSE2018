@@ -1,0 +1,6 @@
+Bug 275359 – [ui] remove use of deprecated methods
+In the following plugins we are currently getting some deprecation warnings:
+org.eclipse.ecf.presence.ui
+org.eclipse.ecf.protocol.msn
+org.eclipse.ecf.ui
+If possible, it would be good to replace the calls to deprecated API with non-deprecated calls.

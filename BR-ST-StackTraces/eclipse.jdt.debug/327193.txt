@@ -1,0 +1,14 @@
+java.lang.ProcessBuilder.start
+java.lang.Runtime.exec
+org.eclipse.debug.core.DebugPlugin.exec
+org.eclipse.jdt.launching.AbstractVMRunner.exec
+org.eclipse.jdt.internal.launching.StandardVMRunner.run
+org.eclipse.jdt.junit.launcher.JUnitLaunchConfigurationDelegate.launch
+org.eclipse.debug.internal.core.LaunchConfiguration.launch
+org.eclipse.debug.internal.core.LaunchConfiguration.launch
+org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch
+org.eclipse.debug.internal.ui.DebugUIPlugin$8.run
+org.eclipse.core.internal.jobs.Worker.run
+java.lang.ProcessImpl.create
+java.lang.ProcessImpl.<init>
+java.lang.ProcessImpl.start

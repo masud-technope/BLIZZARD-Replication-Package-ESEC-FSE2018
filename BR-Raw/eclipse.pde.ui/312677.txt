@@ -1,0 +1,3 @@
+Bug 312677 – Host OSGi console should have close action
+The Host OSGi console should have a close action/toolbar item similar to the Java stack trace console.
+The action should invoke the "disconnect" command.

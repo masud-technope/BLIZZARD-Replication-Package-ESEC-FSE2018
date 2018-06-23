@@ -1,0 +1,26 @@
+Bug 415821 – [1.8][compiler] CLASS_EXTENDS target type annotation missing for anonymous classes.
+BETA_JAVA8:
+----------
+Per discussions in the EG list, the spec is being amended to require
+a target_type=CLASS_EXTENDS type annotation for the following case:
+This is apart from the target_type=NEW type annotation which we already
+emit.
+Note that the reference compiler already emits the CLASS_EXTENDS type
+annotation, but not the NEW target type annotation, a bug has been raised
+against javac for this purpose.
+// ---
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE_USE)
+@interface X {}
+class C { void m() { new @X Foo() {}; } }
+// --
+From the EG discussion:
+...
+The wording for target_type=CLASS_EXTENDS (0x10) refers to a "type in
+extends clause of class or interface declaration" so it's not clear that
+the @X annotation should be stored this way.
+To clarify, the wording for
+target_type=CLASS_EXTENDS should say:
+"type in extends clause of class or interface declaration (including the
+direct superclass of an anonymous class declaration), ..."
+...

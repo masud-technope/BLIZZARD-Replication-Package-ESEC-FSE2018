@@ -1,0 +1,12 @@
+46564 – .tagx files don't compile if the document and page encoding casing differs
+Jasper will raise an error like
+/WEB-INF/tags/sampletaglib/sampletag.tagx(3,99) Page-encoding specified in XML prolog (iso-8859-1) is different from that specified in page directive (ISO-8859-1)
+if the encoding specified within the XML prolog and the page directive use different casing:
+<?xml version="1.0" encoding="iso-8859-1"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+<jsp:directive.tag display-name="sampletag" pageEncoding="ISO-8859-1" />
+This is a sample tag!
+</jsp:root>
+Proposed solution: Compare the encodings case-insensitive.
+For example:
+iso-8859-1 and ISO-8859-1 are both valid identifiers for the same encoding.

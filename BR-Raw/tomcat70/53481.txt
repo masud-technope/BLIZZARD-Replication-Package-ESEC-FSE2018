@@ -1,0 +1,7 @@
+53481 – Support SSL_OP_CIPHER_SERVER_PREFERENCE / SSLHonorCipherOrder
+Currently, Tomcat Native does not have an equivalent of the mod_ssl SSLHonorCipherOrder directive and is thus vulnerable to the SSL BEAST attack.
+See http://httpd.apache.org/docs/current/mod/mod_ssl.html#sslhonorcipherorder for the docs on this directive, and https://community.qualys.com/blogs/securitylabs/2011/10/17/mitigating-the-beast-attack-on-tls on why and how it mitigates the BEAST attack.
+Please incorporate an option named SSLHonorCipherOrder that sets the OpenSSL option SSL_OP_CIPHER_SERVER_PREFERENCE
+P.S., not sure whether to qualify this as bug or enhancement, but since it concerns a security issue I filed it as a bug.
+P.S.2, I'm willing to create a patch myself, but since I don't have an Tomcat Native build env that will probably take some time...
+It's a really small change.

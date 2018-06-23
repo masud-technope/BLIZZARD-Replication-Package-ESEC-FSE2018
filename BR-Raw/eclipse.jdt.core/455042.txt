@@ -1,0 +1,4 @@
+Bug 455042 – Enable the Java model caches to recover from IO errors
+The invalid archive cache is now evicted too infrequently.
+Since jars can come from network drives and be subject to transient I/O errors, it should be cleared on every build.
+As it stands now, the previously invalid jar will only get reevaluated if its timestamp changes or if the classpath is modified.

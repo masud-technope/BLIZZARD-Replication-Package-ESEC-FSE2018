@@ -1,0 +1,14 @@
+Bug 443932 – [1.8][code complete] method reference proposals not applied when caret inside method name
+Follow-up to bug 402081 and bug 433178.
+Have this code:
+IntFunction<String> ts= Integer::toString;
+Set caret after "Integer::to" and press Ctrl+Space.
+Try to apply e.g.
+"toBinaryString(int)".
+=> The proposal is not inserted.
+The problem is that the replaceRange is wrong.
+This code in CompletionEngine.findLocalMethods(..) line 8750 looks wrong:
+if (completionOnReferenceExpressionName)
+proposal.setReplaceRange(this.endPosition - this.offset - methodLength, this.endPosition - this.offset);
+else
+When I remove that change from bug 402081, then the proposals work as expected.

@@ -1,0 +1,4 @@
+Bug 329054 – [Discovery][Composite] org.eclipse.ecf.provider.discovery.CompositeDiscoveryContainer.connect(ID, IConnectContext) should handle ContainerConnectExceptions in nested discovery providers
+org.eclipse.ecf.provider.discovery.CompositeDiscoveryContainer.connect(ID, IConnectContext) connects nested containers/discovery providers.
+If a nested provider fails to connect with a org.eclipse.ecf.core.ContainerConnectException, it will prevent other containers from registering with CDC successfully.
+Thus CDC must handle the CCE.

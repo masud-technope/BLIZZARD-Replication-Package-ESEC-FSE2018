@@ -1,0 +1,7 @@
+Bug 229380 – Up/Down buttons incorrectly enabled on classpath tab
+1) Open a Java Launch Configuration
+2) Go to the classpath tab
+3) Ensure there is at least one bootstrap entry and one user entry
+4) Select the bottom bootstrap entry, the DOWN button is enabled, but pressing it does nothing.
+5) Select the top user entry, the UP button is enabled, but pressing it does nothing.
+We should be able to update the button to reflect whether moving it is possible.

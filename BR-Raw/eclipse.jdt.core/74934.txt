@@ -1,0 +1,41 @@
+Bug 74934 – ArrayIndexOutOfBoundsException with float literal
+build I200409231635
+1) create the following type
+public class X {
+float f = 0x
+}
+2) try to save the file
+An ArrayIndexOutOfBoundsException  occurs
+java.lang.ArrayIndexOutOfBoundsException: Array index out of range: 2
+at org.eclipse.jdt.internal.compiler.ast.IntLiteral.computeConstant
+(Unknown Source)
+at org.eclipse.jdt.internal.compiler.ast.Literal.resolveType(Unknown
+Source)
+at org.eclipse.jdt.internal.compiler.ast.IntLiteral.resolveType
+(Unknown Source)
+at org.eclipse.jdt.internal.compiler.ast.FieldDeclaration.resolve
+(Unknown Source)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve
+(Unknown Source)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve
+(Unknown Source)
+at
+org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve
+(Unknown Source)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(Unknown
+Source)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(Unknown
+Source)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(Unknown Source)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(Unknown Source)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.createAST
+(Unknown Source)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.getAST(Unknown
+Source)
+at
+org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartLis
+tenerGroup.calculateASTandInform(Unknown Source)
+at
+org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$3.run
+(Unknown Source)
+at org.eclipse.core.internal.jobs.Worker.run(Unknown Source)

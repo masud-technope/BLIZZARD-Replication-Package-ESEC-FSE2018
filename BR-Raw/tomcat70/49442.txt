@@ -1,0 +1,3 @@
+49442 – Make StringManager fields final
+Created attachment 25592 [details]
+Patch to make fields final

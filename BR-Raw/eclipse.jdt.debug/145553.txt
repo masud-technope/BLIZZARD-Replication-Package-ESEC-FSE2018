@@ -1,0 +1,10 @@
+Bug 145553 – [variables] Cannot modify String variable with empty string value with Change Value dialog
+If you try to use the Change Value action on a String variable that currently has the value "" the OK button is never enabled so you cannot save a new value.
+Here is a test case.
+Stopping at the System.out below and trying to change the value of s shows the problem with the OK button.
+public class Tester {
+public static void main(String[] args) {
+String s = "";
+System.out.println("done, s = " + s);
+}
+}

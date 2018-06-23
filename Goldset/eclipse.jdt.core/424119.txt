@@ -1,0 +1,4 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaSearchBugs8Tests.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/compiler/SourceElementParser.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/LocalVariable.java
+org.eclipse.jdt.core/search/org/eclipse/jdt/internal/core/search/matching/MatchLocator.java

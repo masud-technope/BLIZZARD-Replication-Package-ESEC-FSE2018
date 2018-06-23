@@ -1,0 +1,6 @@
+Bug 90428 – Jabber Provider - Character "%" should be allowed in Jabber login names
+Several Jabber servers allow the % character in the username, in order to
+support usernames such as
+user%hotmail.com@jabberserver.org
+ECF M1 disables the Finish button in the Join group action when the Jabber user
+name contains a "%"

@@ -1,0 +1,53 @@
+Bug 71852 – ClassCastException in HandleFactory.createElement(...)
+I200408101200
+Not sure when this happened.
+java.lang.ClassCastException
+at org.eclipse.jdt.internal.core.util.HandleFactory.createElement(Handle
+Factory.java:310)
+at org.eclipse.jdt.internal.core.util.HandleFactory.createElement(Handle
+Factory.java:300)
+at org.eclipse.jdt.internal.core.SelectionRequestor.acceptLocalVariable(
+SelectionRequestor.java:220)
+at org.eclipse.jdt.internal.codeassist.SelectionEngine.selectFrom(Select
+ionEngine.java:720)
+at org.eclipse.jdt.internal.codeassist.SelectionEngine.select(SelectionE
+ngine.java:533)
+at org.eclipse.jdt.internal.core.Openable.codeSelect(Openable.java:143)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeSelect(CompilationU
+nit.java:303)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeSelect(CompilationU
+nit.java:297)
+at org.eclipse.jdt.internal.ui.infoviews.TextSelectionConverter.codeReso
+lve(TextSelectionConverter.java:90)
+at org.eclipse.jdt.internal.ui.infoviews.TextSelectionConverter.codeReso
+lve(TextSelectionConverter.java:52)
+at org.eclipse.jdt.internal.ui.infoviews.AbstractInfoView.findSelectedJa
+vaElement(AbstractInfoView.java:333)
+at org.eclipse.jdt.internal.ui.infoviews.JavadocView.findSelectedJavaEle
+ment(JavadocView.java:500)
+at org.eclipse.jdt.internal.ui.infoviews.AbstractInfoView$2.run(Abstract
+InfoView.java:448)
+java.lang.ClassCastException
+at org.eclipse.jdt.internal.core.util.HandleFactory.createElement(Handle
+Factory.java:310)
+at org.eclipse.jdt.internal.core.util.HandleFactory.createElement(Handle
+Factory.java:300)
+at org.eclipse.jdt.internal.core.SelectionRequestor.acceptLocalVariable(
+SelectionRequestor.java:220)
+at org.eclipse.jdt.internal.codeassist.SelectionEngine.selectFrom(Select
+ionEngine.java:720)
+at org.eclipse.jdt.internal.codeassist.SelectionEngine.select(SelectionE
+ngine.java:533)
+at org.eclipse.jdt.internal.core.Openable.codeSelect(Openable.java:143)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeSelect(CompilationU
+nit.java:303)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeSelect(CompilationU
+nit.java:297)
+at org.eclipse.jdt.internal.ui.infoviews.TextSelectionConverter.codeReso
+lve(TextSelectionConverter.java:90)
+at org.eclipse.jdt.internal.ui.infoviews.TextSelectionConverter.codeReso
+lve(TextSelectionConverter.java:52)
+at org.eclipse.jdt.internal.ui.infoviews.AbstractInfoView.findSelectedJa
+vaElement(AbstractInfoView.java:333)
+at org.eclipse.jdt.internal.ui.infoviews.AbstractInfoView$2.run(Abstract
+InfoView.java:448)

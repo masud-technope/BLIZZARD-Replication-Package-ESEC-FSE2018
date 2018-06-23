@@ -1,0 +1,13 @@
+Bug 120938 – Schema editor is not all disabled
+Build: I-20051214-1200 (King Kong build)
+From the cvs repositories view directly, open org.eclipse.core.filebuffers/schema/annotationModelCreation.exsd
+All buttons, text fields, etc.
+are disabled on the first page.
+ good.
+Go to the second page.
+Select attribute 'class' under element 'factory'
+Note how the Implements/Extends rows are all editable.
+ Clicking on the link results in an NPE.
+These two rows should be non-editable.
+ and there should be no links on the labels.
+ Browse button should be diabled.

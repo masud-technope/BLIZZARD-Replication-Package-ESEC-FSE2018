@@ -1,0 +1,5 @@
+Bug 99072 – [preferences] Explain Ctrl modifier for code assistant
+N20050608-0010
+This was a polish item that we got to add.
+Easy fix.
+Approving for 3.1 RC2.

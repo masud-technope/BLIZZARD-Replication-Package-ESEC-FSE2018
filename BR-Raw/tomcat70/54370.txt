@@ -1,0 +1,6 @@
+54370 – NPE mapping method in EL
+Created attachment 29808 [details]
+Patch
+NPE when using null parameters in some cases: https://issues.jboss.org/browse/AS7-3177
+I did put a workaround for it, but I don't know how legitimate it is.
+It looks a bit similar to the NPE with a null toString that got reverted, where a null object is used as an argument.

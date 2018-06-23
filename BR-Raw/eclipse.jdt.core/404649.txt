@@ -1,0 +1,9 @@
+Bug 404649 – [1.8][compiler] detect illegal reference to indirect or redundant super
+As of 0.6.2 para 15.12.3 contains this:
+" If the method invocation has, before the left parenthesis, the form ClassName TypeName .
+super .
+NonWildTypeArgumentsopt Identifier, then:
+[...]
+Otherwise, if the TypeName denotes an interface, let T be the type declaration immediately enclosing the method invocation.
+A compile-time error occurs if there exists a method, distinct from the compile-time declaration, that overrides (9.4.1) the compile-time declaration from a direct superclass or direct superinterface of T."
+This rule is yet unimplemented.

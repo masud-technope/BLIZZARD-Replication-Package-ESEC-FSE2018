@@ -1,0 +1,5 @@
+Bug 181393 – DefaultASTVisitor doesn't override all methods
+I20070403
+DefaultASTVisitor doesn't override all methods (e.g.
+it doesn't override visit(MarkerAnnotation).
+As a consequence, visitNode(ASTNode) and endVisitNode(ASTNode) are not called for all nodes in the AST.

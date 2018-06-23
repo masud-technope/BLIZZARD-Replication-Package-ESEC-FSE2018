@@ -1,0 +1,49 @@
+42503 – ServletContext.getResourceAsStream returns stale data
+Under certain conditions, the resource cache implementation used by the
+servlet/JSP engine (in org.apache.naming.resource) does not detect that a file
+in its cache has been modified and therefore returns the previous contents of
+the file.
+This happens only
+* when the file contents are modified but the file length doesn't change
+* until the time the first change in the file is detected after server startup
+To reproduce the problem, put the attached test.jsp and test.txt into the ROOT
+web app and then do the following.
+(I used Tomcat 6's trunk for the test)
+% cat test.txt
+abcd
+% telnet .
+9080
+Trying 0.0.0.0...
+Connected to ..
+Escape character is '^]'.
+GET /test.jsp HTTP/1.0
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Set-Cookie: JSESSIONID=706D6FE8B06687509D42E79DBEE266EF; Path=/
+Content-Type: text/html
+Content-Length: 26
+Date: Wed, 23 May 2007 23:03:05 GMT
+Connection: close
+File contents=[
+abcd
+]
+Connection to .
+closed by foreign host.
+% cat test.txt (change the contents but not the size)
+efgh
+% telnet .
+9080
+Trying 0.0.0.0...
+Connected to ..
+Escape character is '^]'.
+GET /test.jsp HTTP/1.0
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Set-Cookie: JSESSIONID=2B144247B747F54184114FA82869DE14; Path=/
+Content-Type: text/html
+Content-Length: 26
+Date: Wed, 23 May 2007 23:04:24 GMT
+Connection: close
+File contents=[
+abcd
+]

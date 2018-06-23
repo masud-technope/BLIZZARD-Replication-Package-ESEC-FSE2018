@@ -1,0 +1,17 @@
+Bug 196882 – [Schema][Editors] Remove "Label Property" and "Icon" fields from "Element Details" section
+Problems:
+(1) Nobody understands what these fields are for
+(2) These fields make the details section of elements more cluttered
+(3) The fields only affect the presentation of elements in the manifest
+editor Extensions tree viewer (icon and name)
+-> This should be calculated dynamically rather than having to
+specified manually
+Criteria:
+For the element's presentation name, the element's first translatable attribute of type string should be used.
+For the element's presentation icon, the element's first attribute of type resource should be used.
+Recommendation:
+I think the easiest and cleanest way to do this is to update the element's schema annotation everytime a new attribute is added (in the schema editor) only if a value has not already been specified:
+<appInfo>
+<meta.element labelAttribute="name" icon="icon"/>
+</appInfo>
+Care has to be taken to preserve values already specified that do not meet the specified criteria above.

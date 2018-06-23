@@ -1,0 +1,8 @@
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/LocalEvaluationEngine.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/debug/core/IJavaObject.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/debug/core/IJavaClassType.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/debug/core/IJavaFieldVariable.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIClassType.java
+org.eclipse.jdt.debug/buildnotes_jdt-debug.html
+org.eclipse.jdt.debug/model/org/eclipse/jdt/debug/core/IJavaExceptionBreakpoint.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIObjectValue.java

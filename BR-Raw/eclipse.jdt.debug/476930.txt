@@ -1,0 +1,52 @@
+Bug 476930 – NullPointerException in AbstractJavaLaunchConfigurationDelegate.getDefaultWorkingDirectory (AbstractJavaLaunchConfigurationDelegate.java:995)
+The following incident was reported via the automated error reporting:
+The user(s) left the following comments:
+--- Pawel Puterla wrote: ---
+Trying to run a code from RSE project
+code:                   2
+plugin:                 org.eclipse.core.jobs_3.7.0.v20150330-2103
+message:                HIDDEN
+fingerprint:            c41ebc8d
+exception class:        java.lang.NullPointerException
+exception message:      HIDDEN
+number of children:     0
+java.lang.NullPointerException: HIDDEN
+at org.eclipse.jdt.launching.AbstractJavaLaunchConfigurationDelegate.getDefaultWorkingDirectory(AbstractJavaLaunchConfigurationDelegate.java:995)
+at org.eclipse.jdt.launching.AbstractJavaLaunchConfigurationDelegate.verifyWorkingDirectory(AbstractJavaLaunchConfigurationDelegate.java:683)
+at org.eclipse.jdt.launching.JavaLaunchDelegate.launch(JavaLaunchDelegate.java:54)
+at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+General Information:
+reported-by:      Pawel Puterla
+anonymous-id:     0dc51669-b051-483d-870a-17f4b6fa2608
+eclipse-build-id: 4.5.0.I20150603-2000
+eclipse-product:  org.eclipse.epp.package.java.product
+operating system: Windows7 6.1.0 (x86_64) - win32
+jre-version:      1.8.0_40-b26
+The following plug-ins were present on the execution stack (*):
+1.
+org.eclipse.core.jobs_3.7.0.v20150330-2103
+2.
+org.eclipse.debug.core_3.10.0.v20150303-1130
+3.
+org.eclipse.debug.ui_3.11.0.v20150514-0917
+4.
+org.eclipse.jdt.launching_3.8.0.v20150527-0946
+5.
+org.eclipse.jdt_3.11.0.v20150603-2000
+Please note that:
+* Messages, stacktraces, and nested status objects may be shortened.
+* Bug fields like status, resolution, and whiteboard are sent
+back to reporters.
+* The list of present bundles and their respective versions was
+calculated by package naming heuristics.
+This may or may not reflect reality.
+Other Resources:
+* Report: https://dev.eclipse.org/recommenders/committers/confess/#/problems/55e6e849e4b0f02971da3eac
+* Manual: https://dev.eclipse.org/recommenders/community/confess/#/guide
+Thank you for your assistance.
+Your friendly error-reports-inbox.
+This bug was created on behalf of sarika.sinha@xxxxxxxxxxxx.

@@ -1,0 +1,5 @@
+Bug 291322 – Test errors when running JDT Core tests on Windows 7
+Some tests randomly cause exceptions on tear down when running on Windows 7.
+This is caused by a known Windows issue that a lock on a file might not get freed immediately and hence subsequent calls to e.g.
+delete the file fails.
+Pattern is to retry several times.

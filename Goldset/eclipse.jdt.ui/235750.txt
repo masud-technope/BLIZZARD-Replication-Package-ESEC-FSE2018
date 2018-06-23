@@ -1,0 +1,13 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CleanUpTabPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/MissingCodeTabPage.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/CleanUpStressTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/CleanUpTest.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CleanUpConstants.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/Java50Fix.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/Java50CleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/PotentialProgrammingProblemsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CleanUpMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CleanUpMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/CleanUpTabPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/cleanup/MissingCodeTabPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/ModifierCorrectionSubProcessor.java

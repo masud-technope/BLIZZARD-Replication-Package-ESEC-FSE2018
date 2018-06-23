@@ -1,0 +1,16 @@
+Bug 257505 – [quick fix] Dead code quick fix should remove unnecessary parentheses
+I20081202-1812
+On following unit, 'b1' is flagged as dead code:
+class BB {
+void foo(boolean b1, boolean b2) {
+if ((false && b1) && b2) {
+}
+}
+}
+after applying quickfix (remove), it becomes:
+class BB {
+void foo(boolean b1, boolean b2) {
+if ((false) && b2) {
+}
+}
+}

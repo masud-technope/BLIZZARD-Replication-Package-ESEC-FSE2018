@@ -1,0 +1,9 @@
+Bug 209056 – config.ini generated for eclipse launch configuration does not work against a p2 target
+Setup:
+- A 3.4 M3 p2 provisioned SDK
+- Target platform set to its default value (in this case the bundle pool)
+When in this setup I create an eclipse launch configuration (or PDE Junit one), my  instance does not come up.
+The reason is because no applications are registered and this stemmed from the *non* started state of org.eclipse.core.runtime.
+My guess:
+- PDE is not generating the proper config.ini
+- PDE does not have the information to generate the proper config.ini because it does not find the config.ini.

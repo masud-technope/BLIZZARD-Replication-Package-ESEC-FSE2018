@@ -1,0 +1,10 @@
+Bug 429498 – [1.8][refactoring] Change Method Signature refactoring breaks lambda
+interface I {
+public void doit();
+}
+public class X {
+I i = () -> {};
+}
+Change I.doit()'s signature - the lambda does not compile anymore.
+Now that declarations in hierarchy correctly tags the lambda as implementing
+I.doit, expectation is that this should work.

@@ -1,0 +1,12 @@
+Bug 418919 – [1.8][compiler][internal] Remove boolean forcing creation of annotated bindings.
+BETA_JAVA8:
+In LookupEnvironment::LookupEnvironment, we have this code:
+boolean stillTesting = true;
+if (this.globalOptions.sourceLevel >= ClassFileConstants.JDK1_8 && (stillTesting || this.globalOptions.storeAnnotations)) {
+this.typeSystem = new AnnotatableTypeSystem(this);
+} else {
+this.typeSystem = new UnannotatedTypeSystem(this);
+}
+At some suitable point, we should remove the boolean and let the other gating
+conditions decide whether bindings should carry annotations or not.
+Raising this defect so we don't drop this ball.

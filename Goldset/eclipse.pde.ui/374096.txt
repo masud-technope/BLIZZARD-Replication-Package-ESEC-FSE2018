@@ -1,0 +1,16 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/FindExtensionsByAttributeQuery.java
+ui/org.eclipse.pde.ui/icons/dlcl16/search_extensions.gif
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/actions/FilterRelatedExtensionsAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/actions/ShowAllExtensionsAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEPluginImages.java
+ui/org.eclipse.pde.ui/icons/obj16/esearch_obj.gif
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/ExtensionsSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/actions/SearchExtensionsAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/util/AcceleratedTreeScrolling.java
+ui/org.eclipse.pde.ui/icons/elcl16/search_extensions.gif
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/SearchResult.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/actions/ToggleExpandStateAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/ExtensionElementSearchOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/AttributesMatch.java

@@ -1,0 +1,31 @@
+Bug 72238 – [1.5] CodeAssist - Wrong completion inside parameterized type
+build I20040812
+1) create X.java
+public class X <T> {
+X<ZZZ#cursor#<
+}
+2) do ctrl + space at cursor location
+The completion AST is
+public class X<T> {
+<CompleteOnType:ZZZ>;
+public Test() {
+}
+}
+but should be
+public class X<T> {
+X<<CompleteOnType:ZZZ>>;
+public Test() {
+}
+}
+The problem is the same with
+public class X <T> {
+X<ZZZ#cursor#.
+}
+The ast is correct with
+public class X <T> {
+X<ZZZ#cursor#
+}
+or
+public class X <T> {
+X<ZZZ#cursor#>
+}

@@ -1,0 +1,3 @@
+Bug 120560 – [implementation] Add logging of JME back when accessing Javadoc from attached Javadoc
+I20051213-0010.
+Add logging of JME back when accessing Javadoc from attached Javadoc, see bug .

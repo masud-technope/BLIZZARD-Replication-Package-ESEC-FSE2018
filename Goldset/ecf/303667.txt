@@ -1,0 +1,9 @@
+protocols/bundles/ch.ethz.iks.slp/runtimeTests/src/main/java/ch/ethz/iks/slp/test/TestActivator.java
+protocols/bundles/ch.ethz.iks.slp/pom.xml
+protocols/bundles/ch.ethz.iks.slp/runtimeTests/pom.xml
+protocols/bundles/ch.ethz.iks.slp/runtimeTests/src/main/java/ch/ethz/iks/slp/test/DistributedTestActivator.java
+protocols/bundles/ch.ethz.iks.slp/pom.xml
+protocols/bundles/ch.ethz.iks.slp/runtimeTests/META-INF/MANIFEST.MF
+protocols/bundles/ch.ethz.iks.slp/runtimeTests/pom.xml
+protocols/bundles/ch.ethz.iks.slp/runtimeTests/src/main/java/ch/ethz/iks/slp/test/DistributedTestActivator.java
+protocols/bundles/ch.ethz.iks.slp/runtimeTests/src/main/java/ch/ethz/iks/slp/test/TestActivator.java

@@ -1,0 +1,158 @@
+37929 – invalidated session causes pageContext methods to fail
+javax.servlet.http.HttpSession methods such as getAttribute(),
+getValue(), getAttributeNames(), getValueNames(), etc, throw an
+IllegalStateException if called on a session that has been
+invalidated.
+So, with the following code in a JSP page:
+<%
+session.invalidate();
+Object obj = pageContext.findAttribute("foo");
+%>
+An IllegalStateException is thrown because pageContext.findAttribute()
+eventually calls session.getAttribute() on a session that has been
+invalidated.
+The session that has been invalidated should simply be ignored when a
+method needs to process the various scopes (page, request, session,
+application).
+This impacts the following methods in PageContextImpl:
+public int getAttributesScope(final String name)
+which calls -> private int doGetAttributeScope(String name);
+public Object findAttribute(final String name)
+which calls -> private Object doFindAttribute(String name);
+public void removeAttribute(final String name)
+which calls -> private void doRemoveAttribute(String name);
+The fix is to catch IllegalStateException and ignore it when processing
+the attribute in session scope.
+The code then simply follows through to
+process application scope.
+No need to worry about setAttribute() because it is always invoked
+on a specific scope, and the spec already states
+that java.lang.IllegalStateException must be thrown when called
+on an invalidated session.
+pageContext.setAttribute("foo", "value of foo", PageContext.SESSION_SCOPE);
+java.lang.IllegalStateException - if the scope is PageContext.SESSION_SCOPE
+but the page that was requested does not participate in a session or
+the session has been invalidated.
+---------------------------------------------------------------------------
+At the same time, a fix should be done to method "doRemoveAttribute(String
+name)" where a try/catch block for Exception appears unnecessary.
+private void doRemoveAttribute(String name){
+try {
+removeAttribute(name, PAGE_SCOPE);
+removeAttribute(name, REQUEST_SCOPE);
+if( session != null ) {
+try {
+removeAttribute(name, SESSION_SCOPE);
+} catch (IllegalStateException ex) {
+// Session has been invalidated.
+// Ignore and fall through to application scope.
+}
+}
+removeAttribute(name, APPLICATION_SCOPE);
+} catch (Exception ex) {
+// we remove as much as we can, and
+// simply ignore possible exceptions
+}
+}
+Here is a full analysis:
+Starting with 'removeAttribute(final String name)'
+- we check for null and throw NPE if necessary
+- we call doRemoveAttribute(name)
+doRemoveAttribute(name)
+- we call removeAttribute(name, scope) for each scope
+removeAttribute(final String name, final int scope)
+- this calls doRemoveAttribute(name, scope)
+doRemoveAttribute(name, scope)
+- page scope: attributes.remove -> won't throw an Exception
+- request scope: request.removeAttribute -> no documented Exception thrown
+- session scope: throws IllegalStateException if session is null
+- app scope: context.removeAttribute -> no documented Exception thrown
+A null value for name is already checked in removeAttribute(final String name)
+and we throw NPE.
+So this situation (removing an attr from page or request
+scope throwing an NPE) won't happen.
+In doRemoveAttribute(name), we already check on session != null
+before calling removeAttribute(name, SESSION_SCOPE).
+So there
+normally is no IllegalStateException thrown (except for the invalidated
+case).
+When removing an attribute from application (i.e., ServletContext)
+scope, any registered listeners will be notified, but the code that
+does that (see
+appserv-webtier/src/java/org/apache/catalina/core/ApplicationContext.
+removeAttribute()) already catches any Throwable that a listener
+may throw.
+The try/catch block is therefore unnecessary.
+Moreover, if any of the removal actions from the different scopes could
+have thrown an exception, each of them would have needed to be wrapped
+inside their own try/catch, so as to ensure that an exception in one
+scope does not cause any of the subsequent removals to be bypassed.
+doRemoveAttribute(String name) has therefore been modified as follows:
+private void doRemoveAttribute(String name){
+removeAttribute(name, PAGE_SCOPE);
+removeAttribute(name, REQUEST_SCOPE);
+if( session != null ) {
+try {
+removeAttribute(name, SESSION_SCOPE);
+} catch (IllegalStateException ex) {
+// Session has been invalidated.
+// Ignore and fall through to application scope.
+}
+}
+removeAttribute(name, APPLICATION_SCOPE);
+}
+--------------------------
+Changes done on glassfish.
+ymmv on jasper for the diffs.
+--- PageContextImpl.java	9 Dec 2005 18:54:30 -0000	1.7
++++ PageContextImpl.java	16 Dec 2005 00:11:21 -0000	1.8
+@@ -452,8 +452,13 @@
+return REQUEST_SCOPE;
+if (session != null) {
++            try {
+if (session.getAttribute(name) != null)
+return SESSION_SCOPE;
++            } catch (IllegalStateException ex) {
++ 	        // Session has been invalidated.
++                // Ignore and fall through to application scope.
++            }
+}
+if (context.getAttribute(name) != null)
+@@ -495,9 +500,14 @@
+return o;
+if (session != null) {
++	    try {
+o = session.getAttribute(name);
+-            if (o != null)
+-                return o;
++ 	    } catch (IllegalStateException ex) {
++ 	        // Session has been invalidated.
++                // Ignore and fall through to application scope.
++ 	    }
++
++ 	    if (o != null) return o;
+}
+return context.getAttribute(name);
+@@ -559,19 +569,18 @@
+}
+}
+-
+private void doRemoveAttribute(String name){
+-        try {
+removeAttribute(name, PAGE_SCOPE);
+removeAttribute(name, REQUEST_SCOPE);
+if( session != null ) {
++            try {
+removeAttribute(name, SESSION_SCOPE);
++            } catch (IllegalStateException ex) {
++                // Session has been invalidated.
++                // Ignore and fall through to application scope.
+}
+-            removeAttribute(name, APPLICATION_SCOPE);
+-        } catch (Exception ex) {
+-            // we remove as much as we can, and
+-            // simply ignore possible exceptions
+}
++        removeAttribute(name, APPLICATION_SCOPE);
+}
+public JspWriter getOut() {

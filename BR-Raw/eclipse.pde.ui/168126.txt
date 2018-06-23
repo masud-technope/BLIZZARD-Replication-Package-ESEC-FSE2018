@@ -1,0 +1,12 @@
+Bug 168126 – Warnings on project after importing w/ source folders a project that was exported with source
+Steps to recreate:
+1.
+Create a Plug-in Project
+2.
+Export with Source
+3.
+Delete plug-in project
+4.
+Import exported plug-in with source folders
+Result: There are warnings on the plugin.xml and Manifest.MF for any references to classes.
+ This is because there are no source folders on the buildpath.

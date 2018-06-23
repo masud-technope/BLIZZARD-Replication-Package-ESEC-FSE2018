@@ -1,0 +1,4 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ClasspathTests.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/ClasspathEntry.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavaModelManager.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/DeltaProcessor.java

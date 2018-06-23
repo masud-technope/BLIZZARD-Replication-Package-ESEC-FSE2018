@@ -1,0 +1,3 @@
+Bug 376882 – [type wizards] Make NewPackageWizardPage#isCreatePackageDocumentation() API
+Make NewPackageWizardPage#isCreatePackageDocumentation() API.
+Bug 86168 was too late for 3.8.

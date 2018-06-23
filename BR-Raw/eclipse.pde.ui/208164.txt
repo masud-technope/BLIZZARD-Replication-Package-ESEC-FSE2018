@@ -1,0 +1,3 @@
+Bug 208164 – [Regression] Extension search results no longer highlighted in plugin editor
+Due to the fix for bug 207836 caused a regression.
+ Now, when you double click on an extension reference from the search results view, the extension is no longer highlighted.

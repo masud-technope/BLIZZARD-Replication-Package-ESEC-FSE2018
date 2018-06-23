@@ -1,0 +1,13 @@
+Bug 416175 – [1.8][compiler][null] NPE with a code snippet that used null annotations on wildcards
+// --
+import java.util.ArrayList;
+import java.util.List;
+import org.eclipse.jdt.annotation.NonNull;
+public class X {
+public static void main(String[] args) {
+List<@NonNull ? extends @NonNull String> ls = new ArrayList<String>();
+ls.add(null);
+@NonNull String s = ls.get(0);
+}
+}
+// triggers an NPE.

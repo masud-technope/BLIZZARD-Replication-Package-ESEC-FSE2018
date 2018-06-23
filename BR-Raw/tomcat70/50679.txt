@@ -1,0 +1,85 @@
+50679 – FarmDeployer doesn't support parallel deployment
+Version: Tomcat 7.0.6
+Component: Catalina
+OS: Windows 7 64bit
+Overview:
+Parallel deployment works like a charm in a non-clustered environment.
+But when deploying a versioned app (APPNAME##VERSION.war) to a farm deployer directory, it seems that the filename encoding of the ## delimiter is not translated correctly to identify the war file on the file system:
+## is translated to %23%23
+Reproduce:
+1.
+Create a version app file
+2.
+Deploy file to watched farm deployer directory
+Expected result:
+- Versioned app is copyied to cluster members and deployed
+Actual result:
+- Versioned app is NOT copyied to cluster members.
+catalina.log displays the following error messages:
+[ContainerBackgroundProcessor[StandardEngine[Catalina]]] INFO  org.apache.catalina.ha.deploy.FarmWarDeployer- Installing webapp[/Shop##201101261] from C:\Apache\Tomcat7\cluster\webapps\Shop##201101261.war
+[ContainerBackgroundProcessor[StandardEngine[Catalina]]] INFO  org.apache.catalina.ha.deploy.FarmWarDeployer- Cluster wide remove of web app /Shop##201101261
+[ContainerBackgroundProcessor[StandardEngine[Catalina]]] ERROR org.apache.catalina.ha.deploy.FarmWarDeployer- Unable to install WAR file
+java.io.FileNotFoundException: C:\Apache\Tomcat7\cluster\webapps\Shop%23%23201101261.war (Das System kann die angegebene Datei nicht finden)
+at java.io.FileInputStream.open(Native Method)
+at java.io.FileInputStream.<init>(FileInputStream.java:106)
+at org.apache.catalina.ha.deploy.FileMessageFactory.<init>(FileMessageFactory.java:152)
+at org.apache.catalina.ha.deploy.FileMessageFactory.getInstance(FileMessageFactory.java:175)
+at org.apache.catalina.ha.deploy.FarmWarDeployer.install(FarmWarDeployer.java:372)
+at org.apache.catalina.ha.deploy.FarmWarDeployer.fileModified(FarmWarDeployer.java:468)
+at org.apache.catalina.ha.deploy.WarWatcher.check(WarWatcher.java:95)
+at org.apache.catalina.ha.deploy.FarmWarDeployer.backgroundProcess(FarmWarDeployer.java:591)
+at org.apache.catalina.ha.tcp.SimpleTcpCluster.backgroundProcess(SimpleTcpCluster.java:627)
+at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1200)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1393)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1403)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1382)
+at java.lang.Thread.run(Thread.java:662)
+[ContainerBackgroundProcessor[StandardEngine[Catalina]]] INFO  org.apache.catalina.startup.HostConfig- Deploying web application archive Shop##201101261.war
+Relevant configuration in server.xml:
+...
+<Host name="sbwebapp1" appBase="${catalina.base}/cluster/webapps"
+unpackWARs="true" autoDeploy="true">
+<Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster"
+channelSendOptions="8">
+<Manager className="org.apache.catalina.ha.session.DeltaManager"
+expireSessionsOnShutdown="true"
+notifyListenersOnReplication="false"
+stateTransferTimeout="5"/>
+<Channel className="org.apache.catalina.tribes.group.GroupChannel">
+<Membership className="org.apache.catalina.tribes.membership.McastService"
+address="228.0.0.4"
+port="45564"
+frequency="500"
+dropTime="3000"/>
+<Receiver className="org.apache.catalina.tribes.transport.nio.NioReceiver"
+address="192.168.222.220"
+port="4000"
+autoBind="100"
+selectorTimeout="5000"
+maxThreads="6"/>
+<Sender className="org.apache.catalina.tribes.transport.ReplicationTransmitter">
+<Transport className="org.apache.catalina.tribes.transport.nio.PooledParallelSender"/>
+</Sender>
+<Interceptor className="org.apache.catalina.tribes.group.interceptors.TcpFailureDetector"/>
+<Interceptor className="org.apache.catalina.tribes.group.interceptors.MessageDispatch15Interceptor"/>
+<Interceptor className="org.apache.catalina.tribes.group.interceptors.ThroughputInterceptor"/>
+</Channel>
+<Valve className="org.apache.catalina.ha.tcp.ReplicationValve"
+filter=".*\.gif;.*\.js;.*\.jpg;.*\.png;.*\.htm;.*\.html;.*\.css;.*\.txt;.*\.swf;.*\.flv;"/>
+<Valve className="org.apache.catalina.ha.session.JvmRouteBinderValve"/>
+<ClusterListener className="org.apache.catalina.ha.session.JvmRouteSessionIDBinderListener"/>
+<ClusterListener className="org.apache.catalina.ha.session.ClusterSessionListener"/>
+<Deployer className="org.apache.catalina.ha.deploy.FarmWarDeployer"
+tempDir="${catalina.base}/cluster/temp/"
+deployDir="${catalina.base}/cluster/webapps/"
+watchDir="${catalina.base}/cluster/deploy/"
+watchEnabled="true"/>
+</Cluster>
+<!-- Access log processes all example.
+Documentation at: /docs/config/valve.html
+Note: The pattern used is equivalent to using pattern="common" -->
+<Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
+prefix="ajp_access_" suffix=".log"
+pattern="%h %l %u %t &quot;%r&quot; %s %b" resolveHosts="false"/>
+</Host>
+...

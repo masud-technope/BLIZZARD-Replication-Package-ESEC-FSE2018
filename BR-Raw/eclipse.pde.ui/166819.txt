@@ -1,0 +1,6 @@
+Bug 166819 – Renaming project's name won't be renamed Bundle-SymbolicName
+When you rename a project's name in PDE, the Bundle-SymbolicName of manifest won't be renamed (also ID in manifest editor overview won't be renamed).
+Also when you copy a project into another, the new project contains the same Bundle-SymbolicName (and ID).
+Sometimes it causes trouble.
+Renaming Bundle-SymbolicName and ID automatically might be preferred.
+What do you think ?

@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/spelling/HtmlTagDictionary.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/spelling/TaskTagDictionary.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/spelling/JavaDocTagDictionary.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/spelling/engine/AbstractSpellDictionary.java

@@ -1,0 +1,29 @@
+Bug 398520 – [bindings][annotations] Annotations in binary constructor do not match the source code
+Test case:
+package pack;
+import java.util.*
+public abstract class T<K, V> {
+public abstract class C extends AbstractCollection<V> {
+public abstract class Iter implements Iterator<V> {
+Iter() {}
+Iter(@Annot String s, int i, @Annot Iterator<V> iterator) {
+}
+Iter(int i, @Annot String s, int j, @Annot String s2) {
+}
+}
+}
+@interface Annot {}
+}
+Note that everything is ok when working with sources and in the class file when working with java.lang.reflect - the misbehavior can only be observed with binary methods:
+I put the compiled class into a jar and put that one onto the classpath of a new project.
+In that project, I do something along these lines:
+IMethodBinding method = // ..
+points to the constructor Iter(@Annot String s, int i, @Annot Iterator<V> iterator)
+ITypeBinding[] parameterTypes = method.getParameterTypes();
+for (int i = 0; i < parameterTypes.length; i++) {
+IAnnotationBinding[] parameterAnnotations = method.getParameterAnnotations(i);
+System.out.println(parameterAnnotations.length);
+}
+This prints 0, 1, 0 to the console which indicates that the annotations of the synthetic constructor param at index 0 will be returned by method.getParameterAnnotations(i) instead of the real annotations of the constructor param at index 1.
+Is there any internal means available in pre 3.9 that allows to fix this on our side? Any workaround / hack that allows to retrieve the right information?
+AFAIK org.eclipse.jdt.internal.compiler.lookup.ReferenceBinding.retrieveAnnotationHolder(Binding, boolean) already returns the wrong sub-array of the actual annotations so currently I don't see a way to work around this?

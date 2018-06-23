@@ -1,0 +1,5 @@
+Bug 407056 – [1.8] Support PackageQualifiedType AST node
+Support the new PackageQualifiedType AST node from bug 404489 in JDT UI.
+The node occurs when a type-use annotation is added to a package-qualified type.
+Before, such types were represented as SimpleType(QualifiedName).
+See the explanations in the Javadoc of QualifiedType in BETA_JAVA8.

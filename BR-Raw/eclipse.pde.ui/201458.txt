@@ -1,0 +1,3 @@
+Bug 201458 – SearchablePluginsManager should create proxy project if it doesn't exist
+Currently this logic exists in JavaSearchOperation which is weird.
+Some clients will call SearchablePluginsManager and have it not work since the project doesn't exist.

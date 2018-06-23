@@ -1,0 +1,7 @@
+53081 – WebappClassLoader causes java.lang.OutOfMemoryError in findResourceInternal()
+When examining the code of WebappClassLoader#findResourceInternal() (http://grepcode.com/file/repo1.maven.org/maven2/org.apache.tomcat/tomcat-catalina/7.0.26/org/apache/catalina/loader/WebappClassLoader.java#3098) I came to the conclusion that findResourceInternal() always loads the binary content of the resource, however binary content is only used in e.g.
+findClassInternal() and obviously not needed in findResource().
+In certain cases this can cause OutOfMemoryError, for example when a big media file is packaged with application.
+The example of stack trace is given here:
+http://stackoverflow.com/questions/10100480
+Solution: the binary content should be loaded for certain types of resources (.classpath or .properties [only if fileNeedConvert is true]).

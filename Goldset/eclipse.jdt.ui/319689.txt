@@ -1,0 +1,3 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/util/SWTUtil.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/viewsupport/ImageDescriptorRegistry.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/viewsupport/ProblemMarkerManager.java

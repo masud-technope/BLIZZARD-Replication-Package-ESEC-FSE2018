@@ -1,0 +1,3 @@
+Bug 102512 – [JUnit] test method name cut off before (
+In case my test's name is "log on test (user peter)", the JUnit view will in the
+left window only show "log on test " leaving out the most interesting part.

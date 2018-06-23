@@ -1,0 +1,17 @@
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/AbstractDiscoveryTest.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/DiscoveryServiceTest.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/DiscoveryTest.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/DiscoveryTestHelper.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/DiscoveryTestsWithoutRegister.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/ServiceInfoTest.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/identity/ServiceIDTest.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/listener/TestListener.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/listener/TestServiceListener.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/listener/TestServiceTypeListener.java
+tests/bundles/org.eclipse.ecf.tests.provider.jmdns/src/org/eclipse/ecf/tests/provider/jmdns/JMDNSDiscoveryWithoutRegTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/src/org/eclipse/ecf/tests/provider/discovery/CompositeDiscoveryContainerTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/src/org/eclipse/ecf/tests/provider/discovery/CompositeDiscoveryContainerWithoutRegTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/src/org/eclipse/ecf/tests/provider/discovery/CompositeDiscoveryServiceContainerTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.jslp/src/org/eclipse/ecf/tests/provider/jslp/JSLPDiscoveryWithoutRegTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.jslp/src/org/eclipse/ecf/tests/provider/jslp/JSLPServiceInfoTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.jslp/src/org/eclipse/ecf/tests/provider/jslp/identity/JSLPServiceIDTest.java

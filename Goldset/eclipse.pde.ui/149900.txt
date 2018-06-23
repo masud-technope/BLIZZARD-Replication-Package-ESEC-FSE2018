@@ -1,0 +1,11 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/bundle/BundlePluginBase.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/bundle/BundlePluginModelBase.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/plugin/AbstractPluginModelBase.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/plugin/PluginBase.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/plugin/PluginImport.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/plugin/PluginObject.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/plugin/PluginBaseNode.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/plugin/PluginDocumentNodeFactory.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/plugin/PluginImportNode.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/plugin/PluginObjectNode.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/RequiresSection.java

@@ -1,0 +1,8 @@
+Bug 391895 – [1.8][dom ast] Annotation support for extended dimensions
+BETA_JAVA8:
+Internally, the compiler splits the declarations with multiple field/local
+variables into multiple declarations.
+On the DOM side, these are managed via
+fragments with possible extra dimensions property.
+The extra dimensions may
+carry type annotations and we need to add support for that.

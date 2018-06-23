@@ -1,0 +1,29 @@
+55534 – Tomcat 7 and 8 missing javax.annotation classes added in Java EE 6, 7 respectively
+JSR 250 ("Common Annotations 1.0") specified a set of common annotations for application development.
+Some of them were included in Java SE 6 and later, but many of them are Java EE-specific and were added in Java EE 5.
+Tomcat 6 included these annotations since Tomcat supported some of them.
+The annotations included in Tomcat 6 are:
+javax.annotation.Generated
+javax.annotation.PostConstruct
+javax.annotation.PreDestroy
+javax.annotation.Resource
+javax.annotation.Resources
+javax.annotation.security.DeclareRoles
+javax.annotation.security.DenyAll
+javax.annotation.security.PermitAll
+javax.annotation.security.RolesAllowed
+javax.annotation.security.RunAs
+This was fine in Java EE 5 / Tomcat 6.
+However, Java EE 6 ("Common Annotations 1.1") added the following annotations that Tomcat 7 never included:
+javax.annotation.ManagedBean
+javax.annotation.sql.DataSourceDefinition
+javax.annotation.sql.DataSourceDefinitions
+Furthermore, Java EE 7 ("Common Annotations 1.2") added the following annotation that Tomcat 8 has not yet included:
+javax.annotation.Priority
+Tomcat should included these annotations in its "annotations-api.jar".
+Other frameworks (like Spring Framework and JPA providers) make use of these new annotations.
+Since Tomcat does not include them, the /correct/ thing for an application that needs them to do is include the official javax.annotation-api.jar artifact in their application.
+However, this JAR redefines annotations already supplied by Tomcat, which could lead to hard-to-diagnose errors (similar to why an application should never include the servlet-api artifact in their application).
+Adding these missing annotations would remove the requirement for applications to include the problem JAR in their application.
+Tomcat 7 should ship @ManagedBean, @DataSourceDefinition, and @DataSourceDefinitions.
+Tomcat 8 should ship with @Priority.

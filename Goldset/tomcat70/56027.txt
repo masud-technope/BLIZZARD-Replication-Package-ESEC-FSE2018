@@ -1,0 +1,5 @@
+java/org/apache/catalina/core/AprLifecycleListener.java
+java/org/apache/tomcat/jni/SSL.java
+java/org/apache/catalina/core/LocalStrings.properties
+webapps/docs/config/listeners.xml
+webapps/docs/changelog.xml

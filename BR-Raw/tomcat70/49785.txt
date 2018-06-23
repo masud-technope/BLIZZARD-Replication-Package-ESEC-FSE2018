@@ -1,0 +1,14 @@
+49785 – Enable STARTTLS for JNDIRealm
+Created attachment 25916 [details]
+InitialContextFactory which produces TLS enabled LdapContext instances
+To enable TLS for LDAP inside JNDIRealm one has to either patch JNDIRealm directly and introduce another state variable to hold TLS-state - and thus make introduction of pooling harder, or use a factory which produces TLS enabled DirContext instances.
+Such a factory is attached.
+It can be configured by specifying a contextFactory in JNDIRealm config:
+&lt;Realm
+...
+contextFactory="org.apache.catalina.realm.LdapTlsContextFactory"
+...
+/&gt;
+I think it would be a good idea to add a parameter startTLS to JNDIRealm, which would automatically use the above TLS-ContextFactory.
+If wanted, I could supply a patch.
+(the patch is against tomcat 6.0.x trunk, but I think it will apply fine to trunk too)

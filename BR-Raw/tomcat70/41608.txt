@@ -1,0 +1,32 @@
+41608 – The log level is different at same messages.
+I suggest a little message improvement.
+The log level is different at same messages.
+The message "Servlet.service() for servlet {0} threw exception" is
+output in eight places, but the message level is not same.
+--org.apache.catalina.core.ApplicationDispatcher#invoke
+...
+wrapper.getLogger().error(sm.getString("applicationDispatcher.serviceException",
+wrapper.getName()), e);
+...
+wrapper.getLogger().error(sm.getString("applicationDispatcher.serviceException",
+wrapper.getName()), e);
+...
+wrapper.getLogger().error(sm.getString("applicationDispatcher.serviceException",
+wrapper.getName()), rootCause);
+...
+wrapper.getLogger().error(sm.getString("applicationDispatcher.serviceException",
+wrapper.getName()), e);
+--org.apache.catalina.core.StandardWrapperValve#invoke
+container.getLogger().warn(sm.getString("standardWrapper.serviceException",
+wrapper.getName()), e);
+...
+container.getLogger().warn(sm.getString("standardWrapper.serviceException",
+wrapper.getName()), e);
+...
+container.getLogger().error(sm.getString("standardWrapper.serviceException",
+wrapper.getName()), rootCause);
+...
+container.getLogger().error(sm.getString("standardWrapper.serviceException",
+wrapper.getName()), e);
+Are there any reasons for using getLogger().warn()?
+I think it would be better that all of them use getLogger().error(...).

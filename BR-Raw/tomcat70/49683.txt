@@ -1,0 +1,4 @@
+49683 – Separate keep-alive and connection timeout with APR/native connector
+Originally observed as part of bug 48648.
+If a keepAliveTimeout is specified it is used for connectionTimeout as well.
+Fixing this may require changes to the native code too.

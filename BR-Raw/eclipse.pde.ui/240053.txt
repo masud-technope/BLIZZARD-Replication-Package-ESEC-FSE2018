@@ -1,0 +1,6 @@
+Bug 240053 – product export from the ui does not generate bundles.info
+in 3.4
+When you have a product that include (directly or indirectly) the simple configurator, exporting that product from the UI does not produce a bundles.info file.
+ however, biulding the product with the releng build mechanism does.
+ This is a pretty significant issue for people trying to create products in the new world.
+Suggest looking at this for 3.4.1

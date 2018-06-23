@@ -1,0 +1,16 @@
+Bug 369524 – 'Installed JREs > Search...' should also find JDKs from Developer Package
+I20120123-1800, Mac OS X 10.7.2, follow-up to bug 325777
+'Preferences > Installed JREs > Search...' should also find JDKs from Developer Packages.
+Looks like the implementation currently only finds VMs in
+/System/Library/Java/JavaVirtualMachines/
+It should also search in
+/Library/Java/JavaVirtualMachines/
+That's the place where Java Developer Packages from
+https://developer.apple.com/downloads/index.action are installed (search for 'Java').
+These VMs are also listed by /usr/libexec/java_home -X
+The Developer Packages are interesting because they also include source.
+To add them in Eclipse today, you have to know the full path into the bundled folder.
+The Directory...
+chooser won't bring you there.
+In my case, it was:
+/Library/Java/JavaVirtualMachines/1.6.0_29-b11-402.jdk/Contents/Home

@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/site/SiteEditor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/site/SiteInputContext.java

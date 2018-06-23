@@ -1,0 +1,17 @@
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/config.ini
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/org.eclipse.ecf.tests.provider.dnssd.launch
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/src/org/eclipse/ecf/tests/provider/dnssd/Activator.java
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/src/org/eclipse/ecf/tests/provider/dnssd/Activator.java
+releng/features/org.eclipse.ecf.discovery.dnssd.feature/buckminster.cspex
+releng/features/org.eclipse.ecf.discovery.dnssd.feature/feature.xml
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/src/org/eclipse/ecf/tests/provider/dnssd/Activator.java
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/src/org/eclipse/ecf/tests/provider/dnssd/Activator.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/Activator.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdDisocoveryLocator.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/IDnsSdDiscoveryConstants.java
+releng/features/org.eclipse.ecf.discovery.dnssd.feature/feature.xml
+providers/bundles/org.eclipse.ecf.provider.dnssd/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/Activator.java
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/META-INF/MANIFEST.MF
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/src/org/eclipse/ecf/tests/provider/dnssd/Activator.java
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/src/org/eclipse/ecf/tests/provider/dnssd/DnsSdDiscoveryServiceTestWithParamsSet.java

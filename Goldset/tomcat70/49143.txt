@@ -1,0 +1,5 @@
+java/org/apache/catalina/realm/RealmBase.java
+java/org/apache/catalina/session/StandardSession.java
+java/org/apache/catalina/startup/TldConfig.java
+java/org/apache/catalina/util/ExtensionValidator.java
+java/org/apache/tomcat/util/modeler/modules/MbeansDescriptorsDigesterSource.java

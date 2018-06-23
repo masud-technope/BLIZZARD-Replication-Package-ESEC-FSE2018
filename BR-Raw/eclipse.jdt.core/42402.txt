@@ -1,0 +1,12 @@
+Bug 42402 – OuterClass.this does not appear in code assist of the InnerClass
+Given this code:
+public class Enclosing {
+public class InnerClass {
+public InnerClass()
+{
+Enclosing a = Enclosing.this;
+}
+}}
+When I type 'Enclosing.' I do not get .this in the dropdown, I only get .class
+and .InnerClass.
+However if I type 't', it expands to 'this'.

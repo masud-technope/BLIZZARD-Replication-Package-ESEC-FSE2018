@@ -1,0 +1,9 @@
+Bug 380112 – [1.7][compiler] Incorrect unreachable catch block detection in try-with-resources
+Build Identifier: M20120208-0800
+Compiler incorrectly interpret catch block as unreachable if the resource is a interface which extends Closable and some other interfaces e.g.
+Serializable.
+But if this interface overrides close() method an issue disappears.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Open example source code in eclipse ide

@@ -1,0 +1,2 @@
+Bug 317931 – [Discovery][DNS-SD] Make DnsSdDiscoveryException subclass of ECFRuntimeException
+Make DnsSdDiscoveryException subclass of ECFRuntimeException

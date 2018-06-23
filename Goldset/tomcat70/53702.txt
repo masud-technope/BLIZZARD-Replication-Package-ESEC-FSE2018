@@ -1,0 +1,5 @@
+java/org/apache/catalina/core/ApplicationJspPropertyGroupDescriptor.java
+java/org/apache/catalina/deploy/JspPropertyGroup.java
+java/org/apache/catalina/deploy/WebXml.java
+java/org/apache/catalina/startup/WebRuleSet.java
+webapps/docs/changelog.xml

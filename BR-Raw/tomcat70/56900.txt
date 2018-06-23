@@ -1,0 +1,9 @@
+56900 – Resource Leaks found by CID 45266 and 45249
+Created attachment 31953 [details]
+Close InputStream after use.
+Factor out common code into a private method.
+InputStreams are not closed after using them for loading the content into properties.
+This happens a few times in the code base and seems to be a common task.
+Maybe we should create a utility-method to capsulate that funtion.
+For DefaultInstanceManager I have created a private method.
+For ContextConfig I adapted to local logic only.

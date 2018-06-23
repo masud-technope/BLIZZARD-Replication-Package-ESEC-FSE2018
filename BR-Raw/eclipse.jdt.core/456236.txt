@@ -1,0 +1,13 @@
+Bug 456236 – [1.8][null] Cannot infer type when constructor argument is annotated with @Nullable
+With annotation-based null analysis enabled and using default annotations for null specification in compiler settings, the following class fails to compile with "Cannot infer type arguments for Nullsafe<>" error:
+class Nullsafe<T> {
+final @Nullable T t;
+Nullsafe(@Nullable T t) {
+this.t = t;
+}
+public static <U> Nullsafe<U> of(@Nullable U u) {
+return new Nullsafe<>(u); // compile error
+// return new Nullsafe<U>(u); // workaround
+}
+}
+Removing the @Nullable from the t argument in the constructor can also be used as a workaround, but this results in a nullness warning.

@@ -1,0 +1,27 @@
+Bug 415470 – [1.8][compiler] Type annotations on class declaration go vanishing
+BETA_JAVA8:
+When the following program is compiled:
+// --
+import java.lang.annotation.*;
+import static java.lang.annotation.ElementType.*;
+@Target({TYPE_USE}) @interface TypeAnnotation { }
+@Target({TYPE}) @interface Annotation { }
+@Annotation @TypeAnnotation class X {
+}
+// --
+@TypeAnnotation does not seem to make it to the class file.
+JSR308, section 2.3 expressly allows such usage.
+Excerpt:
+"A type annotation (one meta-annotated with @Target(ElementType.TYPE USE))
+is permitted to be written anywhere @Target(ElementType.TYPE) or
+@Target(ElementType.TYPE PARAMETER) would permitâ€”that is, on a class,
+interface, or enum declaration, or on a type parameter declaration.
+Strictly
+speaking, these are declaration sites, not uses of a type.
+However, it is
+convenient to write a type annotation at a type declaration, as shorthand
+for applying it at all uses.
+For example, @Interned class MyClass { ...
+} could
+indicate that all uses of MyClass are interned, even though for other classes
+some instances may be interned and other instances not interned."

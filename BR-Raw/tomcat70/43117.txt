@@ -1,0 +1,21 @@
+43117 – Dangerousness of workDir setting on Context
+Hi, I'd like to point out the dangerousness of workDir setting on Context.
+If workDir is an empty string, i.e.
+workDir=AA, then workDir will be set as
+CATALINA_HOME.
+Therefore if application will be reloaded, then the files in CATALINA_HOME will
+be deleted.
+I know this problem is caused by wrong configuration, but it is too dangerous,
+anyway.
+I propose a patch.
+Index: /trunk/java/org/apache/catalina/core/StandardContext.java
+===================================================================
+--- /trunk/java/org/apache/catalina/core/StandardContext.java	(revision 565643)
++++ /trunk/java/org/apache/catalina/core/StandardContext.java	(working copy)
+@@ -5006,7 +5006,7 @@
+// Acquire (or calculate) the work directory path
+String workDir = getWorkDir();
+-        if (workDir == null) {
++        if (workDir == null || workDir.length() == 0) {
+// Retrieve our parent (normally a host) name
+String hostName = null;

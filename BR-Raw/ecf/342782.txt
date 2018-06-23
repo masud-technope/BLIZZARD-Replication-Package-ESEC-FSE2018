@@ -1,0 +1,4 @@
+Bug 342782 – [TCK] RSA events set properties incorrectly
+According to the TCK and spec (122.7.7 p.
+307), RSA has to set the event properties to the following keys:
+bundle, bundle.symbolicname, bundle.id, bundle.version

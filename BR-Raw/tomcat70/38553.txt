@@ -1,0 +1,41 @@
+38553 – Wrong HTTP code for failed CLIENT-CERT authentication
+server.xml:
+===========
+I set clientAuth to "want"
+tomcat-user.xml:
+================
+I create a role and an user with the ssl certificate metadata
+web.xml:
+========
+For a private URL on my webseite, I create a security constraint like this one:
+<security-constraint>
+<web-resource-collection>
+<web-resource-name>App</web-resource-name>
+<url-pattern>/protected.jsp</url-pattern>
+</web-resource-collection>
+<auth-constraint>
+<role-name>tomcat</role-name>
+</auth-constraint>
+<user-data-constraint>
+<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+</user-data-constraint>
+</security-constraint>
+<login-config>
+<auth-method>CLIENT-CERT</auth-method>
+</login-config>
+<security-role>
+<role-name>tomcat</role-name>
+</security-role>
+My results: (I try to access the restricted JSP-Page)
+===========
+1) When there is the RIGHT client certificate in the browser keystore:
+it works :-)
+2) When there is the WRONG client certificate I get:
+HTTP Status 401 - Cannot authenticate with the provided credentials
+(this is ok, too)
+3) When there is NO client certificate I get:
+HTTP Status 400 - No client certificate chain in this request
+400 usually stands for a bad request or bad syntax.
+The Bug:
+========
+In case 3 I expect to get HTTP Status 401.

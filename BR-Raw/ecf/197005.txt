@@ -1,0 +1,2 @@
+Bug 197005 – [xmpp] XMPPChatRoomManager.getInvitationSender() not supported
+The XMPP provider needs to support invitation sender

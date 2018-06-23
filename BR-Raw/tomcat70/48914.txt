@@ -1,0 +1,7 @@
+48914 – EL MethodExpression behavior incorrect
+When dealing with the new [] and .
+operators in the EL specification, the specification says: "If the expression is a MethodExpression, then calling its invoke method causes the method to be invoked, and the parameters params for the invoke method will be ignored, since those specified in EL will be used."  The behavior in Tomcat 7 is different as it uses the values specified in the invoke method.
+This can be tested by doing something like this:
+MethodExpression myMethodExpression = fact.createMethodExpression(ctxt, "#{myBean[myStringExpression]('using brackets in EL')}", String.class, new Class<?>[] {String.class});
+Object myMethodReturn = myMethodExpression.invoke(ctxt, new String[] {"using brackets"});
+pw.println("myMethodReturn="+myMethodReturn);

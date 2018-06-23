@@ -1,0 +1,2 @@
+Bug 232813 – [Discovery][jSLP] No OSGi service is registered
+The jSLP discovery provider doesn't register an OSGi service and is thus only usable via org.eclipse.ecf.core.IContainer.getAdapter(Class)

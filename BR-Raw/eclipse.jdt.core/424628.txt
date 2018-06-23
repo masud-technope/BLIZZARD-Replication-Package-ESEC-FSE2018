@@ -1,0 +1,32 @@
+Bug 424628 – [1.8][compiler] Multiple method references to inherited method throws LambdaConversionException
+I'm running:
+JDK 1.8.0 b120 64-bit
+Eclipse 4.3.1
+Eclipse Java Development Tools Patch for Java 8 Support (BETA) 1.0.0.v20131223-0103_BETA_JAVA8
+public class MainTest {
+public static interface Consumer<T> {
+void accept(T t);
+}
+public static class Base {
+public void method () {}
+}
+public static class Foo extends Base {}
+public static class Bar extends Base {}
+public static void main (String[] args) {
+Consumer<Foo> foo = Foo::method;
+Consumer<Bar> bar = Bar::method;
+}
+}
+The above class compiles fine with Eclipse, but when I go to run it I get the following error:
+Exception in thread "main" java.lang.BootstrapMethodError: call site initialization exception
+at java.lang.invoke.CallSite.makeSite(CallSite.java:328)
+at java.lang.invoke.MethodHandleNatives.linkCallSite(MethodHandleNatives.java:296)
+at MainTest.main(MainTest.java:19)
+Caused by: java.lang.invoke.LambdaConversionException: Invalid receiver type class MainTest$Foo; not a subtype of implementation type class MainTest$Bar
+at java.lang.invoke.AbstractValidatingLambdaMetafactory.validateMetafactoryArgs(AbstractValidatingLambdaMetafactory.java:221)
+at java.lang.invoke.LambdaMetafactory.metafactory(LambdaMetafactory.java:303)
+at java.lang.invoke.CallSite.makeSite(CallSite.java:289)
+...
+2 more
+To get the class to run without an error via Eclipse, I can either implement method() in one of the subclasses or change both method references in main to Base::method.
+However, neither of these changes is needed to compile and run using JDK8.

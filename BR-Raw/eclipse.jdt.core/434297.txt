@@ -1,0 +1,41 @@
+Bug 434297 – [1.8] NPE in LamdaExpression.analyseCode with lamda expression nested in a conditional expression
+The following code causes the compiler to abort with an NPE.
+It compiles fine with javac
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+public class CompilerCrashesWithNPE {
+public void bla() {
+boolean b = Boolean.TRUE.booleanValue();
+List<String> c1 = new ArrayList<>();
+Collections.sort(c1, b ? null : new Bar(new ArrayList<>(),Comparator.nullsLast((a,e) -> {return 0;})));
+}
+private static class Bar implements Comparator<String>{
+public <T> Bar(Collection<T> col, Comparator<T> comp) {
+}
+@Override
+public int compare(String o1, String o2) {
+// TODO Auto-generated method stub
+return 0;
+}
+}
+}
+This is the stack trace
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.analyseCode(LambdaExpression.java:469)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.analyseCode(MessageSend.java:172)
+at org.eclipse.jdt.internal.compiler.ast.AllocationExpression.analyseCode(AllocationExpression.java:116)
+at org.eclipse.jdt.internal.compiler.ast.ConditionalExpression.analyseCode(ConditionalExpression.java:119)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.analyseCode(MessageSend.java:172)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.analyseCode(MethodDeclaration.java:124)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.internalAnalyseCode(TypeDeclaration.java:737)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.analyseCode(TypeDeclaration.java:261)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.analyseCode(CompilationUnitDeclaration.java:118)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1207)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:689)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1183)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:809)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider$1.run(ASTProvider.java:544)
+....

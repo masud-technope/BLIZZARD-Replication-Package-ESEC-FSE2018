@@ -1,0 +1,9 @@
+Bug 215579 – ModelEntry.getBestCandidate() makes bad choices
+The method IPluginModelBase getBestCandidate(IPluginModelBase[] models) of class org.eclipse.pde.core.plugin.ModelEntry has two flaws in it.
+1.
+The logic for rejecting disabled bundles is completely broken (only time it happens is if a disabled bundle was found in a previous iteration in the for loop.
+In all other cases a disabled bundle can be chosen).
+2.
+The version comparison will select the bundle with the lowest version.
+So, if you have versions 1.0.0, 1.1.0, and 2.0.0 installed, the 1.0.0 is disabled, then 1.0.0 will still be considered the best candidate.
+In my opinion, it should be the enabled plug-in with the highest version.

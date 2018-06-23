@@ -1,0 +1,2 @@
+Bug 418684 – org.eclipse.ecf.server.generic.GenericServerContainerGroupFactory.isSSLTransportSpecified(Map) uses API not compatible with bundle's BREE
+org.eclipse.ecf.server.generic.GenericServerContainerGroupFactory.isSSLTransportSpecified(Map) uses java.lang.Boolean.parseBoolean(String) only available with Java 1.5.

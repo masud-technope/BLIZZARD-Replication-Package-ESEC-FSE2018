@@ -1,0 +1,2 @@
+Bug 207706 – [xmpp] XMPPContainers are not registered as IPresenceServices
+Created (or only connected?) XMPPContainers should register themselves as an IPresenceService and unregister themselves when they're finalized (or disconnected or disposed?).

@@ -1,0 +1,7 @@
+java/org/apache/tomcat/util/net/AbstractEndpoint.java
+java/org/apache/tomcat/util/net/jsse/JSSESocketFactory.java
+test/org/apache/tomcat/util/net/TestSsl.java
+test/org/apache/tomcat/util/net/TesterSupport.java
+test/org/apache/tomcat/util/net/keystore-info.txt
+test/org/apache/tomcat/util/net/localhost-copy1.jks
+webapps/docs/changelog.xml

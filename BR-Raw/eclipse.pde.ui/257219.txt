@@ -1,0 +1,4 @@
+Bug 257219 – Cannot locate illegal usage inside anonymous or local types when bundle targets < 1.5
+Right now the current implementation is using the EnclosingMethod attribute inside the .class file in order to retrieve the right line number inside the source file when we want to locate illegal usage problems for anonymous or local types.
+Since this attribute is only available in the .class file when the target platform is 1.5 or above, when the bundle targets 1.4, we cannot locate these problems on the right line.
+In this case the best we can do is to report the problem on the top level type definition.

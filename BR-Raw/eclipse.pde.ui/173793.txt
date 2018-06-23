@@ -1,0 +1,5 @@
+Bug 173793 – Consider adding a Preview page to the Organize Manifest tool
+While the Organize Manifest tool is very helpful, it would be more helpful if the user could review the changes that will be made before committing themselves.
+ Today the only way to achieve this is to make sure that the project is commited to the repository before running the tool, and then comparing the changes with the stream.
+Please consider adding a preview page, which might be rather complicated since there can be multiple files updated and of course you can select multiple projects.
+ Tricky, perhaps.

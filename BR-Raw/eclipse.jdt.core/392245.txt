@@ -1,0 +1,12 @@
+Bug 392245 – [1.8][compiler][null] Define whether / how @NonNullByDefault applies to TYPE_USE locations
+From bug 392099 comment 4:
+> How will @NonNullByDefault be applied to TYPE_USE annotations?
+Repeating my own comment:
+Tricky case is
+@NonNullByDefault
+void takeList(List<String> list) { }
+Worst case scenario: we may have to introduce another parameter to the @NonNullByDefault annotation, s.t.
+like:
+@NonNullByDefault(location={PARAMETER, TYPE_USE})
+Assuming, we'll have this parameter, what should be its default?
+Then if we agree on the default and agree that this default makes sense *always*, we can spare the parameter :)

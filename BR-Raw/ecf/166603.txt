@@ -1,0 +1,34 @@
+Bug 166603 – Authentication failure information not being returned to client
+See description of problem below.
+ Basic problem:  In org.eclipse.ecf.provider.generic.ServerSOContainer.acceptNewClient null is returned in response to SecurityException thrown during checkJoin.
+ It should return a non-null object (the exception probably).
+--------
+I just test with getCause() and it don't return any additional
+information that can help me to distinguish Security/Connection
+exception.
+Sorry for my bad english, i'm an italian student at University of
+Salerno, i working on LEAD project (www.lead2learning.org) and we want
+to use ECF as communication/collaboration framework.
+thanks in advance :-)
+On 12/1/06, Scott Lewis <slewis@composent.com> wrote:
+> Hi Antonio.
+>
+> I think you can call getCause() and examine what's returned...but I'll
+> check later today to verify.
+>
+> Scott
+>
+>
+> antonio wrote:
+> > I've the following problem:
+> >
+> > I've an ECF server container (TCPSOContainer) with a connect policy that handles the connection event and check if the client has the permissions and throws a SecurityException if the request fails.
+> > On client side, i receive a ContainerException as on the server down event.
+> > I want to distinguish the different exceptions.
+How I can?
+> >
+> > Thank you
+> >
+> > andima
+>
+>

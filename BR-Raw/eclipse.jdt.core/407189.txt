@@ -1,0 +1,5 @@
+Bug 407189 – [1.8] ASTRewritingTest should also support _since and _only on whole test class
+ASTRewritingTest should also support _since and _only on whole test class.
+Currently, all tests in ASTRewritingTypeAnnotationsTest start with
+if (this.apiLevel < AST.JLS8) return;
+, making it look like they also run on earlier AST levels.

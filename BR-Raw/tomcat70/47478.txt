@@ -1,0 +1,36 @@
+47478 – DeltaSession ignores notifyListenersOnReplication when BackupManager is used.
+When BackupManager is used,
+DeltaSession notifies session listener even if notifyListenersOnReplication is set to false.
+The cause is in the following o.a.c.h.s.DeltaSession#applyDiff's codes.
+public void applyDiff(byte[] diff, int offset, int length) throws IOException, ClassNotFoundException {
+try {
+...
+getDeltaRequest().execute(this);
+} finally {
+Thread.currentThread().setContextClassLoader(contextLoader);
+}
+}finally {
+unlock();
+}
+}
+DeltaSession always notifies the session listener regardless of the value of notifyListenersOnReplication.
+Do not notify the session listener when notifyListenersOnReplication is set to false.
+I think that I should add notifyListenersOnReplication to the second parameter
+when o.a.c.h.s.DeltaRequest#execute is invoked.
+For instance, as follows.
+[start.]
+Index: java/org/apache/catalina/ha/session/DeltaSession.java
+===================================================================
+--- java/org/apache/catalina/ha/session/DeltaSession.java	(revision 763870)
++++ java/org/apache/catalina/ha/session/DeltaSession.java	(working copy)
+@@ -175,7 +175,7 @@
+ClassLoader[] loaders = getClassLoaders();
+if (loaders != null && loaders.length > 0)
+Thread.currentThread().setContextClassLoader(loaders[0]);
+-                    getDeltaRequest().execute(this);
++                    getDeltaRequest().execute(this, ((ClusterManager) getManager()).isNotifyListenersOnReplication());
+} finally {
+Thread.currentThread().setContextClassLoader(contextLoader);
+}
+[end.]
+Best regards

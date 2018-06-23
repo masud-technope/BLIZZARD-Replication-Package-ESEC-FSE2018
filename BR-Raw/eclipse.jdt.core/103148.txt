@@ -1,0 +1,15 @@
+Bug 103148 – [1.5][assist] Code completion breaks if using static method generics ( Class.<T>staticMethod(params) )
+Everytime I have to put a call to a generics-enabled static methods, code
+completion stops to work after the method call.
+Generics syntax which broke the completion
+Class.<T>staticMethod(params);
+Pseudo-example:
+EnumSet.<MyType>of(MyType.VALUE1, MyType.VALUE2);
+Real-example:
+EnumSet.<Mode>of(Mode.BINDING, Mode.READABLE, Mode.WRITABLE);
+Since this happens quite often for me (I'm very fond of generics enumset, they
+are sooooo handy & easy to use instead of the old error-prone untyped bitsets),
+it's quite a nuisance.
+Anyone can confirm this?
+P.s.
+thanks for this life-saving & deadline-saving tool! :D

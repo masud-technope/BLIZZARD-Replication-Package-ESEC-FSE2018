@@ -1,0 +1,3 @@
+Bug 10154 – Breakpoints with thread filter should be labeled as such
+Breakpoint labels (icon or text) should inform the user when a breakpoint has a
+thread filter.

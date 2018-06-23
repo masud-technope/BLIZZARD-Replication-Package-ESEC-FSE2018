@@ -1,0 +1,8 @@
+Bug 166801 – [docs] core.runtime.applications and core.runtime.products ext pts missing
+I20061205-0800
+The following help files are missing from the build.
+/help/topic/org.eclipse.platform.doc.isv/reference/extension-points/org_eclipse_core_runtime_applications.html
+/help/topic/org.eclipse.platform.doc.isv/reference/extension-points/org_eclipse_core_runtime_products.html
+These extension points moved from the org.eclipse.core.runtime bundle to the org.eclipse.equinox.app bundle.
+ From the instructions at http://wiki.eclipse.org/index.php/How_to_add_things_to_the_Eclipse_doc it is unclear that anything needed to be updated in the org.eclipse.platform.doc.isv to pick up the the moved extension point documentation.
+ I do not see any place that associates extension point documentation with the plugin which provides the extension point.

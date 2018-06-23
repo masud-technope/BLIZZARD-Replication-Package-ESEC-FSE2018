@@ -1,0 +1,16 @@
+Bug 333631 – [nls tooling] Rename properties key/field adds additional '='
+3.4.
+Renaming a property key/field in the Java editor can result in an additional '=' being added to property value.
+Steps:
+0.
+start with new workspace using 1.6 JRE
+1.
+Import the attached ZIP as 'Existing Project into Workspace'
+2.
+open type 'Test'
+3.
+select the 'Test_0'
+4.
+Refactor > Rename it to "Bug"
+==> The entry in the properties file now has an additional '=':
+BUG== BUG

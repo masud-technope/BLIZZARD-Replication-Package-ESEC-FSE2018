@@ -1,0 +1,4 @@
+56293 – WebappClassLoader does not cache META-INF/services which leads to performance issues
+Since Tomcat 7.0.28, the WebappClassLoader does not cache any resources on the classpath except .class and .properties files (see https://issues.apache.org/bugzilla/show_bug.cgi?id=53081).
+This leads to a massive performance problem in applications that contain .jars on the classpath that use the ServiceLoader mechanism of Java 6 to bind concrete XML readers and writers to their respective interfaces, since every time the concrete instance is loaded, the WebappClassLoader has to open the .jar to read which concrete implementation is used.
+A possible solution might be that caching is enabled for all resources that reside in the META-INF/services folder.

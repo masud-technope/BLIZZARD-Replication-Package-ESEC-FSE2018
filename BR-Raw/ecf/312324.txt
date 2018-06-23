@@ -1,0 +1,2 @@
+Bug 312324 – [jSLP] Change license from BSD to EPL
+BSD licenses headers have to replaced with EPL equivalents.

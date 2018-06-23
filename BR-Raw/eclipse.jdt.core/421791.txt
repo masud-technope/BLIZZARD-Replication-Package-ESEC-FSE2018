@@ -1,0 +1,13 @@
+Bug 421791 – [1.8][compiler] TYPE_USE annotations should be allowed on annotation type declarations.
+BETA_JAVA8:
+The following program is rejected by ECJ, but is accepted by javac.
+// --
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+@Target(ElementType.TYPE_USE)
+@interface T {
+}
+@T
+@interface T2 {
+}
+For compatibility sakes we should tolerate this.

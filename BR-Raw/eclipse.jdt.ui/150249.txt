@@ -1,0 +1,8 @@
+Bug 150249 – [typing] Pasting a contents inside a string to get string concatenation doesn't work if the string is not an empty string
+Using 3.2, copy some code.
+Open a new empty string.
+Paste your code and it ends up as string concatenation.
+Now copy some code.
+Open a string which is not an empty string.
+Select the contents of the string except the starting and ending double quote and paste your code.
+The code is not seen as a string concatenation.

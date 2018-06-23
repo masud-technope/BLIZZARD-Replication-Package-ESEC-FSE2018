@@ -1,0 +1,10 @@
+50997 – StandardJarScanner ignores web-fragment.xml files in unpacked jars if they are not ending with ".jar"
+Created attachment 26816 [details]
+Fix for directories in classpath not ending with .jar
+We use eclipse sysdeo tomcat plugin for eclipse.
+It allows us to add target build directories of eclipse into tomcat classpath.
+All works fine until we decided to use web-fragment functionality.
+It failed to work despite the config:
+<JarScanner scanAllDirectories="true"/>
+I fixed the problem.
+Please, see attached proposed patch.

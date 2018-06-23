@@ -1,0 +1,14 @@
+Bug 430141 – [1.8][hierarchy] Incorrect hierarchy with lambda elements missing
+interface I {
+void doit();
+}
+interface J extends I {
+}
+public class X {
+public static void main(String[] args) {
+J j  = () -> { System.out.println("Lambda"); };
+j.doit();
+}
+}
+Given the above, neither the hierarchy rooted at I nor one rooted at J
+show the lambda expression.

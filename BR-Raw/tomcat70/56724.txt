@@ -1,0 +1,10 @@
+56724 – Restart Container background thread if it died unexpectedly
+To address the issue that has been raised several times on the mailing lists, e.g.
+http://tomcat.markmail.org/thread/xooxcq56ehki63dh
+"ContainerBackgroundProcessor and compounding OOMEs"
+http://tomcat.markmail.org/thread/f6b6vicg7kusckra
+"Background thread died; no errors in log; invoking backgroundProcess via JMX has no effect"
+I think it is OK to start a new background thread after some delay.
+If the start succeeds, it will be a new thread with its own (clean) stack.
+It may help for StackOverflowError.
+It might partially help with OutOfMemoryError thread death if nothing else is available, but a better strategy for an admin to handle an OutOfMemoryError is to start JVM with -XX:OnOutOfMemoryError flag with a script that shuts down (and restarts) Tomcat.

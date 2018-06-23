@@ -1,0 +1,12 @@
+org.eclipse.jdt.internal.core.JavaElement.getChildrenOfType
+org.eclipse.jdt.internal.core.SourceType.getMethods
+org.eclipse.jdt.internal.ui.viewsupport.JavaElementLabelComposer.isLambdaType
+org.eclipse.jdt.internal.ui.viewsupport.JavaElementLabelComposer.appendTypeLabel
+org.eclipse.jdt.internal.ui.viewsupport.JavaElementLabelComposer.appendElementLabel
+org.eclipse.jdt.ui.JavaElementLabels.getElementLabel
+org.eclipse.jdt.ui.JavaElementLabels.getElementLabel
+org.eclipse.jdt.internal.ui.typehierarchy.HistoryAction.getShortLabel
+org.eclipse.jdt.internal.ui.typehierarchy.HistoryAction.getElementLabel
+org.eclipse.jdt.internal.ui.typehierarchy.TypeHierarchyViewPart.restoreState
+org.eclipse.jdt.internal.ui.typehierarchy.TypeHierarchyViewPart.createPartControl
+org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.createPartControl

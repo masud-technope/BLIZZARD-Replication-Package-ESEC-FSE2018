@@ -1,0 +1,4 @@
+org.eclipse.jdt.launching/META-INF/MANIFEST.MF
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/JavaRuntime.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/JavaRuntime.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/JavaRuntime.java

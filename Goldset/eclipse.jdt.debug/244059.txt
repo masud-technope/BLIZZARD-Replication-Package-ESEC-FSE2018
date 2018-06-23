@@ -1,0 +1,16 @@
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/breakpoints/BreakpointFieldLocator.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/BreakpointLocationVerifierJob.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/ToggleBreakpointAdapter.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/breakpoints/BreakpointMethodLocator.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaClassPrepareBreakpoint.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaLineBreakpoint.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaMethodBreakpoint.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/BreakpointMarkerUpdater.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaBreakpointImportParticipant.java
+org.eclipse.jdt.debug.ui/plugin.xml
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/breakpoints/BreakpointLocationVerificationTests.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaStratumLineBreakpoint.java
+org.eclipse.jdt.debug/plugin.xml
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/RunToLineAdapter.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/ValidBreakpointLocationLocator.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/JavaMethodEntryBreakpoint.java

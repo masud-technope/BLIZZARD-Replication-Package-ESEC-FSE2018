@@ -1,0 +1,9 @@
+Bug 398211 – UI changes for bug 381443 (@NonNull parameter not annotated in overriding method)
+Once the final solution in bug 381443 is released two changes are needed in JDT/UI:
+(1) Add a new preference option, late candidates where (bug 381443 comment 49):
+@NonNull parameter not annotated in overriding method
+@NonNull parameter form overridden method not annotated
+Overridden @NonNull parameter not annotated
+Option values are Error/Warning/Ignore
+(2) Adjust currently failing test NullAnnotationsQuickFixTest.testChangeParameter3c()
+I'll post a patch for that one in a second.

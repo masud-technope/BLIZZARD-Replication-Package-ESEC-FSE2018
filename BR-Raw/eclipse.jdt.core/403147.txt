@@ -1,0 +1,6 @@
+Bug 403147 – [compiler][null] FUP of bug 400761: consolidate interaction between unboxing, NPE, and deferred checking
+Bug 400761 has introduced some more diagnostics for NPE due auto-unboxing.
+This solution should be checked for completeness in two dimensions:
+- are all relevant AST nodes covered?
+- does the analysis create correct results within (nested) control structures that demand deferred checking?
+Hopefully, this will also simplify the code a bit, by reducing code duplication.

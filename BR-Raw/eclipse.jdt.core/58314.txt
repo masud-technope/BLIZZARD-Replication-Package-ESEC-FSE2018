@@ -1,0 +1,44 @@
+Bug 58314 – Make ASTs thread-safe for multiple readers
+20040413
+Found this exception in the console.
+My guess is that came from visiting the AST from multiple threads.
+The cursor
+managment doesn't seem to be thread save.
+java.lang.NullPointerException
+at java.lang.Throwable.<init>(Throwable.java)
+at java.lang.Throwable.<init>(Throwable.java)
+at java.lang.NullPointerException.<init>(NullPointerException.java:60)
+at org.eclipse.jdt.core.dom.ASTNode$NodeList.releaseCursor
+(ASTNode.java)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java)
+at org.eclipse.jdt.core.dom.CompilationUnit.accept0
+(CompilationUnit.java
+)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java)
+at
+org.eclipse.jdt.internal.ui.javaeditor.OverrideIndicatorManager.updat
+eAnnotations(OverrideIndicatorManager.java)
+at
+org.eclipse.jdt.internal.ui.javaeditor.OverrideIndicatorManager.recon
+ciled(OverrideIndicatorManager.java:271)
+at
+org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor.reconcil
+ed(CompilationUnitEditor.java)
+at
+org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconci
+le(JavaReconcilingStrategy.java)
+at
+org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconci
+le(JavaReconcilingStrategy.java:118)
+at
+org.eclipse.jface.text.reconciler.CompositeReconcilingStrategy.reconc
+ile(CompositeReconcilingStrategy.java)
+at
+org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.rec
+oncile(JavaCompositeReconcilingStrategy.java)
+at org.eclipse.jface.text.reconciler.MonoReconciler.process
+(MonoReconcil
+er.java:76)
+at
+org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread
+.run(AbstractReconciler.java)

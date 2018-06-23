@@ -1,0 +1,7 @@
+Bug 265551 – pause reads entire resource for HttpClient provider
+I noticed this while working on URLRetrievePauseResumeTest.
+See attached patch.
+I noticed that when I changed PAUSE_TIME, that the tests sometimes did not resume.
+I changed the tests to fail in that case.
+I found that the reason for this is that when the transfer is paused the entire resource was still read.
+If the resume comes before that happened then the test fails.

@@ -1,0 +1,10 @@
+Bug 133731 – [Field Assist] -Platform UI should define preferences for content assist colors
+JDT currently provides preferences for content assist popup colors, auto-activation delay time, etc.
+Platform Text implementations typically hard-coded these values (such as auto-activation delay).
+The new field assist support generally attempted to mimic the defaults used by platform text.
+ However it is reasonable in the long run to provide preferences for these values.
+ Examples include:
+- main popup color
+- secondary popup color
+- autoactivation delay
+When this is investigated, check for the state of the art in JDT prefs.

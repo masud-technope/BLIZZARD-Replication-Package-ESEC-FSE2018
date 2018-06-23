@@ -1,0 +1,3 @@
+ds/org.eclipse.pde.ds.ui/src/org/eclipse/pde/internal/ds/ui/editor/DSPropertiesSection.java
+ds/org.eclipse.pde.ds.ui/src/org/eclipse/pde/internal/ds/ui/Messages.java
+ds/org.eclipse.pde.ds.ui/src/org/eclipse/pde/internal/ds/ui/messages.properties

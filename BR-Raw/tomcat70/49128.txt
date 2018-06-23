@@ -1,0 +1,3 @@
+49128 – loader.WebappClassLoader.start() ignores Exception
+catalina.loader.WebappClassLoader.start() ignores Exception.
+However, it probably only needs to ignore SecurityException

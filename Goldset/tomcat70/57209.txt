@@ -1,0 +1,4 @@
+java/org/apache/catalina/realm/JNDIRealm.java
+java/org/apache/catalina/realm/mbeans-descriptors.xml
+webapps/docs/changelog.xml
+webapps/docs/config/realm.xml

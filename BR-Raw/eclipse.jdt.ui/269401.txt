@@ -1,0 +1,15 @@
+Bug 269401 – [inline] Anonymous class using final parameter breaks method inlining.
+Build ID: I20090313-0100   (3.5M6)
+Please try to inline the method foo() and see the result is illegal.
+class Bug {
+{
+int y=4;
+foo(y);
+}
+void foo(final int x){
+new Runnable(){
+public void run(){
+System.out.println(x);
+}};
+}
+}

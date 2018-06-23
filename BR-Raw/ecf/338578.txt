@@ -1,0 +1,4 @@
+Bug 338578 – [docs] generate ECF 3.5 javadocs and move to eclipse.org
+Currently our build produces javadoc for the ECF sdk here:
+https://build.ecf-project.org/jenkins/job/C-HEAD-sdk.feature/javadoc/
+This content has to be completed (as much as possible prior to 3.5), and moved/committed to eclipse.org CVS repo...making it available via http://www.eclipse.org/ecf/org.eclipse.ecf.docs/api

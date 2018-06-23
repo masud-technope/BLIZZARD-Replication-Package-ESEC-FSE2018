@@ -1,0 +1,16 @@
+Bug 283427 – [refactoring] [api] RefactoringWizardOpenOperation/RefactoringWizard should have a way to use a specified IRunnableContext
+I'm launching a Refactoring from within a project properties page.
+I'm using the RefactoringWizardOpenOperation class to open the refactoring wizard.
+It turns out that when using this class, it will create an internal RefactoringWizard/Dialog and load the refactoring in it.
+During this time, the ApplicationWindow runnable context is used to report status while the wizard is being initialized.
+This is bad, because there already is a Dialog open.
+This has a few problems.
+1) You can cancel the dialog, but the operation would still be running.
+2) You can't cancel the operation since it is blocked by a modal dialog.
+I wanted to fix this by creating a properties page that implements IRunnableContext with a progress monitor itself.
+Properties pages are not a IRunnableContext, but it was relatively easy to make it so using ProgressMonitorPart.
+(Except that cancelation is not supported)
+It turns out even after I did the work to create a Properties page with a progress monitor, there was no way for me to pass in that IRunnableContext to the Wizard.
+RefactoringWizard is hard coded to use PlatformUI.getWorkbench().getActiveWorkbenchWindow() as the IRunnableContext when calculating the user input pages.
+(RefactoringWizard#getStartingPage()) Additionally, I can't override this method since it calls package-private and calls other private methods.
+My request is to modify RefactoringWizardOpenOperation and RefactoringWizard to accept a IRunnableContext for execution.

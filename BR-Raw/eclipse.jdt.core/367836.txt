@@ -1,0 +1,11 @@
+Bug 367836 – Inconsistent source range for error from build and reconciler (declared package does not match expected)
+HEAD, but already broken in 3.6.2.
+Create this CU in a non-default package:
+import java.util.Date;
+public class C {
+Date d;
+}
+=> The editor shows 2 errors in this CU, one from the reconciler with range [0, 1] and one from the builder with range [0, 0].
+Message: The declared package "" does not match the expected package "p".
+The two errors should have the same range so that the editor can fold them together.
+The range [0, 1] is a bit better, since it shows up in the source and allows to show the quick fix hover.

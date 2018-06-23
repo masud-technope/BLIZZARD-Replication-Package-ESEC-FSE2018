@@ -1,0 +1,16 @@
+Bug 361535 – [nls tooling] Messages.java is not found from messages.properties in all cases.
+From bug 358384 comment 2.
+> Note that for these quick assists to work the names of the properties file and
+> the accessor class have to be similar e.g.
+messages.properties and
+> Messages.java.
+ Dissimilar names like abc.properties and XYZ.java will not
+> work.
+This is similar to the behavior when a properties file is selected and
+> 'Find broken externalized strings' action is invoked.
+This is because there is
+> no information in the properties file about the accessor class.
+(I can try to
+> do a search for accessor classes and then inspect it to find the correct match,
+> but this may affect the responsiveness of the quick assists.)
+Possible solution - when we open the editor we start a job that finds the corresponding message class in the background.

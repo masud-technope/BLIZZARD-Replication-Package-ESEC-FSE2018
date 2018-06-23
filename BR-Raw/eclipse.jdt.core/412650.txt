@@ -1,0 +1,3 @@
+Bug 412650 – [1.8][compiler]Incongruent Lambda Exception thrown
+While compiling the Project mentioned in bug 412453 description.
+Will extract a small test case soon.

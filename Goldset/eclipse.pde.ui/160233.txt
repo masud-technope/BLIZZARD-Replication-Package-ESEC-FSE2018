@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/BundleErrorReporter.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/bundle/BasePackageHeader.java

@@ -1,0 +1,2 @@
+framework/bundles/org.eclipse.ecf.presence.ui/plugin.xml
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/chatroom/ChatRoomManagerView.java

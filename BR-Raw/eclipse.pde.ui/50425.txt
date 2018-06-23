@@ -1,0 +1,12 @@
+Bug 50425 – Plug-in Registry view does not provide useful information in the Extension Points subtree
+The Plug-in Registry view contains an "Extension Points" subtree under each
+plugin.
+Each extension point contains a list of extensions.
+However, every
+element in the list of extensions looks exactly the same, making it imposible to
+see any useful information beyond the number extensions.
+The list must include some identifying information for each extension, or the
+view is not useful.
+Many heuristics could be used to generate identifiers (such
+as the name of the first class or string-typed attributes in the extension's
+XML, the plugin where it came from, etc.)

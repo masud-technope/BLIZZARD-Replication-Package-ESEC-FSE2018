@@ -1,0 +1,35 @@
+50157 – a lot of MapperListener is registered as ContainerListener of StandardContext
+Created attachment 26213 [details]
+patch for MapperListener.java
+The same five MapperListener is registered as ContainerListener of StandardContext.
+At first when I add StandardHost by using "Engine addChild operation" via JMX, same MapperListener is registered as ContainerListener of StandardHost.
+StandardEngine.addChild()
+->StandardEngine.addChildInternal()
+->StandardEngine.fireContainerEvent()
+->MapperListener.containerEvent() line: 133 <-- here
+...
+->MapperListener.containerEvent() line: 135
+->MapperListener.registerHost() line: 276 <-- here
+Therefore, StandardHost has the same two MapperListener as ContainerListener.
+---
+Then, starting StandardHost by using "Host start operation", the same five MapperListener is registered as ContainerListener of StandardContext.
+(1)LifecycleState of StandardHost is changed to STARTING.
+StandardHost(LifecycleBase).start() line:140
+->StandardHost(ContainerBase).startInternal()
+...
+->StandardHost(ContainerBase).fireContainerEvent <-- fireContainerEvent fire two times
+...
+->MapperListener.containerEvent() line:133 <-- here
+...
+->MapperListener.containerEvent() line:137
+->MapperListener.registerContext() line:339 <-- here
+(2)LifecycleState of StandardHost is changed to STARTED.
+StandardHost(LifecycleBase).start() line:156
+...
+->MapperListener.registerHost() line:279
+->MapperListener.registerContext() line:339 <-- here
+---
+I think that the memory is wasted a little because of the above issue.
+On a related issue, MapperListener is not registered as Container/LifecycleListener for StandardContext on starting up Tomcat.
+I attached the patch for above issues.
+Best regards.

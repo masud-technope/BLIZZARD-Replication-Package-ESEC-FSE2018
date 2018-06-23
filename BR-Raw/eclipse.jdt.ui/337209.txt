@@ -1,0 +1,9 @@
+Bug 337209 – [preferences][JUnit] 'Show newly launched test in all JUnit views' not stored
+3.7 M1 and HEAD.
+1.
+enable  'Show newly launched test in all JUnit views'
+2.
+exit
+3.
+start
+==> preference is lost.

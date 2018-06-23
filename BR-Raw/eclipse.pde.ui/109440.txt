@@ -1,0 +1,26 @@
+Bug 109440 – Improvements to "Convert to plugin project..."
+I just finished converting relatively large codebase to plugin projects and
+decided to share my experience and extensions to PDE I've made to make this job
+easier
+Our code used quite a few thirdparty labraries like log4j or jdom.
+New plugin
+from existing JAR is a nice wizard, but I found it annoying to look for JAR
+files on filesystem when I can see the JARs right in the Package Explorer view.
+I've added to action to invoke the wizard by right-clicking on one or several
+jar files from Package Explorer, Navigator or any other view.
+Another annoyance with New plugin from existing JAR wizard is that after
+importing say log4j.jar I had to manually update all projects that reference the
+jar and replace JAR-file reference with project reference.
+Really tedious.
+I've
+extented New plugin from existing JAR wizard with an option to do that
+automatically.
+After importing all my jars and converting all my projects to plugins, I've
+found that I had to manually add plugin dependencies even though this
+information was already available in .classpath files.
+Really, really tedious.
+To address this, I've introduced new "Update plugin dependencies..." action.
+After implementing these little enhancements, overall conversion was rather
+simple and quick job -- 1) created new plugins from jars which also established
+dependencies on the new plugins 2) converted projects to plugins 3) updated
+plugin dependencies 4) updated project classpath

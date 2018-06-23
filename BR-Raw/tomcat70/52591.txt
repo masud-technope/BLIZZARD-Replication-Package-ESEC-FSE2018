@@ -1,0 +1,17 @@
+52591 – UnsupportedOperationException logged when fetching BasicDataSource 'loginTimeout'
+With a BasicDataSource configured (using a <Resource>), simply list the available MBeans and this exception will be emitted to stdout:
+SEVERE: Error getting attribute Catalina:type=DataSource,context=/context,host=localhost,class=javax.sql.DataSource,name="jdbc/myDataSource" loginTimeout
+javax.management.RuntimeOperationsException: Exception invoking method loginTimeout
+at org.apache.tomcat.util.modeler.BaseModelMBean.getAttribute(BaseModelMBean.java:197)
+at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.getAttribute(DefaultMBeanServerInterceptor.java:666)
+at com.sun.jmx.mbeanserver.JmxMBeanServer.getAttribute(JmxMBeanServer.java:638)
+at org.apache.catalina.mbeans.MBeanDumper.dumpBeans(MBeanDumper.java:81)
+at org.apache.catalina.manager.JMXProxyServlet.listBeans(JMXProxyServlet.java:166)
+at org.apache.catalina.manager.JMXProxyServlet.doGet(JMXProxyServlet.java:121)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+[...]
+Caused by: java.lang.UnsupportedOperationException: Not supported by BasicDataSource
+at org.apache.tomcat.dbcp.dbcp.BasicDataSource.getLoginTimeout(BasicDataSource.java:1083)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+This exception does not cause the request to fail, but definitely puts an ugly stack trace in catalina.out.
+It might be better to catch UnsupportedOperationException and emit a one-line error message -- one that isn't SEVERE.

@@ -1,0 +1,22 @@
+Bug 143293 – TVT3.2:TCT661: DA: English string: Sample Table of Contents
+OS: RHEL 3.1
+Must fix or not a must fix: NO
+Build date: 052106
+Component name = BASE FIILE MENU
+Blocking: NO
+Language: da
+Bitmap Location: V:\defects\da
+Tester Name: Mette Djoerup (user ID: dantvt03)
+Problem Description:
+In the "New plug-in project with a sample with help content." window, the Label for the table of contents box is in English: Sample Table of Contents.
+Steps:
+On the menu bar from the main Workbench panel, click File > New > Projects
+Select  Plug-in Project
+Click Next
+Put plug-in in Project name
+Click Next
+Click Next
+Click Plug-in with Sample help content
+Click Next
+Mette
+This article was reassigned from Category:''TVT/Testing''.

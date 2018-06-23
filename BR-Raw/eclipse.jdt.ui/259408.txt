@@ -1,0 +1,3 @@
+Bug 259408 – [compare] Quick views should stay in compare editor if same CU
+Not yet in HEAD.
+Quick views should stay in compare editor if same CU.

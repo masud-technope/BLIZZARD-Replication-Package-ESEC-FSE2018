@@ -1,0 +1,2 @@
+test/org/apache/tomcat/util/res/TestStringManager.java
+java/org/apache/tomcat/util/res/StringManager.java

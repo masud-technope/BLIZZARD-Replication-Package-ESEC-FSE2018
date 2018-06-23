@@ -1,0 +1,27 @@
+52113 – Tomcat reports missing context xml at wrong location on JMX deployment
+Hello,
+I'm using Tomcat JMX interface to deploy apps as follows:
+1) call MBeanFactory#createStandardContext, where MBeanFactory is "Catalina:type=MBeanFactory", with parameters: parent = "Catalina:type=Host,host=localhost", path = "/w1", docBase = <my path to the app>
+2) call <my app>#start, where <my app> is "Catalina:j2eeType=WebModule,name=//localhost/w1,J2EEApplication=none,J2EEServer=none"
+As result, my app _is succesfully deployed (its context is available)_, but nevertheless I see the following exceptions in the server console (full stacktraces are skipped, to be attached next comment):
+31 ???? 2011 14:05:53 org.apache.catalina.startup.ContextConfig
+processContextConfig
+SEVERE: Missing context.xml: file:/C:/<my Tomcat base
+folder>/conf/Catalina/localhost/w1.xml
+java.io.FileNotFoundException: C:\<my Tomcat base
+folder>\conf\Catalina\localhost\w1.xml
+31 ???? 2011 14:05:53 org.apache.catalina.startup.ContextConfig
+processContextConfig
+SEVERE: Parse error in context.xml for /w1
+java.io.FileNotFoundException: C:\<my Tomcat base
+folder>\conf\Catalina\localhost\w1.xml
+31 ???? 2011 14:05:53 org.apache.catalina.startup.ContextConfig configureStart
+SEVERE: Marking this application unavailable due to previous error(s)
+31 ???? 2011 14:05:53 org.apache.catalina.core.StandardContext startInternal
+SEVERE: Error getConfigured
+31 ???? 2011 14:05:53 org.apache.catalina.core.StandardContext startInternal
+SEVERE: Context [/w1] startup failed due to previous errors
+The exceptions looks strange to me, since I don't understand why Tomcat searches for a context xml file during the jmx deploy.
+Do I do something wrong in the deployment workflow?
+Regards,
+Michael

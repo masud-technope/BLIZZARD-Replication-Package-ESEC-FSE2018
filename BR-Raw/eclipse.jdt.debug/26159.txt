@@ -1,0 +1,33 @@
+Bug 26159 – NPE evaluating snippet in anonymous inner class
+build 20021113
+I have some test code that contains an anonymous subclass.
+ Whenever I try to
+select code in the context of one of its methods and evaluate it using snippet
+evaluation, it throws a NPE.
+ The NPE happens while visiting a MethodInvocation
+node in the AST.
+ The visitor calls "methodBinding =
+node.getName().resolveBinding()", and this returns null.
+Then it calls
+"containsAsLocalType(methodBinding), which tries to invoke a method on
+methodBinding, but it is null, hence the NPE.
+I have not been able to construct a simple test case.
+ To reproduce my scenario:
+Checkout the following from dev.eclipse.org:
+org.apache.ant
+org.apache.xerces
+org.eclipse.ant.core
+org.eclipse.core.boot
+org.eclipse.core.resources
+org.eclipse.core.resources.win32
+org.eclipse.core.runtime
+org.eclipse.core.tests.harness
+org.eclipse.core.tests.resources
+org.eclipse.platform
+org.junit
+Put a breakpoint in the method "wasSuccess" in the anony inner class inside
+org.eclipse.core.tests.resources.LinkedResourceTest#testMoveFile.
+Use PDE Junit to launch the test LinkedResourceTest.
+When the breakpoint is hit, step a couple of times, and then try to evaluate the
+expression "destination.exists()".
+ It will then NPE.

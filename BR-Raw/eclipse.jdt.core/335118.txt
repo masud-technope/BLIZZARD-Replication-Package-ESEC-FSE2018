@@ -1,0 +1,30 @@
+Bug 335118 – [null] avoid code pattern that unnecessarily signal potential null in JDT/Core code
+The JDT/Core code is currently compiled with
+org.eclipse.jdt.core.compiler.problem.potentialNullReference=ignore
+I would like to see us eating our own dog food, here.
+However, currently this would bring us as many as 362 additional warnings.
+Browsing some of the problems I see a clear majority resulting from the
+following coding pattern:
+void foo (Type[] array) {
+int length = array == null ? 0 : array.length;
+for (int i = 0; i < length; i++)
+process(array[i]);
+}
+I suggest to make the connection between null checking and shortcutting
+the loop explicit as in
+void foo (Type[] array) {
+if (array != null) {
+int length = array.length;
+for (int i = 0; i < length; i++)
+process(array[i]);
+}
+}
+I don't see sufficient advantage in the former pattern, and by using the
+second the compiler will understand our reasoning and not flag potential null.
+Of course it would be cool if the analysis would understand the original
+pattern, too, but this requires correlation analysis, which we currently
+don't do (and even: correlation involving an int!).
+Once this pattern is changed it will be much easier to browse the remaining
+warnings for real problems.
+Perhaps this will unveil further patterns to
+either avoid or improve analysis for.

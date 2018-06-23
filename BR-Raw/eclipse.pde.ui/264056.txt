@@ -1,0 +1,4 @@
+Bug 264056 – [target] be able to open external target files using Open File...
+Currently, when you go to open an target definition located somewhere on disk, the target editor comes up blank.
+This should be working and we should support this workflow.
+My suspicion is that we don't handle IURIEditorInput for target definitions.

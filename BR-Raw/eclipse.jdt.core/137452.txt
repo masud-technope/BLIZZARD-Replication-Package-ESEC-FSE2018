@@ -1,0 +1,44 @@
+Bug 137452 – Autocomplete adds "Void" instead of doing nothing
+In the next code snippet
+public class AutoCompleteBug {
+interface I {
+void doIt();
+}
+class C1 implements I {
+public void doIt() {
+}
+}
+class C2 extends C1 {
+@Override
+public void doIt() {
+super.doIt();
+}
+}
+}
+when te cursor is placed in C2.doIt, just before the '(' and Ctrl-space is pressed, the auto complete feature adds "Void" to the method name, resulting in
+class C2 extends C1 {
+@Override
+public void doItVoid() {
+super.doIt();
+}
+}
+which is illegal.
+In this case the autocomplete should do nothing.
+Usecase and how I discovered this: I have a base class with three methods
+class Base {
+method()
+method_1()
+method_2()
+}
+In a subclass
+class Sub extends Base {
+@Override
+method()
+}
+I place the cursor in Sub, method 'method', just before the '(', press ctrl-space, I would like to see the following choices:
+method()
+method_1()
+method_2()
+Eclipse SDK
+Version: 3.2.0
+Build id: I20060331-2000

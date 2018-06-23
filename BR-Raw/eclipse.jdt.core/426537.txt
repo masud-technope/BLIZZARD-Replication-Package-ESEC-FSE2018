@@ -1,0 +1,13 @@
+Bug 426537 – [1.8][inference] Eclipse compiler thinks I<? super J> is compatible with I<J<?>> - raw type J involved
+This is the test code:
+public class X {
+void foo(J[] list, I<J<?>> i) {
+sort(list, i);
+}
+<T> T[] sort(T[] list, I<? super T> i) {
+return list;
+}
+}
+interface I<T> {}
+interface J<T> {}
+The invocation sort(list, i) should be reported but not.

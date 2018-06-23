@@ -1,0 +1,5 @@
+49086 – Addition of Javadoc for Servlet 3.0 annotations
+Created attachment 25252 [details]
+Javadoc patch for WebServlet annotation
+Addition of Javadoc for Servlet 3.0 javax.servlet.annotation package.
+Several patches to follow.

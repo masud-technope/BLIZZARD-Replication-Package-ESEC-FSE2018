@@ -1,0 +1,23 @@
+55159 – Wasted work in ErrorReportValve.getPartialServletStackTrace
+Created attachment 30499 [details]
+patch
+The problem appears in version 7.0.41 and in revision 1497999.
+ I
+attached a two-line patch  (patch.diff) that fixes it.
+In method "ErrorReportValve.getPartialServletStackTrace", the loop
+over "elements" keeps overriding "pos" with "i".
+ Therefore, only the
+last written value is visible out of the loop and all the other writes
+and iterations are not necessary.
+ The patch iterates from the end of
+"elements" and breaks the first time when "pos" is set.
+The above fix (in patch.diff) is certainly correct (it's easy to see
+through code inspection), but I think we can have an even shorter
+patch (one line, in patchShort.diff): just break as soon as "pos" is
+set, without reversion the loop order.
+ patchShort.diff is correct
+only if there can be only one "elements[i]" with class name
+"org.apache.catalina.core.ApplicationFilterChain" and method name
+"internalDoFilter" or if it doesn't matter which such "elements[i]" is
+detected (the last, like in the original code, or the first, like in
+patchShort.diff).

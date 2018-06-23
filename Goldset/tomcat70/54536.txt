@@ -1,0 +1,4 @@
+java/org/apache/catalina/valves/ErrorReportValve.java
+java/org/apache/catalina/valves/LocalStrings.properties
+test/org/apache/catalina/valves/TestErrorReportValve.java
+webapps/docs/changelog.xml

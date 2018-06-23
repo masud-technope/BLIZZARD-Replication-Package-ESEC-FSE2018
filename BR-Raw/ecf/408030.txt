@@ -1,0 +1,2 @@
+Bug 408030 – RestClientService ignores content encoding
+org.eclipse.ecf.remoteservice.rest.client.RestClientService.prepare*Method(String, IRemoteCall, IRemoteCallable) ignores the user defined content encoding, even if consumer explicitly sets content encoding via new HttpPostRequestType(..., "UTF-8") during creation of org.eclipse.ecf.remoteservice.client.IRemoteCallable.

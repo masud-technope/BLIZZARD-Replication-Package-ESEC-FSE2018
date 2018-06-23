@@ -1,0 +1,47 @@
+Bug 377883 – NPE on open Call Hierarchy
+Unfortunately I've no save repro for the exception below.
+What I tried to fix this is a clean build and deleting the contents from the metadata of my workspace.
+Both without success.
+I don't see any error markers in my workspace.
+Version info (why tis the build-id different from the v-date in the version?)
+Eclipse Java Development Tools
+Version: 3.8.0.v20111130-1318-8-8lFpEFNOfwRe0lvGVLmVw9B15B
+Build id: I20120314-1800
+Message from the newsgroup:
+Recently I got the following exception when I tried to use the call hierarchy.
+I don't get an error dialog but a message in the error log instead.
+No callers are found though there are some.
+Is there something that I can do on my machine to fix that / the index / the project config / whatever may have caused that?
+Thanks in advance,
+Sebastian
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.core.search.matching.ClasspathSourceDirectory.directoryTable(ClasspathSourceDirectory.java:44)
+at org.eclipse.jdt.internal.core.search.matching.ClasspathSourceDirectory.findClass(ClasspathSourceDirectory.java:84)
+at org.eclipse.jdt.internal.core.search.matching.JavaSearchNameEnvironment.findClass(JavaSearchNameEnvironment.java:146)
+at org.eclipse.jdt.internal.core.search.matching.JavaSearchNameEnvironment.findType(JavaSearchNameEnvironment.java:185)
+at org.eclipse.jdt.internal.compiler.lookup.LookupEnvironment.askForType(LookupEnvironment.java:145)
+at org.eclipse.jdt.internal.compiler.lookup.PackageBinding.getTypeOrPackage(PackageBinding.java:197)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getTypeOrPackage(Scope.java:2787)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getType(Scope.java:2505)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.getType(MatchLocator.java:899)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.getMethodBinding0(MatchLocator.java:955)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.getMethodBinding(MatchLocator.java:907)
+at org.eclipse.jdt.internal.core.search.matching.MethodLocator.matchMethod(MethodLocator.java:290)
+at org.eclipse.jdt.internal.core.search.matching.MethodLocator.resolveLevel(MethodLocator.java:616)
+at org.eclipse.jdt.internal.core.search.matching.ClassFileMatchLocator.locateMatches(ClassFileMatchLocator.java:209)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.process(MatchLocator.java:1697)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.locateMatches(MatchLocator.java:1141)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.locateMatches(MatchLocator.java:1182)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.locateMatches(MatchLocator.java:1299)
+at org.eclipse.jdt.internal.core.search.JavaSearchParticipant.locateMatches(JavaSearchParticipant.java:95)
+at org.eclipse.jdt.internal.core.search.BasicSearchEngine.findMatches(BasicSearchEngine.java:231)
+at org.eclipse.jdt.internal.core.search.BasicSearchEngine.search(BasicSearchEngine.java:515)
+at org.eclipse.jdt.core.search.SearchEngine.search(SearchEngine.java:584)
+at org.eclipse.jdt.internal.corext.callhierarchy.CallerMethodWrapper.findChildren(CallerMethodWrapper.java:155)
+at org.eclipse.jdt.internal.corext.callhierarchy.MethodWrapper.performSearch(MethodWrapper.java:301)
+at org.eclipse.jdt.internal.corext.callhierarchy.MethodWrapper.doFindChildren(MethodWrapper.java:232)
+at org.eclipse.jdt.internal.corext.callhierarchy.MethodWrapper.getCalls(MethodWrapper.java:84)
+at org.eclipse.jdt.internal.ui.callhierarchy.DeferredMethodWrapper.getCalls(DeferredMethodWrapper.java:65)
+at org.eclipse.jdt.internal.ui.callhierarchy.DeferredMethodWrapper.fetchDeferredChildren(DeferredMethodWrapper.java:79)
+at org.eclipse.ui.progress.DeferredTreeContentManager$1.run(DeferredTreeContentManager.java:235)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)

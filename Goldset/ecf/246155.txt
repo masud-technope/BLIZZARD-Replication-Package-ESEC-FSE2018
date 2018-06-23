@@ -1,0 +1,6 @@
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/XMPPContainerPresenceHelper.java
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/internal/presence/ui/Messages.java
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/internal/presence/ui/messages.properties
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/MultiRosterView.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/XMPPContainerPresenceHelper.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/provider/xmpp/identity/XMPPID.java

@@ -1,0 +1,2 @@
+Bug 112599 – [XMPP] Room subject does not get updated in xmpp chat
+When updated remotely by xmpp server title of room does not get updated dynamically

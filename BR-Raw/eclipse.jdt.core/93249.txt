@@ -1,0 +1,11 @@
+Bug 93249 – Code assist doesn't propose full method stub
+- take revision 1.8 of BuildPathAction.
+- in run method add the following
+IRunnableWithProgress runnable= new IRunnableWithProgress() {
+};
+- inside the runnable type run<code assist> and select run
+observe: only the following method signature gets inserted.
+No method body.
+Additionally IProgressMonitor is fully qualified.
+public void run(org.eclipse.core.runtime.IProgressMonitor monitor) throws
+InvocationTargetException, InterruptedException

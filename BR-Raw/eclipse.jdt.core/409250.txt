@@ -1,0 +1,24 @@
+Bug 409250 – [1.8][compiler] Various loose ends in 308 code generation.
+BETA_JAVA8:
+This bug will be used to cover the loose ends discovered in code review
+of the core implementation of JSR308 code generation.
+(1) Should TypeAnnotationCodeStream.invoke(byte, MethodBinding, TypeBinding,
+TypeReference[]) be checking for ASTNode.HasTypeAnnotations ?
+(2) Is ExtendedAnnotation violating javadoc of
+IExtendedAnnotation.getLocalVariableTable() ?
+(3)  CodeStream(s): Is the method CodeStream.newArray(TypeReference,
+ArrayBinding) needed ?
+(4) ClassFile.addFieldAttributes: Needs a relook.
+When a field declaration
+carries a type annotation (or for that matter when a type annotation occurs in
+any place where a Java SE5 annotation can occur, we leave it annotating the
+declared entity - i.e the type annotation is not moved to the type.) So code
+fragments like if (fieldType.bits & ASTNode.HasTypeAnnotations) != 0) may not
+get executed at all.
+Until the resolve phase, we don't know whether an
+annotation is a type declaration and so the HasTypeAnnotations bit cannot be set
+in these places.
+For concern 4, Andy's initial response is available at
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=383624#c54
+I feel the suggestion to set the bit only during resolution is
+a good one.

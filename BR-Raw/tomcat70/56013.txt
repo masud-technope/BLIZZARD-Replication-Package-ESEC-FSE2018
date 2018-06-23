@@ -1,0 +1,19 @@
+56013 – SpnegoAuthenticator not working in IBM JDK v7 for Kerberos due to incorrect credential lifetime
+Created attachment 31208 [details]
+Unified GNU diff format of SpnegoAuthenticator.java and its updated version
+Hi
+SpnegoAuthenticator is not working with IBM JDK v7.
+The option GSSCredential.DEFAULT_LIFETIME specified while generating ticket creates the following exception:-
+major code: 11, minor code: 0
+major string: General failure, unspecified at GSSAPI level
+minor string: Desired initLifetime zero or less)
+However specifying GSSCredential.INDEFINITE_LIFETIME as lifetime of credential resolves the issue.
+I am attaching a patch which optionally chooses cred lifetime as indefinite or default depending on whether the JDK is IBM JDK or Oracle/Sun JDK.
+This patch is with respect to SpnegoAuthenticator.java of tomcat v 7.0.50
+Impact of fix:-
+1.
+If not fixed then Tomcat does not work out of the box for Spnego Authentication(Kerberos) for IBM JDK v7
+2.
+The fix affects only IBM JDK and does not change the execution flow for Oracle/Sun JDK
+Yours sincerely
+Arunav Sanyal

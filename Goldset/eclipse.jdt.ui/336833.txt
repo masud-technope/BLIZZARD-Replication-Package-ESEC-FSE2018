@@ -1,0 +1,3 @@
+org.eclipse.ltk.ui.refactoring/META-INF/MANIFEST.MF
+org.eclipse.ltk.ui.refactoring/src/org/eclipse/ltk/internal/ui/refactoring/RefactoringWizardDialog2.java
+org.eclipse.ltk.ui.refactoring/src/org/eclipse/ltk/ui/refactoring/RefactoringWizard.java

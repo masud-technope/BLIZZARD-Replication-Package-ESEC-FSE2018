@@ -1,0 +1,10 @@
+Bug 130424 – New Registry view shows fragments
+The old registry view did not show fragments while the new one does.
+Fragments are generally not very interesting in the registry since they would have coalesced with their host, so the information would be duplicated in the host anyway.
+We should either:
+1.
+filter them out, as we have done in the past, OR
+2.
+show them but with the right icon.
+ Right now, they show up with a blue plugin icon
+A bundle is a fragment if it contains the Constants.FRAGMENT_HOST header.

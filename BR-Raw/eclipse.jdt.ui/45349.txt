@@ -1,0 +1,8 @@
+Bug 45349 – [typing] Smart ; must replace selection
+I20031015
+1.
+enter "int a= 3;"
+2.
+select "=3;"
+3.
+press ";"

@@ -1,0 +1,6 @@
+Bug 277573 – [RemoteService] Make remote service identifiable in service registry by setting org.osgi.service.remoteserviceadmin.RemoteConstants.ENDPOINT_[SERVICE_ID|ID]
+Currently a remote service is completely stripped of its properties when added to the local service registry.
+This makes it impossible to identify e.g.
+the remote endpoint.
+Thus we shall set ServicePublication.ENDPOINT_ID to e.g.
+org.eclipse.ecf.remoteservice.Constants.SERVICE_CONTAINER_ID + "#" + org.eclipse.ecf.remoteservice.Constants.SERVICE_ID

@@ -1,0 +1,17 @@
+Bug 383015 – [1.8][compiler] Improve error reporting for illegal modifier in TypeElidedFormalParameter
+Consider the following snippet:
+interface F2 {
+void doit(String s1, String s2);
+}
+public void test1() {
+ActionListener al = (public e) -> System.out.println(e);
+F2 f2 = (abstract final s, @Nullable t) -> System.out.println(s+".."+t);
+}
+We correctly get three errors from the parser, but I'd suggest to improve
+the messages:
+- currently the position always includes the argument, shouldn't it only
+highlight the modifier(s)?
+- I think the message (currently "Modifiers are not allowed here") should
+read more like other syntax errors.
+- users won't typically consider annotations as modifiers so we should
+probably use two different messages here.

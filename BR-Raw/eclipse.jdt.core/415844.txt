@@ -1,0 +1,19 @@
+Bug 415844 – [1.8][compiler] Blank final initialized in a lambda expression should not pass
+Testcase :
+public class Sample{
+interface Int {
+void setInt(int i);
+}
+public static void main(String[] args) {
+final int j;
+Int int1 = (int i) -> {
+j=10;
+};
+}
+}
+Gives following error with javac :
+Sample.java:14: error: cannot assign a value to final variable j
+j=10;
+^
+1 error
+Does not give error in eclipse.

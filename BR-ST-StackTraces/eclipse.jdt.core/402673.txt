@@ -1,0 +1,13 @@
+org.eclipse.jdt.core.dom.ASTNode.unsupportedIn2_3_4
+org.eclipse.jdt.core.dom.LambdaExpression.<init>
+org.eclipse.jdt.core.dom.ASTConverter.convert
+org.eclipse.jdt.core.dom.ASTConverter.convert
+org.eclipse.jdt.core.dom.ASTConverter.convertToVariableDeclarationFragment
+org.eclipse.jdt.core.dom.ASTConverter.convertToFieldDeclaration
+org.eclipse.jdt.core.dom.ASTConverter.checkAndAddMultipleFieldDeclaration
+org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations
+org.eclipse.jdt.core.dom.ASTConverter.convert
+org.eclipse.jdt.core.dom.ASTConverter.convert
+org.eclipse.jdt.core.dom.CompilationUnitResolver.convert
+org.eclipse.jdt.core.dom.ASTParser.internalCreateAST
+org.eclipse.jdt.core.dom.ASTParser.createAST

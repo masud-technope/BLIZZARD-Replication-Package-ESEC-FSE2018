@@ -1,0 +1,21 @@
+53758 – Dynamic Filter Registration mapping logic inverted
+In the class org.apache.catalina.core.ApplicationFilterRegistration, the methods addMappingForServletNames and addMappingForUrlPatterns have inverted logic on how to register the filter to the context.
+If the parameter isMatchAfter is passed as true, the filter is placed in the context using the addFilterMapBefore method.
+if (isMatchAfter) {
+context.addFilterMapBefore(filterMap);
+} else {
+context.addFilterMap(filterMap);
+}
+The logic should ultimate be (in both methods):
+if (!isMatchAfter) {
+context.addFilterMapBefore(filterMap);
+} else {
+context.addFilterMap(filterMap);
+}
+or
+if (isMatchAfter) {
+context.addFilterMap(filterMap);
+} else {
+context.addFilterMapBefore(filterMap);
+}
+svn rev on trunk is 1375614

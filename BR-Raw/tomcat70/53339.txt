@@ -1,0 +1,17 @@
+53339 – ClassNotFoundException when using WebSocketServlet
+I'm trying to do a JNDI lookup inside the "onOpen" method of my StreamInbound class, but it gives me the exception below.
+ The code works if I move my JNP JARs to the server lib instead of the webapp lib.
+ The code also works fine from anywhere else, like in the "doGet" method.
+ERROR http-bio-8080-exec-3 Test
+javax.naming.NoInitialContextException: Cannot instantiate class: org.jnp.interfaces.NamingContextFactory [Root exception is java.lang.ClassNotFoundException: org.jnp.interfaces.NamingContextFactory]
+at javax.naming.spi.NamingManager.getInitialContext(NamingManager.java:657)
+at javax.naming.InitialContext.getDefaultInitCtx(InitialContext.java:288)
+at javax.naming.InitialContext.init(InitialContext.java:223)
+at javax.naming.InitialContext.<init>(InitialContext.java:197)
+at Test$TestStreamInbound.onOpen(Test.java:103)
+at org.apache.catalina.websocket.StreamInbound.onUpgradeComplete(StreamInbound.java:180)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:579)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:662)

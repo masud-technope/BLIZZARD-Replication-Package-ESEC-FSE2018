@@ -1,0 +1,39 @@
+Bug 350733 – Breakpoint condition editor needs a height hint
+Created attachment 198849 [details]
+screenshot
+code from HEAD
+while testing switch-on-String support in conditional breakpoints I found that if you have a really long condition and open the breakpoint properties dialog, it will be the entire height of the screen before it will scroll.
+Consider the following condition:
+String test = "two";
+switch (test) {
+case "one":
+System.out.println("one from condition");
+return true;
+case "two":
+System.out.println("two from condition");
+String innertest = "innerone";
+switch(innertest) {
+case "innerone": {
+System.out.println("innerone from inner condition");
+return true;
+}
+default: {
+System.out.println("fail from inner condition");
+return false;
+}
+}
+return true;
+case "three":
+System.out.println("three from condition");
+return true;
+case "four":
+System.out.println("four from condition");
+return true;
+case "five":
+System.out.println("five from condition");
+return true;
+default:
+System.out.println("Fail from condition");
+return false;
+}
+After it opens if you try to resize the properties dialog the condition text editor does not resize, instead the dialog scrolls, which is annoying.

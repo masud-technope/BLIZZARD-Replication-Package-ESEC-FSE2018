@@ -1,0 +1,4 @@
+Bug 172767 – more buttons needed in the target editor
+In the JRE section of the target editor, the EE combo box should have a browse button to its right that would take the user to the EE preference page.
+Similarly, the JRE combo box should have a button that will open the Installed JREs pref page.
+The end result would look similar to the JRE tab of a regular Java app launch config.

@@ -1,0 +1,27 @@
+59849 – initSQL not executed when JDBC connection created under load
+Tomcat: 7.0.57
+OS: SunOS HOST 5.10 Generic_150401-20 i86pc i386 i86pc
+$ java -version
+java version "1.8.0_65"
+Java(TM) SE Runtime Environment (build 1.8.0_65-b17)
+Java HotSpot(TM) 64-Bit Server VM (build 25.65-b01, mixed mode)
+Our application relies on initSQL to set the current_schema on each JDBC connection.
+We noticed that when our application is under heavy load (maxActive DB connections), the application sometimes gets handed a connection that did not have initSQL executed on it.
+We had a look at the ConnectionPool.java source code (TOMCAT_7_0_57 and trunk) and found that there is a scenario where the pool creates a new connection without running `PooledConnection#validate(PooledConnection.VALIDATE_INIT)` on it.
+To reproduce this issue, two conditions need to coincide:
+1) The server has to be under load.
+The pool needs to be saturated to the point where no new connections get created for incoming requests (requests > maxActive).
+Threads block on the 'idle' queue/the waitcount atomic is > 0.
+2) Active connections need to be released from the pool (unhandled exceptions, maxAge, suspectTimeout etc.)
+Under load, the ConnectionPool#release method will create an 'ad-hoc' connection to replace the active connection it just removed from the ConnectionPool:
+if (waitcount.get() > 0) {
+idle.offer(create(true));
+}
+The #connect call for a PooledConnection object created this way follows in #borrowConnection instead of #createConnection.
+In #borrowConnection there is no call to #validate(VALIDATE_INIT) before that 'ad-hoc' connection is returned to the requesting thread.
+Our best "workaround" at the moment:
+- Use a validationQuery that fails when initSQL was not run
+- enable testOnBorrow
+- validationInterval at 1ms
+The short validation interval is necessary because the 'ad-hoc' connection object will have its lastValidation time stamp set to currentTimeMillis on object creation, causing it to skip onBorrow validation immediately after it is being created.
+Needless to say this workaround comes at a significant performance cost to the entire application (short validationInterval) in addition to creating those uninitialized DB connections just to throw them away immediately when they inevitably fail onBorrow validation.

@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/isite/ISiteBuild.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/site/SiteBuild.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/site/NewSiteProjectWizard.java

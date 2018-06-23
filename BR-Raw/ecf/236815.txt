@@ -1,0 +1,2 @@
+Bug 236815 – [Discovery][JMDNS] Replace ECFStart with normal service registration
+ECFStart EP doesn't work in a pure OSGi environment and thus should be replaced by a normal service registration in the BundleActivator

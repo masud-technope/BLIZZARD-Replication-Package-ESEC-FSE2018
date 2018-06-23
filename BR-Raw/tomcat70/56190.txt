@@ -1,0 +1,16 @@
+56190 – Connection keep-alive not working with asynchronous servlet
+Created attachment 31346 [details]
+AsyncHelloServlet.java
+I am trying to use asynchronous servlets.
+It looks like whenever you call request.startAsync() keep-alive is disabled and the response is sent in chunked transfer encoding.
+I attached the code of a simple servlet.
+I get these headers in the response:
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Transfer-Encoding: chunked
+Date: Wed, 26 Feb 2014 13:25:29 GMT
+With a regular blocking servlet I get:
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Content-Length: 11
+Date: Wed, 26 Feb 2014 13:49:17 GMT

@@ -1,0 +1,29 @@
+Bug 438469 – [null] How-to use null type annotations with generic methods from interfaces in some library you only have as binary JAR?
+// Imagine this is in some library you only have as binary JAR (cannot modify src)
+interface ITest {
+<T> T foo(T arg); // or arg Class<T> or TypeToken<T> + return TypeAdapter<T>, etc.
+}
+// This however is your code (src), in a project with null type annotations
+class Test implements ITest {
+@Override
+public <T> T foo(T arg) {
+return null;
+}
+}
+leads to "Null type mismatch (type annotations): 'null' is not compatible to the free type variable 'T'".
+ In this case you cannot use @Nullable in Test's foo(), because that would lead to "The method @Nullable T foo(T) from Test cannot implement the corresponding method from ITest due to incompatible nullness constraints"...
+assuming one cannot change ITest, how do you solve this?
+I have read http://help.eclipse.org/luna/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Ftasks%2Ftask-using_null_type_annotations.htm and (roughly..) understand what's going on here technically.
+The point of the issue is to raise that, unless there is a trick that I'm missing, it's effectively not (yet, pending bug 331651 ?) possible to enable use of null type annotations in projects with code that overrides generic methods from interfaces in some library you only have as binary JAR?
+If my understanding is correct, this problem is particular to generic methods, because in the following slightly different example, note that here the interface not the method is generic-ified, you're OK:
+// This is in some library you only have as binary JAR
+public interface ITest2<T> {
+/* NOT <T> */ T foo(T arg); // or arg Class<T> or TypeToken<T> + return TypeAdapter<T>, etc.
+}
+// This works - no worries:
+public class Test2<@Nullable T> implements ITest2<T> {
+@Override
+public T foo(T arg) {
+return null;
+}
+}

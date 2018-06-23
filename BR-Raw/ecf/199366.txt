@@ -1,0 +1,3 @@
+Bug 199366 – IRC Connection Wizard filters out # character
+When using the ECF connection wizard to connect to the IRC channel, I type a connect ID of konigsberg@irc.freenode.net/#eclipse.
+When I go back to reconnect, it displays as konigsberg@irc.freenode.net/eclipse, without the #.

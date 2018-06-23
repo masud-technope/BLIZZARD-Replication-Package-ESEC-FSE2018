@@ -1,0 +1,7 @@
+Bug 256574 – [package explorer] Possibly broken code in PackageExplorerContentProvider.findAddedElement(IJavaElementDelta)
+I20081125-0840.
+While doing the dead-code analysis I found this code in
+org.eclipse.jdt.internal.ui.packageview.PackageExplorerContentProvider.findAddedElement(IJavaElementDelta):
+for (int i= 0; i < affectedChildren.length; i++)
+return findAddedElement(affectedChildren[i]);
+Obviously the loop is either useless as it will at most handle affectedChildren[0] or it is broken.

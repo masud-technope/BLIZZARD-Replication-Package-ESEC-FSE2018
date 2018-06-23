@@ -1,0 +1,9 @@
+Bug 441731 – JDT reports unnecessary cast, using the Quickfix to remove it creates syntax error
+In org.eclipse.e4.ui.workbench.renderers.swt.WBWRenderer I see the following code:
+public void processContents(MElementContainer<MUIElement> me) {
+if (!(((MUIElement) me) instanceof MWindow))
+return;
+...more
+}
+JDT marks (MUIElement) me as unnecessary cast but if I remove this cast, I get an syntax error.
+Is this a wrong warning message?

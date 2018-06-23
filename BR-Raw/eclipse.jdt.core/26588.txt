@@ -1,0 +1,13 @@
+Bug 26588 – Code Assist - variable must be less relevant in initialization
+1) create X
+public class X {
+int var1;
+void foo() {
+int var2 = var<cursor>
+}
+int var3;
+}
+2) do ctrl+space at cursor location
+The relevance for 'var1', 'var2' and 'var3' is the same.
+but 'var1' and 'var3'
+are more interesting than 'var2'.

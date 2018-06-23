@@ -1,0 +1,14 @@
+59043 – SingleSignOn valve warns about missing session when invoking HttpServletRequest.logout
+When HttpServletRequest.logout() is invoked, first the ID of the current session is changed, then all the sessions in SingleSignOnEntry are expired, but the current one has changed its ID, hence the annoying warning.
+From the log:
+...
+FINE [http-nio-8080-exec-3] AuthenticatorBase.register Authenticated 'john.doe' with type 'FORM'
+FINE [http-nio-8080-exec-3] AuthenticatorBase.register Session ID changed on authentication from [6F6874832A811D2B69AA06F3745C4CC7] to [FD2777025AC71CA72A44545472DAB5C2]
+FINE [http-nio-8080-exec-3] SingleSignOn.register SSO registering SSO session [9284A1891047D0FA96629C9059528302] for user [john.doe] with authentication type [FORM]
+FINE [http-nio-8080-exec-3] SingleSignOn.associate SSO associating application session [StandardSession[FD2777025AC71CA72A44545472DAB5C2]] with SSO session [9284A1891047D0FA96629C9059528302]
+...
+FINE [http-nio-8080-exec-4] AuthenticatorBase.register Authenticated 'none' with type 'null'
+FINE [http-nio-8080-exec-4] AuthenticatorBase.register Session ID changed on authentication from [FD2777025AC71CA72A44545472DAB5C2] to [DCE8372B4BF6AD84F63BF5664D8E941E]
+FINE [http-nio-8080-exec-4] SingleSignOn.deregister SSO expiring application session [Host: [localhost], Context: [/app], SessionID: [FD2777025AC71CA72A44545472DAB5C2]] associated with SSO session [9284A1891047D0FA96629C9059528302]
+WARNING [http-nio-8080-exec-4] SingleSignOn.expire SSO unable to expire session [Host: [localhost], Context: [/app], SessionID: [FD2777025AC71CA72A44545472DAB5C2]] because the Session could not be found
+...

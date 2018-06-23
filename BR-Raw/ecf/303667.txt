@@ -1,0 +1,2 @@
+Bug 303667 – [Discovery][jSLP] Write XML report for tests
+Write reports to a file instead of the console

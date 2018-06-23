@@ -1,0 +1,7 @@
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/ui/views/ChatRoomView.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/provider/xmpp/identity/XMPPID.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/provider/xmpp/container/XMPPClientSOContainer.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/provider/xmpp/identity/XMPPNamespace.java
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/ui/views/RosterView.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/provider/xmpp/container/XMPPGroupChatSOContainer.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/provider/xmpp/container/XMPPGroupChatSharedObject.java

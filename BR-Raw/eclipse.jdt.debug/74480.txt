@@ -1,0 +1,25 @@
+Bug 74480 – [launching] Simplify the launch experience for less technical users of Eclipse
+During usability studies on testing tools based on eclipse, it was found that
+all users had problems running/launching.
+ The Launch Config Dialog appears to
+be particularly difficult to use for "Testers" who may not have much development
+experience.
+The complexity of the launch configuration dialog contributed to create a
+frustrating experience for the user.
+In the dialog there are several configurations displayed to the user, many of
+them seemingly irrelevant to the user (e.g., only 2 configuration types were
+relevant to the user, but there were many more to select from).
+Users often did not know to create a new configuration.
+ In addition, the
+perspective options on the right of the dialog (when no configuration has been
+created) also resulted in much confusion as users tried to change the default
+perspective options.
+ Some users initially found the configurations but then did
+not remember how to reproduce the process.
+While launch shortcuts help alleviate the problem, many users still end up in
+the Launch Config dialog or need to modify launch properties.
+ Users expected to
+be able to simply select their test (i.e., resource to launch) and click on the
+run button.
+ The behavior of the run button was not clear to users; they did not
+realize the run toolbar button runs the last test.

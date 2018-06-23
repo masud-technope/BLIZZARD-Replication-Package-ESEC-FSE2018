@@ -1,0 +1,8 @@
+52213 – Field "org.apache.catalina.tribes.transport.bio.util.FastQueue.enabled" should be volatile.
+The boolean flag "org.apache.catalina.tribes.transport.bio.util.FastQueue.enabled" may be read/written by multiple threads concurrently (See <http://svn.apache.org/repos/asf/!svn/bc/1203897/tomcat/trunk/java/org/apache/catalina/tribes/group/interceptors/MessageDispatchInterceptor.java>).
+Therefore, accesses to it should be properly synchronized.
+It is sufficient to make this boolean flag volatile to protect access to it.
+See <https://www.securecoding.cert.org/confluence/display/java/VNA00-J.+Ensure+visibility+when+accessing+shared+primitive+variables> for more information about this bug pattern.
+Keshmesh (https://keshmesh.cs.illinois.edu/) is an Eclipse plugin that
+analyzes the source code of Java programs for common concurrency bug patterns.
+We used Keshmesh to detect this concurrency bug pattern.

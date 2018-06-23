@@ -1,0 +1,11 @@
+Bug 228840 � Invalid Plug-in ID should be error severity instead of warning
+Build ID: I20080330-1350
+Steps To Reproduce:
+1.File->New->Project
+2.Plug-in Development->Plug-in Project
+3.copy this string "�?ÒÃì«Õ¾Õ" and paste into Project name (without double quoe)
+4.click next then project id appear as ________
+5.If i attemp to type Thai string into id, validation fail
+6.If skip step 5, the project created successful
+7.After create project successful, the id now can be change to Thai string
+More information:

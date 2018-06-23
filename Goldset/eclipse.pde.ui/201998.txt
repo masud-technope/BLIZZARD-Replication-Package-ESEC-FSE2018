@@ -1,0 +1,17 @@
+ui/org.eclipse.pde.ui/plugin.properties
+ui/org.eclipse.pde.ui/plugin.xml
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDELabelProvider.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/AvailableFilter.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/GetNonExternalizedStringsAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/GetNonExternalizedStringsOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/InternationalizationWizardPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/InternationalizeAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/InternationalizeModelTable.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/InternationalizeOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/InternationalizeWizard.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/InternationalizeWizardLocalePage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/InternationalizeWizardOpenOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/InternationalizeWizardPluginPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/NLSFragmentGenerator.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties

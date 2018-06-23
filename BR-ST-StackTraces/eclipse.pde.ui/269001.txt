@@ -1,0 +1,12 @@
+org.eclipse.jface.viewers.StyledString.append
+org.eclipse.jface.viewers.StyledString.<init>
+org.eclipse.jface.viewers.StyledString.<init>
+org.eclipse.pde.internal.ds.ui.editor.sections.DSReferenceSection$ReferenceLabelProvider.update
+org.eclipse.jface.viewers.ViewerColumn.refresh
+org.eclipse.jface.viewers.AbstractTableViewer.doUpdateItem
+org.eclipse.jface.viewers.StructuredViewer$UpdateItemSafeRunnable.run
+org.eclipse.core.runtime.SafeRunner.run
+org.eclipse.core.runtime.Platform.run
+org.eclipse.ui.internal.JFaceUtil$1.run
+org.eclipse.jface.util.SafeRunnable.run
+org.eclipse.jface.viewers.StructuredViewer.updateItem

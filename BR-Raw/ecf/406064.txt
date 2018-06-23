@@ -1,0 +1,2 @@
+Bug 406064 – [Discovery][ZooDiscovery] high cpu percentage on server and client zookeeper
+We observe a high CPU percentage for zoodiscovery processes on the client and on the server.

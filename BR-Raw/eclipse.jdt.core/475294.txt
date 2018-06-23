@@ -1,0 +1,13 @@
+Bug 475294 – [formatter] "Preserve whitespace..." problems with wrapped line comments
+With "Preserve whitespace between code and line comments" checked, wrapped line comments after some code are not handled properly.
+If "Use spaces to indent wrapped lines" is checked, formatting these comments may result in exception:
+java.lang.NegativeArraySizeException
+at org.eclipse.jdt.internal.formatter.TextEditsBuilder.appendIndentationString(TextEditsBuilder.java:268)
+at org.eclipse.jdt.internal.formatter.TextEditsBuilder.bufferIndent(TextEditsBuilder.java:238)
+at org.eclipse.jdt.internal.formatter.TextEditsBuilder.handleSingleLineComment(TextEditsBuilder.java:454)
+at org.eclipse.jdt.internal.formatter.TextEditsBuilder.token(TextEditsBuilder.java:123)
+at org.eclipse.jdt.internal.formatter.TokenTraverser.traverse(TokenTraverser.java:103)
+at org.eclipse.jdt.internal.formatter.TokenManager.traverse(TokenManager.java:378)
+at org.eclipse.jdt.internal.formatter.DefaultCodeFormatter.format(DefaultCodeFormatter.java:163)
+at org.eclipse.jdt.internal.formatter.DefaultCodeFormatter.format(DefaultCodeFormatter.java:141)
+Otherwise, the second and furhter lines of comment are not indented as far as they should.

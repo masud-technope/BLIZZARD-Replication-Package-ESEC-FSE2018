@@ -1,0 +1,13 @@
+Bug 307524 – Using org.eclipse.wst.xml_* makes the Plug-in Manifest Editor unreliable
+I have an installation where I use the XML-Editor provided by the org.eclipse.wst.xml_* features.
+With that the PDE Manifest Editor no longer works reliably:
+- Opening a plugin.xml for the first time, the outline view "flickers" a few
+seconds
+- Copy and pasting an XML snippet in the plugin.xml source editor tab
+does not syntax-highlight the new snippet.
+- Editing the plugin.xml source directly is not immediately reflected in the
+Extensions tab
+- Using the Extensions tab to edit a dirty plugin.xml is unreliable.
+ The XML
+content gets easily distorted.
+The reason seems to be that the 'org.eclipse.wst.xml.core' plugin specifies an IDocumentFactory that ends up creating the document for the plugin.xml file.

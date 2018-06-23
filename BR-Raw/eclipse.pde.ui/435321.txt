@@ -1,0 +1,18 @@
+Bug 435321 – Char range is off by one marking constructor method reference
+Created attachment 243309 [details]
+screen shot
+consider the following snippet:
+public class MethodRefConstructorTest {
+class MR {
+@SuppressWarnings("unused")
+public <T> void mr(Supplier<T> supplier) {}
+};
+void m1() {
+MR mr = new MR();
+mr.mr(MySupplier<String>::new);
+}
+}
+where MySupplier is restricted and comes from a required bundle.
+The section marked for the error is '(MySupplier<String>::new'.
+I would not expect the leading '(' to be marked.
+See the attached screen shot.

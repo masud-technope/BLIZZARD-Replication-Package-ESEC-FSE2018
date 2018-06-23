@@ -1,0 +1,17 @@
+Bug 11403 – Request timeout
+The request timeout (timeout for a response to be received from a VM when ever
+a JDI request is made), is currently surfaced in the IVMInstall
+(#set/getDebugTimeout).
+This is the wrong place for this attribute, as it is a
+property of our proprietary JDI implementation.
+I suggest that this timeout be specifyable on an IJavaDebugTarget basis
+(set/get).
+The API will state that if the underlying JDI imeplementation
+supports a request timeout, it will be honoured, and we can even have a
+#supportsRequestTimeout() method.
+Then, I suuggest we make this attribute settable on a per launch configuration
+basis, as that is what the user wants (i.e.
+different request timeouts for
+different launch configs).
+For example, a remote debug session may require a
+larger timeout than a local session.

@@ -1,0 +1,6 @@
+Bug 80707 – Make breakpoint / run mode check debug model specific
+LaunchConfiguration.launch() calls preLaunchCheck() before calling launch(..)
+launch(..) calls AntLaunchDelegate.launch(..) which does preLaunchCheck(..) again.
+-> Launch a build file that has break points in run mode and you will be asked twice if you want to use
+debug mode instead.
+Makes an annoying feature worse :-)

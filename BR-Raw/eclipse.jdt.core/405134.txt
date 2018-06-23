@@ -1,0 +1,16 @@
+Bug 405134 – [1.8][code assist + compiler] compiler and code assist problem in multilevel lambda with curly bracketed body
+public interface Foo {
+int run1(int s1, int s2);
+static int x2 = 0;
+}
+interface Foo1 {
+Foo run2(int argFoo1);
+}
+interface X extends Foo{
+static int x1 = 2;
+static Foo f = (x5, x6) -> x5;
+static Foo1 f1 = af1 -> (a1,b1) -> {int uniqueName = 4; return uniqueName;};
+}
+eclipse compiler clean, reference commandline compiler crash and seemingly total breakdown of code-assist inside the curly braces in the above multilevel lambda.
+Thanks
+Anirban

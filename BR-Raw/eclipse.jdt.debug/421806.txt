@@ -1,0 +1,18 @@
+Bug 421806 – [1.8] Debug support for Java 8.
+BETA_JAVA8:
+This bug is to track the work in the JDT debugger for supporting Java 8.
+Please treat this as the top level umbrella ER and raise unit level tasks
+as separate CR/ERs and link them to this as blockers.
+At the outset, it would appear that the task is two folds:
+1.
+Against a recent JRE (8b115 as of today) verify/ensure that all
+existing debugger tests are green.
+2.
+Add support for debugging Java 8 constructs.
+I don't see 308, 269,
+JEP120 having any effect on the debugger - other than to perhaps verify that
+they are properly tolerated in snippets.
+For JSR335, we need to ensure that
+stepping through, breakpoints, inspection of values etc work as expected.
+For JEP118, verify that the debugger is able to avail and expose the parameter
+names.

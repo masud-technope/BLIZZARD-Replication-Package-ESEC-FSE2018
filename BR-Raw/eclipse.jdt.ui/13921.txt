@@ -1,0 +1,14 @@
+Bug 13921 – Desire per-project property settings for Ant integration
+We have an Ant implementation which stores most properties in an
+external .properties file.
+ However, there is still a need to pass one or two
+properties to Ant using the Ant wizard and -DPROPERTY=....
+Our build files are set up in such a way that property values are unlikely to
+change between any two build files in a given project.
+ Thus it would be a nice
+feature if Eclipse allowed a user to set default property values for a PROJECT,
+which would then be in force for any build.xml file which is part of that
+PROJECT.
+ And as long as I'm asking for favors, an ideal implementation would
+still allow the user to use the Ant wizard to override any of these default
+values for any particular build.xml file, as desired.

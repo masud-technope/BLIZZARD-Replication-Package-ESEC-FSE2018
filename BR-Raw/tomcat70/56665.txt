@@ -1,0 +1,40 @@
+56665 – XML schema validation exception for effective web.xml generated for servlet-mapping with empty url-pattern
+I am observing this with the current Tomcat 7 (built from revision 1605072)
+If the following 3 conditions are met:
+1) Server is running in "strict compliance" mode
+2) There is a servlet that is mapped to context root using URL pattern "" (empty string) - per Servlet 3.0 mrel spec chapter 12.2 Specification of Mappings
+Then whenever Tomcat tries to compile a JSP page, it fails when trying to validate effective merged web.xml against the schema.
+WORKAROUND:
+To work around the issue I disabled XML validation for this specific context, via <Context xmlValidation="false"/>
+STEPS TO REPRODUCE:
+1.
+Add the following mapping at the end of webapps/examples/WEB-INF/web.xml:
+[[[
+<servlet-mapping>
+<servlet-name>RequestInfoExample</servlet-name>
+<url-pattern />
+</servlet-mapping>
+]]]
+2.
+Configure Tomcat in "strict compliance" mode by adding the following line to conf/catalina.properties:
+org.apache.catalina.STRICT_SERVLET_COMPLIANCE=true
+3.
+Purge the work/ directory to remove compiled JSPs, if there are any.
+4.
+Start Tomcat
+5.
+Access http://localhost:8080/examples/
+The "Request Information Example" page is shown.
+Thus the empty URL mapping is working correctly.
+6.
+Access a JSP page, http://localhost:8080/examples/jsp/jsp2/el/basic-arithmetic.jsp
+Expected: Some arithmetics demo page
+Actual: Error 500
+HTTP Status 500 - org.apache.jasper.JasperException: XML parsing error on file org.apache.tomcat.util.scan.MergedWebXml: (line 176, col 21)
+Stack Trace:
+org.apache.jasper.JasperException: org.apache.jasper.JasperException: XML parsing error on file org.apache.tomcat.util.scan.MergedWebXml: (line 176, col 21)
+org.apache.jasper.compiler.JspConfig.processWebDotXml(JspConfig.java:230)
+org.apache.jasper.compiler.JspConfig.init(JspConfig.java:243)
+org.apache.jasper.compiler.JspConfig.findJspProperty(JspConfig.java:302)
+org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:114)
+(...)

@@ -1,0 +1,8 @@
+Bug 480075 – Nested Terniary operator in Lambda derives to <unknown>
+IntStream.of(42).mapToObj(i -> i > 42 ? "gt" : i < 42 ? "lt" : "42").findFirst();
+or
+Stream.generate(Object::new).map(o -> o != null ? o : o == null ? o : o).findAny();
+retults in
+java.lang.Error: Unresolved compilation problems:
+Type mismatch: cannot convert from Stream<Object> to <unknown>
+explicitly casting does work, as does compiling with javac

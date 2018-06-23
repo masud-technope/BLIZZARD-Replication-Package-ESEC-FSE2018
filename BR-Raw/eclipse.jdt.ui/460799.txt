@@ -1,0 +1,15 @@
+Bug 460799 – [compare] Structured compare editor tree doesn't properly format qualified types
+The Java structured compare editor doesn't properly format qualified types that appear as type arguments.
+Example: Compare the class below with a version that has no members.
+The tree says that elements
+Try
+sd : Date>
+foo(int, String>)
+have been added/removed.
+package xy;
+import java.util.ArrayList;
+import java.util.Set;
+class Try {
+void foo(int i, ArrayList<java.lang.String> ls) {}
+Set<java.util.Date> sd;
+}

@@ -1,0 +1,7 @@
+Bug 309693 – Extra workspace jobs created auto-removing unused filters
+Created attachment 165303 [details]
+proposed fix
+Trying to reproduce bug 309635, I found that our builder will call-back to the a filter stores' removeAPIFilters(..) method even if there are no filters to remove (with auto-remove filters turned on).
+This call-back creates a workspace job and causes work in the filter store for no reason.
+I also found that this can cause a resource exception if the job runs while the project is being deleted.
+The patch prevents the spurious jobs from being created and checks for the existence of the parent resource before blindly trying to create resources.

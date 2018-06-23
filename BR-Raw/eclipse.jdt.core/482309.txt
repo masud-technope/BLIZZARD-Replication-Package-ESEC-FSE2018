@@ -1,0 +1,5 @@
+Bug 482309 – Organize Imports does not work for accessible binary types
+Created attachment 257980 [details]
+Example project
+In the attached example SamplePart is missing the import for "org.eclipse.e4.ui.di.Persist".
+Ctrl+1 is able to add it but not "Organize Imports".

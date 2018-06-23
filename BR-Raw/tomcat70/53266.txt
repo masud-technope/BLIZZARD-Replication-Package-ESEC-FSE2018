@@ -1,0 +1,22 @@
+53266 – ServletContainerInitializer will crash catalina if dependcy is not present.
+When using a ServletContainerInitializer with a HandlesTypes annotation if any of the classes specified in the HandlesTypes annotation are not available due to a missing jar file catalina will crash with a "java.lang.ArrayStoreException: sun.reflect.annotation.TypeNotPresentExceptionProxy".
+Caused by: java.lang.ArrayStoreException: sun.reflect.annotation.TypeNotPresentExceptionProxy
+at sun.reflect.annotation.AnnotationParser.parseClassArray(AnnotationParser.java:653)
+at sun.reflect.annotation.AnnotationParser.parseArray(AnnotationParser.java:460)
+at sun.reflect.annotation.AnnotationParser.parseMemberValue(AnnotationParser.java:286)
+at sun.reflect.annotation.AnnotationParser.parseAnnotation(AnnotationParser.java:222)
+at sun.reflect.annotation.AnnotationParser.parseAnnotations2(AnnotationParser.java:69)
+at sun.reflect.annotation.AnnotationParser.parseAnnotations(AnnotationParser.java:52)
+at java.lang.Class.initAnnotationsIfNecessary(Class.java:3070)
+at java.lang.Class.getAnnotation(Class.java:3029)
+at org.apache.catalina.startup.ContextConfig.processServletContainerInitializers(ContextConfig.java:1546)
+at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1222)
+at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:855)
+at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:345)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5161)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+...
+7 more
+Line where exception is thrown: "HandlesTypes ht = sci.getClass().getAnnotation(HandlesTypes.class);"

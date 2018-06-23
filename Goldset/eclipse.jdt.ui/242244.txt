@@ -1,0 +1,8 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface/test109/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface/test109/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface/test109/out/I.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ExtractInterfaceTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ExtractInterfaceProcessor.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/ExtractInterfaceWizard.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/RefactoringMessages.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/refactoringui.properties

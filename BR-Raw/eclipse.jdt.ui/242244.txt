@@ -1,0 +1,8 @@
+Bug 242244 – [extract interface] 'Extract interface' should offer to 'Generate @Override annotation'
+Build ID: I20080617-2000
+Steps To Reproduce:
+In version 20050404, the 'Generate @Override annotation' has been removed.
+See bug #89517.
+However, this annotation changed and I think the option should now be added back.
+See http://blogs.sun.com/ahe/entry/override_snafu.
+More information:

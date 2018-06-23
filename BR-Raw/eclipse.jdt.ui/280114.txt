@@ -1,0 +1,26 @@
+Bug 280114 – [JUnit] Leverage AbstractJavaLaunchConfigurationDelegate.getMainTypeName in JUnitLaunchConfigurationDelegate
+JUnitLaunchConfigurationDelegate.getTestTarget looks like this:
+private final IJavaElement getTestTarget(ILaunchConfiguration configuration, IJavaProject javaProject) throws CoreException {
+...
+String testTypeName = configuration.getAttribute(IJavaLaunchConfigurationConstants.ATTR_MAIN_TYPE_NAME, "");
+if (testTypeName.length() != 0) {
+testTypeName= performStringSubstitution(testTypeName);
+...
+}
+...
+}
+private final String performStringSubstitution(String testTypeName) throws CoreException {
+return VariablesPlugin.getDefault().getStringVariableManager().performStringSubstitution(testTypeName);
+}
+The problem with this is that if I want to write a special version of JUnit Launch Configurations that determines main types an alternate way, I can't get to this private method.
+Alternatively, I recommend replacing all that boilerplate by calling this method from its parent AbstractJavaLaunchConfigurationDelegate:
+public String getMainTypeName(ILaunchConfiguration configuration) throws CoreException {
+String mainType = configuration.getAttribute(
+IJavaLaunchConfigurationConstants.ATTR_MAIN_TYPE_NAME,
+(String) null);
+if (mainType == null) {
+return null;
+}
+return VariablesPlugin.getDefault().getStringVariableManager().performStringSubstitution(mainType);
+}
+Please? :-]

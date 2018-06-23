@@ -1,0 +1,51 @@
+58946 – ApplicationHttpRequest should enforce immutability of ParameterMap
+JavaDoc for ServletRequest.getParameterMap(), both ours and the one at Oracle site [1] says:
+"Returns: an immutable java.util.Map containing [...]"
+The problem is that this immutability is not enforced by org.apache.catalina.core.ApplicationHttpRequest class that is used to implement included or forwarded requests.
+Note that org.apache.catalina.util.ParameterMap class used for usual (not forwarded) requests does enforce immutability.
+An example of message from that class is shown below.
+Reproducible with current Tomcat 8.0-dev.
+Steps to reproduce
+--------------------
+1.
+Put the following two JSPs into ROOT web application:
+test.jsp
+[[[
+<%@page contentType="text/plain;charset=UTF-8" import="java.util.*"%>
+<%
+RequestDispatcher rd = request.getRequestDispatcher("test2.jsp");
+rd.forward(request, response);
+%>
+]]]
+test2.jsp
+[[[
+<%@page contentType="text/plain;charset=UTF-8" import="java.util.*"%>
+<%
+Map map = request.getParameterMap();
+map.put("foo", "bar");
+%>
+<%= map %>
+]]]
+2.
+Call
+http://localhost:8080/test.jsp?z=a
+Actual:
+--------
+The following response is observed:
+[[[
+{foo=bar, z=[Ljava.lang.String;@3877a5}
+]]]
+Expected:
+---------
+If I call the test2.jsp application directly, the behaviour is as expected:
+http://localhost:8080/test2.jsp?z=a
+HTTP Status 500 - An exception occurred processing JSP page /test2.jsp at line 4
+root cause
+java.lang.IllegalStateException: No modifications are allowed to a locked ParameterMap
+org.apache.catalina.util.ParameterMap.put(ParameterMap.java:164)
+org.apache.jsp.test2_jsp._jspService(test2_jsp.java:115)
+------------------------
+I noticed this issue while performing code review,
+inspired by a thread started 2016-01-19 on users mailing list [2].
+[1] http://docs.oracle.com/javaee/7/api/javax/servlet/ServletRequest.html#getParameterMap--
+[2] http://tomcat.markmail.org/thread/3hq4fghtoxcj44i5

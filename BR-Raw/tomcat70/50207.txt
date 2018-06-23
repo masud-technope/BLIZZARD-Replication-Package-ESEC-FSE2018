@@ -1,0 +1,21 @@
+50207 – CometProcessor async timeout events are not being fired
+This is reproducible using the the default chat example (ie: ChatServlet, /examples/jsp/chat) and the following additional changes:
+1) Enabled Http11Nio in conf/server.xml:
+<Connector
+address="0.0.0.0"
+port="8080"
+protocol="org.apache.coyote.http11.Http11NioProtocol"
+connectionTimeout="20000"
+enableLookups="false"
+acceptCount="100"
+disableUploadTimeout="true"
+maxThreads="15"
+minSpareThreads="15"
+maxSpareThreads="15"
+RECYCLE_FACADES="true"/>
+2) Enabled the comet valve in conf/context.xml:
+<Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
+The problem is CometEvent.EventType.ERROR (and subtype TIMEOUT) and CometEvent.EventType.END are never being fired.
+This can be confirmed in the logs; the messages for these events are never printed.
+ This worked on Tomcat 6.0.29.
+As an aside, what is the most complete/robust way to do async IO in tomcat 7 today, Servlet 3.0 or CometProcessor?

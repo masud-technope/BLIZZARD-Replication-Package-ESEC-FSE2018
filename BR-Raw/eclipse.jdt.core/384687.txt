@@ -1,0 +1,17 @@
+Bug 384687 – [1.8] Wildcard type arguments should be rejected for lambda and reference expressions
+BETA_JAVA8
+interface I {
+}
+public class Action<T> {
+<K> Action(int i)  {
+}
+Action (int i1, int i2) {
+<?>this(i1);   //gives error:GOOD
+}
+public void f1(Object[] o[][]) {}
+public void foo() {
+I len =  List::<?>size;  // no error:BAD
+}
+}
+Just like explicit constrcutor invocations, method and const.
+references should also not accept wildcard type arguments

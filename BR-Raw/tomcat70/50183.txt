@@ -1,0 +1,10 @@
+50183 – [Tribes] Bio Sender is not scheduling the task to the excecutors
+Created attachment 26228 [details]
+proposed patch
+Hi,
+I'm using apache tribes outside of Tomcat.
+Although my version is not the latest one, the bug also occurs in Trunk.
+It seems that there was a refactor (using executors instead of threads and monitors) and BioReceiver is not scheduling the task.
+(I think that the patch is much more descriptive than any comment I could write)
+Regards,
+Ariel

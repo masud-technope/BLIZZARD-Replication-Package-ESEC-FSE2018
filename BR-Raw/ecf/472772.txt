@@ -1,0 +1,2 @@
+Bug 472772 – add generic provider ssl support tests
+Add tests for the SSL generic server/client usage.

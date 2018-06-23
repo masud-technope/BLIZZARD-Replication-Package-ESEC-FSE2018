@@ -1,0 +1,31 @@
+Bug 266651 – [jre] "JRE System Library" default not used properly after Java update (also with symbolic links)
+Build ID: M20080911-1700
+Steps To Reproduce:
+1.
+Updated Sun Java 1.6.0-u7 to 1.6.0-u11 via SuSE's updater.
+2.
+/usr/bin/java -> /etc/alternatives/java -> /usr/lib/jvm/jre-1.6.0.u11-sun/bin/java , similar for /usr/lib/jvm/* (SuSE automatically updated where the system Java points to)
+2.
+Restarted computer and Eclipse
+3.
+Opened same workspace again
+4.
+Projects failed (see Actual result below)
+5.
+Package Explorer | myproject | context menu | Properties | Java Build Path | Libraries shows "JRE System Library [java-1.6.0.u11-sun-1.6.0.u11]", which is correct: the new and existing Java.
+6.
+I looked everywhere I could find, in Project settings and Window | Preferences, I couldn't see any u7 referenced.
+Actual result:
+Description	Resource	Path	Location	Type
+Project 'myproject' is missing required library: '/usr/lib/jvm/java-1.6.0.u7-sun-1.6.0.u7/jre/lib/resources.jar'	myproject		Build path	Build Path Problem
+Expected result:
+Uses new Java version.
+Workaround:
+In Package Explorer | myproject | context menu | Properties | Java Build Path | Libraries , double-click on "JRE System Library [java-1.6.0.u11-sun-1.6.0.u11]".
+A dialog comes up, saying "(*) Workspace default JRE (java-1.6.0.u11-sun-1.6.0.u11)".
+Instead, check "( ) Alternate JRE [java-1.6.0.u11-sun-1.6.0.u11]" and click "Finish" button.
+The Error goes away.
+Go in the same dialog again and check "Workspace default JRE" again.
+The error goes not come back, although it's now the same setting as it was when the error appeared.
+This confirms that it's an Eclipse bug.
+More information:

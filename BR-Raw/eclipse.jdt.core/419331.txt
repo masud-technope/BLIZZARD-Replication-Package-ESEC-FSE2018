@@ -1,0 +1,24 @@
+Bug 419331 – [1.8][compiler] Weird error on forward reference to type annotations from type parameter declarations
+BETA_JAVA8:
+The following program fails to compile.
+We get:
+Type mismatch: cannot convert from Class<TC> to Class<? extends Annotation>
+// --
+import java.lang.annotation.Annotation;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+@R(TC.class)
+@Target(ElementType.TYPE_PARAMETER)
+@interface T {
+}
+interface I<@T K> {
+}
+@Deprecated
+@interface TC {
+}
+@Target(ElementType.ANNOTATION_TYPE)
+@interface R {
+Class<? extends Annotation> value();
+}
+I have released a test TypeAnnotationTest.testForwardReference() encoding
+the wrong behavior - The test needs to fixed along with the problem.

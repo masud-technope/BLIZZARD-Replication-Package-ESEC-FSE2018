@@ -1,0 +1,10 @@
+Bug 241074 – [templates] HelloRCP template contains non-externalized strings
+I20080715-1015
+Steps to reproduce:
+1) Create a new RCP project using the HelloRCP template
+2) Ensure non-externalized strings are errors
+3) You get errors for
+- hellorcp.ApplicationWorkbenchWindowAdvisor.preWindowOpen()
+- hellorcp.ApplicationWorkbenchAdvisor.PERSPECTIVE_ID
+- hellorcp.Activator.PLUGIN_ID
+Those strings should probably ba marked //$NON-NLS-1$

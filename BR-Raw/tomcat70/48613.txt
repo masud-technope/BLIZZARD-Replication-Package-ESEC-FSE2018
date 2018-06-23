@@ -1,0 +1,5 @@
+48613 – AprLifecycleListener tries to initialize even if it is not configured in server.xml
+When Tomcat starts, this message is displayed, in spite of this listener not being used in server.xml.
+There is no way to avoid it.
+org.apache.catalina.core.AprLifecycleListener init
+INFO: The Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path

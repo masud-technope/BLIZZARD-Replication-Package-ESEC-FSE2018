@@ -1,0 +1,7 @@
+Bug 500794 – [hcr] Selectively enable/disable Hot Code Replace per workspace
+I would like to have an option to enable / disable Hot Code Replace.
+My use case: Our Java EE Ant deploy task causes Eclipse to refresh and reload hundreds of files making the application container unusable as the JVM tries (and fails after minutes and close to 100% CPU utilization) to reload all those changes.
+Another possible use case: Connecting from the developer machine to some remote machine (test server) without causing any code updates, see also #96316 [hcr] Selectively enable/disable hot code replacement for Run Configurations
+I would like to provide a Gerrit change.
+As it is my first time contributing, please be gentle.
+Can you point me to the new and noteworthy file, so I can update it too?

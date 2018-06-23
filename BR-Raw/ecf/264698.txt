@@ -1,0 +1,21 @@
+Bug 264698 – Defer location retrieval for BitTorrent provider
+Build ID: I20090202-1535
+Steps To Reproduce:
+1.
+Verify, that Property 'General>Startup and Shutdown>Prompt for workspace at startup' is checked
+2.
+Close workbench
+3.
+Restart workbench with -clean option
+-> Workspace Launcher is not displayed, eclipse starts with default workspace
+-> Property is still checked
+-> restart workbench with or without -clean option and Workspace Launcher will not show up
+4.
+Uncheck property, apply and restart workbench
+5.
+Check property, apply and restart workbench
+-> eclipse now starts with workspace launcher (..
+unless you didn't chose -clean option..)
+More information:
+This looks like this property has a persistence mechanism that gives room for improvement ;)
+There's a risk, that -clean not only affects this property but desynchronizes other properties aswell.

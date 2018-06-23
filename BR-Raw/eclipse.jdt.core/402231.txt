@@ -1,0 +1,4 @@
+Bug 402231 – [1.8][ast rewrite] Rewrite support for lambda expressions.
+BETA_JAVA8:
+Now that bug 399793 is closed, we should start work on ASTRewrite support
+for lambda expressions as a top priority.

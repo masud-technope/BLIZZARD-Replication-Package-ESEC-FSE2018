@@ -1,0 +1,17 @@
+59923 – The default value of validationInterval attribute is too long.
+The validationInterval attribute is 30 seconds by default.
+In case of DB reboots, trigger some problems.
+For example, the following events will be considered.
+1.
+The connection is validated.
+2.
+DB reboots.
+3.
+getConnection() within 30 seconds.
+4.
+The connection isn't validated by testOnBorrow.
+5.
+Get the invalid connection.
+And worse, the default value of fairQueue is true.
+As a result, invalid connection is continued to use.
+Therefore, I think the default value should be more short or "0(disable)".

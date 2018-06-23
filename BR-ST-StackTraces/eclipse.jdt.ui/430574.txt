@@ -1,0 +1,13 @@
+org.eclipse.swt.SWT.error
+org.eclipse.swt.SWT.error
+org.eclipse.swt.SWT.error
+org.eclipse.swt.SWT.error
+org.eclipse.swt.widgets.Widget.error
+org.eclipse.swt.widgets.Widget.checkWidget
+org.eclipse.swt.widgets.Control.getVisible
+org.eclipse.jface.viewers.CellEditor.isActivated
+org.eclipse.jface.viewers.CellEditor.focusLost
+org.eclipse.jdt.internal.ui.dialogs.TableTextCellEditor.focusLost
+org.eclipse.jdt.internal.ui.dialogs.TableTextCellEditor$7$1.run
+org.eclipse.swt.widgets.RunnableLock.run
+org.eclipse.swt.widgets.Synchronizer.runAsyncMessages

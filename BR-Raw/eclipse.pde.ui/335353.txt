@@ -1,0 +1,19 @@
+Bug 335353 – Font size inconsistent when trying to add a target definition
+I20110124-1800
+1.
+Window > Preferences > General > Appearance > Colors and Fonts
+2.
+Basic > Dialog Font
+3.
+Increase the font size.
+4.
+Click 'OK'.
+5.
+Window > Preferences > Plug-in Development > Target Platform
+6.
+Click the 'Add...' button.
+7.
+Click 'Next >'.
+8.
+See the differences in font sizes in this page.
+Swap around between the different pages and you'll see that every page is inconsistent.

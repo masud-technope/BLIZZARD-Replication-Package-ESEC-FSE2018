@@ -1,0 +1,21 @@
+Bug 427216 – [Java8] array to varargs regression
+I'm using the experimental Java 1.8 support via http://wiki.eclipse.org/JDT/Eclipse_Java_8_Support_(BETA)
+One of the daily updates this week broke basic array to vararg method calls:
+public class Test
+{
+public static void main(String[] args)
+{
+foo(args); // ok in 1.7 and 1.8
+foo(java.util.Arrays.asList("1").toArray(new String[0])); // broke in 1.8 somewhere this week
+}
+private static void foo(String...
+args) { }
+}
+Error message (there's only a Runtime error, it compiles fine):
+Exception in thread "main" java.lang.NoSuchMethodError: java.util.List.toArray([Ljava/lang/String;)Ljava/lang/String;
+at Test.main(Test.java:8)
+Workaround: Add a cast.
+E.g.: (String[]) in this case.
+I did regular updates last week, and this week only on Friday.
+So I unfortunately can't say which update caused the regression.
+It would be great if the 1.8 update channel kept older versions so people can downgrade again if necessary.

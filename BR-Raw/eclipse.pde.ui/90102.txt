@@ -1,0 +1,7 @@
+Bug 90102 – Search for package references in 'Export Packages' section
+A really useful function would be to offer a search for references to the
+selected package in 'Export Packages' section.
+You can easily hook the JDT
+search API.
+The goal would be to see who is using the internal packages and if
+we care to make them 'friends'.

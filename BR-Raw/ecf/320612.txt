@@ -1,0 +1,6 @@
+Bug 320612 – [Discovery] Unit tests fail due to broken detection of external ip address
+IServiceInfos are compared for equality based on a couple of properties including the IP address.
+If the expected IServiceInfo e.g.
+has "127.0.0.1" set but the discovery provider binds to the external ip address of e.g.
+"192.168.1.1" the checks fail.
+Thus the tests have to take the behavior of the provider into account.

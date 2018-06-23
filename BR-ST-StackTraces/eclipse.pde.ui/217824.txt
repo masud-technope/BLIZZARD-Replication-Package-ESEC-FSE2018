@@ -1,0 +1,9 @@
+java.net.URLClassLoader$1.run
+java.security.AccessController.doPrivileged
+java.net.URLClassLoader.findClass
+java.lang.ClassLoader.loadClass
+java.lang.ClassLoader.loadClass
+org.eclipse.equinox.launcher.Main.invokeFramework
+org.eclipse.equinox.launcher.Main.basicRun
+org.eclipse.equinox.launcher.Main.run
+org.eclipse.equinox.launcher.Main.main

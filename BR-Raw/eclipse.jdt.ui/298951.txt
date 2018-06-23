@@ -1,0 +1,3 @@
+Bug 298951 – OpenTypePerfTest#testWarmException() perf tests results are not reliable
+Verifying performance results for all 3.6M4 scenarios, it appears that results for OpenTypePerfTest#testWarmException() test are completely unreliable (on all test machines).
+It seems that something should be done to stabilize this test or remove it from the benchmark.

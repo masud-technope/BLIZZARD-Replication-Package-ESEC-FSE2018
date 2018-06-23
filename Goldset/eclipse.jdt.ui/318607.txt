@@ -1,0 +1,3 @@
+org.eclipse.ltk.core.refactoring.tests/src/org/eclipse/ltk/core/refactoring/tests/participants/CancelingParticipantTests.java
+org.eclipse.ltk.core.refactoring.tests/src/org/eclipse/ltk/core/refactoring/tests/participants/ParticipantTests.java
+org.eclipse.ltk.core.refactoring/src/org/eclipse/ltk/core/refactoring/participants/ProcessorBasedRefactoring.java

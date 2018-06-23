@@ -1,0 +1,16 @@
+org.eclipse.jdt.internal.core.SearchableEnvironment.findConstructorDeclarations
+org.eclipse.jdt.internal.codeassist.CompletionEngine.findTypesAndPackages
+org.eclipse.jdt.internal.codeassist.CompletionEngine.completionOnSingleTypeReference
+org.eclipse.jdt.internal.codeassist.CompletionEngine.complete
+org.eclipse.jdt.internal.codeassist.CompletionEngine.complete
+org.eclipse.jdt.internal.core.Openable.codeComplete
+org.eclipse.jdt.internal.core.CompilationUnit.codeComplete
+org.eclipse.jdt.internal.core.CompilationUnit.codeComplete
+org.eclipse.recommenders.internal.subwords.rcp.SubwordsSessionProcessor.computeProposals
+org.eclipse.recommenders.internal.subwords.rcp.SubwordsSessionProcessor.getNewProposals
+org.eclipse.recommenders.internal.subwords.rcp.SubwordsSessionProcessor.initializeContext
+org.eclipse.recommenders.completion.rcp.processable.IntelligentCompletionProposalComputer.fireInitializeContext
+org.eclipse.recommenders.completion.rcp.processable.IntelligentCompletionProposalComputer.computeCompletionProposals
+org.eclipse.recommenders.subwords.rcp.it.SubwordsCompletionProposalComputerIntegrationTest.exercise
+org.eclipse.recommenders.subwords.rcp.it.SubwordsCompletionProposalComputerIntegrationTest.warmup
+org.eclipse.recommenders.subwords.rcp.it.SubwordsCompletionProposalComputerIntegrationTest.test

@@ -1,0 +1,5 @@
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/instructions/PlusOperator.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/LineTrackerTests.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/ProjectCreationDecorator.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/instructions/BinaryOperator.java
+org.eclipse.jdt.debug.tests/testprograms/PrintConcatenation.java

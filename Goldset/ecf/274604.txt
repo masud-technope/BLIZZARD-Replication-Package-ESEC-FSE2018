@@ -1,0 +1,1 @@
+framework/bundles/org.eclipse.ecf.sync/src/org/eclipse/ecf/internal/sync/doc/cola/ColaSynchronizationStrategy.java

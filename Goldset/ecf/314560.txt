@@ -1,0 +1,5 @@
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/src/org/eclipse/ecf/tests/provider/dnssd/DnsSdDiscoveryServiceTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/src/org/eclipse/ecf/tests/provider/dnssd/DnsSdDiscoveryServiceTestWithWildcards.java
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/src/org/eclipse/ecf/tests/provider/dnssd/DnsSdDiscoveryServiceTest.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdDisocoveryLocator.java
+tests/bundles/org.eclipse.ecf.tests.provider.dnssd/src/org/eclipse/ecf/tests/provider/dnssd/DnsSdDiscoveryServiceTest.java

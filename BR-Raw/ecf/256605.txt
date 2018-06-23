@@ -1,0 +1,3 @@
+Bug 256605 – [Discovery][Remotesvcs] Replace serviceAccessHandler EP with command/handler based approach
+Replace serviceAccessHandler EP with a command (declarative) based approach by providing org.eclipse.core.expressions.propertyTesters in org.eclipse.ecf.discovery.ui and org.eclipse.ecf.remoteservice.ui.
+See org.eclipse.ecf.examples.remoteservices.mailer.client

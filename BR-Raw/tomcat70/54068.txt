@@ -1,0 +1,20 @@
+54068 – Web fragment sorting incorrectly detects circular reference
+Created attachment 29522 [details]
+Test case implementation
+The implementation of web fragment sorting with relative ordering constraints may detect circular references, even though there is no such circle.
+This occurrence of this bug depends on the iteration order of the input map.
+Consider the attached test case, defining a simple chain of three web fragments:
+* web fragments a, b, c, with relative constraints "b after a", "c after b".
+* expected result: a, b, c
+* actual result:
+Testcase: testOrderWebFragmentsRelative4 took 0,002 sec
+Caused an ERROR
+Fragment relative ordering contains circular references.
+Thsi can be resolved by using absolute ordering in web.xml.
+java.lang.IllegalArgumentException: Fragment relative ordering contains circular references.
+Thsi can be resolved by using absolute ordering in web.xml.
+at org.apache.catalina.deploy.WebXml.orderWebFragments(WebXml.java:2190)
+at org.apache.catalina.deploy.TestWebXmlOrdering.testOrderWebFragmentsRelative4(TestWebXmlOrdering.java:268)
+Workaround: use absolute ordering.
+Details:
+* Java 1.7.0_07

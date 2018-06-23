@@ -1,0 +1,18 @@
+54067 – Upgrade Response with Transfer-Encoding: chunked invalid
+WebSocket upgrade response from Tomcat 7.0.32 contains an invalid response header "Transfer-Encoding: chunked"
+Full Request/Response is as follows (against example URI ws://localhost:8080/examples/websocket/echoMessage from distribution) ...
+GET /examples/websocket/echoMessage HTTP/1.1
+Host: localhost:8080
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: ZDTIRU5vU9xOfkg8JAgN3A==
+Sec-WebSocket-Version: 13
+HTTP/1.1 101 Switching Protocols
+Server: Apache-Coyote/1.1
+Upgrade: websocket
+Connection: upgrade
+Sec-WebSocket-Accept: Kgo85/8KVE8YPONSeyhgL3GwqhI=
+Transfer-Encoding: chunked
+Date: Mon, 29 Oct 2012 16:32:53 GMT
+The Jetty project is working this issue from the Jetty WebSocket client point of view.
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=393075

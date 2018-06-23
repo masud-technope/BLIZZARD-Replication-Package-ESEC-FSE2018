@@ -1,0 +1,8 @@
+Bug 372030 – Cannot resume single thread after VM suspended
+N20120217-2000
+I cannot resume a single thread in a Remote Java Application launch configuration.
+I remote-debugged my workspace to investigate bug 361758, and then suspended the VM.
+Then I wanted to resume a single thread, but when I selected it and performed Resume (F8), the whole VM resumed, instead of only the the selected thread.
+I haven't checked, but I'm pretty sure this once used to work.
+Workaround is to select all threads (but not the VM) and then click Suspend.
+Drawback: It's tedious, and all threads end up expanded in the Debug view.

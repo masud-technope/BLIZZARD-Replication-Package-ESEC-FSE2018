@@ -1,0 +1,25 @@
+51396 – Embedding class cannot launch a webapp with a jsp servlet
+https://github.com/bimargulies/Tomcat-Solr-Test-Case is a test case.
+It creates an instance of Tomcat and then adds a webapp from Apache Solr.
+This webapp has 'jsp' servlets.
+The code crashes, because the implicit default web.xml used in this case does not include a servlet named jsp, resulting in the following backtrace.
+2011-06-20 12:56:24,598 [Embedded Tomcat] INFO org.apache.catalina.startup.ContextConfig - No global web.xml found
+Exception in thread "Embedded Tomcat" java.lang.NullPointerException
+at org.apache.catalina.startup.ContextConfig.convertJsp(ContextConfig.java:1379)
+at org.apache.catalina.startup.ContextConfig.convertJsps(ContextConfig.java:1358)
+at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1349)
+at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:881)
+at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:316)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:89)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5103)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:145)
+at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:812)
+at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:787)
+at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:607)
+at org.apache.catalina.startup.Tomcat.addWebapp(Tomcat.java:509)
+at org.apache.catalina.startup.Tomcat.addWebapp(Tomcat.java:483)
+at org.apache.catalina.startup.Tomcat.addWebapp(Tomcat.java:171)
+at org.apache.tomcat.tc.solrWebapp.LaunchWithSolr.tryToAddSolr(LaunchWithSolr.java:111)
+at org.apache.tomcat.tc.solrWebapp.LaunchWithSolr.access$1(LaunchWithSolr.java:106)
+at org.apache.tomcat.tc.solrWebapp.LaunchWithSolr$1.run(LaunchWithSolr.java:91)

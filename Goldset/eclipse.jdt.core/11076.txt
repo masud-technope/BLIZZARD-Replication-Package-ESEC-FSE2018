@@ -1,0 +1,6 @@
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/NaiveASTFlattener.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/FieldDeclaration.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/MethodDeclaration.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ASTNode.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/TypeDeclaration.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/CompilationUnit.java

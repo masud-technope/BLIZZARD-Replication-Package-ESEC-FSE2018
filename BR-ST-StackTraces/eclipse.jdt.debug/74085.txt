@@ -1,0 +1,4 @@
+java.lang.Throwable.<init>
+java.lang.Throwable.<init>
+java.lang.NullPointerException.<init>
+junit.samples.FloodConsole.main

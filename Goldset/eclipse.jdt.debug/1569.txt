@@ -1,0 +1,11 @@
+org.eclipse.jdt.debug.ui/plugin.xml
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/display/DisplayViewAction.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JDIViewerConfiguration.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/display/DisplayViewContentAssistant.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/display/DisplayViewerConfiguration.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/display/DetailsCompletionProcessor.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/display/DataDisplay.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/display/DisplayCompletionProcessor.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/display/DetailsViewerConfiguration.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/display/DisplayView.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/display/EvaluateAction.java

@@ -1,0 +1,9 @@
+Bug 9649 – Can't rebuild all - never returns
+Eclipse 20020212-I
+Clean install and new workspace.
+Turn autobuild off
+Add org.eclipse.swt to workspace.
+Copy .classpath_motif to .classpath
+Turn autobuild back on.
+Progress Information dialog proceeds to the end but then never closes.
+ps wwaux reports more than a 1000 process consuming 400 MB of memory.

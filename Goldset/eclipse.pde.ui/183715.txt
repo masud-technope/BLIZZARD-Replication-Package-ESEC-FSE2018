@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/ContainerRenameParticipant.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/CreateHeaderChangeOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/FindReferenceOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/RenamePluginProcessor.java

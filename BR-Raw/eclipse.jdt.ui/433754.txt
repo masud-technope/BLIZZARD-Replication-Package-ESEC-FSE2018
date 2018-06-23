@@ -1,0 +1,15 @@
+Bug 433754 – CCE in QuickAssistProcessor#getConvertEnhancedForLoopProposal
+Taken from bug 426967 comment #2:
+class E {
+private void foo() {
+for (String str : new String[1]) {
+}
+}
+}
+Press Ctrl+1 at "str", we get the exception:
+java.lang.ClassCastException: org.eclipse.jdt.core.dom.SimpleType cannot be cast to org.eclipse.jdt.core.dom.ArrayType
+at org.eclipse.jdt.internal.ui.text.correction.QuickAssistProcessor.getConvertEnhancedForLoopProposal(QuickAssistProcessor.java:2588)
+at org.eclipse.jdt.internal.ui.text.correction.QuickAssistProcessor.getAssists(QuickAssistProcessor.java:281)
+at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeAssistCollector.safeRun(JavaCorrectionProcessor.java:403)
+at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:339)
+...

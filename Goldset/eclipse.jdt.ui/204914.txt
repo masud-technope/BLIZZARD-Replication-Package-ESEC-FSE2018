@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/infoviews/AbstractInfoView.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/infoviews/InfoViewMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/infoviews/JavadocView.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/infoviews/InfoViewMessages.properties

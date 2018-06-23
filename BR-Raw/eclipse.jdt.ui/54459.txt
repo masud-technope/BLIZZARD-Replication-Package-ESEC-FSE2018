@@ -1,0 +1,9 @@
+Bug 54459 – New search view: Double click on type should open CU [search]
+20040311
+in the new search results view, I happen to have to click a lot to expand the
+trees so I can finally double click the method element to open the editor.
+What I always expect is that doouble clicking the type opens the editor and I'm
+always irritated that it doesn't, propably because in all other views (package
+explorer, hierarchy, outline) this is the case.
+is there a good reason why not
+offering this short cut?

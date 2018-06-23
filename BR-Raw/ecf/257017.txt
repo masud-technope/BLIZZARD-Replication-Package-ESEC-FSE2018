@@ -1,0 +1,3 @@
+Bug 257017 – Implement the datashare APIs on top of the Team API to allow two peers to synchronize their resources
+See attachment 118976 [details] from bug 239048 comment 2.
+The synchronize view and the work will be discussed on this bug as I'd like to leave 239048 for an implementation of the sync API that allows changes to the workspace to be distributed in real-time.

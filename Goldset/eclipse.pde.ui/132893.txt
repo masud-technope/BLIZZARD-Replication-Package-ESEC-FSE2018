@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDECore.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/extension/PointSelectionPage.java

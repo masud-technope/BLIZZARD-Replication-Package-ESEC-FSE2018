@@ -1,0 +1,8 @@
+Bug 401035 – [1.8] A few tests have started failing recently
+BETA_JAVA8:
+org.eclipse.jdt.core.tests.compiler.parser.GenericDietRecoveryTest.test0025()
+and
+org.eclipse.jdt.core.tests.model.ReconcilerTests.testMethodWithError01()
+have started failing since yesterday.
+At least on the first, I could see that if I roll back the clock to
+before c4baf766be166b04f595eec5cebbd2a64f399daa the problem goes away.

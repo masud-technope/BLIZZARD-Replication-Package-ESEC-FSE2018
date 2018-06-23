@@ -1,0 +1,11 @@
+Bug 420456 – [1.8][null] AIOOB in null analysis code.
+BETA_JAVA8:
+The following program generates an AIOOB exception:
+// --
+import java.util.Arrays;
+public class X {
+public static void main(String [] args) {
+Integer [] array = new Integer[10];
+Arrays.sort(array, Integer::compare);
+}
+}

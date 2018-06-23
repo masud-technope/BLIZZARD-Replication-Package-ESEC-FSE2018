@@ -1,0 +1,16 @@
+46985 – Impossible condition in coyote.http11.Http11Processor.process(Socket socket)
+coyote.http11.Http11Processor.process(Socket socket)
+...
+int soTimeout = socket.getSoTimeout();
+int oldSoTimeout = soTimeout;
+int threadRatio = (endpoint.getCurrentThreadsBusy() * 100)
+/ endpoint.getMaxThreads();
+if (threadRatio > 75) {
+keepAliveLeft = 1;
+}
+if (soTimeout != oldSoTimeout) {
+The above condition will never be true.
+It looks like the code is trying to reset the timeout if it has not changed, but it will never do so.
+Both the method and the class have a variable called "socket" which may be part of the problem - is the method trying to set the instance socket to have the same timeout as the parameter socket, or vice versa?
+The socket parameter should be renamed.
+Note that the Javadoc appears to be completely wrong as well.

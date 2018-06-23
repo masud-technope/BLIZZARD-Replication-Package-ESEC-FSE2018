@@ -1,0 +1,8 @@
+54712 – Prefer Locale.ENGLISH over Locale.US for case conversion
+Created attachment 30060 [details]
+Convert Locale.US to Locale.ENGLISH in case conversion methods
+Case-conversion using toLowerCase or toUpperCase needs a Locale parameter to avoid using the default (with possibly unexpected results in some Locales).
+The code currently uses Locale.US in several places.
+However most of the code uses Locale.ENGLISH.
+The code should standardise on ENGLISH.
+Or perhaps consider using Locale.ROOT (@since 1.6)?

@@ -1,0 +1,5 @@
+Bug 462932 – Gracefully handle partial absence of line information
+Classes generated at run-time or processed by byte code manipulators may contain source line information for some but not all methods.
+For this reason, ReferenceType.allLineLocations() should return all available line locations from all methods that do provide line locations, rather than throwing an AbsentInformationException for the first method without line locations.
+The exception should only be thrown when no method of the given class provides any line locations.
+This is the behaviour observed with the JDI implementation of the Oracle JDK.

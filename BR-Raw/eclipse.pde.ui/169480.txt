@@ -1,0 +1,7 @@
+Bug 169480 – MANIFEST.MF editor does not display plug-in names with commas
+I don't know if commas are supposed to be allowed in a plug-in's name (not the id), but they are not being properly displayed in the 'Overview' tab of the multi-page editor if you do use them.
+If you put in 'a,b' and save, the text field is set to just 'a'.
+If you click on the 'MANIFEST.MF' tab, you do see 'a,b' as the name though.
+The same applies for 'a,b,c', resetting to 'a'.
+If you use 'a,,b', the text field is cleared to '', the empty string, so I guess some kind of comma parser is involved here.
+Either way, I guess the parser needs to be updated to flag an error for using commas or changed to return the correct name with the comma(s).

@@ -1,0 +1,11 @@
+Bug 391108 – [1.8][compiler] Compiler allows type annotations on void methods.
+BETA_JAVA8:
+The following program compiles alright with ECJ while it should not.
+// -------------
+public class X {
+@Marker public void foo() {
+}
+}
+@java.lang.annotation.Target (java.lang.annotation.ElementType.TYPE_USE)
+@interface Marker {
+}

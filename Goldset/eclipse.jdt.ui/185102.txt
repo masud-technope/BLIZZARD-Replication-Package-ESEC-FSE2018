@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/workingsets/ConfigureWorkingSetAssignementAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/workingsets/WorkingSetMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/workingsets/SimpleWorkingSetSelectionDialog.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/workingsets/WorkingSetConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/JavaProjectWizardFirstPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/workingsets/WorkingSetMessages.java

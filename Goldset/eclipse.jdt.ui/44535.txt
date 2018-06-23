@@ -1,0 +1,2 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/ClassFileEditor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/ResourceLocator.java

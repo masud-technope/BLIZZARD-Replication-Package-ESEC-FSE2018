@@ -1,0 +1,26 @@
+Bug 384320 – [1.8][compiler] Syntax error while mixing type annotations & reference expressions.
+BETA_JAVA8:
+The following contrived test case refuses to compile and we get
+"Syntax error on token "X", .
+expected after this token"
+// ----------------------
+interface I {
+void foo(X<String> s, int x);
+}
+@Foo({"hello"})
+public class X<T> {
+I i = X<@Foo({"hello"}) String>::foo;
+void foo(int x) {
+}
+}
+@interface Foo {
+String [] value();
+}
+It should compile.
+The problem comes from the black list strategy used
+in the scanner to bound look ahead.
+It incorrectly assumes that the
+tokens '{' and '}' cannot feature in type arguments, but they can as
+this example shows.
+We need to choose the black list with more rigor
+if we want to use it at all.

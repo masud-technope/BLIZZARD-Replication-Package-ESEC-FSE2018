@@ -1,0 +1,20 @@
+org.eclipse.jdt.ui.tests.refactoring/META-INF/MANIFEST.MF
+org.eclipse.jdt.ui.tests.refactoring/pom.xml
+org.eclipse.jdt.ui.tests/pom.xml
+org.eclipse.jdt.text.tests/pom.xml
+org.eclipse.jdt.ui.tests.refactoring/META-INF/MANIFEST.MF
+org.eclipse.jdt.ui.tests.refactoring/pom.xml
+org.eclipse.jdt.text.tests/pom.xml
+org.eclipse.jdt.ui.tests.refactoring/pom.xml
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/LineColumnSelectionTestCase.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/reorg/AbstractMoveCompilationUnitPrefTest.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/reorg/AbstractMoveStaticMemberPrefTest.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/reorg/AbstractRenameMethodPerfTest.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/reorg/AbstractRenamePackagePerfTest.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/reorg/AbstractRenameTypePerfTest.java
+org.eclipse.jdt.ui.tests/META-INF/MANIFEST.MF
+org.eclipse.jdt.ui.tests/pom.xml
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/PluginsNotLoadedTest.java
+org.eclipse.jdt.text.tests/pom.xml
+org.eclipse.jdt.ui.tests/pom.xml
+org.eclipse.ltk.ui.refactoring.tests/pom.xml

@@ -1,0 +1,23 @@
+Bug 383913 – [1.8][compiler] Compiler should reject explicit this parameter in disallowed contexts
+BETA_JAVA8:
+Top of branch contains syntactic support for explicit this parameter
+to facilitate attaching receiver annotations.
+The compiler must perform
+several validations here.
+- Only at 1.8 explicit this should be allowed (done)
+- Only as a first parameter (done)
+Here is the relevant part of the spec:
+Only the first formal parameter may be named this, and such a
+parameter is only permitted on an instance method, or on a
+static method or constructor of an inner class.
+The type of
+the this parameter must be the same as the class that contains
+the method and should include type arguments if that class has
+any.
+In a method in an inner type, the receiver type can be
+written as (for example) either Inner or as Outer.Inner, and
+in the latter case  annotations on both parts are possible,
+as in @ReadOnly Outer .
+@Mutable Inner.
+[I believe the "on the static method of an inner class" part
+is wrong - clarifications have been sought from the EG]

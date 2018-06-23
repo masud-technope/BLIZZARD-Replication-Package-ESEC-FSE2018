@@ -1,0 +1,26 @@
+Bug 490724 – [1.5][compiler] Compilation of 1.3 source against 1.5 classfile aborts on reference to member type of parameterized type
+master, broken at least back to 4.4.1
+// compile with JavaSE-1.8:
+package p18;
+public class Klass<T> {
+class MethodInfo { }
+void addMethod(MethodInfo mi) { }
+}
+// compile with J2SE-1.3, in a project that has the above class on build path:
+package p13;
+public final class J13 {
+p18.Klass c;
+}
+Result:
+Error in /J13/src/p13/J13.java: The class file Klass<T> contains a signature '(Lp18/Klass<TT;>.MethodInfo;)V' ill-formed at position 17
+To debug, set a breakpoint at SignatureWrapper.computeEnd() line: 84
+with condition:
+toString().startsWith("(Lp18/Klass<TT;>.MethodInfo;)V")
+Analysis:
+The problem is that SignatureWrapper#computeEnd() assumes that type arguments in angle brackets always introduce the end of a type signature.
+It that were true, skipAngleContents(..) would work fine.
+But in this case, a nested type name follows.
+The compound type name is no longer a subsequence of the generic signature, but it picks multiple non-contiguous subsequences ("Klass", "MethodInfo").
+This bug cannot be resolved by a simple change in SignatureWrapper#computeEnd().
+It will also need fixes in callers of that method.
+In this case in LookupEnvironment#getTypeFromTypeSignature(..).

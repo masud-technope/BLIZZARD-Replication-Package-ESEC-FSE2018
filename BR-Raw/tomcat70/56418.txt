@@ -1,0 +1,6 @@
+56418 – Manager incorrectly reports deployment as OK even though it failed
+Created attachment 31536 [details]
+Proposed patch on tomcat7 trunk
+When using the Manager to deploy a webapp remotely (uploading the war with an http PUT), the deployment status is incorrectly reported.
+It does not occur when deploying a WAR that is on the server filesystem.
+The proposed patch factors the check for the context state.

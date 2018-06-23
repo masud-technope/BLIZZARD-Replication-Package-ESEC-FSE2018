@@ -1,0 +1,4 @@
+Bug 252493 – [clean up] ICleanUpConfigurationUI let selected cleanups exceed limit
+I20081028-0100
+ICleanUpConfigurationUI#getSelectedCleanUpCount implementations can return values greater then #getCleanUpCount.
+This could indicate a programming fault and should be warned.

@@ -1,0 +1,12 @@
+58497 – Unable to have a custom implementation of AbstractHttp11Processor due to package private methods
+http://grepcode.com/file/repo1.maven.org/maven2/org.apache.tomcat/tomcat-coyote/7.0.54/org/apache/coyote/http11/AbstractHttp11Processor.java#AbstractHttp11Processor
+Class org.apache.coyote.http11.AbstractHttp11Processor is marked as a "public abstract" class.
+However:
+abstract boolean  [More ...] prepareSendfile(OutputFilter[] outputFilters);
+The above method "prepareSendfile" is not marked as public ( i.e.
+made a package private) and thus cannot be overridden from an extending class which is outside of the "org.apache.coyote.http11" package.
+Same can be said for :   "abstract void  actionInternal(ActionCode actionCode, Object param)" method as well.
+We have a requirement of having a custom implementation for AbstractHttp11Processor but now we cannot because these methods cannot be overridden unless we modify in the tomcat source code.
+Thus this is proving a blocker for us.
+Is there any specific reason these were made "package private" because the class itself is abstract & public ?
+Am not too sure but this might be applicable to latest tomcat (e.g.8 ) versions too.

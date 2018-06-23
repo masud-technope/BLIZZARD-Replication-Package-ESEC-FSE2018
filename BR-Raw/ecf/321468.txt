@@ -1,0 +1,5 @@
+Bug 321468 – [remoteservices][generic] RegistrySharedObject should dispatch remote service listener events asynchronously
+Currently, in RegistrySharedObject.fireRemoteServiceListeners the dispatch to the registered listeners is synchronous.
+ This has the result that if the code inside the IRemoteServiceListener attempts to access the remote service (e.g.
+to invoke a remote call), this will deadlock.
+The fix is to dispatch remote service listener events asynchronously via a ListenerQueue.

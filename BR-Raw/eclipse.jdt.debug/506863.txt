@@ -1,0 +1,16 @@
+Bug 506863 – NPE in AbstractVMInstallType.findVMInstallByName
+java.lang.NullPointerException
+at org.eclipse.jdt.launching.AbstractVMInstallType.findVMInstallByName(AbstractVMInstallType.java:158)
+at org.eclipse.jdt.internal.launching.JREContainerInitializer.resolveVM(JREContainerInitializer.java:154)
+at org.eclipse.jdt.internal.launching.JREContainerInitializer.initialize(JREContainerInitializer.java:97)
+at org.eclipse.jdt.internal.launching.LaunchingPlugin$VMChanges.rebind(LaunchingPlugin.java:365)
+at org.eclipse.jdt.internal.launching.LaunchingPlugin$VMChanges.access$0(LaunchingPlugin.java:299)
+at org.eclipse.jdt.internal.launching.LaunchingPlugin$VMChanges$1.run(LaunchingPlugin.java:285)
+at org.eclipse.jdt.internal.core.BatchOperation.executeOperation(BatchOperation.java:39)
+at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:724)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2240)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2267)
+at org.eclipse.jdt.core.JavaCore.run(JavaCore.java:5521)
+at org.eclipse.jdt.internal.launching.LaunchingPlugin$VMChanges.doit(LaunchingPlugin.java:289)
+at org.eclipse.jdt.internal.launching.LaunchingPlugin$JREUpdateJob.run(LaunchingPlugin.java:386)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

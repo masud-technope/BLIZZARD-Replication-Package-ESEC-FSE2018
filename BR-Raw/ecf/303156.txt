@@ -1,0 +1,9 @@
+Bug 303156 – API breaking change in org.eclipse.ecf.remoteservice.IRemoteServiceProxy.getRemoteServiceReference()
+Here's an excerpt from the API guidelines [1].
+Adding an API method
+====================
+Can adding an API method to a class or interface break compatibility with existing Clients?
+If the method is added to an interface which Clients may implement, then it is definitely a breaking change.
+---
+Thus the bundle major version of "org.eclipse.ecf.remoteservice" must be incremented to 4.0 to indicate the breaking API change.
+[1] http://wiki.eclipse.org/Evolving_Java-based_APIs#Example_4_-_Adding_an_API_method

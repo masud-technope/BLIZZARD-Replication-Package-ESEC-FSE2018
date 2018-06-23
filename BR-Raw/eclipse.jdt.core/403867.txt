@@ -1,0 +1,43 @@
+Bug 403867 – [1.8][compiler] Suspect error about duplicate default methods
+As part of the work for upgrading our test infrastructure to use 8b81,
+I had to modify org.eclipse.jdt.core.tests.compiler.regression.InterfaceMethodsTest.testSuperCall2
+to be:
+// ---
+import java.util.*;
+import java.util.stream.Stream;
+public abstract class X<E> implements OrderedSet<E> {
+@Override
+public Stream<E> stream() {
+return List.super.stream(); // List is not a direct super interface
+}
+@Override
+public Stream<E> parallelStream() { return OrderedSet.super.parallelStream();}
+class Inner {
+public Stream<E> stream() {
+return OrderedSet.super.stream(); // not a super interface of the direct enclosing class
+}
+}
+@Override
+public boolean add(E o) {
+OrderedSet.super.add(o); // target not a default method
+}
+X() {
+OrderedSet.super(); // not applicable for super ctor call
+}
+}
+interface OrderedSet<E> extends List<E>, Set<E> {
+@Override
+boolean add(E o);
+@Override
+default Spliterator<E> spliterator() { return List.super.spliterator(); }
+}
+// --
+This program generates 4 errors when compiled with javac 8b81.
+Eclipse reports the same 4 errors, but in addition also reports againt
+class X an error about there being unrelated default methods spliterator().
+This is suspect since OrderedSet's implementation has replaced List and Set's
+versions and these should be out of reckoning altogether.
+See that there is no error reported against OrderedSet itself regarding
+duplicate unrelated defaults.
+Strangely, the unmodified method must have had the same issue - but we never
+reported an error earlier.

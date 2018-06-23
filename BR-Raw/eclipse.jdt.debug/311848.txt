@@ -1,0 +1,15 @@
+Bug 311848 – return statement missing in JavaBreakpointListenerProxy#installingBreakpoint
+Build Identifier: M20090917-0800
+The installBreakpoint Method in JavaBreakpointListenerProxy (a inner class of BreakpointListenerManager) is implemented this way:
+public int installingBreakpoint(IJavaDebugTarget target, IJavaBreakpoint breakpoint, IJavaType type) {
+IJavaBreakpointListener delegate = getDelegate();
+if (delegate != null) {
+delegate.installingBreakpoint(target, breakpoint, type);
+}
+return IJavaBreakpointListener.DONT_CARE;
+}
+This way the return of the delegate is ignored.
+To me the correct statement would be:
+return delegate.installingBreakpoint(target, breakpoint, type);
+like it is in breakpointHit.
+Reproducible: Always

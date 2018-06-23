@@ -1,0 +1,12 @@
+49937 – Problems with AsyncListener and resource injection
+Created attachment 26031 [details]
+propose fix for a couple possible async listener problems
+I asked about these on the dev list and am proposing some simple fixes in case there's agreement that they are bugs.
+1.
+AsyncListeners are subject to resource injection from annotations, so they should be created using the instance manager.
+To get the instance manager to the AyncContextImpl I added a getInstanceManager() method to the Context interface.
+ Maybe there's a better way, this interface is currently not very small or simple.
+2.
+various application code can use one of the ServletContext.addListener methods to tell the container to scan for annotations.
+ Just because tomcat doesn't yet actually scan doesn't mean it should throw an exception if you try this.
+cf servlet 3.0 spec section 15.5 page 179.

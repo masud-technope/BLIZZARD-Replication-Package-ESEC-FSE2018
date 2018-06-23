@@ -1,0 +1,17 @@
+49670 – org.apache.catalina.authenticator.SingleSignOn valve does not function
+I have two web applications; neither declare a realm in the context.xml and both are configured for authentication in the web.xml using standard tomcat authentication methods.
+ I have enabled the tomcat valve in the host and have added a realm to the host as well.
+<Host name="localhost"  appBase="webapps" unpackWARs="true" autoDeploy="true">
+<Realm className="org.apache.catalina.realm.JAASRealm" appName="SSO" userClassNames="a.b.c" roleClassNames="a.b.c" useContextClassLoader="false"/>
+<!-- SingleSignOn valve, share authentication between web applications
+Documentation at: /docs/config/valve.html -->
+<Valve className="org.apache.catalina.authenticator.SingleSignOn"/>
+<!-- Access log processes all example.
+Documentation at: /docs/config/valve.html -->
+<!--
+<Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
+prefix="localhost_access_log." suffix=".txt" pattern="common" resolveHosts="false"/>
+-->
+I have added a jaas configuration for the SSO app in the jaas.conf file for the server.
+ I am certain that the realm, jaas.conf are all configured properly as the web applications do require a user to authenticate before accessing the application, but if I have authenticated to one application I still am required to authenticate before accessing the other application.
+I have this exact same configuration working on a tomcat 6 environment, but an identical configuration will not operate on a tomcat 7 server.

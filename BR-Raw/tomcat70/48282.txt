@@ -1,0 +1,11 @@
+48282 – Possible NPE in org.apache.tomcat.util.modeler.Registry
+Created attachment 24612 [details]
+Patch - see description
+There is a possible NPE in org.apache.tomcat.util.modeler.Registry:
+if ((group == null) && (item.getGroup() == null)) {
+results.add(item.getName());
+} else if (group.equals(item.getGroup())) { // group may be null
+results.add(item.getName());
+}
+The Javadoc implies that the item.getGroup() check should be nested.
+Patch to follow; also fixes one raw type.

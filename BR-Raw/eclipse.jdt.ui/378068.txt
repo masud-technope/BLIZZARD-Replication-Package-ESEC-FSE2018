@@ -1,0 +1,3 @@
+Bug 378068 – Update ImportOrganizeTest (FUP of bug 376734 and bug 376930)
+The patch being backported in bug 376734 contains UI tests that also need to be backported, otherwise they will fail.
+The patch https://bugs.eclipse.org/bugs/attachment.cgi?id=214395 contains the update to ImportOrganizeTest

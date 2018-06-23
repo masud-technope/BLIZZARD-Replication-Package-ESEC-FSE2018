@@ -1,0 +1,4 @@
+java/org/apache/catalina/session/PersistentManagerBase.java
+test/org/apache/catalina/session/TestPersistentManager.java
+webapps/docs/config/manager.xml
+webapps/docs/changelog.xml

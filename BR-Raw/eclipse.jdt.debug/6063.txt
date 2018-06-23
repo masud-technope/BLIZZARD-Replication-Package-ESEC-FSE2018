@@ -1,0 +1,1 @@
+Bug 6063 – Snippet & Display should catch up with changes of JavaSourceViewerConfiguration

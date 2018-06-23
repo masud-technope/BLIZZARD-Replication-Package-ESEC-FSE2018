@@ -1,0 +1,6 @@
+51229 – Some async examples are not work correctly
+Created attachment 27031 [details]
+patch for async examples
+Async0: The code that is befind complete() is  not executed.
+StockTicker: The link for StockTicker is wrong.
+Regards.

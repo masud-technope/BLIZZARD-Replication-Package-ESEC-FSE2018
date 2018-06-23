@@ -1,0 +1,5 @@
+Bug 29553 – ASTRewrite - extra dimensions lost
+20030114
+try creating a new MethodDeclaration and adding to a TypeDeclaration
+when you set MethodDeclaration.setExtraDimensions to something more than 0 it
+gets lost

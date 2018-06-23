@@ -1,0 +1,19 @@
+Bug 426534 – [1.8][compiler] Accessibility of vararg element type not checked for generic methods.
+Seems to be a problem with both new and old inference schemes.
+// -- X.java:
+import p.*;
+public class X  {
+public static void main(String argv[]) {
+new B().foo(null, null);
+}
+}
+// B.java
+package p;
+class A {
+}
+public class B extends A {
+public <T extends A> void foo(T ...
+o) { }
+}
+If the Type parameter T were to be replaced directly by A, I get an error
+as expected.

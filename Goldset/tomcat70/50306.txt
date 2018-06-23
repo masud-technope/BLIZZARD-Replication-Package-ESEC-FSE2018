@@ -1,0 +1,10 @@
+java/org/apache/catalina/valves/LocalStrings.properties
+java/org/apache/catalina/valves/LocalStrings_es.properties
+java/org/apache/catalina/valves/StuckThreadDetectionValve.java
+java/org/apache/catalina/valves/mbeans-descriptors.xml
+webapps/docs/changelog.xml
+webapps/docs/config/valve.xml
+java/org/apache/catalina/valves/LocalStrings.properties
+java/org/apache/catalina/valves/StuckThreadDetectionValve.java
+java/org/apache/catalina/valves/mbeans-descriptors.xml
+webapps/docs/config/valve.xml

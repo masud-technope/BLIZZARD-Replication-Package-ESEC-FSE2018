@@ -1,0 +1,9 @@
+Bug 232773 – [working sets] 'Assign Working Set... > New...' should pre-fill with selected elements
+I20080516-1333
+- select a few projects in Package Explorer
+- context menu > 'Assign Working Set...
+> New...
+> Java'
+=> expected: selected projects should already be in 'Working set content' list
+=> was: list empty
+Workaround is to create the working set without selecting anything and then check the working set in the 'Working Set Assignments' dialog.

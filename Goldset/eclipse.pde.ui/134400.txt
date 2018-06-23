@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/bundle/PackageObject.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/parts/PluginVersionPart.java

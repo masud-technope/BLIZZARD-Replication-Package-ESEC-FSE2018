@@ -1,0 +1,1 @@
+Bug 489122 – [templates] Use annotations in the OSGi PDE templates

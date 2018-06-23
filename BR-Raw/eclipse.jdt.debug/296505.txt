@@ -1,0 +1,16 @@
+Bug 296505 – applet parameters can contain trailing spaces
+User-Agent:       Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US; rv:1.9.0.8; .NET CLR 3.5; ffco7) Gecko/2009032609 Firefox/3.0.8
+Build Identifier:  20090920-1017
+If an applet parameter name ends with a trailing space, it's apparently
+used "as is", including the space.
+ This doesn't work, but is head-bangingly
+mysterious as to why.
+(I created one accidentally using cut-paste to copy the name.)
+Reproducible: Always
+Steps to Reproduce:
+1.
+type in a new parameter name foo   (include a trailing space
+2.
+start an applet that looks for "foo" (without the space)
+3.
+note that there's no match.

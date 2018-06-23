@@ -1,0 +1,8 @@
+Bug 219123 – tooling setup wizard does nothing without a preview
+with the way the text edits are lazily collected in the api tooling setup wizard, if you press the finihs button when the wizard initially opens (without doing a preview) it will do nothing.
+there are two things we can do:
+1.
+more aggresively load the text changes, or just do them when the user presses finish (needs more logic to track if the user has seen a preview or not and if we should recompute them, etc)
+2.
+we could force a preview.
+I vote option 2 (it only requires setting a boolean flag).

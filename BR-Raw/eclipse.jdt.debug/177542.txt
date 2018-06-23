@@ -1,0 +1,20 @@
+Bug 177542 – NLS33:translation questions
+filename:
+eclipse\plugins\org.eclipse.jdt.debug\jdimodel_jar\org\eclipse\jdt\internal\debug\eval\ast\instructions\InstructionsEvaluationMessages.properties
+sentence:
+VerbosePacketStream___REPLY_to__0___6=<TWBQ>\ (REPLY to {0})
+</TWBQ>VerbosePacketStream___COMMAND__7=\ (COMMAND)
+VerbosePacketStream_NOT_MANAGED_COMMAND_11=NOT MANAGED COMMAND
+VerbosePacketStream_List_of_values__NOT_MANAGED_132=List of values: NOT MANAGE
+VerbosePacketStream___Count__224=\ (Count)
+VerbosePacketStream_Count__225=Count:
+VerbosePacketStream___Conditional__226=\ (Conditional)
+VerbosePacketStream_Expression_id__227=Expression id:
+VerbosePacketStream___ThreadOnly__228=\ (ThreadOnly)
+VerbosePacketStream___ClassOnly__230=\ (ClassOnly)
+VerbosePacketStream___ClassMatch__232=\ (ClassMatch)
+VerbosePacketStream___ClassExclude__234=\ (ClassExclude)
+VerbosePacketStream___LocationOnly__236=\ (LocationOnly)
+VerbosePacketStream___ExceptionOnly__237=\ (ExceptionOnly)
+Translators Question:
+We are not clear about these strings, where they will be used? Translatable or not? Would you pls confirm it?

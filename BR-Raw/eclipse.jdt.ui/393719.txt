@@ -1,0 +1,39 @@
+Bug 393719 – [compiler] inconsistent warnings on iteration variables
+The assignment to an iteration variable of a foreach loop has different hickups for different warnings:
+void testRawType(@SuppressWarnings("rawtypes") List<List> lists) {
+List<String> stringList = lists.get(0); // (1)
+for (List<String> strings : lists)         // (2)
+stringList = strings;
+System.out.println(stringList.get(0));
+}
+Here (2) is wrongly silent, compare with (1) which correctly reports:
+Type safety: The expression of type List needs unchecked conversion to conform to List<String>
+Trying the same game with unchecked conversion from unannotated to @NonNull:
+void testNonNull(List<String> strings) {
+@NonNull String nonNullString = strings.get(0); // (1)
+for (@NonNull String string : strings) // (2)
+nonNullString = string;
+System.out.println(nonNullString);
+}
+Here both locations (1) & (2) correctly report:
+Null type safety: The expression of type String needs unchecked conversion to conform to '@NonNull String'
+However, in the latter case suppressing the warning doesn't work:
+void testNonNull(List<String> strings) {
+@NonNull String nonNullString = strings.get(0); // (1)
+for (@SuppressWarnings("null") @NonNull String string : strings) // (2)
+nonNullString = string;
+System.out.println(nonNullString);
+}
+It even complains that the @SW is unnecessary.
+For the rawtypes example adding @SuppressWarnings("unchecked") in the corresponding location is silently accepted.
+Note, that bug 321085 has added the unchecked warning for the array case but not the collection case, so this gives the expected warnings:
+void testArray(@SuppressWarnings("rawtypes") List[] lists) {
+List<String> stringList = lists[0];
+for (List<String> strings : lists)
+stringList = strings;
+System.out.println(stringList.get(0));
+}
+but again @SW on the iteration variable doesn't work.
+Summarizing I see two (releated?) bugs:
+- missing "unchecked" warning for iteration variable in foreach over collection of raw
+- @SW on the iteration variable doesn't work in any of these cases.

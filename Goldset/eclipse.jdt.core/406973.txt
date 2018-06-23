@@ -1,0 +1,16 @@
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/Disassembler.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/MethodParametersAttributeTest.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/TestAll.java
+org.eclipse.jdt.core.tests.compiler/workspace/ParameterNames$1.class
+org.eclipse.jdt.core.tests.compiler/workspace/ParameterNames$1Local.class
+org.eclipse.jdt.core.tests.compiler/workspace/ParameterNames.class
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/classfmt/MethodInfo.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/codegen/AttributeNamesConstants.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/util/IAttributeNamesConstants.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/util/IMethodParametersAttribute.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/util/IModifierConstants.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/Disassembler.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/Messages.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/MethodInfo.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/MethodParametersAttribute.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/messages.properties

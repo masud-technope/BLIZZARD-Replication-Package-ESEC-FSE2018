@@ -1,0 +1,7 @@
+java.util.HashMap$HashIterator.nextEntry
+java.util.HashMap$KeyIterator.next
+java.util.Collections$UnmodifiableCollection$1.next
+org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer.cancel
+org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer$3.cancel
+org.eclipse.equinox.internal.p2.transport.ecf.FileReader$CancelHandler.run
+org.eclipse.core.internal.jobs.Worker.run

@@ -1,0 +1,15 @@
+54377 – RemoteIpFilter does not correctly set request attributes for AccessLog
+In RemoteIpFilter class, there is code that publishes the new request attributes to AccessLog (see below).
+821             if (requestAttributesEnabled) {
+822                 request.setAttribute(AccessLog.REMOTE_ADDR_ATTRIBUTE,
+823                         request.getRemoteAddr());
+824                 request.setAttribute(AccessLog.REMOTE_HOST_ATTRIBUTE,
+825                         request.getRemoteHost());
+826                 request.setAttribute(AccessLog.PROTOCOL_ATTRIBUTE,
+827                         request.getProtocol());
+828                 request.setAttribute(AccessLog.SERVER_PORT_ATTRIBUTE,
+829                         Integer.valueOf(request.getServerPort()));
+830             }
+The problem is that the source values should come from xRequest, e.g.
+xRequest.getRemoteAddr() and xRequest.getRemoteHost(), etc.
+As it is written above, RemoteIpFilter simply republishes the current values, and AccessLog therefore does not display the correct values.

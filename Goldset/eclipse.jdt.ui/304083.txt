@@ -1,0 +1,11 @@
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/javadoc/JavaDocLocations.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/util/JavaElementUtil.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javadocexport/JavadocLinkRef.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/ClassFileEditor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/JavaEditorBreadcrumb.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/JavadocConfigurationPropertyPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/NativeLibrariesPropertyPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/SourceAttachmentPropertyPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/BuildPathSupport.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/LibrariesWorkbookPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/SourceAttachmentBlock.java

@@ -1,0 +1,66 @@
+53498 – Atomicity violation bugs because of misusing concurrent collections
+Created attachment 29021 [details]
+The patch that may fix the atomicity violation bugs.
+My name is Yu Lin.
+I'm a Ph.D.
+student in the CS department at
+UIUC.
+I'm currently doing research on mining Java concurrent library
+misusages.
+I found some misusages of ConcurrentHashMap in Tomcat
+7.0.28, which may result in potential atomicity violation bugs or harm
+the performance.
+The code below is a snapshot of the code in file
+java/org/apache/catalina/core/ApplicationContext.java from line 761 to
+767 and line 1262 to 1266
+L761        found = attributes.containsKey(name);
+L762        if (found) {
+L763            value = attributes.get(name);
+L764            attributes.remove(name);
+L765        } else {
+L766            return;
+L767        }
+...
+L1262       if (parameters.containsKey(name)) {
+L1263           return false;
+L1264       }
+L1265
+L1266       parameters.put(name, value);
+In the code above, an atomicity violation may occur between lines 762
+and 763.
+Suppose thread T1 executes line 761 and finds that the
+concurrent hashmap "attributes" contains the key "name".
+Before thread
+T1 executes line 763, another thread T2 removes the "name" key from
+"attributes".
+Now thread T1 resumes execution at line 763 and will get
+a null value for "name".
+Then the next line will throw a
+NullPointerException when invoking the method on "name".
+Second, the snapshot above has another atomicity violation.
+Let's look
+at lines 1262 and 1266.
+Suppose a thread T1 executes line 1262 and
+finds out the concurrent hashmap dose not contain the key
+"name".
+Before it gets to execute line 1266, another thread T2 puts a
+pair <name, v> in the concurrent hashmap "parameters".
+Now thread T1
+resumes execution and it will overwrite the value written by thread
+T2.
+Thus, the code no longer preserves the "put-if-absent" semantics.
+I found some similar misusages in other files:
+In java/org/apache/catalina/ha/context/ReplicatedContext.java, similar
+atomicity violation may occur when another thread T2 remove the key
+"name" from concurrent hashmap "tomcatAttributes" before thread T1
+executes line 172.
+In java/org/apache/catalina/startup/HostConfig.java, suppose thread T1
+executes line 1480 and finds out the concurrent hashmap dose not
+contain the key "contextName".
+Before it executes line 1509, another
+thread T2 puts a pair <contextName, v> in the concurrent hashmap
+"deployed".
+Now thread T1 resumes execution and it will overwrite the
+value written by thread T2.
+Indeed, the putIfAbsent method shoule be
+used rather than put method at line 1509.

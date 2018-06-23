@@ -1,0 +1,10 @@
+Bug 204455 – ConnectionType not remembered in Remote Java Application Launch Config
+M4 I20070921-0919
+1.
+ Create a Remote Java Application launch configuration
+2.
+ Change connection type to Standard (Socket Listen)
+Notice that the Apply button is not enabled after the change.
+Clicking Debug will still launch the "Attach" connection type.
+The Connection Type still specifies "Attach" if the same launch configuration is opened again.
+Updating the "Port" allows me to apply the changes and will launch properly.

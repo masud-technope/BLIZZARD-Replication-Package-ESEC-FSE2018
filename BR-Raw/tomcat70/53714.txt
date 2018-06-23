@@ -1,0 +1,10 @@
+53714 – misleading log output when jarsToSkip cointains web-fragments
+I have a jar which contains a web-fragment and no TLDs.
+When starting the server I get the Message:
+org.apache.jasper.compiler.TldLocationsCache tldScanJar
+INFO: At least one JAR was scanned for TLDs yet contained no TLDs.
+Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them.
+Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+so far so good.
+When adding it to the tomcat.util.scan.DefaultJarScanner.jarsToSkip property the web-fragment won't be scanned either.
+The log message should only be printed when no TLDs and web-fragments could be found in the jar.

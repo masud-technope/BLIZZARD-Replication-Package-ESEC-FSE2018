@@ -1,0 +1,6 @@
+46471 – Compiled tag files from different tag libraries share the same package
+When in web application there are several tag libraries packed in jar files that have tag files in them, when those files are compiled they share the same package:
+org.apache.jsp.tag.meta
+As a result, if there are tags with the same name in different libraries, only one of them survives.
+I encountered it while investigating bug #37084.
+See comment #13 there.

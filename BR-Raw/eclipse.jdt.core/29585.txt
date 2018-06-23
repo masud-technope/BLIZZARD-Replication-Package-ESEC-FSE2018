@@ -1,0 +1,40 @@
+Bug 29585 – Core Exception as resource tree is locked initializing classpath container
+Java Model Exception: Core Exception [code 4] The resource tree is locked for
+modifications.
+at org.eclipse.jdt.core.JavaCore.setClasspathContainer(JavaCore.java:2705)
+at org.eclipse.jdt.internal.launching.JREContainerInitializer.initialize
+(JREContainerInitializer.java:59)
+at org.eclipse.jdt.core.JavaCore$1.run(JavaCore.java:827)
+at org.eclipse.core.internal.runtime.InternalPlatform.run
+(InternalPlatform.java:852)
+at org.eclipse.core.runtime.Platform.run(Platform.java:413)
+at org.eclipse.jdt.core.JavaCore.getClasspathContainer(JavaCore.java:822)
+at org.eclipse.jdt.internal.core.JavaProject.getResolvedClasspath
+(JavaProject.java:1490)
+at org.eclipse.jdt.internal.core.JavaProject.getResolvedClasspath
+(JavaProject.java:1406)
+at org.eclipse.jdt.internal.core.JavaProject.getResolvedClasspath
+(JavaProject.java:1382)
+at org.eclipse.jdt.internal.core.DeltaProcessor.initializeRoots
+(DeltaProcessor.java:1076)
+at org.eclipse.jdt.internal.core.DeltaProcessor.processResourceDelta
+(DeltaProcessor.java:1349)
+at org.eclipse.jdt.internal.core.DeltaProcessor.resourceChanged
+(DeltaProcessor.java:1636)
+at org.eclipse.core.internal.events.NotificationManager$1.run
+(NotificationManager.java:137)
+at org.eclipse.core.internal.runtime.InternalPlatform.run
+(InternalPlatform.java:852)
+at org.eclipse.core.runtime.Platform.run(Platform.java:413)
+at org.eclipse.core.internal.events.NotificationManager.notify
+(NotificationManager.java:152)
+at org.eclipse.core.internal.events.NotificationManager.broadcastChanges
+(NotificationManager.java:67)
+at org.eclipse.core.internal.resources.Workspace.broadcastChanges
+(Workspace.java:154)
+at org.eclipse.core.internal.resources.Workspace.endOperation
+(Workspace.java:885)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1585)
+at org.eclipse.debug.internal.core.BreakpointManager$5.run
+(BreakpointManager.java:690)
+at java.lang.Thread.run(Thread.java:536)

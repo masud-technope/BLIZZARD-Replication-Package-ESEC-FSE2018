@@ -1,0 +1,6 @@
+Bug 182277 – [Plug-in Dependencies View] System packages not distinguished from framework packages
+In the new plug-in dependencies view:
+On the state page, Expand org.eclipse.core.contenttype > Imported Packages.
+Note how system packages such as javax.xml.parsers and org.w3c.* packages are shown to have been supplied by org.eclipse.osgi and are indistinguishable from legitimate osgi packages like org.osgi.framework.
+Refer to bug 165044 comment 1 to see how a system package can be distinguished from an osgi package.
+a system package label should be have the text: ": supplied by the JRE".

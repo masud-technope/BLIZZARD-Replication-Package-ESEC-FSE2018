@@ -1,0 +1,3 @@
+java/org/apache/catalina/ha/session/DeltaSession.java
+java/org/apache/catalina/tribes/group/interceptors/OrderInterceptor.java
+modules/jdbc-pool/java/org/apache/tomcat/jdbc/pool/MultiLockFairBlockingQueue.java

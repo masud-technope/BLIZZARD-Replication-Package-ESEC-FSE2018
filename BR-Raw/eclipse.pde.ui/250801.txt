@@ -1,0 +1,2 @@
+Bug 250801 – @nooverride tag should not be proposed for final classes
+While looking at bug 247677, I realized we should not propose @nooverride as a tag for methods in classes that can not be extended.

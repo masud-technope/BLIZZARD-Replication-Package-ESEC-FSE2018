@@ -1,0 +1,72 @@
+Bug 450604 – [1.8] CCE at InferenceContext18.getParameter line 1377, TypeVariableBinding cannot be cast to ArrayBinding
+This looks like a recent regression.
+To reproduce, add this code to an editor:
+package repro;
+import java.io.IOException;
+import java.util.List;
+import java.util.function.Function;
+public class UsedToWork<T, E extends Exception> {
+public static <T> List<T> of(T one) { return null; }
+public @SafeVarargs static <T> List<T> of(T...
+items) { return null; }
+public static void printDependencyLoops() throws IOException {
+Function<? super String, ? extends List<String>> mapping = UsedToWork::of;
+}
+}
+The error is logged immediately in the Error Log view.
+Tested with Eclipse SDK
+Version: Mars (4.5)
+Build id: I20141104-0800
+Here is the stack trace:
+java.lang.ClassCastException: org.eclipse.jdt.internal.compiler.lookup.TypeVariableBinding cannot be cast to org.eclipse.jdt.internal.compiler.lookup.ArrayBinding
+at org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.getParameter(InferenceContext18.java:1377)
+at org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.isMoreSpecificThan(InferenceContext18.java:610)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.mostSpecificMethodBinding(Scope.java:4289)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.findDefaultAbstractMethod(Scope.java:1161)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.findMethod0(Scope.java:1781)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.findMethod(Scope.java:1520)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getMethod(Scope.java:2791)
+at org.eclipse.jdt.internal.compiler.ast.ReferenceExpression.resolveType(ReferenceExpression.java:491)
+at org.eclipse.jdt.internal.compiler.ast.ReferenceExpression.internalResolveTentatively(ReferenceExpression.java:738)
+at org.eclipse.jdt.internal.compiler.ast.ReferenceExpression.findCompileTimeMethodTargeting(ReferenceExpression.java:710)
+at org.eclipse.jdt.internal.compiler.lookup.ConstraintExpressionFormula.reduceReferenceExpressionCompatibility(ConstraintExpressionFormula.java:230)
+at org.eclipse.jdt.internal.compiler.lookup.ConstraintExpressionFormula.reduce(ConstraintExpressionFormula.java:186)
+at org.eclipse.jdt.internal.compiler.lookup.BoundSet.reduceOneConstraint(BoundSet.java:840)
+at org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.inferInvocationType(InferenceContext18.java:387)
+at org.eclipse.jdt.internal.compiler.lookup.ParameterizedGenericMethodBinding.computeCompatibleMethod18(ParameterizedGenericMethodBinding.java:216)
+at org.eclipse.jdt.internal.compiler.lookup.ParameterizedGenericMethodBinding.computeCompatibleMethod(ParameterizedGenericMethodBinding.java:80)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod(Scope.java:730)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod(Scope.java:687)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.findMethod0(Scope.java:1619)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.findMethod(Scope.java:1520)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getMethod(Scope.java:2791)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.findMethodBinding(MessageSend.java:880)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.resolveType(MessageSend.java:701)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java:1022)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:621)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:307)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:531)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1207)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1320)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:590)
+at org.eclipse.jdt.internal.compiler.Compiler.resolve(Compiler.java:929)
+at org.eclipse.jdt.internal.core.CompilationUnitProblemFinder.process(CompilationUnitProblemFinder.java:197)
+at org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:194)
+at org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:259)
+at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:557)
+at org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:1082)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:171)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:90)
+at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:729)
+at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:789)
+at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1247)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:126)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:108)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:89)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:87)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:151)
+at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:86)
+at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:104)
+at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:77)
+at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:206)

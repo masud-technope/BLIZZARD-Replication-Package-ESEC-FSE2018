@@ -1,0 +1,32 @@
+Bug 428112 – [1.8][compiler] ClassCastException in ReferenceExpression.generateCode
+Created attachment 239911 [details]
+Example from Horstmann's 'Java SE 8 for the Really Impatient', chapter 8, section 7
+Received following exception while compiling the attached source:
+!ENTRY org.eclipse.jdt.ui 4 0 2014-02-13 08:21:36.316
+!MESSAGE Error in JDT Core during AST creation
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.internal.compiler.lookup.BinaryTypeBinding cannot be cast to org.eclipse.jdt.internal.compiler.lookup.NestedTypeBinding
+at org.eclipse.jdt.internal.compiler.ast.ReferenceExpression.generateCode(ReferenceExpression.java:216)
+at org.eclipse.jdt.internal.compiler.ast.Statement.generateArguments(Statement.java:289)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.generateCode(MessageSend.java:426)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.generateCode(MessageSend.java:419)
+at org.eclipse.jdt.internal.compiler.ast.LocalDeclaration.generateCode(LocalDeclaration.java:152)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.generateCode(AbstractMethodDeclaration.java:328)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.generateCode(AbstractMethodDeclaration.java:273)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode(TypeDeclaration.java:570)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode(TypeDeclaration.java:639)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.generateCode(CompilationUnitDeclaration.java:370)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1214)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:693)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1187)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:813)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider$1.run(ASTProvider.java:548)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.createAST(ASTProvider.java:541)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.getAST(ASTProvider.java:484)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.getAST(ASTProvider.java:474)
+at org.eclipse.jdt.ui.SharedASTProvider.getAST(SharedASTProvider.java:132)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:170)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$3.run(SelectionListenerWithASTManager.java:155)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Encountered in Luna, build I20140123-1600 with Eclipse Java Development Tools Patch for Java 8 Support (BETA) v 1.0.0.v20140213-0104_BETA_JAVA8

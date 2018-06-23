@@ -1,0 +1,16 @@
+org.apache.catalina.core.StandardWrapperValve.event
+org.apache.catalina.core.StandardContextValve.event
+org.apache.catalina.valves.ValveBase.event
+org.apache.catalina.core.StandardHostValve.event
+org.apache.catalina.valves.ValveBase.event
+org.apache.catalina.valves.ValveBase.event
+org.apache.catalina.core.StandardEngineValve.event
+org.apache.catalina.connector.CoyoteAdapter.event
+org.apache.coyote.http11.Http11NioProcessor.event
+org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run
+org.apache.tomcat.util.net.NioEndpoint.processSocket
+org.apache.tomcat.util.net.NioEndpoint$Poller.cancelledKey
+org.apache.tomcat.util.net.NioEndpoint$Poller.processKey
+org.apache.tomcat.util.net.NioEndpoint$Poller.timeout
+org.apache.tomcat.util.net.NioEndpoint$Poller.run
+java.lang.Thread.run

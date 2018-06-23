@@ -1,0 +1,6 @@
+Bug 153093 – Inconsistent placement of labels in update site editor
+In the update site editor, in the Site Map tab, if you select a category it shows name, label, and description fields to the right.
+However the description field is centered vertically with its text field.
+In the Archives tab you also have a description field, but this one is aligned with the top of its text field.
+I would suggest always aligning with the top as it's easier to read (at least for me).
+See screenshot.

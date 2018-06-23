@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/LaunchShortcutOverviewPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/actions/ActionMenu.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/PDEEditorLaunchManager.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/PDELauncherFormEditor.java

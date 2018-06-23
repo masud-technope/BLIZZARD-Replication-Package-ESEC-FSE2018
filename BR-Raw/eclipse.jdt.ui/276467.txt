@@ -1,0 +1,15 @@
+Bug 276467 – [quick assist] Extract local variable extracts only one term when part of a sum is selected
+Build ID: I20090430-2300
+Steps To Reproduce:
+In a Java editor:
+int a = 1;
+int b = 1;
+int c = 1;
+int d = a + b + c;
+Select "a + b" and do quick assist -> Extract to local variable.
+ The result:
+<snip>
+int a2 = a;
+int d = a2 + b + c;
+I'd hoped for "int i = a + b;" which is what I get from the Refactor menu.
+More information:

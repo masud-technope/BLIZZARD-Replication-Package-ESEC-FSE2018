@@ -1,0 +1,4 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ResolveTests_1_5.java
+org.eclipse.jdt.core.tests.model/workspace/Resolve/src2/test0015/Test.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/HandleFactory.java

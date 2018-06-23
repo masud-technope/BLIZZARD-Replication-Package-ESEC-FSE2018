@@ -1,0 +1,25 @@
+Bug 357654 – StackOverFlowError selecting Add Required Plugins at Target Platform preference, Target Definition dialog, Content tab
+StackOverFlowError after clicking "Add Required" in the Target Platform pref, Edit Target Definition, Content tab, after selecting com.soyatec.edepend (installed at target platform from within it using http://www.soyatec.com/update/helios)
+-- Error Details --
+Date: Wed Sep 14 12:04:19 EDT 2011
+Message: Unhandled event loop exception
+Severity: Error
+Product: Eclipse 1.4.0.20110609-1120 (org.eclipse.epp.package.rcp.product)
+Plugin: org.eclipse.ui
+Session Data:
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_26
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.rcp.product
+Command-line arguments:  -data C:\Users\eddie\Documents\Workspaces\37_ruggles -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.rcp.product
+Exception Stack Trace:
+java.lang.StackOverflowError
+at org.eclipse.pde.internal.core.feature.Feature.getImports(Feature.java:106)
+at org.eclipse.pde.internal.ui.shared.target.TargetContentsGroup.getFeatureDependencies(TargetContentsGroup.java:831)
+at org.eclipse.pde.internal.ui.shared.target.TargetContentsGroup.getFeatureDependencies(TargetContentsGroup.java:837)
+at org.eclipse.pde.internal.ui.shared.target.TargetContentsGroup.getFeatureDependencies(TargetContentsGroup.java:837)
+at org.eclipse.pde.internal.ui.shared.target.TargetContentsGroup.getFeatureDependencies(TargetContentsGroup.java:837)
+at org.eclipse.pde.internal.ui.shared.target.TargetContentsGroup.getFeatureDependencies(TargetContentsGroup.java:837)
+at org.eclipse.pde.internal.ui.shared.target.TargetContentsGroup.getFeatureDependencies(TargetContentsGroup.java:837)
+<and repeat, that's all I can see>

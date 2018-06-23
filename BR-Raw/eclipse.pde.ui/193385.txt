@@ -1,0 +1,3 @@
+Bug 193385 – Add context help to the view plug-in template
+We should add an option to the view template to create context sensitive help for the view.
+We should also reduce the number of options on the template and remove the second wizard page.

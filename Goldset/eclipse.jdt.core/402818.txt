@@ -1,0 +1,4 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/formatter/FormatterJSR335Tests.java
+org.eclipse.jdt.core.tests.model/workspace/FormatterJSR335/testBugs/Bug402818_in.java
+org.eclipse.jdt.core.tests.model/workspace/FormatterJSR335/testBugs/Bug402818_out.java
+org.eclipse.jdt.core/formatter/org/eclipse/jdt/internal/formatter/Scribe.java

@@ -1,0 +1,4 @@
+org.eclipse.jdt.core.tests.model/workspace/Converter18/src/testBug496596/Test.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTConverterAST8Test.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/LambdaExpression.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/JSR335ClassFileTest.java

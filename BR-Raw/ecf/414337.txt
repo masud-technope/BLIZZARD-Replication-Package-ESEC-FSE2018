@@ -1,0 +1,3 @@
+Bug 414337 – RestNamespace.getInitFromExternalForm should be protected rather than private
+The method RestNamespace.getInitFromExternalForm(Object[] args) is currently private.
+ For reuse by subclasses, it should be protected instead.

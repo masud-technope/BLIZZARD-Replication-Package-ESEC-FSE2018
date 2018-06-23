@@ -1,0 +1,4 @@
+Bug 302407 – [remotesrvs][r-osgi] remote method invocation fails due to mismatch caused by parameter type inheritance in org.eclipse.ecf.internal.provider.r_osgi.RemoteServiceImpl.callSync(...)
+The nested exception is something along the lines of:
+java.lang.NoSuchMethodException: proxy.coconut_jchiff.ch.ethz.iks.slp.AdvertiserImpl.register(ch.ethz.iks.slp.ServiceURL, java.util.Hashtable).
+This exception does not happen if r-OSGi is used directly.

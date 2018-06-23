@@ -1,0 +1,6 @@
+Bug 315248 – [Discovery] [ZooDiscovery] GUID contains characters to confuse Zookeeper nodes buildup
+Zookeeper is using a node path in this form 'root/child/grandchild'.
+We have used the ECF GUID class to get an unique node.
+However, we have discovered (haha) that the GUID sometimes contains slashes.
+This is not according to the Zookeeper specs and will result in services not being published.
+We have a patch.

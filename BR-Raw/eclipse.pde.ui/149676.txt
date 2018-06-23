@@ -1,0 +1,11 @@
+Bug 149676 – Plugin manifest editor - suggestion to efficiently search an extension
+We have a plugin.xml that has plenty of extensions - dozens of object and viewer contributions, views, wizards etc.
+As the project gets developed, certain actions are refactored to embrace new type selections.
+e.g class CompareThingsAction is now able to compare an additional type and I want to change its visibility argument in the manifest editor.
+It is easy to find where CompareThingsAction is used in the raw XML view (CTRL-F for CompareThingsAction).
+But it is harder to find it in the Extensions tab.
+Did you had thoughts on adding an input filter text to that editor? I would start typing CompareThingsAction and it would get selected in the All Extensions tree.
+This is somehow related to a discussion with Nick on a global find option for any Eclipse view.
+Web UI makes it easy to search for text every where, but that paradigm is lost when using plain vanilla raw widgets such as trees.
+Thanks - I like the Extensions tab and much prefer setting visibility of object contributions through it rather than through a raw XML format.
+Just looking for a quick way to find a particular action class :-)

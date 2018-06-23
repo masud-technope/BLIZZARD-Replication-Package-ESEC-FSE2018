@@ -1,0 +1,4 @@
+java/org/apache/catalina/core/ApplicationContext.java
+test/org/apache/catalina/core/TestAsyncContextImpl.java
+webapps/docs/changelog.xml
+java/org/apache/catalina/util/URLEncoder.java

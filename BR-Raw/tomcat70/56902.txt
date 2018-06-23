@@ -1,0 +1,6 @@
+56902 – DefaultServlet could leak resource in method copy - CID-45243
+Created attachment 31955 [details]
+always close istream in DefaultServlet#copy
+In method copy istream could be left unclosed, if write operations on ostream would throw an exception before copyRange is called.
+A simple fix is to wrap the ostream-operations together with copyRange in a try-finally block.
+If the exceptions should be catched into the variable exception like copyRange does, it could be done so in an additionally catch block (which is missing from the attached patch).

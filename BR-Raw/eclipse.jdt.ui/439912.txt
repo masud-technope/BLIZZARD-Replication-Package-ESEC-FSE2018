@@ -1,0 +1,11 @@
+Bug 439912 – [1.8][quick assist] Add quick assists to add and remove parentheses around single lambda parameter
+This is probably not one of the most important features, but when I have:
+int i = (1 + 2);
+And when I put the cursor here:
+int i = (1 + 2);
+^       ^
+Then I can hit Ctrl+1 and there's an option to "Remove extra parentheses".
+This is not the case with a lambda expression where the same should be possible as well:
+Consumer<Integer> c = (i) -> {}
+Similarly, there should be a quick fix to add such parentheses
+Consumer<Integer> c = i -> {}

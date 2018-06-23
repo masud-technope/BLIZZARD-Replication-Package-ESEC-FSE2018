@@ -1,0 +1,38 @@
+Bug 101118 – eclipse-SDK-3.1RC3-win32 - Exception processing async thread queue
+Hi,
+Using eclipse-SDK-3.1RC3-win32 in a multithreaded application.
+Have problem
+when trying debug the source code.
+Have tried with older version of Eclipse (RC1 and M7) but nothing changed.
+!SESSION 2005-06-21 20:52:46.761 -----------------------------------------------
+eclipse.buildId=I20050617-1618
+java.version=1.5.0_02
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=sv_SE
+Command-line arguments:  -os win32 -ws win32 -arch x86
+!ENTRY org.eclipse.jdt.debug 4 120 2005-06-21 21:05:22.147
+!MESSAGE Exception processing async thread queue
+!SUBENTRY 1 org.eclipse.jdt.debug 4 120 2005-06-21 21:05:22.147
+!MESSAGE Exception processing async thread queue
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.getJavaProject(JavaDetailFormattersManager.java:206)
+at org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.getCompiledExpression(JavaDetailFormattersManager.java:312)
+at org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.resolveFormatter(JavaDetailFormattersManager.java:156)
+at org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.access$0(JavaDetailFormattersManager.java:149)
+at org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager$4.run(JavaDetailFormattersManager.java:137)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run(JDIThread.java:2446)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:76)
+!ENTRY org.eclipse.jdt.debug 4 120 2005-06-21 21:23:40.206
+!MESSAGE Exception processing async thread queue
+!SUBENTRY 1 org.eclipse.jdt.debug 4 120 2005-06-21 21:23:40.206
+!MESSAGE Exception processing async thread queue
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.getJavaProject(JavaDetailFormattersManager.java:206)
+at org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.getCompiledExpression(JavaDetailFormattersManager.java:312)
+at org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.resolveFormatter(JavaDetailFormattersManager.java:156)
+at org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.access$0(JavaDetailFormattersManager.java:149)
+at org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager$4.run(JavaDetailFormattersManager.java:137)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run(JDIThread.java:2446)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:76)

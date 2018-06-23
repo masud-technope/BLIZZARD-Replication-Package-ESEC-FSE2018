@@ -1,0 +1,120 @@
+44986 – JSP compilation exception with pageEncoding="utf-8" and file with byte order marks
+JSP-File has byte order marks.
+If the attribute is set to "UTF-8" (upper case) or the file has no byte order marks, the compilation workes fine.
+{code}
+12:32:16,946 ERROR [[jsp]] Servlet.service() for servlet jsp threw exception
+org.apache.jasper.JasperException: /dialog.jsp(2,0) Page-encoding specified in XML prolog (UTF-8) is different from that specified in page directive (utf-8)
+at org.apache.jasper.compiler.DefaultErrorHandler.jspError(DefaultErrorHandler.java:40)
+at org.apache.jasper.compiler.ErrorDispatcher.dispatch(ErrorDispatcher.java:407)
+at org.apache.jasper.compiler.ErrorDispatcher.jspError(ErrorDispatcher.java:236)
+at org.apache.jasper.compiler.Validator$DirectiveVisitor.comparePageEncodings(Validator.java:362)
+at org.apache.jasper.compiler.Validator$DirectiveVisitor.visit(Validator.java:197)
+at org.apache.jasper.compiler.Node$PageDirective.accept(Node.java:590)
+at org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2338)
+at org.apache.jasper.compiler.Node$Visitor.visitBody(Node.java:2388)
+at org.apache.jasper.compiler.Node$Visitor.visit(Node.java:2394)
+at org.apache.jasper.compiler.Node$Root.accept(Node.java:489)
+at org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2338)
+at org.apache.jasper.compiler.Validator.validate(Validator.java:1700)
+at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:178)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:306)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:286)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:273)
+at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:566)
+at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:316)
+at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:336)
+at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:265)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:803)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:654)
+at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:445)
+at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:379)
+at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:292)
+at de.cit.jsp.control.DispatchServlet.forward(DispatchServlet.java:286)
+at de.cit.jsp.control.DispatchServlet.doGet(DispatchServlet.java:272)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:690)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:803)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at de.cit.util.javax.servlet.ValidationFilter.doFilter(ValidationFilter.java:108)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at de.cit.util.javax.servlet.jsp.XHtmlContentTypeFilter.doFilter(XHtmlContentTypeFilter.java:36)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at org.jboss.web.tomcat.filters.ReplyHeaderFilter.doFilter(ReplyHeaderFilter.java:96)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:230)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:175)
+at org.jboss.web.tomcat.security.SecurityAssociationValve.invoke(SecurityAssociationValve.java:179)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:432)
+at org.jboss.web.tomcat.security.JaccContextValve.invoke(JaccContextValve.java:84)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102)
+at org.jboss.web.tomcat.service.jca.CachedConnectionValve.invoke(CachedConnectionValve.java:157)
+at org.apache.catalina.authenticator.SingleSignOn.invoke(SingleSignOn.java:420)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:262)
+at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:437)
+at org.apache.coyote.ajp.AjpProtocol$AjpConnectionHandler.process(AjpProtocol.java:366)
+at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:446)
+at java.lang.Thread.run(Thread.java:619)
+{code}
+Case insensitive camparison in org.apache.jasper.compiler.Validator.comparePageEncodings(...) seems to fix the problem:
+{code}
+/*
+* Compares page encodings specified in various places, and throws
+* exception in case of page encoding mismatch.
+*
+* @param pageDirEnc The value of the pageEncoding attribute of the page
+* directive @param pageDir The page directive node
+*
+* @throws JasperException in case of page encoding mismatch
+*/
+private String comparePageEncodings(String pageDirEnc,
+Node.PageDirective pageDir) throws JasperException {
+Node.Root root = pageDir.getRoot();
+String configEnc = root.getJspConfigPageEncoding();
+/*
+* Compare the 'pageEncoding' attribute of the page directive with
+* the encoding specified in the JSP config element whose URL
+* pattern matches this page.
+Treat "UTF-16", "UTF-16BE", and
+* "UTF-16LE" as identical.
+*/
+if (configEnc != null) {
+if (!pageDirEnc.equalsIgnoreCase(configEnc)
+&& (!pageDirEnc.toUpperCase().startsWith("UTF-16") || !configEnc
+.toUpperCase().startsWith("UTF-16"))) {
+err.jspError(pageDir,
+"jsp.error.config_pagedir_encoding_mismatch",
+configEnc, pageDirEnc);
+} else {
+return configEnc;
+}
+}
+/*
+* Compare the 'pageEncoding' attribute of the page directive with
+* the encoding specified in the XML prolog (only for XML syntax,
+* and only if JSP document contains XML prolog with encoding
+* declaration).
+Treat "UTF-16", "UTF-16BE", and "UTF-16LE" as
+* identical.
+*/
+if ((root.isXmlSyntax() && root.isEncodingSpecifiedInProlog()) || root.isBomPresent()) {
+String pageEnc = root.getPageEncoding();
+if (!pageDirEnc.equalsIgnoreCase(pageEnc)
+&& (!pageDirEnc.toUpperCase().startsWith("UTF-16") || !pageEnc
+.toUpperCase().startsWith("UTF-16"))) {
+err.jspError(pageDir,
+"jsp.error.prolog_pagedir_encoding_mismatch",
+pageEnc, pageDirEnc);
+} else {
+return pageEnc;
+}
+}
+return pageDirEnc;
+}
+{code}

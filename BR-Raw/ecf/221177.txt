@@ -1,0 +1,33 @@
+Bug 221177 – Generic way of obtaining name of remote file.
+When obtaining a file from a remote source it is often good to know the intended filename.
+It might be used in progress reporting and sometimes also as a source of information when naming the resulting local file.
+The URL in itself is sometimes very cryptic with a path in some numeric form (calculated UUID perhaps).
+In some cases, the path doesn't contain a name at all (ends with download.php for instance) and the actual path is hidden in one of the parameters.
+When using HTTP, the returned "Content-Disposition" response header field is often a much better source for the filename then the actual URL.
+Using ECF, I cannot obtain this header field and that's OK.
+There are a lot of transfer implementations where the use of response headers is not applicable.
+I would however like a IIncomingFileTransfer.getRemoteFileName() method.
+The HTTP transfer could use the Content-Disposition and other file transfer implementations could do a best effort based on whatever algorithm that would be appropriate for them.
+Below is the code that Buckminster uses to extract the file name from the Content-Disposition header.
+/**
+* This regular expression is a simple Content-Disposition header parser.
+* Content-Disposition grammar is quite complex, this is really simplified.
+* It should be refactored in future versions using proper grammar.
+*/
+private final static Pattern s_contentDispositionPattern = Pattern.compile(
+".*;\\s*filename\\s*=\\s*(\"(?:[^\"\\\\]|\\\\.)*\"|[^;\"\\s]+)\\s*(?:;|$)");
+private static String parseContentDisposition(String contentDisposition)
+{
+//Context-Dispositon syntax: attachment|inline[;filename="<filename>"]
+//Try to extract the filename form it (and strip quotes if they're there)
+if (contentDisposition == null)
+return null;
+String filename = null;
+Matcher m = s_contentDispositionPattern.matcher(contentDisposition);
+if (m.matches()) {
+filename = m.group(1);
+if (filename.startsWith("\"") && filename.endsWith("\"")) {
+filename = filename.substring(1, filename.length()-1).replaceAll("\\\\(.)", "$1");
+}
+}             return filename;
+}

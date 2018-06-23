@@ -1,0 +1,12 @@
+Bug 409723 – [1.8][introduce indirection] Unable to introduce indirection on methods in an interface
+Created attachment 231871 [details]
+Screenshot
+Refactor > Introduce Indirection on default and static methods in an interface gives the error "Cannot place new method on an interface." as shown in the attached screenshot.
+Expected result for the default method is shown below:
+public interface I {
+public static void foo(I i) {
+i.foo();
+}
+default void foo() {
+}
+}

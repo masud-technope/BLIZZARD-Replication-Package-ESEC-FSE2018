@@ -1,0 +1,11 @@
+Bug 430026 – [1.8] Lambda parameter has wrong parent if it declares its type
+package jsr335.funint6;
+interface MyFunction<T, R> {
+R apply(T t);
+default <V> MyFunction<V, R> compose(MyFunction<? super V, ? extends T> before) {
+return (V v) -> apply(before.apply(v));
+//        return (v) -> apply(before.apply(v)); // OK
+}
+}
+The lambda parameter v has MyFunction#compose(..) as parent element.
+If you use the "// OK" variant where v's type V is not explicitly declared, then the parent becomes a LambdaExpression as expected.

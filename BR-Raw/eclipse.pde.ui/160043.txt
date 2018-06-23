@@ -1,0 +1,3 @@
+Bug 160043 – RequiredPluginsInitializer should implement getDescription(...)
+I20061003
+RequiredPluginsInitializer should implement getDescription(...) as this is what is displayed in the Package Explorer (after bug 160005 is fixed) when the initializer fails to create the container (see bug 159989).

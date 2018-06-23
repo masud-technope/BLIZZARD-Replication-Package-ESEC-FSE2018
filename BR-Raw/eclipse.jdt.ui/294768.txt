@@ -1,0 +1,11 @@
+Bug 294768 – [clean up] Save Action; 'Add final modifier to private fields' over aggressive
+User-Agent:       Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.15) Gecko/2009102815 Ubuntu/9.04 (jaunty) Firefox/3.0.15
+Build Identifier: 20090920-1017
+The java save action 'Add final modifier to private fields' will apply a final modifier to a member variable that is defined as transient.
+As final transient member fields are almost always wrong, (as after serialization the field will be null) i believe that eclipse should not be doing this save action when the field is transient.
+Reproducible: Always
+Steps to Reproduce:
+1.create a member that is private and transient.
+2.turn on java save action "Add final modifier to private fields"
+3.save the class
+4.the final attribute is applied to the transient member field

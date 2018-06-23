@@ -1,0 +1,5 @@
+Bug 393143 – Info views should indicate when the linking is not in sync
+4.3 M3
+When linking is enabled and the new input is not usable, we used to clear the view.
+Recently we changed this to keep the old input.
+We should indicate this to the user by using a different link icon.

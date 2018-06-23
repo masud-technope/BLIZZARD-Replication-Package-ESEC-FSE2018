@@ -1,0 +1,14 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaDebugHover.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JDIDebugUIPlugin.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JDISourceViewer.java
+org.eclipse.jdt.debug.ui/plugin.xml
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/snippeteditor/ScrapbookLauncher.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/JDIDebugPlugin.java
+org.eclipse.jdt.debug.tests/plugin.xml
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/snippeteditor/JavaSnippetEditor.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/Bootstrap.java
+org.eclipse.jdt.debug/plugin.xml
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/JavaTestPlugin.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaDebugImages.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JDIContentAssistPreference.java
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/TestModeLaunchDelegate.java

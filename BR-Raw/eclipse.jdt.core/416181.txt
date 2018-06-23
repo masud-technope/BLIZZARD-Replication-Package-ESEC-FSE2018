@@ -1,0 +1,10 @@
+Bug 416181 – [1.8][compiler][null] Inalid assignment is not rejected by the compiler
+// --- Expect two errors, but got one
+import org.eclipse.jdt.annotation.NonNull;
+public class X<T> {
+class Y {
+}
+X<String>.@NonNull Y y = null; // no error here, bad.
+@NonNull Y y2 = null; // error here.
+Good.
+}

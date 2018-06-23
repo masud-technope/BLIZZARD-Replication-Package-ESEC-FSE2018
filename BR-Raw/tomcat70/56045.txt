@@ -1,0 +1,18 @@
+56045 – Cannot start embedded container without Jasper
+If I don't have a web.xml and I'm not using JSPs I shoudln't need Jasper on the classpath (it worked in 7.0.47)
+Caused by: java.lang.ExceptionInInitializerError: null
+at org.apache.catalina.startup.TldConfig.createTldDigester(TldConfig.java:94)
+at org.apache.catalina.startup.TldConfig.init(TldConfig.java:576)
+at org.apache.catalina.startup.TldConfig.lifecycleEvent(TldConfig.java:559)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:402)
+at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:110)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:139)
+...
+7 common frames omitted
+Caused by: java.lang.NullPointerException: null
+at org.apache.tomcat.util.descriptor.DigesterFactory.idFor(DigesterFactory.java:107)
+at org.apache.tomcat.util.descriptor.DigesterFactory.<clinit>(DigesterFactory.java:59)
+...
+15 common frames omitted

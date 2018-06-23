@@ -1,0 +1,5 @@
+Bug 148171 – PDE Tools > Open Manifest
+3.2 M20060609-1217 and I20060620-1010
+What is the difference between PDE Tools > Organize Manifest and PDE Tools > Organize Manifests...
+?
+It seems that the first does nothing except opening the MANIFEST.MF - in that case I would simply remove it.

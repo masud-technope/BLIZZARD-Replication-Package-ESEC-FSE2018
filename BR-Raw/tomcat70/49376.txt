@@ -1,0 +1,2 @@
+49376 – Minor corrections to info properties.
+The static info properties appear to contain legacy packages.

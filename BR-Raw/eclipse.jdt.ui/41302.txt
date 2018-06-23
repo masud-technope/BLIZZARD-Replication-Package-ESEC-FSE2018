@@ -1,0 +1,6 @@
+Bug 41302 – [quick assist] [extract method] Calling extract method from a selection
+In 3.0M2
+If you select the following code (up to the very last character) and ask
+for "extract method" you'll get an error dialog indication "Selection ends
+inside a comment"
+foo();//a comment

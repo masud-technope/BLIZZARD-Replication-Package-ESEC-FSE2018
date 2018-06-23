@@ -1,0 +1,16 @@
+Bug 297593 – [type wizards] Java class wizard gives incorrect warning message
+Build id: I20091210-1301
+1.
+Make a new Java project.
+2.
+File > New > Class
+3.
+Give it a name.
+4.
+The warning says 'The use of the default package is discouraged.', that's fine.
+5.
+Now in the source folder text field, change it from 'test/src' to 'test/' or 'test'.
+6.
+Now the warning says 'Source folder is not a Java project.' even though 'test' really is a Java project.
+This is slightly misleading.
+The warning message should state that it is not a Java source folder or something of that sort.

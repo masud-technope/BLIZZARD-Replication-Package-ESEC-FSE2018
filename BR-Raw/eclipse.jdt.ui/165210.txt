@@ -1,0 +1,5 @@
+Bug 165210 – Fup of bug 74997, add new formatter option for number of blank lines between import groups
+Right now the number of blank lines added by the fix for bug 74997 are not preserved once the code is formatted.
+We should add a new code formatter option that specifies the number of blank lines between import groups.
+This should take precedence over the number of blank lines to preserve.
+If we don't do this, we end up with inconsistencies between the organize import operation and the code formatter.

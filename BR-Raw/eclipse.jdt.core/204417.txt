@@ -1,0 +1,98 @@
+Bug 204417 – NullPointerException in SelectionOnQualifiedAllocationExpression.resolveType
+Build ID: I20070625-1500
+Steps To Reproduce:
+Enter the following code into an editor:
+package net.lunglet.gridgain;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import org.gridgain.grid.Grid;
+import org.gridgain.grid.GridException;
+import org.gridgain.grid.GridJob;
+import org.gridgain.grid.GridJobAdapter;
+import org.gridgain.grid.GridJobResult;
+import org.gridgain.grid.GridTaskSplitAdapter;
+import org.gridgain.grid.resources.GridInstanceResource;
+public final class GemmGridTask extends GridTaskSplitAdapter<String> {
+private static final long serialVersionUID = 1L;
+@Override
+public Collection<? extends GridJob> split(final int gridSize, final String arg) throws GridException {
+List<GridJob> jobs = new ArrayList<GridJob>();
+for (int i = 0; i < 10; i++) {
+jobs.add(new GridJobAdapter<String>(word) {
+private static final long serialVersionUID = 1L;
+private Grid grid = null;
+public Serializable execute() throws GridException {
+return null;
+}
+@GridInstanceResource
+public void setGrid(final Grid grid) {
+this.grid = grid;
+}
+});
+}
+return jobs;
+}
+public Serializable reduce(List<GridJobResult> results) throws GridException {
+return null;
+}
+}
+With all the class libraries in place, the only error in the above code is that in
+jobs.add(new GridJobAdapter<String>(word) {
+word cannot be resolved.
+If I now click on GridJobAdapter there and then do Open Declaration, I get a popup telling me to check the error log which then contains the following exception:
+eclipse.buildId=I20070625-1500
+java.version=1.6.0_02
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_ZA
+Command-line arguments:  -os win32 -ws win32 -arch x86
+Error
+Mon Sep 24 10:40:20 CAT 2007
+Unhandled event loop exception
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.codeassist.select.SelectionOnQualifiedAllocationExpression.resolveType(SelectionOnQualifiedAllocationExpression.java:75)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java:906)
+at org.eclipse.jdt.internal.compiler.ast.Block.resolve(Block.java:101)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:429)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:196)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:400)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1085)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1164)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:366)
+at org.eclipse.jdt.internal.codeassist.SelectionEngine.select(SelectionEngine.java:691)
+at org.eclipse.jdt.internal.core.Openable.codeSelect(Openable.java:155)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeSelect(CompilationUnit.java:340)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeSelect(CompilationUnit.java:334)
+at org.eclipse.jdt.internal.ui.javaeditor.JavaElementHyperlinkDetector.detectHyperlinks(JavaElementHyperlinkDetector.java:62)
+at org.eclipse.ui.texteditor.HyperlinkDetectorRegistry$HyperlinkDetectorDelegate.detectHyperlinks(HyperlinkDetectorRegistry.java:80)
+at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:261)
+at org.eclipse.jface.text.hyperlink.HyperlinkManager.mouseMove(HyperlinkManager.java:458)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:198)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:938)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3682)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3293)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2389)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2353)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2219)
+at org.eclipse.ui.internal.Workbench$4.run(Workbench.java:466)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:289)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:461)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:106)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:153)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:106)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:76)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:363)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:176)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:504)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:443)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1169)
+This same exception also caused various "Internal Error" or "Unexpected runtime error while computing a text hover" entries in the error log.
+More information:

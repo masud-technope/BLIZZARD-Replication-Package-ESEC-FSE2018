@@ -1,0 +1,32 @@
+Bug 80879 – NPE in JavaLogicalStructures
+With the changes for bug 80332, an NPE is generated if the preference page is
+open before any Java apps were launch in debug mode.
+!ENTRY org.eclipse.core.runtime 4 2 2004-12-13 13:51:27.77
+!MESSAGE Problems occurred when invoking code from plug-in:
+"org.eclipse.core.runtime".
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.debug.core.logicalstructures.JavaLogicalStructures.getJavaLogicalStructures(JavaLogicalStructures.java)
+at org.eclipse.jdt.internal.debug.ui.JavaLogicalStructuresPreferencePage$LogicalStructuresListViewerContentProvider.<init>(JavaLogicalStructuresPreferencePage.java:94)
+at org.eclipse.jdt.internal.debug.ui.JavaLogicalStructuresPreferencePage.createContents(JavaLogicalStructuresPreferencePage.java:222)
+at org.eclipse.jface.preference.PreferencePage.createControl(PreferencePage.java:413)
+at org.eclipse.jface.preference.PreferencePage.createControl(PreferencePage.java:378)
+at org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog.createPageControl(WorkbenchPreferenceDialog.java:994)
+at org.eclipse.jface.preference.PreferenceDialog$13.run(PreferenceDialog.java:1116)
+at org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java:1044)
+at org.eclipse.core.runtime.Platform.run(Platform.java:747)
+at org.eclipse.jface.preference.PreferenceDialog.showPage(PreferenceDialog.java:1110)
+at org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog.showPage(WorkbenchPreferenceDialog.java:782)
+at org.eclipse.jface.preference.PreferenceDialog$9.selectionChanged(PreferenceDialog.java:619)
+at org.eclipse.jface.viewers.StructuredViewer$3.run(StructuredViewer.java:681)
+at org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java:1044)
+at org.eclipse.core.runtime.Platform.run(Platform.java:747)
+at org.eclipse.jface.viewers.StructuredViewer.firePostSelectionChanged(StructuredViewer.java:679)
+at org.eclipse.jface.viewers.StructuredViewer.handlePostSelect(StructuredViewer.java:950)
+at org.eclipse.jface.viewers.StructuredViewer$5.widgetSelected(StructuredViewer.java:970)
+at org.eclipse.jface.util.OpenStrategy.firePostSelectionEvent(OpenStrategy.java:231)
+at org.eclipse.jface.util.OpenStrategy.access$4(OpenStrategy.java:226)
+at org.eclipse.jface.util.OpenStrategy$3.run(OpenStrategy.java:392)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:118)
+[...]

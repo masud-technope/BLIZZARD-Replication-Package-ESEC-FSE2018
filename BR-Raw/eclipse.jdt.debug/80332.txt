@@ -1,0 +1,5 @@
+Bug 80332 – logical structure factories
+For components that want to contribute more than one logical structure type
+per value, we need to support factories.
+A factory should be able to return a
+collection of logical structure types for a given value.

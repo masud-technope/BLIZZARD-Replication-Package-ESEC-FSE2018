@@ -1,0 +1,2 @@
+Bug 22815 – Support delete key in viewers
+We should support the delete key in all appropriate viewers.

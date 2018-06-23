@@ -1,0 +1,37 @@
+Bug 401271 – StackOverflowError when searching for a methods references
+When searching for References in the workspace, a StackOverflow occurs.
+What steps will reproduce the problem?
+1.
+Open a .class file with added sources (it has the J010-Icon and shows source code)
+2.
+Select a method: click on "getProperty" (it will be highlighted)
+public static String getProperty( final String key ) {
+...
+}
+3.
+Press Shift-Ctrl-G or select from menu: Search->References->Workspace
+A window pops up, reporting a StackOverflowError.
+-- Error Details --
+Date: Wed Feb 20 09:04:40 CET 2013
+Message: An internal error occurred during: "Java Search".
+Severity: Error
+Product: Eclipse SDK 3.8.0.v201206081200 (org.eclipse.sdk.ide)
+Plugin: org.eclipse.core.jobs
+Session Data:
+eclipse.buildId=I20120608-1200
+java.version=1.6.0_35
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=en_US
+Framework arguments:  -eclipse.password /home/mm/.eclipse/Eclipse.password -keyring /home/mm/.eclipse-keyring/.keyring
+Command-line arguments:  -os linux -ws gtk -arch x86 -eclipse.password /home/mm/.eclipse/Eclipse.password -keyring /home/mm/.eclipse-keyring/.keyring
+Exception Stack Trace:
+java.lang.StackOverflowError
+at org.eclipse.jdt.internal.compiler.lookup.Scope.compilationUnitScope(Scope.java:508)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getType(Scope.java:2524)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getTypeOrPackage(Scope.java:2780)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getType(Scope.java:2526)
+...
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getTypeOrPackage(Scope.java:2780)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getType(Scope.java:2526)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getTypeOrPackage(Scope.java:2780)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getType(Scope.java:2526)

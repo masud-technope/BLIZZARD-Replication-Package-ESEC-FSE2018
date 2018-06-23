@@ -1,0 +1,26 @@
+50394 – InternalAprInputBuffer.fill() doesn't deal correctly with EOF
+I'm using tomcat-native-1.1.20 and tomcat-6.0.29 on CentOS 5.5, and I've written a servlet that is sent large (gigabyte) streams of bytes over HTTP.
+From time to time it fails with the following stacktrace:
+Caused by: java.io.IOException
+at org.apache.coyote.http11.InternalAprInputBuffer.fill(InternalAprInputBuffer.java:798)
+at org.apache.coyote.http11.InternalAprInputBuffer$SocketInputBuffer.doRead(InternalAprInputBuffer.java:827)
+at org.apache.coyote.http11.filters.IdentityInputFilter.doRead(IdentityInputFilter.java:116)
+at org.apache.coyote.http11.InternalAprInputBuffer.doRead(InternalAprInputBuffer.java:738)
+at org.apache.coyote.Request.doRead(Request.java:428)
+at org.apache.catalina.connector.InputBuffer.realReadBytes(InputBuffer.java:304)
+at org.apache.tomcat.util.buf.ByteChunk.substract(ByteChunk.java:403)
+at org.apache.catalina.connector.InputBuffer.read(InputBuffer.java:327)
+at org.apache.catalina.connector.CoyoteInputStream.read(CoyoteInputStream.java:193)
+at java.io.BufferedInputStream.read1(BufferedInputStream.java:273)
+at java.io.BufferedInputStream.read(BufferedInputStream.java:334)
+at java.io.FilterInputStream.read(FilterInputStream.java:107)
+[...]
+Unfortunately, InternalAprInputBuffer throws away the error code on line 798, but I've run it under a debugger and nRead was -70014.
+If you look in the source of apr-1.3.8 at include/apr_errno.h, you'll see this is -APR_EOF.
+The bug is in the implementation of recvbb at line 892 onwards in tomcat-native-1.1.20-src/jni/native/src/network.c.
+Specifically, at the end of the function we check for APR_SUCCESS, and assume all other codes are an error, returning -ss.
+It should also check for EOF (APR_STATUS_IS_EOF), and return zero.
+(Or at least, InternalAprInputBuffer assumes that a return code of 0 <=> EOF).
+Incidentally, apr-1.3.8/include/apr_network_io.h says in its comment on apr_socket_recv() that "It is possible for both bytes to be received and an APR_EOF or other error to be returned.".
+This is a lie.
+All provided implementations of apr_socket_recv return with *len == 0 in case of APR_EOF.

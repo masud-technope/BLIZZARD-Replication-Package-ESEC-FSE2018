@@ -1,0 +1,18 @@
+Bug 145592 – Debugger gets confused with watchpoints on fields with the same name.
+Consider the following code:
+public class Test {
+public static class InnerClass1 {
+public int foo;
+}
+public static class InnerClass2 {
+public int foo;
+}
+public static void main(String[] args) {
+InnerClass1 ic1 = new InnerClass1();
+InnerClass2 ic2 = new InnerClass2();
+ic2.foo = 2;
+}
+}
+Notice that I modify the field within InnerClass2, but do not touch the field within InnerClass1.
+If I add a watchpoint on InnerClass1's field, the debugger will stop on the line "ic2.foo = 2;"
+My guess is that the confusion comes from the fact that the two fields have the same name.

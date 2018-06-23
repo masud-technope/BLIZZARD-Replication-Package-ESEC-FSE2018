@@ -1,0 +1,6 @@
+Bug 179018 – [preference][hovering] 'Externalized String' hover modifier key should be same as Hyperlink modifier
+I20070322-1800
+'Java > Editor > Hovers > Externalized String' hover modifier key should by default be the same as the
+'Editors > Text Editors > Hyperlinking > Java Property Key' modifier keys.
+Was: unconfigured
+Expected: Ctrl+Alt

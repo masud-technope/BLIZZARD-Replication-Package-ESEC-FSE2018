@@ -1,0 +1,27 @@
+Bug 401610 – [1.8][compiler] Allow lambda expressions in non-overloaded method invocation contexts
+BETA_JAVA8:
+-----------
+While the broader issue of overload resolution is the subject matter
+of bug 400871, we can already enable lambda/reference expressions in
+non-overloaded scenarios : i.e where we have just a single candidate
+method that is both potentially applicable and applicable under one
+of strict, loose or variable arity invocation.
+This would enable us
+to compile the following program which fails to compile as of now:
+// ---
+interface I {
+void foo();
+}
+public class X {
+void foo(I i) {
+System.out.println("foo");
+}
+public static void main(String[] args) {
+new X().foo(()->{}); // incorrect complaint about non-functional interface.
+}
+}
+// -----
+This solution would also outline how the concern raised in
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=382701 could be
+readily addressed and can serve as a sketch for how the overall
+overload resolution problem is planned to be tackled.

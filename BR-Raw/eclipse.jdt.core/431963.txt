@@ -1,0 +1,15 @@
+Bug 431963 – [1.8][DOM] Confusion about type annotations of varargs method parameter
+From bug 420116 comment 9, consider the below code snippet:
+interface A {
+int foo2C(Object @NonNull [] @Nullable...
+o2);
+}
+parameter#getTypeAnnotations() invoked on o2 returns only @NonNull annotation which results in:
+class C implements A {
+@Override
+public int foo2C(Object[] @NonNull...
+o2) { // @Nullable is missing
+// TODO Auto-generated method stub
+return 0;
+}
+}

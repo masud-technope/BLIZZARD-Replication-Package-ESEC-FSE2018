@@ -1,0 +1,10 @@
+org.eclipse.ecf.provider.zookeeper.util.Logger.unbindLogService
+org.eclipse.ecf.provider.zookeeper.DiscoveryActivator$2.removedService
+org.eclipse.ecf.provider.zookeeper.DiscoveryActivator$2.removedService
+org.eclipse.ecf.provider.zookeeper.DiscoveryActivator$2.removedService
+org.eclipse.ecf.provider.zookeeper.DiscoveryActivator$2.removedService
+org.eclipse.ecf.provider.zookeeper.DiscoveryActivator$2.removedService
+org.eclipse.ecf.provider.zookeeper.DiscoveryActivator$2.removedService
+org.eclipse.ecf.provider.zookeeper.DiscoveryActivator$2.removedService
+org.eclipse.ecf.provider.zookeeper.DiscoveryActivator$2.removedService
+org.eclipse.ecf.provider.zookeeper.DiscoveryActivator$2.removedService

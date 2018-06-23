@@ -1,0 +1,26 @@
+Bug 228691 – JDT impl of com.sun.mirror.util.Types.isAssignable() returns false for wrapper to primitive assignment
+Created attachment 97473 [details]
+Jar file with annotation processor.
+Build ID: M20080221-1800
+Steps To Reproduce:
+1.
+Enable annotation processing on a current project.
+2.
+Add the attached jar file to the annotation processing path.
+3.
+See the errors.
+4.
+Run the same code with Sun's apt, which correctly allows wrapper to primitive assignment.
+More information:
+The issue here is that Types.isAssignable is returning false when passed a ClassType of "java.lang.Integer" and a PrimitiveType of Kind "INT", respectively.
+ Types should correspond to what's acceptable at the *source* level, not at the binary level for four reasons:
+1.
+ The annotations occur in the source, and are annotating source transformations.
+2.
+ According to the "Overview" section of he Mirror API, it's intended to model the language, as opposed to the VM structures.
+ At the language level, autoboxing and unboxing now allows both int -> Integer and Integer -> int (and of course, the other primitives as well).
+ Types.isAssignable() should allow that assignment.
+3.
+ It's consistent with the reference APT implementation.
+4.
+ Types.isSubtype() is an appropriate method to use when the opposite meaning is desired.

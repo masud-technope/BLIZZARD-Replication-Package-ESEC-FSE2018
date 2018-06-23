@@ -1,0 +1,3 @@
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AutomatedSuite.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/ui/ImportBreakpointsTest.java
+org.eclipse.jdt.debug.tests/testresources/brkpt_missing.bkpt

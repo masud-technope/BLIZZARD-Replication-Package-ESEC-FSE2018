@@ -1,0 +1,6 @@
+java/org/apache/tomcat/jni/SSLContext.java
+webapps/docs/ssl-howto.xml
+java/org/apache/tomcat/jni/SSL.java
+java/org/apache/tomcat/util/net/AprEndpoint.java
+webapps/docs/config/http.xml
+webapps/docs/changelog.xml

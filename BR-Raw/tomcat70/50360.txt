@@ -1,0 +1,60 @@
+50360 – Server socket still bound after Embedded.stop is invoked
+After stopping an Embedded tomcat the server socket is still bound (in state LISTEN).
+This test case fails:
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.ServerSocket;
+import java.net.UnknownHostException;
+import org.apache.catalina.Context;
+import org.apache.catalina.Engine;
+import org.apache.catalina.Host;
+import org.apache.catalina.LifecycleException;
+import org.apache.catalina.LifecycleState;
+import org.apache.catalina.connector.Connector;
+import org.apache.catalina.session.StandardManager;
+import org.apache.catalina.startup.Embedded;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+@SuppressWarnings( "deprecation" )
+public class TestEmbeddedStop {
+@Test
+public void testShutdown() throws Exception {
+final int port = 18888;
+final Embedded tomcat1 = createCatalina( port );
+tomcat1.start();
+tomcat1.stop();
+try {
+new ServerSocket( port );
+} catch ( final IOException e ) {
+Assert.fail( "Could not open new server socket on port " + port, e );
+}
+}
+public static Embedded createCatalina( final int port ) throws MalformedURLException,
+UnknownHostException, LifecycleException {
+final Embedded catalina = new Embedded() {
+@Override
+// Workaround for #50358 - Embedded.stopInternal sets state to STARTING, should be STOPPING
+protected void stopInternal() throws LifecycleException {
+super.stopInternal();
+setState(LifecycleState.STOPPING);
+}
+};
+final Engine engine = catalina.createEngine();
+engine.setName( "engine-" + port );
+engine.setDefaultHost( "localhost" );
+final String docBase = System.getProperty( "java.io.tmpdir" );
+final Host host = catalina.createHost( "localhost", docBase );
+engine.addChild( host );
+final Context context = catalina.createContext( "", "webapp" );
+host.addChild( context );
+new File( docBase, "webapp" ).mkdirs();
+context.setManager( new StandardManager() );
+catalina.addEngine( engine );
+engine.setService( catalina ); // needed to prevent NPE in ApplicationContext.populateSessionTrackingModes
+final Connector connector = catalina.createConnector( "localhost", port, false );
+catalina.addConnector( connector );
+return catalina;
+}
+}
+When  org.apache.catalina.connector.Connector.stopInternal is changed and sets the state to LifecycleState.MUST_DESTROY at the end this works as expected: the server socket is closed and free for further use.

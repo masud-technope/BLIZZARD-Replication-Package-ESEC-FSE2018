@@ -1,0 +1,46 @@
+53333 – NPE is thrown for env-entry without env-entry-type but with injection-target specified
+Created attachment 28863 [details]
+Test web application
+Hi,
+I have a web application (attached) that specifies env-entry in the web.xml.
+The env-entry does not specify env-entry-type, but specifies injection-target.
+When deploying that web application, the exception below is thrown:
+Caused by: java.lang.NullPointerException
+at java.util.Hashtable.put(Hashtable.java:394)
+at org.apache.catalina.deploy.NamingResources.addEnvironment(NamingResources.java:254)
+at org.apache.catalina.deploy.WebXml.configureContext(WebXml.java:1195)
+at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1294)
+at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:855)
+at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:345)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5161)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+Servlet Specification, 14.4 Deployment Descriptor Diagram, describes that use case and how it should be handled:
+"
+env-entry element
+If an injection-target is specified for the environment entry, the enventry-
+type may be ommitted or MUST match the type of the injection target.
+If
+no injection-target is specified, the env-entry-type is required.
+"
+I would like to propose a patch (attached) that solves this issue.
+I'm looking forward for your comments.
+Thanks
+Violeta
+Steps to reproduce the problem:
+1.
+Deploy the attached application
+2.
+Request http://localhost:8080/test/TestServlet
+3.
+NPE is thrown
+4.
+Apply the provided patch
+5.
+Request http://localhost:8080/test/TestServlet
+6.
+The following response should be generated:
+envEntry_1: 1
+envEntry_2: 2
+dataSource: org.apache.tomcat.dbcp.dbcp.BasicDataSource@506dd108

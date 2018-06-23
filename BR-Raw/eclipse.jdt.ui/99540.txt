@@ -1,0 +1,8 @@
+Bug 99540 – [javadoc export] javadoc: locale argument must come first
+To reproduce:
+Project -> Generate Javadoc -> Next -> Next ...
+Now in the "Extra Javadoc options" put "-locale jp".
+ Click Finish.
+ Javadoc
+complains that the "option -locale must be first on the command line," although
+in fact it is the only argument.

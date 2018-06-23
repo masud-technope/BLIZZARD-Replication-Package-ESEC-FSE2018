@@ -1,0 +1,6 @@
+test/org/apache/naming/resources/TestProxyDirContext.java
+java/org/apache/naming/resources/BaseDirContext.java
+java/org/apache/naming/resources/FileDirContext.java
+java/org/apache/naming/resources/ProxyDirContext.java
+java/org/apache/naming/resources/WARDirContext.java
+webapps/docs/changelog.xml

@@ -1,0 +1,18 @@
+50230 – Recursive dependency between the tomcat-catalina-ha and tomcat-catalina
+From the pom file of tomcat-catalina-ha, it depends on the tomcat-catalina.
+But one class HTMLManagerServlet in the tomcat-catalina has a reference to a class BackupManager in the tomcat-catalina-ha.
+ Is there a way to remove the recursive dependency between those two components ?
+By the way, there mightbe a NullPointerException issue while using the BackupManager in the HTMLManagerServlet.
+---> line.523
+Manager manager = ctxt.getManager();
+if (manager instanceof BackupManager && showProxySessions) {
+args[5] = new Integer(
+((BackupManager)manager).getActiveSessionsFull());
+} else if (ctxt.getManager() != null){
+args[5] = new Integer(manager.getActiveSessions());
+} else {
+args[5] = new Integer(0);
+}
+<---
+Please also check the thread from
+http://www.mail-archive.com/users@tomcat.apache.org/msg83188.html

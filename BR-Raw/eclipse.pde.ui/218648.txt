@@ -1,0 +1,3 @@
+Bug 218648 – [Error Log] Export Log... always exports the first error
+Build: I20080207-1530
+It doesn't matter which entry I select in the Error Log, the exported one is always the first one.

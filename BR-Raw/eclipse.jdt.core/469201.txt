@@ -1,0 +1,19 @@
+Bug 469201 – [compiler] inherited package private method cannot be seen if receiver type is a capture.
+I noticed that a variable captured in a lambda expression cannot see an inherited method whereas outside of the lambda expression, the method is plainly visible.
+static class Bar {
+}
+static class Foo extends FooPrime {
+}
+static class FooPrime {
+void bar(Bar bar){}
+}
+public static void main(String ...args) {
+List<? extends FooPrime> foos = new ArrayList<>();
+Bar bar = new Bar();
+// Compiles
+foos.get(0).bar(bar);
+foos.forEach(f -> {
+// Does not compile - The method bar(Bar) from the type FooPrime is not visible
+f.bar(bar);
+});
+}

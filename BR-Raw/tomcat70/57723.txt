@@ -1,0 +1,23 @@
+57723 – An incomplete fix for invalid context paths in StandardContext.java / JNDI fails
+The fix for #57216 is aimed handle invalid context paths, such as "/".
+When using Tomcat.addWebapp() the (wrong) name for the context is
+already set in Line 534.
+public Context addWebapp(Host host, String url, String path) {
+return addWebapp(host, url, url, path);
+}
+public Context addWebapp(Host host, String url, String name, String path) {
+silence(host, url);
+Context ctx = createContext(host, url);
+ctx.setName(name);
+ctx.setPath(url);
+ctx.setDocBase(path);
+...
+Therefore StandardContext.setPath()#2198 does not set the corrected name for the
+context.
+This causes JNDI to fail, i.e.
+in JSPCompilationContext.getLastModified()#410 and
+#421.
+if(invalid) should also include setting the new corrected name.
+Or fail hard - that would have made it easier to find.
+Best regards,
+Christian

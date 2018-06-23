@@ -1,0 +1,11 @@
+Bug 426965 – [1.8] Eclipse rejects valid type conversion in lambda
+This code is rejected, while Javac allows:
+public class X {
+interface I<U extends List<X>, V> {
+V foo(U p);
+}
+public void main() {
+I<List<X>, Object> fi = p -> p.toArray(new X[] {});
+}
+}
+This appears to be a recent regression.

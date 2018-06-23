@@ -1,0 +1,26 @@
+Bug 385395 – JMDNS provider shutdown fails with NPE if connect was not successful
+Connect:
+org.eclipse.ecf.core.ContainerConnectException: Cannot create JmDNS instance
+at org.eclipse.ecf.provider.jmdns.container.JMDNSDiscoveryContainer.connect(JMDNSDiscoveryContainer.java:108)
+at org.eclipse.mylyn.internal.hudson.ui.HudsonDiscovery.start(HudsonDiscovery.java:138)
+at org.eclipse.mylyn.internal.hudson.ui.HudsonStartup.lazyStartup(HudsonStartup.java:43)
+at org.eclipse.mylyn.internal.builds.ui.BuildsUiPlugin$UiStartupExtensionPointReader$1.run(BuildsUiPlugin.java:159)
+...
+Caused by: java.net.SocketException: No such device
+at java.net.PlainDatagramSocketImpl.join(Native Method)
+at java.net.PlainDatagramSocketImpl.join(PlainDatagramSocketImpl.java:181)
+at java.net.MulticastSocket.joinGroup(MulticastSocket.java:277)
+at javax.jmdns.impl.JmDNSImpl.openMulticastSocket(JmDNSImpl.java:263)
+at javax.jmdns.impl.JmDNSImpl.init(JmDNSImpl.java:234)
+at javax.jmdns.impl.JmDNSImpl.<init>(JmDNSImpl.java:180)
+at javax.jmdns.JmDNS.create(JmDNS.java:32)
+at org.eclipse.ecf.provider.jmdns.container.JMDNSDiscoveryContainer.connect(JMDNSDiscoveryContainer.java:100)
+...
+85 more
+On disconnect the following NPE occurs:
+java.lang.NullPointerException
+at org.eclipse.ecf.provider.jmdns.container.JMDNSDiscoveryContainer.disconnect(JMDNSDiscoveryContainer.java:153)
+at org.eclipse.mylyn.internal.hudson.ui.HudsonDiscovery.stop(HudsonDiscovery.java:151)
+at org.eclipse.mylyn.internal.hudson.ui.HudsonStartup.stop(HudsonStartup.java:54)
+at org.eclipse.mylyn.internal.hudson.ui.HudsonUiPlugin.stop(HudsonUiPlugin.java:30)
+More context is on bug 383316.

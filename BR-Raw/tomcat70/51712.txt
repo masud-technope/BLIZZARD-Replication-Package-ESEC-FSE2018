@@ -1,0 +1,16 @@
+51712 – Regression in cache-control headers for requests with security-constraints
+Created attachment 27428 [details]
+Patch to revert isSecure() check
+Copied from http://markmail.org/thread/rlkpd3hqihc3zbji
+CLN 1126273
+http://svn.apache.org/viewvc?view=revision&revision=1126273
+sets the default value for securePagesWithPragma to false, but also (re)added a request.isSecure() check to the block for adding the cache-control headers.
+This results in the headers not being added for secure requests with security-constraints.
+ This is a change in behavior from Tomcat-7.0.14 that causes IE8 to improperly cache some secure pages.
+The secure check was initially added in CLN 287690
+http://svn.apache.org/viewvc?view=revision&revision=287690
+to fix a bug in IE caching
+https://issues.apache.org/bugzilla/show_bug.cgi?id=6641
+but was commented out in CLN 302373
+http://svn.apache.org/viewvc?view=revision&revision=302373
+patch to remove isSecure() check added.

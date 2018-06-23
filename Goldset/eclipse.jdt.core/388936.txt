@@ -1,0 +1,9 @@
+org.eclipse.jdt.core.tests.model/JCL/converterJclMin1.8.jar
+org.eclipse.jdt.core.tests.model/JCL/converterJclMin1.8src.zip
+org.eclipse.jdt.core.tests.model/JCL/jclMin1.8.jar
+org.eclipse.jdt.core.tests.model/JCL/jclMin1.8src.zip
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ConverterTestSetup.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/AbstractJavaModelTests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ModelTestsUtil.java
+org.eclipse.jdt.core.tests.model/workspace/Converter18/.classpath
+org.eclipse.jdt.core.tests.model/workspace/Converter18/.project

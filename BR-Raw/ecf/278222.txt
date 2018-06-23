@@ -1,0 +1,4 @@
+Bug 278222 – [core] improve error message when container type not found
+The current error message for when a container type not found is:
+org.eclipse.ecf.core.ContainerCreateException: ContainerTypeDescription cannot be null at
+This should be improved to give more accurate information.

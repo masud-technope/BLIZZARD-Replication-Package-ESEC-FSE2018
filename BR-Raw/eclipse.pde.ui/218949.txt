@@ -1,0 +1,4 @@
+Bug 218949 – Add "change" to setup for project nature addition
+There should be a visible change in the setup for the API tooling nature addition to each project.
+This way, projects with no component.xml will still show that they will have changes applied.
+Ideally, the change would not be able to be disabled (but not sure that is possible).

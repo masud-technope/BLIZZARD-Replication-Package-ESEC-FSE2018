@@ -1,0 +1,12 @@
+Bug 198927 – Provide error reporting around invalid Bundle-ManifestVersion's
+I20070806-0010
+I accidentally updated the Bundle-ManifestVersion instead of the Bundle-Version and from then on PDE's manifest compiler stopped reporting any errors and warnings on that bundle.
+It seems that the compiler aborts without notice.
+Test Case:
+1.
+open a manifest.mf that has errors and/or warnings
+2.
+set the Bundle-ManifestVersion to '3.3.100'
+==> compiler no longer reports anything.
+I'm marking this as major because all other PDE related features like updating of the PDE container when updating the required bundles section no longer works too.
+It took me a while to find my error.

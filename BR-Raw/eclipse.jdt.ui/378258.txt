@@ -1,0 +1,9 @@
+Bug 378258 – [hovering] F2 hover shows variable name instead of rich variable value hover
+Set a breakpoint and then debug this:
+public class Try {
+static int fValue= 42;
+public static void main(String[] args) {
+System.out.println("hi " + fValue);
+}
+}
+Hovering over 'fValue' or 'out' shows the variable value hover, but F2 shows shows the variable name.

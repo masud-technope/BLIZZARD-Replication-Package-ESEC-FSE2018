@@ -1,0 +1,3 @@
+Bug 342410 – [quick assist] 'Pick out selected part of string' does not have any tests
+Link for code coverage tool report
+http://download.eclipse.org/eclipse/downloads/drops/I20110315-0800/testresults/reports/org.eclipse.jdt.ui_3.7.0.v20110315-0800/org.eclipse.jdt.ui/org.eclipse.jdt.internal.ui.text.correction/AdvancedQuickAssistProcessor.java.html#L1507

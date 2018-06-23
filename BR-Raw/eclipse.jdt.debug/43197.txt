@@ -1,0 +1,24 @@
+Bug 43197 – Race condition between console line tracker and debug terminate event
+I have both a console line tracker and a debug event listener registered for
+the same process.
+When the process terminates, I want to do different things
+in the plugin based on the messages that were written out by the process.
+However, sometimes I'm getting the process terminated event *before* the last
+call to the line tracker is made.
+It looks like the process termination event
+is handled by a Job worker thread, while the console line comes in on the main
+thread.
+They appear to happen at about the same time so it's a race to see
+which is actually called first.
+I tried to use the IConsoleLineTracker.dispose() method to perform the action
+but that is not called until the launch is removed.
+There doesn't appear to be
+a way for the console line tracker to know if it has the last line or not.
+If the code that fires the termination event were changed to wait until the
+last IConsoleLineTracker.lineAppended() method was called and returns first,
+that would take care of it.
+Another way would be to have a new method, say
+IConsoleLineTracker.term(), to mirror the init() method.
+It would be called
+after the last lines had been appended and the process was terminated, and I
+could put my what-to-do-after-termination logic there.

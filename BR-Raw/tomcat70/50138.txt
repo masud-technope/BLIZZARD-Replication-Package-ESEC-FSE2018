@@ -1,0 +1,22 @@
+50138 – Lack of synchronization in org.apache.catalina.security.SecurityUtil
+Symptom: all processor threads spin madly in:
+==============
+"tomcat-processor-20" daemon prio=10 tid=0x09210800 nid=0x51fb runnable [0x61b76000]
+java.lang.Thread.State: RUNNABLE
+at java.util.HashMap.getEntry(HashMap.java:347)
+at java.util.HashMap.containsKey(HashMap.java:335)
+at org.apache.catalina.security.SecurityUtil.doAsPrivilege(SecurityUtil.java:227)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:230)
+at org.apache.catalina.core.ApplicationFilterChain.access$000(ApplicationFilterChain.java:56)
+at org.apache.catalina.core.ApplicationFilterChain$1.run(ApplicationFilterChain.java:189)
+at java.security.AccessController.doPrivileged(Native Method)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:185)
+...
+==============
+Cause: org.apache.catalina.security.SecurityUtil.objectCache is a HashMap, but access to it is not synchronized.
+The javadoc for HashMap says:
+=============
+Note that this implementation is not synchronized.
+If multiple threads access a hash map concurrently, and at least one of the threads modifies the map structurally, it must be synchronized externally.
+=============
+Proposed solution: change objectCache to ConcurrentHashMap;

@@ -1,0 +1,9 @@
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/IndentActionTest.java
+org.eclipse.jdt.text.tests/testResources/indentation/emptySingleLineComment01/Modified.java
+org.eclipse.jdt.text.tests/testResources/indentation/emptySingleLineComment03/Before.java
+org.eclipse.jdt.text.tests/testResources/indentation/emptySingleLineComment02/Modified.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/IndentAction.java
+org.eclipse.jdt.text.tests/testResources/indentation/emptySingleLineComment01/Before.java
+org.eclipse.jdt.text.tests/testResources/indentation/emptySingleLineComment02/Before.java
+org.eclipse.jdt.text.tests/testResources/indentation/bug122261/Modified.java
+org.eclipse.jdt.text.tests/testResources/indentation/emptySingleLineComment03/Modified.java

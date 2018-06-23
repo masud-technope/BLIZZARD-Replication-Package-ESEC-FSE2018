@@ -1,0 +1,32 @@
+58296 – Possible memory leak in JspRuntimeContext
+Limitation of maxLoadedJsps and usage of tag files may result in a memory leak in JspRuntimeContext.
+Steps to reproduce the leak:
+1) Set Tomcat in its web.xml to production mode and limit the max jsp count to 2
+<init-param>
+<param-name>maxLoadedJsps</param-name>
+<param-value>2</param-value>
+</init-param>
+<init-param>
+<param-name>development</param-name>
+<param-value>false</param-value>
+</init-param>
+2) deploy the attach WAR-file "tomcat-test.war".
+The WAR contains one HttpServlet, three jsps and one tag file.
+GET-Requests to http://localhost:8080/tomcat-test/test render the jsps in the sequence "1.jsp" -> "2.jsp" -> "3.jsp".
+JSPs 1.jsp and 3.jsp use the tag "test.tag", 2.jsp contains only html.
+3) make at least 5 GET-Requests to http://localhost:8080/tomcat-test/test
+4) take a heap dump
+5) open the dump with Eclipse MAT
+6) execute the OOQL-Query
+select * from org.apache.jasper.util.FastRemovalDequeue$Entry e where e.valid=false
+7) "Path To GC Roots" (right click on one result) shows that the invalid entries are in the retained heap of the tag's JspServletWrapper and hence in the retained heap of JspRuntimeContext.
+The retained heap of JspRuntimeContext grows with every unloaded Jsp (its Entry in the jspQueue).
+The bug is reproducible with Tomcat 7.0.52 and 8.0.26.
+Supposed causes:
+1) FastRemovalDequeue: removed Entry-instances are flagged as invalid.
+The "previous"-field of removed elements isn't set to null.
+So removed elements still reference their "previous" element (which still may be in the jspQueue of JspRuntimeContext)
+2) JspServletWrappers of currently loaded jsps and tag files are stored in the ConcurrentHashMap "jsps" in JspRuntimeContext.
+JspServletWrappers of Tag files hold (indirectly over JspCompilationContext -> JasperTagInfo -> ImplicitTagLibraryInfo -> ParserController) references to JspServletWrapper instances with already removed "unloadHandles" (FastRemovalDequeue$Entry instances with valid == false).
+2) leads in combination with 1) to a reproducible memory leak: the chain of "previous" linked entries contains all JspServletWrappers of unloaded and currently loaded jsps.
+In combination with maxLoadedJsps != -1, the chain can grow till an OutOfMemoryError occurs.

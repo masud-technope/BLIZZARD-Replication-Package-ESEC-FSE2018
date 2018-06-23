@@ -1,0 +1,2 @@
+Bug 421569 – Remove dependency on IExtensionRegistry
+Replacing IExtensionRegistry functionality with the OSGi service registry will drastically simplify ECF deployment on non-Equinox OSGi runtimes.

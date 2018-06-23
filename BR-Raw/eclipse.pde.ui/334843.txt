@@ -1,0 +1,19 @@
+Bug 334843 – UseReportConverter prints out reference plus value(s) for "API patterns"
+Build Identifier: 3.7M4
+To reproduce:
+1.
+Run the API Use Ant Task with attribute:
+apipatterns=".*"
+2.
+Convert the XML report to HTML using the API Use Report Conversion Ant Task.
+The resulting HTML will report the used API patterns as :
+API Patterns: 	[Ljava.lang.String;@b524aa.*
+I looked at the code and the problem appears to be in class UseReportConverter, where the API patterns string array is appended directly:
+String[] patterns = this.metadata.getApiPatterns();
+if(patterns != null) {
+buffer.append(this.metadata.getApiPatterns());
+for (int i = 0; i < patterns.length; i++) {
+buffer.append(patterns[i]).append(BR);
+}
+}
+Reproducible: Always

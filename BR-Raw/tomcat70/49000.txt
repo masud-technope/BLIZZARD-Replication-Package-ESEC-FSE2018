@@ -1,0 +1,9 @@
+49000 – Cookie parsing bug when an empty value has an equal sign on the end
+Created attachment 25190 [details]
+Code patch that stops the loop parsing the final character if it's an equal sign
+Cookie values such as the following don't get their last value parsed as an empty value.
+i.e.
+this does create a 'bob' cookie key:
+Cookie: fred=1; jim=2; bob
+and this doesn't create a 'bob' cookie key:
+Cookie: fred=1; jim=2; bob=

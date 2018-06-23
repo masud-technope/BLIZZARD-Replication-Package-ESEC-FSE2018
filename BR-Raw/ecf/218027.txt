@@ -1,0 +1,2 @@
+Bug 218027 – [Discovery][jSLP] Provider doesn't handle scope correctly
+Discovered services don't have the scope set correctly

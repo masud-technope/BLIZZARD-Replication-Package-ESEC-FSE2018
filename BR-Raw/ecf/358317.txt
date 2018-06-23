@@ -1,0 +1,112 @@
+Bug 358317 – [generic server] bundle shutdown can throw NPE
+Under some conditions, the bundle Activator can throw an NPE in the org.eclipse.ecf.server.generic bundle:
+!ENTRY org.eclipse.ecf.server.generic 4 0 2011-09-20 15:48:47.724
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Exception in org.eclipse.ecf.internal.server.generic.Activator.s
+top() of bundle org.eclipse.ecf.server.generic.
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl.stop(BundleContextImpl.java:79
+1)
+at org.eclipse.osgi.framework.internal.core.BundleHost.stopWorker(BundleHost.java:510)
+at org.eclipse.osgi.framework.internal.core.AbstractBundle.suspend(AbstractBundle.java:565)
+at org.eclipse.osgi.framework.internal.core.Framework.suspendBundle(Framework.java:1160)
+at org.eclipse.osgi.framework.internal.core.StartLevelManager.decFWSL(StartLevelManager.java
+:595)
+at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelMana
+ger.java:257)
+at org.eclipse.osgi.framework.internal.core.StartLevelManager.shutdown(StartLevelManager.jav
+a:215)
+at org.eclipse.osgi.framework.internal.core.InternalSystemBundle.suspend(InternalSystemBundl
+e.java:284)
+at org.eclipse.osgi.framework.internal.core.Framework.shutdown(Framework.java:690)
+at org.eclipse.osgi.framework.internal.core.Framework.close(Framework.java:597)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.shutdown(EclipseStarter.java:390)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.eclipse.equinox.servletbridge.FrameworkLauncher.stop(FrameworkLauncher.java:690)
+at org.eclipse.equinox.servletbridge.BridgeServlet.destroy(BridgeServlet.java:77)
+at org.apache.catalina.core.StandardWrapper.unload(StandardWrapper.java:1393)
+at org.apache.catalina.core.StandardWrapper.stop(StandardWrapper.java:1738)
+at org.apache.catalina.core.StandardContext.stop(StandardContext.java:4509)
+at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java:924)
+at org.apache.catalina.startup.HostConfig.undeployApps(HostConfig.java:1191)
+at org.apache.catalina.startup.HostConfig.stop(HostConfig.java:1162)
+at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:313)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:117)
+at org.apache.catalina.core.ContainerBase.stop(ContainerBase.java:1086)
+at org.apache.catalina.core.ContainerBase.stop(ContainerBase.java:1098)
+at org.apache.catalina.core.StandardEngine.stop(StandardEngine.java:448)
+at org.apache.catalina.core.StandardService.stop(StandardService.java:584)
+at org.apache.catalina.core.StandardServer.stop(StandardServer.java:744)
+at org.apache.catalina.startup.Catalina.stop(Catalina.java:628)
+at org.apache.catalina.startup.Catalina$CatalinaShutdownHook.run(Catalina.java:671)
+Caused by: java.lang.NullPointerException
+at org.osgi.util.tracker.ServiceTracker.<init>(ServiceTracker.java:197)
+at org.eclipse.ecf.internal.server.generic.Activator.getContainerManager(Activator.java:56)
+at org.eclipse.ecf.server.generic.GenericServerContainerGroup.removeContainerFromContainerMa
+nager(GenericServerContainerGroup.java:97)
+at org.eclipse.ecf.server.generic.GenericServerContainerGroup.close(GenericServerContainerGr
+oup.java:161)
+at org.eclipse.ecf.internal.server.generic.GenericServerContainerGroupFactory.close(GenericS
+erverContainerGroupFactory.java:85)
+at org.eclipse.ecf.internal.server.generic.Activator.stop(Activator.java:126)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl$2.run(BundleContextImpl.java:7
+71)
+at java.security.AccessController.doPrivileged(Native Method)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl.stop(BundleContextImpl.java:76
+4)
+...
+31 more
+Root exception:
+java.lang.NullPointerException
+at org.osgi.util.tracker.ServiceTracker.<init>(ServiceTracker.java:197)
+at org.eclipse.ecf.internal.server.generic.Activator.getContainerManager(Activator.java:56)
+at org.eclipse.ecf.server.generic.GenericServerContainerGroup.removeContainerFromContainerMa
+nager(GenericServerContainerGroup.java:97)
+at org.eclipse.ecf.server.generic.GenericServerContainerGroup.close(GenericServerContainerGr
+oup.java:161)
+at org.eclipse.ecf.internal.server.generic.GenericServerContainerGroupFactory.close(GenericS
+erverContainerGroupFactory.java:85)
+at org.eclipse.ecf.internal.server.generic.Activator.stop(Activator.java:126)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl$2.run(BundleContextImpl.java:7
+71)
+at java.security.AccessController.doPrivileged(Native Method)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl.stop(BundleContextImpl.java:76
+4)
+at org.eclipse.osgi.framework.internal.core.BundleHost.stopWorker(BundleHost.java:510)
+at org.eclipse.osgi.framework.internal.core.AbstractBundle.suspend(AbstractBundle.java:565)
+at org.eclipse.osgi.framework.internal.core.Framework.suspendBundle(Framework.java:1160)
+at org.eclipse.osgi.framework.internal.core.StartLevelManager.decFWSL(StartLevelManager.java
+:595)
+at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelMana
+ger.java:257)
+at org.eclipse.osgi.framework.internal.core.StartLevelManager.shutdown(StartLevelManager.jav
+a:215)
+at org.eclipse.osgi.framework.internal.core.InternalSystemBundle.suspend(InternalSystemBundl
+e.java:284)
+at org.eclipse.osgi.framework.internal.core.Framework.shutdown(Framework.java:690)
+at org.eclipse.osgi.framework.internal.core.Framework.close(Framework.java:597)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.shutdown(EclipseStarter.java:390)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.eclipse.equinox.servletbridge.FrameworkLauncher.stop(FrameworkLauncher.java:690)
+at org.eclipse.equinox.servletbridge.BridgeServlet.destroy(BridgeServlet.java:77)
+at org.apache.catalina.core.StandardWrapper.unload(StandardWrapper.java:1393)
+at org.apache.catalina.core.StandardWrapper.stop(StandardWrapper.java:1738)
+at org.apache.catalina.core.StandardContext.stop(StandardContext.java:4509)
+at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java:924)
+at org.apache.catalina.startup.HostConfig.undeployApps(HostConfig.java:1191)
+at org.apache.catalina.startup.HostConfig.stop(HostConfig.java:1162)
+at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:313)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:117)
+at org.apache.catalina.core.ContainerBase.stop(ContainerBase.java:1086)
+at org.apache.catalina.core.ContainerBase.stop(ContainerBase.java:1098)
+at org.apache.catalina.core.StandardEngine.stop(StandardEngine.java:448)
+at org.apache.catalina.core.StandardService.stop(StandardService.java:584)
+at org.apache.catalina.core.StandardServer.stop(StandardServer.java:744)
+at org.apache.catalina.startup.Catalina.stop(Catalina.java:628)
+at org.apache.catalina.startup.Catalina$CatalinaShutdownHook.run(Catalina.java:671)

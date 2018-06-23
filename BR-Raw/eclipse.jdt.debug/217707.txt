@@ -1,0 +1,34 @@
+Bug 217707 – Installed JRE dialog does not open (page contains invalid values)
+Build ID: I20071213-1700
+Steps To Reproduce:
+1.
+Launch Eclipse with J9 DesktopEE 6.2 -vm <DEE-install>\bin\j9w.exe with new workspace.
+2.
+Open Preferences->Installed JRE.
+3.
+Message "Could not accept changes: the currently displayed page contains invalid values".
+More information:
+!SESSION 2008-02-04 10:19:18.120 -----------------------------------------------
+eclipse.buildId=I20071213-1700
+java.fullversion=IBM J9 2.4 Windows XP x86-32  (JIT enabled)
+J9VM - 20071120_014991_lHdFGQ
+JIT  - r9.weme62_20071115_2130
+GC   - 20071030_AA
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+!ENTRY org.eclipse.jface 4 2 2008-02-04 10:19:45.199
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jface".
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.core.runtime.Path.<init>(Path.java:152)
+at org.eclipse.jdt.internal.launching.StandardVMType.getDefaultPackageRootPath(StandardVMType.java:272)
+at org.eclipse.jdt.internal.launching.StandardVMType.getDefaultLibraryLocations(StandardVMType.java:306)
+at org.eclipse.jdt.internal.launching.StandardVMType.canDetectDefaultSystemLibraries(StandardVMType.java:140)
+at org.eclipse.jdt.internal.launching.StandardVMType.detectInstallLocation(StandardVMType.java:200)
+at org.eclipse.jdt.launching.JavaRuntime.detectEclipseRuntime(JavaRuntime.java:1661)
+at org.eclipse.jdt.launching.JavaRuntime.initializeVMs(JavaRuntime.java:2544)
+at org.eclipse.jdt.launching.JavaRuntime.getVMInstallTypes(JavaRuntime.java:486)
+at org.eclipse.jdt.internal.debug.ui.jres.InstalledJREsBlock.fillWithWorkspaceJREs(InstalledJREsBlock.java:981)
+at org.eclipse.jdt.internal.debug.ui.jres.InstalledJREsBlock.createControl(InstalledJREsBlock.java:350)
+at org.eclipse.jdt.internal.debug.ui.jres.JREsPreferencePage.createContents(JREsPreferencePage.java:112)
+at org.eclipse.jface.preference.PreferencePage.createControl(PreferencePage.java:235)

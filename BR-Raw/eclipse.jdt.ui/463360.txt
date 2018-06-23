@@ -1,0 +1,3 @@
+Bug 463360 – [override method][null] generating method override should not create redundant null annotations
+Follow-up from bug 353472 and bug 420116: while it's great that annotations are copied, this may create redundant annotations when a @NonNullByDefault is in effect at the subtype.
+To respect the purpose of @NNBD (reduce the number of annotations), we should consider this and avoid generating redundant annotations.

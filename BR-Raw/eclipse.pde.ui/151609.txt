@@ -1,0 +1,3 @@
+Bug 151609 – Remove deprecations from plugin.xml
+The plugin.xml for the org.eclipse.pde.ui plug-in has a few deprecations on it due to changes in the org.eclipse.ui.propertyPages extension point schema.
+We should make them go away.

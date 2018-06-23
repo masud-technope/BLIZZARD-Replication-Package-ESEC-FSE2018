@@ -1,0 +1,19 @@
+Bug 297752 – [ccp] Pasting copied method only pastes method name
+Build: 3.6 M4
+1) Select a method in the Outline view
+2) Ctrl+X to cut the method
+3) Select a new destination file in the Project Explorer view
+4) Ctrl+V to paste
+The entire method bodies are cut from the source file, but only the string from the outline view is pasted into the destination.
+I.e., in the source file I had this:
+public void testGetValueForArgument() throws Exception {
+List args = new ArrayList();
+args.add("-foo");
+args.add("bar");
+assertEquals( "bar", ParserUtils.getValueForArgument("-foo", args));
+args.set(1, "-bar");
+assertEquals(null, ParserUtils.getValueForArgument("-foo", args));
+}
+And in the destination I got this:
+testGetValueForArgument()
+I would expect Cut/Paste to be symmetric and paste the same method body that was cut at the source location.

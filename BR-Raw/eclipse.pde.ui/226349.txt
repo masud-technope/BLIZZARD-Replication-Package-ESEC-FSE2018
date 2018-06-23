@@ -1,0 +1,27 @@
+Bug 226349 – Eclipse logs seemingly useless "could not install bundle" error for every bundle
+Build ID: I20080330-1350
+Steps To Reproduce:
+1.
+Download Eclipse 3.4 M6
+2.
+Develop a plug-in
+3.
+Test it in a standard runtime workbench
+4.
+Check your .log file
+More information:
+My .log file contains this:
+!ENTRY org.eclipse.update.configurator 0 0 2008-04-09 15:03:28.015
+!MESSAGE Could not install bundle plugins/com.ibm.icu_3.8.1.v20080304.jar   Bundle "com.ibm.icu" version "3.8.1.v20080304" has already been installed from: reference:file:/C:/eclipse/eclipse-SDK-3.4M6-win32/eclipse/plugins/com.ibm.icu_3.8.1.v20080304.jar
+!ENTRY org.eclipse.update.configurator 0 0 2008-04-09 15:03:28.031
+!MESSAGE Could not install bundle plugins/com.jcraft.jsch_0.1.37.v200803061811.jar   Bundle "com.jcraft.jsch" version "0.1.37.v200803061811" has already been installed from: reference:file:/C:/eclipse/eclipse-SDK-3.4M6-win32/eclipse/plugins/com.jcraft.jsch_0.1.37.v200803061811.jar
+!ENTRY org.eclipse.update.configurator 0 0 2008-04-09 15:03:28.031
+!MESSAGE Could not install bundle plugins/javax.servlet_2.4.0.v200803061910.jar   Bundle "javax.servlet" version "2.4.0.v200803061910" has already been installed from: reference:file:/C:/eclipse/eclipse-SDK-3.4M6-win32/eclipse/plugins/javax.servlet_2.4.0.v200803061910.jar
+!ENTRY org.eclipse.update.configurator 0 0 2008-04-09 15:03:28.046
+!MESSAGE Could not install bundle plugins/javax.servlet.jsp_2.0.0.v200803061910.jar   Bundle "javax.servlet.jsp" version "2.0.0.v200803061910" has already been installed from: reference:file:/C:/eclipse/eclipse-SDK-3.4M6-win32/eclipse/plugins/javax.servlet.jsp_2.0.0.v200803061910.jar
+.
+.
+.
+and so on for every single bundle in Eclipse, as well as for every plug-in in my workspace.
+ It looks like it is not realizing that the relative path is exactly the same as the absolute path or something.
+ This makes it appear as if your Eclipse install is busted, but it seems to be working just fine.

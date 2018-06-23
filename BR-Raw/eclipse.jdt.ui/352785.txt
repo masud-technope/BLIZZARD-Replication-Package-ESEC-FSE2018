@@ -1,0 +1,20 @@
+Bug 352785 – [extract method] Refactor > Extract Method with break statement in switch causes NPE
+Build Identifier: 20110615-0604
+If I attempt to Refactor > Extract Method which includes a break statement inside a switch, an unexpected exception occurs, which is an NPE (will attach stack later).
+It should give an error which says something like you can't refactor a method which includes multiple exit points, or something like that.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Write some code:
+public void foo(int i) {
+switch (i) {
+case 1:
+if (true) {
+break;
+}
+}
+}
+2.
+Highlight the some code within the case 1 statement.
+3.
+Choose Refactor > Extract Method

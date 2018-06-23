@@ -1,0 +1,35 @@
+Bug 484114 – [content assist] Flow sensitive typing doesn't work in autocompletion when in else if condition
+Consider the following piece of code:
+--------------------------------------------
+import java.util.function.Predicate;
+public class Test {
+void x() {
+Object a = null;
+if (a instanceof Predicate && a.)
+}
+}
+--------------------------------------------
+I can now use auto-completion on "a." to automatically cast a to Predicate (we know this from the instanceof check) and then call Predicate methods such as test():
+--------------------------------------------
+import java.util.function.Predicate;
+public class Test {
+void x() {
+Object a = null;
+if (a instanceof Predicate && ((Predicate) a).test(null))
+}
+}
+--------------------------------------------
+This doesn't seem to work in a condition of an else if statement:
+--------------------------------------------
+import java.util.function.Predicate;
+public class Test {
+void x() {
+Object a = null;
+if (true)
+;
+else if (a instanceof Predicate && a.)
+}
+}
+--------------------------------------------
+Now, I no longer have the choice of auto-completing the test() method.
+Only Object methods (the declared type of a) are available.

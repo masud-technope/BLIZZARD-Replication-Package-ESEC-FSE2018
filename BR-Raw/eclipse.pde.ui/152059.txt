@@ -1,0 +1,19 @@
+Bug 152059 – Warning in build.properties about plugin.xml not listed when using wildcards
+I20060725-0800
+I have the following in my build.properties:
+source.helptests.jar=src/
+bin.includes = data/,\
+livehelp/,\
+nl/,\
+about.html,\
+*.xml,\
+doc.zip,\
+plugin.properties,\
+*.bat,\
+*.jar,\
+META-INF/
+bin.excludes=build.xml
+I get the following warning:
+Severity and Description	Path	Resource	Location	Creation Time	Id
+An entry for plugin.xml is required in bin.includes	org.eclipse.help.tests	build.properties	line 12	1154030652621	47219
+However the *.xml entry covers this file, it's just not listed individually.

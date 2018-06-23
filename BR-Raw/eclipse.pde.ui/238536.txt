@@ -1,0 +1,7 @@
+Bug 238536 – [Feature editor] Included feature order matters
+Same problem as with the product editor [1].
+The order of the included features matters during compilation.
+Thus the feature editor should offer up/down buttons.
+Though an even better solution would be to calculate the feature order automatically [2].
+[1] https://bugs.eclipse.org/bugs/show_bug.cgi?id=177697
+[2] https://bugs.eclipse.org/bugs/show_bug.cgi?id=192292

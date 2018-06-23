@@ -1,0 +1,40 @@
+Bug 266878 – [perfs] Regression on 'Rename method with overloading' test
+The perf results verification for N20090228-2000 build confirms that a regression occurred for RenameMethodWithOverloadPerfTests#test_100_10() scenario since N20090212-2000 build.
+Here are the numbers on all machines since 3.5M5:
+builds		Rename method with overloading
+M4	I20081211-1908	-6.0%
+M5	I20090202-1535	0.5%
+I20090203-1200	0.1%
+N20090205-2000	-0.7%
+I20090210-0950	-6.2%
+N20090212-2000	-3.1%
+I20090217-2200	-18.8%
+N20090219-2000	-14.3%
+SLED 10 Sun 1.5.0_10 (2 x 3.00GHz - 3GB RAM)
+builds		Rename method with overloading
+M4	I20081211-1908	-0.2%
+M5	I20090202-1535	-1.6%
+I20090203-1200	-2.8%
+N20090205-2000	-2.3%
+I20090210-0950	-0.1%
+N20090212-2000	-7.0%
+I20090217-2200	-10.4%
+I20090224-0800	-9.1%
+N20090226-2000	-10.0%
+N20090228-2000	-9.4%
+diff M5	-10.2%
+diff previous	-1.2%
+RHEL 5.0 Sun 6.0_04 (2 x 3.00GHz - 3GB RAM)
+builds		Rename method with overloading
+M4	I20081211-1908	-2.1%
+M5	I20090202-1535	0.9%
+I20090203-1200	-3.8%
+N20090205-2000	-2.4%
+I20090210-0950	0.5%
+N20090212-2000	-6.6%
+I20090217-2200	-7.2%
+N20090219-2000	-7.0%
+I20090224-0800	-12.4%
+N20090226-2000	-9.9%
+N20090228-2000	-5.6%
+Even if the error on the test is important, the regression seems to be confirmed by the Elapsed Process time graph on each machine...

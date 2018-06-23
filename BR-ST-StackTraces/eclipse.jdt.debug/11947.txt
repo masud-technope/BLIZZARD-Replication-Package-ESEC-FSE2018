@@ -1,0 +1,11 @@
+org.eclipse.jdt.internal.debug.ui.JDIDebugUIPlugin.getActiveWorkbenchShell
+org.eclipse.jdt.debug.ui.JavaUISourceLocator.showDebugSourcePage
+org.eclipse.jdt.debug.ui.JavaUISourceLocator.getSourceElement
+org.eclipse.jdt.internal.debug.eval.ASTCodeSnippetToCuMapper.getSourceFormFrame
+org.eclipse.jdt.internal.debug.eval.ASTCodeSnippetToCuMapper.getSource
+org.eclipse.jdt.internal.debug.eval.ASTAPIEvaluationEngine.evaluate
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.handleBreakpointEvent
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent
+org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch
+org.eclipse.jdt.internal.debug.core.EventDispatcher.run
+java.lang.Thread.run

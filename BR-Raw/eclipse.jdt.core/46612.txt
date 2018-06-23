@@ -1,0 +1,4 @@
+Bug 46612 – BodyDeclaration should provide a method getModifiers
+All body declarations have modifiers.
+Currently it is hard to access them in a
+polymorphic way.

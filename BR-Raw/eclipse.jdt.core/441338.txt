@@ -1,0 +1,14 @@
+Bug 441338 – [1.8][null] better combine null type annotations on substitution of parameterized type
+Function TypeBinding.unannotated(boolean) from 438458 is over-eager as can be shown by this test:
+interface I2<T,U extends List<T>> {
+@NonNull U getU();
+}
+class Main {
+static String test (I2<@Nullable String, @Nullable ArrayList<@Nullable String>> i2) {
+return i2.getU().get(0).toUpperCase();
+}
+}
+While '@NonNull U' overrides the '@Nullable' annotation on the ArrayList type argument for I2, the detail '@Nullable String' must be kept to produce the proper error against the final toUpperCase().
+IOW, the return type of i2.getU() must be:
+@NonNull ArrayList<@Nullable String>
+the inner @Nullable is currently dropped.

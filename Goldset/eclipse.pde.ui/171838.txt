@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/target/EnvironmentPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/target/EnvironmentSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/target/TargetEditor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/parts/ComboPart.java

@@ -1,0 +1,3 @@
+49284 – Implement SSL renegotiation for the NIO connector
+Summary says it all.
+Entered as a reminder that it would be good to do this.

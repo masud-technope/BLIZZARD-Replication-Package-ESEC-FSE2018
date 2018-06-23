@@ -1,0 +1,3 @@
+Bug 434269 – [1.8][hovering] Support showing Javadoc for JavaFX properties - Take 2
+In bug 424283 we have added support to copy the JavaDoc from a private field unfortunately the JavaFX people are not consistent on where they put it - looking at BorderPane#center the documentation is on the BorderPane#centerProperty
+I guess this is too late to get into Luna SR0?

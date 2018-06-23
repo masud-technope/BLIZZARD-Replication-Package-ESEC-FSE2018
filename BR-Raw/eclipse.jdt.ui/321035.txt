@@ -1,0 +1,2 @@
+Bug 321035 – Enable 1.7 compiler compliance in the UI
+Enable 1.7 compiler compliance in the UI (revert bug 309163).

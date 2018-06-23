@@ -1,0 +1,4 @@
+Bug 285024 – [ltk] Cannot run PerformChangeOperation in "null" ISchedulingRule
+It is not fair for the PerformChangeOperation#setSchedulingRule() API call to not allow a "null" scheduling rule.
+There are some TextChange's that do not require any rules at all to run, like DocumentChange.
+Please loosen the API restrictions to allow a null scheduling rule.

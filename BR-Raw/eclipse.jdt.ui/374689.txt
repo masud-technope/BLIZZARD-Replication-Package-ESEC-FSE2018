@@ -1,0 +1,8 @@
+Bug 374689 – [search] Difficult to Select Limit To options in Search dialog with keyboard
+1.
+Open the search dialog (Ctrl+H).
+2.
+Tab through the items until you reach the Limit To area (you mush search for either Type or Method).
+3.
+The "Match locations" is in a different grouping from the other radio buttons, so when selecting one of the first few options then tabbing forward leads to the selection being lost and Match locations being selected.
+This makes it difficult to select any of the other options, though you could Shift+Tab backwards through the entire dialog after selecting a option, but that's not a very nice experience.

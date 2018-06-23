@@ -1,0 +1,5 @@
+Bug 130414 – Open Package is misleading
+In the context menu of packages in the manifest editor, the item 'Open' is great, but the text is misleading.
+The action does not open a package, but navigates to it.
+ So 'Go to package' would be good.
+Also the action should only be present on a single selection.

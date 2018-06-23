@@ -1,0 +1,5 @@
+Bug 270516 – IRemoteFileInfo.getLastModified doesn't behave as specified
+IRemoteFileInfo.getLastModified says it returns -1 if the file does not exist or last modified could not be computed.
+This does not match all the implementations I see in ECF, which return 0 in case of failure.
+This is because they use URLConnection.getLastModified() and java.io.File.lastModified(), both of which return 0 in case of failure rather than -1.
+It looks like either the spec or all implementations are wrong.

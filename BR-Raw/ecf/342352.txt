@@ -1,0 +1,2 @@
+Bug 342352 – [TCK] RSA exports private properties
+Dotted service properties (".someProperty=foo") are intent to be private and thus not exported by the RSA.

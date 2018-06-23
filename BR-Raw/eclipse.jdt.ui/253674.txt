@@ -1,0 +1,13 @@
+Bug 253674 – [clean up] does not work after going back from preview
+I20081030-1917
+- smoke test setup
+- open clean up wizard
+- select the configured profile for the project
+- Next
+- Back
+- select custom profile
+- configure to only organize imports
+- Next
+=> AssertionFailedException below
+Removing the assertion in AbstractCleanUp.java:47 removes the exception, but still does too much (e.g.
+adds @Override).

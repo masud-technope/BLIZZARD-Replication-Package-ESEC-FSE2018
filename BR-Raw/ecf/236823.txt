@@ -1,0 +1,2 @@
+Bug 236823 – [Discovery] Composite container doesn't register a Namespace
+org.eclipse.ecf.provider.discovery.CompositeDiscoveryContainer may register its own org.eclipse.ecf.internal.provider.discovery.CompositeNamespace

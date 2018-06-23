@@ -1,0 +1,3 @@
+tests/bundles/org.eclipse.ecf.tests.provider.discovery/org.eclipse.ecf.tests.provider.discovery.launch
+providers/bundles/org.eclipse.ecf.provider.jmdns/jmdns/javax/jmdns/impl/JmDNSImpl.java
+tests/bundles/org.eclipse.ecf.tests.provider.jmdns/org.eclipse.ecf.tests.provider.jmdns.launch

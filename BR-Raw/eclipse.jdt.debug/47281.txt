@@ -1,0 +1,7 @@
+Bug 47281 – Don't log VMDisconnectedException
+After running the debug tests, we noticed VMDisconnectedExceptions being logged
+from JDIThread#getName().
+If the VM disconnects, we should just return
+"disconnected" as the name and not log the exception.
+Logging the VMDisconnected
+in this case doesn't help anyone.

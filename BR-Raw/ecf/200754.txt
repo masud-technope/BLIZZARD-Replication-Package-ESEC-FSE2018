@@ -1,0 +1,9 @@
+Bug 200754 – [discovery] DiscoveryServiceTest does not pass
+The AllTests test suite in the discovery tests plug-in does not actually include DiscoveryServiceTest.
+But the real problem is that the DiscoveryServiceTest does not pass.
+testAddServiceTypeListener - failure
+testRegisterServiceType - error
+testRegisterService - error
+testDiscovery - pass
+Surely they must've passed at the time of writing, but they don't anymore.
+Markus brought this up on IRC this morning and I have confirmed it on my computer.

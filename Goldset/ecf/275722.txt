@@ -1,0 +1,14 @@
+tests/bundles/org.eclipse.ecf.tests.remoteservice.rest/.project
+tests/bundles/org.eclipse.ecf.tests.remoteservice.rest/build.properties
+tests/bundles/org.eclipse.ecf.tests.remoteservice.rest/src/org/eclipse/ecf/tests/remoteservice/rest/RestResourceTest.java
+framework/bundles/org.eclipse.ecf.remoteservice.rest/.project
+framework/bundles/org.eclipse.ecf.remoteservice.rest/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.remoteservice.rest/META-INF/dspresent.xml
+framework/bundles/org.eclipse.ecf.remoteservice.rest/build.properties
+framework/bundles/org.eclipse.ecf.remoteservice.rest/src/org/eclipse/ecf/internal/remoteservice/rest/Activator.java
+framework/bundles/org.eclipse.ecf.remoteservice.rest/src/org/eclipse/ecf/internal/remoteservice/rest/ResourceRepresentationFactory.java
+framework/bundles/org.eclipse.ecf.remoteservice.rest/src/org/eclipse/ecf/remoteservice/rest/IRestResourceRepresentationFactory.java
+framework/bundles/org.eclipse.ecf.remoteservice.rest/src/org/eclipse/ecf/remoteservice/rest/RestService.java
+framework/bundles/org.eclipse.ecf.remoteservice.rest/src/org/eclipse/ecf/remoteservice/rest/util/DSPresent.java
+framework/bundles/org.eclipse.ecf.remoteservice.rest/src/org/eclipse/ecf/remoteservice/rest/util/DSUtil.java
+framework/bundles/org.eclipse.ecf.remoteservice.rest/src/org/eclipse/ecf/remoteservice/rest/util/IDSPresent.java

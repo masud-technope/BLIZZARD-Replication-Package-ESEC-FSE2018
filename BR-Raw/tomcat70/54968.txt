@@ -1,0 +1,1 @@
+54968 – JspEngineInfo.getSpecificationVersion() returns 2.1 instead of 2.2

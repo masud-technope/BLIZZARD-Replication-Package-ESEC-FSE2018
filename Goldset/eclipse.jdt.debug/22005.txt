@@ -1,0 +1,3 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaHotCodeReplaceListener.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/ErrorDialogWithToggle.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaDebugOptionsManager.java

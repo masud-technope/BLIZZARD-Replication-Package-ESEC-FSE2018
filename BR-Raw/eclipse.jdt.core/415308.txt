@@ -1,0 +1,8 @@
+Bug 415308 – [1.8][compiler] Illegal type annotations not rejected
+BETA_JAVA8:
+----------
+JSR308 2.1.2 states: Static member accesses are preceded by a type name, but
+that type name may not be annotated:
+@Illegal Outer.StaticNestedClass // illegal!
+@Illegal Outer.staticField // illegal!
+While we reject the latter snippet, we silently accept the former.

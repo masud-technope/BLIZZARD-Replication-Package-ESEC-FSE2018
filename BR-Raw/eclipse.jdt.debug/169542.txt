@@ -1,0 +1,13 @@
+Bug 169542 – A ThreadGroup (and all its Threads) is not displayed in the Debug view when its parent didn't contain any threads
+Build ID: M20060629-1905
+Steps To Reproduce:
+1.Create new ThreadGroup(first) using the code "new ThreadGroup("<some name>")" - the parent of the newly created thread group will be the "main" thread group
+2.
+After that create another thread group(second) under the first one
+3.
+Create and start one or more threads under the second thread group
+4.
+After running the program in debug mode and looking to the Debug view one will note that nor first nor second thread groups appear.
+More information:
+In my opinion, the bug is not in JVM, because I checked - entire thread groups and thread hierarchy is correct and traversable in the Variables view.
+More careful research resulted in a simple workaround found: before creating the second thread group, one must create and start at least one thread under the first thread group and then both thread groups appear in the Debug view correctly.

@@ -1,0 +1,28 @@
+Bug 430574 – [change method signature] SWTException: Widget is disposed with Change method signature
+class Test {
+void m(int arg) { }
+}
+----------------
+- Invoke Change method signature refactoring on method #m.
+- Select 'arg' in the Name column of wizard (see attached screenshot).
+- Click 'Close' on wizard with focus on the selected arg.
+We get this exception:
+org.eclipse.swt.SWTException: Failed to execute runnable (org.eclipse.swt.SWTException: Widget is disposed)
+at org.eclipse.swt.SWT.error(SWT.java:4441)
+...
+...
+Caused by: org.eclipse.swt.SWTException: Widget is disposed
+at org.eclipse.swt.SWT.error(SWT.java:4441)
+at org.eclipse.swt.SWT.error(SWT.java:4356)
+at org.eclipse.swt.SWT.error(SWT.java:4327)
+at org.eclipse.swt.widgets.Widget.error(Widget.java:476)
+at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:348)
+at org.eclipse.swt.widgets.Control.getVisible(Control.java:1661)
+at org.eclipse.jface.viewers.CellEditor.isActivated(CellEditor.java:499)
+at org.eclipse.jface.viewers.CellEditor.focusLost(CellEditor.java:721)
+at org.eclipse.jdt.internal.ui.dialogs.TableTextCellEditor.focusLost(TableTextCellEditor.java:103)
+at org.eclipse.jdt.internal.ui.dialogs.TableTextCellEditor$7$1.run(TableTextCellEditor.java:254)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:136)
+...
+23 more

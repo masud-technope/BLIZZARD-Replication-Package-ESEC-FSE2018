@@ -1,0 +1,3 @@
+Bug 427218 – [1.8][compiler] Verify error varargs + inference
+See https://bugs.eclipse.org/bugs/show_bug.cgi?id=427207#c8 for
+a snippet and crash info.

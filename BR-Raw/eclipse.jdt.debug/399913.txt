@@ -1,0 +1,16 @@
+Bug 399913 – JREs with the same location do not all show up on the installed JREs pref page using Mac search
+Created attachment 226521 [details]
+1.4 EE file
+I20130130-2000
+Went to the installed JREs page after the latest JVM update on my Mac only to find that my Java 1.6 JRE was not there, so I hit search and it still did not show up.
+Debugged my host Eclipse and found that because I have an EE file to describe a 1.4 VM - that points to the 1.6 location - the actual 1.6 VM is not shown on the page (it is still found via the plist parsing).
+Steps
+1.
+grab the EE file I attached
+2.
+make a VM install for the EE file
+3.
+hit the search button on the installed JREs page
+4.
+notice there is no 1.6 JRE added to the list - you can do this in a new or existing workspace
+I looked at the logic in the page and there is a check based on location of the VM that is likely causing the bug.

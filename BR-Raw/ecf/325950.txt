@@ -1,0 +1,53 @@
+Bug 325950 – ClassNotFoundException with r-osgi and ECF (not with r-osgi only)
+Build Identifier: ECF 3.2.0.v20100219-1253
+Hi,
+I'm new to this forum and I first would like to say that you - ECF guys - are doing great work! I'm using ECF implementation of the OSGi 4.2 Remote Service specification and it works like a charm.
+Up till now I was using ecf generic as communication protocol but due to limitations (I'll post another topic about this) I decided to replace it with r-osgi.
+The move was easily done but I immediately encountered a CNFE during the remote service registration in the r-osgi bundle.
+Some investigation told me that it only happens when using r-osgi in combination with ECF: registering the service directly to r-osgi does not produce the CNFE.
+Here are some details:
+The CNFE happens with following code (I've also attached the test bundles):
++ Bundle A
+- package org.myorg.pkga
+- public class ClassA {
+private ClassB myClassB;
+}
+- package org.myorg.pkgb
+- public ClassB {
+}
+- package org.myorg.service.itf
+- public interface MyService {
+void someMethod(ClassA arg);
+}
+- MANIFEST.MF with Export-Package: org.myorg.pkga,org.myorg.pkgb,org.myorg.service.itf
++ Bundle B
+- package org.myorg.service.impl
+- public class MyServiceImpl implements MyService {
+void someMethod(ClassA arg) {
+// do something
+}
+}
+- public class Activator implements BundleActivator {
+public void start(...) {
+// works with direct r-osgi registration
+//properties.put(RemoteOSGiService.R_OSGi_REGISTRATION, Boolean.TRUE);
+// does not work with ECF OSGi 4.2 Remote Service registration
+properties.put("service.exported.interfaces", "*");
+properties.put("service.exported.configs", "ecf.r_osgi.peer");
+context.registerService(MyService.class.getName(), new MyServiceImpl(), properties);
+}
+}
+- MANIFEST.MF with Import-Package: org.myorg.pkga, org.myorg.service.itf
++ Target platform containing the needed r-osgi and ecf bundles
+The CNFE happens in the ch.ethz.iks.r_osgi.impl.RemoteServiceRegistration constructor during CodeAnalyzer.analyze method call.
+Apparently the CodeAnalyzer relies on the classloader of the registered service and the Import-Package and Export-Package headers of the bundle registering the service and that's where the direct r-osgi and ECF registrations differ:
+- When registering the service with the r-osgi property, the service registration is handled directly by r-osgi bundle: classloader and the Import/Export-Package headers are from Bundle B
+- when registering the service with the ECF (OSGi Remote Service) properties, the service registration is first handled by the ecf.provider.r_osgi bundle which will re-register the service with the r-osgi property and this service registration will then be handled by the r-osgi bundle: classloader is still from Bundle B (is easily retrieved from service object) but the Import/Export-Package headers are from ecf.provider.r_osgi bundle (are retrieved from the servicereference object).
+Because the CodeAnalyzer doesn't get the expected Import/Export-Package headers (the ones from Bundle B) a CNFE is thrown during the call.
+So this looks like a bug but I can't say where the fix should be: in r-osgi bundle or in ecf.provider.r_osgi bundle? I would tend to say that the ecf.provider.r_osgi bundle should register the service with the bundle context of the bundle providing the service instead of its own bundle context (unless there's a good reason not to do so), like when impersonating a bundle in the extender model but here it's not an extender and getting the bundle context of the original service might be a little tricky...
+Reproducible: Always
+Steps to Reproduce:
+1.
+Deploy the attached bundles in target platform containing r-osgi and ecf
+2.
+3.

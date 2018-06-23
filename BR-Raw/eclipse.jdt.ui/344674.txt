@@ -1,0 +1,18 @@
+Bug 344674 – [clean up] Convert to enhanced for-loop on save results in identity comparison
+Build Identifier: 20100917-0705
+See steps to reproduce.
+ This means this refactoring on save must be disabled otherwise bugs to our code can easily sneak in.
+Reproducible: Always
+Steps to Reproduce:
+Save this code (part of a compareTo method):
+for (int i = 0; i < tokens.length; i++) {
+// A comment
+int v = Utils.compare(tokens[i], ((MyClass) obj).tokens[i]);
+if (v!=0) return v;
+}
+After saving, convert on save produces this:
+for (String token : tokens) {
+// Comment
+int v = Utils.compare(token, token);
+if (v!=0) return v;
+}

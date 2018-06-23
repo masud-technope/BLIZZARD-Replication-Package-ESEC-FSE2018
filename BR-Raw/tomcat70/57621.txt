@@ -1,0 +1,133 @@
+57621 – RE: Chunked encoding bug in tomcat embedded/spring MVC
+Here's the message and its replies that I posted to the tomcat-users mailing list.
+The verbose description of the bug is in my original message and the actual lines of code that would fix it if they were run are included in my final followup at the bottom.
+> > From: Mark Thomas [mailto:markt@apache.org] On 19/02/2015 13:05,
+> > andrew-c.brown@ubs.com wrote:
+> > > Not sure whether the responsibility lies here or with spring so I
+> > > thought I'd ask here first.
+Here's the scenario.
+> > >
+> > > We have a Jetty 9.2.7 async reverse proxy.
+It always sends back to
+> > > the servers behind using chunked encoding.
+> > >
+> > > We have backend servers built around embedded 7.0.23 (also tested
+> > > the latest 7.0.59).
+> > >
+> > > Jetty is configured to make SSL connections to these servers.
+SSL
+> > > is not the issue, though it may make it easier to reproduce.
+I can
+> > > reproduce this issue at will.
+> > >
+> > > Our backend servers are using Spring MVC with automatic argument
+> > > assignment where some argument values come from decoded JSON in
+> the
+> > > body.
+For example:
+> > >
+> > > @RequestMapping(method = RequestMethod.PUT, value = SOME_URL)
+> > >
+> > > public @ResponseBody WebAsyncTask<SomeObject>
+> > ourMethod(@RequestBody
+> > > @Valid final SomeObject f, @Min(1) @PathVariable(SOME_ID) final
+> > > long someId, final HttpServletRequest request) {
+> > >
+> > > }
+> > >
+> > > Here's the issue.
+> > >
+> > > Using Wireshark I noticed that quite often the first TCP segment
+> > > passed from Jetty to the backend server contained the entire PUT
+> > > request
+> > > **except** (and this is important) the final 7 bytes chunk terminator.
+> > > That arrives in the next segment on the wire.
+> > >
+> > > \r\n
+> > > 0
+> > > \r\n
+> > > \r\n
+> > >
+> > > The nearly-complete segment causes Tomcat to wake up and start
+> > > processing the request.
+To cut a very long call stack short, the
+> > > automatic method argument assignment kicks into life and runs the
+> > > Jackson JSON parser to read the incoming body data using
+> > > org.apache.coyote.http11.filters.ChunkedInputFilter.
+Enough data
+> > > is present in the buffer to fully process the request so our
+> > > method is called with all the correct parameters and it does its
+> > > stuff and sends back a response.
+> > >
+> > > That's where it should end, but it doesn't.
+> > >
+> > > The remaining 7 bytes arrive on the wire and wake up Tomcat's NIO
+> > > loop again.
+Tomcat thinks it's a new request since the previous
+> > > one has been completely handled.
+This causes a 400 Bad Request to
+> > > be sent back up the wire following on from the correct response,
+> > > and the connection is terminated which causes a closed connection
+> > > to be present in Jetty's connection pool.
+That's bad.
+> > >
+> > > My opinion is that the Jackson JSON parser shouldn't have to care
+> > > about the type of stream it's reading from so the responsibility
+> > > should be with the chunked input stream to ensure that it doesn't
+> > > get into this state.
+Perhaps if it were to always read ahead the
+> > > next chunk size before handing back a completed chunk of data then
+> > > it could ensure that the trailing zero is always consumed.
+> > >
+> > > Any thoughts?
+> >
+> > This sounds like a Tomcat bug but it will need some research to
+> > figure out what is happening and confirm that.
+> >
+> > As an aside, the JSON parser should read until it gets a -1 (end of
+> > stream).
+I suspect it is using the structure of the JSON to figure
+> > out where the data ends and isn't doing the final read.
+> >
+> > When the request/response is completed Tomcat should do a blocking
+> > read until the end chunk has been read.
+That this isn't happening is
+> > what makes me think this is a Tomcat bug.
+>
+> The JSON parser is calling ObjectMapper._readMapAndClose().
+This
+> completes its read - as far as its concerned it's finished - and it
+> calls close() on its JsonParser parameter.
+That stream close() call is
+> implemented by CoyoteInputStream.close().
+This, in turn calls
+> org.apache.catalina.connector.InputBuffer.close() which just sets a
+> private 'closed' flag.
+The filters have an end method() and
+> ChunkedInputFilter uses it to seek to the end but that's never called.
+>
+> A good place to clean up the request filters held in
+> org.apache.coyote.http11.AbstractInputBuffer would appear to be in
+> org.apache.catalina.connector.close(), but I'm not familiar enough
+> with the async workflow to know if that's correct or not.
+Some more info.
+Inside the "org.apache.coyote.http11.
+AbstractHttp11Processor<S>.process" method there is this cleanup code after the main request while() loop:
+// Finish the handling of the request
+rp.setStage(org.apache.coyote.Constants.STAGE_ENDINPUT);
+if (!isAsync() && !comet) {
+if (error) {
+// If we know we are closing the connection, don't drain
+// input.
+This way uploading a 100GB file doesn't tie up the
+// thread if the servlet has rejected it.
+getInputBuffer().setSwallowInput(false);
+}
+endRequest();
+}
+Note the call to endRequest().
+If I make my methods synchronous (i.e.
+remove WebAsyncMethod<>) then isAsync() returns false, this cleanup block is entered, endRequest() is called, ChunkedInputFilter.end() is called and the trailing metadata is consumed.
+All is good.
+Only when methods are async is this block skipped and the cleanup missed.
+I'm sure it was coded this way for a good reason but perhaps there have been unintended consequences.

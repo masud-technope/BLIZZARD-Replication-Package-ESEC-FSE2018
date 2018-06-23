@@ -1,0 +1,4 @@
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/model/JUnitModel.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/model/ModelMessages.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/model/ModelMessages.properties
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/model/TestRunHandler.java

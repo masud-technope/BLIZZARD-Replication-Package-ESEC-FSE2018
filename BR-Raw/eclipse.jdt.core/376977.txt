@@ -1,0 +1,25 @@
+Bug 376977 – Content Assist / Quick Fix import suggestion for nested annotations with argument list
+Build Identifier: 3.6.2.
+Build id: 20120216-185
+Not sure if this is JPA related or JDT related, however I met this during playing with JPA and Hibernate annotations.
+Use this code:
+package org.jira;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import org.hibernate.annotations.Index;
+//import org.hibernate.annotations.Parameter;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+@Entity(name="EntityWithType")
+@TypeDef(name="encryptedPasswor", typeClass=org.jira.EncryptedStringType.class,
+parameters = { @Parameter(name="password", value="blah blah blah.") })
+public class EntityWithType { @Id private int id; @Index(name = "rrr") @Type(type = "encryptedPasswor") private StringBuilder typeClass; }
+There is no quick fix import for inner @JPA or @Hibernate annotation (@Parameter in this case)
+Reproducible: Always
+Steps to Reproduce:
+1.
+Create Class
+2.
+See description, paste code or anything similar (@annotation with inner @Annotations defined)
+3.
+Try quickfix there is no import suggestion for inner annotations

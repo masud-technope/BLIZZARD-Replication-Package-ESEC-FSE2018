@@ -1,0 +1,10 @@
+Bug 289455 – [JUnit] JUnit view not active after test
+I20090915-0100.
+JUnit view is not active after tests are run.
+1.
+start fresh workspace
+2.
+create a simple JUnit test
+3.
+Run As > JUnit Test
+==> Package Explorer is active and JUnit view behind it.

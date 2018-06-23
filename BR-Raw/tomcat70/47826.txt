@@ -1,0 +1,27 @@
+47826 – a logging statement error in org.apache.catalina.startup.Bootstrap.java
+// Local repository
+boolean replace = false;
+String before = repository;
+while ((i=repository.indexOf(CATALINA_HOME_TOKEN))>=0) {
+replace=true;
+if (i>0) {
+repository = repository.substring(0,i) + getCatalinaHome()
++ repository.substring(i+CATALINA_HOME_TOKEN.length());
+} else {
+repository = getCatalinaHome()
++ repository.substring(CATALINA_HOME_TOKEN.length());
+}
+}
+while ((i=repository.indexOf(CATALINA_BASE_TOKEN))>=0) {
+replace=true;
+if (i>0) {
+repository = repository.substring(0,i) + getCatalinaBase()
++ repository.substring(i+CATALINA_BASE_TOKEN.length());
+} else {
+repository = getCatalinaBase()
++ repository.substring(CATALINA_BASE_TOKEN.length());
+}
+}
+if (replace && log.isDebugEnabled())
+log.debug("Expanded " + before + " to " + replace);
+The last line should be: "log.debug("Expanded " + before + " to " + repository);"

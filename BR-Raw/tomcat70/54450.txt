@@ -1,0 +1,38 @@
+54450 – Injection fails when part of the servlet properties uses @Resource and the other uses 'injection-target'
+Hi,
+I have a servlet with:
+- annotated properties
+- and injection-target declarations in web.xml
+When I try to request this servlet I receive:
+javax.naming.NameNotFoundException: Name [envEntry1] is not bound in this Context.
+Unable to find [envEntry1].
+at org.apache.naming.NamingContext.lookup(NamingContext.java:820)
+at org.apache.naming.NamingContext.lookup(NamingContext.java:154)
+at org.apache.naming.NamingContext.lookup(NamingContext.java:831)
+at org.apache.naming.NamingContext.lookup(NamingContext.java:168)
+at org.apache.catalina.core.DefaultInstanceManager.lookupMethodResource(DefaultInstanceManager.java:622)
+at org.apache.catalina.core.DefaultInstanceManager.processAnnotations(DefaultInstanceManager.java:466)
+at org.apache.catalina.core.DefaultInstanceManager.newInstance(DefaultInstanceManager.java:157)
+at org.apache.catalina.core.DefaultInstanceManager.newInstance(DefaultInstanceManager.java:138)
+at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1137)
+at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:858)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:136)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1004)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:680)
+The problem is that when the application uses 'injection-target' declarations in
+org.apache.catalina.core.DefaultInstanceManager.populateAnnotationsCache(Class<?>, Map<String, String>)
+only the first setter method is evaluated and the rest are skipped.
+I would like to propose a patch and test case.
+I'm looking forward to your comments.
+Regards
+Violeta

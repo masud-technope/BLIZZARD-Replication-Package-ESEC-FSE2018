@@ -1,0 +1,6 @@
+Bug 290135 – Add new option for bug 163194 into the compiler preference page
+The new option added for the fix in bug 163194 should be exposed into the JDT/UI.
+The option will only be used if the compliance is greater or equals to 1.6.
+I don't think the option should be visually disabled if the compliance is not 1.6.
+The JDT/Core option name is:
+org.eclipse.jdt.core.JavaCore.COMPILER_PB_MISSING_OVERRIDE_ANNOTATION_FOR_INTERFACE_METHOD_IMPLEMENTATION

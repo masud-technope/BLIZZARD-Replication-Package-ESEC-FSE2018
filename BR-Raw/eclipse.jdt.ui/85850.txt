@@ -1,0 +1,22 @@
+Bug 85850 – ASTRewrite does not consider length from TargetSourceRangeComputer when removing node from list
+I20050217-2000
+ASTRewrite does not consider the length from its TargetSourceRangeComputer when
+removing an ASTNode from a list.
+Applying the Inline Constant refactoring on CONSTANT also removes the comment
+before the method declaration, even though the TargetSourceRangeComputer tells
+it to only remove the FieldDeclaration.
+I guess the problem is in
+ASTRewriteAnalyzer.ListRewriter#rewriteList(ASTNode,
+StructuralPropertyDescriptor, int, String), where the start of the next node is
+used to determine the end of the section to delete
+(ASTRewriteAnalyzer:542, rev.
+1.20)
+public class A {
+private static final int CONST = 9;
+/*
+* (non-Javadoc) comment deleted by inline constant CONST
+*/
+public void foo() {
+final int lineNumber2= CONST;
+}
+}

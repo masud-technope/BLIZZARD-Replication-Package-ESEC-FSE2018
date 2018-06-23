@@ -1,0 +1,24 @@
+Bug 337643 – [remoteserviceadmin] classloader for proxy creation must be able to access IRemoteServiceProxy
+Somehow the registration of remote services has changed.
+Now I don't have any service with the "service.imported=*" property set on consumer end!
+Something to do with the equals of EndpointDescription?
+----- Provider Registration (Provider)
+final Properties propsA = new Properties();
+propsA.put("service.exported.interfaces", "*");
+propsA.put("service.exported.configs", "ecf.r_osgi.peer");
+Activator.getContext().registerService(ServiceA.class.getName(),
+new ServiceAImpl(), propsA);
+----- Consumer Tracker
+public class ServiceATracker extends ServiceTracker {
+public ServiceATracker() throws InvalidSyntaxException {
+super(Activator.getContext(), ServiceA.class.getName(), null);
+----- Consumer Output (but nothing about the RS property!)
+test.service.ServiceA has come...
+ecf.rsvc.cid -> r-osgi://jumper:9279
+ecf.rsvc.ranking -> 0
+ecf.rsvc.id -> 57
+service.uri -> r-osgi://jumper:9279#57
+ecf.robjectClass -> [Ljava.lang.String;@23000bcf
+service.id -> 57
+objectClass -> [Ljava.lang.String;@580754fc
+-----

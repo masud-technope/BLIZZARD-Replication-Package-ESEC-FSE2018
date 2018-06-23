@@ -1,0 +1,10 @@
+Bug 234170 – [navigation] Java element hyperlink should not be available on imports and package declarations
+3.4 RC2.
+Java element hyperlink should not be available on imports and package declarations.
+Test Case:
+1.
+open a class from Eclipse
+2.
+hyperlink over 'org' of an import
+==> many links
+Fix is simple: copy OpenAction.selectOpenableElements(IJavaElement[]) as is.

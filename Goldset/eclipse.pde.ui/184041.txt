@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/ICoreConstants.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/MinimalState.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PluginModelManager.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/TargetPlatformHelper.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/TargetEnvironmentTab.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/TargetPlatformPreferencePage.java

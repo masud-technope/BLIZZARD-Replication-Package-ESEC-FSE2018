@@ -1,0 +1,2 @@
+providers/bundles/org.eclipse.ecf.provider.bittorrent/src/org/eclipse/ecf/internal/provider/bittorrent/BitTorrentContainer.java
+providers/bundles/org.eclipse.ecf.provider.bittorrent/src/org/eclipse/ecf/internal/provider/bittorrent/BitTorrentProviderPlugin.java

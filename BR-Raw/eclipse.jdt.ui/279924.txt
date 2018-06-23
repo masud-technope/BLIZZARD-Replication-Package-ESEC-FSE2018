@@ -1,0 +1,3 @@
+Bug 279924 – [toString] toString() generator: Fields in declaration order
+toString() generator adding the fields in alphabetical order.
+It would be better if it adds in the order whatever the order fields declared in the class.

@@ -1,0 +1,13 @@
+Bug 433026 – [1.8][quick fix] Conversion to Lambda is not appearing when it should
+Let say we have a piece of code containing an anonymous class:
+Runnable runner = new Runnable() {
+public void run() {
+System.out.println("Hello runner!");
+}
+};
+- Clicking anywhere in these lines
+- Selecting all the lines
+- selecting the first line
++ Quick Fix does not show the "Convert to lambda expression" fix.
+This makes this conversion fix difficult to discover.
+Ideally, we could have a warning associated to this Lambda conversion.

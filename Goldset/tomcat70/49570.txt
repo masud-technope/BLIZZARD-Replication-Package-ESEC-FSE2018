@@ -1,0 +1,2 @@
+webapps/docs/changelog.xml
+webapps/examples/WEB-INF/classes/compressionFilters/CompressionResponseStream.java

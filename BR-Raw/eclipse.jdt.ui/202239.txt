@@ -1,0 +1,6 @@
+Bug 202239 – [templates] template context names should not be all lowercase
+I20070904-0800.
+The template context names should not be all lowercase.
+java -> Java
+javadoc -> Javadoc
+swt -> SWT

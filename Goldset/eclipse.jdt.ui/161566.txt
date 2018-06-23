@@ -1,0 +1,7 @@
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/junit/tests/JUnit3TestFinderTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/junit/tests/JUnit4TestFinderTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/junit/tests/JUnitWorkspaceTestSetup.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/buildpath/BuildPathSupport.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/buildpath/JUnitContainerInitializer.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/junit/JUnitCore.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/buildpath/JUnitContainerWizardPage.java

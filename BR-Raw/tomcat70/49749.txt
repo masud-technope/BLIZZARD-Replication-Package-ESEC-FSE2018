@@ -1,0 +1,5 @@
+49749 – SSO cookie should be added as HttpOnly
+SSO cookies should be made HttpOnly by default.
+In org.apache.catalina.authenticator.AuthenticatorBase#register(),
+798- response.addCookie(cookie);
+798+ response.addCookieInternal(cookie, true);

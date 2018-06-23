@@ -1,0 +1,6 @@
+org.eclipse.pde.internal.ui.editor.site.SiteEditor.createSystemFileContexts
+org.eclipse.pde.internal.ui.editor.PDEFormEditor.createInputContexts
+org.eclipse.pde.internal.ui.editor.PDEFormEditor.createPages
+org.eclipse.ui.part.MultiPageEditorPart.createPartControl
+org.eclipse.ui.internal.EditorReference.createPartHelper
+org.eclipse.ui.internal.EditorReference.createPart

@@ -1,0 +1,8 @@
+java/org/apache/catalina/filters/CsrfPreventionFilter.java
+java/org/apache/catalina/manager/HTMLManagerServlet.java
+java/org/apache/catalina/manager/LocalStrings.properties
+webapps/docs/config/filter.xml
+webapps/manager/403.jsp
+webapps/manager/WEB-INF/jsp/sessionDetail.jsp
+webapps/manager/WEB-INF/jsp/sessionsList.jsp
+webapps/manager/WEB-INF/web.xml

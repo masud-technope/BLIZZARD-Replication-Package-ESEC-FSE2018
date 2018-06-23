@@ -1,0 +1,5 @@
+java/org/apache/jasper/compiler/PageDataImpl.java
+java/org/apache/jasper/compiler/ImplicitTagLibraryInfo.java
+java/org/apache/jasper/compiler/Validator.java
+java/org/apache/jasper/resources/LocalStrings.properties
+java/org/apache/jasper/resources/LocalStrings_es.properties

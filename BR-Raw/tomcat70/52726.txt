@@ -1,0 +1,6 @@
+52726 – An incomplete fix for the resource leak bug in MemoryUserDatabase.java
+The fix revision 423920 was aimed to remove an resource leak bug on the  FileInputStream object "fis" (created line 418) in the method "open()" of the file "/tomcat/trunk/java/org/apache/catalina/users/MemoryUserDatabase.java" , but it is incomplete.
+There are some problems:
+1.
+when the statements at lines 420-439 throw some exception, the "fis" can not be closed as expected.
+The best way to close such resource objects is putting such close operations in the finaly block of a try-catch-finally structure.

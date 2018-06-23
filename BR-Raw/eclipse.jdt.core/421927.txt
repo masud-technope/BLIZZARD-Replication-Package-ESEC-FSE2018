@@ -1,0 +1,12 @@
+Bug 421927 – [1.8][compiler] Bad diagnostic: Unnecessary cast from I to I for lambdas.
+BETA_JAVA8:
+// -
+interface I {
+int run(int s1, int s2);
+}
+class X {
+static int f = ((I) (int x5, int x2) -> x1).run(10,  20);
+static int x1 = 2;
+}
+The cast is very much necessary as otherwise, the lambda's target type will
+be missing.

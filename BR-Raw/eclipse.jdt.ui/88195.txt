@@ -1,0 +1,13 @@
+Bug 88195 – [navigation] Type ahead search in quick outline should prefer enclosing type
+If there is an inner class which has a method name starting with the same
+prefix as a method in the enclosing class, the type-ahead matching in the
+popup outline should give precedence to the enclosing type.
+ Currently it
+selects the first match based on the trees sorting.
+Or, if the caret is currently inside the inner class, then that class' method
+should have higher precedence.
+Also, the tree should be completely expanded.
+I'm looking at a Type with 2
+nested types.
+ All 3 types have a method called "translate", but only one of
+the two nested types is expanded.

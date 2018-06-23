@@ -1,0 +1,4 @@
+org.eclipse.jdi.internal.connect.SocketConnection.readPacket
+org.eclipse.jdi.internal.connect.PacketReceiveManager.readAvailablePacket
+org.eclipse.jdi.internal.connect.PacketReceiveManager.run
+java.lang.Thread.run

@@ -1,0 +1,5 @@
+Bug 155102 – Use ctrl+shift+G to find references of Extension points
+ctrl+shift+G is a java short cut to find references to a java object.
+ Currently, to find other references to an extension point, you have to click "find declaring extension point", then switch to the extension points tab, and click "Find references".
+It would be handy if I could find other references by using ctrl+shift+g, or even right click on an extension point to find other references.
+I figured this might be up your alley Chris, under sexiness.

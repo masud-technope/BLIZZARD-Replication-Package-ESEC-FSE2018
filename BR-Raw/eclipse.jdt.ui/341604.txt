@@ -1,0 +1,7 @@
+Bug 341604 – Add constant or helper for indenting dependent controls
+1.0.
+Controls that depend on a parent control (e.g.
+check box) are indented.
+In most cases people use the commonly known value (20) and hard-code it.
+A few wrongly use IDialogConstants.INDENT as pixel value but that constant is defined as dialog units.
+For 3.8 we should define a new constant and fix the code that hard-codes 20.

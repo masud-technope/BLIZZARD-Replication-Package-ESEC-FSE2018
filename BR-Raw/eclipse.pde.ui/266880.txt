@@ -1,0 +1,5 @@
+Bug 266880 – [target] New import from target doesn't like spaces
+On the import plug-in wizard, whenever the state is created, if any of the containers have spaces in the names the state doesn't included them.
+ This applies to the active target, specific definitions or just pointing at a directory.
+Also, if I go to the import wizard, click on the button to open the target platform preference page, set something as active, then close the preferences, when I return to the import wizard the combo has nothing selected.
+ Since the next button is still enabled an NPE is thrown if next is clicked.

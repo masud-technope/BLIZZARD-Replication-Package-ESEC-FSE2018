@@ -1,0 +1,5 @@
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/spy/TcpIpSpyMessages.properties
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/spy/VerbosePacketStream.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/spy/TcpIpSpyMessages.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/spy/JdwpConversation.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/spy/TcpipSpy.java

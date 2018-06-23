@@ -1,0 +1,8 @@
+Bug 181040 – [actions] Consider removing "Create New Java Project" as default from toolbar
+3.3 M6
+In an effort to reduce the number of toolbar items to allow space for other
+plugins:
+We should consider removing "Create New Java Project" as being present by default in the toolbar.
+Generally speaking, toolbar items should be used to represent frequently accessed items (e.g.
+see MS Vista guidelines).
+ Creation of Java projects is not a frequent task, because project creation is inherently infrequent as they are long lived, second because in Eclipse people tend to create them via PDE and lastly via download from say CVS.

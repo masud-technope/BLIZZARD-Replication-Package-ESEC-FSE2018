@@ -1,0 +1,4 @@
+Bug 167590 – [convert anonymous] does not store settings
+I20061212-0010.
+Each time I use this refactoring I have to check the 'static' check box again? Why?
+Please store the settings as this is the normal Eclipse behavior.

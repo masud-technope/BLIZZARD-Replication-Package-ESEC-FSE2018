@@ -1,0 +1,60 @@
+Bug 202124 – NullPointerException in Manifest Editor when doubleclicking out-of-sync Dependency
+Build ID: I20070625-1500
+Steps To Reproduce:
+Exact steps to reproduce are unknown.
+However, there was a plugin in my workspace and it appeared twice in the "Add Dependency" dialog, so I deleted the project from the workspace.
+One of the entries still appeared in the "Add Dependency" dialog with the remark (Out of Sync).
+I still added it to the dependencies of my other project.
+Then, I wanted to find out where the 'corrupt' plugin was located and double-clicked the entry in the Dependency list.
+Then the error occured.
+More information:
+eclipse.buildId=I20070625-1500
+java.version=1.6.0_02
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86 -data C:\workspaces\FinancePortal
+Error
+Tue Sep 04 10:10:26 CEST 2007
+Problems occurred when invoking code from plug-in: "org.eclipse.jface".
+java.lang.NullPointerException
+at java.io.File.<init>(Unknown Source)
+at org.eclipse.pde.internal.ui.editor.plugin.ManifestEditor.open(ManifestEditor.java:116)
+at org.eclipse.pde.internal.ui.editor.plugin.RequiresSection.handleOpen(RequiresSection.java:389)
+at org.eclipse.pde.internal.ui.editor.plugin.RequiresSection.handleDoubleClick(RequiresSection.java:205)
+at org.eclipse.pde.internal.ui.editor.TableSection$PartAdapter.handleDoubleClick(TableSection.java:42)
+at org.eclipse.pde.internal.ui.parts.TablePart$2.doubleClick(TablePart.java:52)
+at org.eclipse.jface.viewers.StructuredViewer$1.run(StructuredViewer.java:799)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.core.runtime.Platform.run(Platform.java:857)
+at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:46)
+at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:193)
+at org.eclipse.jface.viewers.StructuredViewer.fireDoubleClick(StructuredViewer.java:797)
+at org.eclipse.jface.viewers.StructuredViewer.handleDoubleSelect(StructuredViewer.java:1061)
+at org.eclipse.jface.viewers.StructuredViewer$4.widgetDefaultSelected(StructuredViewer.java:1173)
+at org.eclipse.jface.util.OpenStrategy.fireDefaultSelectionEvent(OpenStrategy.java:237)
+at org.eclipse.jface.util.OpenStrategy.access$0(OpenStrategy.java:234)
+at org.eclipse.jface.util.OpenStrategy$1.handleEvent(OpenStrategy.java:295)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:938)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3682)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3293)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2389)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2353)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2219)
+at org.eclipse.ui.internal.Workbench$4.run(Workbench.java:466)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:289)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:461)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:106)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:153)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:106)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:76)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:363)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:176)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:504)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:443)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1169)

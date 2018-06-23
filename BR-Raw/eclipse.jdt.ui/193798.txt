@@ -1,0 +1,24 @@
+Bug 193798 – [hovering] " does not exist" when hovering over non-Javadoc'd method from fake CU
+I20070615-1200
+- take org.eclipse.jface from CVS
+- open CVS History for DialogCellEditor
+- open rev.
+1.20
+- hover over keyReleased on line 225:
+public void keyReleased(KeyEvent e) {
+=> message in log:
+!ENTRY org.eclipse.jdt.core 4 969 2007-06-21 19:04:12.500
+!MESSAGE   does not exist
+After fix for bug 193795:
+Java Model Exception: Java Model Status [  does not exist]
+at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:776)
+at org.eclipse.jdt.internal.core.SourceType.newSupertypeHierarchy(SourceType.java:697)
+at org.eclipse.jdt.internal.core.SourceType.newSupertypeHierarchy(SourceType.java:649)
+at org.eclipse.jdt.ui.JavadocContentAccess.findDocInHierarchy(JavadocContentAccess.java:148)
+at org.eclipse.jdt.ui.JavadocContentAccess.getContentReader(JavadocContentAccess.java:73)
+at org.eclipse.jdt.ui.JavadocContentAccess.getHTMLContentReader(JavadocContentAccess.java:115)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo(JavadocHover.java:176)
+at org.eclipse.jdt.internal.ui.text.java.hover.AbstractJavaEditorTextHover.getHoverInfo(AbstractJavaEditorTextHover.java:125)
+at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo(BestMatchHover.java:102)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo(JavaEditorTextHoverProxy.java:69)
+at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:165)

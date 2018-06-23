@@ -1,0 +1,14 @@
+Bug 73675 – [dom] Need AST creation pipeline
+To speed up AST creation and to be able to share bindings between ASTs we
+would need a pipeline to create AST.
+The pipeline would work as follows:
+- all CUs initially put into the pipeline are converted into AST and they
+are handed back one by one via some sort of call back interface
+- when the pipeline is empty a special hook is call to have the change to
+add more CUs to the pipeline
+- the pipeline can only contain CUs form the same project
+- a CU can't be parsed twice.
+Philippe, we looked at our code and it would
+be a great help if we would be able to parse CUs a second time.
+Would this
+be possible if we guarantee that the content of the CU didn't change ?

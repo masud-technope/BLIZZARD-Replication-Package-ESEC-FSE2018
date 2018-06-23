@@ -1,0 +1,9 @@
+Bug 113004 – Plug-in dependencies UI element disappears when using working-set
+Build: I20051011-1330
+In a Package Explorer view (with no working-set selected), open a PDE project
+and notice the "Plug-in Dependencies" element is shown in the project.
+Create a "Plug-ins and Fragments" working set that contains the same project,
+and select the working set.
+ Notice that the "Plug-in Dependencies" disappears
+from the view.
+ This was unexpected.

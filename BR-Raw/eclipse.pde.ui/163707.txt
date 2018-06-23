@@ -1,0 +1,25 @@
+Bug 163707 � Support Bundle-ActivationPolicy in OSGi R4.1
+See http://bundles.osgi.org/Design/LazyStart for the proposed changes that will go into the upcoming OSGi R4.1
+- Why should PDE-UI care?
+This proposal adds a new header "Bundle-ActivationPolicy" ...
+The Bundle-ActivationPolicy header is introduced to allow a bundle to specify a bundle start policy.
+Bundle-ActivationPolicy ::= policy-type (';' directive)*
+policy-type ::= token
+The only defined policy type is lazy.
+The lazy activation policy has the following defined directives:
+include – A comma-separated list of package names that require the lazy activation policy.
+Note that the use of a comma in the value requires it to be enclosed in double quotes.
+If not specified then all packages require the lazy activation policy.
+exclude – A comma-separated list of package names that do not use the lazy activation policy.
+Note that the use of a comma in the value requires it to be enclosed in double quotes.
+If not specified then all packages require the lazy activation policy.
+For example:
+Bundle-ActivationPolicy: lazy; include:="org.lazy.stuff"
+Bundle-ActivationPolicy: lazy; exclude:="org.notlazy.stuff"
+The Bundle-ActivationPolicy header should be used instead of the Eclipse-LazyStart when a bundle is targeting a 3.3 or higher version of Eclipse.
+ I suggest you keep the UI the same with the "Activate this plug-in when one of its classes is loaded" checkbox.
+ If it is checked/uncheck you simply add/remove the following header
+Bundle-ActivationPolicy: lazy
+Developers that need to use the more advanced include/exclude directives will be required to edit the header by hand.
+The code in Equinox has been released today to support this new header at runtime.
+ See bug 135885.

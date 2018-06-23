@@ -1,0 +1,8 @@
+java/org/apache/catalina/filters/RemoteIpFilter.java
+java/org/apache/catalina/valves/RemoteIpValve.java
+java/org/apache/catalina/valves/LocalStrings.properties
+java/org/apache/catalina/connector/Request.java
+java/org/apache/catalina/valves/mbeans-descriptors.xml
+webapps/docs/config/valve.xml
+webapps/docs/config/filter.xml
+test/org/apache/catalina/valves/RemoteIpValveTest.java

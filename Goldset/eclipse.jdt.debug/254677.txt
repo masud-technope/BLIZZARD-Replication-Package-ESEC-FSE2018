@@ -1,0 +1,12 @@
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIMethod.java
+org.eclipse.jdt.debug.tests/testprograms/StepFilterFour.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/DebugUIMessages.properties
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/test/stepping/StepFilterTests.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaStepFilterPreferencePage.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/debug/core/IJavaDebugTarget.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/DebugUIMessages.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/ProjectCreationDecorator.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIDebugTarget.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIThread.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/IJDIPreferencesConstants.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaDebugOptionsManager.java

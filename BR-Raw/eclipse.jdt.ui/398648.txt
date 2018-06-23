@@ -1,0 +1,19 @@
+Bug 398648 – Javadoc View inserts wrong asterisk when @see contains link with linebreak
+Reproduce:
+- Create a class Main.java in Eclipse and open it:
+/**
+* @see <a href="http://www.google.com/">Google
+* is your friend</a>
+*/
+public class Main {}
+- open Javadoc quick preview: Put the cursor on the word "Main" and press "F2"
+- or open Javadoc View for Main
+What happens:
+The text of the link is shown as "Google * is your friend"
+What should happen:
+The text of the link should be "Goolge is you friend".
+Without the asterisk from the left side of the Javadoc.
+When the Javadoc is created with the Javadoc tool, the asterisk is not in the text.
+This works correctly when the link with linebreak is in the normal Javadoc body and not in the @see-tag.
+I encountered this bug when my link was very long and formatting the source would insert the linbreak.
+For long links this is quite annoying.

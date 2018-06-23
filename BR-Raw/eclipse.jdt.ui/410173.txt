@@ -1,0 +1,25 @@
+Bug 410173 – [1.8][quick assist] 'Assign parameter to new field' on parameters of static and default interface methods
+public interface I1 {
+default void foo(int i) { // quick assist on 'i' [1]
+System.out.println(i);
+}
+static void bar(int i) {  // quick assist on 'i' [2]
+System.out.println(i);
+}
+}
+Quick assist 'Assign parameter to new field' on 'i' as shown above, creates the following:
+[1]
+private int i;
+default void foo(int i) {
+this.i = i;
+System.out.println(i);
+}
+[2]
+private static int i;
+static void bar(int i) {
+I1.i = i;
+System.out.println(i);
+}
+The modifier 'private' on newly created fields is incorrect.
+Also, fields in an interface are 'final' and cannot be assigned again in the method.
+This leads to compilation errors.

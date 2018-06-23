@@ -1,0 +1,3 @@
+Bug 88689 – Remove references to JLS2
+Now that the parser is JSL3 compliant, which covers JLS2, we can remove
+dependancies on JSL2.

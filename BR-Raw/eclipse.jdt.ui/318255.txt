@@ -1,0 +1,14 @@
+Bug 318255 – [rename] RenameMethodProcessor.checkNewElementName(..) should allow _ at beginning
+Build Identifier: 3.6
+At my company, it is a common naming practice to use underscores in front of methods that are "logically protected" -- that is, they have to be public to support cross-package calling, but should be considered protected or discouraged API.
+This is a convention brought over from Objective-C and WebObjects.
+RenameMethodProcess.checkNewElementNames when you refactor a method to have a leading underscore because it has a hardcoded "only lowercase names should be used" check.
+It would actually be nice if this check was either a configuration option or possible leading-underscore could be a case that doesn't trip this check.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Create a method named "test"
+2.
+Refactor=>rename the method to "_test"
+3.
+Warning points out that this is discouraged naming in Java

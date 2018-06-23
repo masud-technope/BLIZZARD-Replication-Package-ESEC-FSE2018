@@ -1,0 +1,18 @@
+Bug 399778 – [1.8][compiler] Conditional operator expressions should propagate target types
+BETA_JAVA8:
+The following program should compile fine, but fails to: We get three
+error messages about: "The target type of this expression must be a functional interface" and an NPE.
+// ----
+interface I {
+void doit();
+}
+class X {
+Object o = (I) () -> {};
+I k = (()->{});
+I i = 1 == 2 ? () -> {} : () -> {};
+I j = () -> {};
+}
+// ----
+While addressing this, we also need to ensure that the following is a well
+formed construct in Java 8 while not in Java 7:
+List<String> l = condition ? Arrays.asList() : Arrays.asList("a","b");

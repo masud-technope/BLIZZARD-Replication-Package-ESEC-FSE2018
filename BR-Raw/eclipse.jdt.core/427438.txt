@@ -1,0 +1,49 @@
+Bug 427438 – [1.8][compiler] NPE at org.eclipse.jdt.internal.compiler.ast.ConditionalExpression.generateCode(ConditionalExpression.java:280)
+Hello,
+I have an NPE while compiling this code :
+public class C {
+public C(Class clazz)
+{
+}
+public void error()
+{
+boolean test = false;
+int i = 1;
+new C(
+test
+? (i == 2
+? D.class
+: E.class)
+: null);
+}
+public class D{}
+public class E{}
+}
+I am using :
+Eclipse Java Development Tools Patch for Java 8 Support (BETA)		1.0.0.v20140205-0104_BETA_JAVA8
+Eclipse Plugin-in Development Environment Patch for Java 8 Support (BETA)	1.0.0.v20140205-0104_BETA_JAVA8
+Eclipse RCP Patch for Java 8 Support (BETA)					1.0.0.v20140205-0104_BETA_JAVA8
+This is the stack :
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.ast.ConditionalExpression.generateCode(ConditionalExpression.java:280)
+at org.eclipse.jdt.internal.compiler.ast.ConditionalExpression.generateCode(ConditionalExpression.java:272)
+at org.eclipse.jdt.internal.compiler.ast.Statement.generateArguments(Statement.java:265)
+at org.eclipse.jdt.internal.compiler.ast.AllocationExpression.generateCode(AllocationExpression.java:210)
+at org.eclipse.jdt.internal.compiler.ast.Expression.generateCode(Expression.java:698)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.generateCode(AbstractMethodDeclaration.java:328)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.generateCode(AbstractMethodDeclaration.java:273)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode(TypeDeclaration.java:570)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode(TypeDeclaration.java:639)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.generateCode(CompilationUnitDeclaration.java:370)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1214)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:693)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1187)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:813)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider$1.run(ASTProvider.java:548)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.createAST(ASTProvider.java:541)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.getAST(ASTProvider.java:484)
+at org.eclipse.jdt.ui.SharedASTProvider.getAST(SharedASTProvider.java:132)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:170)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$3.run(SelectionListenerWithASTManager.java:155)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)

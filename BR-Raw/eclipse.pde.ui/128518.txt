@@ -1,0 +1,13 @@
+Bug 128518 – should "mark internal" default filter be *.internal*
+instead of requireing trailing period, as is currently *.internal.* by default.
+I know in out WTP plugins, we have a number of packages where the word 'internal'
+is the last word in the package name.
+(gee, hope I just didn't confess to a naming convention violation :)
+e.g.
+org.eclipse.wst.xml.ui.internal
+I'm marking as minor, since is user settable ..
+but I only knew that because I went back to look at exactly what the option was called to write up this bug report.
+orgainize manifests is a cool capability, btw.
+Will greatly help us clean up our manifests.
+(though ...
+"clean up" would be more consistent with with conceptually similar function in Java (and XML, HTML, and JSP's and CSS in WTP).

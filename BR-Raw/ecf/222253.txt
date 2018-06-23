@@ -1,0 +1,4 @@
+Bug 222253 – [collab][ui] The height of the irc/collaboration chat input field is lower
+Created attachment 92183 [details]
+irc-chat.png
+Build ID: 2.0.0.v20080303-1747

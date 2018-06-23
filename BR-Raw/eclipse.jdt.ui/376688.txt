@@ -1,0 +1,28 @@
+Bug 376688 – [type wizards] New class wizard doesn't remember setting for which method stubs to create
+Build Identifier: 3.8.0 I20120314-1800
+Which checkboxes are selected in "Which method stubs would you like to create?" is not remembered across invocations of the new class wizard although NewPackageWizardPage tries to save them.
+The problem seems to be that NewPackageWizardPage#setVisible(false) is never invoked because WizardDialog#finishPressed() sends #hardClose()
+Reproducible: Always
+Steps to Reproduce:
+1.
+Invoke the New Class wizard
+2.
+Check "public static void main(String[] args)"
+3.
+Uncheck "Constructors from superclass"
+4.
+Uncheck "Inherited abstract methods"
+5.
+Create the class
+6.
+Invoke the New Class wizard again
+Expected result:
+Which method stubs would you like to create?
+[x] public static void main(String[] args)
+[ ] Constructors from superclass
+[ ] Inherited abstract methods
+Actual result:
+Which method stubs would you like to create?
+[ ] public static void main(String[] args)
+[ ] Constructors from superclass
+[x] Inherited abstract methods

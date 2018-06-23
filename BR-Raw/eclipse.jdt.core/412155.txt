@@ -1,0 +1,15 @@
+Bug 412155 – [1.8][compiler]Calling a @deprecated method in a separate class from within a lambda causes a ClassCastException and terminates the AST generation
+Created attachment 233006 [details]
+Two classes that reproduce the bug
+Please refer to the attached java files to reproduce this:
+When calling a method with a @Deprecated annotation from within a lambda method, the JDT core crashes with the following Exception:
+eclipse.buildId=4.4.0.I20130630-1602
+java.version=1.7.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+Error
+Tue Jul 02 16:11:10 PDT 2013
+Error in JDT Core during AST creation
+java.lang.ClassCastException
+Please note that this only happens if the deprecated method belongs to a different class than the one that contains the lambda.

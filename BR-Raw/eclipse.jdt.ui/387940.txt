@@ -1,0 +1,15 @@
+Bug 387940 – [quick fix] Add unimplemented methods quickfix add incorrect visibility
+Created attachment 220235 [details]
+Project that exhibits the problem
+Originally reported here:
+https://issuetracker.springsource.com/browse/STS-2862
+To reproduce:
+1.
+import attached project
+2.
+open MyClass.java
+3.
+execute quickfix "Add unimplemented methods"
+4.
+notice that the "public" keyword is not added to new method and there is still a compile error.
+Using Eclipse 4.2 release.

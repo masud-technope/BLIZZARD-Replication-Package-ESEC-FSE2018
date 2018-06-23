@@ -1,0 +1,3 @@
+Bug 356620 – Make it possible to provide indexes for defined libraries
+In some cases, indexing takes a significant amount of time.
+There is not much that can be done to significantly improve the performance except for having a pre-built index.

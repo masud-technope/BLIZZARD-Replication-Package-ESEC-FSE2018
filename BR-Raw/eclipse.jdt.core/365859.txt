@@ -1,0 +1,10 @@
+Bug 365859 – [compiler][null] distinguish warnings based on flow analysis vs. null annotations
+from bug 365387 comment #38
+> "Redundant null check: The variable f cannot be null at this location"
+>
+> Do we want to introduce a variant of this message for a @NonNull annotated
+> local ? The phrase: "at this location" is redundant here as the variable
+> cannot be null at any location.
+(IMO it is OK either way)
+whenever a warning is directly based on a null-annotation we should clearly
+communicate this fact.

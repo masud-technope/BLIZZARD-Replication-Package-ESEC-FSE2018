@@ -1,0 +1,15 @@
+55582 – Concurrent issue of TagFileProcessor
+Created attachment 30871 [details]
+Unsynchronized getting wrapper from RuntimeContext
+The following code has concurrent issue.
+JspRuntimeContext rctxt = ctxt.getRuntimeContext();
+JspServletWrapper wrapper = rctxt.getWrapper(wrapperUri);
+synchronized (rctxt) {
+if (wrapper == null) {
+....
+It creates duplicated JspServletWrapper in this scenario,
+A.jsp --> C.tag
+B.jsp --> C.tag
+A.jsp and B.jsp are both compiling and come to the given lines.
+Two threads all get null from JspRuntimeContext(JspServletWrapper == null).
+So two instances of JspServletWrapper was created.

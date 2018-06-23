@@ -1,0 +1,4 @@
+Bug 321354 – [jms] connect sequence timing problem
+There is a connect sequence timing problem in the JMS provider that is causing the remote services load balancing examples to fail to work properly.
+The bug is that on the service host, the add registration message (sent upon new client connection request) is sent out of order to the new client, meaning that the client does not get it, meaning that subsequent remote service lookups on the client (for that registration) fail.
+The fix is to manage the timing of the connect sequence appropriately.

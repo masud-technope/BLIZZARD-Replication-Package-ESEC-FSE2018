@@ -1,0 +1,7 @@
+Bug 293474 – Editing extensions in PDE editor creates invalid plugin.xml
+Created attachment 150655 [details]
+Extensions tab
+I was editing a new plugin in the Extensions tab and saving it as I go.
+ I
+ended up in the state where it had created an invalid plugin.xml
+PW

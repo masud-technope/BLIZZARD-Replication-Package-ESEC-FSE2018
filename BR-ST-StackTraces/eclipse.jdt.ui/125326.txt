@@ -1,0 +1,12 @@
+org.eclipse.jface.operation.ModalContext.run
+org.eclipse.jface.wizard.WizardDialog.run
+org.eclipse.ltk.ui.refactoring.RefactoringWizard.createChange
+org.eclipse.ltk.ui.refactoring.RefactoringWizard.computeUserInputSuccessorPage
+org.eclipse.ltk.ui.refactoring.RefactoringWizardPage.computeSuccessorPage
+org.eclipse.jdt.internal.ui.refactoring.PullUpWizard$PullUpInputPage2.getNextPage
+org.eclipse.jface.wizard.WizardDialg.nextPressed
+org.eclipse.jdt.core.dom.rewrite.ASTRewrite.createStringPlaceholder
+org.eclipse.jdt.internal.context.refactoring.structure.PullUpRefactoring.createJavadocForStub
+org.eclipse.jdt.internal.context.refactoring.structure.PullUpRefactoring.addMethodStubsToNonAbstractSubclassesOfTargetClass
+org.eclipse.jdt.internal.context.refactoring.structure.PullUpRefactoring.createChangeManager
+org.eclipse.jdt.internal.context.refactoring.structure.PullUpRefactoring.checkFinalConditions

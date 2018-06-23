@@ -1,0 +1,19 @@
+Bug 424226 – [1.8] Cannot use static method from an interface in static method reference
+package test.one;
+class C1 {
+public void fun1() {
+FI fi = I::staticMethod; // [1]
+}
+}
+@FunctionalInterface
+interface FI {
+void foo();
+}
+interface I {
+static FI staticMethod() {
+return null;
+}
+}
+-----------------------------------------------------
+The above example compiles with b118 but shows error at [1] with ECJ.
+The error is: The type I does not define staticMethod() that is applicable here

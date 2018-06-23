@@ -1,0 +1,9 @@
+Bug 147877 – source end of array access isn't correct
+build I20060614-0843 + JDT/core HEAD
+public class X {
+void foo() {
+int i = a[0\u005D;
+}
+}
+During compilation the source end of the array access isn't correct.
+The source end is at the start of the unicode character instead of the end of the unicode character.

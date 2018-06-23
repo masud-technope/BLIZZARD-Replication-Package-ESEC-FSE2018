@@ -1,0 +1,9 @@
+org.eclipse.jdt.internal.debug.core.model.JDIValue.toString
+org.eclipse.jdt.internal.debug.eval.ast.instructions.Cast.execute
+org.eclipse.jdt.internal.debug.eval.ast.engine.Interpreter.execute
+org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationThread$1$EvaluationRunnable.run
+org.eclipse.jdt.internal.debug.core.model.JDIThread.runEvaluation
+org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationThread.doEvaluation
+org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationThread.access$2
+org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationThread$1.run
+java.lang.Thread.run

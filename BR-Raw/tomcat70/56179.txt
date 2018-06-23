@@ -1,0 +1,52 @@
+56179 – ParseException for EL expression "${((test == true))}"
+I have the following JSP (test) file:
+<html>
+<body>
+${((test == true))}
+</body>
+</html>
+In Tomcat 7.0.52 this works fine but in Tomcat 8.0.3 the contained EL expression throws the following ParseException:
+org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/test] threw exception [An exception occurred processing JSP page /test.jsp at line 3
+1: <html>
+2:   <body>
+3:     ${((test == true))}
+4:   </body>
+5: </html>
+Stacktrace:] with root cause
+org.apache.el.parser.ParseException: Encountered " "==" "== "" at line 1, column 10.
+Was expecting one of:
+")" ...
+"," ...
+at org.apache.el.parser.ELParser.generateParseException(ELParser.java:3068)
+at org.apache.el.parser.ELParser.jj_consume_token(ELParser.java:2950)
+at org.apache.el.parser.ELParser.LambdaParameters(ELParser.java:380)
+at org.apache.el.parser.ELParser.LambdaExpressionOrInvocation(ELParser.java:419)
+at org.apache.el.parser.ELParser.NonLiteral(ELParser.java:1533)
+at org.apache.el.parser.ELParser.ValuePrefix(ELParser.java:1369)
+at org.apache.el.parser.ELParser.Value(ELParser.java:1316)
+at org.apache.el.parser.ELParser.Unary(ELParser.java:1298)
+at org.apache.el.parser.ELParser.Multiplication(ELParser.java:1060)
+at org.apache.el.parser.ELParser.Math(ELParser.java:980)
+at org.apache.el.parser.ELParser.Concatenation(ELParser.java:936)
+at org.apache.el.parser.ELParser.Compare(ELParser.java:747)
+at org.apache.el.parser.ELParser.Equality(ELParser.java:641)
+at org.apache.el.parser.ELParser.And(ELParser.java:585)
+at org.apache.el.parser.ELParser.Or(ELParser.java:529)
+at org.apache.el.parser.ELParser.Choice(ELParser.java:486)
+at org.apache.el.parser.ELParser.Assignment(ELParser.java:243)
+at org.apache.el.parser.ELParser.Semicolon(ELParser.java:182)
+at org.apache.el.parser.ELParser.Expression(ELParser.java:175)
+at org.apache.el.parser.ELParser.DynamicExpression(ELParser.java:147)
+at org.apache.el.parser.ELParser.CompositeExpression(ELParser.java:44)
+at org.apache.el.lang.ExpressionBuilder.createNodeInternal(ExpressionBuilder.java:111)
+at org.apache.el.lang.ExpressionBuilder.build(ExpressionBuilder.java:168)
+at org.apache.el.lang.ExpressionBuilder.createValueExpression(ExpressionBuilder.java:230)
+at org.apache.el.ExpressionFactoryImpl.createValueExpression(ExpressionFactoryImpl.java:67)
+at org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate(PageContextImpl.java:955)
+at org.apache.jsp.test_jsp._jspService(test_jsp.java:65)
+at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:725)
+at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:432)
+at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:403)
+at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:347)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:725)

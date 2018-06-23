@@ -1,0 +1,9 @@
+framework/bundles/org.eclipse.ecf.remoteservice.ui/.classpath
+framework/bundles/org.eclipse.ecf.remoteservice.ui/.project
+framework/bundles/org.eclipse.ecf.remoteservice.ui/.settings/org.eclipse.jdt.core.prefs
+framework/bundles/org.eclipse.ecf.remoteservice.ui/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.remoteservice.ui/build.properties
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/internal/remoteservices/ui/Messages.java
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/internal/remoteservices/ui/messages.properties
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/remoteservices/ui/MethodInvocationDialog.java
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/remoteservices/ui/RemoteMethod.java

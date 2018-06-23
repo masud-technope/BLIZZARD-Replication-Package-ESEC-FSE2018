@@ -1,0 +1,10 @@
+49209 – AccessControlException when undeploying application
+When running Tomcat with a SecurityManager, an AccessControlException is thrown during undeployment.
+Stack trace:
+Caused by: java.security.AccessControlException: access denied (java.lang.RuntimePermission getClassLoader)
+at java.security.AccessControlContext.checkPermission(AccessControlContext.java:323)
+at java.security.AccessController.checkPermission(AccessController.java:546)
+at java.lang.SecurityManager.checkPermission(SecurityManager.java:532)
+at java.lang.Class.getClassLoader(Class.java:594)
+at org.apache.catalina.loader.JdbcLeakPrevention.clearJdbcDriverRegistrations(JdbcLeakPrevention.java:49)
+I assume the default catalina.policy should be updated, to take this case into account.

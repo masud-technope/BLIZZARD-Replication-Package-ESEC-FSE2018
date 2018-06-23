@@ -1,0 +1,6 @@
+Bug 96328 – [navigation] Quick Outline does not find methods in 'Sort by Defining type' mode
+Open SWT's Scrollable on the Mac OS.
+Press Command+O twice, and type "isDispo".
+Widget#isDisposed() should be displayed, but is not.
+ I'm having this problem it
+lots of places.

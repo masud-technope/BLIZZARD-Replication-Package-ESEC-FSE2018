@@ -1,0 +1,8 @@
+Bug 51187 – [content assist] should filter setters for final fields
+Many classes have constants defined as public static final or protected
+staticd final with name in all caps.
+You don't really need getter and setter
+(since it is final) for the constants.
+They should not be displayed by default
+when you go to Generate getter and setter dialog since they are taking real
+esteate and make it difficult to find real class attributes.

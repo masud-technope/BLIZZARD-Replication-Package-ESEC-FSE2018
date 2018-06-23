@@ -1,0 +1,38 @@
+58192 – ImageIO based applications fail to deploy in Tomcat 8.0.24 (worked in 8.0.23)
+We have received several reports recently that GeoServer fails to deploy in Tomcat 8, and with some discussion, we poinpointed 8.0.24 as the version where this start happening, we have reports of deploys working without problems on 8.0.21 and 8.0.23 instead.
+The issue happens as we try to initialize the ImageIO subsystem, here is the stack trace:
+java.util.ServiceConfigurationError: javax.imageio.spi.ImageReaderSpi: Provider com.sun.media.imageioimpl.plugins.jpeg.CLibJPEGImageReaderSpi could not be instantiated
+at java.util.ServiceLoader.fail(ServiceLoader.java:232)
+at java.util.ServiceLoader.access$100(ServiceLoader.java:185)
+at java.util.ServiceLoader$LazyIterator.nextService(ServiceLoader.java:384)
+at java.util.ServiceLoader$LazyIterator.next(ServiceLoader.java:404)
+at java.util.ServiceLoader$1.next(ServiceLoader.java:480)
+at javax.imageio.spi.IIORegistry.registerApplicationClasspathSpis(IIORegistry.java:210)
+at javax.imageio.spi.IIORegistry.<init>(IIORegistry.java:138)
+at javax.imageio.spi.IIORegistry.getDefaultInstance(IIORegistry.java:159)
+at org.geoserver.GeoserverInitStartupListener.contextDestroyed(GeoserverInitStartupListener.java:295)
+at org.apache.catalina.core.StandardContext.listenerStop(StandardContext.java:4776)
+at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5390)
+at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:160)
+at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:725)
+at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:701)
+at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:717)
+at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:945)
+at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1768)
+at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.IllegalArgumentException: vendorName == null!
+at javax.imageio.spi.IIOServiceProvider.<init>(IIOServiceProvider.java:76)
+at javax.imageio.spi.ImageReaderWriterSpi.<init>(ImageReaderWriterSpi.java:231)
+at javax.imageio.spi.ImageReaderSpi.<init>(ImageReaderSpi.java:212)
+at com.sun.media.imageioimpl.plugins.jpeg.CLibJPEGImageReaderSpi.<init>(CLibJPEGImageReaderSpi.java:80)
+at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+at java.lang.Class.newInstance(Class.java:442)
+at java.util
+Here is the associated GeoServer ticket: https://osgeo-org.atlassian.net/browse/GEOS-7122

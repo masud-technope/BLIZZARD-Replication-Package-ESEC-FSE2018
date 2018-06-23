@@ -1,0 +1,8 @@
+Bug 268281 – [Discovery][jmdns] protocol incorrectly set to uri protocol
+In JMDNSDiscoveryContainer line 407 is this:
+final String proto = (uriProtocol == null) ? serviceInfo.getProtocol() : uriProtocol;
+This should be this:
+final String proto = serviceInfo.getProtocol();
+As for jmdns the uriProtocol doesn't necessarily match the discovery protocol.
+Fix is pending.
+ I'll be committing to HEAD shortly.

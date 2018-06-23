@@ -1,0 +1,9 @@
+Bug 149506 – Code folding needs a little nudge
+Build: any 3.3 build will do.
+1.
+Create an extension on the Extensions page of the plug-in manifest editor.
+2.
+Flip to the source page.
+Note how the newly generated markup does not have folding associated with it.
+Enter a space or something on the source page.
+ Code folding appears.

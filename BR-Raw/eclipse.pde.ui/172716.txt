@@ -1,0 +1,2 @@
+Bug 172716 – [Manifest Editor] Add run, debug, and export buttons to form header
+run,debug,export = sexy

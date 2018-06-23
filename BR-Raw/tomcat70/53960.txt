@@ -1,0 +1,8 @@
+53960 – Extensions to HttpClient test helper class
+Created attachment 29443 [details]
+Enhancements to HttpClient including preparation for no-cookie tests
+Ref: "FormAuthenticatorTest for cases without cookies - implementation issues" on the tomcat dev list.
+The attached patch prepares the HttpClient abstract helper ready for use by new Authenticator unit test cases.
+The change includes style cleanup, new public methods, logic refactoring and new private methods.
+This change leaves the class 100% backward compatible with all existing unit tests.
+When each of the concrete Authenticator tests are eventually extended, the new logic in HttpClient will be fully used for existing as well as new test cases.

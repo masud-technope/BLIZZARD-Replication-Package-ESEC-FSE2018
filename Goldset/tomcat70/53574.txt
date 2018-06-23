@@ -1,0 +1,5 @@
+java/org/apache/catalina/startup/ContextConfig.java
+test/org/apache/catalina/startup/TestContextConfig.java
+test/webapp-3.0/WEB-INF/jsp/bug53574.jsp
+test/webapp-3.0/WEB-INF/web.xml
+webapps/docs/changelog.xml

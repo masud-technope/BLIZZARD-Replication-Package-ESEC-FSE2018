@@ -1,0 +1,58 @@
+51774 – java.lang.NoSuchMethodException thrown when starting tomcat with security enabled and "tracking-mode" used in web.xml
+When starting my application with security enabled I get the exception below if I have the following in my web.xml.
+<session-config>
+<tracking-mode>COOKIE</tracking-mode>
+</session-config>
+If I remove the "tracking-mode" element then I don't get the exception.
+Mike
+[11/09/06 19:01:19:758] 00000001 Sv HostConfig: Error deploying configuration descriptor stack-pet-store-ui.xml
+java.lang.RuntimeException: org.apache.catalina.core.ApplicationContext.setSessionTrackingModes(java.util.EnumSet)
+at org.apache.catalina.core.ApplicationContextFacade.doPrivileged(ApplicationContextFacade.java:769)
+at org.apache.catalina.core.ApplicationContextFacade.setSessionTrackingModes(ApplicationContextFacade.java:608)
+at org.apache.catalina.deploy.WebXml.configureContext(WebXml.java:1324)
+at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1343)
+at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:896)
+at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:322)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:89)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5103)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:145)
+at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:812)
+at org.apache.catalina.core.ContainerBase.access$000(ContainerBase.java:121)
+at org.apache.catalina.core.ContainerBase$PrivilegedAddChild.run(ContainerBase.java:144)
+at org.apache.catalina.core.ContainerBase$PrivilegedAddChild.run(ContainerBase.java:133)
+at java.security.AccessController.doPrivileged(Native Method)
+at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:785)
+at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:607)
+at org.apache.catalina.startup.HostConfig.deployDescriptor(HostConfig.java:633)
+at org.apache.catalina.startup.HostConfig.deployDescriptors(HostConfig.java:558)
+at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:468)
+at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1322)
+at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:311)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:89)
+at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:379)
+at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:324)
+at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:1041)
+at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:774)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:145)
+at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:1033)
+at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:291)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:145)
+at org.apache.catalina.core.StandardService.startInternal(StandardService.java:443)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:145)
+at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:727)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:145)
+at org.apache.catalina.startup.Catalina.start(Catalina.java:621)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:601)
+at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:322)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:450)
+Caused by: java.lang.NoSuchMethodException: org.apache.catalina.core.ApplicationContext.setSessionTrackingModes(java.util.EnumSet)
+at java.lang.Class.getMethod(Class.java:1622)
+at org.apache.catalina.core.ApplicationContextFacade.invokeMethod(ApplicationContextFacade.java:790)
+at org.apache.catalina.core.ApplicationContextFacade.doPrivileged(ApplicationContextFacade.java:767)
+...
+42 more

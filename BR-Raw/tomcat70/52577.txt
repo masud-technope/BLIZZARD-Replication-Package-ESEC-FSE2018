@@ -1,0 +1,23 @@
+52577 – Response output written in filter can be truncated
+Due to changes 1229726, 1229727 and 1229728 output written to response in the filter can be truncated up to 8192 bytes.
+Consider the following scenario:
+- you have a filter that invoke getWriter() before chain.doFilter(request, responseWrapper)
+- responseWrapper overrides getWriter() method and returns some
+buffered writer, not the real one
+- during execution of chain.doFilter there is a forward
+Before the forward ApplicationDispather calls resetBuffer on response, which in turn calls reset() on OutputBuffer, which sets gotEnc field to false.
+This field is initialized in the setConverter() method which is called from response.getWriter(), but since our wrapperResponse overrides getWriter(), OutputBuffer.setConverter() never called and OutputBuffer still has gotEnc = false.
+Response's close() and flushBuffer() methods call OutputBuffer's flush(), but since gotEnc == false, conv.flushBuffer() is not called:
+if (gotEnc && conv != null) {
+conv.flushBuffer();
+}
+A workaround for us is to implement getWriter() method in responseWrapper like this:
+public Writer getWriter() {
+Writer originalWriter = originalResponse.getWriter();//save for future processing
+return ourWriter;
+}
+Maybe you should change flushing to something like that:
+if (conv != null) {
+conv.flushBuffer();
+}
+because you invoke conv.convert() without any checks in the write*() methods and it seems like conv is never null.

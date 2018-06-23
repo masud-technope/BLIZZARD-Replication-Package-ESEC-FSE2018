@@ -1,0 +1,36 @@
+Bug 417113 – [1.8][compiler] Encoding of type annotations in compiler bindings.
+While reviewing bug 409586, follow-up items start to pile up.
+Using this bug to collect and track those even though the original bug is not yet resolved so as to allow the main portion to be released soon.
+From bug 409586 comment 65:
+(1) NTAT#testBinary05 demonstrates that resetting contradictory nullTagBits is currently broken.
+Subsequently the non-null value is detected as not conforming to '@NonNull @Nullable Object'.
+(2) ArrayBinding.nullAnnotatedReadableName(CompilerOptions, boolean) must use nullAnnotatedReadableName(..) also for its #leafComponentType, tests will need adjustments after that.
+(3) FlowAnalysisTest8#testLambda_04 is now expecting one more error, which should be reverted.
+Should be a simple matter of clearing bogus nullAnnotationTagBits.
+(4) Error messages in testBug416175()
+1.: mixing short and long names
+2.: I like "required \'@NonNull ? extends String\'" better than "required \'@NonNull capture#\'" when it's clear we're not interested in compatibility of the capture itself, only in null safety.
+From bug 409586 comment 83:
+(5) Investigate new locations throwing IllegalStateException to see if we can convince ourselves that these are "impossible to reach" :)
+New items:
+(6) delegating STB#getAnnotationTagBits() to this.prototype looks dangerous.
+Any client expecting this to show per-use null annotation tagbits will fail.
+Currently there appear to be no such clients, but ...
+(7) Investigate: To challenge whether delegation to prototype is OK in STB#memberTypes(): will annotated reference to member type @TA Outer.Inner see its Outer as @TA (at the binding level)?
+(8) STB#resolveTypeFor(FieldBinding): Invoking copySE8AnnotationsToType before field.fillInDefaultNonNullness is problematic because we'll use field.tagBits instead of field.type.tagBits!
+'Accidentally' this is partly fixed by VariableBinding.isNonNull() where we check both tagBits locations.
+But bug shows when assigning null to such field:
+@NonNullByDefault class AllAreNonNull {
+String s3 = ""; // leaving this uninitialized would be detected
+void test() {
+this.s3 = null; // this goes unnoticed!!!
+}
+}
+Note that the corresponding method resolveTypesFor(MethodBinding) does not have this issue, because INAV.checkImplicitNullAnnotations already distinguishes 1.7- vs.
+1.8+
+(9) MethodBinding#fillInDefaultNonNullness18 is currently broken.
+The following two simple changes seem to fix the respective TODOs:
+this.parameters[i] = env.createAnnotatedType(parameter, new AnnotationBinding[]{env.getNonNullAnnotation()});
+this.returnType = env.createAnnotatedType(this.returnType, new AnnotationBinding[]{env.getNonNullAnnotation()});
+Seeing these as marked TODO could indicate there's more to this??
+(10) BinaryTB#toString() needs update for instantiations similar to STB.

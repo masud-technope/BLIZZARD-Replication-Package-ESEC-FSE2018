@@ -1,0 +1,17 @@
+Bug 432781 – [common navigator] Java Elements content extension shows non-Java projects in Project Explorer
+Delete and Copy context menu options in Project Explorer get disabled for a project on deselecting "Resource" contents
+1.
+Create a normal project without any facet applied
+(File->New->Project...
+and selecting General->Project)
+2.
+Right click on the Project in the Project Explorer:
+Observe that the Delete Menu is visible
+3.
+Select: Project Explorer->Customize View->Content
+4.
+Deselect: Resources.
+5.
+Right click on the Project in the Project Explorer:
+Observe that the Delete and Copy Menu is no longer visible
+Note: This issue doesn't occur with Java Projects.

@@ -1,0 +1,13 @@
+49998 – ParserController.hasJspRoot() does not detect JSP as using XML syntax if <jsp:root> namespace declaration uses ' delimiters instead of "
+I have a simple JSP in XML syntax that looks like this:
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+content goes here
+</jsp:root>
+This works fine.
+However, if I use ' instead of " for the namespace declaration, it fails to detect that XML syntax is being used, giving a "no such action" error instead:
+<jsp:root xmlns:jsp='http://java.sun.com/JSP/Page' version='2.0'>
+content goes here
+</jsp:root>
+Note that the check is skipped and the bug isn't exposed if external information on the JSP syntax is available (for example, from the web.xml, or because the file ends in .jspx).
+The problem seems to be on line 615 of org.apache.jasper.compiler.ParserController (in hasJspRoot).
+When trying to find the namespace declaration, the code only looks for a " character, and does not consider ' characters.

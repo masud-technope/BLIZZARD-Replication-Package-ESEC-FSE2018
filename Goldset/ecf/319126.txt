@@ -1,0 +1,3 @@
+compendium/bundles/org.eclipse.ecf.osgi.services.distribution/src/org/eclipse/ecf/internal/osgi/services/distribution/EventHookImpl.java
+tests/bundles/org.eclipse.ecf.tests.osgi.services.distribution/src/org/eclipse/ecf/tests/osgi/services/distribution/AbstractRemoteServiceRegisterTest.java
+tests/bundles/org.eclipse.ecf.tests.osgi.services.distribution/src/org/eclipse/ecf/tests/osgi/services/distribution/AbstractRemoteServiceAccessTest.java

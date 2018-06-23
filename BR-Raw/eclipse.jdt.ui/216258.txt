@@ -1,0 +1,14 @@
+Bug 216258 – [preferences] 'Check overriding and implementing methods' is ambiguous
+I20080122-1600
+"Preferences > Java > Errors/Warnings > Unnecessary Code" has two options
+("Parameter is never read" and "Unnecessary declaration of thrown exception") with sub-options named "Check overriding and implementing methods".
+Unfortunately, the label of the sub-option is ambiguous.
+It could either mean
+a) "also check for the problem in a method that overrides or implements another method", or
+b) "also consider all methods that override a method 'm' to decide whether the parameter/exception is considered as unused in 'm'"
+The implemented options are really case (a).
+Case (b) is requested in bug 201759 and bug 183339.
+To avoid confusion and wasting brain cycles of users, the label should only allow one interpretation.
+I suggest to invert the sense of the checkbox and rename it to:
+"Ignore in overriding and implementing methods" (checked by default).
+This label cannot mean "Ignore if necessary in another method in hierarchy", and it aligns well with the other "Ignore ..." sub-options.

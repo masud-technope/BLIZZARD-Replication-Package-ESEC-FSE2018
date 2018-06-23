@@ -1,0 +1,3 @@
+Bug 211127 – [registry view] Disabling/Enabling plug-in does not refresh its icon
+The icons added to the registry view for bug 210971 don't refresh after the user has triggered the disable/enable event.
+ This leaves the UI displaying stale information to the users.

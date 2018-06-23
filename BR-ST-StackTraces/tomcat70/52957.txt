@@ -1,0 +1,3 @@
+org.apache.catalina.core.StandardPipeline.removeValve
+org.apache.catalina.core.StandardPipeline.destroyInternal
+org.apache.catalina.util.LifecycleBase.destroy

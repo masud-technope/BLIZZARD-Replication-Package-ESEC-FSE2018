@@ -1,0 +1,12 @@
+Bug 381121 – [1.8][grammar] Arrays should be allowed in reference expressions
+JSR 335 draft spec lists out the following productions for
+method references:
+MethodReference:
+ExpressionName '::' NonWildTypeArgumentsopt Identifier
+Primary '::' NonWildTypeArgumentsopt Identifier
+ReferenceType '::' NonWildTypeArgumentsopt Identifier
+It also lists out "int [] :: clone" as an example of method references.
+This example cannot be reduced to any of the rules above: There are two
+questions here, whether array types are allowed and whether primitive
+array types are allowed if the former is.
+We need to ask the spec master react suitably.

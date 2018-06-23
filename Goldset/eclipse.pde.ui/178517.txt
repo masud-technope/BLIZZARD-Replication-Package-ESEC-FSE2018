@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/contentassist/ManifestContentAssistProcessor.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/ICoreConstants.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/contentassist/ManifestContentAssistProcessor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/contentassist/ManifestContentAssistProcessor.java

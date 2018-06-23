@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDEState.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/imports/BaseImportWizardSecondPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/imports/PluginImportWizardFirstPage.java

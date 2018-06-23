@@ -1,0 +1,15 @@
+Bug 453635 – [compiler][null] Update NullReferenceImplTests and friends
+Bug 453483 requires changes to the bit operations in UnconditionalFlowInfo.
+This routinely requires verification using NullReferenceImplTests (which are not part of regular builds & tests).
+The test harness given there and in NullReferenceImplTransformations supports several strategies for updating and comparing these elements:
+- a human readably description of all transitions in each of the major bit operations (as comments)
+- a hex-encoded tabular definition of those transitions
+- the current implementation of those operations
+Additionally, karnaugh maps can be created for developing more compact implementations.
+It turns out, that tests and implementation have slightly diverged, thus reducing the feasibility of comparisons:
+- tabular definitions are incomplete.
+Based on a notion of transitive closure one state (0x1C) was considered unreachable, but previous bugs have proven this to be wrong - perhaps due to added UFI-operations that do not participate in the implementation tests.
+Operation mergedWith was already amended, the others still have to follow suite.
+- tabular definitions as well as textual description (comments) are not ordered in the same way as the generator output, making it difficult to compare whether definitions re-generated from the current implementation match to the previously captured definitions.
+- re-generating definitions marks all textual descriptions of ThreeDimensionalTransformation (incl.
+subclass) as "CHECK", because it is not correctly detected when a transition actually matches the previous tabular form.

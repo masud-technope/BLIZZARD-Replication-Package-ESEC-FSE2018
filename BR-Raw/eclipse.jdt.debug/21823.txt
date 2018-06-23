@@ -1,0 +1,6 @@
+Bug 21823 – use java debug model adapters
+It has been noted that it could be "easier" to write a debug model that proxy's
+the Java debug model, if the Java debug model were to use adapters extensively.
+That is, the java debug model should retrieve adapters before performing casts
+on its model objects.
+This requires deeper investigation.

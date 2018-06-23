@@ -1,0 +1,8 @@
+53322 – Odd decapitalization when inferring JavaBean property from setter name for an injection target
+There is code in DefaultInstanceManager class that converts a setter method name into JavaBean property name.
+The code is wrong: it removes "set" prefix and then converts the first character into lowercase.
+That is a wrong way to get JavaBeans property name.
+The correct way would be to follow JavaBeans specification 1.01 ch.8.8 [1] and use java.beans.Introspector#decapitalize(String) method.
+E.g.
+for method setURL(..) the correct property name would be "URL", not "uRL".
+[1] http://www.oracle.com/technetwork/java/javase/documentation/spec-136004.html

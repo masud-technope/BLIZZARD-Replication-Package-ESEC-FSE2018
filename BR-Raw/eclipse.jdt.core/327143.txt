@@ -1,0 +1,6 @@
+Bug 327143 – IndexManager should not accept new jobs if the processing thread is null
+I ran into a case where a simulateExit() was called and the next touch(..) call failed.
+The consequence was that the simulateRestart() was never called.
+But a new jar file added ended up being added into the waiting jobs and the index manager was in an infinite loop and the number of awaiting jobs was always 1 and since the processing thread was null, that job was never run.
+So we must make sure that the index manager doesn't accept new jobs if the processing thread is null or if stops the loop when there is an awaiting job but the thread is null.
+Right now the loop never ends unless the number of awaiting jobs is 0.

@@ -1,0 +1,7 @@
+Bug 337653 – [remoteserviceadmin][discovery] add support for allowLoopbackReference and endpointListenerScope system properties
+In the old implementation of remote services, we have support for a System property:  org.eclipse.ecf.osgi.services.discovery.allowLoopbackReference
+which if true would allow remote services to be imported in local framework.
+To aid in the use of r-osgi in particular, it would be useful to have support for this system property in the remote service admin implementation.
+Also, it would be useful to introduce another system property:
+org.eclipse.ecf.osgi.services.discovery.endpointListenerScope
+To allow the remote service admin endpoint listener scope (for the BasicTopologyManger) to be customized arbitrarily.

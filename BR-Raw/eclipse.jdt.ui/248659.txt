@@ -1,0 +1,4 @@
+Bug 248659 – [implementation] Deleting source folder leaks file handle
+Current HEAD
+DeletePackageFragmentRootChange#getFileLength acquires an InputStream from IFile.
+JavaDoc explicitly says that the caller is responsible for closing the stream.

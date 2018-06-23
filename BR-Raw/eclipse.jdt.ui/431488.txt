@@ -1,0 +1,2 @@
+Bug 431488 – [1.8][search] UI for finegrain IJavaSearchConstants#METHOD_REFERENCE_EXPRESSION
+Add UI for finegrain IJavaSearchConstants#JAVA8_METHOD_REFERENCE from bug 429012 and test the functionality.

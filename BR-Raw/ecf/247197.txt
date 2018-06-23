@@ -1,0 +1,4 @@
+Bug 247197 – [filetransfer] add 'Connection: close' header
+As per comment 13 on bug 234916
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=234916#c13
+ECF should add the 'Connection: close' header to requests made by the URLConnection-based provider in the hopes of preventing problem seen in bug #234916.

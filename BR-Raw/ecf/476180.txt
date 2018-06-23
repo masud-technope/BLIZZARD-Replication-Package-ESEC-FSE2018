@@ -1,0 +1,25 @@
+Bug 476180 – Add utility methods to BaseContainerInstantiator class
+The BaseContainerInstantiator class could use the following utility methods for dealing with Map parameters
+@SuppressWarnings("rawtypes")
+protected Map getMapFromParameters(Object[] parameters) {
+if (parameters != null && parameters.length > 0)
+for (Object p : parameters)
+if (p instanceof Map)
+return (Map) p;
+return null;
+}
+/**
+* @since 3.6
+*/
+@SuppressWarnings("unchecked")
+protected <T> T getMapParameter(Object[] parameters, String key, Class<T> clazz, T def) {
+@SuppressWarnings("rawtypes")
+Map m = getMapFromParameters(parameters);
+if (m != null) {
+Object o = m.get(key);
+if (clazz.isInstance(o))
+return (T) o;
+}
+return def;
+}
+These methods will make it easier to create Remote Service Distribution Providers.

@@ -1,0 +1,13 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/ActionMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/util/OpenTypeHierarchyUtil.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/typehierarchy/HierarchyLabelProvider.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/ActionMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/typehierarchy/TypeHierarchyContentProvider.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/typehierarchy/HistoryAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/typehierarchy/TypeHierarchyMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/typehierarchy/HistoryListAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/typehierarchy/TypeHierarchyLifeCycle.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/actions/OpenTypeHierarchyAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/typehierarchy/TypeHierarchyMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/typehierarchy/TypeHierarchyViewPart.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/typehierarchy/HistoryDropDownAction.java

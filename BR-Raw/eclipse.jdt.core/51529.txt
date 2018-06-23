@@ -1,0 +1,1 @@
+Bug 51529 – "Organize imports" is confused by references inside Javadoc

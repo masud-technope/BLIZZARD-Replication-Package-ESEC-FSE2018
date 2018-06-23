@@ -1,0 +1,25 @@
+Bug 444354 – [pull up] pull up refactoring doesn't add the required 'public' modifier
+Works fine in Eclipse 4.4.
+Looks like a regression from bug 71627.
+-------------------------
+package p1;
+import java.util.List;
+public class PullUpBaz implements PullUpToInterfaceBug.Foo {
+public void b() {
+List<Object> l = null;
+}
+}
+-------------------------
+package p1;
+public class PullUpToInterfaceBug {
+interface Foo {
+}
+static class Bar implements Foo {
+/** baz it! */
+void baz(final String s) {
+}
+}
+}
+-------------------------
+Pull up the method PullUpBaz.b() to PullUpToInterfaceBug.Foo.
+The method added in PullUpToInterfaceBug.Bar doesn't have the required 'public' modifier and results in compiler error.

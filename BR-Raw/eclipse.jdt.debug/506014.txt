@@ -1,0 +1,12 @@
+Bug 506014 – constantly show method return node in variables view
+(In reply to Sarika Sinha from bug 499655 comment #4)
+> Stephan also observed that we get a flickering view when Last returned value
+> is removed from the Variables view.
+So we were also discussing If it will be
+> ok to have the first row dedicated for Last returned value so that we don't
+> have to insert and remove the rows every time.
+> Nothing decided as of now, this is a thought and we are open to discussions.
+In daily use of the new feature, it indeed disturbs that the list of variables jumps up and down during stepping depending on the availability of a return value.
+Therefore, I suggest to always show a node as a place holder, and if no return value is available signal this by changing the label to s.t.
+like "no method return value".
+The new icon from bug 499655 should be constantly shown, perhaps a disabled state would further improve UX.

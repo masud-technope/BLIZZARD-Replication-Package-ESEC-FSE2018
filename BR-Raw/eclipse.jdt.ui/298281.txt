@@ -1,0 +1,36 @@
+Bug 298281 – [introduce factory] Introduce Factory gets confused when replacing vararg constructor
+Build Identifier: I20091210-1301
+I've managed to boil the issue down to the following code:
+public class Thing {
+private Thing[] subthings;
+public Thing() {
+subthings = new Thing[]{};
+}
+public Thing(Thing...
+subthings) {
+this.subthings = subthings;
+}
+public static void main(String args[]) {
+System.out.println(new Thing(new Thing(new Thing()), new Thing(new Thing())).subthings.length);
+}
+}
+Attempts to replace the vararg constructor with a factory using the Introduce Factory refactoring tool results in:
+public class Thing {
+private Thing[] subthings;
+public Thing() {
+subthings = new Thing[]{};
+}
+private Thing(Thing...
+subthings) {
+this.subthings = subthings;
+}
+public static void main(String args[]) {
+System.out.println(createThing(createThing(new Thing())).subthings.length);
+}
+public static Thing createThing(Thing...
+subthings) {
+return new Thing(subthings);
+}
+}
+The refactored version loses an entire subtree.
+Reproducible: Always

@@ -1,0 +1,13 @@
+51212 – QueryStats has synchornisation issues
+Created attachment 27017 [details]
+Patch with Atomic approach
+Hello,
+I don't know if it is volontary but I think QueryStats fields should be Atomic because they are accessed by multiple threads at same time.
+I made a Load test with heavy load and collected results of SlowQueryReport and I get Sql queries with 0 as number of executions which is wrong as they have been executed at least once.
+By the way I don't know which approach will perform better:
+- synchronize add/failure
+- Use Atomic
+Maybe you did this for performance reasons.
+Regards
+Philippe Mouawad
+http://www.ubik-ingenierie.com

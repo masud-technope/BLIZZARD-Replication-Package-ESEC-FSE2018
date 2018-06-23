@@ -1,0 +1,35 @@
+49799 – The new JSP 2.2 omit-attribute in jsp:attribute does not work with EL or expressions
+Created attachment 25926 [details]
+A JSP file which show three different use cases of the jsp:attribute omit attribute
+I'm trying to make use of the new omit-attribute in the jsp:attribute.
+This new feature of JSP 2.2 is described in the Specs in JSP.5.10.
+Table JSP.5-7 Attributes for the <jsp:attribute> standard action
+omit (optional) Valid values are true and false.
+If true, and when
+used with <jsp:element>, the attribute in the element being
+ouput is omitted.
+Ignored when used with a standard or
+custom action.
+Defaults to false.
+There is an introduction text here:
+http://www.ibm.com/developerworks/forums/thread.jspa?messageID=14471459
+and I'm trying to make this work in my setup but I'm failing.
+Or I don't get the point.
+The following works:
+<jsp:element name="p">
+<jsp:attribute name="style" omit="true" >color:red</jsp:attribute>
+The following does NOT work:
+<jsp:element name="p">
+<jsp:attribute name="style" omit="<%=jspExpressionTrue%>" >color:red</jsp:attribute>
+The following does NOT work either:
+<jsp:element name="p">
+<jsp:attribute name="style" omit="${trueEL}" >color:red</jsp:attribute>
+Full JSP code in my attachment.
+I actually use the JSP-document (XML / JSPX-)syntax, but it does not work in any of the JSP dialects.
+So I don't get the point why I should not be able to use EL in the omit-attribute, because then it's kind of useless.
+I use
+Windows Vista 64bit
+JavaSE 1.6
+Apache Tomcat 7.0.0 and Apche Tomcat 7.0.2beta
+JSTL 1.1.2
+All setup together in a typical "Dynamic Web Project" in Eclipse 3.6 Helios

@@ -1,0 +1,36 @@
+Bug 32174 – NPE evaluating in SWT class
+Build 20030218
+I put a conditional breakpoint in SWT.error(int) with the condition "code ==
+44" and debug a motif runtime-workbench launch config.
+In the target, I then
+follow the steps described in Comment 10 of Bug 31312.
+When the breakpoint
+is hit, the following NPE occurs.
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTInstructionCompiler.getTypeId(ASTInstructionCompiler.java:2782)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTInstructionCompiler.visit(ASTInstructionCompiler.java:1781)
+at org.eclipse.jdt.core.dom.InfixExpression.accept0(InfixExpression.java:244)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:1353)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:1400)
+at org.eclipse.jdt.core.dom.ReturnStatement.accept0(ReturnStatement.java:74)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:1353)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:1423)
+at org.eclipse.jdt.core.dom.Block.accept0(Block.java:81)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:1353)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:1400)
+at org.eclipse.jdt.core.dom.MethodDeclaration.accept0(MethodDeclaration.java:179)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:1353)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:1423)
+at org.eclipse.jdt.core.dom.TypeDeclaration.accept0(TypeDeclaration.java:161)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:1353)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:1423)
+at org.eclipse.jdt.core.dom.CompilationUnit.accept0(CompilationUnit.java:160)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:1353)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.createExpressionFromAST(ASTEvaluationEngine.java:219)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.getCompiledExpression(ASTEvaluationEngine.java:137)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.handleConditionalBreakpointEvent(JavaLineBreakpoint.java:449)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.handleBreakpointEvent(JavaLineBreakpoint.java:361)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:248)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:164)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.run(EventDispatcher.java:205)
+at java.lang.Thread.run(Thread.java:536)

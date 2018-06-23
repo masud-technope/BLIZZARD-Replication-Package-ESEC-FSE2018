@@ -1,0 +1,5 @@
+48135 – ServiceRefFactory: impossible null check of serviceInterfaceClass
+The ServiceRefFactory class performs an impossible null check of serviceInterfaceClass at line 238:
+237: Class[] serviceInterfaces = serviceInterfaceClass.getInterfaces();
+238: if (serviceInterfaceClass != null) {
+If it were null, line 237 would generate an NPE.

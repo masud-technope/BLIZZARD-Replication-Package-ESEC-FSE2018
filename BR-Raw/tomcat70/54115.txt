@@ -1,0 +1,7 @@
+54115 – Minor enhancements to HttpClient test helper class
+Created attachment 29566 [details]
+patch to HttpClient
+Main reason for this change is to add two new accessor methods to the enhanced logic in https://issues.apache.org/bugzilla/show_bug.cgi?id=53960.
+I also took the opportunity to make the sendRequest method tolerant of null elements in its input array.
+Finally, I added comments (definitely not proper javadoc!) to some other methods to clarify their purpose.
+This change is 100% backward compatible.

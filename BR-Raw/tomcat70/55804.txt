@@ -1,0 +1,5 @@
+55804 – SPNEGOAUTHENTICATOR - GSSCredential does not get renewed after RemainingLifeTime is less than zero
+In SpnegoAuthenticator, we check for request.getUserPrincipal() if it returns a prinicpal we do not do a fresh authentication.
+This happens even when the GSSCredential returned by GenericPrincipal has remainingLife time less than zero.
+This causes issues in delegating the credential as the credential is not valid any more.
+Can we add additional check to reauthenticate when the credental has expired and put GSSCredential in the same session?

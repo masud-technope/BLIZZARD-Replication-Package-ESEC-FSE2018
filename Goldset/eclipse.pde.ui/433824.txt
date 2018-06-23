@@ -1,0 +1,11 @@
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/AntFilterStore.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/search/ConsumerReportConvertor.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/search/UseReportConverter.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/provisional/search/ApiSearchEngine.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/search/SearchMessages.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/search/UseMetadata.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/search/XmlSearchReporter.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/search/MissingRefReportConverter.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/use/ApiUseScanJob.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/IApiXmlConstants.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/search/searchmessages.properties

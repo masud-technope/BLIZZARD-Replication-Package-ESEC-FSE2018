@@ -1,0 +1,12 @@
+Bug 402198 – [1.8][compiler][infrastructure] Enhance IErrorHandlingPolicy to support a new policy: ignore all errors.
+BETA_JAVA8:
+Overload resolution in Java 8 requires the same construct (lambda expression,
+method/constructor references) to be analyzed more than once.
+Any errors
+encountered during these steps should not be treated as an error in the
+program and should not be exposed to the programmer - they may at best steer
+the resolution in a certain direction.
+Presently, we have a hackish solution in place that switches the compilation
+result object that accumulates the problem markers.
+We need a cleaner abstraction
+and this ER is raised for that purpose.

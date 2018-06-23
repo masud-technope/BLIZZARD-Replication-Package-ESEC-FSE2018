@@ -1,0 +1,5 @@
+Bug 13015 – stepping to a line with a conditional breakpoint
+If I step over a line and end up on a line with a conditional breakpoint, and
+the condition evaluates to 'false', the thread resumes.
+When stepping over/onto
+a breakpoint with a condition, the condition should not be evaluated.

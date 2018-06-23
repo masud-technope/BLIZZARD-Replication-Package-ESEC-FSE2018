@@ -1,0 +1,9 @@
+Bug 79793 – Deadlock in JavaWorkingSetUpdater
+I20041130
+* Started workspace
+* Pressed CTRL-Shift-T to open a type
+* Progress dialog appeared
+* pressed cancel
+* Pressed CTRL-Shift-T again
+> workspace deadlocked
+will attach thread dump

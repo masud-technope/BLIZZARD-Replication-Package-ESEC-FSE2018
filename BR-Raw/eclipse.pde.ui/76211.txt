@@ -1,0 +1,6 @@
+Bug 76211 – Rename library dialog problems
+PDE Editor/Runtime tab
+Context menu Rename on library
+@@@@
+The dialog title could be a little more specific: "Rename library"
+The dialog does not use standard margins (see pic)

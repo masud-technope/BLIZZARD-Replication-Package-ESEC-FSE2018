@@ -1,0 +1,13 @@
+org.eclipse.jdt.core.tests.model/workspace/Completion/src2/CompletionKeywordReturn2.java
+org.eclipse.jdt.core.tests.model/workspace/Completion/src2/CompletionKeywordContinue3.java
+org.eclipse.jdt.core.tests.model/workspace/Completion/src2/CompletionKeywordReturn1.java
+org.eclipse.jdt.core.tests.model/workspace/Completion/src2/CompletionKeywordReturn4.java
+org.eclipse.jdt.core.tests.model/workspace/Completion/src2/CompletionKeywordContinue4.java
+org.eclipse.jdt.core.tests.model/workspace/Completion/src2/CompletionKeywordReturn3.java
+org.eclipse.jdt.core.tests.model/workspace/Completion/src2/CompletionKeywordReturn6.java
+org.eclipse.jdt.core/codeassist/org/eclipse/jdt/internal/codeassist/complete/CompletionParser.java
+org.eclipse.jdt.core.tests.model/workspace/Completion/src2/CompletionKeywordContinue1.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/CompletionTests.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core.tests.model/workspace/Completion/src2/CompletionKeywordContinue2.java
+org.eclipse.jdt.core.tests.model/workspace/Completion/src2/CompletionKeywordReturn5.java

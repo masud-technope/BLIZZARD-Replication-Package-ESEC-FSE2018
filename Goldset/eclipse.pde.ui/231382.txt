@@ -1,0 +1,4 @@
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/markers/UnsupportedTagResolution.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/ApiUIPlugin.java
+apitools/org.eclipse.pde.api.tools.ui/icons/full/elcl16/remove_exc.gif
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/IApiToolsConstants.java

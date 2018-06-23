@@ -1,0 +1,6 @@
+Bug 36427 – org.eclipse.jdt.internal.ui.filters.NamePatternFilter should adapt to IJavaElement [general issue]
+NamePatternFilter.select(...) checks whether the specified element is an
+instance of IJavaElement.
+If not, it attempts to adapt to an IResource.
+It
+should also attempt to adapt to IJavaElement.

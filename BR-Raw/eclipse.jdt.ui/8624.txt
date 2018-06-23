@@ -1,0 +1,6 @@
+Bug 8624 – [misc] Double click should auto select comment
+Stable Build: 20020125
+It should be possible to double click at the start or end of a long comment
+(i.e.
+ /*  or */) and have it automatically select the entire comment.
+Thanks.

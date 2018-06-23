@@ -1,0 +1,174 @@
+Bug 89566 – Searching for installed JREs broken
+I20050330
+* Open the installed JREs pref page
+* Select "Search" and select "c:\"
+> The busy cursor appears with no dialog
+* press cancel
+> the pref dialog closes, the search dialog appears
+This is in the .log:
+org.eclipse.swt.SWTException: Widget is disposed
+at org.eclipse.swt.SWT.error(SWT.java:2860)
+at org.eclipse.swt.SWT.error(SWT.java:2783)
+at org.eclipse.swt.SWT.error(SWT.java:2754)
+at org.eclipse.swt.widgets.Widget.error(Widget.java:393)
+at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:295)
+at org.eclipse.swt.widgets.Table.getItems(Table.java:1349)
+at org.eclipse.jface.viewers.CheckboxTableViewer.preservingSelection
+(CheckboxTableViewer.java:274)
+at org.eclipse.jface.viewers.StructuredViewer.refresh
+(StructuredViewer.java:1169)
+at org.eclipse.jface.viewers.StructuredViewer.refresh
+(StructuredViewer.java:1128)
+at org.eclipse.jdt.internal.debug.ui.jres.InstalledJREsBlock.vmAdded
+(InstalledJREsBlock.java:597)
+at org.eclipse.jdt.internal.debug.ui.jres.InstalledJREsBlock.search
+(InstalledJREsBlock.java:727)
+at
+org.eclipse.jdt.internal.debug.ui.jres.InstalledJREsBlock$11.handleEvent
+(InstalledJREsBlock.java:372)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:82)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:842)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:2894)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2527)
+at org.eclipse.jface.window.Window.runEventLoop(Window.java:803)
+at org.eclipse.jface.window.Window.open(Window.java:781)
+at org.eclipse.ui.internal.OpenPreferencesAction.run
+(OpenPreferencesAction.java:66)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:996)
+at
+org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection
+(ActionContributionItem.java:538)
+at org.eclipse.jface.action.ActionContributionItem.access$2
+(ActionContributionItem.java:488)
+at org.eclipse.jface.action.ActionContributionItem$5.handleEvent
+(ActionContributionItem.java:400)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:82)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:842)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:2894)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2527)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1570)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:1534)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench
+(Workbench.java:306)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:143)
+at org.eclipse.ui.internal.ide.IDEApplication.run
+(IDEApplication.java:103)
+at org.eclipse.core.internal.runtime.PlatformActivator$1.run
+(PlatformActivator.java:228)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run
+(EclipseStarter.java:338)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run
+(EclipseStarter.java:151)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke
+(NativeMethodAccessorImpl.java:85)
+at sun.reflect.NativeMethodAccessorImpl.invoke
+(NativeMethodAccessorImpl.java:58)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke
+(DelegatingMethodAccessorImpl.java:60)
+at java.lang.reflect.Method.invoke(Method.java:391)
+at org.eclipse.core.launcher.Main.invokeFramework(Main.java:268)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:260)
+at org.eclipse.core.launcher.Main.run(Main.java:887)
+at org.eclipse.core.launcher.Main.main(Main.java:871)
+java.lang.reflect.InvocationTargetException
+at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:327)
+at org.eclipse.jface.dialogs.ProgressMonitorDialog.run
+(ProgressMonitorDialog.java:447)
+at org.eclipse.ui.internal.progress.ProgressMonitorJobsDialog.run
+(ProgressMonitorJobsDialog.java:261)
+at org.eclipse.ui.internal.progress.ProgressManager$3.run
+(ProgressManager.java:839)
+at org.eclipse.swt.custom.BusyIndicator.showWhile
+(BusyIndicator.java:69)
+at org.eclipse.ui.internal.progress.ProgressManager.busyCursorWhile
+(ProgressManager.java:873)
+at org.eclipse.ui.internal.progress.ProgressManager.busyCursorWhile
+(ProgressManager.java:849)
+at org.eclipse.jdt.internal.debug.ui.jres.JREsUpdater.saveVMDefinitions
+(JREsUpdater.java:106)
+at org.eclipse.jdt.internal.debug.ui.jres.JREsUpdater.updateJRESettings
+(JREsUpdater.java:77)
+at org.eclipse.jdt.internal.debug.ui.jres.JREsPreferencePage$2.run
+(JREsPreferencePage.java:133)
+at org.eclipse.swt.custom.BusyIndicator.showWhile
+(BusyIndicator.java:69)
+at org.eclipse.jdt.internal.debug.ui.jres.JREsPreferencePage.performOk
+(JREsPreferencePage.java:128)
+at org.eclipse.jface.preference.PreferenceDialog$12.run
+(PreferenceDialog.java:843)
+at org.eclipse.core.internal.runtime.InternalPlatform.run
+(InternalPlatform.java:1021)
+at org.eclipse.core.runtime.Platform.run(Platform.java:757)
+at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:40)
+at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:148)
+at org.eclipse.jface.preference.PreferenceDialog.okPressed
+(PreferenceDialog.java:823)
+at org.eclipse.ui.internal.dialogs.FilteredPreferenceDialog.okPressed
+(FilteredPreferenceDialog.java:304)
+at org.eclipse.jface.preference.PreferenceDialog.buttonPressed
+(PreferenceDialog.java:226)
+at org.eclipse.jface.dialogs.Dialog$2.widgetSelected(Dialog.java:556)
+at org.eclipse.swt.widgets.TypedListener.handleEvent
+(TypedListener.java:89)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:82)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:842)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:2894)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2527)
+at org.eclipse.jface.window.Window.runEventLoop(Window.java:803)
+at org.eclipse.jface.window.Window.open(Window.java:781)
+at org.eclipse.ui.internal.OpenPreferencesAction.run
+(OpenPreferencesAction.java:66)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:996)
+at
+org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection
+(ActionContributionItem.java:538)
+at org.eclipse.jface.action.ActionContributionItem.access$2
+(ActionContributionItem.java:488)
+at org.eclipse.jface.action.ActionContributionItem$5.handleEvent
+(ActionContributionItem.java:400)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:82)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:842)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:2894)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2527)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1570)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:1534)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench
+(Workbench.java:306)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:143)
+at org.eclipse.ui.internal.ide.IDEApplication.run
+(IDEApplication.java:103)
+at org.eclipse.core.internal.runtime.PlatformActivator$1.run
+(PlatformActivator.java:228)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run
+(EclipseStarter.java:338)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run
+(EclipseStarter.java:151)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke
+(NativeMethodAccessorImpl.java:85)
+at sun.reflect.NativeMethodAccessorImpl.invoke
+(NativeMethodAccessorImpl.java:58)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke
+(DelegatingMethodAccessorImpl.java:60)
+at java.lang.reflect.Method.invoke(Method.java:391)
+at org.eclipse.core.launcher.Main.invokeFramework(Main.java:268)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:260)
+at org.eclipse.core.launcher.Main.run(Main.java:887)
+at org.eclipse.core.launcher.Main.main(Main.java:871)
+Caused by: java.lang.NullPointerException
+at
+org.eclipse.jdt.internal.launching.VMDefinitionsContainer.libraryLocationsAsEle
+ment(VMDefinitionsContainer.java:335)
+at
+org.eclipse.jdt.internal.launching.VMDefinitionsContainer.vmAsElement
+(VMDefinitionsContainer.java:308)
+at
+org.eclipse.jdt.internal.launching.VMDefinitionsContainer.vmTypeAsElement
+(VMDefinitionsContainer.java:280)
+at org.eclipse.jdt.internal.launching.VMDefinitionsContainer.getAsXML
+(VMDefinitionsContainer.java:258)
+at org.eclipse.jdt.internal.debug.ui.jres.JREsUpdater$1.run
+(JREsUpdater.java:87)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run
+(ModalContext.java:113)

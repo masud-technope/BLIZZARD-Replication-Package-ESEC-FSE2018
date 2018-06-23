@@ -1,0 +1,11 @@
+57308 – Replace System.getProperty("file.separator") with File.separator throughout
+Most of Tomcat uses File.separator, but there are a few instances of System.getProperty("file.separator")
+The two can be different, but still allow the JVM to start up.
+I found the following worked:
+java -Dfile.separator=/xyz
+for Unix or the equivalent \xyz on Windows.
+Using a different first character does not work - the JVM usually throws an exception as it cannot find some required files if the sep.
+is incorrect.
+It looks like only the first character of the property is used by the JVM.
+However, this is not done by the application code I have seen, which means that there could be a discrepancy between the two methods.
+File.separator has the additional benefit that it is not subject to a privilege check.

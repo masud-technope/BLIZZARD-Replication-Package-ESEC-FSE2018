@@ -1,0 +1,2 @@
+48249 – org.apache.tomcat.util.net.NioBlockingSelector.BlockPoller.run <= volatile
+org.apache.tomcat.util.net.NioBlockingSelector.BlockPoller.run should be volatile, as it is used to communicate between running threads.

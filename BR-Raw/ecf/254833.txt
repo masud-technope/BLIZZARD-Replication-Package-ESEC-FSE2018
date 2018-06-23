@@ -1,0 +1,3 @@
+Bug 254833 – [Discovery][SLP] org.eclipse.ecf.internal.provider.jslp.Activator.start(BundleContext) may not activate jSLP eagerly
+org.eclipse.ecf.internal.provider.jslp.Activator.start(BundleContext) eagerly gets ch.ethz.iks.slp.Locator and ch.ethz.iks.slp.Advertiser.
+To better handle system resources, this should be delayed until the first consumer accesses the service/container.

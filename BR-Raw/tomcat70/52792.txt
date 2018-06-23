@@ -1,0 +1,15 @@
+52792 – Incomplete error message when lookup a resource that is not bound in the naming
+Created attachment 28401 [details]
+Patch proposal
+Hi,
+I have a servlet that specifies @Resource on a field level.
+(see attached sample application)
+When a request comes for this servlet, Tomcat tries to inject this resource and to instantiate the servlet.
+If the resource is not found, 500 ISE is returned as a response code.
+In the error message returned in the error page, it is not specified the full composite name that Tomcat tries to lookup, but only the first part (the context) (see incorrect.png).
+Thus the end user cannot understand which is the resource that causes the problem, but only the context that cannot be found.
+I would like to propose a patch (attached).
+A screenshot (correct.png) with corrected error message is also attached.
+Thanks in advance.
+Regards,
+Violeta Georgieva

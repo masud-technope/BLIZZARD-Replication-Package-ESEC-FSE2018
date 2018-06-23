@@ -1,0 +1,25 @@
+53545 – jsp:forward action to static resources causes IllegalStateException when inside classic custom tag
+If we have a JSP like the one below we get java.lang.IllegalStateException: getOutputStream() has already been called for this response:
+Notes:
+1.
+the jsp:forward is inside classic custom tag ( extends BodyTagSupport).
+2.
+if I put a dynamic resource everything is fine (ex.
+redirect.jsp)
+3.
+I think that the response gets flushed if jsp:forward redirects to a static resource and that's why the exception is trown.
+test.jsp
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="t" uri="test" %>
+<t:do>
+<jsp:forward page="redirect.html"/>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+</body>
+</html>
+</t:do>

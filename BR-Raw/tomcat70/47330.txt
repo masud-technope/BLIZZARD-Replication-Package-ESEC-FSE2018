@@ -1,0 +1,50 @@
+47330 – proposal : port of mod_remoteip in Tomcat as RemoteIpValve
+Created attachment 23772 [details]
+First version of the proposed patch
+Here is a proposal to port Apache Server mod_remoteip module as a Tomcat Valve to have the actual end user remote ip in ServletRequest.getRemoteAddr() and ServletRequest.getRemoteHost() methods even if reverse proxies (e.g.
+Apache Http Server mod_proxy_http + mod_proxy_balancer) and/or hardware load balancer (e.g.
+F5 Big IP, etc).
+This feature will benefit security and audit frameworks like SpringSecurity which use ServletRequest.getRemoteAddr() in its eventing mechanism to track web user ip.
+This proposal is composed of :
+* RemoteIpValve.java : the proposed standalone code
+* RemoteIpValveTest.java : 12 test cases to validate the behavior
+Note : no existing Tomcat code is modified by this proposed Valve
+Documentation for mod_remoteip : http://httpd.apache.org/docs/trunk/mod/mod_remoteip.html
+Main differences between mod_remoteip and RemoteIpValve :
+* RemoteIpValve uses regular expressions to express network subnets when mod_remoteip uses ip address blocks because:
+** request filters valves (RemoteAddrValve and RemoteHostValve) already use regular expressions for this
+** there are no ip address blocks library available in Tomcat similar to apr_ipsubnet_test that is used in httpd.
+** The directives RemoteIPInternalProxyList and RemoteIPTrustedProxyList are not ported: configuration is server.xml oriented and limited to the java equivalents of  RemoteIPInternalProxy  and RemoteIPTrustedProxy
+Sample of configuration :
+<Valve
+className="org.apache.catalina.connector.RemoteIpValve"
+allowedInternalProxies="192\.168\.0\.10, 192\.168\.0\.11"
+remoteIPHeader="x-forwarded-for"
+remoteIPProxiesHeader="x-forwarded-by"
+trustedProxies="proxy1, proxy2"
+/>
+Configuration parameters :
+|-------------------------|-----------------------------------|--------------------------------------|-----------------------------------------------|
+| REMOTEIPVALVE PROPERTY  | EQUIVALENT MOD_REMOTEIP DIRECTIVE | FORMAT                               | DEFAULT VALUE                                 |
+|-------------------------|-----------------------------------|--------------------------------------|-----------------------------------------------|
+| remoteIPHeader          | RemoteIPHeader                    | Compliant http header string         | x-forwarded-for                               |
+|-------------------------|-----------------------------------|--------------------------------------|-----------------------------------------------|
+| internalProxies         | RemoteIPInternalProxy             | Comma delimited list of regular      | 10\.\d{1,3}\.\d{1,3}\.\d{1,3},                |
+|                         |                                   | expressions (in the syntax supported | 192\.168\.\d{1,3}\.\d{1,3},                   |
+|                         |                                   | by the Pattern library)              | 169\.254\.\d{1,3}\.\d{1,3},                   |
+|                         |                                   |                                      | 127\.\d{1,3}\.\d{1,3}\.\d{1,3}                |
+|                         |                                   |                                      |                                               |
+|                         |                                   |                                      | By default, 10/8, 192.168/16, 169.254/16      |
+|                         |                                   |                                      | and 127/8 are allowed ; 172.16/12 has not     |
+|                         |                                   |                                      | been enabled by default because it is         |
+|                         |                                   |                                      | complex to describe with regular expressions  |
+|-------------------------|-----------------------------------|--------------------------------------|-----------------------------------------------|
+| proxiesHeader           | RemoteIPProxiesHeader             | Compliant http header String         | x-forwarded-by                                |
+|-------------------------|-----------------------------------|--------------------------------------|-----------------------------------------------|
+| trustedProxies          | RemoteIPTrustedProxy              | Comma delimited list of regular      |                                               |
+|                         |                                   | expressions (in the syntax supported |                                               |
+|                         |                                   | by the Pattern library)              |                                               |
+|-------------------------|-----------------------------------|--------------------------------------|-----------------------------------------------|
+Reason why RemoteIpValve is declared in the o.a.catalina.connector package instead of o.a.catalina.valves :
+Because Request.setRemoteAddr(String) and Request.setRemoteHost(String) methods are currently no-op and RemoteIpValve use package visibility to directly modify Request.remoteAddr and Request.remoteHost fields.
+RemoteIpValve could be moved to o.a.catalina.valves if the Request.setRemoteAddr(String) and Request.setRemoteHost(String) methods to no longer be no-op but to actually modify the underlying fields.

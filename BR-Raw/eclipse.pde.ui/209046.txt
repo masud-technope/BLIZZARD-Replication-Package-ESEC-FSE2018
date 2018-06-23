@@ -1,0 +1,19 @@
+Bug 209046 – [help] context ids on templates page
+Build ID: M20070921-1145
+Steps To Reproduce:
+1.
+Create a new plug-in project.
+2.
+From the manifest editor, select the extensions tab and press the add button.
+3.
+Select the Extension Wizards tab and select one of the templates.
+4.
+Press the "?" button in the bottom left corner.
+5.
+Press F1.
+More information:
+Neither buttons result in the help opening.
+If the template doesn't provide help, the "?" button should be disabled.
+Pressing F1 should always result in the help opening.
+Note that if I press next, press F1 to open the help and then press the back button the help stays open.
+So there is CS help for the template selection page, even if it is very generic.

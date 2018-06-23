@@ -1,0 +1,4 @@
+java/org/apache/naming/SelectorContext.java
+java/org/apache/naming/SelectorContext.java
+test/org/apache/naming/resources/TestNamingContext.java
+webapps/docs/changelog.xml

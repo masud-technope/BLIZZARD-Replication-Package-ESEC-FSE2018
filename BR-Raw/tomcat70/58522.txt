@@ -1,0 +1,12 @@
+58522 – concurrency problem corrupts WARDirContext.Entry children
+We discovered a problem where calling ServletContext.getResourcePaths from a jsp may corrupt WARDirContext.Entry.children.
+The WARDirContext.list(Entry) method performs an Arrays.sort(children) call which is not thread-safe.
+Calling this from multiple request threads may result in the children array losing some entries and duplicating others.
+When entries representing directories in the war are lost, Tomcat cannot load resources from there.
+Static resource requests result in http error code 404 and jsp compliation can throw JasperException when included files are not found.
+We have seen this on CentOS 6.5 (and newer versions) with Tomcat 7.0.52 and Java 1.7.0_51.
+The following are attached in the zip:
+* Test case project which demonstrates this corruption.
+It usually requires multiple runs.
+* A stack trace illustrating the problematic flow.
+* A patch file for WARDirContext.java.

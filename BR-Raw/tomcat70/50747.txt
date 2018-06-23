@@ -1,0 +1,73 @@
+50747 – CometProcessor does not flush and close HTTP/1.0 requests
+I have built a simple Publish/Subscribe servlet using the CometProcessor.
+When a client connects then the servlet checks in the BEGIN phase whether there are pending events for the client and if not stores the request in a list of pending requests.
+Later another thread notifies the CometProcessor that data for the user has arrived and the data is pushed through the pending connection.
+The pseudo-code looks like this:
+public class EventService implements CometProcessor {
+public void event(CometEvent event) {
+if (event.getType() == CometEvent.BEGIN) {
+String data = getDataForUser(event);
+if (data != null) {
+sendAndClose(data, event);
+} else {
+pendingRequests.add(event);
+}
+} else {
+event.close();
+}
+}
+public void push(String user, String data) {
+CometEvent event = findPendingRequest(user);
+sendAndClose(data, event);
+pendingRequests.remove(event);
+}
+public void sendAndClose(String data, CometEvent event) {
+Writer w = event.request.getWriter();
+w.write(data);
+w.flush();
+event.close();
+}
+}
+This works as expected as long as I connect with an HTTP/1.1 client.
+However, when an HTTP/1.0 client connects (e.g.
+nginx) the connection is not closed immediately.
+In my case the data is a JSON string which is pushed to the client if the client ends with '\r\n' but the connection lingers open.
+This is also reproducible with curl
+HTTP/1.1 request
+----------------
+# curl -v -XGET -u 'frank:frank' 'http://127.0.0.1:8081/fcc/event?timestamp=1297277309368'; echo
+> GET /fcc/event?timestamp=1297277309368 HTTP/1.1
+> Authorization: Basic xxx
+> User-Agent: curl/7.21.2 ...
+> Host: 127.0.0.1:8081
+> Accept: */*
+> 
+< HTTP/1.1 200 OK
+< Server: Apache-Coyote/1.1
+< Content-Type: application/json;charset=ISO-8859-1
+< Transfer-Encoding: chunked
+< Date: Wed, 09 Feb 2011 18:49:45 GMT
+<
+{"type":"settings-changed","timestamp":1297277385366,"data":{"version":157}}
+* Connection #0 to host 127.0.0.1 left intact
+* Closing connection #0
+^^^^^^^^^^^^^^^^^^^^^^^
+Connection is closed immediately
+HTTP/1.0 request
+----------------
+# curl -v -XGET -0  -u 'frank:xxx' 'http://127.0.0.1:8081/fcc/event?timestamp=1297277309368'; echo
+> GET /fcc/event?timestamp=1297277309368 HTTP/1.0
+> Authorization: Basic xxx
+> User-Agent: curl/7.21.2 ...
+> Host: 127.0.0.1:8081
+> Accept: */*
+> 
+< HTTP/1.1 200 OK
+< Server: Apache-Coyote/1.1
+< Content-Type: application/json;charset=ISO-8859-1
+< Date: Wed, 09 Feb 2011 18:49:45 GMT
+< Connection: close
+<
+{"type":"settings-changed","timestamp":1297277385366,"data":{"version":157}}
+^^^^^^^^^^^^^^^^^^^^^^^
+Connection stays open until timeout occurs

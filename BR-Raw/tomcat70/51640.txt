@@ -1,0 +1,40 @@
+51640 – clearReferencesJdbc seems to be causing leaks with com.oracle.ojdbc5 driver
+Created attachment 27365 [details]
+Example Maven project to reproduce the problem
+clearReferencesJdbc seems to be causing reference leaks when used with com.oracle.ojdbc5 version 11.1.0.7.0, even if that class isn't loaded by the application.
+ As best as I can tell, that function is loading one or more classes from the jar.
+ Those classes are then adding a jmx MBean which then causes a reference leak.
+Error message:
+Aug 9, 2011 4:53:11 PM org.apache.catalina.loader.WebappClassLoader clearReferencesJdbc
+SEVERE: The web application [/mavenproject1-1.0-SNAPSHOT] registered the JDBC driver [oracle.jdbc.OracleDriver] but failed to unregister it when the web application was stopped.
+To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+List of classes in the class-loader:
+0 : class org.apache.catalina.loader.JdbcLeakPrevention (84 bytes)
+1 : class oracle.jdbc.driver.OracleDriver (84 bytes)
+2 : class oracle.jdbc.OracleDriver (84 bytes)
+3 : class oracle.jdbc.driver.OracleDriverExtension (84 bytes)
+4 : class oracle.jdbc.driver.OracleDriver$1 (84 bytes)
+5 : class oracle.jdbc.driver.DiagnosabilityMXBean (84 bytes)
+6 : class oracle.jdbc.driver.OracleDiagnosabilityMBean (84 bytes)
+7 : class oracle.jdbc.driver.DatabaseError (84 bytes)
+8 : class oracle.jdbc.driver.OracleSQLException (84 bytes)
+9 : class oracle.net.ns.NetException (84 bytes)
+10 : class oracle.jdbc.driver.SQLStateMapping (84 bytes)
+11 : class oracle.jdbc.driver.SQLStateMapping$Tokenizer (84 bytes)
+12 : class oracle.jdbc.driver.Message (84 bytes)
+13 : class oracle.jdbc.driver.Message11 (84 bytes)
+14 : class oracle.jdbc.internal.ObjectDataFactory (84 bytes)
+15 : class oracle.sql.ORADataFactory (84 bytes)
+16 : class oracle.sql.AnyDataFactory (84 bytes)
+17 : class oracle.jdbc.internal.ObjectData (84 bytes)
+18 : class oracle.sql.ORAData (84 bytes)
+19 : class oracle.sql.TypeDescriptorFactory (84 bytes)
+I believe this means that JdbcLeakPrevention is the first class to actually be loaded.
+Steps to reproduce:
+1) Compile the project, using the driver from http://www.oracle.com/technetwork/database/enterprise-edition/jdbc-111060-084321.html
+2) Deploy the project to tomcat.
+3) Undeploy the project from tomcat.
+ You should get the error about clearReferencesJdbc
+Expected:
+While I would expect Tomcat to not leak the class, I would be happy if there was an option to make Tomcat not run clearReferencesJdbc, allowing me to undeploy the app without leaking.
+ This would not be as much of a problem if it wasn't causing the entire classloader and everything that implies to be leaked too.

@@ -1,0 +1,16 @@
+Bug 183070 – [Plug-in Dependencies View] Show Optional does not work in table mode
+1.
+Focus on org.eclipse.pde.junit.runtime.
+2.
+Show callees in hierarchy mode.
+ Looks fine.
+3.
+Now deselect 'Show optional dependencies' in the drop down menu.
+ org.eclipse.ui should vanish.
+ Fine.
+4.
+Switch to Table Mode.
+ You now see a list that filters out org.eclipse.ui but includes all the dependencies of org.eclipse.ui, which is not correct.
+5.
+Now switch to Tree mode.
+ Toggling 'show optional dependencies' does nothing anymore.

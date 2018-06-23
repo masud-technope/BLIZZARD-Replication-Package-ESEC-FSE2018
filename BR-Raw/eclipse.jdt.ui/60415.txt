@@ -1,0 +1,8 @@
+Bug 60415 – Should remove Search extension page
+I20040428
+We should remove the search extension page and should make sure that
+participants can't damage a search.
+If a participant generates an exception
+the participant should be disabled for the rest of the Eclipse sessions.
+This
+is consistent with Platform/UI and refactoring.

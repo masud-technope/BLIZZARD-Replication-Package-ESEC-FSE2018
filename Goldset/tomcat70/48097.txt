@@ -1,0 +1,4 @@
+java/org/apache/catalina/loader/WebappClassLoader.java
+java/org/apache/catalina/security/SecurityClassLoad.java
+java/org/apache/jasper/compiler/Generator.java
+webapps/docs/changelog.xml

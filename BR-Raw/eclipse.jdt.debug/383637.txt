@@ -1,0 +1,19 @@
+Bug 383637 – EventRequestManagerImpl#addRequestIDMapping and #removeRequestIDMapping does not handle VMDeathRequests
+Build Identifier: Version: 3.7.2 Build id: M20120208-0800
+VMDeathEvents returned by the EventQueue never carry the request which triggered them.
+This is because EventRequestManagerImpl#addRequestIDMapping(..) doesn't handle VMDeathRequests.
+The code is just missing.
+So when trying to map the request id to the request using EventRequestManagerImpl#findRequest(..), the original request is nowhere to be found.
+The same problem is visible in EventRequestManagerImpl#removeRequestIDMapping(..)
+Reproducible: Always
+Steps to Reproduce:
+1.
+create a VMDeathRequest
+2.
+enable it
+3.
+associate an IJDIEventListener to the request
+4.
+wait for a callback when the VM terminates
+=> it never happens.
+The VM terminates, the listener is not informed.

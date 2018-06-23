@@ -1,0 +1,4 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/ExpressionInputDialog.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/IJavaDebugHelpContextIds.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/JavaPrimitiveValueEditor.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/StringValueInputDialog.java

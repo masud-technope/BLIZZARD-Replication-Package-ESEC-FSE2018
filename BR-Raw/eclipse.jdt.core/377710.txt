@@ -1,0 +1,3 @@
+Bug 377710 – IJavaProject.findType(String) returns incorrect IType
+If a Java project has a class named "Foo" in the default package, IJavaProject#findType(String) will return the IType corresponding to "Foo" if the named passed to the method is ".Foo".
+(Note the '.' at the beginning of the string.) The method should return null.

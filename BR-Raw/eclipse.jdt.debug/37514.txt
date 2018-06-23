@@ -1,0 +1,7 @@
+Bug 37514 – global retargettable breakpoint action
+Create a set of actions in the debug platform that can be shared by all
+debuggers for:
+* toggle line breakpoint
+* toggle method breakpoint
+* toggle watchpoint
+* add exception breakpoint

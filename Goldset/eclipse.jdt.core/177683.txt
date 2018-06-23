@@ -1,0 +1,3 @@
+org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/util/Factory.java
+org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/declaration/MethodDeclarationImpl.java
+org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/declaration/TypeDeclarationImpl.java

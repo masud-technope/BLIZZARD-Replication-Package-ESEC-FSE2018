@@ -1,0 +1,4 @@
+java/org/apache/catalina/connector/CoyoteAdapter.java
+test/org/apache/catalina/core/TestAsyncContextImpl.java
+test/org/apache/catalina/valves/TesterAccessLogValve.java
+webapps/docs/changelog.xml

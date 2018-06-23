@@ -1,0 +1,33 @@
+Bug 259439 – The embedded marker ({n}) is not included in the externalized string
+The embedded marker ({n}) is necessary for the message text for correct internationalization.
+Some do not have the embedded marker ({n}).
+It is necessary to correct the Java source with the resource.
+If you need the patch, I will offer the patch.
+In org.eclipse.ecf.example.collab
+/src/org/eclipse/ecf/internal/example/collab/messages.properties
+EclipseCollabSharedObject_SCREEN_CAPTURE_FROM=Screen capture from
+||
+V
+EclipseCollabSharedObject_SCREEN_CAPTURE_FROM=Screen capture from {0}
+/src/org/eclipse/ecf/internal/example/collab/ui/MessageLoader.properties
+ChatComposite.MESSAGE_TO_TITLE=Message to
+ChatComposite.PRIVATE_MESSAGE_TITLE=Private Message for
+ChatComposite.RING_TITLE=Ring
+ChatComposite.START_PROGRAM_TEXT=Program to Start for
+ChatComposite.START_PROGRAM_TITLE=Start Program for
+EclipseFileTransferAndLaunch.EXCEPTION_LAUNCHING=Exception launching
+||
+V
+ChatComposite.MESSAGE_TO_TITLE=Message to {0}
+ChatComposite.PRIVATE_MESSAGE_TITLE=Private Message for {0}
+ChatComposite.RING_TITLE=Ring {0}
+ChatComposite.START_PROGRAM_TEXT=Program to Start for {0}
+ChatComposite.START_PROGRAM_TITLE=Start Program for {0}
+EclipseFileTransferAndLaunch.EXCEPTION_LAUNCHING=Exception launching {0}
+In org.eclipse.ecf.sharedobject
+/src/org/eclipse/ecf/internal/core/sharedobject/messages.properties
+TwoPhaseCommitEventProcessor_Exception_Commit_Timeout=Timeout adding
+TwoPhaseCommitEventProcessor_Exception_Timeout_Adding_To=\ to
+||
+V
+TwoPhaseCommitEventProcessor_Exception_Commit_Timeout=Timeout adding {0} to {1}

@@ -1,0 +1,10 @@
+Bug 34670 – Java Launch Configs: [DELETE] key event has not effect on the lists in the 'classpath' tab
+1.
+create a java launch config.
+2.
+go in the 'classpath' path
+3.
+uncheck "use default class path" if needed
+4.
+select an element in the list and hit [DELETE].
+Nothing happens.

@@ -1,0 +1,23 @@
+51395 – First application that loads SAXParserFactory causes Class loader memory leak
+Overview
+The class org.apache.catalina.startup.ContextConfig has an array of org.apache.tomcat.util.digester.Digester objects.
+Each Digester has a field factory to refer to a SAXParserFactory.
+If that SAXParserFactory is loaded via a WebappClassLoader, that WebappClassLoader is stuck in memory.
+Steps to reproduce
+Create a Web application that has xercesImpl.jar in its lib.
+(The Web application itself doesn't need to use any of the xerces classes.) Upload the application war file using Tomcat Manager.
+Verify that the application is loaded via Tomcat Manager -> List Applications
+Restart Tomcat.
+Via Tomcat Manager -> List Applications, verify that the application is running.
+Undeploy the application.
+Click on Find leaks.
+The message above shows the application as leaking.
+Make a memory dump using jmap, inspect the memory using jhat.
+The WebappClassLoader for this application is still present.
+Its "reference chains from rootset" shows a chain like this:
+Static reference from org.apache.catalina.startup.ContextConfig.webDigesters (from class org.apache.catalina.startup.ContextConfig) :
+--> [Lorg.apache.tomcat.util.digester.Digester;@0x78be4958 (24 bytes) (Element 0 of [Lorg.apache.tomcat.util.digester.Digester;@0x78be4958:)
+--> org.apache.tomcat.util.digester.Digester@0x78be3c50 (101 bytes) (field factory:)
+--> org.apache.xerces.jaxp.SAXParserFactoryImpl@0x78bf0b28 (20 bytes) (??:)
+--> class org.apache.xerces.jaxp.SAXParserFactoryImpl (84 bytes) (??:)
+--> org.apache.catalina.loader.WebappClassLoader@0x78be3ea0 (165 bytes)

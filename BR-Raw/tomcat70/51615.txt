@@ -1,0 +1,4 @@
+51615 – Line 267 of "org.apache.tomcat.jdbc.pool.PooledConnection": double assignment typo
+Nothing bad here, but my compiler lights up:
+connection = connection = driver.connect(driverURL, properties);
+Clearly, to be fixed.

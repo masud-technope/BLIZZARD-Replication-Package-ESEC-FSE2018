@@ -1,0 +1,3 @@
+Bug 202195 – Create a PDEBuilderHelper class
+In BuildErrorReporter we have two static methods to do some stuff in regards to a build file.
+This doesn't belong there and should really go into a utility method called PDEBuilderHelper.

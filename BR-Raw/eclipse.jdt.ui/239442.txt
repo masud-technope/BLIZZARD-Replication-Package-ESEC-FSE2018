@@ -1,0 +1,19 @@
+Bug 239442 – [breadcrumb] Drop down stays open on GTK after tool bar drop down menu opened
+I20080702-0939
+1.
+Open a child drop down of a Type in the breadcrumb by clicking on the arrow
+2.
+Select a member to reveal in editor
+3.
+Open a drop down menu in the toolbar (i.e.
+debug launch configs)
+4.
+Open the types child drop down again
+5.
+Select a member
+Is:
+Member is revealed and drop down does not close
+Should:
+Drop down must close
+Major, because from now on the drop downs don't close anymore.
+No idea what that is, can not reproduce on XP.

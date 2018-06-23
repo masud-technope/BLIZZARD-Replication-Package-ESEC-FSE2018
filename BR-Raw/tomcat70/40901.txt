@@ -1,0 +1,11 @@
+40901 – listings page does not escape XML characters
+On Solaris you can have a file or directory name called "<b>xxx" or "<i>yyy".
+Using Tomcat's listings feature, you get a directory listing with the file name
+in bold or italics.
+I am not familiar with Javascript or cross-site scripting security problems, but
+I believe Tomcat escapes XML characters like ">" and "<" to prevent client
+browsers to interpret HTML codes that are not intended to be interpreted as such
+for the default error page.
+I think the same should be done for listings, or a warning should be added to
+the documentation not to use it if you have no control over the file/directory
+names you list.

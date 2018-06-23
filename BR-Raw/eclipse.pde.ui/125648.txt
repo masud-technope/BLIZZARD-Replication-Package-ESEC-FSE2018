@@ -1,0 +1,9 @@
+Bug 125648 – Generate imports when creating a new project from a jar
+The new plugin poject from existing archive wizard is cool.
+ However it does not do the code analysis to discover what the resultant plugin needs to import.
+This is a severe handicap.
+ I recently tried to bundlize several libs from Apache Commons.
+  This is a notoriously incestuous community where everyone uses each other's libs.
+ Both discovering exactly which libs are needed and what packages from those libs has proven to be extremely hard.
+We should have the code around that does the batch analysis of some code to discover what imports are needed.
+ Is it reasonable to hook it into this workflow?

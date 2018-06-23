@@ -1,0 +1,10 @@
+Bug 399534 – [1.8][compiler] Lambda parameters must be checked for compatibility with the single abstract method of the functional interface
+BETA_JAVA8:
+The following program should report an error, but presently doesn't:
+// ---
+interface I { void run(int x); }
+class X {
+void foo() {
+I r = (String y) -> {};
+}
+}

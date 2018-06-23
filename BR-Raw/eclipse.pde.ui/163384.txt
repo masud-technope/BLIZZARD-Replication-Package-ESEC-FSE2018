@@ -1,0 +1,18 @@
+Bug 163384 – Wrong order of classpath entries in self-hosting
+Using I20061102-1715, I have the following problem.
+I have:
+1) one plugin that has a bundle-classpath like this:
+lib.jar,.
+'.' corresponds to two output folders (bin1 and bin2)
+2) a fragment based on that plugin that provides a lib.jar file.
+Since lib.jar is first on the bundle-classpath, I expect the classes inside the jar to be selected first.
+The jar contains types that are also available in the plugin '.' path through bin2.
+I debugged this test case and the entries for this plugin are:
+bin1
+bin2
+lib.jar
+This means that my "new" version of the classes (in lib.jar) are never picked up because they are always found in bin2.
+I would say that the dev classpath must respect the order specified in the bundle-classpath.
+lib.jar should definitely added before the two output folders from the plugin.
+This is a pretty serious problem for me since I cannot self-host my actual setup.
+I will need to export the plugin and the fragment to a new target and run from that target hoping to be able to debug it.

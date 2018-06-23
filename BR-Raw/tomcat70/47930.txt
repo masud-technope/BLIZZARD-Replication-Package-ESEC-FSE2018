@@ -1,0 +1,82 @@
+47930 – PersistentManager (using filestore) can return different session objects linked to the same session ID, when Tomcat is restarted
+Created attachment 24333 [details]
+Sample webapp and scripts to reproduce issue
+When using PersistentManager with a filestore backing, I've noticed that (near)
+simultaneous requests with the same session ID, can cause PersistentManager to
+return two different session objects, shortly after restarting Tomcat.
+I have included a sample webapp, with a test script to create simultaneous HTTP
+requests to a servlet, that reproduces this issue.
+General steps to reproduce:
+0.
+Configure PersistentManager to use FileStore.
+<Manager className="org.apache.catalina.session.PersistentManager" >
+<Store className="org.apache.catalina.session.FileStore"
+directory="/tmp" >
+</Store>
+</Manager>
+1.
+Make a HTTP request to a servlet, and establish a new session.
+Note the new
+session ID created on the server.
+2.
+Restart Tomcat (cleanly shutdown and startup).
+3.
+Shortly after Tomcat starts and initialises, make near simultaneous HTTP
+requests to a servlet using the previously established session cookie.
+4.
+Output the session IDs and session object hashcodes on the server side, that
+is associated with each request.
+5.
+Some of the reported session object hashcodes will be different (even though
+their session IDs are the same).
+Additionally the HttpSessionListener will
+report that the additional sessions are created/destroyed.
+Expected results:
+Session object hashcodes should be the same for the requests (and have the same
+session ID).
+Notes on the included attachment:
+- sessionTest.zip contains a sample webapp with two servlets.
+The LoginServlet
+establishes a new session for a request.
+The TestServlet will use the session
+cookie attached to a request, and will retrieve the session object (printing
+its ID and hex-encoded object hashcode).
+SessionListener will log each time a session is created or destroyed.
+- The session_test.sh script will automatically start/shutdown Tomcat, and make
+HTTP requests using curl.
+You may have to change the location of TOMCAT_HOME,
+the URL of the deployed webapp, and the COOKIE path.
+- Using the sample webapp and script will not always reproduce the issue.
+It
+may take a few goes for it to reproduce it.
+Example output:
+[tomcat@localhost sessionTest]$ ./session_test.sh
+Starting Tomcat..
+Logging in to init new session..
+New sessiond ID: JSESSIONID=09DDD0198C190E3394C19808DD8E074A
+New session obj hashcode: 3e5e9db7
+---
+Shutting down Tomcat..
+Starting Tomcat..
+Session ID: JSESSIONID=09DDD0198C190E3394C19808DD8E074A
+Session obj hashcode: 46bb05de
+---
+Session ID: JSESSIONID=09DDD0198C190E3394C19808DD8E074A
+Session obj hashcode: 46bb05de
+---
+Session ID: JSESSIONID=09DDD0198C190E3394C19808DD8E074A
+Session obj hashcode: 68acbd3a
+---
+Session ID: JSESSIONID=09DDD0198C190E3394C19808DD8E074A
+Session obj hashcode: 46bb05de
+---
+Session ID: JSESSIONID=09DDD0198C190E3394C19808DD8E074A
+Session obj hashcode: 24bb6086
+---
+Session ID: JSESSIONID=09DDD0198C190E3394C19808DD8E074A
+Session obj hashcode: 24bb6086
+---
+Removing cookie /tmp/foo.cookie
+Shutting down Tomcat..
+Notice that we have three different session objects tied to the same session
+ID, after the requests are made (with hashcodes: 46bb05de, 68acbd3a, 24bb6086).

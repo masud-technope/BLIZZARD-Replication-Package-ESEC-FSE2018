@@ -1,0 +1,11 @@
+Bug 399098 – Allow supplying pre-built JDT indexes for a JRE
+Created attachment 226109 [details]
+possible patch
+In bug 356620 support was added in JDT to allow Eclipse-based products to supply pre-built indexes for classpath entries.
+ It is currently not possible to supply pre-built indexes for a JRE container and, in our Eclipse-based product, allowing this would help improve the performance by reducing the time it takes to index our JRE.
+ We have other function that depends on the index being complete so if a user were to invoke our function early then they would have to wait for the indexing to complete.
+Attached is a patch which provides the necessary update to allow us to supply pre-built indexes for our JRE.
+There are some minor things like @since and bundle version values that may need to be done.
+ I don't know the correct values you want for these fields.
+This patch was created against the R3_8_mainteance branch as, I'm assuming, this is what feeds the 4.2 SR2 release and, ultimately, where I'm hoping this can be included (i.e.
+in some 4.2.x release).

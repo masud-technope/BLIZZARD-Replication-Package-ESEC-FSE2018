@@ -1,0 +1,3 @@
+Bug 170678 – Dependency Management does not take into account packages in binary jars
+Dependency management does not always take into account the packages found in binary jars already on the bundle's Bundle-ClassPath.
+ This could cause unnecessary dependencies being added when the dependency could be satisfied by jars already in the bundle.

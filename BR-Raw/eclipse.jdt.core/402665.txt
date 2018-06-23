@@ -1,0 +1,22 @@
+Bug 402665 – [1.8][dom ast] LambdaExpression's VariableDeclarationFragment misses source range
+In LambdaExpressions, parameters of type VariableDeclarationFragment are missing a source range.
+The AST view shows such nodes with a red background color.
+Example:
+package jsr335;
+public class SpecExamples335 {
+public static interface StringToInt {
+int stoi(String s);
+}
+public static interface ReduceInt {
+int reduce(int a, int b);
+}
+void foo(StringToInt s) { }
+void bar(ReduceInt r) { }
+void bar() {
+foo(s -> s.length());
+foo((s) -> s.length());
+foo((String s) -> s.length()); //SingleVariableDeclaration is OK
+bar((x, y) -> x+y);
+bar((int x, int y) -> x+y); //SingleVariableDeclarations are OK
+}
+}

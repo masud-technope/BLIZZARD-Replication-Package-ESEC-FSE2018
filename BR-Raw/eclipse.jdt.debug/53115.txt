@@ -1,0 +1,6 @@
+Bug 53115 – Contribute remote Ant support as an extraClasspathEntry
+Currently, the support jar required to run Ant in a seperate VM (that handles
+build logging), is known to the AntCorePrefs as #getRemoteAntURL().
+Instead,
+Ant UI should contribute the entry as an "extraClasspathEntry" (and we should
+remove the associated method from Ant core).

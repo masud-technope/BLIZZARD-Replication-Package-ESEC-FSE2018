@@ -1,0 +1,7 @@
+Bug 274364 – [quick fix] NPE in ASTNodeFactory when method return type is missing
+I20090428-0100
+Invoking quick fix on "foo" results in an NPE:
+public class Snippet {
+abstract foo();
+}
+If Snippet is declared as interface the quick fix works fine.

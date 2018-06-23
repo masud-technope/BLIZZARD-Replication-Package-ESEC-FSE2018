@@ -1,0 +1,3 @@
+conf/web.xml
+java/org/apache/catalina/servlets/DefaultServlet.java
+webapps/docs/default-servlet.xml

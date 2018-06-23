@@ -1,0 +1,5 @@
+Bug 174168 – Wrong section name in the dialog to enter version number for an exported package
+3.3M5
+The properties dialog opened when clicking properties and having an exported package selected brings up a dialog that says "version to match".
+This is incorrect.
+This is the actual version of the package being exported.

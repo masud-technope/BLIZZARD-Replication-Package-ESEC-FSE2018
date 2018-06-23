@@ -1,0 +1,6 @@
+Bug 118222 – [nls tooling] nls tooling is not .java agnostic
+I20051123-1200
+I found a few places where the nls tooling is currently not aware of java-like extensions (bug 89977):
+- PropertyKeyHyperlink hardcodes "*.java"
+- NLSSearchPage only searches for java files with extension "java"
+They should take the java-like extensions from JavaCore#getJavaLikeExtensions().

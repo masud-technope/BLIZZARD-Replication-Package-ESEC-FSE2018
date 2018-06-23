@@ -1,0 +1,13 @@
+50054 – When the AJP connector is used, minSpareThreads cannot be used.
+I found following warnning messages.
+==
+Oct 7, 2010 2:25:27 PM org.apache.catalina.startup.SetAllPropertiesRule begin
+WARNING: [SetAllPropertiesRule]{Server/Service/Connector} Setting property 'minSpareThreads' to '31' did not find a matching property.
+==
+The AJP connector's configs are the following.
+<Connector port="8009" protocol="AJP/1.3" redirectPort="8443" minSpareThreads="100"/>
+When I used the Http connector, minSpareThreads was able to be used.
+org.apache.coyote.ajp.AjpProtocol doesn't set the minSpareThreads to org.apache.tomcat.util.net.JIoEndpoint.
+I made a patch.
+This patch was made based on AbstractHttp11Protocol.
+Best regards.

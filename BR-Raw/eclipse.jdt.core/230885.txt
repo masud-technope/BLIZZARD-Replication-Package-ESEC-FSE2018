@@ -1,0 +1,4 @@
+Bug 230885 – [content assist] NPE at ParameterGuesser.createVariable()
+Created attachment 99066 [details]
+call stack
+cf attached stack trace

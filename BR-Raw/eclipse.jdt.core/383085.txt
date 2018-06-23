@@ -1,0 +1,4 @@
+Bug 383085 – [1.8][compiler] Grammar rule "MethodReference: 'super' '::' NonWildTypeArgumentsopt Identifier" is not being honored
+The grammar rule
+MethodReference: 'super' '::' NonWildTypeArgumentsopt Identifier
+is not being honored.

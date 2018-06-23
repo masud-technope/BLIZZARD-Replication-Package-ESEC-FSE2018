@@ -1,0 +1,5 @@
+Bug 144967 – ITemplateSection typo
+The javadoc for ITemplateSection#getNewFiles() says "...to the variable <code.bin.includes</code>.
+For this reason, ..."
+It should say "...to the variable <code>bin.includes</code>.
+For this reason, ..."

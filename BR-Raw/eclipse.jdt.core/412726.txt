@@ -1,0 +1,3 @@
+Bug 412726 – [1.8] API for checking if an anonymous class creation corresponds to a Functional interface
+I believe there is an internal implementation for this - org.eclipse.jdt.internal.compiler.lookup.ReferenceBinding.isFunctionalInterface(Scope)
+See also bug 403749.

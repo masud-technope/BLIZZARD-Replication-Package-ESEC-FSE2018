@@ -1,0 +1,16 @@
+Bug 383949 – [1.8][compiler] Explicit this parameter illegal in lambda expressions
+BETA_JAVA8:
+The following program is illegal, but compiles as of now:
+// ----------
+interface I {
+int foo(X x);
+}
+public class X {
+public static void main(String[] args) {
+I i = (X this) -> 10;
+}
+}
+In a lambda, 'this' has the same meaning as in surrounding context.
+While bug 382727 would also fix this, there is value in special casing
+this and issuing a more specific message:
+"Explicit "this" parameter declaration is illegal on lambda expressions"

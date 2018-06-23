@@ -1,0 +1,30 @@
+39088 – StandardWrapper getRootCause() infinite loop
+The "// Extra aggressive rootCause finding" in StandardWrapper.java is an
+understatement.
+ It causes an infinite loop in certain cases.
+ For example, the
+semantics of the following exception class are that getRootCause() returns the
+one and only root cause of the exception chain, which in this case can be the
+exception itself.
+ It is not derived from ServletException, thus is not bound to
+return null at the end of the chain as ServletException does.
+ Its not safe to
+use reflection to call an arbitrary method of an arbitrary Exception class, just
+because it happens to have the same name as the method in ServletException.
+public class MyException
+extends Exception
+{
+public MyException(Throwable cause) {
+this.cause = cause;
+}
+Throwable cause;
+public Throwable getCause() {
+return cause;
+}
+public Throwable getRootCause() {
+if (cause instanceof VCOMException) {
+return ((VCOMException) exception).getRootCause();
+}
+return cause == null ? this : cause;
+}
+}

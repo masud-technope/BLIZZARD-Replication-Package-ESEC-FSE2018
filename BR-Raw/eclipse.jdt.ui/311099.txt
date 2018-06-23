@@ -1,0 +1,141 @@
+Bug 311099 – [generalize type] Generalize Declared Type fails with array-valued annotation member variable
+It looks to me like org.eclipse.jdt.internal.corext.refactoring.typeconstraints.FullConstraintCreator.getTypeParent(ArrayInitializer) doesn't handle an array initializer as an argument to an annotation.
+What steps will reproduce the problem?
+1.
+use this source code:
+public class Item {
+@XSet( value = { @X })
+public String foo() {
+return "";
+}
+}
+public @interface XSet {
+public X[] value();
+}
+public @interface X {
+}
+2.
+Click on the return value ("String") of the Item.foo() method.
+3.
+Select Generalize Declared Type.
+The refactoring will fail; in the dialog box will be an error message pertaining to an "unexpected exception".
+-- Error Details --
+Date: Thu Apr 29 12:04:16 PDT 2010
+Message: Internal Error
+Severity: Error
+Product: Eclipse Platform 3.3.202.v201002111343 (org.eclipse.platform.ide)
+Plugin: org.eclipse.jdt.ui
+Session Data:
+eclipse.buildId=unknown
+java.version=1.6.0_16
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.platform.ide
+Command-line arguments:  -product org.eclipse.platform.ide -data /home/ledelstein/testworkspace -dev file:/home/ledelstein/goosespace/.metadata/.plugins/org.eclipse.pde.core/eclipse/dev.properties -os linux -ws gtk -arch x86_64
+Exception Stack Trace:
+java.lang.reflect.InvocationTargetException
+at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:421)
+at org.eclipse.ltk.internal.ui.refactoring.RefactoringWizardDialog2.run(RefactoringWizardDialog2.java:330)
+at org.eclipse.jdt.internal.ui.refactoring.ChangeTypeWizard$ChangeTypeInputPage$ValidTypesTask.run(ChangeTypeWizard.java:208)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:134)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3468)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3115)
+at org.eclipse.jface.window.Window.runEventLoop(Window.java:825)
+at org.eclipse.jface.window.Window.open(Window.java:801)
+at org.eclipse.ltk.ui.refactoring.RefactoringWizardOpenOperation$1.run(RefactoringWizardOpenOperation.java:143)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+at org.eclipse.ltk.ui.refactoring.RefactoringWizardOpenOperation.run(RefactoringWizardOpenOperation.java:155)
+at org.eclipse.jdt.internal.ui.refactoring.actions.RefactoringStarter.activate(RefactoringStarter.java:38)
+at org.eclipse.jdt.internal.corext.refactoring.RefactoringExecutionStarter.startChangeTypeRefactoring(RefactoringExecutionStarter.java:221)
+at org.eclipse.jdt.ui.actions.ChangeTypeAction.run(ChangeTypeAction.java:161)
+at org.eclipse.jdt.ui.actions.SelectionDispatchAction.dispatchRun(SelectionDispatchAction.java:278)
+at org.eclipse.jdt.ui.actions.SelectionDispatchAction.run(SelectionDispatchAction.java:250)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:498)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:584)
+at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:501)
+at org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:411)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1176)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3493)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3112)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2405)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2369)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2221)
+at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:500)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:493)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:113)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:194)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:368)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:559)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:514)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1311)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1287)
+Caused by: org.eclipse.core.runtime.AssertionFailedException: assertion failed:
+at org.eclipse.core.runtime.Assert.isTrue(Assert.java:110)
+at org.eclipse.core.runtime.Assert.isTrue(Assert.java:96)
+at org.eclipse.jdt.internal.corext.refactoring.typeconstraints.FullConstraintCreator.getTypeParent(FullConstraintCreator.java:646)
+at org.eclipse.jdt.internal.corext.refactoring.typeconstraints.FullConstraintCreator.create(FullConstraintCreator.java:108)
+at org.eclipse.jdt.internal.corext.refactoring.typeconstraints.ConstraintCollector.visit(ConstraintCollector.java:141)
+at org.eclipse.jdt.core.dom.ArrayInitializer.accept0(ArrayInitializer.java:130)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2480)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:2528)
+at org.eclipse.jdt.core.dom.MemberValuePair.accept0(MemberValuePair.java:165)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2480)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2551)
+at org.eclipse.jdt.core.dom.NormalAnnotation.accept0(NormalAnnotation.java:167)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2480)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2551)
+at org.eclipse.jdt.core.dom.MethodDeclaration.accept0(MethodDeclaration.java:494)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2480)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2551)
+at org.eclipse.jdt.core.dom.TypeDeclaration.accept0(TypeDeclaration.java:484)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2480)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2551)
+at org.eclipse.jdt.core.dom.CompilationUnit.accept0(CompilationUnit.java:219)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2480)
+at org.eclipse.jdt.internal.corext.refactoring.structure.ChangeTypeRefactoring.getConstraints(ChangeTypeRefactoring.java:1289)
+at org.eclipse.jdt.internal.corext.refactoring.structure.ChangeTypeRefactoring.getConstraints(ChangeTypeRefactoring.java:1257)
+at org.eclipse.jdt.internal.corext.refactoring.structure.ChangeTypeRefactoring.findConstraintVariableForSelectedNode(ChangeTypeRefactoring.java:963)
+at org.eclipse.jdt.internal.corext.refactoring.structure.ChangeTypeRefactoring.computeValidTypes(ChangeTypeRefactoring.java:435)
+at org.eclipse.jdt.internal.ui.refactoring.ChangeTypeWizard$1.run(ChangeTypeWizard.java:199)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Root exception:
+org.eclipse.core.runtime.AssertionFailedException: assertion failed:
+at org.eclipse.core.runtime.Assert.isTrue(Assert.java:110)
+at org.eclipse.core.runtime.Assert.isTrue(Assert.java:96)
+at org.eclipse.jdt.internal.corext.refactoring.typeconstraints.FullConstraintCreator.getTypeParent(FullConstraintCreator.java:646)
+at org.eclipse.jdt.internal.corext.refactoring.typeconstraints.FullConstraintCreator.create(FullConstraintCreator.java:108)
+at org.eclipse.jdt.internal.corext.refactoring.typeconstraints.ConstraintCollector.visit(ConstraintCollector.java:141)
+at org.eclipse.jdt.core.dom.ArrayInitializer.accept0(ArrayInitializer.java:130)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2480)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:2528)
+at org.eclipse.jdt.core.dom.MemberValuePair.accept0(MemberValuePair.java:165)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2480)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2551)
+at org.eclipse.jdt.core.dom.NormalAnnotation.accept0(NormalAnnotation.java:167)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2480)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2551)
+at org.eclipse.jdt.core.dom.MethodDeclaration.accept0(MethodDeclaration.java:494)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2480)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2551)
+at org.eclipse.jdt.core.dom.TypeDeclaration.accept0(TypeDeclaration.java:484)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2480)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2551)
+at org.eclipse.jdt.core.dom.CompilationUnit.accept0(CompilationUnit.java:219)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2480)
+at org.eclipse.jdt.internal.corext.refactoring.structure.ChangeTypeRefactoring.getConstraints(ChangeTypeRefactoring.java:1289)
+at org.eclipse.jdt.internal.corext.refactoring.structure.ChangeTypeRefactoring.getConstraints(ChangeTypeRefactoring.java:1257)
+at org.eclipse.jdt.internal.corext.refactoring.structure.ChangeTypeRefactoring.findConstraintVariableForSelectedNode(ChangeTypeRefactoring.java:963)
+at org.eclipse.jdt.internal.corext.refactoring.structure.ChangeTypeRefactoring.computeValidTypes(ChangeTypeRefactoring.java:435)
+at org.eclipse.jdt.internal.ui.refactoring.ChangeTypeWizard$1.run(ChangeTypeWizard.java:199)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)

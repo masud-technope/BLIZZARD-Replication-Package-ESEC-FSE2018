@@ -1,0 +1,13 @@
+Bug 207836 – Search results for extension point references don't always appear right for multiple versions
+When a user has two plug-ins with the same Bundle-SymbolicName but different versions, the extension point search doesn't work correctly.
+To recreate:
+1.
+Create plug-in project with version 1.0.0, using the Commands template
+2.
+Create another plug-in project with the same Bundle-SymbolicName as the first but with version 2.0.0, using the Commands template again.
+3.
+Do a plug-ins search for references to *.commands.
+You should see two results (one for version 1.0.0 and one for version 2.0.0).
+ Double click on each result.
+ Some times they open up separate editors, but most times they open the same editor.
+ If they do open the same editor, re-run the search.

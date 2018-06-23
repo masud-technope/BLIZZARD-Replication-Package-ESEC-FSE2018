@@ -1,0 +1,12 @@
+Bug 418528 – [1.8][internal] Tests pass when run as a part of suite, but fail when run as part of suite of suites
+BETA_JAVA8:
+There is some set up issue in TypeBindingTests308.java - when run by itself
+the tests testAnnotatedBinaryType* pass.
+When run as part of RunAllJava8Tests
+they fail.
+I fixed one issue to with picking up wrong JCL libraries, but that
+does not seem to be all there is to it.
+Now the tests are failing with
+"Outer cannot be found" which tells me that the library got added to the wrong
+project - i.e the working copy from which an AST is built is from a different
+project than the one to which the library was addeded.

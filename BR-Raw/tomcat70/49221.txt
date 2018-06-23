@@ -1,0 +1,6 @@
+49221 – javax.servlet.http.Cookie.setDomain uses default charset
+javax.servlet.http.Cookie.setDomain(String pattern)
+has the following code:
+domain = pattern.toLowerCase();
+The result of this depends on the default Locale; it would be safer to use a fixed locale, e.g.
+Local.ENGLISH.

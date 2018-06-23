@@ -1,0 +1,21 @@
+Bug 266262 – [Discovery][SLP] Improve robustness against broken SLP devices
+Length of SRVTYPERPLY - xid=27122, locale=en, errorCode 0, ServiceTypeCount 2, ServiceTypes [service:KMRealTWScan0300.KONICAMINOLTA, service:KMHDDTWScan0300.KONICAMINOLTA] should be 97, read 96
+Length of SRVTYPERPLY - xid=27121, locale=en, errorCode 0, ServiceTypeCount 2, ServiceTypes [service:KMRealTWScan0300.KONICAMINOLTA, service:KMHDDTWScan0300.KONICAMINOLTA] should be 97, read 96
+Exception in thread "Thread-20" java.lang.NumberFormatException: For input string: "KONICA MINOLTA bizhub C451"
+at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+at java.lang.Integer.parseInt(Integer.java:447)
+at java.lang.Integer.parseInt(Integer.java:497)
+at ch.ethz.iks.slp.ServiceURL.parse(ServiceURL.java:182)
+at ch.ethz.iks.slp.ServiceURL.fromBytes(ServiceURL.java:394)
+at ch.ethz.iks.slp.impl.ServiceReply.<init>(ServiceReply.java:87)
+at ch.ethz.iks.slp.impl.SLPMessage.parse(SLPMessage.java:280)
+at ch.ethz.iks.slp.impl.SLPCore$2.run(SLPCore.java:976)
+Exception in thread "Thread-15" java.lang.NumberFormatException: For input string: "KONICA MINOLTA bizhub C451"
+at java.lang.NumberFormatException.forInputString(NumberFormatException.java:48)
+at java.lang.Integer.parseInt(Integer.java:447)
+at java.lang.Integer.parseInt(Integer.java:497)
+at ch.ethz.iks.slp.ServiceURL.parse(ServiceURL.java:182)
+at ch.ethz.iks.slp.ServiceURL.fromBytes(ServiceURL.java:394)
+at ch.ethz.iks.slp.impl.ServiceReply.<init>(ServiceReply.java:87)
+at ch.ethz.iks.slp.impl.SLPMessage.parse(SLPMessage.java:280)
+at ch.ethz.iks.slp.impl.SLPCore$2.run(SLPCore.java:976)

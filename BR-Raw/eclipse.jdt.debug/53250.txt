@@ -1,0 +1,56 @@
+Bug 53250 – ObjectCollectedException while shutting down tests
+build I20040225
+- was stepping through some tests in the UI test suite (running as JUnit Plugin
+tests)
+- they succeeded, so I resumed and the workbench under test exited
+- got the following while it was shutting down
+!SESSION Feb 26, 2004 22:43:24.848 ---------------------------------------------
+java.version=1.4.2_01
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments: -data d:\eclipse-new\plugins -showLocation
+!ENTRY org.eclipse.core.runtime 4 2 Feb 26, 2004 22:43:24.858
+!MESSAGE Problems occurred when invoking code from plug-
+in: "org.eclipse.core.runtime".
+!STACK 0
+com.sun.jdi.ObjectCollectedException
+at org.eclipse.jdi.internal.MirrorImpl.defaultReplyErrorHandler(MirrorImpl.java:240)
+at org.eclipse.jdi.internal.ThreadReferenceImpl.ownedMonitors(ThreadReferenceImpl.java:303)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.getOwnedMonitors(JDIThread.java:2409)
+at org.eclipse.jdt.internal.debug.ui.monitors.MonitorManager.updateMonitors(MonitorManager.java:311)
+at org.eclipse.jdt.internal.debug.ui.monitors.MonitorManager.update(MonitorManager.java:282)
+at org.eclipse.jdt.internal.debug.ui.monitors.MonitorManager.updatePartial(MonitorManager.java:249)
+at org.eclipse.jdt.internal.debug.ui.monitors.MonitorsView.selectionChanged(MonitorsView.java:369)
+at org.eclipse.ui.internal.AbstractPartSelectionTracker$1.run(AbstractPartSelectionTracker.java:115)
+at org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java:788)
+at org.eclipse.core.runtime.Platform.run(Platform.java:497)
+at org.eclipse.ui.internal.AbstractPartSelectionTracker.fireSelection(AbstractPartSelectionTracker.java:113)
+at org.eclipse.ui.internal.PagePartSelectionTracker$1.selectionChanged(PagePartSelectionTracker.java:46)
+at org.eclipse.jface.viewers.Viewer$2.run(Viewer.java:159)
+at org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java:788)
+at org.eclipse.core.runtime.Platform.run(Platform.java:497)
+at org.eclipse.jface.viewers.Viewer.fireSelectionChanged(Viewer.java:157)
+at org.eclipse.jface.viewers.StructuredViewer.updateSelection(StructuredViewer.java:1310)
+at org.eclipse.jface.viewers.StructuredViewer.setSelection(StructuredViewer.java:1033)
+at org.eclipse.debug.internal.ui.views.AbstractDebugEventHandler.selectAndReveal(AbstractDebugEventHandler.java:155)
+at org.eclipse.debug.internal.ui.views.launch.LaunchViewEventHandler.doHandleResumeEvent(LaunchViewEventHandler.java:153)
+at org.eclipse.debug.internal.ui.views.launch.LaunchViewEventHandler.doHandleDebugEvents(LaunchViewEventHandler.java:96)
+at org.eclipse.debug.internal.ui.views.AbstractDebugEventHandler$1.run(AbstractDebugEventHandler.java:70)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:106)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:2329)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2037)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1566)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:1542)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:263)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:139)
+at org.eclipse.ui.internal.ide.IDEApplication.run(IDEApplication.java:47)
+at org.eclipse.core.internal.runtime.PlatformActivator$1.run(PlatformActivator.java:256)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:100)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:324)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:279)
+at org.eclipse.core.launcher.Main.run(Main.java:742)
+at org.eclipse.core.launcher.Main.main(Main.java:581)

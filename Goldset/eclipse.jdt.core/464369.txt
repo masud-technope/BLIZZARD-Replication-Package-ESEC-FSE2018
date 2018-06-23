@@ -1,0 +1,7 @@
+org.eclipse.jdt.core.tests.builder/src/org/eclipse/jdt/core/tests/builder/BuildpathTests.java
+org.eclipse.jdt.core.tests.builder/src/org/eclipse/jdt/core/tests/builder/IncrementalTests.java
+org.eclipse.jdt.core.tests.builder/src/org/eclipse/jdt/core/tests/builder/MultiProjectTests.java
+org.eclipse.jdt.core.tests.builder/src/org/eclipse/jdt/core/tests/builder/BuildpathTests.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/builder/JavaBuilder.java
+org.eclipse.jdt.core.tests.builder/src/org/eclipse/jdt/core/tests/builder/BuilderTests.java
+org.eclipse.jdt.core.tests.builder/src/org/eclipse/jdt/core/tests/builder/BuildpathTests.java

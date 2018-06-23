@@ -1,0 +1,10 @@
+Bug 271446 – [call hierarchy] cannot restart canceled search for callers
+I20090401-1325
+- Call Hierarchy in Callers mode
+- expand a node where the search for references takes a long time (e.g.
+Object#hashCode())
+- click 'Cancel Current Search' in view toolbar
+=> expanded node gets a child 'The search was canceled'
+Now, there's no way to restart the canceled search again without refreshing the whole view.
+I don't think we need the 'The search was canceled' node at all.
+The cancel button should just collapse the node again, and when the user expands the node again, we should start the search as if the node had never been touched before.

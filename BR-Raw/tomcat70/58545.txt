@@ -1,0 +1,18 @@
+58545 – WsHandshakeRequest inefficient use of keySet
+Created attachment 33217 [details]
+Replaces inefficient use of keySet() with more efficient entrySet()
+In WsHandshakeRequest...
+for (String pathName : pathParams.keySet()) {
+newParameters.put(pathName,
+Collections.unmodifiableList(
+Arrays.asList(pathParams.get(pathName))));
+}
+should be:
+for (Entry<String,String> entry : pathParams.entrySet()) {
+final String pathName = entry.getKey();
+newParameters.put(pathName,
+Collections.unmodifiableList(
+Arrays.asList(entry.getValue())));
+}
+to avoid the extra lookup.
+See http://findbugs.sourceforge.net/bugDescriptions.html#WMI_WRONG_MAP_ITERATOR

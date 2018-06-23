@@ -1,0 +1,12 @@
+org.apache.catalina.core.StandardContext.listenerStop
+org.apache.catalina.core.StandardContext.stopInternal
+org.apache.catalina.util.LifecycleBase.stop
+org.apache.catalina.util.LifecycleBase.start
+org.apache.catalina.core.ContainerBase.addChildInternal
+org.apache.catalina.core.ContainerBase.addChild
+org.apache.catalina.core.StandardHost.addChild
+org.apache.catalina.startup.HostConfig.deployDescriptor
+org.apache.catalina.startup.HostConfig$DeployDescriptor.run
+java.util.concurrent.Executors$RunnableAdapter.call
+java.util.concurrent.FutureTask.run
+java.util.concurrent.ThreadPoolExecutor.runWorker

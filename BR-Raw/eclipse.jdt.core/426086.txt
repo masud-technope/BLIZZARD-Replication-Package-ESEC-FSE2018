@@ -1,0 +1,22 @@
+Bug 426086 – [1.8] LambdaConversionException when method reference to an inherited method is invoked from sub class
+This code causes an LCE when run:
+interface Functional {
+Long square(Integer a);
+}
+public class X {
+static class Base {
+private Long square(Integer a) {
+return Long.valueOf(a*a);
+}
+}
+static class SubClass extends Base {
+public Long callSquare(Integer i) {
+Functional fi = SubClass.super::square;
+return fi.square(i);
+}
+}
+public static void main(String argv[]) throws Exception {
+System.out.println(new SubClass().callSquare(-1));
+}
+}
+Looks like the method reference in the lambda is associated with SubClass even though it is declared to be from 'super'.

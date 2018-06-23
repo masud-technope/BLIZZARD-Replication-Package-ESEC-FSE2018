@@ -1,0 +1,4 @@
+Bug 124203 – View management with respect to debug context manager
+In 3.2, the debug view is no longer the global debug context provider.
+A debug context manager has been introduced as internal API as part of the flexible debug platform.
+View management should be based on the active debug context rather than the lanuch view.

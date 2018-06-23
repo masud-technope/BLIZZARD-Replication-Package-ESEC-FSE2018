@@ -1,0 +1,4 @@
+Bug 272164 – check box is king
+See bug 233022
+We need to change the API baseline and Target platform preference pages to use checkbox selection rather than bolding/"set as active".
+Ug.

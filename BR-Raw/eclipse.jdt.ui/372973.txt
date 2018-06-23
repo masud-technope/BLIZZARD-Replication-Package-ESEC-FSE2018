@@ -1,0 +1,29 @@
+Bug 372973 – [call hierarchy] Selecting element in callee hierarchy reveals wrong editor location
+Build Identifier: Version: 3.7.2 Build id: M20120208-0800
+package packageA;
+public class A {
+public static void m1() {m2();};
+public static void m2() {m3();};
+public static void m3() {}
+}
+package packageB;
+public class B {
+static void m1() {
+packageA.A.m2();
+packageA.A.m1();
+}
+static void main() {
+m1();
+}
+}
+This CTRL+ALT+H produces the graph
+m1() : void - packageB.B
+m2() : void - packageA.A
+m3() : void - packageA.A
+m1() : void - packageA.A
+m2() : void - packageA.A
+m3() : void - packageA.A
+The structure is ok and jumps to invocation site, as expected, when asked to focus.
+The only problem is clicking on m1->m1 and m1->m2.
+It oscillates between invocation site and invoked method declaration with every click.
+Reproducible: Always

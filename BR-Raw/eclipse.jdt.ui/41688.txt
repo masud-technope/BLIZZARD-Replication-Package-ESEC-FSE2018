@@ -1,0 +1,5 @@
+Bug 41688 – [misc] incorrect reconciling in Java Outline page
+20030813
+add this to a class open in an editor
+public int a, b;
+note that only 'b' is added to the outliner tree

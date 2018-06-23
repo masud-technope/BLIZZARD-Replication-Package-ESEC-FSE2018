@@ -1,0 +1,5 @@
+Bug 291893 – [search] UI for finegrained search options is missing some options
+HEAD
+The UI for finegrained search options (bug 212035) is missing some options, namely:
+- Options for methods and fields
+- IJavaSearchConstants.IMPORT_DECLARATION_TYPE_REFERENCE

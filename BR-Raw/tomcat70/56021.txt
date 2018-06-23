@@ -1,0 +1,36 @@
+56021 – SSL connector using windows-my keystore
+Was trying to configure SSL on tomcat 7 to use Windows-MY keystore (provider that wraps the MSCAPI to access certificates in the keystore of Windows cert manager) but didn't get to work.
+Tomcat startup fails to load the connector since it looks for a empty file for the keystore inside catalina_home directory.
+But I got it working with a small code change in org.apache.tomcat.util.net.AbstractEndpoint.adjustRelativePath() method.
+When Windows-MY keystore is used there is no physical keystore file.
+To be able to pass in empty value for the keyStoreFile in the connector I added a check for not empty path before adjusting the path.
+public String adjustRelativePath(String path, String relativeTo) {
+String newPath = path;
+if (!"".equalsIgnoreCase(newPath)) {
+File f = new File(newPath);
+if ( !f.isAbsolute()) {
+newPath = relativeTo + File.separator + newPath;
+f = new File(newPath);
+}
+if (!f.exists()) {
+getLog().warn("configured file:["+newPath+"] does not exist.");
+}
+}
+return newPath;
+}
+java version "1.7.0_07"
+To reproduce (on windows):
+1.
+Install a cert to the windows cert manager (start run certmgr.msc).
+2.
+Configure the SSL connector with cert alias ('issued to' column value of the cert in the cermgr)
+<Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+SSLEnabled="true"
+maxThreads="150" scheme="https" secure="true"
+keyAlias="ssl.cert.alias"
+keystoreFile=""
+keystoreType="Windows-My"
+clientAuth="false" sslProtocol="TLS" />
+3.
+Start tomcat
+The fix has been tested on windows 7 and windows server 2012.

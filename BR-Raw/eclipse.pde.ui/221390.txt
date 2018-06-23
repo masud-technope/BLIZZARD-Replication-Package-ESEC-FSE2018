@@ -1,0 +1,3 @@
+Bug 221390 – Hide EE selection from user
+The user should not be forced to select an EE for API profiles - we should use the same EE as used for the workspace profile.
+Would be nice to reveal resolution errors to the user somehow - so they know why some bundles cannot be analyzed.

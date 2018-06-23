@@ -1,0 +1,3 @@
+java/org/apache/coyote/http11/upgrade/AbstractProcessor.java
+java/org/apache/coyote/http11/upgrade/LocalStrings.properties
+webapps/docs/changelog.xml

@@ -1,0 +1,8 @@
+org.eclipse.jdt.core/formatter/org/eclipse/jdt/internal/formatter/DefaultCodeFormatter.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/JavaCore.java
+org.eclipse.jdt.core/formatter/org/eclipse/jdt/core/formatter/CodeFormatter.java
+org.eclipse.jdt.core/schema/javaFormatter.exsd
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/ToolFactory.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavaCorePreferenceInitializer.java
+org.eclipse.jdt.core/plugin.properties
+org.eclipse.jdt.core/plugin.xml

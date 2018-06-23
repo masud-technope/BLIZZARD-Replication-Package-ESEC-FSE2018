@@ -1,0 +1,13 @@
+Bug 109003 – editing a plugin.xml located in subfolder of a plugin project, edits the MANIFEST.MF at the root
+I have a plugin for testing of assembly and build.
+It contains multiple
+subfolders that replicate the structure of a plugin (they are test plugins, i.e.
+test data for some tests): each contains a plugin.xml and a MANIFEST subfolder
+containing a MANIFEST.MF.
+They are "new style
+If I open a "plugin.xml" from one of the subfolders in the plugin manifest
+editor, the associated MANIFEST.MF that gets opened is not the one in the
+MANIFEST subfolder corresponding to the plugin.xml, but instead the MANIFEST.MF
+that lives in the MANIFEST subfolder of the project root.
+The expected default behavior would be that the editor would take the
+MANIFEST.MF relatively to the plugin.xml being edited.

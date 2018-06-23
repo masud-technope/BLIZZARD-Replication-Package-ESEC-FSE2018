@@ -1,0 +1,4 @@
+Bug 265188 – Refactor rename popup (border is black and bottom is missing)
+Select a variable or method in the java editor.
+Popup menu and select "Refactor ->Rename".
+Note that the popup has a black border and the bottom line is missing.

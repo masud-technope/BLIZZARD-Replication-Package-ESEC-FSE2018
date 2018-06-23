@@ -1,0 +1,26 @@
+Bug 308898 – [reconciling] ASTProvider creates same AST twice when opening class file editor
+HEAD (but I guess that's already been the case in 3.5)
+The ASTProvider creates the same AST twice when opening a class file editor.
+To reproduce:
+- make sure the Outline is visible in the target
+- set a breakpoint in ASTProvider#getAST(..) at the line that calls createAST(..) (line 479)
+- open java.lang.String (with source attachment)
+Thread [Worker-6] (Suspended (breakpoint at line 479 in ASTProvider))
+ASTProvider.getAST(ITypeRoot, SharedASTProvider$WAIT_FLAG, IProgressMonitor) line: 479
+SharedASTProvider.getAST(ITypeRoot, SharedASTProvider$WAIT_FLAG, IProgressMonitor) line: 126
+ClassFileEditor$3.run(IProgressMonitor) line: 687
+Worker.run() line: 54
+Thread [Worker-8] (Suspended (breakpoint at line 479 in ASTProvider))
+ASTProvider.getAST(ITypeRoot, SharedASTProvider$WAIT_FLAG, IProgressMonitor) line: 479
+SharedASTProvider.getAST(ITypeRoot, SharedASTProvider$WAIT_FLAG, IProgressMonitor) line: 126
+OverrideIndicatorLabelDecorator.getOverrideIndicators(IMethod) line: 161
+OverrideIndicatorLabelDecorator.computeAdornmentFlags(Object) line: 136
+OverrideIndicatorLabelDecorator.decorate(Object, IDecoration) line: 272
+LightweightDecoratorDefinition.decorate(Object, IDecoration) line: 269
+LightweightDecoratorManager$LightweightRunnable.run() line: 81
+SafeRunner.run(ISafeRunnable) line: 42
+LightweightDecoratorManager.decorate(Object, DecorationBuilder, LightweightDecoratorDefinition) line: 365
+LightweightDecoratorManager.getDecorations(Object, DecorationBuilder) line: 347
+DecorationScheduler$1.ensureResultCached(Object, boolean, IDecorationContext) line: 371
+DecorationScheduler$1.run(IProgressMonitor) line: 331
+Worker.run() line: 54

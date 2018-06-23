@@ -1,0 +1,14 @@
+Bug 268393 – Debugger not letting me change value on null String
+Created attachment 128591 [details]
+Image 1 of 3
+Build ID: 20090211-1700
+Steps To Reproduce:
+See attached screenshots.
+I attempted to change the value of a String variable that was null.
+I could use the Expressions text box, but not the literal text.
+Image 1 shows my the dialog as-is.
+OK button is gray.
+Image 2 shows my attempt to put a value there.
+OK button is still gray.
+Image 3 shows my third attempt -- maybe quotes would do it! Nope, still gray.
+More information:

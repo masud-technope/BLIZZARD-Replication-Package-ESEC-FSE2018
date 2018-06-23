@@ -1,0 +1,25 @@
+Bug 31637 – should be able to cast "null"
+When trying to debug an application the variables tab is empty.
+Also when I try
+to inspect or display a variable I get the following error logged in the eclipse
+log file:
+!ENTRY org.eclipse.jdt.debug 4 120 Feb 12, 2003 11:11:29.503
+!MESSAGE Internal error logged from JDI Debug:
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.debug.core.model.JDIValue.toString(JDIValue.java:362)
+at org.eclipse.jdt.internal.debug.eval.ast.instructions.Cast.execute(Cast.java:88)
+at
+org.eclipse.jdt.internal.debug.eval.ast.engine.Interpreter.execute(Interpreter.java:44)
+at
+org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationThread$1$EvaluationRunnable.run(EvaluationThread.java:158)
+at
+org.eclipse.jdt.internal.debug.core.model.JDIThread.runEvaluation(JDIThread.java:600)
+at
+org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationThread.doEvaluation(EvaluationThread.java:180)
+at
+org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationThread.access$2(EvaluationThread.java:142)
+at
+org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationThread$1.run(EvaluationThread.java:116)
+at java.lang.Thread.run(Thread.java:536)
+I am using Eclipse 2.1 (M5 / RC0).

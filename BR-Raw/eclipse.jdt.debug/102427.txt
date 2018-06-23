@@ -1,0 +1,17 @@
+Bug 102427 – Cannot inspect/display static import methods
+Consider:
+---
+public class Helper {
+public static int getValue() {...}
+}
+---
+import static Helper.*;
+public class Doer {
+public void doit() {
+int i = getValue();
+}
+}
+---
+When debugging, if you select 'getValue()' in the method 'doit' and execute
+display (or inspect) you get an error indicating that the method 'getValue()' is
+not undefined for type Doer.

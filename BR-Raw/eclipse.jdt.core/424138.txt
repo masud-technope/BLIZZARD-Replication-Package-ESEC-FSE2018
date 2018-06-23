@@ -1,0 +1,29 @@
+Bug 424138 – [1.8][dom ast] Bad source ranges for qualified TYPE_USE annotation in extends clause
+BETA_JAVA8
+Bad source ranges for qualified TYPE_USE annotation in extends clause.
+BTW: For this specific example, javac 1.8.0-ea-b115 has even worse bugs...
+!ENTRY org.eclipse.jdt.core 4 4 2013-12-16 16:31:25.041
+!MESSAGE Bad AST node structure:
+- parent [156, 168] org.eclipse.jdt.core.dom.SimpleType
+annotations [156, 194] org.eclipse.jdt.core.dom.MarkerAnnotation
+- parent [156, 168] org.eclipse.jdt.core.dom.SimpleType
+previous [156, 194] org.eclipse.jdt.core.dom.MarkerAnnotation
+name [164, 168] org.eclipse.jdt.core.dom.SimpleName
+----------------------------------- SOURCE BEGIN -------------------------------------
+package jsr308.myex;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+public class NestedAnnotationTest extends
+@jsr308.myex.NestedAnnotationTest.Anno Object { // bad AST
+//        @Anno Object { // OK
+@Target(ElementType.TYPE_USE)
+public @interface Anno {
+}
+}
+----------------------------------- SOURCE END -------------------------------------
+!STACK 0
+java.lang.IllegalStateException: Bad AST node structure
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1419)
+at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:273)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:206)
+...

@@ -1,0 +1,7 @@
+Bug 176322 – Refactoring to move away from Eclipse's runtime bundle
+The ECF code base should be examined to move away from various usage of Eclipse runtime classes.
+They instead should move to Equinox specific things.
+Here are some examples:
+- use of Platform for the convenience methods (getExtensionRegistry, ...)
+- use of Plugin to get debugging and logging info
+- access to classes that are now in org.eclipse.equinox.common

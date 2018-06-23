@@ -1,0 +1,11 @@
+Bug 472106 – For non-OSGi environments (ServiceRegistry) allow to skip service interface version checking
+In this method (impl of RemoteServiceAdmin service):
+org.eclipse.ecf.osgi.services.remoteserviceadmin.RemoteServiceAdmin.createProxy(Bundle, ServiceReference, IRemoteService, Map<String, Version>)
+There is this code:
+// Now verify that the classes are of valid versions
+if (!verifyServiceInterfaceVersionsForProxy(requestingBundle,
+serviceInterfaceClasses, interfaceVersions))
+return null;
+which compares the serviceInterfaceClasses versions against available local versions and if no version match returns null (could not create proxy).
+For the ServiceRegistry environment (no OSGi, no Bundle Wiring API support, etc) it should be possible to disable this version check.
+  This could be implemented by a system property disabling this check.

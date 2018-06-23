@@ -1,0 +1,4 @@
+Bug 154853 – Missing border on Extensions tab
+Build: I20060823-0800
+The "Extensions" tab of the manifest editor is missing the grey border.
+Screen shot available on request.

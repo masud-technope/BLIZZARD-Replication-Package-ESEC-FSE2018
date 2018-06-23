@@ -1,0 +1,10 @@
+org.eclipse.jdt.core.JavaCore.newLibraryEntry
+org.eclipse.jdt.core.JavaCore.getResolvedClasspathEntry
+org.eclipse.jdt.internal.core.JavaProject.getResolvedClasspath
+org.eclipse.jdt.internal.core.JavaProject.getResolvedClasspath
+org.eclipse.jdt.internal.core.JavaProject.getResolvedClasspath
+org.eclipse.jdt.core.JavaCore.updateVariableValues
+org.eclipse.jdt.core.JavaCore.setClasspathVariables
+org.eclipse.jdt.core.JavaCore.setClasspathVariable
+org.eclipse.jdt.internal.launching.JavaClasspathVariablesInitializer.setJREVariable
+org.eclipse.jdt.internal.launching.JavaClasspathVariablesInitializer.initialize

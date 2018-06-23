@@ -1,0 +1,9 @@
+java.util.Properties.loadConvert
+java.util.Properties.load0
+java.util.Properties.load
+org.eclipse.jdt.internal.corext.refactoring.nls.NLSHintHelper.getProperties
+org.eclipse.jdt.internal.ui.text.java.hover.NLSStringHover.internalGetHoverInfo
+org.eclipse.jdt.internal.ui.text.java.hover.NLSStringHover.getHoverInfo2
+org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2
+org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2
+org.eclipse.jface.text.TextViewerHoverManager$4.run

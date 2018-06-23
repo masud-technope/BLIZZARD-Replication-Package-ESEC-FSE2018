@@ -1,0 +1,28 @@
+Bug 286406 – [build path] File -> New Java Project not identifying source files correctly
+Created attachment 144251 [details]
+default Java import method
+Build ID: 20090619-0625
+Steps To Reproduce:
+1.
+Download the ZIP file attached, it will be in a DoubleIt folder that contains one Eclipse subproject (service-war).
+2.
+Now, import DoubleIt into Eclipse.
+ File -> New -> Java Project -> Create Project from existing Source ->
+Choose "DoubleIt" folder and click "Next".
+3.
+The default source code import is not loading from service-war/target/generated-sources correctly--creates subsequent classpath problems if not manually changed on this page.
+org.example.contract.doubleit under this folder loads correctly but not org.example.schema.doubleit--unsure why one would but not the other.
+More information:
+The .classpath entry of the default (incorrect) source file detection is this:
+<classpath>
+...
+<classpathentry excluding="org/example/schema/doubleit/" kind="src" path="service-war/target/generated-sources"/>
+<classpathentry kind="src" path="service-war/target/generated-sources/org/example/schema/doubleit"/>
+It should be this by default:
+<classpath>
+...
+<classpathentry kind="src" path="service-war/target/generated-sources"/>
+...
+The incorrect default causes Eclipse to complain that classes in the org.example.schema.doubleit package should have a package name of "" (empty string).
+I'm attaching screenshots showing the bad default and what should be the good default, as well as the Navigator view consequences of having the bad default.
+(Note: screenshots from Eclipse 3.4 but verified same problem with 3.5.)

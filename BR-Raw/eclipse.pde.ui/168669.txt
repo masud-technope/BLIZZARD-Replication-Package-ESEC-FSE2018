@@ -1,0 +1,13 @@
+Bug 168669 – The Load target button in the PDE preferences page for Target Platform is not enabled correctly
+Build ID: 3.3M4
+Steps To Reproduce:
+1.
+Install clean 3.3M4 in Linux (In my case the distro was Kubuntu)
+2.
+Go to Help / Preferences / Target Platform
+3.
+When you select any of the already defined targets, the load target button is not enabled.
+More information:
+While reproducing the same steps on Windows the page works correctly.
+It seems the Combo ModifyEvents are handled differently in both versions.
+Adding a SelectionListener to the TargetPlatformPreferencesPage gets it to work in Linux too.

@@ -1,0 +1,12 @@
+Bug 14597 – rearrange source code
+hello,
+I would suggest the following feature ; be able to rearrange the source code.
+Why this feature? For instance you sorted your method view in the java browsing
+perspective to have the methods in alphabetic order.
+You add then a method .
+Presently, it will be inserted in the source code where you write the code.
+The
+rearrange feature would enable the user to place its method automatically in
+the right place.
+regards
+Xavier

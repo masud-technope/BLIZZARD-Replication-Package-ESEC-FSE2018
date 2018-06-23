@@ -1,0 +1,4 @@
+Bug 153755 – [clean up] Extension point for the clean up wizard
+I want to add tab's and extra codechecks to the clean up wizard.
+This is not possible at this point I can not find a extentioni point to use or any other normal way to do this.
+Plz make this possible thx.

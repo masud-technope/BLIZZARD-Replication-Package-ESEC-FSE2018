@@ -1,0 +1,5 @@
+java/org/apache/tomcat/util/buf/B2CConverter.java
+java/org/apache/tomcat/util/http/parser/HttpParser.java
+java/org/apache/tomcat/util/http/parser/MediaType.java
+modules/jdbc-pool/src/main/java/org/apache/tomcat/jdbc/pool/PoolProperties.java
+test/org/apache/catalina/startup/SimpleHttpClient.java

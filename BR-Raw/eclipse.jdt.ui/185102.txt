@@ -1,0 +1,9 @@
+Bug 185102 – [actions] Assign Working Sets if there are no working sets
+20070502
+- start with a new workspace
+- create a project
+- invoke 'Assign Working Sets...'
+- dialog shows up with nothing to select, no message, OK button enabled
+- I think it would be better to show an information dialog that says:
+'No Working Sets have been defined yet'
+Maybe even offer a button to create a new working set.

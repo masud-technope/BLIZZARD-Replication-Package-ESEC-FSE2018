@@ -1,0 +1,7 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline/test42/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline/test42/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline/A_test49_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline/A_test49_out.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/InlineConstantTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/InlineTempTests.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/NecessaryParenthesesChecker.java

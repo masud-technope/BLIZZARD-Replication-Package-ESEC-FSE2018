@@ -1,0 +1,35 @@
+Bug 198961 – Feature's dependency calculations include too much
+The Feature Editor has a compute button on the dependencies page.
+ This button is suppose to calculate the dependencies of the plug-ins contained in the feature.
+Unfortunately, some times a dependency is added when a plug-in is included in the feature which already satisfies the constraint.
+Test:
+1.
+Create new plug-in project.
+2.
+Add 'org.eclipse.ant' as a required bundle.
+ Mark the version range as [1.7.0-2.0.0).
+3.
+Create a new feature
+4.
+Add the plug-in project from step one into the feature on the plug-ins tab.
+5.
+Add 'org.eclipse.ant' to the same table.
+6.
+Go to the dependencies page and hit 'compute'.
+ This adds org.eclipse.ant as a dependency.
+ Since the version of org.eclipse.ant on the plug-ins page is 0.0.0, this is working correctly.
+7.
+Now go back to the plug-ins tab.
+ Select org.eclipse.ant and change the specified version in the Plug-in Details Section to 1.8.0.
+ This should satisfy the constraint of [1.7.0 - 2.0.0).
+8.
+Go to the dependencies page and hit compute.
+ Note how org.eclipse.ant is not removed from the dependencies list.
+ The feature contains a version which satisfies the dependency, so the org.eclipse.ant dependency should be removed.
+9.
+go back to the plug-ins tab.
+ Select org.eclipse.ant and change the specified version in the Plug-in Details Section to 1.6.0.
+ This will NOT satisfy the constraint of [1.7.0-2.0.0).
+10.
+Go to the dependencies page and hit compute.
+Note how org.eclipse.ant is removed from the dependency list.

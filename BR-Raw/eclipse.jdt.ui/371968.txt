@@ -1,0 +1,9 @@
+Bug 371968 – recommend option settings when enabling annotation-based null analysis
+Bug 371940 demonstrates a situation where a user was surprised to not see a pot.null warning after enabling annotation-based null analysis.
+My first reaction was that enabling null annotations could automatically trigger to strengthen some related problems.
+Notably pot.null diagnostics could be changed to "warning" if previously ignored.
+After reading Ayush's bug 371940 comment 5 I agree that a softer approach would be better:
+Can enabling null annotations just trigger some kind of recommendation/suggestions?
+"When enabling null annotations it is suggested to also enable the following warnings: ..."
+(I'm thinking of Debian/Ubuntu, where a package may specify other packages suggested for install)
+Could be a popup, could be an info in the dialog's status line or anything.

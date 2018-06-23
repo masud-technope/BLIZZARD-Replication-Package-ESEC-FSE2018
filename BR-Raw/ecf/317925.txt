@@ -1,0 +1,2 @@
+Bug 317925 – [Discovery][DNS-SD] Add support for signing DNS messages
+For authentication, certain DNS messages (zone transfer, dynamic dns) have to be signed by a TSIG.

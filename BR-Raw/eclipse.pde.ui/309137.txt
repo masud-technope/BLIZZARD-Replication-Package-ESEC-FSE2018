@@ -1,0 +1,4 @@
+Bug 309137 – [target] Software Site content wizard should have selection count
+it would be an extremely useful polish item to show the count of selected items when editing the content of a software site.
+Users pointing say the Helios repo may be faced with a list of several hundred similarly named features.
+Knowing how many they have selected would increase their confidence in the current state.

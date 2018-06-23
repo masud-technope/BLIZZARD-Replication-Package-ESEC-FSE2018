@@ -1,0 +1,12 @@
+Bug 244673 – Invalid API problems for method that changed from private to @noreference public
+M20080813-0800 and I20080812-0800
+- check out org.eclipse.ui.navigator from HEAD or R3_4_maintenance
+- remove .api_filters file
+=> Invalid error:
+The method org.eclipse.ui.navigator.NavigatorActionService.getActionProviderInstance(CommonActionProviderDescriptor) is no longer API
+The method used to be private in 3.4 but the fix for bug 212389 turned it into:
+/**
+* [..]
+* @noreference This method is not intended to be referenced by clients.
+*/
+public CommonActionProvider getActionProviderInstance([..]

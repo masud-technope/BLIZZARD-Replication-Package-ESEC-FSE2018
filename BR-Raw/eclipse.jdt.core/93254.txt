@@ -1,0 +1,40 @@
+Bug 93254 – [assist] ClassCastException when complete annotation type ref
+build I20050426-1700
+1) create X.java with only the following content:
+@java.lang.annotation.Target
+2) do ctrl+space just after 'Target'
+java.lang.ClassCastException:
+org/eclipse/jdt/internal/compiler/lookup/PackageBinding incompatible with
+org/eclipse/jdt/internal/compiler/lookup/ReferenceBinding
+at java.lang.Throwable.<init>(Throwable.java)
+at java.lang.Throwable.<init>(Throwable.java)
+at java.lang.ClassCastException.<init>(ClassCastException.java:54)
+at
+org.eclipse.jdt.internal.codeassist.CompletionEngine.complete(CompletionEngine.java:881)
+at
+org.eclipse.jdt.internal.codeassist.CompletionEngine.complete(CompletionEngine.java)
+at org.eclipse.jdt.internal.core.Openable.codeComplete(Openable.java:128)
+at
+org.eclipse.jdt.internal.core.CompilationUnit.codeComplete(CompilationUnit.java:301)
+at
+org.eclipse.jdt.internal.core.CompilationUnit.codeComplete(CompilationUnit.java:294)
+at
+org.eclipse.jdt.internal.ui.text.java.JavaCompletionProcessor.internalComputeCompletionProposals(JavaCompletionProcessor.java:335)
+at
+org.eclipse.jdt.internal.ui.text.java.JavaCompletionProcessor.computeCompletionProposals(JavaCompletionProcessor.java:313)
+at
+org.eclipse.jface.text.contentassist.ContentAssistant.computeCompletionProposals(ContentAssistant.java:1499)
+at
+org.eclipse.jface.text.contentassist.CompletionProposalPopup.computeProposals(CompletionProposalPopup.java:256)
+at
+org.eclipse.jface.text.contentassist.CompletionProposalPopup.access$7(CompletionProposalPopup.java:253)
+at
+org.eclipse.jface.text.contentassist.CompletionProposalPopup$1.run(CompletionProposalPopup.java:216)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java)
+at
+org.eclipse.jface.text.contentassist.CompletionProposalPopup.showProposals(CompletionProposalPopup.java:211)
+at
+org.eclipse.jface.text.contentassist.ContentAssistant.showPossibleCompletions(ContentAssistant.java:1348)
+at
+org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor$AdaptedSourceViewer.doOperation(CompilationUnitEditor.java:185)
+at ...

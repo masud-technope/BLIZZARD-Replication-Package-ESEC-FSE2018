@@ -1,0 +1,9 @@
+Bug 6503 – Search page - should offer case sensitivity check box
+Build 20011127
+Due to bug 6423 fix, the API SearchEngine.search(IWorkspace, String, int, int,
+IJavaSearchScope, IJavaSearchResultCollector) is now performing a case
+insensitive search (more intuitive).
+However, the UI page should offer a checkbox for case sensitivity, and rather
+use the following call to trigger the search:
+SearchEngine.search(workspace, createSearchPattern(patternString, searchFor,
+limitTo, caseSensitiveFlag), scope, resultCollector);

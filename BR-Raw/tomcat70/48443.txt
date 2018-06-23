@@ -1,0 +1,16 @@
+48443 – when the context path is empty,tomcat will startup with a FileNotFoundException
+Created attachment 24756 [details]
+fix the resource form when the <contextpath> is empty
+I deploy my app in tomcat without any context path,
+i.e.
+the url of index.jsp of my app is: http://localhost/index.jspï¼Œbut not http://localhost/myapp/index.jsp.
+When tomcat startup,there is a FileNotFoundException:
+The connection created for URL [jndi:/localhost/WEB-INF/classes] was not a DirContextURLConnection
+java.io.FileNotFoundException
+at org.apache.naming.resources.DirContextURLConnection.list(DirContextURLConnection.java:436)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1602)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsUrl(ContextConfig.java:1518)
+at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1264)
+at org.apache.catalina.startup.ContextConfig.start(ContextConfig.java:928)
+because in this condition,the resource form should be /<hostname>/filename instead of /<hostname>/<contextpath>/filename
+I attachment a patch which can works fine for me.

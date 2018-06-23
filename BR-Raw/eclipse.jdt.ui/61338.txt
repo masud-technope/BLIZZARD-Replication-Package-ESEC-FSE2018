@@ -1,0 +1,9 @@
+Bug 61338 – [Search] Sometimes the Search dialog loses all its bottom buttons in Solaris
+Eclipse 200405060200
+Sometimes the Search dialog loses all its bottom buttons in Solaris.
+ I've
+noticed it 3 times while I was testing Search.
+ I had to close the dialog by
+pressing the 'x' and when I went back into the search dialog, the buttons came
+back.
+There has been a lot of inconsistency in the UI on Motif.

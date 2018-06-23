@@ -1,0 +1,11 @@
+Bug 225594 – [JUnit] Cannot find bundle 'org.junit4.source'
+20080401-0851
+To find the source for junit4, I'm searching for a bundle 'org.junit4.source' with version '4.3.1'
+Platform.getBundles(bundleName, version);
+and
+ServiceReference serviceRef= fBundleContext.getServiceReference(PackageAdmin.class.getName());
+PackageAdmin admin= (PackageAdmin)fBundleContext.getService(serviceRef);
+bundles= admin.getBundles(bundleName, version);
+can both not locate this bundle.
+Looking in the plugons dir I see org.junit4.source_4.3.1.jar with a manifest matching the name and id.
+What's the secret?

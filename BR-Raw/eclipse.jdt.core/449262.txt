@@ -1,0 +1,8 @@
+Bug 449262 – [formatter] Allow the use of third-party Java code formatters
+JDT should allow overriding of the built-in formatter via extension point so that users can supply their own Java formatters.
+The built-in Eclipse formatter works great, but sometimes there are codebase-specific formatting options that the Eclipse formatter cannot do.
+At Google specifically, we have an internal Java formatter that is specifically tailored to Google style that we would like to integrate into Eclipse.
+This is the approach that is used in CDT, where one can plug-in one of the popular C/C++ formatters such as clang-format easily with an extension point.
+I propose that JDT adds an extension point that allows a client to extend org.eclipse.jdt.core.formatter.CodeFormatter so that Eclipse will use their custom formatter.
+The selection between the various formatters can happen in the "Formatting" preference page, where the combo box for selecting formatters is hidden if no custom formatters are provided.
+This mirrors CDT behavior.

@@ -1,0 +1,2 @@
+Bug 211585 – [Discovery][JMDNS] parsing problem if service type defines a naming authority
+The parser code stumbles if a naming authority is set.

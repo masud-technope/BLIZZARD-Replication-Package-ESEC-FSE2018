@@ -1,0 +1,5 @@
+Bug 207583 – [registryview] UI to enable/disable bundles
+With the release of API to enable/disable bundles in the runtime (bug 207360), it would be nice to have a UI for adding/removing DisabledInfo objects to the runtime state to disable/enable bundles in the runtime.
+I'm not suggesting this be in the SDK, but perhaps some add-on bundle which exposes the function.
+ Chris A.
+suggests somehow contributing to the PDE plug-ins view.

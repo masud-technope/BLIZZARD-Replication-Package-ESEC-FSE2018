@@ -1,0 +1,17 @@
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/LocalCorrectionsQuickFixTest18.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/AddUnimplementedMethodsOperation.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/StubUtility2.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/Bindings.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/AddUnimplementedMethodsOperation.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/LambdaExpressionsFix.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/IntroduceFactoryRefactoring.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/LocalCorrectionsSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/AnonymousTypeCompletionProposal.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/OverrideCompletionProposal.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/LocalCorrectionsQuickFixTest18.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/CorrectionMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/CorrectionMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/IProposalRelevance.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/LocalCorrectionsSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/QuickFixProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/TypeMismatchSubProcessor.java

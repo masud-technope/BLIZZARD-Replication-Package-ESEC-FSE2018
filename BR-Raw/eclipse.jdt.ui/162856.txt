@@ -1,0 +1,39 @@
+Bug 162856 – [build path] new project from existing sources in the workspace
+I have a folder with many subfolders.
+In this subfolders thera are another subfolders and source folders in them.
+For example:
+the main folder name is "git"
+git->s1->f1->src
+git->s1->f2->src
+git->s2->f3->src
+git->s2->f4->src
+...
+The folder "git" is in the workspace.
+There is no project.
+I want to create project in the folder "git".
+I want Eclipse to find the src folders automatically.
+I open New Project wizard and select Java Project.
+I choose "Create project from existing source" and browse for folder "git".
+I type a Project name.
+There is an error.
+I can't click Next because it is desabled.
+There is a message "Cannot create project content in workspace".
+Why? Where is the problem? My sources are already in the workspace and Eclipse have to create a project file.
+I report this bug because there is something strange in the Eclipse and you have to fix it.
+If I do the following steps everithing is ok and everything work correctly:
+1.
+move folder "git" outside the eclipse's workspace
+2.
+create new projet from existing source.
+The Eclipse automatically found the source folders.
+The Eclipse create .project file and .classpath file in the "git" folder.
+3.
+create new project "test" in workspace with no source folders.
+4.
+close eclipse
+5.
+move all files and subfolders from folder "git" to the new folder "test" in eclipse's workspace.
+6.
+open eclipse
+7.
+I have project with all source folders.

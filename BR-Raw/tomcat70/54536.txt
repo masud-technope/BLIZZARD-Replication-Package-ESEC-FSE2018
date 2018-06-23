@@ -1,0 +1,11 @@
+54536 – ErrorReportValve doesn't respect HttpServletResponse.sendError(int sc, String msg)
+The changes of the ErrorSupportValve introduced in catalina-v7.0.30 does not respect HttpServletResponse.sendError(int sc, String msg)  because when a msg is provided with a status which is not present in the LocalStrings.properties of the 'org.apache.catalina.valves' package, the error page won't be forwarded to the response body.
+This issue was triggered due to the following change which was performed at revision 1348777:
+The change of the
+report = sm.getString("http." + statusCode, message);
+to
+report = sm.getString("http." + statusCode);
+results in 'report==null' for custom status codes returning a response without the error page body.
+if (report == null) {
+return;
+}

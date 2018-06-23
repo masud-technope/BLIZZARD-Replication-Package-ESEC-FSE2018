@@ -1,0 +1,4 @@
+48131 – Add @deprecated annotations to deprecated elements
+Created attachment 24475 [details]
+Patch to add @deprecated annotations to deprecated elements
+Patch to add @deprecated annotations to deprecated elements

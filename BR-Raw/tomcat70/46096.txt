@@ -1,0 +1,8 @@
+46096 – DefaultAnnotationProcessor.processAnnotations should use doPrivileged to call getDeclaredFields
+If tomcat is running with a SecurityManager, and a JSP uses PageContext.forward, DefaultAnnotationProcessor code can be called with untristed code on the call stack.
+The processAnnotations method contains the line:
+Field[] fields = instance.getClass().getDeclaredFields();
+getDeclaredFields() is subject to security checks so this throws a java.security.AccessControlException.
+DefaultAnnotationProcessor is part of the code in the catlina lib directory, which is granted AllPermissions in the standard policy file.
+ However, because there is untrusted JSP code on the stack, these permissions are not used.
+The call to getDeclaredFields() should be wrapped in an AccessController.doPrivileged call to avoid the exception.

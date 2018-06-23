@@ -1,0 +1,2 @@
+Bug 430487 – [1.8][refactoring] Rename Method refactoring breaks lambda
+The Rename Method refactoring breaks lambda expressions (overwrites parameters list and "->").

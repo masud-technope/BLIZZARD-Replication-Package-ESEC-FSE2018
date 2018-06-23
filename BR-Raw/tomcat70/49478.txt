@@ -1,0 +1,15 @@
+49478 – Add encoding parameter to AddDefaultCharSetFilter
+AddDefaultCharSetFilter adds a default charset to each request.
+It assumes ISO-8859-1 as the default charset.
+The attached patch makes it configurable by introducing an "encoding" parameter.
+This parameter can take one of two special values "default" or "system".
+Every other value will be interpreted as a name of an character set, e.g "utf-8".
+The meaning of the two special values are as follows:
+default: use ISO-8859-1.
+This value will also be used, if no parameter was specified, or if it is empty
+system: the jvm will be asked for the default charset.
+This charset will usually be set by system locale.
+Together with this functional change, there are two minor changes and one bigger changes hidden.
+First use of annotation "Override" at overriden methods.
+Second use of keyword "static" for the ResponseWrapper, since it has no reference to outer class.
+The third and somewhat bigger change is use of HttpServletResponse#setCharacterEncoding(encoding) instead of manipulating the content-type.

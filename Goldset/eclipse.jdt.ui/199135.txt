@@ -1,0 +1,3 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaPlugin.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/SemanticHighlighting.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/PreferenceConstants.java

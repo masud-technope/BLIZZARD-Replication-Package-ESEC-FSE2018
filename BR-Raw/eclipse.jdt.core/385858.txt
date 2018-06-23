@@ -1,0 +1,3 @@
+Bug 385858 – Add token location for constructor start (TL_CONSTRUCTOR_START)
+3.8.
+Add token location for constructor start (CompletionContext.TL_CONSTRUCTOR_START).

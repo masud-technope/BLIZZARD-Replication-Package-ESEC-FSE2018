@@ -1,0 +1,14 @@
+Bug 312495 – BundleProjectDescription.apply() very slow on 1st call in clean workspace
+Build Identifier: 3.6.0.v20100405
+I am working on an adopting product which calls org.eclipse.pde.internal.core.project.BundleProjectDescription.apply() when creating a new project.
+I am investigating a performance issue where the first new project created in a clean workspace takes approximately 2 minutes to complete, compared to roughly o.5s for subsequent projects.
+I gathered some profiling data which indicated that 66s was spent in BundleProjectDescription.apply() (screenshot attached).
+Is there any possibility of speeding this up, or deferring the majority of the work to a background thread to release the UI?
+Reproducible: Always
+Steps to Reproduce:
+Regrettably I don't know how to reproduce this problem in eclipse.
+With our adopting product, the problem can be reproduced by:
+1.
+start with a clean workspace
+2.
+create a new project

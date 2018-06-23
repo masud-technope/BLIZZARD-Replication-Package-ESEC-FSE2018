@@ -1,0 +1,2 @@
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/core/DiscoverdService.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/core/ZooDiscoveryServiceID.java

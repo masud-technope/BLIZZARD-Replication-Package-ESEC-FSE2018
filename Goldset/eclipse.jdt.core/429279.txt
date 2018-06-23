@@ -1,0 +1,3 @@
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/ASTNode.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/Parser.java
+org.eclipse.jdt.core/search/org/eclipse/jdt/internal/core/search/indexing/SourceIndexer.java

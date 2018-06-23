@@ -1,0 +1,5 @@
+Bug 273049 – [CheatSheet] Registering a cheat sheet fails with java.lang.NullPointerException
+When editing a CheatSheet the button "Register this cheet sheet" opens a window where you can enter a (new) category and a description.
+When doing so and then clicking "Finish" a popup "Problem Occured" comes up saying "java.lang.NullPointerException".
+(no more details)
+The cheat sheet is not registered after this.

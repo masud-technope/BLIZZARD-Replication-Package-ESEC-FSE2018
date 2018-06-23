@@ -1,0 +1,37 @@
+Bug 430035 – [1.8][compiler][codegen] Bridge methods are not generated for lambdas/method references
+import java.util.function.Consumer;
+public class LambdaWithBridge {
+interface StringConsumer extends Consumer<String> {
+void accept(String t);
+}
+static void m(String s) { System.out.println("m("+s+")"); }
+public static void main(String...
+x) {
+StringConsumer c = LambdaWithBridge::m;
+c.accept("direct call");
+Consumer<String> c4b=c;
+c4b.accept("bridge method");
+}
+}
+and
+import java.util.function.Consumer;
+public class LambdaWithBridge {
+interface StringConsumer extends Consumer<String> {
+void accept(String t);
+}
+public static void main(String...
+x) {
+StringConsumer c = s->System.out.println("m("+s+')');
+c.accept("direct call");
+Consumer<String> c4b=c;
+c4b.accept("bridge method");
+}
+}
+produce
+m(direct call)
+Exception in thread "main" java.lang.AbstractMethodError: Method LambdaWithBridge$$Lambda$1.accept(Ljava/lang/Object;)V is abstract
+at LambdaWithBridge$$Lambda$1/2536472.accept(Unknown Source)
+at LambdaWithBridge.main(LambdaWithBridge.java:13)
+which indicates that the necessary bridge method has not been generated.
+The compiler must emit code which invokes altMetafactory with FLAG_BRIDGES and the bridge method signatures.
+An alternative would be creating the bridge method as synthetic default method inside the interface, however, if the interface is not on the build path and originates from a non-Java8 project, the bridge method must be generated for the lambda.

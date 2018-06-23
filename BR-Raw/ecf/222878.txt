@@ -1,0 +1,24 @@
+Bug 222878 – "Confirm Close Collaboration" dialog is wrong
+Build ID:  2.0.0.v20080310-1643
+A) Quotation mark (") includes in the title.
+[MessageLoader.properties]
+LineChatClientView.contextmenu.closeMessageTitle="Confirm Close Collaboration for Project"
+B) The message definition is not appropriate
+to externalization.
+Wrong:
+[ChatComposite.java]
+if (MessageDialog.openConfirm(null,
+MessageLoader.getString("LineChatClientView.contextmenu.closeMessageTitle"),
+MessageLoader.getString("LineChatClientView.contextmenu.closeMessageMessage")
++ this.view.name + "'?")) {
+[MessageLoader.properties]
+LineChatClientView.contextmenu.closeMessageMessage=Are you sure you want to close collaboration for '
+Correct:
+[ChatComposite.java]
+if (MessageDialog.openConfirm(null,
+MessageLoader.getString("LineChatClientView.contextmenu.closeMessageTitle"),
+MessageLoader.getFormattedString
+("LineChatClientView.contextmenu.closeMessageMessage",
+this.view.name))) {
+[MessageLoader.properties]
+LineChatClientView.contextmenu.closeMessageMessage=Are you sure you want to close collaboration for ''{0}''?

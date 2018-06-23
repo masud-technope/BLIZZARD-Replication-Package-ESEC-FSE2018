@@ -1,0 +1,10 @@
+org.eclipse.jdt.internal.compiler.lookup.MethodBinding.collectMissingTypes
+org.eclipse.jdt.internal.compiler.problem.ProblemReporter.missingTypeInLambda
+org.eclipse.jdt.internal.compiler.ast.LambdaExpression.resolveType
+org.eclipse.jdt.internal.compiler.ast.LocalDeclaration.resolve
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve
+org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve

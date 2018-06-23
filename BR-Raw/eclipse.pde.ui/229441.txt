@@ -1,0 +1,2 @@
+Bug 229441 – invalid flagging of internal extension points
+If an ext point is internal and you use it within your own plug-in, you shouldn't be flagged.

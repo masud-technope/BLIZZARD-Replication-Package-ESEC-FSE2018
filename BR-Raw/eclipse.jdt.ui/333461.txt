@@ -1,0 +1,9 @@
+Bug 333461 – [actions] Javadoc view: "Open Attached Javadoc in External Browser" should open URL
+N20101221-2000
+Show Javadoc of org.eclipse.swt.layout.FormLayout in the Javadoc view.
+Scroll down and click the link "Sample code and further information".
+This shows the linked URL in the Javadoc view.
+But now, I have no way to open the shown page in an external browser.
+I see 2 solutions (preferring A):
+A) When the Javadoc view shows an URL, rename the button / context menu action to "Open in External Browser" and then open the URL.
+B) Never show a linked page in the Javadoc view, but always open an external browser (like the Javadoc hover).

@@ -1,0 +1,5 @@
+Bug 327060 – [discovery][zookeeper] location URI should include port
+As described in ecf-dev mailing list posting
+http://dev.eclipse.org/mhonarc/lists/ecf-dev/msg04290.html
+the zookeeper location URI should include the port of interest for a given service.
+Note as described in bug 327034 comment 3 this bug provides part of the solution to the problem described on the mailing list.

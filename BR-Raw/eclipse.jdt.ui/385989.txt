@@ -1,0 +1,56 @@
+Bug 385989 – [move method] Existing type used instead of qualifying the moved one
+I found Eclipse Move refactoring cannot update "import" statement.
+Here is an example:
+-----
+package a;
+public class C {
+public void m(){}
+}
+-----
+package b;
+public class C {
+public void m(){}
+}
+-----
+package p;
+import a.C;
+public class D {
+public int i;
+public void d(Visitor v){
+i=0;
+new C().m();
+}
+}
+-----
+package p;
+import b.C;
+public class E {
+public int j;
+public void d(Visitor v){
+j=0;
+new C().m();
+}
+}
+-----
+package p;
+public class Visitor {
+}
+-----
+Now, please try to apply "move" refactoring to methods "d" in class D and E.
+"Visitor" class makes a semantic error as shown below:
+package p;
+import a.C;
+public class Visitor {
+public void d(D d){
+d.i=0;
+new C().m();
+}
+public void d(E e){
+e.j=0;
+new C().m();		//error: C should be b.C
+}
+}
+-- Configuration Details --
+Product: Eclipse 1.5.0.20120131-1544 (org.eclipse.epp.package.jee.product)
+Installed Features:
+org.eclipse.jdt 3.8.0.v20120525-1249-8-8nFqlFNOfwKDRGz-pXLdGxEM83

@@ -1,0 +1,5 @@
+Bug 116419 – code assist regression: POTENTIAL_METHOD_DECLARATION not offered anymore
+20051115
+With v_621 we have a test failure in
+CodeCompletionTest.testConstructorCompletion: The call with
+'POTENTIAL_METHOD_DECLARATION' is not occuring anymore.

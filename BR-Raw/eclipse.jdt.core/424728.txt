@@ -1,0 +1,14 @@
+Bug 424728 – [1.8][null] Unexpected error: The nullness annotation 'XXXX' is not applicable at this location
+Using the JAVA8 preview to compile a large code base.
+Preview version is 1.0.0v20131229-0103_BETA_JAVA8.
+The compiler reports errors like: "The nullness annotation 'Nullable' is not applicable at this location" for parameter definitions that have a type specified as a qualified path (not a SimpleName).
+For instance, the error is reported on:
+public QualificationLookupInput(@Nullable Qualification qualificationProperty, @Nullable java.util.Date checkDate) {
+(second parameter).
+Removing the java.util resolves the problem.
+Other examples:
+public void renderNodeContent(@Nonnull NodeBase component, @Nonnull NodeContainer node, final @Nullable OldHelpManager.Entry object, @Nullable Object parameters) throws Exception {
+(third parameter, with Entry being an inner class)
+@Nonnull
+public java.security.cert.Certificate[] getCertificateChain() {
+(return value)

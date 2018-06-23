@@ -1,0 +1,5 @@
+Bug 320175 – REST services shouldn't be constrained to text types
+Build Identifier:
+There's an implicit assumption that the REST service will be some kind of String.
+Regardless of its encoding, that isn't always the case - for example, REST services might include streaming back some JPG or PNG bytes that form an image, or a repository system hosting non-textual content.
+Reproducible: Always

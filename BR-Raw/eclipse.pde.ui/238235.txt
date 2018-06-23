@@ -1,0 +1,7 @@
+Bug 238235 – [Bundle-Localization] Default to /OSGI-INF/l10n/bundle.properties and not /plugin.properties
+Due to legacy reasons I assume the default localization of bundles/plug-ins defaults to /plugin.properties.
+OSGi however specifies it to default to /OSGI-INF/l10n/bundle.properties.
+PDE ignores this fact.
+If the Bundle-Header does not contain a localization it will not correctly resolve the texts from the OSGi default localization.
+Furthermore when you want to externalize new strings it should localize them into the specified localization (which could be the default one if not specified) and not into /plugin.properties.
+I think changing this behaviour would not break existing plugins and new OSGi bundle localization would be much easier to do.

@@ -1,0 +1,3 @@
+java/org/apache/naming/resources/ResourceAttributes.java
+java/org/apache/catalina/servlets/WebdavServlet.java
+java/org/apache/catalina/servlets/DefaultServlet.java

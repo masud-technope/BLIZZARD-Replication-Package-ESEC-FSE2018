@@ -1,0 +1,9 @@
+java/javax/servlet/annotation/HandlesTypes.java
+java/javax/servlet/annotation/HttpConstraint.java
+java/javax/servlet/annotation/HttpMethodConstraint.java
+java/javax/servlet/annotation/MultipartConfig.java
+java/javax/servlet/annotation/ServletSecurity.java
+java/javax/servlet/annotation/WebFilter.java
+java/javax/servlet/annotation/WebInitParam.java
+java/javax/servlet/annotation/WebListener.java
+java/javax/servlet/annotation/WebServlet.java

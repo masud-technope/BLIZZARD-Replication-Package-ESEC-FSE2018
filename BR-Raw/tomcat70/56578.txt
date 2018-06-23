@@ -1,0 +1,18 @@
+56578 – session.invalidate does not work on cluster enabled webapps
+session invalidate does not work in 7.0.54 when Tomcat is clustered.
+7.0.53 is OK.
+Steps to reproduce:
+1.
+Use Clustered Tomcat, with the following added to the <Host/> in server.xml:
+<Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster"/>
+2.
+Drop session.jsp and invalidate.jsp from attachments into a directory.
+3.
+Open session.jsp in a browser.
+Note creation time.
+4.
+Refresh page and note creation time stays the same.
+5.
+Click on Invalidate and note that creation time is updated.
+On Tomcat 7.0.53 all steps above succeed.
+On Tomcat 7.0.54 step 5 fails.

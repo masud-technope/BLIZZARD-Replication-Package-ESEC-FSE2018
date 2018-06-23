@@ -1,0 +1,3 @@
+org.eclipse.jdt.core/codeassist/org/eclipse/jdt/internal/codeassist/complete/CompletionParser.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/CompletionParserTest2.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html

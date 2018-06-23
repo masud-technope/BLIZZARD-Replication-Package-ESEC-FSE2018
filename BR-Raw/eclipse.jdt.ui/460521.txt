@@ -1,0 +1,12 @@
+Bug 460521 – [1.8][override method] Override / Implement methods should offer to generate default methods
+In Java 8, I may want to define my DefaultSpliterator:
+-----------------------------------------------
+interface DefaultSpliterator<T> extends Splitarator<T> {
+@Override
+default Spliterator<T> trySplit() {
+return null;
+}
+// ...
+}
+-----------------------------------------------
+When implementing the above, I'd like to be able to "override/implement" methods from the super interface(s) as default methods, but this is currently (in 4.5.0 M5) not possible.

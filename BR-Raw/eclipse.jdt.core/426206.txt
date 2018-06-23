@@ -1,0 +1,10 @@
+Bug 426206 – [1.8][compiler] Compiler tolerates illegal code.
+// --
+import java.util.Comparator;
+public class X  {
+public static void main(String argv[]) {
+Comparator<? extends String> c = true ? (Integer i, Integer j) -> { return 0; } : (Long i, Long j) -> { return 1; };
+}
+}
+The fix for https://bugs.eclipse.org/bugs/show_bug.cgi?id=423685 has
+exposed this issue.

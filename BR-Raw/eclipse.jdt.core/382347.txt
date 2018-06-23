@@ -1,0 +1,16 @@
+Bug 382347 – [1.8][compiler] Compiler accepts incorrect default method inheritance
+BETA_JAVA8
+The following program should be rejected since a class is not allowed
+to inherit a default method whose signature is override equivalent with
+another method inherited by it.
+It is not rejected at the moment.
+// ----
+interface I {
+void foo() default {}
+}
+interface J {
+void foo();
+}
+abstract class X implements I, J {
+}
+Please also test the interface case where similar prohibitions hold.

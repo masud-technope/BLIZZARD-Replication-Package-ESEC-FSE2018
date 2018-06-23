@@ -1,0 +1,11 @@
+Bug 162434 – [content assist] Code conpletion for 'for' doesn't choose the correct collection
+N20061026-0010
+When using the 'for' xource code completion it used to automatically choose the most recently defined collection but now doesn't...
+If I enter the following line...
+List trimParts = presentation.getLayout().getTrimForParts();
+...and hot Ctrl-Space and select 'iterate over collection' I now get the following...
+for (Iterator iterator = alwaysOffActionSets.iterator(); iterator.hasNext();) {
+type name = (type) iterator.next();
+}
+Note that the collection is 'alwaysOffActionSets' rather than 'trimParts' which is what I used to get.
+Not sure but perhaps the choice is alphabetical now?

@@ -1,0 +1,8 @@
+java.lang.invoke.MethodHandleNatives.linkMethodHandleConstant
+X$Y.f
+X.main
+java.lang.invoke.MemberName.makeAccessException
+java.lang.invoke.MethodHandles$Lookup.checkAccess
+java.lang.invoke.MethodHandles$Lookup.getDirectConstructor
+java.lang.invoke.MethodHandles$Lookup.linkMethodHandleConstant
+java.lang.invoke.MethodHandleNatives.linkMethodHandleConstant

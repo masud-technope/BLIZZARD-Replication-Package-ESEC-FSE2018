@@ -1,0 +1,20 @@
+Bug 174281 – Replace SystemFileEditorInput with FileStoreEditorInput
+3.3 M5
+Currently PDE assumes that the editor input for external files implement ILocationProvider.
+That was a hack as you cannot assume what internal classes (in this case JavaFileEditorInput) implement.
+Now that ui.ide provides FileStoreEditorInput Platform Text now uses this one to open external files.
+As a consequence opening external files owned by the PDE Editor (like plugin.xml) no longer works.
+Clearly the goal should be to remove SystemFileEditorInput completely but a quick fix to make things working are to change the following code in PDEFormEditor.createInputContexts(InputContextManager):
+} else if (input instanceof ILocationProvider) {
+IPath path = ((ILocationProvider) input).getPath(input);
+File file = path.toFile();
+...
+}
+to:
+} else if (input instanceof IURIEditorInput) {
+IURIEditorInput uriEditorInput= (IURIEditorInput) input;
+IFileStore store= EFS.getStore(uriEditorInput.getURI());
+if (!EFS.SCHEME_FILE.equals(store.getFileSystem().getScheme()))
+return;
+File file = new File(uriEditorInput.getURI());
+...

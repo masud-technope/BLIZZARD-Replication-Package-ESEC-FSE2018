@@ -1,0 +1,3 @@
+Bug 321469 – [remoteservices][osgi] improve clean up in DiscoveredServiceTracker
+In DiscoveredServiceTracker a ListenerQueue and Thread/ThreadGroup are created but never explicitly stopped when the org.eclipse.ecf.osgi.services.distribution bundle is stopped.
+ This cleanup should be done when this bundle is stopped.

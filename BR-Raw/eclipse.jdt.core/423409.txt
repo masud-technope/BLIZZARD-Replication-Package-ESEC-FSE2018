@@ -1,0 +1,10 @@
+Bug 423409 – [search] Search shows references to fields as potential matches
+Created attachment 238107 [details]
+Test project
+- Import the attached project in your workspace.
+- Find references of the constant field 'fi' of class Test2 via Ctrl+Shift+G.
+=> Search view shows the references as potential matches instead of accurate matches.
+(As a result, in inline refactoring:
+- Press Alt+Shift+I on 'fi' declaration to inline all of its references and choose to delete the constant declaration.
+- Click OK : We get the message "Inaccurate matches have been found...".
+- Continuing deletes the declaration but the references are not inlined and we get compilation errors.)

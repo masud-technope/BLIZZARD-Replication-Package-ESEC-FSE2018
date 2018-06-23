@@ -1,0 +1,5 @@
+Bug 254684 – [core] defer extension registry processing
+Currently, for the namespace extension point the org.eclipse.ecf.core.identity bundle processes the extension registry upon Activator.start.
+ The same is true for the container factory extension point and the ECFPlugin.start.
+The extension registry access should be more 'lazy' and be done upon first access to the IDFactory (for namespace extension point) and ContainerFactory (for containerFactory extension point) rather than done during bundle activation.
+This will help reduce potential for class circularity errors, as well as keep ECF resource usage down.

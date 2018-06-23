@@ -1,0 +1,7 @@
+Bug 296113 – RemotePluginTestRunner should issue better message when test plug-in not resolved
+HEAD
+RemotePluginTestRunner currently prints "java.lang.IllegalArgumentException: No Classloader found for plug-in org.eclipse.core.expressions.tests" when the test plug-in could not be resolved, e.g.
+in the scenario from bug 296105.
+"No Classloader found" does not tell the user what the problem is.
+Could you please change the message in RemotePluginTestRunner#getClassLoader(String) to something like this, so that the user knows why this happens:
+throw new IllegalArgumentException("No Classloader found for plug-in " + pluginId + " (plug-in was not resolved)"); //$NON-NLS-1$ //$NON-NLS-2$

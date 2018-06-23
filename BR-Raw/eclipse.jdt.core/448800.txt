@@ -1,0 +1,7 @@
+Bug 448800 – [1.8][compiler] CaptureBinding.substituteInferenceVariable may need some changes
+From https://bugs.eclipse.org/bugs/show_bug.cgi?id=437444#c48
+CaptureBinding:
+Own version of substituteInferenceVariable() no longer handles superclass & superInterfaces (nor lowerBound, which we didn't handle before, either).
+Question: can we assert that the fresh CaptureBinding created here gets initializeBounds called when needed? Could we end up working with an insufficiently initialized CaptureBinding downstream?
+=> @Srikanth, please comment.
+This needs follow up.

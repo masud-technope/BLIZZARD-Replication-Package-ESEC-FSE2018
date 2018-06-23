@@ -1,0 +1,41 @@
+Bug 424712 – [1.8][compiler] NPE in TypeBinding.isProvablyDistinctTypeArgument
+Using Eclipse Java Development Tools Patch for Java 8 Support (BETA) 1.0.0.v20131228-0104_BETA_JAVA8
+Steps to reproduce:
+Open java.util.stream.SortedOps from 1.8 JDK in Java Editor (via "Open Type").
+Error appear in the error log view:
+eclipse.buildId=4.3.0.M20130911-1000
+java.version=1.7.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product -showLocation
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.standard.product -showLocation
+Error
+Sat Dec 28 11:20:14 CET 2013
+Error in JDT Core during AST creation
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.lookup.TypeBinding.isProvablyDistinctTypeArgument(TypeBinding.java:934)
+at org.eclipse.jdt.internal.compiler.lookup.TypeBinding.isProvablyDistinct(TypeBinding.java:782)
+at org.eclipse.jdt.internal.compiler.ast.CastExpression.checkUnsafeCast(CastExpression.java:333)
+at org.eclipse.jdt.internal.compiler.ast.Expression.checkCastTypesCompatibility(Expression.java:415)
+at org.eclipse.jdt.internal.compiler.ast.CastExpression.resolveType(CastExpression.java:546)
+at org.eclipse.jdt.internal.compiler.ast.Assignment.resolveType(Assignment.java:203)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java:1016)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:620)
+at org.eclipse.jdt.internal.compiler.ast.ConstructorDeclaration.resolveStatements(ConstructorDeclaration.java:572)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:531)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1209)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1310)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1108)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1319)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:570)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1207)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:692)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1186)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:812)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider$1.run(ASTProvider.java:548)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.createAST(ASTProvider.java:541)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.getAST(ASTProvider.java:484)
+at org.eclipse.jdt.ui.SharedASTProvider.getAST(SharedASTProvider.java:132)
+at org.eclipse.jdt.internal.ui.javaeditor.ClassFileEditor$1.run(ClassFileEditor.java:710)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)

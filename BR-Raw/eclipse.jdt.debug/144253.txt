@@ -1,0 +1,3 @@
+Bug 144253 – [source lookup] Stack Frame CHANGE events no longer force a source lookup
+In Eclipse 3.1, it was possible to fire CHANGE events from a stack frame object to force a source lookup.
+This behaviour seems to have gone away in Eclipse 3.2.

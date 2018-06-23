@@ -1,0 +1,83 @@
+40881 – Unable to receive message through TCP channel -> Nullpointer
+- Message replication failes on the replciated node on creation of
+a new session (login via form authentication).
+-  async cluster configruation is active
+- 2 cluster nodes
+- statup executed one by one, the second node was added after the first was up fully
+- is fully reproducable
+Error LOG:
+----------------------------------------------------
+Unable to receive message through  TCP channel
+java.lang.NullPointerException
+at
+org.apache.catalina.cluster.session.DeltaRequest.execute(DeltaRequest.java:176)
+at
+org.apache.catalina.cluster.session.DeltaManager.handleSESSION_DELTA(DeltaManager.java:1573)
+at
+org.apache.catalina.cluster.session.DeltaManager.messageReceived(DeltaManager.java:1522)
+at
+org.apache.catalina.cluster.session.DeltaManager.messageDataReceived(DeltaManager.java:1271)
+at
+org.apache.catalina.cluster.session.ClusterSessionListener.messageReceived(ClusterSessionListener.java
+:85)
+at
+org.apache.catalina.cluster.tcp.SimpleTcpCluster.receive(SimpleTcpCluster.java:1167)
+at
+org.apache.catalina.cluster.tcp.ClusterReceiverBase.messageDataReceived(ClusterReceiverBase.java:426)
+at
+org.apache.catalina.cluster.io.ObjectReader.execute(ObjectReader.java:107)
+at
+org.apache.catalina.cluster.tcp.TcpReplicationThread.drainChannel(TcpReplicationThread.java:138)
+at
+org.apache.catalina.cluster.tcp.TcpReplicationThread.run(TcpReplicationThread.java:69)
+cluster confirguation:
+----------------------------------------------------
+<Cluster  className="org.apache.catalina.cluster.tcp.SimpleTcpCluster"
+doClusterLog="true"
+clusterLogName="clusterlog"
+useDirtyFlag="true"
+expireSessionsOnShutdown="false"
+notifyListenersOnReplication="true"
+managerClassName="org.apache.catalina.cluster.session.DeltaManager"
+>
+<Membership
+className="org.apache.catalina.cluster.mcast.McastService"
+mcastAddr="228.0.0.4"
+mcastPort="45552"
+mcastFrequency="500"
+mcastDropTime="3000"/>
+<Receiver
+className="org.apache.catalina.cluster.tcp.ReplicationListener"
+tcpListenAddress="auto"
+tcpListenPort="4001"
+tcpSelectorTimeout="100"
+tcpThreadCount="6" />
+<!--
+<Sender
+className="org.apache.catalina.cluster.tcp.ReplicationTransmitter"
+replicationMode="pooled"
+ackTimeout="15000"
+waitForAck="false" />
+-->
+<Sender
+className="org.apache.catalina.cluster.tcp.ReplicationTransmitter"
+replicationMode="asynchronous"
+doProcessingStats="true"
+doWaitAckStats="true"
+waitForAck="true"
+ackTimeout="30000"
+resend="true"
+keepAliveTimeout="320000"
+keepAliveMaxRequestCount="-1" />
+<Valve className="org.apache.catalina.cluster.tcp.ReplicationValve"
+filter=".*\.gif;.*\.js;.*\.css;.*\.png;.*\.jpeg;.*\.jpg;.*\.htm;.*\.html;.*\.txt;"
+primaryIndicator="true" />
+<!--
+<Deployer
+className="org.apache.catalina.cluster.deploy.FarmWarDeployer"
+tempDir="${catalina.base}/war-temp"
+deployDir="${catalina.base}/war-deploy/"
+watchDir="${catalina.base}/war-listen/"
+watchEnabled="true"/>
+-->
+</Cluster>

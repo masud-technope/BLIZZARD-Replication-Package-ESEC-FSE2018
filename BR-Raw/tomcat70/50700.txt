@@ -1,0 +1,15 @@
+50700 – Context parameters are being overridden with parameters from the web application deployment descriptor
+Context parameters are being overridden with parameters from the web application deployment descriptor even through "override" attribute is set to "false"
+For example:
+lines from context file
+<Context path="/path" docBase="/path/to/docbase" cookies="true">
+<Parameter name="parameter_name" value="test1" override="false"/>
+....
+</Context>
+lines from web.xml
+<context-param>
+<description>default value for parameter_name</description>
+<param-name>parameter_name</param-name>
+<param-value>test2</param-value>
+</context-param>
+Now servletContext.getInitParameter("parameter_name") returns "test2"

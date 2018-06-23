@@ -1,0 +1,42 @@
+Bug 251629 – Adding JUnit by quick fix throws IAE
+N20081005-2000
+Paste the following into an empty project:
+------------
+package p;
+public class ATest extends TestCase {
+}
+------------
+Use quick fix to "Add Junit 3 to build path".
+This throws the following IAE:
+java.lang.IllegalArgumentException: Attempted to beginRule: MultiRule[P/tests,P/.org.eclipse.jdt.core.external.folders], does not match outer scope rule: P/tests
+at org.eclipse.core.runtime.Assert.isLegal(Assert.java:64)
+at org.eclipse.core.internal.jobs.ThreadJob.illegalPush(ThreadJob.java:122)
+at org.eclipse.core.internal.jobs.ThreadJob.push(ThreadJob.java:232)
+at org.eclipse.core.internal.jobs.ImplicitJobs.begin(ImplicitJobs.java:58)
+at org.eclipse.core.internal.jobs.JobManager.beginRule(JobManager.java:231)
+at org.eclipse.core.internal.resources.WorkManager.checkIn(WorkManager.java:117)
+at org.eclipse.core.internal.resources.Workspace.prepareOperation(Workspace.java:1747)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1795)
+at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:786)
+at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:2855)
+at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath(JavaProject.java:2871)
+at org.eclipse.jdt.internal.corext.refactoring.changes.ClasspathChange.perform(ClasspathChange.java:88)
+at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:278)
+at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:260)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1800)
+at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:308)
+at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.executeChange(UIPerformChangeOperation.java:110)
+at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:225)
+at org.eclipse.jdt.internal.junit.ui.JUnitQuickFixProcessor$1.run(JUnitQuickFixProcessor.java:239)
+at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:446)
+at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:354)
+at org.eclipse.jface.window.ApplicationWindow$1.run(ApplicationWindow.java:759)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+at org.eclipse.jface.window.ApplicationWindow.run(ApplicationWindow.java:756)
+at org.eclipse.ui.internal.WorkbenchWindow.run(WorkbenchWindow.java:2487)
+at org.eclipse.jdt.internal.junit.ui.JUnitQuickFixProcessor$JUnitClasspathFixCorrectionProposal.apply(JUnitQuickFixProcessor.java:231)
+at org.eclipse.jface.text.contentassist.CompletionProposalPopup.insertProposal(CompletionProposalPopup.java:929)
+at org.eclipse.jface.text.contentassist.CompletionProposalPopup.insertSelectedProposalWithMask(CompletionProposalPopup.java:875)
+at org.eclipse.jface.text.contentassist.CompletionProposalPopup.verifyKey(CompletionProposalPopup.java:1302)
+at org.eclipse.jface.text.contentassist.ContentAssistant$InternalListener.verifyKey(ContentAssistant.java:806)
+<snip>

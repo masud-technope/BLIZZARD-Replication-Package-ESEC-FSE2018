@@ -1,0 +1,12 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDECoreMessages.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/pderesources.properties
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/AbstractKeyValueTextChangeListener.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/IModelTextChangeListener.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/build/PropertiesTextChangeListener.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/bundle/BundleTextChangeListener.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/plugin/XMLTextChangeListener.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/ExternalizeStringsOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/util/PDEModelUtility.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/tools/OrganizeManifestsProcessor.java

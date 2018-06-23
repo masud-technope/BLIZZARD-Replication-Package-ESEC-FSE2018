@@ -1,0 +1,25 @@
+Bug 427196 – [1.8][compiler] Compiler error for method reference to overloaded method
+Eclipse Java Development Tools Patch for Java 8 Support (BETA) 1.0.0.v20140201-0104_BETA_JAVA8
+----------
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.function.Function;
+public class MainTest {
+public static <T> List<T> copyOf (Collection<T> c) {
+return new ArrayList<>(c);
+}
+public static <T> List<T> copyOf (Iterable<T> c) {
+return new ArrayList<>();
+}
+public static void main (String[] args) {
+Function<Collection<String>, List<String>> function1 = c -> MainTest.copyOf(c); //OK
+Function<Collection<String>, List<String>> function2 = MainTest::copyOf;        //error
+}
+}
+----------
+This code was working in the JDT patch from a few days ago, but when I updated today, it's not working.
+For the method reference assigned to function2, Eclipse gives the following error: "The type MainTest does not define copyOf(Collection<String>) that is applicable here".
+However, the equivalent lambda expression for function1 is OK.
+If I remove the copyOf(Iterable) method, or remove the generic <T> and use <String>, it compiles fine.
+Also, the same error appears regardless of whether the methods are static or not.

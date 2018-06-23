@@ -1,0 +1,2 @@
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/BreakpointListenerTests.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaDebugOptionsManager.java

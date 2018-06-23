@@ -1,0 +1,31 @@
+52326 – Lower log level for failed class loading
+Reference: https://jira.springsource.org/browse/SPR-8894
+Tomcat attempts to load classes when it searches for annotations.
+These class loading attempts when failed, should be silently ignored.
+If the application attempts to load the classes later, it will receive the actual error.
+However, when Tomcat prints out the stack trace of this class loading error, it gives the wrong signal.
+There is actually not anything wrong in the application itself, so a WARN as tomcat logs with a stack trace becomes misleading.
+The initial fix would be: ContextConfig.java to drop log level to debug in checkHandleTypes method
+Class<?> clazz = null;
+try {
+clazz = context.getLoader().getClassLoader().loadClass(className);
+} catch (NoClassDefFoundError e) {
+log.debug(sm.getString("contextConfig.invalidSciHandlesTypes",
+className), e);
+return;
+} catch (ClassNotFoundException e) {
+log.warn(sm.getString("contextConfig.invalidSciHandlesTypes",
+className), e);
+return;
+} catch (ClassFormatError e) {
+log.warn(sm.getString("contextConfig.invalidSciHandlesTypes",
+className), e);
+return;
+} catch (Throwable t) {
+ExceptionUtils.handleThrowable(t);
+log.warn(sm.getString("contextConfig.invalidSciHandlesTypes",
+className), t);
+return;
+}
+The better fix would be to achieve the same without classloading at all.
+Other containers do ignore any type of classloading errors during this sequence.

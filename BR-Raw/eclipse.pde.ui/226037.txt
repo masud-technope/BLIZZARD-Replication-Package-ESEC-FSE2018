@@ -1,0 +1,9 @@
+Bug 226037 – initialization policy for target platform should be different based on location
+This bug is created as a follow on to bug 225148.
+I think that the initial set of bundles in the target platform should be determined differently based on the location of the target platform.
+(1) If the target platform is the default location (i.e.
+the running host), we should use the bundles.info to populate the initial set of bundles.
+(2) If the target platform is not the default location, we should scan the directory to populate the initial set of bundles.
+Since the behavior is dependent on the target platform location, I think this setting has to appear on the target platform page (rather than the general page).
+We'll need to keep track of whether the user has changed the default setting to somethin explicit to know whether to change the "initialize policy" as they change the target platform location...
+this migh take some experiemtation to get the user interaction right.

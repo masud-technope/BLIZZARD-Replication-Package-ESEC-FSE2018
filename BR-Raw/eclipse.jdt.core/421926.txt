@@ -1,0 +1,14 @@
+Bug 421926 – [1.8][compiler] Compiler tolerates illegal forward reference from lambda in initializer
+BETA_JAVA8:
+-----------
+The following program compiles with ECJ, but fails to compile with
+8b115.
+It appears ECJ behavior is incorrect.
+// --
+interface I {
+int run(int s1, int s2);
+}
+class X {
+static int f = ((I) (int x5, int x2) -> x1).run(10,  20);
+static int x1 = 2;
+}

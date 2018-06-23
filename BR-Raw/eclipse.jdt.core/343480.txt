@@ -1,0 +1,11 @@
+Bug 343480 – [compiler] Incorrect/confusing error message on inner class static field declaration
+---------------------------------------------------------------
+public class A {
+public class B {
+static final int X = 1;
+static final Integer Y = new Integer(2);
+static final String s = "sdf";
+}
+}
+---------------------------------------------------------------
+There is one error here, with the message "The field Y cannot be declared static; static fields can only be declared in static or top level types", which is wrong.

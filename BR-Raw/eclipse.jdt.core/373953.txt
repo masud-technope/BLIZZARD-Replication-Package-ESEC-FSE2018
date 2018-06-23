@@ -1,0 +1,3 @@
+Bug 373953 – FUP of bug 127575: java.eclipse.core.runtime.Assert is being recognized as org.eclipse.core.runtime.Assert
+As part of bug 127575, special handling for null checks has been added for org.eclipse.core.runtime.Assert.
+This also works for java.eclipse.core.runtime.Assert and org.lang.core.runtime.Assert :).

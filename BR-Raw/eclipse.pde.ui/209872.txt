@@ -1,0 +1,8 @@
+Bug 209872 – [spy] toolbar and menu action contributions
+Chris, first I have to say I'm loving all these spy stuff ;)
+When developing plugins, most times you want to see how some action was implemented, and the first problem is to discover in which plugin it is hosted.
+I remember taking so much time just to locate the implementing plugin.
+I think this is something PDE spy could help and could be enhanced for.
+Not sure if this is possible (at least in the way I imagine), but it could work this way:
+- You hover mouse pointer over some action in workbench or view toolbar, press the spy shortcut, and it gets the control under mouse cursor, from which it reveals the implementing class, bundle, the toolbar contribution path, etc...
+- You hover mouse pointer over some a menu option, press the spy shortcut (in this case it will have to be changed, because Alt closes the menu in Windows), and it captures the menu action under the mouse pointer, and so on...

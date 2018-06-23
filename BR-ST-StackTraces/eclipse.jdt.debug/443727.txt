@@ -1,0 +1,5 @@
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget$ThreadStartHandler.handleEvent
+org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch
+org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0
+org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run
+org.eclipse.core.internal.jobs.Worker.run

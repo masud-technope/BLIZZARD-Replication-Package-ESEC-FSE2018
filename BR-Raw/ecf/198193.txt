@@ -1,0 +1,3 @@
+Bug 198193 – [IRC] support special characters when connecting to IRC server
+In the irc connection dialog, didn't get error for special chars nick (ie: ]-[appy), but when connecting the URI parsing failed.
+I created patch for this "bug".

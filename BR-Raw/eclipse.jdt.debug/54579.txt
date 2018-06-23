@@ -1,0 +1,10 @@
+Bug 54579 – Progress indicator flashes for console output
+build I20040310
+- set a breakpoint in StatusLineManager.update
+- make it a conditional breakpoint with condition:
+System.out.println("update"); return false;
+- launch target
+- open text editor
+- Ctrl+J, Esc, repeat
+- the progress indicator in the host flashes for each line of text output
+- it also appears very sluggish

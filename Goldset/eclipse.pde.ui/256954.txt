@@ -1,0 +1,2 @@
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/markers/UpdateProjectSettingsOperation.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/markers/markermessages.properties

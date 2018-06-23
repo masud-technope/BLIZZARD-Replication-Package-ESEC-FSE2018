@@ -1,0 +1,7 @@
+58547 – Avoid new Integer and new Long instances when doing conversions
+Created attachment 33219 [details]
+Replaced new Integer/Long with valueOf calls
+Discovered cases where an inefficient Number constructor is being called instead of the static valueOf.
+Using new Integer(int) is guaranteed to always result in a new object whereas Integer.valueOf(int) allows caching of values to be done by the compiler, class library, or JVM.
+Using of cached values avoids object allocation and the code will be faster.
+See http://findbugs.sourceforge.net/bugDescriptions.html#DM_NUMBER_CTOR

@@ -1,0 +1,3 @@
+java/org/apache/catalina/core/ContainerBase.java
+java/org/apache/catalina/core/LocalStrings.properties
+webapps/docs/changelog.xml

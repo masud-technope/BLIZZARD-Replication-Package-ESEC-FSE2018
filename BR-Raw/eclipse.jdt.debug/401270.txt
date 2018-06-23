@@ -1,0 +1,46 @@
+Bug 401270 – JDI Event Dispatch Exception on conditional breakpoint
+I have the following conditional breakpoint running in indigo without any problems
+text != null && text.contains(";")
+In Kepler M5 I get the following exception
+The Exception occurs as soon as I connect two expressione with &&.
+So text == null && text != null also causes this Exception.
+The two expressions in isolation do not cause any trouble.
+Message: An internal error occurred during: "JDI Event Dispatch".
+========
+Exception Stack Trace:
+======================
+java.util.EmptyStackException
+at java.util.Stack.peek(Unknown Source)
+at java.util.Stack.pop(Unknown Source)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTInstructionCompiler.pop(ASTInstructionCompiler.java:293)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTInstructionCompiler.storeInstruction(ASTInstructionCompiler.java:297)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTInstructionCompiler.endVisit(ASTInstructionCompiler.java:686)
+at org.eclipse.jdt.core.dom.Block.accept0(Block.java:138)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2514)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:2562)
+at org.eclipse.jdt.core.dom.MethodDeclaration.accept0(MethodDeclaration.java:504)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2514)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2585)
+at org.eclipse.jdt.core.dom.TypeDeclaration.accept0(TypeDeclaration.java:484)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2514)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2585)
+at org.eclipse.jdt.core.dom.CompilationUnit.accept0(CompilationUnit.java:219)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2514)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.createExpressionFromAST(ASTEvaluationEngine.java:565)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.getCompiledExpression(ASTEvaluationEngine.java:348)
+at org.eclipse.jdt.internal.debug.core.breakpoints.ConditionalBreakpointHandler.breakpointHit(ConditionalBreakpointHandler.java:211)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.handleSuspendForBreakpoint(JDIThread.java:1275)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.suspend(JavaBreakpoint.java:401)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleBreakpointEvent(JavaBreakpoint.java:390)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:308)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:186)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:100)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:249)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Session Data:
+=============
+eclipse.buildId=I20130204-1400
+java.version=1.7.0_09
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64

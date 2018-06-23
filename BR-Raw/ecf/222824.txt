@@ -1,0 +1,2 @@
+Bug 222824 – XMPP doesn't work on a different port that 5222 throughout Google Talk Host
+When the user is using Google talk host (for example: user@gmail.com), the default port (5222) is catch, so if user puts the ID user@gmail.com:443, XMPP provider ignores the 443 port.

@@ -1,0 +1,4 @@
+Bug 295230 – [JUnit] Opening JUnit view loads preference page class
+I20091110-0800.
+Opening JUnit view loads preference page class.
+This is a blooper.

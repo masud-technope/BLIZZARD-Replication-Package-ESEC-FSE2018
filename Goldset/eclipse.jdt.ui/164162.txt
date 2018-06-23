@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/hover/JavadocHover.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/hover/JavaInformationProvider.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/hover/AbstractJavaEditorTextHover.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/AbstractJavaCompletionProposal.java

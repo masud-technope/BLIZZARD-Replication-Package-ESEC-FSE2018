@@ -1,0 +1,8 @@
+Bug 222866 – There is no title in the Connection Wizard.
+Build ID: 2.0.0.v20080310-1643
+The title is not displayed with following the connection wizard.
+- IRC
+- XMPP
+- XMPPS
+- MSN
+- BitTorrent

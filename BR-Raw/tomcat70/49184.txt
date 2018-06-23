@@ -1,0 +1,6 @@
+49184 – Index out of bounds exception thrown when dynamically adding Filter
+When dynamically adding a filter to a context an exception is thrown.
+java.lang.ArrayIndexOutOfBoundsException
+at java.lang.System.arraycopy(Native Method)
+at org.apache.catalina.core.StandardContext.addFilterMapBefore(StandardContext.java:2629)
+at org.apache.catalina.core.ApplicationFilterRegistration.addMappingForServletNames(ApplicationFilterRegistration.java:75)

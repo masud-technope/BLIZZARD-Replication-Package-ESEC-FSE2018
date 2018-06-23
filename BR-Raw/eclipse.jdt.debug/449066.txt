@@ -1,0 +1,88 @@
+Bug 449066 – [jdt] Unexpected runtime error while computing a text hover
+Hello committers,
+we received a new error report for Eclipse 4.3.2.M20140221-1700.
+General Information:
+anonymous-id:         18be9654-9a91-4680-9666-9eb864bd11d4
+eclipse-build-id:     4.3.2.M20140221-1700
+eclipse-product:      org.eclipse.epp.package.jee.product
+operating system:     Windows7 6.1.0 (x86) - win32
+java-runtime-version: 1.7.0_51-b13
+The following plug-ins were present on the execution stack (*):
+1.
+org.eclipse.jdt.debug.ui_3.6.200.v20130514-0841
+2.
+org.eclipse.jdt.debug_3.8.0.v20130514-0841
+3.
+org.eclipse.jdt_3.9.1.v20140221-1700
+4.
+org.eclipse.jdt.ui_3.9.2.v20131106-1600
+5.
+org.eclipse.jface.text_3.8.101.v20130802-1147
+6.
+org.eclipse.jface_3.9.1.v20130725-1141
+Error Status:
+code:                   0
+plugin:                 org.eclipse.jface.text_3.8.101.v20130802-1147
+message:                Unexpected runtime error while computing a text hover
+fingerprint:            9b432cbe
+exception class:        java.lang.NullPointerException
+exception message:      -
+number of children:     0
+java.lang.NullPointerException: null
+at org.eclipse.jdt.internal.debug.ui.JavaDebugHover.getHoverInfo2(JavaDebugHover.java:362)
+at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:129)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:85)
+at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
+Messages, stacktraces, and nested status objects may be shortened.
+Please visit
+http://dev.eclipse.org/recommenders/committers/confess/0.5/reports/-
+for the complete error log.
+Some general information and guidelines about how to use this bug report:
+1.
+Feel free to move this bug to your own product and components.
+Please note
+that this bug is only accessible to Eclipse committers.
+If you move this bug
+please make sure that it's still in the "Security Advisor" group.
+2.
+The bug contents of the fields status, resolution, keywords, and whitelist
+are presented to reporters.
+If you needs more information, please set the
+keyword "needinfo".
+This will trigger a specialized dialog asking the user
+to provide further details.
+3.
+Use the following resolutions for the following situations:
+* CLOSED / FIXED: This bug has been fixed.
+Please provide additional
+information in the whiteboard field.
+* CLOSED / WORKSFORME: Use this resolution if you can't reproduce this issue
+and request further information.
+Please use the whiteboard text to specify
+more details what a user should provide and how.
+* CLOSED / INVALID: Use this resolution if the reported problem is a
+'user-configuration' problem.
+Please consider giving hints how to fix
+these issues in the whiteboard field.
+* CLOSED / NOT ECLIPSE: Use this if the problem is caused by another plugin
+not developed at Eclipse.org
+* CLOSED / MOVED: If this bug has been moved else where.
+Please provide more
+information (e.g.
+a link) in the whiteboard field.
+4.
+Please remember that only committers can view and comment on this bug.
+You
+may, however, manually add the reporting user to the bug's cc list.
+But keep
+in mind that the report may contains sensitive information.
+5.
+If you are missing a feature, please file a enhancement request here:
+https://bugs.eclipse.org/bugs/enter_bug.cgi?product=Recommenders.Incubator&component=Stacktraces
+Thank you for your assistance.
+Your friendly error-reports-inbox.
+--
+* Note: The list of present bundles and their respective versions was
+calculated by package naming heuristics.
+This may or may not reflect reality.

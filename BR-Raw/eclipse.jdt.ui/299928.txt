@@ -1,0 +1,4 @@
+Bug 299928 – [hovering] 'Problem hover > Configure Problem Severity' does not consider project-specific Javadoc preferences
+HEAD
+In a Java project with project-specific Javadoc preferences but no project-specific Java Errors/Warnings, hover over a Javadoc problem, focus the hover, and then click 'Configure Problem Severity' in the hover toolbar.
+A dialog asks me whether I want to use project-specific settings, but since I already have such settings, the dialog should not show up.

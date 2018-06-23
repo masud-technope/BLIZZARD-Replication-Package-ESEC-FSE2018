@@ -1,0 +1,33 @@
+Bug 170192 – [implementation] IllegalStateException when reading spelling dictionary
+I20070110-1600 and M20070110-1900
+!ENTRY org.eclipse.ui.workbench.texteditor 4 2 2007-01-11 11:07:00.628
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.ui.workbench.texteditor".
+!STACK 0
+java.lang.IllegalStateException: Current state = CODING_END, new state = CODING
+at java.nio.charset.CharsetDecoder.throwIllegalStateException(CharsetDecoder.java:784)
+at java.nio.charset.CharsetDecoder.decode(CharsetDecoder.java:474)
+at sun.nio.cs.StreamDecoder$CharsetSD.implRead(StreamDecoder.java:478)
+at sun.nio.cs.StreamDecoder.read(StreamDecoder.java:223)
+at java.io.InputStreamReader.read(InputStreamReader.java:208)
+at java.io.BufferedReader.fill(BufferedReader.java:153)
+at java.io.BufferedReader.readLine(BufferedReader.java(Compiled Code))
+at java.io.BufferedReader.readLine(BufferedReader.java(Compiled Code))
+at org.eclipse.jdt.internal.ui.text.spelling.engine.AbstractSpellDictionary.load(AbstractSpellDictionary.java:460)
+at org.eclipse.jdt.internal.ui.text.spelling.engine.AbstractSpellDictionary.isCorrect(AbstractSpellDictionary.java:370)
+at org.eclipse.jdt.internal.ui.text.spelling.engine.DefaultSpellChecker.isCorrect(DefaultSpellChecker.java:350)
+at org.eclipse.jdt.internal.ui.text.spelling.engine.DefaultSpellChecker.execute(DefaultSpellChecker.java:264)
+at org.eclipse.jdt.internal.ui.text.spelling.JavaSpellingEngine.check(JavaSpellingEngine.java:54)
+at org.eclipse.jdt.internal.ui.text.spelling.SpellingEngine.check(SpellingEngine.java:77)
+at org.eclipse.jdt.internal.ui.text.spelling.DefaultSpellingEngine.check(DefaultSpellingEngine.java:75)
+at org.eclipse.ui.texteditor.spelling.SpellingService$1.run(SpellingService.java:103)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.ui.texteditor.spelling.SpellingService.check(SpellingService.java:108)
+at org.eclipse.ui.texteditor.spelling.SpellingService.check(SpellingService.java:80)
+at org.eclipse.ui.texteditor.spelling.SpellingReconcileStrategy.reconcile(SpellingReconcileStrategy.java:179)
+at org.eclipse.jdt.internal.ui.text.spelling.JavaSpellingReconcileStrategy.reconcile(JavaSpellingReconcileStrategy.java:125)
+at org.eclipse.ui.texteditor.spelling.SpellingReconcileStrategy.initialReconcile(SpellingReconcileStrategy.java:162)
+at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.initialReconcile(CompositeReconcilingStrategy.java:114)
+at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.initialReconcile(JavaCompositeReconcilingStrategy.java:122)
+at org.eclipse.jface.text.reconciler.MonoReconciler.initialProcess(MonoReconciler.java:103)
+at org.eclipse.jdt.internal.ui.text.JavaReconciler.initialProcess(JavaReconciler.java:332)
+at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:170)

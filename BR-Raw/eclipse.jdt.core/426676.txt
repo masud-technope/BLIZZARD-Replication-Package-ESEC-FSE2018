@@ -1,0 +1,33 @@
+Bug 426676 – [1.8][compiler] Wrong generic method type inferred from lambda expression
+I'm using the BETA distribution from here, along with Eclipse Kepler 4.3.1:
+http://wiki.eclipse.org/JDT/Eclipse_Java_8_Support_(BETA)
+This program does not compile with Eclipse's Java 8 compiler:
+import java.util.Arrays;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
+public class Test {
+public static void main(String[] args) throws Exception {
+// Type inference works on map call.
+Stream<String> s1 =
+Arrays.stream(new Integer[] { 1, 2 })
+.map(i -> i.toString());
+// Type inference doesn't work on map call.
+Stream<String> s2 =
+Arrays.stream(new Integer[] { 1, 2 })
+.map(i -> i.toString())
+.distinct();
+}
+}
+It seems that the compiler cannot infer the generic method type <R> on Stream.map(), and infers Object instead of String.
+As a workaround I can write this:
+Stream<String> s2 =
+Arrays.stream(new Integer[] { 1, 2 })
+.<String>map(i -> i.toString())
+.distinct();
+Another workaround is this:
+Stream<String> s2 =
+Arrays.stream(new Integer[] { 1, 2 })
+.map((Function<Integer, String>)(i -> i.toString()))
+.distinct();
+Which is similar to the problem described here (which works as expected in my environment, though): https://bugs.eclipse.org/bugs/show_bug.cgi?id=425460
+The original program compiles with javac using build jdk-8-ea-bin-b121-windows-x64-20_dec_2013

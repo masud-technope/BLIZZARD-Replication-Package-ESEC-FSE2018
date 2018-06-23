@@ -1,0 +1,17 @@
+Bug 245793 – You cannot use Eclipse Variables when editing JRE preferences.
+Build ID: I20070621-1340
+Steps To Reproduce:
+1.
+Open preferences
+2.
+Navigate to JRE
+3.
+Edit the JRE preferences.
+4.
+Attempte to specify the following:
+-Djava.library.path=${workspace_loc}\myPluginWhichContainsARequiredLibrary
+More information:
+the variable ${workspace_loc} is not resolved at run time.
+I use this in my projects to specify the path to dll's that are required at runtime when running JUnit tests.
+This just means that for each workspace i create for a branch, i have to respecify the new absolute path to the plugin.
+This is a request for enhancement.

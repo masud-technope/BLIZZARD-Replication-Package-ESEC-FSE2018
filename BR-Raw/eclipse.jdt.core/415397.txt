@@ -1,0 +1,20 @@
+Bug 415397 – [1.8][compiler] Type Annotations on wildcard type argument dropped.
+BETA_JAVA8:
+From the spec:
+"An annotation on a wildcard type argument appears before the wildcard, as in
+MyClass<@Immutable ? extends Comparable<MyClass>>"
+However, when the following program is compiled, the annotations are
+accepted, but don't seem to make it to the class file:
+// ---
+import java.lang.annotation.*;
+import java.util.List;
+import static java.lang.annotation.ElementType.*;
+@Target(TYPE_USE)
+@interface Immutable {}
+class X {
+List<@Immutable ? extends Comparable<X>> x;
+}
+// ----
+javac 8b100 emits:
+RuntimeInvisibleTypeAnnotations:
+0: #9(): FIELD, location=[TYPE_ARGUMENT(0)]

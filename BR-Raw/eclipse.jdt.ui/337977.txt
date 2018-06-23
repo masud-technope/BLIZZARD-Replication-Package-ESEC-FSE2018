@@ -1,0 +1,46 @@
+Bug 337977 – [quick fix] Add quick fixes for null annotations
+As work on my prototype re bug 186342 makes progress, quickfixes become
+more and more important.
+The prototype already contains an initial implementation of four distinct
+quickfixes, as described in
+http://wiki.eclipse.org/JDT_Core/Null_Analysis#Cleaning_up
+At this point I have some questions regarding the implementation:
+1) I noticed that some cross-compilation-unit quickfixes only work if the
+affected unit is open in an editor.
+Debugging the case where the unit
+is not open I see the text change created correctly and applied to the
+document but it has no visible effect.
+I took inspiration from classes like
+UnresolvedElementsSubProcessor where
+ASTResolving.findCompilationUnitForBinding(..) is used to find the targetCU.
+Am I missing anything relating to buffers/working copies etc.
+to ensure the
+operation has an effect?
+The relevant part of my code can be found at:
+svn://dev.eclipse.org/svnroot/tools/org.eclipse.objectteams/trunk/plugins/org.eclipse.objectteams.jdt.nullity/src/org/eclipse/objectteams/internal/jdt/nullity/quickfix/RewriteOperations.java
+Look for method findCUForMethod(..) and its applications, especially the
+first one.
+2) When providing these fixes as MultiFixes I would like to do some more
+checks only when creating the change.
+At that point I may detect that the
+fix should not be applied (because an explicit conflicting annotation
+already exists).
+Performing this check earlier would be (too?) expensive.
+But when I don't create a change in the rewrite I see the following exception:
+org.eclipse.core.runtime.CoreException: The fix 'Declare method parameter as @Nullable' generated a null change.
+at org.eclipse.jdt.internal.corext.fix.CompilationUnitRewriteOperationsFix.createChange(CompilationUnitRewriteOperationsFix.java:105)
+Is there any recommended trick for late checks to veto performing a change?
+I'd be happy to take comments regarding these proposed quickfixes and perhaps
+ideas for more fixes yet to come.
+Playing with these quickfixes on real code makes me wish that eventually
+a wizard would exist similar to the infer generics wizard.
+But for now I'm
+content with individual quickfixes, given they can be used as MultiFixes.
+In my experiments when I applied @NonNullByDefault to the package
+org.eclipse.jdt.internal.compiler.lookup the quickfixes let me reduce the
+numbers of errors/warnings from 346/1045 to 89/809.
+Up-to this point applying
+the quickfixes was mostly a no-brainer.
+In order to continue the cleanup
+from here on knowledge about design intent is needed, but still quickfixes
+can help a lot.

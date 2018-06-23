@@ -1,0 +1,4 @@
+Bug 303210 – Typo in new API org.eclipse.pde.core.project.IBundleProjectDescription.setEqunioxHeaders(boolean)
+There is a typo in the Equinox word in the new API.
+org.eclipse.pde.core.project.IBundleProjectDescription.setEqunioxHeaders(boolean)
+The corresponding javadoc should also be updated.

@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract/A_test110_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract/A_test110_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract/A_test111_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract/A_test111_out.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ExtractTempTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/ExtractTempRefactoring.java

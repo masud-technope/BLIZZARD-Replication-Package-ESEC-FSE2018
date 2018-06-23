@@ -1,0 +1,17 @@
+Bug 420580 – [1.8][compiler] ReferenceExpression drops explicit type arguments
+BETA_JAVA8:
+The following program should not compile, but does since RE drops the
+explicit type argument <String>.
+// --
+interface I {
+void sam(X t, Integer s);
+}
+public class X {
+<T> void function(T t) {}
+public static void main(String [] args) {
+I i = X::<String>function;
+i = X::function;
+i = X::<Integer>function;
+}
+}
+Fix is trivial and will follow shortly.

@@ -1,0 +1,39 @@
+54170 – JMX ObjectName for Filters: names used without quoting (escaping)
+How to reproduce:
+Execute
+context.addFilter("deprecatedApiReporterFilterFor/myAPI/v2/*, new ArbitraryServletFilter()).addMappingForUrlPatterns(null, false, "/myAPI/v2/*");
+from inside the contextInitialized-Method of an ServletContextListener.
+What happens:
+Nov 19, 2012 6:01:34 PM org.apache.catalina.core.ApplicationFilterConfig registerJMX
+Information: JMX registration failed for filter of type [ArbitraryServletFilter] and name [deprecatedApiReporterFilterFor/myAPI/v2/*]
+javax.management.RuntimeOperationsException
+at com.sun.jmx.mbeanserver.Repository.addMBean(Repository.java:411)
+at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.registerWithRepository(DefaultMBeanServerInterceptor.java:1898)
+at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.registerDynamicMBean(DefaultMBeanServerInterceptor.java:966)
+at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.registerObject(DefaultMBeanServerInterceptor.java:900)
+at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.registerMBean(DefaultMBeanServerInterceptor.java:324)
+at com.sun.jmx.mbeanserver.JmxMBeanServer.registerMBean(JmxMBeanServer.java:512)
+at org.apache.tomcat.util.modeler.Registry.registerComponent(Registry.java:742)
+at org.apache.catalina.core.ApplicationFilterConfig.registerJMX(ApplicationFilterConfig.java:432)
+at org.apache.catalina.core.ApplicationFilterConfig.initFilter(ApplicationFilterConfig.java:281)
+at org.apache.catalina.core.ApplicationFilterConfig.<init>(ApplicationFilterConfig.java:107)
+at org.apache.catalina.core.StandardContext.filterStart(StandardContext.java:4638)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5294)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:895)
+at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:871)
+at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:615)
+at org.apache.catalina.startup.HostConfig.deployDescriptor(HostConfig.java:649)
+at org.apache.catalina.startup.HostConfig$DeployDescriptor.run(HostConfig.java:1581)
+at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+at java.lang.Thread.run(Thread.java:722)
+Caused by: java.lang.IllegalArgumentException: Repository: cannot add mbean for pattern name Catalina:j2eeType=Filter,name=deprecatedApiReporterFilterFor/myAPI/v2/*,WebModule=//localhost/,J2EEApplication=none,J2EEServer=none
+...
+24 more
+Why does it happen:
+Because ApplicationFilterConfig constructs the ObjectName by String concatenation, without escaping the filterName using ObjectName.quote(String s)
+I was able to reproduce it using Catalina 7.0.26.

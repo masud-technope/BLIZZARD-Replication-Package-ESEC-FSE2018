@@ -1,0 +1,6 @@
+Bug 421628 – [1.8][dom ast][api] document new rules for ITypeBinding equality
+Document the new rules for ITypeBinding equality that have been established by bug 409586.
+Javadocs of IBinding#equals(..), #isEqualTo(..), and #getKey() need updates.
+You may want to keep the general IBindings APIs and just add a reference to the ITypeBinding APIs, where the special rules for ITypeBindings can be explained at the level they apply to.
+There's no need to special-case pre-JLS8 AST levels.
+The behavior for such ASTs is unchanged, and the special rules collapse to the old rules as soon as type annotations are out of the picture.

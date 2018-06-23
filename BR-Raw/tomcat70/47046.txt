@@ -1,0 +1,18 @@
+47046 – Shutdown does not unregister all MBeans
+Created attachment 23505 [details]
+Simple driver to highlight problem
+If I start and stop Tomcat in a VM using the Catalina class then it does not unregister all its MBeans.
+The list left over is:
+Catalina:type=RequestProcessor,worker=http-8080,name=HttpRequest1 true
+Catalina:type=MBeanFactory true
+Catalina:type=Engine true
+Catalina:type=JkWorkerEnv true
+Catalina:type=StringCache true
+Catalina:type=Host,host=localhost true
+Catalina:type=JkMain true
+Catalina:type=JkHandler,name=channelSocket true
+Catalina:type=Server true
+Catalina:type=JkHandler,name=request true
+Catalina:type=Connector,port=8080 true
+Catalina:type=Connector,port=8009 true
+I've attached a simple class that can be used to reproduce this list.

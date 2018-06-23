@@ -1,0 +1,5 @@
+Bug 326950 – [compiler][null]Do not optimize code generation based on static analysis (dead code)
+We had introduced optimization for the generated code for if-else statements in 3.6, such that when the compiler can determine either the if or the else branch will never be executed, it optimizes out that code.
+This optimization was basically dependent on the compiler's static analysis.
+Because of this, we think there's a risk involved in making changes to static analysis code, since any change may directly affect the code gen, and if there's a regression introduced by the change, it will manifest itself in the code generated.
+Because of the associated risk as mentioned above, I suggest we keep the improvements done to static analysis, but do not optimize if-else code generation based on static analysis.

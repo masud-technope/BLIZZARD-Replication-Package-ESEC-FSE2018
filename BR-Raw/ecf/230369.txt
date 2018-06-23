@@ -1,0 +1,3 @@
+Bug 230369 – Remove org.eclipse.ecf.core.util.StringUtils.replaceAllIgnoreCase(String, String, String)
+o.e.e.core is under API freeze already and thus org.eclipse.ecf.core.util.StringUtils.replaceAllIgnoreCase(String, String, String) cannot be added ATM.
+I'll park the method in org.eclipse.ecf.provider.jslp.identity.JSLPServiceTypeID

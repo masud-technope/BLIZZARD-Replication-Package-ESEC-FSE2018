@@ -1,0 +1,14 @@
+Bug 60081 – [Compiler] java.lang.VerifyError: Illegal target of jump or branch
+The ModelObject class in the attached file ModelObject.java throws
+"java.lang.VerifyError: (class: jatva/lang/ModelObject, method: <init>
+signature: (Ljatva/lang/ModelObject;)V) Illegal target of jump or branch"
+exception when compiled by JDT compiler (of 3.0-M8).
+The same class compiled by Sun JDK compiler does not cause this exception
+(compiled and run with Sun j2sdk 1.4.2_04).
+Both class files are attached here (named ModelObject.class.by-eclipse and
+ModelObject.class.by-sun).
+The class files disassembled with javap are enclosed too (named
+ModelObject.dis.by-eclipse and ModelObject.dis.by-sun).
+It seems that the problem is in line "45: goto 99" which jumps to non-existing
+label (see disassembled code of the public
+jatva.lang.ModelObject(jatva.lang.ModelObject); method).

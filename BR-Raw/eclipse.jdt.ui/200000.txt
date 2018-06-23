@@ -1,0 +1,3 @@
+Bug 200000 – [templates] Provide templates for SWT
+I20070814-1100
+We should provide template for SWT snippets, like new Button, new Composite...

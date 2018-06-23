@@ -1,0 +1,16 @@
+Bug 450858 – [organize imports] Wrongly adds import for qualifier of SuperFieldAccess
+I20141104-0800
+Organize Imports wrongly adds an import for the qualifier of the SuperFieldAccess here:
+package bug;
+class S {
+public /*static*/ final int f = 0;
+}
+class X {
+class C extends S {
+public void foo() {
+System.out.println(C.super.f);
+}
+}
+}
+The added import is unused:
+import bug.X.C;

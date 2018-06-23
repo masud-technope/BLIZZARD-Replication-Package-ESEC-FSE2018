@@ -1,0 +1,123 @@
+Bug 94687 – Exception renaming project containing shared config
+I20050909-2010
+If I rename a project containing a shared launch configuration, I get an
+exception like this:
+org.eclipse.core.runtime.CoreException: Unable to generate memento for
+VectorTesting, shared file does not exist.
+at org.eclipse.debug.internal.core.LaunchConfiguration.getMemento(LaunchConfiguration.java:389)
+at org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationManager.createEntry(LaunchConfigurationManager.java:337)
+at org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationManager.getHistoryAsXML(LaunchConfigurationManager.java:318)
+at org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationManager.persistLaunchHistory(LaunchConfigurationManager.java:358)
+at org.eclipse.debug.internal.ui.launchConfigurations.LaunchHistory.save(LaunchHistory.java:121)
+at org.eclipse.debug.internal.ui.launchConfigurations.LaunchHistory.launchConfigurationRemoved(LaunchHistory.java:430)
+at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.run(LaunchManager.java:1573)
+at org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java:1029)
+at org.eclipse.core.runtime.Platform.run(Platform.java:775)
+at org.eclipse.debug.internal.core.LaunchManager$ConfigurationNotifier.notify(LaunchManager.java:1594)
+at org.eclipse.debug.internal.core.LaunchManager.launchConfigurationDeleted(LaunchManager.java:776)
+at org.eclipse.debug.internal.core.LaunchManager$LaunchManagerVisitor.visit(LaunchManager.java:1133)
+at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:68)
+at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:77)
+at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:77)
+at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:49)
+at org.eclipse.debug.internal.core.LaunchManager.resourceChanged(LaunchManager.java:985)
+at org.eclipse.core.internal.events.NotificationManager$2.run(NotificationManager.java:276)
+at org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java:1029)
+at org.eclipse.core.runtime.Platform.run(Platform.java:775)
+at org.eclipse.core.internal.events.NotificationManager.notify(NotificationManager.java:270)
+at org.eclipse.core.internal.events.NotificationManager.broadcastChanges(NotificationManager.java:144)
+at org.eclipse.core.internal.resources.Workspace.broadcastPostChange(Workspace.java:180)
+at org.eclipse.core.internal.resources.Workspace.checkpoint(Workspace.java:243)
+at org.eclipse.ltk.core.refactoring.PerformChangeOperation$1.run(PerformChangeOperation.java:237)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1716)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1736)
+at org.eclipse.ltk.core.refactoring.PerformChangeOperation.executeChange(PerformChangeOperation.java:280)
+at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation.access$1(UIPerformChangeOperation.java:1)
+at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation$1.run(UIPerformChangeOperation.java:63)
+at org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java:1029)
+at org.eclipse.core.runtime.Platform.run(Platform.java:775)
+at org.eclipse.ltk.internal.ui.refactoring.UIPerformChangeOperation$2.run(UIPerformChangeOperation.java:81)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:118)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:2878)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2537)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.block
+(ModalContext.java:153)
+at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:303)
+at org.eclipse.ltk.internal.ui.refactoring.RefactoringWizardDialog2.run
+(RefactoringWizardDialog2.java:282)
+at org.eclipse.ltk.ui.refactoring.RefactoringWizard.internalPerformFinish
+(RefactoringWizard.java:547)
+at org.eclipse.ltk.ui.refactoring.UserInputWizardPage.performFinish
+(UserInputWizardPage.java:153)
+at org.eclipse.ltk.ui.refactoring.RefactoringWizard.performFinish
+(RefactoringWizard.java:613)
+at org.eclipse.ltk.internal.ui.refactoring.RefactoringWizardDialog2.okPressed
+(RefactoringWizardDialog2.java:406)
+at org.eclipse.jface.dialogs.Dialog.buttonPressed(Dialog.java:409)
+at org.eclipse.jface.dialogs.Dialog$2.widgetSelected(Dialog.java:556)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:89)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:82)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:842)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:2901)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2534)
+at org.eclipse.jface.window.Window.runEventLoop(Window.java:803)
+at org.eclipse.jface.window.Window.open(Window.java:781)
+at org.eclipse.ltk.ui.refactoring.RefactoringWizardOpenOperation$1.run
+(RefactoringWizardOpenOperation.java:125)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:69)
+at org.eclipse.ltk.ui.refactoring.RefactoringWizardOpenOperation.run
+(RefactoringWizardOpenOperation.java:138)
+at org.eclipse.jdt.internal.ui.refactoring.actions.RefactoringStarter.activate
+(RefactoringStarter.java:40)
+at org.eclipse.jdt.internal.ui.refactoring.UserInterfaceStarter.activate
+(UserInterfaceStarter.java:56)
+at
+org.eclipse.jdt.internal.ui.refactoring.reorg.RenameUserInterfaceStarter.activa
+te(RenameUserInterfaceStarter.java:113)
+at org.eclipse.jdt.ui.refactoring.RenameSupport.openDialog
+(RenameSupport.java:114)
+at
+org.eclipse.jdt.internal.corext.refactoring.RefactoringExecutionStarter.startRe
+nameRefactoring(RefactoringExecutionStarter.java:325)
+at org.eclipse.jdt.internal.ui.refactoring.actions.RenameJavaElementAction.run
+(RenameJavaElementAction.java:171)
+at org.eclipse.jdt.internal.ui.refactoring.actions.RenameJavaElementAction.run
+(RenameJavaElementAction.java:102)
+at org.eclipse.jdt.ui.actions.RenameAction.run(RenameAction.java:108)
+at org.eclipse.jdt.ui.actions.SelectionDispatchAction.dispatchRun
+(SelectionDispatchAction.java:222)
+at org.eclipse.jdt.ui.actions.SelectionDispatchAction.run
+(SelectionDispatchAction.java:198)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:996)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection
+(ActionContributionItem.java:538)
+at org.eclipse.jface.action.ActionContributionItem.access$2
+(ActionContributionItem.java:488)
+at org.eclipse.jface.action.ActionContributionItem$5.handleEvent
+(ActionContributionItem.java:400)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:82)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:842)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:2901)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2534)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1601)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:1565)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:315)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:143)
+at org.eclipse.ui.internal.ide.IDEApplication.run(IDEApplication.java:103)
+at org.eclipse.core.internal.runtime.PlatformActivator$1.run
+(PlatformActivator.java:230)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:345)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:158)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke
+(NativeMethodAccessorImpl.java:85)
+at sun.reflect.NativeMethodAccessorImpl.invoke
+(NativeMethodAccessorImpl.java:58)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke
+(DelegatingMethodAccessorImpl.java:60)
+at java.lang.reflect.Method.invoke(Method.java:391)
+at org.eclipse.core.launcher.Main.invokeFramework(Main.java:328)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:272)
+at org.eclipse.core.launcher.Main.run(Main.java:974)
+at org.eclipse.core.launcher.Main.main(Main.java:950)

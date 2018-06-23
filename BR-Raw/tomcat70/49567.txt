@@ -1,0 +1,7 @@
+49567 – when starting a new thread from a startAsync Runnable, an infinite amount of doPosts is generated
+Created attachment 25728 [details]
+testcase demonstrating the bug
+when starting a new thread from a startAsync Runnable, an infinite amount of doPosts is generated.
+Also, the GET status is: 500 Internal Server Error,
+however, there is no exception thrown by tomcat.
+The attached code demonstrates this, by printing "Start async()" an infinite amount of times.

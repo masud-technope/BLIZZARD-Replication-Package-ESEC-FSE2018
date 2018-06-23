@@ -1,0 +1,4 @@
+framework/bundles/org.eclipse.ecf/schema/containerFactory.exsd
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/core/ContainerTypeDescription.java
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/core/provider/IContainerInstantiator.java
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/internal/core/ECFPlugin.java

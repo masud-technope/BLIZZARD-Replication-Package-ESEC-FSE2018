@@ -1,0 +1,2 @@
+Bug 126437 – Incorrect error reporting in AbstractJavaLaunchConfigurationDelegate
+AbstractJavaLaunchConfigurationDelegate.verifyWorkingDirectory incorrectly reports the error on the path variable (which is null).

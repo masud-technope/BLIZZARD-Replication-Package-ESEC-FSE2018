@@ -1,0 +1,1 @@
+framework/bundles/org.eclipse.ecf.sharedobject/src/org/eclipse/ecf/core/sharedobject/util/SimpleFIFOQueue.java

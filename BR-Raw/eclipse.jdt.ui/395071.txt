@@ -1,0 +1,30 @@
+Bug 395071 – [typing] "Automatically close {Braces}" should not put the } after the rest of the line
+I20121120-0800
+public class Try {
+public static void main(String[] args) {
+main(new String[] { "abc", "def",| );
+} // end of main
+}
+When I replace | with the caret and then press the return key, the result is:
+public class Try {
+public static void main(String[] args) {
+main(new String[] { "abc", "def",
+);
+}
+} // end of main
+}
+Expected:
+public class Try {
+public static void main(String[] args) {
+main(new String[] { "abc", "def",
+|
+});
+} // end of main
+}
+=> "Automatically close {Braces}" should not put the } after the rest of the current line.
+It works fine as long as the array initializer only contains at most one argument.
+Maybe related to bug 254704.
+In some situations, the behavior is not completely predictable.
+When I have
+main(new String[] { "abc",|
+, then the } is sometimes correct and sometimes at the bad position after the );.

@@ -1,0 +1,9 @@
+Bug 81083 – [preferences] Mark Occurences enablement not adhered to
+I200412142000
+- open preference page with Mark Occurences preferences
+- enable Mark Occurences
+- Apply
+- Restore Defaults
+- OK
+-> toolbar shows Mark Occurences as 'enabled', editor marks occurences
+-> on preference page the preference is disabled

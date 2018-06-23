@@ -1,0 +1,222 @@
+Bug 15792 – VMDisconnectedExceptions in log
+Build 20020508
+Noticed the following in the log.
+ Not sure what caused them.
+Possibly popping up the context menu in the debug view as the VM was exiting?
+!SESSION ----------------------------------------------------------------------
+java.fullversion=J2RE 1.3.1 IBM Windows 32 build cn131-20020403 (JIT enabled:
+jitc)
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments: -ws win32 -dev bin -data d:\eclipse\plugins -install
+file:/D:/eclipse20020508/eclipse/
+!ENTRY org.eclipse.ui 4 0 Thu May 09 19:37:35 EDT 2002
+!MESSAGE Problems creating buffer
+!ENTRY org.eclipse.jdt.core 4 969 Thu May 09 19:37:35 EDT 2002
+!MESSAGE TestNavigatorActionFactory.java does not exist.
+!ENTRY org.eclipse.jdt.debug.ui 4 150 Fri May 10 14:49:46 EDT 2002
+!MESSAGE Internal Error
+!STACK org.eclipse.debug.core.DebugException[5010]:
+com.sun.jdi.VMDisconnectedException: Got IOException from Virtual Machine
+at org.eclipse.jdi.internal.connect.PacketReceiveManager.getReply(PacketReceiveManager.java(Compiled Code))
+at org.eclipse.jdi.internal.connect.PacketReceiveManager.getReply(PacketReceiveManager.java:137)
+at org.eclipse.jdi.internal.MirrorImpl.requestVM(MirrorImpl.java:168)
+at org.eclipse.jdi.internal.MirrorImpl.requestVM(MirrorImpl.java:186)
+at org.eclipse.jdi.internal.MirrorImpl.requestVM(MirrorImpl.java:201)
+at org.eclipse.jdi.internal.ThreadReferenceImpl.name(ThreadReferenceImpl.java:257)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.getName(JDIThread.java:788)
+at org.eclipse.jdt.internal.debug.ui.JDIModelPresentation.getThreadText(JDIModelPresentation.java:270)
+at org.eclipse.jdt.internal.debug.ui.JDIModelPresentation.getText(JDIModelPresentation.java:198)
+at org.eclipse.debug.internal.ui.LazyModelPresentation.getText(LazyModelPresentation.java:69)
+at org.eclipse.debug.internal.ui.DelegatingModelPresentation.getText(DelegatingModelPresentation.java:122)
+at org.eclipse.jface.viewers.TreeViewer.doUpdateItem(TreeViewer.java(Compiled Code))
+at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java(Compiled Code))
+at org.eclipse.jface.viewers.StructuredViewer.updateItem(StructuredViewer.java(Compiled Code))
+at org.eclipse.jface.viewers.AbstractTreeViewer.createTreeItem(AbstractTreeViewer.java:256)
+at org.eclipse.jface.viewers.AbstractTreeViewer.add(AbstractTreeViewer.java:130)
+at org.eclipse.jface.viewers.AbstractTreeViewer.add(AbstractTreeViewer.java:163)
+at org.eclipse.debug.internal.ui.views.AbstractDebugEventHandler.insert(AbstractDebugEventHandler.java:74)
+at org.eclipse.debug.internal.ui.views.launch.LaunchViewEventHandler.doHandleDebugEvents(LaunchViewEventHandler.java:75)
+at org.eclipse.debug.internal.ui.views.AbstractDebugEventHandler$1.run(AbstractDebugEventHandler.java:49)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java(Compiled Code))
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java(Compiled Code))
+at org.eclipse.swt.widgets.Display.messageProc(Display.java(Compiled Code))
+at org.eclipse.swt.widgets.Display.messageProc(Display.java(Compiled Code))
+at org.eclipse.swt.internal.win32.OS.TrackPopupMenu(Native Method)
+at org.eclipse.swt.widgets.Menu.setVisible(Menu.java:810)
+at org.eclipse.swt.widgets.Control.windowProc(Control.java(Compiled Code))
+at org.eclipse.swt.widgets.Control.windowProc(Control.java(Compiled Code))
+at org.eclipse.swt.widgets.Display.windowProc(Display.java(Compiled Code))
+at org.eclipse.swt.internal.win32.OS.DefWindowProcW(Native Method)
+at org.eclipse.swt.widgets.Scrollable.callWindowProc(Scrollable.java(Compiled Code))
+at org.eclipse.swt.widgets.Scrollable.callWindowProc(Scrollable.java(Compiled Code))
+at org.eclipse.swt.widgets.Control.windowProc(Control.java(Compiled Code))
+at org.eclipse.swt.widgets.Display.windowProc(Display.java(Compiled Code))
+at org.eclipse.swt.internal.win32.OS.DefWindowProcW(Native Method)
+at org.eclipse.swt.widgets.Scrollable.callWindowProc(Scrollable.java(Compiled Code))
+at org.eclipse.swt.widgets.Scrollable.callWindowProc(Scrollable.java
+(Compiled Code))
+at org.eclipse.swt.widgets.Control.WM_RBUTTONUP(Control.java:3699)
+at org.eclipse.swt.widgets.Control.windowProc(Control.java(Compiled
+Code))
+at org.eclipse.swt.widgets.Display.windowProc(Display.java(Compiled
+Code))
+at org.eclipse.swt.internal.win32.OS.DispatchMessageW(Native Method)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java
+(Compiled Code))
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java
+(Compiled Code))
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java
+(Compiled Code))
+at org.eclipse.ui.internal.Workbench.run(Workbench.java:1045)
+at org.eclipse.core.internal.boot.InternalBootLoader.run
+(InternalBootLoader.java:739)
+at org.eclipse.core.boot.BootLoader.run(BootLoader.java:450)
+at java.lang.reflect.Method.invoke(Native Method)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:174)
+at org.eclipse.core.launcher.Main.run(Main.java:605)
+at org.eclipse.core.launcher.Main.main(Main.java:449)
+!ENTRY org.eclipse.jdt.debug.ui 4 150 Fri May 10 14:56:49 EDT 2002
+!MESSAGE Internal Error
+!STACK org.eclipse.debug.core.DebugException[5010]:
+com.sun.jdi.VMDisconnectedException: Got IOException from Virtual Machine
+at org.eclipse.jdi.internal.connect.PacketReceiveManager.getReply
+(PacketReceiveManager.java(Compiled Code))
+at org.eclipse.jdi.internal.connect.PacketReceiveManager.getReply
+(PacketReceiveManager.java:137)
+at org.eclipse.jdi.internal.MirrorImpl.requestVM(MirrorImpl.java:168)
+at org.eclipse.jdi.internal.MirrorImpl.requestVM(MirrorImpl.java:186)
+at org.eclipse.jdi.internal.MirrorImpl.requestVM(MirrorImpl.java:201)
+at org.eclipse.jdi.internal.ThreadReferenceImpl.name
+(ThreadReferenceImpl.java:257)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.getName
+(JDIThread.java:788)
+at org.eclipse.jdt.internal.debug.ui.JDIModelPresentation.getThreadText
+(JDIModelPresentation.java:270)
+at org.eclipse.jdt.internal.debug.ui.JDIModelPresentation.getText
+(JDIModelPresentation.java:198)
+at org.eclipse.debug.internal.ui.LazyModelPresentation.getText
+(LazyModelPresentation.java:69)
+at org.eclipse.debug.internal.ui.DelegatingModelPresentation.getText
+(DelegatingModelPresentation.java:122)
+at org.eclipse.jface.viewers.TreeViewer.doUpdateItem(TreeViewer.java
+(Compiled Code))
+at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem
+(AbstractTreeViewer.java(Compiled Code))
+at org.eclipse.jface.viewers.StructuredViewer.updateItem
+(StructuredViewer.java(Compiled Code))
+at org.eclipse.jface.viewers.AbstractTreeViewer.createTreeItem
+(AbstractTreeViewer.java:256)
+at org.eclipse.jface.viewers.AbstractTreeViewer.add
+(AbstractTreeViewer.java:130)
+at org.eclipse.jface.viewers.AbstractTreeViewer.add
+(AbstractTreeViewer.java:163)
+at org.eclipse.debug.internal.ui.views.AbstractDebugEventHandler.insert
+(AbstractDebugEventHandler.java:74)
+at
+org.eclipse.debug.internal.ui.views.launch.LaunchViewEventHandler.doHandleDebug
+Events(LaunchViewEventHandler.java:75)
+at org.eclipse.debug.internal.ui.views.AbstractDebugEventHandler$1.run
+(AbstractDebugEventHandler.java:49)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages
+(Synchronizer.java(Compiled Code))
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages
+(Synchronizer.java(Compiled Code))
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java
+(Compiled Code))
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java
+(Compiled Code))
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java
+(Compiled Code))
+at org.eclipse.ui.internal.Workbench.run(Workbench.java:1045)
+at org.eclipse.core.internal.boot.InternalBootLoader.run
+(InternalBootLoader.java:739)
+at org.eclipse.core.boot.BootLoader.run(BootLoader.java:450)
+at java.lang.reflect.Method.invoke(Native Method)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:174)
+at org.eclipse.core.launcher.Main.run(Main.java:605)
+at org.eclipse.core.launcher.Main.main(Main.java:449)
+!ENTRY org.eclipse.jdt.debug.ui 4 150 Fri May 10 17:06:54 EDT 2002
+!MESSAGE Internal Error
+!STACK org.eclipse.debug.core.DebugException[5010]:
+com.sun.jdi.VMDisconnectedException: Got IOException from Virtual Machine
+at org.eclipse.jdi.internal.connect.PacketReceiveManager.getReply
+(PacketReceiveManager.java(Compiled Code))
+at org.eclipse.jdi.internal.MirrorImpl.requestVM(MirrorImpl.java
+(Compiled Code))
+at org.eclipse.jdi.internal.MirrorImpl.requestVM(MirrorImpl.java
+(Compiled Code))
+at org.eclipse.jdi.internal.MirrorImpl.requestVM(MirrorImpl.java
+(Compiled Code))
+at org.eclipse.jdi.internal.MirrorImpl.requestVM(MirrorImpl.java
+(Compiled Code))
+at org.eclipse.jdi.internal.ThreadReferenceImpl.name
+(ThreadReferenceImpl.java:257)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.getName
+(JDIThread.java:788)
+at org.eclipse.jdt.internal.debug.ui.JDIModelPresentation.getThreadText
+(JDIModelPresentation.java:270)
+at org.eclipse.jdt.internal.debug.ui.JDIModelPresentation.getText
+(JDIModelPresentation.java(Compiled Code))
+at org.eclipse.debug.internal.ui.LazyModelPresentation.getText
+(LazyModelPresentation.java(Compiled Code))
+at org.eclipse.debug.internal.ui.DelegatingModelPresentation.getText
+(DelegatingModelPresentation.java(Compiled Code))
+at org.eclipse.jface.viewers.TreeViewer.doUpdateItem(TreeViewer.java
+(Compiled Code))
+at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem
+(AbstractTreeViewer.java(Compiled Code))
+at org.eclipse.jface.viewers.StructuredViewer.updateItem
+(StructuredViewer.java(Compiled Code))
+at org.eclipse.jface.viewers.AbstractTreeViewer.createTreeItem
+(AbstractTreeViewer.java:256)
+at org.eclipse.jface.viewers.AbstractTreeViewer.add
+(AbstractTreeViewer.java:130)
+at org.eclipse.jface.viewers.AbstractTreeViewer.add
+(AbstractTreeViewer.java:163)
+at org.eclipse.debug.internal.ui.views.AbstractDebugEventHandler.insert
+(AbstractDebugEventHandler.java:74)
+at
+org.eclipse.debug.internal.ui.views.launch.LaunchViewEventHandler.doHandleDebug
+Events(LaunchViewEventHandler.java:75)
+at org.eclipse.debug.internal.ui.views.AbstractDebugEventHandler$1.run
+(AbstractDebugEventHandler.java:49)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages
+(Synchronizer.java(Compiled Code))
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages
+(Synchronizer.java(Compiled Code))
+at org.eclipse.swt.widgets.Display.messageProc(Display.java(Compiled
+Code))
+at org.eclipse.swt.widgets.Display.messageProc(Display.java(Compiled
+Code))
+at org.eclipse.swt.internal.win32.OS.TrackPopupMenu(Native Method)
+at org.eclipse.swt.widgets.Menu.setVisible(Menu.java:810)
+at
+org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection
+(ActionContributionItem.java:397)
+at
+org.eclipse.jface.action.ActionContributionItem$ActionListener.handleEvent
+(ActionContributionItem.java(Compiled Code))
+at
+org.eclipse.jface.action.ActionContributionItem$ActionListener.handleEvent
+(ActionContributionItem.java(Compiled Code))
+at
+org.eclipse.jface.action.ActionContributionItem$ActionListener.handleEvent
+(ActionContributionItem.java(Compiled Code))
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java
+(Compiled Code))
+at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java(Compiled
+Code))
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java
+(Compiled Code))
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java
+(Compiled Code))
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java
+(Compiled Code))
+at org.eclipse.ui.internal.Workbench.run(Workbench.java:1045)
+at org.eclipse.core.internal.boot.InternalBootLoader.run
+(InternalBootLoader.java:739)
+at org.eclipse.core.boot.BootLoader.run(BootLoader.java:450)
+at java.lang.reflect.Method.invoke(Native Method)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:174)
+at org.eclipse.core.launcher.Main.run(Main.java:605)
+at org.eclipse.core.launcher.Main.main(Main.java:449)

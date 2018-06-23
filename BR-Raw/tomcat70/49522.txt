@@ -1,0 +1,20 @@
+49522 – Complete Server status (status/all) causes stack trace
+type Exception report
+message
+description The server encountered an internal error () that prevented it from fulfilling this request.
+exception
+javax.servlet.ServletException: javax.management.AttributeNotFoundException:  Cannot find attribute startTime for org.apache.catalina.deploy.NamingResources@d1c778
+org.apache.catalina.manager.StatusManagerServlet.doGet(StatusManagerServlet.java:292)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:722)
+root cause
+javax.management.AttributeNotFoundException:  Cannot find attribute startTime for org.apache.catalina.deploy.NamingResources@d1c778
+org.apache.tomcat.util.modeler.ManagedBean.getGetter(ManagedBean.java:493)
+org.apache.tomcat.util.modeler.BaseModelMBean.getAttribute(BaseModelMBean.java:180)
+com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.getAttribute(DefaultMBeanServerInterceptor.java:666)
+com.sun.jmx.mbeanserver.JmxMBeanServer.getAttribute(JmxMBeanServer.java:638)
+org.apache.catalina.manager.StatusTransformer.writeContext(StatusTransformer.java:656)
+org.apache.catalina.manager.StatusTransformer.writeDetailedState(StatusTransformer.java:590)
+org.apache.catalina.manager.StatusManagerServlet.doGet(StatusManagerServlet.java:287)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:621)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:722)

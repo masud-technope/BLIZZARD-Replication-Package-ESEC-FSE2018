@@ -1,0 +1,10 @@
+Bug 266924 – [content assist] Broken for anonymous type proposals if there are chars after the caret
+N20090302-2000, follow-up to bug 263037.
+Content assist is broken if there are chars after the caret and the proposal is a constructor proposal that should create an anonymous type:
+public static void main(String[] args) {
+new RuntimeException();
+}
+Put caret after 'new Run', press Ctrl+Space.
+Press Enter to chose Runnable().
+=> Constructor is not inserted.
+What's even worse than not inserting is that my caret is kidnapped and makes a big jump towards the end of the file -- loss of context.

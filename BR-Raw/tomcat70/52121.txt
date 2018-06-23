@@ -1,0 +1,22 @@
+52121 � corrupt gzip output when compression=on in server.xml
+Created attachment 27886 [details]
+Gzip Corruption Repro WAR
+This appears to be same issue as posted by Christopher Taylor
+Jun 30, 2011 at 8:05 am to Tomcat Users.
+The subject line has been preserved above.
+As mentioned in the post, this seems to have arisen with this issue:
+https://issues.apache.org/bugzilla/show_bug.cgi?id=48738
+The change introduced this class: FlushableGZIPOutputStream.
+When we started using this, we noticed that certain string flush sequences would result in corrupt gzip output.
+The attached WAR provides a repro.
+The sequence of writes to the output stream that would’ve been done by our server is mimicked in this case using a file system.
+There are 40 files each representing a flush.
+URL:
+"http://localhost:8080/TomcatBugReportWAR"
+I’ve allowed the ‘start’ and ‘end’ request parameters to control to the starting and ending points.
+I’ve also allowed an ‘append’ request parameter dump anything to the outputstream.
+The defaults are 0, 40, and “�? for start end and append respectively.
+The following query string appears particularly interesting as it seems to be the smallest sequence that causes the corruption and the subsequent string that is appended after the output is the only thing that appears corrupted:
+"http://localhost:8080/TomcatBugReportWAR?start=19&end=30&append=something�?
+It’s also possible to reproduce this using only the FlushableGZIPOutputStream without using Tomcat at all.
+See attached JAR.

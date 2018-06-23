@@ -1,0 +1,12 @@
+org.eclipse.jdi.internal.connect.PacketReceiveManager.getReply
+org.eclipse.jdi.internal.connect.PacketReceiveManager.getReply
+org.eclipse.jdi.internal.MirrorImpl.requestVM
+org.eclipse.jdi.internal.MirrorImpl.requestVM
+org.eclipse.jdi.internal.MirrorImpl.requestVM
+org.eclipse.jdi.internal.ObjectReferenceImpl.referenceType
+org.eclipse.jdi.internal.ObjectReferenceImpl.type
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaExceptionBreakpoint.handleBreakpointEvent
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent
+org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch
+org.eclipse.jdt.internal.debug.core.EventDispatcher.run
+java.lang.Thread.run

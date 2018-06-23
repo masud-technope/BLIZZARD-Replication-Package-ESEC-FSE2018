@@ -1,0 +1,3 @@
+50411 – invalid sessions not removed from PersistenManager store
+ChangeSet r1036595 in StandardSession no longer remove sessions from PersistentManger store.
+I think PersistentMangerBase must now override method remove(Session session, boolean update) and no longer method remove(Session session).

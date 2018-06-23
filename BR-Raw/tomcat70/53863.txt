@@ -1,0 +1,14 @@
+53863 – Unable to override default servlet when using Tomcat in embedded mode
+An implementation of ServletContainerInitializer can't add a mapping to "/" because the default servlet is loaded first, as first reported in 51278:
+public final class SampleServletContainerInitializer implements ServletContainerInitializer {
+public void onStartup(final Set<Class<?>> c, final ServletContext ctx) throws ServletException {
+final XmlWebApplicationContext appCtx = new XmlWebApplicationContext();
+appCtx.setConfigLocation("/WEB-INF/DispatcherServlet-servlet.xml");
+final ServletRegistration.Dynamic dispatcher = ctx.addServlet("DispatcherServlet", new DispatcherServlet(appCtx));
+dispatcher.setLoadOnStartup(1);
+final Set<String> conflictSet = dispatcher.addMapping("/");
+for (final String conflict : conflictSet)
+out.println(conflict); // prints "/"
+}
+}
+A test case follows attached.

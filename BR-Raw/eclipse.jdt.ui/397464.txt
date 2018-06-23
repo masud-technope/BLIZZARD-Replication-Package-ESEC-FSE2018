@@ -1,0 +1,15 @@
+Bug 397464 – No Javadoc for package-info.java in source attachment when package-info.class doesn't exist
+Follow-up to bug 163633 comment 5:
+> Manju, there could be an additional complication with package-info in the
+> source attachment.
+>
+> E.g.
+in jdk7, the src.zip contains java/lang/package-info.java, but since
+> the package declaration doesn't carry annotations, no package-info.class
+> file is generated.
+Hence, the IClassFile for package-info doesn't exist and
+> getSource() probably doesn't work.
+Once you've verified that this is really
+> a problem, please file a bug for JDT/Core requesting that
+> IClassFile#getSource() should still work in this special case.
+When I remove the Javadoc location for a JDK7 and leave the source attachment untouched, I don't get Javadoc in the view or hover for java.lang.

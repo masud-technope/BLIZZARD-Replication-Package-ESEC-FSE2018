@@ -1,0 +1,50 @@
+42648 – SWAP increases by the cluster of Tomca6
+SWAP increases by the cluster of Tomca6 and operation becomes unstable.
+Environment
+Tomcat6.0.13
+JDK1.5.11
+memory : 2G
+Heap size : - Xmx1500m -Xms1500m
+SWAP increases only for direct="true".
+It occurs when operating for a long time by a high load.
+<Receiver className="org.apache.catalina.tribes.transport.nio.NioReceiver"
+...
+direct="true" />
+SWAP doesn't increase when setting it to direct ="false".
+<Receiver className="org.apache.catalina.tribes.transport.nio.NioReceiver"
+...
+direct="false" />
+I noticed the following.
+In org.apache.catalina.tribes.transport.nio.NioReplicationTask,buffer is made
+per run method.
+public synchronized void run() {
+if ( (getOptions() & OPTION_DIRECT_BUFFER) == OPTION_DIRECT_BUFFER ) {
+buffer = ByteBuffer.allocateDirect(getRxBufSize());
+}else {
+buffer = ByteBuffer.allocate (getRxBufSize());
+}
+if (key == null) {
+return;	// just in case
+}
+....
+The buffer is enough if made once.
+For instance,
+The creating of buffer by the run method is stopped.
+public synchronized void run() {
+//    	if ( (getOptions() & OPTION_DIRECT_BUFFER) == OPTION_DIRECT_BUFFER ) {
+//            buffer = ByteBuffer.allocateDirect(getRxBufSize());
+//        }else {
+//            buffer = ByteBuffer.allocate (getRxBufSize());
+//        }
+....
+Creating of buffer by the setRxBufSize method.
+public void setRxBufSize(int rxBufSize) {
+this.rxBufSize = rxBufSize;
+if ( (getOptions() & OPTION_DIRECT_BUFFER) == OPTION_DIRECT_BUFFER ) {
+buffer = ByteBuffer.allocateDirect(getRxBufSize());
+}else {
+buffer = ByteBuffer.allocate (getRxBufSize());
+}
+}
+Result.
+SWAP doesn't increase.

@@ -1,0 +1,7 @@
+Bug 403410 – Modifiers should be rejected on receiver parameters
+The latest spec doesn't allow modifiers on explicit 'this' parameters:
+FormalParameterOrReceiverDecls:
+Type [Identifier .] this [, FormalParameterDecls]
+FormalParameterDecls
+The javac allows final but rejects static.
+But as per the spec, all modifiers should be rejected on receiver params.

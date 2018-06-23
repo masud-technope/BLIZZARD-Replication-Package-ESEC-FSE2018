@@ -1,0 +1,5 @@
+48288 – Patch to fix generics in javax.el package helpers
+Created attachment 24619 [details]
+Patch
+It's not possible to fix all the compiler warnings in the javax.el helper classes, because some of the overridden methods in javax.el use raw types in the specification.
+Patch to follow suppresses these warnings in ELContextWrapper and EvaluationContext

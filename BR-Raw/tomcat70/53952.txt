@@ -1,0 +1,6 @@
+53952 – Add support for TLS 1.1 and 1.2
+Created attachment 29433 [details]
+patch for tomcat trunk that adds support for newer TLS versions
+It would be nice to have support for newer versions of TLS protocol.
+Due to BEAST attack, the only usable ciphersuites supported by TLS version 1.0 are those based on RC4.
+I'll attach compile-tested patches for both tcnative and tomcat.

@@ -1,0 +1,7 @@
+Bug 399087 – [push down] search Referencing problem in PushDownRefactoringProcessor
+the code in the method PushDownRefactoringProcessor.getReferencingElementsFromSameClass():
+for (int j= 0; j < results.length; j++) {
+SearchMatch searchResult= results[i];
+result.add(SearchUtils.getEnclosingJavaElement(searchResult));
+}
+It seems results[i] should be results[j].

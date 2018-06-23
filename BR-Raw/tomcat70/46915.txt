@@ -1,0 +1,14 @@
+46915 – Unable to get ResourceBundle keys in Tomcat 6
+Created attachment 23417 [details]
+modified foreach.jsp file that reads properties file
+There is issue with ResourceBundle using JSTL in tomcat 6.
+The problem is in using the following code
+${messageString.resourceBundle.keys}
+The above code is not able to resolve the keys and result in printing of ???keys???
+Here messageString is a variable set using below code
+<fmt:setBundle basename="LocalStrings" scope="session" var="messageString" />
+I have tested it with example jsp provided in the tomcat's example webapp.
+The issue is reproducible with both JSTL1.1 and JSTL 1.2 and JDK 1.5 and 1.6
+However it is working fine in Tomcat 5.5
+Attached is the sample foreach.jsp with modified code to read a property file available in \webapps\examples\WEB-INF\classes folder under tomcat installation directory.
+Just place this file in examples webapp and view source

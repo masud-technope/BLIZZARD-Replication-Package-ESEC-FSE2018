@@ -1,0 +1,20 @@
+Bug 472178 – [1.8][Compiler] java.lang.ArrayIndexOutOfBoundsException: -1 on codegen.StackMapFrame.addStackItem(StackMapFrame.java:92)
+Hi all,
+I'm using JDT Core org.eclipse.jdt.core_3.11.0.v20150602-1242 outside of IDE using AST.createASTs(String[] sourceFilePaths, String[] encodings, String[] bindingKeys, FileASTRequestor requestor, IProgressMonitor monitor) method.
+I'm getting
+java.lang.ArrayIndexOutOfBoundsException: -1
+Stack trace here : http://pastebin.com/08uA4KrQ
+It happens on file :
+http://pastebin.com/USDJsHEZ
+Error is in place in
+org.eclipse.jdt.internal.compiler.codegen.StackMapFrame.addStackItem(VerificationTypeInfo)
+in :
+final int length = this.stackItems.length;
+if (this.numberOfStackItems == length) {
+System.arraycopy(this.stackItems, 0, this.stackItems = new      VerificationTypeInfo[length + 1], 0, length);
+}
+this.stackItems[this.numberOfStackItems++] = info; <-- Index out of bound
+so it seems like race-issue (at least for me).
+I could give additional information if you have any ideas what could help to recreate this bug.
+Regards,
+Grzesiek

@@ -1,0 +1,16 @@
+Bug 430267 – [refactoring][extract method] Extract Method misses parameter used in try-with-resources statement
+Given the following code:
+static String readFirstLineFromFile(String path) throws IOException {
+try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+return br.readLine();
+}
+}
+When using Extract Method on the body of the method, the required parameter "path" is not passed to the extracted method:
+static String readFirstLineFromFile(String path) throws IOException {
+return readLine();
+}
+private static String readLine() throws IOException, FileNotFoundException {
+try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+return br.readLine();
+}
+}

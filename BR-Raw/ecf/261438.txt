@@ -1,0 +1,8 @@
+Bug 261438 – [filetransfer] add way to defeat protocol factory extension contributions
+In the filetransfer provider are extension points browseFileTransferProtocolFactory, sendFileTransferProtocolFactory, retrieveFileTransferProtocolFactory, that allow plugins to insert themselves into the browse, send, retrieve calls.
+Occasionally, it would be useful to be able to specify plugins to exclude from contributing browse, send, or retrieve factories.
+We should add a system property:  org.eclipse.ecf.provider.filetransfer.excludeContributors
+that allows contributors to be excluded from adding protocol factories.
+ For example:
+-Dorg.eclipse.ecf.provider.filetransfer.excludeContributors=org.eclipse.ecf.provider.filetransfer.httpclient
+should prevent the httpclient provider from adding any of it's contributions to the protocol factories.

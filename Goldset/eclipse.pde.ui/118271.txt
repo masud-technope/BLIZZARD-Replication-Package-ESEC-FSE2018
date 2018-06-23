@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/ElementSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/SchemaEditor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/SchemaFormPage.java

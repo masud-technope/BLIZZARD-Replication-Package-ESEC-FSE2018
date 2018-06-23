@@ -1,0 +1,31 @@
+Bug 449107 – [quick assist] "Convert to lambda expression" should avoid redundant 'this' or class name
+The "Convert to lambda expression" quick assist should avoid redundant 'this' or class names in the generate lambda.
+In the example below, the first 3 method references can be converted into a lambda that doesn't refer to 'this' or 'Claxx'.
+If the method name is not ambiguous, we should use the short form.
+import java.util.function.Consumer;
+public class Claxx {
+void doInBackground() throws Exception {
+post(Claxx::execute);
+absorb(Claxx::executeGiven);
+post(this::executeObject);
+absorb(Claxx::executeObject);
+post(() -> execute());
+post(() -> executeGiven(this)); // not convertible
+post(() -> executeObject());
+}
+void post(Runnable r) {
+r.run();
+}
+void absorb(Consumer<Claxx> c) throws Exception {
+c.accept(this);
+}
+static void execute() {
+System.out.println("exec!");
+}
+static void executeGiven(Object o) {
+System.out.println("exec " + o);
+}
+void executeObject() {
+System.out.println("exec " + this);
+}
+}

@@ -1,0 +1,24 @@
+sun.misc.Unsafe.park
+java.util.concurrent.locks.LockSupport.park
+java.util.concurrent.locks.AbstractQueuedSynchronizer.parkAndCheckInterrupt
+java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireQueued
+java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire
+java.util.concurrent.locks.ReentrantReadWriteLock$WriteLock.lock
+org.apache.catalina.core.ContainerBase.removeContainerListener
+org.apache.catalina.core.StandardEngine$AccessLogListener.uninstall
+org.apache.catalina.core.StandardEngine$AccessLogListener.containerEvent
+org.apache.catalina.core.ContainerBase.fireContainerEvent
+org.apache.catalina.core.ContainerBase.addChildInternal
+org.apache.catalina.core.ContainerBase.addChild
+org.apache.catalina.core.StandardHost.addChild
+org.apache.catalina.startup.HostConfig.deployDirectory
+org.apache.catalina.startup.HostConfig$DeployDirectory.run
+java.util.concurrent.Executors$RunnableAdapter.call
+java.util.concurrent.FutureTask$Sync.innerRun
+java.util.concurrent.FutureTask.run
+java.util.concurrent.ThreadPoolExecutor$Worker.runTask
+java.util.concurrent.ThreadPoolExecutor$Worker.run
+java.lang.Thread.run
+org.apache.catalina.core.ContainerBase.fireContainerEvent
+- Then AccessLogListener is invoked org.apache.catalina.core.StandardEngine$AccessLogListener.uninstall
+- The latter causes a call for a write lock org.apache.catalina.core.ContainerBase.removeContainerListener

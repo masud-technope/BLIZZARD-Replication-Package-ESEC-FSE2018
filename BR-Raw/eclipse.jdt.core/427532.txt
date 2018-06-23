@@ -1,0 +1,21 @@
+Bug 427532 – [1.8][code assist] Completion engine does not like intersection casts
+Spawned from https://bugs.eclipse.org/bugs/show_bug.cgi?id=427117#c3
+Completion fails in before, after and inside a lambda in the presence of
+intersection casts:
+// --
+import java.io.Serializable;
+interface I {
+void foo();
+}
+public class X {
+I i = () -> {
+System.out.println();
+};
+public static void main(String[] args) {
+syso|
+I i = (I & Serializable) () -> {
+syso}
+};
+syso|
+}
+}

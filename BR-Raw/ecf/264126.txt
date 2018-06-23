@@ -1,0 +1,4 @@
+Bug 264126 – BREE should include Foundation 1.1 as much as possible
+It is very useful for the ECF bundles to include Foundation 1.1 (if not Foundation 1.0) in their BREE declaration wherever possible.
+ In a couple cases (e.c., o.e.ecf.ssl) only Java 1.4 is listed.
+ This means that the bundle cannot be used on Foundation 1.?

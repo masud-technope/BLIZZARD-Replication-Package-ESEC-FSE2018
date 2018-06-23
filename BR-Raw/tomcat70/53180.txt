@@ -1,0 +1,10 @@
+53180 – DefaultInstanceManager#populateAnnotationsCache - incomplete check is used when validating for a setter method
+Created attachment 28711 [details]
+Patch proposal
+Hi,
+In org.apache.catalina.core.DefaultInstanceManager#populateAnnotationsCache, when iterating over methods in a given class, in one of the cases (when injection-target is specified) you validate whether the method is a valid setter method.
+In my opinion the check that is used for that validation is not complete.
+I would like to propose a patch (attached) that introduces additional checks in order to guarantee that the corresponding method is really suitable to be an injection target.
+I'm looking forward to your commends.
+Best Regards
+Violeta Georgieva

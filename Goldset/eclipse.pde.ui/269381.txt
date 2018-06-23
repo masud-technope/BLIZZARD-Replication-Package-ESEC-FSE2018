@@ -1,0 +1,4 @@
+ds/org.eclipse.pde.ds.ui/.settings/org.eclipse.jdt.core.prefs
+ds/org.eclipse.pde.ds.core/.settings/org.eclipse.jdt.core.prefs
+ds/org.eclipse.pde.ds.core/src/org/eclipse/pde/internal/ds/core/builders/DSBuilder.java
+ds/org.eclipse.pde.ds.ui/src/org/eclipse/pde/internal/ds/ui/wizards/DSFileWizardPage.java

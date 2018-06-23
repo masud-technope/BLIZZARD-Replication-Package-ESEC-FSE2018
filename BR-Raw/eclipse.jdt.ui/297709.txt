@@ -1,0 +1,12 @@
+Bug 297709 – [package explorer] JDT error behavior when "link with editor" option opening
+User-Agent:       Mozilla/5.0 (Windows; U; Windows NT 6.1; zh-CN; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5 GTB6
+Build Identifier: I20091210-1301
+JDT frequencely synchronize the package tree when link with editor option opening.
+Reproducible: Always
+Steps to Reproduce:
+1.open some other class in editor, like Composite, SWT, Control and so on
+2.new java class wizard, after completed, the editor should open the newly java file.
+3.At this moment, the package tree change change and change again.
+4.where change to.
+the before opened class resource item.
+5, sometimes, autocomplete result to same synchronize actions.

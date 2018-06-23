@@ -1,0 +1,14 @@
+Bug 425493 – [1.8] Compiler regression
+The following piece of code no longer compiles with latest snapshots (11-jan)
+public class Test {
+public void addAttribute(Attribute<?> attribute) {
+addAttribute(java.util.Objects.requireNonNull((Attribute) attribute, ""),
+attribute.getDefault());
+}
+private <T> void addAttribute(Attribute<T> attribute, T defaultValue) {}
+static class Attribute<T> {
+T getDefault() {
+return null;
+}
+}
+}

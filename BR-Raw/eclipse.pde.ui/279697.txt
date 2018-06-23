@@ -1,0 +1,19 @@
+Bug 279697 – ArrayIndexOutOfBoundsException running use scan
+I20090605-1444
+It seems that we are passing in an empty value to get a qualified type name in our method visitor when processing an INVOKE_STATIC method instruction and ASM does not like that :)
+java.lang.ArrayIndexOutOfBoundsException: 0
+at org.objectweb.asm.Type.getObjectType(Unknown Source)
+at org.eclipse.pde.api.tools.internal.builder.ReferenceExtractor$ClassFileMethodVisitor.visitMethodInsn(ReferenceExtractor.java:377)
+at org.objectweb.asm.ClassReader.accept(Unknown Source)
+at org.objectweb.asm.ClassReader.accept(Unknown Source)
+at org.eclipse.pde.api.tools.internal.model.ApiType.extractReferences(ApiType.java:161)
+at org.eclipse.pde.api.tools.internal.provisional.search.ApiSearchEngine.getResolvedReferences(ApiSearchEngine.java:152)
+at org.eclipse.pde.api.tools.internal.provisional.search.ApiSearchEngine.access$0(ApiSearchEngine.java:147)
+at org.eclipse.pde.api.tools.internal.provisional.search.ApiSearchEngine$ReferenceExtractor.visit(ApiSearchEngine.java:90)
+at org.eclipse.pde.api.tools.internal.model.ArchiveApiTypeContainer.accept(ArchiveApiTypeContainer.java:168)
+at org.eclipse.pde.api.tools.internal.model.AbstractApiTypeContainer.accept(AbstractApiTypeContainer.java:56)
+at org.eclipse.pde.api.tools.internal.model.AbstractApiComponent.accept(AbstractApiComponent.java:58)
+at org.eclipse.pde.api.tools.internal.provisional.search.ApiSearchEngine.searchReferences(ApiSearchEngine.java:229)
+at org.eclipse.pde.api.tools.internal.provisional.search.ApiSearchEngine.search(ApiSearchEngine.java:298)
+at org.eclipse.pde.api.tools.usage.internal.ui.search.ApiUsageSearchPage$1.run(ApiUsageSearchPage.java:190)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

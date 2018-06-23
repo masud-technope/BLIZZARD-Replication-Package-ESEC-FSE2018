@@ -1,0 +1,17 @@
+Bug 197906 – The plugin.xml compare viewer does not react to color changes
+Using the latest pde.ui code from HEAD:
+1.
+Make a change to a plugin.xml file checked out from the repository.
+2.
+Synchronize the project containing the plugin.xml with HEAD.
+3.
+Double-click on the plugin.xml.
+ You will see a structural compare with nice syntax coloring.
+ Great.
+4.
+Now go to the Plug-in Development > Editors preference page and change some the XML syntax color values.
+ Press OK.
+The compare viewer does not update.
+ It has to be closed and reopened.
+By contrast, the plugin.xml editor has a listener that automatically updates its color scheme.
+ The compare viewer should be as smart.

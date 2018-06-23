@@ -1,0 +1,20 @@
+Bug 317497 – [content assist] Overriding content assist suggestion immediately after closing brace generates invalid code
+I20100603-1500
+public class Test {
+public void v() {
+}//<-invoke CC here
+}
+Select the second option, the clone() method, and you will get...
+public class Test {
+public void v() {
+}protected Object clone() throws CloneNotSupportedException {};//<-invoke CC here
+}
+...if you put a space first, you will get...
+public class Test {
+public void v() {
+} @Override
+protected Object clone() throws CloneNotSupportedException {
+// TODO Auto-generated method stub
+return super.clone();
+}//<-invoke CC here
+}

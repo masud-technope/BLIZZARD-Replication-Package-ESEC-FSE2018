@@ -1,0 +1,6 @@
+Bug 430069 – [1.8] Test failures when run with JRE7-
+Ref Bug 429571 comment 13.
+The following needs to be modified/moved to address the issue that these tests cannot run in 1.8
+jdt.core.tests.build.IncrementalTests18 (5)- all errors(5)
+jdt.core.tests.compiler(2) - all failures(2) - GRT_1.7.429203, CDT.test429110
+jdt.core.tests.model(8) -All Errors (all tests in NullAnnotationModelTests)

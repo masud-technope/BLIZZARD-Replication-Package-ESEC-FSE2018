@@ -1,0 +1,13 @@
+Bug 377318 – [encapsulate field] Encapsulate field in an interface introduces methods (therefore compilation errors)
+Build Identifier: Version: 3.7.2 Build id: M20120208-0800
+Encapsulate field in an interface introduces methods, which leads to compilation errors.
+public interface EncapsulateField {
+// ENCAPSULATE FIELD F (use default values in the dialog)
+public static final int F = 1;
+}
+Reproducible: Always
+Steps to Reproduce:
+1.
+Invoke "Encapsulate Field ..." refactoring on field F (from the example)
+2.
+Refactoring introduces methods in the interface

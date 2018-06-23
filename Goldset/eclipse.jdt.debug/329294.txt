@@ -1,0 +1,15 @@
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/eval/GenericsEvalTests.java
+org.eclipse.jdt.debug.tests/testsource-j2se-1.5/a/b/c/bug329294WithGenerics.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/engine/SourceBasedSourceGenerator.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/engine/EvaluationSourceGenerator.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/engine/SourceBasedSourceGenerator.java
+org.eclipse.jdt.debug.tests/testprograms/bug329294.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AbstractDebugTest.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AutomatedSuite.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/breakpoints/MiscBreakpointsTests.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/eval/GeneralEvalTests.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/eval/GenericsEvalTests.java
+org.eclipse.jdt.debug.tests/testsource-j2se-1.5/a/b/c/bug329294WithGenerics.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/engine/EvaluationSourceGenerator.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/engine/SourceBasedSourceGenerator.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/JavaDebugUtils.java

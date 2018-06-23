@@ -1,0 +1,34 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test0/in/TestInlineLambda.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test0/out/TestInlineLambda.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test1/in/TestInlineLambda_Cast.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test1/out/TestInlineLambda_Cast.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test1000/in/TestInlineMethodRef.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test1000/out/TestInlineMethodRef.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test1001/in/TestInlineMethodRef_Cast.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test1001/out/TestInlineMethodRef_Cast.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test1002/in/TestInlineMethodRefArray.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test1002/out/TestInlineMethodRefArray.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test1003/in/TestInlineMethodRef_Ambiguous.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test1003/out/TestInlineMethodRef_Ambiguous.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test2/in/TestInlineLambdaArray.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test2/out/TestInlineLambdaArray.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test3/in/TestInlineLambda_Ambiguous.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test3/out/TestInlineLambda_Ambiguous.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test4/in/TestInlineLambda_Ambiguous.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test4/out/TestInlineLambda_Ambiguous.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test5/in/TestInlineLambda_Cast.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineConstant/canInline18/test5/out/TestInlineLambda_Cast.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline18/A_test0_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline18/A_test0_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline18/A_test1000_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline18/A_test1000_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline18/A_test1001_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline18/A_test1001_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline18/A_test1_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline18/A_test1_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline18/A_test2_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline18/A_test2_out.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/AllRefactoringTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/InlineConstantTests18.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/InlineTempTests18.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/ASTNodes.java

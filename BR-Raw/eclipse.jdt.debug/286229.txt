@@ -1,0 +1,12 @@
+Bug 286229 – Bad usages of URL#equals(Object)
+Created attachment 144026 [details]
+Fix
+HEAD
+While fixing bug 285854, I also found two bad usages of URL#equals(Object) in JDT/Debug.
+That method resolves the host of the URLs via DNS lookups, which is most of the time not what you want.
+A scenario that e.g.
+fails is when you edit a JRE definition and then replace the host part of the default Javadoc path
+http://java.sun.com/javase/6/docs/api/
+with
+http://72.5.124.55/javase/6/docs/api/ .
+When you then click "Restore Default", the UI is not updated, but the preference is.

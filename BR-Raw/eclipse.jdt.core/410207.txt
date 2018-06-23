@@ -1,0 +1,21 @@
+Bug 410207 – Compiler incorrectly reports error message "X cannot be resolved. It is indirectly referenced from required .class files"
+Created attachment 232112 [details]
+Reduced Test Case
+I know there other bugs related to this message (ie.
+239639, 320965, 391528) but this issue deals with backward compatibility with JDK 1.4 'built' jars.
+Steps to reproduce the problem:
+1.
+Import the two projects from the attached zip
+J14 (1.4 level)
+J16 (1.6 level)
+2.
+Export J14 as a jar
+3.
+Bring up the properties for J16 and add the jar to its Java build path.
+4.
+Open the Main class in J16 using the Java Editor
+--> You will see the errror message
+5.
+If you run the Main class as a Java Application, it works as expected.
+This shows backward compatibility of 1.4 level jars.
+The error message is misleading because the type/class is actually present in the jar.

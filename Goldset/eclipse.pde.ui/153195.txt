@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/IModel.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDECoreMessages.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDEPluginConverter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PluginConverter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PluginConverterParser.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/pderesources.properties

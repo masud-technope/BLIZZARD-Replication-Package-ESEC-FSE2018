@@ -1,0 +1,2 @@
+java/org/apache/catalina/security/SecurityClassLoad.java
+webapps/docs/changelog.xml

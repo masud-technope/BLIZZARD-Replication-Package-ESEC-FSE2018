@@ -1,0 +1,10 @@
+Bug 46332 – [Jobs] UI no longer responsive after pressing ctrl-S
+Build 20031023
+While tagging JDT Core projects as versions (in background), I went to modify
+my map file accordingly in parallel.
+As soon as pressed ctrl-S to save my
+edited map file, the busy cursor appeared and I couldn't do anything any
+longer; though this change has nothing to do with what is being tagged at the
+same time.
+Furthermore, there is no explanation as to why my save action locked me until
+the tagging was completed.

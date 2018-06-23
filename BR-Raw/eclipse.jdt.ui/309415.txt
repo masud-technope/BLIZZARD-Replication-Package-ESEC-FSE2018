@@ -1,0 +1,14 @@
+Bug 309415 – [implementation][nls tooling] DBCS3.6: 'Find Broken Externalized Strings' not handle constants with CJK Ext-B.
+Build Identifier: I20100406-1034
+JRE: IBM Java 1.6
+Locale:Japanese
+'Find Broken Externalized Strings' can not handle constants
+with CJK Ext-B (Surrogates) correctly.
+The following message is displayed in Search view.
+'Unused keys in: messages.properties - bugXXXXXX/src'
+Reproducible: Always
+Steps to Reproduce:
+1.Import bugXXXXXX.zip that is a Java project
+2.Mouse right clik on the project name, bugXXXXXX.
+3.[Source] -> [Find Broken Externalized Strings]
+4.In Search view, 'Unused keys in: messages.properties - bugXXXXXX/src'

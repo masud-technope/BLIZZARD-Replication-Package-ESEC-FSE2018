@@ -1,0 +1,5 @@
+Bug 272107 – [target] Minor UI issues with new content tab
+See bug 270626.
+- The content tree and filter text are not flat on WinXP.
+- The x of y label at the bottom of the tab doesn't show up on WinXP
+- Editing the bundle containers on the location tab may break the content tab (the containers are no longer equal after they have been edited).

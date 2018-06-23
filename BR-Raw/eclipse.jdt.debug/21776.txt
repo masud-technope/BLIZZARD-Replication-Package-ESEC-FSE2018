@@ -1,0 +1,8 @@
+Bug 21776 – Evaluate action enabled for non-java stack frames
+The Evaluate action enables for IStackFrames.
+It should really just enable for
+IJavaStackFrames (via #getAdapter).
+The action checks for an IJavaStackFrame
+adapter when the action is invoked.
+Thus it can be enabled for non-java stack
+frames, and do nothing when invoked.

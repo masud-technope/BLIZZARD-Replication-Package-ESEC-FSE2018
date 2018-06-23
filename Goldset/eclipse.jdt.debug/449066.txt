@@ -1,0 +1,4 @@
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AbstractDebugTest.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaDebugHover.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/OpenReceivingTypeAction.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIStackFrame.java

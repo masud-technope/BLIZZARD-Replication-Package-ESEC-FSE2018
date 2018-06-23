@@ -1,0 +1,4 @@
+Bug 264057 – [target] warning if no target is selected on the new preference page
+99.9% of the users in the world will have a target selected.
+If a target isn't selected, there should be a warning...
+similar to what we have for a missing API baseline.

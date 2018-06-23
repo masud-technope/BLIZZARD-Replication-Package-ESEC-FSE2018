@@ -1,0 +1,98 @@
+Bug 89643 – step filters confuse stepping in JSP stratum
+I20050330-0500
+* I was stepping thu a JSP like this, on the first line
+<html>
+<body>
+<% String date= (new one.two.three.MyDate()).getDateText(); %>
+The date is currently <%= date%>.
+And who really knows what time it is.
+</body>
+</html>
+* I mistakenly had step filters turned on and the call stack advanced out of
+the JSP from this:
+Thread [http-8080-Processor25] (Suspended (breakpoint at line 3 in date_jsp))
+date.jsp line: 3
+date_jsp(HttpJspBase).service(HttpServletRequest, HttpServletResponse)
+line: 94
+date_jsp(HttpServlet).service(ServletRequest, ServletResponse) line:
+802
+JspServletWrapper.service(HttpServletRequest, HttpServletResponse,
+boolean) line: 324
+JspServlet.serviceJspFile(HttpServletRequest, HttpServletResponse,
+String, Throwable, boolean) line: 292
+JspServlet.service(HttpServletRequest, HttpServletResponse) line: 236
+JspServlet(HttpServlet).service(ServletRequest, ServletResponse) line:
+802
+ApplicationFilterChain.internalDoFilter(ServletRequest,
+ServletResponse) line: 237
+ApplicationFilterChain.doFilter(ServletRequest, ServletResponse) line:
+157
+StandardWrapperValve.invoke(Request, Response, ValveContext) line: 214
+StandardValveContext.invokeNext(Request, Response) line: 104
+StandardPipeline.invoke(Request, Response) line: 520
+StandardContextValve.invokeInternal(Wrapper, Request, Response) line:
+198
+StandardContextValve.invoke(Request, Response, ValveContext) line: 152
+StandardValveContext.invokeNext(Request, Response) line: 104
+StandardPipeline.invoke(Request, Response) line: 520
+StandardHostValve.invoke(Request, Response, ValveContext) line: 137
+StandardValveContext.invokeNext(Request, Response) line: 104
+ErrorReportValve.invoke(Request, Response, ValveContext) line: 117
+StandardValveContext.invokeNext(Request, Response) line: 102
+StandardPipeline.invoke(Request, Response) line: 520
+StandardEngineValve.invoke(Request, Response, ValveContext) line: 109
+StandardValveContext.invokeNext(Request, Response) line: 104
+StandardPipeline.invoke(Request, Response) line: 520
+StandardEngine(ContainerBase).invoke(Request, Response) line: 929
+CoyoteAdapter.service(Request, Response) line: 160
+Http11Processor.process(InputStream, OutputStream) line: 799
+Http11Protocol$Http11ConnectionHandler.processConnection
+(TcpConnection, Object[]) line: 705
+TcpWorkerThread.runIt(Object[]) line: 577
+ThreadPool$ControlRunnable.run() line: 683
+ThreadWithAttributes(Thread).run() line: 813
+To this:
+Thread [http-8080-Processor25] (Suspended)
+date_jsp(HttpServlet).service(ServletRequest, ServletResponse) line:
+803
+JspServletWrapper.service(HttpServletRequest, HttpServletResponse,
+boolean) line: 324
+JspServlet.serviceJspFile(HttpServletRequest, HttpServletResponse,
+String, Throwable, boolean) line: 292
+JspServlet.service(HttpServletRequest, HttpServletResponse) line: 236
+JspServlet(HttpServlet).service(ServletRequest, ServletResponse) line:
+802
+ApplicationFilterChain.internalDoFilter(ServletRequest,
+ServletResponse) line: 237
+ApplicationFilterChain.doFilter(ServletRequest, ServletResponse) line:
+157
+StandardWrapperValve.invoke(Request, Response, ValveContext) line: 214
+StandardValveContext.invokeNext(Request, Response) line: 104
+StandardPipeline.invoke(Request, Response) line: 520
+StandardContextValve.invokeInternal(Wrapper, Request, Response) line:
+198
+StandardContextValve.invoke(Request, Response, ValveContext) line: 152
+StandardValveContext.invokeNext(Request, Response) line: 104
+StandardPipeline.invoke(Request, Response) line: 520
+StandardHostValve.invoke(Request, Response, ValveContext) line: 137
+StandardValveContext.invokeNext(Request, Response) line: 104
+ErrorReportValve.invoke(Request, Response, ValveContext) line: 117
+StandardValveContext.invokeNext(Request, Response) line: 102
+StandardPipeline.invoke(Request, Response) line: 520
+StandardEngineValve.invoke(Request, Response, ValveContext) line: 109
+StandardValveContext.invokeNext(Request, Response) line: 104
+StandardPipeline.invoke(Request, Response) line: 520
+StandardEngine(ContainerBase).invoke(Request, Response) line: 929
+CoyoteAdapter.service(Request, Response) line: 160
+Http11Processor.process(InputStream, OutputStream) line: 799
+Http11Protocol$Http11ConnectionHandler.processConnection
+(TcpConnection, Object[]) line: 705
+TcpWorkerThread.runIt(Object[]) line: 577
+ThreadPool$ControlRunnable.run() line: 683
+ThreadWithAttributes(Thread).run() line: 813
+With step filters off, stepping worked as expected.
+The active filters were:
+java.*
+org.apache.*
+sun.*
+It could be that step filters shuold only apply to the Java stratum?

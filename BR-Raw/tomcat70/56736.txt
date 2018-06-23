@@ -1,0 +1,15 @@
+56736 – IllegalStateException after calling AsyncContext.dispatch
+Requests timeout occasionally with the following error after calling AsyncContext.dispatch:
+10-Jul-2014 01:40:33.145 SEVERE [http-nio-8080-exec-2] org.apache.catalina.connector.CoyoteAdapter.asyncDispatch Exception while processing an asynchronous request
+java.lang.IllegalStateException: Calling [asyncTimeout()] is not valid for a request with Async state [DISPATCHING]
+at org.apache.coyote.AsyncStateMachine.asyncTimeout(AsyncStateMachine.java:267)
+...
+Happens also with the Java Blocking Connector (Http11Protocol).
+Could not reproduce on Tomcat 7.0.54.
+Can be reproduced with the sample project with the following request:
+http://localhost:8080/servlet3-async/error2?fail=true
+Sample code and more information about the test can be found here:
+https://github.com/marko-asplund/servlet3-async
+Verified on:
+Ubuntu 14.04 / OpenJDK 1.7.0_55
+Mac OS X 10.8.5 / Oracle Java 1.7.0_55

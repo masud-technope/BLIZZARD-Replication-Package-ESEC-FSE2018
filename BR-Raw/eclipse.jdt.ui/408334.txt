@@ -1,0 +1,16 @@
+Bug 408334 – [extract interface] AFE on selecting next change in refactoring Preview
+public class Test {
+}
+Right click and select 'Refactor > Extract Interface' for the above class.
+Give some name for interface and click "Preview".
+Use down arrow button i.e.
+"Select Next Change".
+It expands the 1st change node and "Add super interface" is selected.
+No input in the details page.
+Error is logged in the Error Log view:
+org.eclipse.core.runtime.AssertionFailedException: assertion failed:
+at org.eclipse.core.runtime.Assert.isTrue(Assert.java:110)
+at org.eclipse.core.runtime.Assert.isTrue(Assert.java:96)
+at org.eclipse.ltk.core.refactoring.TextChange.getCurrentContent(TextChange.java:334)
+at org.eclipse.ltk.internal.ui.refactoring.TextEditChangePreviewViewer.setInput(TextEditChangePreviewViewer.java:192)
+...

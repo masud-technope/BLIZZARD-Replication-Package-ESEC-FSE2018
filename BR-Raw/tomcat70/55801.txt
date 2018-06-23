@@ -1,0 +1,8 @@
+55801 – Add ability to provide custom SSLContext for websocket client
+Created attachment 31059 [details]
+Proposed patch
+Currently the only available customisation is setting trust store via SSL_TRUSTSTORE_PROPERTY.
+This is not enough in situations where custom trust manager has to be used.
+The most trivial example I can think of is accepting all certificates.
+My proposition is to use new property to pass SSLContext using user properties of ClientEndpointConfig.
+Attached is a proposed patch to add this capability.

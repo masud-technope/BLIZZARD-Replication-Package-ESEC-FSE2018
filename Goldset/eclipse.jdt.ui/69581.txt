@@ -1,0 +1,10 @@
+org.eclipse.jdt.ui/plugin.xml
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/CompilationUnitEditor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/JavaTemplatesPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/browsing/JavaBrowsingPerspectiveFactory.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/EditTemplateDialog.java
+org.eclipse.jdt.ui/icons/full/eview16/templates.gif
+org.eclipse.jdt.ui/plugin.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaHierarchyPerspectiveFactory.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/JavaSourcePreviewerUpdater.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaPerspectiveFactory.java

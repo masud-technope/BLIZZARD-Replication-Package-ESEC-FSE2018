@@ -1,0 +1,8 @@
+java/org/apache/coyote/ajp/AjpProcessor.java
+java/org/apache/coyote/http11/Http11AprProcessor.java
+java/org/apache/coyote/http11/Http11NioProcessor.java
+java/org/apache/coyote/http11/Http11Processor.java
+test/org/apache/catalina/connector/TestConnector.java
+test/org/apache/catalina/startup/TesterServlet.java
+test/org/apache/catalina/startup/TomcatBaseTest.java
+webapps/docs/changelog.xml

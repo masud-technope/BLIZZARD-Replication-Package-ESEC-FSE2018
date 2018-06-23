@@ -1,0 +1,5 @@
+Bug 265198 – [target] make sure we warn about forward compatibility
+In the current target platform preference page, we added some logic to warn people if they were developing against a target platform in the future.
+That is, if you are running Eclipse 3.4, and pointing to a 3.5 target...
+that's evil.
+We should provide some type of warning for this case in the new target story.

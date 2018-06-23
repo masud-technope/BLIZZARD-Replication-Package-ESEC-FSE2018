@@ -1,0 +1,64 @@
+Bug 415413 – [compiler][null] NullpointerException in Null Analysis caused by interaction of LoopingFlowContext and FinallyFlowContext
+REPRODUCING THE BUG:
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+public class ClassF {
+public interface X {
+@Nullable
+Object provideNullable();
+}
+public static void needNonNull(@NonNull Object o) {
+o.hashCode();
+}
+public void method(X x) {
+for (int j = 0; j < 1; j++) {
+try {
+this.hashCode();
+} finally {
+for (int i = 0; i < 1; i++) {
+Object o = x.provideNullable();
+needNonNull(o);
+}
+}
+}
+}
+}
+THE BUG:
+The compiler throws a NullPointerException in FinallyFlowContext.java:108, inside the "if"-statement:
+case ASSIGN_TO_NONNULL:
+int nullStatus = flowInfo.nullStatus(this.nullLocals[i]);
+if (nullStatus != FlowInfo.NON_NULL) {
+this.parent.recordNullityMismatch(scope, (Expression) location,
+this.providedExpectedTypes[i][0], this.providedExpectedTypes[i][1], nullStatus);
+}
+break;
+ANALYSIS:
+It is assumed, that whenever the value ASSIGN_TO_NULL is used, then this.providedExpectedTypes is initalized.
+This is wrong in one case:
+The value ASSIGN_TO_NULL may be passed from LoopingFlowContext, Line 290:
+if (!(this.nullCheckTypes[i] == MAY_NULL &&  upstreamCopy.isDefinitelyNonNull(local))) {
+this.parent.recordUsingNullReference(scope, local, location,
+this.nullCheckTypes[i], flowInfo);
+}
+to the implementation of recordUsingNullReference in FinallyFlowContext, at the end which in line 420, it invokes
+recordNullReference(local, location, checkType);
+without invoking
+recordProvidedExpectedTypes(providedType, expectedType, this.nullCount);
+POSSIBLE FIX:
+diff --git a/org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/flow/LoopingFlowContext.java b/org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/flow/LoopingFlowContext.java
+index 2befb45..7afdf13 100644
+--- a/org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/flow/LoopingFlowContext.java
++++ b/org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/flow/LoopingFlowContext.java
+@@ -287,8 +287,10 @@
+// https://bugs.eclipse.org/376263: avoid further deferring if the upstream info
+// already has definite information (which might get lost for deferred checking).
+if (!(this.nullCheckTypes[i] == MAY_NULL && upstreamCopy.isDefinitelyNonNull(local))) {
+-				this.parent.recordUsingNullReference(scope, local, location,
+-						this.nullCheckTypes[i], flowInfo);
++				if((this.nullCheckTypes[i] & ~HIDE_NULL_COMPARISON_WARNING_MASK) != ASSIGN_TO_NONNULL) {
++					this.parent.recordUsingNullReference(scope, local, location,
++							this.nullCheckTypes[i], flowInfo);
++				}
+}
+}
+}

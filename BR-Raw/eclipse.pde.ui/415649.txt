@@ -1,0 +1,2 @@
+Bug 415649 – Don't create new cursor and dispose it
+For system cursors Display.getSystemCursor should be used and the state of the returned cursor is automaintained.

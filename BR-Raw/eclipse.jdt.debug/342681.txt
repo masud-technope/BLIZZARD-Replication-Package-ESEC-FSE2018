@@ -1,0 +1,4 @@
+Bug 342681 – ProjectCreationDecorator test fails on Java 7
+The ProjectCreationDecorator test fails on Java 7.
+See attached test results.
+The reason is that the test assumes to run in a certain order but that is not guaranteed by JUnit.

@@ -1,0 +1,5 @@
+providers/bundles/org.eclipse.ecf.provider.irc/src/org/eclipse/ecf/internal/provider/irc/container/IRCRootContainer.java
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/internal/presence/ui/Messages.java
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/internal/presence/ui/messages.properties
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/chatroom/ChatRoomManagerUI.java
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/chatroom/ChatRoomManagerView.java

@@ -1,0 +1,34 @@
+Bug 372768 – Adjust preference UI in line with bug 365859
+Bug 365859 in JDT/Core started out as a simple request to differentiate two kinds of nullness problems, but after feedback regarding the messages we took the opportunity to re-think classification and wording.
+As I hope the discussion in bug 365859 will soon come to a conclusion I am asking for corresponding changes in the preference UI.
+Perhaps feedback on the envisioned UI changes will help consolidate the core-level messages, too.
+The affected options are currently:
+Violation of null specification:            [E/W/I]
+Potential violation of null specification:  [E/W/I]
+Insufficient information for null analysis: [E/W/I]
+We identified room for improvement regarding each of the three groups.
+"Violation": If we buy into the reasoning that enabling null annotations means to consider these as an extension of the type system, then I can find no substantial reason, why definite violations (reported as "Type mismatch") should ever be downgraded to warning or even ignore.
+=> I propose to remove this option from the UI, corresponding irritants will be effective as error as soon as null annotations are enabled.
+=> FUP in 371968: Alignment from "Null pointer access" back to this group is no longer possible.
+"Potential violation...": discussions have shown that the concept of potential type errors is confusing.
+Still we want to express that errors in this group have these two properties:
+- they are ranked as type mismatch, because null could otherwise legally flow into a @NonNull variable
+- they are detected with the help of flow analysis.
+Java does have a concept of type inference (visible, e.g., in (b ? new String() : new Integer()).
+Loosely alluding to this concept I'm proposing the label:
+Conflict between null specification and null inference [E/W/I]
+The corresponding compiler message would be:
+Type mismatch: required '@NonNull Cat' but the provided value is inferred to
+'@Nullable Cat'
+Suggestions for another pair of related phrases that convey the same content are welcome.
+Finally, for the "insufficient info..." group I realized the close analogy to unchecked conversions like "List<String> l = new List()".
+Thus, I'd like to propose for the UI:
+Unchecked conversion from legacy type to @NonNull type  [E/W/I]
+Corresponding to a compiler message of:
+Type safety: The expression of type 'Cat' needs unchecked conversion to conform to '@NonNull Cat'
+I realize that the previous wording may be perceived as smoother than the new proposals, but this smoothness is false peace, I'm afraid.
+We do have to educate users so they understand the new feature, and users OTOH have to be open-minded for adopting.
+So a tiny moment of startling could actually help :)
+Outlook: what do you think would be the best place for educational material regarding annotation based null analysis? What should go into the user doc, what to the wiki etc.?
+Sorry, for the additional churn, but I feel things are getting clearer now (hoping the wording faithfully conveys the ideas).
+Removing an unnecessary option before the final release also sounds like a good idea to me :)

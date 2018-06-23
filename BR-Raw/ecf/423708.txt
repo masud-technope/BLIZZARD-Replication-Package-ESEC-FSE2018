@@ -1,0 +1,3 @@
+Bug 423708 – [RFC 1.1] Handle updating Exported and Imported Services
+Section 5.2 adds API to update a _remote_ service registration similar to registration updates in a local OSGi runtime.
+ECF thus has to handle an update of an EndpointDescription of an exported service.

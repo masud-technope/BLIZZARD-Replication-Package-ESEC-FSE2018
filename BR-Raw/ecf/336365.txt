@@ -1,0 +1,3 @@
+Bug 336365 – [remoteserviceadmin] throw IOException in readEndointDescriptions if error on creation
+In org.eclipse.ecf.osgi.services.remoteserviceadmin.EndpointDescriptionReader.readEndpointDescriptions(InputStream) EndpointDescription creation currently does not throw an IOException (if construction fails).
+ It should throw in this case.

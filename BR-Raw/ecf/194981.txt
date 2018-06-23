@@ -1,0 +1,4 @@
+Bug 194981 – Don't automatically scroll when a message is received
+Right now the scrollback pops to the bottom whenever a message is received.
+ It would be nice to have a way to turn this off.
+ It makes it rather hard to view the scrollback on a busy channel.

@@ -1,0 +1,7 @@
+Bug 296782 – CreateProfileDialog.createDialogArea should extend the super implementation of Dialog.createDialogArea
+User-Agent:       Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.1.1) Gecko/20090715 Firefox/3.5.1
+Build Identifier:
+similar problems and same solution as verified bugs #296581 and #296481
+Strange code found with the Code Recommender System of TU Darmstadt
+(http://www.stg.tu-darmstadt.de/research/core/)
+Reproducible: Always

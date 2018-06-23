@@ -1,0 +1,16 @@
+Bug 421148 – [1.8][compiler] Verify error with annotated casts and unused locals.
+BETA_JAVA8:
+The following program triggers an operand stack underflow error:
+// --
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+@Target(ElementType.TYPE_USE) @interface T {}
+public class X {
+public static void main(String argv[]) {
+Object o = (@T Object) new Object();
+}
+}
+Fix will follow shortly.
+To reproduce the option "preserved unused locals"
+must be turned off at the project level.
+Fix is trivial, will follow shortly.

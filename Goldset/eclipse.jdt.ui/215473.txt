@@ -1,0 +1,10 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/NLSKeyHyperlink.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/propertiesfileeditor/PropertiesFileEditorMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/propertiesfileeditor/PropertyKeyHyperlink.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/JavaElementHyperlink.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/NLSKeyHyperlinkDetector.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/propertiesfileeditor/PropertiesFileEditorMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/propertiesfileeditor/PropertyKeyHyperlinkDetector.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/JavaElementHyperlinkDetector.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/JavaEditorMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/JavaEditorMessages.java

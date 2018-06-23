@@ -1,0 +1,5 @@
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/CallInliner.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/cast_in/TestHierarchyOverloadedMultiLevel.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineMethodWorkspace/TestCases/cast_out/TestHierarchyOverloadedMultiLevel.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/InlineMethodTests.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/Bindings.java

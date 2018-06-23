@@ -1,0 +1,17 @@
+Bug 312014 – content of tree view (projects and folders) to export to a jar is not read by some screen readers
+Build Identifier: N20100505-2000
+I tested it with JAWS and NVDA and they gave me the same result.
+The workaround is to use the JAWS cursor to do the mapping between the project/folder names and their selected state, but it's a boring task.
+There are tree views in eclipse that are well red by JAWS, such as window > customize perstective...
+Reproducible: Always
+Steps to Reproduce:
+1.
+Create one or two projects to exercise this test.
+2.
+go to file > export > java > jar file and press next.
+3.
+You are now focused on the tree view which displays projects and folders to select.
+4.
+Press up and down arrows.
+Expected results: screen reader should say something like: "<project name|folder name> <state of tree view item (closed|opened)> <state of checkbox>"
+Actual results: screen reader says: "select projects and folders to export <state of tree view item (closed|opened)> <state of checkbox>"

@@ -1,0 +1,5 @@
+43909 – EL EvaluationContext wrapper hides locale
+org.apache.el.lang.EvaluationContext doesn't pass locale to the wrapped
+ELContext as does org.apache.jasper.el.ELContextWrapper.
+This prohibits using of
+the locale for it's original purpose.

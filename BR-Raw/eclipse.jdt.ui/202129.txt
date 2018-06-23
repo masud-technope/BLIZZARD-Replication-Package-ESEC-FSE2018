@@ -1,0 +1,5 @@
+Bug 202129 – [working sets] double click should add element to working set
+3.4 20070904
+- Edit an existing Java working set with the new (two pane) dialog
+- Double click on an element should add the element to the other pane
+- Same in the right pane: Double click should remove the element

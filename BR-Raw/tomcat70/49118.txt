@@ -1,0 +1,4 @@
+49118 – Inefficient use of String concatenation in loop
+Created attachment 25293 [details]
+Patch to use StringBuilder instead of +=String
+HttpServlet toTrace method concatenates Strings in a loop; this is very inefficient.

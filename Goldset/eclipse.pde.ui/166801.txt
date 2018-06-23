@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.core/src_ant/org/eclipse/pde/internal/core/ant/ConvertSchemaToHTML.java
+ui/org.eclipse.pde.core/ant_tasks/pde-ant.jar

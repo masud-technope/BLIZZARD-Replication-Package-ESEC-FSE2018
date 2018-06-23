@@ -1,0 +1,49 @@
+53993 � NPE in AccessLogValve
+During a load test of tomcat 7.0.30, we occasionally see NPEs from the AccessLogValve.
+ Some of the requests that are being executed as part of the load test call HttpSession.invalidate.
+ I mention this because the code in question appears to be susceptible to multithreaded manipulation of the session.
+ I think the fix should be as simple as a check for null on the return value of request.getSessionInternal.
+Of course, our access log pattern includes logging the session id.
+java.lang.NullPointerException
+org.​apache.​catalina.​valves.​AccessLogValve$​SessionIdElement.​addElement(​AccessLogValve.java:1733)
+org.apache.catalina.valves.AccessLogValve.log(AccessLogValve.java:955)
+org.apache.catalina.core.AccessLogAdapter.log(AccessLogAdapter.java:51)
+org.apache.catalina.core.StandardEngine.logAccess(StandardEngine.java:332)
+org.apache.catalina.core.ContainerBase.logAccess(ContainerBase.java:1270)
+org.apache.catalina.core.ContainerBase.logAccess(ContainerBase.java:1270)
+org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:441)
+org.​apache.​coyote.​http11.​AbstractHttp11Processor.​process(​AbstractHttp11Processor.java:1002)
+org.​apache.​coyote.​AbstractProtocol$​AbstractConnectionHandler.​process(​AbstractProtocol.java:585)
+org.​apache.​tomcat.​util.​net.​JIoEndpoint$​SocketProcessor.​run(​JIoEndpoint.​java:​312)​
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+java.lang.Thread.run(Thread.java:722)
+existing code for convenience:
+protected static class SessionIdElement implements AccessLogElement {
+@Override
+public void addElement(StringBuilder buf, Date date, Request request,
+Response response, long time) {
+if (request != null) {
+if (request.getSession(false) != null) {
+buf.append(request.getSessionInternal(false) // LINE 1733
+.getIdInternal());
+} else {
+buf.append('-');
+}
+} else {
+buf.append('-');
+}
+}
+}
+possible fix:
+...
+if (request.getSession(false) != null) {
+Session internalSession = request.getSessionInternal(false);
+if (internalSession != null) {
+buf.append(internalSession.getIdInternal());
+} else {
+buf.append('-');
+}
+} else {
+buf.append('-');
+}

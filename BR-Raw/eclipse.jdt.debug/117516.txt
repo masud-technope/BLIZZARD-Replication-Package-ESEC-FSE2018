@@ -1,0 +1,31 @@
+Bug 117516 – Make JDT .java agnostic
+Creating a separate bug for jdt.debug out of bug 89977:
+Remove ".java" dependencies in JDT/Debug
+attachment 30385 [details]
+I have completed my investigations of JDT/Debug.
+The following list shows the
+relevant places and indicates whether they are a) fixed by this patch, b) no
+fix is necessary, or in one case, c) I'm not certain, so hopefully someone more
+familiar with JDT/Debug can comment:
+JDT/Debug UI
+BreakpointRenameTypeParticipant
+line 52, fixed in this patch by using same extension as original
+BreakpointLocationVerifierJob
+line 137, fixed in this patch by using JavaCore.isJavaLikeFileName
+line 147: OK, as .java is only used in a name given to the parser
+JavaStackTraceHyperlink
+line 171, fixed in this patch by using JavaCore.removeJavaLikeExtension
+OpenTypeAction, line 162
+AppletLaunchConfiguarionUtils, line 92
+OK, as javaProject.findElement(IPath) still finds compilation unit
+JDT/Debug
+EvaluationSourceGenerator, line 226
+LocalEvaluationEngine, lines 1199, 1282
+JavaHotCodeReplaceManager, line 1126
+OK, as javaProject.findElement(IPath) still finds compilation unit
+JavaDebugUtils
+line 175 - this may be ok if the returned string is used with
+findElement, as in the above places, but I couldn't be certain this would
+always in the case - it wasn't clear to me exactly when this code was called.
+If required, we'd need to iterate over the registered Java source extensions
+until finding a name which maps to a resource which exists.

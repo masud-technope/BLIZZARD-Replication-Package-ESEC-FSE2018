@@ -1,0 +1,2 @@
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/IPackageFragmentRoot.java

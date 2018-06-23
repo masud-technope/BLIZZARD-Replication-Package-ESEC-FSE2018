@@ -1,0 +1,16 @@
+Bug 400902 – [1.8][search] Search engine fails to annotation matches in extends/implements clauses.
+BETA_JAVA8:
+// ---------
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+import java.io.Serializable;
+public class X extends @Marker Object implements @Marker Serializable {
+int x = (@Marker int) 0;
+}
+@Target(ElementType.TYPE_USE)
+@interface Marker {
+}
+// ------------------------
+Searching for references to Marker brings up only one result - the one
+inside the cast.
+The other two are missing.

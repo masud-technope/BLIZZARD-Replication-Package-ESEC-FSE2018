@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/hover/ProblemHover.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/hover/AbstractAnnotationHover.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/hover/AbstractJavaEditorTextHover.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/hover/AnnotationHover.java

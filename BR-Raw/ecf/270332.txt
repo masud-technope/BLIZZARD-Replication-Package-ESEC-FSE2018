@@ -1,0 +1,6 @@
+Bug 270332 – put() is called twice for DocShares due to ECF Generic group handling
+Created attachment 130146 [details]
+proposed patch
+v2009032-0800
+Remy found that the subject Hashtable never has put() called on it, meaning there's no adding of docshare channels for reference later.
+ This causes strange problems fixed with the attached patch.

@@ -1,0 +1,24 @@
+Bug 284793 – [quick assist] convert anonymous type fails silently if a class of the destination name already exists
+Build ID: I20090611-1540
+Steps To Reproduce:
+1.
+Paste the class below into a new project.
+2.
+Invoke Ctrl+1 -> "Convert anonymous to nested class" on first Runnable (accept the default class name)
+3.
+Invoke Ctrl+1 -> "Convert anonymous to nested class" on the second Runnable.
+4.
+Observe that no refactoring is performed for the second invocation.
+(It works if you either change the class name or use the Refactor menu for the second refactoring instead of the quickfix)
+public class MultiAnonymous {
+Runnable x = new Runnable() {
+public void run() {
+System.out.println(0);
+}
+};
+Runnable y = new Runnable() {
+public void run() {
+System.out.println(42);
+}
+};
+}

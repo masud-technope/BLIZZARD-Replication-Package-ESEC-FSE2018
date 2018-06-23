@@ -1,0 +1,4 @@
+Bug 278289 – [doc] Category Editor needs help
+Right now it is point at random help, which is even worse than not having help.
+The new category file wizard also needs help.
+Marked on UI as it requires changes to pde UI.

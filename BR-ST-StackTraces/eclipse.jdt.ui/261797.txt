@@ -1,0 +1,15 @@
+java.lang.System.arraycopy
+java.util.ArrayList.toArray
+org.eclipse.jdt.internal.corext.util.JavaElementResourceMapping$LogicalPackageResourceMapping.getTraversals
+org.eclipse.team.internal.ccvs.ui.CVSLightweightDecorator.getTraversalRoots
+org.eclipse.team.internal.ccvs.ui.CVSLightweightDecorator.isSupervised
+org.eclipse.team.internal.ccvs.ui.CVSLightweightDecorator.decorate
+org.eclipse.team.internal.ccvs.ui.CVSLightweightDecorator.decorate
+org.eclipse.ui.internal.decorators.LightweightDecoratorDefinition.decorate
+org.eclipse.ui.internal.decorators.LightweightDecoratorManager$LightweightRunnable.run
+org.eclipse.core.runtime.SafeRunner.run
+org.eclipse.ui.internal.decorators.LightweightDecoratorManager.decorate
+org.eclipse.ui.internal.decorators.LightweightDecoratorManager.getDecorations
+org.eclipse.ui.internal.decorators.DecorationScheduler$1.ensureResultCached
+org.eclipse.ui.internal.decorators.DecorationScheduler$1.run
+org.eclipse.core.internal.jobs.Worker.run

@@ -1,0 +1,10 @@
+Bug 457547 – [quick assist] extract number with quick assist doesn't replace all the occurrences
+When I use quick fix both in a magic number or in a string the following options appear in the popup:
+Extract to local variable (replace all ocurrences)
+Extract to local variable
+Extract to local constant
+When a string is being selected, both the first and the third option replace all the ocurrences of the string.
+But when a number is being selected, it only replaces the selected occurrence selecting any of those options.
+I found a workaround: using the shortcut Ctrl+T, A, then checking "replace all the occurrences".
+Regards,
+Jorge

@@ -1,0 +1,16 @@
+Bug 223178 – "BitTrrent" is not displayed in the drop-down-list of "Connect to Provider" button in the tool-bar
+Build ID: 2.0.0.v20080315-2247
+Steps To Reproduce:
+I used it with Eclipse 3.3.2.
+"BitTrrent" is not displayed in the drop-down-list of "Connect to Provider"
+button in the tool-bar.
+Can "BitTrrent" be used only at Eclipse 3.4 or more?
+Moreover, the file transfer view cannot be displayed.
+It is not in the view list.
+I want to ask for the correction of MANIFEST.MF if this is a bug.
+1) org.eclipse.ecf.examples.updatesite.server
+org.eclipse.equinox.app;bundle-version="1.0.100"
+=>  "1.0.1"
+2) org.eclipse.ecf.filetransfer.ui
+org.eclipse.jface.text;bundle-version="3.4.0"
+=> "3.3.0"

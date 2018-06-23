@@ -1,0 +1,4 @@
+Bug 255347 – [Discovery][SLP] (optional) IServiceID.getServiceName isn't set on service discovery nor registration
+org.eclipse.ecf.discovery.identity.IServiceID.getServiceName() gets ignored and falls back to he hostname of the service instead.
+While the fall back is fine.
+getServiceName() should be used if != null.

@@ -1,0 +1,3 @@
+Bug 405069 – [1.8][compiler][codegen] Generate code for method references.
+BETA_JAVA8:
+This ER will be used to implement/track code generation for method references

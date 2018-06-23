@@ -1,0 +1,15 @@
+49345 – EL does not work correctly with JSF 2.0 composite components
+We are using JSF 2.0's <f:validateBean> tag with a JSF 2.0 composite component:
+<ex:ExampleComposite id="example1" managedBean="#{beanValidation}">
+<f:validateBean for="example1:input"/>
+</ex:ExampleComposite>
+#{beanValidation} corresponds to a bean with property "value" which is used as the value for the input box "example1:input" defined in the composite component.
+ As this is a custom component, the "for" attribute really needs to resolve #{cc.attrs.beanValidation.value}.
+ In MyFaces, we defer to Tomcat's ValueExpressionImpl.getValueReference() method to obtain a ValueReference containing the underlying bean and the correct property name.
+ However, what we end up with is a ValueReference containing the correct bean and an incorrect property name ("attrs" instead of "value").
+ Hence, we end up with an exception when trying to validate.
+ I've dug around a bit and I can trace the issue back to  AstValue.getValueReference() (or at least, I think this is it):
+return new ValueReference(t.base, this.jjtGetChild(1).getValue(ctx));
+I don't think the Tomcat EL code is taking composite components into account here and is simply lopping off the first part of the EL expression no matter what.
+ For composite components, more than that has to be trimmed off as everything is prefixed with "cc.attrs".
+Note that this issue has been independently verified by another member of the MyFaces team and it has been confirmed that running MyFaces with Sun's EL implementation works, so the problem is not on MyFaces's side.

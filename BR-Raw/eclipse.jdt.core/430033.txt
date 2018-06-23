@@ -1,0 +1,9 @@
+Bug 430033 – [1.8][model] Lambda elements missing in ancestry for binary elements
+Spawned from https://bugs.eclipse.org/bugs/show_bug.cgi?id=430027#c2
+For binary types, the problem from bug 430026 shows up no matter if the lambda parameter does or doesn't declare the type.
+Example in java.util.function.IntPredicate:
+default IntPredicate and(IntPredicate other) {
+Objects.requireNonNull(other);
+return (value) -> test(value) && other.test(value);
+}
+See also https://bugs.eclipse.org/bugs/show_bug.cgi?id=430027#c3

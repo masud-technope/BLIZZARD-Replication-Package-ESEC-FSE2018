@@ -1,0 +1,2 @@
+52028 – Embeded Tomcat using a Connector with a random port (port 0)
+New feature based on discussion: http://markmail.org/message/3nczqiqm6smez255

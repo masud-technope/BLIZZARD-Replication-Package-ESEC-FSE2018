@@ -1,0 +1,29 @@
+Bug 427320 – [1.8][dom ast] Type annotation on constructor is returned via IBinding#getAnnotations()
+Question from Noopur: How to differentiate between a type use annotation and a constructor annotation on a constructor.
+We get both via IBinding.getAnnotations().
+- Probably a bug?
+I would also expect @A to be treated as a type annotation in the snippet below.
+Java 8 reflection seems to agree with that viewpoint.
+package jsr308.bug.ctor;
+import java.lang.annotation.*;
+@Target(ElementType.TYPE_USE)
+@Retention(RetentionPolicy.RUNTIME)
+@interface A {}
+@Target(ElementType.TYPE_USE)
+@Retention(RetentionPolicy.RUNTIME)
+@interface B {}
+@Target(ElementType.CONSTRUCTOR)
+@Retention(RetentionPolicy.RUNTIME)
+@interface C {}
+public class Test<E> {
+@C
+public @A <T> Test() { // @A should be type annotation on constructor binding
+new @B() Test();
+}
+public static void main(String[] args) throws Exception {
+Annotation[] declAnnos = Test.class.getDeclaredConstructors()[0].getAnnotations();
+System.out.println(java.util.Arrays.asList(declAnnos));
+Annotation[] typeAnnos = Test.class.getDeclaredConstructors()[0].getAnnotatedReturnType().getAnnotations();
+System.out.println(java.util.Arrays.asList(typeAnnos));
+}
+}

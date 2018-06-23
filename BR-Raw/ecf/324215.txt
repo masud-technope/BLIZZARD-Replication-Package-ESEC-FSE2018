@@ -1,0 +1,4 @@
+Bug 324215 – [remoteserviceadmin][remoteservices] implement remote services admin spec
+In OSGi 4.2 enterprise spec chapter 122 is the remote services admin specification.
+ As of version 3.3, ECF fully implements the remote services spec (chapter 13 in compendium), but ECF does not yet implement the remote services admin spec.
+This enhancement would be to implement the remote services admin spec upon the ECF discovery API, ECF remote services API, and the ECF OSGi remote services implementation.

@@ -1,0 +1,24 @@
+Bug 402673 – [1.8][dom ast] ASTs < JLS8 must not create new node types
+ASTs before JLS8 must not try to create nodes that are only allowed in JLS8.
+Hint: Open a call hierarchy on ASTNode#unsupportedIn2_3_4() and make sure all accesses are properly protected.
+You may want to set "Search Scope > Project" in the view menu.
+E.g.
+LambdaExpression nodes:
+package jsr335;
+public class RunnableTest {
+Runnable r = () -> System.out.println("hi");
+}
+java.lang.UnsupportedOperationException: Operation only supported in JLS8 and later AST
+at org.eclipse.jdt.core.dom.ASTNode.unsupportedIn2_3_4(ASTNode.java:1906)
+at org.eclipse.jdt.core.dom.LambdaExpression.<init>(LambdaExpression.java:127)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2144)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1724)
+at org.eclipse.jdt.core.dom.ASTConverter.convertToVariableDeclarationFragment(ASTConverter.java:3137)
+at org.eclipse.jdt.core.dom.ASTConverter.convertToFieldDeclaration(ASTConverter.java:3026)
+at org.eclipse.jdt.core.dom.ASTConverter.checkAndAddMultipleFieldDeclaration(ASTConverter.java:417)
+at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:183)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2809)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1329)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.convert(CompilationUnitResolver.java:295)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1212)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:812)

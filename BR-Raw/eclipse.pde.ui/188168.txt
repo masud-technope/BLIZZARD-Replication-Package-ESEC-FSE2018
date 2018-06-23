@@ -1,0 +1,7 @@
+Bug 188168 – Errors in Workspace dialog is displayed twice
+I20070517-1700
+The Framework may request to be restarted for several reasons.
+ If you have a workspace with a project that has an error then when launching you will get the "Errors in Workspace" dialog.
+ This is fine, but if the Framework requests to restart while the application is running then the "Errors in Workspace" dialog is displayed again.
+The dialog should only be displayed each time the launcher is used, but not when a restart is requested by the Framework.
+I will attach a workspace and instructions to reproduce.

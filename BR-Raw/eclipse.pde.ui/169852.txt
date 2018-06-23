@@ -1,0 +1,5 @@
+Bug 169852 – Update to new JUnitLaunchConfigurationDelegate
+20070108
+In I20070109 you will find a new API class o.e.jdt.junit.launcher.JUnitLaunchConfigurationDelegate
+which replaces JUnitBaseLaunchConfiguration (which is still there, deprecated, so nothing broken, no urgent action required)
+The following patch updates PDE's delegate to use the new API.

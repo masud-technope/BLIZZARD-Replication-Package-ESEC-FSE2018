@@ -1,0 +1,2 @@
+Bug 316106 – [Discovery][DNS-SD] Add API to configure DNS resolver
+Add API to configure the resolver instance nested in org.eclipse.ecf.provider.dnssd.DnsSdDisocoveryLocator

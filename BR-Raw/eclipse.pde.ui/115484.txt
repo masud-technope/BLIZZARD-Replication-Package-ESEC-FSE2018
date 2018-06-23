@@ -1,0 +1,15 @@
+Bug 115484 – Allow PDE Export to read qualifiers from map (or provided) files
+http://eclipse.org/equinox/documents/plugin-versioning.html advises to use
+'.qualifier' in the version number which gets replaced by PDE Build.
+While PDE
+Build can derive the qualifier from the map files this is currently not possible
+when using PDE export.
+This results in problems when copying an exported plug-in
+into the an existing 'plugins' directory where the same plug-in already exists
+because the generated version number (e.g.
+4.2.3.20050507 is lexicographically
+below the one from the map file (e.g.
+4.2.3.v20050506).
+Even better for us would be an ant task that replaces qualifiers for all
+plug-ins and features in a given directory because we currently use our custom
+export scripts mainly due to bug 101241.

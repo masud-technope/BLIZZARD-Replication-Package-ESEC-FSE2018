@@ -1,0 +1,5 @@
+Bug 120170 – Cannot set breakpoints in external source
+The fix to bug 112613 has broken breakpoints in external archives.
+For example, debug a program with a JRE that is not part of a workspace buildpath.
+Step into a class file from the jar (no ruler in editor).
+Notice the "Toggle Line Breakpoint" action in the top level Run menu is not enabled.

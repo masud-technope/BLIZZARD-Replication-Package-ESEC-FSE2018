@@ -1,0 +1,53 @@
+50105 – Violation of JSP-EL spec version 2.1 when coerce Enum to String
+Section 1.18.2 of the 2.1 JSP-EL spec (Coerce A to String) says "if A is Enum, return A.name()".
+This is not always the case in Tomcat 6.0.29.
+To demonstrate the bug, I created some custom code (enum, Tag, JSP):
+Tag:
+public class MyCustomTag implements Tag {
+public void setValue(String value) {
+System.out.println(value);
+}
+@Override public void setPageContext(PageContext pc) {}
+@Override public void setParent(Tag t) {}
+@Override public Tag getParent() { return null; }
+@Override public int doStartTag() throws JspException { return SKIP_BODY; }
+@Override public int doEndTag() throws JspException { return EVAL_PAGE; }
+@Override public void release() {}
+}
+TLD:
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xsi:schemaLocation="http://java.sun.com/xml/ns/javaeeweb-
+jsptaglibrary_2_1.xsd" xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.1">
+<tlibversion>1.0</tlibversion>
+<uri>http://my-domain.org/customLib</uri>
+<tag>
+<name>customTag</name>
+<tagclass>mypackage.MyCustomTag</tagclass>
+<bodycontent>empty</bodycontent>
+<attribute>
+<name>value</name>
+<required>true</required>
+<rtexprvalue>true</rtexprvalue>
+</attribute>
+</tag>
+</taglib>
+Enum:
+public enum MyEnum {
+APPLE, ORANGE;
+@Override
+public String toString() {
+return "this is a " + name();
+}
+}
+JSP:
+<%@taglib prefix="myLib" uri="http://my-domain.org/customLib"%>
+<myLib:customTag value="${myEnum}"/>
+<myLib:customTag value="foo.${myEnum}.bar"/>
+Because the value myEnum is was set to MyEnum.ORANGE, i would expect, that this outputs:
+ORANGE
+foo.ORANGE.bar
+But the output in catalina.out instead is:
+ORANGE
+foo.this is a ORANGE.bar
+Which is a violation of the JSP-EL spec (if I understood it right).

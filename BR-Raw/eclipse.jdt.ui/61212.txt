@@ -1,0 +1,11 @@
+Bug 61212 – [search] Search requestor should not populate Java model
+I20040506
+I noticed that JavaSearchResult.isShownInEditor(...) populates the Java model
+because it uses getUnderlyingResource().
+In this particular case, it should
+use getRessource() which is a handle-only method.
+In general, the SearchRequestor should not call anything than handle-only
+methods (see Java doc of these methods: if it doesn't say it is a handle-only
+method, it will populate the Java model).
+If you need to call non-handle-only methods (like IType.isClass()), JDT Core
+can surely provide an API on SearchMatch that will return the right answer.

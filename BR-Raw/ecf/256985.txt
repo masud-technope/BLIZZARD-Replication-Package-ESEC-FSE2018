@@ -1,0 +1,2 @@
+Bug 256985 – ShowImageShell appears to leak an Image
+In the showImage() method, a new Image object is allocated but it doesn't look like dispose() is ever called.

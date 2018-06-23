@@ -1,0 +1,27 @@
+Bug 268751 – [ds tooling] NPE in new DS Component wizard
+(Eclipse 3.5M6 on Mac OS X/Cocoa/x86_64)
+The new Declarative Services Component wizard throws a NPE on clicking Finish.
+Stack trace follows.
+Note that my project is plain JDT, not PDE.
+There should be no requirement to use the DS tooling only in PDE projects, and even if this were a requirement the error should be caught rather than throwing an NPE.
+!ENTRY org.eclipse.pde.ds.ui 4 0 2009-03-16 10:06:24.540
+!MESSAGE java.lang.NullPointerException
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.pde.internal.core.text.AbstractEditingModel.getInputStream(AbstractEditingModel.java:183)
+at org.eclipse.pde.internal.core.text.AbstractEditingModel.load(AbstractEditingModel.java:135)
+at org.eclipse.pde.internal.ui.util.PDEModelUtility.prepareAbstractEditingModel(PDEModelUtility.java:504)
+at org.eclipse.pde.internal.ui.util.PDEModelUtility.generateModelEdits(PDEModelUtility.java:344)
+at org.eclipse.pde.internal.ui.util.PDEModelUtility.modifyModel(PDEModelUtility.java:294)
+at org.eclipse.pde.internal.ds.ui.wizards.DSCreationOperation.writeBuildProperties(DSCreationOperation.java:110)
+at org.eclipse.pde.internal.ds.ui.wizards.DSCreationOperation.execute(DSCreationOperation.java:86)
+at org.eclipse.ui.actions.WorkspaceModifyOperation$1.run(WorkspaceModifyOperation.java:106)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1800)
+at org.eclipse.ui.actions.WorkspaceModifyOperation.run(WorkspaceModifyOperation.java:118)
+at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:464)
+at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:372)
+at org.eclipse.jface.wizard.WizardDialog.run(WizardDialog.java:934)
+at org.eclipse.pde.internal.ds.ui.wizards.DSNewWizard.performFinish(DSNewWizard.java:63)
+at org.eclipse.jface.wizard.WizardDialog.finishPressed(WizardDialog.java:742)
+at org.eclipse.jface.wizard.WizardDialog.buttonPressed(WizardDialog.java:373)
+[Stack Trace Trimmed]

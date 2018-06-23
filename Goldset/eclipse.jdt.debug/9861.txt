@@ -1,0 +1,5 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JDIViewerConfiguration.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/display/DisplayViewerConfiguration.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/snippeteditor/JavaSnippetViewerConfiguration.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/display/DisplayView.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JDIContentAssistPreference.java

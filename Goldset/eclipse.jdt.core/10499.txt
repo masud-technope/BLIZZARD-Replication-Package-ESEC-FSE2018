@@ -1,0 +1,4 @@
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/BindingResolver.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ClassInstanceCreation.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ConstructorInvocation.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/SuperConstructorInvocation.java

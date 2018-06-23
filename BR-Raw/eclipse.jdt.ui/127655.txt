@@ -1,0 +1,5 @@
+Bug 127655 – [api] Must have a way to query quick assist context from source viewer
+I20060214-0010
+[api] Must have a way to query quick assist context from text viewer.
+In addition, quick assistant install must specify that besides ITextViewer also ITextViewerExtension7 must be present in order to get the invocation context.
+==> assertion failure if this is not met.

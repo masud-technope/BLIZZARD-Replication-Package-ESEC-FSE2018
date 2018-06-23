@@ -1,0 +1,5 @@
+Bug 249620 – [preferences] Provide UI for 'no strictly compatible JRE available' problem severity
+From bug 244693.
+Support has been added to org.eclispe.jdt.launching for a configurable problem severity when a project is bound to an EE for which there is no strict match in the workspace.
+By default, the severity setting is WARNING.
+A configurable setting should be added to the compiler settings UI for this problem.

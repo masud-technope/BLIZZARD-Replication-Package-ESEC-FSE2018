@@ -1,0 +1,3 @@
+java/org/apache/catalina/util/LifecycleBase.java
+java/org/apache/catalina/util/LocalStrings.properties
+webapps/docs/changelog.xml

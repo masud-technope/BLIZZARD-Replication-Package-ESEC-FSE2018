@@ -1,0 +1,11 @@
+Bug 80339 – Wrong error message "; expected" when writing an interface
+During an introduction course to Eclipse we got a error.
+We wrote an interface
+public interface Test {
+public void myMethod()   <<-- without a semicolon!
+}
+and the tooltip and quick fix said that a curly brace is missing.
+But there must
+be a semicolon.
+Have to retest that on 3.1MS3.
+Sorry, havent have the time for download yet.

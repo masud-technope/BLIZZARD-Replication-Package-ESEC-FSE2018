@@ -1,0 +1,3 @@
+Bug 208186 – Don't set encoding of generated file unless it needs to change
+See bug 190268.
+ As a perf improvement and to deal with some remaining problems when the settings file is read-only, we should simply avoid setting the file encoding in EncodedFileOutputStream if setting it would make no difference.

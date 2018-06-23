@@ -1,0 +1,76 @@
+50789 – custom error pages and CDI/weld problem
+Created attachment 26662 [details]
+test case
+I can't seem to use CDI/weld in custom error pages.
+A testcase is attached.
+Build with "mvn install", deploy.
+"index.html" links to "404.jsf".
+If you visit this url, the page is displayed correctly.
+If you go somewhere else, thereby provoking a 404, it should display the same.
+Instead, I see tomcat's generic 404 page and this stacktrace:
+Feb 15, 2011 6:04:43 PM org.apache.catalina.core.ApplicationDispatcher invoke
+SEVERE: Servlet.service() for servlet Faces Servlet threw exception
+java.lang.IllegalStateException: Must call associate() before calling activate()
+at org.jboss.weld.context.AbstractConversationContext.activate(AbstractConversationContext.java:273)
+at org.jboss.weld.jsf.WeldPhaseListener.activateConversations(WeldPhaseListener.java:110)
+at org.jboss.weld.jsf.WeldPhaseListener.beforePhase(WeldPhaseListener.java:84)
+at com.sun.faces.lifecycle.Phase.handleBeforePhase(Phase.java:224)
+at com.sun.faces.lifecycle.Phase.doPhase(Phase.java:95)
+at com.sun.faces.lifecycle.RestoreViewPhase.doPhase(RestoreViewPhase.java:107)
+at com.sun.faces.lifecycle.LifecycleImpl.execute(LifecycleImpl.java:114)
+at javax.faces.webapp.FacesServlet.service(FacesServlet.java:308)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:306)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:672)
+at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:465)
+at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:402)
+at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:329)
+at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:466)
+at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:387)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:181)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:100)
+at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:541)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:383)
+at org.apache.coyote.http11.Http11AprProcessor.process(Http11AprProcessor.java:284)
+at org.apache.coyote.http11.Http11AprProtocol$Http11ConnectionHandler.process(Http11AprProtocol.java:322)
+at org.apache.tomcat.util.net.AprEndpoint$SocketProcessor.run(AprEndpoint.java:1684)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:662)
+Feb 15, 2011 6:04:43 PM org.apache.catalina.core.StandardHostValve custom
+SEVERE: Exception Processing ErrorPage[errorCode=404, location=/404.jsf]
+javax.servlet.ServletException: Must call associate() before calling activate()
+at javax.faces.webapp.FacesServlet.service(FacesServlet.java:321)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:306)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:672)
+at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:465)
+at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:402)
+at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:329)
+at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:466)
+at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:387)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:181)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:100)
+at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:541)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:383)
+at org.apache.coyote.http11.Http11AprProcessor.process(Http11AprProcessor.java:284)
+at org.apache.coyote.http11.Http11AprProtocol$Http11ConnectionHandler.process(Http11AprProtocol.java:322)
+at org.apache.tomcat.util.net.AprEndpoint$SocketProcessor.run(AprEndpoint.java:1684)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:662)
+Caused by: java.lang.IllegalStateException: Must call associate() before calling activate()
+at org.jboss.weld.context.AbstractConversationContext.activate(AbstractConversationContext.java:273)
+at org.jboss.weld.jsf.WeldPhaseListener.activateConversations(WeldPhaseListener.java:110)
+at org.jboss.weld.jsf.WeldPhaseListener.beforePhase(WeldPhaseListener.java:84)
+at com.sun.faces.lifecycle.Phase.handleBeforePhase(Phase.java:224)
+at com.sun.faces.lifecycle.Phase.doPhase(Phase.java:95)
+at com.sun.faces.lifecycle.RestoreViewPhase.doPhase(RestoreViewPhase.java:107)
+at com.sun.faces.lifecycle.LifecycleImpl.execute(LifecycleImpl.java:114)
+at javax.faces.webapp.FacesServlet.service(FacesServlet.java:308)
+...
+19 more
+tomcat 7.0.8, java 1.6.0_23, windows XP SP3.
+This issue reminds me of https://issues.apache.org/bugzilla/show_bug.cgi?id=49991, that was on the issue of using CDI/weld in the login/login failed pages used when doing form authentication.

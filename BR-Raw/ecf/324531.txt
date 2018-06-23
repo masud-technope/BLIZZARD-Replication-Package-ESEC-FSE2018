@@ -1,0 +1,3 @@
+Bug 324531 – [sharedobject] SharedObjectCommitEvent is not Serializable
+In org.eclipse.ecf.core.sharedobject.TwoPhaseCommitEventProcessor, which is used by TransactionSharedObject, the SharedObjectCommitEvent is sent/serialized to convey that the transactional replication of the shared object is successfully completed.
+The SharedObjectCommitEvent should be Serializable, and it was at one time, but with a change to the superclass hierarchy the class was not defined as Serializable.

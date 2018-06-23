@@ -1,0 +1,32 @@
+Bug 424589 – [1.8][compiler] NPE in TypeSystem.getUnannotatedType
+Using Eclipse Java Development Tools Patch for Java 8 Support (BETA)	1.0.0.v20131222-0103_BETA_JAVA8
+Steps to reproduce:
+1 Create empty default 1.8 Java project with wizard
+2 Copy/paste content of http://docs.oracle.com/javase/tutorial/java/javaOO/examples/MethodReferencesTest.java to the "src" folder
+3 The file can't be compiled due NPE's in TypeSystem.getUnannotatedType, see log below.
+Error
+Sun Dec 22 20:29:46 CET 2013
+Errors running builder 'Java Builder' on project 'Java8Examples'.
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.lookup.TypeSystem.getUnannotatedType(TypeSystem.java:76)
+at org.eclipse.jdt.internal.compiler.lookup.TypeSystem.getParameterizedType(TypeSystem.java:146)
+at org.eclipse.jdt.internal.compiler.lookup.LookupEnvironment.createParameterizedType(LookupEnvironment.java:938)
+at org.eclipse.jdt.internal.compiler.lookup.ParameterizedTypeBinding.substituteInferenceVariable(ParameterizedTypeBinding.java:827)
+at org.eclipse.jdt.internal.compiler.lookup.ConstraintFormula.applySubstitution(ConstraintFormula.java:70)
+at org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.inferInvocationType(InferenceContext18.java:291)
+at org.eclipse.jdt.internal.compiler.lookup.ParameterizedGenericMethodBinding.computeCompatibleMethod(ParameterizedGenericMethodBinding.java:95)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod(Scope.java:703)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod(Scope.java:661)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.findMethod(Scope.java:1559)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getImplicitMethod(Scope.java:2365)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.resolveType(MessageSend.java:650)
+at org.eclipse.jdt.internal.compiler.ast.LocalDeclaration.resolve(LocalDeclaration.java:244)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:620)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:303)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:531)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1209)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1319)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:570)
+at org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:770)
+at org.eclipse.jdt.internal.compiler.ProcessTaskManager.run(ProcessTaskManager.java:137)
+at java.lang.Thread.run(Thread.java:744)

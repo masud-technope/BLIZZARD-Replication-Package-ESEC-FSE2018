@@ -1,0 +1,11 @@
+Bug 315039 – [patch] Eclipse launch configuration should inherit properties from target platform
+When creating a new Eclipse launch configuration from a target platform not containing products but an application PDE correctly recognizes the default application.
+However, due to the fix for bug 175437 all config.ini properties inherited from the target platform are cleared during launching.
+My observation is that this fix is too drastic.
+The requirement in bug 175437 only talks about the splash screen.
+In this case the products indeed don't match.
+However, I have a case where I create a new Eclipse launch config based on an
+Eclipse application from my target platform.
+PDE correctly recognizes the
+application in config.ini and sets the proper default application to launch.
+However, because of this fix other important properties are not copied.

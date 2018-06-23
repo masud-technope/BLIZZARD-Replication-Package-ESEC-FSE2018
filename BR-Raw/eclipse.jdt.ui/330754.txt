@@ -1,0 +1,19 @@
+Bug 330754 – [clean up] "Remove 'this' qualifier" erroneously removes explicit reference to containing instance within inner subclass of outer class
+Build Identifier: I20100909-0800
+public class Test {
+String label = "works";
+class Nested extends Test {
+Nested() {
+label = "broken";
+}
+@Override
+public String toString() {
+return Test.this.label; // this line gets altered by the clean up
+}
+}
+public static void main(String[] args) {
+System.out.println(new Test().new Nested());
+}
+}
+This example should print "works", but this bug changes the expression `Test.this.label` to `label`, which is a different reference, and the altered program prints "broken" instead.
+Reproducible: Always

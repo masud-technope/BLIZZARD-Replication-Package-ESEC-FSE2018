@@ -1,0 +1,36 @@
+Bug 266085 – [navigation] Quick outline view reproduces StackOverflow on certain key presses (to filter)
+I have a java class on which i open the quick outline view
+Then if i press f it filters it fine or if i press r it also filters it fine
+But when i do the same with 's' then i get the stackoverflow error below:
+The thing is that for another class 's' works fine but if i type there 'd' it crashes..
+And i dont see a connection for the first class s would get results, for the second class d wouldnt get results
+this is with build: I20090224-0800
+java.lang.StackOverflowError
+at org.eclipse.swt.internal.win32.OS.CallWindowProc(OS.java:2297)
+at org.eclipse.swt.widgets.Tree.callWindowProc(Tree.java:1529)
+at org.eclipse.swt.widgets.Control.windowProc(Control.java:4002)
+at org.eclipse.swt.widgets.Tree.windowProc(Tree.java:5820)
+at org.eclipse.swt.widgets.Display.windowProc(Display.java:4588)
+at org.eclipse.swt.internal.win32.OS.SendMessageW(Native Method)
+at org.eclipse.swt.internal.win32.OS.SendMessage(OS.java:3130)
+at org.eclipse.swt.widgets.Tree.getItems(Tree.java:3267)
+at org.eclipse.swt.widgets.TreeItem.getItems(TreeItem.java:787)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.findElement(AbstractInformationControl.java:500)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.findElement(AbstractInformationControl.java:506)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.findElement(AbstractInformationControl.java:480)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.findElement(AbstractInformationControl.java:500)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.findElement(AbstractInformationControl.java:506)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.findElement(AbstractInformationControl.java:480)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.findElement(AbstractInformationControl.java:500)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.findElement(AbstractInformationControl.java:506)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.findElement(AbstractInformationControl.java:480)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.findElement(AbstractInformationControl.java:500)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.findElement(AbstractInformationControl.java:506)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.findElement(AbstractInformationControl.java:480)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.findElement(AbstractInformationControl.java:500)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.findElement(AbstractInformationControl.java:506)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.findElement(AbstractInformationControl.java:480)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.findElement(AbstractInformationControl.java:500)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.findElement(AbstractInformationControl.java:506)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.findElement(AbstractInformationControl.java:480)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.findElement(AbstractInformationControl.java:500)

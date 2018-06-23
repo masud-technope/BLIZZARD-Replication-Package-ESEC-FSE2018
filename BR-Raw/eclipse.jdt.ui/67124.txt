@@ -1,0 +1,11 @@
+Bug 67124 – [ccp] [dnd] Minor Copy/Paste issues
+In RC2, I get a copy/paste failure in the following specific and rare situation:
+1) I have a java file in a java project
+2) I have the file open in a Java editor and it is dirty
+3) I tried to copy and past the file to a non-java project
+I got an error stating that the operation couldn't be performed because the file
+is unsaved.
+I would expect instead to be prompted to save the file before
+proceeding.
+Also, if I perform the above but in step 3 chose a java package, the paste takes
+place without a prompt to save the dirty editor.

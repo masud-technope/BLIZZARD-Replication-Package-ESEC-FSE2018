@@ -1,0 +1,24 @@
+Bug 176364 – [assist] missing return and continue proposals within switch statements
+I20070228-0930
+The following test case should propose return:
+public class X {
+void foo() {
+switch (i) {
+case 0:
+retu<Ctrl space>
+break;
+}
+}
+}
+and the following test case should propose continue:
+public class X {
+void foo() {
+for (int i = 0; i < 1; i++) {
+switch (i) {
+case 0:
+conti<Ctrl space>
+break;
+}
+}
+}
+}

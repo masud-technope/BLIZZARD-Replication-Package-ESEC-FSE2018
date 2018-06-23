@@ -1,0 +1,9 @@
+Bug 94653 – [1.5][select] Selection on invalid raw member type should still surface raw type
+Build 20050509
+When selecting on "Outer<String>.Inner", the associated binding key should show
+Inner as a raw type, even if the qualifier is invalid.
+class Outer<T> {
+class Inner<U> {
+}
+Outer<String>.Inner inner;
+}

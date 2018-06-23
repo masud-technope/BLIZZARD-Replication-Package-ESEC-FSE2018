@@ -1,0 +1,5 @@
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/ClassFileInfo.java
+org.eclipse.jdt.core.tests.model/workspace/Converter15/bins/bug398520.jar
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTConverter15Test.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/classfmt/MethodInfoWithParameterAnnotations.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/BinaryMethod.java

@@ -1,0 +1,19 @@
+Bug 1708 – Consistency in the presentation of the Display, Run, Inspect (1GJUH54)
+DS (9/10/01 10:55:55 AM)
+The consistency is between the Snippet Editor and the Java Editor.
+In the Java Editor the actions are in the popup menu: Inspect, Display ...
+why no Run
+the actions are not in the edit menu of the workbench
+In the SnippetEditor the actions are in the popup menu: Display, Inspect
+the actions are in the edit menu of the workbench
+NOTES:
+DW (9/17/01 11:41:14 AM)
+Actions should be ordered the same.
+We have no "run" in the debug context, as it is
+really just a snippet usage - i.e.
+run some code.
+Generally, when debugging, it is less
+useful to just "run" some code - usually you need to inspect a result.
+However, to be
+consistent, we should have the same options in both contexts, and we should add
+to the edit menu consistently.

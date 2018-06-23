@@ -1,0 +1,51 @@
+51494 – NPE in StandardContextValve.invoke() when a webapp is redeployed while a request is still being processed
+Hi,
+The following applies to Tomcat 7.0.18, but I couldn't select that version.
+When a request to a Servlet takes a long time to process, and the webapp is redeployed in that time (e.g.
+by replacing the .war file), the following NPE is thrown in org.apache.catalina.core.StandardContextValve.invoke():
+10.07.2011 03:27:05 org.apache.catalina.connector.CoyoteAdapter service
+SCHWERWIEGEND: An exception or error occurred in the container during the request processing
+java.lang.NullPointerException
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:183)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:462)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:164)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:100)
+at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:754)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:404)
+at org.apache.coyote.http11.Http11AprProcessor.process(Http11AprProcessor.java:274)
+at org.apache.coyote.http11.Http11AprProtocol$Http11ConnectionHandler.process(Http11AprProtocol.java:237)
+at org.apache.tomcat.util.net.AprEndpoint$SocketProcessor.run(AprEndpoint.java:1731)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:662)
+This is because "context" attribute in StandardContextValve is null at that time.
+I could reproduce this behaviour on Windows 7 (32 bit) with Sun/Oracle Java 1.6.0_26, using the Windows x86 binaries of Tomcat 7.0.18 (from http://people.apache.org/~markt/dev/tomcat-7/v7.0.18/) with the included Tomcat Native 1.1.20.
+To reproduce:
+0) Download and install Tomcat 7.0.18 (I used the windows x86 zip binaries).
+1) Create a simple webapp with a servlet, that takes a long time to process requests, e.g.
+by calling Thread.sleep().
+For example, I used:
+@WebServlet("/LongRequest")
+public class LongRequest extends HttpServlet {
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+PrintWriter out = response.getWriter();
+out.println("Start...");
+out.flush();
+try {
+Thread.sleep(20000);
+} catch (InterruptedException ex) {
+out.println(ex.toString());
+}
+out.println("Finished.");
+out.close();
+}
+}
+2) Package the webapp as ".war" file, and make two versions of that file.
+3) Deploy the first version to Tomcat by copying the .war file into the "webapps" directory.
+4) Open a browser and make a GET request to the above servlet.
+5) Now immediately replace the .war file in the webapp directory with the second version, so that Tomcat will undeploy the old version and deploy the new one.
+5) After the request finishes, the NPE is thrown.
+I originally observed a NPE in StandardWrapperValve.invoke() with Tomcat 7.0.16 that I reported on the users list [1], which occured when the webapp was redeployed while a servlet was still processing a request.
+However, I couldn't reproduce the NPE in StandardWrapperValve.invoke(), but in StandardContextValve.invoke().
+[1] http://markmail.org/message/2tumlfipaotkshst

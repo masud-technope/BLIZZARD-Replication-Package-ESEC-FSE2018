@@ -1,0 +1,4 @@
+Bug 259093 – Reverted latest change to IntroduceParameterObjectProcessor as it causes a test failure
+N20081216-2000.
+The change made in IntroduceParameterObjectProcessor for fixing bug 33737 caused IntroduceParameterObjectTests.testInlineRename() to fail.
+I've reverted it.

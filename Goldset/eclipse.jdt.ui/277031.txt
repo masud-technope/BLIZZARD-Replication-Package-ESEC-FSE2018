@@ -1,0 +1,5 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/RenameTypeParameter/test15/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/RenameTypeParameter/test15/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/RenameTypeParameterTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/refactoring.properties
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/rename/RenameTypeParameterProcessor.java

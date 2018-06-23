@@ -1,0 +1,47 @@
+Bug 43611 – NPE displaying JavaMethodBreakpoint that has no signature
+I created a JavaMethodBreakpoint using JDIDebugModel.createMethodBreakpoint(),
+specifying null for the methodSignature.
+ This lead to a NPE when the UI tries
+to display the breakpoint in the Breakpoints view.
+I saw this problem while using the M3 driver.
+java.lang.NullPointerException
+at org.eclipse.jdt.core.Signature.toString(Signature.java:1438)
+at
+org.eclipse.jdt.internal.debug.ui.JDIModelPresentation.getMethodBreakpointText(JDIModelPresentation.java:1382)
+at
+org.eclipse.jdt.internal.debug.ui.JDIModelPresentation.getBreakpointText(JDIModelPresentation.java:1179)
+at
+org.eclipse.jdt.internal.debug.ui.JDIModelPresentation.getText(JDIModelPresentation.java:218)
+at
+org.eclipse.debug.internal.ui.LazyModelPresentation.getText(LazyModelPresentation.java:121)
+at
+org.eclipse.debug.internal.ui.DelegatingModelPresentation.getText(DelegatingModelPresentation.java:181)
+at org.eclipse.jface.viewers.TableViewer.doUpdateItem(TableViewer.java:201)
+at
+org.eclipse.jface.viewers.StructuredViewer$UpdateItemSafeRunnable.run(StructuredViewer.java:119)
+at
+org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java:1016)
+at org.eclipse.core.runtime.Platform.run(Platform.java:420)
+at
+org.eclipse.jface.viewers.StructuredViewer.updateItem(StructuredViewer.java:1263)
+at org.eclipse.jface.viewers.TableViewer.add(TableViewer.java:115)
+at org.eclipse.jface.viewers.TableViewer.add(TableViewer.java:133)
+at
+org.eclipse.debug.internal.ui.views.breakpoints.BreakpointsViewEventHandler$1.run(BreakpointsViewEventHandler.java:63)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:102)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:2165)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:1882)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2036)
+at org.eclipse.ui.internal.Workbench.run(Workbench.java:2019)
+at
+org.eclipse.core.internal.boot.InternalBootLoader.run(InternalBootLoader.java:858)
+at org.eclipse.core.boot.BootLoader.run(BootLoader.java:461)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:324)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:295)
+at org.eclipse.core.launcher.Main.run(Main.java:751)
+at org.eclipse.core.launcher.Main.main(Main.java:587)

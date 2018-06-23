@@ -1,0 +1,16 @@
+Bug 466713 – Null Annotations: NullPointerException using <int @Nullable []> as Type Param
+DESCRIPTION:
+When compiling with TYPE_USE Null-Annotations:
+class Bug {
+java.util.Iterator<int @org.eclipse.jdt.annotation.Nullable []> x;
+}
+crashes with a NullPointerException in TypeReference.java.
+ANALYSIS:
+The following code in TypeReference.java:
+if (this.resolvedType.leafComponentType().isBaseType() && hasNullTypeAnnotation())
+scope.problemReporter().illegalAnnotationForBaseType(this, this.annotations[0], this.resolvedType.tagBits & TagBits.AnnotationNullMASK);
+assumes that "this.annotations" is non-null if hasNullTypeAnnotations() is true.
+This is not true in this case (see ArrayTypeReference#hasNullTypeAnnotations).
+QUICK FIX (There is probably a cleaner solution, but nothing is worse for the than a NPE in the compiler):
+Change the condition to:
+if (this.resolvedType.leafComponentType().isBaseType() && hasNullTypeAnnotation() && this.annotations != null)

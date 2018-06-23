@@ -1,0 +1,9 @@
+Bug 181193 – NPE in JavaEditor.isMarkingOccurrences(...)
+Using I20070403-1110, I got this NPE debugging some code in java.util.zip.ZipFile.
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.ui.javaeditor.JavaEditor.isMarkingOccurrences(JavaEditor.java:2899)
+at org.eclipse.jdt.internal.ui.javaeditor.ClassFileEditor$3.run(ClassFileEditor.java:683)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+The guilty line is:
+return getPreferenceStore().getBoolean(PreferenceConstants.EDITOR_MARK_OCCURRENCES);
+Not sure how it is possible to get a NPE there, but I got it twice.

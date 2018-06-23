@@ -1,0 +1,14 @@
+Bug 297529 – To resolve compatibility issues between Eclipse 3.4 and 3.6, need constant and internals to be put back in JDT.
+User-Agent:       Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.0 (KHTML, like Gecko) Chrome/3.0.195.33 Safari/532.0
+Build Identifier: 3.6.0  I20091125-2200
+We are facing compatibility issues between the 3.4 and 3.6 Eclipse versions.
+And we would really appreciate if you can help us get it back.
+I have summarized the issues that we are facing :-
+1) fOutlineSelectionChangedListener method in org.eclipse.jdt.internal.ui.javaeditor.JavaEditor has been removed.
+2) org.eclipse.jdt.internal.ui.workingsets.JavaWorkingSetUpdater.ID constant removed.
+And the following two internals removed:-
+org.eclipse.jdt.internal.ui.refactoring.RefactoringSaveHelper
+and org.eclipse.jdt.internal.debug.ui.actions.ValidBreakpointLocationLocator
+Thanks,
+Rekha
+Reproducible: Always

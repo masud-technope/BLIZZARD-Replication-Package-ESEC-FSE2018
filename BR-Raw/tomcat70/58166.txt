@@ -1,0 +1,9 @@
+58166 – Tomcat does not support application-specific close codes
+org.apache.tomcat.websocket.Util.getCloseCode() converts codes between 3000 and 4999 to 1000.
+This behaviour is non-standard and differs from the behaviour of javax.websocket.CloseReason$CloseCodes which returns the correct close codes.
+return new CloseReason.CloseCode() {
+@Override
+public int getCode() {
+return code;
+}
+};

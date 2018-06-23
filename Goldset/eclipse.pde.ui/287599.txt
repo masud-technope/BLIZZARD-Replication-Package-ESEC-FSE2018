@@ -1,0 +1,9 @@
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/search/tests/UseSearchTests.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/search/UseSearchRequestor.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/search/ApiUseReportConverter.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/search/SearchMessages.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/search/XmlSearchReporter.java
+apitools/org.eclipse.pde.api.tools/src_ant/org/eclipse/pde/api/tools/internal/tasks/ApiUseTask.java
+apitools/org.eclipse.pde.api.tools/xslt/notsearched.xsl
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/use/ApiUseScanJob.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/search/searchmessages.properties

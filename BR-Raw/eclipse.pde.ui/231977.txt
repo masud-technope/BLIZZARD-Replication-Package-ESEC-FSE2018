@@ -1,0 +1,11 @@
+Bug 231977 – copying multiple extensions triggers java.lang.ClassCastException
+Build ID: 3.4m7
+Steps To Reproduce:
+if you view the plugin manifest and click on the extensions tab, and then select multiple items and copy them (ctrl+c), clicking any extensions after that results in:
+java.lang.ClassCastException
+An error has occurred.
+See error log for more details.
+[Ljava.lang.Object; cannot be cast to [Lorg.eclipse.pde.core.plugin.IPluginElement;
+More information:
+copying & pasting one extension at a time seems to work OK
+ive seen this with every plugin ive happened to test, but specifically i tested with org.eclipse.cdt.managedbuilder.gnu.ui and select all the GCC children of the org.eclipse.cdt.managedbuilder.core.buildDefinitions tree and copy those

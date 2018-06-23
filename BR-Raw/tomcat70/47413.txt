@@ -1,0 +1,7 @@
+47413 – There is difference in composite ${a}${b} EL expressions between 6.0.18 and 6.0.20
+In Tomcat 6.0.18, <c:out> tag that has undefined reference in its value  (like the following snippet) outputs empty string(""), but in Tomcat 6.0.20 outputs null.
+This is a critical bug..
+Please fix it ASAP.
+===
+<c:out value="${foo.undefined.bar}" />
+===

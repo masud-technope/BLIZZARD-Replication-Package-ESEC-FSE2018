@@ -1,0 +1,17 @@
+Bug 424725 – [1.8] Java Builder infinite loop, ArrayIndexOutOfBoundsException in analyseArguments
+Getting this problem on a large Java 8 project with the 20 december Java8 release:
+java.lang.ArrayIndexOutOfBoundsException: 1
+at org.eclipse.jdt.internal.compiler.ast.Statement.analyseArguments(Statement.java:120)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.analyseCode(MessageSend.java:168)
+at org.eclipse.jdt.internal.compiler.ast.Block.analyseCode(Block.java:52)
+at org.eclipse.jdt.internal.compiler.ast.TryStatement.analyseCode(TryStatement.java:169)
+at org.eclipse.jdt.internal.compiler.ast.Block.analyseCode(Block.java:52)
+at org.eclipse.jdt.internal.compiler.ast.IfStatement.analyseCode(IfStatement.java:105)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.analyseCode(MethodDeclaration.java:128)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.internalAnalyseCode(TypeDeclaration.java:740)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.analyseCode(TypeDeclaration.java:264)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.analyseCode(CompilationUnitDeclaration.java:119)
+at org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:776)
+at org.eclipse.jdt.internal.compiler.ProcessTaskManager.run(ProcessTaskManager.java:137)
+at java.lang.Thread.run(Unknown Source)
+I'm unsure where it occurs exactly as the stack trace leaves much to be desired to figure out where this problem occurs.

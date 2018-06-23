@@ -1,0 +1,23 @@
+Bug 340365 – [1.7] Problems in new APIs (TryStatementWithResources, DisjunctiveType)
+BETA_JAVA7
+Problems in TryStatementWithResources:
+- wrong @since 3.0 tags
+- order of properties in PROPERTY_DESCRIPTORS should be declaration order.
+In the static initializer, the line
+addProperty(RESOURCES_PROPERTY, propertyList);
+should be moved to before
+addProperty(BODY_PROPERTY, propertyList);
+- for consistency, also the fields would better be ordered the same way (move "ASTNode.NodeList resources" up), and treeSize() should also be ordered
+- constructor Javadoc should say "...
+the try statement has no resources, ..."
+- in AST#newTryStatementWithResources(), "no resources" should also be moved to front
+- clone0(*) and internalGetChildListProperty(*) are missing "resources"
+- memSize() should contain 4 * 4 (one field added)
+Problems in DisjunctiveType:
+- wrong @since 3.0 tags
+- type Javadoc
+- is missing grammar
+- typo: "inside as catch formal parameter type": as -> a
+- compare DisjunctiveType.java with e.g.
+ParameterizedType.java and remove all unnecessary inconsistencies (e.g.
+ordering)

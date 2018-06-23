@@ -1,0 +1,10 @@
+Bug 464701 � [Discovery][Zookeeper] Auto reconnect issue
+In our client-server OSGI application we are using ECF Zoodiscovery provider (v.1.0.100) for remote services discovery.
+When testing the application resiliency, we noticed that when unplugging/plugging back the network cable, the client in some cases doesn’t get back remote OSGI services from the server.
+I started debugging this use case and found out that in case of read timeout both Zookeeper internally and Zoodiscovery try reconnecting simultaneously:
+1) Zookeeper internally:
+in ClientCnxn.SendThread.run() in case of SessionTimeoutException it closes socket connection in cleanup(), sends the disconnect event to watchers and reconnects in startConnect().
+2) Zoodiscovery:
+ReadRoot.process receives the disconnect event from Zookeeper and invokes connect() which closes the existing Zookeeper connection and creates a new one.
+This results in a connect-disconnect-connect operation (since Zoodiscovery closes the just reopened by Zookeeper connection and creates a new one) instead of just connect and an inconsistent client state – connection finally gets re-established, but the client doesn’t ask the server for the remote services.
+I think that Zoodiscovery should not trigger disconnect/connect in cases when Zookeeper does it on his own.

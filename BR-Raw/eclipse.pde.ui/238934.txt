@@ -1,0 +1,12 @@
+Bug 238934 – NPE when resetting the target platform
+I sometimes get NullPointerExceptions ClasspathUtilCore.isPatchFragment when I reset my target platform.
+It seems to be related to when I have plug-ins and fragments imported to my workspace since when I close those projects, the exception go away.
+java.lang.NullPointerException
+at org.eclipse.pde.internal.core.ClasspathUtilCore.isPatchFragment(ClasspathUtilCore.java:92)
+at org.eclipse.pde.internal.core.PluginModelManager.isPatchFragment(PluginModelManager.java:506)
+at org.eclipse.pde.internal.core.PluginModelManager.addWorkspaceBundleToState(PluginModelManager.java:489)
+at org.eclipse.pde.internal.core.PluginModelManager.addWorkspaceBundleToState(PluginModelManager.java:463)
+at org.eclipse.pde.internal.core.PluginModelManager.modelsChanged(PluginModelManager.java:142)
+at org.eclipse.pde.internal.core.PluginModelManager.resetState(PluginModelManager.java:853)
+at org.eclipse.pde.internal.core.TargetPlatformResetJob.run(TargetPlatformResetJob.java:38)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

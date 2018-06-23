@@ -1,0 +1,18 @@
+Bug 469668 – Implementation of TypeHierarchy.getAllSubtypes(IType) and TypeHierarchy. getAllSuperInterfaces(IType) needs improvement
+Create a sequence of interfaces in an Eclipse Java project:
+public interface I1 {}
+public interface I2 extends I1 {}
+public interface I3 extends I1, I2 {}
+public interface I4 extends I1, I2, I3 {}
+public interface I5 extends I1, I2, I3, I4 {}
+....
+public interface I31 extends I1, I2, I3, I4, ...
+, I30 {}
+Create a test that will invoke a test that will invoke TypeHierarchy.getAllSuperInterfaces(IType) for type I31, and TypeHierarchy.getAllSubtypes(IType) for type I1.
+Test for all super interfaces will return correct result but only after very long computations.
+Private method getAllSuperInterfaces0(IType, ArrayList) checks duplicates and does not add them to the result list, but it does not avoid invoking recursively search for these duplicates.
+Test for all subtypes most probably will fail with out of memory when trying to add billion objects to the result list, because private method getAllSubtypesForType0(IType type, ArrayList subs) does not check duplicates and does not avoid recursive calls for duplicates.
+This use case is not what one gets 'in real life', but Java does not even provides a compilation warning about this style of programming.
+One more observation is about Type Hierarchy view (so maybe should be submitted to UI), when it is in the 'Show the Supertype Hierarchy' mode, it automatically expands the entire tree.
+Even if the sample sequence has only 20 interfaces instead of 31, it is enough to hang Eclipse trying to open supertype hierarchy for I20.
+If the depth were limited and tree content loading were lazy, it could survive.

@@ -1,0 +1,11 @@
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/CreateTypeOperation.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavaModelStatus.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/CreateCompilationUnitOperation.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/CreateMethodOperation.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/RootManipulationsTests.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/CopyResourceElementsOperation.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/CopyPackageFragmentRootOperation.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/CreateFieldOperation.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/CreatePackageFragmentOperation.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/messages.properties

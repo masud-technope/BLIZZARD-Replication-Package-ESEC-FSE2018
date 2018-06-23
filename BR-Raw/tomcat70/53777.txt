@@ -1,0 +1,8 @@
+53777 – Ability to bundle JAAS Configuration in Webappp
+I would like to let JAASRealm to load JAAS Configuration from a .properties file bundled in a web application (either in WEB-INF/classes or in any JAR on the classpath of the context)
+Actually (7.0.29) JAASRealm creates a LoginContext using the 2-args constructor
+loginContext = new LoginContext(appName, callbackHandler);
+I propose to add a new configuration parameter on JAASRealm to let it load a javax.security.auth.login.Configuration from the ContextClassLoader
+this new Configuration has to be passed to the 4-args constructor
+loginContext = new LoginContext(appName, subject, callbackHandler, configuration);
+http://docs.oracle.com/javase/6/docs/api/javax/security/auth/login/LoginContext.html#LoginContext%28java.lang.String,%20javax.security.auth.Subject,%20javax.security.auth.callback.CallbackHandler,%20javax.security.auth.login.Configuration%29

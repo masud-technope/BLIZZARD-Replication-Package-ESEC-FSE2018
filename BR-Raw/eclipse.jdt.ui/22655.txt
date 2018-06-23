@@ -1,0 +1,22 @@
+Bug 22655 – Types/Refresh adds two list entries for a new .java file [browsing]
+I am working with Sun JAXB 1.0ea and JavaCC 2.1.
+These two products generate
+Java source code.
+The batch files I run to use these tools, first delete the
+Java source files in the target directory before re-generating the Java
+sources.
+When I change the input grammar to these products sufficently new files may be
+produced.
+To be precise, I can run the tool, which generates C1.java and
+C2.java, change the input of the tool which now generates C1.java, C2.java, AND
+C3.java.
+After I run the tool, I then fo to Eclipse and do a Types/Refresh on the
+package that contains the generated source.
+The refresh finds the files and
+compiles them nicely BUT there are now TWO entries in the list for "C3" (there
+should be one of course).
+WORKAROUND: Select a different package in the Packages pane and re-select the
+package that has the generated source and C3 appears the correct amount of
+times: once.
+Thank you,
+Gary Gregory

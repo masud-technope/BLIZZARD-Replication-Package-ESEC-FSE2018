@@ -1,0 +1,30 @@
+Bug 422307 – [inline] NPE in preview of inline constant refactoring
+package com.test;
+class TestNPE {
+public static final C c = new C(); // Inline all references of 'c'
+private void test1() {
+int n = c.foo(0);
+test2(c);
+}
+private void test2(C m) {}
+}
+class C {
+int foo(int x) {
+return x;
+}
+}
+---------------------------------------------------------------
+Inline all references of 'c' at the line with comment in the above example.
+In the 'Inline Constant' dialog, click 'Preview', click 'Back' and click 'Preview' again.
+We get the following exception:
+java.lang.reflect.InvocationTargetException
+at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:422)
+at org.eclipse.ltk.internal.ui.refactoring.RefactoringWizardDialog2.run(RefactoringWizardDialog2.java:331)
+at org.eclipse.ltk.ui.refactoring.RefactoringWizard.createChange(RefactoringWizard.java:663)
+...
+...
+Caused by: java.lang.NullPointerException
+at org.eclipse.jdt.internal.corext.refactoring.code.InlineConstantRefactoring.getInitializer(InlineConstantRefactoring.java:800)
+at org.eclipse.jdt.internal.corext.refactoring.code.InlineConstantRefactoring.checkFinalConditions(InlineConstantRefactoring.java:815)
+at org.eclipse.ltk.core.refactoring.CheckConditionsOperation.run(CheckConditionsOperation.java:85)
+...

@@ -1,0 +1,9 @@
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/LaunchingMessages.properties
+org.eclipse.jdt.debug.ui/plugin.xml
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/SocketAttachConnector.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/JavaLocalApplicationLaunchConfigurationDelegate.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/Standard11xVM.java
+org.eclipse.jdt.launching/plugin.xml
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/StandardVMType.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/Standard11xVMRunner.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/Standard11xVMType.java

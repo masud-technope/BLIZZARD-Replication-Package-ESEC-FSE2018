@@ -1,0 +1,8 @@
+Bug 14837 – Java Search: actions shouldn't be enabled if folder is selected in packages view
+Build 20020425
+Create a folder under a Java project by creating a package and putting a icon
+into it.
+Open context menu.
+Observe that there are actions for search.
+They
+always return zero results.

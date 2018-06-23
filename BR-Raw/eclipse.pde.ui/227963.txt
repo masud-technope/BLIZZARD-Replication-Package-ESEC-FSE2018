@@ -1,0 +1,5 @@
+Bug 227963 – Target Platform Realization Preference needs to be more robust
+Currently, there is a usability with the target platform realiziation.
+The preference is only affected when you hit apply.
+This is bad.
+We should be more proactive and prompt the user as soon as this preference is changed.

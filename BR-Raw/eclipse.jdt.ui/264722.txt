@@ -1,0 +1,5 @@
+Bug 264722 – Get rid of duplicate working set comparators
+N20090212-2000.
+We currently have two working set comparators (WorkingSetSortComparator and WorkingSetComparator).
+We should remove one and make the remaining one configurable whether to sort the "other" working set on top.
+The remaining one should live in org.eclipse.jdt.internal.ui.workingsets.

@@ -1,0 +1,26 @@
+Bug 12633 – NPE evaluating in static context
+Breakpoint on line 58
+Use source in bug 12452.
+In the variables view detail pane, inspect "InnerAnon.this.description"
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationSourceGenerator.getTypeFromProject(EvaluationSourceGenerator.java:211)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.EvaluationSourceGenerator.getSource(EvaluationSourceGenerator.java:129)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.getCompiledExpression(ASTEvaluationEngine.java:188)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.evaluate(ASTEvaluationEngine.java:70)
+at org.eclipse.jdt.internal.debug.ui.actions.EvaluateAction.run(EvaluateAction.java:248)
+at org.eclipse.jdt.internal.debug.ui.actions.InspectAction.run(InspectAction.java:79)
+at org.eclipse.jdt.internal.debug.ui.actions.EvaluateAction.run(EvaluateAction.java:550)
+at org.eclipse.ui.internal.PluginAction.runWithEvent(PluginAction.java:204)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:407)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetEvent(ActionContributionItem.java:361)
+at org.eclipse.jface.action.ActionContributionItem.access$0(ActionContributionItem.java:352)
+at org.eclipse.jface.action.ActionContributionItem$ActionListener.handleEvent(ActionContributionItem.java:47)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:75)
+at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:637)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:1420)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:1208)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:755)
+at org.eclipse.ui.internal.Workbench.run(Workbench.java:738)
+at org.eclipse.core.internal.boot.InternalBootLoader.run(InternalBootLoader.java:777)
+at org.eclipse.core.boot.BootLoader.run(BootLoader.java:319)
+at EclipseRuntimeLauncher.main(EclipseRuntimeLauncher.java:14)

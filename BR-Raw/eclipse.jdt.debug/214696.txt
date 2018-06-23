@@ -1,0 +1,2 @@
+Bug 214696 – refactor WorkingDirectoryBlock
+It would be really nice if WorkingDirectoryBlock was exposed as an API class so that plug-in developers using the debug APIs would not have to copy/paste this code around by hand.

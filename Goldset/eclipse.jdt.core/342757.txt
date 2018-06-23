@@ -1,0 +1,10 @@
+org.eclipse.jdt.core/search/org/eclipse/jdt/internal/core/search/indexing/BinaryIndexer.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/util/Util.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/Disassembler.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/Signature.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/BinaryType.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/classfmt/MethodInfoWithParameterAnnotations.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ClassFileTests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/AbstractJavaModelTests.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/Util.java

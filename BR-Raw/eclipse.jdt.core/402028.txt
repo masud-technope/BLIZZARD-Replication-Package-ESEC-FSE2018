@@ -1,0 +1,10 @@
+Bug 402028 – [1.8][compiler] null analysis for reference expressions
+Bug 401030 comment 9 raised a question regarding null annotations on reference expressions.
+This bug to address any interaction between null analysis (w/ or w/o annotations) and reference expressions.
+One thing clearly calls for action:
+X x = null;
+I i = x::bar;
+This should report a null reference against x but doesn't.
+As for null annotations on reference expressions it takes more investigation to see how and why this could be useful.
+The easiest solution would be to let the target functional type completely determine any null contracts, and use only inference to see if the reference expressions meets the required null contract.
+I'll need to play with this a bit more to see if explicit null annotations on a reference expression will be needed in some cases.

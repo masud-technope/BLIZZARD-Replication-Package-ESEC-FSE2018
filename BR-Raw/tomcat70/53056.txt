@@ -1,0 +1,8 @@
+53056 – Add APR version number to tcnative version INFO log message
+When tcnative starts, it emits information like this to catalina.out:
+pr 10, 2012 4:54:55 PM org.apache.catalina.core.AprLifecycleListener init
+INFO: Loaded APR based Apache Tomcat Native library 1.1.23.
+Apr 10, 2012 4:54:55 PM org.apache.catalina.core.AprLifecycleListener init
+INFO: APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+It would be nice if the APR version in use could also be displayed as well as the tcnative version.
+Maybe the OpenSSL version, too.

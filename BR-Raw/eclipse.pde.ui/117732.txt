@@ -1,0 +1,2 @@
+Bug 117732 – Description unnecessarily cleared in new extension wizard
+In the new extension wizard if you select an extension point with a description and an available template, then select its template the description field gets cleared unnecessarily.

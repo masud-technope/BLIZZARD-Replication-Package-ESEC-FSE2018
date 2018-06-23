@@ -1,0 +1,7 @@
+java/org/apache/jasper/runtime/PageContextImpl.java
+test/org/apache/jasper/runtime/TestPageContextImpl.java
+test/org/apache/tomcat/unittest/tags/Bug53545.java
+test/webapp-3.0/WEB-INF/bug53545.tld
+test/webapp-3.0/bug53545.html
+test/webapp-3.0/bug53545.jsp
+webapps/docs/changelog.xml

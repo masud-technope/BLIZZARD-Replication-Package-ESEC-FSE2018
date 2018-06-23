@@ -1,0 +1,4 @@
+Bug 392946 – [quick fix] for unused type parameter
+Add quick fixes for unused type parameters.
+This is similar to unused method parameters, so fixes will also be similar (remove, add documentation).
+Don't add a clean up to remove all, since this would break existing references.

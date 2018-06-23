@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/AbstractPluginBlock.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/RuntimeWorkbenchShortcut.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/TargetPlatform.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/LaunchAction.java

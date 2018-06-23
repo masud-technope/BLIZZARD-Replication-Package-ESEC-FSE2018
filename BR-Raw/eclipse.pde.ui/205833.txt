@@ -1,0 +1,4 @@
+Bug 205833 – Export missing Product.exe
+When exporting a product without the delta-pack, the eclipse.exe is taken from the running eclipse.
+However, if the running eclipse is a branded product the launcher is not named eclipse.exe and does not get included in the product.
+Export should try and included the branded exe

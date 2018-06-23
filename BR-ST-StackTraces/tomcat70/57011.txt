@@ -1,0 +1,11 @@
+org.apache.catalina.connector.CoyoteAdapter.checkRecycled
+org.apache.coyote.http11.AbstractHttp11Processor.recycle
+org.apache.coyote.http11.Http11NioProtocol$Http11ConnectionHandler.release
+org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process
+org.apache.coyote.http11.Http11NioProtocol$Http11ConnectionHandler.process
+org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun
+org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run
+java.util.concurrent.ThreadPoolExecutor.runWorker
+java.util.concurrent.ThreadPoolExecutor$Worker.run
+org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run
+java.lang.Thread.run

@@ -1,0 +1,3 @@
+Bug 238976 – Shared Editor: No notification for connect / disconnect / connection break
+There is no notification when a session through the shared editor is initiated, closed, or broken (remote side disconnected).
+This is especially annoying for the client side, where future modifications can be made to the source code, without getting back to the originator.

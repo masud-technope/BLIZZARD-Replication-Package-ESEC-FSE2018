@@ -1,0 +1,7 @@
+Bug 34190 – Evaluation: no stacktrace upon exception
+I2003-03-06
+In the past, whenever code that I executed in the evaluation view raised an exception, its stacktrace would have been displayed in the console.
+Unfortunately, there doesn't seem to be any way to get this information anymore.
+Scenario: I use a framework that has some validation functionality that raises an exception including an error message that describes the problem.
+In the past, when debugging I used to execute that validation code via the evaluation view and was able to detect the problem.
+This is not possible anymore.

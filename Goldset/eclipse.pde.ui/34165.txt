@@ -1,0 +1,12 @@
+org.eclipse.pde/src/org/eclipse/pde/internal/builders/ManifestConsistencyChecker.java
+org.eclipse.pde/src/org/eclipse/pde/internal/builders/JarManifestErrorReporter.java
+org.eclipse.pde/src/org/eclipse/pde/internal/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+org.eclipse.pde/src/org/eclipse/pde/internal/builders/BuildErrorReporter.java
+org.eclipse.pde/src/org/eclipse/pde/internal/builders/CompilerFlags.java
+org.eclipse.pde/src/org/eclipse/pde/internal/PDEMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/xhtml/XHTMLConverter.java
+org.eclipse.pde/src/org/eclipse/pde/internal/builders/ErrorReporter.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/CompilersConfigurationTab.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/xhtml/XHTMLConversionOperation.java

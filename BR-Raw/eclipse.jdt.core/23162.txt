@@ -1,0 +1,9 @@
+Bug 23162 – DOM: clients should be able to control if bindings are available even if AST is modified
+2.x
+Now that we have AST rewriting we more and more start to modify existing ASTs.
+After the first modification all bindings associated with nodes are null.
+Since
+we want to walk the tree and modifiy it in parallel clients should be able to
+create an AST that keeps bindings even if the AST gets modified.
+New nodes
+simply don't return bindings.

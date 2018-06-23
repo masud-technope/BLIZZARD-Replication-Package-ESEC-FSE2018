@@ -1,0 +1,7 @@
+54127 – WsOutbound is missing a ping method
+Created attachment 29577 [details]
+patch which adds ping functionality to WsOutbound
+WsOutbound currently lacks the ability to send a ping request to the client.
+Attached patch creates a new method pong which takes in a ByteBuffer and passes the ping byte (0x09) to sendControlMessage which sets the opcode byte on the frame.
+ Refactored pong method to all call sendControlMessage as opposed to duplicate code.
+Added websocket.Constants import for OPCODE_PING/PONG.

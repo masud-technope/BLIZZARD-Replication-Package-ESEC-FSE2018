@@ -1,0 +1,33 @@
+Bug 420897 – [r-OSGi] NPE when trying to uninstall the proxy bundle
+!ENTRY org.eclipse.ecf.osgi.services.remoteserviceadmin 4 0 2013-10-29
+08:36:12.047
+!MESSAGE
+org.eclipse.core.runtime.Status[plugin=org.eclipse.ecf.osgi.services.remoteserviceadmin;code=4;message=org.eclipse.ecf.osgi.services.remoteserviceadmin.EndpointDescriptionLocator:dispatchEvent:Exception
+in EndpointListener
+listener=org.eclipse.ecf.internal.osgi.services.distribution.BasicTopologyManagerImpl@429a9a6e
+description=ECFEndpointDescription[id=r-osgi://build.vogella.com:9278;endpoint.service.id=8617;frameworkid=205b39f8-f63f-0013-1fec-b26a4693aed7]
+matchingFilter=(&(!(endpoint.framework.uuid=60e603bd-6940-0013-1ab3-a36f183bb5d3))(ecf.endpoint.id.ns=*));severity4;exception=java.lang.NullPointerException;children=[]]
+!STACK 0
+java.lang.NullPointerException
+at
+ch.ethz.iks.r_osgi.impl.ChannelEndpointImpl.ungetRemoteService(ChannelEndpointImpl.java:965)
+at
+ch.ethz.iks.r_osgi.impl.RemoteOSGiServiceImpl.ungetRemoteService(RemoteOSGiServiceImpl.java:1349)
+at
+org.eclipse.ecf.internal.provider.r_osgi.R_OSGiRemoteServiceContainer.ungetRemoteService(R_OSGiRemoteServiceContainer.java:440)
+at
+org.eclipse.ecf.osgi.services.remoteserviceadmin.RemoteServiceAdmin$ImportEndpoint.close(RemoteServiceAdmin.java:822)
+at
+org.eclipse.ecf.osgi.services.remoteserviceadmin.RemoteServiceAdmin$ImportReference.close(RemoteServiceAdmin.java:988)
+at
+org.eclipse.ecf.osgi.services.remoteserviceadmin.RemoteServiceAdmin$ImportRegistration.close(RemoteServiceAdmin.java:909)
+at
+org.eclipse.ecf.osgi.services.remoteserviceadmin.AbstractTopologyManager.handleECFEndpointRemoved(AbstractTopologyManager.java:269)
+at
+org.eclipse.ecf.internal.osgi.services.distribution.BasicTopologyManagerImpl.endpointRemoved(BasicTopologyManagerImpl.java:138)
+at
+org.eclipse.ecf.osgi.services.remoteserviceadmin.EndpointDescriptionLocator$1.dispatchEvent(EndpointDescriptionLocator.java:159)
+at
+org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:230)
+at
+org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:340)

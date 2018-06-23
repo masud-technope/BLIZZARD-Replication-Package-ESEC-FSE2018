@@ -1,0 +1,12 @@
+54143 – Add display of PermGen memory pool usage to the Status page of the Manager webapp
+It would be nice to add display of the PermGen memory pool usage to the Status page of the Manager webapp.
+This is because OutOfMemoryError's caused by PermGen pool exhaustion are fatal for the server and are hard to predict, as they are are not visible from the simple Free/Max/Total Heap statistics.
+Technically speaking, the information is provided by "MemoryPool" MBeans.
+It is easier to display all memory pools at once rather than to search for specific one.
+The beans could be obtained via a query, e.g.
+[1], but it is much easier to use standard API that is available in Java SE [2].
+[1] http://localhost:8080/manager/jmxproxy/?qry=java.lang%3Atype%3DMemoryPool%2C*
+[2] http://docs.oracle.com/javase/6/docs/api/java/lang/management/MemoryPoolMXBean.html
+I have an implementation ready and will commit it shortly.
+A small question is whether it is suitable for the simple "Server Status" page or is better for the "Complete Server Status" one.
+I think it is OK on the simple page, as this information is important.

@@ -1,0 +1,7 @@
+java/javax/servlet/http/HttpUtils.java
+java/org/apache/catalina/connector/CoyoteInputStream.java
+java/org/apache/catalina/realm/JDBCRealm.java
+java/org/apache/catalina/valves/JDBCAccessLogValve.java
+java/org/apache/naming/resources/WARDirContext.java
+java/org/apache/tomcat/util/digester/NodeCreateRule.java
+webapps/docs/changelog.xml

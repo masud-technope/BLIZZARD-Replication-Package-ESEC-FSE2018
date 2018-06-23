@@ -1,0 +1,6 @@
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/TypeConstants.java
+org.eclipse.jdt.core/codeassist/org/eclipse/jdt/internal/codeassist/InternalExtendedCompletionContext.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/ResolveTests18.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/CaptureBinding.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/TypeBinding.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/SelectionRequestor.java

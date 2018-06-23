@@ -1,0 +1,28 @@
+Bug 297645 – Quick Fix "Invert 'if' statement" omits '!' operator when expression is java.lang.Boolean
+User-Agent:       Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.0 (KHTML, like Gecko) Chrome/3.0.195.33 Safari/532.0
+Build Identifier: M20090917-0800
+Since the introduction of auto-boxing/auto-unboxing it has become legal to use expressions of type java.lang.Boolean for 'if' statement expressions.
+ Eclipse's "quick fix" should be updated accordingly.
+I think the problem is near line 474 or 551 of org/eclipse/jdt/internal/ui/text/correction/AdvancedQuickAssistProcessor.java
+Here are a few relevant stack frames I got while debugging the problem:
+AdvancedQuickAssistProcessor.isBoolean(Expression) line: 551
+AdvancedQuickAssistProcessor.getInversedBooleanExpression(ASTRewrite, Expression, AdvancedQuickAssistProcessor$SimpleNameRenameProvider) line: 474
+AdvancedQuickAssistProcessor.getInversedBooleanExpression(ASTRewrite, Expression) line: 454
+AdvancedQuickAssistProcessor.getInverseIfProposals(IInvocationContext, ASTNode, Collection) line: 268
+AdvancedQuickAssistProcessor.getAssists(IInvocationContext, IProblemLocation[]) line: 142
+Reproducible: Always
+Steps to Reproduce:
+1.
+enter some java code containing an 'if' statement with a Boolean expression.
+ For example:
+@SuppressWarnings("boxing") // may be needed to help ctrl+1 work
+public void foo(Boolean b) {
+if (b) {
+System.out.println("######");
+} else {
+System.out.println("-");
+}
+}
+2.
+Invoke "Quick Fix" (ctrl+1) and choose "Invert 'If' statement".
+ The statement should now look like "if (!b) ..." but eclipse produces "if (b) ..."

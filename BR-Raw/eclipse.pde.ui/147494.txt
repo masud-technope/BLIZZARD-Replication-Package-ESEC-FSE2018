@@ -1,0 +1,5 @@
+Bug 147494 – Automated Management of Dependencies: Provide "Up" and "Down" buttons
+The Automated Management of Dependencies section of the manifest editor displays bundles in the order that they were added to the list.
+Since it seems that the order is significant, "Up" and "Down" buttons should be provided so that the bundles can be re-ordered easily.
+ When adding these buttons, please make sure that they work equally well for a single selection as well as a multiple selection (both contiguous and non-contiguous).
+Of course, if you feel that the order of the bundles is not really significant, then I would rather see the list alphabetically sorted.

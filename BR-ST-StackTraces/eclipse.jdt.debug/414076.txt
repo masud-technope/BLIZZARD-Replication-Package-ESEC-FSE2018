@@ -1,0 +1,10 @@
+java.util.ArrayList$Itr.checkForComodification
+java.util.ArrayList$Itr.next
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.removeAllBreakpoints
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.cleanup
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.terminated
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.handleVMDeath
+org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch
+org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0
+org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run
+org.eclipse.core.internal.jobs.Worker.run

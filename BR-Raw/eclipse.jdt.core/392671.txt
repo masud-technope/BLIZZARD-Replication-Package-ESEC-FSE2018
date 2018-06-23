@@ -1,0 +1,24 @@
+Bug 392671 – [1.8][recovery] NPE with a method with explicit this and a following incomplete parameter
+Code recovery has problem with the following code:
+class X {
+public void foobar(X this, int, int k) {} // NPE!
+}
+But the NPE is thrown only when the first regular parameter is incomplete.
+For e.g.
+the following code throws no NPE.
+public void foobar(X this, int i, int , int ,) // No NPE
+This is the root cause of the exception:
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.parser.RecoveredMethod.updateFromParserState(RecoveredMethod.java:511)
+at org.eclipse.jdt.internal.compiler.parser.Parser.updateRecoveryState(Parser.java:12061)
+at org.eclipse.jdt.internal.compiler.parser.Parser.resumeOnSyntaxError(Parser.java:11976)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:10639)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:10970)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:10927)
+at org.eclipse.jdt.internal.compiler.parser.Parser.dietParse(Parser.java:9359)
+at org.eclipse.jdt.internal.compiler.Compiler.internalBeginToCompile(Compiler.java:718)
+at org.eclipse.jdt.internal.compiler.Compiler.beginToCompile(Compiler.java:383)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1133)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:685)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1186)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:812)

@@ -1,0 +1,22 @@
+Bug 337086 – [nls tooling] "Source > Externalize strings" throws IAE when .properties file contains invalid unicode escape
+If the properties file contains an invalid unicode escape
+e.g
+bad=\u26
+hello= world
+"Source > Externalize strings" fails silently and an IAE is written to the log.
+I guess like Bug 331562 we should write an error to the editor status line and don't write to the .log.
+------------------------------------------------------------------------
+java.lang.IllegalArgumentException: Invalid Unicode sequence: illegal character
+at java.util.Properties.load(Properties.java:344)
+at java.util.Properties.load(Properties.java:280)
+at org.eclipse.jdt.internal.corext.refactoring.nls.NLSHintHelper.getProperties(NLSHintHelper.java:461)
+at org.eclipse.jdt.internal.corext.refactoring.nls.NLSHintHelper.getProperties(NLSHintHelper.java:426)
+at org.eclipse.jdt.internal.corext.refactoring.nls.NLSHint.<init>(NLSHint.java:97)
+at org.eclipse.jdt.internal.corext.refactoring.nls.NLSRefactoring.<init>(NLSRefactoring.java:89)
+at org.eclipse.jdt.internal.corext.refactoring.nls.NLSRefactoring.create(NLSRefactoring.java:110)
+at org.eclipse.jdt.internal.ui.refactoring.nls.ExternalizeWizard$1.run(ExternalizeWizard.java:73)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+at org.eclipse.jdt.internal.ui.refactoring.nls.ExternalizeWizard.open(ExternalizeWizard.java:71)
+at org.eclipse.jdt.ui.actions.ExternalizeStringsAction.run(ExternalizeStringsAction.java:199)
+at org.eclipse.jdt.ui.actions.ExternalizeStringsAction.run(ExternalizeStringsAction.java:162)
+at org.eclipse.jdt.ui.actions.SelectionDispatchAction.dispatchRun(SelectionDispatchAction.java:278)

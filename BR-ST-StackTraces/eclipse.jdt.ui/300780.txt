@@ -1,0 +1,15 @@
+org.eclipse.jdt.internal.ui.text.spelling.SpellCheckEngine.resetUserDictionary
+org.eclipse.jdt.internal.ui.text.spelling.SpellCheckEngine.getSpellChecker
+org.eclipse.jdt.internal.ui.text.spelling.SpellingEngine.check
+org.eclipse.jdt.internal.ui.text.spelling.DefaultSpellingEngine.check
+org.eclipse.ui.texteditor.spelling.SpellingService$1.run
+org.eclipse.core.runtime.SafeRunner.run
+org.eclipse.ui.texteditor.spelling.SpellingService.check
+org.eclipse.ui.texteditor.spelling.SpellingReconcileStrategy.reconcile
+org.eclipse.jdt.internal.ui.text.spelling.JavaSpellingReconcileStrategy.reconcile
+org.eclipse.ui.texteditor.spelling.SpellingReconcileStrategy.initialReconcile
+org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.initialReconcile
+org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.initialReconcile
+org.eclipse.jface.text.reconciler.MonoReconciler.initialProcess
+org.eclipse.jdt.internal.ui.text.JavaReconciler.initialProcess
+org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run

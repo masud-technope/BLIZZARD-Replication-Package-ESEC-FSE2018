@@ -1,0 +1,4 @@
+java/org/apache/catalina/util/ParameterMap.java
+java/org/apache/tomcat/util/http/Parameters.java
+test/org/apache/tomcat/util/http/TestParameters.java
+webapps/docs/changelog.xml

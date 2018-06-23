@@ -1,0 +1,16 @@
+Bug 66092 – The old search API should be deprecated
+We should deprecate the old search API.
+In package org.eclipse.search.ui.
+I support this request - CCin Jeem for final blessing
+IActionGroupFactory
+IContextMenuContributor
+IGroupByKeyComputer
+ISearchResultView
+ISearchResultViewEntry
+In class SearchUI:
+public static boolean activateSearchResultView()
+public static Image getSearchMarkerImage()
+public static ISearchResultView getSearchResultView()
+public static final String SEARCH_RESULT_VIEW_ID
+public static final String POTENTIAL_MATCH
+public static final String LINE

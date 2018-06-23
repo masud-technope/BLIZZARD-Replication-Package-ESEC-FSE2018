@@ -1,0 +1,28 @@
+Bug 217753 – [move method] Move method with static imported method calls introduces compiler error
+Build ID: I20071213-1700
+Steps To Reproduce:
+Create class Foo as so (and an empty class Bar):
+>>>
+package net.saff.glinda;
+import static java.util.Arrays.asList;
+import java.util.List;
+public class Foo {
+public List<String> abc(Bar bar) {
+return asList("a", bar.toString());
+}
+}
+<<<
+Now, move method abc to parameter bar.
+ The result is:
+>>>
+package net.saff.glinda;
+import static java.util.Arrays.asList;
+import java.util.List;
+public class Bar {
+public List<String> abc() {
+return Foo.asList("a", toString());
+}
+}
+<<<
+Since the static import is moved over, just removing the "Foo." would produce correct and compiling code.
+More information:

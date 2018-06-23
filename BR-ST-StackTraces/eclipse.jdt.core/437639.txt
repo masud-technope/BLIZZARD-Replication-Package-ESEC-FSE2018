@@ -1,0 +1,8 @@
+org.eclipse.jdt.internal.formatter.Scribe.getNewLineString
+org.eclipse.jdt.internal.formatter.Scribe.getEmptyLines
+org.eclipse.jdt.internal.formatter.Scribe.printEmptyLines
+org.eclipse.jdt.internal.formatter.Scribe.preserveEmptyLines
+org.eclipse.jdt.internal.formatter.Scribe.printComment
+org.eclipse.jdt.internal.formatter.Scribe.printComment
+org.eclipse.jdt.internal.formatter.CodeFormatterVisitor.format
+org.eclipse.jdt.internal.formatter.CodeFormatterVisitor.visit

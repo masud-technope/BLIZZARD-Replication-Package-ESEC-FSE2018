@@ -1,0 +1,22 @@
+Bug 471352 – Error creating external annotations after parameter with generic type <?>
+The Ctrl+1 external annotation command fails on subsequent parameters when a parameter has the generic type <?>.
+This occurs for both generic and non-generic parameters after the <?> parameter.
+For example, in Collections:
+public static void shuffle(List<?> list, Random rnd)
+Ctrl+1 on the parameter with the <?> works fine, while Ctrl+1 on the second parameter causes the following error in the Error Log:
+Error computing completion proposals.
+java.lang.IllegalArgumentException: Mismatching type structures * vs L1java/util/Random;
+at org.eclipse.jdt.core.util.ExternalAnnotationUtil.match(ExternalAnnotationUtil.java:471)
+at org.eclipse.jdt.core.util.ExternalAnnotationUtil.updateType(ExternalAnnotationUtil.java:426)
+at org.eclipse.jdt.core.util.ExternalAnnotationUtil.annotateParameterType(ExternalAnnotationUtil.java:687)
+at org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals$ParameterAnnotationRewriteProposal.dryRun(ExternalNullAnnotationChangeProposals.java:263)
+at org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals$SignatureAnnotationChangeProposal.initializeOperation(ExternalNullAnnotationChangeProposals.java:148)
+at org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals$ProposalCreator.create(ExternalNullAnnotationChangeProposals.java:462)
+at org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals.createProposalsForType(ExternalNullAnnotationChangeProposals.java:516)
+at org.eclipse.jdt.internal.corext.fix.ExternalNullAnnotationChangeProposals.collectExternalAnnotationProposals(ExternalNullAnnotationChangeProposals.java:411)
+at org.eclipse.jdt.internal.ui.text.correction.ExternalNullAnnotationQuickAssistProcessor.computeQuickAssistProposals(ExternalNullAnnotationQuickAssistProcessor.java:91)
+at org.eclipse.jface.text.quickassist.QuickAssistAssistant$ContentAssistProcessor.computeCompletionProposals(QuickAssistAssistant.java:75)
+at org.eclipse.jface.text.contentassist.ContentAssistant$5.run(ContentAssistant.java:1904)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+...
+Another example is Collections#indexOfSubList, where both parameters have <?> but only the second one fails.

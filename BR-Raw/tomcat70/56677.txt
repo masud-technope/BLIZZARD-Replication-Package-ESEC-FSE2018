@@ -1,0 +1,3 @@
+56677 – ApplicationHttpRequest does not override javax.servlet.ServletRequestWrapper#getServletContext()
+org.apache.catalina.core.ApplicationHttpRequest does not override one of the Servlet 3.0 APIs, javax.servlet.ServletRequestWrapper#getServletContext().
+So ApplicationHttpRequest.getServletContext() does not return its mapped ServletContext in the crossContext situation.

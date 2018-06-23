@@ -1,0 +1,4 @@
+Bug 223727 – Product editor should handle per platform config.ini files
+As per bug 218878, we would like to add the ability to have per-platform config.ini files.
+Once this support is added to the file formats in the core, we will need to be able to set these properties in the UI's product editor.
+It would probably be easiest to have a mechanism to replace the whole file, rather than try and specify per-platform properties and merge the rest of the common contents.

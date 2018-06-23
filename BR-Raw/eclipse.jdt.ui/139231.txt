@@ -1,0 +1,5 @@
+Bug 139231 – [quick fix] duplicate exception name after add throws to catch
+Eclipse SDK
+Version: 3.2.0
+Build id: I20060413-1718
+"Add catch clause to surrounding try" of "Quick Fix" generates code with error.

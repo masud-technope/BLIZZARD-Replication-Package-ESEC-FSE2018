@@ -1,0 +1,17 @@
+Bug 226352 – Eclipse launcher name incorrect (eclipse..exe) when launching Eclipse Application
+Eclipse launcher name is incorrect on win32 (note the extra dot):
+Error
+Wed Apr 09 15:21:19 EDT 2008
+-showsplash
+java.io.IOException: CreateProcess: C:\cygwin\home\pnehrer\cce-update-base\eclipse\eclipse..exe -name Eclipse -showsplash 600 C:\cygwin\home\pnehrer\cce-update-workspace\eclipse\plugins\com.ti.ccstudio.branding\splash.bmp error=2
+at java.lang.ProcessImpl.create(Native Method)
+at java.lang.ProcessImpl.<init>(ProcessImpl.java:81)
+at java.lang.ProcessImpl.start(ProcessImpl.java:30)
+at java.lang.ProcessBuilder.start(ProcessBuilder.java:451)
+at java.lang.Runtime.exec(Runtime.java:591)
+at java.lang.Runtime.exec(Runtime.java:464)
+at org.eclipse.core.launcher.Main.runCommand(Main.java:1588)
+at org.eclipse.core.launcher.Main.handleSplash(Main.java:1564)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:278)
+at org.eclipse.core.launcher.Main.run(Main.java:996)
+at org.eclipse.core.launcher.Main.main(Main.java:971)

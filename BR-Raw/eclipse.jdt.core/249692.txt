@@ -1,0 +1,7 @@
+Bug 249692 – The ImportRewriteAnalyzer does not honor a formatter setting
+I think the source clean up module "formats code" before it "organize imports" if selected.
+In some configurations (like my one) the clean up show every time changes on the imports even if there were none.
+i think because of the "whitespace before semicolon" option on format.
+hint: select every option in source format and in source clean up.
+then cleanup source to reproduce.
+every time there will be shown some changes on imports.

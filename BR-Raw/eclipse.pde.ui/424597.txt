@@ -1,0 +1,38 @@
+Bug 424597 – testExport14Environment junit assertion Missing exported bundle
+Build ID: N20131220-2000
+http://download.eclipse.org/eclipse/downloads/drops4/N20131220-2000/testresults/html/org.eclipse.pde.ui.tests_linux.gtk.x86_6.0.html
+testExport14Environment
+Missing exported bundle
+junit.framework.AssertionFailedError: Missing exported bundle
+at org.eclipse.pde.ui.tests.ee.ExportBundleTests.testExport14Environment(ExportBundleTests.java:144)
+at org.eclipse.test.EclipseTestRunner.run(EclipseTestRunner.java:657)
+at org.eclipse.test.EclipseTestRunner.run(EclipseTestRunner.java:310)
+at org.eclipse.test.UITestApplication$2.run(UITestApplication.java:197)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:136)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3746)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3394)
+at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1122)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1006)
+at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:146)
+at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:612)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:565)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:125)
+at org.eclipse.test.UITestApplication.runApplication(UITestApplication.java:140)
+at org.eclipse.test.UITestApplication.run(UITestApplication.java:62)
+at org.eclipse.test.UITestApplication.start(UITestApplication.java:212)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:109)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:80)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:372)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:226)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:636)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1450)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1426)
+at org.eclipse.core.launcher.Main.main(Main.java:34)
+--------------------------------------------------------------------
+Please look at Bug 379855

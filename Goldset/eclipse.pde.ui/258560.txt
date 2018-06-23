@@ -1,0 +1,3 @@
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/model/ApiBaseline.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/util/Util.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/model/SystemLibraryApiComponent.java

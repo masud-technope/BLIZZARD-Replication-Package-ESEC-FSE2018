@@ -1,0 +1,6 @@
+Bug 43332 – String Substitution Support - org.eclipse.core.variables
+* re-work the API to avoid use of resources (to allow us to push the support
+down to a new plug-in that Ant can use)
+* support recursive string substitution
+* support value (simple) variables
+* support context (dynamic) variables

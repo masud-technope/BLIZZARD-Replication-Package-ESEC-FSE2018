@@ -1,0 +1,3 @@
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/DocShare.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/menu/DocShareRosterMenuContributionItem.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/menu/DocShareRosterMenuHandler.java

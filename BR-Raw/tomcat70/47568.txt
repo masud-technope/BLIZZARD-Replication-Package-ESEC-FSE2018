@@ -1,0 +1,2 @@
+47568 – TestTomcat fails to delete work directory
+TestTomcat.setUp() creates a work directory, but does not delete it in tearDown()

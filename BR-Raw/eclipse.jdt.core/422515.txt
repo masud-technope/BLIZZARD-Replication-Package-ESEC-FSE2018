@@ -1,0 +1,33 @@
+Bug 422515 – [1.8][compiler] "Missing code implementation in the compiler" when lambda body accesses array variable
+"Missing code implementation in the compiler" compile error when a lambda body accesses an array-typed variable:
+package jsr335;
+public class LambdaAccessArray {
+public static void main(String[] args) throws InterruptedException {
+final int[] result= { 0 };
+Thread t = new Thread(() -> {
+result[0]= 42;
+});
+t.start();
+t.join();
+System.out.println(result[0]);
+}
+}
+The error doesn't occur when the lambda body is just an expression like this:
+Thread t = new Thread(() -> result[0]= 42);
+The problem is reported here:
+org.eclipse.jdt.internal.compiler.problem.ProblemReporter.needImplementation(ProblemReporter.java:6178)
+at org.eclipse.jdt.internal.compiler.codegen.CodeStream.generateOuterAccess(CodeStream.java:2286)
+at org.eclipse.jdt.internal.compiler.codegen.StackMapFrameCodeStream.generateOuterAccess(StackMapFrameCodeStream.java:364)
+at org.eclipse.jdt.internal.compiler.ast.SingleNameReference.generateCode(SingleNameReference.java:487)
+at org.eclipse.jdt.internal.compiler.ast.ArrayReference.generatePostIncrement(ArrayReference.java:166)
+at org.eclipse.jdt.internal.compiler.ast.PostfixExpression.generateCode(PostfixExpression.java:40)
+at org.eclipse.jdt.internal.compiler.ast.Expression.generateCode(Expression.java:695)
+at org.eclipse.jdt.internal.compiler.ast.Block.generateCode(Block.java:75)
+at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.generateCode(LambdaExpression.java:751)
+at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.generateCode(LambdaExpression.java:702)
+at org.eclipse.jdt.internal.compiler.ClassFile.addSpecialMethods(ClassFile.java:923)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode(TypeDeclaration.java:573)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.generateCode(TypeDeclaration.java:638)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.generateCode(CompilationUnitDeclaration.java:369)
+at org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:781)
+at org.eclipse.jdt.internal.compiler.ProcessTaskManager.run(ProcessTaskManager.java:137)

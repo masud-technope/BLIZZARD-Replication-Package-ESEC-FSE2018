@@ -1,0 +1,5 @@
+Bug 12636 – Unable to get evaluation context for Scrapbook pages
+Several users from the newsgroup have indicated that they can never use the
+Java scrapbook as it always fails to retrieve an evaluation context.
+I cannot reproduce the problem but am working with an individual to work out
+what is going wrong.

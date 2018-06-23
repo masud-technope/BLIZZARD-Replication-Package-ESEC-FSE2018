@@ -1,0 +1,6 @@
+java/org/apache/tomcat/util/bcel/classfile/AnnotationEntry.java
+java/org/apache/tomcat/util/bcel/classfile/Attribute.java
+java/org/apache/tomcat/util/bcel/classfile/JavaClass.java
+java/org/apache/tomcat/util/bcel/classfile/Unknown.java
+java/org/apache/tomcat/util/bcel/classfile/Utility.java
+webapps/docs/changelog.xml

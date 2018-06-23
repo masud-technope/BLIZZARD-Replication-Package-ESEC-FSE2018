@@ -1,0 +1,7 @@
+Bug 29536 – Check use of IResource.getLocation
+build 20030107
+There still is code that uses the result of IResource.getLocation without
+checking for null.
+E.g., MatchLocator in search.
+See posting on platform-core-dev mailing list on 12/13
+See bug 29480 for steps to reproduce.

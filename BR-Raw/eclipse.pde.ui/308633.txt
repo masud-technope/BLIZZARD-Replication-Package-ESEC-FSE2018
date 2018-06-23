@@ -1,0 +1,12 @@
+Bug 308633 – Feature based launch ignores version numbers
+features are now all found from target platform
+but creating a launch config feature based doesn't work very well
+example:
+the tp evolved for some features and plugins from
+0.5.13 thru 0.5.15 and 0.5.16
+if I define the launch config, the newest version (0.5.16) of these features
+was displayed,
+but the launched eclipse application has plug-ins from the oldest one (0.5.13)
+even if I define dependencies to 0.5.16 minimum - always the oldest are
+choosen,
+so at the moment I cannot use the powerful new feature-based launch configs.

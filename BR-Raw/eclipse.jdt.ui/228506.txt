@@ -1,0 +1,18 @@
+Bug 228506 – [content assist] Don't create proposal computer on sessionEnded - was: Problem in jdt.ui.TemplateProposalComputer when closing an Editor
+Created attachment 97308 [details]
+Screenshot showing the error dialog
+build ID: I20080422-0800
+When quitting Eclipse with several editors open, I saw attached error dialog.
+I re-started Eclipse and found the .log file (to be attached).
+Several editors were open.
+When choosing "Close all Editors", I got the same error dialog shown again twice, which likely corresponds to the problems reported for swtBuilderCompletionProposalComputer and TemplateProposalComputer.
+-----------Enter bugs above this line-----------
+installation : eclipse-SDK-I20080422-0800, cdt-5.0.0M6, DSF-N20071113,
+ECF-2.0m6, emf-2.4.0M6, Findbugs-1.3.3, J9Launching-6.1.0,
+PHPEclipse-1.2.0.200804230602NGT, Releng.Tools-3.4M6, RSE-3.0M6,
+RXTX-2.1-7r3b, Subversive-0.7.0.v20080423,
+org.tigris.MemMonitor, WR-Retriever-3.0.v20070604,
+Mylyn-3.0.0.I20080327-1500, EPP-UsageData-1.0.0.N200804111155
+java.runtime : Sun 1.6.0_05-b13 -Xmx512m -XX:MaxPermSize=128m
+os.name:     : Windows XP 5.1, Service Pack 2
+------------------------------------------------

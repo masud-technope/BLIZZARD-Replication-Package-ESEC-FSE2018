@@ -1,0 +1,16 @@
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/TestAll.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/ClassFileReaderTest_1_8.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/TestAll.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/classfmt/ClassFileReader.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/classfmt/FieldInfo.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/classfmt/FieldInfoWithAnnotation.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/classfmt/FieldInfoWithTypeAnnotation.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/classfmt/MethodInfo.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/classfmt/MethodInfoWithTypeAnnotations.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/classfmt/TypeAnnotationInfo.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/env/IBinaryField.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/env/IBinaryMethod.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/env/IBinaryType.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/env/IBinaryTypeAnnotation.java
+org.eclipse.jdt.core/eval/org/eclipse/jdt/internal/eval/CodeSnippetSkeleton.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/hierarchy/HierarchyBinaryType.java

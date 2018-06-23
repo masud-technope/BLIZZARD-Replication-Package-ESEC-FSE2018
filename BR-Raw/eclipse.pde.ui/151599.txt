@@ -1,0 +1,4 @@
+Bug 151599 – Info Presentation for manifest.mf attributes/headers
+The XML content assist shows descriptions of elements and attributes in the proposal popup.
+We should do the same for manifest.mf proposals for headers and attributes.
+In the completion proposal popup, we should render the javadoc for these headers/attributes in html format, much like Ant and JDT do with javadoc.

@@ -1,0 +1,25 @@
+Bug 414384 – [1.8] type annotation on abbreviated inner class is not marked as inner type
+Given the following class:
+package p;
+import org.foo.*; // here we have type annotations for nullity
+public abstract class X1 {
+public class Inner {}
+public void nesting(@NonNull Inner i1, @NonNull X1.@Nullable Inner i2) { }
+}
+This currently generates the following byte code:
+public void nesting(p.X1$Inner, p.X1$Inner);
+...
+RuntimeInvisibleTypeAnnotations:
+0: #19(): METHOD_FORMAL_PARAMETER, param_index=0
+1: #19(): METHOD_FORMAL_PARAMETER, param_index=1
+2: #27(): METHOD_FORMAL_PARAMETER, param_index=1, location=[INNER_TYPE]
+...
+AFAICS the first annotation is wrong, it should have the same shape as the last one.
+In 3.4 the spec says:
+"The type path that is stored in the class file is with respect to the full type, not the source code representation.
+..."
+...
+and goes on explaining.
+The full type of the first formal parameter is correctly rendered as p.X1$Inner (see
+the method signature), accordingly the type annotation for Inner should be marked with
+"location=[INNER_TYPE]", no?

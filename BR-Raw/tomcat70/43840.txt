@@ -1,0 +1,23 @@
+43840 – Unexpected behaviour when GenericPrincipal is serialized using the SerializablePrincipal in a cluster.
+The method 'getUserPrincipal()' in the GenericPrincipal class returns itself or
+a provided Principal if possible.
+This is also the return value of the
+request.getUserPrincipal() method.
+This works fine in a non-clustered environment.
+However the behaviour of this method changes when the GenericPrincipal is
+serialized by the SerializablePrincipal class.
+In the initial node of a cluster
+the request.getUserPrincipal() method behaves normally.
+However after the
+principal is serialized to another node it no longer contains the internal
+Principal object, so the same method call will now return a different object.
+I think a solution could be:
+1) If there exists an internal userPrincipal AND it is Serializable then
+serialize it along with the other properties of GenericPrincipal.
+2) Recreate it at the other end if it is available in the object stream.
+In this manner users with custom Principal objects that implement
+java.io.Serializable will have predictable results from the
+request.getUserPrincipal method across nodes in a cluster.
+I'd appreciate your thoughts on this.
+Thanks,
+Ashley

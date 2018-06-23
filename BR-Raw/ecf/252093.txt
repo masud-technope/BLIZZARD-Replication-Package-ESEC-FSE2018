@@ -1,0 +1,2 @@
+Bug 252093 – [Discovery][Composite] Composite doesn't throw Exception on second connect
+CDC should handle a second connect call by throwing an ContainerConnectException("Already Connected Exception").

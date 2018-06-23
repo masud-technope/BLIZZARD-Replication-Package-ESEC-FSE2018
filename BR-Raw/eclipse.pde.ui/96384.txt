@@ -1,0 +1,9 @@
+Bug 96384 – Runtime LIbrary should be classpath
+In the New Plugin wizard there is a field asking for a "Runtime Library".
+ This
+is somewhat confusing as what people are really entireing is the plugin's local
+classpath.
+ Runtime Library lined up nicely with the plugin.xml markup but
+classpath lines up with the manifest.mf markup and is pretty reasonable when
+viewed from the old world as well.
+Suggest changing this to "Classpath"

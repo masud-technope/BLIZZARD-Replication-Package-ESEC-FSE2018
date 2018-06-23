@@ -1,0 +1,562 @@
+Bug 53624 – StackOverFlow in Code assist
+I 20040226
+- turn on Java -> Editor -> Code Assist -> Fill argument names..
+- turn off 'guess filled..'
+- In the following code do a code assist at the marked position
+-> StackOverFlow
+public class A {
+public void foo() {
+setViewerSorter(new ViewerSorter() {
+public int compare(Viewer viewer, Object e1, Object e2) {
+return super.c|<< code assist here
+}
+});
+}
+/**
+* @param sorter
+*/
+private void setViewerSorter(ViewerSorter sorter) {
+// TODO Auto-generated method stub
+}
+public class ViewerSorter {
+public int compare(Viewer viewer, Object e1, Object e2) {
+return 1;
+}
+}
+public class Viewer {
+}
+}
+------
+java.lang.StackOverflowError
+at java.lang.Throwable.<init>(Throwable.java)
+at java.lang.Throwable.<init>(Throwable.java)
+at java.lang.StackOverflowError.<init>(StackOverflowError.java:48)
+at
+org.eclipse.jdt.internal.compiler.problem.ProblemHandler.handle(ProblemHandler.java)
+at
+org.eclipse.jdt.internal.compiler.problem.ProblemHandler.handle(ProblemHandler.java)
+at
+org.eclipse.jdt.internal.compiler.problem.ProblemReporter.handle(ProblemReporter.java)
+at
+org.eclipse.jdt.internal.compiler.problem.ProblemReporter.localVariableHiding(ProblemReporter.java)
+at org.eclipse.jdt.internal.compiler.ast.Argument.bind(Argument.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.bindArguments(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java)
+at
+org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at
+org.eclipse.jdt.internal.codeassist.complete.CompletionOnMessageSend.resolveType(CompletionOnMessageSend.java:44)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.QualifiedAllocationExpression.resolveType(QualifiedAllocationExpression.java)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.ConstructorDeclaration.resolveStatements(ConstructorDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java)
+at
+org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java)
+at
+org.eclipse.jdt.internal.codeassist.CompletionEngine.complete(CompletionEngine.java)
+at org.eclipse.jdt.internal.core.Openable.codeComplete(Openable.java)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeComplete(CompilationUnit.java)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeComplete(CompilationUnit.java)
+at
+org.eclipse.jdt.internal.ui.text.java.JavaCompletionProcessor.internalComputeCompletionProposals(JavaCompletionProcessor.java)
+at
+org.eclipse.jdt.internal.ui.text.java.JavaCompletionProcessor.addContextInformations(JavaCompletionProcessor.java:292)
+at
+org.eclipse.jdt.internal.ui.text.java.JavaCompletionProcessor.computeContextInformation(JavaCompletionProcessor.java:311)
+at
+org.eclipse.jface.text.contentassist.ContentAssistant.computeContextInformation(ContentAssistant.java:1458)
+at
+org.eclipse.jface.text.contentassist.ContentAssistSubjectAdapter.computeContextInformation(ContentAssistSubjectAdapter.java:382)
+at
+org.eclipse.jface.text.contentassist.ContextInformationPopup.computeContextInformation(ContextInformationPopup.java)
+at
+org.eclipse.jface.text.contentassist.ContextInformationPopup.access$1(ContextInformationPopup.java)
+at
+org.eclipse.jface.text.contentassist.ContextInformationPopup$1.run(ContextInformationPopup.java)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java)
+at
+org.eclipse.jface.text.contentassist.ContextInformationPopup.showContextProposals(ContextInformationPopup.java:158)
+at
+org.eclipse.jface.text.contentassist.ContentAssistant.showContextInformation(ContentAssistant.java:1309)
+at org.eclipse.jface.text.source.SourceViewer.doOperation(SourceViewer.java)
+at
+org.eclipse.jdt.internal.ui.javaeditor.JavaSourceViewer.doOperation(JavaSourceViewer.java)
+at
+org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor$AdaptedSourceViewer.doOperation(CompilationUnitEditor.java)
+at
+org.eclipse.jface.text.link.LinkedUIControl.triggerContextInfo(LinkedUIControl.java:707)
+at org.eclipse.jface.text.link.LinkedUIControl.switchPosition(LinkedUIControl.java)
+at org.eclipse.jface.text.link.LinkedUIControl.next(LinkedUIControl.java:689)
+at org.eclipse.jface.text.link.LinkedUIControl.enter(LinkedUIControl.java:613)
+at
+org.eclipse.jdt.internal.ui.text.java.ExperimentalProposal.apply(ExperimentalProposal.java:83)
+at
+org.eclipse.jdt.internal.ui.text.java.JavaCompletionProposal.apply(JavaCompletionProposal.java:532)
+at
+org.eclipse.jface.text.contentassist.CompletionProposalPopup.insertProposal(CompletionProposalPopup.java)
+at
+org.eclipse.jface.text.contentassist.CompletionProposalPopup.selectProposalWithMask(CompletionProposalPopup.java)
+at
+org.eclipse.jface.text.contentassist.CompletionProposalPopup.verifyKey(CompletionProposalPopup.java)

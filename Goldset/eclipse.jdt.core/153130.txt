@@ -1,0 +1,5 @@
+org.eclipse.jdt.core/eval/org/eclipse/jdt/internal/eval/EvaluationContext.java
+org.eclipse.jdt.core/eval/org/eclipse/jdt/internal/eval/CodeSnippetToCuMapper.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/CompletionTests_1_5.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/codeassist/org/eclipse/jdt/internal/codeassist/CompletionEngine.java

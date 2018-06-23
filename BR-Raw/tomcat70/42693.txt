@@ -1,0 +1,33 @@
+42693 – JSP-Generation error with recursive tagfile structure
+addendum: it's Version 6.13 (not available in combobox above)
+scenario:
+=========
+a menu is decribed by a tree structure;
+rendering the menu is done by a tagfile 'render_menuitem', which renders the
+current item either as a leaf item (clicking on it causes an action) or as a
+node item (clicking on it opens another next-level submenu);
+rendering the submenu is done by calling the tagfile again from within its body;
+this worked fine with tomcat 5.0.x and 5.5.x
+to make it clear see the following pseudo code (the original code is to
+voluminous):
+tagfile 'render_menuitem.tagx':
+<jsp:root ...>
+<jsp:directive.attribute name="menu_item"/>
+<c:choose>
+<c:when test="${menu_item.isNode}
+<div>node: ${menu_item.label}</div>
+<c:forEach var="sub_item" items="menu_item.children">
+<!-- THIS IS GOING TO CAUSE THE PROBLEM WITH TOMCAT6: -->
+<tags:render_menuitem menu_item="${sub_item}"/>
+</c:forEach>
+<c:when>
+<c:otherwise>
+<div>leaf: ${menu_item.label}</div>
+</c:otherwise>
+</c:choose>
+</jsp:root>
+faulty behaviour:
+================
+with tomcat 6.0.13, the generated Java-Source for the tagfile reveals, that the
+body of the doTag() method is empty and therefore emits no html; the compilation
+itself was silently done, no error or warning was shown in the logfiles.

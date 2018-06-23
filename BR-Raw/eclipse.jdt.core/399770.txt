@@ -1,0 +1,7 @@
+Bug 399770 – [1.8][compiler] Implement support for @FunctionalInterface
+BETA_JAVA8:
+Per 9.6.3.8 FunctionalInterface [New]
+The annotation type FunctionalInterface is used to indicate that an interface is meant to be a functional interface (9.8).
+If an interface is annotated with the annotation @FunctionalInterface but is not, in fact, a functional interface, a compile-time error occurs.
+This facilitates early detection of inappropriate method declarations appearing in or inherited by an interface that is meant to be functional.
+Because some interfaces are functional incidentally, it is not necessary or desirable that all functional interfaces be annotated with the @FunctionalInterface annotation.

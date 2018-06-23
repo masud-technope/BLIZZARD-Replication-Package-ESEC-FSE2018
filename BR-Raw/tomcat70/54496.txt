@@ -1,0 +1,5 @@
+54496 – ..tribes.membership.MemberImpl.toString() might be better using .getClass().getName()
+public String toString()  {
+StringBuilder buf = new
+StringBuilder("org.apache.catalina.tribes.membership.MemberImpl[");
+Might be better to use .getClass().getName() to cover StaticMember and any other sub-classes that might arise.

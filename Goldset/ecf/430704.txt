@@ -1,0 +1,8 @@
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient4/src/org/eclipse/ecf/provider/filetransfer/httpclient4/HttpClientRetrieveFileTransfer.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient4/src/org/eclipse/ecf/provider/filetransfer/httpclient4/HttpClientFileSystemBrowser.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient/src/org/eclipse/ecf/internal/provider/filetransfer/httpclient/ConnectingSocketMonitor.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient/src/org/eclipse/ecf/provider/filetransfer/httpclient/HttpClientFileSystemBrowser.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient4/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient/src/org/eclipse/ecf/provider/filetransfer/httpclient/HttpClientRetrieveFileTransfer.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient4/src/org/eclipse/ecf/internal/provider/filetransfer/httpclient4/ConnectingSocketMonitor.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient/META-INF/MANIFEST.MF

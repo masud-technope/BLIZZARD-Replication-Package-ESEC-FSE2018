@@ -1,0 +1,77 @@
+47331 – No translation error messag when using #{...} in template text
+JSP.2.2 requires a translation error when an #{...} EL expression is used in templated text.
+(See also the Section 1.2.4 of "JavaServer Pages 2.1 Expression
+Language Specification".)
+Tomcat 6.0.18 *erronously* parse the expression.
+Tomcat 6.0.20 *rightly* does not but it also does not issue any error like the JSP specs requires.
+An example might clarify.
+Given the following JSP snip:
+--- [snip] ---
+<?xml version="1.0" encoding="UTF-8"?>
+<jsp:root version="2.1"
+xmlns:jsp="http://java.sun.com/JSP/Page"
+xmlns:c="http://java.sun.com/jsp/jstl/core"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:h="http://java.sun.com/jsf/html">
+<jsp:directive.page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"/>
+<jsp:output omit-xml-declaration="no"
+doctype-root-element="html"
+doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
+<f:view>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/resources/theme/current/css/screen.css" type="text/css" />
+<link rel="shortcut icon" href="#{facesContext.externalContext.requestContextPath}/resources/theme/current/img/favicon.ico" type="image/x-icon"/>
+</head>
+<body>
+<!-- ...
+-->
+</body>
+</html>
+</f:view>
+</jsp:root>
+--- [/snip] ---
+With Tomcat 6.0.18 I get:
+--- [snip] ---
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- ...
+-->
+<link rel="stylesheet"
+href="/my-web-app/resources/theme/current/css/screen.css"
+type="text/css" />
+<link rel="shortcut icon"
+href="/my-web-app/resources/theme/current/img/favicon.ico"
+type="image/x-icon"/>
+</head>
+<!-- ...
+-->
+</html>.
+--- [/snip] ---
+Instead with Tomcat 6.0.20:
+--- [snip] ---
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- ...
+-->
+<link rel="stylesheet"
+href="#{facesContext.externalContext.requestContextPath}/resources/theme/current/css/screen.css"
+type="text/css" />
+<link rel="shortcut icon"
+href="#{facesContext.externalContext.requestContextPath}/resources/theme/current/img/favicon.ico"
+type="image/x-icon"/>
+</head>
+<!-- ...
+-->
+</html>.
+--- [/snip] ---
+But neither an error nor a warning message appear in the log.
+For a discussion about this see the following post on the tomcat-user ML:
+http://mail-archives.apache.org/mod_mbox/tomcat-users/200906.mbox/%3ca764c6280906070128j2bfdc49fvf6a0fb31d3165cc1@mail.gmail.com%3e
+and the subsequent replies.

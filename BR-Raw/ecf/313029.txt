@@ -1,0 +1,9 @@
+Bug 313029 – HttpClient gets http content in ISO-8859-1 instead UTF-8
+Build Identifier:
+HttpClient gets http content in its default encoding - ISO-8859-1.
+If page content contains do not ASCII symbols, they transform to unreadable symbols sequences, for example: Ã?&#159;Ã?Â¾ Ã?Â¿Ã‘&#128;Ã?Â¾Ã‘&#129;Ã‘&#140;Ã?Â±Ã?Â°Ã?Â¼ Ã‘&#135;Ã?Â¸Ã‘&#130;Ã?Â°Ã‘&#130;Ã?ÂµÃ?Â»Ã?ÂµÃ?Â¹.
+I made small patch - add in method createAndPrepareHttpMethod(...) of class RestClientService folows string:
+httpClient.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, DEFAULT_HTTP_CONTENT_CHARSET);
+DEFAULT_HTTP_CONTENT_CHARSET is java constant:
+protected final static String DEFAULT_HTTP_CONTENT_CHARSET = "UTF-8"; //$NON-NLS-1$
+Reproducible: Always

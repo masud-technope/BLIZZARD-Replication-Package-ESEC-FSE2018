@@ -1,0 +1,5 @@
+java/org/apache/catalina/manager/ManagerServlet.java
+java/org/apache/catalina/startup/HostConfig.java
+java/org/apache/catalina/startup/mbeans-descriptors.xml
+java/org/apache/catalina/manager/LocalStrings.properties
+java/org/apache/catalina/manager/HTMLManagerServlet.java

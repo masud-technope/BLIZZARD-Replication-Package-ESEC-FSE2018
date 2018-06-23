@@ -1,0 +1,18 @@
+Bug 285852 – [build path] Validating Javadoc url seems to have no effect
+I20090611-1540
+1.
+Right click a referenced library
+2.
+Properties
+3.
+Javadoc
+4.
+add a javadoc url path i.e.
+http://java.sun.com/javaee/5/docs/api/
+5.
+Validate...
+Is:
+Nothing happens, no feedback
+Should:
+Say: "location is likely valid/invalid"
+This is on GTK

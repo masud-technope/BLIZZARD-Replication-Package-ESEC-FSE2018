@@ -1,0 +1,2 @@
+Bug 217971 – [Discovery][jSLP] Tests may warn about preconditions
+Tests may warn about their preconditions like port restrictions and mode settings of the jSLP bundle

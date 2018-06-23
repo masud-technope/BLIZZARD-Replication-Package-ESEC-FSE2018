@@ -1,0 +1,14 @@
+Bug 428366 – [1.8] [compiler] The method valueAt(ObservableList<Object>, int) is ambiguous for the type Bindings
+This bug is impacting openJFX project builds.
+The following code fragment compiles under JDK8 but not the Eclipse IDE:
+package junk;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.ListProperty;
+public class Junk6 {
+private ListProperty<Object> property;
+public void testValueAt_Variable_NullIndex() {
+Bindings.valueAt(property, null);
+}
+}
+NOTE:  I am using the update site here:
+http://build.eclipse.org/eclipse/builds/4P/siteDir/eclipse/downloads/drops4/P20140216-1600/java8patch-P20140216-1600-repository.zip

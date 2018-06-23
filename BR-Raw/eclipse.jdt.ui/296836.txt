@@ -1,0 +1,8 @@
+Bug 296836 – 2 messages removed from ActionMessages
+The following 2 static variables have been removed from the JDT.
+Unfortunately, this is breaking our compatibility between Eclipse 3.4 and 3.6.
+I would appreciate if we could bring them back:
+org.eclipse.jdt.internal.ui.actions.ActionMessages.OrganizeImportsAction_summary_added
+org.eclipse.jdt.internal.ui.actions.ActionMessages.OrganizeImportsAction_summary_removed
+Thanks,
+~Loic

@@ -1,0 +1,4 @@
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/search/org/eclipse/jdt/internal/core/search/matching/MatchLocator.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaSearchBugsTests.java
+org.eclipse.jdt.core.tests.model/workspace/JavaSearchBugs/lib/b306196.jar

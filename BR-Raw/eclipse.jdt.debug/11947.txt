@@ -1,0 +1,26 @@
+Bug 11947 – NPE in JavaUISourceLocator when remote debugging
+When remote debugging to a conditional breakpoint, I get the following NPE from
+the JavaUISourceLocator.
+This only occurs when I have the wrong project selected
+in my launch configuration.
+java.lang.NullPointerException
+at
+org.eclipse.jdt.internal.debug.ui.JDIDebugUIPlugin.getActiveWorkbenchShell(JDIDebugUIPlugin.java:147)
+at
+org.eclipse.jdt.debug.ui.JavaUISourceLocator.showDebugSourcePage(JavaUISourceLocator.java:142)
+at
+org.eclipse.jdt.debug.ui.JavaUISourceLocator.getSourceElement(JavaUISourceLocator.java:124)
+at
+org.eclipse.jdt.internal.debug.eval.ASTCodeSnippetToCuMapper.getSourceFormFrame(ASTCodeSnippetToCuMapper.java:136)
+at
+org.eclipse.jdt.internal.debug.eval.ASTCodeSnippetToCuMapper.getSource(ASTCodeSnippetToCuMapper.java:113)
+at
+org.eclipse.jdt.internal.debug.eval.ASTAPIEvaluationEngine.evaluate(ASTAPIEvaluationEngine.java:118)
+at
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.handleBreakpointEvent(JavaLineBreakpoint.java:329)
+at
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:232)
+at
+org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:97)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.run(EventDispatcher.java:142)
+at java.lang.Thread.run(Thread.java:536)

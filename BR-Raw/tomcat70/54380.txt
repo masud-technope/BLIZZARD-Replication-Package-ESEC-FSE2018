@@ -1,0 +1,43 @@
+54380 – In MapperListener.lifecycleEvent(..): check state of parent before calling registerWrapper()
+In r1429745 I added a test to trunk that test what happens if the first attempt to start a Context fails, the cause of the failure is removed, and then the context is started for the second time.
+The test is TestStandardContext.testBug46243().
+It runs successfully, but the following message is logged:
+Jan 07, 2013 3:02:07 PM org.apache.catalina.mapper.Mapper addWrapper
+SEVERE: No context found:
+This happens when the context is started for the second time.
+If I put a breakpoint on the line that logs the message, the stack trace is (running Tomcat trunk):
+Mapper.addWrapper(String, String, String, String, Wrapper, boolean, boolean) line: 319
+MapperListener.registerWrapper(Wrapper) line: 417
+MapperListener.lifecycleEvent(LifecycleEvent) line: 433
+LifecycleSupport.fireLifecycleEvent(String, Object) line: 119
+Tomcat$ExistingStandardWrapper(LifecycleBase).fireLifecycleEvent(String, Object) line: 90
+Tomcat$ExistingStandardWrapper(LifecycleBase).setStateInternal(LifecycleState, Object, boolean) line: 402
+Tomcat$ExistingStandardWrapper(LifecycleBase).start() line: 168
+StandardContext.startInternal() line: 5009
+StandardContext(LifecycleBase).start() line: 150
+TestStandardContext.testBug46243() line: 109
+================================================
+My understanding is the following:
+1.
+When Tomcat starts, registration into the mapper is performed by StandardService.startInternal().
+Stack trace:
+Mapper.addHost(String, String[], Host) line: 89
+MapperListener.registerHost(Host) line: 287
+MapperListener.startInternal() line: 107
+MapperListener(LifecycleBase).start() line: 150
+StandardService.startInternal() line: 450
+StandardService(LifecycleBase).start() line: 150
+StandardServer.startInternal() line: 745
+StandardServer(LifecycleBase).start() line: 150
+TomcatBaseTest$TomcatWithFastSessionIDs(Tomcat).start() line: 326
+TomcatBaseTest$TomcatWithFastSessionIDs.start() line: 421
+TestStandardContext.testBug46243() line: 89
+2.
+The Context that failed to start is skipped by MapperListener.registerHost(), thanks to getState().isAvailable() check there.
+3.
+The Mapper.addWrapper() call (the one that prints that "No context found" message) happens when AFTER_START_EVENT is processed for the Wrapper.
+At this moment the StandardContext.startInternal() has not completed yet and thus the context has not been registered by the mapper.
+4.
+Nothing serious happens, besides the message, because when StandardContext.startInternal() completes, the AFTER_START_EVENT for the Context is processed.
+This is when the Context and the Wrappers that it contains are registered.
+Thus I think there should be a check either in MapperListener.lifecycleEvent() or in MapperListener.registerWrapper() that tests whether getContainer().getState().isAvailable() is true.

@@ -1,0 +1,3 @@
+Bug 392862 – [1.8][compiler][null] Evaluate null annotations on array types
+With type annotations we can now express nullness of array elements.
+Evaluation of annotations and null analysis should be extended for this.

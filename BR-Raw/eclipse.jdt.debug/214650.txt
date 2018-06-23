@@ -1,0 +1,19 @@
+Bug 214650 – Execution Env description file allows only one source archive
+Build ID: I20070921-0919
+Steps To Reproduce:
+1.Create an ee file and put it in the bin directory of the JRE.
+2.Use -Dee.src file(s) to specify source files for class libraries.
+3.Use windows->pref to select a JRE by selecting the ee file.
+It takes only one source archive file.
+More information:
+When implementing org.eclipse.jdt.launching.vmInstalls extension for jclDesktop in Expeditor we have a list of class libraries with corresponding source paths for each specified as -
+<library  path="lib/jclDEE/classes.zip"	    		sourcePath="lib/jclDEE/source/source.zip"/>
+<library  path="lib/jclDEE/charconv.zip"	    		sourcePath="lib/jclDEE/source/charcov-src.zip"/>
+and so on...
+We are trying to use the Execution Environment description file and move these libraries and the corresponding source archive paths/files to the ee file.
+The ee file setting -Dee.src takes only one source archive file.
+We have almost 15-18 source archive files and they need to be specified in the ee file.
+So the ee file should be able to provide a way to
+(a) List more than one source archive.
+(b) Able to associate a source archive with a class library.
+I have talked to the J9 team (Berthold) and they say there are possible issues with trying to bundle them into one huge source archive file.

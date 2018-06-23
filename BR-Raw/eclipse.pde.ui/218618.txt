@@ -1,0 +1,16 @@
+Bug 218618 – x-friend and internal decorators incorrectly refreshed in the manifest editor
+Steps to reproduce:
+0/ Create a bundle with some packages inside
+1/ Export a package
+---> no decorator in the Exported Packages section
+2/ Make the package internal changing the radio button ("hidden from all...")
+---> OK, we have the 'internal' decorator
+3/ Add a bundle as friend
+--> KO, no refresh, the decorator is still "internal".
+But OK if you close and reopen the editor.
+4/ Remove all friends (when there are ones) until the package becomes an 'internal' package again
+--> KO, the "friend" icon remains in the Exported Packages viewer.
+4bis/ Add some friends, and then check "visible to downstream plugins", the package is still decorated as a "friend" one even if it now is a normal one.
+(in fact friends are kept in memory in case we check "hidden from all..." and the "friend" flag is not computed well.
+...
+patch to come

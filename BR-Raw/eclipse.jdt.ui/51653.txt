@@ -1,0 +1,4 @@
+Bug 51653 – [navigation] Quick Outline: Should also show interface members
+I200402102000
+We should consider showing the inherited members for interfaces at least when
+the target type is an interface itself.

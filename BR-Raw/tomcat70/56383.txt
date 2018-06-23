@@ -1,0 +1,11 @@
+56383 – Securing ErrorReportValve [PATCH]
+Created attachment 31507 [details]
+Patch for ErrorReportValve
+When the default error valve returns its report it publishes the tomcat version and some other troubleshooting data.
+This of course breaks security standards at some companies and also is published as a item that needs to be remediated when hardening tomcat(OWASP - goo.gl/Zr9xso ).
+When using the OWASP solution of replacing the serverInfo.properties file it can and will break tools/code that uses that information.
+Attached is the proposed enhancement to be able switch options to show minimal information back.
+By adding the below will only return a html page with only the status.
+No CSS or title
+<Valve className="org.apache.catalina.valves.ErrorReportValve" showReport="false" showServerInfo="false" />
+Currently, default is true for both so if users still want to see the current report nothing will have to change in there server.xml

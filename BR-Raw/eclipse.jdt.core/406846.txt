@@ -1,0 +1,66 @@
+Bug 406846 – [1.8] compiler NPE for method reference/lambda code compiled with < 1.8 compliance
+I was adding this lambda testcase as it didn't appear to be working for me when built with ECJ (I was adding it into LambdaExpressionsTest).
+It is *not* a finished test yet as the expected output is not right.
+ However, I accidentally ran it without 1.8 compliance and crashed ECJ.
+public void test045() {
+this.runConformTest(
+new String[] {
+"C.java",
+"import java.util.*;\n" +
+"public class C {\n" +
+"  public static <E> void printItem(E value, int index) {\n" +
+"    String output = String.format(\"%d -> %s\", index, value);\n" +
+"    System.out.println(output);\n" +
+"  }\n" +
+"  public static void main(String[] argv) {\n" +
+"    List<String> list = Arrays.asList(\"A\",\"B\",\"C\");\n" +
+"    eachWithIndex(list,C::printItem);\n" +
+"  }\n" +
+"  interface ItemWithIndexVisitor<E> {\n" +
+"    public void visit(E item, int index);\n" +
+"  }\n" +
+"  public static <E> void eachWithIndex(List<E> list, ItemWithIndexVisitor<E> visitor) {\n" +
+"    for (int i = 0; i < list.size(); i++) {\n" +
+"         visitor.visit(list.get(i), i);\n" +
+"    }\n" +
+"  }\n" +
+"}\n"
+},"XXX");
+}
+During compilation of that:
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.lookup.MethodBinding.redeclaresPublicObjectMethod(MethodBinding.java:1211)
+at org.eclipse.jdt.internal.compiler.lookup.ReferenceBinding.getInterfaceAbstractContracts(ReferenceBinding.java:1681)
+at org.eclipse.jdt.internal.compiler.lookup.ReferenceBinding.getSingleAbstractMethod(ReferenceBinding.java:1733)
+at org.eclipse.jdt.internal.compiler.ast.ReferenceExpression.isCompatibleWith(ReferenceExpression.java:494)
+at org.eclipse.jdt.internal.compiler.lookup.PolyTypeBinding.isCompatibleWith(PolyTypeBinding.java:37)
+at org.eclipse.jdt.internal.compiler.lookup.TypeBinding.isCompatibleWith(TypeBinding.java:483)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.parameterCompatibilityLevel(Scope.java:4151)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod(Scope.java:638)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod(Scope.java:580)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.findMethod(Scope.java:1456)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.findMethod(Scope.java:1366)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getImplicitMethod(Scope.java:2155)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.resolveType(MessageSend.java:666)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java:1001)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:594)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:297)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:505)
+...
+I fixed it by changing:
+Scope.parameterCompatibilityLevel
+this bit (line 4151):
+if (arg != param && !arg.isCompatibleWith(param.erasure()))
+return NOT_COMPATIBLE;
+change that call to include the scope:
+if (arg != param && !arg.isCompatibleWith(param.erasure(),this))
+return NOT_COMPATIBLE;
+and then the correct errors will come out:
+"1.
+ERROR in C.java (at line 3)\n" +
+"	public static <E> void printItem(E value, int index) {\n" +
+"	               ^\n" +
+"Syntax error, type parameters are only available if source level is 1.5 or greater\n" +
+"----------\n"
+etc/etc.
+I will likely raise a separate issue for the lambda behaviour not working.

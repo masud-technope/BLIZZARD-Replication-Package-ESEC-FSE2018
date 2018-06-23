@@ -1,0 +1,20 @@
+Bug 290034 – Effects of @SuppressWarnings("unchecked") are broader in Eclipse than in javac
+User-Agent:       Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3 (.NET CLR 3.5.30729)
+Build Identifier: 20090619-0625
+Eclipse seems to overload "unchecked" warning suppression to also suppress raw uses of parameterized classes.
+ Javac doesn't issue a warning in this case so there's nothing to suppress.
+ However this does pose an issue when working with other IDE's as they will complain about the use of a raw parameterized class.
+ The following snippet illustrates the difference:
+public class Foo<T> {
+//This is unchecked assignment
+//and should be suppressed using "unchecked"
+//This will appear as a warning in javac
+Foo<T>[] a = new Foo[10];
+//This is raw use of a paramterized type
+//Not suppressed in javac using "unchecked"
+//This will NOT appear as a warning in javac
+Foo[] b = new Foo[10];
+}
+The workaround is to declare b with a wildcard, e.g.:
+Foo<?>[] b = new Foo[10];
+Reproducible: Always

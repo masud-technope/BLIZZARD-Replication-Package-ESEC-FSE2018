@@ -1,0 +1,79 @@
+Bug 98123 – Backward compatibility issues
+(Copied from Eclipse.platform news group)
+I ran into the problem using RC1.
+I launch it on the new workspace.
+Then switch
+target to 3.0.1.
+- open preferences
+- select Plugin Development->Target Platform
+- set a location to Eclipse 3.0.1 directory
+Still works fine.
+Then import plugins into the workspace.
+- Select File -> Import -> External Plug-Ins And Fragments
+- check The target platform (as specified in Preferences)
+- click Next
+- click Add All
+- click Finish
+Almost all plugins are error-tagged.
+The problem is osgi plugin.
+If I try to
+update class paths, I get an error:
+org.eclipse.core.runtime.CoreException: Project cannot reference itself:org.eclipse.osgi
+at org.eclipse.pde.internal.core.ClasspathComputer.getClasspath(ClasspathComputer.java:68)
+at org.eclipse.pde.internal.core.ClasspathComputer.setClasspath(ClasspathComputer.java:42)
+at org.eclipse.pde.internal.ui.wizards.tools.UpdateClasspathJob.doUpdateClasspath(UpdateClasspathJob.java:55)
+at org.eclipse.pde.internal.ui.wizards.tools.UpdateClasspathJob$UpdateClasspathWorkspaceRunnable.run(UpdateClasspathJob.java:70)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1719)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1739)
+at org.eclipse.pde.internal.ui.wizards.tools.UpdateClasspathJob.run(UpdateClasspathJob.java:82)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:67)
+Workaround is to exclude osgi and update.configurator plugins from the
+workspace.
+It solves previous problem but another one comes up.
+I start from scratch.
+After launching IDE on the new workspace I create launch
+configuration for run-time workbench and can launch it succesfully.
+As soon as I
+import plugin and fragments (just excluding org.eclipse.osgi and
+org.eclipse.update.configuration as a troublemakers to avoid errors), I lose
+this ability.
+Launch (the same launch configuration) fails with the following
+trace log:
+java.lang.RuntimeException: Application "org.eclipse.ui.ide.workbench" could not
+be found in the registry.
+The applications available are:
+org.eclipse.ant.core.antRunner, org.eclipse.help.base.infocenterApplication,
+org.eclipse.help.base.helpApplication, org.eclipse.help.base.indexTool,
+org.eclipse.pde.build.BuildScriptGenerator,
+org.eclipse.pde.build.FetchScriptGenerator,
+org.eclipse.pde.junit.runtime.uitestapplication,
+org.eclipse.pde.junit.runtime.legacyUItestapplication,
+org.eclipse.pde.junit.runtime.coretestapplication,
+org.eclipse.update.core.standaloneUpdate.
+at org.eclipse.core.internal.runtime.PlatformActivator$1.run(PlatformActivator.java:325)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:273)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:129)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:185)
+at org.eclipse.core.launcher.Main.run(Main.java:704)
+at org.eclipse.core.launcher.Main.main(Main.java:688)
+Then I remove all the imported stuff expecting that I get this functionality
+back.
+However the launch fails, just after another error:
+java.lang.RuntimeException: No application id has been found.
+at org.eclipse.core.internal.runtime.PlatformActivator$1.run(PlatformActivator.java:313)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:273)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:129)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:185)
+at org.eclipse.core.launcher.Main.run(Main.java:704)
+at org.eclipse.core.launcher.Main.main(Main.java:688)
+Both 3.1RC1 and 3.0.1 are dounloaded and fresh installed.
+If I use workspace
+created using another build, it works fine.

@@ -1,0 +1,10 @@
+org.eclipse.jdt.ui.tests.refactoring.infra.RefactoringPerformanceTestCase.executeRefactoring
+org.eclipse.jdt.ui.tests.refactoring.infra.RefactoringPerformanceTestCase.executeRefactoring
+org.eclipse.jdt.ui.tests.refactoring.infra.RefactoringPerformanceTestCase.executeRefactoring
+org.eclipse.jdt.ui.tests.refactoring.reorg.RenameTypePerfAcceptanceTests.testCold
+junit.extensions.TestDecorator.basicRun
+junit.extensions.TestSetup$1.protect
+junit.extensions.TestSetup.run
+org.eclipse.test.EclipseTestRunner.run
+org.eclipse.test.EclipseTestRunner.run
+org.eclipse.test.UITestApplication$3.run

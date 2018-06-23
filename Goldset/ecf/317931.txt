@@ -1,0 +1,2 @@
+providers/bundles/org.eclipse.ecf.provider.dnssd/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdDiscoveryException.java

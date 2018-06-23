@@ -1,0 +1,17 @@
+Bug 263299 – [target definition] Support for appending .ini VM args to launch
+Currently, there is a global preference used to append VM args found in the eclipse.ini's file to the VM args of newly created Eclipse Application  and PDE JUnit launch configurations:
+Plug-in Development > Target Platform > Launching Arguments (tab)
+"Append VM arguments specified in the target's launcher INI file"
+To support this feature with new target platforms, we should make this an attribute if the ITargetDefinition.
+I propose the following:
+* The "profile" (or installation) bundle container in the new target model should have the ability to contribute VM args to the target (since the args come from an installion's .ini file)
+* We could add a method to IBundleContainer like: getVMArgs().
+Only the "profile" bundle container would provide a value (directories and features would return null, although we might consider having a feature also contribute from its configuration area...)
+* Ideally, we should use FrameworkAdmin to retrieve the VM args from an installation (rather than current code that simply reads the eclipse.ini from the running platform).
+This means that VM args in one target could come from more than one .ini (if you have > 1 profile, etc).
+Usually, the use will only want one set of args, but we should allow the user to choose between all that are available.
+* On the "Arguments" tab of the editor/wizard for target platform we should replace the current check box to append .ini args with a check box table that shows the source of args (label like "eclipse.ini") and the value of the args (-Xms -Xmx...).
+The user can turn (check) the args on/off here.
+The default target platform should have this option turned on by default.
+The "load target operation" needs to be updated to set this option as well (i.e.
+from target definition instance to backing preference setting).

@@ -1,0 +1,5 @@
+59206 – When catalina.base is not specified, ConfigFileLoader throws an NPE in a static initializer
+Using Tomcat 7 as an embedded servlet and updating to Tomcat 7.0.68, we found our application no longer started due to an ExceptionInInitializerError.
+This problem was introduced by the change for https://bz.apache.org/bugzilla/show_bug.cgi?id=56777, which includes https://github.com/apache/tomcat70/blob/trunk/java/org/apache/tomcat/util/file/ConfigFileLoader.java.
+This file, on line 37, loads the system property "catalina.base" and, when it is not set, throws a NullPointerException.
+It seems like it would be preferable if, when catalina.base is not specified, to avoid this NPE.

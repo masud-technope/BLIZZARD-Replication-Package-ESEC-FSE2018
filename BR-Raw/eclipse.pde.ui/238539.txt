@@ -1,0 +1,5 @@
+Bug 238539 – [doc] Description for extension point 'org.eclipse.pde.ui.osgiFrameworks' cannot be found
+Going to Window -> Preferences -> Plug-in Development -> OSGI Frameworks.
+Click on link OSGI Frameworks at the top.
+I get message: Description for extension point 'org.eclipse.pde.ui.osgiFrameworks' cannot be found.
+Disable the link if the functionality is not available or fix this bug.

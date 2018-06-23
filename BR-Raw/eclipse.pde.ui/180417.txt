@@ -1,0 +1,4 @@
+Bug 180417 – Initialize feature from launch configurations
+On the second page of the New Feature wizard, we should add an option to initialize the feature from existing OSGi/Eclipse launch configurations.
+This will allow developers, including cool ones from Arizona and Virginia, to easily create a feature and export it without having to manually re-check all the plug-ins/bundles in their launch configs.
+If SWT supports icons in a combo box, it would be cool to distinguish the Eclipse app launch configs from the OSGi ones via their designated icons.

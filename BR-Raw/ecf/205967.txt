@@ -1,0 +1,3 @@
+Bug 205967 – XMPPID throws URISyntaxException for ID with resource
+The constructor for the class org.eclipse.ecf.provider.xmpp.identity.XMPPID throws  an "invalid port value" URISyntaxException for a unamehost argument with the format userid@server:port/resource.
+The error occurs because the code attempts to parse an integer without remove the resource component of the ID.

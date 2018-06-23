@@ -1,0 +1,7 @@
+Bug 290916 – [JUnit] Recreate Testsuite should uncheck AllTests by default
+User-Agent:       Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR 1.1.4322; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)
+Build Identifier: M20090211-1700
+By default when using the Recreate Testsuite-Wizard it also checks the AllTests-Suite itself to be included and shows a warning.
+I wonder why this choice was made, since I always have to uncheck it inorder to prevent a Stackoverflowerror when running the AllTests-Suite afterwards.
+Is there any special reason for this behaviour? May be you could add an option somewhere in the preferences or remember the last choice when using the wizard.
+Reproducible: Always

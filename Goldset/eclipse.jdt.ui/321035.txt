@@ -1,0 +1,5 @@
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/util/JavaModelUtil.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/ComplianceConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/wizards/NewJavaProjectWizardPageOne.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/util/JavaModelUtil.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/ComplianceConfigurationBlock.java

@@ -1,0 +1,84 @@
+50582 – Small JSPs do not set Content-Length (and use chunked encoding) if AccessLogValve is configured
+Reported in the following thread on users@:
+http://markmail.org/thread/awcu5ler2m77jjok
+Steps to reproduce:
+1.
+Create the following JSP page, simple.jsp:
+<%= "hello!" %>
+2.
+Send the following request:
+GET /simple.jsp HTTP/1.1
+Host: localhost
+Keep-Alive: 115
+Connection: keep-alive
+3.
+Expected response: (Tomcat 7.0.4)
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Set-Cookie: JSESSIONID=0AFC2875C06A962DF8A02DE6A780F721; Path=/; HttpOnly
+Content-Type: text/html;charset=ISO-8859-1
+Content-Length: 6
+Date: Thu, 13 Jan 2011 21:16:23 GMT
+hello!
+4.
+Actual response: (Tomcat 7.0.6)
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Set-Cookie: JSESSIONID=2C176DBAC054D5BBF3D99FBE5C026915; Path=/; HttpOnly
+Content-Type: text/html;charset=ISO-8859-1
+Transfer-Encoding: chunked
+Date: Thu, 13 Jan 2011 21:23:19 GMT
+6
+hello!
+0
+===============================================
+Investigation.
+If I place a breakpoint in AbstractHttp11Processor#prepareResponse() I see the following line
+long contentLength = response.getContentLengthLong();
+returns -1 and the call stack is:
+Daemon Thread ["http-bio-8080"-exec-1] (Suspended)
+Response.getContentLengthLong() line: 523
+Http11Processor(AbstractHttp11Processor).prepareResponse() line: 887
+Http11Processor(AbstractHttp11Processor).action(ActionCode, Object) line: 739
+Response.action(ActionCode, Object) line: 170
+Response.sendHeaders() line: 350
+OutputBuffer.doFlush(boolean) line: 308
+OutputBuffer.flush() line: 291
+Response.getBytesWritten(boolean) line: 327
+AccessLogValve$ByteSentElement.addElement(StringBuilder, Date, Request, Response, long) line: 1052
+AccessLogValve.log(Request, Response, long) line: 579
+AccessLogValve.invoke(Request, Response) line: 562
+StandardEngineValve.invoke(Request, Response) line: 118
+CoyoteAdapter.service(Request, Response) line: 380
+Http11Processor.process(SocketWrapper<Socket>) line: 243
+Http11Protocol$Http11ConnectionHandler.process(SocketWrapper<Socket>, SocketStatus) line: 188
+Http11Protocol$Http11ConnectionHandler.process(SocketWrapper<Socket>) line: 166
+JIoEndpoint$SocketProcessor.run() line: 288
+ThreadPoolExecutor$Worker.runTask(Runnable) line: 886
+ThreadPoolExecutor$Worker.run() line: 908
+TaskThread(Thread).run() line: 662
+Note OutputBuffer.flush() call above.
+If I remove AccessLogValve from configuration, the response.getContentLengthLong();
+call returns "8" as expected and call stack is:
+Daemon Thread ["http-bio-8080"-exec-1] (Suspended)
+Http11Processor(AbstractHttp11Processor).prepareResponse() line: 888
+Http11Processor(AbstractHttp11Processor).action(ActionCode, Object) line: 739
+Response.action(ActionCode, Object) line: 170
+Response.sendHeaders() line: 350
+OutputBuffer.doFlush(boolean) line: 308
+OutputBuffer.close() line: 275
+Response.finishResponse() line: 501
+CoyoteAdapter.service(Request, Response) line: 406
+Http11Processor.process(SocketWrapper<Socket>) line: 243
+Http11Protocol$Http11ConnectionHandler.process(SocketWrapper<Socket>, SocketStatus) line: 188
+Http11Protocol$Http11ConnectionHandler.process(SocketWrapper<Socket>) line: 166
+JIoEndpoint$SocketProcessor.run() line: 288
+ThreadPoolExecutor$Worker.runTask(Runnable) line: 886
+ThreadPoolExecutor$Worker.run() line: 908
+TaskThread(Thread).run() line: 662
+===============================================
+The value returned by response.getContentLengthLong() should be set explicitly (e.g.
+with content-length header).
+The second stack trace includes OutputBuffer.close() call and it sets the length value to the response:
+>   coyoteResponse.setContentLength(bb.getLength());
+This regression is triggered by flushing when AccessLogValve asks for the count of bytes written and was introduced when implementing #50496.

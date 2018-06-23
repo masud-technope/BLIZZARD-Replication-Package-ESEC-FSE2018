@@ -1,0 +1,9 @@
+Bug 332421 – [nls tooling] Hyperlink on properties file key doesn't work across projects
+N20101212-2000
+- import org.eclipse.ui.ide and org.eclipse.ui.ide.application from CVS
+- open this file:
+/org.eclipse.ui.ide/src/org/eclipse/ui/internal/ide/messages.properties
+- Ctrl+Click on the key on line 952:
+IDEApplication_workspaceCannotLockTitle=Workspace Cannot Be Locked
+=> just beeps but doesn't open the reference in IDEApplication#checkInstanceLocation(Shell).
+Problem is probably that the reference is in another plug-in.

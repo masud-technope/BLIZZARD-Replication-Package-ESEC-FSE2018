@@ -1,0 +1,26 @@
+Bug 461268 – [1.8][null] Invent a warning that protects against interpreting legacy return as @NonNull
+Build id: I20150224-0800
+Values fetched from a non-null map are incorrectly marked as non-null which may result in a NPE if not checked.
+Checking triggers a warning.
+There are workarounds but the issue is that the code in unsafeGet(..) triggers no warning and is clearly unsafe.
+import org.eclipse.jdt.annotation.NonNullByDefault;
+import java.util.HashMap;
+import java.util.Map;
+@NonNullByDefault
+public class Test {
+private final Map<String,String> map = new HashMap<>();
+public String safeGet(String key) {
+String value = map.get(key);
+if (value == null) { // Warning: Null comparison always yields false: The variable value cannot be null at this location
+value = "NOT FOUND"; // Warning: Dead code
+}
+return value;
+}
+public String unsafeGet(String key) {
+return map.get(key);
+}
+public static void main(String[] args) {
+System.out.println(new Test().safeGet("FOO").length()); // 9 == "NOT FOUND".length()
+System.out.println(new Test().unsafeGet("FOO").length()); // NPE
+}
+}

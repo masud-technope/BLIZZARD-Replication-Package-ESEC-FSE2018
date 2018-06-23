@@ -1,0 +1,14 @@
+51698 � ajp CPing/Forward-Request packet forgery, is a design decision? or a security vulnerability?
+Created attachment 27416 [details]
+ajp CPing packet forgery example
+because the ajp "Data" packet no "CodeType"
+and tomcat adopts lazy-reading strategy for reading ajp "Data" packet，
+(i.e., if you don't invoke request.getParameter("XXX")，tomcat does't read post request "Data" packet)
+so，the current "Data" packet keeping in the socket inputstream，
+the connection is keep-alive, ajp bio/nio procesor reading the next packet，
+this time, is "Data" packet。
+if the first byte of "Data" packet'length is 0x02(Code Type of Forward Request Packet) or 0x0A(Code Type of CPing Packet)，
+then tomcat will be in trouble.
+please see the attachments.
+firt example: ajp CPing packet forgery example
+second example: ajp Forward-Request packet forgery

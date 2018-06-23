@@ -1,0 +1,11 @@
+Bug 166610 – PDE needs to use the extension registry from Equinox
+The creation of the fancy 'org.eclipse.equinox.app' bundle has surfaced an issue with the way PDE validates extensions, since the extension points 'org.eclipse.core.runtime.products' and 'org.eclipse.core.runtime.applications' were transferred over along with their old namespace to the org.eclipse.equinox.app bundle.
+When validating the markup for an extension, PDE (still) assumes that the first n-1 segments of an extension point ID denote the symbolic name of the bundle that contributes the extension point.
+This is of course not the case here.
+As of 3.2, an extension point's "contributor" is not the same as an extension point's "namespace".
+With the current pde models, we would have to go linearly through all the plug-ins to find the contributing bundle where the extension point physically resides.
+ Then, we could find the source code for that bundle and locate the schema.
+The runtime already has an extension registry that does all the wiring, and PDE needs to start using it (much like we use the state) instead of reinventing the wheel.
+Last time, we attempted to do this, we ran into some funny business with a concept of 'tokens' etc.
+in the registry code.
+Oleg, what's the state of the extension registry?  Can PDE use it right now to create a registry of extensions found in the workspace and target?

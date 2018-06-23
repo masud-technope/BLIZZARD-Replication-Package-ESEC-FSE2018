@@ -1,0 +1,83 @@
+/*******************************************************************************
+ * Copyright (c) 2008, 2015 Code 9 Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Code 9 Corporation - initial API and implementation
+ *     Chris Aniszczyk <caniszczyk@gmail.com>
+ *     Rafael Oliveira Nobrega <rafael.oliveira@gmail.com> - bug 242028
+ *******************************************************************************/
+package org.eclipse.pde.internal.ds.ui.editor;
+
+import org.eclipse.jface.action.IStatusLineManager;
+import org.eclipse.jface.text.ITextSelection;
+import org.eclipse.jface.text.TextSelection;
+import org.eclipse.pde.internal.ds.ui.parts.FormEntry;
+import org.eclipse.pde.internal.ds.ui.parts.IFormEntryListener;
+import org.eclipse.pde.internal.ui.editor.IContextPart;
+import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.forms.events.HyperlinkEvent;
+
+public class FormEntryAdapter implements IFormEntryListener {
+
+    private IContextPart contextPart;
+
+    protected IActionBars actionBars;
+
+    public  FormEntryAdapter(IContextPart contextPart) {
+        this(contextPart, null);
+    }
+
+    public  FormEntryAdapter(IContextPart contextPart, IActionBars actionBars) {
+        this.contextPart = contextPart;
+        this.actionBars = actionBars;
+    }
+
+    @Override
+    public void focusGained(FormEntry entry) {
+        ITextSelection selection = new TextSelection(1, 1);
+        contextPart.getPage().getPDEEditor().getContributor().updateSelectableActions(selection);
+    }
+
+    @Override
+    public void textDirty(FormEntry entry) {
+        contextPart.fireSaveNeeded();
+    }
+
+    @Override
+    public void textValueChanged(FormEntry entry) {
+    }
+
+    @Override
+    public void browseButtonSelected(FormEntry entry) {
+    }
+
+    @Override
+    public void linkEntered(HyperlinkEvent e) {
+        if (actionBars == null)
+            return;
+        IStatusLineManager mng = actionBars.getStatusLineManager();
+        mng.setMessage(e.getLabel());
+    }
+
+    @Override
+    public void linkExited(HyperlinkEvent e) {
+        if (actionBars == null)
+            return;
+        IStatusLineManager mng = actionBars.getStatusLineManager();
+        mng.setMessage(null);
+    }
+
+    @Override
+    public void linkActivated(HyperlinkEvent e) {
+    }
+
+    @Override
+    public void selectionChanged(FormEntry entry) {
+        ITextSelection selection = new TextSelection(1, 1);
+        contextPart.getPage().getPDEEditor().getContributor().updateSelectableActions(selection);
+    }
+}

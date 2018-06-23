@@ -1,0 +1,16 @@
+49116 – Memory leak by HttpSession.
+When session is stored in StandardManager#doUnload method,
+an invalid session is stored.
+For instance,
+If HttpSession#invalidate is executed while executing StandardManager#doUnload,
+session of "isValid=false" is stored.
+The session of isValid=false is restored in StandardManager#doLoad,
+and it registers in session map (sessions).
+However, no one can invalidate this session.
+If isValid is false, StandardSession#invalidate() and StandardSession#isValid() can not expire session.
+They are throws IllegalStateException or return immediately.
+Consequently, the session of isValid=false is never deleted from the session map(sessions).
+I made a patch.
+If session is already invalid, expire session to prevent memory leak.
+Best Regards.
+Keiichi.

@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/SefWorkSpace/SefTests/object_out/TestCompoundWrite2.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SefWorkSpace/SefTests/object_out/TestCompoundWrite4.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/GetterSetterQuickFixTest.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/GetterSetterUtil.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/NecessaryParenthesesChecker.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/sef/AccessAnalyzer.java

@@ -1,0 +1,3 @@
+Bug 320081 – [Discovery] Add functionality to insert a service manually
+The discovery UI lacks functionality to add a service manually (by URI).
+Thus a manual lookup discovery provider should be implemented.

@@ -1,0 +1,20 @@
+49655 – ExpressionFactoryImpl.createMethodExpression() is not EL 2.2 Spec conform
+org.apache.el.ExpressionFactoryImpl.createMethodExpression(ELContext context,
+String expression, Class expectedReturnType, Class[] expectedParamTypes)
+does not correctly impl EL Specification 2.2 (Maintenance Release 2 - December
+10, 2009)
+The spezfication say at site 72 (last paragraph):
+expectedParamTypes - The expected parameter types for the method to be found.
+Must be an array with no elements if there are no parameters expected.
+It is
+illegal to pass null, unless the method is specified with arugments in the EL
+expression, in which case these arguments are used for method selection, and
+this parameter is ignored.
+The part ", unless the method is specified...." was added in 2.2 and is not
+implemented.
+If i call the method with expectedParamTypes == null i get NullPointerException,
+although expression #{bean.sayHello('World')} has arguments.
+The Sun 2.2.1-b04 el (com.sun.el.ExpressionFactoryImpl) has the same defect.
+The
+code looks identical.
+JUEL 2.2.1 (http://juel.sourceforge.net/) works fine.

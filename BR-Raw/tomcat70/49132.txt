@@ -1,0 +1,5 @@
+49132 – JNDI not working
+Simple web-app test to lookup the environment context is throwing an exception - below code is taken from tomcat 6/7 docs - 2nd line throws a NameNotFound Exception 'comp' not found.
+// Obtain our environment naming context
+Context initCtx = new InitialContext();
+Context envCtx = (Context) initCtx.lookup("java:comp/env");

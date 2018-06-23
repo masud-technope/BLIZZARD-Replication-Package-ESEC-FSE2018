@@ -1,0 +1,23 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/SuppressWarningsSubProcessor.java
+org.eclipse.jdt.ui/icons/full/obj16/quickfix_obj.png
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaPluginImages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/CompilationUnitDocumentProvider.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/JavaAnnotationImageProvider.java
+org.eclipse.jdt.astview/src/org/eclipse/jdt/astview/views/ProblemNode.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/MethodOverrideTest.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/ASTNodes.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/util/RefactoringASTParser.java
+org.eclipse.jdt.ui/icons/full/obj16/quickfix_info_obj.png
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaPluginImages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/CompilationUnitDocumentProvider.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/JavaAnnotationImageProvider.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/JavaMarkerAnnotation.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/ComplianceConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/JavaBuildConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/JavadocProblemsConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/PreferencesMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/PreferencesMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/ProblemSeveritiesConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/NewWizardMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/NewWizardMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/AccessRulesDialog.java

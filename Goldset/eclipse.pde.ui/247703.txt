@@ -1,0 +1,5 @@
+apitools/org.eclipse.pde.api.tools.tests/test-builder/baseline/bundle.a/src/a/classes/internal/InternalClassWithConstructor.java
+apitools/org.eclipse.pde.api.tools.tests/test-builder/baseline/bundle.a/src/a/classes/hierarchy/RemoveConstructorFromInternalSuperclass.java
+apitools/org.eclipse.pde.api.tools.tests/test-builder/compat/class/hierarchy/RemoveConstructorFromInternalSuperclass.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/comparator/ClassFileComparator.java
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/builder/tests/compatibility/ClassCompatibilityHierarchyTests.java

@@ -1,0 +1,12 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/util/SAXParserWrapper.java
+ui/org.eclipse.pde.core/src_ant/org/eclipse/pde/internal/core/ant/ConvertSchemaToHTML.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/xhtml/GetUnconvertedOperation.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/FeatureConsistencyChecker.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/ExtensionPointSchemaBuilder.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/XMLEditingModel.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/DefaultSAXParser.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/Schema.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/util/PDEXMLHelper.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/util/DOMParserWrapper.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/UpdateSiteBuilder.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/ManifestConsistencyChecker.java

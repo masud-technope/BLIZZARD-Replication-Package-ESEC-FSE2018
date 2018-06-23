@@ -1,0 +1,10 @@
+50127 – Possible NPEs in SimpleTCPCluster
+Created attachment 26190 [details]
+Patch to eliminate potential NPE
+The code does this in several places:
+if (object != null) {
+...
+}
+object.method()
+If the object can be null, then the method call should be in the conditional block.
+If not, eliminate the check.

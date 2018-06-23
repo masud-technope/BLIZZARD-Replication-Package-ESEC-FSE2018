@@ -1,0 +1,9 @@
+Bug 71705 – [1.5] CodeAssist failure with simple test case
+1) create the following class
+public class X {
+Object#cursor# o;
+void foo(int[] a, int[] b){
+if(a.lenth < b.length)
+System.out.println();
+}
+}

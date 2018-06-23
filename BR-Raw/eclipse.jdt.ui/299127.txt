@@ -1,0 +1,11 @@
+Bug 299127 – 'Refresh Filter' problem: NullPointerException when entering a blank in JAR selection dialog
+Build Identifier: 20090920-1017
+In the Java Build Path properties select the button "Add JARs...".
+The "JAR Selection" dialog pops up, where you can filter the jars by the text entered in the textbox at the top.
+When you insert a blank in the textbox, the 'Refresh Filter' crashes with a NullPointerException.
+Reproducible: Always
+Steps to Reproduce:
+1.In the Java Build Path properties of a Java project select the button "Add JARs...".
+2.
+Set the focus into the text box at the top of the dialog and press the space bar.
+3.: Result: 'Refresh Filter' crashes with a NullPointerException.

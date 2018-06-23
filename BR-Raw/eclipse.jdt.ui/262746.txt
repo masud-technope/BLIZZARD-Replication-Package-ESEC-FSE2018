@@ -1,0 +1,4 @@
+Bug 262746 – [jar exporter] Create a builder for jar-rsrc-loader.zip
+HEAD
+We should create a builder for /org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat/jar-rsrc-loader.zip and move the relevant files into a separate source folder.
+Look at 3.3 to see how this was done for the serial version computer.

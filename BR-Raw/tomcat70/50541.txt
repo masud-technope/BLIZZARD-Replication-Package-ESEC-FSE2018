@@ -1,0 +1,33 @@
+50541 – JNDIRealm: support configuring LDAP sizeLimit (countLimit in SearchControls)
+Today, when enabling an application's LDAP authentication through Active Directory, I've discovered that with apparently a completely correct LDAP Realm configuration on the Tomcat side, AD returns the following error all the time:
+LDAP: error code 1 - 000004DC: LdapErr: DSID-0C0906DD, comment: In order to perform this operation a successful bind must be completed on the connection., data 0, v1771
+After some hours of Googling and experimenting with referrals, subtree search modes et cetera, I've found out (through network packet analysis) that the problem is caused by LDAP sizeLimit being set to zero in the searches sent by Tomcat.
+After closer inspection of Tomcat source code, I've dug out this class:
+http://svn.apache.org/repos/asf/tomcat/trunk/java/org/apache/catalina/realm/JNDIRealm.java
+And this code fragment in the method getUserBySearch(DirContext context, String username, String[] attrIds):
+// Set up the search controls
+SearchControls constraints = new SearchControls();
+if (userSubtree) {
+constraints.setSearchScope(SearchControls.SUBTREE_SCOPE);
+}
+else {
+constraints.setSearchScope(SearchControls.ONELEVEL_SCOPE);
+}
+// Specify the attributes to be retrieved
+if (attrIds == null)
+attrIds = new String[0];
+constraints.setReturningAttributes(attrIds);
+NamingEnumeration<SearchResult> results =
+context.search(userBase, filter, constraints);
+As you can see (http://tomcat.apache.org/tomcat-7.0-doc/realm-howto.html#JNDIRealm), currently there's no way to customize other search controls than search scope and returning attributes by means of XML configuration.
+In javax.naming.directory.SearchControls, the LDAP sizeLimit is determined by the countLimit property:
+http://download.oracle.com/javase/6/docs/api/javax/naming/directory/SearchControls.html#setCountLimit(long)
+I propose to create a new configuration attribute for the Realm XML element that would enable setting this limit, and naming it "sizeLimit" (not "countLimit" like the Java property, because in LDAP world people are used to the former term).
+While we're at it, adding "timeLimit" (measured in milliseconds) attribute would be also nice.
+So for example one would be able to set 1000 entries sizeLimit and 5 seconds timeLimit this way:
+<Realm className="org.apache.catalina.realm.JNDIRealm" debug="99"
+connectionURL="ldap://localhost:389"
+userPattern="uid={0},ou=people,dc=mycompany,dc=com"
+sizeLimit="1000"
+timeLimit="5000"
+/>

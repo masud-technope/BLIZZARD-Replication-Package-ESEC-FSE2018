@@ -1,0 +1,2 @@
+org.eclipse.jdt.internal.compiler.lookup.SyntheticMethodBinding.<init>
+org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.addSyntheticFactoryMethod

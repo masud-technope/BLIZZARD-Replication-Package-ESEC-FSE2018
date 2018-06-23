@@ -1,0 +1,26 @@
+Bug 426544 – [1.8][compiler] Compiler over-eagerly detects collision of single static imports
+// --
+package p;
+public class X {
+static public int f;
+}
+// --
+package q;
+public class X {
+static public int f = 6;
+}
+// ---
+import static p.X.f;
+import static q.X.f;
+public class X {
+public static void main(String argv[]) {
+}
+}
+elicits: "The import q.X.f collides with another import statement"
+JLS7 7.5.3 says nothing about collision of single static imports.
+JDK8 has started accepting this code and for compatibility's sakes we should
+too.
+Related javac bugs:
+https://bugs.openjdk.java.net/browse/JDK-4980495
+https://bugs.openjdk.java.net/browse/JDK-8019461
+The dates don't quite tally up, but these have some discussion FWIW.

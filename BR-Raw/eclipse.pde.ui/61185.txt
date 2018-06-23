@@ -1,0 +1,7 @@
+Bug 61185 – [Manifest][Editors]Browse for class attribute types could restrict using basedOn class/interface
+When using the extension page of the plugin editor it would be handy if the
+types returned when pressing the browse button were restricted to those that
+implement/extend the class specified in the basedOn filed of the attribute (if
+it has one).
+ This would make it harder to put in classes that would fail
+runtime type checks.

@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface/test110/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface/test110/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractInterface/test110/out/I.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ExtractInterfaceTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/constraints/SuperTypeConstraintsCreator.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/constraints/SuperTypeConstraintsModel.java

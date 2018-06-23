@@ -1,0 +1,24 @@
+Bug 426903 – [1.8] Cannot evaluate super call to default method
+From bug 422029 comment #17:
+"public interface A {
+default int getOne() {
+return 1;
+}
+}
+public interface B {
+default int getOne() {
+return 2;
+}
+}
+public class Impl implements A, B {
+public int getOne() {
+return B.super.getOne(); //bp here and inspect B.super.getOne()
+}
+public static void main(String[] args) {
+Impl i = new Impl();
+System.out.println(i.getOne());
+}
+}
+Put a breakpoint where indicated and select + inspect "B.super.getOne()" - the resulting popup has the error about not being able to find the declaring type for the method."
+As Jesper found this is currently not supported by the JDK: https://bugs.openjdk.java.net/browse/JDK-8031195
+Once JDWP has support for this it will be listed here (under the 'Enhancements ' section) http://docs.oracle.com/javase/7/docs/technotes/guides/jpda/

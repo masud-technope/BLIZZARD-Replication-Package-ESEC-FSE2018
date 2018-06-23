@@ -1,0 +1,16 @@
+33356 – Incorrect parsing of tag attributes
+I get a org.apache.jasper.JasperException: with the error: "The function string
+must be used with a prefix when a default namespace is not specified" when
+trying to compile the following within a JSP page:
+<foo:set var="bar" value="this $ is a { silly string ("/>
+"foo" is our own tablib, it seems that Jasper seems to think that the string
+provided to the value attribute contains some JSP/EL which it does not.
+If I change the page to be:
+<c:set var="bar" value="this $ is a { silly string ("/>
+Then I do not get this error.
+However I need to use my own taglib.
+In the foo.tld file, the "value" attribute of "set" has rtexprvalue=true.
+If I set this to false then the problem goes away.
+However I noticed that c.tld
+in standard.jar also has rtexprvalue=true for the "value" attribute of "set".
+Why the difference in behaviour ? We also wish to have rtexprvalue=true.

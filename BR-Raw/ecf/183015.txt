@@ -1,0 +1,8 @@
+Bug 183015 – Make ECF icons look closer to other Eclipse icons
+Make ECF icons look closer to other Eclipse icons.
+Color of the current icons is too bright and distracting.
+Even comparing with blue color used in other Eclipse icons (i.e.
+folder icons) they are considerably brighter.
+I think colors should not be visually shouting and should fit nicely with other Eclipse icons.
+Maybe ECF can get some help from Eclipse/Platform icon designers (i.e.
+Kimberley Peter).

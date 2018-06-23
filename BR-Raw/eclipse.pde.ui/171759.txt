@@ -1,0 +1,72 @@
+Bug 171759 – NPE in New Extension wizard
+1.
+on the Extensions page of the plugin editor, press Add...
+2.
+in the extension point selection dialog, switch to the 'Extension Wizards' tab and select the 'Project builder and Nature' template.
+You get the following NPE:
+eclipse.buildId=I20070116-0904
+java.version=1.5.0_03
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -launcher D:\Eclipse\eclipse\eclipse -name Eclipse 600 -product org.eclipse.sdk.ide -pdelaunch
+Command-line arguments:  -launcher D:\Eclipse\eclipse\eclipse -name Eclipse 600 -product org.eclipse.sdk.ide -data D:\Eclipse\UpdatedSource\plugins/../runtime-New_configuration(1) -dev file:D:/Eclipse/UpdatedSource/plugins/.metadata/.plugins/org.eclipse.pde.core/New_configuration (1)/dev.properties -pdelaunch -os win32 -ws win32 -arch x86
+Error
+Fri Jan 26 02:18:48 EST 2007
+Problems occurred when invoking code from plug-in: "org.eclipse.jface".
+java.lang.NullPointerException
+at org.eclipse.pde.internal.ui.wizards.extension.PointSelectionPage$8.createWizard(PointSelectionPage.java:632)
+at org.eclipse.pde.internal.ui.wizards.WizardNode.getWizard(WizardNode.java:50)
+at org.eclipse.jface.wizard.WizardSelectionPage.getNextPage(WizardSelectionPage.java:104)
+at org.eclipse.pde.internal.ui.wizards.extension.PointSelectionPage.canFlipToNextPage(PointSelectionPage.java:450)
+at org.eclipse.jface.wizard.WizardDialog.updateButtons(WizardDialog.java:1202)
+at org.eclipse.jface.wizard.WizardSelectionPage.setSelectedNode(WizardSelectionPage.java:137)
+at org.eclipse.pde.internal.ui.wizards.extension.PointSelectionPage.handleTemplateSelection(PointSelectionPage.java:564)
+at org.eclipse.pde.internal.ui.wizards.extension.PointSelectionPage.selectionChanged(PointSelectionPage.java:547)
+at org.eclipse.jface.viewers.Viewer$2.run(Viewer.java:162)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.core.runtime.Platform.run(Platform.java:850)
+at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:45)
+at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:153)
+at org.eclipse.jface.viewers.Viewer.fireSelectionChanged(Viewer.java:160)
+at org.eclipse.jface.viewers.StructuredViewer.updateSelection(StructuredViewer.java:2004)
+at org.eclipse.jface.viewers.StructuredViewer.handleSelect(StructuredViewer.java:1137)
+at org.eclipse.jface.viewers.StructuredViewer$4.widgetSelected(StructuredViewer.java:1163)
+at org.eclipse.jface.util.OpenStrategy.fireSelectionEvent(OpenStrategy.java:227)
+at org.eclipse.jface.util.OpenStrategy.access$3(OpenStrategy.java:221)
+at org.eclipse.jface.util.OpenStrategy$1.handleEvent(OpenStrategy.java:388)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:938)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3465)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3079)
+at org.eclipse.jface.window.Window.runEventLoop(Window.java:820)
+at org.eclipse.jface.window.Window.open(Window.java:796)
+at org.eclipse.pde.internal.ui.editor.plugin.ExtensionsSection$4.run(ExtensionsSection.java:455)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:67)
+at org.eclipse.pde.internal.ui.editor.plugin.ExtensionsSection.handleNew(ExtensionsSection.java:439)
+at org.eclipse.pde.internal.ui.editor.plugin.ExtensionsSection.buttonSelected(ExtensionsSection.java:257)
+at org.eclipse.pde.internal.ui.editor.TreeSection$PartAdapter.buttonSelected(TreeSection.java:38)
+at org.eclipse.pde.internal.ui.parts.SharedPartWithButtons$SelectionHandler.buttonSelected(SharedPartWithButtons.java:35)
+at org.eclipse.pde.internal.ui.parts.SharedPartWithButtons$SelectionHandler.widgetSelected(SharedPartWithButtons.java:28)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:215)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:938)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3465)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3079)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2083)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2047)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:449)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:101)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:145)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:104)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:74)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:354)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:170)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:476)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:416)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1124)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1099)

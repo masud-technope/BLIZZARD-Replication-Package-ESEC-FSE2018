@@ -1,0 +1,16 @@
+47499 – provide better insight on BindException: Cannot assign requested address
+1) cite the address you attempt to listen (not just the port)
+2) proper exception chaining
+the following info is currently lost: <<java.net.BindException: Cannot assign requested address
+at java.net.PlainSocketImpl.socketBind(Native Method)
+at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+at java.net.ServerSocket.bind(ServerSocket.java:319)
+at java.net.ServerSocket.<init>(ServerSocket.java:185)
+at javax.net.ssl.SSLServerSocket.<init>(SSLServerSocket.java:106)
+at com.privasphere.net.ssl.SSLServerSocketImpl.<init>(SSLServerSocketImpl.java:106)
+at com.privasphere.net.ssl.SSLServerSocketFactoryImpl.createServerSocket(SSLServerSocketFactoryImpl.java:71)
+at org.apache.tomcat.util.net.jsse.JSSESocketFactory.createSocket(JSSESocketFactory.java:100)
+at org.apache.tomcat.util.net.PoolTcpEndpoint.initEndpoint(PoolTcpEndpoint.java:295)
+at org.apache.coyote.http11.Http11BaseProtocol.init(Http11BaseProtocol.java:139)
+at org.apache.catalina.connector.Connector.initialize(Connector.java:1017)
+at org.apache.catalina.core.StandardService.initialize(StandardService.java:578)>>

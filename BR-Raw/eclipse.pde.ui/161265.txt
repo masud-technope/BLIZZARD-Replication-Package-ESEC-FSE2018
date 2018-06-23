@@ -1,0 +1,10 @@
+Bug 161265 – touch/augment/fold/staple/mutilate config.ini template
+Build: I20061017-0800
+I cannot launch an Eclipse Application (runtime workspace) with this build.
+I just get this error:
+java.lang.RuntimeException: Could not find framework
+at org.eclipse.core.launcher.Main.getBootPath(Main.java:649)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:279)
+at org.eclipse.core.launcher.Main.run(Main.java:987)
+at org.eclipse.core.launcher.Main.main(Main.java:962)
+I'll try debugging to see what's going on...

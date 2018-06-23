@@ -1,0 +1,4 @@
+java/org/apache/jasper/compiler/JspReader.java
+test/org/apache/jasper/compiler/TestJspReader.java
+test/webapp-3.0/bug53986.jsp
+webapps/docs/changelog.xml

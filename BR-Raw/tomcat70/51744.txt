@@ -1,0 +1,19 @@
+51744 – JNDI Lookup Error after a Context is closed
+I was integrating Atomikos into Tomcat to register the transaction manager, and the lookup for the transaction manager works fine in JNDI, unless someone else, looks up a JNDI context and closes it.
+And subsequent calls to lookup the transaction manager also fails saying java:comp is not found.
+I went through the code and found the problem at "org.apache.naming.SelectorContext".
+When methods of that class is calls, those are delegated to a Context received through "getBoundContext()", which returns a "org.apache.naming.NamingContext" object.
+And these are stored in a map in ContextBindings class.
+So the getBoundContext checks this cache, and if it's found it returns it or else, create a new object and store it and returns it.
+So the problem happens, if someone calls "close()" in the NamingContext object.
+Then it's implemented in the following way,
+public void close()
+throws NamingException {
+env.clear();
+}
+Which just clears the environment, but it doesn't in no way invalidate that cache in the ContextBindings class to remove its entry.
+So in the next time also when getBoundContext is called to get the same context, it will return the earlier 'closed' context without creating a new one.
+And the environment it has would be cleared and subsequent lookups done from that will fail.
+So I guess the proper fix would be to remove that context from ContextBinding's cache when its close method is closed.
+Cheers,
+Anjana.

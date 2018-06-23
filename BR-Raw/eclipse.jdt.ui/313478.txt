@@ -1,0 +1,9 @@
+Bug 313478 – [JUnit] New Test Case wizard: Browse... does nothing
+Broken since R3.0.
+1.
+make sure the Package Explorer is active but has no selection
+2.
+File > New > JUnit Test Case
+3.
+try to enter 'Class under test' by clicking on 'Browse...'
+==> nothing happens

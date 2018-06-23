@@ -1,0 +1,17 @@
+Bug 424167 – [1.8] Fully integrate type inference with overload resolution
+As discussed in bug 420525 comment 6 it's tricky to find the right location where type inference should be finalized, i.e., if during inference we work on lambda copies etc., at what point should this information be accepted into the original lambda?
+The current solution works from two sides: in PGMB.computeCompatibleMethod() right after inference, and: ASTNode.resolvePolyExpressionArguments() between two possible attempts of finding a suitable method binding.
+This works acceptably well for simple examples but gets more and more difficult with deep nesting of poly expressions.
+Looking at the spec this issue relates to the distinction of invocation applicability inference (18.5.1) vs.
+invocation type inference (18.5.2).
+The former can be performed many times for the same invocation, and after selecting the most specific method the latter is invoked *once*.
+Thus the difficulty to find the location for finalizing resolution into poly expressions relates to the fact that we haven't yet hooked invocation type inference into the proper location.
+Initial analysis suggests that
+- invocation applicability inference corresponds to
+Scope.computeCompatibleMethod(MethodBinding,TypeBinding[],InvocationSite)
+- invocation type inference corresponds to
+Scope.mostSpecificMethodBinding(..)
+Both methods end up calling PGMG.computeCompatibleMethod().
+Out of 8 clients calling the former, only 5 clients also call the latter.
+For now I will draft a solution whereby these clients pass a parameter which control whether we should perform part 1 or part 2 of the inference or both.
+A final solution should later check how much of methods like mostSpecificMethodBinding should actually be *replaced* with a 1.8-specific implementation.

@@ -1,0 +1,7 @@
+Bug 64951 – suspended thread while evaluating condition - no labels
+RC1/IBM1.4.2
+* condition in for loop on line breakpoint (i == 53)
+* selected thread while debugging and paused it
+* all labels appear as "..." and never update
+* variables appear for the stack frame, but toString() (details) do not work
+will attach screen shot

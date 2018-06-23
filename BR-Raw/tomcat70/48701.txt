@@ -1,0 +1,34 @@
+48701 – jsp:getProperty broken for certain cases
+I've updated from tomcat6-6.0.18-9.jpp5 to tomcat6-6.0.24-2.jpp5
+This breaks a lot of JSPs! Jasper simply denies to compile them.
+I hunted down the bug to a very simple example:
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="now" value='<%= new java.util.Date() %>' />
+<jsp:getProperty name="now" property="time" />
+This will simply output the current unix time (e.g.
+1265641020987).
+On tomcat 6.0.24 I get this:
+org.apache.jasper.JasperException: jsp:getProperty for bean with name 'now'.
+Name was not previously introduced as per JSP.5.3
+at org.apache.jasper.compiler.Generator$GenerateVisitor.visit(Generator.java:1083)
+at org.apache.jasper.compiler.Node$GetProperty.accept(Node.java:1124)
+at org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2361)
+at org.apache.jasper.compiler.Node$Visitor.visitBody(Node.java:2411)
+at org.apache.jasper.compiler.Node$Visitor.visit(Node.java:2417)
+at org.apache.jasper.compiler.Node$Root.accept(Node.java:495)
+at org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2361)
+at org.apache.jasper.compiler.Generator.generate(Generator.java:3383)
+at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:216)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:332)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:312)
+at org.apache.jasper.compiler.Compiler.compile(Compiler.java:299)
+at org.apache.jasper.JspCompilationContext.compile(JspCompilationContext.java:589)
+at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:317)
+at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:313)
+at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:260)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+My JDK is
+java version "1.6.0_17"
+Java(TM) SE Runtime Environment (build 1.6.0_17-b04)
+Java HotSpot(TM) Server VM (build 14.3-b01, mixed mode)
+Please fix that! I assume that a lot of apps will break out there ...

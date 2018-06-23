@@ -1,0 +1,11 @@
+org.eclipse.jdt.core.tests.model/JCL/jclMin1.5.jar
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/TypeConstants.java
+org.eclipse.jdt.core.tests.model/JCL/jclMin1.5src.zip
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavadocPackageCompletionModelTest.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/ReferenceBinding.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/CompletionTests_1_5.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/codeassist/org/eclipse/jdt/internal/codeassist/CompletionEngine.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaSearchBugsTests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavadocTypeCompletionModelTest.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/TypeIds.java

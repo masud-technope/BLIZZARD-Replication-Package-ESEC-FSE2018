@@ -1,0 +1,19 @@
+Bug 404471 – [move method] Annotation error in applying move-refactoring to inherited methods
+Class A is super-class of class B.
+Method m of B is inherited from A.
+public class A {
+public void m(C c) {
+}
+}
+public class B extends A {
+@Override
+public void m(C c) {
+}
+}
+When method m of B is moved to class C (making delegate of m),
+"@Override" annotation is also moved to C.
+public class C {
+@Override             //error
+public void m() {
+}
+}

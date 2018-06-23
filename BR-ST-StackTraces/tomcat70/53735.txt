@@ -1,0 +1,5 @@
+org.apache.tomcat.util.bcel.classfile.Constant.readConstant
+org.apache.tomcat.util.bcel.classfile.ConstantPool.<init>
+org.apache.tomcat.util.bcel.classfile.ClassParser.readConstantPool
+org.apache.tomcat.util.bcel.classfile.ClassParser.parse
+org.apache.catalina.startup.ContextConfig.processAnnotationsStream

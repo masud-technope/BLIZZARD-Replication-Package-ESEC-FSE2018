@@ -1,0 +1,1 @@
+Bug 485302 – [1.8][null]Missing warnings when using Wildcards with null annotations

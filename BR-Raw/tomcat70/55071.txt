@@ -1,0 +1,7 @@
+55071 – try finally catch structure masks original exception in JDBCRealm.getPassword()
+I have run into a mysterious apparent SQL exception in JDBCRealm.getPassword().
+Presumably, line 557 "stmt.executeQuery()" occasionally fails.
+I'm not sure why and would like to know why.
+However, the finally block contains dbConnection.commit() (line 579).
+This throws an exception (Connection Closed) which is then logged on line 585.
+In summary, line 579 should be surrounded by a try catch.

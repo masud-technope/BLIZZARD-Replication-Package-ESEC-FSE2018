@@ -1,0 +1,7 @@
+Bug 16930 – Eval: incompatible thread state
+When I pause a thread (manually), and perform an evaluation, I get an
+InvalidThreadStateException - which is expected.
+We should provide a better
+error message for the user, as the 'toString' area does - i.e.
+must be
+suspended after a step or breakpoint to perform an evaluation.

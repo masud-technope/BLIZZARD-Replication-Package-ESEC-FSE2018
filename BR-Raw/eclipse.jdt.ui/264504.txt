@@ -1,0 +1,16 @@
+Bug 264504 – [misc] Editor should not create working copy for deleted resource
+Build ID: I20090129-1800
+To Reproduce:
+1) Create a class A
+2) Close the editor, reveal class A in the package explorer
+3) Start the rename refactoring for class A via the package explorer's context menu, name it B
+4) go back to the last edit location using alt-left
+observe: there is an editor opened for file A which does not exist anymore.
+observe: the package explorer now shows a resource A alongside with B, even though it does not exist.
+Trying to open the file results in an error.
+5) keep the editor for the non-existant file A open
+6) in the package explorer, start the rename refactoring again, rename the class A again
+observe: no error is shown
+observe: the editor for the non-existant file A becomes dirty.
+observe: the class B still exists and is not touched at all
+observe: all references to B in other files are change to A, leading to compile errors

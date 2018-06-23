@@ -1,0 +1,5 @@
+Bug 202100 – [provider] Move classes from org.eclipse.ecf.provider.app.* to org.eclipse.ecf.server.generic.app.*
+See discussion in bug #184491 comment 6 and 7:  https://bugs.eclipse.org/bugs/show_bug.cgi?id=184491#c6
+This implies removing the classes in org.eclipse.ecf.provider.app.* to plugin org.eclipse.ecf.server.generic, to new package org.eclipse.ecf.server.generic.app.
+A consequence of such a move, however, is a necessary name change in the generic server IApplication extension points (with current id org.eclipse.ecf.provider.GenericServer and org.eclipse.ecf.provider.app.AppGenericServer).
+The ids will change to org.eclipse.ecf.server.generic.GenericServer and org.eclipse.ecf.server.generic.AppGenericServer) and the old ids will no longer work.

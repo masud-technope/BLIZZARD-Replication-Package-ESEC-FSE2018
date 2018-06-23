@@ -1,0 +1,15 @@
+Bug 268595 – [plug-in registry] NPE in LocalRegistryBackend
+M6
+* I had the Plug-in Registry View open
+* un-installed Releng Tools
+* pressed "Apply" when the un-install was complete
+* got NPE
+java.lang.NullPointerException
+at org.eclipse.pde.internal.runtime.registry.model.LocalRegistryBackend.getBundleId(LocalRegistryBackend.java:226)
+at org.eclipse.pde.internal.runtime.registry.model.LocalRegistryBackend.createExtensionAdapter(LocalRegistryBackend.java:201)
+at org.eclipse.pde.internal.runtime.registry.model.LocalRegistryBackend.createExtensionAdapters(LocalRegistryBackend.java:378)
+at org.eclipse.pde.internal.runtime.registry.model.LocalRegistryBackend.removed(LocalRegistryBackend.java:450)
+at org.eclipse.core.internal.registry.ExtensionRegistry.processChangeEvent(ExtensionRegistry.java:913)
+at org.eclipse.core.runtime.spi.RegistryStrategy.processChangeEvent(RegistryStrategy.java:267)
+at org.eclipse.core.internal.registry.osgi.ExtensionEventDispatcherJob.run(ExtensionEventDispatcherJob.java:50)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

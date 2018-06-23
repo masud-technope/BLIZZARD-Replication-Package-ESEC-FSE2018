@@ -1,0 +1,8 @@
+releng/org.eclipse.ecf.releng.bm/ECF3-2Baseline.target
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/internal/provider/jslp/NullPatternLocator.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/ServiceLocationEnumeration.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/internal/provider/jslp/NullPatternLocator.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/Locator.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/ServiceLocationEnumeration.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/ServiceLocationEnumerationImpl.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/Locator.java

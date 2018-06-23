@@ -1,0 +1,18 @@
+60043 – suspectTimeout does not work as expected without removeAbandoned="true" which does not match its documentation
+Already posted this to the mailinglist here:
+http://tomcat.10.x6.nabble.com/Question-about-suspectTimeout-property-of-pool-configuration-possible-Bug-does-only-work-with-removed-td5054070.html
+If you configure the pool to have:
+logAbandoned="true"
+suspectTimeout="120"
+set it does not report leaked connections even if you got leaked connections hanging in the busy queue.
+To me this looks like a bug.
+Docs tell this:
+Similar to to the removeAbandonedTimeout value but instead of treating
+the connection as abandoned, and potentially closing the connection,
+this simply logs the warning if logAbandoned is set to true.
+Looking at the code however the suspect() method of a connection is only called from the PoolCleaner thread in the "checkAbandoned()" method.
+But before calling that one it does check the pool configuration like this:
+if (pool.getPoolProperties().isRemoveAbandoned())
+pool.checkAbandoned();
+but i don't want to configure removeAbandoned to true - i just want to get the suspect working like expected from reading the documentation of the property without actually removing the leaked connections.
+Imho this needs to be changed - either the condition here is extended to look for suspectTimeout or the suspect is called in an extra method - i don't care which one is used ;).

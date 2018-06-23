@@ -1,0 +1,9 @@
+Bug 181523 – [Plug-in Dependencies View] Sorting is not correct
+In the Plug-in Dependencies view,
+1.
+Focus on 'org.eclipse.core.expressions'
+2.
+Show Callees/Flat layout.
+Note how org.eclipse.osgi.services is listed before org.eclipse.osgi
+this is, of course, because a '.' is lexicographically smaller than a space.
+We should use ListUtil.PluginComparator to sort.

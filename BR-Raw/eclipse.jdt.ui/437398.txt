@@ -1,0 +1,5 @@
+Bug 437398 – [ccp] Don't select extension when asking for new file name on paste
+Follow-up to bug 391389.
+There are other scenarios where Eclipse asks for a new file name, and those should behave the same as the Rename dialog.
+E.g.
+when you copy/paste a file in the Package Explorer, the dialog should also pre-select the file name without the extension.

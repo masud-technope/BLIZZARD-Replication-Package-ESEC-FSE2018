@@ -1,0 +1,2 @@
+Bug 259072 – [Remotesvcs][R-OSGi] ServiceUIComponent violates Foundation 1.0
+ch.ethz.iks.r_osgi.types.ServiceUIComponent imports java.awt.Panel which apparently isn't part of Foundation 1.0 which is the EE set for R-OSGi.

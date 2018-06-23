@@ -1,0 +1,6 @@
+Bug 213642 – [filetransfer][api] add remote file system browsing
+Currently, the ECF file transfer API supports download/retrieve (IRetrieveFileTransferContainerAdapter) and send (ISendFileTransferContainerAdapter).
+ It does not yet support remote file system browsing (i.e.
+directory information).
+This fucntionality can be added by creating a new container adapter (IFileSystemBrowserContainerAdapter) that allows providers that support this adapter to browse the remote file system asynchronously.
+I expect this API addition to be completed for ECF 3.4M5.

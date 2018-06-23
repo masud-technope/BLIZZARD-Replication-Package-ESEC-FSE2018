@@ -1,0 +1,4 @@
+50629 – Make the bindThread/unbindThread method protected
+In the latest Tomcat codes, I saw that a new thread is created for listener start, filter start and loadOnStartup.
+But the two methods bindThread and unbindThread is marked as private, how about making those methods protected ? So that other containers could use those two methods for their own initialization works.
+Thanks.

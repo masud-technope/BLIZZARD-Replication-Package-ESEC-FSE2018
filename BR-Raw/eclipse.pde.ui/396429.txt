@@ -1,0 +1,13 @@
+Bug 396429 – Samples cannot be loaded from the welcome page
+While testing Kepler M4 candidate, I noticed the Welcome page links ends up loading the wrong version of SWT examples.
+First, I had already loaded them, from "examples repo" downloaded from the DL webpage, so was surprised to see they had to be downloaded at all ...
+but ...
+I said "yes" when prompted.
+Second, it loaded some old ones.
+They were "unsigned".
+Said version 3.3.0.
+And, one (imported into workspace) had an error in manifest.mf in that it still required org.eclipse.core.boot (which is no longer in SDK).
+These were named "Experimental Eclipse SDK Samples".
+Current ones are named "Eclipse SDK Samples".
+I'm not sure what/where the SWT "samples URL" is specified, but will open this in releng to start off.
+As far as I know, this has been a problem for a while (not a regression?) but have not checked explicitly.

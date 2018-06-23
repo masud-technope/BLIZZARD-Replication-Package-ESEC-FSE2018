@@ -1,0 +1,2 @@
+java/org/apache/catalina/core/ApplicationFilterRegistration.java
+webapps/docs/changelog.xml

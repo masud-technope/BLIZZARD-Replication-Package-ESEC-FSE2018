@@ -1,0 +1,5 @@
+java/org/apache/tomcat/websocket/server/LocalStrings.properties
+java/org/apache/tomcat/websocket/server/WsHandshakeRequest.java
+test/org/apache/tomcat/websocket/server/TestWsHandshakeRequest.java
+webapps/docs/changelog.xml
+test/org/apache/tomcat/websocket/server/TesterUriServer.java

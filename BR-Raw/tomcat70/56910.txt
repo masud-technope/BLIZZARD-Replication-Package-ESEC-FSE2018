@@ -1,0 +1,40 @@
+56910 – when maxConnections="-1" AprEndpoint init error
+use apr connector
+set maxConnections="-1" in server.xml
+when start tomcat, exceptions occur:
+java.lang.NegativeArraySizeException
+at org.apache.tomcat.util.net.AprEndpoint$SocketTimeouts.<init>(AprEndpoint.java:1145)
+at org.apache.tomcat.util.net.AprEndpoint$Poller.init(AprEndpoint.java:1382)
+at org.apache.tomcat.util.net.AprEndpoint.startInternal(AprEndpoint.java:602)
+at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:650)
+at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:449)
+at org.apache.catalina.connector.Connector.startInternal(Connector.java:1007)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+at org.apache.catalina.core.StandardService.startInternal(StandardService.java:459)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:731)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+at org.apache.catalina.startup.Catalina.start(Catalina.java:689)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:606)
+at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:321)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:455)
+In AprEndpoint.init() methodï¼š
+protected void init() {
+pool = Pool.create(serverSockPool);
+// Single poller by default
+int defaultPollerSize = getMaxConnections();
+if ((OS.IS_WIN32 || OS.IS_WIN64) && (defaultPollerSize > 1024)) {
+// The maximum per poller to get reasonable performance is 1024
+// Adjust poller size so that it won't reach the limit.
+This is
+// a limitation of XP / Server 2003 that has been fixed in
+// Vista / Server 2008 onwards.
+actualPollerSize = 1024;
+} else {
+actualPollerSize = defaultPollerSize;
+}
+timeouts = new SocketTimeouts(defaultPollerSize); //here !!!
+did not check getMaxConnections() maybe return -1.

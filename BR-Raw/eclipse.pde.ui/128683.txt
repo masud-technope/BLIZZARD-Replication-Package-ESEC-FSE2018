@@ -1,0 +1,5 @@
+Bug 128683 – Organize Manifest does not detect and remove all re-exported bundles
+3.2 M5
+I was using the organize manifest to clean up org.eclipse.jface.txt/META-INF/MANIFEST.MF rev.
+1.10 and it correctly remove the SWT bundle in the required section.
+However, it leaves in the commands bundle which is also re-exported by JFace.

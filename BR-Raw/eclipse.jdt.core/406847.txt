@@ -1,0 +1,44 @@
+Bug 406847 – [1.8] lambda code compiles but then produces IncompatibleClassChangeError when run
+Following on from bug 406846, once I got it compiling, this testcase (for LambdaExpressionsTest):
+public void test045() {
+this.runConformTest(
+new String[] {
+"C.java",
+"import java.util.*;\n" +
+"public class C {\n" +
+"  public static <E> void printItem(E value, int index) {\n" +
+"    String output = String.format(\"%d -> %s\", index, value);\n" +
+"    System.out.println(output);\n" +
+"  }\n" +
+"  public static void main(String[] argv) {\n" +
+"    List<String> list = Arrays.asList(\"A\",\"B\",\"C\");\n" +
+"    eachWithIndex(list,C::printItem);\n" +
+"  }\n" +
+"  interface ItemWithIndexVisitor<E> {\n" +
+"    public void visit(E item, int index);\n" +
+"  }\n" +
+"  public static <E> void eachWithIndex(List<E> list, ItemWithIndexVisitor<E> visitor) {\n" +
+"    for (int i = 0; i < list.size(); i++) {\n" +
+"         visitor.visit(list.get(i), i);\n" +
+"    }\n" +
+"  }\n" +
+"}\n"
+},"XXX");
+}
+(expected output is not complete)
+It compiles but fails to run with:
+junit.framework.AssertionFailedError: Unexpected error running resulting class file for C.java:
+--[START]--
+java.lang.IncompatibleClassChangeError
+at java.lang.invoke.MethodHandleNatives.linkMethodHandleConstant(MethodHandleNatives.java:383)
+at C.main(C.java:9)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:487)
+at ---[END]---
+Same code works fine with javac (b81).
+Should produce the output:
+0 -> A
+1 -> B
+2 -> C

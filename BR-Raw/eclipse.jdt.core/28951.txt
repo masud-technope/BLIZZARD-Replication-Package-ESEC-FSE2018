@@ -1,0 +1,12 @@
+Bug 28951 – Source attachment rootpath field missing in UI
+In 2.1 M4 the source attachment no longer shows the field root path.
+For this
+reason, source attachment will not work.
+I had projects created with older
+version of Eclipse and those are functioning alright.
+I was reading in bug: 27018, that the UI field for rootpath is no longer
+necessary.
+With my source jar files it is still necessary.
+I edited the .classpath file manually to add the rootpath field, and after
+restarting Eclipse, I can see corectly the attachment.
+My source jar files have the rootpath src/java.

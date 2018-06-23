@@ -1,0 +1,9 @@
+Bug 264383 – [target] First page of new target definition wizard always resets contents
+1) Go to the Target platform preference page (experimental)
+2) Hit Add...
+3) Hit next, make some changes to the definition
+4) Hit back
+5) Hit next
+Result:
+Any changes that were made during step (3) are gone.
+While changing the type to initialize the definition with should reset the contents, if nothing on the page changes we should avoid resetting all the user edited data.

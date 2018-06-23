@@ -1,0 +1,36 @@
+Bug 404489 – [1.8][dom ast] Incorrect conversion of JSR308 TYPE_USE annotations on qualified name
+Example:
+package jsr308.bug;
+import java.lang.annotation.*;
+public class AnnotatedQualifiedType {
+@Target(ElementType.TYPE_USE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+static @interface NonNull { }
+java.io.@NonNull IOException foo(
+java.io.@NonNull FileNotFoundException arg)
+throws java.io.@NonNull EOFException {
+try {
+} catch (java.io.@NonNull IOError e) {
+}
+return null;
+}
+}
+The "java.io.@NonNull XyException" are all represented like this in the AST:
+SimpleType                         "java.io.@NonNull XyException"
++ annotations: MarkerAnnotation            "@NonNull"
++ name: QualifiedName              "java.io.@NonNull XyException"
++ qualifier: QualifiedName "java.io"
++ name: SimpleName                          "XyException"
+This is incorrect.
+The first QualifiedName's source range cannot contain the "@NonNull".
+In the current API, the legal representation would be:
+QualifiedType                       "java.io.@NonNull XyException"
++ qualifier: SimpleType             "java.io"
++ annotations: <empty>
++ name: QualifiedName  "java.io"
++ annotations: MarkerAnnotation             "@NonNull"
++ name: SimpleName                                   "XyException"
+Alternatively, the first qualifier could also be a QualifiedType containing a SimpleType and a SimpleName.
+Both of these representations have the problem that the "qualifier" property of a QualifiedType is a Type, but "java.io" is not a type.
+I don't have a good solution right now.

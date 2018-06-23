@@ -1,0 +1,4 @@
+Bug 266120 – [Discovery][JmDNS] IServiceTypeID has always default naming authority set
+Zeroconf service types don't include the naming authority.
+Thus, for ECF, it is transfered as part of the service properties.
+This causes servicetypes returned by getServiceTypeIDs to always have the default naming authority set.

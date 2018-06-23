@@ -1,0 +1,6 @@
+org.eclipse.jdt.internal.core.util.Util.typeSignature
+org.eclipse.jdt.internal.core.SelectionRequestor.acceptLocalVariable
+org.eclipse.jdt.internal.codeassist.SelectionEngine.selectFrom
+org.eclipse.jdt.internal.compiler.ast.LocalDeclaration.resolve
+org.eclipse.jdt.internal.compiler.ast.Block.resolve
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements

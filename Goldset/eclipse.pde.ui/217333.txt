@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/BaseBlock.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/ConfigurationAreaBlock.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/ConfigurationTemplateBlock.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/WorkspaceDataBlock.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties

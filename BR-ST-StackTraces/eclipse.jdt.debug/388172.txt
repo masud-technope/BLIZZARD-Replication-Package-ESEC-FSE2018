@@ -1,0 +1,13 @@
+org.eclipse.jdi.internal.MethodImpl.javaStratumLocationsOfLines
+org.eclipse.jdi.internal.ReferenceTypeImpl.locationsOfLine
+org.eclipse.jdi.internal.ReferenceTypeImpl.locationsOfLine
+org.eclipse.jdi.internal.ReferenceTypeImpl.locationsOfLine
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.determineLocations
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaLineBreakpoint.newRequests
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.createRequest
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleClassPrepareEvent
+org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent
+org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch
+org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0
+org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run
+org.eclipse.core.internal.jobs.Worker.run

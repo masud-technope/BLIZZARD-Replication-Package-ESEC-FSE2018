@@ -1,0 +1,7 @@
+ui/org.eclipse.pde.ui/META-INF/MANIFEST.MF
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEPlugin.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/Utilities.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/ShowDescriptionAction.java
+ui/org.eclipse.pde.ui/src_samples/org/eclipse/pde/internal/ui/samples/ShowSampleAction.java

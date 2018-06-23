@@ -1,0 +1,19 @@
+Bug 217994 – [patch][launching] Run/Debug honors JRE VM args before Launcher VM args
+Build ID: v3.2.1 M20060921-0945
+Steps To Reproduce:
+1.
+Set a JRE level VM args via Preferences (e.g.
+-Dvm.test.arg=jre or -Xmx1024)
+2.
+Create a simple java app that prints out the VM args you specified (e.g.
+System.getProperty("vm.test.arg"))
+3.
+Create a launch configuration for this class and set VM args here (e.g.
+-Dvm.test.arg=launch or -Xmx128)
+4.
+Execute the launcher.
+ You will see that the JRE-level args are used, instead of the launch configuration args.
+More information:
+Filing this as a bug b/c the behavior is counterintuitive.
+ The launchers should act as overrides, so their args should be specified first when invoking a VM.
+ Tested and reproducible in both 3.2 and 3.3 builds.

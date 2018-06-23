@@ -1,0 +1,19 @@
+Bug 166826 – Cannot launch runtime workbench with binary imported plug-ins
+I20061205-0800
+- Import org.eclipse.jdt.ui and all required plug-ins as binary
+- start a runtime Eclipse
+=> BOOM: Dialog "Launch Error" with "The application cannot start...".
+!SESSION Tue Dec 05 20:09:54 CET 2006 ------------------------------------------
+!ENTRY org.eclipse.core.launcher 4 0 2006-12-05 20:09:54.618
+!MESSAGE Exception launching the Eclipse Platform:
+!STACK
+java.lang.ClassNotFoundException: org.eclipse.core.runtime.adaptor.EclipseStarter
+at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+at java.security.AccessController.doPrivileged(Native Method)
+at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+at org.eclipse.core.launcher.Main.invokeFramework(Main.java:336)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:283)
+at org.eclipse.core.launcher.Main.run(Main.java:984)
+at org.eclipse.core.launcher.Main.main(Main.java:959)

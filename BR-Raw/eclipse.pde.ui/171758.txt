@@ -1,0 +1,11 @@
+Bug 171758 – Properties? what properties?
+1.
+Open the plugin.xml for the org.eclipse.pde.core plug-in
+2.
+Go the extensions tab and select any one of the org.eclipse.core.resources.builders extensions and expand it.
+3.
+Select the (runtime) element
+Note how the label in the Extension Details section tells you to "set the properties for that element and required elements are denoted by *"
+This label is inappropriate since that element takes no attributes.
+The label should say "The selected element has no properties to set."
+This is another good bug in that it demonstrates the other type of externalization in Eclipse.

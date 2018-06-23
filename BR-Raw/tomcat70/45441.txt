@@ -1,0 +1,31 @@
+45441 – Matching of relevant servlet filters fails when request is forwarded...
+I ran into a situation where Tomcat will not execute appropriate filters on a request that has been forwarded.
+I'm using the handy URLRewriteFilter implementation (from tuckey.org).
+ When I forwarded a request internally, filters that had a matching url-pattern (in the web.xml file) and with a dispatcher setting of both REQUEST and FORWARD were not invoked.
+On tracing the code (hours later), I found that the problem lies inside the ApplicationDispatcher code.
+ It set the DISPATCHER_REQUEST_PATH_ATTR state attribue to be the servletPath.
+ That meant that only matches using the servlet path would match, but longer (more exact) urls would fail to match.
+For example, using the following filter mapping:
+<filter-mapping>
+<filter-name>my-filter</filter-name>
+<url-pattern>/app/level/mycode.do</url-pattern>
+<dispatcher>REQUEST</dispatcher>
+<dispatcher>FORWARD</dispatcher>
+</filter-mapping>
+would not match a request that was forwarded to /app/level/mycode.do, which it should!
+Changing the url pattern to be "/app/*" would match, but "/app/level/*" would not, since the servletPath was /app in this example.
+The fix for this is quite simple.
+ In the ApplicationDispatcher.java code, in the method processRequest() (which is only called for forwards), change the following statement:
+state.outerRequest.setAttribute
+(ApplicationFilterFactory.DISPATCHER_REQUEST_PATH_ATTR,
+servletPath);
+to use requestURI instead as follows:
+state.outerRequest.setAttribute
+(ApplicationFilterFactory.DISPATCHER_REQUEST_PATH_ATTR,
+requestURI );
+This resolves the problem and let all the examples above correctly match and run the filter on a forward.
+I believe includes will also be broken in the same manner.
+Similar changes to the doInclude() method in ApplicationDispatcher.java will likely resolve that issue as well, though I have not tested this personally.
+Be nice to see this resolved in 6.0.17+.
+Thanks!
+....Andrzej

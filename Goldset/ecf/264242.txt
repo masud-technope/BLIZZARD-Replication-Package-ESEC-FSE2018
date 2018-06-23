@@ -1,0 +1,1 @@
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/core/util/Event.java

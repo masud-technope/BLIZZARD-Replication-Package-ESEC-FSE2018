@@ -1,0 +1,6 @@
+Bug 338271 – TypeRules#canAssign(ITypeBinding, ITypeBinding) broken for generic types
+Created attachment 189845 [details]
+Fix & Tests
+HEAD
+TypeRules#canAssign(ITypeBinding, ITypeBinding) is broken for generic types.
+Replaced by existing TypeEnvironment (but I had to take out support for capture types since that would have broken cases like bug 337181).

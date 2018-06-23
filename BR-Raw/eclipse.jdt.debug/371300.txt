@@ -1,0 +1,60 @@
+Bug 371300 – JavaRuntime computeVMInstall method returns the first VM instead of the workspace default VM if no compatible VM version is found for the given launch configuration
+Build Identifier: 3.7.1
+JavaRuntime computeVMInstall(ILaunchConfiguration) method returns the very first VM from {workspace}\.metadata\.plugins\org.eclipse.core.runtime\.settings\org.eclipse.jdt.launching.prefs instead of the workspace default VM if no compatible VM version is found for the given launch configuration.
+This may not seem a serious issue but it creates a lot of confusion to the user.
+This behaviour was noticed/discovered while using the maven m2e eclipse plugin.
+IMHO JavaRuntime computeVMInstall(ILaunchConfiguration) should return the workspace default JVM and not the first VM from the preference file.
+The JREContainerInitializer: public static IVMInstall resolveVM(IExecutionEnvironment environment) method should be modified so that it returns the default workspace VM.
+public static IVMInstall resolveVM(IExecutionEnvironment environment) {
+if (JREContainer.DEBUG_JRE_CONTAINER) {
+System.out.println("<JRE_CONTAINER> resolveVM(IExecutionEnvironment)"); //$NON-NLS-1$
+}
+IVMInstall vm = environment.getDefaultVM();
+if (vm == null) {
+IVMInstall[] installs = environment.getCompatibleVMs();
+// take the first strictly compatible vm if there is no default
+if (installs.length == 0 && JREContainer.DEBUG_JRE_CONTAINER) {
+System.out.println("\t*** NO COMPATIBLE VMS ***"); //$NON-NLS-1$
+}
+for (int i = 0; i < installs.length; i++) {
+IVMInstall install = installs[i];
+if (environment.isStrictlyCompatible(install)) {
+vm = install;
+if (installs.length == 0 && JREContainer.DEBUG_JRE_CONTAINER) {
+System.out.println("\tPerfect Match: " + vm.getName()); //$NON-NLS-1$
+}
+break;
+}
+}
+// use the first vm failing that
+if (vm == null && installs.length > 0) {
+vm= JavaRuntime.getDefaultVMInstall();
+if (installs.length == 0 && JREContainer.DEBUG_JRE_CONTAINER) {
+System.out.println("\tFirst Match: " + vm.getName()); //$NON-NLS-1$
+}
+}
+} else {
+if (JREContainer.DEBUG_JRE_CONTAINER) {
+System.out.println("\tUser Default VM: " + vm.getName()); //$NON-NLS-1$
+}
+}
+return vm;
+}
+Reproducible: Always
+Steps to Reproduce:
+The below instructions are just an example how this behaviour causes confusion with maven.
+This behaviour has nothing to do with m2e plugin itself!
+1.
+I had two JVM's installed JRE 7 and JDK 1.6.
+2.
+Eclipse starts up and discovers JRE 7 and automatically adds it as the default JRE for the workspace.
+3.
+I then add the JDK 1.6 VM from the preferences and made it the workspace default VM.
+4.
+I create a project using m2e plugin and the execution environment for the project is set to J2SE 1.5.
+5.When I compile the project using maven install for the first time.
+It works.
+6.Now I run maven clean
+7.Now if you try to run maven install.
+Maven complains that JDK is not installed.
+The user has already added a JDK VM in the preferences and has set it as the workspace default and it creates a lot of confusion.

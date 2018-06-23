@@ -1,0 +1,13 @@
+54060 – DigestAuthenticator doesn't parse Authorization header correctly
+From DigestAuthenticator at line 546
+// Bugzilla 37132: http://issues.apache.org/bugzilla/show_bug.cgi?id=37132
+String[] tokens = authorization.split(",(?=(?:[^\"]*\"[^\"]*\")+$)");
+if the last term in the line is not enclosed in quotes, only a single 'term' results.
+For example:
+Header: username="mthornton", qop=auth
+token[0] is username="mthornton", qop=auth
+Header: username="mthornton", qop=auth, cnonce="9926cb3c334ede11"
+token[0] is username="mthornton"
+token[1] is  qop=auth
+token[2] is  cnonce="9926cb3c334ede11"
+(Headers abbreviated for clarity).

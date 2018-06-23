@@ -1,0 +1,4 @@
+Bug 476163 – Remove host config properties from EndpointDescription
+When a remote service is exported, it may be provided config properties (via properties passed to the registerService call).
+  These properties are used to configure the provider and generally should not be passed onto the creation of the EndpointDescription, as they are host-side configuration properties.
+ECF's RemoteServiceAdmin implementation should be modified accordingly to remove config properties from the EndpointDescription properties.

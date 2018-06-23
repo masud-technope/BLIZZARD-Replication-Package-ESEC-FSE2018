@@ -1,0 +1,2 @@
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/ClasspathEntry.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/ClasspathEntry.java

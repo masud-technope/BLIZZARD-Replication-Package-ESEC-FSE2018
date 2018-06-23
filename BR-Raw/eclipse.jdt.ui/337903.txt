@@ -1,0 +1,14 @@
+Bug 337903 – [quick fix] for raw type warning, should at least be as good as for unresolved type
+HEAD
+The quick fix for a raw type warning should at least be as good as for an unresolved type.
+import java.util.*;
+public class Try {
+void foo(Stack<List<Integer>> stack) {
+List li= stack.pop();
+Lost lo= stack.pop();
+}
+}
+For the first type (List), the only quick fix is Infer Generic Type Arguments, and that infers List<?>.
+But for the second type (Lost), the first quick fix offers to change the type to List<Integer>, which is all we need.
+Bug 318433 should fix Infer Generic Type Arguments, but we should still enable the working quick fix that just fixes that problem.
+Beware of duplicate quick fixes when the file doesn't contain any compile errors (just warnings)!

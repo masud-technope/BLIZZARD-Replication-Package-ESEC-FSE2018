@@ -1,0 +1,13 @@
+48117 – two misspellings in the javadoc of class "org.apache.catalina.startup.ContextConfig"
+in protected synchronized void stop(): (Line: 1059)
+// Removing sercurity role
+'security' is misspelled to 'sercurity'
+in protected InputSource getWebXmlSource(String filename, String path): (Line: 1354)
+/**
+*
+* @param filename  Name of the file (possibly with one or more leading path
+*                  segemnts) to read
+* @param path      Location that filename is relative to
+* @return
+*/
+'segments' is misspelled to 'segemnts'.

@@ -1,0 +1,7 @@
+examples/bundles/org.eclipse.ecf.examples.remoteservices.rest.rss/.classpath
+examples/bundles/org.eclipse.ecf.examples.remoteservices.rest.rss/.project
+examples/bundles/org.eclipse.ecf.examples.remoteservices.rest.rss/META-INF/MANIFEST.MF
+examples/bundles/org.eclipse.ecf.examples.remoteservices.rest.rss/about.html
+examples/bundles/org.eclipse.ecf.examples.remoteservices.rest.rss/build.properties
+examples/bundles/org.eclipse.ecf.examples.remoteservices.rest.rss/plugin.properties
+examples/bundles/org.eclipse.ecf.examples.remoteservices.rest.rss/src/org/eclipse/ecf/remoteservices/rest/rss/Activator.java

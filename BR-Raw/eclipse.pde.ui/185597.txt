@@ -1,0 +1,9 @@
+Bug 185597 – Errors creating old-school plug-ins
+build i0503-1400
+- start Eclipse
+- change target platform to r3.0.2
+- File -> New -> Plug-in
+- 3.0 old school style
+- create an activator but won't contribute to UI
+- Finish
+When the build completes, there will be compile errors because it cannot find OSGi and runtime classes.

@@ -1,0 +1,7 @@
+Bug 187316 – [preferences] Mark Occurences Pref Page; Link to
+Build ID: 3.3M7
+Steps To Reproduce:
+There should be a link to the pref page on which you can change the color.
+Namely: General/Editors/Text Editors/Annotations
+It's a pain in the a** to find the pref if you do not know Eclipse's preference structure well.
+More information:

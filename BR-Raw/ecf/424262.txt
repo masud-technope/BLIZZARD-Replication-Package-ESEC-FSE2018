@@ -1,0 +1,16 @@
+Bug 424262 – Add support for distribution provider-specified EndpointDescription properties
+As described by Thomas Calmant
+> Hi,
+>
+> I'm working on an ECF Remote Service provider [1] based on Jabsorb [2].
+> I've started by implementing the host part, taking the TimeService Rest example as a model.
+> Therefore, my JabsorbHostContainer class is inherits from ServletServerContainer, for simplification.
+It also implements IOSGiRemoteServiceContainerAdapter as I need to view all service properties.
+>
+> When the IOSGiRemoteServiceContainerAdapter.registerRemoteService(...) method is called, I generate server-side properties, like the URI(s) to access the Jabsorb servlet, etc.
+>
+> The problem is that even the created IRemoteServiceRegistration contains those properties, the EndpointDescription bean won't contain them as it has been prepared before in the org.eclipse.ecf.osgi.services.remoteserviceadmin.RemoteServiceAdmin.exportService(...) method, and isn't updated afterwards.
+> Is there a way to add custom properties to the endpoint description bean ?
+This enhancement should allow distribution providers to add/change properties that end up being added to the EndpointDescription.
+One implementation mechanism could be to simply read the properties from the remoteRegistration returned from IOSGiRemoteServiceContainerAdapter.registerRemoteService...or IRemoteServiceContainerAdapter.registerRemoteService
+on line 2020 o 2031 of RemoteServiceAdmin class...and override and/or add these remoteRegistration properties to the endpointDescriptionProperties variable prior to the creation of the EndpointDescription (line 2039 of RemoteServiceAdmin).

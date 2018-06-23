@@ -1,0 +1,5 @@
+52488 – there is a common typo exipre
+Created attachment 28176 [details]
+tomcat-6.0.35-typo.patch fixes the typos
+the word expire is typed exipre in a number of places of debug log and mbean info
+patch created also removes a double space

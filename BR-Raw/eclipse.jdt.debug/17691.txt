@@ -1,0 +1,4 @@
+Bug 17691 – DisplayView registers a document listener and nobody removes it
+F1
+as in summary: DispayView resisters its innerclass as a document listener
+nobody removes that listener

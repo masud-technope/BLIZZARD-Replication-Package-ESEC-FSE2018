@@ -1,0 +1,13 @@
+Bug 317719 – Method incorrectly flagged as having same erasure output when return type differs
+The following class fails to compile under Eclipse 3.6, but works fine with Eclipse 3.5 and javac.
+The methods are distinguished by the different return type, as having the same return type makes javac report two compilation errors as well.
+bc..
+package com.example;
+import java.util.List;
+public class ErasureBug {
+public String output(List<Integer> integers) {
+return "";
+}
+public void output(List<Double> doubles) {
+}
+}

@@ -1,0 +1,4 @@
+Bug 230989 – [ds] DSComponent and DSService getChildrens methods doesn't work
+Created attachment 99181 [details]
+DSService and DSComponent updates
+Methods getServices, getProvidedServices, getPropertiesElement, getPropertyElements and getReferentes doesn't work.

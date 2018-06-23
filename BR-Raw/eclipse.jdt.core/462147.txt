@@ -1,0 +1,3 @@
+Bug 462147 – Documentation for new compiler options added during the Mars cycle
+I suggest to cover all relevant documentation for preferences and batch compiler options in this bug.
+One recent candidate: bug 408815

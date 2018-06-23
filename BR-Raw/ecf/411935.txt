@@ -1,0 +1,25 @@
+Bug 411935 – [filetransfer][httpclient] Timeout in unit test org.eclipse.ecf.tests.filetransfer.URLRetrievePauseResumeTest.testReceiveFile
+INFO:  Running test org.eclipse.ecf.tests.filetransfer.URLRetrievePauseResumeTest.testReceiveFile...
+Build timed out (after 60 minutes).
+Marking the build as aborted.
+FATAL: java.lang.InterruptedException
+java.lang.RuntimeException: java.lang.InterruptedException
+at hudson.plugins.buckminster.EclipseBuckminsterBuilder.perform(EclipseBuckminsterBuilder.java:265)
+at hudson.plugins.templateproject.ProxyBuilder.perform(ProxyBuilder.java:87)
+at hudson.tasks.BuildStepMonitor$1.perform(BuildStepMonitor.java:19)
+at hudson.model.AbstractBuild$AbstractBuildExecution.perform(AbstractBuild.java:802)
+at hudson.model.Build$BuildExecution.build(Build.java:199)
+at hudson.model.Build$BuildExecution.doRun(Build.java:160)
+at hudson.model.AbstractBuild$AbstractBuildExecution.run(AbstractBuild.java:584)
+at hudson.model.Run.execute(Run.java:1575)
+at hudson.model.FreeStyleBuild.run(FreeStyleBuild.java:46)
+at hudson.model.ResourceController.execute(ResourceController.java:88)
+at hudson.model.Executor.run(Executor.java:237)
+Caused by: java.lang.InterruptedException
+at java.lang.Object.wait(Native Method)
+at java.lang.Object.wait(Object.java:485)
+at java.lang.UNIXProcess.waitFor(UNIXProcess.java:165)
+at hudson.Proc$LocalProc.join(Proc.java:319)
+at hudson.plugins.buckminster.EclipseBuckminsterBuilder.perform(EclipseBuckminsterBuilder.java:261)
+...
+10 more

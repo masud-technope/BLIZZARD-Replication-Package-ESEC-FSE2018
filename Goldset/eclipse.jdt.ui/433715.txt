@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/InlineTempRefactoring.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/ASTNodes.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/InlineTempTests18.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline18/A_test3_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline18/A_test3_out.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/ASTResolving.java

@@ -1,0 +1,5 @@
+51658 – Potential NPE in CoyoteAdapter.log
+Created attachment 27384 [details]
+logAccess on host instead of context
+In CoyoteAdapter.log:501 request.mapping.context is known to be null and request.mapping.host is checked to be not null, but inside that if branch in line 503 request.mapping.context will be used.
+I think it should be "((Host) request.mappingData.host).logAccess(..." instead.

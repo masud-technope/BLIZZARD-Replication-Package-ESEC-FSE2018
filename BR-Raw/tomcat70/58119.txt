@@ -1,0 +1,7 @@
+58119 – Compiled tags are not put in correct directory
+You will notice that when tags are compiled they are placed in the org\apache\jsp\tag directory with a prefix of web.
+They should instead be placed in org\apache\jsp\tag\web directory and not have a prefix.
+This is a regression which was introduced in revision 1297213.
+http://svn.apache.org/viewvc/tomcat/trunk/java/org/apache/jasper/compiler/JspUtil.java?r1=1297213&r2=1297212&pathrev=1297213
+The extra dot on the end of the string was omitted.
+This bug is was introduced in Jetty 7 so the fix should be applied there too.

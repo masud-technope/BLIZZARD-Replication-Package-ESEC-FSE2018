@@ -1,0 +1,7 @@
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/AddImportsOperation.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/AddImportTest.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/AddImportsOperation.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/AddImportTest.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/AddImportsOperation.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/core/AddImportTest.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/AddImportsOperation.java

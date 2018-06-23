@@ -1,0 +1,2 @@
+57180 – CorsFilter does not support PATCH method
+The CorsFilter provided with Tomcat 7 should support the PATCH method.

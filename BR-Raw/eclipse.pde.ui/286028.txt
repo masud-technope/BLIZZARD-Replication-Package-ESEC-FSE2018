@@ -1,0 +1,3 @@
+Bug 286028 – Organize Manifest: Do not remove lazy Bundle-ActivationPolicy header for DS bundles
+The PDE's Organize Manifest wizard should not be removing the manifest header "Bundle-ActivationPolicy: lazy" when the bundle uses DS and includes the Service-Component header in its manifest.
+ For more on DS and lazy bundle activation, see bug 226575.

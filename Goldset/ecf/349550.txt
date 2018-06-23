@@ -1,0 +1,1 @@
+providers/bundles/org.eclipse.ecf.provider.r_osgi/src/org/eclipse/ecf/internal/provider/r_osgi/R_OSGiContainerInstantiator.java

@@ -1,0 +1,6 @@
+Bug 197969 – Access Rules: The "Combine rules..." checkbox is undocumented
+Build ID: I20070625-1500
+Steps To Reproduce:
+1.Open the Help Contents
+2.Search for Combine rules
+3.Notice only one hit: "Model Roadmap for Logical Model Integration" which is not about access rules.

@@ -1,0 +1,40 @@
+Bug 425868 – NullPointerException in PollingInputStream.readPendingInput()
+Occasionally I get a NullPointerException in PollingInputStream.readPendingInput():
+java.lang.NullPointerException
+at org.eclipse.ecf.provider.filetransfer.util.PollingInputStream.readPendingInput(PollingInputStream.java:234)
+at org.eclipse.ecf.provider.filetransfer.util.PollingInputStream.close(PollingInputStream.java:104)
+at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer$1.performFileTransfer(AbstractRetrieveFileTransfer.java:185)
+at org.eclipse.ecf.filetransfer.FileTransferJob.run(FileTransferJob.java:73)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+After many debug attempts with a conditional breakpoint in the constructor of PollingInputStream I was finally able to see why it's null:
+Thread [Worker-0] (Suspended (breakpoint at line 80 in PollingInputStream))
+PollingInputStream.<init>(InputStream, int, IProgressMonitor, String, String) line: 80
+UrlConnectionRetrieveFileTransfer(AbstractRetrieveFileTransfer).wrapTransferReadInputStream(InputStream, IProgressMonitor) line: 140
+AbstractRetrieveFileTransfer$1.performFileTransfer(IProgressMonitor) line: 168
+FileTransferJob.run(IProgressMonitor) line: 73
+Worker.run() line: 53
+The involved ECF versions are:
+org.eclipse.ecf.discovery.source_4.0.0.v20131027-1505.jar
+org.eclipse.ecf.discovery_4.0.0.v20131027-1505.jar
+org.eclipse.ecf.filetransfer.source_5.0.0.v20131027-1505.jar
+org.eclipse.ecf.filetransfer_5.0.0.v20131027-1505.jar
+org.eclipse.ecf.identity.source_3.2.0.v20131027-1505.jar
+org.eclipse.ecf.identity_3.2.0.v20131027-1505.jar
+org.eclipse.ecf.provider.discovery.source_2.1.200.v20131027-1505.jar
+org.eclipse.ecf.provider.discovery_2.1.200.v20131027-1505.jar
+org.eclipse.ecf.provider.filetransfer.httpclient4.source_1.0.300.v20131027-1505.jar
+org.eclipse.ecf.provider.filetransfer.httpclient4.ssl.source_1.0.0.v20131027-1505.jar
+org.eclipse.ecf.provider.filetransfer.httpclient4.ssl_1.0.0.v20131027-1505.jar
+org.eclipse.ecf.provider.filetransfer.httpclient4_1.0.300.v20131027-1505.jar
+org.eclipse.ecf.provider.filetransfer.source_3.2.0.v20131027-1505.jar
+org.eclipse.ecf.provider.filetransfer.ssl.source_1.0.0.v20131027-1505.jar
+org.eclipse.ecf.provider.filetransfer.ssl_1.0.0.v20131027-1505.jar
+org.eclipse.ecf.provider.filetransfer_3.2.0.v20131027-1505.jar
+org.eclipse.ecf.provider.jmdns.source_4.1.0.v20131027-1505.jar
+org.eclipse.ecf.provider.jmdns_4.1.0.v20131027-1505.jar
+org.eclipse.ecf.source_3.2.0.v20131027-1505.jar
+org.eclipse.ecf.ssl.source_1.1.0.v20131027-1505.jar
+org.eclipse.ecf.ssl_1.1.0.v20131027-1505.jar
+org.eclipse.ecf_3.2.0.v20131027-1505.jar
+org.eclipse.equinox.p2.transport.ecf.source_1.1.0.v20131211-1531.jar
+org.eclipse.equinox.p2.transport.ecf_1.1.0.v20131211-1531.jar

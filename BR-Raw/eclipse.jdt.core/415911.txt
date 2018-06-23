@@ -1,0 +1,14 @@
+Bug 415911 – [1.8][compiler] NPE when TYPE_USE annotated method with missing return type
+BETA_JAVA8:
+// --
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+@Target(ElementType.TYPE_USE)
+@interface Marker {
+}
+public class X {
+@Marker
+foo(String s) {
+}
+}
+This snippet triggers an NPE on HEAD.

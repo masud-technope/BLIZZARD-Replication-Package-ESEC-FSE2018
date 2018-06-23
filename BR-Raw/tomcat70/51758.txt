@@ -1,0 +1,11 @@
+51758 – Setting logger-specific overrides in logging.properties not working
+Logger-specific configuration is being ignored in the $CATALINA_HOME/conf/logging.properties file.
+Problem was asked (and unanswered) here, and googling did not turn up a solution either:
+http://old.nabble.com/Having-difficulty-suppressing-the-org.apache.tomcat.util.digester.Digester-logger-to32367312.html
+Steps to reproduce:
+1.) Set the global logging level to FINE:
+.level = FINE
+2.) Add a logger-specific logging level override:
+org.apache.tomcat.util.digester.Digester.level = INFO (or SEVERE)
+3.) Start up Tomcat and view the catalina-(date).log file or catalina.out.
+ You'll see the above logger outputting countless FINE messages -- its output is not being suppressed despite the statement in #2 above.

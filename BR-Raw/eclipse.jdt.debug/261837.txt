@@ -1,0 +1,14 @@
+Bug 261837 – RuntimeProcess should synchronize access to fTerminated and fExitValue
+Access to fTerminated and fExitValue need to be synchronized.
+The following example leads to an endless loop.
+Thread 1:  while( !process.isTerminated()) {}
+Thread 2:  process.terminate();
+Despite the termination clearly being executed, and the process ACTUALLY being killed, fTerminated in Thread 1 will always return false.
+Comment from a user:
+I was so curious what is wrong here that I couldn't keep back.
+So I decided to learn how to develope JBossTools.
+After installing, studying and debuging I find what is wrong.
+The problem is in threading, more precisely in Memory Consistency Errors (look http://java.sun.com/docs/books/tutorial/essential/concurrency/memconsist.html).
+Because writing and reading of the fTerminated variable in RuntimeProcess class is from the two different threads, memory consistency error is happend.
+So the method stopProcess.isTerminated() is returnig false all the time altough ProcessMonitor thread is already set the fTerminated variable to true.
+The solution is to synchronize the reading and writing of the fTerminated variable which is actually an eclipse bug.

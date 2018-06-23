@@ -1,0 +1,5 @@
+Bug 401790 – [1.8][compiler] Follow up of bug 401610, explicit constructor calls and allocation expressions needs updates too.
+BETA_JAVA8: In bug 401610, I handled only message sends and overlooked
+explicit constructor calls and allocation expressions.
+I'll use this
+bug to address them.

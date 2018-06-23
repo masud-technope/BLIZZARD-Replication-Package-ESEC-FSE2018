@@ -1,0 +1,4 @@
+Bug 243163 – [jar exporter] export directory entries in "Runnable JAR File"
+Please add an option to "add directory entries" to the new "Runnable JAR File" export.
+ This option already exists in the older "JAR File" export.
+I ran into a problem where Jar-ing some existing projects with Ganymede caused getClass().getClassLoader().getResource( path ) to return null due to the fact that the empty directory entries had not been exported to the Jar.

@@ -1,0 +1,3 @@
+Bug 151502 – Change order of fields for extensions
+When an extension is selected on the Extensions page of the plug-in editor, three fields appear to the right:  ID, Name and Point.
+Since Point is the only required attribute, it should be listed first.

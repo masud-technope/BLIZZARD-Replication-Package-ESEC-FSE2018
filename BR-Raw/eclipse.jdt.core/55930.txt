@@ -1,0 +1,4 @@
+Bug 55930 – File encoding should be used on save
+I200403240800
+File encoding should be used in Buffer.save(IProgressMonitor, boolean) and
+CommitWorkingCopyOperation.executeOperation().

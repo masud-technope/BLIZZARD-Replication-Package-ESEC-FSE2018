@@ -1,0 +1,18 @@
+Bug 367154 – [compiler][null] Problem in propagating null defaults.
+This is a follow up to bug 365836.
+In the following program, I would expect to see an error, but don't.
+import org.eclipse.jdt.annotation.NonNullByDefault;
+import org.eclipse.jdt.annotation.Nullable;
+@SuppressWarnings("unused")
+public class X {
+public void foo(@Nullable String [] args) {
+@NonNullByDefault
+class local {
+class Deeply {
+Object zoo() {
+return null;  // No error here ??
+}
+}
+};
+}
+}

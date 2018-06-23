@@ -1,0 +1,20 @@
+Bug 426290 – [1.8][compiler] Inference + overloading => wrong method resolution ?
+// --
+import java.util.ArrayList;
+import java.util.List;
+public class X {
+public static void main(String argv[]) {
+goo(foo());
+}
+static <T extends Number> List<T> foo() {
+return new ArrayList<T>();
+}
+static void goo(Object p1) {
+System.out.println("goo(Object)");
+}
+static void goo(List<Integer> p1) {
+System.out.println("goo(List<Integer>)");
+}
+}
+On the program above, ECJ compile results in goo(Object) while
+javac compile results in goo(List<Integer>)

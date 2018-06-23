@@ -1,0 +1,2 @@
+Bug 204719 – Provide more information on IOExceptions when parsing .exsd files
+See https://bugs.eclipse.org/bugs/show_bug.cgi?id=175297#c6

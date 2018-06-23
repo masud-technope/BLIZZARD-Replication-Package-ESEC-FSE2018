@@ -1,0 +1,7 @@
+Bug 180364 – [bot] Support joining multiple rooms/channels in extension point
+Current, the chatRoomRobot extension point has an attribute roomName that allows the extension to provide *1* room name to join upon connect.
+ This should be generalized to allow multiple chat rooms/channels to be joined upon connect.
+ A possible syntax is to have the rooms be comma separated...e.g.:
+roomName="#eclipse-ecf,#eclipse-dev,#eclipse"
+or
+roomName="#eclipse-ecf"

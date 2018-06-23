@@ -1,0 +1,16 @@
+Bug 189682 – [actions] Menu bar Navigate->"Go Into" not enabled until popup used
+I0524
+1.
+Startup an Eclipse that has a java project in the Package Explorer
+2.
+Select the project
+3.
+Pulldown the Navigate menu.
+Observe: "Go Into" is disabled.
+ This is an error, it should be enabled.
+4.
+In the Package Explorer, popup the menu
+Observe: "Go Into" is enabled (correct).
+5.
+Again, pulldown the Navigate menu.
+Observe: "Go Into" is now enabled.

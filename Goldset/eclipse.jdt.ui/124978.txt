@@ -1,0 +1,30 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/ConvertAnonymousToNested/canConvert/A_testGenerics7_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ConvertAnonymousToNested/canConvert/A_testGenerics7_out.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ConvertAnonymousToNestedTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/ConvertAnonymousToNestedRefactoring.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ConvertAnonymousToNested/canConvert/A_test33_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ConvertAnonymousToNested/canConvert/A_test33_out.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ConvertAnonymousToNestedTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/ConvertAnonymousToNestedRefactoring.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/packageview/ContentProviderTests6.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/LocalVariableNameCollector.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/PromoteTempToFieldRefactoring.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/packageview/PackageExplorerContentProvider.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/AbstractJavaCompletionProposal.java
+org.eclipse.ltk.core.refactoring/src/org/eclipse/ltk/core/refactoring/PerformChangeOperation.java
+org.eclipse.ltk.core.refactoring/src/org/eclipse/ltk/internal/core/refactoring/UndoManager2.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/packageview/ContentProviderTests6.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/LocalVariableNameCollector.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/PromoteTempToFieldRefactoring.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/packageview/PackageExplorerContentProvider.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/AbstractJavaCompletionProposal.java
+org.eclipse.ltk.core.refactoring/src/org/eclipse/ltk/core/refactoring/PerformChangeOperation.java
+org.eclipse.ltk.core.refactoring/src/org/eclipse/ltk/internal/core/refactoring/UndoManager2.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ConvertAnonymousToNested/canConvert/A_test33_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ConvertAnonymousToNested/canConvert/A_test33_out.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ConvertAnonymousToNestedTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/ConvertAnonymousToNestedRefactoring.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ConvertAnonymousToNested/canConvert/A_test33_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ConvertAnonymousToNested/canConvert/A_test33_out.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ConvertAnonymousToNestedTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/ConvertAnonymousToNestedRefactoring.java

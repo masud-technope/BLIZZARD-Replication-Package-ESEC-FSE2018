@@ -1,0 +1,5 @@
+Bug 334315 – [compiler] Problem types with missing superclass or superinterfaces should use Object for missing types
+When a type has a missing type binding for its superclass, it should dump java.lang.Object for the superclass, otherwise the class will never be able to load.
+The user will get a java.lang.NoClassDefFoundError.
+The problem occurred for Andrew who was debugging some code where the ant task superclass was missing.
+This prevents the problem method to be called and help the user to find out that the code didn't compile.

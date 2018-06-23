@@ -1,0 +1,12 @@
+Bug 410170 – [1.8][quick fix] Remove invalid modifier on static and default interface methods
+interface I {
+private static void foo() { // Error [1]
+}
+private default void bar() { // Error [2]
+}
+}
+[1]
+'Remove invalid modifier' quick fix removes 'static' modifier also along with 'private'.
+[2]
+No quick fix is available.
+The quick fix should be updated to handle static and default interface methods at ModifierCorrectionSubProcessor.addRemoveInvalidModifiersProposal(..).

@@ -1,0 +1,5 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/PullUp/test50/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/PullUp/test50/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/PullUpTests.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/StubUtility.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/PullUpRefactoringProcessor.java

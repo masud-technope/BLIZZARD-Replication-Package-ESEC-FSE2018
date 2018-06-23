@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/model/LocalRegistryBackend.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/model/ExtensionPoint.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/model/Extension.java

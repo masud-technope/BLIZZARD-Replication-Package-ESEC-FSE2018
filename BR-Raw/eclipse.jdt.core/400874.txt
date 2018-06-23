@@ -1,0 +1,7 @@
+Bug 400874 – [1.8][compiler] Inference infrastructure should evolve to meet JLS8 18.x (Part G of JSR335 spec)
+BETA_JAVA8:
+A number of changes are being made to type inference mechanism to
+fix specification bugs, clarify issues, to address poly expressions
+etc.
+These are captured in section 18 of JLS8 - part G of JSR335 specification.
+ECJ should evolve to cope with these changes.

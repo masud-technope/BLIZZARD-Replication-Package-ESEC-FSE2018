@@ -1,0 +1,36 @@
+55198 – Quote entity in html element attribute evaluated in tagx if attribute contains EL expression
+Created attachment 30535 [details]
+War demonstrating the issue
+Quote entity in html element attribute evaluated in tagx if attribute contains EL expression
+If your tagx file contains an html element such as
+<a href="#" onclick="window.alert(&quot;Hello World!&quot;)">foobar</a>
+It renders as
+<a href="#" onclick="window.alert(&quot;Hello World!&quot;)">foobar</a>
+If your tagx file contains an html element such as
+<a href="#" onclick="window.alert(&quot;${text}!&quot;)">foobar</a>
+It renders as (if text='foobar')
+<a href="#" onclick="window.alert("foobar")">foobar</a>
+Most browsers aren't too happy with this.
+I would have expected this to render as
+<a href="#" onclick="window.alert(&quot;foobar&quot;)">foobar</a>
+I browsed through jsp 2.1 spec and couldn't identify anything that explicitly covered this, but I would expect valid xml output from a tagx file.
+You don't see this behaviour if you use a tag file.
+We need to use tagx files to work around various problems in WebSphere and WebLogic containers.
+A test war is attached.
+It is setup for servlet spec 2.5 and jsp 2.1 --- I am actually using a Tomcat 6 container, but thought I'd test this on the latest release.
+The output I receive from the test war on tomcat 7.0.41:
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test the output of tag and tagx containing quote entity in html element attribute</title>
+</head>
+<body>
+<p>.tag file gives:</p>
+<ul>
+<li><a href="#" onclick="window.alert(&quot;Hello World!&quot;)">Click me to display &quot;Hello World!&quot;</a></li>
+<li><a href="#" onclick="window.alert(&quot;foobar&quot;)">Click me to display &quot;foobar&quot;</a></li>
+</ul>
+<p>.tagx file gives:</p>
+<ul><li><a onclick="window.alert(&quot;Hello World!&quot;)" href="#">Click me to display "Hello World!"</a></li><li><a onclick="window.alert("foobar")" href="#">Click me to display "foobar"</a></li></ul>
+</body>
+</html>

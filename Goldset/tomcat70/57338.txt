@@ -1,0 +1,7 @@
+java/org/apache/catalina/authenticator/LocalStrings.properties
+java/org/apache/catalina/authenticator/SingleSignOn.java
+java/org/apache/catalina/authenticator/SingleSignOnEntry.java
+java/org/apache/catalina/authenticator/SingleSignOnSessionKey.java
+java/org/apache/catalina/ha/authenticator/ClusterSingleSignOn.java
+java/org/apache/catalina/ha/authenticator/ClusterSingleSignOnListener.java
+java/org/apache/catalina/ha/authenticator/SingleSignOnMessage.java

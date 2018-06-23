@@ -1,0 +1,14 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDECoreMessages.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/BuildErrorReporter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/SourceEntryErrorReporter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/pderesources.properties
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDECoreMessages.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/BuildErrorReporter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/PDEMarkerFactory.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/MultiFixResolution.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/ReplaceBuildEntryResolution.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/ResolutionGenerator.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/text/PDEQuickAssistAssistant.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties

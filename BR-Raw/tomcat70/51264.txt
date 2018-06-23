@@ -1,0 +1,25 @@
+51264 – Context/Manager/Store configuration proposal
+Why is it the Persistent Store Store element does not contain a means to reference a database link defined in the globalnamingresources, for example:
+This is what is required
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/App1" docbase=" App1" reloadable="false" crossContext="true" debug="1">
+<Manager className="org.apache.catalina.session.PersistentManager" distributable="true" maxIdleBackup="5">
+<Store className="org.apache.catalina.session.JDBCStore" connectionURL="jdbc:oracle:thin:username/password@servername:port:schema"
+driverName="oracle.jdbc.OracleDriver" sessionAppCol="app_name" sessionDataCol="session_data"
+sessionIdCol="session_id" sessionLastAccessedCol="last_access" sessionMaxInactiveCol="max_inactive"
+sessionTable="tomcat_sessions" sessionValidCol="valid_session" />
+</Manager>
+<ResourceLink global="jdbc/dbName" name="jdbc/dbName" type="javax.sql.DataSource"/>
+</Context>
+BUT couldnâ€™t the tomcat accept this?
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/App1" docbase=" App1" reloadable="false" crossContext="true" debug="1">
+<Manager className="org.apache.catalina.session.PersistentManager" distributable="true" maxIdleBackup="5">
+<Store className="org.apache.catalina.session.JDBCStore" resourceLink="jdbc/dbName"
+resourceType="javax.sql.DataSource" sessionAppCol="app_name" sessionDataCol="session_data"
+sessionIdCol="session_id" sessionLastAccessedCol="last_access" sessionMaxInactiveCol="max_inactive"
+sessionTable="tomcat_sessions" sessionValidCol="valid_session" />
+</Manager>
+<ResourceLink global="jdbc/dbName" name="jdbc/dbName" type="javax.sql.DataSource"/>
+</Context>
+That way the application developer does not need to know the username and password to the production database server nor does it need to be packaged in his/her war file.

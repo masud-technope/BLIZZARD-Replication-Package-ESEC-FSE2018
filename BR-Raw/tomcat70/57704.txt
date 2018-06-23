@@ -1,0 +1,29 @@
+57704 – NullPointerException at org.apache.catalina.core.StandardContext.listenerStop
+During shutdown, tomcat crashes as follows:
+SEVERE: Exception sending context destroyed event to listener instance of class org.apache.tomcat.websocket.server.WsContextListener
+java.lang.NullPointerException
+at org.apache.catalina.core.StandardContext.listenerStop(StandardContext.java:5076)
+at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5719)
+at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:160)
+at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:901)
+at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:877)
+at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:649)
+at org.apache.catalina.startup.HostConfig.deployDescriptor(HostConfig.java:672)
+at org.apache.catalina.startup.HostConfig$DeployDescriptor.run(HostConfig.java:1859)
+at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+An analysis of the code shows that getInstanceManager() is being called, and an assumption is made that this call will always return not-null, which is not the case.
+The rest of the code shows that there are valid situations where this returns null.
+5075 	try {
+5076 	getInstanceManager().destroyInstance(listeners[j]);
+5077 	} catch (Throwable t) {
+5078 	t = ExceptionUtils.unwrapInvocationTargetException(t);
+5079 	ExceptionUtils.handleThrowable(t);
+5080 	getLogger().error
+5081 	(sm.getString("standardContext.listenerStop",
+5082 	listeners[j].getClass().getName()), t);
+5083 	ok = false;
+5084 	}
+The fix should be a simple null check on or around line 5076.

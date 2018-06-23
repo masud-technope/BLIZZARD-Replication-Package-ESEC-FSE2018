@@ -1,0 +1,5 @@
+Bug 55349 – Delete key in Quick Outline text box deletes text in editor
+- place cursor in editor in front of some text
+- invoke the Quick Outline
+- press Delete while in Quick Outline text box
+-> Text in editor in deleted

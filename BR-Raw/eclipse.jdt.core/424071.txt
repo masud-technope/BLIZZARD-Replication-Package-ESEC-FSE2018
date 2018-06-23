@@ -1,0 +1,28 @@
+Bug 424071 – [1.8][select] cannot select method invoked on a lambda parameter with inferred type
+Using the example from bug 419048:
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+public class Bug419048 {
+void test1(List<Person> roster) {
+Map<String, Person> map =
+roster
+.stream()
+.collect(
+Collectors.toMap(
+p -> p.getLast(), //[1]
+p -> p            //[2]
+));
+}
+}
+Now that type inference is able to find the correct types for the lambda parameters, I tried to hover or crtl-click on occurrences of p and specifically the message send "getLast()".
+Some of these currently fail with
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.core.SelectionRequestor.acceptLocalVariable(SelectionRequestor.java:458)
+at org.eclipse.jdt.internal.codeassist.SelectionEngine.selectFrom(SelectionEngine.java:1236)
+at org.eclipse.jdt.internal.codeassist.SelectionEngine.select(SelectionEngine.java:951)
+at org.eclipse.jdt.internal.core.Openable.codeSelect(Openable.java:162)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeSelect(CompilationUnit.java:377)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeSelect(CompilationUnit.java:371)
+Note, that hovering over the message receiver "p" in "p.getLast()" says: "Object p - Bug419048.test1(List<Person>)", i.e., the inferred type Person is not known to code select ...
+Is code select working with information from before the type inference kicks in?

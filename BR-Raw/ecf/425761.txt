@@ -1,0 +1,27 @@
+Bug 425761 – BasicTopologyManagerImpl does not notify EndpointListeners
+BTMI#endpointAdded/removed causes:
+junit.framework.AssertionFailedError
+at junit.framework.Assert.fail(Assert.java:47)
+at junit.framework.Assert.assertTrue(Assert.java:20)
+at junit.framework.Assert.assertNotNull(Assert.java:217)
+at junit.framework.Assert.assertNotNull(Assert.java:210)
+at org.osgi.test.cases.remoteserviceadmin.junit.DiscoveryTest.testDiscovery122_6(DiscoveryTest.java:190)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:606)
+at junit.framework.TestCase.runTest(TestCase.java:164)
+at junit.framework.TestCase.runBare(TestCase.java:130)
+at junit.framework.TestResult$1.protect(TestResult.java:106)
+at junit.framework.TestResult.runProtected(TestResult.java:124)
+at junit.framework.TestResult.run(TestResult.java:109)
+at junit.framework.TestCase.run(TestCase.java:120)
+at junit.framework.TestSuite.runTest(TestSuite.java:230)
+at junit.framework.TestSuite.run(TestSuite.java:225)
+at junit.framework.TestSuite.runTest(TestSuite.java:230)
+at junit.framework.TestSuite.run(TestSuite.java:225)
+at aQute.junit.Activator.test(Activator.java:226)
+at aQute.junit.Activator.automatic(Activator.java:118)
+at aQute.junit.Activator.run(Activator.java:59)
+in branch 424059.
+However, my reading of the spec is that EndpointListeners should _always_ be notified regardless of the type and origin of EndpointDescription.

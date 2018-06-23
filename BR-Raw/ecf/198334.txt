@@ -1,0 +1,3 @@
+Bug 198334 – messages view CTabFolders doesn't follow the appearance settings
+In the Messages view CTabFolders doesn't follow the appearance settings.
+Created patch based on ChatRoomManagerView.

@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/core/target/LoadTargetDefinitionJob.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/core/target/ITargetDefinition.java

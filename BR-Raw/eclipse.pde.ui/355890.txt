@@ -1,0 +1,3 @@
+Bug 355890 – Target platform does not recognize bundles with extension other than *.jar
+Currently bundles in the target platform are recognized by PDE only if they have an extension of 'jar'.
+Can that be more flexible ? If I have a bundle with proper structure and a Manifest but the extension is a 'war' or a 'zip' can PDE recognize it ?

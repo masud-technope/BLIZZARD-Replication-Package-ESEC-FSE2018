@@ -1,0 +1,8 @@
+Bug 198050 – [Manifest][Editor] schema file deleted on extension point delete, not restored on revert
+- Open the manifest editor to the Extension Points page.
+- Delete an extension point.
+- Say yes to the dialog asking if you want to delete the schema too.
+- Revert the editor or close without saving.
+BUG: The extension point is restored to the file, but the schema is still deleted.
+The contents of the deleted schemas should be held in buffers until the changes are saved or the editor is reverted/disposed.
+If the extension point delete is reverted, the file should be restored.

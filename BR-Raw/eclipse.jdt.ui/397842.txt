@@ -1,0 +1,22 @@
+Bug 397842 – Class file shown with incorrect content
+If output folder is equal to source folder, trying to open a class file shows previous content of source file.
+Steps to reproduce:
+1.
+Create new Java project.
+Use project folder as root for sources and class files for simplicity.
+2.
+Create new class X.
+3.
+Build project, X.class is generated.
+4.
+Try to open X.class.
+=> ClassFileEditor is opened for X.class showing content of X.java.
+5.
+Modify X.java e.g.
+add new method.
+6.
+Build project, X.class is regenerated.
+7.
+Try to open X.class.
+=> ClassFileEditor is opened for X.class showing previous content of X.java.
+In point 4 and 7, if output folder was different than source folder, ClassFileEditor would show "Source not found" message and correct compiled content of X.java.

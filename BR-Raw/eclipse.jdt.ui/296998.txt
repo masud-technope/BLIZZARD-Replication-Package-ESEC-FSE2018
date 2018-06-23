@@ -1,0 +1,26 @@
+Bug 296998 – Unused imports should not prevent execution
+Given this class:
+import java.util.List;
+public class Test {
+public static void main(String[] args) {
+System.out.println("Hello");
+}
+}
+compile like:
+$ ecj -proceedOnError -err:+unused Test.java
+and execute:
+$ java Test
+gives
+Exception in thread "main" java.lang.Error: Unresolved compilation problem:
+at Test.main(Test.java:4)
+Normally, the eclipse compiler does a good job in producing usable code
+even in the presence of errors.
+In this simple case it fails to do so.
+This is because an unused import is flagged against the CompilationUnitScope.
+In that case generateCode assumes that all code within this CU is useless.
+An immediate soluation would be to make ImportReference extend
+ReferenceContext and let ProblemReporter.unusedImport(ImportReference)
+set the import reference as the reference context.
+This should then be applied to other errors against imports, too.
+As an alternative trying to generate code for a CUD with errors is
+probably not a good option.

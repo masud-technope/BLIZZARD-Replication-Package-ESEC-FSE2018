@@ -1,0 +1,3 @@
+Bug 193415 – [UI] Contacts view menu entries should be disabled when we aren't logged in
+If you aren't logged in, you can press the chevron in the contacts view to do various things 'Add Account', disconnect all accounts, etc...
+these shouldn't be shown or at least be disabled if we aren't logged into anything.

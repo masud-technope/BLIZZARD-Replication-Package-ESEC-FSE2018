@@ -1,0 +1,13 @@
+51418 – Allow more flexibility in adding webapps to org.apache.catalina.startup.Tomcat
+Created attachment 27194 [details]
+A patch to Tomcat.java as described.
+the Tomcat.addWebapp all create a context, set up the default realm, and set up the surrogate global web.xml lifecycle listener.
+They differ according to allowing more or less specific configuration of the new webapp.
+At the end, they add the new context to the host.
+Once the container is running, the act of calling addChild starts it.
+Some configuration steps have to precede 'start' -- for example, setting the loader.
+Thus, in a complex case, the user needs to take more control of the process.
+As things are today, this requires subclassing the Tomcat class and then copying code from the four-arg addWebapp.
+The patch provided here allows non-subclasses to take complete control of the process.
+It accomplishes this by providing methods to obtain three things that are otherwise buried in the Tomcat class: the default in-memory realm, the listener that serves as a surrogate global web.xml, and a dummy pathname to allow the listener to work without conflicts.
+Given these accessors, a user can simple create a the context (and its ContextConfig) and configure it to their heart's content, and then pass it to the addChild method of a Host.

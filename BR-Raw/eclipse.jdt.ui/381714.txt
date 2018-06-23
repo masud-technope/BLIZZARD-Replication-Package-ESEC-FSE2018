@@ -1,0 +1,2 @@
+Bug 381714 – [help] Export runnable jar wizard not documented
+To answer the following question http://www.eclipse.org/forums/index.php/m/881911/#msg_881911, I couldn't get context sensitive help for 'Runnable Jar File Export' wizard.I couldn't find documentation also.

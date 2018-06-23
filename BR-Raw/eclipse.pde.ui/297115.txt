@@ -1,0 +1,25 @@
+Bug 297115 – some error messages don't recognize directories
+Using an M4ish build (12/04 currently) I see "error messages" for many of our build.property files ...
+such as including build.properties in 'src' build.
+Very cool.
+Helps us clean things up.
+But, there's a few that I think are overly strict on the exact form of directory name.
+In one, for example, we had
+source..
+= beaninfo
+output..
+= bin
+and got an error message that 'beaninfo' was not a source folder and that 'bin' was not an output folder.
+But they were! Turns out, I can make the error message go away by changing them to
+source..
+= beaninfo/
+output..
+= bin/
+But seems to me the trailing slash should not be required.
+Very counter intuitive.
+A similar case is
+output..=.
+Gives an error message of "the folder '.' does not exist in the workspace".
+But, as a directory '.' pretty much always exists.
+And in this case, adding a trailing slash did not help.
+This is actually required for many "third party" (binary only) bundles that have the class files in the root of the bundle.

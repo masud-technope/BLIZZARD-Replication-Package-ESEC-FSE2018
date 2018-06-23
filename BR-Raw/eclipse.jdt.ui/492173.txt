@@ -1,0 +1,5 @@
+Bug 492173 – Missing styling for the new Java project wizard
+Created attachment 261150 [details]
+Screenshot
+The second page for the new Java project wizard looks really bad in the dark theme.
+We need to investigate if there is something missing in our dark theme or if the JDT people need to style it on there side.

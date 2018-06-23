@@ -1,0 +1,21 @@
+Bug 334635 – [typing] Correct indentation is incorrect when annotation parameters are on a separate line
+Build Identifier: 20100617-1415
+When an annotation parameter is on a separate line than the annotation itself, and the closing parenthesis is on the same line as the parameter, the next line is indented at the same level as the parameter, which is incorrect.
+This issue is similar to Bug 237081
+Reproducible: Always
+Steps to Reproduce:
+1.
+Copy the code below in a new java editor
+2.
+Select all, and ctrl+I (Correct Indentation)
+3.
+The class declaration is indented at the same level as the value parameter.
+This is the same when the next line is also an annotation, or with array annotations (like when using @javax.persistence.NamedQueries).
+However this does not occur when "value=" is omitted (but it is not always possible) or when the annotation's closing parenthesis is on a separate line.
+@MyAnnotation(
+value="hello")
+public class ArrayAnnotationBug {
+}
+@interface MyAnnotation {
+String value();
+}

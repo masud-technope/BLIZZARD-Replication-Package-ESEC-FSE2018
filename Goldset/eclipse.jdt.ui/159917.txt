@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/ConvertAnonymousToNested/canConvert/A_test34_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ConvertAnonymousToNested/canConvert/A_test34_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ConvertAnonymousToNested/canConvert/A_test35_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ConvertAnonymousToNested/canConvert/A_test35_out.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ConvertAnonymousToNestedTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/ConvertAnonymousToNestedRefactoring.java

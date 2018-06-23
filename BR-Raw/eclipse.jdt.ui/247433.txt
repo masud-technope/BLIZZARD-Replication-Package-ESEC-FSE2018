@@ -1,0 +1,6 @@
+Bug 247433 – [content assist] Add threshold support in code completion
+I20080915-1800
+To help solve performance problems that prevent to fix bug such as bug 6930, we should add some threshold support in code completion.
+This threshold support would guaranty that code completion returns in a reasonable amount of time.
+This threshold could be either a timeout, or a maximum number of potential matches (coming from the indexes) that need to be resolved.
+If code completion reaches this threshold, it would just give up and indicate to the client that not all proposals were returned.

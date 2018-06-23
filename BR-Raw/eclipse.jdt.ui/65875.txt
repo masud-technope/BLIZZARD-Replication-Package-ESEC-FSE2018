@@ -1,0 +1,17 @@
+Bug 65875 – [extract local] puts declaration at wrong position
+Extract Local Variable puts the declaration at a wrong position iff
+- the selected expression is in an ExpressionStatement, and
+- there's a matching fragment before the selected expression
+public class ExpressionStatement {
+void m() {
+System.out.println(calculateCount());
+calculateCount(); //Extract Local Variable
+}
+private int calculateCount() {
+return 1;
+}
+}
+The declaration is created at the position of the ExpressionStatement instead of
+before the first matching fragment.
+The fix is very local and the code to
+determine the right position is already there and can be reused.

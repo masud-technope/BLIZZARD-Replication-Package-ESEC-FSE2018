@@ -1,0 +1,5 @@
+Bug 15678 – Drop to Frame not updating UI/stack frames correctly
+On the Jdk1.4 vms, using the test case in bug 8441, dropping to frame does not
+update the UI/stack frames for the drop.
+Note: Using the latest jdk1.4.1_b10, the step over acting as step resume
+appears to be fixed.

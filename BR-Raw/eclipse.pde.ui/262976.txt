@@ -1,0 +1,11 @@
+Bug 262976 – NPE in product editor after add required plugins
+Create a new .product configuration and add one bundle to it (say org.eclipse.ui.workbench)
+Press "Add Required Plug-ins".
+ Get a dialog with multiple problems all java.lang.NullPointerException.
+All the newly added bundles in the .product editor are missing the bundle/fragment icons.
+The end of the stack traces in the log are:
+java.lang.NullPointerException
+at org.eclipse.pde.internal.ui.PDELabelProvider.getObjectImage(PDELabelProvider.java:609)
+at org.eclipse.pde.internal.ui.PDELabelProvider.getImage(PDELabelProvider.java:390)
+at org.eclipse.pde.internal.ui.util.SharedLabelProvider.getColumnImage(SharedLabelProvider.java:176)
+at org.eclipse.jface.viewers.TableColumnViewerLabelProvider.update(TableColumnViewerLabelProvider.java:71)

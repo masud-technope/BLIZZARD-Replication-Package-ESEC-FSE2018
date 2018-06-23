@@ -1,0 +1,16 @@
+Bug 216703 – Validate dialog is too narrow
+When you click the "Validate Bundles" button for an OSGi Framework launch configuration, violations are displayed in the "Validate" dialog.
+ This dialog has a fixed size that is too small.
+ Some possible enhancements:
+1.
+ Make the dialog wider, at least 600 pixels.
+ Today you always have to resize
+it to see the details of the violations.
+2.
+ Make the dialog resize itself based on the content.
+ Harder to do, for sure.
+3.
+ Having resized the dialog the size is not persisted, which is rather
+frustrating since you have to constantly resize it.
+Note that this is a bug against Eclipse/PDE 3.3, and while it also applies to Eclipse/PDE 3.4, I'd sooner see the dialog banished, since it has such nasty usability characteristics.
+ See bug 216690.

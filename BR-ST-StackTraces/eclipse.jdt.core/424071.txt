@@ -1,0 +1,6 @@
+org.eclipse.jdt.internal.core.SelectionRequestor.acceptLocalVariable
+org.eclipse.jdt.internal.codeassist.SelectionEngine.selectFrom
+org.eclipse.jdt.internal.codeassist.SelectionEngine.select
+org.eclipse.jdt.internal.core.Openable.codeSelect
+org.eclipse.jdt.internal.core.CompilationUnit.codeSelect
+org.eclipse.jdt.internal.core.CompilationUnit.codeSelect

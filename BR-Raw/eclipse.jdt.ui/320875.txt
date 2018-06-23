@@ -1,0 +1,7 @@
+Bug 320875 – Move to J2SE-1.5
+Move the ExecutionEnvironment of the following plug-ins to J2SE-1.5:
+org.eclipse.jdt.ui
+org.eclipse.jdt.junit
+org.eclipse.jdt.ui.tests
+org.eclipse.jdt.ui.tests.refactoring
+org.eclipse.jdt.text.tests

@@ -1,0 +1,34 @@
+Bug 381443 – [compiler][null] Allow parameter widening from @NonNull to unannotated
+Build Identifier: 20120524-0130
+In Eclipse 4.2RC1, the null analysis requires any overriding or implementing methods from a superclass or interface that have null annotations on them to repeat the same annotations.
+Here's a simple example:
+private class Foo {
+void foo(@NonNull Integer foo) {
+}
+}
+private class Bar extends Foo {
+@Override void foo(Integer foo) {
+}
+}
+This will generate the error "Missing non-null annotation: inherited method from Foo declares this parameter as @NonNull" on the overriding method.
+I don't think that should be necessary.
+I know that if a parameter does not specify an annotation then it's considered "nullable", but I think that only makes sense when we're dealing with an un-annotated parameter.
+When a method is overriding another, then whatever annotation is provided on the parent should be used.
+If I had annotated this parameter with @Nullable, then clearly yes, this is an error.
+But when the parameter isn't there, I think Eclipse should look up the inheritance chain to see what it can find -- similar to how for example javadoc gets replicated on all overriding methods, no need to repeat it.
+The reason this is a significant problem is that it makes it very difficult to *add* annotations.
+We have an API which doesn't have null annotations.
+If we *do* add annotations, then suddenly all client code of the library (which in many cases implements interfaces) will need to bulk edited to insert all these annotations!
+I'm setting the severity of this bug to "Major" because I think the Null analysis is a really important feature, but with this behavior it's difficult for us to adopt.
+Reproducible: Always
+Steps to Reproduce:
+Compile
+private class Foo {
+void foo(@NonNull Integer foo) {
+}
+}
+private class Bar extends Foo {
+@Override void foo(Integer foo) {
+}
+}
+You get an error on the second foo line which I do not think should appear.

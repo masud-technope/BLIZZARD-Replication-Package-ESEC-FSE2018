@@ -1,0 +1,4 @@
+52758 – Jasper illegally implements org.eclipse.jdt.internal.compiler.env.ICompilationUnit from Eclipse
+The illegal implementation described in the Eclipse bug (https://bugs.eclipse.org/bugs/show_bug.cgi?id=372351) is causing severe problems for the Eclipse SDK which uses Jasper for our help system.
+The interface in question is org.eclipse.jdt.internal.compiler.env.ICompilationUnit which resides in an internal package and should not be implemented by clients.
+The ideal resolution to this problem would be for Jasper to discontinue implementing it, but we would also be fine with Jasper just updating their code to resolve the compilation problems.

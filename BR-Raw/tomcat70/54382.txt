@@ -1,0 +1,10 @@
+54382 – Nullpointer Exception after activating SSI and loading of any html-file with a specific comment
+1.
+Activate SSI on Tomcat and restart Tomcat
+2.
+create an any html-file with a comment like this "<!--#-->"
+3.
+put this html-file to the webapp folder of tomcat
+4.
+when you now go to the html file via tomcat, you will get an Nullpointer Exception.
+The SSIServlet.class and other necessary SSI-classes cannot be found

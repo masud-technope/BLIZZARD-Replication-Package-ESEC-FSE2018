@@ -1,0 +1,5 @@
+Bug 108115 – [refactoring] Extract Local Variable and Ex. Constant don't find matching invocations of generic methods
+M20050824-1200
+See JDT/Core bug 104293.
+For that specific instance of the problem, there's an
+easy workaround in JdtASTMatcher that we should submit for 3.1.1.

@@ -1,0 +1,28 @@
+Bug 105573 – suspend at uncaught exception shows compiler warning
+If there is a compiler warning at the same location as an uncaught exception,
+the stack trace shows the compiler warning (thinks it is a compiler error that
+caused the suspension).
+We should only consider compilation problems with an
+error severity in this case:
+Example program:
+public class ExTest {
+/**
+* @param args
+*/
+public static void main(String[] args) {
+new ExTest().foo();
+}
+public void foo() {
+new Runnable() {
+public void run() {
+throw new NullPointerException("BOOM");
+}
+}.run();
+}
+}
+stack trace:
+Thread [main] (Suspended (Non-externalized string literal; it should be
+followed by //$NON-NLS-<n>$))
+ExTest$1.run() line: 23
+ExTest.foo() line: 27
+ExTest.main(String[]) line: 15

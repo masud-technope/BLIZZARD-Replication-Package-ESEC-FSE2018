@@ -1,0 +1,2 @@
+Bug 302439 – [Discovery][jSLP] Run tests distributed via OSGi remote services
+Based on the recently OSGi remote services implementation jSLP should be tested with a remote Advertiser

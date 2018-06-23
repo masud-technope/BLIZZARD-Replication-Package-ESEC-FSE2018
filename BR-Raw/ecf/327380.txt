@@ -1,0 +1,65 @@
+Bug 327380 – [r-OSGi] NPE in ChannelEndpointImpl.getRemoteReference() due to proxy bundle failing to install
+Hi,
+Could you please assistant me.
+I created simple HelloWorld Application.
+I made following step:
+1.
+Start Host application
+2.
+Start Client application
+3.
+Stop Host application
+4.
+Start Host application and after that I have got exception on Client side:
+java.lang.NullPointerException
+at ch.ethz.iks.r_osgi.impl.ChannelEndpointImpl.getRemoteReference(ChannelEndpointImpl.java:922)
+at ch.ethz.iks.r_osgi.impl.ChannelEndpointImpl.getProperties(ChannelEndpointImpl.java:436)
+at ch.ethz.iks.r_osgi.impl.ChannelEndpointMultiplexer.getProperties(ChannelEndpointMultiplexer.java:110)
+at proxy.localhost_jcaafe.rustam.gaifiev.rosgi.IHelloImpl.start(Unknown Source)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(BundleContextImpl.java:783)
+at java.security.AccessController.doPrivileged(Native Method)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(BundleContextImpl.java:774)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(BundleContextImpl.java:755)
+at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:370)
+at org.eclipse.osgi.framework.internal.core.AbstractBundle.start(AbstractBundle.java:284)
+at org.eclipse.osgi.framework.internal.core.AbstractBundle.start(AbstractBundle.java:276)
+at ch.ethz.iks.r_osgi.impl.ChannelEndpointImpl.installResolveAndStartBundle(ChannelEndpointImpl.java:819)
+at ch.ethz.iks.r_osgi.impl.ChannelEndpointImpl.getProxyBundle(ChannelEndpointImpl.java:799)
+at ch.ethz.iks.r_osgi.impl.RemoteOSGiServiceImpl.fetchService(RemoteOSGiServiceImpl.java:850)
+at ch.ethz.iks.r_osgi.impl.RemoteOSGiServiceImpl.getRemoteService(RemoteOSGiServiceImpl.java:772)
+at org.eclipse.ecf.internal.provider.r_osgi.R_OSGiRemoteServiceContainer.getRemoteService(R_OSGiRemoteServiceContainer.java:198)
+at org.eclipse.ecf.internal.osgi.services.distribution.DiscoveredServiceTrackerImpl.registerRemoteServiceReferences(DiscoveredServiceTrackerImpl.java:545)
+at org.eclipse.ecf.internal.osgi.services.distribution.DiscoveredServiceTrackerImpl.handleDiscoveredServiceAvailable(DiscoveredServiceTrackerImpl.java:263)
+at org.eclipse.ecf.internal.osgi.services.distribution.DiscoveredServiceTrackerImpl.access$4(DiscoveredServiceTrackerImpl.java:197)
+at org.eclipse.ecf.internal.osgi.services.distribution.DiscoveredServiceTrackerImpl$1.dispatchEvent(DiscoveredServiceTrackerImpl.java:102)
+at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:227)
+at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:337)
+[log;+0400 2010.10.08 15:56:55:858;ERROR;org.eclipse.ecf.osgi.services.distribution;org.eclipse.core.runtime.Status[plugin=org.eclipse.ecf.osgi.services.distribution;code=4;message=org.eclipse.ecf.internal.osgi.services.distribution.DiscoveredServiceTrackerImpl:handleDiscoveredServiceAvailble:Unexpected exception with rsEndpointDescription=RemoteServiceEndpointDescriptionImpl[svcInterfaces=[rustam.gaifiev.rosgi.IHello];supportedConfigTypes=[ecf.r_osgi.peer];serviceIntents=null;location=null;remoteServiceId=54;discoveryServiceID=ServiceID[type=ServiceTypeID[typeName=_osgiservices._tcp.default._iana];location=osgiservices://192.168.73.15:9200/svc_ynMddehMS0eo+Ctwu9YfU1hz3Zc=;full=_osgiservices._tcp.default._iana@osgiservices://192.168.73.15:9200/svc_ynMddehMS0eo+Ctwu9YfU1hz3Zc=];endpointID=null;endpointAsID=r-osgi://localhost:9200;connectTargetID=null;remoteServicesFilter=null;props={ecf.rsvc.ns=ecf.namespace.r_osgi.remoteservice, osgi.remote.service.interfaces=rustam.gaifiev.rosgi.IHello, ecf.sp.cns=ecf.namespace.r_osgi, ecf.rsvc.id=[B@10fd7f6, ecf.sp.ect=ecf.r_osgi.peer, ecf.sp.cid=[B@12b6c89}];severity4;exception=ch.ethz.iks.r_osgi.RemoteOSGiException: Could not install the generated bundle RemoteServiceReference{r-osgi://localhost:9200#54-[rustam.gaifiev.rosgi.IHello]};children=[]]]
+ch.ethz.iks.r_osgi.RemoteOSGiException: Could not install the generated bundle RemoteServiceReference{r-osgi://localhost:9200#54-[rustam.gaifiev.rosgi.IHello]}
+at ch.ethz.iks.r_osgi.impl.ChannelEndpointImpl.installResolveAndStartBundle(ChannelEndpointImpl.java:825)
+at ch.ethz.iks.r_osgi.impl.ChannelEndpointImpl.getProxyBundle(ChannelEndpointImpl.java:799)
+at ch.ethz.iks.r_osgi.impl.RemoteOSGiServiceImpl.fetchService(RemoteOSGiServiceImpl.java:850)
+at ch.ethz.iks.r_osgi.impl.RemoteOSGiServiceImpl.getRemoteService(RemoteOSGiServiceImpl.java:772)
+at org.eclipse.ecf.internal.provider.r_osgi.R_OSGiRemoteServiceContainer.getRemoteService(R_OSGiRemoteServiceContainer.java:198)
+at org.eclipse.ecf.internal.osgi.services.distribution.DiscoveredServiceTrackerImpl.registerRemoteServiceReferences(DiscoveredServiceTrackerImpl.java:545)
+at org.eclipse.ecf.internal.osgi.services.distribution.DiscoveredServiceTrackerImpl.handleDiscoveredServiceAvailable(DiscoveredServiceTrackerImpl.java:263)
+at org.eclipse.ecf.internal.osgi.services.distribution.DiscoveredServiceTrackerImpl.access$4(DiscoveredServiceTrackerImpl.java:197)
+at org.eclipse.ecf.internal.osgi.services.distribution.DiscoveredServiceTrackerImpl$1.dispatchEvent(DiscoveredServiceTrackerImpl.java:102)
+at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:227)
+at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:337)
+Caused by: java.lang.NullPointerException
+at ch.ethz.iks.r_osgi.impl.ChannelEndpointImpl.getRemoteReference(ChannelEndpointImpl.java:922)
+at ch.ethz.iks.r_osgi.impl.ChannelEndpointImpl.getProperties(ChannelEndpointImpl.java:436)
+at ch.ethz.iks.r_osgi.impl.ChannelEndpointMultiplexer.getProperties(ChannelEndpointMultiplexer.java:110)
+at proxy.localhost_jcaafe.rustam.gaifiev.rosgi.IHelloImpl.start(Unknown Source)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(BundleContextImpl.java:783)
+at java.security.AccessController.doPrivileged(Native Method)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(BundleContextImpl.java:774)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(BundleContextImpl.java:755)
+at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:370)
+at org.eclipse.osgi.framework.internal.core.AbstractBundle.start(AbstractBundle.java:284)
+at org.eclipse.osgi.framework.internal.core.AbstractBundle.start(AbstractBundle.java:276)
+at ch.ethz.iks.r_osgi.impl.ChannelEndpointImpl.installResolveAndStartBundle(ChannelEndpointImpl.java:819)
+...
+10 more
+http://www.eclipse.org/forums/index.php?t=msg&th=198109&start=0&S=c94fd2b44d713e18bc78a3f0dde2a70c

@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/InferTypeArguments/testCuParameterizedTypes1/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InferTypeArguments/testCuParameterizedTypes1/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InferTypeArguments/testCuParameterizedTypes2/in/A.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InferTypeArguments/testCuParameterizedTypes2/out/A.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/InferTypeArgumentsTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/generics/InferTypeArgumentsTCModel.java

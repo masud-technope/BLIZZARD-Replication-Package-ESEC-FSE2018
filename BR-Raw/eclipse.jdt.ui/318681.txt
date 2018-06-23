@@ -1,0 +1,20 @@
+Bug 318681 – [quick assist] create fields from multiple parameters
+Build Identifier:
+There is already a function Source->Create constructor using fields.
+I would like just the opposite.
+When I program I call constructors that do not exists:
+MyClass m = new MyClass("first", "second", "third");
+I then use the light bulb to create this new constructor.
+Inside the constructor I change the names of the parameters and begin the hard work I would like some help with:
+public MyClass(String firstValue, String secondValue, String thirdValue){
+// These lines could be generated automatically
+// Prefix 'i' is already there under "Code Templates"
+iFirstValue = firstValue;
+iSecondValue = secondValue;
+iThirdValue = thirdValue;
+}
+// Also, the fields would have to be created:
+private String iFirstValue;
+private String iSecondValue;
+private String iThirdValue;
+Reproducible: Always

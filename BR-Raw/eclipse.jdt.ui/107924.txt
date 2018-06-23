@@ -1,0 +1,8 @@
+Bug 107924 – [quick fix] "Add exceptions to..." quickfix does nothing.
+Either the quickfix should do something, or it shouldn't be offered.
+----------------------- Bug.java -------------------------------
+class Bug implements Runnable {
+public void run() throws ClassNotFoundException {
+Class.forName(null);
+}
+}

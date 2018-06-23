@@ -1,0 +1,18 @@
+51324 – When OutputBuffer.doFlush gets Exception, doFlush gets stuck to true
+Created attachment 27114 [details]
+The line that causes doFlush to be stuck at true if it gets an exception
+First time opening a bug, please forgive me if this report isn't perfect!
+I recently ran into an issue where OutputBuffer's doFlush gets stuck to true.
+In OutputBuffer.doFlush(boolean) it sets doFlush = true, then calls bb.flushBuffer, then sets doFlush = false.
+I issue I ran into was bb.flushBuffer eventually calls OutputBuffer.realWriteBytes.
+ The realWriteBytes eventually calls coyoteResponse.doWrite.
+ If coyoteResponse.doWrite throws an IOException, then it rethrows a ClientAbortException.
+What I am seeing is my client disconnecting early, and causing the doWrite to throw a SocketException of "Broken pipe".
+ That broken pipe causes a ClientAbortException to be thrown.
+When that is thrown, the error is bubbled up and doFlush is stuck as "true".
+ The next time the processor is used, it calls the recycle() method in OutputBuffer.
+However, the recycle doesn't reset doFlush so its still set to true.
+I imagine there are quite a few ways to fix this, but the two obvious ones that come to mind are:
+- Have recycle() set doFlush back to false
+or
+- Have throw a finally in try/catch/finally in OutputBuffer.doFlush so doFlush is set back to false when an Exception is catch

@@ -1,0 +1,6 @@
+Bug 258560 – API to retrieve properties from ee definition files
+Created attachment 120257 [details]
+patch
+API tooling has internal dependencies on jdt.launching's EEVMType to retrieve properties from EE files.
+It would be useful to have an API for this.
+The attached patch is an inital stab an the API.

@@ -1,0 +1,47 @@
+55494 – JNDIRealm throws exception after timeout / Connection reset
+Our tomcat is configured to use Windows 2012 AD with JNDI-Realm
+When the application is running for some hours, the Tomcat logs exceptions because of timeouts.
+Here is a stacktrace:
+WARNING: Exception performing authentication
+javax.naming.CommunicationException: Connection reset [Root exception is java.net.SocketException: Connection reset]; remaining name 'xxx'
+at com.sun.jndi.ldap.LdapCtx.doSearch(Unknown Source)
+at com.sun.jndi.ldap.LdapCtx.searchAux(Unknown Source)
+at com.sun.jndi.ldap.LdapCtx.c_search(Unknown Source)
+at com.sun.jndi.toolkit.ctx.ComponentDirContext.p_search(Unknown Source)
+at com.sun.jndi.toolkit.ctx.PartialCompositeDirContext.search(Unknown Source)
+at com.sun.jndi.toolkit.ctx.PartialCompositeDirContext.search(Unknown Source)
+at javax.naming.directory.InitialDirContext.search(Unknown Source)
+at org.apache.catalina.realm.JNDIRealm.getUserBySearch(JNDIRealm.java:1438)
+at org.apache.catalina.realm.JNDIRealm.getUser(JNDIRealm.java:1289)
+at org.apache.catalina.realm.JNDIRealm.getUser(JNDIRealm.java:1225)
+at org.apache.catalina.realm.JNDIRealm.getPrincipal(JNDIRealm.java:2086)
+at org.apache.catalina.realm.JNDIRealm.getPrincipal(JNDIRealm.java:2005)
+at org.apache.catalina.realm.RealmBase.authenticate(RealmBase.java:523)
+at org.apache.catalina.realm.CombinedRealm.authenticate(CombinedRealm.java:295)
+at org.apache.catalina.realm.LockOutRealm.authenticate(LockOutRealm.java:249)
+at org.apache.catalina.authenticator.SpnegoAuthenticator.authenticate(SpnegoAuthenticator.java:250)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:544)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:953)
+at org.apache.catalina.authenticator.SingleSignOn.invoke(SingleSignOn.java:341)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408)
+at org.apache.coyote.ajp.AjpAprProcessor.process(AjpAprProcessor.java:197)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+at org.apache.tomcat.util.net.AprEndpoint$SocketProcessor.run(AprEndpoint.java:1852)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.SocketException: Connection reset
+at java.net.SocketInputStream.read(Unknown Source)
+at java.net.SocketInputStream.read(Unknown Source)
+at java.io.BufferedInputStream.fill(Unknown Source)
+at java.io.BufferedInputStream.read1(Unknown Source)
+at java.io.BufferedInputStream.read(Unknown Source)
+at com.sun.jndi.ldap.Connection.run(Unknown Source)
+...
+1 more
+It seems that the LDAP-Lookup tries to search for the user within LDAP but the server already closed the Connection.
+Looks like this cause:
+http://stackoverflow.com/questions/10911897/tomcat-7-0-14-ldap-authentication

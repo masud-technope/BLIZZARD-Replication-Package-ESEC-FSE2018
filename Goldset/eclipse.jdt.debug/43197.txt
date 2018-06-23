@@ -1,0 +1,10 @@
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AutomatedSuite.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/LineTrackerTests.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/console/J9ConsoleTracker.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/console/JavaConsoleTracker.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/ProjectCreationDecorator.java
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/ConsoleLineTracker.java
+org.eclipse.jdt.debug.tests/testprograms/FloodConsole.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/CommandArgumentTests.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AbstractDebugTest.java
+org.eclipse.jdt.debug.tests/testprograms/OneToTenPrint.java

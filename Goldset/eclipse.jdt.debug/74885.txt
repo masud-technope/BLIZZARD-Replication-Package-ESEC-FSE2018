@@ -1,0 +1,8 @@
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/LocalEvaluationEngine.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/snippeteditor/JavaSnippetEditor.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIDebugTarget.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/TerminateEvaluationAction.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/StandardVMDebugger.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/VirtualMachineImpl.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIThread.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/connect/SocketTransportService.java

@@ -1,0 +1,13 @@
+Bug 462352 – Clicking "Cancel" in External Annotations Attachment dialog deletes an existing value
+1.
+Define a location for external annotations for a library or JRE
+2.
+Edit the location
+3.
+Press cancel
+4.
+Wrong effect: the library configuration shows "(None)"
+5.
+Click OK
+6.
+The wrong effect is persisted.

@@ -1,0 +1,51 @@
+Bug 190780 – [Site][Editors] NPE doing DND
+I20070601-0010
+Unfortunately I can not reproduce it.
+On the Site Map tab I did something like:
+1.
+Add Feature...
+2.
+New Category
+3.
+Drag and Drop added feature onto category
+4.
+Delete category
+org.eclipse.swt.SWTException: Failed to execute runnable (java.lang.NullPointerException)
+at org.eclipse.swt.SWT.error(SWT.java:3563)
+at org.eclipse.swt.SWT.error(SWT.java:3481)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:126)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3659)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3296)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2389)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2353)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2219)
+at org.eclipse.ui.internal.Workbench$4.run(Workbench.java:466)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:289)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:461)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:106)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:153)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:106)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:76)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:363)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:176)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:504)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:443)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1169)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1144)
+at org.eclipse.core.launcher.Main.main(Main.java:30)
+Caused by: java.lang.NullPointerException
+at org.eclipse.pde.internal.ui.editor.PDESection.isEditable(PDESection.java:72)
+at org.eclipse.pde.internal.ui.editor.site.CategorySection.updateButtons(CategorySection.java:572)
+at org.eclipse.pde.internal.ui.editor.site.CategorySection.refresh(CategorySection.java:567)
+at org.eclipse.ui.forms.ManagedForm.doRefresh(ManagedForm.java:207)
+at org.eclipse.ui.forms.ManagedForm.access$0(ManagedForm.java:202)
+at org.eclipse.ui.forms.ManagedForm$1.run(ManagedForm.java:196)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:123)
+...
+24 more

@@ -1,0 +1,6 @@
+org.eclipse.ecf.internal.presence.ui.handlers.BrowseDialog.fillContentProvider
+org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.filterContent
+org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.internalRun
+org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.doRun
+org.eclipse.ui.dialogs.FilteredItemsSelectionDialog$FilterJob.run
+org.eclipse.core.internal.jobs.Worker.run

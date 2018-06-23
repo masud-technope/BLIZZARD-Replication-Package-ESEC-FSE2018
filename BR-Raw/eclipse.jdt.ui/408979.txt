@@ -1,0 +1,35 @@
+Bug 408979 – [1.8][quick fix] NPE and incorrect result from "Add return statement" quick fix on lambda expression
+Consider the following example and apply the quick fix "Add return statement" on the lines with comments:
+@FunctionalInterface
+interface I {
+int foo(int x);
+}
+public class A {
+void fun1() {
+I i= (int x) -> { // [1] NPE on applying quick fix
+x++;
+};
+}
+void fun2() {
+I i= (int x) -> { // [2] Incorrect result from quick fix
+x++;
+};
+fun1();
+}
+}
+[1] =>
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.corext.dom.ASTNodes.asString(ASTNodes.java:132)
+at org.eclipse.jdt.internal.ui.text.correction.proposals.MissingReturnTypeCorrectionProposal.evaluateReturnExpressions(MissingReturnTypeCorrectionProposal.java:154)
+at org.eclipse.jdt.internal.ui.text.correction.proposals.MissingReturnTypeCorrectionProposal.getRewrite(MissingReturnTypeCorrectionProposal.java:113)
+at org.eclipse.jdt.ui.text.java.correction.ASTRewriteCorrectionProposal.addEdits(ASTRewriteCorrectionProposal.java:113)
+at org.eclipse.jdt.ui.text.java.correction.CUCorrectionProposal.createTextChange(CUCorrectionProposal.java:234)
+...
+[2] => Adds return statement to method fun2() instead of the lambda expression.
+Results in:
+void fun2() {
+I i= (int x) -> {
+x++;
+};
+return fun1(); // Incorrect result
+}

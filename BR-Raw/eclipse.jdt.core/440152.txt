@@ -1,0 +1,13 @@
+Bug 440152 – [codegen]"Missing code implementation in the compiler" on cascaded inner class references
+The following valid code is rejected by Eclipse compiler:
+import java.util.function.Function;
+interface Foo {void alpha(Bar pBar);}
+class Bar {Object bravo() {return null;}}
+class Test {
+Test(Function pFunction) {
+class Baz {public Baz(Object pObj) {pFunction.apply(pObj);}}
+delta(pBar -> charlie(new Baz(pBar.bravo())));
+}
+void charlie(Object pRemovals) {}
+void delta(Foo pListener) {}
+}

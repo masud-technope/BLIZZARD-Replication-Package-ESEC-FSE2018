@@ -1,0 +1,23 @@
+Bug 416885 – [compiler][1.8] IncompatibleClassChange error
+Created attachment 235330 [details]
+Test case to reproduce the issue
+Exception in thread "main" java.lang.IncompatibleClassChangeError
+at java.lang.invoke.MethodHandleNatives.linkMethodHandleConstant(MethodHandleNatives.java:383)
+at X.main(X.java:4)
+Caused by: java.lang.NoSuchMethodException: no such method: java.lang.invoke.LambdaMetafactory.metaFactory(Lookup,String,MethodType,MethodHandle,MethodHandle,MethodType)CallSite/invokeStatic
+at java.lang.invoke.MemberName.makeAccessException(MemberName.java:765)
+at java.lang.invoke.MemberName$Factory.resolveOrFail(MemberName.java:882)
+at java.lang.invoke.MethodHandles$Lookup.resolveOrFail(MethodHandles.java:1019)
+at java.lang.invoke.MethodHandles$Lookup.linkMethodHandleConstant(MethodHandles.java:1284)
+at java.lang.invoke.MethodHandleNatives.linkMethodHandleConstant(MethodHandleNatives.java:381)
+...
+1 more
+Caused by: java.lang.NoSuchMethodError: java.lang.invoke.LambdaMetafactory.metaFactory(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+at java.lang.invoke.MethodHandleNatives.resolve(Native Method)
+at java.lang.invoke.MemberName$Factory.resolve(MemberName.java:854)
+at java.lang.invoke.MemberName$Factory.resolveOrFail(MemberName.java:879)
+...
+4 more
+Use b104 build on windows for JRE 1.8 to reproduce the issue
+As a follow up for bug 413913
+Also see http://dev.eclipse.org/mhonarc/lists/jdt-core-dev/msg02324.html

@@ -1,0 +1,38 @@
+Bug 65107 – ClassCastException processing async thread queue
+Debugging some (horrible) code I got the following exception:
+Error Jun 01, 2004 13:30:30.703 Exception processing async thread queue
+java.lang.ClassCastException
+at org.eclipse.jdt.internal.debug.eval.ast.instructions.Instruction.popValue(Instruction.java:115)
+at org.eclipse.jdt.internal.debug.eval.ast.instructions.PushFieldVariable.execute(PushFieldVariable.java:49)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.Interpreter.execute(Interpreter.java:50)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine$1$EvaluationRunnable.run(ASTEvaluationEngine.java:317)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread.runEvaluation(JDIThread.java:659)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine$EvalRunnable.run(ASTEvaluationEngine.java:351)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run(JDIThread.java:2510)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:66)
+Steps to reproduce...
+1 Debug this:
+public class WatchpointTest {
+int total;
+public static void main(String[] args) {
+startThread("T1!");
+startThread("T2!");
+}
+private static void startThread(String threadName) {
+Thread t = new Thread(new Runnable() {
+public void run() {
+new WatchpointTest().doHighschoolMath();
+}
+}, threadName);
+t.start();
+}
+private void doHighschoolMath() {
+for (int i = 0; i < 30; i++) {
+total+=i;  // <---------- breakpoint here!!
+}
+}
+}
+2.
+In DebugView switch stack frames a few times, alternating between "T1!"
+and "T2!"
+Note: I had watches on total and i when I discovered this bug.

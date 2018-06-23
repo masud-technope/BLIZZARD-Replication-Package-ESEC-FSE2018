@@ -1,0 +1,6 @@
+org.eclipse.jdt.launching/.settings/org.eclipse.jdt.core.prefs
+org.eclipse.jdt.launching/lib/.gitignore
+org.eclipse.jdt.launching/lib/launchingsupport.jar
+org.eclipse.jdt.launching/support/org/eclipse/jdt/internal/launching/support/LibraryDetector.java
+org.eclipse.jdt.launching/build.properties
+org.eclipse.jdt.launching/scripts/buildLaunchingSupportJAR.xml

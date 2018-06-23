@@ -1,0 +1,17 @@
+Bug 479284 – [1.8][inference] fail to resolve matching types for lambda and method reference + NPE at build
+Created attachment 257130 [details]
+code sample
+type inference doesn't work for
+Collectors.toMap(Function.identity(), t -> Arrays.asList(t), Util::sum)
+where sum has signature
+static <T> List<T> sum(List<T> l1, List<T> l2);
+It works only after adding an explicit cast:
+(BinaryOperator<List<X>>) Util::sum
+or after type parameterization:
+t -> Arrays.<X> asList(t)
+Additionally malicious type parameterization of method reference like Util<X>::sum leads to NPE from build process.
+affected version:
+Version: Mars.1 Release (4.5.1)
+Build id: 20150924-1200
+This code compiles and runs on openjdk and works well in intellij idea.
+In fact I report this problem only because my dev team uses both IDEs and ones with idea occasionally commit things like this.

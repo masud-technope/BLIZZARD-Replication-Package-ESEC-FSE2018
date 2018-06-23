@@ -1,0 +1,7 @@
+java/org/apache/catalina/core/ApplicationTaglibDescriptor.java
+java/org/apache/catalina/deploy/LoginConfig.java
+java/org/apache/catalina/tribes/tipis/AbstractReplicatedMap.java
+java/org/apache/el/parser/SimpleNode.java
+java/org/apache/naming/NamingEntry.java
+java/org/apache/tomcat/util/net/URL.java
+webapps/docs/changelog.xml

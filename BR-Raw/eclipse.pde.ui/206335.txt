@@ -1,0 +1,6 @@
+Bug 206335 – convertSchemaToHtml task problems using 3.4M2 plugins
+I converted the builder to use 3.4M2 plugins last week.
+ Since then, the extension point schemas are not being generated.
+I replicated the problem in my workspace by checking out org.eclipse.platform.doc.isv and trying to generate a single bundle's extension point and nothing was generated.
+We are using the v20070919-1300 version of org.eclipse.pde.core in our builder.
+Is there a a more recent version of org.eclipse.pde.core that we should be using?

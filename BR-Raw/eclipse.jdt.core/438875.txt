@@ -1,0 +1,3 @@
+Bug 438875 – Set correct project/file encodings and use Unix line delimiter
+The org.eclipse.jdt.core project doesn't specify a file encoding, and different files in the project already use different encodings.
+All projects should use UTF-8, see bug 399451 comment 4.

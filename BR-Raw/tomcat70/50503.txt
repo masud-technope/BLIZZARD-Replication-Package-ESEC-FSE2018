@@ -1,0 +1,23 @@
+50503 – Engine level Clustering does not work correctly if the web application has a version.
+In Engine level clustering, the name of the cluster manager is  "HostName#contextName".
+SimpleTcpCluster#getManagerName(String, Manager) is as follows.
+====
+public String getManagerName(String name, Manager manager) {
+String clusterName = name ;
+if ( clusterName == null ) clusterName = manager.getContainer().getName();
+if(getContainer() instanceof Engine) {
+Container context = manager.getContainer() ;
+if(context != null && context instanceof Context) {
+Container host = ((Context)context).getParent();
+if(host != null && host instanceof Host && clusterName!=null && !(clusterName.indexOf("#")>=0))
+clusterName = host.getName() +"#" + clusterName ;
+}
+}
+return clusterName;
+}
+====
+In this method, clusterName.indexOf("#") >= 0 is checked.
+Because the context name becomes contextName##version if the web application has a version,
+the name of the cluster manager doesn't become a format of "HostName#contextName".
+As a result, Engine level Clustering doesn't work correctly.
+Best regards.

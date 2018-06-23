@@ -1,0 +1,8 @@
+Bug 86863 – [API] Move "selected structure" API to Debug UI
+From bug 82273 comment #23:
+It feels like the methods set/getSelectedStructureType(..) are more to
+do with presentation than the debug model.
+Could we move the methods to
+DebugUITools, and move the implementation to the DegbuUIPlugin class? The core
+deals with providing logical structures, but managing which ones are displayed
+is really a UI issue.

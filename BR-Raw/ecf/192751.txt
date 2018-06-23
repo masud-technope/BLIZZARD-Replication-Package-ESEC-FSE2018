@@ -1,0 +1,9 @@
+Bug 192751 – NPE in SelectProviderAction
+I just caught this before I left work...
+looks like we are missing a ContainerTypeDescription somewhere.
+java.lang.NullPointerException
+at org.eclipse.ecf.internal.ui.actions.SelectProviderAction.<init>(SelectProviderAction.java:73)
+at java.lang.Class.newInstance(libgcj.so.70)
+at org.eclipse.core.internal.registry.osgi.RegistryStrategyOSGI.createExecutableExtension(RegistryStrategyOSGI.java:170)
+at org.eclipse.core.internal.registry.ExtensionRegistry.createExecutableExtension(ExtensionRegistry.java:788)
+at org.eclipse.core.internal.registry.ConfigurationElement.createExecutableExtension(ConfigurationElement.java:243)

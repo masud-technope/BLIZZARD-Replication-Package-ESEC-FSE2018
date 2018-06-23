@@ -1,0 +1,12 @@
+Bug 3313 – Severe - Performance - Java Model redundancies (1GFKTUN)
+Look for senders of addChild...
+you'll notice CompilationUnitStructureRequestor has several which also include
+addField/Method/MemberType being sent to SourceTypeElementInfo's.
+So for the typical type which has a 2 fields & 20 methods, you have:
+- an 23 element array of all children,
+- a 2 element field array &
+- a 20 element method array.
+Quite the overhead (~120 bytes) for no real value...
+getFields/Methods could easily be implemented to extract
+the items out of the children.
+NOTES:

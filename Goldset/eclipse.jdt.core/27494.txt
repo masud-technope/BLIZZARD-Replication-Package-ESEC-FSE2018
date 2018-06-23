@@ -1,0 +1,7 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaElementDeltaTests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaProjectTests.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/SetClasspathOperation.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavaProjectElementInfo.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/DeltaProcessor.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/AbstractJavaModelTests.java

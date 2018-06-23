@@ -1,0 +1,5 @@
+Bug 9122 – debugging is extremally slow (20020129 + latest)
+there seems to be some  performance problem with debug
+to launch my junit workspace in debug mode i waited 5 minutes and gave up.
+it worked the second time - i just waited more.
+after it launched - everything was very slow.

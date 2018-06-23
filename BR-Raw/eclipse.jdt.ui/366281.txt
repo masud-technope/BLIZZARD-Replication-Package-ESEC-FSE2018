@@ -1,0 +1,10 @@
+Bug 366281 – [refactoring] [extract method] Extract Method refactoring fails if trailing ';' is not selected
+Build ID: I20111207-2118
+If a programmer selects the left-hand side "i" from a statement of form "i = 0;" and invokes the Extract Method refactoring, the refactoring tool will report the following problem and prevent the programmer from continuing the refactoring:
+>Cannot extract the left-hand side of an assignment.
+However, we noticed that the refactoring tool will report the above error message even if the programmer selects an expression of form "i = 0" from a statement of form "i = 0;".
+Two of the participants of the CodingSpectator study <http://codingspectator.cs.illinois.edu/> forgot to include the trailing semicolon in their selections and ran into this problem.
+This problem occurred three times.
+Because our participants sometimes repeated the refactoring multiple times, they received the above error message five times.
+In all three instances, our participants eventually overcome the problem by including the trailing semicolon in their selections.
+It would be nice if the refactoring automatically extends the selection to cover the trailing semicolon the same way that it shrinks the selection to exclude the trailing semicolon in some cases (See Bug 324237).

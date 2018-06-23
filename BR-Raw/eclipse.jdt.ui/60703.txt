@@ -1,0 +1,23 @@
+Bug 60703 – [performance] M8 Editors take longer to open than R2.x editors
+I do some routine meaurements on editors we provide over base Eclipse, and while
+doing those measurements noticed, using M8, that even the basic text editor and
+the java editor take nearly twice as long to open on M8 than they do on the R2.
+1x stream.
+I'll attach a file/table that shows the numbers I'm seeing.
+These
+measurements are taken with fairly large files (around 300K).
+The 'delta'
+measurements are basically just from marking time before and after a call to
+workbench.openEditor(...).
+I've done a bit of profiling with 0428 build (post M8) and noticed one thing
+right off.
+For these 300K files, there is over a million calls to String.
+charAt(int), traceable back to 4 calls to AbstractLineTracker.set(String).
+My
+guess is that some things are being unnecessarily initialized multiple times.
+That's with basic text editor and java editor.
+Things appear even worse for Java Editor, there's also over a million calls to
+JavaCodeScanner.access$0(), stemming from JavaCodeScanner$MethodNameRule.
+evaluate(ICharacterScanner).
+I know the number of calls isn't necessarily by itself a problem, I just note
+those as things to investigate.

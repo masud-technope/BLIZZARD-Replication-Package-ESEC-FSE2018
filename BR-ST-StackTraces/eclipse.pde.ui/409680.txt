@@ -1,0 +1,11 @@
+org.eclipse.pde.internal.core.builders.XMLErrorReporter.getTextContent
+org.eclipse.pde.internal.core.builders.ExtensionsErrorReporter.validateTranslatableElementContent
+org.eclipse.pde.internal.core.builders.ExtensionsErrorReporter.validateElement
+org.eclipse.pde.internal.core.builders.ExtensionsErrorReporter.validateElement
+org.eclipse.pde.internal.core.builders.ExtensionsErrorReporter.validateElement
+org.eclipse.pde.internal.core.builders.ExtensionsErrorReporter.validateExtension
+org.eclipse.pde.internal.core.builders.ExtensionsErrorReporter.validateContent
+org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.validateFiles
+org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.validateProject
+org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.build
+org.eclipse.core.internal.events.BuildManager$2.run

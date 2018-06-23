@@ -1,0 +1,5 @@
+Bug 196878 – [Manifest][Editors] Make "Edit..." button on "Extensions" page disappear
+I'd like to move the "Edit..." button on the "Extensions" page to be the last button beside the tree viewer (under "Down" button) and set its visibility to false when it is not applicable.
+ As far as I know no one in the Eclipse SDK makes use of it.
+Subject to Wassim's veto.
+ Wassim, if you agree that this bug is valid, could you provide background information and any additional requirements?

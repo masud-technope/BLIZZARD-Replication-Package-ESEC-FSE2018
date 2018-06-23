@@ -1,0 +1,42 @@
+37326 – No error reported when <jsp:include> has non-existent target
+I'm not sure this is a bug - might be expected behaviour - I'm not expert in
+this area.
+ Have tried to ascertain what should be happening, by reading the
+servlet/JSP spec docs and parts of the TC source code, but I'm still not quite
+sure.
+ I posted to tomcat-user twice seeking help on this (no responses).
+The problem that I'm seeing is that when a JSP page includes one or more JSP
+fragments using <jsp:include> actions, but the fragment files don't exist, the
+including JSP page is returned to the browser without the fragments included.
+It's as if the including JSP ignores the missing fragments and continues being
+processed.
+ The including page is returned with SC of 200, as if there is no
+problem.
+Nothing is written to any log file to indicate the problem.
+I would have expected this to return an exception or a 404, but neither
+happens.
+ Is this the expected behaviour?  As it stands, a webapp bug like
+this could go unnoticed for quite some time.
+ Normally TC is good at bringing
+bugs like this to the developer's attention.
+See attached war for simple example.
+ First discovered on 5.5.9, verified same
+behaviour on 5.5.12, both based on fresh TC installs.
+I appreciate that once the including JSP has written the part of its response
+before the include, the response could already be committed depending on
+buffer size, so calling sendError() will cause an IllegalStateException.
+Also, may not be possible to return an error page at this point, again because
+the response is already committed...?  Perhaps though an exception could be
+logged?  Or, perhaps (?)the including page's processing should be stopped,
+rather than allowing it to continue.
+Some other info: I only discovered that I had omitted the fragment files from
+my warfile when I first started TC from NetBeans rather than from TC batch
+scripts.
+ When I did this, the missing fragments are then reported with SC
+404.
+ As far as I can tell, it seems that the addition of the NetBeans
+HTTPMonitorFilter to conf/web.xml is what causes the 404 to be reported where
+it was previously silent.
+ Have drawn a blank on why this might be.
+For more info (my posts to tc-user) see also: http://marc.theaimsgroup.com/?
+l=tomcat-user&m=113034098008166&w=2

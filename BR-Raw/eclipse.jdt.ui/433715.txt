@@ -1,0 +1,45 @@
+Bug 433715 – [1.8][inline] NPE when inlining a local variable
+Trying to inline the local variable indicated in this code causes an Internal Error caused by a NPE to be logged:
+import java.io.IOException;
+import java.util.function.Predicate;
+class DeadBeef {
+private interface IOPredicate<T> {
+boolean test(T t1) throws IOException;
+}
+@SuppressWarnings("unused")
+private static abstract class AbstractStream<T, SELF extends AbstractStream<T, SELF, PREDICATE>, PREDICATE> {
+@SuppressWarnings("null")
+SELF filter(PREDICATE allowed) {
+return null;
+}
+@SuppressWarnings("null")
+final @SafeVarargs SELF filter(Predicate<? super T> allow, Predicate<? super T>...
+allowed) {
+return null;
+}
+}
+private static class IOStream<T> extends AbstractStream<T, IOStream<T>, IOPredicate<? super T>> {}
+static IOStream<String> main(IOStream<String> a) {
+// Trying to inline this variable causes an Internal Error:
+IOPredicate<String> allowed = word -> true;
+return a.filter(allowed);
+}
+}
+Here is the full stack trace:
+Caused by: java.lang.NullPointerException
+at org.eclipse.jdt.internal.corext.dom.ASTNodes$AmbiguousTargetMethodAnalyzer.visit(ASTNodes.java:727)
+at org.eclipse.jdt.internal.corext.dom.ASTNodes.isTargetAmbiguous(ASTNodes.java:679)
+at org.eclipse.jdt.internal.corext.dom.ASTNodes.getExplicitCast(ASTNodes.java:606)
+at org.eclipse.jdt.internal.corext.refactoring.code.InlineTempRefactoring.getModifiedInitializerSource(InlineTempRefactoring.java:383)
+at org.eclipse.jdt.internal.corext.refactoring.code.InlineTempRefactoring.getInitializerSource(InlineTempRefactoring.java:349)
+at org.eclipse.jdt.internal.corext.refactoring.code.InlineTempRefactoring.inlineTemp(InlineTempRefactoring.java:327)
+at org.eclipse.jdt.internal.corext.refactoring.code.InlineTempRefactoring.createChange(InlineTempRefactoring.java:308)
+at org.eclipse.ltk.core.refactoring.CreateChangeOperation.run(CreateChangeOperation.java:124)
+at org.eclipse.ltk.core.refactoring.PerformChangeOperation.run(PerformChangeOperation.java:209)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2333)
+at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+Tested with Eclipse SDK
+Version: Luna (4.4)
+Build id: I20140422-0800
+and JDT UI built from HEAD just now.

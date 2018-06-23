@@ -1,0 +1,2 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/rewrite/describing/ImportRewrite18Test.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/rewrite/ImportRewrite.java

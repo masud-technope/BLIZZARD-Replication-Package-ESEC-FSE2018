@@ -1,0 +1,43 @@
+48007 – ClassNotFoundException when deserializing custom object with FileStore
+We're using the FileStore to make sessions persistent.
+Sessions are serialized correctly, but every minute or so we get an exception like the following:
+SEVERE: Session: 6D026DD0479F48B331D28EE8325095BB;
+java.lang.ClassNotFoundException: com.whatever.spikes.session.CustomClass
+at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+at java.security.AccessController.doPrivileged(Native Method)
+at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:319)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:254)
+at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:399)
+at java.lang.Class.forName0(Native Method)
+at java.lang.Class.forName(Class.java:247)
+at java.io.ObjectInputStream.resolveClass(ObjectInputStream.java:604)
+at org.apache.catalina.util.CustomObjectInputStream.resolveClass(CustomObjectInputStream.java:78)
+at java.io.ObjectInputStream.readNonProxyDesc(ObjectInputStream.java:1575)
+at java.io.ObjectInputStream.readClassDesc(ObjectInputStream.java:1496)
+at java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:1732)
+at java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1329)
+at java.io.ObjectInputStream.readObject(ObjectInputStream.java:351)
+at org.apache.catalina.session.StandardSession.readObject(StandardSession.java:1407)
+at org.apache.catalina.session.StandardSession.readObjectData(StandardSession.java:931)
+at org.apache.catalina.session.FileStore.load(FileStore.java:296)
+at org.apache.catalina.session.StoreBase.processExpires(StoreBase.java:194)
+at org.apache.catalina.session.PersistentManagerBase.processExpires(PersistentManagerBase.java:553)
+at org.apache.catalina.session.ManagerBase.backgroundProcess(ManagerBase.java:664)
+at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1285)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1570)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1579)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1579)
+at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1559)
+at java.lang.Thread.run(Thread.java:637)
+This doesn't happen if we put CustomClass in $CATALINA_HOME/shared/lib or $CATALINA_HOME/shared/classes
+Configuration:
+<Context path="/Spikes" reloadable="true" docBase="/Users/mman/Workspaces/Spikes" workDir="/Users/mman/Workspaces/Spikes/work" >
+<Manager className="org.apache.catalina.session.PersistentManager" maxIdleBackup="0" >
+<Store className="org.apache.catalina.session.FileStore" directory="/Users/mman/tmp/tomcat-sessions"/>
+</Manager>
+</Context>
+Environment:
+*) Mac OS/X 10.6.1
+*) JDK 1.6.0_15
+*) Tomcat 5.5.27

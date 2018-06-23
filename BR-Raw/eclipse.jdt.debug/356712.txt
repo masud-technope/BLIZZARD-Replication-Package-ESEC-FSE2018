@@ -1,0 +1,6 @@
+Bug 356712 – Monitor and stack depth are read from JDWP interchanged
+Build Identifier: I20110613-1736
+In ThreadReferenceImpl.ownedMonitorsAndFrames(), the stack depth and subsequently the monitor is read from JVMTI via OwnedMonitorsStackDepthInfo.
+The specification says that the monitor and subsequently the stack depth is written however.
+See: http://download.oracle.com/javase/6/docs/platform/jpda/jdwp/jdwp-protocol.html#JDWP_ThreadReference_OwnedMonitorsStackDepthInfo
+Reproducible: Always

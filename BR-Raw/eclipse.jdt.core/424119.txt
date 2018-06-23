@@ -1,0 +1,41 @@
+Bug 424119 – [1.8][search] CCE in search for references to TYPE_USE annotation on array dimension
+CCE when trying to search for references to @Annot (a TYPE_USE annotation on an array dimension).
+Also happens for marker and single-member annotations.
+package xy;
+import java.lang.annotation.*;
+@Target(ElementType.TYPE_USE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@interface Annot {
+}
+public class Try {
+{
+String tab @Annot() [] = null;
+}
+}
+!ENTRY org.eclipse.core.jobs 4 2 2013-12-16 14:03:34.616
+!MESSAGE An internal error occurred during: "Java Search".
+!STACK 0
+java.lang.ClassCastException: org.eclipse.jdt.internal.core.Initializer cannot be cast to org.eclipse.jdt.core.IAnnotatable
+at org.eclipse.jdt.internal.core.search.matching.MemberDeclarationVisitor.storeHandle(MemberDeclarationVisitor.java:145)
+at org.eclipse.jdt.internal.core.search.matching.MemberDeclarationVisitor.visit(MemberDeclarationVisitor.java:253)
+at org.eclipse.jdt.internal.compiler.ast.SingleTypeReference.traverse(SingleTypeReference.java:111)
+at org.eclipse.jdt.internal.compiler.ast.NormalAnnotation.traverse(NormalAnnotation.java:68)
+at org.eclipse.jdt.internal.compiler.ast.ArrayTypeReference.traverse(ArrayTypeReference.java:144)
+at org.eclipse.jdt.internal.compiler.ast.LocalDeclaration.traverse(LocalDeclaration.java:299)
+at org.eclipse.jdt.internal.compiler.ast.Block.traverse(Block.java:145)
+at org.eclipse.jdt.internal.compiler.ast.Initializer.traverse(Initializer.java:134)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.reportMatching(MatchLocator.java:2619)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.reportMatching(MatchLocator.java:2773)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.reportMatching(MatchLocator.java:2504)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.process(MatchLocator.java:1737)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.locateMatches(MatchLocator.java:1147)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.locateMatches(MatchLocator.java:1188)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.locateMatches(MatchLocator.java:1320)
+at org.eclipse.jdt.internal.core.search.JavaSearchParticipant.locateMatches(JavaSearchParticipant.java:95)
+at org.eclipse.jdt.internal.core.search.BasicSearchEngine.findMatches(BasicSearchEngine.java:231)
+at org.eclipse.jdt.internal.core.search.BasicSearchEngine.search(BasicSearchEngine.java:515)
+at org.eclipse.jdt.core.search.SearchEngine.search(SearchEngine.java:584)
+at org.eclipse.jdt.internal.ui.search.JavaSearchQuery.run(JavaSearchQuery.java:144)
+at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)

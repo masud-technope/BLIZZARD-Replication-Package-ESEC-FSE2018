@@ -1,0 +1,4 @@
+org.eclipse.pde.internal.runtime.spy.sections.ActivePartSection.build
+org.eclipse.pde.internal.runtime.spy.dialogs.SpyDialog.createDialogArea
+org.eclipse.pde.internal.runtime.spy.dialogs.SpyDialog.createContents
+org.eclipse.jface.window.Window.create

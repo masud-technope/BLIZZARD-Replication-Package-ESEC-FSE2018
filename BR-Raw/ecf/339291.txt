@@ -1,0 +1,3 @@
+Bug 339291 – [generic][server] add convenience api
+IGenericServerContainerGroup needs convenience API for making it easier to create a container (i.e.
+createContainer/2 and createContainer/1).

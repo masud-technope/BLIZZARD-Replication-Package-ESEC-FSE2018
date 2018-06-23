@@ -1,0 +1,11 @@
+55576 – Order of ServletRequest parameters is not preserved
+The ServletRequest interface provides two methods to iterate through request parameters:
+Enumeration<String> getParameterNames(), and
+Map<String, String[]> getParameterMap()
+Unfortunately, the underlying implementation in Tomcat is a HashMap, which fails to preserve the order of parameters as they are specified in the request.
+An alternate implementation should be used to preserve request order.
+ LinkedHashMap, for example, is capable of preserving insertion order.
+The Servlet Specification (v3.0) speaks only to the relative ordering of query string data and post body data.
+However, section 17.13.3 of the HTML specification (v4.01) titled "Processing form data", clearly states that "control names/values are listed in the order they appear in the document."
+Therefore, I do not see a valid interpretation of either specification to rationalize Tomcat's implementation.
+To receive a request with an ordered list of parameters and represent them in an implementation that is guaranteed not to preserve this order is difficult to rationalize.

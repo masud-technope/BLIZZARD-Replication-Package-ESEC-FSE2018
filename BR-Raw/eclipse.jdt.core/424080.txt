@@ -1,0 +1,11 @@
+Bug 424080 – [1.8][completion] Workbench hanging on code completion with lambda expression containing anonymous class
+interface FI {
+public static int val = 5;
+default int run (String x) { return 1;};
+public int run (int x);
+}
+public class Test {
+FI fi = x -> (new FI() { public int run (int x) {return 2;}}).run("")val;
+}
+Please try to put a dot '.', before the last 'val' in the 2nd last line.
+See the workbench hanging.

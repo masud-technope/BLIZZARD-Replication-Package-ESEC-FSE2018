@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.ui.templates/templates_3.3/helloRCP/java/ApplicationWorkbenchAdvisor.java
+ui/org.eclipse.pde.ui.templates/templates_3.3/helloRCP/java/ApplicationWorkbenchWindowAdvisor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/PluginClassCodeGenerator.java

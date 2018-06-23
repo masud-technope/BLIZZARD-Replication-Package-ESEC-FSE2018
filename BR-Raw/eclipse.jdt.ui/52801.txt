@@ -1,0 +1,2 @@
+Bug 52801 – "Press F2 for focus" does not work for spell-checking hovers
+"Press F2 for focus" does not work for spell-checking hovers.

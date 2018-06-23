@@ -1,0 +1,4 @@
+Bug 266122 – [Discovery][jSLP] IServiceTypeID doesn't have a protocol set
+SLP service types don't include the protocol field.
+Only ServiceURLs contain this part of the service.
+For ECF a serviceType however includes a protocol too.

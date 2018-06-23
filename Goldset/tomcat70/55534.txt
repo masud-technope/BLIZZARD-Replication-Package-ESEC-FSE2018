@@ -1,0 +1,5 @@
+java/javax/annotation/ManagedBean.java
+java/javax/annotation/Resource.java
+java/javax/annotation/sql/DataSourceDefinition.java
+java/javax/annotation/sql/DataSourceDefinitions.java
+java/org/apache/catalina/startup/WebAnnotationSet.java

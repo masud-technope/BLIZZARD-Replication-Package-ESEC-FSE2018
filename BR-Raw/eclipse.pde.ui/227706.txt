@@ -1,0 +1,13 @@
+Bug 227706 – filter for "Method with non-API parameter" breaks after rebuild
+I have added filters for a class in Mylyn that is leaking internals in method signatures:
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.mylyn.tasks.ui" version="1">
+<resource path="src/org/eclipse/mylyn/tasks/ui/editors/AbstractRepositoryTaskEditor.java">
+<filter id="643846161" messageargs="org.eclipse.mylyn.internal.tasks.ui.editors.IRepositoryTaskAttributeListener"/>
+<filter id="643846161" messageargs="org.eclipse.mylyn.internal.tasks.ui.editors.RepositoryTaskOutlineNode"/>
+<filter id="643842064" messageargs="org.eclipse.mylyn.internal.tasks.ui.editors.RepositoryTaskOutlineNode"/>
+<filter id="643842064" messageargs="org.eclipse.mylyn.internal.tasks.ui.editors.RepositoryTaskOutlinePage"/>
+<filter id="643846161" messageargs="org.eclipse.mylyn.internal.tasks.ui.editors.IRepositoryTaskAttributeListener"/>
+</resource>
+</component>
+After a while the warning markers will reappear and I am seeing the markers all the time in other workspaces although the .api_filters file is shared in CVS.

@@ -1,0 +1,8 @@
+Bug 393781 – In case of non matching argument list the message is not informative if short class name matches
+Created attachment 223308 [details]
+Non informative message
+I have imported some backport class instead of the normal JDK class by accident.
+The GUI told me, that the method arguments are not compatible, but it was not informative, since it showed the short name of the class.
+See in the pictures.
+Enhancement could be to display the fully qualified names in the message if the short name is matching.
+Another enhancement could be a quick correction suggestion, which would look up other classes on the classpath with the same name as the class of the argument or the class, which declares the method.

@@ -1,0 +1,5 @@
+49030 – Processing of Tomcat Connector configuration can leave some connectors uninitialized
+If the Server part of the Tomcat 6 configuration is beeing processed and there are more connectory defined, it seems to be the fact the exceptions during the connector initialization are not catched properly, so if there comes some exception by the initialization of one connector (for example to try to initialize the new connector for the same port like had the already initialized connector), then no other connectors are processed and created (no one listening port is allocated) even if such other connectors are defined properly.
+It leads to the situation the connectory are then initialized differently if the order of the connectors changes.
+It can be very confusing if searching some error in the definitions.
+Together with the fact, the default server.xml contains at least in some cases the invalid connector definition it leads to serious confusion it searching the configuration problem...

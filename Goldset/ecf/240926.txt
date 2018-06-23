@@ -1,0 +1,3 @@
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/internal/docshare/Messages.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/internal/docshare/messages.properties
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/internal/provisional/docshare/DocShare.java

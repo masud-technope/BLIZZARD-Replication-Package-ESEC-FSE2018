@@ -1,0 +1,6 @@
+examples/bundles/org.eclipse.ecf.example.collab/launchconfigs/ECF Example Collab 1.launch
+examples/bundles/org.eclipse.ecf.example.collab/launchconfigs/ECF Example Collab 2.launch
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/actions/JoinGroupWizardAction.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/ui/JoinGroupWizard.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/ui/JoinGroupWizardPage.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/ui/hyperlink/ECFGenericHyperlink.java

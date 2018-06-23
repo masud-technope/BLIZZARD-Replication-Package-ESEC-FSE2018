@@ -1,0 +1,3 @@
+49159 – Improve ThreadLocal memory leak clean-up
+Doing this in a thread-safe way means performing the clean-up in the thread where the ThreadLocal exists.
+A likely point is just before the Thread gets returned to the pool.

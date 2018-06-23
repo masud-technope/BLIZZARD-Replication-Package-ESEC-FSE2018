@@ -1,0 +1,2 @@
+Bug 313365 – Activate APITooling checks
+Run APITooling to verify API compatibility

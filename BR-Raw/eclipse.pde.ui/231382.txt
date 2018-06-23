@@ -1,0 +1,4 @@
+Bug 231382 – Remove javadoc resolution should use the remove icon
+Created attachment 99570 [details]
+patch
+The 'remove invalid javadoc tag' resolution should use the 'remove' image and not the '@' javadoc image

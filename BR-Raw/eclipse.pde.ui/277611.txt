@@ -1,0 +1,8 @@
+Bug 277611 – [target] Target Platform brings plugins back from previous installations
+...installed Riena RC1 into my target using PDE Target Platform Definition via Updatesite.
+worked well, all bundles there - also all .source bundles
+but I dont get the sources per ex.
+if hovering about a classname.
+...nothing attached...
+but the .sorce bundles are there and I can import them into workspace and can see the sources.
+all other .source bundles (like equinox) are well recognized from target platform

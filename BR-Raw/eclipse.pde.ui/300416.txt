@@ -1,0 +1,5 @@
+Bug 300416 – Non-NLS'd string in ApiUseScanJob
+Created attachment 156836 [details]
+fix
+I20100121-0800
+found a non-nls'd string in ApiseScanJob and three unused NLS tags in ApiUseScanTab.

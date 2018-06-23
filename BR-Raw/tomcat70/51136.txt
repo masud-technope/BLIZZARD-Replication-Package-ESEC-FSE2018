@@ -1,0 +1,4 @@
+51136 – Allow to set the context name through Tomcat's embeded class before adding it to the host
+org.apache.catalina.startup.Tomcat creates contexts and add them to the host directly.
+It would be nice if we could set the name of the context before adding it to the host.
+I'm including a patch that overloads the methods "addWebapp" and "addContext" to take that name as a parameter.

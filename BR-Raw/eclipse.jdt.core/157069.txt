@@ -1,0 +1,15 @@
+Bug 157069 – [content assist] Imports computer introduces wrong import ==> compile error
+package a;
+public class A {
+protected class Sub {}
+protected void doSomething(Sub sub){}
+}
+----------
+package b;
+public class B extends A {
+doSome<<CARET>>
+}
+----------
+The code above describes the scenario.
+ When you invoke content assist in class B (where the caret is) to override the doSomething() method, an invalid import statement for a.A.Sub is added to class B.
+ That import statement is not necessary.

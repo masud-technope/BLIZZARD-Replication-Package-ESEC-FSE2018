@@ -1,0 +1,9 @@
+apitools/org.eclipse.pde.api.tools.tests/test-builder/usageprojects/org.eclipse.pde.apitools.test.oldshape/plugin.xml
+apitools/org.eclipse.pde.api.tools.tests/test-builder/usageprojects/org.eclipse.pde.apitools.test.oldshape/.classpath
+apitools/org.eclipse.pde.api.tools.tests/test-builder/usageprojects/org.eclipse.pde.apitools.test.oldshape/src/oldbundle/ApiClazz.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/model/ProjectComponent.java
+apitools/org.eclipse.pde.api.tools.tests/test-builder/usageprojects/org.eclipse.pde.apitools.test.oldshape/.settings/org.eclipse.jdt.core.prefs
+apitools/org.eclipse.pde.api.tools.tests/test-builder/usageprojects/org.eclipse.pde.apitools.test.oldshape/.project
+apitools/org.eclipse.pde.api.tools.tests/test-builder/usageprojects/org.eclipse.pde.apitools.test.oldshape/build.properties
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/builder/tests/ApiBuilderTest.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/model/BundleComponent.java

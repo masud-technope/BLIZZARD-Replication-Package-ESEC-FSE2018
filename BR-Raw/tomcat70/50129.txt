@@ -1,0 +1,9 @@
+50129 – ContextConfig - unnecessary null checks
+Created attachment 26192 [details]
+Patch to remove null checks
+Sample code:
+urlPatterns = processAnnotationsStringArray(evp.getValue());
+urlPatternsSet = urlPatterns != null && urlPatterns.length > 0;
+for (String urlPattern : urlPatterns) {
+The check "urlPatterns != null" is unnecessary as the method call never returns null.
+If it could return null, then the for loop would cause an NPE.

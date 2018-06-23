@@ -1,0 +1,6 @@
+Bug 342356 – [TCK] RSA override properties handling incomplete
+My reading/understanding of o.e.e.osgi.services.remoteserviceadmin.RemoteServiceAdmin.exportService(ServiceReference, Map<String, Object>) javadoc is, that the implementation is supposed to override any properties in the service reference with the one provided in the Map (except the explicitly excluded ones).
+Right now this is only done for the exported interfaces, intents and exported configs.
+However neither o.e.e.osgi.services.remoteserviceadmin.IHostContainerSelector.selectHostContainers(ServiceReference, String[], String[], String[]) nor o.e.e.osgi.services.remoteserviceadmin.IHostContainerSelector.selectHostContainers(ServiceReference, String[], String[], String[]) actually allow overriding properties to be passed in.
+This e.g.
+results in "ecf.exported.containerfactoryargs" being ignored by the host container selector.

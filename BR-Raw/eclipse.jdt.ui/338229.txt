@@ -1,0 +1,19 @@
+Bug 338229 – [typing] Incorrect indentation in string continuation (press Enter in front of +)
+HEAD (same problem with and without fix for bug 337150), was OK in 3.6.1
+- paste this snippet into a project with default formatter settings:
+package xy;
+public class Try {
+public static void main(String[] args) {
+System.out.println("Some"
++ new Object()
++ "string:\n" + definedType.toString());
+}
+}
+- Select All
+- Correct Indentation
+=> indentation looks good
+- put caret before last +
+- press Enter
+=> last code line is indented too much (2 tabs):
++ "string:\n"
++ definedType.toString());

@@ -1,0 +1,10 @@
+Bug 304792 – [move method] Move a single function between interfaces does not work.
+Build Identifier: 20090619-0625
+Move more than one function between interfaces works fine.
+Moving a single function shows the message: "This refactoring cannot be used to move interface methods".
+Reproducible: Always
+Steps to Reproduce:
+1.
+Select a single function in the outline
+2.
+Press refactor->move

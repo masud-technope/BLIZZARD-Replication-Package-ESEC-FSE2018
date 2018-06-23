@@ -1,0 +1,11 @@
+Bug 280132 – [remoteservices] exception thrown on timeout does not include necessary info
+Currently, in the method org.eclipse.ecf.provider.remoteservice.generic.RegistrySharedObject.callSynch(RemoteServiceRegistrationImpl, IRemoteCall)
+if a timeout occurs an ECFException is thrown via this line:
+if (!doneWaiting)
+throw new ECFException(Messages.RegistrySharedObject_19 + call.getTimeout() + Messages.RegistrySharedObject_20);
+This ECFException, however does not include any nested exception, which means that those catching the exception will not have detailed info (except by parsing the message, which is clumsy) about what the nested exception type is.
+I would like to enhance this exception to include a TimeoutException:
+if (!doneWaiting)
+throw new ECFException(Messages.RegistrySharedObject_19 + call.getTimeout() + Messages.RegistrySharedObject_20, new TimeoutException(call.getTimeout()));
+So that API users can get this exception.
+The risk of this fix is very low, so I would like to consider getting into Galileo.

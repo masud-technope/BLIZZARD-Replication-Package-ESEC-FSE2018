@@ -1,0 +1,14 @@
+Bug 433586 – [1.8][null] Converting <? super T> to <T> with method reference causes unchecked conversion warning
+This used to work earlier without warnings:
+package nullwarnings;
+import java.util.function.Consumer;
+public class NullConversionWarning<T> {
+public Consumer<T> peek2(Consumer<? super T> action) {
+// Null type safety: parameter 1 provided via
+// method descriptor Consumer<T>.accept(T) needs
+// unchecked conversion to conform to 'capture#of ? super T'
+Consumer<T> action2 = action::accept;
+return action2;
+}
+}
+Using Eclipse SDK Version: Luna (4.4) Build id: I20140422-0800 and JDT Core built from HEAD yesterday, I think.

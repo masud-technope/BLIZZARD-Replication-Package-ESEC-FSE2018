@@ -1,0 +1,17 @@
+Bug 13909 – Inconsistent margins on preference pages
+Build: 20020411
+The margins of preference pages are currently not consistent between pages.
+To
+ensure consistency, subclasses of PreferencePage are required to set margins of
+layouts in composites returned by the method createContents(Composite) to 0
+pixels (see the Javadoc for PreferencePage.createContents(Composite) in build
+20020416 or later builds).
+See the preference pages under "Workbench" for examples of properly-margined
+pages.
+Page contents should align with the left and right edges of the page
+title area.
+Please ensure that the property pages belonging to your team are consistent
+with these guidelines.
+In particular, LaunchConfigurationTypePropertyPage,
+LauncherPropertyPage, and DebugActionGroupsPreferencePage may need to be
+modified.

@@ -1,0 +1,7 @@
+Bug 197410 – Manifest completion proposals are not sorted
+Version: 3.3.0
+Build id: I20070625-1500
+Some of the completion proposals on the manifest editor (for header completion) are out of order.
+ The most obvious one is the fragment-host entry which appears at the bottom.
+Will attach a patch to sort the list.
+ It might make more sense to just use Arrays.sort() instead of manually ordering it.

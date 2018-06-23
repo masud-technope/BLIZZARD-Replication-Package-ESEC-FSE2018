@@ -1,0 +1,13 @@
+org.eclipse.jdt.internal.compiler.lookup.MethodBinding.getParameterAnnotations
+org.eclipse.jdt.core.dom.MethodBinding.getParameterAnnotations
+org.eclipse.jdt.internal.ui.viewsupport.BindingLinkedLabelComposer.appendMethodBindingLabel
+org.eclipse.jdt.internal.ui.viewsupport.BindingLinkedLabelComposer.appendBindingLabel
+org.eclipse.jdt.internal.ui.viewsupport.JavaElementLinks.getBindingLabel
+org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getInfoText
+org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo
+org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.internalGetHoverInfo
+org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo2
+org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2
+org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2
+org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2
+org.eclipse.jface.text.TextViewerHoverManager$4.run

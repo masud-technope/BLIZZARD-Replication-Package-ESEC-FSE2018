@@ -1,0 +1,16 @@
+Bug 234376 – New Plug-in project with property page template uses deprecated elements
+From bug 234351.
+Using the new plug-in project wizard, generate a new project using the 'with property page' template.
+The plugin.xml will contain something similar to the following
+<extension
+point="org.eclipse.ui.propertyPages">
+<page
+objectClass="org.eclipse.core.resources.IFile"
+name="Sample Page"
+nameFilter="*.*"
+class="test3.properties.SamplePropertyPage"
+id="test3.properties.samplePropertyPage">
+</page>
+</extension>
+The objectClass element is deprecated.
+ We shouldn't have a template that uses deprecated code as an example for new users.

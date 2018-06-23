@@ -1,0 +1,70 @@
+51584 � Crash (infinite loop) when files starting with '#' are in the library tree
+Situation:
+stray text file in my /WEB-INF/classes/...../ directory named "#SurveyMain.java#"     ( It was a backup/autosaved source file, and eclipse 'helpfully' deployed it.
+)
+causes crash on startup in tomcat 7.0.6, 7.0.19 and 7.0.20-dev (1151601M).
+- out of memory.
+Added this test to .20-dev:
+Index: org/apache/catalina/startup/ContextConfig.java
+===================================================================
+--- org/apache/catalina/startup/ContextConfig.java	(revision 1151601)
++++ org/apache/catalina/startup/ContextConfig.java	(working copy)
+@@ -1902,6 +1902,7 @@
+while (dirs.hasMoreElements()) {
+String dir = dirs.nextElement();
+URL dirUrl = new URL(url.toString() + '/' + dir);
++                    System.err.println("Processing: " + url.toString() + '/' + dir);
+processAnnotationsJndi(dirUrl, fragment);
+}
+Printed tons of lines… at startup…
+Then crashed as before…
+java.lang.OutOfMemoryError: Java heap space
+at java.util.Arrays.copyOfRange(Arrays.java:3209)
+at java.lang.String.<init>(String.java:215)
+at java.lang.StringBuilder.toString(StringBuilder.java:430)
+at java.io.UnixFileSystem.resolve(UnixFileSystem.java:93)
+at java.io.File.<init>(File.java:312)
+at org.apache.naming.resources.FileDirContext.list(FileDirContext.java:871)
+at org.apache.naming.resources.FileDirContext.list(FileDirContext.java:304)
+at org.apache.naming.resources.ProxyDirContext.list(ProxyDirContext.java:506)
+at org.apache.naming.resources.DirContextURLConnection.list(DirContextURLConnection.java:444)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1901)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:1906)
+I think the problem is that the URL generated contains a '#' and so file:// interprets it as a fragment and not as a path.
+Quick patch:
+Index: java/org/apache/catalina/startup/ContextConfig.java
+===================================================================
+--- java/org/apache/catalina/startup/ContextConfig.java	(revision 1151601)
++++ java/org/apache/catalina/startup/ContextConfig.java	(working copy)
+@@ -1901,7 +1901,11 @@
+Enumeration<String> dirs = dcUrlConn.list();
+while (dirs.hasMoreElements()) {
+String dir = dirs.nextElement();
++                    if(dir.startsWith("#")) {
++                        continue;
++                    }
+URL dirUrl = new URL(url.toString() + '/' + dir);
++                    //System.err.println("Processing: " + dirUrl.toString());
+processAnnotationsJndi(dirUrl, fragment);
+}

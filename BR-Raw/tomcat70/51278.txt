@@ -1,0 +1,4 @@
+51278 – Unable to override default servlet other than in main web.xml
+The default web.xml gets merged into the application's web.xml before processing of fragments, annotations and ServletContextInitializers.
+This means it can only be overridden in the application's web.xml.
+It should be possible to override in fragments, annotations and ServletContextInitializers.

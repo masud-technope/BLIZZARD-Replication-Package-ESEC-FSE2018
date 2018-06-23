@@ -1,0 +1,26 @@
+Bug 43212 – catch variable not recognized by code-completion
+3.0 I20030916
+The following code does not work with code-completion.
+The exception 'e' doesn't
+seem to be resolved so that when I type 'e.' + ctrl+space there are no
+suggestions given.
+However, if I type a method name I know exists and save the
+file compiles without errors.
+Here is the snippet of code that causes problems:
+public class AnonymousClassTest {
+private Job fetchLogEntriesJob = new
+Job(Policy.bind("HistoryView.fetchHistoryJob")) { //$NON-NLS-1$
+private ICVSFile remoteFile;
+public void setRemoteFile(ICVSFile file) {
+this.remoteFile = file;
+}
+public IStatus run(IProgressMonitor monitor) {
+try {
+remoteFile.getLogEntries(monitor);
+} catch (TeamException e) {
+====> this line doesn't resolve ===> return e.;
+}
+return Status.OK_STATUS;
+}
+};
+}

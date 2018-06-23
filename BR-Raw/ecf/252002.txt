@@ -1,0 +1,4 @@
+Bug 252002 – [filetransfer] support NTLMv2 authentication with httpclient provider
+As per the discussion starting with comment 23 on bug 220240 https://bugs.eclipse.org/bugs/show_bug.cgi?id=220240#c23
+The httpclient 3.0.1-based provider has some difficulties with NTLMv2 provider (see discussion on 220240).
+ This bug is to track further work on NTLMv2 support.

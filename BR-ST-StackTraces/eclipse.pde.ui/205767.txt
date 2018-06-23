@@ -1,0 +1,9 @@
+org.eclipse.pde.internal.ui.wizards.plugin.NewFragmentProjectWizard.performFinish
+org.eclipse.jface.wizard.WizardDialog.finishPressed
+org.eclipse.jface.wizard.WizardDialog.buttonPressed
+org.eclipse.jface.dialogs.Dialog$2.widgetSelected
+org.eclipse.swt.widgets.TypedListener.handleEvent
+org.eclipse.swt.widgets.EventTable.sendEvent
+org.eclipse.swt.widgets.Widget.sendEvent
+org.eclipse.swt.widgets.Display.runDeferredEvents
+org.eclipse.swt.widgets.Display.readAndDispatch

@@ -1,0 +1,5 @@
+Bug 135480 – Passing the "PDE Target Platform location" as an argument in an ExternalTools-Launcher
+It would be very useful to have the possibility to pass the "PDE Target Platform location" as an argument in an ExternalTools-Launcher.
+At the moment it is possible to pass the "eclipse_home" as an argument whilst defining an external launch configuration (e.g.
+"-Dlocation=${eclipse_home}" in the Arguments-TextArea of ExternalTools-Dialog), but the "eclipse_home"-variable always points to the directory where the eclipse-installation resides.
+If you change the "PDE Target Platform location", the "eclipse_home"-variable won't change.

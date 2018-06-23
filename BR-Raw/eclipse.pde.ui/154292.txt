@@ -1,0 +1,6 @@
+Bug 154292 – Project-specific Java compliance should update build.properties
+When I edit project-specific preferences in the JDT GUI, and change the compiler compliance settings to 1.4-with-assert, I'd expect the build.properties file to be updated automatically (javacSource, javacTarget properties).
+This is necessary in order to support headless builds e.g.
+for creating an update site.
+If the build.properties file is not updated automatically, it's just too easy to break the headless build with something that seems to work fine in the UI build.
+See also bug 148260

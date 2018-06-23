@@ -1,0 +1,7 @@
+Bug 77449 – tell user when monitor info unavailable
+We should inform the user when monitor information is not available for a
+target, and they have selected to "Show Monitor Information".
+Options:
+* information dialog when they launch a target that does not support it
+with "don't tell me again" check box
+* information dialog when they select the option in the view drop-down menu

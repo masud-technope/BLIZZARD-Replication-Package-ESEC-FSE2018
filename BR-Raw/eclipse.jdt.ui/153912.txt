@@ -1,0 +1,13 @@
+Bug 153912 – [common navigator] Java model hiding parent folders in sync view
+Build: I20060815-0800
+I have a simple (non-Java) project in my workspace like this:
+eclipse
+platform-text
+3.3
+plan.html
+When there is an incoming change on plan.html, the synch view looks like this when "All Models" is selected:
+eclipse
+3.3
+plan.html
+I.e., the "platform-text" parent folder is being filtered out.
+ If the "Java Workspace" model is disabled, the problem goes away.

@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/ShowDescriptionAction.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/WorkspacePluginModelManager.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDECore.java

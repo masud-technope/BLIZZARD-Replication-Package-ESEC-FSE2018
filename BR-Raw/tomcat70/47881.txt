@@ -1,0 +1,37 @@
+47881 – org.apache.catalina.startup.Bootstrap's main method handles 'startd' or 'stopd' wrongly
+String command = "start";
+if (args.length > 0) {
+command = args[args.length - 1];
+}
+if (command.equals("startd")) {
+args[0] = "start";
+daemon.load(args);
+daemon.start();
+} else if (command.equals("stopd")) {
+args[0] = "stop";
+daemon.stop();
+}
+...
+...
+should be:
+String command = "start";
+if (args.length > 0) {
+command = args[args.length - 1];
+}
+if (command.equals("startd")) {
+args[args.length - 1] = "start";
+daemon.load(args);
+daemon.start();
+} else if (command.equals("stopd")) {
+args[args.length - 1] = "stop";
+daemon.stop();
+}
+...
+...
+Please refer to the following usage method of  org.apache.catalina.startup.Catalina:
+protected void usage() {
+System.out.println
+("usage: java org.apache.catalina.startup.Catalina"
++ " [ -config {pathname} ]"
++ " [ -nonaming ] { start | stop }");
+}

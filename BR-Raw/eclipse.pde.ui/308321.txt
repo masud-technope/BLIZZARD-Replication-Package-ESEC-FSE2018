@@ -1,0 +1,3 @@
+Bug 308321 – The spinner is outside the column area on eclipse app launch config
+The spinner and combo cell editors are off a nudge out of area for columns "Start level" and "Auto-Start" on Plug-ins Tab of Eclipse Application Launch Config.
+Fix for Bug 308030 have broken it.

@@ -1,0 +1,3 @@
+Bug 495641 – Use pngs available in jdt.ui and jdt.doc plugins
+JDT Debug is using gifs for which corresponding png images are available in jdt.ui or jdt.doc plugins.
+Copy the png images to jdt.debug and use them instead of gif images.

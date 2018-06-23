@@ -1,0 +1,59 @@
+Bug 455180 – IllegalStateException in AnnotatableTypeSystem.getRawType
+The problem appears when accessing classes from another project that use Raw Types in a Generics context with the new java8 "TYPE_USE" null annotations.
+A) CODE THAT TRIGGERS THE PROBLEM (I will also attach this junit test)
+- Setup a workspace with Java8 and the new null annotation.
+- Create project A with the following classes:
+// GenericType.java:
+package projA;
+public class GenericType<T> {
+}
+// ClassWithRawUsage.java
+package projA;
+@org.eclipse.jdt.annotation.NonNullByDefault
+public class ClassWithRawUsage {
+public java.util.List<GenericType> method() {
+throw new RuntimeException();
+}
+}
+- Create project B with the following class:
+package projB;
+import projA.ClassWithRawUsage;
+import projA.GenericType;
+public class ClassThatImports {
+}
+B) THE PROBLEM:
+java.lang.IllegalStateException
+at org.eclipse.jdt.internal.compiler.lookup.AnnotatableTypeSystem.getRawType(AnnotatableTypeSystem.java:139)
+at org.eclipse.jdt.internal.compiler.lookup.AnnotatableTypeSystem.getRawType(AnnotatableTypeSystem.java:167)
+at org.eclipse.jdt.internal.compiler.lookup.LookupEnvironment.createRawType(LookupEnvironment.java:997)
+at org.eclipse.jdt.internal.compiler.lookup.LookupEnvironment.convertUnresolvedBinaryToRawType(LookupEnvironment.java:627)
+at org.eclipse.jdt.internal.compiler.lookup.ParameterizedTypeBinding.swapUnresolved(ParameterizedTypeBinding.java:1273)
+at org.eclipse.jdt.internal.compiler.lookup.UnresolvedReferenceBinding.swapUnresolved(UnresolvedReferenceBinding.java:141)
+at org.eclipse.jdt.internal.compiler.lookup.UnresolvedReferenceBinding.setResolvedType(UnresolvedReferenceBinding.java:129)
+at org.eclipse.jdt.internal.compiler.lookup.PackageBinding.addType(PackageBinding.java:74)
+at org.eclipse.jdt.internal.compiler.lookup.LookupEnvironment.createBinaryTypeFrom(LookupEnvironment.java:698)
+at org.eclipse.jdt.internal.compiler.lookup.LookupEnvironment.createBinaryTypeFrom(LookupEnvironment.java:683)
+at org.eclipse.jdt.internal.compiler.Compiler.accept(Compiler.java:299)
+at org.eclipse.jdt.internal.compiler.lookup.LookupEnvironment.askForType(LookupEnvironment.java:144)
+at org.eclipse.jdt.internal.compiler.lookup.UnresolvedReferenceBinding.resolve(UnresolvedReferenceBinding.java:99)
+at org.eclipse.jdt.internal.compiler.lookup.BinaryTypeBinding.resolveType(BinaryTypeBinding.java:183)
+at org.eclipse.jdt.internal.compiler.lookup.PackageBinding.getTypeOrPackage(PackageBinding.java:186)
+at org.eclipse.jdt.internal.compiler.lookup.CompilationUnitScope.findImport(CompilationUnitScope.java:463)
+at org.eclipse.jdt.internal.compiler.lookup.CompilationUnitScope.findSingleImport(CompilationUnitScope.java:517)
+at org.eclipse.jdt.internal.compiler.lookup.CompilationUnitScope.faultInImports(CompilationUnitScope.java:394)
+at org.eclipse.jdt.internal.compiler.lookup.CompilationUnitScope.faultInTypes(CompilationUnitScope.java:442)
+at org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:763)
+at org.eclipse.jdt.internal.compiler.ProcessTaskManager.run(ProcessTaskManager.java:137)
+at java.lang.Thread.run(Thread.java:745)
+C) DETAILS AND ANALYSIS:
+The genericType Parameter references a BinaryTypeBinding for "@NonNull GenericType".
+enclosingType is null and annotations is an empty array.
+The BinaryTypeBinding got its null annotation for resolving "@NonNull GenericType(unresolved)" in
+"UnresolvedReferenceBinding.swapUnresolved(UnresolvedReferenceBinding, ReferenceBinding, LookupEnvironment) line: 141"
+and it got passed to the wrapper "List<@NonNull GenericType>" in
+"ParameterizedTypeBinding.swapUnresolved(UnresolvedReferenceBinding, ReferenceBinding, LookupEnvironment) line: 1273	"
+which invokes convertUnresolvedBinaryToRawType etc.
+which eventually triggers the exception.
+PROPOSED FIX:
+As far as I understood the code, I think the check that throws to the IllegalStateException can simply be removed as the usages which lead to the invocation of the getRawType-method should be wrappers which should have their own null-annotation information available and the getRawType method will create a copy of the genericType instance with null-annotation cleared.
+(It would have been helpful, if the error message of the  IllegateStateExceptions like these already included some information about the involved types because it is really hard to work around the bugs without this information)

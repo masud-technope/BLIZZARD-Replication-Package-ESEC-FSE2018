@@ -1,0 +1,11 @@
+Bug 195454 – PDE supplies -pdelaunch to IApplication launches, which is not stripped out by platform
+When running an IApplication (see attached) the PDE launcher automatically appends -pdelaunch.
+However, this argument isn't stripped out of the 'special arguments' with the result that it's visible to the runtime Eclipse application.
+This behaviour is not seen when launching from the command line startApp, or presumably from the command line (though I've not tried the latter).
+This project has a simple IApplication (.launch included) that runs and prints out 'application.args'.
+When running from a PDE supplied launch (Launch as Eclipse Application, with selected class in -application) it's clear that it's passing the -pdelaunch to the runtime:
+Hello RCP World![-pdelaunch]
+Run from a startApp launch, you see:
+Hello RCP World![]
+This basically means you can't test IApplications from PDE that expect arguments.
+You can run as an OSGi framework, so it's just this extraneous flag that's preventing it from working, so I'm flagging as major.

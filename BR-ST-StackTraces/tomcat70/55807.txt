@@ -1,0 +1,3 @@
+The relevant code for this snippet is in org.apache.jasper.compiler.TagLibraryInfoImpl.<init>
+org.apache.jasper.JspCompilationContext.getLastModified
+See here org.apache.jasper.compiler.Compiler.isOutDated

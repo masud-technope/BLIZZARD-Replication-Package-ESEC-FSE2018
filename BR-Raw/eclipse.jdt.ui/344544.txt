@@ -1,0 +1,3 @@
+Bug 344544 – Javadoc for method type parameters should not be generated if 'Ignore method type parameters' is disabled
+3.7 M7.
+The Javadoc generation for 'Add all missing tags' quick fix and 'Generate Element Comment' (Alt+Shift+J) should not add the tags for type parameters if 'Ignore method type parameters' is disabled (default).

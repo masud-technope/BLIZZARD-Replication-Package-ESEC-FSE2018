@@ -1,0 +1,26 @@
+48004 – setHeader() does not replace the previous value for a "Server"
+Hello,
+In a servlet or in a filter (before passing the control to doFilter() or after) try the following
+HttpServletResponse myResponse = ...
+myResponse.setHeader("Server","My own server name because I do not want to expose the real server name to the public for security reasons");
+...
+In the headers of the response you will get
+Server	Apache-Coyote/1.1, My own server name...
+According to the J2EE API for HttpServletResponse.html.setHeader()
+http://java.sun.com/j2ee/sdk_1.3/techdocs/api/javax/servlet/http/HttpServletResponse.html#setHeader(java.lang.String,%20java.lang.String)
+...
+Sets a response header with the given name and value.
+If the header had already been set, the new value overwrites the previous one.
+The containsHeader method can be used to test for the presence of a header before setting its value.
+...
+In fact if I call myResponse.containsHeader("Server") I even get a false!!!
+If you look in the IDE at the response object and dig in the responses and wrappers, you will find at the end a buffer with some data already set by Tomcat with this value and other things
+.
+As I understand it Tomcat (or Coyote) does not let this header to be changed while nothing in the specification says that it is special.
+I did not find either a parameter in server.xml or other where the server name is specified to be overiden.
+So the spec is not implemented properly for this specific header.
+Some other values are in this buffer, my goal was not to change them but other headers or values could have the same issue.
+This issue is the same in Tomcat 5.5.28 and Tomcat 6.0.20.
+Not tested on 7.x.
+Thanks
+Olivier

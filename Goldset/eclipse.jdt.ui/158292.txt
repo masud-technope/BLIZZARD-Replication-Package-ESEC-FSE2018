@@ -1,0 +1,11 @@
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/AbstractDocumentPerformanceTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/TextStorePerformanceTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/PerformanceTestCase2.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/TextPerformanceTestCase2.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/DocumentPerformanceTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/DocumentPerformanceTestSuite.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/PerfTestSuite.java
+org.eclipse.jdt.text.tests/about.html
+org.eclipse.jdt.text.tests/about_files/cpl-v10.html
+org.eclipse.jdt.text.tests/test.xml
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/GapTextStorePerformanceTest.java

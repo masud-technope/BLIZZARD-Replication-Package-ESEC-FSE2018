@@ -1,0 +1,9 @@
+53398 – Incorrect tag on XML response when calling 'manager/status?XML=true'
+Created attachment 28909 [details]
+Manager Status XML Response
+When calling 'manager/status?XML=true' on Tomcat Server the XML response includes incorrect 'requestBytesRecieved' attributes on some '<worker>' nodes.
+Attribute should read 'requestBytesReceived'.
+ Seems like a typo when generating the 'requestBytesReceived' attribute for some nodes (Recieved != Received).
+Error can be generated using the CURL command to get the Tomcat status response:
+curl "http://<tomcat-server-address>/manager/status?XML=true" --basic -u <user>
+(This assumes a user has already been defined with the proper privileges to access the status API command).

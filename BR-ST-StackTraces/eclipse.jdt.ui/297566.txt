@@ -1,0 +1,13 @@
+org.eclipse.jdt.internal.compiler.lookup.Binding.isValidBinding
+org.eclipse.jdt.core.dom.DefaultBindingResolver.getMethodBinding
+org.eclipse.jdt.core.dom.MethodBinding.getMethodDeclaration
+org.eclipse.jdt.core.dom.DefaultBindingResolver.findDeclaringNode
+org.eclipse.jdt.core.dom.CompilationUnit.findDeclaringNode
+org.eclipse.jdt.internal.corext.dom.ASTNodes.findDeclaration
+org.eclipse.jdt.internal.corext.fix.VariableDeclarationFix$VariableDeclarationFinder.callsWrittingConstructor
+org.eclipse.jdt.internal.corext.fix.VariableDeclarationFix$VariableDeclarationFinder.callsWrittingConstructor
+org.eclipse.jdt.internal.corext.fix.VariableDeclarationFix$VariableDeclarationFinder.callsWrittingConstructor
+org.eclipse.jdt.internal.corext.fix.VariableDeclarationFix$VariableDeclarationFinder.callsWrittingConstructor
+org.eclipse.jdt.internal.corext.fix.VariableDeclarationFix$VariableDeclarationFinder.callsWrittingConstructor
+org.eclipse.jdt.internal.corext.fix.VariableDeclarationFix$VariableDeclarationFinder.callsWrittingConstructor
+org.eclipse.jdt.internal.corext.fix.VariableDeclarationFix$VariableDeclarationFinder.callsWrittingConstructor

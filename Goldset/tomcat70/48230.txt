@@ -1,0 +1,4 @@
+java/org/apache/catalina/Authenticator.java
+java/org/apache/catalina/authenticator/FormAuthenticator.java
+java/org/apache/tomcat/util/net/NioEndpoint.java
+modules/jdbc-pool/test/org/apache/tomcat/jdbc/test/TestSuspectTimeout.java

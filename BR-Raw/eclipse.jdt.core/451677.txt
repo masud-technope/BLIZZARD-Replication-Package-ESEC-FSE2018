@@ -1,0 +1,23 @@
+Bug 451677 – [1.8][compiler] missing type inference
+This works in javac but not in Eclipse:
+import java.util.ArrayList;
+import java.util.function.Function;
+public class Test
+{
+public static void test()
+{
+operationOnCreated(
+create(123, size -> new ArrayList<Integer>(size)),
+l -> l.size() // works with: (ArrayList<Integer> l) -> l.size()
+);
+}
+public static <R, A> R create(A arg, Function<A, R> factory)
+{
+return factory.apply(arg);
+}
+public static <R, A> R operationOnCreated(A created, Function<A, R> function)
+{
+return function.apply(created);
+}
+}
+The type for "l" should be inferred to be "ArrayList<Integer>", but it's "Object".

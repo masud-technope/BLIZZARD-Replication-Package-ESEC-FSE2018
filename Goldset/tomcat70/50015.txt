@@ -1,0 +1,5 @@
+java/org/apache/catalina/Context.java
+java/org/apache/catalina/core/ApplicationContext.java
+java/org/apache/catalina/core/ApplicationServletRegistration.java
+java/org/apache/catalina/core/StandardContext.java
+webapps/docs/changelog.xml

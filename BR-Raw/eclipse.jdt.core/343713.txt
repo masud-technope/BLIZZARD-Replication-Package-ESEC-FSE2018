@@ -1,0 +1,14 @@
+Bug 343713 – [compiler] bogus line number in constructor of inner class in 1.5 compliance
+Compile the following class with -1.5 -g :
+public class LineNumberBug {
+class Inner {
+public Inner() {
+System.out.println("Inner()");
+} // line 10
+}
+public static void main(String[] args) {
+new LineNumberBug().new Inner();
+}
+}
+Inspecting the generated line number table you'll see that the first few
+instructions are mapped to line 10, which is at least confusing.

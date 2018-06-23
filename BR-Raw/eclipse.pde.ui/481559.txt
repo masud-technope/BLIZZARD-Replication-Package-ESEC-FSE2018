@@ -1,0 +1,1 @@
+Bug 481559 – Remove redundant Non-Javadoc statements in org.eclipse.pde.ui.tests

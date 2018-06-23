@@ -1,0 +1,4 @@
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/ContentTypeTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/OpenJavaEditorStartupTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/OpenTextEditorStartupTest.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/CodeCompletionPerformanceTest.java

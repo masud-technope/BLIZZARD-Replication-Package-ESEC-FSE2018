@@ -1,0 +1,25 @@
+56472 – All classes remain in memory after stop of web application, when LDAP was used.
+Created attachment 31573 [details]
+Classes that hold a reference to WebappClassLoader
+I have a problem with unloading casses of a web application when I stop it.
+All threads are closed, but all 6.000 classes remain in memory.
+The GC cannot destroy WebappClassLoader because it is held by a static hashMap of the naming services which is hold by the VM.
+See attached image.
+The problem occurs only when the application uses the naming service.
+I identified the first method in my application that triggers the problem:
+public class MyBindAuthenticator extends BindAuthenticator {
+...
+@Override
+public DirContextOperations authenticate(Authentication authentication) {
+...
+List<String> userns=getUserDns(username);
+...
+}
+...
+}
+When I replace this line by a hardcoded list of strings, then the problem gets triggered by the next call of any naming service method.
+When I replace the whole authenticate() method by an empty one, then the problem disappears.
+But I need it for security reason.
+Unfortunately, the problematic hashmap (with name securityTokens) is not accessible to me, so I cannot remove the references.
+I seems that all related classes are part of Catalina and not reachable from outside.
+I would appreciate a workaround, if not bugfix is available.

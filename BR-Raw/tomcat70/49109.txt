@@ -1,0 +1,7 @@
+49109 – RealmBase.authenticate uses toString on byte array
+catalina.realm.RealmBase.authenticate(String username, byte[] credentials)
+has the following code:
+return (authenticate(username, credentials.toString()));
+This looks wrong, as credentials is a byte array.
+It should probably be:
+return (authenticate(username, new String(credentials[,charset])));

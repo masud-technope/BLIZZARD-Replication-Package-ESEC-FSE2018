@@ -1,0 +1,2 @@
+Bug 189012 – Change Value dialogs do not have F1 help
+The Change Primitive Value and Change Object Value dialogs, accessible using the change value command in the variables/expressions view do not have help contexts.

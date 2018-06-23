@@ -1,0 +1,7 @@
+Bug 394233 – InvalidThreadAccess launching plugin test suite using standard VM on Mac
+Version: 4.3.0
+Build id: I20121106-0800
+If you add a standard VM on the Mac and then try to use that to launch a plugin JUnit test - in my case I was trying to launch the Ant UI tests - you get an InvalidThreadAccess exception and the launch dies.
+The reason is because the -XstartOnFirstThread VM arg is missing, and is *not* added by default for non-Mac VMs.
+The even more confusing part is that the new option to add the VM arg is there and checked on the Arguments tab (added from bug 211625).
+The logic in that fix must be updated to either not show the option for non-Mac VMs or I need to push the support up from the Mac-specific VM runners to the platform VM runners.

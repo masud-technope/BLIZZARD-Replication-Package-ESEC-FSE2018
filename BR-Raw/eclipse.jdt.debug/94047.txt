@@ -1,0 +1,11 @@
+Bug 94047 – [ActionSets] [classpath] Toolbar shudders when opening the Classpath Variables preference page
+Version: 3.1.0
+Build id: I20050506-1600
+When you open the Classpath Variables preference page from an empty workspace
+(only minimal plugins activated) the toolbar shudders as if components are
+quickly being added and removed.
+ The preference page is causing the activation
+of quite a few plugins (Ant UI, JDT JUnit, JDT Launching, PDE and PDE core).
+ I
+don't think any of these plugins contribute actions to the toolbar of my current
+perspective (could be wrong though).

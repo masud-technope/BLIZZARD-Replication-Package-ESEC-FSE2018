@@ -1,0 +1,3 @@
+Bug 267776 – [content assist] Wrong post-qualification for constructor and anonymous type completion
+I20090309-0100.
+The post-qualification should not include the type and in the default package it looks strange.

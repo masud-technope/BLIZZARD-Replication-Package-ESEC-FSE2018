@@ -1,0 +1,22 @@
+Bug 426633 – [1.8][compiler] Compiler generates code that invokes inapplicable method.
+Consider the following program:
+// -
+interface I {
+<T> void foo (T...
+p);
+}
+abstract class A implements I {
+public void foo(Object [] p) {
+System.out.println("A.foo");
+}
+}
+public class X extends A {
+public static void main(String[] args) {
+A a = new X();
+a.foo("hello", "world");
+}
+}
+At the call site, A.foo is not applicable given the arguments and parameters
+differ in length.
+I.foo is accessible and applicable, but A.foo does override it without being
+applicable.

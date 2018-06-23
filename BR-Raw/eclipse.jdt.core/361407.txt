@@ -1,0 +1,26 @@
+Bug 361407 – Resource leak warning when resource is assigned to a field outside of constructor
+I20111018-0850
+It's inconsistent that I get resource leak warnings when a resource is assigned to a field outside of constructor.
+Inside a constructor, the warning seems to be hidden.
+This happens whether or not dispose() is there.
+package xy;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Objects;
+public class Leaks {
+private FileInputStream fInput;
+Leaks(String name) throws IOException {
+FileInputStream fileInputStream= new FileInputStream(name);
+fInput= fileInputStream;
+Objects.hashCode(fInput);
+init(name);
+}
+void init(String name) throws IOException {
+FileInputStream fileInputStream= new FileInputStream(name);
+fInput= fileInputStream;
+Objects.hashCode(fInput);
+}
+public void dispose() throws IOException {
+fInput.close();
+}
+}

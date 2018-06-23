@@ -1,0 +1,17 @@
+Bug 158292 – [misc] add document performance tests
+3.3M2
+We should regularly run performance tests on the document and text store.
+There already are performance tests for the line tracker.
+The patch I will attach adds abstract performance tests for any IDocument and ITextStore implementations, as well as concrete tests for the following classes:
+- org.eclipse.jface.text.Document
+- org.eclipse.jface.text.GapTextStore
+- org.eclipse.jface.text.SequentialRewriteTextStore
+--
+Implementation:
+Looking at some performance tests reveals that often boilerplate code needs to be written for performance tests (example: LineTrackerPerformanceTest): typically, a testXXX method does the following four things:
+- create performance meters for warm-up and measuring
+- call the measureXXX method N times with the warm-up meter
+- call the measureXXX method M times with the measurement meter
+- commit and assert performance measurements
+The provided patch provides a specialized TestCase (PerformanceTestCase2) that does exactly that in its #runTest method.
+Similar, there is a specialized TestSuite (PerfTestSuite) that uses reflection to find any methods that start with "measure" and take one argument of type PerformanceMeter.

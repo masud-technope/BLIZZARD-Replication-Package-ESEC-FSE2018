@@ -1,0 +1,14 @@
+Bug 343935 – [JUnit] JUnit test case with customized Runner, can't locate the method when it contains parameters after running
+Build Identifier: M20100211-1343
+Using my customized Runner extended from JUnit, when the method has some parameters.
+It can't be recognized when double clicking on the method name in JUnit View.
+A message box with "Method 'testXxxx' not found.
+Opening the test class." will be given.
+Then in the source code view, the EDE can't locate the right line to the method.
+Reproducible: Always
+Steps to Reproduce:
+1.RunWith a customized Runner, with the runner the test method may have parameters, and the parameters can be injected by the runner.
+2.The case is success or failed.
+3.Double clicking the case in the JUnit View.
+4.A message box with "Method 'testXxxx' not found.
+Opening the test class." will be given.

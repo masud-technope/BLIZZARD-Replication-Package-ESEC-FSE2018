@@ -1,0 +1,10 @@
+Bug 196866 – [Schema][Editors] Global element and local attribute identity constraints are not respected
+The Schema Editor should not allow two or more (global) elements with the same name to be declared.
+The Schema Editor should not allow two or more (local) attributes with the same name to be declared under the same parent.
+The editor uses attribute and element names as their IDs to uniquely identify them.
+ As a result, they become 'linked' and things go seriously wrong.
+The auto-generated names will no longer overlap thanks to Bug # 196685
+We need to guard against the user renaming the element or attribute to the same name as an existing one.
+If a duplicate name is detected, I suggest reverting the entered value to the previous uncommitted value as was done for empty element and attribute names.
+Note: I would consider names with the same characters but different casing to be the same (e.g.
+"aB" = "Ab")

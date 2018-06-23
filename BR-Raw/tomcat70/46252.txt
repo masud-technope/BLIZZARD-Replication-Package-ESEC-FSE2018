@@ -1,0 +1,4 @@
+46252 – Tomcat access log doesn't support Unicode
+AccessLogValve, which is responsible for handling the access log uses FileWriter (that doesn't support Unicode).
+I guess that instantiating the writer like this would solve the case:
+writer = new PrintWriter(new OutputStreamWriter(new FileOutputStream(pathname), "UTF-8"), true);

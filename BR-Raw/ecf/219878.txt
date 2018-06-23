@@ -1,0 +1,7 @@
+Bug 219878 – [core] fix deprecated Eclipse-LazyStart manifest entries
+Currently, a number of ECF bundles have Eclipse-LazyStart manifest entries, which are specific to Equinox.
+ OSGi 4 supports a new manifest entry:
+Bundle-ActivationPolicy: lazy
+that we should use to make ECF bundles portable across runtimes.
+The recommended procedure is to add Bundle-ActivationPolicy and leave Eclipse-LazyStart manifest entries for backward compatibility.
+http://dev.eclipse.org/mhonarc/lists/equinox-dev/msg03553.html

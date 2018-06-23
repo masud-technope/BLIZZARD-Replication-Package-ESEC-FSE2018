@@ -1,0 +1,5 @@
+Bug 338370 – NPE in BatchFilerImpl.getResource
+org.eclipse.jdt.internal.compiler.apt.dispatch.BatchFilerImpl.getResource(Location, CharSequence, CharSequence) can throw a NullPointerException in case the resource does not exist.
+This happens because org.eclipse.jdt.internal.compiler.apt.util.EclipseFileManager.getFileForInput(Location, String, String) returns null in this case and no null check is made on the return value before invoking toUri().
+javac throws a FileNotFoundException in this case so this patch introduces the same behavior.
+I could provide a test case if neede.

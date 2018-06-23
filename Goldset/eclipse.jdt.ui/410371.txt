@@ -1,0 +1,2 @@
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/ContextSensitiveImportRewriteContext.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ChangeTypeRefactoring.java

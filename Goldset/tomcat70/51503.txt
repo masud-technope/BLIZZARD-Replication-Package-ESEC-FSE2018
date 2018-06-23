@@ -1,0 +1,4 @@
+java/org/apache/catalina/connector/Connector.java
+java/org/apache/catalina/connector/LocalStrings.properties
+res/tomcat.nsi
+webapps/docs/changelog.xml

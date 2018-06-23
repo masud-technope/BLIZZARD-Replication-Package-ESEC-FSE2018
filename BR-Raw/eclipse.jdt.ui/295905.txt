@@ -1,0 +1,11 @@
+Bug 295905 – Open in External Browser does not work any more for URL in Javadoc view
+HEAD, was OK in I20091110-0800
+- Paste this:
+package p;
+/**
+* See <a href="http://www.google.com/">Google</a>.
+*/
+public class C {}
+- show Javadoc in Javadoc view
+- click the link
+=> "Open in External Browser" command is disabled (toolbar button, key binding)

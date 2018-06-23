@@ -1,0 +1,7 @@
+org.eclipse.jdt.apt.pluggable.tests/plugin.xml
+org.eclipse.jdt.apt.pluggable.tests/src/org/eclipse/jdt/apt/pluggable/tests/BuilderTests.java
+org.eclipse.jdt.apt.pluggable.tests/lib/annotations.jar
+org.eclipse.jdt.apt.pluggable.tests/src/org/eclipse/jdt/apt/pluggable/tests/processors/buildertester/InheritedAnnoProc.java
+org.eclipse.jdt.apt.pluggable.tests/src/org/eclipse/jdt/apt/pluggable/tests/TestAll.java
+org.eclipse.jdt.apt.pluggable.tests/src/org/eclipse/jdt/apt/pluggable/tests/annotations/InheritedTrigger.java
+org.eclipse.jdt.apt.pluggable.tests/META-INF/services/javax.annotation.processing.Processor

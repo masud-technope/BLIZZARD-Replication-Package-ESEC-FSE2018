@@ -1,0 +1,21 @@
+Bug 402609 – [1.8][compiler] AIOOB exception with a program using method references.
+BETA_JAVA8:
+The following program triggers an AIOOB:
+interface I {
+void foo(X x);
+}
+interface J {
+void foo(X x);
+}
+abstract class Y {
+abstract void foo();
+}
+public class X extends Y {
+void f(I i) {}
+void f(J j) {}
+void foo() {
+}
+public static void main(String[] args) {
+f(super::foo);
+}
+}

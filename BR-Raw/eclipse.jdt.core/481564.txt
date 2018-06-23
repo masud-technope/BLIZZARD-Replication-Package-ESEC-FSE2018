@@ -1,0 +1,24 @@
+Bug 481564 – content assist fails in lambda when class contains another method a method reference
+See the example class below.
+ Depending on the presence of the "poisonMethod" content assist does or does not work inside the lambda.
+ It always works in the anonymous class.
+---
+import java.util.ArrayList;
+public class TestCompletion {
+public void foo() {
+new Thread(new Runnable() {
+public void run() {
+// som completes to someMethod
+}
+});
+new Thread(() -> {
+// som gives no proposal
+// but if you delete poisonMethod, then it completes to someMethod
+});
+}
+public void poisonMethod() {
+ArrayList<String> views = new ArrayList<>();
+views.stream().filter(String::isEmpty).forEach(s -> s.length());
+}
+public void someMethod() {}
+}

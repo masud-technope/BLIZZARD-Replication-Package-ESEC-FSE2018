@@ -1,0 +1,16 @@
+Bug 432125 – [quick fix] "Expression needs unchecked conversion" "Replace with..." quick fix should not insert wild cards (resulting in a compile error)
+Consider this code:
+public static  void method(Collection<? extends Number> coll) { /* ...
+*/ }
+public static void main(String[] args) {
+method(Collections.EMPTY_LIST);
+}
+The "method" call comes with a warning: "Type safety: The expression of type List needs unchecked conversion to conform to Collection<? extends Number>".
+The quick fix (which, btw, I appreciate very much in non-generic situations) replaces it with
+method(Collections.<? extends Number> emptyList());
+which is a compile error.
+It should be Collections<Number>, or more generally the lower bound for the generic type parameter (e.g.
+Object in case of the type argument simply being <?>).
+Of course, there is no obvious quick fix if there are multiple bounds as in the following line, so probably no quick fix should be attempted here:
+public static <T extends Number & Comparable<?>> void method2(Collection<T> coll) { /* ...
+*/ }

@@ -1,0 +1,2 @@
+Bug 423504 – [1.8] Implement "18.5.3 Functional Interface Parameterization Inference"
+While work in bug 400874 is reaching the first milestone, the new spec section mentioned in the bug title has not yet been implemented, partly for lack of test cases for this situation.

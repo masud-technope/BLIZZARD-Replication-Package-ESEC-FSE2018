@@ -1,0 +1,3 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/dialogs/OptionalMessageDialog.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/dialogs/SortMembersMessageDialog.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat/FatJarPackageWizard.java

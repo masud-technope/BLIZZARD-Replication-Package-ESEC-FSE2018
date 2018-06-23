@@ -1,0 +1,21 @@
+Bug 125572 – ECF Generic provider thread interlock
+We see the following problem while running an ECF-based app that connects to an ECF-based server app using version 0.5 or version 0.6 ECF generic provider.
+From time to time two threads in a client app become interlocked on two mutexes:
+Thread [Thread-2] (Suspended)
+owns: Client  (id=136)
+waiting for: ClientSOContainer$Lock  (id=135)
+SyncSOClientContainer(ClientSOContainer).connect(ID,
+IConnectContext) line: 162
+TimeSyncTask$TimeSyncInitiator.initSyncService() line: 48
+TimeSyncTask.run() line: 133
+Thread.run() line: not available
+Thread [Thread-3] (Suspended)
+owns: ClientSOContainer$Lock  (id=135)
+waiting for: Client  (id=136)
+Client.isConnected() line: 213
+SyncSOClientContainer(SOContainer).killConnection(IConnection) line: 742
+SyncSOClientContainer(ClientSOContainer).dispose() line: 79
+TimeSyncTask$TimeSyncInitiator.closeSyncService() line: 77
+TimeSyncTask$TimeSyncInitiator.sendTimeSyncMessage() line: 67
+TimeSyncTask.run() line: 134
+Thread.run() line: not available

@@ -1,0 +1,7 @@
+Bug 414444 – [1.8][null] Configure null annotation bundle for 1.8 (TYPE_USE)
+Following the discussion in bug 394539 the bundle org.eclipse.jdt.annotation
+will be bumped up to 2.0.0 to require a BREE of 1.8 and change our annotations
+for target TYPE_USE.
+At the same time we don't want to loose the ability to run our tests in 1.7 mode.
+I'm currently trying how the tests could automatically switch between both versions
+of this bundle.

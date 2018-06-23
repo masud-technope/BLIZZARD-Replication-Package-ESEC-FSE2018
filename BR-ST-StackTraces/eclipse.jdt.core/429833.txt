@@ -1,0 +1,14 @@
+org.eclipse.jdt.internal.compiler.ast.MessageSend.analyseCode
+org.eclipse.jdt.internal.compiler.ast.Block.analyseCode
+org.eclipse.jdt.internal.compiler.ast.LambdaExpression.analyseCode
+org.eclipse.jdt.internal.compiler.ast.FieldDeclaration.analyseCode
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.internalAnalyseCode
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.analyseCode
+org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.analyseCode
+org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve
+org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve
+org.eclipse.jdt.core.dom.ASTParser.internalCreateAST
+org.eclipse.jdt.core.dom.ASTParser.createAST
+org.eclipse.jdt.internal.ui.javaeditor.ASTProvider$1.run
+org.eclipse.core.runtime.SafeRunner.run
+org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.createAST

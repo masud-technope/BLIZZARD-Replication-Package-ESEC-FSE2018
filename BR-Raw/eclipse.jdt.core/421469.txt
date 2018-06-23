@@ -1,0 +1,35 @@
+Bug 421469 – [1.8][code assist] NPE in LocalDeclaration.resolve with anonymous class in lambda body
+BETA_JAVA8
+NPE in LocalDeclaration.resolve when performing content assist with an anonymous class in a lambda body.
+Same problem with a local class.
+package jsr335;
+import java.util.function.IntFunction;
+public class Snippet {
+void foo() {
+IntFunction<String> toString = i -> {
+//<-- Ctrl+Space here
+new Runnable() {
+@Override
+public void run() {
+//<-- Ctrl+Space here
+}
+}.run();
+return Integer.toString(i);
+};
+}
+}
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.ast.LocalDeclaration.resolve(LocalDeclaration.java:191)
+at org.eclipse.jdt.internal.compiler.ast.Block.resolve(Block.java:114)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:620)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:303)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:531)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1209)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1319)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:568)
+at org.eclipse.jdt.internal.codeassist.CompletionEngine.complete(CompletionEngine.java:1896)
+at org.eclipse.jdt.internal.core.Openable.codeComplete(Openable.java:130)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeComplete(CompilationUnit.java:357)
+at org.eclipse.jdt.internal.core.CompilationUnit.codeComplete(CompilationUnit.java:345)
+at org.eclipse.jdt.internal.ui.text.java.JavaCompletionProposalComputer.internalComputeCompletionProposals(JavaCompletionProposalComputer.java:244)
+Stacktrace in bug 383096 looks similar, but that bug is about code with a syntax error.

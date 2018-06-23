@@ -1,0 +1,9 @@
+java/org/apache/tomcat/util/net/SSLUtil.java
+java/org/apache/tomcat/util/net/jsse/JSSESocketFactory.java
+test/org/apache/tomcat/util/net/TesterSupport.java
+java/org/apache/tomcat/util/net/NioEndpoint.java
+java/org/apache/tomcat/util/net/jsse/res/LocalStrings.properties
+webapps/docs/config/http.xml
+java/org/apache/tomcat/util/net/AbstractEndpoint.java
+webapps/docs/changelog.xml
+test/org/apache/tomcat/util/net/TestCustomSsl.java

@@ -1,0 +1,4 @@
+48148 – some misspellings I found in the "org.apache.jasper" package and "org.apache.juli" package
+Created attachment 24495 [details]
+svn patch for "org.apache.jasper" and "org.apache.juli" package
+see attached svn patch file

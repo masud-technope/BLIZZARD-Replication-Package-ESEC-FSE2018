@@ -1,0 +1,12 @@
+Bug 183587 – 'External Plug-in Libraries' misses closed project from Java Search
+I20070418-1012
+- new workspace
+- import
+pde-incubator/api-tooling/plugins/org.eclipse.pde.api.tools and
+pde-incubator/api-tooling/plugins/org.eclipse.pde.api.tools.ui
+from dev.eclipse.org/cvsroot/eclipse
+- Plug-ins view, select all > Add to Java Search
+- close both org.eclipse.pde.api.* projects
+=> Unexpected compile errors:
+- Project 'External Plug-in Libraries' is missing required Java project: 'org.eclipse.pde.api.tools'		External Plug-in Libraries
+- The project cannot be built until build path errors are resolved		External Plug-in Libraries

@@ -1,0 +1,11 @@
+Bug 414100 – [1.8][quick fix] Change modifier to static for default and abstract methods
+interface A_test109 {
+int i = foo(); // Error
+default int foo() {}
+}
+The quick fix: "Change modifier of 'foo()' to 'static'" in the above example for compilation error: "Cannot make a static reference to the non-static method foo() from the type A_test109", produces the following result:
+interface A_test109 {
+int i = foo();
+default static int foo() {}
+}
+The 'default' modifier should be replaced with 'static'.

@@ -1,0 +1,5 @@
+tests/bundles/org.eclipse.ecf.tests/src/org/eclipse/ecf/internal/tests/Activator.java
+tests/bundles/org.eclipse.ecf.tests/src/org/eclipse/ecf/tests/core/ContainerManagerServiceTest.java
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/core/ContainerFactory.java
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/core/IContainerManager.java
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/internal/core/ECFPlugin.java

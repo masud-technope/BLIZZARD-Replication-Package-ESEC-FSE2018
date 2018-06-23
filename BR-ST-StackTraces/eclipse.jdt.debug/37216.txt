@@ -1,0 +1,2 @@
+java.util.zip.ZipFile$2.hasMoreElements
+java.lang.Thread.run

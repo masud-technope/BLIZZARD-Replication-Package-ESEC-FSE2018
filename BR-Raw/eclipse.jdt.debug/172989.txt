@@ -1,0 +1,14 @@
+Bug 172989 – NPE when disabling breakpoint
+I20070201-0800
+Got the following error when disabling a breakpoint:
+java.lang.NullPointerException
+at java.util.Hashtable.remove(Hashtable.java:693)
+at org.eclipse.jdi.internal.request.EventRequestManagerImpl.removeRequestIDMapping(EventRequestManagerImpl.java:532)
+at org.eclipse.jdi.internal.request.EventRequestImpl.disable(EventRequestImpl.java:206)
+at org.eclipse.jdi.internal.request.EventRequestManagerImpl.deleteEventRequest(EventRequestManagerImpl.java:376)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.removeRequests(JavaBreakpoint.java:663)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.recreate(JavaBreakpoint.java:1158)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.recreate(JavaBreakpoint.java:1138)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.setEnabled(JavaBreakpoint.java:1168)
+at org.eclipse.debug.internal.ui.views.breakpoints.BreakpointsView$3.run(BreakpointsView.java:263)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)

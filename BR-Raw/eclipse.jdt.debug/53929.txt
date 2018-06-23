@@ -1,0 +1,12 @@
+Bug 53929 – Run/Classpath tree entries need to show FULL path.
+Verion 3.0.m7.
+The Run/Classpath tree entries need to show FULL path to a jar/resource, not
+just the file name.
+Otherwise, there is you cannot tell which version of a jar
+you are using.
+Worse, if you have multiple jars with the same name as it often
+happens when using 3rd party libraries (resources.zip is a common one) you
+cannot tell which one is which.
+The project properties dialog does it right IMO by showing the full path to a
+jar/resource.
+Thanks you.

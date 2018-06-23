@@ -1,0 +1,9 @@
+Bug 482862 – use bundle.loadClass to allow prevention of java deserialization attacks
+It is possible to exploit Java Serialization to have untrusted classes be loaded and used to run hostile code (e.g.
+in readObject method).
+See http://foxglovesecurity.com/2015/11/06/what-do-weblogic-websphere-jboss-jenkins-opennms-and-your-application-have-in-common-this-vulnerability
+One way to prevent such attacks is to have a custom ObjectInputStream (subclass) that looks at the ObjectClassDescriptor read from the stream and verifies (through whatever means) that the named class should be loaded.
+ If it should not be loaded, then a ClassNotFoundException can be thrown to prevent further deserialization.
+In OSGi, the Bundle.loadClass method can be delegated to so that only classes that are available to the given bundle (e.g.
+via Import-Package and/or Require-Bundle) will be found/loaded.
+ This can be used to restrict deserialization to loading a fixed/appropriate set of classes.

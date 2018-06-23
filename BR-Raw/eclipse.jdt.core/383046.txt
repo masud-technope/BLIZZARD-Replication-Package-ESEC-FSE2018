@@ -1,0 +1,12 @@
+Bug 383046 – [1.8][compiler] Error getting reported on the lambda expression if there is a subsequent parse error
+###
+interface IX{
+public void foo();
+}
+public class X {
+IX i = () -> 42;
+int
+}
+###
+In this test case, there is an expected error at the incomplete int.
+However, there is also an error on the correct lambda expression.

@@ -1,0 +1,9 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/VMArgumentsBlock.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/LauncherMessages.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/LauncherMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/VMArgumentsBlock.java
+org.eclipse.jdt.launching.macosx/META-INF/MANIFEST.MF
+org.eclipse.jdt.launching.macosx/macosx/org/eclipse/jdt/internal/launching/macosx/MacOSXDebugVMRunner.java
+org.eclipse.jdt.launching.macosx/macosx/org/eclipse/jdt/internal/launching/macosx/MacOSXLaunchingPlugin.java
+org.eclipse.jdt.launching.macosx/macosx/org/eclipse/jdt/internal/launching/macosx/MacOSXVMRunner.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/IJavaLaunchConfigurationConstants.java

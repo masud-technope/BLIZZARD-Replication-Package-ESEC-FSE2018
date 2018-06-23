@@ -1,0 +1,13 @@
+Bug 17531 – [GlobalActions] File/Save As fails when entering valid file name
+build F1
+-select a Java file A.java
+-select File/Save As
+-append a -CP to the file name, i.e., A-CP.java
+-select ok
+->you will get an error message "Save Problems: Could not save file Reason:
+Invalid name specified"
+Apparently a refactoring rename is happening after the save as.
+The Save as to
+a file should not rename the class as a side effect of the save as.
+The Save as
+should not make any assumptions about what I plan to do with the new file.

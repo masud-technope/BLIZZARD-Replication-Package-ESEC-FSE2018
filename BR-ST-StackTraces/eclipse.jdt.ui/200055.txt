@@ -1,0 +1,16 @@
+org.eclipse.jface.text.AbstractDocument.computePartitioning
+org.eclipse.jface.text.TextUtilities.computePartitioning
+org.eclipse.jdt.internal.ui.text.spelling.JavaSpellingEngine.check
+org.eclipse.jdt.internal.ui.text.spelling.SpellingEngine.check
+org.eclipse.jdt.internal.ui.text.spelling.DefaultSpellingEngine.check
+org.eclipse.ui.texteditor.spelling.SpellingService$1.run
+org.eclipse.core.runtime.SafeRunner.run
+org.eclipse.ui.texteditor.spelling.SpellingService.check
+org.eclipse.ui.texteditor.spelling.SpellingService.check
+org.eclipse.ui.texteditor.spelling.SpellingReconcileStrategy.reconcile
+org.eclipse.jdt.internal.ui.text.spelling.JavaSpellingReconcileStrategy.reconcile
+org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile
+org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile
+org.eclipse.jface.text.reconciler.MonoReconciler.process
+org.eclipse.jdt.internal.ui.text.JavaReconciler.process
+org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run

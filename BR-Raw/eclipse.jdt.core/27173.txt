@@ -1,0 +1,5 @@
+Bug 27173 – API: add methodInvocation.resolveMethodBinding
+it is unintuitive to have to do this:
+(IMethodBinding)mi.getName().resolveBinding()
+this method would be an analogue of what we already have:
+ClassInstanceCreation.resolveConstructorBinding

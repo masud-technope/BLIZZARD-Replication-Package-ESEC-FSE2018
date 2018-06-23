@@ -1,0 +1,132 @@
+48648 – Blank page (dropped connection) when running TC7 with TCnative (APR)
+I encountered this trying to run the current TC trunk with TC-Native 1.1.19 on Windows.
+The root cause to this behavior occurred to be a wrong value configured by default as a timeout in AprEndpoint.Poller.
+(Also there might be further issue in how that timeout is applied / how the Poller works, but that is debatable).
+Current 6.0 and 5.5 (6.0.24, 5.5.28) are unaffected, because the defaults are different there.
+Though it looks like 6.0 can be configured to misbehave in the same way.
+More details below.
+I was accessing Tomcat by HTTP (using Http11AprProtocol), but I think that AJP (AjpAprProtocol) is affected as well.
+Tomcat was build from trunk (aka future TC7), at revision 904960.
+~ Symptoms ~
+To reproduce this issue:
+1.
+My environment:
+- Windows XP 32-bit
+- java version "1.6.0_17"
+Java(TM) SE Runtime Environment (build 1.6.0_17-b04)
+Java HotSpot(TM) Client VM (build 14.3-b01, mixed mode, sharing)
+- Tomcat trunk, built from revision 904960
+- Tomcat Native DLL 1.1.19
+2.
+Place tcnative-1.dll into %CATALINA_HOME%/bin and start Tomcat.
+I am using an HTTP client, so AJP connector configuration can be removed from server.xml.
+Tomcat starts:
+31.01.2010 18:45:16 org.apache.catalina.core.AprLifecycleListener init
+INFO: Loaded APR based Apache Tomcat Native library 1.1.19.
+31.01.2010 18:45:16 org.apache.catalina.core.AprLifecycleListener init
+INFO: APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+3.
+Use a web browser (I was using Firefox 3.6) to access some simple JSP page
+4.
+Refresh the page in the browser.
+The problem is that sometimes the page does not load, (the browser shows a blank page and page info says that response length was 0 bytes) - connection was aborted.
+The problem was more noticeable when I had a Firewall/Ad blocker running (because they incurred some delay while sending the request?).
+Turning it off made this error less frequent, but it was still there -- I was able to observe it running wget in a cycle requesting the page.
+500 iterations were enough for this error to occur several times, with all firewalls turned off.
+Here is how this error was displayed by wget:
+--17:32:51--  http://localhost:8080/test/foo.jsp
+Resolving localhost...
+127.0.0.1
+Connecting to localhost|127.0.0.1|:8080...
+connected.
+HTTP request sent, awaiting response...
+Read error (Software caused connection abort) in headers.
+Retrying.
+--17:32:51--  (try: 2)  http://localhost:8080/test/foo.jsp
+Connecting to localhost|127.0.0.1|:8080...
+connected.
+HTTP request sent, awaiting response...
+No data received.
+Retrying.
+--17:32:51--  (try: 3)  http://localhost:8080/test/foo.jsp
+Connecting to localhost|127.0.0.1|:8080...
+connected.
+HTTP request sent, awaiting response...
+200 OK
+Length: 130 [text/html]
+Saving to: `foo.jsp.98'
+0K                                                       100% 3.52M=0s
+~ Investigation ~
+1.
+I enabled FINE, then FINEST logging for all Tomcat components in logging.properties (then selectively disabling those components that I was not interested in).
+That was futile: the logs showed no trace of those ignored request.
+2.
+I enabled AccessLogValve.
+It did not help either: The ignored requests were not listed in the access log.
+3.
+I launched jvisualvm tool from Java 6 JDK, connected to running Tomcat to investigate the threads and possible deadlocks there.
+There was no deadlock, and all threads were running.
+But I noticed one more thing: on a freshly started Tomcat several first requests, even if those were ignored ones,  resulted in creation of a new thread in some thread pool.
+Here is one of those threads, from a thread dump:
+"http-8080-exec-9" daemon prio=6 tid=0x0afac800 nid=0xe10 waiting on condition [0x0cc5f000]
+java.lang.Thread.State: WAITING (parking)
+at sun.misc.Unsafe.park(Native Method)
+- parking to wait for  <0x03258e80> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+at java.util.concurrent.locks.LockSupport.park(Unknown Source)
+at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(Unknown Source)
+at java.util.concurrent.LinkedBlockingQueue.take(Unknown Source)
+at java.util.concurrent.ThreadPoolExecutor.getTask(Unknown Source)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+at java.lang.Thread.run(Unknown Source)
+Locked ownable synchronizers:
+- None
+That was the clue: it means that the request has reached Tomcat.
+Searching by a substring of that thread name I found that getName() + "-exec-" is thread name prefix used by  AbstractEndpoint.createExecutor().
+Thus I investigated behaviour of AprEndpoint, confirming it by adding with some ad-hoc logging statements.
+I will not commit them, because this issue is sensitive to timing, so some of them were affecting its reproducibility.
+~ Behaviour of AprEndpoint ~
+In my configuration I was using Http11AprProtocol and it creates and uses AprEndpoint.
+Incoming request is processed by an Acceptor thread (AprEndpoint.Acceptor#run()) ->  Acceptor#processSocketWithOptions(long) will use getExecutor().execute(new SocketWithOptionsProcessor( )) to pass this newly opened socked further.
+ It is the thread created by this "execute()" call that I spotted in jvisualvm earlier.
+In SocketWithOptionsProcessor#run() in my configuration deferAccept is false, so we are calling  getPoller().add(socket)  and pass the socket to a poller.
+In the AprEndpoint.Poller#add( ) the socket is added to a queue to be processed.
+The queue array size in my configuration occurred to be 1024, so queue overflow was not an issue.
+Then AprEndpoint.Poller#run() processes the queue, passes the new sockets from there to TC-Native  (Poll.add() call)  and then loops over and over polling their status  (Poll.poll() call).
+The problem occurred to be caused by Poll.maintain( ) calls, that are executed every several iterations of the loop.
+In my case:  the recently opened socket remained for several iterations of the Poller loop,  but when Poll.maintain() call occurred the socket was returned from the maintain() call as a one to be closed,  and was immediately closed, dropping the connection.
+Thus,  Poll.maintain() was misbehaving, closing fresh sockets.
+Implementation of Poll.maintain() (in poll.c of TC-Native) showed that if (p->max_ttl == 0) there, the socket is to be closed immediately.
+p->max_ttl value is set when configuring a pollset in Poll.create( ), and can be changed later for the pollset as a whole in Poll.setTtl( ) method.
+In AprEndpoint.Poller the pollset is created in Poller.init().
+There, the value for the timeout is determined as
+int timeout = getKeepAliveTimeout();
+if (timeout < 0) {
+timeout = socketProperties.getSoTimeout();
+}
+where
+/**
+* Keepalive timeout, if lesser or equal to 0 then soTimeout will be used.
+*/
+private int keepAliveTimeout = 0;
+so, the timeout actually occurred to be configured as 0.
+Thus the observed buggy behaviour.
+In TC 6.0.24  keepAliveTimeout = -1, thus soTimeout will be used.
+Notes:
+- The JavaDoc for keepAliveTimeout says that 0 means that soTimepout will be used,  but the actual implementation is different.
+Changing the above cited code to be
+if (timeout <= 0) {
+timeout = socketProperties.getSoTimeout();
+}
+would be the most obvious fix for this issue.
+- A delay longer than soTimeout (60 or 20 seconds? IIRC) will likewise result in closing the socket, with no details mentioned in the logs.
+- The keepAliveTimeout property name suggests that it is used for sockets where processing already occurred, and we are keeping them alive between requests.
+(Zero timeout would be okay there).
+Why was it used for a freshly open sockets? (Zero timeout cannot be used for them)  Maybe it is a wrong name for this property?
+- Is it possible in the Poller to distinguish fresh sockets vs.
+those in keep-alive state,  and configure different timeouts for them?  It will require to keep several  pollset pools with different TTLs ?
+- AjpAprProtocol also uses this AjpEndpoint, so I expect it to be affected by this issue as well.
+- This chain of calls causing this issue occurs only if AprEndpoint.deferAccept field is false.
+ It is true by default but is set to false when the system does not support the requested feature.
+In my case, in Windows XP SP3, that feature (Socket.APR_TCP_DEFER_ACCEPT) was not supported.
+ A comment in the code says that it is supported in Linux kernel 2.4 and later.
+Thus, this issue is likely not affect Linux.

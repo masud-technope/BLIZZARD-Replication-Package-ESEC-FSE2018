@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/TreeSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/ExtensionsSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/ElementSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/site/CategorySection.java

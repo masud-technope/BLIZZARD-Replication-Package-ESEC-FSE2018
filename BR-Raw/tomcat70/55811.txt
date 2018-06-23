@@ -1,0 +1,25 @@
+55811 – Do not parse web-fragment.xml files when empty absolute-ordering
+ContextConfig.webConfig() does the following:
+1.
+Scans for web fragments
+> Map<String,WebXml> fragments = processJarsForWebFragments();
+This method
+a) returns a list of all JAR files, not ignored by jarsToSkip options
+b) parses "META-INF/web-fragment.xml" files when they are present
+2.
+Filters and sorts them according to ordering
+> orderedFragments = WebXml.orderWebFragments(webXml, fragments, sContext);
+3.
+Uses the ordered set of fragments to look for SCI declarations
+> processServletContainerInitializers(orderedFragments);
+4.
+Uses the ordered set of fragments to
+- scan them for annotated classes
+- merge into main web.xml
+5.
+Uses the original list of web fragments to scan for resources.
+> processResourceJARs(resourceJars);
+I am saying that parsing of the fragments (step 1-b)) can be skipped when the web application is configured with an empty ordered-fragments element and web.xml validation is turned off (strict servlet compliance is off).
+Note that metadata-complete=true alone does not allow to skip that parsing, because we need fragment names to perform the ordering.
+It seems that skipping that parsing when validation is on would be a bad idea.
+We are still using those JARs for resources and thus I think we should validate them.

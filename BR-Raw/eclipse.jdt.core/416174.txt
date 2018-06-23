@@ -1,0 +1,14 @@
+Bug 416174 – [1.8][compiler][null] Bogus name clash error with null annotations
+// --
+import java.util.List;
+import org.eclipse.jdt.annotation.NonNull;
+public class X {
+void  foo(List<X> lx) {
+}
+}
+class Z extends X {
+void  foo(List<@NonNull X> xy) {
+}
+}
+results in a name clash error:
+"Name clash: The method foo(List<X>) of type Z has the same erasure as foo(List<X>) of type X but does not override it"

@@ -1,0 +1,5 @@
+osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/src/org/eclipse/ecf/osgi/services/remoteserviceadmin/AbstractTopologyManager.java
+compendium/bundles/org.eclipse.ecf.osgi.services.distribution/build.properties
+compendium/bundles/org.eclipse.ecf.osgi.services.distribution/.settings/org.eclipse.jdt.core.prefs
+compendium/bundles/org.eclipse.ecf.osgi.services.distribution/.classpath
+compendium/bundles/org.eclipse.ecf.osgi.services.distribution/src/org/eclipse/ecf/internal/osgi/services/distribution/BasicTopologyManager.java

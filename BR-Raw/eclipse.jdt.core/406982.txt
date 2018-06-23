@@ -1,0 +1,2 @@
+Bug 406982 – [1.8][compiler] Generation of MethodParameters Attribute in classfile
+Generate the MethodParameters attribute into the attributes table of a method_info structure.

@@ -1,0 +1,11 @@
+Bug 370952 – [type wizards] Allow to paste qualified name into new type wizard
+Build Identifier: 20110916-0149
+Split pasted qualified class name (i.e.
+com.foo.service.MyClass) automatically to "Package" and "Name" fields instead of displaying error "Type name must not be qualified."
+Reproducible: Always
+Steps to Reproduce:
+1.
+Right click on project -> New -> Class
+2.
+Paste qualified Class name in Name: field (i.e.
+com.foo.service.MyClass)

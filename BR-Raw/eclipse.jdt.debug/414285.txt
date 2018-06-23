@@ -1,0 +1,54 @@
+Bug 414285 – On systems with large RAM, evaluateSystemProperties and generateLibraryInfo fail for 64-bit JREs
+On a system with large RAM, the following error is logged when I start a 64-bit Eclipse using a 64-bit JRE and open the "Plug-in development" perspective.
+> Error
+> Fri Aug 02 10:44:03 CEST 2013
+> Failed to retrieve default libraries for /proj/CoolTools/app/JRE/jre-7u25-linux-x64
+This error is logged by org.eclipse.jdt.internal.launching.StandardVMType.generateLibraryInfo method, which starts a native process in order to obtain JVM properties.
+Using strace I was able to find out that it runs the following command:
+> /proj/CoolTools/app/JRE/jre64/bin/java -classpath /home/ekalmik/.eclipse/org.eclipse.platform_4.3.0_1947859192_linux_gtk_x86_64/configuration/org.eclipse.osgi/bundles/262/1/.cp/lib/launchingsupport.jar org.eclipse.jdt.internal.launching.support.LibraryDetector
+...
+and gets the following results:
+> Error occurred during initialization of VM
+> Could not reserve enough space for object heap
+> Error: Could not create the Java Virtual Machine.
+> Error: A fatal exception has occurred.
+Program will exit.
+Indeed, when I run the same command in shell, I observe the same behaviour.
+However, if I add -Xmx64m directly after the name of executable, I get correct data.
+> 1.7.0_25|/proj/CoolTools/app/JRE/jre-7u25-linux-x64/lib/resources.jar:/proj/CoolTools/app/JRE/jre-7u25-linux-x64/lib/rt.jar:/proj/CoolTools/app/JRE/jre-7u25-linux-x64/lib/sunrsasign.jar:/proj/CoolTools/app/JRE/jre-7u25-linux-x64/lib/jsse.jar:/proj/CoolTools/app/JRE/jre-7u25-linux-x64/lib/jce.jar:/proj/CoolTools/app/JRE/jre-7u25-linux-x64/lib/charsets.jar:/proj/CoolTools/app/JRE/jre-7u25-linux-x64/lib/jfr.jar:/proj/CoolTools/app/JRE/jre-7u25-linux-x64/classes|/proj/CoolTools/app/JRE/jre-7u25-linux-x64/lib/ext:/usr/java/packages/lib/ext|/proj/CoolTools/app/JRE/jre-7u25-linux-x64/lib/endorsed
+I've also verified that if I start the same Eclipse using a 32-bit JRE on the same system, no errors are printed.
+Of course, running the command above using a 32-bit JRE without specifying -Xmx works fine too.
+According to [1], a 64-bit server-class JRE would allocate 1/4th of physical RAM if no -Xmx is given.
+The system I'm on has 250GB of RAM, and according to strace java has tried allocating 30GB of RAM in order to run LibraryDetector, which is ridiculous.
+-> cat /proc/meminfo | grep Mem
+MemTotal:       264118168 kB
+MemFree:        173739052 kB
+A temporary workaround I employed is to set _JAVA_OPTIONS environment variable to -Xmx384m.
+Unfortunately, this trick overrides vmargs provided to Eclipse, and therefore I cannot set it lower.
+A proper solution would be to always specify -Xmx when starting a JVM in a subprocess.
+I've tried LibraryDetector with -Xmx2m, and it worked fine.
+* References *
+[1] http://docs.oracle.com/javase/6/docs/technotes/guides/vm/gc-ergonomics.html
+* System info *
+-> lsb_release -d
+Description:	Red Hat Enterprise Linux Server release 6.2 (Santiago)
+-> cat /proc/cpuinfo | grep processor | wc -l
+32
+-> cat /proc/meminfo | grep MemTotal
+MemTotal:       264118168 kB
+-> /proj/CoolTools/app/JRE/jre32/bin/java -version
+java version "1.7.0_25"
+Java(TM) SE Runtime Environment (build 1.7.0_25-b15)
+Java HotSpot(TM) Server VM (build 23.25-b01, mixed mode)
+-> /proj/CoolTools/app/JRE/jre64/bin/java -Xmx2m -version
+java version "1.7.0_25"
+Java(TM) SE Runtime Environment (build 1.7.0_25-b15)
+Java HotSpot(TM) 64-Bit Server VM (build 23.25-b01, mixed mode)
+* Eclipse info *
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+The installation I've used to get above info with was created with p2 director from Kepler repository and based on SR0.
+> org.eclipse.platform_4.3.0_1947859193_linux_gtk_x86_64
+> org.eclipse.jdt.debug_3.8.0.v20130514-0841
+> org.eclipse.jdt.launching_3.7.0.v20130515-1451.jar
+However, I've also verified that the same error is present in another installation created from Juno repository and based on SR2.

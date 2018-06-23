@@ -1,0 +1,14 @@
+Bug 343455 – NPE Launching when workspace contains a project deleted from disk
+My workspace contains a project which was deleted from the disk.
+ Attempting to launch a self hosted workspace resulted in the following NPE:
+java.lang.NullPointerException
+at org.eclipse.pde.internal.core.ClasspathHelper.getDevPaths(ClasspathHelper.java:259)
+at org.eclipse.pde.internal.core.ClasspathHelper.getDevEntriesProperties(ClasspathHelper.java:92)
+at org.eclipse.pde.launching.EclipseApplicationLaunchConfiguration.getProgramArguments(EclipseApplicationLaunchConfiguration.java:113)
+at org.eclipse.pde.launching.AbstractPDELaunchConfiguration.launch(AbstractPDELaunchConfiguration.java:72)
+at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:854)
+at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:703)
+at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:928)
+at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1132)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Refreshing the project to pick up the changes on disk made the NPE go away.

@@ -1,0 +1,6 @@
+Bug 405375 – Restore defaults doesn't work on the API Use Scans preference page
+1) Go to the API use scans page
+2) Add a directory without use scans (error message opens)
+3) Press restore defaults (entry is removed from the table)
+Result:
+Error message stays and you cannot leave the page.

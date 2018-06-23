@@ -1,0 +1,4 @@
+Bug 139526 – E2.9 Extra Dependency added
+3.2RC2
+After preforming step E2.9 in the PDE 3.2 Scenarios an extra plugin dependency, "org.eclipse.jface", was added.
+ This does not match E2.9's description which states only "org.eclipse.core.runtime" and "org.eclipse.ui" should be appear in the required plug-ins section.

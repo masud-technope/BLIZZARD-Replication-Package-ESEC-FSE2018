@@ -1,0 +1,6 @@
+Bug 399794 – [1.8][dom ast] Add a new node type for the compiler node ReferenceExpression
+BETA_JAVA8:
+We need a DOM/AST node type that corresponds to the compiler AST node
+ReferenceExpression.
+The interesting properties are Name/Type/Primary,
+Method name, whether constructor reference or not.

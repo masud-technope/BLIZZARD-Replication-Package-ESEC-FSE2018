@@ -1,0 +1,11 @@
+org.eclipse.jdt.internal.debug.eval.ast.engine.ASTInstructionCompiler.visit
+org.eclipse.jdt.core.dom.ReturnStatement.accept0
+org.eclipse.jdt.core.dom.MethodDeclaration.accept0
+org.eclipse.jdt.core.dom.TypeDeclaration.accept0
+org.eclipse.jdt.core.dom.CompilationUnit.accept0
+org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.createExpressionFromAST
+org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.getCompiledExpression
+org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.evaluate
+org.eclipse.jdt.internal.debug.ui.JavaWatchExpressionDelegate$EvaluationRunnable.run
+org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run
+org.eclipse.core.internal.jobs.Worker.run

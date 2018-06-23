@@ -1,0 +1,27 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractConstant/canExtract/A_test11_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractConstant/canExtract/A_test12_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractConstant/canExtract/A_test45_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract/A_test115_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract/A_test115_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract/A_test54_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract/A_test55_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract/A_test57_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract/A_test79_out.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ExtractConstantTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ExtractTempTests.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/fragments/AssociativeInfixExpressionFragment.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/ExtractConstantRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/ExtractTempRefactoring.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractConstant/canExtract/A_test45_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractConstant/canExtract/A_test45_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractConstant/canExtract/A_test46_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractConstant/canExtract/A_test46_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract/A_test113_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract/A_test113_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract/A_test114_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract/A_test114_out.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ExtractConstantTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ExtractTempTests.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/fragments/AssociativeInfixExpressionFragment.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/ExtractConstantRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/ExtractTempRefactoring.java

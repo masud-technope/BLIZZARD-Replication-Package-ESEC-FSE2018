@@ -1,0 +1,4 @@
+Bug 233562 – Two copies of PluginSearchOperation
+org.eclipse.pde.internal.ui.search.PluginSearchOperation
+org.eclipse.pde.internal.core.search.PluginSearchOperation
+I don't know why but this makes me sad.

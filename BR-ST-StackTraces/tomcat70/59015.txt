@@ -1,0 +1,17 @@
+org.apache.tomcat.jni.Pool.destroy
+org.apache.tomcat.util.net.AprEndpoint$Sendfile.destroy
+org.apache.tomcat.util.net.AprEndpoint.stopInternal
+org.apache.tomcat.util.net.AbstractEndpoint.stop
+org.apache.coyote.AbstractProtocol.stop
+org.apache.catalina.connector.Connector.stopInternal
+org.apache.catalina.util.LifecycleBase.stop
+org.apache.catalina.core.StandardService.stopInternal
+org.apache.catalina.util.LifecycleBase.stop
+org.apache.catalina.core.StandardServer.stopInternal
+org.apache.catalina.util.LifecycleBase.stop
+org.apache.catalina.startup.Tomcat.stop
+org.apache.catalina.startup.TomcatBaseTest.tearDown
+org.apache.tomcat.jni.Poll.create
+org.apache.tomcat.util.net.AprEndpoint.allocatePoller
+org.apache.tomcat.util.net.AprEndpoint$Poller.run
+java.lang.Thread.run

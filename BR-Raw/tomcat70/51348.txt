@@ -1,0 +1,6 @@
+51348 – Potential NullPointerException in org.apache.catalina.servlets.WebdavServlet at line 1336
+A WebDAV LOCK_REFRESH request may cause a NullPointerException because of an (IMHO) wrong check at line 1332 in  WebdavServlet.java 1056763 2011-01-08 18:56:57Z markt.
+I suggest line 1332 should be:
+...
+if (toRenew != null) {
+...

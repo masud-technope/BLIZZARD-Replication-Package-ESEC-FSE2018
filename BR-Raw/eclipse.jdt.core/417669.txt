@@ -1,0 +1,13 @@
+Bug 417669 – [1.8][dom]Incorrect source ranges for annotated SimpleType that is nested in a ParameterizedType
+Use the ASTView on the following code and get an error dialog about 'Bad AST Node structure.
+package p;
+public class X  {
+public static void main(String [] args) {
+W w = (@Marker W<String>) null;
+}
+}
+class W<T> {
+}
+@java.lang.annotation.Target (java.lang.annotation.ElementType.TYPE_USE)
+@interface Marker {}
+The problem appears that in this particular case the AnnotatableType (@Marker W<String>) doesn't include the annotation in it's source range.

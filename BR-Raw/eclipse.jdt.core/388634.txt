@@ -1,0 +1,4 @@
+Bug 388634 – [1.8] Test failure in Compliance_1_5 at compliance 1.8
+When running tests Compliance_1_5 with -Dcompliance=1.8 a failure occurs in test088().
+This is not currently detected during RunJDTCoreTests because 1.8 is not yet included on that route, but using explicit compliance gives a preview of what we'll get later.
+This test case chooses the expected compiler log from specific compliance levels and misses to handle F_1_8 .

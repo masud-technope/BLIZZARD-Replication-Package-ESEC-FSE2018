@@ -1,0 +1,5 @@
+Bug 396524 – [refactoring] Pull Up and Extract Interface refactorings add unexpected @Override
+Pull-up refactoring
+- does not add imports for parameters and return types to destiantion type
+- adds an @Override to the source member even if the runtime environment is set to Java 5 and the target is an interrface
+=> broken code

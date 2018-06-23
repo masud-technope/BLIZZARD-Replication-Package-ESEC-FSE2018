@@ -1,0 +1,4 @@
+test/org/apache/naming/resources/TestNamingContext.java
+test/org/apache/naming/resources/TesterObject.java
+java/org/apache/naming/factory/BeanFactory.java
+webapps/docs/changelog.xml

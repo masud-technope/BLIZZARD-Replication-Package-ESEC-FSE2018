@@ -1,0 +1,17 @@
+Bug 89849 – [1.5][assist] Completion in switch proposes already written enum constants
+Using 3.1 M6 candidate: I20050330-0500.
+Have following code:
+public class E {
+static final String BLANK = "    ";
+void foo(Colors color) {
+switch (color) {
+case BLUE:
+case RED:
+break;
+case <complete here>
+}
+}
+}
+enum Colors { BLACK, BLUE, WHITE, RED }
+When I complete where indicated, I got all Colors constants although I would
+expect only WHITE and BLACK to proposed.

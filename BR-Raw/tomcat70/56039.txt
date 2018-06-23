@@ -1,0 +1,51 @@
+56039 – JmxRemoteLifecycleListener does not work with SSL
+Created attachment 31242 [details]
+Patch against http://svn.apache.org/repos/asf/tomcat/tc7.0.x/trunk
+Using JmxRemoteLifecycleListener with SSL results in the following error on startup:
+Jan 16, 2014 4:34:20 PM org.apache.catalina.mbeans.JmxRemoteLifecycleListener createServer
+SEVERE: The JMX connector server could not be created or failed to start for the Platform server
+java.io.IOException: Cannot bind to URL [rmi://localhost:1900/jmxrmi]: javax.naming.CommunicationException [Root exception is java.rmi.ConnectIOException: non-JRMP server at remote endpoint]
+at javax.management.remote.rmi.RMIConnectorServer.newIOException(Unknown Source)
+at javax.management.remote.rmi.RMIConnectorServer.start(Unknown Source)
+at org.apache.catalina.mbeans.JmxRemoteLifecycleListener.createServer(JmxRemoteLifecycleListener.java:304)
+at org.apache.catalina.mbeans.JmxRemoteLifecycleListener.lifecycleEvent(JmxRemoteLifecycleListener.java:258)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:402)
+at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:347)
+at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:725)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+at org.apache.catalina.startup.Catalina.start(Catalina.java:691)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:322)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.apache.commons.daemon.support.DaemonLoader.start(DaemonLoader.java:243)
+Caused by: javax.naming.CommunicationException [Root exception is java.rmi.ConnectIOException: non-JRMP server at remote endpoint]
+at com.sun.jndi.rmi.registry.RegistryContext.bind(Unknown Source)
+at com.sun.jndi.toolkit.url.GenericURLContext.bind(Unknown Source)
+at javax.naming.InitialContext.bind(Unknown Source)
+at javax.management.remote.rmi.RMIConnectorServer.bind(Unknown Source)
+...
+20 more
+Caused by: java.rmi.ConnectIOException: non-JRMP server at remote endpoint
+at sun.rmi.transport.tcp.TCPChannel.createConnection(Unknown Source)
+at sun.rmi.transport.tcp.TCPChannel.newConnection(Unknown Source)
+at sun.rmi.server.UnicastRef.newCall(Unknown Source)
+at sun.rmi.registry.RegistryImpl_Stub.bind(Unknown Source)
+...
+24 more
+The relevant configuration from server.xml:
+<Listener className="org.apache.catalina.mbeans.JmxRemoteLifecycleListener" rmiRegistryPortPlatform="1900" rmiServerPortPlatform="11900" />
+and java properties:
+-Djavax.net.ssl.keyStore=$KEYSTORE -Djavax.net.ssl.keyStorePassword=$KEY_PASS -Dcom.sun.management.jmxremote.ssl.need.client.auth=true -Djavax.net.ssl.trustStore=$TRUSTSTORE -Djavax.net.ssl.trustStorePassword=$TRUST_PASS -Dcom.sun.management.jmxremote.registry.ssl=true -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Djava.rmi.server.hostname=$HOST_IP -Dcom.sun.management.jmxremote.ssl=true
+If com.sun.management.jmxremote.ssl is changed to false everything works as expected except without SSL.
+Looking at the source code, I there is a property missing from the environment:
+env.put("com.sun.jndi.rmi.factory.socket", csf);
+Adding this to JmxRemoteLifecycleListener allows SSL to work properly.
+Patch attatched.

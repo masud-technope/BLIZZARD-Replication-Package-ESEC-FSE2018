@@ -1,0 +1,6 @@
+50547 – The CHANGE_SESSION_ID message that received during cluster session synchronization is dropped.
+Neither CHANGE_SESSION_ID message nor SESSION_EXPIRED message set timestamp.
+If these messages are received during cluster sessions synchronization in DeltaManager startup,
+because the timestamp is not set, they are dropped.
+I made a patch that add timestamp for CHANGE_SESSION_ID and SESSION_EXPIRED message.
+Best Regards.

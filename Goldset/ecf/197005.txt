@@ -1,0 +1,5 @@
+tests/bundles/org.eclipse.ecf.tests.presence/src/org/eclipse/ecf/tests/presence/ChatRoomInvitationTest.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/Messages.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/XMPPChatRoomContainer.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/XMPPChatRoomManager.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/messages.properties

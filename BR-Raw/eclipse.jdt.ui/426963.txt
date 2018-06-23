@@ -1,0 +1,9 @@
+Bug 426963 – [pull up] Import declaration for the type use annotation is missing after pull up refactoring
+Consider the code snippet:
+import org.eclipse.jdt.annotation.NonNull;
+public class Square implements Shape {
+public Integer getArea(@NonNull Integer length) {
+return new Integer(length * length);
+}
+}
+Refactor "Pull Up" the method to "Shape", the resulting file does not contain the import declaration for @NonNull and hence the user ends up with compilation errors.

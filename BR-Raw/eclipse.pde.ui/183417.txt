@@ -1,0 +1,12 @@
+Bug 183417 – Bidi3.3: Elements' labels in the extensions page in the fragment manifest characters order is incorrect
+Build ID: I20070410-1043
+Steps To Reproduce:
+1.
+Create new Fragment project.
+2.
+Create a new action set Extension.
+3.
+When you use combination of English and Arabic characters for the action set label( Arabic character followed by English characters), the characters order will be incorrect.
+More information:
+Elements' labels under the defined extensions for the created fragment are not properly ordered and symmetric swapping for brackets and braces is not maintained
+Please refer to the attached screenshot.

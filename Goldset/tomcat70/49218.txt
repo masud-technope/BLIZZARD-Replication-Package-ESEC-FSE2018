@@ -1,0 +1,6 @@
+java/org/apache/naming/resources/BaseDirContext.java
+java/org/apache/naming/resources/FileDirContext.java
+java/org/apache/naming/resources/LocalStrings.properties
+java/org/apache/naming/resources/VirtualDirContext.java
+java/org/apache/naming/resources/WARDirContext.java
+test/org/apache/catalina/core/TestStandardContextResources.java

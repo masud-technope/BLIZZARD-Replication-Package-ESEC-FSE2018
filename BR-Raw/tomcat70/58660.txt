@@ -1,0 +1,86 @@
+58660 – Different redirect behaviour when accessing path without a /
+Hi,
+Tomcat 8.0.29 changes the behaviour of requests for paths without a trailing slash.
+It seems to be limited to context roots, e.g.
+/examples instead of /examples/servlets.
+When calling /examples on 8.0.28 it responds with a 302 redirecting to /examples/, but 8.0.29 responds with a 200.
+I would say that people should be more careful with their URL:s, but this change in default behaviour is probably going to cause problems.
+It is probably not correct to respond with /examples/index.html, when accessing /examples.
+This changes any relative paths on a website, since there will be a / missing.
+This may indeed be verified by clicking any of the links in the 8.0.29 /examples response HTML.
+Clicking them causes the browser to fetch e.g.
+/servlets instead of /examples/servlets.
+Accessing /examples/servlets however causes a 302 to /examples/servlets/, just like 8.0.28.
+To reproduce:
+1.
+Download Tomcat 8.0.28 and 8.0.29
+% wget http://archive.apache.org/dist/tomcat/tomcat-8/v8.0.28/bin/apache-tomcat-8.0.28.zip
+% wget http://apache.mirrors.spacedump.net/tomcat/tomcat-8/v8.0.29/bin/apache-tomcat-8.0.29.zip
+Unzip the two archives.
+2.
+Access /examples for Tomcat 8.0.28
+% curl -vso /dev/null http://localhost:8080/examples
+* STATE: INIT => CONNECT handle 0x6000572f0; line 1090 (connection #-5000)
+* Added connection 0.
+The cache now contains 1 members
+*   Trying ::1...
+* STATE: CONNECT => WAITCONNECT handle 0x6000572f0; line 1143 (connection #0)
+* Connected to localhost (::1) port 8080 (#0)
+* STATE: WAITCONNECT => SENDPROTOCONNECT handle 0x6000572f0; line 1240 (connection #0)
+* STATE: SENDPROTOCONNECT => DO handle 0x6000572f0; line 1258 (connection #0)
+> GET /examples HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.45.0
+> Accept: */*
+>
+* STATE: DO => DO_DONE handle 0x6000572f0; line 1337 (connection #0)
+* STATE: DO_DONE => WAITPERFORM handle 0x6000572f0; line 1464 (connection #0)
+* STATE: WAITPERFORM => PERFORM handle 0x6000572f0; line 1474 (connection #0)
+* HTTP 1.1 or later with persistent connection, pipelining supported
+< HTTP/1.1 302 Found
+* Server Apache-Coyote/1.1 is not blacklisted
+< Server: Apache-Coyote/1.1
+< Location: http://localhost:8080/examples/
+< Transfer-Encoding: chunked
+< Date: Fri, 27 Nov 2015 08:36:11 GMT
+<
+{ [5 bytes data]
+* STATE: PERFORM => DONE handle 0x6000572f0; line 1632 (connection #0)
+* Curl_done
+* Connection #0 to host localhost left intact
+* Expire cleared
+3.
+Access /examples for Tomcat 8.0.29
+* STATE: INIT => CONNECT handle 0x6000572f0; line 1090 (connection #-5000)
+* Added connection 0.
+The cache now contains 1 members
+*   Trying ::1...
+* STATE: CONNECT => WAITCONNECT handle 0x6000572f0; line 1143 (connection #0)
+* Connected to localhost (::1) port 8080 (#0)
+* STATE: WAITCONNECT => SENDPROTOCONNECT handle 0x6000572f0; line 1240 (connection #0)
+* STATE: SENDPROTOCONNECT => DO handle 0x6000572f0; line 1258 (connection #0)
+> GET /examples HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.45.0
+> Accept: */*
+>
+* STATE: DO => DO_DONE handle 0x6000572f0; line 1337 (connection #0)
+* STATE: DO_DONE => WAITPERFORM handle 0x6000572f0; line 1464 (connection #0)
+* STATE: WAITPERFORM => PERFORM handle 0x6000572f0; line 1474 (connection #0)
+* HTTP 1.1 or later with persistent connection, pipelining supported
+< HTTP/1.1 200 OK
+* Server Apache-Coyote/1.1 is not blacklisted
+< Server: Apache-Coyote/1.1
+< Accept-Ranges: bytes
+< ETag: W/"1156-1448007578000"
+< Last-Modified: Fri, 20 Nov 2015 08:19:38 GMT
+< Content-Type: text/html
+< Content-Length: 1156
+< Date: Fri, 27 Nov 2015 08:36:38 GMT
+<
+{ [1156 bytes data]
+* STATE: PERFORM => DONE handle 0x6000572f0; line 1632 (connection #0)
+* Curl_done
+* Connection #0 to host localhost left intact
+Cheers,
+Per Lewau

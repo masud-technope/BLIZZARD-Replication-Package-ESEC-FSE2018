@@ -1,0 +1,10 @@
+Bug 259856 – The error message when the chat message cannot be sent is not correct.
+The error message when the chat message cannot be sent is not correct.
+The following text were displayed as an error message.
+The message could not be sent: {0}
+On org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/MessagesView.java
+Line: 278
+setContentDescription(Messages.MessagesView_CouldNotSendMessage);
+Here, the edit processing is not done.
+I think that it is necessary to keep the following.
+setContentDescription(Messages.bind(Messages.MessagesView_CouldNotSendMessage, ex.getCause().getMessage()));

@@ -1,0 +1,7 @@
+org.eclipse.jdt.ui/plugin.xml
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/wizardapi/ImporterTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/AutomatedSuite.java
+org.eclipse.jdt.ui/plugin.properties
+org.eclipse.jdt.ui/META-INF/MANIFEST.MF
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/importer/JDTProjectNatureImportConfigurator.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/importer/ProjectWithJavaResourcesImportConfigurator.java

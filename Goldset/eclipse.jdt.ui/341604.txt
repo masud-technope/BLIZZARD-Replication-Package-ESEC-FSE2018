@@ -1,0 +1,23 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javadocexport/JavadocTreeWizardPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/dialogs/SortMembersMessageDialog.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/CleanUpSaveParticipantPreferenceConfiguration.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javadocexport/JavadocStandardWizardPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackager/JarManifestWizardPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/CodeAssistConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/NameConventionConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/dialogfields/LayoutUtil.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/ComplianceConfigurationBlock.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/InlineConstantWizard.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/AbstractConfigurationBlock.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/code/InlineMethodInputPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/ProblemSeveritiesConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/JavaEditorAppearanceConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/JavadocConfigurationBlock.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/reorg/RenameInputWizardPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/formatter/BracesTabPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/AppearancePreferencePage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/SourceAttachmentBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/JavaEditorColoringConfigurationBlock.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/reorg/RenameTypeWizardSimilarElementsOptionsDialog.java
+org.eclipse.jdt.ui/META-INF/MANIFEST.MF
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/PropertiesFileEditorPreferencePage.java

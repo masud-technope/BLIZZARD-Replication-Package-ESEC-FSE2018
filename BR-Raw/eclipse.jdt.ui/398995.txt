@@ -1,0 +1,5 @@
+Bug 398995 – [quick fix] Extract field access to checked local variable
+This was first proposed in Bug 331649 comment 32:
+When dereferencing a @Nullable field the safest solution is to assign the field to a local variable before null-checking and dereferencing.
+The quick fix does exactly that.
+My implementation was first attached to bug 337977 comment 18 but I think it deserves a bug on its own.

@@ -1,0 +1,13 @@
+Bug 310609 – [render] Strange rendering problem in PE when using package abbreviation pattern
+Created attachment 166182 [details]
+PE using abbreviation pattern
+OSX 10.4.11
+I20100426-0852
+1.
+Create a project containing a package foo.bar.test
+2.
+Define abbreviation patterns:
+foo.bar=BAR
+BAR=foo.bar
+IS: looks like the package name spans multiple lines (new line in package name).
+See screen shot

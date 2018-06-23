@@ -1,0 +1,43 @@
+49099 – Using % after context prefix results in 400 but nothing is logged in access log
+Simple test:
+1.
+Download latest tomcat 6.0.26
+2.
+Utar it and start it up
+3.
+Head over to http://localhost:8080/ to verify that it's working
+4.
+Now change the URL to something like http://localhost:8080/%foo and you get error 400 as expected but nothing is logged in access log:
+http://localhost:8080/%foo
+GET /%foo HTTP/1.1
+Host: localhost:8080
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.1.9) Gecko/20100401 Ubuntu/9.10 (karmic) Firefox/3.5.9
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-us,en;q=0.5
+Accept-Encoding: gzip,deflate
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+Keep-Alive: 300
+Connection: keep-alive
+HTTP/1.1 400 Bad Request
+Server: Apache-Coyote/1.1
+Content-Length: 0
+Date: Mon, 12 Apr 2010 19:44:57 GMT
+Connection: close
+5.
+Now change the URL to legitimate, i.e.: http://localhost:8080/%29 and you get 404 as expected and it's also logged in access log as expected.
+http://localhost:8080/%29
+GET /%29 HTTP/1.1
+Host: localhost:8080
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.1.9) Gecko/20100401 Ubuntu/9.10 (karmic) Firefox/3.5.9
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-us,en;q=0.5
+Accept-Encoding: gzip,deflate
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+Keep-Alive: 300
+Connection: keep-alive
+HTTP/1.1 404 Not Found
+Server: Apache-Coyote/1.1
+Content-Type: text/html;charset=utf-8
+Content-Length: 964
+Date: Mon, 12 Apr 2010 19:43:45 GMT
+So for admin of the server there is no way to see if there is a DDoS attack going on on the box because there is nothing written to the log files, nothing at all.

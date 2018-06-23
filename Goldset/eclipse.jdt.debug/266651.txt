@@ -1,0 +1,4 @@
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/LaunchingPlugin.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/VMDefinitionsContainer.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/jres/StandardVMPage.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/StandardVMType.java

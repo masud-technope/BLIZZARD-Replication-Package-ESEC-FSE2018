@@ -1,0 +1,5 @@
+Bug 294763 – Compiler Errors/Warnings preference page doesn't resize well
+Created attachment 151849 [details]
+screenshot
+Dear JDT,
+Would it be possible to have just one scrollbar on this page?

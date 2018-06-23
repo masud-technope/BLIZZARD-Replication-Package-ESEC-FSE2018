@@ -1,0 +1,11 @@
+49525 – IE8: Unabled to store data in HttpSession (root context)
+Environment:
+Tomcat 7.0.0 Beta
+IE8
+A simplest webapp only have a test.jsp below:
+<%=request.getSession().getId()%>
+this app installed as root context
+the test.jsp works fine in firefox
+but when using IE8
+there is always a different session id where refresh the test page.
+BTW: the test.jsp works find in Tomcat 6.x

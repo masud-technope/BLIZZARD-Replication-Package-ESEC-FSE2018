@@ -1,0 +1,13 @@
+55125 – Tomcat does not shut down if LifecycleListener throws an exception
+Created attachment 30467 [details]
+Logs
+I needed to shut down Tomcat if an application fails to start.
+I was advised that a LifecycleListener could shut down Tomcat by throwing an IllegalStateException from its lifecycleEvent method.
+However, this produces severe errors in the logs, but Tomcat does not shut down.
+I saw this behaviour on Tomcat 7.0.41 and 7.0.40 using the test web application from here:
+https://github.com/cloudfoundry/java-test-applications
+and v1.0.0 of the listener from here:
+https://github.com/cloudfoundry/java-buildpack-support
+(v1.1.0 of the listener was re-coded to halt the JVM).
+I attach catalina.out.
+Mark Thomas suggested I raise this bug, so he believes that Tomcat should shut down.

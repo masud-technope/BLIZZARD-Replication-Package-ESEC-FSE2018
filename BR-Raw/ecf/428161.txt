@@ -1,0 +1,3 @@
+Bug 428161 – Allow multi roster view to filter whether away/extended away roster entries are shown
+Currently those roster entries (users) that are away are always shown in the roster.
+ It would be nice to have an option to filter the away, invisible, extended away users from the roster.

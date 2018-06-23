@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/RegistryBrowser.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/PDERuntimeMessages.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/PDERuntimePlugin.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/RegistryBrowser.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/RegistryBrowserLabelProvider.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/RegistryFilteredTree.java

@@ -1,0 +1,5 @@
+Bug 101644 – Browse in plugin editor should init with actual value
+RC3
+Click on the 'Browse' button in the Overview page of the plugin editor.
+The dialog comes up empty.
+It should better be initialzied with the actual value of the class file

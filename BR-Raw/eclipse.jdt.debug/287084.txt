@@ -1,0 +1,10 @@
+Bug 287084 – Failing HCR test on Mac OS Cocoa
+I20090818-0800
+The 'testSimpleHcr' test failed:
+Should have dropped to method 'one' expected:<[on]e> but was:<[thre]e>
+junit.framework.ComparisonFailure: Should have dropped to method 'one' expected:<[on]e> but was:<[thre]e>
+at org.eclipse.jdt.debug.tests.core.HcrTests.testSimpleHcr(HcrTests.java:73)
+at org.eclipse.jdt.debug.tests.AbstractDebugTest.runBare(AbstractDebugTest.java:1754)
+at org.eclipse.jdt.debug.tests.DebugSuite$1.run(DebugSuite.java:54)
+at java.lang.Thread.run(Thread.java:613)
+Running the tests locally we have reproduced using the 1.5 VM

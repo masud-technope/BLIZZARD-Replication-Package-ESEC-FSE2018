@@ -1,0 +1,15 @@
+java/org/apache/catalina/realm/DataSourceRealm.java
+java/org/apache/catalina/realm/JDBCRealm.java
+java/org/apache/catalina/realm/JNDIRealm.java
+java/org/apache/catalina/realm/MemoryRealm.java
+java/org/apache/catalina/realm/RealmBase.java
+test/org/apache/catalina/connector/TestResponse.java
+test/org/apache/catalina/connector/TestResponsePerformance.java
+test/org/apache/catalina/connector/TesterMockRequest.java
+test/org/apache/catalina/connector/TesterRequest.java
+test/org/apache/catalina/connector/TesterResponse.java
+test/org/apache/catalina/core/TesterContext.java
+test/org/apache/catalina/realm/TestRealmBase.java
+test/org/apache/catalina/realm/TesterServletSecurity01.java
+test/org/apache/catalina/startup/TesterMapRealm.java
+webapps/docs/changelog.xml

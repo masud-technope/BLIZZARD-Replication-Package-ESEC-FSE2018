@@ -1,0 +1,2 @@
+Bug 314558 – [Discovery][DNS-SD] Add API checks (null) to test suite
+Execute DiscoveryTestsWithoutRegister as part of the test suite.

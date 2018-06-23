@@ -1,0 +1,15 @@
+Bug 84724 – [1.5][search] fails to find call sites for varargs constructors
+The search engine fails to find the call to the varargs constructor in the
+example below.
+Simply highlight the constructor's name and invoke "References" -
+> "Workspace" from the Java editor context menu; no occurrences will be found.
+Bug manifests with integration build I2005-0202.
+public class Test {
+public void foo() {
+Cell c= new Cell("", ""); // calls Cell.Cell(String...)
+}
+}
+class Cell {
+public Cell(String...
+args) { }
+}

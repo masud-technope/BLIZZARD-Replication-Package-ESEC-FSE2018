@@ -1,0 +1,7 @@
+Bug 198012 – [ui] generic provider connect id does not receive value from hyperlink
+For ECF hyperlinks of the form:
+ecftcp://localhost:3282/server
+The hyperlink activation should
+1) Open the connect dialog
+2) Set the connect ID to:  ecftcp://localhost:3282/server
+The current behavior does 1, but not 2.

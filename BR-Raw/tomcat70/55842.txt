@@ -1,0 +1,18 @@
+55842 – response.setBufferSize() does not seem to work properly
+I found a problem with setting the buffer size for the ServletResponse.
+If I call 'response.setBufferSize(1,000,000);' and send about 20,000 characters, the response will be chunked even though it should not.
+The response is sent in several chunks and contains the 'Transfer-Encoding: chunked' response header.
+In my understanding in this case the response should be fully buffered on the server and then sent as a whole containing the Content-Length-header.
+This causes a problem in my application because I want to use a larger buffer to be able to redirect to an error page if an error occurs during rendering the response.
+I was able to reproduce this on Tomcat 7.0.39, 7.0.40, 7.0.42, 7.0.47.
+Tomcat 7.0.37 works fine and as expected.
+This is easily reproducable by using a JSP as follows:
+<%
+response.setBufferSize(1000*1000);
+for (int i = 0; i < 100; i++) {
+for (int j = 0; j < 100; j++) {
+response.getWriter().write("X");
+}
+response.getWriter().write("<br />");
+}
+%>

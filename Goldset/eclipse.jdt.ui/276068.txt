@@ -1,0 +1,2 @@
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/model/IXMLTags.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/model/TestRunHandler.java

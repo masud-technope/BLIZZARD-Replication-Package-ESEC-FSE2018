@@ -1,0 +1,23 @@
+Bug 424444 – [1.8] VerifyError when constructor reference used with primitive array
+This program, when run, produces a VerifyError:
+interface Functional<T> {
+T foo(int size);
+}
+public class X  {
+public static void main(String argv[]) {
+Functional<int[]> constr = int[]::new;
+}
+}
+Exception in thread "main" java.lang.VerifyError: Bad return type
+Exception Details:
+Location:
+javasoft/sqe/tests/lang/lmbd044/lmbd04401m0/X.lambda$0(I)[I @4: areturn
+Reason:
+Type '[LI;' (current frame, stack[0]) is not assignable to '[I' (from method signature)
+Current Frame:
+bci: @4
+flags: { }
+locals: { integer }
+stack: { '[LI;' }
+Bytecode:
+0000000: 1abd 001c b0

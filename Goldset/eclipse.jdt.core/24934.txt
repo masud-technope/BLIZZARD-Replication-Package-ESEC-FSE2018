@@ -1,0 +1,6 @@
+org.eclipse.jdt.core.tests.model/workspace/JavaSearch/src/d1/X.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaSearchTests.java
+org.eclipse.jdt.core.tests.model/workspace/JavaSearch/src/d2/Z.java
+org.eclipse.jdt.core.tests.model/workspace/JavaSearch/src/d2/Y.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/search/org/eclipse/jdt/internal/core/search/matching/DeclarationOfReferencedTypesPattern.java

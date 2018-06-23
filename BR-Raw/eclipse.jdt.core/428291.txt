@@ -1,0 +1,7 @@
+Bug 428291 – [1.8][compiler] The method addListener(ListExpressionHelper<E>, ObservableListValue<E>, InvalidationListener) in the type ListExpressionHelper is not applicable for the arguments (ListExpressionHelper<E>, ListBinding<E>, ChangeListener<capture#2-of ? supe
+Created attachment 239995 [details]
+This is the file that has the compile error.
+This bug is impacting openJFX project builds.
+The attached file compiles properly under 1.7 but fails under 1.8.
+ Make sure that you compile against JDK8 or have jfxrt.jar on the class path.
+The compiler has trouble with ListExpressionHelper.addListener() and ListExpressionHelper.removeListener().

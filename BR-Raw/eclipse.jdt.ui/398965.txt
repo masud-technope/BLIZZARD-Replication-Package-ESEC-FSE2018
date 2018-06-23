@@ -1,0 +1,3 @@
+Bug 398965 – [preferences] UI option for syntactic analysis for fields
+Bug 383368 introduced a new preference constant JavaCore.COMPILER_PB_SYNTACTIC_NULL_ANALYSIS_FOR_FIELDS
+Please provide a UI option for this.

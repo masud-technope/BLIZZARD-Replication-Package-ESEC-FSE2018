@@ -1,0 +1,35 @@
+46261 – Context with %2F in name causes tomcat crash on shutdown
+Context with %2F in name causes tomcat crash on shutdown
+Several years ago I worked on integrating tomcat 5.5 into our web application management infrastructure.
+ During the process I fixed several tomcat 5.5 bugs, but apparently never sent the fixes upstream.
+ Oops.
+Our application needs to be deployed to create a URL that looks like this:
+/product/customername/servlet
+I worked with several people on IRC to get tomcat5.5 to do this.
+ We had previously been using the path= parameter in the context xml file element with tomcat 4.1.
+ Unfortunately, it appears this feature was removed from tomcat5.5, and tomcat5.5 does not recurse into subdirectories when reading .xml context files.
+ The recommendation on IRC (after several suggestions which would not work for our environment) was to put %2F in the context xml file's name.
+ Such as this
+product%2Fcustomername.xml
+This does work, however when you try to shutdown tomcat 6.0.18, you will get this crash:
+Nov 9, 2008 10:56:17 PM org.apache.coyote.http11.Http11Protocol pause
+INFO: Pausing Coyote HTTP/1.1 on http-8180
+Nov 9, 2008 10:56:18 PM org.apache.catalina.core.StandardService stop
+INFO: Stopping service Catalina
+Nov 9, 2008 10:56:18 PM org.apache.catalina.startup.HostConfig undeployApps
+WARNING: Error while removing context [/product%2Fcustomername]
+java.lang.NullPointerException
+at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java:915)
+at org.apache.catalina.startup.HostConfig.undeployApps(HostConfig.java:1191)
+at org.apache.catalina.startup.HostConfig.stop(HostConfig.java:1162)
+at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:313)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:117)
+at org.apache.catalina.core.ContainerBase.stop(ContainerBase.java:1086)
+at org.apache.catalina.core.ContainerBase.stop(ContainerBase.java:1098)
+at org.apache.catalina.core.StandardEngine.stop(StandardEngine.java:448)
+at org.apache.catalina.core.StandardService.stop(StandardService.java:584)
+at org.apache.catalina.core.StandardServer.stop(StandardServer.java:744)
+at org.apache.catalina.startup.Catalina.stop(Catalina.java:628)
+at org.apache.catalina.startup.Catalina$CatalinaShutdownHook.run(Catalina.java:671)
+Nov 9, 2008 10:56:18 PM org.apache.coyote.http11.Http11Protocol destroy
+INFO: Stopping Coyote HTTP/1.1 on http-8180

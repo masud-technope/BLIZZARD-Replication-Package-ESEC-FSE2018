@@ -1,0 +1,11 @@
+Bug 223899 – Base type var should not be proposed before Object var in == case
+I20080325-0100
+If you complete after zz in the following cu, zzvar1 is proposed before zzvar2.
+There is no chance that zzvar1 would be compared to a since it is of a base type.
+package p;
+public class Test {
+void foo(Object a) {
+int zzvar1 = 1;
+Object zzvar2 = null;
+int zzvar3 = 0;
+if (a == zz//complete here

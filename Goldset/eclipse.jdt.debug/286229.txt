@@ -1,0 +1,2 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/jres/LibraryStandin.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/AbstractVMInstall.java

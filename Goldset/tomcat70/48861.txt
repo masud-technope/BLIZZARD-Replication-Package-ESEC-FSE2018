@@ -1,0 +1,10 @@
+java/org/apache/tomcat/util/bcel/classfile/package.html
+java/org/apache/tomcat/util/bcel/classfile/AnnotationElementValue.java
+test/org/apache/catalina/deploy/TestSecurityConstraint.java
+java/org/apache/tomcat/util/bcel/classfile/EnumElementValue.java
+java/org/apache/tomcat/util/bcel/package.html
+java/org/apache/tomcat/util/bcel/util/package.html
+java/org/apache/tomcat/util/bcel/classfile/ClassElementValue.java
+test/org/apache/catalina/loader/TestWebappClassLoaderMemoryLeak.java
+java/org/apache/tomcat/util/scan/package.html
+java/org/apache/tomcat/util/bcel/classfile/ArrayElementValue.java

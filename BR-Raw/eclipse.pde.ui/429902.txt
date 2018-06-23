@@ -1,0 +1,14 @@
+Bug 429902 – Support the root level features attribute installMode="root" in the product configuration editor
+Our solution for the most-wanted Tycho feature (bug 361722) included adding the attribute "installMode" in product/features/feature elements in product configuration files.
+We are recommending our users to use the PDE Product Configuration editor for product files, so I wondered if it is possible to add some support for our extension of your product file format in the editor.
+The absolute minimum would already help: just have the editor leave the attribute unchanged when doing other modifications.
+If you say that this change is acceptable, we'll probably find someone from the Tycho community to contribute a patch.
+The background of the Tycho feature is the following: Tycho can create installations/distribution archives from product files.
+Up to recently, these installations only contained one root element, the product, so it was not possible (or only with advanced p2 magic) to create an installation where the installed features can be updated independently of the product.
+With Tycho 0.20.0, this has become a lot easier - to see how, try out this demo build:
+1.
+git clone https://git.eclipse.org/r/tycho/org.eclipse.tycho-demo.git
+2.
+git fetch origin refs/changes/59/23059/1 && git checkout FETCH_HEAD
+3.
+Follow the instructions here: https://git.eclipse.org/r/#/c/23059/

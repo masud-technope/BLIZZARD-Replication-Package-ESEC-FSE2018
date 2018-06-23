@@ -1,0 +1,24 @@
+43622 – compression / minCompressionSize attribute not properly implemented
+2 of the compression related attributes for the http connector are:
+compression = on | off | force | <integer val>
+The documentation states that integer val will be implemented as:
+compression="on" and minCompressionSize = <integer val>
+minCompressionSize = <integer val>
+(The documentation for 5.5.12 doesnt mention this at all, but read this in the
+server.xml)
+The problem is that the documenation gives the impression that only setting
+compression="some integer val" is sufficient, however the way the code is
+written, the value of "minCompressionSize" always overrides the value specified
+in the "compression" field.
+Even if minCompressionSize isnt set, it will still
+get the default value of 2048 and override whatever value was there in the
+"compression" field.
+I looked at the implementation of the http11 connector and found the following
+code that might be the culprit:
+In org.apache.coyote.http11.Http11BaseProtocol.Http11ConnectionHandler.init
+processor.setCompression( proto.compression );
+processor.setCompressionMinSize( proto.compressionMinSize);
+since the "setCompressionMinSize" is called after compressionMinSize, its value
+will override the value read from compression atttribute.
+I have looked at the code for Tomcat 6.0 also, and the problems appears to still
+be present.

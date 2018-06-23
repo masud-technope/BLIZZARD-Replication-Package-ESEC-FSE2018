@@ -1,0 +1,5 @@
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/buildpath/BuildPathSupport.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/launcher/JUnitLaunchConfiguration.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/JUnitPlugin.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/buildpath/BuildPathSupport.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/JUnitCorePlugin.java

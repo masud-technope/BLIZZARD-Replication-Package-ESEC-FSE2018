@@ -1,0 +1,4 @@
+Bug 266723 – [Discovery] specify how clients can determine service uniqueness
+Currently, the ECF discovery API does not specify how discovered services can be reliably determined to be unique.
+ In general, clients (i.e.
+those that are discovering services via ECF IDiscoveryLocator) need to be able to reliably determine from the information in the events whether a serviceDiscovered/undiscovered notification is in reference to an existing service, or a new service.

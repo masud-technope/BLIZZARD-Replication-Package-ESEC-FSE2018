@@ -1,0 +1,10 @@
+Bug 465925 – [completion] Wrong toString() output in InternalCompletionProposal for METHOD_NAME_REFERENCE
+InternalCompletionProposal.toString:
+case CompletionProposal.METHOD_NAME_REFERENCE :
+buffer.append("METHOD_IMPORT"); //$NON-NLS-1$
+break;
+should be:
+case CompletionProposal.METHOD_NAME_REFERENCE :
+buffer.append("METHOD_NAME_REFERENCE"); //$NON-NLS-1$
+break;
+The codes are different and while debugging this takes you to the wrong track.

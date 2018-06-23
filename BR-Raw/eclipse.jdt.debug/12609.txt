@@ -1,0 +1,6 @@
+Bug 12609 – Eval with error causes eval timeout
+Test case:
+* breakpoint at first line in VectorTest#testCapacity
+* evaluate 'this.fFull.size' (note, NO "()" for "size()")
+* get timeout dialog
+* I don't think any eval is proceeding

@@ -1,0 +1,19 @@
+Bug 399665 – Part references leak view/editor site after part is disposed
+In the E4 compatibility layer, part references leak the view/editor site after the part is disposed.
+Via selection provider, this leaks the whole part.
+IWorkbenchPartReference is intended to be a lightweight reference to a part that can be kept even after the part has been disposed.
+E.g.
+the Search view uses this to keep a reference to the last opened editor, so that it can reuse it when you step through matches.
+Here's the reference chain:
+org.eclipse.ui.editors.text.TextEditor
+this$0 of org.eclipse.ui.texteditor.AbstractTextEditor$SelectionProvider
+selectionProvider of org.eclipse.ui.internal.EditorSite
+editorSite of org.eclipse.ui.internal.EditorReference
+fReusedEditor of org.eclipse.search.internal.ui.text.EditorOpener
+fEditorOpener of org.eclipse.search.internal.ui.text.FileSearchPage
+fPage of org.eclipse.search2.internal.ui.basic.views.SetLayoutAction
+action of org.eclipse.jface.action.ActionContributionItem
+innerItem of org.eclipse.jface.action.SubContributionItem
+data of org.eclipse.swt.widgets.MenuItem
+[8] of org.eclipse.swt.widgets.MenuItem[64]
+items of org.eclipse.swt.widgets.Display [JNI Global, Stack Local]

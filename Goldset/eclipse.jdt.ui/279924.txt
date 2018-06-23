@@ -1,0 +1,5 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaUIMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaUIMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/dialogs/GenerateToStringDialog.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/actions/GenerateMethodAbstractAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/actions/GenerateToStringAction.java

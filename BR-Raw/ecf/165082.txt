@@ -1,0 +1,10 @@
+Bug 165082 – Partial core.util Package Visibility ECF 0.9.3
+ECF 0.9.3 on Eclipse 3.2.1
+I add required plug-ins via MANIFEST dependencies view:
+org.eclipse.ecf.identiy
+org.eclipse.ecf
+Both these plugins have a package org.eclipse.ecf.core.util.
+ I need to use classes from each of these packages in the two plug-ins.
+However, only the classes in org.eclipse.ecf.identity plug-in, org.eclipse.ecf.core.util are visible to my project.
+ The classes in the org.eclipse.ecf plug-in, in that identically named package, are not.
+The ecf plugin exports pkg core.util and then re-exports plugin identity, maybe this is the cause.

@@ -1,0 +1,32 @@
+Bug 245554 – Cannot find and read bundle.info in a shared install
+When starting up in a shared install I get the following stack trace in the console.
+We should cascade the lookup to the parent configuration if the bundle.info is not present.
+---
+!ENTRY org.eclipse.pde.core 4 0 2008-08-28 12:10:50.437
+!MESSAGE C:\eclipses\eclipse-SDK-M20080827-2000-win32\user\configuration\org.eclipse.equinox.simpleconfigurator\bundles.
+info (The system cannot find the path specified)
+!STACK 0
+java.io.FileNotFoundException: C:\eclipses\eclipse-SDK-M20080827-2000-win32\user\configuration\org.eclipse.equinox.simpl
+econfigurator\bundles.info (The system cannot find the path specified)
+at java.io.FileInputStream.open(Native Method)
+at java.io.FileInputStream.<init>(Unknown Source)
+at java.io.FileInputStream.<init>(Unknown Source)
+at sun.net.www.protocol.file.FileURLConnection.connect(Unknown Source)
+at sun.net.www.protocol.file.FileURLConnection.getInputStream(Unknown Source)
+at java.net.URL.openStream(Unknown Source)
+at org.eclipse.pde.internal.core.P2Utils.getBundlesFromFile(P2Utils.java:91)
+at org.eclipse.pde.internal.core.P2Utils.readBundlesTxt(P2Utils.java:58)
+at org.eclipse.pde.internal.core.PluginPathFinder.getPluginPaths(PluginPathFinder.java:100)
+at org.eclipse.pde.internal.core.ExternalModelManager.getPluginPaths(ExternalModelManager.java:54)
+at org.eclipse.pde.internal.core.PluginModelManager.initializeTable(PluginModelManager.java:378)
+at org.eclipse.pde.internal.core.PluginModelManager.findModel(PluginModelManager.java:680)
+at org.eclipse.pde.core.plugin.PluginRegistry.findModel(PluginRegistry.java:77)
+at org.eclipse.pde.internal.core.RequiredPluginsInitializer.initialize(RequiredPluginsInitializer.java:31)
+at org.eclipse.jdt.internal.core.JavaModelManager.initializeContainer(JavaModelManager.java:2371)
+at org.eclipse.jdt.internal.core.JavaModelManager$13.run(JavaModelManager.java:2301)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1800)
+at org.eclipse.jdt.internal.core.JavaModelManager.initializeAllContainers(JavaModelManager.java:2317)
+at org.eclipse.jdt.internal.core.JavaModelManager.getClasspathContainer(JavaModelManager.java:1679)
+at org.eclipse.jdt.core.JavaCore.initializeAfterLoad(JavaCore.java:3398)
+at org.eclipse.jdt.internal.ui.InitializeAfterLoadJob$RealJob.run(InitializeAfterLoadJob.java:35)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

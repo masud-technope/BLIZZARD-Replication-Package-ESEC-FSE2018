@@ -1,0 +1,15 @@
+Bug 420080 – [1.8] Overridden Default method is reported as duplicated
+This code produces compilation errors:
+public abstract class TestClass extends ParentClass {
+}
+interface TestInterface {
+default int intMethod(){return 1;}
+}
+class SuperParentClass {
+public int intMethod(){return 1;}
+}
+abstract class ParentClass extends SuperParentClass implements TestInterface {
+abstract void parentMethod(String s);
+}
+The reported errors (twice) being:
+"Duplicate methods named intMethod with the parameters () and () are inherited from the types SuperParentClass and TestInterface"

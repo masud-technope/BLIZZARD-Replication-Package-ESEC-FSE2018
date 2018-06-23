@@ -1,0 +1,3 @@
+Bug 24082 – Do refesh when JavaElementSorter changes
+MembersOrderPreferencePage.PREF_OUTLINE_SORT_OPTION is the pref key.
+Must be added to the browsing views that show members.

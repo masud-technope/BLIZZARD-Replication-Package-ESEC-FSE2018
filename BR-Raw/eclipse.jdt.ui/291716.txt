@@ -1,0 +1,19 @@
+Bug 291716 – [package explorer] hides jars non-java resources when working set is selected
+I am not sure if this is the right component.
+Steps to reproduce:
+1.
+Create a java project that has a jar with resources (f.e.
+properties file) in the referenced libraries.
+2.
+Open package explorer, set top level element to projects, deselect all working sets.
+3.
+Expand the jar.
+Notice all files (java classes and resource file)
+4.
+Assign the project to any working set.
+Select the working set.
+5.
+Expand the jar.
+Resource files (.properties, Manifest) are gone.
+This is not what user expects.
+And also gives false impression about jar file state.

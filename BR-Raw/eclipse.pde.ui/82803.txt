@@ -1,0 +1,3 @@
+Bug 82803 – Name the launch config after the product/app
+The default name for an Eclipse app launch configuration created via the
+context menu should be named after the product/application.

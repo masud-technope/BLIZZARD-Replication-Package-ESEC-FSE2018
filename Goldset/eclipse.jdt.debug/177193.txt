@@ -1,0 +1,6 @@
+org.eclipse.jdt.debug/model/org/eclipse/jdt/debug/core/IJavaArray.java
+org.eclipse.jdt.debug.tests/testprograms/ByteArrayTests.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/ProjectCreationDecorator.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIArrayValue.java
+org.eclipse.jdt.debug/buildnotes_jdt-debug.html
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/ArrayTests.java

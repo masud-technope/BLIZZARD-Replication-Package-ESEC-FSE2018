@@ -1,0 +1,21 @@
+Bug 151808 � VMDefinitionsContainer cannot parse -Dx=non-ascii
+-Da=ä (a-umlaut)         will not work
+-Dx=§ (German Paragraph) will not work
+I assume any non-ascii character will not work either:
+Exception is (shortened)
+java.io.IOException: Invalid format
+at VMDefinitionsContainer.parseXMLIntoContainer(VMDefinitionsContainer.java:406)
+at JavaRuntime.addPersistedVMs(JavaRuntime.java:1413)
+at JavaRuntime.initializeVMs(JavaRuntime.java:2459)
+at avaRuntime.getDefaultVMId(JavaRuntime.java:495)
+at JavaRuntime.getDefaultVMInstall(JavaRuntime.java:449)
+at JREContainerInitializer.resolveVM(JREContainerInitializer.java:87)
+at JREContainerInitializer.initialize(JREContainerInitializer.java:52)
+I assume
+a) the encoding for the file (which should be conatined in the exception)
+is inconsitant on write/read
+b) Maybe be java must be called wit ascii options only,
+then the dialog should catch this before writing
+Workaround (inconvenient):
+specify such global options via a variable substitution
+Is it possible to quote/escape such characters via \uxxxxx or such ?

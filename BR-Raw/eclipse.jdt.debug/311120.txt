@@ -1,0 +1,101 @@
+Bug 311120 – Breakpoints totally hosed due to: Unable to create view ID org.eclipse.debug.ui.BreakpointView: Illegal/unsupported escape sequence near index 6Build\CheckPropertiesFiles
+Build Identifier: Build id: M20100211-1343
+eclipse.buildId=M20100211-1343
+java.version=1.6.0_16
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+Error
+Thu Apr 29 16:26:49 EDT 2010
+Unable to create view ID org.eclipse.debug.ui.BreakpointView: Illegal/unsupported escape sequence near index 6Build\CheckPropertiesFiles
+^
+java.util.regex.PatternSyntaxException: Illegal/unsupported escape sequence near index 6
+Build\CheckPropertiesFiles
+^
+at java.util.regex.Pattern.error(Unknown Source)
+at java.util.regex.Pattern.escape(Unknown Source)
+at java.util.regex.Pattern.atom(Unknown Source)
+at java.util.regex.Pattern.sequence(Unknown Source)
+at java.util.regex.Pattern.expr(Unknown Source)
+at java.util.regex.Pattern.compile(Unknown Source)
+at java.util.regex.Pattern.<init>(Unknown Source)
+at java.util.regex.Pattern.compile(Unknown Source)
+at org.eclipse.jdt.internal.debug.core.breakpoints.JavaMethodBreakpoint.setMarker(JavaMethodBreakpoint.java:557)
+at org.eclipse.debug.internal.core.BreakpointManager.createBreakpoint(BreakpointManager.java:533)
+at org.eclipse.debug.internal.core.BreakpointManager.loadBreakpoints(BreakpointManager.java:267)
+at org.eclipse.debug.internal.core.BreakpointManager.initializeBreakpoints(BreakpointManager.java:434)
+at org.eclipse.debug.internal.core.BreakpointManager.getBreakpoints0(BreakpointManager.java:403)
+at org.eclipse.debug.internal.core.BreakpointManager.getBreakpoints(BreakpointManager.java:388)
+at org.eclipse.debug.internal.ui.views.breakpoints.BreakpointsContentProvider.reorganize(BreakpointsContentProvider.java:176)
+at org.eclipse.debug.internal.ui.views.breakpoints.BreakpointsContentProvider.inputChanged(BreakpointsContentProvider.java:86)
+at org.eclipse.jface.viewers.ContentViewer.setInput(ContentViewer.java:270)
+at org.eclipse.jface.viewers.StructuredViewer.setInput(StructuredViewer.java:1634)
+at org.eclipse.debug.internal.ui.views.breakpoints.BreakpointsView.createViewer(BreakpointsView.java:149)
+at org.eclipse.debug.ui.AbstractDebugView$ViewerPage.createControl(AbstractDebugView.java:270)
+at org.eclipse.debug.ui.AbstractDebugView.createDefaultPage(AbstractDebugView.java:358)
+at org.eclipse.ui.part.PageBookView.createPartControl(PageBookView.java:483)
+at org.eclipse.debug.ui.AbstractDebugView.createPartControl(AbstractDebugView.java:319)
+at org.eclipse.debug.internal.ui.views.breakpoints.BreakpointsView.createPartControl(BreakpointsView.java:134)
+at org.eclipse.ui.internal.ViewReference.createPartHelper(ViewReference.java:367)
+at org.eclipse.ui.internal.ViewReference.createPart(ViewReference.java:226)
+at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:595)
+at org.eclipse.ui.internal.PartPane.setVisible(PartPane.java:313)
+at org.eclipse.ui.internal.ViewPane.setVisible(ViewPane.java:529)
+at org.eclipse.ui.internal.presentations.PresentablePart.setVisible(PresentablePart.java:180)
+at org.eclipse.ui.internal.presentations.util.PresentablePartFolder.select(PresentablePartFolder.java:270)
+at org.eclipse.ui.internal.presentations.util.LeftToRightTabOrder.select(LeftToRightTabOrder.java:65)
+at org.eclipse.ui.internal.presentations.util.TabbedStackPresentation.selectPart(TabbedStackPresentation.java:473)
+at org.eclipse.ui.internal.PartStack.refreshPresentationSelection(PartStack.java:1256)
+at org.eclipse.ui.internal.PartStack.createControl(PartStack.java:668)
+at org.eclipse.ui.internal.PartStack.createControl(PartStack.java:576)
+at org.eclipse.ui.internal.PartSashContainer.createControl(PartSashContainer.java:568)
+at org.eclipse.ui.internal.PerspectiveHelper.activate(PerspectiveHelper.java:272)
+at org.eclipse.ui.internal.Perspective.onActivate(Perspective.java:982)
+at org.eclipse.ui.internal.WorkbenchPage.onActivate(WorkbenchPage.java:2626)
+at org.eclipse.ui.internal.WorkbenchWindow$27.run(WorkbenchWindow.java:2965)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+at org.eclipse.ui.internal.WorkbenchWindow.setActivePage(WorkbenchWindow.java:2946)
+at org.eclipse.ui.internal.WorkbenchWindow$21.runWithException(WorkbenchWindow.java:2263)
+at org.eclipse.ui.internal.StartupThreading$StartupRunnable.run(StartupThreading.java:31)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:134)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3885)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3506)
+at org.eclipse.ui.application.WorkbenchAdvisor.openWindows(WorkbenchAdvisor.java:803)
+at org.eclipse.ui.internal.Workbench$28.runWithException(Workbench.java:1384)
+at org.eclipse.ui.internal.StartupThreading$StartupRunnable.run(StartupThreading.java:31)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:134)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3885)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3506)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2316)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2221)
+at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:500)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:493)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:113)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:194)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:368)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:559)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:514)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1311)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1287)
+Reproducible: Always
+Steps to Reproduce:
+According to the error log:
+1.
+Experience a workspace crash
+2.
+Get assorted errors including "Unhandled event loop exception" and "An internal error occurred during: "Initialize Java Debug Options"."
+3.
+Then get the error reported in Details and never be able to use breakpoints again.
+I have searched exhaustively to try and find the file containing the offending string...
+to no avail.

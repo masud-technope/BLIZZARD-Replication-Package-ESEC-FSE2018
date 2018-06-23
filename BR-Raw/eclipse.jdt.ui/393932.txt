@@ -1,0 +1,30 @@
+Bug 393932 – [refactoring] pull-up with "use the destination type where possible" creates bogus import of nested type
+Given this class:
+package p;
+public class C {
+protected class I1 {
+}
+protected class I2 extends I1 {
+protected void foo() {
+}
+}
+void test(I2 i) {
+i.foo();
+}
+}
+When pulling up foo() to I1 and enabling "use the destination type where possible" the change in test(..) creates a bogus import of the inner class I1.
+Result is:
+package p;
+import p.C.I1; // BUG
+public class C {
+protected class I1 {
+protected void foo() {
+}
+}
+protected class I2 extends I1 {
+}
+void test(I1 i) {
+i.foo();
+}
+}
+The bug seems to originate from the fact that SuperTypeRefactoringProcessor.createCorrespondingNode(CompilationUnitRewrite, TType) calls ImportRewrite.addImportFromSignature(String,AST) with no proper ImportRewriteContext.

@@ -1,0 +1,4 @@
+Bug 30028 – Java snippet navigate actions do not work with keybindings
+Open Declaration and Open Type Hierarchy do not work with F3 and F4.
+These actions will need to have their action definition ids set and be
+registered with the key binding service for the correct action definitions.

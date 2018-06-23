@@ -1,0 +1,7 @@
+Bug 246926 – [product] files should allow version selection for dependencies
++++ This bug was initially created as a clone of Bug #174018 +++
+PDE needs to support version information inside product files.
+This may have an affect on p2/PDE Build
+More information:
+Now that the PDE supports multiple versions of the same plug-in, these plug-in selection lists also ought to allow you to select a specific version or versions of the plug-ins.
+Instead, it seems that currently all versions of a particular plug-in are selected when you select it.

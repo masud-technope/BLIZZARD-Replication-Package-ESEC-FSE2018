@@ -1,0 +1,6 @@
+Bug 31214 – [Show in] Fails for Package Explorer in non-Java project
+- create a simple project P
+- create a simple file called "x.java" in P
+- open it with the Default Text Editor
+- in the editor activate "Show in" and select Package Explorer as target
+-> nothing happens even if P and "x.java" are visible in the Package Explorer

@@ -1,0 +1,25 @@
+Bug 390882 – [1.8][compiler] Compiler should reject type annotations on nested package names and qualified top level types
+BETA_JAVA8:
+This program compiles without any errors when built against 308 enabled
+8b56:
+// -----------
+import java.lang.annotation.Target;
+import static java.lang.annotation.ElementType.*;
+public class X {
+Object o1 = (@Marker java.lang.Integer) null;   // 1.
+Right.
+Object o2 = (java.
+@Marker lang.Integer) null;  // 2.
+Wrong.
+Object o3 = (java.lang.
+@Marker Integer) null;  // 3.
+Wrong.
+}
+@Target(TYPE_USE)
+@interface Marker {
+}
+// ----------------------------------
+2 is annotating a nested package name - 308 does not allow this.
+3 is annotating a top level type - the proper way to this is to
+use 1 style prefix annotations.
+Note that 8b50 javac crashes on this test case.

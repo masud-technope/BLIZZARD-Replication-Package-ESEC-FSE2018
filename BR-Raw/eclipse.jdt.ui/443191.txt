@@ -1,0 +1,3 @@
+Bug 443191 – [1.8][quick fix] Quick fix for "for loop" is not shown for bare local variable/argument/field
+After bug 430336, we need to adapt the quick assist again.
+Bug 430818 adapted the quick assist to 4.4.0, but the AST in master is slightly different.

@@ -1,0 +1,2 @@
+Bug 401666 – [1.8] UI for new Lambda code formatter options
+We need UI for the Java 8 code formatter options from bug 400830.

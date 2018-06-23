@@ -1,0 +1,28 @@
+Bug 402219 – [1.8][compiler] Compile time errors in lambda during hypothetical type check should render candidate method inapplicable.
+BETA_JAVA8:
+The following program is required to be rejected per 0.6.1 with
+a "method is ambiguous" error.
+Beginning 0.6.2 though, compile
+errors discovered during (potential and full) applicability analysis
+should disqualify an overload resolution candidate method and the
+program should compile.
+// ----
+interface I {
+String foo(String s1, String s2);
+}
+interface J {
+X foo(X x1, X x2);
+}
+public class X {
+void goo(I i) {}
+void goo(J j) {}
+public static void main(String [] args) {
+new X().goo((p1, p2) -> p1 = p1 + p2);
+}
+}
+// -----
+ECJ has already been "partly" implementing this semantics: if the body of
+the lambda were to be p1 + p2 instead of p1 = p1 + p2, we would not report
+any ambiguity - (because return expressions need to be analyzed for assignment
+compatibility as a part of cpmpatibility check, an erroneous return type
+would fail to quality)

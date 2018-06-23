@@ -1,0 +1,3 @@
+org.eclipse.jdt.debug.tests/testprograms/FinalBreakpointLocations.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/breakpoints/BreakpointLocationVerificationTests.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/breakpoints/ValidBreakpointLocationLocator.java

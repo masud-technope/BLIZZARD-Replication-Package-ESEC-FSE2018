@@ -1,0 +1,2 @@
+Bug 321427 – [RemoteSrvs][r-OSGi] Tests overwrite/hide superclass instance member serverID
+org.eclipse.ecf.tests.osgi.services.distribution.r_osgi.R_OSGiRemoteServiceAccessTest and R_OSGiServiceRegisterListenerTest both hide the superclass member serverID for no reason.

@@ -1,0 +1,26 @@
+Bug 406990 – AIOOBE from ASM - can I disable API tools?
+Since the latest Eclipse update my error log is flooded with these:
+java.lang.ArrayIndexOutOfBoundsException: 8810
+at org.objectweb.asm.ClassReader.readClass(Unknown Source)
+at org.objectweb.asm.ClassReader.accept(Unknown Source)
+at org.objectweb.asm.ClassReader.accept(Unknown Source)
+at org.eclipse.pde.api.tools.internal.model.TypeStructureBuilder.buildTypeStructure(TypeStructureBuilder.java:200)
+at org.eclipse.pde.api.tools.internal.model.AbstractApiTypeRoot.getStructure(AbstractApiTypeRoot.java:53)
+at org.eclipse.pde.api.tools.internal.model.ApiType.resolveType(ApiType.java:326)
+at org.eclipse.pde.api.tools.internal.model.ApiType.getSuperInterfaces(ApiType.java:271)
+at org.eclipse.pde.api.tools.internal.builder.IllegalImplementsProblemDetector.findRestrictedSuperinterfaces(IllegalImplementsProblemDetector.java:212)
+at org.eclipse.pde.api.tools.internal.builder.IllegalImplementsProblemDetector.considerReference(IllegalImplementsProblemDetector.java:78)
+at org.eclipse.pde.api.tools.internal.builder.ReferenceAnalyzer$Visitor.visit(ReferenceAnalyzer.java:104)
+at org.eclipse.pde.api.tools.internal.model.ArchiveApiTypeContainer.accept(ArchiveApiTypeContainer.java:204)
+at org.eclipse.pde.api.tools.internal.model.AbstractApiTypeContainer.accept(AbstractApiTypeContainer.java:56)
+at org.eclipse.pde.api.tools.internal.model.Component.accept(Component.java:62)
+at org.eclipse.pde.api.tools.internal.builder.ReferenceAnalyzer.extractReferences(ReferenceAnalyzer.java:201)
+at org.eclipse.pde.api.tools.internal.builder.ReferenceAnalyzer.analyze(ReferenceAnalyzer.java:232)
+at org.eclipse.pde.api.tools.internal.builder.BaseApiAnalyzer.checkApiUsage(BaseApiAnalyzer.java:1214)
+at org.eclipse.pde.api.tools.internal.builder.BaseApiAnalyzer.analyzeComponent(BaseApiAnalyzer.java:273)
+at org.eclipse.pde.api.tools.internal.builder.ApiAnalysisBuilder.buildAll(ApiAnalysisBuilder.java:719)
+at org.eclipse.pde.api.tools.internal.builder.ApiAnalysisBuilder.build(ApiAnalysisBuilder.java:333)
+I'm guessing that I got a corrupt class file, so I would like to
+(1) identify which class file the tools is choking on
+(2) disable API tools for the entire workspace for now
+I can't find an easy way for either (1) or (2), any?

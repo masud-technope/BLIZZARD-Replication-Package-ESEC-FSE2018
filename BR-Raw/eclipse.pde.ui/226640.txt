@@ -1,0 +1,4 @@
+Bug 226640 – Missing @since tags
+I20080410-1022
+pde.ui has 6 missing @since tags in HEAD when comparing to a 3.3.2 baseline, e.g.
+EclipseLaunchShortcut.java	org.eclipse.pde.ui/src/org/eclipse/pde/ui/launcher	line 112	@since tag problem

@@ -1,0 +1,13 @@
+Bug 425006 – [1.8][quick assist] 'Convert to anonymous class creation' creates wildcard return type
+package one.test;
+interface I<M> {
+M run(M x);
+}
+class Test {
+I<?> li2 = s -> null;
+}
+----------------------------------------
+Convert lambda to anonymous class using the quick assist.
+We get the following code with compilation error:
+I<?> li2 = new I<Object>(){@Override public ? run(Object s){return null;}};
+See also: bug 424273.

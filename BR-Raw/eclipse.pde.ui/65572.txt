@@ -1,0 +1,35 @@
+Bug 65572 – NPE on Open Schema (on read-only schema files)
+In Plugins view,
+- select o.e.jdt.ui
+- open plugin.xml
+- in extension points section, select an extension point
+- in context menu, 'open schema'
+- got the NPE below (same result on RC1 as I06032004)
+Error Jun 03, 2004 12:34:35.209 java.lang.NullPointerException
+java.lang.NullPointerException
+at org.eclipse.pde.internal.ui.editor.plugin.ExtensionPointsSection.handleOpenSchema(ExtensionPointsSection.java:272)
+at org.eclipse.pde.internal.ui.editor.plugin.ExtensionPointsSection.access$1(ExtensionPointsSection.java:257)
+at org.eclipse.pde.internal.ui.editor.plugin.ExtensionPointsSection$2.run(ExtensionPointsSection.java:185)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:881)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:915)
+at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:866)
+at org.eclipse.jface.action.ActionContributionItem$7.handleEvent(ActionContributionItem.java:785)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:82)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:796)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:2716)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2382)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1363)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:1334)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:253)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:141)
+at org.eclipse.ui.internal.ide.IDEApplication.run(IDEApplication.java:96)
+at org.eclipse.core.internal.runtime.PlatformActivator$1.run(PlatformActivator.java:334)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:273)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:128)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:324)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:185)
+at org.eclipse.core.launcher.Main.run(Main.java:638)
+at org.eclipse.core.launcher.Main.main(Main.java:622)

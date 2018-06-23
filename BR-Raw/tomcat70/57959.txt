@@ -1,0 +1,20 @@
+57959 – Deadlock in FileHandler.java when log is rotated
+Tomcat 7 will deadlock when a log file is rotated.
+ This issue has been fixed in latest tomcat 6 and tomcat 8 but not in tomcat 7.
+The issue is in following code (apache-tomcat-7.0.62-src/java/org/apache/juli/FileHandler.java:188)
+} finally {
+writerLock.writeLock().unlock();
+// Down grade to read-lock.
+This ensures the writer remains valid
+// until the log message is written
+writerLock.readLock().lock();
+}
+}
+Despite the comment the order is wrong, you have to acquire a read lock then release write lock to make sure the race condition does not occur.
+The correct way to do it is:
+} finally {
+writerLock.readLock().lock();
+writerLock.writeLock().unlock();
+}
+}
+In tomcat 6 (apache-tomcat-6.0.44-src/java/org/apache/juli/FileHandler.java:187) and tomcat 8 (apache-tomcat-8.0.22-src/java/org/apache/juli/FileHandler.java:186) the order is correct.

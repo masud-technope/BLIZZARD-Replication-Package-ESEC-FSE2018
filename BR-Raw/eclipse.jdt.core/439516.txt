@@ -1,0 +1,16 @@
+Bug 439516 – [1.8][null] NonNullByDefault wrongly applied to implicit type bound of binary type
+Consider two classes
+@NonNullByDefault
+C1<T>
+and
+@NonNullByDefault
+C2<T extends Object>
+While the nullness default has no effect on C1, it changes the semantics of C2 to
+C2<T extends @NonNull Object>
+This is because the nullness default affects explicit type bounds, but not implicit type bounds.
+Unfortunately, both classes create the same byte code, and we cannot distinguish from those bytes, whether a type bound was implicit or explicit.
+This causes us to incorrectly read the class file for C1 as "C1<T extends @NonNull Object>".
+I'm planning two changes:
+(1) always consider upper bounds of j.l.Object as "implicit" bounds (src & bin)
+(2) issue a warning against classes like C2, signaling that the default is not applied although the type bound is explicit
+Perhaps, a note in the javadoc of DefaultLocation.TYPE_BOUND is appropriate, too.

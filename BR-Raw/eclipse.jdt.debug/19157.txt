@@ -1,0 +1,3 @@
+Bug 19157 – JavaMethodBreakpoints hold onto debug targets
+In the hashtable fEventTypes.
+ Puts with no removal.

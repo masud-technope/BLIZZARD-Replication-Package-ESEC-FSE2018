@@ -1,0 +1,5 @@
+Bug 209410 – [bot] improve documentation/feedback & error handling
+Created attachment 82602 [details]
+misc fixes
+This is for improved i/o with the bot, HTMLified commands, and using the commands themselves as regexes instead of simply as comments in the properties file.
+See also comments / TODOs in attached patch.

@@ -1,0 +1,12 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/AttachedJavadocTests.java
+org.eclipse.jdt.core.tests.model/workspace/AttachedJavadocProject/bug334652(3).jar
+org.eclipse.jdt.core.tests.model/workspace/AttachedJavadocProject/bug334652.jar
+org.eclipse.jdt.core.tests.model/workspace/AttachedJavadocProject/bug334652(2)_doc.zip
+org.eclipse.jdt.core.tests.model/workspace/AttachedJavadocProject/bug334652(4).jar
+org.eclipse.jdt.core.tests.model/workspace/AttachedJavadocProject/bug334652(4)_doc.zip
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/BinaryMethod.java
+org.eclipse.jdt.core.tests.model/workspace/AttachedJavadocProject/bug334652_doc.zip
+org.eclipse.jdt.core.tests.model/workspace/AttachedJavadocProject/bug334652(2).jar
+org.eclipse.jdt.core.tests.model/workspace/AttachedJavadocProject/bug334652(3)_doc.zip
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavadocContents.java

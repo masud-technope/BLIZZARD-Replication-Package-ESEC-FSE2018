@@ -1,0 +1,10 @@
+Bug 220235 – Project-specific Plug-in Manifest Compiler properties broken
+I20080222-1622
+- select a plug-in project
+(I took org.eclipse.ltk.core.refactoring.tests from CVS)
+- context menu > Properties > Plug-in Manifest Compiler
+- enable 'Use project settings'
+- OK
+- open properties dialog again
+=> 'Use project settings' disabled
+It looks like the project-specific options are still saved and used, even though the properties page opens disabled.

@@ -1,0 +1,2 @@
+Bug 427883 – Use ArrayContentProvider in ExtractClassWizard
+I think the the custom content provider in ExtractClassWizard can be replaced with the ArrayContentProvider.

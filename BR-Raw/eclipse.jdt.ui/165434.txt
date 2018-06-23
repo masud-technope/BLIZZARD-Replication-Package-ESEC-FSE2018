@@ -1,0 +1,5 @@
+Bug 165434 – [Structure Viewers] Reconcile structure upon document changes
+I20061121-1845
+I often get confused when using the compare views by the stale information in the structure comparison which only updates on safe.
+I'd like to have the option that the structure compare updates when the content changes, e.g.
+when I move a change from right to left or the other way around.

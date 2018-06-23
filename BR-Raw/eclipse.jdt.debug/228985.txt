@@ -1,0 +1,10 @@
+Bug 228985 � JREsPreferencePage.java resizing problem
+Build ID: Build id: I20080409-1425
+Steps To Reproduce:
+1.Start eclipse, at startup, a configuration application, in this case, programmatically (not via the UI - pref page) adds a JRE to the JREsPreferencePage with a very long location path – e.g.
+170 characters
+2.Go to the Window -> Preferences… -> Java -> Installed JREs
+4.The Page (UI) is stretched all the way to the right and the Location column of this page’s viewer(table) is also stretched (170 characters – in this case) , causing the UI to be badly layout
+5.If the JRE with the long location-path was added via the UI, the UI is not stretched, the location column is not stretched and the UI looks good.
+More information:
+Does the Location column should stretch to a default max value at all time so preventing the UI from doing this?

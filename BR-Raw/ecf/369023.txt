@@ -1,0 +1,18 @@
+Bug 369023 – NullPointerException when tracing in org.eclipse.ecf.core.util.Trace#catching
+Build Identifier: ECF Version:  3.5.2.v20110829-0349
+this method dies with an NPE if throwable is null
+public static void catching(String pluginId, String option, Class clazz,
+String methodName, Throwable throwable) {
+if (shouldTrace(pluginId, option)) {
+if (throwable != null) {
+...
+}
+...
+throwable.printStackTrace(System.err);
+}
+}
+Reproducible: Always
+Steps to Reproduce:
+Enable tracing, do crazy stuff like me.
+code looks to still be in latest
+http://git.eclipse.org/c/ecf/org.eclipse.ecf.git/tree/framework/bundles/org.eclipse.ecf.identity/src/org/eclipse/ecf/core/util/Trace.java

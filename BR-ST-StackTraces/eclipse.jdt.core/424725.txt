@@ -1,0 +1,13 @@
+org.eclipse.jdt.internal.compiler.ast.Statement.analyseArguments
+org.eclipse.jdt.internal.compiler.ast.MessageSend.analyseCode
+org.eclipse.jdt.internal.compiler.ast.Block.analyseCode
+org.eclipse.jdt.internal.compiler.ast.TryStatement.analyseCode
+org.eclipse.jdt.internal.compiler.ast.Block.analyseCode
+org.eclipse.jdt.internal.compiler.ast.IfStatement.analyseCode
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.analyseCode
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.internalAnalyseCode
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.analyseCode
+org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.analyseCode
+org.eclipse.jdt.internal.compiler.Compiler.process
+org.eclipse.jdt.internal.compiler.ProcessTaskManager.run
+java.lang.Thread.run

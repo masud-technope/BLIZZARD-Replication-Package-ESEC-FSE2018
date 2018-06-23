@@ -1,0 +1,4 @@
+Bug 432132 – JUnit test failures in AddUnimplementedMethodsTest
+http://download.eclipse.org/eclipse/downloads/drops4/N20140406-2000/testresults/html/org.eclipse.jdt.ui.tests_win32.win32.x86_7.0.html
+There are 4 test failures in AddUnimplementedMethodsTest which can be reproduced by running the tests locally in workspace also.
+However, these are not reproducible while performing the Override methods action in runtime.

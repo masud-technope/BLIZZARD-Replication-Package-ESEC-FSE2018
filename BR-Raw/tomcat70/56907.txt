@@ -1,0 +1,10 @@
+56907 – Threads leak
+Hello.
+While using WebSocket implementation of versions 7.0.55 and 8.0.11 leaking threads were noticed.
+Use method WsWebSocketContainer.connection (endpoint, clientEndpointConfiguration, path) to reproduce this issue.
+The URL to specify a non-existent page.
+As a result, the connection will return an error "404 Not Found", but the threads that have been created in the class AsyncChannelWrapperSecure will stay alive for a long time (source of threads creation: private final ExecutorService executor = Executors.newFixedThreadPool (2, new SecureIOThreadFactory ());).
+Count of threads are increasing with every reconnect attempt to non-existent URL.
+Those will live for a very long time, until you disable the application that calls the connection WsWebSocketContainer.connection (...).
+Leakage threads can be observed using the jvisualvm program.
+Please, make it possible to deal with such kind of situations and destroy unused threads.

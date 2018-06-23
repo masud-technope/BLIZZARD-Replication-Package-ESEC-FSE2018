@@ -1,0 +1,14 @@
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/JavaCore.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/dom/StandAloneASTParserTest.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaProjectTests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/NullAnnotationModelTests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/AbstractJavaModelCompletionTests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTConverterBugsTest.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ASTParser.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTParserTest.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/IJavaProject.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavaProject.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ConverterTestSetup.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/AttachSourceTests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/EncodingTests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaSearchJavadocTests.java

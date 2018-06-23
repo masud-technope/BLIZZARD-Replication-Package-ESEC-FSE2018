@@ -1,0 +1,9 @@
+Bug 476930 – NullPointerException in AbstractJavaLaunchConfigurationDelegate.getDefaultWorkingDirectory 
+org.eclipse.jdt.launching.AbstractJavaLaunchConfigurationDelegate.getDefaultWorkingDirectory
+org.eclipse.jdt.launching.AbstractJavaLaunchConfigurationDelegate.verifyWorkingDirectory
+org.eclipse.jdt.launching.JavaLaunchDelegate.launch
+org.eclipse.debug.internal.core.LaunchConfiguration.launch
+org.eclipse.debug.internal.core.LaunchConfiguration.launch
+org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch
+org.eclipse.debug.internal.ui.DebugUIPlugin$8.run
+org.eclipse.core.internal.jobs.Worker.run

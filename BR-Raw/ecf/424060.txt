@@ -1,0 +1,5 @@
+Bug 424060 – Support advertising/de-advertisting IServiceInfos via OSGi service registry
+The OSGi service registry semantics map 1:1 to ECF's IDiscoveryAdvertiser.
+Thus, support the use case where an IServiceInfo instance is registered with the OSGi service registry to be advertised by _all_ discovery advertisers.
+Once unregistered, the IDAs stop advertising the service too.
+This has the added benefit, that users of IDiscoveryAdvertisers do not have to care about the life-cycle of IDAs.

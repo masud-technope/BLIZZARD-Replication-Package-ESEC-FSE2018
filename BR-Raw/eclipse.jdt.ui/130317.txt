@@ -1,0 +1,8 @@
+Bug 130317 – ASTParser with IClassFile as source creates type bindings that are not isEqualTo(..) binary bindings
+I20060301-0800
+Create an AST from an IClassFile with source attachment, e.g.
+java.lang.Integer
+-> was: the ITypeBinding for Integer answers true for isFromSource()
+-> expected: false
+On the other hand, when I create an AST for a compilation unit that refers to Integer and resolve a type binding for Integer there, the binding is not a source binding (as expected).
+Comparing these two different kinds of type bindings with isEqualsTo(..) returns false, although their keys are equal.

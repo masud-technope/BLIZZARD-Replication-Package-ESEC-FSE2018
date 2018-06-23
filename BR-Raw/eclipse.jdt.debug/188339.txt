@@ -1,0 +1,24 @@
+Bug 188339 – [scrapbook] Expressions from scrapbook does not convert to watch expression correctly
+I have this in a *.jpage file:
+int result = -1;
+int i=2;
+switch (i)
+{
+case 0:
+result = 0;
+break;
+case 1:
+result = 2;
+break;
+case 2:
+result = 4;
+break;
+default:
+break;
+}
+return result;
+I selected the entire code block and did an inspect using "CTRL + Shift + I".
+I used the shortcut again to add the expression to the Expressions View.
+When these statements are added to the expressions view, because the statement is so long, majority of the code is replaced by "..." in the middle.
+I converted the expression to watch expression.
+ The resulted watch expression contains "..." and the original code is lost.

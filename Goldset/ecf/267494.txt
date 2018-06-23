@@ -1,0 +1,2 @@
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/provider/jmdns/container/JMDNSDiscoveryContainer.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/jmdns/javax/jmdns/impl/JmDNSImpl.java

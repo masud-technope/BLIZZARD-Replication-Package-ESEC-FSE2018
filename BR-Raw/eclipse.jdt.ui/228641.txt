@@ -1,0 +1,5 @@
+Bug 228641 – [hovering] Spelling quick fix "Ignore xx during current session" does not update editor from hover
+N20080423-2000
+The spelling quick fix "Ignore xx during current session" does not work when invoked from the rich problem hover.
+Works fine via Ctrl+1.
+Nothing in the log.

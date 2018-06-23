@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/target/TargetDefinitionResolutionTests.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target/TargetPlatformService.java

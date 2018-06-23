@@ -1,0 +1,10 @@
+Bug 165672 – Option wanted to add a specific set of plugins to minimally required plugins.
+Referring to Bug 165665 (https://bugs.eclipse.org/bugs/show_bug.cgi?id=165665), where the plugin to open the Navigator view is not included any more by default and spinning that idea further:
+There should be a further option in the launch configuration dialog (tab "plugins") that allows not only to add the required plugins but also a user-definable set of plugins (plus all their dependencies).
+E.g.
+I always manually add the org.eclipse.pde.runtime plugins to the list of plugins before starting the runtime workbench so that I can open the Error log view to quicker see if and what error I get.
+Searching and picking that plugin in a pretty lengthy list is getting a bit tedious (I have installed AJDT, EMF, EMFT, GEF, GMF and WSP and a few more, so my list of plugins if about 300 entries long!).
+So besides being able to select ALL or just the minimal set I'ld love to see another option to specify the minimal set PLUS a list of user selectable plugins (plus their dependencies of course...) that I *always* want to see added to the list of required plugins.
+A UI to specify that minimal list could be do first deselect all, then picking the ones that one wants to be always included and then to click some new button "Always add these".
+Eclipse would internally execute the "add required plugins" command (so that all dependecies of those that the user just selected get added as well) and then memorize all currently selected plugins as the list of plugins that should always be added.
+Michael

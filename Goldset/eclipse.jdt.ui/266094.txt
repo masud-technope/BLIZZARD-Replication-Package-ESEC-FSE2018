@@ -1,0 +1,44 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/ActionMessages.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/reorg/ReorgMoveWizard.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackager/JarPackagerMessages.properties
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/PullUpMethodPage.java
+org.eclipse.ltk.ui.refactoring/src/org/eclipse/ltk/internal/ui/refactoring/RefactoringUIMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/PreferencesMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/NewSourceFolderWizardPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/NewWizardMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/actions/OrganizeImportsAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaUIMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/CodeTemplateBlock.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/MoveMembersWizard.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/refactoringui.properties
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/FixMessages.properties
+org.eclipse.ltk.ui.refactoring/src/org/eclipse/ltk/internal/ui/refactoring/RefactoringUIMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/CPListLabelProvider.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/actions/AddDelegateMethodsAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/PreferencesMessages.java
+org.eclipse.ltk.ui.refactoring/src/org/eclipse/ltk/internal/ui/refactoring/history/RefactoringDescriptorDeleteQuery.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/refactoring.properties
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/reorg/ReorgMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/actions/FindStringsToExternalizeAction.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/FixMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/CorrectionMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/AddSourceFolderWizardPage.java
+org.eclipse.ltk.ui.refactoring/src/org/eclipse/ltk/internal/ui/refactoring/scripting/ScriptingMessages.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/UnusedCodeFix.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/reorg/DeleteWizard.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/ActionMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/NewWizardMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/dnd/ResourceTransferDragAdapter.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/actions/AddGetterSetterAction.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/AddUnimplementedMethodsOperation.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/reorg/ReorgMessages.properties
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/reorg/JavaDeleteProcessor.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/PushDownWizard.java
+org.eclipse.ltk.ui.refactoring/src/org/eclipse/ltk/internal/ui/refactoring/scripting/ScriptingMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/CorrectionMessages.properties
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/PullUpMemberPage.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/RefactoringCoreMessages.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/reorg/ReorgPolicyFactory.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/actions/ExternalizeStringsAction.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/RefactoringMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaUIMessages.java

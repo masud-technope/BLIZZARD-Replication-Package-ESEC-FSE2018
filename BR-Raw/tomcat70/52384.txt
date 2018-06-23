@@ -1,0 +1,35 @@
+52384 – URL parameter without value should be parsed successfully when logging level = DEBUG
+Create a simple servlet with
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+request.getParameterMap();
+}
+Start Tomcat under Eclipse, or force logging level for class org.apache.tomcat.util.http.Parameters to be "DEBUG"
+Call the servlet with parameter which has no value set, e.g.
+http://localhost:8080/mywebapp/myservlet?parameterWithotValue
+(so only the "parameterWithotValue" should be in the result of request.getParameterMap())
+enjoy exception:
+java.lang.ArrayIndexOutOfBoundsException
+at java.lang.System.arraycopy(Native Method)
+at org.apache.tomcat.util.buf.ByteChunk.append(ByteChunk.java:334)
+at org.apache.tomcat.util.http.Parameters.processParameters(Parameters.java:347)
+at org.apache.tomcat.util.http.Parameters.processParameters(Parameters.java:425)
+at org.apache.tomcat.util.http.Parameters.handleQueryParameters(Parameters.java:189)
+at org.apache.catalina.connector.Request.parseParameters(Request.java:2993)
+at org.apache.catalina.connector.Request.getParameterNames(Request.java:1185)
+at org.apache.catalina.connector.Request.getParameterMap(Request.java:1164)
+at org.apache.catalina.connector.RequestFacade.getParameterMap(RequestFacade.java:444)
+at ru.agapemoda.servlet.ImageServlet.doGet(ImageServlet.java:47)
+......................................................
+at java.lang.Thread.run(Thread.java:662)
+Note: when logging level is "SEVERE", the troublesome code in org.apache.tomcat.util.http.Parameters.processParameters(Parameters.java:347)
+if (log.isDebugEnabled()) {
+try {
+origName.append(bytes, nameStart, nameEnd - nameStart);
+origValue.append(bytes, valueStart, valueEnd - valueStart);
+} catch (IOException ioe) {
+// Should never happen...
+log.error(sm.getString("parameters.copyFail"), ioe);
+}
+}
+is not executed and parameter is being parsed successfully.
+Should be parsed successfully with log level = "DEBUG" as well.

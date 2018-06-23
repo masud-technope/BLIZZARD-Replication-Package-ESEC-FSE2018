@@ -1,0 +1,69 @@
+Bug 348487 – JMDNS Discovery Thread is slowing down shutdown
+I noticed that after Eclipse appears to have shutdown it takes a long time for the Java process to exit.
+Looking at a thread dump all remaining threads are daemon threads except for JMDNS Discovery Thread.
+Shouln't this be marked as a daemon thread as well and/or shutdown when the bundle is stopped that started it?
+Full thread dump Java HotSpot(TM) Server VM (16.3-b01 mixed mode):
+"MultiThreadedHttpConnectionManager cleanup" daemon prio=10 tid=0x0b4aa800 nid=0xd6e in Object.wait() [0xc0f76000]
+java.lang.Thread.State: WAITING (on object monitor)
+at java.lang.Object.wait(Native Method)
+- waiting on <0xd71f4800> (a java.lang.ref.ReferenceQueue$Lock)
+at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:118)
+- locked <0xd71f4800> (a java.lang.ref.ReferenceQueue$Lock)
+at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:134)
+at org.apache.commons.httpclient.MultiThreadedHttpConnectionManager$ReferenceQueueThread.run(MultiThreadedHttpConnectionManager.java:1122)
+"Thread-4" daemon prio=10 tid=0xc32f8800 nid=0xcb3 in Object.wait() [0xc06fe000]
+java.lang.Thread.State: TIMED_WAITING (on object monitor)
+at java.lang.Object.wait(Native Method)
+- waiting on <0xd71012c8> (a org.apache.commons.httpclient.util.IdleConnectionTimeoutThread)
+at org.apache.commons.httpclient.util.IdleConnectionTimeoutThread.run(IdleConnectionTimeoutThread.java:108)
+- locked <0xd71012c8> (a org.apache.commons.httpclient.util.IdleConnectionTimeoutThread)
+"JMDNS Discovery Thread" prio=10 tid=0xc0db9000 nid=0xcaa in Object.wait() [0xc02fe000]
+java.lang.Thread.State: WAITING (on object monitor)
+at java.lang.Object.wait(Native Method)
+- waiting on <0xd62fd768> (a org.eclipse.ecf.internal.provider.jmdns.SimpleFIFOQueue)
+at java.lang.Object.wait(Object.java:485)
+at org.eclipse.ecf.internal.provider.jmdns.SimpleFIFOQueue.peekQueue(SimpleFIFOQueue.java:53)
+- locked <0xd62fd768> (a org.eclipse.ecf.internal.provider.jmdns.SimpleFIFOQueue)
+at org.eclipse.ecf.internal.provider.jmdns.SimpleFIFOQueue.dequeue(SimpleFIFOQueue.java:41)
+- locked <0xd62fd768> (a org.eclipse.ecf.internal.provider.jmdns.SimpleFIFOQueue)
+at org.eclipse.ecf.provider.jmdns.container.JMDNSDiscoveryContainer$1.run(JMDNSDiscoveryContainer.java:121)
+at java.lang.Thread.run(Thread.java:619)
+"Low Memory Detector" daemon prio=10 tid=0xc6f16c00 nid=0xc70 runnable [0x00000000]
+java.lang.Thread.State: RUNNABLE
+"CompilerThread1" daemon prio=10 tid=0xc6f14c00 nid=0xc6f waiting on condition [0x00000000]
+java.lang.Thread.State: RUNNABLE
+"CompilerThread0" daemon prio=10 tid=0xc6f12c00 nid=0xc6e waiting on condition [0x00000000]
+java.lang.Thread.State: RUNNABLE
+"Signal Dispatcher" daemon prio=10 tid=0xc6f11400 nid=0xc6d waiting on condition [0x00000000]
+java.lang.Thread.State: RUNNABLE
+"Finalizer" daemon prio=10 tid=0xc6f00800 nid=0xc6c in Object.wait() [0xc70f3000]
+java.lang.Thread.State: WAITING (on object monitor)
+at java.lang.Object.wait(Native Method)
+- waiting on <0xd3969058> (a java.lang.ref.ReferenceQueue$Lock)
+at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:118)
+- locked <0xd3969058> (a java.lang.ref.ReferenceQueue$Lock)
+at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:134)
+at java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:159)
+"Reference Handler" daemon prio=10 tid=0x096e0c00 nid=0xc6b in Object.wait() [0xc7144000]
+java.lang.Thread.State: WAITING (on object monitor)
+at java.lang.Object.wait(Native Method)
+- waiting on <0xd3981908> (a java.lang.ref.Reference$Lock)
+at java.lang.Object.wait(Object.java:485)
+at java.lang.ref.Reference$ReferenceHandler.run(Reference.java:116)
+- locked <0xd3981908> (a java.lang.ref.Reference$Lock)
+"main" prio=10 tid=0x09640800 nid=0xc65 waiting on condition [0xf6992000]
+java.lang.Thread.State: RUNNABLE
+at java.lang.Shutdown.halt0(Native Method)
+at java.lang.Shutdown.halt(Shutdown.java:95)
+- locked <0xd3837c70> (a java.lang.Shutdown$Lock)
+at java.lang.Shutdown.exit(Shutdown.java:169)
+- locked <0xc7b25238> (a java.lang.Class for java.lang.Shutdown)
+at java.lang.Runtime.exit(Runtime.java:90)
+at java.lang.System.exit(System.java:904)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1394)
+"VM Thread" prio=10 tid=0x096de000 nid=0xc6a runnable
+"GC task thread#0 (ParallelGC)" prio=10 tid=0x09647800 nid=0xc66 runnable
+"GC task thread#1 (ParallelGC)" prio=10 tid=0x09649000 nid=0xc67 runnable
+"GC task thread#2 (ParallelGC)" prio=10 tid=0x0964a800 nid=0xc68 runnable
+"GC task thread#3 (ParallelGC)" prio=10 tid=0x0964bc00 nid=0xc69 runnable
+"VM Periodic Task Thread" prio=10 tid=0xc6f18800 nid=0xc71 waiting on condition

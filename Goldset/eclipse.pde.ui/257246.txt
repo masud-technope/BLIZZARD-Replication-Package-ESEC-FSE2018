@@ -1,0 +1,6 @@
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/ctxhelp/CtxHelpFormOutlinePage.java
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/wizards/toc/NewTocFileWizard.java
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/toc/TocFormOutlinePage.java
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/cheatsheet/simple/SimpleCSFormOutlinePage.java
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/toc/TocPage.java
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/toc/TocSourcePage.java

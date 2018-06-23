@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/product/BaseProductCreationOperation.java
+ui/org.eclipse.pde.core/macosx/Info.plist
+ui/org.eclipse.pde.core/macosx/Info.plist.32
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/exports/ProductExportOperation.java

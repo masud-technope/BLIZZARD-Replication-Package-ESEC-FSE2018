@@ -1,0 +1,3 @@
+org.eclipse.jdt.debug.ui/plugin.xml
+org.eclipse.jdt.debug.tests/console tests/org/eclipse/jdt/debug/tests/console/IOConsoleTests.java
+org.eclipse.jdt.debug.tests/console tests/org/eclipse/jdt/debug/tests/console/IOConsoleHyperlinkActionDelegate.java

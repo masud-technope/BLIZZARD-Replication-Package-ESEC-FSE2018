@@ -1,0 +1,11 @@
+Bug 203375 – User defined ant properties not passed to export process
+Users do crazy things all the time.
+ I talked to a user who tried to reference a bunch of jars outside of the workspace.
+ The jars are included in the runtime, therefore they don't need to be bundlized.
+The project built just fine in the workspace, but fail on export.
+ The solution is to use build.properties tags to specify additional jars to be included during the compilation of source code.
+ In order to prompt as much reusability as possible, we decided to use an Ant property to specify the location.
+ There was a slight problem with this approach.
+The export process queries the Ant preferences for properties.
+ Unfortunately, it only queries/sets properties contributed by extension points.
+ Therefore, the user cannot add custom properties in either the build.properties or really in the build.xml.

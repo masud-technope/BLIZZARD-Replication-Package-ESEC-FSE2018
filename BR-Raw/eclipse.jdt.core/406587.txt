@@ -1,0 +1,18 @@
+Bug 406587 – [1.8][compiler] Missing expected error for incorrect placement of type annotation
+Can't see an existing bug for this (apologies if there is one!).
+This came up whilst working on JSR308 code generation.
+For this code:
+====
+import java.lang.annotation.*;
+@Target(ElementType.TYPE_USE)
+@Retention(RetentionPolicy.CLASS)
+@interface B {
+int value() default -1;
+}
+class X {
+@B(1) java.lang.String field;
+}
+====
+javac flags that 'nested type cannot be annotated'.
+ ECJ just lets it compile.
+ IIRC as of the current spec version it should be written 'java.lang.@B(1) String field' for a type_use annotation that is intended to apply to the String reference.

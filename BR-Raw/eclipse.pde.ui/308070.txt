@@ -1,0 +1,7 @@
+Bug 308070 – pde.exportPlugins ant task doesn't support cycles
+it seems that the ant task pde.exportPlugins doesn't support
+allowForBinaryCyclesInTargetPlatform
+as from PDE --> Export deployable Fragments and Plugins
+would be really great if this property could be added
+thx
+ekke

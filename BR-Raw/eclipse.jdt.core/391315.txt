@@ -1,0 +1,21 @@
+Bug 391315 – [1.8][compiler] Compiler rejects annotations with valid target type
+BETA_JAVA8:
+The following program refuses to compile, while it should:
+// ----
+public class X<T> {
+X<@Marker ?> l;
+class Y {
+void Y1(Y this) {
+}
+}
+}
+@java.lang.annotation.Target (java.lang.annotation.ElementType.TYPE_PARAMETER)
+@interface Marker {
+}
+Per EDR section 2.3:
+"ElementType.TYPE PARAMETER stands for a type parameter â€” that is,
+the declaration of a type variable.
+Examples are in generic class
+declarations class MyClass<T> {...}, generic method declarations
+<T> foo(...) {...}, and wildcards List<?>, which declare an anonymous
+type variable."

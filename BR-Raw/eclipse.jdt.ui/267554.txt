@@ -1,0 +1,41 @@
+Bug 267554 – [ccp] Canceling a file copy operation causes an error
+Build id: I20090224-0800
+1.
+File > New > Other...
+2.
+General > Project > Next
+3.
+Give the project a name, click 'Finish'.
+4.
+File > New > Other...
+5.
+General > File
+6.
+Create a file with an arbitrary name in the project created in step 3.
+7.
+Open the 'Package Explorer'.
+8.
+Select the created file.
+9.
+Invoke Ctrl+C to copy, then invoke Ctrl+V to paste.
+10.
+Click 'Cancel' to cancel the operation.
+11.
+An error appears.
+"Cannot import 'test.txt'.
+The source and destination are the same."
+12.
+Repeat steps 8 to 10 with the 'Project Explorer'.
+The same error from step 11 will be seen again.
+The trace below may be of assistance:
+Thread [main] (Suspended)
+CopyFilesAndFoldersOperation.displayError(String) line: 903
+CopyFilesAndFoldersOperation.copyFileStores(IContainer, IFileStore[],
+boolean, IProgressMonitor) line: 788
+CopyFilesAndFoldersOperation.copyFiles(String[], IContainer) line: 698
+PasteAction$FilePaster.paste(IJavaElement[], IResource[],
+IWorkingSet[], TransferData[]) line: 1205
+PasteAction.run(IStructuredSelection) line: 267
+PasteAction(SelectionDispatchAction).dispatchRun(ISelection) line: 274
+PasteAction(SelectionDispatchAction).run() line: 250
+PasteAction(Action).runWithEvent(Event) line: 498

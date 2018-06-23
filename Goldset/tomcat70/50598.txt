@@ -1,0 +1,6 @@
+java/org/apache/catalina/ant/AbstractCatalinaTask.java
+java/org/apache/catalina/ant/package.html
+res/deployer/build.xml
+webapps/docs/appdev/build.xml.txt
+webapps/docs/changelog.xml
+webapps/docs/deployer-howto.xml

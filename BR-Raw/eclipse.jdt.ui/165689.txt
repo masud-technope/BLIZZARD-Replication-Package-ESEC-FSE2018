@@ -1,0 +1,3 @@
+Bug 165689 – [spell checking] enable quick fix menu
+I20061121-1845
+Ctrl+1 now works for fix spelling problems in text editors but there is now quick fix menu entry.

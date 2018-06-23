@@ -1,0 +1,8 @@
+Bug 77680 – HCR failed message for terminated VM
+I20041102-2000
+I finished debugging VectorTests, but left the termianted launch present in
+the debug view.
+Any time I modify a CU (refactor, change code), and save, I
+get a dialog saying "Hot code replace failed", Reason: The target VM does not
+support hot code replace.
+The error dialog should not appear for terminated VMs.

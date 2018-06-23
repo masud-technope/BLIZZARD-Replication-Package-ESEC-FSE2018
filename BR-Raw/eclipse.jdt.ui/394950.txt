@@ -1,0 +1,15 @@
+Bug 394950 – [infer type arguments] AssertionFailedException when there is only an array field
+Steps to reproduce:
+1.
+Invoke "Infer Generic Type Arguments" on the class below
+2.
+There is an exception thrown ("AssertionFailedException") during check of final conditions
+class InferGenericTypeArgumentsBug1 {
+public int[] data;
+}
+Few lines from .log file:
+org.eclipse.core.runtime.AssertionFailedException: null argument:
+at org.eclipse.core.runtime.Assert.isNotNull(Assert.java:85)
+at org.eclipse.core.runtime.Assert.isNotNull(Assert.java:73)
+at org.eclipse.jdt.internal.corext.refactoring.typeconstraints.typesets.SubTypesOfSingleton.<init>(SubTypesOfSingleton.java:29)
+...

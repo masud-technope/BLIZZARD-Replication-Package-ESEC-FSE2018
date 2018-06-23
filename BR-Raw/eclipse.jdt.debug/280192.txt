@@ -1,0 +1,3 @@
+Bug 280192 – [regression][display] Error while "inspecting in scrapbook
+When I select say "2+2" and go run -> inspect a windows appears with the title "Problmes evaluating expression" and with text " Evaluation Failed: internal error - unable to obtain an execution context".
+I have just installed Ubuntu 9.04

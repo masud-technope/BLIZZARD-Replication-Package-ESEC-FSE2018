@@ -1,0 +1,12 @@
+49956 – @Resource(name=) Normalization of JNDI Name
+Created attachment 26048 [details]
+Resolves issue
+name attribute of @Resource defines JNDI name of the resource that binds the resource to web component java:comp/env/.
+java:comp/env/bla..bla..
+could be given as a JNDI name.
+Therefore before using name in DefaultInstanceManager to inject fields & methods, it must be normalized.
+For example,
+@Resource(name="java:comp/env/myDataSource")
+DataSource ds;
+Before looking up "context.lookup(name)" in DefaultInstanceManager, we have to normalize name to "myDataSource".
+Patch is attached

@@ -1,0 +1,26 @@
+Bug 115173 – Help template is missing
+Hi!
+The help template is missing as "favorite" when creating a new project
+It is only choosable by using the custom template wizard
+If I do not want to use a UI contribution (which is not necessaryly needed for
+help) I can't choose a template at all
+Also no dependency to org.eclipse.help is added to the manifest.
+It would be a greate idea to add a posibility to add all dependencies needed for
+a standalone help.
+(Missing help-plugins is one of the most common error when
+adding help to a rcp app)
+The required plugins are:
+org.eclipse.help
+org.eclipse.help.appserver,
+org.eclipse.help.base
+org.eclipse.help.webapp,
+org.eclipse.help.ui
+org.apache.lucene,
+org.eclipse.core.runtime
+org.eclipse.core.expressions
+org.eclipse.jface
+org.eclipse.ui.workbench
+org.eclipse.update.configurator
+AFAIK, at least for Win and Linux
+Thanks a lot
+Bernd

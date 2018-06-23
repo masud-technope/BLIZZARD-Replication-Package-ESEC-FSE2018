@@ -1,0 +1,7 @@
+java/org/apache/catalina/startup/ContextConfig.java
+java/org/apache/jasper/compiler/Compiler.java
+java/org/apache/jasper/compiler/PageInfo.java
+java/org/apache/jasper/compiler/TagPluginManager.java
+java/org/apache/jasper/compiler/tagplugin/TagPluginContext.java
+java/org/apache/jasper/tagplugins/jstl/core/Set.java
+webapps/docs/changelog.xml

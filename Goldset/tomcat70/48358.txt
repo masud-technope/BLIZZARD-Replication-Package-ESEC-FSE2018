@@ -1,0 +1,12 @@
+java/org/apache/jasper/JspC.java
+java/org/apache/jasper/Options.java
+java/org/apache/jasper/compiler/JspRuntimeContext.java
+conf/web.xml
+java/org/apache/jasper/util/Entry.java
+webapps/docs/jasper-howto.xml
+java/org/apache/jasper/EmbeddedServletOptions.java
+java/org/apache/jasper/servlet/JspServletWrapper.java
+webapps/docs/changelog.xml
+java/org/apache/jasper/resources/LocalStrings.properties
+java/org/apache/jasper/servlet/JspServlet.java
+java/org/apache/jasper/util/JspQueue.java

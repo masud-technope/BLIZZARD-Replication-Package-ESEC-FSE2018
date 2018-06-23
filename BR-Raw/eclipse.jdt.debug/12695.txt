@@ -1,0 +1,12 @@
+Bug 12695 – Need to get full set of breakpoints hit from thread.
+When creating super adapters on top of the Java debug adapter we set hidden
+temporary breakpoints in order to control the Java debug adapter.
+ If the user
+also sets a breakpoint at the same spot as one of our temporary breakpoints then
+when we get a suspend event due to a breakpoint from the Java thread we need to
+be able to ask the thread for the list of breakpoints that were hit.
+ Currently
+we can only get one breakpoint from the thread.
+ If we only see our temporary
+breakpoint which we might choose to ignore and don't see the user breakpoint
+then we will run away.

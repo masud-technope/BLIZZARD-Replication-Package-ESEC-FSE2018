@@ -1,0 +1,3 @@
+Bug 171462 – clean up templates
+Remove 'org.eclipse.ui.workbench.texteditor' from the manifests of both the multi page editor and regular editor template.
+ Also change org.eclipse.jface.util.Assert to org.eclipse.core.runtime.Assert in the editor template.

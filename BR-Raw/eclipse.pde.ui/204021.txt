@@ -1,0 +1,4 @@
+Bug 204021 – Access Restriction Quickfix available when referencing imported package of external plug-in
+When a developer uses Import-Package to get a reference to one package, the remaining packages have access restrictions.
+The new Access Restriction Quickfix is seems to want to try to resolve this problem.
+ This quickfix should not show up in this scenario.

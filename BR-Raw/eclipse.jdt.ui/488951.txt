@@ -1,0 +1,2 @@
+Bug 488951 – [preferences][null] UI for compiler preference to pessimistically analyze free type variables
+Bug 466556 has introduced a new compiler option JavaCore.COMPILER_PB_PESSIMISTIC_NULL_ANALYSIS_FOR_FREE_TYPE_VARIABLES which needs a new combo in the compiler preferences.

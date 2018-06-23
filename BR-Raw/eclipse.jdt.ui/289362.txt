@@ -1,0 +1,5 @@
+Bug 289362 – [JUnit] Opening a JUnit result from a URL
+The Junit view has the ability to open the XML file resulting from a test run.
+This is really neat.
+However I would be even more useful if it could open a file from an HTTP server such that when my test fails I could directly point the junit view to the result files and browse the results of the tests in a very familiar way.
+For example, for the eclipse builds they are buried at http://download.eclipse.org/eclipse/downloads/drops/N20090912-2000/testresults/xml/org.eclipse.equinox.p2.tests_macosx.cocoa.x86_5.0.xml

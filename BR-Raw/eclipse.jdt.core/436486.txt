@@ -1,0 +1,19 @@
+Bug 436486 – AnnotationDiscoveryVisitor.resolveAnnotations causes unhappy processing order
+From bug 421601 comment 6:
+It seems that the following call stack is disturbing evaluation of null annotations:
+at org.eclipse.jdt.internal.compiler.ast.ASTNode.resolveAnnotations(ASTNode.java:776)
+at org.eclipse.jdt.internal.compiler.ast.ASTNode.resolveAnnotations(ASTNode.java:767)
+at org.eclipse.jdt.internal.compiler.apt.dispatch.AnnotationDiscoveryVisitor.resolveAnnotations(AnnotationDiscoveryVisitor.java:233)
+at org.eclipse.jdt.internal.compiler.apt.dispatch.AnnotationDiscoveryVisitor.visit(AnnotationDiscoveryVisitor.java:217)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.traverse(TypeDeclaration.java:1338)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.traverse(CompilationUnitDeclaration.java:745)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.traverse(CompilationUnitDeclaration.java:706)
+at org.eclipse.jdt.internal.compiler.apt.dispatch.RoundEnvImpl.<init>(RoundEnvImpl.java:58)
+at org.eclipse.jdt.internal.compiler.apt.dispatch.BaseAnnotationProcessorManager.processAnnotations(BaseAnnotationProcessorManager.java:148)
+at org.eclipse.jdt.internal.compiler.Compiler.processAnnotations(Compiler.java:818)
+at org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:434)
+at org.eclipse.jdt.internal.compiler.batch.Main.performCompilation(Main.java:4129)
+at org.eclipse.jdt.internal.compiler.batch.Main.compile(Main.java:1694)
+at org.eclipse.jdt.internal.compiler.batch.Main.main(Main.java:1405)
+Normally in the compiler, ASTNode.resolveAnnotations would be invoked from STB.getAnnotationTagBits() and during this call we would also invoke STB.evaluateNullAnnotations().
+With APT in the loop, however, ASTNode.resolveAnnotations sets TagBits.AnnotationResolved and whenever STB.getAnnotationTagBits() is called, we do nothing, so STB.evaluateNullAnnotations() is never invoked.

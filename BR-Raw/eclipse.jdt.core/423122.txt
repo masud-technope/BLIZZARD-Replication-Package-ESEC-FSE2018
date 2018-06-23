@@ -1,0 +1,17 @@
+Bug 423122 – [1.8] Missing incremental build dependency from lambda expression to functional interface
+The incremental build misses a dependency from a lambda expression to its functional interface: When the signature of the interface method is changed, the Lambda expression must be recompiled, even if there's no explicit reference in source code.
+package test1;
+public interface I {
+int method(int a); // change argument type to Object
+}
+package test1;
+public class E {
+void take(I i) {
+}
+}
+package test1;
+public class Ref {
+void foo(E e) {
+e.take((x) -> x+2); // not recompiled when I#method signature changed
+}
+}

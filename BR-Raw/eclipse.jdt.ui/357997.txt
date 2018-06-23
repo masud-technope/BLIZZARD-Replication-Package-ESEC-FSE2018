@@ -1,0 +1,16 @@
+Bug 357997 – [type hierarchy] Type Hierarchy View has button bar painting issues on workspace startup
+Build Identifier: 20110615-0604
+My workspace has type hierarchy active on my Workspace on startup.
+ I believe that View is responsible for leaving an unpainted, gray modeless floating rectangle over or under other parts of UI.
+If I horizontally expand and collapse the column that the type hierarchy is in, I can get the rectangle to be clearly visible.
+ If I collapse the column enough, I can get the rectangle to disappear, and briefly I catch that the rectangle is actually the Type Hierarchy button bar, just unpainted.
+ (The buttons appear for one frame before the bar disappears.)  While the button bar is unpainted, it does not respond to mouse clicks or drags.
+The button bar I am referring to contains the "Show the Type Hierarchy", "Show the Supertype Hierarchy", "Show the Subtype Hierarchy", and "Previous Type Hierarchies" buttons.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Start Eclipse
+2.
+Expand/collapse the Type Hierarchy view horizontally
+3.
+View the modeless rectangle occlude other parts of the UI

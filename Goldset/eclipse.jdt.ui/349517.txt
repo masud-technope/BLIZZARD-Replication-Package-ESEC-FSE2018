@@ -1,0 +1,18 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceParameter/simple17/Catch2.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceParameter/simple17/NewInstance2.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceParameter/simple17/NewInstance3.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceParameter/simple17/NewInstance4.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceParameter/simple17/out/Catch2.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceParameter/simple17/out/NewInstance2.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceParameter/simple17/out/NewInstance3.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceParameter/simple17/out/NewInstance4.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/IntroduceParameterRefactoring.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceParameter/simple17/NewInstance2.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceParameter/simple17/NewInstance3.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceParameter/simple17/NewInstance4.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceParameter/simple17/out/NewInstance2.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceParameter/simple17/out/NewInstance3.java
+org.eclipse.jdt.ui.tests.refactoring/resources/IntroduceParameter/simple17/out/NewInstance4.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/IntroduceParameterTests17.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/IntroduceParameterRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ChangeSignatureProcessor.java

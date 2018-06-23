@@ -1,0 +1,12 @@
+Bug 167774 – NPE in target provisioning
+When adding a target with files which are not plug-ins, an NPE is thrown.
+java.lang.NullPointerException
+at org.eclipse.pde.internal.core.PDEState.createTargetModels(PDEState.java:146)
+at org.eclipse.pde.internal.ui.preferences.TargetPluginsTab.addNewBundles(TargetPluginsTab.java:950)
+at org.eclipse.pde.internal.ui.preferences.TargetPluginsTab.handleAdd(TargetPluginsTab.java:935)
+at org.eclipse.pde.internal.ui.preferences.TargetPluginsTab.buttonSelected(TargetPluginsTab.java:892)
+at org.eclipse.pde.internal.ui.parts.SharedPartWithButtons$SelectionHandler.buttonSelected(SharedPartWithButtons.java:36)
+at org.eclipse.pde.internal.ui.parts.SharedPartWithButtons$SelectionHandler.widgetSelected(SharedPartWithButtons.java:29)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:90)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:929)

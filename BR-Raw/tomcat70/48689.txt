@@ -1,0 +1,6 @@
+48689 – Jar abstraction for Jasper
+Jasper can load TLD files through the ServletContext or from a Jar file.
+To load TLDs from Jar file, an URL to a Jar file must be passed.
+However, in some environments (e.g.
+in OSGi) it might not be easy to provide an URL to a jar file.
+It would be nice to abstract the way Jasper is looking up the embedded TLDs so that different ways of looking up TLDs within Jar files or Bundles or whatever could be used.

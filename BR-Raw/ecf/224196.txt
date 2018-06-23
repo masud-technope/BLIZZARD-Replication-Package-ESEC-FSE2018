@@ -1,0 +1,4 @@
+Bug 224196 – [filetransfer][sec] wiring the trust engine into ssl handshake
+The current behavior for ssl connection is using all the CAs in the jre cacerts file.
+ In order to support self-signed cert or other CA roots.
+ We need a way to wire the certs in the trust engine into ssl handshake process.

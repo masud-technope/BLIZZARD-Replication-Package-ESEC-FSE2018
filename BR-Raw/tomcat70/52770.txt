@@ -1,0 +1,50 @@
+52770 – Potential Bug or Inconsistency in NioBlockingSelector.java
+This is Ken Cheung, a Computer Science M.Phil.
+student.
+I observed some
+code clones in Tomcat and found inconsistent code:
+/tomcat/trunk/java/org/apache/tomcat/util/net/NioBlockingSelector.java
+103	                try {
+104	                    if ( att.getWriteLatch()==null || att.getWriteLatch().getCount()==0) att.startWriteLatch(1);
+105	                    poller.add(att,SelectionKey.OP_WRITE,reference);
+106	                    att.awaitWriteLatch(writeTimeout,TimeUnit.MILLISECONDS);
+107	                }catch (InterruptedException ignore) {
+108	                    Thread.interrupted();
+109	                }
+110	                if ( att.getWriteLatch()!=null && att.getWriteLatch().getCount()> 0) {
+111	                    //we got interrupted, but we haven't received notification from the poller.
+112	                    keycount = 0;
+113	                }else {
+114	                    //latch countdown has happened
+115	                    keycount = 1;
+116	                    att.resetWriteLatch();
+117	                }
+118
+119	                if (writeTimeout > 0 && (keycount == 0))
+120	                    timedout = (System.currentTimeMillis() - time) >= writeTimeout;
+/tomcat/trunk/java/org/apache/tomcat/util/net/NioBlockingSelector.java
+164	                try {
+165	                    if ( att.getReadLatch()==null || att.getReadLatch().getCount()==0) att.startReadLatch(1);
+166	                    poller.add(att,SelectionKey.OP_READ, reference);
+167	                    if (readTimeout < 0) {
+168	                        att.awaitReadLatch(Long.MAX_VALUE, TimeUnit.MILLISECONDS);
+169	                    } else {
+170	                        att.awaitReadLatch(readTimeout, TimeUnit.MILLISECONDS);
+171	                    }
+172	                }catch (InterruptedException ignore) {
+173	                    Thread.interrupted();
+174	                }
+175	                if ( att.getReadLatch()!=null && att.getReadLatch().getCount()> 0) {
+176	                    //we got interrupted, but we haven't received notification from the poller.
+177	                    keycount = 0;
+178	                }else {
+179	                    //latch countdown has happened
+180	                    keycount = 1;
+181	                    att.resetReadLatch();
+182	                }
+183	                if (readTimeout >= 0 && (keycount == 0))
+184	                    timedout = (System.currentTimeMillis() - time) >= readTimeout;
+Quick description of the inconsistency
+Two code snippets are very similar code, but as you see, the first code does not check "if (readTimeout < 0)" while the second code has the checker.
+We thought it could be a potential bug or inconsistency.
+Hope this helps.

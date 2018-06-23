@@ -1,0 +1,6 @@
+Bug 489924 – API baseline from target X is not considered as derived from target X
+On Windows the method ApiModelFactory.isDerivedFromTarget(IApiBaseline, ITargetDefinition) returns wrong results directly after a restart of Eclipse.
+ApiModelFactory consistently uses IPath.SEPARATOR to encode/decode the "target:"-based location of a baseline, but after a restart of Eclipse the method ApiBaselineManager.restoreBaseline(IApiBaseline, InputStream) does the following:
+baseline.setLocation(Path.fromPortableString(baselineLocation).toOSString());
+On Windows that results in all slashes being translated into backslashes, so that in the method ApiModelFactory.isDerivedFromTarget(IApiBaseline, ITargetDefinition) the location of the baseline becomes different from the location generated out of the given target.
+In Oomph this results in Setup Tasks that always want to perform, because they wrongly establish that the configured target name has changed.

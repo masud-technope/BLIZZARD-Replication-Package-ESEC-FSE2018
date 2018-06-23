@@ -1,0 +1,19 @@
+Bug 144858 – [compiler] Should be more resilient with duplicate locals
+3.2RC6
+In presence of duplicate local variables, duplicate fields or methods; the compiler discards all instances of the offending construct.
+This means that more secondary errors may arise and be quite misleading outside of context, and other tools based on the AST (DOM AST for instance) may behave suboptimally as lacking some of the binding information.
+What if:
+- it still created the bindings, and attached them to the AST node
+- it would leave at least one entry in binding arrays to reduce amount of secondary errors.
+e.g.
+we currently complain about missing both #foo() and #baz()
+public class X {
+void foo() {
+}
+void foo() {
+}
+void bar() {
+foo();
+baz();
+}
+}

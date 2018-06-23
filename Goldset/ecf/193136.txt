@@ -1,0 +1,3 @@
+providers/bundles/org.eclipse.ecf.provider.irc.ui/src/org/eclipse/ecf/internal/irc/ui/Messages.java
+providers/bundles/org.eclipse.ecf.provider.irc.ui/src/org/eclipse/ecf/internal/irc/ui/messages.properties
+providers/bundles/org.eclipse.ecf.provider.irc.ui/src/org/eclipse/ecf/internal/irc/ui/wizards/IRCConnectWizardPage.java

@@ -1,0 +1,4 @@
+Bug 373950 – [preferences] Getting recommendations about the null settings even if annotation-based null analysis is not enabled
+Through the bug 371968, a popup was added to warn about lesser compiler setting than the setting for null annotation based analysis.
+I am getting this popup even if the 'Enable annotation-based null analysis' is turned off.
+I am using I20120306-0800.

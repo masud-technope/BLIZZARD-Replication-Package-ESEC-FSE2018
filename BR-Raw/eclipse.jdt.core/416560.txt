@@ -1,0 +1,23 @@
+Bug 416560 – [1.8] Incorrect source range for lambda expression's parameter
+Created attachment 235166 [details]
+Screenshot
+package misc.test;
+interface FI {
+int foo(int s1, int s2);
+}
+class Test {
+FI fi= /*a*/ (int n1, int n2) -> n1 * n2;
+}
+--------------------------
+Steps:
+1.
+To get the JLS8 AST, set org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.SHARED_AST_LEVEL to AST.JLS8.
+2.
+Add a breakpoint in org.eclipse.jdt.internal.core.CompilationUnit.reconcile(int astLevel, int reconcileFlags, WorkingCopyOwner workingCopyOwner, IProgressMonitor monitor).
+3.
+Paste the above example in package explorer of the runtime workbench.
+4.
+Edit the file and check the AST created in #reconcile(..) for the lambda parameter "int n1".
+The startPosition and length are wrong as shown in the attached screenshot.
+(Example: length is 13 instead of 6.
+It includes the comment /*a*/ also along with "int n1")

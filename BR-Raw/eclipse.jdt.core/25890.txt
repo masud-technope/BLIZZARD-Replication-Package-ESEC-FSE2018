@@ -1,0 +1,12 @@
+Bug 25890 – code assist displays static members on non-static expressions
+I think the javac compiler complains when I try to access static fields of a
+class using a concrete object.
+However, eclipse proposes static fields as
+suggestions in code assist.
+This is very annoying.
+For example, take the org.eclipse.jdt.internal.compiler.ast.Expression class.
+It inherits many static fields.
+But when I have
+Expression exp = ....
+exp.<CTRL+SPACE>
+I don't want to see them all.

@@ -1,0 +1,17 @@
+Bug 117094 – TVT3.1.x:TCT220: EL plug-in id & key change of word order required
+OS : Windows XP
+Must fix or not a must fix: YES
+Build date: 20051117
+Blocking: NO
+Language: el
+Bitmap Location: V:\defects\el\ContentPage_plugin.gif
+Tester Name: Peppy Florou
+Problem Description:
+We need to change the order in which the ID and key (Name) appear when the Plug-in Project Wizard (File>New>Other>Plug-in Development>Plug-in Project) is used to create a project.
+The plug-in name was probably created by appending the word "Plug-in" after the Plug-in ID.
+The word "Plug-in" can be found in the key ContentPage_plugin in the file eclipse\plugins\org.eclipse.pde.ui_jar\org\eclipse\pde\internal\ui\pderesources.properties.
+Unfortunatelly the resulting name (id+key) does not comply with the Greek grammar/syntax.
+Could you please modify the ContentPage_plugin key by inserting a variable for the Plug-in ID, so the string would look something like "{0} Plug-in", instead of appending the word "Plug-in" after the Plug-in ID? That way, we can easily switch the order of words, and the plug-in name will appear correctly for Greek.
+thank you
+Peppy
+This article was reassigned from Category:''Legacy Project,TVT,Uncategorized''.

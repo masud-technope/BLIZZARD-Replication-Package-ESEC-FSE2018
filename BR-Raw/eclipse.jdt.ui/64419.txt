@@ -1,0 +1,7 @@
+Bug 64419 – Tomcat example does not need "web app root" attribute
+The Tomcat/JSP launching example currently requires the user specify a "web
+app root" on the main tab.
+However, all we need is the project (in order to
+compute a classpath for extra java files and source lookup path).
+We used to
+require the attribute for source lookup.

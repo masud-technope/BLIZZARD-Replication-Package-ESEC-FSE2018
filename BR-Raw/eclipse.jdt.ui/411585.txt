@@ -1,0 +1,8 @@
+Bug 411585 – [mark occurrence][search] Mark occurrences reports 0 based line numbers but the actual line numbers in the line number rulers starts with 1
+If i do ctrl-shift-u on a identifier i get a list of lines in the search view where those are found.
+But the line numbers that are reported are 1 off.
+It does jump to the right line but it is funny to see that the search view reports "203:" and the actual code is according to the line of the ruler is on  204
+It seems that the search view reports 0 based but the line number ruler starts with 1
+Eclipse SDK
+Version: 4.3.0
+Build id: I20130605-2000

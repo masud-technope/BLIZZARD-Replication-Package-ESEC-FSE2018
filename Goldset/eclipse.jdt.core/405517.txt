@@ -1,0 +1,8 @@
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/IBinding.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/Modifier.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/Modifier.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/Flags.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/IMember.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/Flags.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/compiler/SourceElementNotifier.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/BinaryMethod.java

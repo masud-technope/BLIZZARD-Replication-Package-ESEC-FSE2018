@@ -1,0 +1,19 @@
+Bug 382727 – [1.8][compiler] Lambda expression parameters and locals cannot shadow variables from context
+BETA_JAVA8
+The following program should trigger three errors about x, y and
+args being redeclared.
+At the moment, (a) none of these usages are
+complained against.
+(b) We also get a CCE from Parser.consumeEnterVariable.
+// -------- 8< --------------
+interface I {
+void foo(int x, int y);
+}
+public class X {
+public static void main(String[] args) {
+int x, y;
+I i = (x, y) -> { // Error: x,y being redeclared
+int args = 10; //  Error args is being redeclared
+};
+}
+}

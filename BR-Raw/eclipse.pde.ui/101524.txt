@@ -1,0 +1,15 @@
+Bug 101524 – Support for extension refactoring for extension point ids
+I was dividing a test plugin I have into separate plugins.
+I used the Java
+Move refactoring to move a bucnh of classes.
+It would be nice if a similar
+option existed for moving the extensions defined in the plugin manifest.
+Here
+are a couple of possibilities to think about:
+1) PDE registeres a Java Move participant that will move any extensions that
+reference any of the classes being moved.
+This is the deluxe solution.
+2) The plugin manifest editor provides a Move command that can move one or
+more selected extensions to another plugin.
+In both cases, you would want to be able to move a subset of the children of
+any given extension definition.

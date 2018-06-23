@@ -1,0 +1,2 @@
+Bug 272985 – EventDetailsDialog leaks Clipboard
+The Clipboard is instantiated in the constructor but clipboard.dispose() cannot be found anywhere in the class.

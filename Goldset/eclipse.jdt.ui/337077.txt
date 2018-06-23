@@ -1,0 +1,7 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInnerToTopLevel/test35/out/Inner.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInnerToTopLevel/test36/out/Inner.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInnerToTopLevel/test6/out/Inner.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInnerToTopLevel/test_nonstatic_48/out/B.java
+org.eclipse.jdt.ui.tests.refactoring/resources/MoveInnerToTopLevel/test_secondary_10/out/Secondary.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/MoveInnerToTopLevelTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/MoveInnerToTopRefactoring.java

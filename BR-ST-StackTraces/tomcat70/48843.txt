@@ -1,0 +1,11 @@
+java.lang.Object.wait
+java.lang.Object.wait
+org.apache.tomcat.util.net.JIoEndpoint$Worker.await
+org.apache.tomcat.util.net.JIoEndpoint$Worker.run
+java.lang.Thread.run
+java.lang.Object.wait
+java.lang.Object.wait
+org.apache.tomcat.util.net.JIoEndpoint.getWorkerThread
+org.apache.tomcat.util.net.JIoEndpoint.processSocket
+org.apache.tomcat.util.net.JIoEndpoint$Acceptor.run
+java.lang.Thread.run

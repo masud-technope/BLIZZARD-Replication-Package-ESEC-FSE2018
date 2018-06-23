@@ -1,0 +1,3 @@
+Bug 426423 – SSLServerSOContainerGroup does not close ServerSocket on disposing
+SSLServerSOContainerGroup creates a ServerSocket but it never closes it (in SSLServerSOContainerGroup#putOnTheAir()).
+The ServerSocket should be closed in SSLServerSOContainerGroup#takeOffTheAir()

@@ -1,0 +1,19 @@
+Bug 320511 – [infer type arguments] NPE in InferTypeArgumentsConstraintsSolver#getNonTaggingInterfaces()
+Created attachment 174852 [details]
+Fix
+I20100720-0800
+NPE in InferTypeArgumentsConstraintsSolver#getNonTaggingInterfaces() when trying to infer type arguments of org.eclipse.jdt.ui:
+Root exception:
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.corext.refactoring.generics.InferTypeArgumentsConstraintsSolver.getNonTaggingInterfaces(InferTypeArgumentsConstraintsSolver.java:358)
+at org.eclipse.jdt.internal.corext.refactoring.generics.InferTypeArgumentsConstraintsSolver.chooseSingleType(InferTypeArgumentsConstraintsSolver.java:321)
+at org.eclipse.jdt.internal.corext.refactoring.generics.InferTypeArgumentsConstraintsSolver.chooseTypes(InferTypeArgumentsConstraintsSolver.java:280)
+at org.eclipse.jdt.internal.corext.refactoring.generics.InferTypeArgumentsConstraintsSolver.solveConstraints(InferTypeArgumentsConstraintsSolver.java:129)
+at org.eclipse.jdt.internal.corext.refactoring.generics.InferTypeArgumentsRefactoring.checkFinalConditions(InferTypeArgumentsRefactoring.java:235)
+at org.eclipse.ltk.core.refactoring.CheckConditionsOperation.run(CheckConditionsOperation.java:85)
+at org.eclipse.ltk.core.refactoring.CreateChangeOperation.run(CreateChangeOperation.java:121)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1975)
+at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Problem is that InferTypeArgumentsConstraintsSolver#getNonTaggingInterfaces() assumes that all types are from the same project.
+The code was stupid anyway (expensive AST parsing is not required at all), so the fix will also improve performance.

@@ -1,0 +1,4 @@
+java/org/apache/catalina/tribes/group/GroupChannel.java
+java/org/apache/catalina/tribes/group/interceptors/MessageDispatchInterceptor.java
+java/org/apache/catalina/tribes/group/interceptors/TcpPingInterceptor.java
+java/org/apache/catalina/tribes/membership/McastServiceImpl.java

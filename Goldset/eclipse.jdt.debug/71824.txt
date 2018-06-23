@@ -1,0 +1,6 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/ShowStratumAction.java
+org.eclipse.jdt.debug.ui/plugin.xml
+org.eclipse.jdt.debug.ui/plugin.properties
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/JavaDebugPropertyTester.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/ActionMessages.properties
+org.eclipse.jdt.debug/plugin.xml

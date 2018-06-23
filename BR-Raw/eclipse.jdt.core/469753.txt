@@ -1,0 +1,5 @@
+Bug 469753 – [1.8][inference] Lambda type inference problem
+Created attachment 254245 [details]
+code sample
+The attached code sample compiles fine with JDK8u40 (and on Eclipse Luna SR2), but the Eclipse Mars Release Candidate 2 (4.5.0RC2) java compiler fails with the following error:
+The method go(Iterator<Map.Entry<String,LambdaBug.Item>>) in the type LambdaBug is not applicable for the arguments (Iterator<Object>)

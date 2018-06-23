@@ -1,0 +1,12 @@
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/presence/PresenceContainer.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/XMPPChatManager.java
+providers/bundles/org.eclipse.ecf.provider.msn/src/org/eclipse/ecf/internal/provider/msn/MSNContainer.java
+framework/bundles/org.eclipse.ecf.presence/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/im/IChatManager.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/search/message/IMessageResult.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/search/message/IMessageSearchCompleteEvent.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/search/message/IMessageSearchEvent.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/search/message/IMessageSearchListener.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/search/message/IMessageSearchManager.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/search/message/MessageSearchCompleteEvent.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/search/message/MessageSearchException.java

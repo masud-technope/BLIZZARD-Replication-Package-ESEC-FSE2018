@@ -1,0 +1,22 @@
+Bug 465909 – GVT45: Truncation found after setup Convert Preferences.
+Created attachment 252949 [details]
+Strings are truncated.
+Build ID: 20150320-0800
+Locale: English
+Steps to reproduce:
+1.
+Create a new Plug-in project.
+2.
+Right-click on the Plug-in project then create a new Product Configuration.
+3.
+Click New button then enter Product Name for the Product Definition.
+4.
+Click Finish.
+5.
+Click Customization tab.
+6.
+Click Convert Preferences wizard link.
+7.
+Browse to a .epf file then click Finish.
+Problem Description:
+The page should be refreshed automatically or a scroll bar is needed.

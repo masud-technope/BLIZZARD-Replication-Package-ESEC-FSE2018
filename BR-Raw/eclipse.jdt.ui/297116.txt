@@ -1,0 +1,8 @@
+Bug 297116 – Default for new JUnit Test should be JUnit 4.X
+User-Agent:       Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5
+Build Identifier: 20090920-1017
+Hi,
+in the "NewTestCaseCreationWizard" the default is "New JUnit 3 testcase".
+I suggest to change this to "New JUnit 4 testcase".
+Best regarsd, Lars
+Reproducible: Always

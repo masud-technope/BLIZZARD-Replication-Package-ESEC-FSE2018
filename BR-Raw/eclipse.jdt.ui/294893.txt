@@ -1,0 +1,16 @@
+Bug 294893 – [quick fix] Visibility quickfix does nothing if implicit constructor
+User-Agent:       Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.0 (KHTML, like Gecko) Chrome/3.0.195.27 Safari/532.0
+Build Identifier: 20090920-1017
+import bug.Base;
+import bug.Base.*;
+class Bug extends Base{
+Object x=new Inner();
+}
+package bug;
+public class Base {
+protected class Inner{}
+}
+Reproducible: Always
+Steps to Reproduce:
+The compile error quickfix does nothing.
+ See similar bug 234050.

@@ -1,0 +1,10 @@
+56406 – VirtualDirContext.setExtraResourcePaths incorrect separator in example semicolon instead comma
+The description and the code is using a comma to separate paths.
+The documentation is using a semicolon which results in a very hard to detect error when copying the example.
+* Example: <code>
+* /=/Users/slaurent/mywebapp/src/main/webapp;/pictures=/Users/slaurent/sharedpictures
+* </code>
+correct is:
+* Example: <code>
+* /=/Users/slaurent/mywebapp/src/main/webapp,/pictures=/Users/slaurent/sharedpictures
+* </code>

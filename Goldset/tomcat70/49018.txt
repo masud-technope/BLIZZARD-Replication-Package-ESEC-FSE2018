@@ -1,0 +1,6 @@
+java/org/apache/catalina/manager/ManagerServlet.java
+java/org/apache/catalina/manager/LocalStrings_fr.properties
+java/org/apache/catalina/manager/LocalStrings_es.properties
+java/org/apache/catalina/manager/LocalStrings_ja.properties
+java/org/apache/catalina/manager/LocalStrings_de.properties
+java/org/apache/catalina/manager/LocalStrings.properties

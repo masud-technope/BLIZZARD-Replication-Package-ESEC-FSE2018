@@ -1,0 +1,12 @@
+Bug 476867 – [patch] Event log filter doesn't work when enabled from event details
+Steps to reproduce:
+1.
+Click Windows -> Show View -> Error log
+2.
+Right click on any event and select Event Details from context menu
+3.
+Click on Show Filters Dialog button in the Event Details Dialog.
+4.
+Uncheck some event types (for example OK and Info) and click OK in the filters dialog.
+RESULT: the event types OK and Information are still visible in the
+"Error log" window

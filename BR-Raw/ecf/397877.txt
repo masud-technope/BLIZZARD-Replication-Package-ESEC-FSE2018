@@ -1,0 +1,4 @@
+Bug 397877 – [slp] Invalid service type causes unhandled exception to be thrown
+An invalid service type (e.g.
+not starting with service://) causes the jSLP implementation to choke essentially blocking service discovery.
+ Thus, an invalid service type should simply be discarded inorg.eclipse.ecf.internal.provider.jslp.LocatorDecoratorImpl.getServiceURLs(String, List) upon detection.

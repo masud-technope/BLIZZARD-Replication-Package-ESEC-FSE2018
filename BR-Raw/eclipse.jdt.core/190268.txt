@@ -1,0 +1,18 @@
+Bug 190268 – Need to perform a validateEdit() before setting encoding
+If a project is checked into a read-only source control system like perforce or subversion, you get an exception like the following during annotation processing:
+org.eclipse.core.runtime.CoreException: File /wlwLabInventoryWar/.settings/org.eclipse.core.resources.prefs is read-only.
+at org.eclipse.core.internal.resources.ProjectPreferences$2.run(ProjectPreferences.java:556)
+at org.eclipse.core.internal.resources.ProjectPreferences.save(ProjectPreferences.java:577)
+at org.eclipse.core.internal.preferences.EclipsePreferences.flush(EclipsePreferences.java:352)
+at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:379)
+at org.eclipse.core.internal.preferences.EclipsePreferences.flush(EclipsePreferences.java:340)
+at org.eclipse.core.internal.resources.ProjectPreferences.flush(ProjectPreferences.java:379)
+at org.eclipse.core.internal.resources.CharsetManager.setCharsetFor(CharsetManager.java:281)
+at org.eclipse.core.internal.resources.File.setCharset(File.java:440)
+at org.eclipse.jdt.apt.core.internal.env.EncodedFileOutputStream.close(EncodedFileOutputStream.java:36)
+at sun.nio.cs.StreamEncoder$CharsetSE.implClose(StreamEncoder.java:431)
+at sun.nio.cs.StreamEncoder.close(StreamEncoder.java:160)
+at java.io.OutputStreamWriter.close(OutputStreamWriter.java:222)
+at java.io.PrintWriter.close(PrintWriter.java:287)
+at org.apache.beehive.netui.compiler.genmodel.GenStrutsApp.writeToFile(GenStrutsApp.java:358)
+Need to have a validateEdit() call on the resources.prefs file before setting the charset.

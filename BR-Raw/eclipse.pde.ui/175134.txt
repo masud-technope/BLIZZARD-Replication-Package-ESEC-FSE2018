@@ -1,0 +1,15 @@
+Bug 175134 – "Add to Java Search" needs to be easier to find
+The option "Add to Java Search" is very handy.
+ So handy, one wonders why search just doesn't work this way by default.
+But the option is too hidden.
+ Having it squirreled away in the Plug-ins view is just too obscure vis-a-vis its utility.
+ I didn't know it existed until recently, and even then I keep having to ask where it is.
+Second, it works based on the set of selected plugins, but this is more precision than (most) people need.
+ Why would I only want to, from here on, search in only a subset of plugins?
+Suggestions:
+1) Make it the default behaviour.
+ People can always filter the results.
+2) A variation could be that we always search plugins which loaded projects are dependent on.
+3) Put it in the preferences (that's where I always think to look)
+4) Add it as a menu to the jars in the packages view (that was the next place I tried).
+ I like this option least for the reasons above but at least might be easier to find.

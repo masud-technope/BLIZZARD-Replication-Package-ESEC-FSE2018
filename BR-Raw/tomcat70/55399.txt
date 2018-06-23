@@ -1,0 +1,32 @@
+55399 � Request English but Response Spanish Language (Default Locale)
+== Server: Windows, Language: es_ES
+== Client: Linux, Language: en_US
+== Request:
+POST /xxxxxx HTTP/1.1
+Host: x.x.x.x:8080
+Accept: */*
+Accept-Language: en
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+== Response:
+HTTP/1.1 400 Petición incorrecta
+Server: Apache-Coyote/1.1
+Content-Type: text/html;charset=ISO-8859-1
+Content-Length: 1030
+Date: Sat, 10 Aug 2013 17:25:17 GMT
+Connection: close
+...cut...
+---
+HTTP Response "Petición incorrecta" must be in English.
+Right?
+I tried to do response.setLocale() workarround in the Servlet but neither works:
+---
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+throws ServletException, IOException {
+// ...
+response.setLocale(Locale.ENGLISH); // Locale.US neither
+// ...
+response.sendError(HttpServletResponse.SC_BAD_REQUEST, "BAD REQUEST");
+}
+---
+HttpServletResponse.setLocale() don't honors?

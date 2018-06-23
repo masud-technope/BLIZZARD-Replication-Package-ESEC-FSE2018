@@ -1,0 +1,5 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEPlugin.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/imagebrowser/repositories/TargetPlatformRepository.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/build/BaseBuildAction.java

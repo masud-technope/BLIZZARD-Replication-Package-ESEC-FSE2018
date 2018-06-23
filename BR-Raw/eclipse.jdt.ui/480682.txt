@@ -1,0 +1,18 @@
+Bug 480682 – [override method] Do not offer to override / implement a final method
+Consider the following code:
+---------------------------------------------
+public class Test extends Base {
+}
+abstract class Base implements I {
+@Override
+public final void method1() {}
+}
+interface I {
+void method1();
+void method2();
+}
+---------------------------------------------
+Let's click Alt-Shift-S, V (Override / Implement Methods) inside of the Test class.
+The popup offers to implement both method1() and method2() via the interface I, even if method1() cannot be further overridden in the context of Test.
+Notice how the class Base doesn't appear in the results, which is correct, as it doesn't contain any methods that can be overridden.
+Eclipse should not offer overriding inherited methods from interfaces, which are made final somewhere in the super class chain.

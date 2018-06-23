@@ -1,0 +1,16 @@
+55639 – Add Drawboard Websocket Example
+Created attachment 30909 [details]
+Patch to add the Drawboard example
+Hi,
+I would like to add this Drawboard example to Tomcat's Websocket examples.
+It is a page where you can draw with your mouse or touch input (using different colors) and everybody else which has the page open will immediately see what you are drawing.
+If someone opens the page later, they will get the current room image (so they can see what was already drawn by other people).
+It uses asynchronous sending of messages so that it doesn't need separate threads for each client to send messages (this needs NIO or APR connector to be used).
+A "Room" (where the drawing happens) has a dedicated thread because the actions which are done in one Room are single-threaded (like drawing to a BufferedImage).
+If multiple rooms were used, then each Room would have its own dedicated thread (but currently only one Room is implemented).
+When you open the page, first you will receive a binary websocket message containing the current room image as PNG image.
+After that, you will receive string messages that contain the drawing actions (line from x1,y1 to x2,y2).
+Note that it currently only uses simple string messages instead of JSON because I did not want to introduce a dependency on a JSON lib.
+It uses synchronization mechanisms to ensure that the final image will look the same for every user, regardless of what their network latency/speed is - e.g.
+if two user draw at the same time on the same place, the server will decide which line was the first one, and that will be reflected on every client.
+What do you think?

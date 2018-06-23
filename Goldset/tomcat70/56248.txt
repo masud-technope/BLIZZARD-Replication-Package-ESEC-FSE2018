@@ -1,0 +1,4 @@
+java/org/apache/catalina/manager/LocalStrings.properties
+java/org/apache/catalina/manager/ManagerServlet.java
+java/org/apache/catalina/startup/HostConfig.java
+webapps/docs/changelog.xml

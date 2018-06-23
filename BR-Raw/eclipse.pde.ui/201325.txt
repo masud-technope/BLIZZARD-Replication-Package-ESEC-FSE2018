@@ -1,0 +1,15 @@
+Bug 201325 – [Target][Editors] Show plug-ins and features while "Include all plug-ins from the specified target" is checked
+When working with the Target Editor's Content page, checking the "Include all plug-ins from the specified target" results in:
+1.
+ The Plug-ins tab and the Features tab shown as empty.
+2.
+ The Plug-ins tab and the Features tab are disabled.
+This is confusing and inconsistent with other parts of the Eclipse IDE.
+ Instead, I'd like to see:
+1.
+ The contents of the Plug-ins tab and the Features tab being disabled.
+2.
+ The Plug-ins tab and the Features tab remaining enabled.
+As the editor works today, real content from the .target file is not displayed, which is confusing.
+ For example, it is always a surprise when you uncheck the "Include all plug-ins from the specified target" checkbox to find the Plug-ins and Features tabs already populated.
+A candidate for bugday, perhaps.

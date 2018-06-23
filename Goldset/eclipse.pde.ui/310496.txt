@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target/Messages.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target/TargetDefinition.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target/Messages.properties

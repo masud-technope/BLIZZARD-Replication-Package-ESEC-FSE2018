@@ -1,0 +1,4 @@
+48137 – some misspellings I can find in the "org.apache.catalina" package
+Created attachment 24488 [details]
+svn patch for the various classes in the org.apache.catalina package
+please see the attached svn patch file

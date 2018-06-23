@@ -1,0 +1,4 @@
+Bug 284885 – [launching] manage launch configurations using features (feature based launching)
+When launching an Eclipse application, if the user wants to customize what to include in the launch configuration, they must select individual plug-ins.
+ This can be quite difficult due to the number of plug-ins available.
+Launch configs could be managed by features.

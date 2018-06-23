@@ -1,0 +1,13 @@
+Bug 205767 – NPE in New Plugin/Fragment Wizards when triggered from Product Configuration Editor
+java.lang.NullPointerException
+at org.eclipse.pde.internal.ui.wizards.plugin.NewFragmentProjectWizard.performFinish(NewFragmentProjectWizard.java:90)
+at org.eclipse.jface.wizard.WizardDialog.finishPressed(WizardDialog.java:742)
+at org.eclipse.jface.wizard.WizardDialog.buttonPressed(WizardDialog.java:373)
+at org.eclipse.jface.dialogs.Dialog$2.widgetSelected(Dialog.java:621)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:227)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:947)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3744)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3355)
+The problem is getWorkbench is returning null since it was not initialized through the wizard framework.
+ We need to figure out how to initialize the wizard correctly so we can add working the new projects to working sets.

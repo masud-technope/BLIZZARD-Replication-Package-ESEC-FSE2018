@@ -1,0 +1,14 @@
+Bug 461083 – [target] Target definition editor prematurely allows editing of a Software Site
+I created a target definition file that contains a location which is a P2 Software Site.
+ The initial state of my workspace is that I have a different target selected, and the target definition file exists in my workspace, but it is not open in an editor.
+ The P2 Software Site has categories, and the target definition file selects some of those categories.
+The problem is that if open the target definition file and then quickly edit the P2 Software Site, the "Edit Software Site" dialog will incorrectly show that no categories are selected.
+Here are the steps to reproduce the problem.
+1 -- Start with a workspace in which the target definition file is not open in an editor.
+2 -- Open the target definition file.
+ Immediately after opening the file, Eclipse creates a progress monitor that says "Resolving Target Definition".
+ At this point, the editor also displays the "Locations" panel where it displays the Software Site associated with the target.
+3 -- Now, before Eclipse has completed resolving the target definition, double click on the Software Site in the "Locations" panel.
+ At this point, Eclipse will open the "Edit Software Site" dialog, but no categories will be selected.
+ An error message will be displayed at the top of the panel saying "At least one item must be selected".
+I presume that the easiest solution would be to block opening the "Edit Software Site" dialog until the process of resolving the target definition is complete.

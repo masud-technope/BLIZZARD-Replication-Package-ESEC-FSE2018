@@ -1,0 +1,7 @@
+53267 – The JreMemoryLeakPreventionListener causes a full GC every hour when gcDaemonProtection=true
+Created attachment 28809 [details]
+Increases timeout on sun.misc.GC.requestLatency in JreMemoryLeakPreventionListener
+The JreMemoryLeakPreventionListener causes a full GC every hour when gcDaemonProtection=true.
+The prevention technique invokes sun.misc.GC.requestLatency with a value of 360000.
+ Increasing the value to Long.MAX_VALUE would be beneficial.
+The attached patches add a default setting of Long.MAX_VALUE (add documentation update), but also permit it to be configured to a lower value using a System property.

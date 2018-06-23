@@ -1,0 +1,5 @@
+Bug 336841 – [package explorer] "Show In" doesn't work in Synchronize view for open .java file outside of classpath
+Created attachment 188698 [details]
+Fix & test
+HEAD
+"Show In > Package Explorer" doesn't work in the Synchronize view for an open .java file that is not on the classpath.

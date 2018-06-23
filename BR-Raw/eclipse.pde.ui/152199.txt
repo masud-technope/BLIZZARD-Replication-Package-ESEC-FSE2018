@@ -1,0 +1,5 @@
+Bug 152199 – [Content Assist] sort and beautify EE proposals
+The proposals for Bundle-RequiredExecutionEnvironent values are not sorted alphabetically.
+It would also be esthetically pleasing if we have these proposals icons.
+ ie.
+the icons that appear in the EE section of the Overview page.

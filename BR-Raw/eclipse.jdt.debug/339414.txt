@@ -1,0 +1,7 @@
+Bug 339414 – HeapWalking manager should support other debug targets that can provide an IJavaDebugTarget adapter
+Created attachment 190782 [details]
+proposed fix
+Version: 3.7.0
+Build id: I20110307-2110 (and all versions since heap-walking was added)
+In its current state, the method HeapWalkingManager#supportsHeapWalking only considers if the supplied object is an instance of IJavaDebugTarget.
+If the given object is not an instance of IJavaDebugTarget we should ask it for an IJavaDebugTarget adapter, allowing other debug targets to take part in heap-walking.

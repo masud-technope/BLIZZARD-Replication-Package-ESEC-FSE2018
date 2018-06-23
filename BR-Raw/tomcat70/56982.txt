@@ -1,0 +1,9 @@
+56982 – Websocket session.getNegotiatedExtensions() always return an empty list whereas permessage-deflate enabled
+whereas permessage-deflate is enabled, WsSession.getNegotiatedExtensions() always return an empty list.
+If I use a  ServerEndpointConfig.Configurator, I see that the ServerEndpointConfig return a list with the "permessage-deflate" extension.
+but in WsSession.java the current code is
+public List<Extension> getNegotiatedExtensions() {
+checkState();
+return Collections.emptyList();
+}
+regards

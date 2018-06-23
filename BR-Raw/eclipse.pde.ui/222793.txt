@@ -1,0 +1,3 @@
+Bug 222793 – Bundle-ContactAddress should generate warning if not translated
+I heard Bundle-ContactAddress is not included in the list of translatable headers in PDE.
+However I think it should, as the contact address for each locale could be different.

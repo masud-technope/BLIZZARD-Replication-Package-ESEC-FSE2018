@@ -1,0 +1,8 @@
+Bug 394356 – [1.8][compiler] Type Annotations before package names should be rejected
+The latest spec for JSR308 requires annotations on qualified types
+to be placed before the type name.
+i.e In a qualified type, the type annotations appear before the simple name, not before the package names.
+For example, a programmer writes package1.package2.
+@Annotation SimpleName rather than @Annotation package1.package2.SimpleName.
+We should reject misplaced annotations with a clear (if needed new)
+message.

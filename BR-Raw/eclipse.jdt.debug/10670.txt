@@ -1,0 +1,70 @@
+Bug 10670 – Support for JDI v 1.3
+Using JDK1.3.1 on Windows, I get the following exception by starting the
+debugger:
+java.lang.NoSuchMethodError
+at
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.supportsJDKHotCodeRepla
+ce(JDIDebugTarget.java:524)
+at
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.supportsHotCodeReplace
+(JDIDebugTarget.java:497)
+at
+org.eclipse.jdt.internal.debug.core.hcr.JavaHotCodeReplaceManager.launchAdded
+(JavaHotCodeReplaceManager.java:937)
+at org.eclipse.debug.internal.core.LaunchManager.fireUpdate
+(LaunchManager.java:239)
+at org.eclipse.debug.internal.core.LaunchManager.addLaunch
+(LaunchManager.java:412)
+at
+org.eclipse.jdt.internal.debug.ui.launcher.JavaApplicationLauncherDelegate$2.run
+(JavaApplicationLauncherDelegate.java:202)
+at org.eclipse.swt.widgets.Synchronizer.syncExec(Synchronizer.java:121)
+at org.eclipse.ui.internal.UISynchronizer.syncExec
+(UISynchronizer.java:18)
+at org.eclipse.swt.widgets.Display.syncExec(Display.java:1641)
+at
+org.eclipse.jdt.internal.debug.ui.launcher.JavaApplicationLauncherDelegate.regis
+terLaunch(JavaApplicationLauncherDelegate.java:200)
+at
+org.eclipse.jdt.internal.debug.ui.launcher.JavaApplicationLauncherDelegate.doLau
+nch(JavaApplicationLauncherDelegate.java:190)
+at
+org.eclipse.jdt.internal.debug.ui.launcher.JavaApplicationLauncherDelegate.launc
+hElement(JavaApplicationLauncherDelegate.java:77)
+at
+org.eclipse.jdt.internal.debug.ui.launcher.JavaApplicationLauncherDelegate.launc
+h(JavaApplicationLauncherDelegate.java:89)
+at org.eclipse.debug.internal.core.Launcher.launch(Launcher.java:104)
+at org.eclipse.debug.internal.ui.actions.RelaunchActionDelegate.relaunch
+(RelaunchActionDelegate.java:41)
+at org.eclipse.debug.internal.ui.actions.RelaunchActionDelegate.relaunch
+(RelaunchActionDelegate.java:46)
+at
+org.eclipse.debug.internal.ui.actions.RelaunchHistoryLaunchAction$1.run
+(RelaunchHistoryLaunchAction.java:55)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:56)
+at org.eclipse.debug.internal.ui.actions.RelaunchHistoryLaunchAction.run
+(RelaunchHistoryLaunchAction.java:53)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:452)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection
+(ActionContributionItem.java:407)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetEvent
+(ActionContributionItem.java:361)
+at org.eclipse.jface.action.ActionContributionItem.access$0
+(ActionContributionItem.java:352)
+at
+org.eclipse.jface.action.ActionContributionItem$ActionListener.handleEvent
+(ActionContributionItem.java:47)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:74)
+at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:637)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:1413)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:1205)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:788)
+at org.eclipse.ui.internal.Workbench.run(Workbench.java:771)
+at org.eclipse.core.internal.boot.InternalBootLoader.run
+(InternalBootLoader.java:777)
+at org.eclipse.core.boot.BootLoader.run(BootLoader.java:319)
+at java.lang.reflect.Method.invoke(Native Method)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:151)
+at org.eclipse.core.launcher.Main.run(Main.java:502)
+at org.eclipse.core.launcher.Main.main(Main.java:362)

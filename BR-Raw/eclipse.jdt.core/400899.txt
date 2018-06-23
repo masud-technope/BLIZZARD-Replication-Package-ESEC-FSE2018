@@ -1,0 +1,12 @@
+Bug 400899 – [1.8][search] Search engine/indexer should evolve to support Java 8 constructs
+BETA_JAVA8:
+This ER will be used as the master/umbrella entry for search engine changes
+to support Java 8.
+Please don't attach patches/fixes here.
+Any high level
+discussions can be had here, but all activity should be on broken down blocker
+unit level tasks each with its own bug number.
+Some quick experiments show that the search engine as is is able to discover
+types and variables properly for lambda expressions.
+For type annotations and reference expressions, there are various things
+that appear broken.

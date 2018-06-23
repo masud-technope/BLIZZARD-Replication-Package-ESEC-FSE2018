@@ -1,0 +1,4 @@
+Bug 392607 – JDI test suite does not work with Mac OSX
+Version: 4.3.0
+Build id: I20121016-2240
+In its current form, the JDI test suite does not run on Mac, it all fails trying to load a j9 VM - which is the fallback when the correct kind of VM cannot be determined.

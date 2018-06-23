@@ -1,0 +1,6 @@
+Bug 491756 – [Project Explorer] ExtensionState is not always applied
+- Open Project explorer in Java perspective, having a project with referenced libraries.
+- Click on view menu > Customize view > Content tab > Uncheck Java Elements > OK.
+- Now go back and check Java Elements.
+=> The referenced libraries are listed again but are not grouped
+Applies also to the package presentation.

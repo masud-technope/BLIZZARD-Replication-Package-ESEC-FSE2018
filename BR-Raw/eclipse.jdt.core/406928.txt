@@ -1,0 +1,32 @@
+Bug 406928 – computation of inherited methods seems damaged (affecting @Overrides)
+Not strictly a Java8 bug but it is a problem on BETA_JAVA8.
+Testcase (I had this in MethodVerifyTest):
+Map compilerOptions16 = getCompilerOptions();
+compilerOptions16.put(JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM, CompilerOptions.VERSION_1_6);
+compilerOptions16.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_6);
+compilerOptions16.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_6);
+this.runConformTest(
+new String[] {
+"TestPointcut.java",
+"interface MethodMatcher {\n"+
+"	boolean matches();\n"+
+"}\n"+
+"abstract class StaticMethodMatcher implements MethodMatcher { }\n"+
+"abstract class StaticMethodMatcherPointcut extends StaticMethodMatcher { }\n"+
+"\n"+
+"class TestPointcut extends StaticMethodMatcherPointcut {\n"+
+"	@Override\n"+
+"	public boolean matches() { return false; } \n"+
+"}\n"
+},
+"",
+null,
+true,
+null,
+compilerOptions16,
+null);
+That code should not produce a warning for @Override but it does.
+It looks like some refactoring was done in MethodVerifier.computeInheritedMethods() in BETA_JAVA8 and the algorithm that collects up the super interfaces fails to collect 'MethodMatcher' in the above example (i.e.
+an interface on the superclass of the superclass of the class we are interested in).
+ Without knowing about that interface the @Overrides looks like an error.
+I'll attach a patch in a moment containing the test and my fix (you may choose to fix it differently...).

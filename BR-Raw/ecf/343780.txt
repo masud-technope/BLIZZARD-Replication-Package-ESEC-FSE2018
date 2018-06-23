@@ -1,0 +1,22 @@
+Bug 343780 – Infinite recursive call in Zookeeper DiscoveryActivator
+Build Identifier: 1.0.100.v20110313-1843
+See line 78: removedService(reference, service)
+75: public void removedService(ServiceReference reference,
+76:		Object service) {
+77:     Logger.unbindLogService((LogService) service);
+78:     removedService(reference, service);
+79:     super.removedService(reference, service);
+80: }
+This leads to a StackOverflowError
+java.lang.StackOverflowError
+at org.eclipse.ecf.provider.zookeeper.util.Logger.unbindLogService(Logger.java:34)
+at org.eclipse.ecf.provider.zookeeper.DiscoveryActivator$2.removedService(DiscoveryActivator.java:77)
+at org.eclipse.ecf.provider.zookeeper.DiscoveryActivator$2.removedService(DiscoveryActivator.java:78)
+at org.eclipse.ecf.provider.zookeeper.DiscoveryActivator$2.removedService(DiscoveryActivator.java:78)
+at org.eclipse.ecf.provider.zookeeper.DiscoveryActivator$2.removedService(DiscoveryActivator.java:78)
+at org.eclipse.ecf.provider.zookeeper.DiscoveryActivator$2.removedService(DiscoveryActivator.java:78)
+at org.eclipse.ecf.provider.zookeeper.DiscoveryActivator$2.removedService(DiscoveryActivator.java:78)
+at org.eclipse.ecf.provider.zookeeper.DiscoveryActivator$2.removedService(DiscoveryActivator.java:78)
+at org.eclipse.ecf.provider.zookeeper.DiscoveryActivator$2.removedService(DiscoveryActivator.java:78)
+at org.eclipse.ecf.provider.zookeeper.DiscoveryActivator$2.removedService(DiscoveryActivator.java:78)
+Reproducible: Always

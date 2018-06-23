@@ -1,0 +1,56 @@
+Bug 62863 – Assertion failed when using NLS search [nls] [search]
+I200405190010
+Selected properties file in Package Explorer and used project scope.
+Maybe it is
+caused by the fact that the active editor shows a file from the repository.
+Though I don't know why this should have any influence since the Package
+Explorer was the active part.
+!ENTRY org.eclipse.ui 4 4 Mai 19, 2004 11:59:04.70
+!MESSAGE Unhandled event loop exception
+!ENTRY org.eclipse.ui 4 0 Mai 19, 2004 11:59:04.80
+!MESSAGE null argument;
+!STACK 0
+org.eclipse.jface.util.Assert$AssertionFailedException: null argument;
+at org.eclipse.jface.util.Assert.isNotNull(Assert.java:139)
+at org.eclipse.jface.util.Assert.isNotNull(Assert.java:116)
+at org.eclipse.jface.viewers.StructuredSelection.<init>(StructuredSelection.java:61)
+at org.eclipse.jdt.internal.ui.search.JavaSearchScopeFactory.internalCreateProjectScope(JavaSearchScopeFactory.java:135)
+at org.eclipse.jdt.internal.ui.search.JavaSearchScopeFactory.createJavaProjectSearchScope(JavaSearchScopeFactory.java:116)
+at org.eclipse.jdt.internal.ui.refactoring.nls.search.NLSSearchPage.performNewSearch(NLSSearchPage.java:188)
+at org.eclipse.jdt.internal.ui.refactoring.nls.search.NLSSearchPage.performAction(NLSSearchPage.java:161)
+at org.eclipse.search.internal.ui.SearchDialog.performAction(SearchDialog.java:384)
+at org.eclipse.search.internal.ui.util.ExtendedDialogWindow.buttonPressed(ExtendedDialogWindow.java:152)
+at org.eclipse.jface.dialogs.Dialog$2.widgetSelected(Dialog.java:505)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:89)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:82)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:796)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:2716)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2382)
+at org.eclipse.jface.window.Window.runEventLoop(Window.java:668)
+at org.eclipse.jface.window.Window.open(Window.java:648)
+at org.eclipse.search.internal.ui.OpenSearchDialogAction.run(OpenSearchDialogAction.java:60)
+at org.eclipse.search.internal.ui.OpenSearchDialogAction.run(OpenSearchDialogAction.java:46)
+at org.eclipse.ui.internal.PluginAction.runWithEvent(PluginAction.java:276)
+at org.eclipse.ui.internal.WWinPluginAction.runWithEvent(WWinPluginAction.java:206)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:899)
+at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:850)
+at org.eclipse.jface.action.ActionContributionItem$8.handleEvent(ActionContributionItem.java:808)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:82)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:796)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:2716)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2382)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1363)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:1334)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:253)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:141)
+at org.eclipse.ui.internal.ide.IDEApplication.run(IDEApplication.java:97)
+atorg.eclipse.core.internal.runtime.PlatformActivator$1.run(PlatformActivator.java:305)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:256)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:127)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:324)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:184)
+at org.eclipse.core.launcher.Main.run(Main.java:637)
+at org.eclipse.core.launcher.Main.main(Main.java:621)

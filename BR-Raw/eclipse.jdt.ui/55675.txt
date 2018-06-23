@@ -1,0 +1,22 @@
+Bug 55675 – NPE in ASTProvider.reconciled
+I20040323_0010 + export for smoke test.
+This was on the console, not in the log:
+java.lang.NullPointerException
+at
+org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.reconciled(ASTProvider.java:413)
+at
+org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor.reconciled(CompilationUnitEditor.java:1530)
+at
+org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:101)
+at
+org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.initialReconcile(JavaReconcilingStrategy.java:143)
+at
+org.eclipse.jface.text.reconciler.CompositeReconcilingStrategy.initialReconcile(CompositeReconcilingStrategy.java:111)
+at
+org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.initialReconcile(JavaCompositeReconcilingStrategy.java:123)
+at
+org.eclipse.jface.text.reconciler.MonoReconciler.initialProcess(MonoReconciler.java:104)
+at
+org.eclipse.jdt.internal.ui.text.JavaReconciler.initialProcess(JavaReconciler.java:280)
+at
+org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:155)

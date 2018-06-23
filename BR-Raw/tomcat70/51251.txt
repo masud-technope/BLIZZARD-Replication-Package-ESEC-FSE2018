@@ -1,0 +1,10 @@
+51251 – Patch to add version parameter to ant task
+Created attachment 27049 [details]
+add version support
+Add version parameter support to the following ant tasks.
+- StartTask
+- StopTask
+- ReloadTask
+- UndeployTask
+- SessionsTask (also idle parameter)
+Regards.

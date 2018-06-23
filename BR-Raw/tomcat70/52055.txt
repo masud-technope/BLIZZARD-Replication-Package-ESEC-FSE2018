@@ -1,0 +1,15 @@
+52055 – ChunkedInputFilter is not recycled for servlet 3.0 asynchronous request
+I'm using the standard servlet 3.0 async APIs with tomcat 7.0.22.
+The server side code is something like the following:
+final AsyncContext asyncContext = request.startAsync();
+...
+// in a processing thread
+asyncContext.getRequest().getInputStream();
+...
+read the input stream
+asyncContext.complete();
+The InputStream returns 0 bytes for the HTTP post with chunking.
+After debugging, I found that the ChunkedInputFilter is reused by org.apache.coyote.http11.AbstractInputBuffer.
+But it has never been recycled (nextRequest()?) before the reuse for another request.
+As a result, the endChunk flag is always true after the first request.
+And it always return immediately without reading more from the buffer.

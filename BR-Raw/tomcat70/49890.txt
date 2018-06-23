@@ -1,0 +1,15 @@
+49890 – Nio Selector issue on linux platform
+Created attachment 25997 [details]
+NioEndpoint.java and simple web application
+sometimes ,server's cpu reaches 100%,and keep 100% all the time,until restart
+the server.
+Reproduced with java versions: 1.6.0_07,  1.6.0_18, 1.6.0_21.
+It is duplicate of issue: Bug 46373.
+It seams that Jetty guys fixed that problem: http://jira.codehaus.org/browse/JETTY-937?focusedCommentId=168060&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel.
+I added some logging to NioEndpoint.java.
+With this logging we can see that selector.select(timeout) sometimes return zero keys on linux plutform.
+And it is never reproduced on windows platform.
+In the attach:
+NioEndpoint.7z - patched NioEndpoint.java (with logging)
+web.7z - simple web application.
+To reproduce jvm bug we should do several requests(we can just press F5 in browser and hold button) to web application.

@@ -1,0 +1,1 @@
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/cheatsheet/CSAbstractEditor.java

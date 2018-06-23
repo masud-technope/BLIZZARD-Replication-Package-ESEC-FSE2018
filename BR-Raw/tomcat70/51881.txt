@@ -1,0 +1,13 @@
+51881 – Server incorrectly parses incoming HTTP requests and loses them
+We are developing Comet-based web application with native Tomcat Comet support via Atmosphere framework.
+We use HTTP streaming for transferring data from our servlet to the client.
+In our scenario, the user connects to the server with XMLHTTPRequest sending GET.
+In response, we suspend his connection and then, when needed, send data back to him.
+When the user opens another browser tab and connects to our web application, our web application should close the connection in the first (previously opened) tab and then suspend and use connection from the second.
+So, my serlvet detect that another GET is incoming in the same session, finds previous connection and closes it (internally using CometEvent.close()).
+This works as intended.
+However, the next HTTP request to the web server is not correctly handled, and in my servlet I receive the strange HttpServletRequest with previous GET query string and duplicate request headers from initial GET and the following request.
+I traced through the Tomcat code, and noticed, that in org.apache.coyote.http11.Http11Processor.process() request field is usually empty (contains no HTTP method, request headers, etc.) However, after Comet closing this object is not empty and contain previoud HTTP request.
+Later the request headers are parsed and appended to the fields existed in previous request object.
+After that, this invalid object is passed to my Servlet.
+I suppose, that clearing request object when closing comet event and all assosiated data in Http11NioProcessor.actionInternal() can solve this issue.

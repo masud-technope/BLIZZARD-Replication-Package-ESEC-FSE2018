@@ -1,0 +1,12 @@
+java/org/apache/catalina/manager/HTMLManagerServlet.java
+java/org/apache/catalina/manager/ManagerServlet.java
+java/org/apache/catalina/manager/host/HTMLHostManagerServlet.java
+java/org/apache/catalina/manager/host/HostManagerServlet.java
+java/org/apache/catalina/valves/ErrorReportValve.java
+java/org/apache/coyote/ajp/AbstractAjpProcessor.java
+java/org/apache/coyote/http11/AbstractOutputBuffer.java
+java/org/apache/coyote/http11/InternalAprOutputBuffer.java
+java/org/apache/coyote/http11/InternalNioOutputBuffer.java
+java/org/apache/tomcat/util/http/HttpMessages.java
+java/org/apache/tomcat/util/res/StringManager.java
+webapps/docs/changelog.xml

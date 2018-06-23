@@ -1,0 +1,16 @@
+Bug 482554 – Warning in org.eclipse.pde.runtime
+There are 2 pending warnings.
+Also parameter type should be put in List etc
+and disable of those warnings ( in pom.xml) should be removed
+1.
+WARNING in /src/org/eclipse/pde/internal/runtime/spy/sections/ActiveMenuSection.java
+(at line 155)
+Method method = clazz.getDeclaredMethod("createDelegate", null); //$NON-NLS-1$
+Type null of the last argument to method getDeclaredMethod(String, Class...) doesn't exactly match the vararg parameter type.
+Cast to Class[] to confirm the non-varargs invocation, or pass individual arguments of type Class for a varargs invocation.
+2.
+WARNING in /src/org/eclipse/pde/internal/runtime/spy/sections/ActiveMenuSection.java
+(at line 157)
+method.invoke(pluginAction, null);
+Type null of the last argument to method invoke(Object, Object...) doesn't exactly match the vararg parameter type.
+Cast to Object[] to confirm the non-varargs invocation, or pass individual arguments of type Object for a varargs invocation.

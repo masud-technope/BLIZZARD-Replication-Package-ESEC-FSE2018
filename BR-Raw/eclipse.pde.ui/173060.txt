@@ -1,0 +1,3 @@
+Bug 173060 – [Manifest][Editors] Can't multi select in the extension tab of the plug-in editor
+I20070206-0010
+To make the editing experience more pleasant, the extension section of the plugin editor should support multi selection to allow for easy removal of items.

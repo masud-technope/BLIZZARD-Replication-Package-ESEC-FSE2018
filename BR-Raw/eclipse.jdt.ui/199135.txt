@@ -1,0 +1,78 @@
+Bug 199135 – jdt.ui bundle activator assumes PlatformUI.getWorkbench(), causing autobuild failure when running headless
+I can understand how PlatformUI.getWorkbench() should seem safe to call from the activator in a UI plugin, but in this headless case, the UI plugin is activated as a side effect of the AutoBuildJob.
+ I can't say for certain if the problem is that the bundle activtaor calls PlatformUI.getWorkbench, or that the AutoBuild job activates the jdt.ui plugin when eclipse is running headless.
+ I could be mistaken, but I think it is never considered safe to call PlatformUI.getWorkbench() in a bundle activator without first calling PlatformUI.isWorkbenchRunning().
+ The stack trace is shown below:
+Thread [Worker-0] (Suspended (exception IllegalStateException))
+PlatformUI.getWorkbench() line: 92 [local variables unavailable]
+PreferenceConstants.initializeDefaultValues(IPreferenceStore) line: 3519
+JavaUIPreferenceInitializer.initializeDefaultPreferences() line: 31
+PreferenceServiceRegistryHelper.runInitializer(IConfigurationElement) line: 276
+PreferenceServiceRegistryHelper.applyRuntimeDefaults(String, WeakReference) line: 130
+PreferencesService.applyRuntimeDefaults(String, WeakReference) line: 337
+DefaultPreferences.applyRuntimeDefaults() line: 163
+DefaultPreferences.loadDefaults() line: 236
+DefaultPreferences.load() line: 232
+DefaultPreferences(EclipsePreferences).create(EclipsePreferences, String, Object) line: 307
+DefaultPreferences(EclipsePreferences).internalNode(String, boolean, Object) line: 543
+DefaultPreferences(EclipsePreferences).node(String) line: 662
+DefaultScope(AbstractScope).getNode(String) line: 38
+DefaultScope.getNode(String) line: 67
+ScopedPreferenceStore.getDefaultPreferences() line: 247
+ScopedPreferenceStore.getPreferenceNodes(boolean) line: 281
+ScopedPreferenceStore.internalGet(String) line: 471
+ScopedPreferenceStore.getBoolean(String) line: 383
+MembersOrderPreferenceCache.install(IPreferenceStore) line: 61
+JavaPlugin.ensurePreferenceStoreBackwardsCompatibility() line: 407
+JavaPlugin.start(BundleContext) line: 359
+BundleContextImpl$2.run() line: 999
+AccessController.doPrivileged(PrivilegedExceptionAction<T>) line: 242
+BundleContextImpl.startActivator(BundleActivator) line: 993
+BundleContextImpl.start() line: 974
+BundleHost.startWorker(int) line: 346
+BundleHost(AbstractBundle).start(int) line: 260
+SecureAction.start(Bundle, int) line: 400
+EclipseLazyStarter.postFindLocalClass(String, Class, ClasspathManager) line: 111
+ClasspathManager.findLocalClass(String) line: 417
+DefaultClassLoader.findLocalClass(String) line: 189
+BundleLoader.findLocalClass(String) line: 340
+BundleLoader.findClassInternal(String, boolean, ClassLoader) line: 408
+BundleLoader.findClass(String, boolean) line: 369
+BundleLoader.findClass(String) line: 357
+DefaultClassLoader.loadClass(String, boolean) line: 83
+DefaultClassLoader(ClassLoader).loadClass(String) line: 568
+BundleLoader.loadClass(String) line: 289
+BundleHost.loadClass(String, boolean) line: 227
+BundleHost(AbstractBundle).loadClass(String) line: 1269
+EquinoxRegistryStrategy(RegistryStrategyOSGI).createExecutableExtension(RegistryContributor, String, String) line: 160
+ExtensionRegistry.createExecutableExtension(RegistryContributor, String, String) line: 788
+ConfigurationElement.createExecutableExtension(String) line: 243
+ConfigurationElementHandle.createExecutableExtension(String) line: 51
+ResourceExtensionRegistry(ExtensionsRegistry).getExtension(IConfigurationElement, Map, Class) line: 238
+ResourceExtensionRegistry(ExtensionsRegistry).doGetDocumentSetupParticipants(IContentType[]) line: 361
+ResourceExtensionRegistry(ExtensionsRegistry).getDocumentSetupParticipants(IContentType[]) line: 383
+ResourceExtensionRegistry.getDocumentSetupParticipants(IFile) line: 119
+ResourceTextFileBufferManager.createEmptyDocument(IFile) line: 159
+ResourceTextFileBuffer.initializeFileBufferContent(IProgressMonitor) line: 268
+ResourceTextFileBuffer(ResourceFileBuffer).create(IPath, IProgressMonitor) line: 245
+ResourceTextFileBufferManager(TextFileBufferManager).connect(IPath, LocationKind, IProgressMonitor) line: 109
+ResourceTextFileBufferManager(TextFileBufferManager).connect(IPath, IProgressMonitor) line: 84
+BuildErrorReporter(ErrorReporter).createDocument(IFile) line: 71
+BuildErrorReporter.prepareTextBuildModel(IProgressMonitor) line: 536
+BuildErrorReporter.validate(IProgressMonitor) line: 127
+BuildErrorReporter(ErrorReporter).validateContent(IProgressMonitor) line: 130
+ManifestConsistencyChecker.validateBuildProperties(IProgressMonitor) line: 317
+ManifestConsistencyChecker.validateProject(int, IProgressMonitor) line: 244
+ManifestConsistencyChecker.build(int, Map, IProgressMonitor) line: 174
+BuildManager$2.run() line: 624
+SafeRunner.run(ISafeRunnable) line: 37
+BuildManager.basicBuild(int, IncrementalProjectBuilder, Map, MultiStatus, IProgressMonitor) line: 166
+BuildManager.basicBuild(IProject, int, ICommand[], MultiStatus, IProgressMonitor) line: 197
+BuildManager$1.run() line: 246
+SafeRunner.run(ISafeRunnable) line: 37
+BuildManager.basicBuild(IProject, int, MultiStatus, IProgressMonitor) line: 249
+BuildManager.basicBuildLoop(IProject[], IProject[], int, MultiStatus, IProgressMonitor) line: 302
+BuildManager.build(int, IProgressMonitor) line: 334
+AutoBuildJob.doBuild(IProgressMonitor) line: 137
+AutoBuildJob.run(IProgressMonitor) line: 235
+Worker.run() line: 55

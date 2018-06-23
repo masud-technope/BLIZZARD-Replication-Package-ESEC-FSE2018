@@ -1,0 +1,5 @@
+Bug 94965 – [assist] code assist should suggest inner types
+Polish feature :
+Working with inner types is currently a pain.
+Other features like quick fix or
+add import deal with inner types

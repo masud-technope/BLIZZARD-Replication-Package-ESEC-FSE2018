@@ -1,0 +1,8 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTConverter18Test.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/Assignment.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/LocalVariableBinding.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/TagBits.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/VariableBinding.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/IVariableBinding.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/RecoveredVariableBinding.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/VariableBinding.java

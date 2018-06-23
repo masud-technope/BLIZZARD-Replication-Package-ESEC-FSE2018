@@ -1,0 +1,4 @@
+Bug 329287 – org.eclipse.core.runtime.compatibility.registry shows error for removed class
+I released the patch in bug329277 to head.
+ But now if you have org.eclipse.core.runtime.compatibility.registry checked out from head and are using a 3.6.x API baseline you get an API error saying
+The type org.eclipse.core.runtime.IPluginDescriptor has been removed from org.eclipse.core.runtime.compatibility.registry_3.3.100	MANIFEST.MF	/org.eclipse.core.runtime.compatibility.registry/META-INF	line 1	Compatibility Problem

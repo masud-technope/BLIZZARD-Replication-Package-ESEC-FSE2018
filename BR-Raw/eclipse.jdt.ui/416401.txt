@@ -1,0 +1,12 @@
+Bug 416401 – [preferences] Incorrect enablement of 'Inline finally blocks' preference option
+Found that 'Inline finally blocks' option is enabled incorrectly:
+1.
+In the compiler preference page, select 'Configure Project Specific Settings' and choose a Java 1.4 project.
+Select the 'Java Build Path' and modify the EE to J2SE-1.5.
+Use the back button or directly click on the Java Compiler to come back to the previous page where the project specific setting was being modified.
+See that the 'Inline finally blocks' is enabled for Java-1.5, which is wrong.
+2.
+In the compiler preference page, select 1.4 compliance level.
+Now uncheck 'Inline finally blocks' option.
+Now change the compliance level to 1.5 and then change to 1.6 and now change it back to 1.4, the checkbox is now checked.
+This also looks wrong.

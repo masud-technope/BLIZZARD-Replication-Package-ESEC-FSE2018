@@ -1,0 +1,7 @@
+Bug 230222 – [breadcrumb] unfocused dropdown not closed when leaving workbench window
+I20080502-0100
+- show breadcrumb
+- click on an item (not on triangle)
+- switch to another application (Alt+Tab or click into another window)
+=> dropdown is not closed (is only closed when workbench window gets focus again)
+Currently not a big issue, but becomes severe when dropdown gets the SWT.ON_TOP bit.

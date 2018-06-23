@@ -1,0 +1,22 @@
+Bug 218645 – [dom] Implicit type bounds not available from capture binding
+I20080207-1530
+import java.util.ArrayList;
+public class NumberThing<T extends Number> extends ArrayList<T> {
+void test() {
+NumberThing<?> questionmarkThing = new NumberThing<Double>();
+questionmarkThing.get(0);
+}
+}
+Look at the resolved type binding of the method invocation 'questionmarkThing.get(0)'.
+This is a capture binding with type bounds {java.lang.Number} (the 'Number' comes from the declaration of type variable T).
+ITypeBinding#isCapture() says that these bounds should be available from getTypeBounds(), but that method's Javadoc contradicts this by talking about the 'declared' or 'explicit' bounds.
+The current implementation of getTypeBounds() does not return the first bound, but it does return additional bounds (e.g.
+with <T extends Number & Runnable & Cloneable>).
+I don't think it makes sense to keep up the current implementation of getTypeBounds() for capture types, since capture types are always generated and never have 'explicit' type bounds.
+Clients dealing with capture types need all bounds, so I propose to change getTypeBounds() to this:
+/**
+* Returns the upper type bounds of this type variable or capture.
+If the
+* variable or the capture had no bound, then it returns an empty list.
+[..]
+We need this to fix bug 217984.

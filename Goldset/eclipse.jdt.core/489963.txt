@@ -1,0 +1,4 @@
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/Region.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/hierarchy/RegionBasedTypeHierarchy.java
+org.eclipse.jdt.core.tests.performance/src/org/eclipse/jdt/core/tests/performance/AllPerformanceTests.java
+org.eclipse.jdt.core.tests.performance/src/org/eclipse/jdt/core/tests/performance/RegionPerformanceTests.java

@@ -1,0 +1,2 @@
+Bug 217772 – Provide advanced content assist for Bundle-ActivationPolicy
+Title says it all :)

@@ -1,0 +1,26 @@
+48643 – catalina.session.FileStore.save() and load() - close() bugs
+The code for the save() method reads:
+try {
+fos = new FileOutputStream(file.getAbsolutePath());
+oos = new ObjectOutputStream(new BufferedOutputStream(fos));
+} catch (IOException e) {
+if (oos != null) { <== oos can only be null here
+try {
+oos.close();
+} catch (IOException f) {
+// Ignore
+}
+}
+throw e;
+}
+Presumably the catch statement should try to close fos instead?
+Similarly for the load() method; at line 280/281 there is the code:
+} catch (IOException e) {
+if (ois != null) {
+However, ois is the last object created by the try clause, so must be null.
+Probably the code should check and close bis and/or fis.
+At the end of the load() method, the code says:
+// Close the input stream
+if (ois != null) {
+However, ois cannot be null at that point.
+Note: these bugs were detected by the Eclipse compiler.

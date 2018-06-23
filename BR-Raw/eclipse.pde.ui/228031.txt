@@ -1,0 +1,2 @@
+Bug 228031 – Wrong background inheritance on preference pages
+On the preference page of "API Errors/Warnings" the composites inside the first two tabs don't use the background of the tabfolder.

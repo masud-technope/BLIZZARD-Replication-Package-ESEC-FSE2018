@@ -1,0 +1,9 @@
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/engine/EvaluationSourceGenerator.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/engine/BinaryBasedSourceGenerator.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/BreakpointLocationVerificationTests.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/BreakpointLocationVerifierJob.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/ToggleBreakpointAdapter.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/BreakpointMethodLocator.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/actions/RunToLineAdapter.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/engine/ASTEvaluationEngine.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/engine/SourceBasedSourceGenerator.java

@@ -1,0 +1,5 @@
+Bug 201718 – [content assist] Paramter guessing is very slow
+I am in a Java file and trigger code assist for
+MessageDialog.open<...>
+It takes about 1 - 2 seconds until the proposals are computed and around 5 second to insert the proposal.
+I will attach a yourkit trace and I can provide the code if needed.

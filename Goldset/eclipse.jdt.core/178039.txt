@@ -1,0 +1,7 @@
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/JavaCore.java
+org.eclipse.jdt.core/.options
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavaModelManager.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/JavaProject.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/SetContainerOperation.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/SetVariablesOperation.java

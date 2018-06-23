@@ -1,0 +1,11 @@
+Bug 400761 – [compiler][null] null may be return as boolean without a diagnostic
+M5: The following
+boolean badFunction(int i) {
+return i > 0 ? true : null;
+}
+gives no diagnostic.
+Whereas
+boolean badFunction(int i) {
+return null;
+}
+gives a cannot convert null to boolean.

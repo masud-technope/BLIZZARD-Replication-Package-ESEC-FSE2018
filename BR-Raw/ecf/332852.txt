@@ -1,0 +1,2 @@
+Bug 332852 – [Discovery][ZooDiscovery] Slow Zookeeper startup might cause timeout in BundleActivator.start()
+Creating the ZooDiscoveryContainer should thus be done asynchronously.

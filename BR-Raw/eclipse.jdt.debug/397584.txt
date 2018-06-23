@@ -1,0 +1,5 @@
+Bug 397584 – Select imports dialog is ugly
+Version: 4.3.0
+Build id: I20130101-0800
+While testing the scrap book editor I noticed the Select Imports..
+dialog is not nice to look at - its missing a message and the alignment is all off.

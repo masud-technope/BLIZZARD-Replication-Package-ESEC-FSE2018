@@ -1,0 +1,10 @@
+53737 – Use ServletContext.getJspConfigDescriptor() in Jasper instead of XML-parsing of merged web.xml [PATCHES]
+In Tomcat 7.0.29 in ContextConfig#webConfig() a merged web.xml file is serialized into String and is put as an attribute into ServletContext.
+[[[
+String mergedWebXml = webXml.toXml();
+sContext.setAttribute(
+org.apache.tomcat.util.scan.Constants.MERGED_WEB_XML,
+mergedWebXml);
+]]]
+Then in JspConfig#processWebDotXml() of Jasper it is parsed again from XML into objects.
+It would be better to access the necessary configuration through Servlet 3.0 API methods such as ServletContext.getJspConfigDescriptor().

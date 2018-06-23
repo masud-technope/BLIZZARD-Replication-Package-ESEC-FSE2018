@@ -1,0 +1,13 @@
+Bug 406468 – [1.8][code assist] No completion proposals after the use of a constructor reference
+BETA_JAVA8:
+interface I {
+X [][][] copy (int x);
+}
+public class X  {
+public static void main(String[] args) {
+I i = X[][][]::new;
+X[][][] x = i.copy(136);
+System.out.println(x.length);
+|  // - no completion proposals here.
+}
+}

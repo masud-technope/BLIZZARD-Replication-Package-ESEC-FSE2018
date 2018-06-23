@@ -1,0 +1,16 @@
+Bug 208855 – [logivew] Should either set selections or accept object contributions
+As of Eclipse 3.3M4 the Error Log view has additional nodes for sessions.
+ Mylyn contributes a "Report as Bug" action to this view, but cannot reduce the visibility of this action to just LogEntry because the standard mechanisms (object contributions or visibility limiting) are not supported in this view.
+ The easiest thing might be to make the view accept object contributions.
+ The reason that limiting the visibility of a viewerContribution does not work is apparently the fact that no selection is set, causing the following failure on 3.3M4:
+java.lang.NullPointerException
+at org.eclipse.ui.internal.ViewerActionBuilder$ViewerContribution.contribute(ViewerActionBuilder.java:150)
+at org.eclipse.ui.internal.PluginActionBuilder.contribute(PluginActionBuilder.java:65)
+at org.eclipse.ui.internal.PopupMenuExtender.addStaticActions(PopupMenuExtender.java:295)
+at org.eclipse.ui.internal.PopupMenuExtender.menuAboutToShow(PopupMenuExtender.java:338)
+at org.eclipse.jface.action.MenuManager.fireAboutToShow(MenuManager.java:326)
+at org.eclipse.jface.action.MenuManager.handleAboutToShow(MenuManager.java:441)
+at org.eclipse.jface.action.MenuManager.access$1(MenuManager.java:437)
+at org.eclipse.jface.action.MenuManager$2.menuShown(MenuManager.java:463)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:234)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)

@@ -1,0 +1,9 @@
+java.io.File.<init>
+org.apache.catalina.startup.ContextConfig.getDefaultWebXmlFragment
+org.apache.catalina.startup.ContextConfig.webConfig
+org.apache.catalina.startup.ContextConfig.configureStart
+org.apache.catalina.startup.ContextConfig.lifecycleEvent
+org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent
+org.apache.catalina.util.LifecycleBase.fireLifecycleEvent
+org.apache.catalina.core.StandardContext.startInternal
+org.apache.catalina.util.LifecycleBase.start

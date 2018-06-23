@@ -1,0 +1,4 @@
+Bug 191231 – Binary compatibility breakage: protected method removed from AbstractLauncherTab
+3.3 RC3
+The protected method createStartingSpace(Composite parent, int span) got removed from the API class AbstractLauncherTab.
+This breaks binary compatibility.

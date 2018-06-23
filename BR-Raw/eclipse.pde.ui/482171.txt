@@ -1,0 +1,11 @@
+Bug 482171 – PackageSelectionDialog filter should use contains instead of startswith
+When using the PackageSelectionDialog to select the packages for Import-Package in a Manifest editor from PDE, the filter always expects to start with the package root.
+For example, let's say I have a package structure like
+org.eclipse.e4.core.services
+org.eclipse.e4.core.contexts
+with subpackages for each.
+Now if I want to find a package below services I have to enter the full path or *.services to have the filter work.
+But I would like to enter only services and find all packages that contain services in the path.
+To be honest, I'm not sure if this is JDT because of the PackageSelectionDialog or if this is something special for PDE.
+But if you give me a hint, I would also be interested in contributing.
+I just haven't found the right place or idea to fix this.

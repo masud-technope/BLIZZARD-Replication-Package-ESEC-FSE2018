@@ -1,0 +1,8 @@
+Bug 399695 – [1.8][compiler] migrate parser to other syntax for default methods
+Looking at a 0.6.1 spec I finally can see that the parser work around bug 380194 comment 4 is now obsolete:
+We need to move from
+void foo() default { stmts; }
+to
+default void foo() { stmts; }
+sigh.
+At least this might in turn obsolete bug 383973, let's see.

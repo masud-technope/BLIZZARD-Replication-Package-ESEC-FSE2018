@@ -1,0 +1,7 @@
+58342 – org.apache.tomcat.websocket.WsSession has repeated conditional tests
+Created attachment 33078 [details]
+Patch file
+In the method WsSession.removeMessageHandler(), two `if` statements have repeated conditional tests.
+I did not investigate whether older versions of Tomcat have it however they're present in trunk.
+I am attaching a patch to fix it.
+I ran the tests and they passed with my changes.

@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/build/GenerateFeatureBuildFileAction.java
+ui/org.eclipse.pde.ui/plugin.xml
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/build/BuildSiteAction.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/build/GeneratePluginBuildFileAction.java

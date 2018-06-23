@@ -1,0 +1,15 @@
+Bug 407710 – [TCK] RSA.createProxyProperties not overriding with EndpointDescription properties
+Test Failure:  In tb3.Activator line 85, the filter is looking for newkey=newvalue.
+ These overridden values are not found in the (xml/edef) imported endpoint description.
+Analysis:  In org.eclipse.ecf.osgi.services.remoteserviceadmin.RemoteServiceAdmin.createProxyProperties(EndpointDescription,
+IRemoteServiceContainer, IRemoteServiceReference, IRemoteService) line 1887, the ECF *remote service properties* are used to
+create the proxy properties via line:
+PropertiesUtil.copyNonReservedProperties(rsReference, resultProperties);
+And this results in the properties *not* including newkey=newvalue (from the overriding properties).
+The createProxyProperties should include all the non reserved properties from both both the
+Proposed Fix:
+Change line 1887 to:
+PropertiesUtil.copyNonReservedProperties(rsReference, resultProperties);
+PropertiesUtil.copyNonReservedProperties(endpointDescription.getProperties(), resultProperties);
+So that *both the rsReference properties and the endpointDescription.getProperties()* are placed into the resultProperties.
+Further, the endpointDescription.getProperties() should override any of the same values in rsReference.

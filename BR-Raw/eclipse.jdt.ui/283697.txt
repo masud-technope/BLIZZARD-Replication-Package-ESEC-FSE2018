@@ -1,0 +1,3 @@
+Bug 283697 – [quick fix] Add missing @Override should be first on suggestions
+When using JDK 1.5, and I press control-1 on an elem with a missing override warning, the "Add missing @Override" is last on the list, after a bunch of (most of the time) useless suggestions about renaming or creating methods.
+ Adding the @Override is what is wanted almost all of the time.

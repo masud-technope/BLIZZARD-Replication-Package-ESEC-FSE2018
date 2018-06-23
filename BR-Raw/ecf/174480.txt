@@ -1,0 +1,11 @@
+Bug 174480 – Missing NLS message using 1.0.0
+I got this warning in the .log file after restarting my workspace with ECF 1.0.0 installed.
+NLS missing message: IRCRootContainer_Exception_Connecting in:
+org.eclipse.ecf.internal.provider.irc.messages
+Startup info:
+eclipse.buildId=I20070213-0907
+java.version=1.6.0_01-ea
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=fr_CA
+Framework arguments:  -launcher D:\eclipse\I0213\eclipse\eclipse.exe -name Eclipse -startup D:\eclipse\I0213\eclipse\plugins\org.eclipse.equinox.launcher_1.0.0.v20070208a.jar -showlocation
+Command-line arguments:  -os win32 -ws win32 -arch x86 -launcher D:\eclipse\I0213\eclipse\eclipse.exe -name Eclipse -startup D:\eclipse\I0213\eclipse\plugins\org.eclipse.equinox.launcher_1.0.0.v20070208a.jar -debug -consolelog -console -showlocation

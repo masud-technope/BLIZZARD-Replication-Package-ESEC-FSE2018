@@ -1,0 +1,11 @@
+57136 – EL Parser escaping dollar sign not ${ or ${...}
+In the EL 3.0 spec it says...
+Alternatively, the escape characters \$ and \# can be used to escape what would
+otherwise be treated as an eval-expression.
+Given the literal-expressions:
+\${exprA}
+\#{exprB}
+The resulting values would again be the strings ${exprA} and #{exprB}.
+I believe that means it should not escape lets say "Price: \\$500.00" it should instead output "Price: \$500.00"(it currently would output "Price: $500.00") but should instead escape "Price: \\${500.00}" and the output of that would be "Price: ${500.00}".
+Normally this wouldn't be run into, but I happened to run into this issue passing javascript code through the EL processor, that happens to have some escaped dollar signs inside some regex strings.
+It maybe a little more acceptable to use \${ and \#{ as the escapes, as that is a better indication that there is about to be an expression

@@ -1,0 +1,5 @@
+48133 – misspellings in the javadoc and comment of the various classes in the package of "org.apache.core"
+Created attachment 24486 [details]
+the svn patch file
+Please see the attached file, which is a svn patch file of the he various
+classes in the package of "org.apache.core"

@@ -1,0 +1,7 @@
+Bug 418979 – [1.8][dom ast] Bad source ranges for annotated QualifiedType as type of ParameterizedType
+Created attachment 236249 [details]
+Test case to reproduce the issue
+Outer1.
+@Marker1 Inner is represented as a SimpleType of QualifiedName where the anotations sit on SimpleType, while QN includes Outer1 and Inner but not the annotation.
+Need to alter the representation.
+[follow up of bug 417659]

@@ -1,0 +1,2 @@
+LambdaWithBridge$$Lambda$1/2536472.accept
+LambdaWithBridge.main

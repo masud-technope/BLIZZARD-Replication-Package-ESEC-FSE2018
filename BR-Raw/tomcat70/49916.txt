@@ -1,0 +1,12 @@
+49916 – use an init-param for jspFile on explicit jsp servlets
+Created attachment 26017 [details]
+patch to translate jsp-file elements to jspServlet init params
+A <servlet> element in web.xml can include a jsp-file rather than a servlet class.
+Currently in catalina and jasper this is handled by a bunch of runtime code that tracks the jsp file outside the servlet and feeds it to the servlet as a request attribute.
+ This requires a bunch of runtime code, some of which is marked "hold your nose".
+Instead, it's possible to supply the jsp-file as an init-param to the jsp servlet instance that is set up to handle this <servlet> element.
+ This makes runtime handling of these jsp servlets identical to all other servlets and transfers the small amount of jsp-aware code still needed in catalina to the deployment phase.
+The attached patch appears to pass all the tomcat tests and doesn't appear to cause any tck problems in the geronimo-tomcat integration.
+In this patch, JspServlet will still respond to the jsp file as a request attribute but catalina won't send it.
+ Thus jasper is backwards compatible with earlier catalina versions but catalina is not backward compatible for explicitly mentioned jsp-file in servlet elements with earlier jasper versions.
+It would be helpful to geronimo to apply the JspServlet patch even if the catalina changes aren't applied as we are using this technique in the geronimo-jetty integration and are subclassing JspServlet to provide this behavior.

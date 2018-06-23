@@ -1,0 +1,4 @@
+java.util.AbstractCollection.toArray
+org.eclipse.pde.internal.core.search.PluginJavaSearchUtil.getPluginImports
+org.eclipse.pde.internal.core.search.PluginJavaSearchUtil.getPluginImports
+org.eclipse.pde.internal.ui.search.dependencies.GatherUnusedDependenciesOperation.isUnused

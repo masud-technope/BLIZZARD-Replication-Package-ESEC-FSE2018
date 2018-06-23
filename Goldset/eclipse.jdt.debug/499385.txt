@@ -1,0 +1,11 @@
+org.eclipse.jdt.debug.tests/META-INF/MANIFEST.MF
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AutomatedSuite.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/connectors/MockLaunch.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/connect/SocketConnection.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/connectors/MultipleConnectionsTest.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/connect/ConnectMessages.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/connect/ConnectMessages.properties
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/SocketListenConnector.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/connect/SocketListeningConnectorImpl.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/SocketListenConnectorProcess.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/connect/SocketTransportService.java

@@ -1,0 +1,5 @@
+Bug 408034 – cd IRemoteCallParameterSerializer.serializeParameter can only serialize to a single parameter
+With the current return type in org.eclipse.ecf.remoteservice.client.IRemoteCallParameterSerializer.serializeParameter(String, IRemoteCall, IRemoteCallable, IRemoteCallParameter, Object), one can only serialize to a single parameter.
+My use case though is to serialize a model object to n parameters.
+For the moment I hacked IRemoteCallParameter to allow consumers to set a value, but ultimately allowing consumers to return an array of parameters might make more sense.
+Also org.eclipse.ecf.remoteservice.client.AbstractClientContainer.prepareParameters(String, IRemoteCall, IRemoteCallable) seems to assume a specific order for defaultCallableParameters, as it skips the first callParameters.length ones.

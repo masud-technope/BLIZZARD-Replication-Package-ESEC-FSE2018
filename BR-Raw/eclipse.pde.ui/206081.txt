@@ -1,0 +1,6 @@
+Bug 206081 – Source Locations not included for directories added to target platform
+1.
+Add a directory to the Target Platform form the File System Target Provisioner.
+2.
+Switch to the Source Locations tab
+Notice how none of the source locations of the new directory are taken into account on the Source Locations tab.

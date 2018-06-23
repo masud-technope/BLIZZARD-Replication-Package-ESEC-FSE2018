@@ -1,0 +1,27 @@
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/ExtractTempRefactoring.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test110_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test110_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test111_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test111_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test112_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test112_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test113_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test113_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test114_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test114_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test115_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test115_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test116_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test116_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test117_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test117_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test118_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test118_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test119_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/canExtract18/A_test119_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/cannotExtract18/A_testFail1.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ExtractTemp/cannotExtract18/A_testFail2.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/AllRefactoringTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ExtractTempTests18.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/ExtractTempRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/refactoring.properties

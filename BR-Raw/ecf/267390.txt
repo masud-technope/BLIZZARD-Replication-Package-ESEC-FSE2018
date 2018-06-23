@@ -1,0 +1,7 @@
+Bug 267390 – file based discovery
+Build ID:  I20090202-1535
+Steps To Reproduce:
+ECF may want to have a file based discovery as specified in OSGi RFC 119.
+This bug is to track the implementation and/or contribution of such a functionality.
+Siemens Enterprise Communication volunteers to provide such an implementation.
+More information:

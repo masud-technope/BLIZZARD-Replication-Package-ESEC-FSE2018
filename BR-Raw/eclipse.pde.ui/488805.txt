@@ -1,0 +1,4 @@
+Bug 488805 – DSAnnotationCompilationParticipant performs unnecessary model modification
+This is in follow-up to https://bugs.eclipse.org/bugs/show_bug.cgi?id=488440.
+In cases when there have been no added or removed descriptor files in a given build (in buildFinished), the participant still performs a project modification operation; this operation won't find any changes and won't modify the model in the end, but still performs unnecessary model loading, setup, etc.
+when we already know that there are no changes to reconcile.

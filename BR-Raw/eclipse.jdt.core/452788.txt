@@ -1,0 +1,17 @@
+Bug 452788 – [1.8][compiler] Type not correctly inferred in lambda expression
+Hi,
+using Eclipse Mars M3 and jdk1.8.0_25, the following does not compile in Eclipse (but with jdk).
+This may be the same reason as in Bug 451677.
+// - - - - - - - - - - - - - - - - - - - - - - - - - - -
+import java.util.function.Function;
+interface Test<A> {
+<B> Test<B> create(B b);
+<B> Test<B> transform(Function<? extends A, Test<B>> f);
+default <B> Test<B> wrap(Function<? super A, ? extends B> f) {
+// THIS WORKS WITH ECJ: return transform(a -> create((B) f.apply(a)));
+return transform(a -> create(f.apply(a)));
+}
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Thanks,
+Daniel

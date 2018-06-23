@@ -1,0 +1,4 @@
+org.eclipse.jdt.compiler.apt.tests/resources/targets/model/pc/AsMemberOf.java
+org.eclipse.jdt.compiler.apt.tests/processors/org/eclipse/jdt/compiler/apt/tests/processors/typeutils/TypeUtilsProc.java
+org.eclipse.jdt.compiler.apt.tests/lib/apttestprocessors.jar
+org.eclipse.jdt.compiler.apt/src/org/eclipse/jdt/internal/compiler/apt/model/TypesImpl.java

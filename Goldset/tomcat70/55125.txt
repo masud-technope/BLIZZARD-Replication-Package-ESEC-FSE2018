@@ -1,0 +1,3 @@
+java/org/apache/catalina/startup/Catalina.java
+java/org/apache/catalina/startup/LocalStrings.properties
+webapps/docs/changelog.xml

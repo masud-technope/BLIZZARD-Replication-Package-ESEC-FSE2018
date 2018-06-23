@@ -1,0 +1,4 @@
+53067 – WebSocket implementation issue with wrapped requests
+Originally reported in Atmosphere
+https://github.com/Atmosphere/atmosphere/issues/280
+Mainly the WebSocketServlet must make sure the request hasn't been wrapped when looking at the RequestFacade and if wrapped, cycle until it find the original request.

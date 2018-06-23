@@ -1,0 +1,15 @@
+Bug 489962 – [content assist] default interface method not proposed for overriding
+package pp;
+public class CC extends S1 {
+}
+class S1 implements I1 {
+}
+interface I1 extends I2 {
+}
+interface I2 {
+default void dispose() {
+}
+}
+In this example, invoke content assist in CC.
+=> #dispose is not returned by ICodeAssist#codeComplete to CompletionProposalCollector.accept(CompletionProposal proposal).
+If I2 is a direct super interface of CC then #dispose is returned.

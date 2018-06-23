@@ -1,0 +1,8 @@
+Bug 412982 – [breakpoints] conditional breakpoint should have condition "return false;" by default
+When I enable the conditional breakpoint checkbox, I often use the "Debugging by writing to console" trick from the JDT Tips & Tricks:
+System.out.println("some info");
+return false;
+It would save some typing if the line
+return false;
+would already appear by default.
+This would also be a nice hint for new users that they should modify that expressions, since "return false;" is probably not the condition they actually need.

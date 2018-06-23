@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/core/plugin/IPluginModelBase.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/core/plugin/PluginRegistry.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/imports/PluginImportWizardExpressPage.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/ClasspathUtilCore.java
+ui/org.eclipse.pde.core/META-INF/MANIFEST.MF
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/plugin/WorkspacePluginModelBase.java

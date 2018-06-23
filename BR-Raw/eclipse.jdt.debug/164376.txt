@@ -1,0 +1,12 @@
+Bug 164376 – NPE in JavaDetailFormatterManager
+Running from HEAD
+I have no detail formatter set up.
+ When I select a variable, I get the following exception.
+ This only happens if the value of the selected variable is null.
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.getCompiledExpression(JavaDetailFormattersManager.java:365)
+at org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.resolveFormatter(JavaDetailFormattersManager.java:163)
+at org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.access$1(JavaDetailFormattersManager.java:152)
+at org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager$4.run(JavaDetailFormattersManager.java:140)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run(JDIThread.java:2532)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)

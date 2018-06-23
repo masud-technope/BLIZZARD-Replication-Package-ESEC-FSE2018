@@ -1,0 +1,3 @@
+framework/bundles/org.eclipse.ecf.remoteservice.rest/src/org/eclipse/ecf/remoteservice/rest/RestException.java
+framework/bundles/org.eclipse.ecf.remoteservice.rest/src/org/eclipse/ecf/remoteservice/rest/client/RestClientService.java
+framework/bundles/org.eclipse.ecf.remoteservice.rest/META-INF/MANIFEST.MF

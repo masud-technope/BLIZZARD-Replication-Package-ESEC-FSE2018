@@ -1,0 +1,16 @@
+Bug 274724 – [ds tooling] new component wizard does not honour dialog font
+Build id: I20090428-0100
+1.
+Window > Preferences > General > Appearance > Colors and Fonts
+2.
+Basic > Dialog Font
+3.
+Click 'Change...', increase the font size by a few points.
+4.
+Click 'OK' to commit the change.
+5.
+File > New > Other...
+6.
+Plug-in Development > Component Definition
+7.
+The top part is bigger in size but the bottom section is still the original size.

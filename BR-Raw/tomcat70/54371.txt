@@ -1,0 +1,42 @@
+54371 – java.io.FileNotFoundException while deploying web application with white space in the context root
+Created attachment 29809 [details]
+Test web application.
+Hello,
+The following exception is thrown during web application deploy on v.
+Tomcat 7.0.x including the latest Tomcat 7.0.35-dev (from trunk branch):
+SEVERE: Unable to process JNDI URL [jndi:/localhost/Fragment%20Example/WEB-INF/classes/com] for annotations
+java.io.FileNotFoundException: jndi:/localhost/Fragment%20Example/WEB-INF/classes/com
+at org.apache.naming.resources.DirContextURLConnection.list(DirContextURLConnection.java:465)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsJndi(ContextConfig.java:2028)
+at org.apache.catalina.startup.ContextConfig.processAnnotationsUrl(ContextConfig.java:1948)
+at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1306)
+at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:878)
+at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:369)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5173)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:901)
+at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:877)
+at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:633)
+at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:977)
+at org.apache.catalina.startup.HostConfig$DeployWar.run(HostConfig.java:1655)
+at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:441)
+at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:303)
+at java.util.concurrent.FutureTask.run(FutureTask.java:138)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:662)
+To reproduce:
+1.	Deploy the attached application, which:
+1.1.	Has a white space in its name;
+1.2.	Includes a web fragment;
+2.	The web app extraction is disabled (through unpackWARs="false" Host attribute in the server.xml)
+Note that the fix for Bug 54249 should be first applied (to avoid other exceptions prior the questioned one).
+I would like to propose a small fix for this:
+A substring start position is incorrectly calculated based on a string in decoded form (e.g.
+â€œ/Fragment Exampleâ€?), while the substring itself is made on an encoded string (e.g.
+â€œ/localhost/Fragment%20Example/WEB-INF/classes/comâ€?).
+The proposed fix is simply to encode the string used for the calculations.
+Thanks and best regards,
+Polina

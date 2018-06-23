@@ -1,0 +1,16 @@
+Bug 134434 – Package Selection Dialog for Import-Package should allow for packages not currently exported
+Using 3.2/M5
+Today the PDE tooling expects that for a bundle to import a package via its Import-Package header that the package must have previously been exported by another bundle via its Export-Package header.
+ While this certainly encourages the development of error free bundles, it negatively impacts development flexibility since it dictates that prerequisite bundles must be fully defined before dependent bundles.
+ While in the perfect world this works great, in reality there is benefit from being able to work the other way around.
+ I like to think of this as a dependent bundle "asking" for a package from a prerequsite bundle.
+Clearly, if a dependent bundle specifies that it wishes to import a package that has not yet been exported by any bundle then this would result in warning or error.
+ Such a warning or error would be resolved by editing the manifest of the prerequisite bundle and updating the Export-Package header, if appropriate.
+Exactly this issues existed with IBM's SMF tooling that supported OSGi R3, and per my request a "More" button was added, which worked very well.
+ When editing the manifest for the prerequsite bundle the tooling was able to tell you the packages that other bundles had "asked for", allowing the developer to easily decide if exporting such a package was appropriate.
+ This made for some handy tooling.
+I would like to see a checkbox added to the "Package Selection" dialog for adding an imported package labeled something like "Show all packages" (unchecked by default), or the opposite, "Show only packages exported by other bundles" (checked by default).
+ I imagine this to be akin to the "Show only extension points from the required plug-ins" check box on the "New Extension" dialog for adding extension.
+Likewise, it might be useful to add support to the PDE tooling for handing Export-Package headers so that the developer was aware of packages "asked for" by other bundles using their Import-Package header.
+Incidently, for both exported and imported packages the SMF tooling presented a list of packages with a checkbox to the left of each package, allowing multiple to be selected with one visit to the dialog.
+ This also allowed exported packages to be automatically checked when corresponding imported package were "asked for".

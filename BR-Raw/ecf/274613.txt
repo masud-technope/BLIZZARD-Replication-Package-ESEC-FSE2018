@@ -1,0 +1,7 @@
+Bug 274613 – Wizard handling of IRC IDs fundamentally wrong due to special chatroom handling code
+Currently, the IRC connection wizard asks for a URI-ish input that includes the channels that the user wishes to join upon successfully connecting to the server.
+This causes grave problems for different container instances that are talking to each other because remote container identification is not possible via the user's nickname.
+In datashare, messages are sent out to remote clients based on their IDs.
+It is not possible to guess a remote peer's ID because while we may know someone's nickname and the IRC server they're on (presumably the same one we're on), we do not know what they inserted into the wizard in the beginning.
+They may have typed in #eclipse in the beginning but then five minutes later they joined #eclipse-dev too but that doesn't mean their IDs have changed to "../#eclipse,#eclipse-dev", the ID is _still_ just "../#eclipse".
+As IDs are supposed to be immutable, updating them whenever a user joins/leaves a channel does not make sense.

@@ -1,0 +1,5 @@
+50646 – Tribes ByteMessage will get corrupted if message size exceeds the underlying buffer size
+The Tribes ByteMessage class is used to transfer byte payloads in the context of the tribes communication framework.
+Due to how the message is deserialized, there will be data loss (and hence corruption) if the message size exceeds the underlying buffer size.
+The solution is to replace an ObjectInput#read(byte[]) call by ObjectInput#readFully(byte[]).
+Fix is attached.

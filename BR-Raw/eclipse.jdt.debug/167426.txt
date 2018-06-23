@@ -1,0 +1,5 @@
+Bug 167426 – InstructionPointerContext keeps reference to closed editor
+I20061129-1340
+Found while looking at bug 166761: take the example from that bug but don't step into selection.
+Instead simply close the editor.
+==> InstructionPointerContext references the closed editor and hence an instance stays around until the debugger is terminated.

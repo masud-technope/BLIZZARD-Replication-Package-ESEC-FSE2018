@@ -1,0 +1,3 @@
+Bug 328999 – [Discovery] Make UI resilient against broken hostnames
+If org.eclipse.ecf.discovery.ui.model.resource.ServiceResource.ServiceDiscoveryListener.getInetAddress(URI) cannot resolve the hostname provided by ECF discovery, the UI will crash with a NPE exception.
+Thus services with broken hostnames should just be ignored.

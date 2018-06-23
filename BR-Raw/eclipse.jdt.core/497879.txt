@@ -1,0 +1,22 @@
+Bug 497879 – [1.8][compiler][codegen] Serializable lambda does not work for constructor references
+Picked up from bug 485333 comment 9
+The following code results in IAE with invalid lambda deserialization when compiled with eclipse, but works fine when compiled with javac
+public class LambdaSerializationTest {
+interface SerializableSupplier<T> extends Supplier<T>, Serializable {}
+@Test
+public void constructorReferenceSerialization() throws IOException, ClassNotFoundException {
+SerializableSupplier<List<?>> function = ArrayList::new; //Collections::emptyList;
+Object result = serializeDeserialize(function);
+Assert.assertTrue(result instanceof SerializableSupplier<?>);
+}
+private static Object serializeDeserialize(Object obj) throws IOException, ClassNotFoundException {
+try (
+ByteArrayOutputStream buffer = new ByteArrayOutputStream(); //
+ObjectOutputStream output = new ObjectOutputStream(buffer)) {
+output.writeObject(obj);
+try (ObjectInputStream input = new ObjectInputStream(new ByteArrayInputStream(buffer.toByteArray()))) {
+return input.readObject();
+}
+}
+}
+}

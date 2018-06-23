@@ -1,0 +1,2 @@
+java/org/apache/jasper/compiler/JspDocumentParser.java
+java/org/apache/naming/resources/ImmutableNameNotFoundException.java

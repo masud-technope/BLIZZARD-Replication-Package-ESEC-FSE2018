@@ -1,0 +1,6 @@
+Bug 158331 – Get rid of copied HTML rendering classes
+> 3.3 M2
+PDE has copied several classes from JDT Text and/or Platform Text related to HTML rendering.
+Since several plug-ins copied the same code Platform Text now offers these classes in an x-friends package: org.eclipse.jface.internal.text.html of which PDE UI is declared as friend.
+NOTE: before replacing your classes I suggest to check whether they are still in sync.
+If there are changes ours are probably newer/better.

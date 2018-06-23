@@ -1,0 +1,4 @@
+Bug 395612 – [1.8] Implement AST Rewrite for Receiver
+BETA_JAVA8:
+AST/DOM support for receiver is being added through bug 391893.
+This bug is for implementing AST Rewrite for the Receiver parameter.

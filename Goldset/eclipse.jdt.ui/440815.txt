@@ -1,0 +1,13 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/ExternalAnnotationsAttachmentBlock.java
+org.eclipse.jdt.ui/icons/full/obj16/external_annotation_location_attrib.gif
+org.eclipse.jdt.ui/plugin.xml
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/IJavaHelpContextIds.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaPluginImages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/NewWizardMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/NewWizardMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/CPListElement.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/ExternalAnnotationsAttachmentBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/ExternalAnnotationsAttachmentDialog.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/buildpaths/ExternalAnnotationsAttributeConfiguration.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/ISharedImages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/wizards/BuildPathDialogAccess.java

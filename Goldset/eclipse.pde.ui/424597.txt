@@ -1,0 +1,1 @@
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/ee/ExportBundleTests.java

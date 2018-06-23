@@ -1,0 +1,5 @@
+Bug 216914 – NPE org.eclipse.pde.internal.ui.correction.java.FindClassResolutionsOperation.isImportedPackage(String)
+N20080129-0010 and I20080129-0800.
+The new quick fix processor causes JDT UI tests to fail as it runs into an NPE in  org.eclipse.pde.internal.ui.correction.java.FindClassResolutionsOperation.isImportedPackage(String)
+Reason:
+PluginRegistry.findModel can return null.

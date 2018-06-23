@@ -1,0 +1,4 @@
+49082 – ExpressionFactory.newInstance needs to be privileged
+The ExpressionFactory.newInstance method needs to be wrapped in a privileged block so as to not throw an exception for security reasons.
+I'm currently seeing a java.security.AccessControlException on el.properties when calling getClassNameJreDir().
+Also, the System.getProperty("java.home") does not need to have a trailing separator?  I would think you would want to modify the PROPERTY_FILE for el.properties to check for this final separator character.

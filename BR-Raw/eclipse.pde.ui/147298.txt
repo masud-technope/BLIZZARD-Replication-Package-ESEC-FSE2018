@@ -1,0 +1,3 @@
+Bug 147298 – Dependency Management should default to Import-Package for projects targeting OSGi
+Dependency Management has a preference for Require-Bundle or Import-Package when adding bundles to the Manifest.
+ For a Plug-in project targeting an OSGi framework, the dependency management default should be Import-Package.

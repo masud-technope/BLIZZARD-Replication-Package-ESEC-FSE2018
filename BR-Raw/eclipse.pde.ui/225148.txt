@@ -1,0 +1,6 @@
+Bug 225148 – P2 PDE target doesn't work, easily
+After moving to p2, the PDE development environment doesn't automatically load all plugins from the target.
+It appears to only load the platform plugins, and I have to manually click the Reload button to get it to load other plugins.
+While this is a pretty simple workaround, this regression is annoying when switching between multiple development environments.
+FWIW, I've heard reports from others where this hasn't even worked, making M6 unusable as a development environment.
+I've asked them to submit separate bugs.

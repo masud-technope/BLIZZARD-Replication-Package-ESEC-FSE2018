@@ -1,0 +1,32 @@
+Bug 80191 – Link from exception in console to inner class
+Note that it does not matter if the inner class has been defined before or after
+the (main) public class.
+I've put it under UI (because of the link and the
+popup) but this might also be a Core or Debug bug.
+/*
+* Output of running as application:
+*
+* Exception in thread "main" java.lang.Error
+* at B.<init>(A.java:17)
+* at A.main(A.java:23)
+*
+* Clicking on line 2 at B.<init>(A.java:17) will show popup with error
+*
+* Information
+* Source not found for B
+*/
+class B {
+public B() {
+throw new Error();
+}
+}
+public class A {
+public static void main(String[] args) {
+new B();
+}
+}
+Tested versions (Windows)
+2.1.3 stable
+3.0.1 stable
+Version: 3.1.0 (M3)
+Build id: 200411050810

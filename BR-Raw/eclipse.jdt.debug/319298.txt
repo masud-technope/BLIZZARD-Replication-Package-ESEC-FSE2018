@@ -1,0 +1,2 @@
+Bug 319298 – Support EE launch variables
+It would be nice to be specify something like ${ee_home:J2SE-1.4} in a launch configuration and have that replaced with the JRE home for the corresponding EE according to the installed JRE preferences.

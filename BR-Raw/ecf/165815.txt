@@ -1,0 +1,27 @@
+Bug 165815 – Local access to local remoteservicereference not implemented
+Hi Paul,
+Please file this as a bug.
+ The reason is simply that the local access to locally registered remoteservices (i.e.
+remoteContainerOne calling getRemoteServiceReferences for a remoteservice it has registered) is not yet implemented.
+I'll address the other issues in another posting.
+Scott
+Paul Woodward wrote:
+> Hi Rem,
+>
+> &gt; Paul Woodward wrote:
+> &gt; > // THIS TEST ALWAYS BREAKS - WHY?
+> &gt; > IRemoteServiceReference[] refsOne =
+> &gt; remoteContainerOne.getRemoteServiceReferences(null,
+> &gt; org.eclipse.ecf.tests.remoteservice.IConcat.class.getN
+> &gt; ame(), null);
+> &gt; >         assertTrue(refsOne.length > 0);
+> &gt; &gt; However, with regards to this test failure, can you
+> &gt; provide us with some &gt; additional information? Does the assertion just fail
+> &gt; and that's it? Does &gt; an exception get thrown? Are you using Java 1.6? The
+> &gt; issue may be &gt; identical to what's been reported at bug #161684.
+> &gt; &gt; https://bugs.eclipse.org/bugs/show_bug.cgi?id=161684
+> &gt;
+> No exceptions, just the assertion that fails.
+I'm using Java 1.5.
+>
+> Cheers, Paul

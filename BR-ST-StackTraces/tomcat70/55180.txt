@@ -1,0 +1,2 @@
+sun.nio.ch.SocketAdaptor.setSoTimeout
+org.apache.coyote.http11.Http11NioProcessor.setSocketTimeout

@@ -1,0 +1,15 @@
+Bug 395228 – [introduce indirection] Adds unneccessary import when inner class is used as parameter in surrounding class
+Steps to reproduce:
+1.
+Invoke "Introduce Indirection" on 'f' method in code below
+2.
+The resulting file does not compile ("The type IntroduceIndirectionBug1.C is not visible")
+class IntroduceIndirectionBug1 {
+// Invoke "Introduce Indirection" on 'f'
+void f(C c) {
+}
+private class C {
+}
+}
+The cause of this bug is probably the same as for bug 394725.
+(Thanks to Yilong Li for helping with the bug report.)

@@ -1,0 +1,17 @@
+Bug 427105 – [1.8][builder] Differences between incremental and full builds in method contract verification in the presence of type annotations
+Brought from bug 426515, comment #15
+The following files should be in their own files:
+I1.java
+public interface I1 {
+public String bar2( String s, @Marker List l1, List<String> l2);
+}
+-------------
+A.java
+public class A implements I1 {
+@Override
+public String bar2(String s, @Marker List l1, List<String> l2) {
+return null;
+}
+}
+Doing a clean build, you can notice there's no error.
+But when you touch A.java in the editor, the reconciler reports an error.

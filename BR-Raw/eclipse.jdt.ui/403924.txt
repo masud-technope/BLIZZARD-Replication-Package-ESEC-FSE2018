@@ -1,0 +1,5 @@
+Bug 403924 – [1.8] Replace usages of MethodDeclaration#thrownExceptions() in the AST
+Replace usages of MethodDeclaration#thrownExceptions() in the AST.
+For jsr308, MethodDeclaration's thrownExceptions property has been replaced with thrownExceptionTypes.
+Make a pass over all JDT UI code that uses the old property in any way (direct access or via property descriptor) and update usages.
+File separate bugs if things get too complicated somewhere or if you think we should add new features for handling these constructs.

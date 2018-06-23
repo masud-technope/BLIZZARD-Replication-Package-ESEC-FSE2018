@@ -1,0 +1,7 @@
+Bug 32714 – Packages View: flickering and loosing expanded state when logical package is selected with hierarchical layout
+In the java browsing perspective:
+- enable hierarchical layout for the packages view
+- select a logical package in the packages view
+- select types/methods in the types/methods views
+-> the packages view flickers and looses the expanded state (the tree is only
+expanded upto the logical package, other expanded subtrees are collapsed)

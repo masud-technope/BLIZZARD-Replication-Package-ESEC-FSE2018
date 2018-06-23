@@ -1,0 +1,16 @@
+Bug 88757 – [API] SwitchStatement.statements() returns list of SwitchGroups
+In latest, the statements() method returns a list of SwitchGroups, but
+SwitchGroups doesn't exist.
+/**
+* Returns the live ordered list of statements for this switch statement.
+* Within this list, <code>SwitchCase</code> nodes mark the start of
+* the switch groups.
+*
+* @return the live list of switch group nodes
+*    (element type: <code>SwitchGroups</code>)
+*/
+public List statements() {
+return this.statements;
+}
+Right now statements() returns a list of Statement.
+This needs to be clarified for M6.

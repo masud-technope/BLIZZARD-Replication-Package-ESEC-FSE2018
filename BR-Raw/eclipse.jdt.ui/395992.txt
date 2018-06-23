@@ -1,0 +1,20 @@
+Bug 395992 – [generalize type] Generalize Declared Type offers types that are not visible
+Steps to reproduce:
+1.
+See the instructions in code below
+2.
+The resulting code does not compile ("The type AbstractStringBuilder is not visible")
+class GeneralizeDeclaredTypeBug6 {
+void f() {
+// Invoke "Generalize Declared Type" on "StringBuffer"
+// and select "AbstractStringBuffer" as new type
+StringBuffer b;
+}
+}
+Result:
+class GeneralizeDeclaredTypeBug6 {
+void f() {
+AbstractStringBuilder b;
+}
+}
+(Thanks to Yilong Li for helping with the bug report.)

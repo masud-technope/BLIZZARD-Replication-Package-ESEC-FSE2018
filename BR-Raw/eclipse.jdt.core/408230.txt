@@ -1,0 +1,24 @@
+Bug 408230 – [1.8][hovering] NPE on hovering over a type inferred parameter in lambda expression
+Consider the following example and hover on "a" as mentioned in the comments:
+public class C1 {
+FI i1= (a) -> a++; // [1] Hover on "a" in "a++"
+void foo() {
+FI i2= (a) -> {
+return a; // [2] Hover on "a"
+};
+}
+}
+interface FI {
+int f1(int a);
+}
+We get these exceptions:
+[1]
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.core.util.Util.typeSignature(Util.java:2685)
+at org.eclipse.jdt.internal.core.SelectionRequestor.acceptLocalVariable(SelectionRequestor.java:454)
+at org.eclipse.jdt.internal.codeassist.SelectionEngine.selectFrom(SelectionEngine.java:1229)
+[2]
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.ast.LocalDeclaration.resolve(LocalDeclaration.java:187)
+at org.eclipse.jdt.internal.compiler.ast.Block.resolve(Block.java:114)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:594)

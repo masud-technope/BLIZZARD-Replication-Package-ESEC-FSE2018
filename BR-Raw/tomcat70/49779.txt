@@ -1,0 +1,27 @@
+49779 – 501 Method not implemented with successive POST requests
+Created attachment 25911 [details]
+client wire/context log, client code, webapp code
+An unexpected HTTP 501 occurs if using HttpComponents with successive POST requests against a simple Tomcat 7 servlet (Form-based POST Authentication is enabled).
+After a sucessfull authentication, the client requests the same protected resource a few times in a row, but the second request always returns a "501 Method not implemented" status.
+All other requests succeed.
+The following communication takes place:
+1.
+Client requests a protected resource; Tomcat returns the login page (HTTP200)
+2.
+Client provides the user credentials and calls the login resource; Tomcat returns a redirect (HTTP302)
+3.
+Client sets the location from the redirect for the next request(identical to URI from #1) and requests it; Tomcat returns the page (HTTP200)
+4.
+Client requests the same resource again; Tomcat returns a HTTP501 - Method not implemented
+5.
+Client requests the same resource again; Tomcat returns the page (HTTP200)
+6.
+Client requests the same resource again; Tomcat returns the page (HTTP200)
+7.
+Client requests the same resource again; Tomcat returns the page (HTTP200)
+The access log message regarding the 501 says:
+'"testName=testValuePOST /test/secure/ HTTP/1.1" 501 1278', which may indicate that the entity data and the HTTP-method name somehow got mixed up!? Strangely the HTTP501 does not appear in case of a JSP for the requested resource, only if facing a form-based POST authentication Servlet.
+The servlet does only implement post and get(which calls the doPost) and returns just a string.
+The client code should be fine since I already posted this issue on the HTTPComponents mailing list and the data sent over the wire seems to be right.
+I attached the source/bin of the testclient and webapp and also the wire/context log of the client.
+How can I provide further helpfull information?

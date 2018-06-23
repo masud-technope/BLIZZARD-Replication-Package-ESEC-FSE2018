@@ -1,0 +1,11 @@
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/example/collab/ClientPlugin.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/example/collab/ClientPluginConstants.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/example/collab/share/EclipseCollabSharedObject.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/example/collab/ui/ClientPreferencePage.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/example/collab/ui/LabelFieldEditor.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/example/collab/ui/SpacerFieldEditor.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/example/collab/share/EclipseCollabSharedObject.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/example/collab/ui/ChatComposite.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/example/collab/ui/ChatLine.java
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/ui/views/SimpleLinkTextViewer.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/example/collab/share/EclipseCollabSharedObject.java

@@ -1,0 +1,21 @@
+57316 – JspC fails if directory name contains URL encoded characters
+I ran into an issue today where my Jenkins build failed because the working directory contained '%2F' in the name.
+ When the build got as far as attempting to precompile the JSPs, an exception was thrown complaining that the directory didn't exist.
+Gradle error output:
+Internal Error: File /WEB-INF/web.xml not found
+[ant:jasper] java.lang.NullPointerException
+[ant:jasper]  at java.io.File.<init>(File.java:277)
+[ant:jasper]  at org.apache.jasper.JspC.initClassLoader(JspC.java:1555)
+[ant:jasper]  at org.apache.jasper.JspC.processFile(JspC.java:1196)
+[ant:jasper]  at org.apache.jasper.JspC.execute(JspC.java:1362)
+[ant:jasper]  at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:292)
+[ant:jasper]  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[ant:jasper]  at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+[ant:jasper]  at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[ant:jasper]  at java.lang.reflect.Method.invoke(Method.java:606)
+[ant:jasper]  at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+[ant:jasper]  at groovy.util.AntBuilder.performTask(AntBuilder.java:260)
+I believe the problem is caused by JspC.initClassLoader's call to JspCompilationContext.getRealPath.
+ This calls JspCServletContext.getRealPath, which in turn uses the value from URL.getFile to build the path.
+ This returns a URL encoded variant of the path, which in my case means a double-encoded path.
+ I believe JspCompilationContext.getRealPath should be URL decoding the return value.

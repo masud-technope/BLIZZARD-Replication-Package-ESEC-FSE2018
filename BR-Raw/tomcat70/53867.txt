@@ -1,0 +1,30 @@
+53867 – Performance tuning solution for PageContextImpl.XmlEscape
+Created attachment 29369 [details]
+Patch for PageContextImpl.java
+XmlEscape is used to do escape special characters for EL result.
+Currently it gets characters from String one by one and check whether the char is special character or not, than put the char into a StringBuilder.
+Most cases the string has no such special characters, However, it always creates a new StringBuilder than do such iteration.
+It's better to check whether there is any special characters first.
+If there is special character, then do create a StringBuilder and put those characters in front of te special character into the StringBuilder.
+Again, check the string by character one by one similar as the original logic.
+Here is the result of comparison testing between the two methods.
+Old escape:1610
+New escape:1050
+Old escape:1566
+New escape:873
+Old escape:1437
+New escape:905
+Old escape:1590
+New escape:890
+Old escape:1452
+New escape:889
+Old escape:1547
+New escape:889
+Old escape:1467
+New escape:889
+Old escape:1575
+New escape:930
+Old escape:1479
+New escape:874
+Old escape:1517
+New escape:970

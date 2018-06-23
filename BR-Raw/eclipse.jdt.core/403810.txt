@@ -1,0 +1,8 @@
+Bug 403810 – [1.8] @since tags need adjusting.
+BETA_JAVA8:
+At the moment, we have been tagging Java 8 API items (mostly IProblems)
+with "@since 3.9"
+This needs to be adjusted to be "@since 3.9 BETA_JAVA8"
+We don't want to use 3.9.1 since we want to be able to distinguish between
+what gets added in 3.9.1 in normal course and what got expressly added for
+Java 8 support.

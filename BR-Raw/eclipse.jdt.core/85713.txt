@@ -1,0 +1,5 @@
+Bug 85713 – Signature.getTypeSignatureKind does not like wildcard types
+20050217
+Signature.getTypeSignatureKind throws an IllegalArgumentException when a
+signature for wild card is passed.
+Are signatures for wild cards not considered as type signatures?

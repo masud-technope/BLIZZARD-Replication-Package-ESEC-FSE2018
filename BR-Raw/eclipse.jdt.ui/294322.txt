@@ -1,0 +1,14 @@
+Bug 294322 – [jar exporter] Runnable JAR Export - problem with special characters in included JAR-in-JAR filenames
+User-Agent:       Mozilla/5.0 (X11; U; Linux x86_64; de; rv:1.9.0.14) Gecko/2009091008 Firefox/3.0.6 (Debian-3.0.6-3)
+Build Identifier: 20090619-0625
+When exporting a "Runnable JAR File" from an Eclipse project which itself contains JAR files, a class loader is included in the runnable JAR.
+This JAR-in-JAR class loader seems to have problems loading classes from JAR-files with filenames containing special characters like '+'.
+When running such a runnable JAR, an InvocationTargetException caused by NoClassDefFoundError is thrown.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Export a Runnable JAR File from an Eclipse project which references a JAR library.
+2.
+Select option "Package required libraries into generated JAR" in the Export dialog.
+3.
+Execute the runnable JAR.

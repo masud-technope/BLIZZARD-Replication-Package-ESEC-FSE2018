@@ -1,0 +1,3 @@
+Bug 291559 – Create a new section for preferences of build.properties related problems
+The preference for build.properties related problem is associated with many problem.
+Create a separate section for build.properties covering the preferences liked with each property like source.<library>, src.includes, etc.

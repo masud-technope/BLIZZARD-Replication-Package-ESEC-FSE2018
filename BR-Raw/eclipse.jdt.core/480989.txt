@@ -1,0 +1,18 @@
+Bug 480989 � Compiler violates JLS 16 for final fields in Java 7+
+This program is valid in Java 6 and earlier, but invalid in Java 7 and later due to a spec change in JLS chapter 16:
+public class Unassigned {
+public final int a;
+public int b;
+Unassigned(int value) {
+b = this.a;
+a = value;
+}
+}
+Java 6 JLS has:
+"Each local variable (§14.4) and every blank final (§4.12.4) field (§8.3.1.2) must have a definitely assigned value when any access of its value occurs.
+An access to its value consists of the simple name of the variable occurring anywhere in an expression except as the left-hand operand of the simple assignment operator =."
+In Java 7 and later:
+"Each local variable (§14.4) and every blank final field (§4.12.4, §8.3.1.2) must have a definitely assigned value when any access of its value occurs.
+An access to its value consists of the simple name of the variable (or, for a field, the simple name of the field qualified by this) occurring anywhere in an expression except as the left-hand operand of the simple assignment operator = (§15.26.1)."
+The Oracle JDK fails on this, but on the other hand it accepts "(this).a".
+Spec bug?

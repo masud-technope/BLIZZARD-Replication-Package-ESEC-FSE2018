@@ -1,0 +1,8 @@
+Bug 294970 – In strings use the name/label when there is just one element/thing
+User-Agent:       Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5
+Build Identifier: I20091110-0800
+In strings use the name/label when there is just one element/thing
+e.g.
+"Move method 'foo()' to X" instead of "Move method to X"
+See Bug 266094
+Reproducible: Always

@@ -1,0 +1,3 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/packageview/PackageExplorerProblemsDecorator.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/JavaElementImageDescriptor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/ProblemsLabelDecorator.java

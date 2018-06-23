@@ -1,0 +1,5 @@
+java/org/apache/catalina/AsyncDispatcher.java
+java/org/apache/catalina/core/ApplicationDispatcher.java
+java/org/apache/catalina/core/AsyncContextImpl.java
+java/org/apache/catalina/core/LocalStrings.properties
+webapps/docs/changelog.xml

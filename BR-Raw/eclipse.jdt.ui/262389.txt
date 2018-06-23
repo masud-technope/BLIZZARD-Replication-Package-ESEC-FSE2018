@@ -1,0 +1,5 @@
+Bug 262389 – Internal code must not use ICompilationUnit.applyTextEdit
+3.4 and 3.4.1.
+When we introduced the new ICompilationUnit.applyTextEdit(...) to allow clients a simple and efficient way for batched update of TextEdit/s combined with undo we made a mistake when we changed the internal JDT Core code to use/call that new API (see bug 220565) as each call to this new API also handles the undo for the client and hence closes the current undo operation.
+This breaks clients who call JDT Core code like IJavaModel.delete(...) as this now closes their current undo operation (actually it closes it n-times as the new API is called for each element) and they can no longer group several calls to the Java model into one undo operation (aka compound change).
+The simplest fix is to revert the code change from bug 220565.

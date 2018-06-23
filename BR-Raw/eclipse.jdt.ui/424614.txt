@@ -1,0 +1,26 @@
+Bug 424614 – [1.8][mark occurrances] Selected throws list exception highlights method call inside lambda block
+When selecting the IOException in the getterMaker1 throws declaration, the get() method inside the returned lambda block is highlighted as well.
+import java.io.IOException;
+public class ExtraInsideLambda {
+interface Getter<T> { T get() throws IOException; }
+/* Place caret in IOException in throws declaration below, the method call inside lambda is
+* highlighted too.
+The other versions work as expected.
+*/
+public static Getter<Long> getterMaker1(Getter<Long> getter) throws IOException {
+Long value = getter.get();
+return () -> value == null ? getter.get() : value;
+}
+}
+Other similar versions work as expected:
+/* As expected, no throws declarations is needed.
+*/
+public static Getter<Long> getterMaker2(Getter<Long> getter) { return () -> getter.get(); }
+/* As expected, both throws declarations highlight only one get-method when selected.
+*/
+public static Getter<Long> getterMaker3(Getter<Long> getter) throws IOException {
+Long value = getter.get();
+return new Getter<Long>() {
+@Override public Long get() throws IOException { return value == null ? getter.get() : value; }
+};
+}

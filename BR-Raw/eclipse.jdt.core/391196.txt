@@ -1,0 +1,24 @@
+Bug 391196 – [1.8][compiler] Compiler rejects type annotations in valid locations
+BETA_JAVA8:
+The following program should compile, but does not.
+(note that javac also
+erroneously reports one error, while we report 2 more):
+// ----
+@Marker public class X {
+@Marker public int foo(){
+Object o = (@Marker String) null;
+}
+}
+@java.lang.annotation.Target (java.lang.annotation.ElementType.TYPE_USE)
+@interface Marker {
+}
+Per EDR section 2.3:
+"A type annotation (one meta-annotated with @Target(ElementType.TYPE USE))
+is permitted to be written anywhere @Target(ElementType.TYPE) or
+@Target(ElementType.TYPE PARAMETER) would permitâ€”that is, on a class,
+interface, or enum declaration, or on a type parameter declaration."
+Also
+"A type annotation may appear before a constructor, in which case it
+represents the object that the constructor is creating (which is not
+the same as the receiver of the constructor)."
+Fix should go in org.eclipse.jdt.internal.compiler.ast.Annotation.resolveType(BlockScope)

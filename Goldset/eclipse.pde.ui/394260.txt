@@ -1,0 +1,8 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/AbstractModel.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/extension/BaseExtensionPointMainPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/ProductInputContext.java
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/cheatsheet/comp/CompCSInputContext.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/feature/FeatureInputContext.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/site/SiteInputContext.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/category/CategoryInputContext.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/SchemaInputContext.java

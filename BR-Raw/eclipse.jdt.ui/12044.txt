@@ -1,0 +1,9 @@
+Bug 12044 – [search] Should find constant references in .class files with source attached
+1.
+In Outline view select java.text.DateFormat.HOUR_OF_DAY0_FIELD
+2.
+Search for References in workspace
+==> nothing found
+Note 1: It finds references in .java files but not in JARs.
+Note 2: Search for all Occurrences (via search dialog) correctly returns the
+references

@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/bundle/ExportPackageHeader.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/bundle/ImportPackageHeader.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/correction/AddExportPackageMarkerResolution.java

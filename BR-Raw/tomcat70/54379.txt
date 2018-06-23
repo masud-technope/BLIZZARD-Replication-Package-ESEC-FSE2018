@@ -1,0 +1,13 @@
+54379 – Implement support for post-construct and pre-destroy elements in web.xml
+There appears to be a feature that web[-fragment].xml file can contain such elements as <post-construct> and <pre-destroy>, and they are treated as equivalents to @PostConstruct and @PreDestroy annotations being present on the classes mentioned in them.
+This feature is
+1.
+mentioned in the Java EE 6 Platform Specification, chapter "EE.5.2.5 Annotations and Injection" [1]
+2.
+mentioned in chapter "8.2.3 Assembling the descriptor from web.xml, webfragment.xml and annotations",
+see points "k." and "l." on page 81 (103/230) of servlet-3_0-mrel-spec.pdf
+[1] javaee_platform-6_0-fr-spec.pdf
+http://jcp.org/aboutJava/communityprocess/final/jsr316/index.html
+An example can be found in Jetty wiki:
+http://wiki.eclipse.org/Jetty/Feature/Annotations#Lifecycle_callbacks:_PostConstruct_PreDestroy
+Searching by the tag names, I do not see any code in the current trunk that processes those XML elements.

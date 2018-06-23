@@ -1,0 +1,4 @@
+Bug 209138 – the host plugin is presented into the Automated Management of Dependencies/Add dialog of a fragment
+Build I20071029-0010
+The Automated Management of Dependencies/Add dialog of a fragment opens a list of available plugins, amongst which the host of the fragment is presented.
+I believe this is inappropriate (even if probably harmless).

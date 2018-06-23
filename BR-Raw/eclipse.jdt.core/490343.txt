@@ -1,0 +1,19 @@
+Bug 490343 � [1.8][null][external] AIOOBE with external annotations for Map.Entry.comparingByKey
+DESCRIPTION:
+- put an external @NonNull-annotation on the return type of java.util.Map.Entry.comparingByKey
+- reference the Map.Entry class somewhere.
+An ArrayIndexOutOfBoundsException is reported, stack trace is:
+at org.eclipse.jdt.internal.compiler.classfmt.ExternalAnnotationProvider$TypeParametersAnnotationWalker.toTypeParameterBounds(ExternalAnnotationProvider.java:477)
+at org.eclipse.jdt.internal.compiler.classfmt.ExternalAnnotationProvider$MethodAnnotationWalker.toTypeParameterBounds(ExternalAnnotationProvider.java:600)
+at org.eclipse.jdt.internal.compiler.lookup.BinaryTypeBinding.createTypeVariables(BinaryTypeBinding.java:972)
+at org.eclipse.jdt.internal.compiler.lookup.BinaryTypeBinding.createMethod(BinaryTypeBinding.java:776)
+at org.eclipse.jdt.internal.compiler.lookup.BinaryTypeBinding.createMethods(BinaryTypeBinding.java:912)
+at org.eclipse.jdt.internal.compiler.lookup.BinaryTypeBinding.cachePartsFrom(BinaryTypeBinding.java:524)
+at org.eclipse.jdt.internal.compiler.lookup.LookupEnvironment.createBinaryTypeFrom(LookupEnvironment.java:722)
+…
+ANALYSIS:
+In ExternalAnnotationProvider.TypeParametersAnnotationWalker.TypeParametersAnnotationWalker(…), while scanning
+<K::Llibs/Comparable<-TK;>;V:Ljava/lang/Object;>()L1libs/Comparator<Llibs/Map$Entry<TK;TV;>;>;
+the case of nested < ;> is not handled while looking for the ; that terminates the bound.
+PATCH (via gerrit):
+Counts nested pairs < > so nested ; are ignored

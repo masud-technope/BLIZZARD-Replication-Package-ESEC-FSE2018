@@ -1,0 +1,7 @@
+Bug 23573 – AST: clone & source locations
+20020911
+This isn't specifed, so my questions: Are source locations also copied to a
+cloned node (using ASTNode.copySubtrees) ?
+It seems to be for some but not all nodes.
+I would be happy if the source locations are copied.
+(The spec says that properties are not copied; what of course makes sense).

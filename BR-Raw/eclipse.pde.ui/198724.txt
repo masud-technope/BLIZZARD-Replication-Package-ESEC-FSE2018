@@ -1,0 +1,9 @@
+Bug 198724 – Raise warning when . is not on bundle-classpath and there are source folders
+If there's a Java project with at least one source folder, and .
+isn't on the Bundle-ClassPath, things will go wrong.
+We should throw up an error on that case.
+Sometimes people will include a jar by adding 'Bundle-ClassPath: foo.jar' which of course removes .
+which will just break things.
+Some intelligence e.g.
+looking for 'src..' and 'bin..' in the build.properties will almost certainly be necessary here.
+Alex.

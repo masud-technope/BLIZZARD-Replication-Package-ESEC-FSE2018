@@ -1,0 +1,14 @@
+Bug 402819 – [1.8][formatter] No effect with formatting when cast operator contains intersection of types.
+BETA_JAVA8:
+The following program fails to get formatted properly.
+If you change
+the intersection type cast to a normal cast, all is well:
+// ----
+import java.io.Serializable;
+interface I {
+void doit();
+}
+class X {
+void foo(   int x   ,     int   y ) {}
+I i = (I       &       Serializable   ) () -> {};
+}

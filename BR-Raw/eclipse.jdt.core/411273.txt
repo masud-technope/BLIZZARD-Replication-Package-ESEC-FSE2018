@@ -1,0 +1,14 @@
+Bug 411273 – [1.8][compiler] Bogus error about unhandled exceptions for unchecked exceptions thrown by method reference.
+import java.util.function.Function;
+public class TestMethodRef {
+public static void main(String[] args) {
+Function<String, Integer> f = Integer::new;
+}
+}
+This is accepted by javac(of course, 8) but throw an error in my onw built BETA_JAVA8.
+From the semantics of lambda, it should be ok.
+Note, BETA_JAVA8 is a method ref, but not a method invocation.
+This is so common, but we forget to implement it? Or, may I have a wrong build for BETA_JAVA8?
+Anywhere, team, good work in these months!
+thanks,
+Jin

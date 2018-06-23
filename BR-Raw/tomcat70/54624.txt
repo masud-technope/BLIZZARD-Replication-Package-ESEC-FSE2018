@@ -1,0 +1,5 @@
+54624 – Form authenticator hangs on re-authentication of POST request behind mod_proxy_ajp
+Setup: Tomcat AJP connector behind mod_proxy_ajp, form-based authentication.
+When session expires and a POST request is submitted, Tomcat shows login form, user logs in, authenticator tries to restore the original POST request.
+Doing that, it tries to swallow the AJP message body before replacing the body of the request with the original POST request body.
+It tries to read the first 4 bytes of the AJP message (the message length) and blocks forever waiting for those 4 bytes.

@@ -1,0 +1,28 @@
+51277 – NPE during the form authentication when form-login-config is missed
+Created attachment 27075 [details]
+Log from a browser
+Hi!
+There is NPE during the form authentication when form-login-config is missed
+I missed form-login-config by mistake (converted it from the BASIC):
+<login-config>
+<auth-method>FORM</auth-method>
+<realm-name>Tomcat Manager Application</realm-name>
+</login-config>
+Unfortunately I get NPE (see below and attached).
+I do understand that Form authentication can not work, but I think NPE is bad output.
+I think better is HTTP 500.
+Best regards,
+Michael
+java.lang.NullPointerException
+org.apache.catalina.authenticator.FormAuthenticator.forwardToLoginPage(FormAuthenticator.java:373)
+org.apache.catalina.authenticator.FormAuthenticator.authenticate(FormAuthenticator.java:267)
+org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:539)
+org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:100)
+org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:562)
+org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:395)
+org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:250)
+org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:188)
+org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:302)
+java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+java.lang.Thread.run(Thread.java:662)

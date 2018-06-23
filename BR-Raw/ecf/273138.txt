@@ -1,0 +1,53 @@
+Bug 273138 – NPE thrown when shutting down Eclipse without connection to a provider
+1.
+Launch a second Eclipse instance with XMPP and DocShare.
+2.
+Select the provider connection icon and select 'XMPP'.
+3.
+The wizard appears.
+Close it.
+4.
+Shutdown Eclipse.
+5.
+An NPE is logged.
+org.eclipse.core.runtime.Status[plugin=org.eclipse.ecf;code=4;message=container dispose error;severity4;exception=java.lang.NullPointerException;children=[]]
+java.lang.NullPointerException
+at org.eclipse.ecf.internal.docshare.ECFStart$1.handleEvent(ECFStart.java:34)
+at org.eclipse.ecf.core.AbstractContainer.fireContainerEvent(AbstractContainer.java:62)
+at org.eclipse.ecf.provider.generic.SOContainer.notifySharedObjectDeactivated(SOContainer.java:792)
+at org.eclipse.ecf.provider.generic.SOWrapper.deactivated(SOWrapper.java:94)
+at org.eclipse.ecf.provider.generic.SOContainerGMM.removeSharedObject(SOContainerGMM.java:216)
+at org.eclipse.ecf.provider.generic.SOContainer.destroySharedObject(SOContainer.java:420)
+at org.eclipse.ecf.provider.generic.SOContainerGMM.removeSharedObjects(SOContainerGMM.java:274)
+at org.eclipse.ecf.provider.generic.SOContainerGMM.removeSharedObjects(SOContainerGMM.java:258)
+at org.eclipse.ecf.provider.generic.SOContainerGMM.removeMember(SOContainerGMM.java:73)
+at org.eclipse.ecf.provider.generic.SOContainerGMM.removeAllMembers(SOContainerGMM.java:104)
+at org.eclipse.ecf.provider.generic.SOContainerGMM.removeAllMembers(SOContainerGMM.java:87)
+at org.eclipse.ecf.provider.generic.SOContainer.dispose(SOContainer.java:264)
+at org.eclipse.ecf.provider.generic.ClientSOContainer.dispose(ClientSOContainer.java:80)
+at org.eclipse.ecf.provider.xmpp.XMPPContainer.dispose(XMPPContainer.java:224)
+at org.eclipse.ecf.core.ContainerFactory$1.dispose(ContainerFactory.java:86)
+at org.eclipse.ecf.internal.core.ECFPlugin.fireDisposables(ECFPlugin.java:108)
+at org.eclipse.ecf.internal.core.ECFPlugin.stop(ECFPlugin.java:356)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl$2.run(BundleContextImpl.java:840)
+at java.security.AccessController.doPrivileged(Native Method)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl.stop(BundleContextImpl.java:833)
+at org.eclipse.osgi.framework.internal.core.BundleHost.stopWorker(BundleHost.java:474)
+at org.eclipse.osgi.framework.internal.core.AbstractBundle.suspend(AbstractBundle.java:546)
+at org.eclipse.osgi.framework.internal.core.Framework.suspendBundle(Framework.java:1098)
+at org.eclipse.osgi.framework.internal.core.StartLevelManager.decFWSL(StartLevelManager.java:593)
+at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:261)
+at org.eclipse.osgi.framework.internal.core.StartLevelManager.shutdown(StartLevelManager.java:216)
+at org.eclipse.osgi.framework.internal.core.InternalSystemBundle.suspend(InternalSystemBundle.java:266)
+at org.eclipse.osgi.framework.internal.core.Framework.shutdown(Framework.java:685)
+at org.eclipse.osgi.framework.internal.core.Framework.close(Framework.java:583)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.shutdown(EclipseStarter.java:409)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:200)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:559)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:514)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1287)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1263)

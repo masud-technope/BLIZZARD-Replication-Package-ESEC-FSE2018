@@ -1,0 +1,4 @@
+Bug 205198 – Flag when there are missing bundle or package version ranges
+In the effort to meet one of our themes for the 3.4 release, "Keep Tom Happy," we need to investigate adding a marker to optionally flag people who forget version ranges on Import-Package/Export-Package and Require-Bundle.
+It's a good OSGi practice to always include this information.
+This is a good bugday exercise too.

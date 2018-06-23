@@ -1,0 +1,4 @@
+org.eclipse.jdt.debug.ui/plugin.xml
+org.eclipse.jdt.debug.ui/META-INF/MANIFEST.MF
+org.eclipse.jdt.debug.ui/plugin.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/search/LaunchConfigurationQueryParticipant.java

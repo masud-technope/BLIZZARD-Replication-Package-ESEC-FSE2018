@@ -1,0 +1,5 @@
+42072 – The call of the jspDestroy method violates it about the Java Servlet Specification 2.4, SRV.2.3.2.1.
+When a JSP is accessed for a second time, the jspDestroy method is called even
+if a ServletException is thrown from the init method of the class that extends
+HttpJspPage.
+This violates the Java Servlet Specification 2.4, SRV.2.3.2.1.

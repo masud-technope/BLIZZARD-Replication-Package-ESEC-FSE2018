@@ -1,0 +1,5 @@
+Bug 73576 – Pattern matching in IOConsole is too expensive
+On the latest code from HEAD you cannot run an Ant build with output and -
+debug.
+The CPU is pegged with the pattern matching of IOConsole.testForMatch
+(CompiledPatternMatchListener, int)

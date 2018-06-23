@@ -1,0 +1,14 @@
+Bug 431811 – content assist should propose keyword 'super' after type name
+Content assist should propose keyword 'super' in the places it appears in this snippet:
+public class Main implements Intf {
+class Inner {
+{
+Main.super.hashCode();
+}
+}
+@Override
+public void foo() {
+Intf.super.foo();
+}
+}
+Implementation hint: Looks like keyword 'this' is implemented here: org.eclipse.jdt.internal.codeassist.CompletionEngine.findMembers(char[], ReferenceBinding, Scope, InvocationSite, boolean, Binding[], int[], int[], boolean)

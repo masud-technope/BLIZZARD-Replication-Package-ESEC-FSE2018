@@ -1,0 +1,33 @@
+56441 – Misleading error message in FilterBase cause by invalid regex
+An invalid regex in the allow parameter leads to raising of a misleading exception: The property "allow" is not defined for filters of type "org.apache.catalina.filters.RemoteAddrFilter".
+Test config in web.xml
+<filter>
+<filter-name>TestFilter</filter-name>
+<filter-class>org.apache.catalina.filters.RemoteAddrFilter</filter-class>
+<init-param>
+<param-name>allow</param-name>
+<param-value>127\.0\.\0.1</param-value>
+</init-param>
+</filter>
+<filter-mapping>
+<filter-name>TestFilter</filter-name>
+<url-pattern>*</url-pattern>
+</filter-mapping>
+Apr 22, 2014 3:50:10 PM org.apache.catalina.core.StandardContext filterStart
+SEVERE: Exception starting filter TestFilter
+javax.servlet.ServletException: The property "allow" is not defined for filters of type "org.apache.catalina.filters.RemoteAddrFilter"
+at org.apache.catalina.filters.FilterBase.init(FilterBase.java:53)
+at org.apache.catalina.core.ApplicationFilterConfig.initFilter(ApplicationFilterConfig.java:269)
+at org.apache.catalina.core.ApplicationFilterConfig.getFilter(ApplicationFilterConfig.java:258)
+at org.apache.catalina.core.ApplicationFilterConfig.setFilterDef(ApplicationFilterConfig.java:382)
+at org.apache.catalina.core.ApplicationFilterConfig.<init>(ApplicationFilterConfig.java:103)
+at org.apache.catalina.core.StandardContext.filterStart(StandardContext.java:4650)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5306)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1559)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1549)
+at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+at java.lang.Thread.run(Thread.java:722)

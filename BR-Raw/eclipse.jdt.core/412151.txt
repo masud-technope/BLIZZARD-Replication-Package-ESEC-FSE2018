@@ -1,0 +1,8 @@
+Bug 412151 – [1.8][compiler] Check repeating annotation's collection type
+If a Repeatable annotation is present on an annotation declaration (T), semantics must be checked:
+Informally:
+- The collections type's (TC) declaration must have a array of Ts as its value()
+- The @Retention meta-annotation of TC must at least include the retention of T
+- TC's @Targets, if specified, must be a subset or the same as T's @Targets
+- If T is @Documented, then TC should also TC be Documented
+- If T is @Inherited, then TC should also TC be @Inherited

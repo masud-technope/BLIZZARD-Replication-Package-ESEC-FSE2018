@@ -1,0 +1,24 @@
+52587 – NPE in authenticator when no realm/resource is defined
+When no Realm is available to authenticate against, an NPE is thrown.
+STR:
+1.
+Start with a stock 7.0.25 and modify server.xml:
+2.
+Comment-out <Resource> in <GlobalNamingResources>
+3.
+Comment-out <Realm> in <Engine>
+4.
+Deploy manager app and try to log in
+java.lang.NullPointerException
+org.apache.catalina.realm.RealmBase.authenticate(RealmBase.java:340)
+org.apache.catalina.authenticator.BasicAuthenticator.authenticate(BasicAuthenticator.java:158)
+org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:544)
+org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:98)
+org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407)
+org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:987)
+org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:579)
+org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1600)
+java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+java.lang.Thread.run(Thread.java:680)
+Clearly, this is a pathological setup, but it might be nice to get a decent error message instead of an NPE.

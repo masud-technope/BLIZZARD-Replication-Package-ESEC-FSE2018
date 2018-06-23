@@ -1,0 +1,26 @@
+Bug 5653 – DCR: Debugger should catch uncaught exception by default
+From an Eclipse Corner post:
+<post>
+One of the things I always do when I am
+debugging in Eclipse (I did this in VAME as well) is go to the Debugger's
+"Breakpoints" view, click on the view's "Add Java Exception Breakpoint"
+button, type "Throwable" in the text field, and make sure only "Uncaught" is
+checked.
+Then click OK.
+What this does is tell the Debugger to catch any uncaught Throwables for me.
+I find this *much* handier than ending up with a stack trace in the Console.
+If an unexpected exception happens, I am still in the Debugger, and I can
+select frames in the stack trace and go right to the current line in the
+frame...
+I can also still see the values of variables, because my VM has not
+halted yet.
+I never delete this breakpoint.
+Every time I run a Java program under the
+Debugger the "Uncaught Throwable" breakpoint is always there in the
+background...
+protecting me from myself <grin>.
+</post>
+The response to this post was as follows:
+"That sounds like a great technique; thanks!
+(Why isn't that the default behavior? :-) "
+Please consider making this the default behavior.

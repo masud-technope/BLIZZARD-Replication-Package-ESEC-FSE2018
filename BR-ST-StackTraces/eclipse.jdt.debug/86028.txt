@@ -1,0 +1,15 @@
+org.eclipse.core.runtime.Platform.run
+org.eclipse.jface.action.Action.runWithEvent
+org.eclipse.swt.widgets.EventTable.sendEvent
+org.eclipse.swt.widgets.Widget.sendEvent
+org.eclipse.swt.widgets.Display.runDeferredEvents
+org.eclipse.swt.widgets.Display.readAndDispatch
+org.eclipse.ui.internal.Workbench.runEventLoop
+org.eclipse.ui.internal.Workbench.runUI
+org.eclipse.ui.PlatformUI.createAndRunWorkbench
+sun.reflect.NativeMethodAccessorImpl.invoke0
+java.lang.reflect.Method.invoke
+org.eclipse.core.launcher.Main.invokeFramework
+org.eclipse.core.launcher.Main.basicRun
+org.eclipse.core.launcher.Main.run
+org.eclipse.core.launcher.Main.main

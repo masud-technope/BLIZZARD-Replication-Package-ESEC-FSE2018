@@ -1,0 +1,37 @@
+49150 – All primary sessions are deleted at BackupManager#stopInternal.
+BackupManager#stopInternal is as follows.
+=====
+protected synchronized void stopInternal() throws LifecycleException {
+super.stopInternal();
+LazyReplicatedMap map = (LazyReplicatedMap)sessions;
+if ( map!=null ) {
+map.breakdown();
+}
+cluster.removeManager(this);
+}
+=====
+In Tomcat 7.0.0 RC1, super#stopInternal() is called first.
+In StandardManager#stopInternal() of the super class,
+The session is stored, and expire all active sessions.
+Storing session is unnecessary in BackupManager.
+and
+When the session expired, the session is deleted from all cluster nodes.
+As a Result,
+All primary sessions (of own node has) are deleted  from all cluster nodes.
+For instance,
+Node1 : sessionA(primary), sessionB(proxy), sessionC(backup)
+Node2 : sessionA(backup), sessionB(primary), sessionC(proxy)
+Node3 : sessionA(proxy), sessionB(backup), sessionC(primary)
+If Node1 is stopped, it becomes the following.
+Node1 : stopped
+Node2 : sessionB(primary), sessionC(backup)
+Node3 : sessionB(backup), sessionC(primary)
+sessionA is expired.
+It should be the following.
+Node1 : stopped
+Node2 : sessionA(primary), sessionB(primary), sessionC(backup)
+Node3 : sessionA(backup), sessionB(backup), sessionC(primary)
+There is no problem in Tomcat6.0.x,
+because it executes super.stop() after LazyReplicatedMap#breakdown() .
+I made a patch against trunk.
+Best Regards.

@@ -1,0 +1,9 @@
+framework/bundles/org.eclipse.ecf.docshare/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/DocShare.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/DocShareEditorInput.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/menu/DocShareRosterMenuContributionItem.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/menu/DocShareRosterMenuHandler.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/messages/Message.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/messages/SelectionMessage.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/messages/StartMessage.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/messages/StopMessage.java

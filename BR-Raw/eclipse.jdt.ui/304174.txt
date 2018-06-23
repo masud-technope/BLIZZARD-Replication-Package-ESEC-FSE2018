@@ -1,0 +1,12 @@
+Bug 304174 – [hashcode/equals] Generated equals() invalid if there's an 'Object' class in scope
+Build Identifier: I20100129-1300
+Generating hashCode() and equals() for this class:
+package test;
+public class Object {
+public String s;
+}
+yields invalid equals() signature:
+public boolean equals(Object obj)
+With another class called 'Object' in scope it should be:
+public boolean equals(java.lang.Object obj)
+Reproducible: Always

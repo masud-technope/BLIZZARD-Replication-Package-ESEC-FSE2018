@@ -1,0 +1,3 @@
+Bug 256853 – [remoteservices] insufficient cleanup in RegistrySharedObject.handleCallResponse
+In RegistrySharedObject class the handling of the request/response protocol for remote method invocation does insufficient clean up of requests.
+ Specifically, it does not call removeRequest(request) in handleCallResponse and it should.

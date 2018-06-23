@@ -1,0 +1,15 @@
+Bug 395558 – [introduce parameter object] Introduce Parameter Object introduce use of non-static type in static context
+Steps to reproduce:
+1.
+Invoke "Introduce Parameter Object" on 't' in code below
+2.
+Choose "Destination" as "Nested class in IntroduceParameterObjectBug1"
+3.
+There is a compilation error in the resulting file ("Cannot make a static reference to the non-static type T")
+interface IntroduceParameterObjectBug1<T> {
+// Invoke "Introduce Parameter Object" on 't', choose "Destination" as
+// "Nested class in IntroduceParameterObjectBug1"
+void f(T t);
+}
+(Thanks to Yilong Li for helping with the bug reports.)
+Probably related to bug 394549.

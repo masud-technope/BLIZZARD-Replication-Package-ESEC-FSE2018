@@ -1,0 +1,3 @@
+Bug 43228 – Encoding Support for Java editor broken
+I20030916
+This has been broken with the introduction of ExtendedTextEditor.

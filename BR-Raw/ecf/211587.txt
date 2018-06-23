@@ -1,0 +1,2 @@
+Bug 211587 – [Discovery] Move enhancements/refactorings to dev.eclipse.org
+The enhancements/refactorings org.eclipse.ecf.provider.discovery, org.eclipse.ecf.tests.provider.jmdns and org.eclipse.ecf.discovery-feature  will be moved to dev.eclipse.org

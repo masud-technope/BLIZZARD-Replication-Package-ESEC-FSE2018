@@ -1,0 +1,12 @@
+Bug 173741 – A project created without build.properties files causes errors to be logged
+EMF creates new projects without a build.properties file and generates one of these when the model is first generated.
+ It looks like the PDE wants to generate a warning or perhaps error for a project with a missing build.properties file, but the logic is such that it tries to remove markers from the non-existing file
+private void removeFileMarkers() {
+try {
+fFile.deleteMarkers(IMarker.PROBLEM, false, IResource.DEPTH_ZERO);
+fFile.deleteMarkers(PDEMarkerFactory.MARKER_ID, false, IResource.DEPTH_ZERO);
+} catch (CoreException e) {
+PDECore.logException(e);
+}
+}
+and then logs an error log entry.

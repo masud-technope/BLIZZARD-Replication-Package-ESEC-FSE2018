@@ -1,0 +1,7 @@
+org.apache.solr.handler.loader.XMLLoader.load
+com.ctc.wstx.sr.StreamScanner.throwFromIOE
+com.ctc.wstx.sr.BasicStreamReader.next
+org.apache.solr.handler.loader.XMLLoader.readDoc
+org.apache.coyote.http11.InternalAprInputBuffer.fill
+org.apache.coyote.http11.InternalAprInputBuffer$SocketInputBuffer.doRead
+org.apache.coyote.http11.filters.ChunkedInputFilter.readBytes

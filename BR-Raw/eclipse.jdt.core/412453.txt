@@ -1,0 +1,20 @@
+Bug 412453 – [1.8][compiler] Stackoverflow when compiling LazySeq
+Get git://git.eclipse.org/gitroot/jdt/eclipse.jdt.core.git BETA_JAVA8 and
+git://git.eclipse.org/gitroot/jdt/eclipse.jdt.ui.git master into Eclipse
+Open new workspace
+Clone https://github.com/nurkiewicz/LazySeq.
+I used the CLI as I did not
+have then maven plugin at this time.
+run mvn eclipse:eclipse compile (with the Java 8 EA)
+Create the library M2_REPO, point to ~/.m2/repository
+Here is the tail of the stack trace
+at org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit(TypeBindingVisitor.java:140)
+at org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit(TypeBindingVisitor.java:85)
+at org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit(TypeBindingVisitor.java:75)
+at org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit(TypeBindingVisitor.java:100)
+at org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit(TypeBindingVisitor.java:140)
+at org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit(TypeBindingVisitor.java:85)
+at org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit(TypeBindingVisitor.java:75)
+at org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit(TypeBindingVisitor.java:100)
+at org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit(TypeBindingVisitor.java:140)
+at org.eclipse.jdt.internal.compiler.lookup.TypeBindingVisitor.visit(TypeBindingVisitor.java:85)

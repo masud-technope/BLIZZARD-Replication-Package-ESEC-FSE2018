@@ -1,0 +1,6 @@
+Bug 180496 – Use the new ClasspathContainerInitializer API for the JRE
+20070402
+The following patch uses the new API in ClasspathContainerInitializer to signal the UI that access rules can not be modified, but source attachment, Javadoc and native lib can.
+All other (user provided) attributes are not supported (and not shown in the UI.
+I updated the UI to use the new APIs and removed the hard coded behavior for the JRE container.
+Can you release for I20070205? Otherwise user will be able to modify the access rules again.

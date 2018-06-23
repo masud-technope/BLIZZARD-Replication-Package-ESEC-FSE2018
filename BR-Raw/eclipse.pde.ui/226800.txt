@@ -1,0 +1,6 @@
+Bug 226800 – one-line xml docs not parsed correctly
+Created attachment 95794 [details]
+screenshot
+it's spin-off of bug 197666.
+One-line xml docs like plugin.xml or cheatsheet are not parsed correctly.
+See my precious screenshot.

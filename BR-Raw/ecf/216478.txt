@@ -1,0 +1,24 @@
+Bug 216478 – Make use of IProxyService optional
+org.eclipse.ecf.provider.filetransfer has an optional dependency on org.eclipse.core.net.
+However, if org.eclipse.core.net is not present, it blows up with a NoClassDefFoundError.
+To make it truly optional, it should catch and handle this exception and continue.
+ If I have no need of proxies, I may not care that the proxy service is not available.
+Here's a sample stack trace from usage in p2:
+java.lang.NoClassDefFoundError: org.eclipse.core.net.proxy.IProxyService
+at org.eclipse.ecf.internal.provider.filetransfer.Activator.getProxyService(Activator.java:91)
+at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.setupProxies(AbstractRetrieveFileTransfer.java:540)
+at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:488)
+at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer.sendRetrieveRequest(AbstractRetrieveFileTransfer.java:309)
+at org.eclipse.ecf.provider.filetransfer.retrieve.MultiProtocolRetrieveAdapter.sendRetrieveRequest(MultiProtocolRetrieveAdapter.java:95)
+at org.eclipse.equinox.internal.p2.metadata.repository.ECFMetadataTransport.transfer(ECFMetadataTransport.java:90)
+at org.eclipse.equinox.internal.p2.metadata.repository.ECFMetadataTransport.download(ECFMetadataTransport.java:50)
+at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:49)
+at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:307)
+at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:284)
+at org.eclipse.equinox.p2.ui.operations.ProvisioningUtil.loadMetadataRepository(ProvisioningUtil.java:60)
+at org.eclipse.equinox.p2.ui.model.MetadataRepositoryElement.getQueryable(MetadataRepositoryElement.java:71)
+at org.eclipse.equinox.internal.p2.ui.admin.ProvAdminQueryProvider.getQueryDescriptor(ProvAdminQueryProvider.java:77)
+at org.eclipse.equinox.internal.p2.ui.model.RemoteQueriedElement.fetchChildren(RemoteQueriedElement.java:44)
+at org.eclipse.equinox.internal.p2.ui.model.RemoteQueriedElement.fetchDeferredChildren(RemoteQueriedElement.java:33)
+at org.eclipse.ui.progress.DeferredTreeContentManager$1.run(DeferredTreeContentManager.java:231)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

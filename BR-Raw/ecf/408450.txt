@@ -1,0 +1,4 @@
+Bug 408450 – [TCK] Workaround slp string decoding
+It seems that slp requires that service properties that are declared as String type and are valid integers (e.g.
+"12345") be parsed into Integers.
+ Since for remote services we need to encode Long values as Strings, we will work around this SLP behavior by checking for Integer types coming from discovery...and converting them to Long values.

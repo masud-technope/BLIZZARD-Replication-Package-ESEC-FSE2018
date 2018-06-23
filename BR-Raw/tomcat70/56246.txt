@@ -1,0 +1,7 @@
+56246 – NPE in MemoryRealm when authenticating unknown user
+When using the embedded tomcat with a MemoryRealm for basic authentication, a request containing an unknown username leads to a NullPointerException.
+java.lang.NullPointerException
+org.apache.catalina.realm.MemoryRealm.authenticate(MemoryRealm.java:143)	org.apache.catalina.authenticator.BasicAuthenticator.authenticate(BasicAuthenticator.java:164)
+....
+MemoryRealm.authenticate get the principal via principals.get(username).
+If the user is not known, he result is null.

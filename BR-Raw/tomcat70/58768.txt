@@ -1,0 +1,11 @@
+58768 – Add Logging to Response.sendRedirect
+The new behavior introduced in:
+https://bz.apache.org/bugzilla/show_bug.cgi?id=56917
+Can cause strange and mysterious errors.
+For example, passing an invalid value fo sendRedirect():
+response.sendRedirect("SomePage.html?value=Some Word")
+will now generate a 404 error indicating that the page containing the sendRedirect() call is not found.
+In this case the real error is that the parameter is not URI encoded.
+Additionally, because of the manner it's called, no diagnostic page is generated.
+The developer is left scratching their head wonder what went wrong.
+It would be very helpful if the IllegalArgumentException that get's caught in o.a.c.c.Response at line 1412 could be logged.

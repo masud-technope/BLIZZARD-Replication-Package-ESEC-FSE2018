@@ -1,0 +1,75 @@
+Bug 18115 – IllegalArgumentException: Duplicate VM: 0
+Build 20020528
+Starting a 20020527 workspace where jdtcore was already using classpath
+container, I got the following exception (which prevented the package view from
+being created).
+!ENTRY org.eclipse.core.resources 1 4 May 28, 2002 23:54:53.694
+!MESSAGE Unable to find Action Set: org.eclipse.jdt.debug.ui.JDTLaunchActionSet
+Unable to find Action Set: org.eclipse.jdt.debug.ui.JDTLaunchActionSet
+!ENTRY org.eclipse.core.resources 1 4 May 28, 2002 23:54:53.704
+!MESSAGE Unable to find Action Set: org.eclipse.jdt.junit.JUnitLaunchActionSet
+Unable to find Action Set: org.eclipse.jdt.junit.JUnitLaunchActionSet
+!ENTRY org.eclipse.ui 4 2 May 28, 2002 23:54:57.259
+!MESSAGE Problems occurred when invoking code from plug-in: org.eclipse.ui.
+!STACK 0
+java.lang.IllegalArgumentException: Duplicate VM: 0
+at org.eclipse.jdt.launching.AbstractVMInstallType.createVMInstall(AbstractVMInstallType.java:87)
+at org.eclipse.jdt.launching.JavaRuntime.detectVMConfiguration(JavaRuntime.java:1176)
+at org.eclipse.jdt.launching.JavaRuntime.getDefaultVMInstall(JavaRuntime.java:402)
+at org.eclipse.jdt.internal.launching.JREContainerInitializer.resolveVM(JREContainerInitializer.java:122)
+at org.eclipse.jdt.internal.launching.JREContainerInitializer.initialize(JREContainerInitializer.java:53)
+at org.eclipse.jdt.core.JavaCore.getClasspathContainer(JavaCore.java:455)
+at org.eclipse.jdt.internal.core.JavaProject.getResolvedClasspath(JavaProject.java:1366)
+at org.eclipse.jdt.internal.core.JavaProject.getResolvedClasspath(JavaProject.java:1306)
+at org.eclipse.jdt.internal.core.JavaProject.getResolvedClasspath(JavaProject.java:1278)
+at org.eclipse.jdt.internal.core.JavaProject.updatePackageFragmentRoots(JavaProject.java:2177)
+at org.eclipse.jdt.internal.core.JavaProject.setRawClasspath0(JavaProject.java:2063)
+at org.eclipse.jdt.internal.core.JavaProject.generateInfos(JavaProject.java:800)
+at org.eclipse.jdt.internal.core.Openable.buildStructure(Openable.java:83)
+at org.eclipse.jdt.internal.core.Openable.openWhenClosed(Openable.java:404)
+at org.eclipse.jdt.internal.core.JavaProject.openWhenClosed(JavaProject.java:1667)
+at org.eclipse.jdt.internal.core.JavaElement.openHierarchy(JavaElement.java:523)
+at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:310)
+at org.eclipse.jdt.internal.core.JavaElement.getChildren(JavaElement.java:264)
+at org.eclipse.jdt.internal.core.Openable.hasChildren(Openable.java:284)
+at org.eclipse.jdt.ui.StandardJavaElementContentProvider.hasChildren(StandardJavaElementContentProvider.java:194)
+at org.eclipse.jface.viewers.AbstractTreeViewer.isExpandable(AbstractTreeViewer.java:926)
+at org.eclipse.jface.viewers.AbstractTreeViewer.updatePlus(AbstractTreeViewer.java:1269)
+at org.eclipse.jface.viewers.AbstractTreeViewer.createTreeItem(AbstractTreeViewer.java:259)
+at org.eclipse.jface.viewers.AbstractTreeViewer.createChildren(AbstractTreeViewer.java:243)
+at org.eclipse.jface.viewers.AbstractTreeViewer$2.run(AbstractTreeViewer.java:646)
+at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:688)
+at org.eclipse.jface.viewers.AbstractTreeViewer.inputChanged(AbstractTreeViewer.java:638)
+at org.eclipse.jface.viewers.ContentViewer.setInput(ContentViewer.java:234)
+at org.eclipse.jface.viewers.StructuredViewer.setInput(StructuredViewer.java:875)
+at org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart.createPartControl(PackageExplorerPart.java:278)
+at org.eclipse.ui.internal.PartPane$4.run(PartPane.java:133)
+at org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java:802)
+at org.eclipse.core.runtime.Platform.run(Platform.java:416)
+at org.eclipse.ui.internal.PartPane.createChildControl(PartPane.java:131)
+at org.eclipse.ui.internal.PartPane.createControl(PartPane.java:175)
+at org.eclipse.ui.internal.ViewPane.createControl(ViewPane.java:179)
+at org.eclipse.ui.internal.PartTabFolder.createPartTab(PartTabFolder.java:245)
+at org.eclipse.ui.internal.PartTabFolder.createControl(PartTabFolder.java:217)
+at org.eclipse.ui.internal.PartSashContainer.createControl(PartSashContainer.java:177)
+at org.eclipse.ui.internal.PerspectivePresentation.activate(PerspectivePresentation.java:94)
+at org.eclipse.ui.internal.Perspective.onActivate(Perspective.java:657)
+at org.eclipse.ui.internal.WorkbenchPage.onActivate(WorkbenchPage.java:1545)
+at org.eclipse.ui.internal.WorkbenchWindow$7.run(WorkbenchWindow.java:1150)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:56)
+at org.eclipse.ui.internal.WorkbenchWindow.setActivePage(WorkbenchWindow.java:1137)
+at org.eclipse.ui.internal.WorkbenchWindow.restoreState(WorkbenchWindow.java:1050)
+at org.eclipse.ui.internal.Workbench.restoreState(Workbench.java:988)
+at org.eclipse.ui.internal.Workbench.access$7(Workbench.java:968)
+at org.eclipse.ui.internal.Workbench$6.run(Workbench.java:793)
+at org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java:802)
+at org.eclipse.core.runtime.Platform.run(Platform.java:416)
+at org.eclipse.ui.internal.Workbench.openPreviousWorkbenchState(Workbench.java:745)
+at org.eclipse.ui.internal.Workbench.init(Workbench.java:559)
+at org.eclipse.ui.internal.Workbench.run(Workbench.java:1061)
+at org.eclipse.core.internal.boot.InternalBootLoader.run(InternalBootLoader.java:739)
+at org.eclipse.core.boot.BootLoader.run(BootLoader.java:462)
+at java.lang.reflect.Method.invoke(Native Method)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:200)
+at org.eclipse.core.launcher.Main.run(Main.java:643)
+at org.eclipse.core.launcher.Main.main(Main.java:476)

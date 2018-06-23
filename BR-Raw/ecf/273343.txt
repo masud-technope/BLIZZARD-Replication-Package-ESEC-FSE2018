@@ -1,0 +1,3 @@
+Bug 273343 – SharedObjectDatashareContainerAdapter does not dispose IChannel when removeChannel(ID) is called
+The channel needs to be disposed when it is removed.
+See bug 273342.

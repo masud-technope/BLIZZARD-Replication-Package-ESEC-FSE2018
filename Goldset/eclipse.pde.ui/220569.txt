@@ -1,0 +1,5 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/util/PDESchemaHelper.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/rows/IdAttributeRow.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/schema/FilteredSchemaAttributeSelectionDialog.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java

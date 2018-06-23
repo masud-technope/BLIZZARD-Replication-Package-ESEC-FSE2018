@@ -1,0 +1,8 @@
+Bug 304193 – regressions in CleanUpPerfTest and MoveStaticMembersPerfTests* observed since build N20100218-2000
+Verifying results for I20100224-2242 build, it looks like there are confirmed regressions since N20100218-2000 build for several JDT/UI perf tests:
+- CleanUpPerfTest#testCodeStyleCleanUp()
+- MoveStaticMembersPerfTests1#test_1000_10()
+- MoveStaticMembersPerfTests2#test_10_1000()
+Note that some other non-fingerprints tests are also concerned:
+- MoveStaticMembersPerfTests1#test_100_10()
+- MoveStaticMembersPerfTests2#test_10_100()

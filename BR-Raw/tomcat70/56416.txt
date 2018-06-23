@@ -1,0 +1,31 @@
+56416 – HTTP NIO connector: SocketExceptions and performance degradation due to JVM default not being respected for socket linger option
+According to http connector documentation, JVM defaults will be respected for socket linger options.
+https://tomcat.apache.org/tomcat-7.0-doc/config/http.html
+Seems that linger is being set to false regardless of JVM default.
+Setting priority to CRITICAL because on certain Solaris versions, calls to set linger cause performance problems and SocketExceptions.
+ I am experiencing this on my application.
+ See JVM bug.
+ http://bugs.java.com/view_bug.do?bug_id=6799574
+Reproducable steps:
+1)  Within server.xml, configure NIO http connector without an explicit linger setting:
+<Connector port="8080" protocol="org.apache.coyote.http11.Http11NioProtocol"
+connectionTimeout="20000"
+redirectPort="8443" />
+2)  Start Tomcat.
+Result: Linger is set to false for http nio connectors regardless of JVM default.
+Expected:  Linger parameter is not set on sockets.
+ JVM defaults are used.
+Within setProperties method of SocketProperties.java,
+breakpoint on line 194 should not be hit for http nio connector
+socket.setSoLinger(soLingerOn.booleanValue(), soLingerTime.intValue());
+Problem is that in the Http11NioProtocol constructor, a hard coded default value is set:
+public Http11NioProtocol() {
+....
+setSoLinger(Constants.DEFAULT_CONNECTION_LINGER);  // -1
+....
+}
+Any Java program can change the default socket factory for that JVM.
+ Tomcat cannot assume any particular default value for linger.
+ As per Tomcat's documentation, Tomcat should not be setting linger on the underlying socket unless it is specified within server.xml.
+I suspect that this applies to other connectors as well e.g.
+AJP.

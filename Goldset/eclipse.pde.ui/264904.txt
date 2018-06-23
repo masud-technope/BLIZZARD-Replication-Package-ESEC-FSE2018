@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/target/BaseTargetDefinitionOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/target/NewTargetDefinitionWizard.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/target/TargetCreationPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/target/TargetDefinitionFromPlatformOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/target/TargetDefinitionFromTargetOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/target/TargetDefinitionWizardPage.java

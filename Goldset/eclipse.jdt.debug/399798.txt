@@ -1,0 +1,25 @@
+org.eclipse.jdt.debug.tests/testfiles/test-jre/bin/test-resolver-win32-2.ee
+org.eclipse.jdt.debug.tests/testfiles/test-jre/bin/test-resolver-win32.ee
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/VMInstallTests.java
+org.eclipse.jdt.debug.tests/testfiles/test-jre/bin/test-resolver-win32-2.ee
+org.eclipse.jdt.debug.tests/testfiles/test-jre/bin/test-resolver-win32.ee
+org.eclipse.jdt.debug.tests/testfiles/test-jre/bin/test-resolver.ee
+org.eclipse.jdt.debug.tests/testfiles/test-jre/bin/test-resolver2.ee
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/VMInstallTests.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/StandardVMType.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/JavaRuntime.java
+org.eclipse.jdt.debug.tests/plugin.xml
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/launching/TestLibraryResolver.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/VMInstallTests.java
+org.eclipse.jdt.debug.tests/plugin.xml
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/launching/TestLibraryResolver.java
+org.eclipse.jdt.debug.tests/testresources/test_resolver_index.index
+org.eclipse.jdt.debug.tests/testresources/test_resolver_javadoc.zip
+org.eclipse.jdt.debug.tests/testresources/test_resolver_src.zip
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/VMInstallTests.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/StandardVMType.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/ILibraryLocationResolver.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/JavaRuntime.java
+org.eclipse.jdt.launching/plugin.properties
+org.eclipse.jdt.launching/plugin.xml
+org.eclipse.jdt.launching/schema/libraryLocationResolvers.exsd

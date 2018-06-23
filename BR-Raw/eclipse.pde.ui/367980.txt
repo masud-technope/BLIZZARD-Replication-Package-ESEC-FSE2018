@@ -1,0 +1,14 @@
+Bug 367980 – Support for pre-release versions
+With changes to the Equinox VersionRange class (bug 366419) I am seeing some undesired affects to PDE UI.
+ In particular the PluginVersionPart is not behaving well.
+The code uses VersionRange to parse the ranges, which is good.
+ But now that VersionRange supports pre-release versions we see some undesired fully qualified versions getting placed in the UI and in the manifest when they should not be.
+The following table shows what unqualified version ranges get translated into when fully qualified:
+[L,R) => [L-,R-)
+[L,R] => [L-,R.]
+(L,R) => (L.,R-)
+(L,R] => (L.,R.]
+These 4 variants should not be fully qualified when placed in the bundle manifest.
+ This would cause the bundle to stop working on older R4.3 framework implementations since they do not understand the pre-release style versions (e.g.
+1.0.0-beta) that use a '-' qualifier separator.
+I will attach a patch with a suggested fix.

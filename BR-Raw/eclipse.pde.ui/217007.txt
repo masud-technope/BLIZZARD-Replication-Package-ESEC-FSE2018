@@ -1,0 +1,5 @@
+Bug 217007 – Support for Eclipse-BundleShape header
+See bug 157562.
+Does PDE-UI need to add support for Eclipse-BundleShape?  At a minimum PDE could check if the header value is valid ('jar' or 'dir').
+ More advanced would be to place some option on the UI to set this.
+ Not sure how prominent we would want to make this option.

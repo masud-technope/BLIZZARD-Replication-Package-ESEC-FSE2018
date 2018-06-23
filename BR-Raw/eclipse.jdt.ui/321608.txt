@@ -1,0 +1,10 @@
+Bug 321608 – [JUnit] New JUnit 4 Test Case wizard is confusing without class under test
+I20100802-1800
+Steps:
+1) File -> New JUnit Test Case -> choose New JUnit 4 Test (say Test1) in the radio button
+=> the super class field is uneditable
+2) Enter other values and Finish
+3) Open the New JUnit Test Suite wizard : File -> New JUnit Test Suite
+=> The new test Test1 case does not appear in the list of 'Test classes to include in suite'
+4) Open the Test1 class and add the superclass as junit.framework.TestCase
+and repeat step (3) it appears now in the list

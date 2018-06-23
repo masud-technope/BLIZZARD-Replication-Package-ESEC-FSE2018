@@ -1,0 +1,21 @@
+47987 – Out of memory being caused by notFoundResources in org.apache.catalina.loader.WebappClassLoader
+Guys
+Tomcat 6.0.20, java 1.6, linux x64
+org.apache.catalina.loader.WebappClassLoader records every resource you asked
+for that doesn't exist.
+On our site we have alot of pages ( > 800,000 )
+all of which are using struts2 with validation.
+every hit means the validator does a request for a resource actionName-validation.xml
+This then gets cached in the WebappClassLoader
+about line 249
+/**
+* The list of not found resources.
+*/
+protected HashMap notFoundResources = new HashMap();
+Can this be made into a weak hash map perchance ?
+or something so that it won't invoke a out of memory.
+I'm also looking at removing the validator from those urls
+if anyone knows how to tell the validation interceptor that we don't use the xml files
+and ONLY use annotations then that would be great :)
+Ta
+D

@@ -1,0 +1,3 @@
+Bug 339223 – [quick fix][quick assist] Replace integer literals for relevance with int constants
+Relevance of Quick fixes and Quick assists is hardcoded as integer literals, which makes it almost impossible to compare relevance of Quick fixes/assists.
+We should replace integer literals with int constants so that a reference search on the constants can be done to make it easier to compare relevance.

@@ -1,0 +1,55 @@
+57504 – Jasper task (JspC) throws NPE on taglibs in 7.0.58
+Created attachment 32400 [details]
+Repeat build.xml
+It seems like revision 1645615 broke the ant jasper task in 7.0.58 for taglibs.
+Repeat:
+1) Download and unzip apache-tomcat-7.0.58.zip and apache-ant-1.9.4-bin.zip to a temporary directory.
+2) Put the following into a new file build.xml in the directory: (attached, based on http://tomcat.apache.org/tomcat-7.0-doc/jasper-howto.html#Web_Application_Compilation)
+<project>
+<import file="apache-tomcat-7.0.58/bin/catalina-tasks.xml"/>
+<target name="jspc">
+<jasper
+validateXml="false"
+uriroot="apache-tomcat-7.0.58/webapps/examples"
+webXmlFragment="tmp/WEB-INF/generated_web.xml"
+outputDir="tmp/WEB-INF/src" />
+</target>
+</project>
+3) Execute "apache-ant-1.9.4/bin/ant jspc" in the directory.
+Expected result:
+Compiled output in tmp/WEB-INF
+Actual result:
+Exception is thrown and only partial output to tmp/WEB-INF:
+jspc:
+[jasper] java.lang.NullPointerException
+[jasper] 	at org.apache.jasper.JspCompilationContext.getTldLocation(JspCompilationContext.java:618)
+[jasper] 	at org.apache.jasper.compiler.Parser.parseTaglibDirective(Parser.java:409)
+[jasper] 	at org.apache.jasper.compiler.Parser.parseDirective(Parser.java:475)
+[jasper] 	at org.apache.jasper.compiler.Parser.parseElements(Parser.java:1410)
+[jasper] 	at org.apache.jasper.compiler.Parser.parse(Parser.java:138)
+[jasper] 	at org.apache.jasper.compiler.ParserController.doParse(ParserController.java:242)
+[jasper] 	at org.apache.jasper.compiler.ParserController.parse(ParserController.java:102)
+[jasper] 	at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:199)
+[jasper] 	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:374)
+[jasper] 	at org.apache.jasper.JspC.processFile(JspC.java:1213)
+[jasper] 	at org.apache.jasper.JspC.execute(JspC.java:1364)
+[jasper] 	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:292)
+[jasper] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[jasper] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+[jasper] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[jasper] 	at java.lang.reflect.Method.invoke(Method.java:606)
+[jasper] 	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+[jasper] 	at org.apache.tools.ant.Task.perform(Task.java:348)
+[jasper] 	at org.apache.tools.ant.Target.execute(Target.java:435)
+[jasper] 	at org.apache.tools.ant.Target.performTasks(Target.java:456)
+[jasper] 	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1393)
+[jasper] 	at org.apache.tools.ant.Project.executeTarget(Project.java:1364)
+[jasper] 	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+[jasper] 	at org.apache.tools.ant.Project.executeTargets(Project.java:1248)
+[jasper] 	at org.apache.tools.ant.Main.runBuild(Main.java:851)
+[jasper] 	at org.apache.tools.ant.Main.startAnt(Main.java:235)
+[jasper] 	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:280)
+[jasper] 	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:109)
+If 7.0.58 is replaced by 7.0.57 then the repeat runs without any exception and with complete output.
+The problem seems to be the cleanup of the tldLocationsCache initialization in revision 1645615, partially backported from revision 1541041, since it's still used by JspCompilationContext.getTldLocation.
+Possibly the fix is as easy as bringing back the initialization line.

@@ -1,0 +1,4 @@
+55453 – AJP send Body with Status 304
+When Status 304 is set to the Response, AJP send the Body to Apache2.
+In the HTTP-Connector there is a check against 304, see Method "prepareResponse" in Class org.apache.coyote.http11.AbstractHttp11Processor.
+304 with Body will corrupt Apache2, see Bug https://issues.apache.org/bugzilla/show_bug.cgi?id=23181

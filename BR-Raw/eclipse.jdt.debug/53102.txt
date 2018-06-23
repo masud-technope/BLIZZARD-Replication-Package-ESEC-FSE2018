@@ -1,0 +1,7 @@
+Bug 53102 – Breakpoint not installed though accepted by location verification
+I had source code like:
+context.getProject().log("resolving systemId: "
++ systemId, Project.MSG_VERBOSE);
+A breakpoint on the second line is accepted by the location verification but
+it is not installed.
+A breakpoint on the first line works as expected.

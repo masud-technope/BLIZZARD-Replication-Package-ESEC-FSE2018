@@ -1,0 +1,18 @@
+Bug 382350 – [1.8][compiler] Unable to invoke inherited default method via I.super.m() syntax
+BETA_JAVA8
+Compiler needs to be enhanced to support the new
+InterfaceName.super.method() construct.
+The following
+program which should compile alright fails to compile
+as of now:
+// -------
+interface I {
+void foo() default {}
+}
+class X implements I {
+public void foo() {
+I.super.foo();
+}
+}
+We issue a message:
+"No enclosing instance of the type I is accessible in scope"

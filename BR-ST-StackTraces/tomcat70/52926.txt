@@ -1,0 +1,5 @@
+org.apache.tomcat.util.net.NioEndpoint.processSocket
+org.apache.tomcat.util.net.NioEndpoint$Poller.cancelledKey
+org.apache.tomcat.util.net.NioEndpoint$Poller.timeout
+org.apache.tomcat.util.net.NioEndpoint$Poller.run
+java.lang.Thread.run

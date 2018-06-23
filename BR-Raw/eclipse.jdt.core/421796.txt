@@ -1,0 +1,26 @@
+Bug 421796 – [1.8][compiler] java.lang.AbstractMethodError executing default method code.
+BETA_JAVA8:
+// --
+interface I  {
+void foo();
+}
+interface J extends I {
+default void foo() {
+}
+}
+interface K extends J {
+}
+public class X implements K {
+public static void main(String argv[]) {
+X test = new X();
+((J)test).foo();
+test.foo();
+}
+}
+This program results in an AbstractMethodError  upon execution.
+I don't
+see javac emitting any bridges for this program while we do.
+I tested with 8b115.
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=391376#c5 and
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=404690 may have a role to
+play here.

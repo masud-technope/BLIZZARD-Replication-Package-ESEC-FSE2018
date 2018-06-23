@@ -1,0 +1,22 @@
+49985 – Lazy initialization without any synchronization - data race in AstInteger, AstFloatingPoint, AstString
+r998053
+http://svn.apache.org/repos/asf/tomcat/tc6.0.x/trunk/java/org/apache/el/parser/AstInteger.java
+http://svn.apache.org/repos/asf/tomcat/tc6.0.x/trunk/java/org/apache/el/parser/AstFloatingPoint.java
+http://svn.apache.org/repos/asf/tomcat/tc6.0.x/trunk/java/org/apache/el/parser/AstString.java
+Use lazy init without any synchronization in methods getInteger(), getFloatingPoint(), getString(), respectively.
+Consider AstInteger:
+private Number number;
+protected Number getInteger() {
+if (this.number == null) {
+try {
+this.number = new Long(this.image);
+} catch (ArithmeticException e1) {
+this.number = new BigInteger(this.image);
+}
+}
+return number;
+}
+Data races on variable number :37
+in method getInteger() :39
+concurrent read on line 40
+concurrent write on lines 42, 44

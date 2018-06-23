@@ -1,0 +1,43 @@
+Bug 414122 – [1.8][quick fix] 'Create method' quick fix with interface members
+public interface A_test1 { // creates default methods without body
+int i= aaa();
+default void defaultM() {
+int a= bbb();
+}
+static void staticM() {
+int x= ccc();
+}
+}
+interface A_test2 { // creates static method without body
+int i = foo1();
+static int foo() {return 0;}
+}
+interface A_test3 { // creates abstract method
+int i = foo2();
+}
+-------------------------------------------------------------
+In the above example, 'Create method' quick fix creates incorrect methods as given below:
+public interface A_test1 {	// creates default methods without body
+int i= aaa();
+default void defaultM() {
+int a= bbb();
+}
+default int bbb();
+default int aaa();
+static void staticM() {
+int x= ccc();
+}
+default int ccc();
+}
+interface A_test2 { // creates static method without body
+int i = foo1();
+static int foo() {return 0;}
+static int foo1();
+}
+interface A_test3 { // creates abstract method
+int i = foo2();
+int foo2();
+}
+-------------------------------------------------------------
+It should not create an abstract method in any case.
+Also, we should check if a default or a static method has to be created and create the correct method with body accordingly.

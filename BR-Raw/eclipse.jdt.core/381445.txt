@@ -1,0 +1,24 @@
+Bug 381445 – [compiler][resource] Can the resource leak check be made aware of Closeables.closeQuietly?
+Build Identifier: 20120524-0130
+The new resource leak check in Eclipse 4.2 is really nice.
+However, in code we generally use Guava to close up resources, since we can do it with a single line:
+Closeables.closeQuietly(input);
+instead of the equivalent but much more verbose
+if (input != null) {
+try {
+input.close();
+} catch (IOException ioe) {
+// ignore
+}
+}
+I've started adding @SuppressWarnings("resource") to hide all the places where the code was correctly closing the resource but Eclipse was complaining, but I think it would be great if Eclipse could know about these special cases and just consider Closeables.close and Closeables.closeQuietly as a wrapper for input.close().
+Similarly, in some JUnit tests, I had places where I had
+assertNotNull(x);
+and I would later get a warning from the null analysis that "x may be null".
+When I inserted a "assert x != null" after the assertNotNull JUnit call, the warning went away, but in a similar spirit to the Closeables.closeQuietly issue, it would be nice if this JUnit API call could be known to be synonymous with assert != null.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Take a valid InputStream code snippet (where the input stream is properly closed), and remove the input.close() call and replace it with Guava's Closeables.closeQuietly.
+2.
+Observe that the resource checker now believes the resource is no longer properly closed.

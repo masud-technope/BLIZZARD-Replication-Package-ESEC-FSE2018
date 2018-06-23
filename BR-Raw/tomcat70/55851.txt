@@ -1,0 +1,19 @@
+55851 – Tomcat SPNEGO authenticator incompatible with IBM JDK: Accept Security Context needs to be wrapped around a Privileged Action in order for server side authentication
+Created attachment 31098 [details]
+Contains GNU unified diff of SpnegoAuthenticator and its modified format
+Hi
+Problem report:-
+In bug report 55760, a change was made in which system property javax.security.auth.useSubjectCredsOnly is no longer set to false.
+So it naturally follows that GSSAPI AcceptSecContext method is wrapped in a PrivilegedExceptionAction.
+It is found in IBM JDK that it fails otherwise.
+Cause of failure:-
+When IBM JDK tries to fetch credential in GSSAPI AcceptSecContext method, it does so from JAAS Subject.
+Since this call is not performed in Subject.doAs, the call fails as IBM JDK does not have access to a JAAS subject and cannot fetch a credential.
+Please find attached:-
+1.
+File containing gnu unified diff format of SpnegoAuthenticator with its modified version.
+PLEASE NOTE THIS DIFF IS ON TOP OF BUG FIX REPORTED IN 55760.
+This file now also contains AcceptAction class which wraps GSSAPI AcceptSecContext as a PrivilegedExceptionAction.
+This fix solves the issue by allowing IBM JDK to fetch credential from JAAS Subject.
+Yours sincerely
+Arunav Sanyal

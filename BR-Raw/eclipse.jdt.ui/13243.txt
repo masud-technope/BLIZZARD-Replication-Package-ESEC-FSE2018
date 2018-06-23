@@ -1,0 +1,8 @@
+Bug 13243 – [Browsing] package remains if all types are deleted
+1) open Java Browsing Perspective
+2) select a package
+3) select all types of this package
+4) delete all types, agree to also delete the compilation units
+-> package still in the package list
+5) deselect and reselect the project
+-> package is no longer in package list

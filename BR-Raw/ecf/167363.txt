@@ -1,0 +1,326 @@
+Bug 167363 – Refactor ECF presence API plugin: org.eclipse.ecf.presence
+Remy started,
+>
+> For this review, I started by looking at the presence API's main entry
+> point at the top with
+> org.eclipse.ecf.presence.IPresenceContainerAdapter and then began
+> branching off from there.
+>
+> An IPCA can add/remove IRosterSubscribeListeners.
+So first of all,
+> what is an IRSL? In short, it is watching requests for adding/removing
+> users.
+The context of 'subscription' here is that you add someone to
+> your buddy list, you're now subscribed to that person, that being, you
+> care when that person comes online, changes statuses, and so forth.
+I
+> think this interface needs a better name, but since I can't think of a
+> better one, I'll leave it to the reader to suggest one.
+My best alternative suggestion at this moment is 'add/removeRosterSubscriptionListener' (and associated interface name IRosterSubscriptionListener...for roster subscription events).
+>
+> What I do suggest for IRSL is the removal of the IPresence parameter
+> in all of its methods.
+An IPresence's Type inner class can be queried
+> to see what kind of information it is.
+But the IRSL methods already
+> indicate what's happening (handleSubscribed, handleUnsubscribed), so I
+> don't feel that the IPresence parameter is necessary here.
+Perhaps a
+> String can be added as a parameter for the handleSubscribe method
+> since some protocols (like ICQ) allows a user to put in a message when
+> requesting authorization from someone.
+Good point.
+  I think these presence parameters can be safely removed.
+>
+> Unsubscription is an interesting scenario and should be considered for
+> removal because when you delete someone from your buddy list, you just
+> expect them to go poof off of your buddy list.
+We've all deleted
+> someone before and I'm sure it's happened to all of us before too, it
+> just happens.
+People don't ask someone if they can delete the other
+> party, you just do it from the UI and that's it.
+Perhaps
+> handleUnsubscribed can be kept with different parameters to indicate
+> that the buddy has been removed (so the UI can be updated to remove
+> that entry), but handleUnsubscribeRequest seems ludicrous.
+Yah, handleUnsubscribeRequest can also safely be removed.
+>
+> For IPresence itself, maybe its Mode inner class's static
+> EXTENDED_AWAY and CHAT Modes can be removed, they don't really seem
+> very useful to me personally (isn't "extended away" really the same as
+> "away", and what is a "chat" presence?).
+
+Here's the xmpp reference:
+http://www.xmpp.org/rfcs/rfc3921.html#rfc.section.2.2.2.1
+> I'd appreciate it if someone
+> could explain to me as to what getPriority() is supposed to do as
+> someone's presence can be tied into a numeric scaling value.
+Here's the XMPP reference for 'priority':
+http://www.xmpp.org/rfcs/rfc3921.html#rfc.section.2.2.2.3
+Doesn't really explain it, but there it is anyway.
+ I'm not trying to justify the xmpp decisions here.
+ I think that some of them are sort of weird.
+>
+> Going back to an IPCA, you can attach IPresenceListeners to it.
+I
+> don't really have any issues with this listener interface except maybe
+> that the handleConnected(ID) and handleDisconnected(ID) methods should
+> be removed since the originating IContainer should have these covered?
+Possibly.
+ You are right that these are 'convenience' notifications (i.e.
+handleConnected/handleDisconnected).
+> I understand that an IContainer could technically not necessarily "be
+> itself", but since I believe you're not supposed to be calling
+> connect(ID, IConnectContext) multiple times (for multiple accounts) to
+> return different instances of IPCAs, I'm not sure if this argument is
+> valid.
+>
+> The last listener you can hook onto an IPCA is an IMessageListener.
+An
+> IMessageListener is pretty straightforward with a simple
+> handleMessage(ID fromID, ID toID, Type type, String subject, String
+> messageBody) method.
+I think the subject parameter can probably be
+> removed.
+I've never heard of "subjects" for a message before, but
+> maybe that's something new in the IM/chatting industry? 
+It's just from email...i.e.
+to:, from:, subject:, body:.
+Here's the xmpp spec WRT subject:
+http://www.xmpp.org/rfcs/rfc3921.html#rfc.section.4.4
+I'm thinking one way to handle this would be to add to the IMessageSender interface a method that is something like this
+public void sendMessage(IMessage message);
+And then providing a number of constructors (or perhaps a factory) for creating messages with different initialization params...i.e.
+so that rarely used parameters like 'subject' are not in ones face.
+Also, this could also help support different text message types (e.g.
+xhtml) fairly easily (extensions).
+> The Type inner
+> class can probably have its GROUP_CHAT field removed (same thing as
+> CHAT, no, or am I missing something here?).
+
+CHAT isn't the same as group chat...chat refers to 1-1 IM chat messages, GROUP_CHAT is the n-way group chatting in XMPP.
+> I don't know what HEADLINE
+> is but maybe it can be renamed to SYSTEM or something more meaningful
+> (or removed outright if useless)?
+We could change the name to something other than HEADLINE easily enough.
+ That's just borrowed from xmpp...sort of weird, I agree.
+>
+> Now we move on to interfaces we can query from the IPCA via getter
+> methods.
+For an IMessageSender, the fromID parameter is pretty much
+> useless since it's always going to be you.
+The 'subject' parameter
+> should be dropped based on what's been said above.
+I'm not sure if
+> Type is all that useful either because it's really always going to be
+> a NORMAL message (you're not going to be naughty and send ERROR
+> messages to people, right?).
+I would suggest that we move toward the creation of an IMessage instance that supports the allowed/required/default set of parameters for a given IM protocol.
+> For an IPresenceSender, its name and actual methods don't really align
+> (well, except for sendPresenceUpdate).
+But first, looking at
+> sendPresenceUpdate to change your status (IPresence), I don't think it
+> should be asking for a fromID and a toID.
+ It's always going to be from
+> yourself and it should always be to everyone that is subscribed to
+> you, this is trivial and should be handled on the backend.
+I do not
+> want to have to iterate over a Set of my friends to send each of them
+> a status update, that is ridiculous and code I don't want to have to
+> write.
+
+The fromID can go, but the toID probably has to remain as per Erkki's comments (inserted here):
+> If the protocols support that, the toID should remain.
+Actually, I
+> expect that feature to be there, but I haven't actually tried with any
+> protocols whether this really gets sent to only toID or everyone.
+>
+> There could be two different methods: sendPresenceUpdate(toID, presence)
+> sendPresenceUpdate(presence) or something along those lines (maybe
+> making the method names more explicit).
+>
+> Thats what I think, anyhow.
+>
+> Another use case for this could be Mylar and/or Corona integration.
+It
+> could show the task you are working on as your presence and you would
+> want only your team members to see that.
+
+Back to Remy's notes...
+> Adding and removing people should be something that's handled
+> by the account (IAccountManager maybe?) and does not fit in with the
+> IPresenceSender name.
+Either way, both roster methods should remove
+> its fromID parameter (reasoning as above), and maybe change
+> sendRosterAdd to take in an ID instead of bare Strings since remove
+> takes an ID (or the other way around and take Strings for both).
+Both
+> methods should probably also be renamed to something simple.
+addBuddy
+> and removeBuddy is short and to the point.
+I'm fine with moving and removing the fromID.
+ I don't want to introduce 'buddy' at the same time as 'roster, rosterentry, etc'.
+ Although it is popularly referred to as a 'buddy list', I would like to be consistent about use of 'buddy' or 'roster' and so would like to stay with one or the other.
+ My preference at this point is to stay with 'roster' and 'rosterentry' rather than 'buddy list', and 'buddy'.
+>
+> For account management, there's an IAccountManager interface that can
+> be returned from an IPCA.
+This interface makes some very optimistic
+> assumptions.
+Unfortunately, nine times out of ten, an IM protocol is
+> going to make you sign up or change your password via a browser and
+> not via the IM application itself.
+Perhaps the
+> isAccountCreationSupported() method needs to be renamed to something
+> more general.
+I'm assuming getAccountInstructions() is supposed to
+> return instructions on how to sign-up for an account? If that's the
+> case, a method rename is probably in order (or javadoc-ed
+> accordingly).
+Yeah, the method rename and javadocs is probably the right answer.
+>
+> Some methods for manipulating the account's attributes may be useful
+> as people will want to change their display name, their location, bio,
+> avatar, or whatever, from time to time.
+Actually, maybe a spin-off
+> IAccount should be added or something which would consume
+> sendRosterAdd and sendRosterRemove (as above) and other account
+> manipulation methods.
+Having an IAccount will also help shorten this
+> getAccount*() business to a slimmer get*().
+I also think IAccount
+> should also provide a way for getting the list of buddies, say,
+> returning a List of IRosterGroups.
+Yes, I think probably a new interface (maybe IAccount) should probably be created to hold roster add/remove methods, getting a list of buddys (entire roster) as well as account level functions.
+>
+> IRosterGroup is quite simple and I don't have any problems with it
+> myself, though I do have a some suggestions for IRosterEntry.
+One, I
+> think getPresenceState() can be shortened to getPresence(), same thing
+> really, anyway.
+
+True.
+ Good idea.
+> Two, setPresenceState(IPresence) needs to be removed.
+Agreed.
+> <stuff deleted>
+> A minor technicality, but perhaps both roster
+> interfaces should be removed to something else (that is preferably
+> much shorter).
+I present two alternatives here with IGroup/IContact
+> and IGroup/IBuddy.
+Perhaps you can think of something better.
+Although we could do this, I would be opposed to it unless it was a) something obviously better/clearer to everyone than roster; and b) not 'buddy'.
+ So if we can collectively come up with something that is better here then we can do that, but I haven't seen anything (yet) that is particularly good.
+>
+> Now let's take a look at the chatting capabilities that the presence
+> API provides.
+>
+> The chatting API is actually pretty good for the most parts in my
+> opinion.
+The only places I'd suggest changes for would be in
+> IInvitationListener and in IRoomInfo and maybe IChatRoomContainer.
+>
+> In IInvitationListener, I'd provide similar arguments for what I wrote
+> about for IPresenceSender and IMessageSender above.
+The 'to' parameter
+> is always going to be yourself as I don't think people really care
+> when other people are invited (I sure don't).
+
+Yeah, I agree.
+> The 'subject' parameter
+> can probably also be dropped too since the message body itself should
+> be enough to say it all.
+I would prefer to leave the 'subject' parameter since XMPP supports it...but it can be hidden more effectively.
+>
+> For IRoomInfo, I would suggest removing its getConnectedID() method
+> since off-hand I can't really imagine when it wouldn't be yourself.
+Of
+> course, it may still be useful to be able to get your own ID at times,
+> I don't know, just throwing this one out.
+>
+> Lastly, I think there needs to be a method to get the participants of
+> a chatroom, either from IChatRoomContainer or IRoomInfo.
+You can get
+> the number with IRoomInfo's getParticipantsCount(), but you can't get
+> the participants, which seems a little bit weird.
+I understand
+> sometimes you can't see who is in the channel, but in those cases a
+> null or an empty array can always be returned or something like that.
+> It just seems too crude to have to use an IChatParticipantListener to
+> do this by hand.
+This will also have the added effect of indirectly
+> fixing bug #160126 [1] in no time.
+Seems reasonable.
+>
+> One problem I have not figured out how to solve yet is notifying
+> changes in a user's status within a chatroom.
+In IM protocols, this
+> should be not be a problem since you have an IPCA and can just use
+> IPresenceListener.
+However, in a chatting context like IRC, this is
+> not really possible, and is rather annoying [2].
+You could "cheat" and
+> have your IChatRoomContainer implementation also implement IPCA, which
+> is a little weird but is actually what I did a month or two ago when I
+> looked at the IRC provider and made heavy modifications to it because
+> it was missing a lot of things.
+Or the IChatRoomContainer could optionally implement IPCA (based upon whether the protocol/provider supported this).
+Thanks much for the thoughts/comments Remy.
+ We can make many of these changes fairly soon.
+ I (Scott) can't work on it right away, however, as this week I've got travelling, Eclipse Foundation Board meeting, several other things for ECF bugs/enhancement requests.
+ So if I apply these changes it would probably have to wait a little while.
+If someone else can work on these right away, however, I would be happy to apply the changes during this week and finish them up the week following.
+The main plugins affected would be:  org.eclipse.ecf.presence (API plugin), org.eclipse.ecf.provider.xmpp (xmpp impl based upon smack), org.eclipse.ecf.provider.irc (IRC impl based upon irclib...still on 1.0.4 but moving soon to 1.10), org.eclipse.ecf.provider.jxta (jxta impl at osuosl.org), the org.eclipse.ecf.example.collab example application.
+------------------------------------------
+Summary of API suggestions below (this is not an exhaustive list
+because I probably missed something when backtracking)...
+IRosterSubscribeListener:
+-rename the interface to something better?
+-handleSubscribeRequest(ID, IPresence) -> handleSubscribeRequest(ID, String)
+-handleUnsubscribeRequest(ID, IPresence) -> REMOVE
+-handleSubscribed(ID, IPresence) -> handleSubscribed(ID)
+-handleUnsubscribed(ID, IPresence) -> handleUnsubscribed(ID)
+IPresence:
+-IPresence.Mode.EXTENDED_AWAY -> REMOVE
+-IPresence.Mode.CHAT -> REMOVE
+-getPriority() -> REMOVE
+IPresenceListener:
+-handleConnected(ID) -> REMOVE
+-handleDisconnected(ID) -> REMOVE
+IMessageListener:
+-handleMessage(ID, ID, Type, String, String) -> handleMessage(ID, ID,
+Type, String)
+-IMessageListener.Type.GROUP_CHAT -> REMOVE
+-IMessageListener.Type.HEADLINE -> IMessageListener.Type.SYSTEM or REMOVE
+IMessageSender:
+-sendMessage(ID, ID, Type, String, String) -> sendMessage(ID, String)
+IPresenceSender:
+-sendPresenceUpdate(ID, ID, IPresence) -> sendPresenceUpdate(IPresence)
+-sendRosterAdd(ID, String, String, String[]) -> sendRosterAdd(String,
+String, String[])
+-sendRosterRemove(ID, ID) -> sendRosterRemove(ID)
+-synchronize sendRosterAdd and sendRosterRemove, either both use IDs
+or both use Strings
+-move sendRosterAdd and sendRosterRemove to IAccountManager?
+IAccountManager:
+-rename to something more general isAccountCreationSupported() to
+include whether password changes is supported, etc.
+-create a spin-off IAccount interface to handle account manipulation
+(update status, info, bio, avatar, etc.)
+IRosterEntry:
+-getPresenceState() -> RENAME to getPresence()
+-setPresenceState(IPresence) -> REMOVE
+IInvitationListener:
+-handleInvitationReceived(ID, ID, ID, String, String) ->
+handleInvitationReceived(ID, ID, String)
+IRoomInfo:
+-getConnectedID() -> REMOVE
+IChatRoomContainer/IRoomInfo:
+-add a method to retrieve a list of the current participants
+Comments and suggestions are welcome with open arms! :) We should
+strive to flesh this out before 1.0.
+;)
+[1] - https://bugs.eclipse.org/bugs/show_bug.cgi?id=160126
+[2] - https://bugs.eclipse.org/bugs/show_bug.cgi?id=149912

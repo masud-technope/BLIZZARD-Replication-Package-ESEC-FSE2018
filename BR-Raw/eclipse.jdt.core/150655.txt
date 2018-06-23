@@ -1,0 +1,14 @@
+Bug 150655 – [1.5][compiler] compiler does not find correct (parameterized) version of overloaded method
+HEAD
+Eclipse gives a compile error for the class below; JDK 1.5.0_07 accepts it.
+import java.util.Random;
+public class Utils {
+public static String choose(String one, String two) {
+return Utils.<String>choose(one, two);
+// Error: "The method choose(String, String) of type Utils is not generic; it
+// cannot be parameterized with arguments <String>"
+}
+public static <T> T choose(T one, T two) {
+return new Random().nextBoolean() ? one : two;
+}
+}

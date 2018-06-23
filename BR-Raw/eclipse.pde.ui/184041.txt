@@ -1,0 +1,14 @@
+Bug 184041 – Changing target environment does not update the plugin container
+I20070418-1012
+I have noticed that when I change my target environment the plug-in dependencies do not get updated which can cause problems.
+Here are steps to reproduce:
+- start eclipse
+- create a plug-in with some UI dependencies
+- expand the plug-in dependencies and notice that the swt fragment for your platform is present.
+good.
+- change the target platform to point at an RCP based target containing the delta pack.
+reload.
+apply.
+the plug-in dependencies are left unchanged.
+good.
+- now modify the environment variables in the target platform to something else, notice that the reference to the swt fragment is not modified properly.

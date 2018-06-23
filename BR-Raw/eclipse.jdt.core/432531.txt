@@ -1,0 +1,36 @@
+Bug 432531 – [1.8] VerifyError with anonymous subclass inside of lambda expression in the superclass constructor call
+The following class will not load with due to:
+Exception in thread "main" java.lang.VerifyError: Bad type on operand stack
+Exception Details:
+Location:
+Y.<init>()V @2: invokedynamic
+Reason:
+Type uninitializedThis (current frame, stack[1]) is not assignable to 'Y'
+Current Frame:
+bci: @2
+flags: { flagThisUninit }
+locals: { uninitializedThis }
+stack: { uninitializedThis, uninitializedThis }
+Bytecode:
+0000000: 2a2a ba00 0b00 00b7 000c b1
+at java.lang.Class.getDeclaredMethods0(Native Method)
+at java.lang.Class.privateGetDeclaredMethods(Class.java:2688)
+at java.lang.Class.getMethod0(Class.java:2937)
+at java.lang.Class.getMethod(Class.java:1771)
+at sun.launcher.LauncherHelper.validateMainClass(LauncherHelper.java:544)
+at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:526)
+The class:
+import java.util.function.Supplier;
+class E {
+E(Supplier<Object> factory) { }
+}
+public class Y extends E {
+Y() {
+super(() -> new Object() {
+});
+}
+public static void main(String[] args) {
+new Y();
+}
+}
+If I convert the lambda to anonymous class, it works.

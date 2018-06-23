@@ -1,0 +1,14 @@
+53469 – possible bug in Response.normalize(CharChunk cc)
+The Response.normalize(CharChunk cc) introduced in 7.0.28 introduced a bug.
+See Bug ID 53062
+The URL that is being encoded is:
+../../resources/org.apache.wicket.markup.html.WicketEventReference/wicket-event.js?w:lm=1340711670
+which causes a IllegalArgumentException in this method
+java.lang.IllegalArgumentException
+at org.apache.catalina.connector.Response.normalize(Response.java:1799)
+at org.apache.catalina.connector.Response.toAbsolute(Response.java:1732)
+at org.apache.catalina.connector.Response.encodeURL(Response.java:1242)
+at org.apache.catalina.connector.ResponseFacade.encodeURL(ResponseFacade.java:406)
+at org.apache.wicket.protocol.http.WebResponse.encodeURL(WebResponse.java:149)
+at org.apache.wicket.protocol.http.request.WebRequestCodingStrategy.encode(WebRequestCodingStrategy.java:387)
+Running the same application in tomcat 7.0.27 and 6.0.18 works without issue

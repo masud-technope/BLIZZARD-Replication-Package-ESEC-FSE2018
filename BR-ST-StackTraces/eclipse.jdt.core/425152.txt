@@ -1,0 +1,5 @@
+org.eclipse.jdt.internal.compiler.ast.LambdaExpression.analyseCode
+org.eclipse.jdt.internal.compiler.ast.MessageSend.analyseCode
+org.eclipse.jdt.internal.compiler.ast.MessageSend.analyseCode
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.analyseCode
+org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.internalAnalyseCode

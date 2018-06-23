@@ -1,0 +1,7 @@
+Bug 24747 – incorrect compile error message
+class A {
+NonExistent[] f(){}
+}
+the message says '[] cannot be resolved (or is not a valid return type) for the
+method f'
+(the type name is not mentioned)

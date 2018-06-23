@@ -1,0 +1,7 @@
+org.eclipse.jdt.internal.core.util.ClassFileStruct.u1At
+org.eclipse.jdt.internal.core.util.ExtendedAnnotation.<init>
+org.eclipse.jdt.internal.core.util.RuntimeInvisibleTypeAnnotationsAttribute.<init>
+org.eclipse.jdt.internal.core.util.MethodInfo.<init>
+org.eclipse.jdt.internal.core.util.ClassFileReader.<init>
+org.eclipse.jdt.internal.core.util.Disassembler.disassemble
+org.eclipse.jdt.internal.ui.javaeditor.ClassFileEditor$SourceAttachmentForm.updateCodeView

@@ -1,0 +1,23 @@
+59904 – memory leak--ServerCookie
+heap dump:
+Class Name	                        Objects	 Shallow Heap	Retained Heap
+org.apache.tomcat.util.buf.ByteChunk	13220789 634597872	>=643312600
+org.apache.tomcat.util.buf.MessageBytes 13194914 633355872	>=1801383536
+org.apache.tomcat.util.buf.CharChunk	13204864 528194560	>=569456560
+org.apache.tomcat.util.http.ServerCookie 2579614 123821472	>=1879787624
+million+ ServerCookie objects in the heap,it cause memery leak.
+org.apache.coyote.Request objcet contain a ServerCookies,it is a ServerCookie array,and the array length is 2048.
+so i have a test
+GetMethod getMethod = new GetMethod("http://127.0.0.1:8080/");
+Header h = new Header();
+h.setName("Cookie");
+StringBuilder sb=new StringBuilder();
+for(int i=0;i<2000;i++){
+sb.append("a=b;");
+}
+h.setValue(sb.toString());
+getMethod.addRequestHeader(h);
+int statusCode = httpClient.executeMethod(getMethod);
+debug and get two thousand cookies in the request,and ServerCookie arrays is cached in heap.
+we hava maxHeaderCount and maxHttpHeaderSize,but Cookie just as one header
+so we need maxCookieCount too.

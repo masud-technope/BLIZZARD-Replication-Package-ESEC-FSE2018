@@ -1,0 +1,4 @@
+Bug 319532 – [preference][typing] Allow to disable smart auto-indent on return
+We should allow to disable smart auto-indent when hitting return.
+The alignment to the above line (first indent) should still happen.
+See bug 250594.

@@ -1,0 +1,4 @@
+Bug 180751 – [UI] MultiRosterContentProvider should not have objects tacked onto it
+An IContentProvider is supposed to interpret a given input and return Objects that corresponds to the backend model for the UI to render.
+However, the MultiRosterContentProvider appears to be storing Objects themselves with its add and remove methods and reading them that way.
+Adding and removing is something that the viewer calls and not the content provider, which would explain why viewers have add/remove methods whereas content providers don't.

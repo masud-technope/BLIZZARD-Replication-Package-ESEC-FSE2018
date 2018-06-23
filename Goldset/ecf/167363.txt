@@ -1,0 +1,17 @@
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/ui/views/ChatRoomView.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/provider/xmpp/container/XMPPClientSOContainer.java
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/ui/views/ChatRoomManagerView.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/Presence.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/provider/xmpp/container/XMPPPresenceSharedObject.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/chat/IInvitationListener.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/AbstractPresenceContainer.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/IRosterEntry.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/RosterGroup.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/example/collab/PresenceContainerUI.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/IRosterSubscriptionListener.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/RosterEntry.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/IPresence.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/IPresenceContainerAdapter.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/IRosterGroup.java
+framework/bundles/org.eclipse.ecf.presence/src/org/eclipse/ecf/presence/IAccountManager.java
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/provider/xmpp/container/XMPPGroupChatSharedObject.java

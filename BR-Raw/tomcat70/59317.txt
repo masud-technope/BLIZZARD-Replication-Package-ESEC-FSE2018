@@ -1,0 +1,61 @@
+59317 – AsyncContextImpl breaks request URL containing spaces
+The problem appears when performing async requests to URLs that contain a space in URI path.
+I have an application that performs an XHR POST to http://localhost:8080/api/alarms/:id.
+When I set id to 'foo bar' I get an error:
+java.lang.IllegalStateException: Could not get HttpServletRequest URI: Illegal character in path at index 36: http://localhost:8080/api/alarms/foo bar
+at org.springframework.http.server.ServletServerHttpRequest.getURI(ServletServerHttpRequest.java:99)
+at org.springframework.web.util.UriComponentsBuilder.fromHttpRequest(UriComponentsBuilder.java:282)
+at org.springframework.web.util.WebUtils.isSameOrigin(WebUtils.java:814)
+at org.springframework.web.cors.DefaultCorsProcessor.processRequest(DefaultCorsProcessor.java:71)
+at org.springframework.web.servlet.handler.AbstractHandlerMapping$CorsInterceptor.preHandle(AbstractHandlerMapping.java:503)
+at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:134)
+at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:954)
+at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:893)
+at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:968)
+at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:870)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:648)
+at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:844)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:292)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:207)
+at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:720)
+at org.apache.catalina.core.ApplicationDispatcher.doDispatch(ApplicationDispatcher.java:639)
+at org.apache.catalina.core.ApplicationDispatcher.dispatch(ApplicationDispatcher.java:605)
+at org.apache.catalina.core.AsyncContextImpl$1.run(AsyncContextImpl.java:229)
+at org.apache.catalina.core.AsyncContextImpl.doInternalDispatch(AsyncContextImpl.java:391)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:208)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+at org.apache.catalina.connector.CoyoteAdapter.asyncDispatch(CoyoteAdapter.java:392)
+at org.apache.coyote.http11.AbstractHttp11Processor.asyncDispatch(AbstractHttp11Processor.java:1715)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:652)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1502)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1458)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+at java.lang.Thread.run(Thread.java:745)
+Caused by: java.net.URISyntaxException: Illegal character in path at index 36: http://localhost:8080/api/alarms/foo bar
+at java.net.URI$Parser.fail(URI.java:2848)
+at java.net.URI$Parser.checkChars(URI.java:3021)
+at java.net.URI$Parser.parseHierarchical(URI.java:3105)
+at java.net.URI$Parser.parse(URI.java:3053)
+at java.net.URI.<init>(URI.java:588)
+at org.springframework.http.server.ServletServerHttpRequest.getURI(ServletServerHttpRequest.java:96)
+...
+35 common frames omitted
+Non-async requests don't cause any problem.
+I use Spring Framework 4.2.5.
+Debugging revealed what happens:
+URI constructor expects an escaped URI (/api/alarms/foo%20bar).
+When AsyncDispatcher runs, it passes a ServletRequest implementation which getRequestURI() returns /api/alarms/foo bar.
+Non-async request handling passes an implementation that returns the escaped URI.
+AsyncContextImpl.dispatch() constructs a path from HttpServletRequest.getServletPath() and getPathInfo().
+This path is used in ApplicationContext.getRequestDispatcher() where ApplicationDispatcher constructor is called with the path where it a request URI is expected.
+Later ApplicationDispatcher.wrapRequest() creates an ApplicationHttpRequest with a correct request URI but ApplicationDispatcher.doDispatch() calls wrequest.setRequestURI() passing a path not a URI.
+As result the servlet handling the request receives an ApplicationHttpRequest with an incorrect requestURI field ( identical to servletPath field), despite including a RequestFacade in the request field that returns the correct (escaped) value in getRequestURI().
+I reproduced the bug on Tomcat 8.0.22, 8.0.30, 8.0.33 and 8.5.0 beta.

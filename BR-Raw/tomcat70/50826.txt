@@ -1,0 +1,20 @@
+50826 – (Embedded) Tomcat.destroy() throws java.lang.IllegalArgumentException
+Embedded Tomcat sometimes throws this exception when calling destroy() method:
+java.lang.IllegalArgumentException: null source
+at java.util.EventObject.<init>(EventObject.java:56)
+at javax.management.Notification.<init>(Notification.java:184)
+at org.apache.catalina.core.StandardContext.destroyInternal(StandardContext.java:5433)
+at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:285)
+at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java:969)
+at org.apache.catalina.core.ContainerBase.destroyInternal(ContainerBase.java:1108)
+at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:285)
+at org.apache.catalina.core.ContainerBase.removeChild(ContainerBase.java:969)
+at org.apache.catalina.core.ContainerBase.destroyInternal(ContainerBase.java:1108)
+at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:285)
+at org.apache.catalina.core.StandardService.destroyInternal(StandardService.java:593)
+at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:285)
+at org.apache.catalina.core.StandardServer.destroyInternal(StandardServer.java:786)
+at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:285)
+at org.apache.catalina.startup.Tomcat.destroy(Tomcat.java:323)
+at su.msk.jet.nioproxy.rule.config.EmbeddedWebserver.stop(EmbeddedWebserver.java:26)
+I think that StandardContext.destroyInternal() misses check that this.getObjectName()!=null

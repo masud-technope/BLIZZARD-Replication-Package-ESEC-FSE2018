@@ -1,0 +1,55 @@
+Bug 259471 – [Discovery][JMDNS] JMDNSServiceIDTest#testServiceIDFactory2 fails
+-- Error Log from JUnit --
+Class: org.eclipse.ecf.tests.provider.jmdns.identity.JMDNSServiceIDTest
+Method: testServiceIDFactory2
+Actual: null
+Expected: null
+Stack Trace:
+org.eclipse.ecf.core.identity.IDCreateException: ecf.namespace.jmdns createInstance()
+at org.eclipse.ecf.provider.jmdns.identity.JMDNSNamespace.createInstance(JMDNSNamespace.java:68)
+at org.eclipse.ecf.core.identity.IDFactory.createID(IDFactory.java:201)
+at org.eclipse.ecf.discovery.identity.ServiceIDFactory.createServiceID(ServiceIDFactory.java:33)
+at org.eclipse.ecf.tests.discovery.identity.ServiceIDTest.testServiceIDFactory2(ServiceIDTest.java:165)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at junit.framework.TestCase.runTest(TestCase.java:164)
+at junit.framework.TestCase.runBare(TestCase.java:130)
+at junit.framework.TestResult$1.protect(TestResult.java:106)
+at junit.framework.TestResult.runProtected(TestResult.java:124)
+at junit.framework.TestResult.run(TestResult.java:109)
+at junit.framework.TestCase.run(TestCase.java:120)
+at junit.framework.TestSuite.runTest(TestSuite.java:230)
+at junit.framework.TestSuite.run(TestSuite.java:225)
+at junit.framework.TestSuite.runTest(TestSuite.java:230)
+at junit.framework.TestSuite.run(TestSuite.java:225)
+at org.eclipse.jdt.internal.junit.runner.junit3.JUnit3TestReference.run(JUnit3TestReference.java:130)
+at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:460)
+at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:673)
+at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:386)
+at org.eclipse.pde.internal.junit.runtime.RemotePluginTestRunner.main(RemotePluginTestRunner.java:62)
+at org.eclipse.pde.internal.junit.runtime.CoreTestApplication.run(CoreTestApplication.java:23)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at org.eclipse.equinox.internal.app.EclipseAppContainer.callMethodWithException(EclipseAppContainer.java:574)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:195)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:386)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:549)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:504)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1236)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1212)
+Caused by: org.eclipse.ecf.core.identity.IDCreateException: First parameter cannot be cast to String
+at org.eclipse.ecf.provider.jmdns.identity.JMDNSNamespace.createInstance(JMDNSNamespace.java:65)
+...
+42 more

@@ -1,0 +1,5 @@
+Bug 465630 – [JUnit] "Next/Previous Failed Test" buttons enabled on "Show Skipped Tests Only"
+When Show Skipped Tests Only (bug 298603) is enabled in the JUnit view, the "Next/Previous Failed Test" buttons don't work any more.
+They are enabled if the test run session had errors, and they are disabled if all non-skipped tests are green.
+They at least need to be disabled when they don't work.
+A better solution would be to change them to "Next/Previous Skipped Test" in that case.

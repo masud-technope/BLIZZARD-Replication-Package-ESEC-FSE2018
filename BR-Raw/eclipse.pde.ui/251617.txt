@@ -1,0 +1,3 @@
+Bug 251617 – incremental build performance test
+We should have one or two incremental build tests for the performance suite to stress performance of analysis of dependent types (i.e.
+ripple/analysis caused by changing a type that has many dependent types).

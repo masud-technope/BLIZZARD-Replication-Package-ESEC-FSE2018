@@ -1,0 +1,5 @@
+org.eclipse.jdt.internal.corext.dom.ASTNodes.asString
+org.eclipse.jdt.internal.ui.text.correction.proposals.MissingReturnTypeCorrectionProposal.evaluateReturnExpressions
+org.eclipse.jdt.internal.ui.text.correction.proposals.MissingReturnTypeCorrectionProposal.getRewrite
+org.eclipse.jdt.ui.text.java.correction.ASTRewriteCorrectionProposal.addEdits
+org.eclipse.jdt.ui.text.java.correction.CUCorrectionProposal.createTextChange

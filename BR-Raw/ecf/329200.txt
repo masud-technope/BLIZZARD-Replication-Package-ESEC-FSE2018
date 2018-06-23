@@ -1,0 +1,4 @@
+Bug 329200 – Redundant implementations for RemoteFilterImpl
+org.eclipse.ecf.internal.provider.r_osgi.RemoteFilterImpl
+org.eclipse.ecf.provider.remoteservice.generic.RemoteFilterImpl
+org.eclipse.ecf.remoteservice.util.RemoteFilterImpl

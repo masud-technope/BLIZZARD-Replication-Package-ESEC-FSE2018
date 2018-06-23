@@ -1,0 +1,41 @@
+Bug 78534 – ConcurrentModificationException in ThreadMonitorManager
+I got this exception while debugging a test case.
+Apparently, HashMap#clone() is
+not thread safe.
+!ENTRY org.eclipse.debug.core 4 120 2004-11-12 09:51:02.64
+!MESSAGE An exception occurred while dispatching debug events.
+!STACK 0
+java.util.ConcurrentModificationException
+at java.util.HashMap$HashIterator.nextEntry(HashMap.java:787)
+at java.util.HashMap$EntryIterator.next(HashMap.java:829)
+at java.util.HashMap$EntryIterator.next(HashMap.java:827)
+at java.util.HashMap.putAllForCreate(HashMap.java:427)
+at java.util.HashMap.clone(HashMap.java:659)
+at
+org.eclipse.jdt.internal.debug.ui.monitors.ThreadMonitorManager.handleSuspendResume(ThreadMonitorManager.java:113)
+at
+org.eclipse.jdt.internal.debug.ui.monitors.ThreadMonitorManager.handleDebugEvents(ThreadMonitorManager.java:100)
+at
+org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:965)
+at
+org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java:616)
+at org.eclipse.core.runtime.Platform.run(Platform.java:747)
+at
+org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:997)
+at
+org.eclipse.debug.core.DebugPlugin.fireDebugEventSet(DebugPlugin.java:345)
+at
+org.eclipse.jdt.internal.debug.core.model.JDIDebugElement.fireEvent(JDIDebugElement.java:148)
+at
+org.eclipse.jdt.internal.debug.core.model.JDIDebugElement.fireResumeEvent(JDIDebugElement.java:172)
+at
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.resume(JDIDebugTarget.java:1072)
+at
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.resume(JDIDebugTarget.java:1040)
+at
+org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget.handleVMStart(JDIDebugTarget.java:335)
+at
+org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:149)
+at
+org.eclipse.jdt.internal.debug.core.EventDispatcher.run(EventDispatcher.java:221)
+at java.lang.Thread.run(Thread.java:595)

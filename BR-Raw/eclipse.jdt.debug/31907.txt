@@ -1,0 +1,13 @@
+Bug 31907 – Java Variable Settings needs another row
+There are four boolean combinations; there should be four rows.
+static final
+static          1      0
+final           0      1
+static final    1      1
+none            0      0
+Currently, the table is interpreted as the "or" of the row values, but it
+could be interpreted as above with equal clarity and greater expressive
+power.
+It is worth going to the extra trouble because very few people want
+to see constants in the debugger, but many people want to see non-final
+statics and non-static finals.

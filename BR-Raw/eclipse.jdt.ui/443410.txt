@@ -1,0 +1,4 @@
+Bug 443410 – RenameTypePerfAcceptanceTests#testCold fails
+(In reply to David Williams from bug 374441 comment #48)
+> org.eclipse.jdt.ui.tests.refactoring    49 tests - 1 failure
+The failing test is RenameTypePerfAcceptanceTests#testCold

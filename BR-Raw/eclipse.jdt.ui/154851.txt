@@ -1,0 +1,6 @@
+Bug 154851 – [reorg][move static members] Move constant wizard has option "Keep original method..."
+I20060822-1200
+Refactor > Move a constant field.
+The wizard has an option "Keep original method as delegate to moved method".
+-> Should be "member", not "method"
+-> Same problem when moving two constants at once

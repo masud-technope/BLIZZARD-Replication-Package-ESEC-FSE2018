@@ -1,0 +1,4 @@
+Bug 328142 – [Discovery][Composite] Registering an IService(Type)Listener with OSGi service registry results in listeners notified twice
+If a consumer registers its IService(Type)Listeners via the OSGi whiteboard pattern while using the CompositeDiscoveryProvider, listeners will receive discovery events twice.
+The second discovery event originates from the nested discovery provider inside the CompositeDiscoveryProvider.
+In general it is questionable if the CompositeDiscoveryProvider makes sense in the OSGi context where the OSGi service registry/whiteboard pattern takes over the CompositeDiscoveryProvider functionality WRT listener handling.

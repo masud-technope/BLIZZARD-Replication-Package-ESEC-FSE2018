@@ -1,0 +1,6 @@
+Bug 195808 – [projection] ProjectionViewer: Toggling between segmented and projection mode can fail
+When the ProjectionViewer is toggling from projection mode to segmented mode in setVisibleRegion(), the projection mode is saved in the field fWasProjectionEnabled, but only if isSegmented() returns false.
+If there is a folded region at the start or end of the document, isSegmented() will return true, the projection mode will not be saved and will therefore not be restored in resetVisibleRegion().
+I think isSegmented() is not implemented correctly.
+It should never return true in projection mode.
+This causes problems with the CDT editor (see bug 193739 comment 1).

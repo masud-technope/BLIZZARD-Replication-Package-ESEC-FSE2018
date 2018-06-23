@@ -1,0 +1,8 @@
+Bug 255659 – Illegal usage should not be reported inside fragments of the host
+With HEAD and running the ant task between 3.5M3 and 3.4.1, we report:
+org.eclipse.jdt.internal.compiler.tool.EclipseFileManager illegally instantiates org.eclipse.jdt.core.compiler.InvalidInputException
+org.eclipse.jdt.internal.compiler.tool.EclipseFileManager illegally instantiates org.eclipse.jdt.core.compiler.InvalidInputException
+org.eclipse.jdt.internal.compiler.tool.EclipseFileManager illegally instantiates org.eclipse.jdt.core.compiler.InvalidInputException
+org.eclipse.jdt.internal.compiler.tool.EclipseFileManager illegally instantiates org.eclipse.jdt.core.compiler.InvalidInputException
+These are invalid usage reported inside a fragment of the host.
+This should be tolerated.

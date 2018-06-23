@@ -1,0 +1,2 @@
+Bug 310554 – [remoteservices] RegistrySharedObject.handleCallRequest
+In RegistrySharedObject.handleCallRequest, if the actual invoke throws an exception, that exception may not be serializable and will fail to be propogated back to caller.

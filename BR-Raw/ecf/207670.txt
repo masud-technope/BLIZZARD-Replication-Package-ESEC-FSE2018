@@ -1,0 +1,17 @@
+Bug 207670 – [msn] NotificationSession throws IllegalArgumentException for NLN notifications
+Build ID:  M20070921-1145
+ECF     :  1.20v20071019-1300
+Steps To Reproduce:
+Doesn't seem to happen in the ECF chat perspective but does reliably occur with a chatbot.
+The easiest way to repeat it is to split out NotificationSession.read() event parsing code into a seperate method and get the method to parse the following notification:
+NLN NLN xxxx.yyyyyyyyyy@hotmail.com Xxxx 512 0
+More information:
+This specific error occurs because the event parser in NotificationSession.read() picks up NLN at any place in the input string and not just at the beginning of a line.
+However, it looks like the event parser has a more general problem - for example, it will pick up MSN protocol commands encapsulated in a MSG or in fragments of another command or notification.
+e.g.
+Parsing the following received message:
+MSG Hotmail Hotmail 289
+Content-Type:text/x-msmsgsinitialmdatanotification;charset=UTF-8
+Mail-Data:<MD><E><I>0</I><IU>0</IU><O>0</O><OU>0</OU></E><Q><QTM>409600</QTM><QNM>204800</QNM></Q></MD Inbox-URL: /cgi-bin/HoTMaiL                                           Folders-URL: /cgi-bin/folders                                           Post-URL: http://www.hotmail.com
+CHG 6 NLN 268435488
+throws a StringIndexOutOfBoundsException.

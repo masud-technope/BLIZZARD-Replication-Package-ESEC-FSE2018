@@ -1,0 +1,5 @@
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/internal/ui/perspectives/CommunicationPerspective.java
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/ui/wizards/ConfigurationWizardSelectionPage.java
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/chatroom/ChatRoomManagerView.java
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/internal/ui/perspectives/CommunicationPerspective.java
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/ui/wizards/ConfigurationWizardSelectionPage.java

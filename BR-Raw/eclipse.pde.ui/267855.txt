@@ -1,0 +1,4 @@
+Bug 267855 – [plug-in registry] use a styled label provider
+The plug-in registry is very functional now thanks to Jacek's excellent work.
+It's time to make it prettier! I think we can use a styled label provider to showcase the host of a fragment and also the location of the bundle.
+We can probably do it for other registry view objects, but I'll leave that up to your imagination for now ;)

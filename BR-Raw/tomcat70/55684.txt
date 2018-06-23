@@ -1,0 +1,4 @@
+55684 – WebappClassLoader.getThread want an access to root ThreadGroup
+Tomcat may not have all permissions granted.
+The method WebappClassLoader.getThread try to access the root ThreadGroup in order to list all threads.
+You should either manage SecurityException or avoid to access the parent ThreadGroup of the thread which start Tomcat.

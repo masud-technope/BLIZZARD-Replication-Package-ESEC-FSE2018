@@ -1,0 +1,13 @@
+Bug 330415 – [inline] Refactor > Inline fails to parenthesize replaced arguments
+Build Identifier: M20100211-1343
+Inlining a subtracted expression produces the wrong result because the refactoring tool fails to parenthesize the arguments.
+Example: instead of x - (y + z), you can end up with x - y + z.
+(See attached test case).
+Reproducible: Always
+Steps to Reproduce:
+1.
+Run the test case as-is.
+2.
+Inline each of the functions in main().
+3.
+Run the test case again and observe the difference.

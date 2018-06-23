@@ -1,0 +1,3 @@
+Bug 440697 – [TCK] Change implementation of ExportRegistration.update to match changes in RSA 1.1 specification
+Some of the required behavior of the ExportRegistration.update method, as documented in the javadocs for that method have changes.
+ ECF's implementation should be modified to implement the required behavior documented in the javadocs.

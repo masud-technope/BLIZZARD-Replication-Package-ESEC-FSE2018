@@ -1,0 +1,27 @@
+Bug 264112 – [Formatter] Wrap when necessary too aggressive on short qualifiers
+Build ID: I20080617-2000
+Steps To Reproduce:
+1.
+Go to Preferences -> Java -> Code Style -> Formatter -> Edit on the "Eclipse [built-in]" profile
+2.
+Go to Tab "Line Wrapping", Select "Function Calls"
+3.
+On the Preview Tab Set Line Width for 25 or smaller
+The original line:
+Other.bar(100, 200,....)
+will be formatted
+Other.
+bar(
+100,
+200,
+Obviously wrapping is necessary because the original line is longer than the set line width, but wrapping after Other.
+and bar( doesn't do any good because the identifiers Other and bar are shorter than the indentation depth (2 tabs == 8 spaces).
+Suggested fix:
+Add an additional Line Wrapping Policy "Wrap when benefitial" which works like "Wrap when necessary" but avoids wrapping if the leading line is shorter than the indentation width and thus wrapping is counter-productive.
+Result:
+Other.bar(
+100,
+200,...
+Thanks for taking note!
+Christopher
+P.S.: Note that with "Wrapping when benefitial" the resulting format is less Wide than with "Wrapping if necessary".

@@ -1,0 +1,18 @@
+Bug 10035 – The Launcher should support variables
+My projects often contain data that is necessary to start the application.
+I have for example ini files for configuring the Application.
+When testing the application ( I also have a bunch of Junit tests), I therefore
+need to set the workingdirectory to the projectdirectory.
+Since different developers my have their projects on a different drive or
+directory  the path for the projectdir is not always the same.
+It would be much
+simpler to just specify the projectdir using a variable (like it's done with
+libraries).
+It would be even better if a path relative to the projectdir could be
+specified.
+This is because we usally generate our jar files and ini-files to a
+directory relative to the project dir.
+You may also consider to make  the project path the default value
+for the workingdir.
+Regards,
+Markus

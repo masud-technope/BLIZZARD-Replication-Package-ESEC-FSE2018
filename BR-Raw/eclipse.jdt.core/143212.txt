@@ -1,0 +1,105 @@
+Bug 143212 – IAE in log
+From bug 142473 - someone found these exceptions in their log.
+!ENTRY org.eclipse.jdt.ui 4 2 2006-05-23 11:07:11.376
+!MESSAGE Problems occurred when invoking code from plug-in:
+"org.eclipse.jdt.ui".
+!STACK 0
+java.lang.IllegalArgumentException
+at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:2599)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:891)
+at
+org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2353)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:511)
+at
+org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:179)
+at
+org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2637)
+at
+org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1236)
+at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:270)
+at
+org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:187)
+at
+org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:229)
+at
+org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:505)
+at
+org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:993)
+at
+org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:131)
+at
+org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:71)
+at
+org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:720)
+at
+org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:779)
+at
+org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1123)
+at
+org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:97)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at
+org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:82)
+at
+org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:145)
+at
+org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:86)
+at
+org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:94)
+at
+org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:75)
+at
+org.eclipse.jdt.internal.ui.text.JavaReconciler.process(JavaReconciler.java:342)
+at
+org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:204)
+!ENTRY org.eclipse.jdt.ui 4 0 2006-05-23 11:07:11.376
+!MESSAGE Error in JDT Core during reconcile
+!STACK 0
+java.lang.IllegalArgumentException
+at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:2599)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:891)
+at
+org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2353)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:511)
+at
+org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:179)
+at
+org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2637)
+at
+org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1236)
+at org.eclipse.jdt.core.dom.AST.convertCompilationUnit(AST.java:270)
+at
+org.eclipse.jdt.internal.core.CompilationUnit.buildStructure(CompilationUnit.java:187)
+at
+org.eclipse.jdt.internal.core.Openable.generateInfos(Openable.java:229)
+at
+org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:505)
+at
+org.eclipse.jdt.internal.core.CompilationUnit.makeConsistent(CompilationUnit.java:993)
+at
+org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:131)
+at
+org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:71)
+at
+org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:720)
+at
+org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:779)
+at
+org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1123)
+at
+org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:97)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at
+org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:82)
+at
+org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:145)
+at
+org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:86)
+at
+org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:94)
+at
+org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:75)
+at
+org.eclipse.jdt.internal.ui.text.JavaReconciler.process(JavaReconciler.java:342)
+at
+org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:204)

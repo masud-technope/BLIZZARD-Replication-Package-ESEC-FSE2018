@@ -1,0 +1,1 @@
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/registry/RegistryBrowserContentProvider.java

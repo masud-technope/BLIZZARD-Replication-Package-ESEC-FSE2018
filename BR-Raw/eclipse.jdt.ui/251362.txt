@@ -1,0 +1,20 @@
+Bug 251362 – [package explorer] 'Configure...' looks strange on working set assignment dialog
+Created attachment 115542 [details]
+Screenshot depicting the odd text.
+Build id: I20081007-1600
+Note: Steps may not be exact.
+1.
+Open the 'Package Explorer' view.
+2.
+View menu > Top Level Elements > Working Sets
+3.
+View menu > Configure Working Sets...
+> Create one if you don't have one already.
+4.
+Select a project.
+5.
+Context menu > Assign Working Sets...
+6.
+Observe the odd configuration option at the bottom of the dialog.
+My main issues with the text at the bottom is the odd placement of the link and the fact that it is a capitalized word.
+It feels like this is all one sentence but that isn't actually the case.

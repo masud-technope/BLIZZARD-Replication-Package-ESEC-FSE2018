@@ -1,0 +1,27 @@
+43216 – ACTIVITY_CHECK does not work correctly when Tomcat is restarted
+Hi,
+I noticed that org.apache.catalina.session.StandardSession.ACTIVITY_CHECK does
+not work correctly because the StandardSession#accessCount will be set as -1
+when Tomcat is restarted and session is loaded from the SESSION.ser file.
+StandardManager#doLoad() calls session.endAccess() and this method execute 2 things.
+* set isNew = false
+* decrement accessCount
+I think isNew attribute is already set by session.readObjectData(ois) in
+StandardManager#doLoad(),
+and accessCount is already set as 0.
+IMHO, it is not necessary calling session.endAccess() in the doLoad().
+Here is a patch.
+Index: /tc6.0.x/trunk/java/org/apache/catalina/session/StandardManager.java
+===================================================================
+--- /tc6.0.x/trunk/java/org/apache/catalina/session/StandardManager.java
+(revision 569774)
++++ /tc6.0.x/trunk/java/org/apache/catalina/session/StandardManager.java
+(working copy)
+@@ -395,7 +395,6 @@
+session.setManager(this);
+sessions.put(session.getIdInternal(), session);
+session.activate();
+-                    session.endAccess();
+}
+} catch (ClassNotFoundException e) {
+log.error(sm.getString("standardManager.loading.cnfe", e), e);

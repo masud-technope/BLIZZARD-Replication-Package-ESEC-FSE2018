@@ -1,0 +1,9 @@
+47997 – NamingContextListener fails to add itself as a PropertyChangeListener to all namingResources
+Created attachment 24378 [details]
+proposed fix
+In the NamingContextListener.lifecycleEvent(LifecycleEvent) method, the
+NamingContextListener object fails to add itself as a PropertyChangeListener to
+namingResources whose context is not a Server, e.g.
+a Context instance.
+ This
+prevents the NamingResourcesMBean from working with non-Server contexts.

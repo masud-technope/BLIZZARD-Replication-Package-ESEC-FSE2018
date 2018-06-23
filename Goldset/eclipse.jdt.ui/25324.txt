@@ -1,0 +1,16 @@
+org.eclipse.jdt.junit.core/schema/testRunListeners.exsd
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/FailureRunView.java
+org.eclipse.jdt.junit/schema/testRunListeners.exsd
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/TestRunnerViewPart.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/HierarchyRunView.java
+org.eclipse.jdt.junit/build.properties
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/launcher/JUnitMainTab.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/junit/ITestRunListener.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/JUnitPreferencePage.java
+org.eclipse.jdt.junit.core/plugin.xml
+org.eclipse.jdt.junit/plugin.xml
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/junit/ITestRunListener.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/FilterPatternsDialog.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/JUnitPlugin.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/RemoteTestRunnerClient.java
+org.eclipse.jdt.junit.core/src/org/eclipse/jdt/internal/junit/JUnitCorePlugin.java

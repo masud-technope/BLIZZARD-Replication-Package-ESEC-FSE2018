@@ -1,0 +1,19 @@
+Bug 424718 – [1.8][compiler] API backward compatibility AST.TypeReference
+There where some API changes for JDK 8, e.g.
+additional intermal parameters for the language changes.
+As an example for type annotations in
+org.eclipse.jdt.internal.compiler.ast.TypeReference
+changed the signature of the method:
+public static final TypeReference baseTypeReference(int baseType, int dim)
+to
+public static final TypeReference baseTypeReference(int baseType, int dim, Annotation [][] dimAnnotations)
+This breaks for instance the popular compiler extension lombok:   http://code.google.com/p/projectlombok/issues/detail?id=597
+I suggest to add compatibility functions for this like e.g.:
+public static final TypeReference baseTypeReference(int baseType, int dim) {
+// compatibility function
+return  baseTypeReference(baseType, dim, null);
+}
+This here is just an example.
+These kind of compatibility functions are very simple and help to prevent the breaking of potentially many external plugins and rise the acceptance for the new eclipse version.
+I know this is an internal package, but you should be well aware that many external plugins around compilers and and languages (quite a popular topic nowadays) directly use your nice compiler APIs, especially the AST.
+I kindly request to add at least this function because lombok is very important and works fine with this additional method ;)

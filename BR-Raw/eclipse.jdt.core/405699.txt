@@ -1,0 +1,21 @@
+Bug 405699 – [ast rewrite] AST Rewrite misses modification in node inside ASTNode.copySubtree(..)
+Created attachment 229713 [details]
+test code
+I created a CompilationUnit, call recordModifications() and do some modifications on it,
+and then use CompilationUnit#rewrite(...) to generate changed code.
+BUT such modifications come into problem:
+cu.accept(new ASTVisitor() {
+@Override
+public boolean visit(CatchClause node) {
+if (node.getException().getType().toString().equals("RemoteException")) {
+AST ast = node.getAST();
+CatchClause newCC = (CatchClause) ASTNode.copySubtree(ast, node);
+newCC.getException().setType(ast.newSimpleType(ast.newSimpleName("ServiceApplicationException"))); // This has no effect,  isn't it recorded?
+TryStatement parent = (TryStatement) node.getParent();
+parent.catchClauses().add(newCC);
+}
+return true;
+}
+});
+A modification has no effect.
+So is it normal or a bug?

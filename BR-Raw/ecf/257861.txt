@@ -1,0 +1,10 @@
+Bug 257861 – Split org.eclipse.ecf.discovery.IDiscoveryContainerAdapter into "Locator" and a "Advertiser"
+org.eclipse.ecf.discovery.IDiscoveryContainerAdapter exposes two disjunct functionalities.
+One is locating/finding a service, the other is advertising/annoucing them.
+They should be separated into two independent Intefaces since we've learned that consumer ususually only want to use either of those.
+E.g.
+a server impl advertises services and a client is limited to locating services.
+Also provider implementations for both functionalities might require different sets of resources/privileges/...
+E.g.
+SLP advertiser need to bind to port 427 whereas locators do not (see bug #238710).
+[1] http://wiki.eclipse.org/ECF/Plan_for_3.0#Service_Discovery_and_Remote_OSGi_Services

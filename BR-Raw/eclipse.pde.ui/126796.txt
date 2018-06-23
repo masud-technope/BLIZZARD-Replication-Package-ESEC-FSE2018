@@ -1,0 +1,8 @@
+Bug 126796 – Product Editor Overview page goes grey and is unusable
+Create a new blank Product Editor.
+ By default, the product should be based on plugins.
+ Click the plugins radio button again.
+ This causes the Overview page to lose all controls and become a grey block.
+This is because when the editor tries to update the configuration page, it finds the index of the features config page.
+ Since the features config page has not been added to the editor yet (since by default it contains the plugins config page).
+ The index returned from the usused page is 0, and the first page (Overview page) is then removed as a result.

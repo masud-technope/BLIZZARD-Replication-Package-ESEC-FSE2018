@@ -1,0 +1,29 @@
+45285 – RESOURCES DECLARED IN PARENT CLASSES ARE NOT INJECTED
+According to the section EE.5.2.3 of the Java EE specification:
+------------------------
+Resource annotations may appear on any of the classes listed above, or on any superclass of any class listed above.
+A resource annotation on any class in the inheritance hierarchy defines a resource needed by the application component.
+------------------------
+I use JSF managed beans with @EJB annotated members.
+If a resource is annotated in a super class of a class it's not injected.
+Example:
+public class Base{
+@EJB
+private SomeService service;
+....
+}
+public class Child implements Base{
+....
+}
+Base class used as managed bean has 'service' injected.
+Child class used as managed bean does NOT have 'service' injected.
+If I dare suggest the problem source ...
+As I can see org.apache.catalina.util.DefaultAnnotationProcessor is used.
+It has the following lines in its  'public void processAnnotations(Object instance)' method:
+....
+Field[] fields = instance.getClass().getDeclaredFields();
+....
+Method[] methods = instance.getClass().getDeclaredMethods();
+....
+Class.getDeclaredFields method returns 'public, protected, default (package) access, and private fields, but excludes inherited fields'.
+The same thing is with Class.getDeclaredMethods.

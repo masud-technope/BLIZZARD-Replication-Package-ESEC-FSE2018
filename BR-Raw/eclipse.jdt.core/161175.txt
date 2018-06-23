@@ -1,0 +1,6 @@
+Bug 161175 – JarPackageFragmentRoot slow to initialize
+We noticed a performance regression in WTP that when a J2EE project contains a server container classpath which has large jars on the classpath, the project cache seems to take long to initialize and each project takes around the same time to initialize although they share the same container classpath.
+To give some numbers, I noticed that per project, JarPackageFragmentRoot.initPackageFragToTypes is being invoked 60,000 times (usually triggered by the first IJavaProject.findType or even some validators in WTP).
+ This calls String.charAt 3.5million times and 300,000 times String.subString.
+ This converts to around 800ms to 1s per project on my machine.
+A thought which I am not sure whether itâ€™s feasible or not is that since in WTP, most of the J2EE projects get the classpath entries from the same container (server), is it possible to have some kind of cache based on server container?  As a result, this expensive operation does not need to be carried out on a per project basis.

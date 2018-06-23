@@ -1,0 +1,19 @@
+Bug 79809 – [1.5][dom][javadoc] Need better support for type parameter Javadoc tags
+20041130
+To document a type parameter, the normal @param tag is used, but with angle
+brackets.
+/**
+* @param <X>
+*/
+<X> void foo() {
+}
+The AST currently just returns a TagElement with a sigle children Name 'X' and
+is currently not distinguishable from a normal parameter.
+Either text elements '<' and '>' are inserted or we use a SimpleType node
+instead of the SimpleName.
+The first suggestion would make the accessing of tag names more complicated.
+The drawback of the second suggestion is that it does not include the source
+ranges for the open and closing angle brackets, but users can use the scanner as
+soon as they see the SimpleType instead of the SimpleName.
+The deluxe solution would be a new node type that includes the bracket and has a
+simple name.

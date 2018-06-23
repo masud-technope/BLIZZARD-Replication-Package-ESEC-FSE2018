@@ -1,0 +1,29 @@
+Bug 125326 – [pull up] of abstract methods to abstract base class fails [refactoring]
+I have an abstract class X with some abstract methods, some regular methods, some static methods, and some subclasses.
+X has an abstract base class B.
+In fact, B is empty: It has no methods, no fields, nothing yet.
+I want to move three abstract methods from X to B.
+ I could have simply used cut&paste in this situation.
+But instead, I choose to use "refactor->pull up".
+That bombed on me.
+The .metadata/.log has this to say (due to an oversecured internet setup, I have to copy this by typing it in, so pardon any mistakes):
+!ENTRY org.eclipse.ltk.ui.refactoring 4 10000 2006-01-26 14:10:28.07
+!MESSAGE Internal Error
+!STACK 0
+java.lang.reflect.InvocationTargetException
+at org.eclipse.jface.operation.ModalContext.run(ModelContext.java:327)
+at org.eclipse.jface.wizard.WizardDialog.run(WizardDialog.java:830)
+at org.eclipse.ltk.ui.refactoring.RefactoringWizard.createChange(RefactoringWizard.java:573)
+at org.eclipse.ltk.ui.refactoring.RefactoringWizard.computeUserInputSuccessorPage(RefactoringWizard.java:416)
+at org.eclipse.ltk.ui.refactoring.RefactoringWizardPage.computeSuccessorPage(UserInputWizardPage.java:74)
+at org.eclipse.jdt.internal.ui.refactoring.PullUpWizard$PullUpInputPage2.getNextPage(PullUpWizard.java:1150)
+at org.eclipse.jface.wizard.WizardDialg.nextPressed(WizardDialg.java:747)
+- and so on -
+Caused by: java.lang.IllegalArgumentException
+at org.eclipse.jdt.core.dom.rewrite.ASTRewrite.createStringPlaceholder(ASTRewrite.java:428)
+at org.eclipse.jdt.internal.context.refactoring.structure.PullUpRefactoring.createJavadocForStub(PullUpRefactoring.java:1035)
+at org.eclipse.jdt.internal.context.refactoring.structure.PullUpRefactoring.addMethodStubsToNonAbstractSubclassesOfTargetClass(PullUpRefactoring.java:415)
+at org.eclipse.jdt.internal.context.refactoring.structure.PullUpRefactoring.createChangeManager(PullUpRefactoring.java:1002)
+at org.eclipse.jdt.internal.context.refactoring.structure.PullUpRefactoring.checkFinalConditions(PullUpRefactoring.java:615)
+- and so on -
+Regards, and thank you for providing fine software.

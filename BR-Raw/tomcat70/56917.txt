@@ -1,0 +1,9 @@
+56917 – Create a configuration to write relative 302 responses instead of absolute
+Create a Tomcat configuration to force tomcat to write relative location headers in 301/302 responses instead of absolute location headers.
+Purpose:
+Today Tomcat always writes an absolute response for redirects per RFC2616 standards.
+ However as many modern browsers support 302s to relative Locations as explained in https://en.wikipedia.org/wiki/HTTP_location , our friendly Tomcat application server should allow configuration to write back 302s in the more friendly form.
+The ripple effect of this where applications choose to use this setting, will be very good for cpu cycles of web servers and load balancers all over the world.
+  This can greatly reduce the need for ProxyPassReverse in the Apache web server, and also for URL rewriting happenin in physical load balancers.
+See this example where another gentleman has been compelled to recompile Tomcat to achieve the same thing
+http://community.jaspersoft.com/wiki/f5-load-balancer-and-tomcat-302-error

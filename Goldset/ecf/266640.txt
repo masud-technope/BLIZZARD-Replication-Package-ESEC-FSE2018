@@ -1,0 +1,2 @@
+framework/bundles/org.eclipse.ecf.discovery.ui.edit/src/org/eclipse/ecf/discovery/ui/model/provider/IHostItemProvider.java
+framework/bundles/org.eclipse.ecf.discovery.ui.edit/src/org/eclipse/ecf/discovery/ui/model/provider/IServiceInfoItemProvider.java

@@ -1,0 +1,9 @@
+org.eclipse.jdt.internal.corext.fix.CompilationUnitRewriteOperationsFix.createChange
+org.eclipse.jdt.internal.ui.text.correction.proposals.FixCorrectionProposal.createTextChange
+org.eclipse.jdt.internal.ui.text.correction.proposals.CUCorrectionProposal.createChange
+org.eclipse.jdt.internal.ui.text.correction.proposals.ChangeCorrectionProposal.getChange
+org.eclipse.jdt.internal.ui.text.correction.proposals.CUCorrectionProposal.getTextChange
+org.eclipse.jdt.internal.ui.text.correction.proposals.CUCorrectionProposal.getAdditionalProposalInfo
+org.eclipse.jdt.internal.ui.text.correction.proposals.FixCorrectionProposal.getAdditionalProposalInfo
+org.eclipse.jface.text.contentassist.AdditionalInfoController$3.run
+org.eclipse.core.internal.jobs.Worker.run

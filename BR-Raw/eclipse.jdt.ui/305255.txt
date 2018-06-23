@@ -1,0 +1,6 @@
+Bug 305255 – [preferences] Accept jsr14 as a build target
+Created attachment 161539 [details]
+Screenshot showing the problem
+In p2 we are currently targeting jsr14, that is, using Java 5 syntax but building down to Java 1.4 bytecode.
+ The target was set manually in the jdt preferences, but if you open the project properties, you get some strange errors (see attached screenshot).
+Can jsr14 be added as a option for generated .class compatibility?

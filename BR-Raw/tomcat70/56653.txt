@@ -1,0 +1,32 @@
+56653 – Concurrency issue with Mapper$ContextList when stopping Contexts
+I noticed this issue while reviewing the code of Mapper.removeContextVersion() of the current trunk (@1604217).
+The same code exists in Tomcat 7 and 6.
+In Mapper.removeContextVersion() (Mapper.removeContext() in Tomcat 6) it does the following:
+[[[
+host.contextList.contexts = newContexts;
+// Recalculate nesting
+host.contextList.nesting = 0;
+for (int i = 0; i < newContexts.length; i++) {
+int slashCount = slashCount(newContexts[i].name);
+if (slashCount > host.contextList.nesting) {
+host.contextList.nesting = slashCount;
+}
+}
+]]]
+The problem is there is a delay between when the list of contexts is updated (contextList.contexts) and the contextList.nesting field is updated.
+The "nesting" field is used when mapping contexts.
+For example,
+1.
+If there are the following contexts:
+ROOT
+foo
+foo#bar
+2.
+Context foo#bar is being stopped.
+3.
+A request for "foo" comes in, e.g.
+http://localhost/foo/index.html
+Expected behaviour: Map the context to foo application.
+Actual behaviour:
+It may be that the request will be erroneously mapped to the ROOT webapp instead of "foo".
+I have a test case.

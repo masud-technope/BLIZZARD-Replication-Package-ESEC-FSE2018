@@ -1,0 +1,13 @@
+Bug 425632 – [1.8][compiler] Compiler gets the scope of enhanced for loop's expression wrong.
+See https://bugs.openjdk.java.net/browse/JDK-7139681
+javac8 has started compiling this code:
+// --
+public class X {
+int[] i = {1, 2, 3};
+void foo() {
+for (int i : i) {
+System.out.println(i);
+}
+}
+}
+while eclipse continues to reject it.

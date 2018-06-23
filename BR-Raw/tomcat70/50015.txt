@@ -1,0 +1,8 @@
+50015 – dynamic servlet security incomplete and badly distributed
+The current implementation of dynamic servlet security through ServletRegistration.Dynamic.setServletSecurity and the ServletContext.createServlet and addServlet methods is incomplete, and includes some logic that exposes internals of the tomcat security framework directly in the ServletRegistration.Dynamic implementation.
+The attached patch:
+- moves the logic that depends on the internals of tomcats security implementation from ApplicationServletRegistration to StandardContext where it can at least be overridden by e.g.
+jacc implementations
+- provides notifications to StandardContext of users calling createServlet and addServlet on ApplicationContext/ServletContext so subclasses of StandardContext can implement the spec behavior without subclassing ApplicationContext.
+This patch is generated from a tomcat copy that already has several other patches I've proposed applied.
+ Let me know if there are problems applying it.

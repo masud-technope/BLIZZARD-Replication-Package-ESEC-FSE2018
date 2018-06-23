@@ -1,0 +1,2 @@
+Bug 273823 – IRC provider doesn't fire IContainerDisconnectingEvents
+It does at least fire IContainerConnectingEvents though.

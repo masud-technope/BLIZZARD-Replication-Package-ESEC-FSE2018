@@ -1,0 +1,9 @@
+Bug 153399 – [javadoc] JDT Core should warn if the @value tag is not used correctly
+I20060810-0010.
+JDT Core should warn if the @value tag is not used correctly, e.g.
+if in 1.4 the tag is used anywhere else than a constant.
+Otherwise developers see no Javadoc problem inside Eclipse but then get burned by the 'javadoc' tool with:
+warning - Inline tag {@value} should only be used with a constant field.
+See also bug 144866 which should be revisited.
+Also note that the @value tag usage changed with 5.0:
+http://java.sun.com/j2se/1.5.0/docs/tooldocs/solaris/javadoc.html#@value

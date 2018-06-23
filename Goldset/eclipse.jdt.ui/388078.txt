@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline/A_test48_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline/A_test48_out.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/InlineTempTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/InlineTempRefactoring.java

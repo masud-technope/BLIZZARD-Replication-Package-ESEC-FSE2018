@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/IHelpContextIds.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/imagebrowser/ImageBrowserView.java

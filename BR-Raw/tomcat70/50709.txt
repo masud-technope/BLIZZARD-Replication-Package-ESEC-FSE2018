@@ -1,0 +1,5 @@
+50709 – Make class org.apache.catalina.core.ApplicationContextFacade non-final
+Please make class org.apache.catalina.core.ApplicationContextFacade non-final so it can be subclassed.
+Need to extend ApplicationContextFacade so Mobicents Sip Servlet, working on top of Tomcat 7, to integrate with Weld.
+Thanks
+George

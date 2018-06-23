@@ -1,0 +1,17 @@
+Bug 499385 – Socket Listen mode should allow multiple connections
+I'm working on some tooling for debugging a server framework that may launch new JVMs.
+ These JVMs can be configured with an "-Xrunjdwp:transport=dt_socket,server=n,address=XXX" string.
+ We're looking to create a launch configuration that uses the Socket Listen mode and will accept multiple connections.
+There are two stumbling blocks:
+First, org.eclipse.jdt.launching.SocketListenerConnector closes its listening socket immediately after accepting the first connection.
+Second, although org.eclipse.jdt.internal.connect.SocketListeningConnectorImpl#supportsMultipleConnections() claims to support multiple connections, and org.eclipse.jdi.internal.connect.SocketTransportService would in theory accept multiple connections, the SocketTransportService maintains the newly-accepted socket and its I/O streams as fields rather than maintaining them in the corresponding SocketConnection object:
+try {
+fSocket = fServerSocket.accept();
+} catch (SocketTimeoutException e) {
+throw new TransportTimeoutException();
+}
+fInput = fSocket.getInputStream();
+fOutput = fSocket.getOutputStream();
+performHandshake(fInput, fOutput, handshakeTimeout);
+return new SocketConnection(this);
+So in practice it can only accept a single connection at a time as all open connections 'share' the last connection's I/O streams.

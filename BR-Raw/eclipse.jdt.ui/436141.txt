@@ -1,0 +1,5 @@
+Bug 436141 – [quick fix] Make Configure Problem Severity a quick fix
+Users can configure problem severity from the problem marker if they press F2.
+However, it seems that users are unaware of this [1].
+Can we consider making this action a quick-fix?
+[1] http://dev.eclipse.org/mhonarc/lists/ide-dev/msg00515.html

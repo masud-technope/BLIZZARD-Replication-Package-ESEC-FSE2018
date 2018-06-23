@@ -1,0 +1,4 @@
+Bug 28698 – Ctrl+O (show outline) does not work if the file being shown in the editor is read only
+M4 The summary tells all.
+Works if the file is not read only.
+Is this by design?

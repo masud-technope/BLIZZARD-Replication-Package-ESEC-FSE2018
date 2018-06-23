@@ -1,0 +1,8 @@
+49952 – ServletContainerInitializer can't actually add listeners
+Created attachment 26044 [details]
+Keep the listeners added by ServletContainerInitializer
+Any listeners added by a ServletContainerInitializer will be wiped out when the listeners from web.xml are sorted and overwrite the arrays that already have the SCI-added listeners in them.
+I've taken the approach of keeping the single list of listeners from web.xml and keeping the sort into types in listenerStart.
+ I think it might also be possible and more elegant to have the addApplicationListener method be the same code as the ServletContext.addListener(String listenerClassName) method.
+Patch includes a test demonstrating the problem.
+ The patch to ServletContext may need line number adjustment unless you have applied my patch for supplying the jsp file as a jsp servlet init param.

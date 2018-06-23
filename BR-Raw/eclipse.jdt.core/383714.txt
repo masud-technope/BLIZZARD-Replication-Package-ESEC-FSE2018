@@ -1,0 +1,33 @@
+Bug 383714 – [1.8][compiler] Compile fails to reject 1.8 constructs at 1.7- modes.
+BETA_JAVA8:
+This is a spin off by splitting bug 381358 into two: One dealing with
+correctness issues (the current bug) and the other dealing with quality of
+diagnostics (bug 381358).
+This is so that the correctness issues could be
+worked on an a priority basis:
+(1) The following program does not elicit an error message at the
+moment, when compiled as a 1.7- project.
+It should be rejected with
+a message that reads "Default methods are available only at source
+level 1.8 or above"
+// -----
+interface I {
+public void foo() default { System.out.println("Place holder"); }
+}
+(2) The following program should be rejected at 1.7-, but is not at
+the moment:
+// ---
+interface I {
+void foo(int p);
+}
+public class X {
+I i = System::exit;
+}
+(3)
+// ---------------------------
+interface I {
+int foo(int p);
+}
+public class X {
+I i = p -> 10;
+}

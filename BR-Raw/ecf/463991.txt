@@ -1,0 +1,3 @@
+Bug 463991 – add service for accessing EndpointDescriptionLocator functionality
+Currently, Endpoints are discovered, updated, or removed via either a) edef files in started bundles; b) ecf discovery providers.
+ It would also be useful to allow programmatic access to discovering, updating, and removing Endpoint descriptions, so that (e.g.) the Endpoint Discovery View can do this when requested by the user.

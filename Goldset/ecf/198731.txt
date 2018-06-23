@@ -1,0 +1,1 @@
+framework/bundles/org.eclipse.ecf.ui/src/org/eclipse/ecf/ui/hyperlink/AbstractURLHyperlinkDetector.java

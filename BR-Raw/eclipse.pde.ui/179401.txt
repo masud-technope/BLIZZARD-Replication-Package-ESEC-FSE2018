@@ -1,0 +1,4 @@
+Bug 179401 – Shells created by some launcher buttons has wrong parents
+The "Workspace..." and "Variables..." and "Installed JREs..." buttons create shells who have the wrong parent.
+ To test, use Alt key to trigger button, type ESC and then try the same Alt key combo.
+ Since the focus is not on the right shell, the key combo will not work.

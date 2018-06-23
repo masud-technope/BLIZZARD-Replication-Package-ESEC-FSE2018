@@ -1,0 +1,8 @@
+Bug 381345 – [1.8] Take care of the Java 8 major version
+Current java8 beta versions generate classes with major version 51.
+java 7 also used version 51.
+The tests uses the same constant to make an explicit run of the java versions.
+Assuming that some of the next beta versions could change the version to 52, I have changed the constant to 52 with the fix for bug 380106.
+However, while writing the class files it writes the version as 51.
+Whenever java8 moves the version number to 52, we should change this version too.
+- Look at Todos in CodeSnippetClassFile.java and ClassFile.java

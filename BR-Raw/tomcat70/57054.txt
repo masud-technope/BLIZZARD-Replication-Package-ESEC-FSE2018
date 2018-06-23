@@ -1,0 +1,128 @@
+57054 – ReadBufferOverflowException when headers come via two requests
+Using the Cloud Foundry Java Client Libraries (https://github.com/cloudfoundry/cf-java-client), a WebSocket stream is used to stream logs from apps that are starting in Cloud Foundry.
+ The initial request is an HTTPS request that then should return an HTTP 101 to switch protocols to WebSockets.
+ If the headers for this response come in one read of the API, then the Tomcat WebSockets implementation has no issue, as in:
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: hkNdVhwFUAVd2BNAbrwraD5lyx4=
+<\r\n>
+However, if it takes a second read to get all the headers, Tomcat's WebSockets do not empty the buffer, causing a ReadBufferOverflowException, as in:
+HTTP/1.1 101 Switching Protocols
+Sec-WebSocket-Accept: XtszcLxcZ+4QUaIvrLf7oi+r04M=
+Date: Fri, 03 Oct 2014 01:19:45 GMT
+X-Global-Transaction-ID: 217338896
+Upgrade: websocket
+And then another read:
+Connection: Upgrade
+<\r\n>
+The stack trace for this problem is:
+!ENTRY org.cloudfoundry.ide.eclipse.server.core 4 0 2014-06-12 11:52:13.251
+!MESSAGE Failed to add application log listener for eyTestWeb3 - Error performing Cloud Foundry operation: javax.websocket.DeploymentException: The HTTP request to initiate the WebSocket connection failed
+!STACK 1
+org.eclipse.core.runtime.CoreException: Error performing Cloud Foundry operation: javax.websocket.DeploymentException: The HTTP request to initiate the WebSocket connection failed
+at org.cloudfoundry.ide.eclipse.server.core.internal.CloudErrorUtil.toCoreException(CloudErrorUtil.java:208)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.BaseClientRequest.runAndWait(BaseClientRequest.java:154)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.ClientRequest.runAndWait(ClientRequest.java:66)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.LocalServerRequest.runAndWait(LocalServerRequest.java:64)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.BaseClientRequest.run(BaseClientRequest.java:70)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.CloudFoundryServerBehaviour.addApplicationLogListener(CloudFoundryServerBehaviour.java:782)
+at org.cloudfoundry.ide.eclipse.server.ui.internal.console.ApplicationLogConsoleStream.initialiseStream(ApplicationLogConsoleStream.java:82)
+at org.cloudfoundry.ide.eclipse.server.ui.internal.console.CloudFoundryConsole.getStream(CloudFoundryConsole.java:84)
+at org.cloudfoundry.ide.eclipse.server.ui.internal.console.CloudFoundryConsole.startTailing(CloudFoundryConsole.java:64)
+at org.cloudfoundry.ide.eclipse.server.ui.internal.console.ConsoleManager.startConsole(ConsoleManager.java:112)
+at org.cloudfoundry.ide.eclipse.server.ui.internal.CloudFoundryUiCallback.startApplicationConsole(CloudFoundryUiCallback.java:79)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.CloudFoundryServerBehaviour$RestartOperation.performDeployment(CloudFoundryServerBehaviour.java:2643)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.CloudFoundryServerBehaviour$StartOperation.performDeployment(CloudFoundryServerBehaviour.java:2232)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.CloudFoundryServerBehaviour$PushApplicationOperation.performDeployment(CloudFoundryServerBehaviour.java:2460)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.CloudFoundryServerBehaviour$ApplicationOperation.performOperation(CloudFoundryServerBehaviour.java:1994)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.AbstractDeploymentOperation.run(AbstractDeploymentOperation.java:42)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.CloudFoundryServerBehaviour.publishModule(CloudFoundryServerBehaviour.java:1367)
+at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publishModule(ServerBehaviourDelegate.java:1091)
+at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publishModules(ServerBehaviourDelegate.java:1183)
+at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:987)
+at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:774)
+at org.eclipse.wst.server.core.internal.Server.publishImpl(Server.java:3154)
+at org.eclipse.wst.server.core.internal.Server$PublishJob.run(Server.java:345)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.cloudfoundry.client.lib.CloudOperationException: javax.websocket.DeploymentException: The HTTP request to initiate the WebSocket connection failed
+at org.cloudfoundry.client.lib.rest.LoggregatorClient.connectToLoggregator(LoggregatorClient.java:45)
+at org.cloudfoundry.client.lib.rest.CloudControllerClientImpl.streamLoggregatorLogs(CloudControllerClientImpl.java:1634)
+at org.cloudfoundry.client.lib.rest.CloudControllerClientImpl.streamLogs(CloudControllerClientImpl.java:233)
+at org.cloudfoundry.client.lib.CloudFoundryClient.streamLogs(CloudFoundryClient.java:336)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.CloudFoundryServerBehaviour$19.doRun(CloudFoundryServerBehaviour.java:778)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.CloudFoundryServerBehaviour$19.doRun(CloudFoundryServerBehaviour.java:1)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.BaseClientRequest.runAndWait(BaseClientRequest.java:127)
+...
+22 more
+Caused by: javax.websocket.DeploymentException: The HTTP request to initiate the WebSocket connection failed
+at org.apache.tomcat.websocket.WsWebSocketContainer.connectToServer(WsWebSocketContainer.java:315)
+at org.cloudfoundry.client.lib.rest.LoggregatorClient.connectToLoggregator(LoggregatorClient.java:42)
+...
+28 more
+Caused by: java.util.concurrent.ExecutionException: org.apache.tomcat.websocket.ReadBufferOverflowException
+at org.apache.tomcat.websocket.AsyncChannelWrapperSecure$WrapperFuture.get(AsyncChannelWrapperSecure.java:508)
+at org.apache.tomcat.websocket.WsWebSocketContainer.processResponse(WsWebSocketContainer.java:542)
+at org.apache.tomcat.websocket.WsWebSocketContainer.connectToServer(WsWebSocketContainer.java:296)
+...
+29 more
+Caused by: org.apache.tomcat.websocket.ReadBufferOverflowException
+at org.apache.tomcat.websocket.AsyncChannelWrapperSecure$ReadTask.run(AsyncChannelWrapperSecure.java:305)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1121)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+at java.lang.Thread.run(Thread.java:777)
+!SUBENTRY 1 org.cloudfoundry.ide.eclipse.server.core 4 0 2014-06-12 11:52:13.254
+!MESSAGE Error performing Cloud Foundry operation: javax.websocket.DeploymentException: The HTTP request to initiate the WebSocket connection failed
+!STACK 0
+org.cloudfoundry.client.lib.CloudOperationException: javax.websocket.DeploymentException: The HTTP request to initiate the WebSocket connection failed
+at org.cloudfoundry.client.lib.rest.LoggregatorClient.connectToLoggregator(LoggregatorClient.java:45)
+at org.cloudfoundry.client.lib.rest.CloudControllerClientImpl.streamLoggregatorLogs(CloudControllerClientImpl.java:1634)
+at org.cloudfoundry.client.lib.rest.CloudControllerClientImpl.streamLogs(CloudControllerClientImpl.java:233)
+at org.cloudfoundry.client.lib.CloudFoundryClient.streamLogs(CloudFoundryClient.java:336)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.CloudFoundryServerBehaviour$19.doRun(CloudFoundryServerBehaviour.java:778)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.CloudFoundryServerBehaviour$19.doRun(CloudFoundryServerBehaviour.java:1)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.BaseClientRequest.runAndWait(BaseClientRequest.java:127)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.ClientRequest.runAndWait(ClientRequest.java:66)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.LocalServerRequest.runAndWait(LocalServerRequest.java:64)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.BaseClientRequest.run(BaseClientRequest.java:70)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.CloudFoundryServerBehaviour.addApplicationLogListener(CloudFoundryServerBehaviour.java:782)
+at org.cloudfoundry.ide.eclipse.server.ui.internal.console.ApplicationLogConsoleStream.initialiseStream(ApplicationLogConsoleStream.java:82)
+at org.cloudfoundry.ide.eclipse.server.ui.internal.console.CloudFoundryConsole.getStream(CloudFoundryConsole.java:84)
+at org.cloudfoundry.ide.eclipse.server.ui.internal.console.CloudFoundryConsole.startTailing(CloudFoundryConsole.java:64)
+at org.cloudfoundry.ide.eclipse.server.ui.internal.console.ConsoleManager.startConsole(ConsoleManager.java:112)
+at org.cloudfoundry.ide.eclipse.server.ui.internal.CloudFoundryUiCallback.startApplicationConsole(CloudFoundryUiCallback.java:79)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.CloudFoundryServerBehaviour$RestartOperation.performDeployment(CloudFoundryServerBehaviour.java:2643)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.CloudFoundryServerBehaviour$StartOperation.performDeployment(CloudFoundryServerBehaviour.java:2232)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.CloudFoundryServerBehaviour$PushApplicationOperation.performDeployment(CloudFoundryServerBehaviour.java:2460)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.CloudFoundryServerBehaviour$ApplicationOperation.performOperation(CloudFoundryServerBehaviour.java:1994)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.AbstractDeploymentOperation.run(AbstractDeploymentOperation.java:42)
+at org.cloudfoundry.ide.eclipse.server.core.internal.client.CloudFoundryServerBehaviour.publishModule(CloudFoundryServerBehaviour.java:1367)
+at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publishModule(ServerBehaviourDelegate.java:1091)
+at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publishModules(ServerBehaviourDelegate.java:1183)
+at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:987)
+at org.eclipse.wst.server.core.model.ServerBehaviourDelegate.publish(ServerBehaviourDelegate.java:774)
+at org.eclipse.wst.server.core.internal.Server.publishImpl(Server.java:3154)
+at org.eclipse.wst.server.core.internal.Server$PublishJob.run(Server.java:345)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: javax.websocket.DeploymentException: The HTTP request to initiate the WebSocket connection failed
+at org.apache.tomcat.websocket.WsWebSocketContainer.connectToServer(WsWebSocketContainer.java:315)
+at org.cloudfoundry.client.lib.rest.LoggregatorClient.connectToLoggregator(LoggregatorClient.java:42)
+...
+28 more
+Caused by: java.util.concurrent.ExecutionException: org.apache.tomcat.websocket.ReadBufferOverflowException
+at org.apache.tomcat.websocket.AsyncChannelWrapperSecure$WrapperFuture.get(AsyncChannelWrapperSecure.java:508)
+at org.apache.tomcat.websocket.WsWebSocketContainer.processResponse(WsWebSocketContainer.java:544)
+at org.apache.tomcat.websocket.WsWebSocketContainer.connectToServer(WsWebSocketContainer.java:297)
+...
+6 more
+Caused by: org.apache.tomcat.websocket.ReadBufferOverflowException
+at org.apache.tomcat.websocket.AsyncChannelWrapperSecure$ReadTask.run(AsyncChannelWrapperSecure.java:305)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at java.lang.Thread.run(Thread.java:744)
+And the fix is rather straightforward--
+On lines 565-567 of http://svn.apache.org/repos/asf/tomcat/tc7.0.x/trunk/java/org/apache/tomcat/websocket/WsWebSocketContainer.java
+Just add:
+if (!readHeaders) {
+response.compact();
+}

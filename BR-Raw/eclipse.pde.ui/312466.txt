@@ -1,0 +1,5 @@
+Bug 312466 – early call to modify bundle root leaves WorkspacePluginModelManager un-initialized
+It's possible to use the IBundleProjectService to set the root of a bundle.
+If this is done before the PDE model managers are initialized, it can leave the WorkspacePluginModelManager in an un-initialized state.
+It results in a call to 'removeModel(...)', and 'createModel(...)', which will quietly initlaize 'fModels' to a hashtable, and the next call to 'initialize()' will be ignored since 'fModels' is no longer null.
+The result is that the model manager is not hooked up to listen to resource deltas.

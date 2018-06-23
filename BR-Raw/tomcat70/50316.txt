@@ -1,0 +1,19 @@
+50316 – Minor glitch with display of negative TTL on sessionDetail.jsp
+Created attachment 26331 [details]
+sessionDetail.jpg - screenshot
+To reproduce
+1.
+Start Tomcat
+2.
+Create a session
+3.
+Stop Tomcat.
+Wait for more than TTL (default: 30 minutes).
+Start Tomcat.
+4.
+Go to the Manager web application and look at the Session Details page for the session.
+I had some instance of 6.0.29 lying on my drive for several months.
+The TTL value was printed as "0-2982:0-20:0-59" instead of "-2982:20:59".
+I am attaching the screenshot.
+ I wonder why the session was still alive, but that is a different question.
+The bug is in JspHelper.secondsToTimeString(), as it does not deal with negative values.

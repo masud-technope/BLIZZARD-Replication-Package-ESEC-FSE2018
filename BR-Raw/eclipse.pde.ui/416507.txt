@@ -1,0 +1,22 @@
+Bug 416507 – Error Log view does not display child entries for new exceptions
+At least broken since 3.7.
+Error Log view does not display child entries for new exceptions.
+Test Case:
+1.
+paste the following snippet into the 'Package Explorer':
+/* wÃ¶rst */
+public class Bug {}
+2.
+close the editor
+3.
+change the project's encoding to 'US-ASCII'
+4.
+open the 'Error Log' view
+5.
+select the project in the 'Package Explorer'
+6.
+Source > Format
+==> OK: an entry with children appears in the 'Error Log' view
+7.
+Source > Format
+==> BUG: an entry without children appears in the 'Error Log' view

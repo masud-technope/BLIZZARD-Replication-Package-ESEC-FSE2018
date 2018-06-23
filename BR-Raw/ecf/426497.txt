@@ -1,0 +1,2 @@
+Bug 426497 – org.eclipse.ecf.internal.discovery.DiscoveryServiceListener may register non-IServiceTyped listener if given type is all wildcards
+org.eclipse.ecf.internal.discovery.DiscoveryServiceListener may register non-typed listener if given type is all wildcards

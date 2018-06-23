@@ -1,0 +1,16 @@
+53074 – [websocket] java.net.SocketTimeoutException: Read timed caused by server.xml' connectTimeout
+The default connectTimeout value is set to 20000 and cause issue with WebSocket connection
+java.net.SocketTimeoutException: Read timed out
+at java.net.SocketInputStream.socketRead0(Native Method)
+at java.net.SocketInputStream.read(SocketInputStream.java:129)
+at org.apache.coyote.http11.upgrade.UpgradeBioProcessor.read(UpgradeBioProcessor.java:75)
+at org.apache.catalina.websocket.WsFrame.nextFrame(WsFrame.java:213)
+at org.apache.catalina.websocket.WsInputStream.nextFrame(WsInputStream.java:68)
+at org.apache.catalina.websocket.StreamInbound.onData(StreamInbound.java:143)
+at org.apache.coyote.http11.upgrade.UpgradeProcessor.upgradeDispatch(UpgradeProcessor.java:83)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:563)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:307)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:680)
+Increasing the value delay the issue (but the timeout should not occurs)

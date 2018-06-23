@@ -1,0 +1,7 @@
+Bug 212755 – PDE import shows error dialog and logs error when app is running
+I20071212-0010.
+See bug 185502 for details.
+The current approach seems not to work completely correct: after I got the dialog saying that an app is running (great!) I decided to import anyway.
+While importing I got two error dialogs saying that a resource can't be deleted and a .log entry (will post test case in next comment).
+This is unexpected as the first dialog said that locked plug-ins won't be imported.
+Test Case see bug 185502 comment 25.

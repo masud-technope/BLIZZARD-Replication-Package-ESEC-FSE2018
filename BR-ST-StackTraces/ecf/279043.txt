@@ -1,0 +1,6 @@
+java.io.ObjectOutputStream.writeObject0
+java.io.ObjectOutputStream.defaultWriteFields
+java.io.ObjectOutputStream.writeSerialData
+java.io.ObjectOutputStream.writeOrdinaryObject
+java.io.ObjectOutputStream.writeObject0
+java.io.ObjectOutputStream.writeObject

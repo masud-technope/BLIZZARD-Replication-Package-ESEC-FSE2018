@@ -1,0 +1,7 @@
+Bug 47097 – [content assist] Pressing Semicolon to commit content assist bypasses smart semicolon
+When content assist is present, semicolon will commit the current proposal.
+But, the semicolon is not processed in the normal manner by the editor.
+setValue(rect.wid<<ASSIST>>)
+pressing ";" should add the semicolon at the end of the line when smart
+semicolon is enabled.
+3.0 M4

@@ -1,0 +1,25 @@
+53792 – EL: AstValue.getTarget() mistakes a method invocation for a property access
+Trying to evaluate the method expression #{beanFactory.loginBean().init}
+Expected behavior: lookup beanFactory, invoke its loginBean method and on its return value, invoke the init method.
+Actual behavior: the following exception is thrown:
+javax.el.PropertyNotFoundException: /LoginView.xhtml @9,101 listener="#{viewBeanFactory.loginBean().initIfGetRequest}": Property 'loginBean' not found on type ch.bedag.redacted.InteractionLayer$$EnhancerByCGLIB$$1ea36cb9
+Looking at the source, AstValue.getTarget(EvaluationContext) only checks whether the last child is an instanceof AstMethodParameters, but in this expression there is an additional method invocation expression before that ...
+Presumably, the while loop
+while (base != null && i < propCount) {
+property = this.children[i].getValue(ctx);
+ctx.setPropertyResolved(false);
+base = resolver.getValue(ctx, base, property);
+i++;
+}
+should be something like:
+while (base != null && i < propCount) {
+if (i + 1 < propCount && this.children[i + 1] instanceof AstMethodParameters) {
+base = // result of method invocation
+i += 2;
+} else {
+property = this.children[i].getValue(ctx);
+ctx.setPropertyResolved(false);
+base = resolver.getValue(ctx, base, property);
+i++;
+}
+}

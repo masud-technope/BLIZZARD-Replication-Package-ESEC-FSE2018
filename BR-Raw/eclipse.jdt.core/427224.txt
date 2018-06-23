@@ -1,0 +1,20 @@
+Bug 427224 – [1.8][inference] Reducing inner diamond against specific parameterization fails
+From bug 424591 comment 32:
+public class Test2 {
+public static native <T> T applyToSet(java.util.Set<String> s);
+public static void applyToList(java.util.List<String> s) {
+applyToSet(new java.util.HashSet<>(s));
+}
+}
+$ /usr/lib/jvm/jdk1.8.0/bin/javac Test2.java
+$ java -jar org.eclipse.jdt.core_3.9.2.v20140202-0105_BETA_JAVA8.jar -1.8 Test2.java
+----------
+1.
+ERROR in /home/dsimon/Test2.java (at line 13)
+applyToSet(new HashSet<>(s));
+^^^^^^^^^^
+The method applyToSet(Set<String>) in the type Test2 is not applicable for the arguments (new HashSet<>(s))
+----------
+1 problem (1 error)
+$
+Removing the (unused) "<T>" from applyToSet makes the problem go away.

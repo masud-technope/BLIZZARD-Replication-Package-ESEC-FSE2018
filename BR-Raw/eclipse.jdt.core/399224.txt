@@ -1,0 +1,15 @@
+Bug 399224 – [1.8][compiler][internal] Implement TypeBinding.getSingleAbstractMethod
+BETA_JAVA8:
+From https://bugs.eclipse.org/bugs/show_bug.cgi?id=382701#c17:
+// Stuff ...
+(2) Implementation of a skeleton method for TypeBinding#getSingleAbstractMethod
+(returns null or a PMB) and ReferenceBinding#getSingleAbstractMethod.
+The
+latter could at this point return null for non-interfaces and for interfaces
+could ignore inheritance, object method redefinitions etc.
+If no single method
+could be found, this method should ideally return a ProblemMethodBinding
+with ProblemReasons set to NoSuchSingleAbstractMethod.
+// Stuff ...
+While that bug will put in place the skeleton, the present one is tighten
+the implementation and take care of all the myriad details.

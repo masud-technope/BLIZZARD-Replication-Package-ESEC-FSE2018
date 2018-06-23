@@ -1,0 +1,4 @@
+Bug 408060 – Bug in NLSSearchQuery
+Created attachment 230978 [details]
+proposed fix
+While looking at how the search works for bug 408059 I found that the search query checks twice to see if the wrapper class exists, when it should probably be testing if the properties file exists in the second check.

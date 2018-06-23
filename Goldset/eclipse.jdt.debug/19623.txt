@@ -1,0 +1,8 @@
+org.eclipse.jdt.debug.ui/plugin.xml
+org.eclipse.jdt.debug.ui/plugin.properties
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/StandardVMRunner.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/LauncherMessages.properties
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/StandardVMDebugger.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/ProcessPropertyPage.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/Standard11xVMRunner.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/JavaRuntime.java

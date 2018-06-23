@@ -1,0 +1,20 @@
+Bug 275614 – REGRESSION: threads no longer expanded if Debug view not visible
+I20090508-2000 and 3.5 M7
+With a recent builds (including 3.5 M7) a bug was introduced into the Debug view: each time a debug session is started, it doesn't auto-expand the threads if the view is not visible on the screen.
+Steps to reproduce:
+1.
+start new workspace
+2.
+choose to always switch to Debug perspective when launching
+3.
+open a second workbench window with only the Debug perspective
+4.
+switch back to the first workbench window with the Java perspective in it
+(make sure the Debug window is behind the Java one)
+5.
+paste this code into the Package Explorer
+while (true);
+6.
+start to Debug
+==> the Debug view has its threads not auto-expanded
+Can you please fix this for RC1: I run into this often because I use one fully expanded window for each perspective and hence see this bug quite often.

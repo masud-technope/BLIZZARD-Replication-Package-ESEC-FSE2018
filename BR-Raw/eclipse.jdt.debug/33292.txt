@@ -1,0 +1,4 @@
+Bug 33292 – Show Source of selected element and Java Snippet Editor
+This action is enabled for the JavaSnippetEditor and it has no meaning.
+No bad side-effects either..
+Can we get rid of it?

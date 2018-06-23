@@ -1,0 +1,19 @@
+Bug 34816 – Eval: Error with postif/prefix ++/-- on byte, char, short
+1.
+create the following compilation unit:
+public class Test {
+public static void main(String[] args) {
+byte b= 4;
+System.out.println("test");   // <-- breakpoint here
+}
+}
+2.
+Set the breakpoint, launch the program.
+3.
+When the breakpoint is hit, evaluate "b++".
+An error message is displayed:
+Evaluation failed.
+Reason(s):
+com.sun.jdi.InvalidTypeException: Type of the value not compatible with the
+expected type.
+occurred while attempting to set value of local variable.

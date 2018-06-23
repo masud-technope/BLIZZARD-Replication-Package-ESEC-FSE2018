@@ -1,0 +1,8 @@
+ui/org.eclipse.pde.ui/META-INF/MANIFEST.MF
+ui/org.eclipse.pde.ui/icons/eview16/osgiconsole.gif
+ui/org.eclipse.pde.ui/plugin.properties
+ui/org.eclipse.pde.ui/plugin.xml
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/util/OSGiConsole.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/util/OSGiConsoleFactory.java

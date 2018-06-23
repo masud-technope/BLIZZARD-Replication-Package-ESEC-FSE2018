@@ -1,0 +1,27 @@
+49297 – Whitespace absence is allowed before attribute name in a custom tag
+Created attachment 25441 [details]
+2010-05-15_tc7_attribute_name_whitespace-test.patch
+The /test/webapp-3.0/bug45nnn/bug45015b.jsp page of trunk contains the following text:
+<tags:echo echo="hello "wo"rld" />
+Running the test (testBug45015b of org.apache.jasper.compiler.TestGenerator) produces the following message:
+org.apache.jasper.JasperException: /bug45nnn/bug45015b.jsp(21,30) equal symbol expected
+It means, that the parser interprets "wo" as an attribute name, ignoring the fact that there is no whitespace before it.
+If I write
+<tags:echo echo="hello "wo="rld" />
+the test complains that attribute "wo" is invalid for the tag,
+and finally if I write
+<tags:echo echo="hello "echo="rld" />
+the test succeeds, while I would expect it to fail.
+I am attaching a patch that adds a testcase based on the last example, though a better testcase is needed that does not use the same attribute name twice.
+I think it is a minor issue, because this issue does not affect valid JSP pages, though allows to run some invalid ones.
+It is reproducible in the current 6.0 and 5.5 as well (thus 6.0.26, 5.5.29):
+if I add the following to /webapps/examples/jsp/simpletag/foo.jsp of TC6 (or the respective page in TC5.5):
+<ul>
+<eg:foo att1="1"att2="2"att3="3">
+<li><%= member %></li>
+</eg:foo>
+</ul>
+and call http://localhost:8080/examples/jsp/simpletag/foo.jsp
+the page runs successfully and displays "1, 2, 3" list items among its output.
+Expected result: show some compilation error, e.g.
+">, /> or whitespace was expected".

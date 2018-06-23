@@ -1,0 +1,4 @@
+50306 – Detect stuck threads
+Feature request :
+regularly scan worker threads and if one has been processing the same request for longer than a configurable delay, log a warning with the stack trace of that thread.
+This would allow to detect very long running threads, usually the ones that are stuck in a network call or in a deadlock.

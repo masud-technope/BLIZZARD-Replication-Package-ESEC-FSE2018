@@ -1,0 +1,3 @@
+Bug 199101 – [Template] Include contexts.xml in View Template's build.propreties
+The file contexts.xml is not included in the View Template's bin.includes.
+ The result is the plug-in does not have context help after it is exported as a deployable plug-in.

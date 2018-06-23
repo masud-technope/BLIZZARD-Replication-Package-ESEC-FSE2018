@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/rows/ExtensionAttributeRow.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/text/PDEDefaultInformationControl.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/text/PDETextHover.java

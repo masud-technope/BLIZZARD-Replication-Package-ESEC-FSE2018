@@ -1,0 +1,37 @@
+Bug 282803 – NPE in ReferenceExtractor.visitMethod(ReferenceExtractor.java:1164)
+I20090707-0800.
+Marking as 'major' since I have no clue what the consequences of this are.
+!ENTRY org.eclipse.core.resources 4 2 2009-07-08 10:06:46.193
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.pde.api.tools.internal.builder.ReferenceExtractor.visitMethod(ReferenceExtractor.java:1164)
+at org.objectweb.asm.ClassReader.accept(Unknown Source)
+at org.objectweb.asm.ClassReader.accept(Unknown Source)
+at org.eclipse.pde.api.tools.internal.builder.ReferenceExtractor.processInnerClass(ReferenceExtractor.java:1149)
+at org.eclipse.pde.api.tools.internal.builder.ReferenceExtractor.visitInnerClass(ReferenceExtractor.java:1128)
+at org.objectweb.asm.ClassReader.accept(Unknown Source)
+at org.objectweb.asm.ClassReader.accept(Unknown Source)
+at org.eclipse.pde.api.tools.internal.model.ApiType.extractReferences(ApiType.java:161)
+at org.eclipse.pde.api.tools.internal.builder.ReferenceAnalyzer$Visitor.visit(ReferenceAnalyzer.java:93)
+at org.eclipse.pde.api.tools.internal.builder.TypeScope.accept(TypeScope.java:99)
+at org.eclipse.pde.api.tools.internal.builder.ReferenceAnalyzer.extractReferences(ReferenceAnalyzer.java:261)
+at org.eclipse.pde.api.tools.internal.builder.ReferenceAnalyzer.analyze(ReferenceAnalyzer.java:166)
+at org.eclipse.pde.api.tools.internal.builder.ReferenceAnalyzer.analyze(ReferenceAnalyzer.java:288)
+at org.eclipse.pde.api.tools.internal.builder.BaseApiAnalyzer.checkApiUsage(BaseApiAnalyzer.java:833)
+at org.eclipse.pde.api.tools.internal.builder.BaseApiAnalyzer.analyzeComponent(BaseApiAnalyzer.java:261)
+at org.eclipse.pde.api.tools.internal.builder.IncrementalApiBuilder.build(IncrementalApiBuilder.java:188)
+at org.eclipse.pde.api.tools.internal.builder.IncrementalApiBuilder.build(IncrementalApiBuilder.java:150)
+at org.eclipse.pde.api.tools.internal.builder.ApiAnalysisBuilder.build(ApiAnalysisBuilder.java:293)
+at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:627)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:170)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:201)
+at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:253)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:256)
+at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:309)
+at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:341)
+at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:140)
+at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:238)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

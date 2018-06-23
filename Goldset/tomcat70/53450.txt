@@ -1,0 +1,3 @@
+java/org/apache/catalina/core/ContainerBase.java
+res/maven/mvn-pub.xml
+webapps/docs/changelog.xml

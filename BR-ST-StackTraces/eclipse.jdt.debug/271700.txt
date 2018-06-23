@@ -1,0 +1,6 @@
+org.eclipse.jdt.debug.tests.AbstractDebugTest.resume
+org.eclipse.jdt.debug.tests.AbstractDebugTest.resume
+org.eclipse.jdt.debug.tests.core.TypeTests.testDeclaringTypes
+org.eclipse.jdt.debug.tests.AbstractDebugTest.runBare
+org.eclipse.jdt.debug.tests.DebugSuite$1.run
+java.lang.Thread.run

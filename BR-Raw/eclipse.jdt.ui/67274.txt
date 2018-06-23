@@ -1,0 +1,11 @@
+Bug 67274 – [dnd] [ccp] Package Explorer allows moving read-only linked resources to another project without confirmation
+1.
+Create 2 projects
+2.
+Create a new file that is linked to a file in the file system
+3.
+Right-click on the new file in the package explorer and go to Properties
+then check read-only
+4.
+Drag and drop the file in another project, it will be simlpy moved even
+though it is read-only.

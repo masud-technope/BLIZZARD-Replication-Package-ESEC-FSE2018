@@ -1,0 +1,4 @@
+Bug 268802 – Useless call to getSource() in SourceTypeConverter
+build I20090311-0100
+SourceTypeConverter#convertAnnotations() call SourceTypeConverter#getSource() to create annotation but getSource() is call even when there is no annotation.
+getSource() should be call only when necessary.

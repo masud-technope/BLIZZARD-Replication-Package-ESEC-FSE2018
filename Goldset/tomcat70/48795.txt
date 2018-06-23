@@ -1,0 +1,7 @@
+java/org/apache/jasper/JspCompilationContext.java
+java/org/apache/jasper/JspC.java
+java/org/apache/jasper/Options.java
+conf/web.xml
+java/org/apache/jasper/EmbeddedServletOptions.java
+java/org/apache/jasper/servlet/JspServletWrapper.java
+java/org/apache/jasper/resources/LocalStrings.properties

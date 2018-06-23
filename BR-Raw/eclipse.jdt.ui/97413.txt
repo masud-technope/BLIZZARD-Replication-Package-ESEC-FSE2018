@@ -1,0 +1,45 @@
+Bug 97413 – [extract method] missing return type when code can throw exception
+I20050527-1300
+Extracting code that can return a value and ends with throwing an exception
+results in a new method with no return type - and therefore compile errors.
+No
+other errors or exceptions.
+Before:
+class Foo {
+int bar(int bar) {
+if (bar > 0)
+return bar - 1;
+throw new IllegalArgumentException();
+}
+}
+After:
+class Foo {
+int bar(int bar) {
+foo(bar);
+}
+private void foo(int bar) {
+if (bar > 0)
+return bar - 1;
+throw new IllegalArgumentException();
+}
+}
+Swapping the return and the throw statements works.
+Before:
+class Foo {
+int bar(int bar) {
+if (bar > 0)
+throw new IllegalArgumentException();
+return bar - 1;
+}
+}
+After:
+class Foo {
+int bar(int bar) {
+return foo(bar);
+}
+private int foo(int bar) {
+if (bar > 0)
+throw new IllegalArgumentException();
+return bar - 1;
+}
+}

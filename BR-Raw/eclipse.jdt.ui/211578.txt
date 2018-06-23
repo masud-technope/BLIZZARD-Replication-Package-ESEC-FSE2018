@@ -1,0 +1,21 @@
+Bug 211578 – [build path] Dialog to extend classpath variable slow
+Build ID: M20071023-1652
+Steps To Reproduce:
+1.
+get a big 3rd party repository on the hard disk >400 folders
+2.
+define a jdt classpath variable to point to the base folder
+3.
+configure the classpath on a java project, on the libraries tab click "Add Variable..."
+4.
+double click or select and click "Extend..." the classpath variable defined before
+5.
+-> eclipse hangs some seconds (sometimes >10 sec.) until the dialog opens
+More information:
+Subsequent uses are somewhat faster but still too slow.
+Maybe it is possible to optimize it on subsequent openings.
+We are currently editing the .classpath file direct with a text editor.
+This is faster for us.
+Maybe this is related to the windows file system, however I cannot prove this on a e.g.
+linux machine (I don't have one at work).
+Our development computers are up-to-date hardware.

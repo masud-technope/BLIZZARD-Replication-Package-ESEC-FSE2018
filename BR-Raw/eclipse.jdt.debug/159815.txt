@@ -1,0 +1,6 @@
+Bug 159815 – isRemote(...) test performed 5 times for each variable selection
+When a selection changes, the retargettable breakpoint actions update.
+When a variable is selected we are resolving it's source element to determine if the variable correpsonds to a remote file (i.e.
+in a repository).
+The debugger never corresponds to a remote entity, so the test does not need to be performed.
+We perform the resolution once for each retargettable action.

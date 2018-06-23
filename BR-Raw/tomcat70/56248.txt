@@ -1,0 +1,12 @@
+56248 – Automatic deployment with TCD deletes customized context.xml file
+I was very happy to see the changes to automatic deployment, and that customized context.xml files in conf/Catalina/localhost/<appname>.xml are preserved when a war file is replaced on the server.
+However, when using the ant tasks that come with TCD (and I suspect when using the Tomcat manager, although I have not tested that), it appears that the webapp is deleted and then uploaded (as opposed to just being replaced), which is causing the customized context.xml file to be lost and replaced with a default version.
+=== Reply from Mark Thomas ===
+Hmm.
+It looks like the update command does an undeployment followed by a
+deploy rather than a replacement of the WAR file and a redeploy.
+You
+aren't going to be able to fix that without code changes to Tomcat.
+Changing the behaviour seems reasonable here.
+I suggest you open a
+bugzilla issue for this.

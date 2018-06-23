@@ -1,0 +1,16 @@
+org.eclipse.swt.widgets.Synchronizer.syncExec
+org.eclipse.swt.widgets.Display.syncExec
+org.eclipse.debug.internal.core.Launcher.launch
+org.eclipse.swt.custom.BusyIndicator.showWhile
+org.eclipse.jface.action.Action.runWithEvent
+org.eclipse.swt.widgets.EventTable.sendEvent
+org.eclipse.swt.widgets.Widget.notifyListeners
+org.eclipse.swt.widgets.Display.runDeferredEvents
+org.eclipse.swt.widgets.Display.readAndDispatch
+org.eclipse.ui.internal.Workbench.runEventLoop
+org.eclipse.ui.internal.Workbench.run
+org.eclipse.core.boot.BootLoader.run
+java.lang.reflect.Method.invoke
+org.eclipse.core.launcher.Main.basicRun
+org.eclipse.core.launcher.Main.run
+org.eclipse.core.launcher.Main.main

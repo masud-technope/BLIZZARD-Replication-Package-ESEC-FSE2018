@@ -1,0 +1,31 @@
+Bug 149976 – Automated Management of Dependencies: The "add dependencies" link can result in an illegally formatted Import-Package header
+The format of MANIFEST.MF is rather strict.
+ One of the constraints is that a single line cannot be too long.
+ I think that "too long" is something like 70 characters, but you'd have to check the JAR spec to be sure.
+Anyway, the "add dependencies" link in the Automated Management of Dependencies section of the Dependencies page of the manifest editor can result a very long Import-Package header that is all on one line.
+ In every other case I've seen the PDE does a nice job of breaking the line such that it is never too long.
+ The scenario where this happens is rather specific:
+1.
+ Create a new plug-in project.
+2.
+ Populate the Automated Management of Dependencies list of with a bunch of
+bundles against which you are going to compute your Import-Package list.
+3.
+ Write some Java code that creates dependencies on a bunch of packages
+contained in the bundles listed in step 2.
+4.
+ Ensure that the MANIFEST.MF source page DOES NOT have an Import-Package
+header.
+ Save the editor.
+ Note: This step is very important since this
+problem only seems to happen when the Import-Package header needs to be
+added.
+5.
+ Turn to the Dependencies page and click the "add dependencies" link.
+ Save
+the editor.
+6.
+ Turn to the MANIFEST.MF source page and inspect the Import-Package header.
+Assuming that you have creating enough package dependencies in your code, this should result in an Import-Package header being added that is way too long.
+ It will all be on one line.
+The "add dependencies" link should implement the same formatting rules as the other parts of the manifest editor to ensure that the manifest remains legal.

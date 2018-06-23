@@ -1,0 +1,9 @@
+Bug 174232 – macosx/Info.plist is out of date
+The copy of Info.plist in org.eclipse.pde.core/macosx is not the same as the one shipped for eclipse itself.
+ See org.eclipse.equinox.executable/bin/carbon/macosx/*/Eclipse.app/Contents/Info.plist
+Note that any -vmargs in the plist file will cause the vmargs in the eclipse.ini file to be ignored.
+ The vmargs here should be placed in the eclipse.ini instead.
+ (As a side note, see bug 173572 about whether or not we still want the -Dorg.eclipse.swt.internal.carbon.noFocusRing)
+The -startup ../../../startup.jar can be removed completely since
+(1) startup.jar has moved to the plugins directory and is org.eclipse.equinox.launcher, and
+(2) the new launcher accounts for the difference in directories on the mac (the ../../..)

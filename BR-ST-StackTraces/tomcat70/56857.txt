@@ -1,0 +1,6 @@
+java.util.HashMap.get
+org.apache.catalina.core.ApplicationContextFacade.invokeMethod
+org.apache.catalina.core.ApplicationContextFacade.doPrivileged
+org.apache.catalina.core.ApplicationContextFacade.getContextPath
+blackboard.portal.servlet.ModuleCustomizationServlet.service
+javax.servlet.http.HttpServlet.service

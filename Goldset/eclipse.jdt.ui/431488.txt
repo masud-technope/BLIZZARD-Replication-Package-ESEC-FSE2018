@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/JavaSearchPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/MatchLocations.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/SearchMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/SearchMessages.properties

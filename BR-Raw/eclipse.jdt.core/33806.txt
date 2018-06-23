@@ -1,0 +1,22 @@
+Bug 33806 – Code assist failure: assignment of double in for loop hides previous variables
+Build id: 200302270800
+The following code exhibits a code assist failure due to the assignment of the
+double variable inside the for loop.
+ Any attempts I made to reduce the test
+case further made code assist work, so I assume that this is nearly the smallest
+test case.
+On the line after the "/* code assist here */" comment attempt code assist on
+"loc", "ba", or "fie" (should return "local", "bar", and "field" respectively).
+All will fail, it appears as though the for loop + double is tripping up the
+code completion engine.
+public class Test {
+Object field;
+public void foo() {
+Object local= null;
+double bar= 0;
+for (;;) {
+bar = (double)1;
+}
+/* code assist here */
+}
+}

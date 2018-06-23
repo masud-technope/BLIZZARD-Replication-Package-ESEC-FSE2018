@@ -1,0 +1,10 @@
+Bug 98790 – Leakage: UndoActionHandler / RedoActionHandler not disposed on open/close of plugin.xml
+N20050603-0010
+The UndoActionHandlers and RedoActionHandlers are leaking (and keeping other
+large parts of the world with them) on the close of the manifest editor as the
+part listener that should call the dispose is not "matching" on the part
+closing.
+When the manifest editor closes, the part listener in
+OperationHistoryActionHandler (line 90) compares the part (ManifestEditor)
+with the site.getPart() (BundleSourcePage).
+So this always fails and the action handlers are not disposed.

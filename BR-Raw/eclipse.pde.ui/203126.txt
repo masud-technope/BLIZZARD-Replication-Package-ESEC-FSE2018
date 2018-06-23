@@ -1,0 +1,6 @@
+Bug 203126 – [WorkingSets] Allow location of WorkingSetConfigurationBlock to be changed by implementors
+I really like the new WorkingSetConfigurationBlock.
+ I think it can be very handy for many users.
+The one thing I would like to see, is to allow others who extend the Platform's Wizards to place the location of the WorkingSetConfigurationBlock where they would like.
+ The current implementation forces the working set block after the project creation block.
+ For PDE, it would be nice to be able to move the working set block down on the page, similar to JDT's new project wizard.

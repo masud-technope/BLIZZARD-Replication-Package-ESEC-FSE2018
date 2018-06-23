@@ -1,0 +1,21 @@
+Bug 424083 – [1.8][quick assist] AIOOB exception in Convert to anonymous class creation
+package com.test;
+interface F1 {
+void foo(int x, String s, float f);
+}
+public class C1 {
+F1 f1= () -> {}; // Ctrl+1 on '>'
+}
+--------------------------------------------------
+In the above example, place caret on '->' and press Ctrl+1.
+A warning with AIOOB is logged in the Error log.
+Select the quick assist 'Convert to anonymous class creation' and press Enter.
+We get the AIOOB exception:
+java.lang.ArrayIndexOutOfBoundsException: 0
+at org.eclipse.jdt.internal.corext.codemanipulation.StubUtility2.createParameters(StubUtility2.java:503)
+at org.eclipse.jdt.internal.corext.codemanipulation.StubUtility2.createImplementationStub(StubUtility2.java:419)
+at org.eclipse.jdt.internal.corext.fix.LambdaExpressionsFix$CreateAnonymousClassCreationOperation.rewriteAST(LambdaExpressionsFix.java:293)
+at org.eclipse.jdt.internal.corext.fix.CompilationUnitRewriteOperationsFix.createChange(CompilationUnitRewriteOperationsFix.java:101)
+at org.eclipse.jdt.internal.ui.text.correction.proposals.FixCorrectionProposal.createTextChange(FixCorrectionProposal.java:159)
+at org.eclipse.jdt.ui.text.java.correction.CUCorrectionProposal.createChange(CUCorrectionProposal.java:244)
+...

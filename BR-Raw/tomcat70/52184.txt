@@ -1,0 +1,19 @@
+52184 – Reduce log level for invalid cookies
+Invalid cookies are fairly common.
+Firefox has them all the time.
+Tomcat logs fill up very quickly with this input.
+Tomcat doesn't log when there is an invalid HTTP request, as that would yield the same problem.co
+Nov 14, 2011 3:15:27 PM org.apache.tomcat.util.http.Cookies processCookieHeader
+INFO: Cookies: Invalid cookie.
+Value not a token or quoted value
+http://vmc-ssrc-rh56.eng.vmware.com:8080/
+GET / HTTP/1.1
+Host: vmc-ssrc-rh56.eng.vmware.com:8080
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:7.0.1) Gecko/20100101 Firefox/7.0.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-us,en;q=0.5
+Accept-Encoding: gzip, deflate
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+Connection: keep-alive
+Cookie: __utma=106857756.14479066.1321292743.1321296794.1321304211.3; __utmz=106857756.1321304211.3.2.utmcsr=communities.example.com|utmccn=(referral)|utmcmd=referral|utmcct=/community/vmtn/appplatform/testapp_fire; s_nr=1321293934221; s_vi=[CS]v1|2760A9C4851D0F77-6000010260007567[CE]
+Cache-Control: max-age=0

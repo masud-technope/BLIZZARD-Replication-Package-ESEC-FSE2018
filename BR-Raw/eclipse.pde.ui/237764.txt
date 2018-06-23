@@ -1,0 +1,12 @@
+Bug 237764 – [spy] NPE when there is no (active) part
+When I tried to integrate (the fantastic) Plug-in Spy into my own RCP application, I started with an empty one (Hello world) which of course has got no part.
+Pressing Alt+Shift+F1 resulted in nothing on the UI and a NPE logged:
+!ENTRY org.eclipse.ui 4 0 2008-06-19 12:44:15.373
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.pde.internal.runtime.spy.sections.ActivePartSection.build(ActivePartSection.java:46)
+at org.eclipse.pde.internal.runtime.spy.dialogs.SpyDialog.createDialogArea(SpyDialog.java:101)
+at org.eclipse.pde.internal.runtime.spy.dialogs.SpyDialog.createContents(SpyDialog.java:71)
+at org.eclipse.jface.window.Window.create(Window.java:431)
+...

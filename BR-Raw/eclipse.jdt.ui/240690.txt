@@ -1,0 +1,3 @@
+Bug 240690 – [quick assist] selecting "x.equals(y)" should show the 'Invert equals' quick assist
+R3.4.
+Selecting "x.equals(y)" should show the 'Invert equals' quick assist

@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/SefWorkSpace/SefTests/object_out/TestSimpleParenthesizedWrite.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SefWorkSpace/SefTests/object_in/TestSimpleParenthesizedWrite.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/sef/AccessAnalyzer.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/SefTests.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SefWorkSpace/SefTests/object_out/TestCompoundParenthesizedWrite.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SefWorkSpace/SefTests/object_in/TestCompoundParenthesizedWrite.java

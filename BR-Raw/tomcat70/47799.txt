@@ -1,0 +1,77 @@
+47799 – Domain does not work in Membership and DomainFilterInterceptor.
+I used domain ="{1,2,3,4}" as follows by the Cluster configuration.
+<Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster"
+channelSendOptions="6">
+...
+<Membership className="org.apache.catalina.tribes.membership.McastService"
+address="228.0.0.4" port="45564" frequency="500" dropTime="3000"
+domain="{1,2,3,4}"/>
+...
+<Interceptor className="org.apache.catalina.tribes.group.interceptors.DomainFilterInterceptor"
+domain="{1,2,3,4}"/>
+...
+</Cluster>
+However, domain does not work in Membership and DomainFilterInterceptor.
+The type of instance variable domain of org.apache.catalina.tribes.membership.McastService
+and org.apache.catalina.tribes.group.interceptors.DomainFilterInterceptor is byte array.
+org.apache.tomcat.util.IntrospectionUtils#setProperty is invoked
+in org.apache.tomcat.util.digester.SetPropertyRule#begin.
+However,
+Because byte array property is not supported in org.apache.tomcat.util.IntrospectionUtils#setProperty,
+McastService#setDomain(byte array) and DomainFilterInterceptor#setDomain(byte array) is never invoked.
+As a result, domain can not set, and domain is always null.
+There are two workarounds as follows.
+1:org.apache.tomcat.util.IntrospectionUtils#setProperty supports byte array property.
+2:Prepares setDomain(String) method for McastService and DomainFilterInterceptor.
+Invoke setDomain(byte array) from setDomain(String).
+This is the same way as org.apache.catalina.tribes.membership.StaticMember.
+I think that it is easy to prepare setDomain(String) method.
+I made the patch.
+McastService's patch against tomcat_trunk.
+[start.]
+Index: java/org/apache/catalina/tribes/membership/McastService.java
+===================================================================
+--- java/org/apache/catalina/tribes/membership/McastService.java	(revision 787304)
++++ java/org/apache/catalina/tribes/membership/McastService.java	(working copy)
+@@ -30,6 +30,7 @@
+import org.apache.catalina.tribes.MessageListener;
+import org.apache.catalina.tribes.io.ChannelData;
+import org.apache.catalina.tribes.io.XByteBuffer;
++import org.apache.catalina.tribes.util.Arrays;
+import org.apache.catalina.tribes.util.StringManager;
+import org.apache.catalina.tribes.util.UUIDGenerator;
+@@ -607,6 +608,12 @@
+}
+}
++    public void setDomain(String domain) {
++        if ( domain == null ) return;
++        if ( domain.startsWith("{") ) setDomain(Arrays.fromString(domain));
++        else setDomain(Arrays.convert(domain));
++    }
++
+/**
+* Simple test program
+* @param args Command-line arguments
+[end.]
+DomainFilterInterceptor's patch against tomcat_trunk.
+[start.]
+Index: java/org/apache/catalina/tribes/group/interceptors/DomainFilterInterceptor.java
+===================================================================
+--- java/org/apache/catalina/tribes/group/interceptors/DomainFilterInterceptor.java	(revision 763870)
++++ java/org/apache/catalina/tribes/group/interceptors/DomainFilterInterceptor.java	(working copy)
+@@ -97,4 +97,13 @@
+public void setDomain(byte[] domain) {
+this.domain = domain;
+}
++
++    public void setDomain(String domain) {
++        if ( domain == null ) return;
++        if (domain.startsWith("{"))
++            setDomain(org.apache.catalina.tribes.util.Arrays.fromString(domain));
++	    else
++            setDomain(org.apache.catalina.tribes.util.Arrays.convert(domain));
++    }
++
+}
+[end.]
+Best regards.

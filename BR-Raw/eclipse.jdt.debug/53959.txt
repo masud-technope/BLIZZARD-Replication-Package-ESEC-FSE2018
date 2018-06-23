@@ -1,0 +1,16 @@
+Bug 53959 – Nested generic type names are not correctly displayed
+Test case (Java 1.5.0) :
+import java.util.Vector;
+import java.util.Set;
+public class Test7 {
+public static void main(String...
+args) {
+Vector<Set<String>> v= new Vector<Set<String>>();
+System.out.println(v);     // <-- breakpoint here
+}
+}
+Launch it in debug mode to the breakpoint.
+With the option 'Show qualified names', the Variables view displays:
+Vector< > v= Vector<E>  (id=13)
+instead of
+Vector<Set<String>> v= Vector<E>  (id=13)

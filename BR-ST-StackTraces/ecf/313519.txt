@@ -1,0 +1,5 @@
+org.eclipse.ecf.provider.filetransfer.util.PollingInputStream.read
+java.io.FilterInputStream.read
+org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer$1.performFileTransfer
+org.eclipse.ecf.filetransfer.FileTransferJob.run
+org.eclipse.core.internal.jobs.Worker.run

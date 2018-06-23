@@ -1,0 +1,7 @@
+Bug 417937 – [1.8] ImportRewrite#addImport(ITypeBinding, ...) drops TYPE_USE annotations
+Consider the below method:
+public void foo(java.io.@TypeUse FileNotFoundException arg, A type){
+}
+When 'move' refactoring is invoked on #foo:
+ImportRewrite#addImport(ITypeBinding binding, AST ast, ImportRewriteContext context) is invoked with the VariableBinding corresponding to <java.io.@TypeUse FileNotFoundException arg>, where it is expected to return a PackageQualifiedType which contains the TYPE_USE annotation details as well.
+This is not currently handled in #addImport(...)and the method returns a SimpleType and the TYPE_USE annotation details are missing.

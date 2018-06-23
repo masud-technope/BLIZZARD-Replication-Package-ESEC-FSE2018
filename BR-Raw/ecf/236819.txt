@@ -1,0 +1,2 @@
+Bug 236819 – [Discovery] Composite container doesn't register itself as an OSGi service
+org.eclipse.ecf.provider.discovery.CompositeDiscoveryContainer may also be registered as an OSGi service

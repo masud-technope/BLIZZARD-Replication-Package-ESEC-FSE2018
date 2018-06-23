@@ -1,0 +1,5 @@
+Bug 304927 – Incorrect Javadoc for org.eclipse.ltk.core.refactoring.Change
+Created attachment 161233 [details]
+fix
+Javadoc for org.eclipse.ltk.core.refactoring.Change refers to a 'initializeValidationState' method, however the correct method name is 'initializeValidationData'.
+Attached patch should fix it.

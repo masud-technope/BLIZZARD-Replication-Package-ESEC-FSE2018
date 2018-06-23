@@ -1,0 +1,4 @@
+Bug 96385 – inconsisent casing
+in n0523
+The field label casing in the New Hello RCP project wizard is inconsistent.
+There is a mix of "Package name" and "Perspective Name" etc.

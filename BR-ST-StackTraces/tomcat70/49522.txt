@@ -1,0 +1,12 @@
+org.apache.catalina.manager.StatusManagerServlet.doGet
+javax.servlet.http.HttpServlet.service
+javax.servlet.http.HttpServlet.service
+org.apache.tomcat.util.modeler.ManagedBean.getGetter
+org.apache.tomcat.util.modeler.BaseModelMBean.getAttribute
+com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.getAttribute
+com.sun.jmx.mbeanserver.JmxMBeanServer.getAttribute
+org.apache.catalina.manager.StatusTransformer.writeContext
+org.apache.catalina.manager.StatusTransformer.writeDetailedState
+org.apache.catalina.manager.StatusManagerServlet.doGet
+javax.servlet.http.HttpServlet.service
+javax.servlet.http.HttpServlet.service

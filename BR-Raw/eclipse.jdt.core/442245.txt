@@ -1,0 +1,10 @@
+Bug 442245 – [1.8][compiler?] These source files lead eclipse to hang (even just on copy/paste)
+Created attachment 246188 [details]
+Source files which cause the problem
+These two files lead eclipse to hang when building the workspace.
+Even if automatic build is turned off and a portion of text is copied to the clipboard within the java editor, eclipse hangs.
+Project setup:
+- please create a new Java project, source level: java 8
+- copy the attached files to src/test
+Thanks for your help,
+Daniel

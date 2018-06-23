@@ -1,0 +1,3 @@
+Bug 416998 – [1.8] Update callers of ASTNodes#getType(VariableDeclaration) to handle 'null' for type inferred lambda parameter
+After ASTNodes#getType(VariableDeclaration) method is updated to return 'null' for a type inferred lambda parameter, callers of the method need to be fixed iff there's a possibility that the given VariableDeclaration is a type inferred lambda parameter.
+Patch to update ASTNodes#getType(VariableDeclaration) to return 'null' is attached in bug 407985 comment #3.

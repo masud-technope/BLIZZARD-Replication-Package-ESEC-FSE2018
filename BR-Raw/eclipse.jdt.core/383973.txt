@@ -1,0 +1,4 @@
+Bug 383973 – [1.8][compiler] syntax recovery in the presence of default methods
+BETA_JAVA8:
+Bug 382353 introduced a disabled test org.eclipse.jdt.core.tests.compiler.regression.DefaultMethodsTest._testModifiers1a() which demonstrates that a single syntax error can badly spoil error recovery if a default method is present.
+This could be a cause behind bug 381360.

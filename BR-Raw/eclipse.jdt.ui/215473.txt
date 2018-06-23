@@ -1,0 +1,7 @@
+Bug 215473 – [navigation] Show more then one hyperlink per modifier key
+I20080108-1320
+If more then one hyperlink exist on a given position only the first detected hyperlink is opened when clicking on the hyperlink region.
+Which one the first is is not specified.
+If we detect more then one hyperlink we should:
+- Show each in a hover, the user can open each one when clicking on it in the hover
+- Allow to specify on the preference page which hyperlink is opened when clicking on the hyperlink region (the default hyperlink)

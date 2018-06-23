@@ -1,0 +1,3 @@
+applications/kosmos/bundles/org.eclipse.ecf.presence.bot.kosmos/src/org/eclipse/ecf/internal/presence/bot/kosmos/ChatRoomMessageHandler.java
+applications/kosmos/bundles/org.eclipse.ecf.presence.bot.kosmos/src/org/eclipse/ecf/internal/presence/bot/kosmos/CustomMessages.java
+applications/kosmos/bundles/org.eclipse.ecf.presence.bot.kosmos/src/org/eclipse/ecf/internal/presence/bot/kosmos/custom.properties

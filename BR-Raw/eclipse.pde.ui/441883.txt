@@ -1,0 +1,6 @@
+Bug 441883 – [bidi] Compare editors for MANIFEST.MF and plugin.xml must enforce LTR
+Created attachment 246052 [details]
+Fix
+Follow-up to bug 441495.
+Compare editors for MANIFEST.MF and plugin.xml files have to enforce LEFT_TO_RIGHT orientation even in an RTL environment (e.g.
+workspace started with -dir rtl).

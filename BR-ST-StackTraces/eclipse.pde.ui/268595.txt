@@ -1,0 +1,8 @@
+org.eclipse.pde.internal.runtime.registry.model.LocalRegistryBackend.getBundleId
+org.eclipse.pde.internal.runtime.registry.model.LocalRegistryBackend.createExtensionAdapter
+org.eclipse.pde.internal.runtime.registry.model.LocalRegistryBackend.createExtensionAdapters
+org.eclipse.pde.internal.runtime.registry.model.LocalRegistryBackend.removed
+org.eclipse.core.internal.registry.ExtensionRegistry.processChangeEvent
+org.eclipse.core.runtime.spi.RegistryStrategy.processChangeEvent
+org.eclipse.core.internal.registry.osgi.ExtensionEventDispatcherJob.run
+org.eclipse.core.internal.jobs.Worker.run

@@ -1,0 +1,5 @@
+org.eclipse.jdt.core.tests.model/workspace/FormatterJSR308/testLambda/A_out.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/formatter/FormatterBugsTests.java
+org.eclipse.jdt.core.tests.model/workspace/FormatterJSR335/testLambda/A_out.java
+org.eclipse.jdt.core/formatter/org/eclipse/jdt/internal/formatter/linewrap/WrapExecutor.java
+org.eclipse.jdt.core.tests.model/workspace/FormatterJSR335/testLambdaOptions/A_out.java

@@ -1,0 +1,3 @@
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/model/Messages.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/model/Messages.properties
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/model/TypeStructureBuilder.java

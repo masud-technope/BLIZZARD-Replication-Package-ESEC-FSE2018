@@ -1,0 +1,9 @@
+org.eclipse.jdt.debug.tests/testprograms/bug401270.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AbstractDebugTest.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AutomatedSuite.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/breakpoints/ConditionalBreakpointsTests.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/eval/GeneralEvalTests.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/eval/VariableDeclarationTests.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/engine/ASTInstructionCompiler.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/engine/EvaluationEngineMessages.java
+org.eclipse.jdt.debug/eval/org/eclipse/jdt/internal/debug/eval/ast/engine/EvaluationEngineMessages.properties

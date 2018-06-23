@@ -1,0 +1,8 @@
+java/org/apache/catalina/ant/DeployTask.java
+test/deployment/context.jar
+test/deployment/dir with spaces/context.jar
+test/deployment/dir with spaces/context.war
+test/org/apache/catalina/ant/TestDeployTask.java
+webapps/docs/changelog.xml
+java/org/apache/catalina/ant/DeployTask.java
+webapps/docs/changelog.xml

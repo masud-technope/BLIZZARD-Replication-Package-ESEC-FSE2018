@@ -1,0 +1,10 @@
+java.io.ObjectInputStream$PeekInputStream.readFully
+java.io.ObjectInputStream$BlockDataInputStream.readShort
+java.io.ObjectInputStream.readStreamHeader
+java.io.ObjectInputStream.<init>
+org.eclipse.ecf.core.util.IdentifiableObjectInputStream.<init>
+org.eclipse.ecf.provider.generic.SOContainer.deserializeSharedObjectMessage
+org.eclipse.ecf.provider.generic.SOContainer.handleSharedObjectMessage
+org.eclipse.ecf.provider.xmpp.container.XMPPGroupChatSOContainer.handleContainerMessage
+org.eclipse.ecf.provider.xmpp.container.XMPPClientSOContainer.processAsynch
+org.eclipse.ecf.provider.generic.SOContainer$MessageReceiver.handleAsynchEvent

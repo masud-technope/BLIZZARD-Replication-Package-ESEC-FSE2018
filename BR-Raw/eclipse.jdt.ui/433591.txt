@@ -1,0 +1,14 @@
+Bug 433591 – [1.8][clean up][quick assist] "Convert anonymous to lambda" considers overridden method as ambiguous target type
+"Convert anonymous to lambda" considers overridden method as ambiguous target type after bug 423439.
+One example is in org.eclipse.jface.viewers.SWTFocusCellManager#hookListener(ColumnViewer):
+private void hookListener(final ColumnViewer viewer) {
+//...
+viewer.addSelectionChangedListener(new ISelectionChangedListener() {
+@Override
+public void selectionChanged(SelectionChangedEvent event) {
+if( event.selection.isEmpty() ) {
+setFocusCell(null);
+}
+}
+});
+The addSelectionChangedListener(..) method is declared in ISelectionProvider and overridden in Viewer.

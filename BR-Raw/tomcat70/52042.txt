@@ -1,0 +1,14 @@
+52042 – Possible NullPointerException in DefaultInstanceManager#processAnnotations
+NullPointerException exception is thrown randomly from "DefaultInstanceManager#processAnnotations" method on the following lines,
+List<AnnotationCacheEntry> annotations;
+synchronized (annotationCache) {
+annotations = annotationCache.get(clazz).get();
+}
+//Null Pointer Exception is thrown, because annotations is NULL
+for (AnnotationCacheEntry entry : annotations) {
+For example, I have a JSF Managed Bean
+public class X extends Y{
+}
+Open JSF page that contains managed bean X.
+Randomly opening the same page throws NullPointerException because for superclass Y "annotations = annotationCache.get(clazz).get();" returns null.
+Using WeakHashMap on "annotationCache" field may be the reason of exception.

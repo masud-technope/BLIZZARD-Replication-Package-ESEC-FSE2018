@@ -1,0 +1,6 @@
+Bug 372818 – Test failures in UI because of bug 265744
+Failures exist in following suites.
+ScopeAnalyzerTest
+UnresolvedVariablesQuickFixTest
+LocalCorrectionsQuickFixTest
+I will take a look.

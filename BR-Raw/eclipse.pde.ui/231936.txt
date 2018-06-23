@@ -1,0 +1,10 @@
+Bug 231936 – Improve API description memory usage
+Currently the single largest use of memory in API tools are the API descriptions since descriptions are directly dependent on the API package / type count.
+We should look at ways to minimize the use of LRU / MRU caches for components / packages and we should examine our usage of HashMaps (avoid default sized aps if smaller will suffice and make intellgent guesses at default mapo siezs to minimize map resizing / rehashing).
+Some classes to consider (which hold, or are part of, the largest amount of retained memory)
+ApiDescriptionManager
+ApiProfile
+ProjectApiDescription
+BundleApiComponent
+ReferenceTypeDescriptorImpl
+FieldDescriptorImpl

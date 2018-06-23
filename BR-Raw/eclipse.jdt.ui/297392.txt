@@ -1,0 +1,12 @@
+Bug 297392 – Static variables removal in JDT UI causing compatibility issues between Eclipse 3.4 and 3.6
+User-Agent:       Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.0 (KHTML, like Gecko) Chrome/3.0.195.33 Safari/532.0
+Build Identifier: 3.6.0  I20091125-2200
+The following 3 static variables have been removed from the JDT.
+This is breaking our compatibility between Eclipse 3.4 and 3.6.
+Can we get it back?
+org.eclipse.jdt.internal.ui.refactoring.reorg.ReorgMessages.ReorgGroup_paste
+org.eclipse.jdt.internal.ui.refactoring.reorg.ReorgMessages.ReorgGroup_delete
+org.eclipse.jdt.internal.ui.refactoring.reorg.ReorgMessages.CutSourceReferencesToClipboardAction_cut
+Thanks,
+Rekha
+Reproducible: Always

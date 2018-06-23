@@ -1,0 +1,5 @@
+Bug 144902 – [navigation] Show in Package Explorer has no effect
+3.2 RC5
+- in the Keys preference page, bind a key sequence like Ctrl+Alt+P to Show In Package Explorer (in the Navigate category)
+- in a Java editor, press the key sequence
+- it has no effect

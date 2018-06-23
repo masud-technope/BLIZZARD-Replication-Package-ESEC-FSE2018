@@ -1,0 +1,5 @@
+Bug 343039 – Turn on monitors by default
+The JDT debugger has the ability to show monitors owned by a thread.
+ this is turned off by default.
+ Dunno how long this option has been here but many people (including me) never knew it was there and would have greatly benefitted from its use in time-consuming race and deadlock debugging sessions.
+Please consider turning it on by default.

@@ -1,0 +1,21 @@
+Bug 484548 – Feature manifest file with no label gives NPE while clicking on Dependencies tab.
+As per doc, label is optional
+element and attribute definitions are as follows:
+<feature> - defines the feature
+id - required feature identifier (eg.
+com.xyz.myfeature)
+version - required component version (eg.
+1.0.3)
+label - optional displayable label (name).
+Intended to be translated.
+Error is similar to
+java.lang.NullPointerException: HIDDEN
+at org.eclipse.core.internal.preferences.EclipsePreferences.internalGet(:-1)
+at org.eclipse.core.internal.preferences.EclipsePreferences.getBoolean(:-1)
+at org.eclipse.pde.internal.ui.editor.feature.RequiresSection.initialize(:-1)
+at org.eclipse.pde.internal.ui.editor.feature.RequiresSection.createClient(:-1)
+at org.eclipse.pde.internal.ui.editor.StructuredViewerSection.<init>(:-1)
+at org.eclipse.pde.internal.ui.editor.TableSection.<init>(:-1)
+at org.eclipse.pde.internal.ui.editor.TableSection.<init>(:-1)
+at org.eclipse.pde.internal.ui.editor.feature.RequiresSection.<init>(:-1)
+at org.eclipse.pde.internal.ui.editor.feature.FeatureDependenciesPage.createFormContent(:-1)

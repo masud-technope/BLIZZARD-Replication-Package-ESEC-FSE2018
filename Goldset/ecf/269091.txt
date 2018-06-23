@@ -1,0 +1,4 @@
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/provider/filetransfer/retrieve/AbstractRetrieveFileTransfer.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/provider/filetransfer/retrieve/UrlConnectionRetrieveFileTransfer.java
+tests/bundles/org.eclipse.ecf.tests.filetransfer/src/org/eclipse/ecf/tests/filetransfer/URLRetrieveTest.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient/src/org/eclipse/ecf/provider/filetransfer/httpclient/HttpClientRetrieveFileTransfer.java

@@ -1,0 +1,13 @@
+Bug 429399 – [1.8][quick fix] Missing import quick fix for IProblem.UndefinedName
+We don't report IProblem.undefinedType but report UndefinedName because
+the grammar does not allow us to discriminate.
+// --
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Function;
+public class X {
+public static void main (String[] args) {
+Function<List<String>, String> func = ArrayList::toString;
+System.out.println(func.apply(Arrays.asList("a", "b")));
+}
+}

@@ -1,0 +1,5 @@
+java/org/apache/catalina/Session.java
+java/org/apache/catalina/manager/DummyProxySession.java
+java/org/apache/catalina/session/ManagerBase.java
+java/org/apache/catalina/session/StandardSession.java
+webapps/docs/changelog.xml

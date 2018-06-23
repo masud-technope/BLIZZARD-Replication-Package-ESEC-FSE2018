@@ -1,0 +1,6 @@
+53843 – isAsyncStarted may return false in thread that started async processing
+After async processing starts in some container thread A, subsequent calls to request.isAsyncStarted() return true as expected.
+However as soon as an application thread B calls asyncContext.dispatch(), isAsyncStarted() begins to return false even if the actual dispatch has not yet occurred.
+For this case the spec says: "the dispatch operation will be delayed until after the container-initiated dispatch has returned to the container."
+For the brief period after dispatch() is called but before the actual dispatch begins (and DispatcherType becomes ASYNC), isAsyncStarted should return true.
+Without that, the return value of isAsyncStarted() may suddenly change while thread A is still exiting causing it to not recognize that async processing started and that it needs to exit as quickly as possible.

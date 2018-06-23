@@ -1,0 +1,29 @@
+examples/bundles/org.eclipse.ecf.examples.remoteservices.hello.consumer/src/org/eclipse/ecf/internal/examples/remoteservices/hello/consumer/HelloConsumerApplication.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/node/internal/ReadRoot.java
+examples/bundles/org.eclipse.ecf.examples.remoteservices.hello.host/.project
+examples/bundles/org.eclipse.ecf.examples.remoteservices.hello.host/META-INF/MANIFEST.MF
+examples/bundles/org.eclipse.ecf.examples.remoteservices.hello.host/build.properties
+examples/bundles/org.eclipse.ecf.examples.remoteservices.hello.host/products/Hello Service Host (zookeeper,rosgi).product
+examples/bundles/org.eclipse.ecf.examples.remoteservices.hello.host/src/org/eclipse/ecf/internal/examples/remoteservices/hello/host/HelloCommand.java
+examples/bundles/org.eclipse.ecf.examples.remoteservices.hello.host/src/org/eclipse/ecf/internal/examples/remoteservices/hello/host/HelloHostApplication.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/plugin.xml
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/DiscoveryActivator.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/core/AdvertisedService.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/core/DefaultDiscoveryConfig.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/core/DiscoverdService.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/core/IDiscoveryConfig.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/core/ZooDiscoveryContainer.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/core/internal/Configuration.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/core/internal/Localizer.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/node/internal/ReadRoot.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/node/internal/WatchManager.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/util/Geo.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/util/Logger.java
+protocols/bundles/org.apache.zookeeper/.settings/org.eclipse.jdt.core.prefs
+protocols/bundles/org.apache.zookeeper/.settings/org.eclipse.jdt.ui.prefs
+protocols/bundles/org.apache.zookeeper/META-INF/MANIFEST.MF
+examples/bundles/org.eclipse.ecf.examples.remoteservices.hello.consumer/products/Hello Service Consumer (zookeeper,r-osgi).product
+examples/bundles/org.eclipse.ecf.examples.remoteservices.hello.consumer/src/org/eclipse/ecf/internal/examples/remoteservices/hello/consumer/HelloConsumerApplication.java
+releng/features/org.eclipse.ecf.sdk-feature/org.eclipse.ecf.sdk.cquery
+releng/features/org.eclipse.ecf.sdk-feature/org.eclipse.ecf.sdk.mspec
+releng/features/org.eclipse.ecf.remoteservice.sdk.feature/feature.xml

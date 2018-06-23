@@ -1,0 +1,9 @@
+Bug 311603 – [build path] editing user library properties drops classpath entry attributes
+In the Java Persistence properties for a JPA project choose the JPA implementation type of User Library and select an appropriate library.
+ Close and save the project properties.
+ Right click on the library in the Project Explorer and choose 'Properties'.
+ Select 'User Libraries...' and add/remove a jar from the user library.
+ It can be any jar, doesn't have to be one that is needed for this library to be valid for the particular JPA platform.
+ Now go back to the Project properties and view the Java Persistence page and you will see that the library has been unselected and there is an error.
+I can only get this to happen if I edit the library as described above.
+ If you instead edit it through the Project properties 'Java Build Path' page, the JPA implementation library never gets unselected.

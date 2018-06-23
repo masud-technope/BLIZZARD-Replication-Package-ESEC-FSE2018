@@ -1,0 +1,16 @@
+Bug 403881 – [1.8][formatter] Receiver parameter halts formatting
+BETA_JAVA8:
+There is no effect seen while formatting this program:
+// ---
+public class X {
+void foo(@Marker X this) {}
+class Y {
+Y(@Marker X X.this) {}
+void foo(X.Y this) {}
+}
+}
+@java.lang.annotation.Target(java.lang.annotation.ElementType.TYPE_USE)
+@interface Marker {
+}
+This could be due to assumptions that argument name is an TokenNameIdentifier,
+which is not true for receiver parameters.

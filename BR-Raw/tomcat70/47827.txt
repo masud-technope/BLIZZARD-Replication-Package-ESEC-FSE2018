@@ -1,0 +1,3 @@
+47827 – Tomcat API should not have methods that declare they throw Exception
+Tomcat API should not have methods that declare they throw Exception.
+ Something more specific would be polite to users, since it must be known what actual checked exception types can be thrown.

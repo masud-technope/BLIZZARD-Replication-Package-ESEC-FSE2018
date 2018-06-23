@@ -1,0 +1,8 @@
+Bug 384431 – Generic Provider prints error message to log unnecessarily under some conditions
+As described in this posting
+http://dev.eclipse.org/mhonarc/lists/ecf-dev/msg05980.html
+Under some conditions the ECF generic remote services provider presents unnecessary error output to the log.
+The IStatus.ERROR in this line (ClientSOContainer:450) should be changed to WARNING
+ProviderPlugin.getDefault().log(new Status(IStatus.ERROR, ProviderPlugin.PLUGIN_ID, IStatus.ERROR, "disconnect.sendSynch", e)); //$NON-NLS-1$
+e.g.
+ProviderPlugin.getDefault().log(new Status(IStatus.WARNING, ProviderPlugin.PLUGIN_ID, IStatus.WARNING, "disconnect.sendSynch", e)); //$NON-NLS-1$

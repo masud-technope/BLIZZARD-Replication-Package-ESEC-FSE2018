@@ -1,0 +1,14 @@
+Bug 35888 – Adding extensions using plugin manifest editor
+I encounter a couple of minor problems when using the plugin manifest editor to
+add a builder extension to my plugin.
+Here's what I did and the problems I
+encountered:
+1) I added a org.eclipse.core.resources.builder extension on the Extensions
+page.
+2) To this I added a "(buider)" and to this I added a "run".
+3) I open the properties on the "run" and the default class name was missing an
+I (the name was "ncrementatalProjectBuilder1") (Problem 1).
+4) I then used the wizard (Java Attribute Editor) to change the class info and
+generate a new builder class.
+The resulting class did not use my defined Java
+code template which has the proper copyright in it (Problem 2).

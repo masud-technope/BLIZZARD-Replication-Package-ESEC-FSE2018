@@ -1,0 +1,3 @@
+50325 – Update Tomcat to use JRE provided solutions for CVE-2009-3555 if available
+See http://www.oracle.com/technetwork/java/javase/documentation/tlsreadme2-176330.html for information on the Oracle provided features.
+Need to review this to see what - if anything - we can do in Tomcat.

@@ -1,0 +1,11 @@
+Bug 439750 – New compiler option for Unused exception parameter warning/error
+Since upgrading to Eclipse 4.5 integration build ID I20140715-0800, the following code snippet now triggers a compiler warning/error:
+try {
+...
+} catch (Exception e)Â {
+// do nothing
+}
+The error is: The value of the exception parameter e is not used
+Turning off the setting "Value of parameter is not used" in the compiler settings removes this error.
+We have that setting enabled, for example to warn of unused parameters in private methods.
+Is it a design decision to have this setting also apply to exception parameters, or is just a bug?

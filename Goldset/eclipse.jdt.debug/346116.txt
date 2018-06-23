@@ -1,0 +1,12 @@
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/sourcelookup/JarSourceLookupTests.java
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/JavaProjectHelper.java
+org.eclipse.jdt.debug.tests/testresources/JarProject/.project
+org.eclipse.jdt.debug.tests/testresources/JarProject/lib/sample.jar
+org.eclipse.jdt.debug.tests/testresources/JarRefProject/.classpath
+org.eclipse.jdt.debug.tests/testresources/JarRefProject/.project
+org.eclipse.jdt.debug.tests/testresources/JarRefProject/.settings/org.eclipse.jdt.core.prefs
+org.eclipse.jdt.debug.tests/testresources/JarRefProject/src/a/RunJar.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AbstractDebugTest.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AutomatedSuite.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/sourcelookup/JarSourceLookupTests.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/JavaSourceLookupUtil.java

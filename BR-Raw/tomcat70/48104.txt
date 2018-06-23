@@ -1,0 +1,37 @@
+48104 – the javadoc of class 'org.apache.catalina.startup.Catalina' is not complete, as in the usage() method
+Below is the javadoc of class 'org.apache.catalina.startup.Catalina':
+/**
+* Startup/Shutdown shell program for Catalina.
+ The following command line
+* options are recognized:
+* <ul>
+* <li><b>-config {pathname}</b> - Set the pathname of the configuration file
+*     to be processed.
+ If a relative path is specified, it will be
+*     interpreted as relative to the directory pathname specified by the
+*     "catalina.base" system property.
+  [conf/server.xml]
+* <li><b>-help</b> - Display usage information.
+* <li><b>-stop</b> - Stop the currently running instance of Catalina.
+* </u>
+*
+* Should do the same thing as Embedded, but using a server.xml file.
+*
+* @author Craig R.
+McClanahan
+* @author Remy Maucherat
+* @version $Revision: 752323 $ $Date: 2009-03-11 08:46:54 +0800 (Wed, 11 Mar 2009) $
+*/
+However, it doesn't allude the '-nonmaing' option, and 'start' option.
+Below is the usage() method of the same class:
+/**
+* Print usage information for this application.
+*/
+protected void usage() {
+System.out.println
+("usage: java org.apache.catalina.startup.Catalina"
++ " [ -config {pathname} ]"
++ " [ -nonaming ] { start | stop }");
+}
+It is not complete either.
+It lacks the '-help' option.

@@ -1,0 +1,12 @@
+java.lang.AbstractStringBuilder.append
+java.lang.StringBuffer.append
+org.eclipse.jdt.internal.core.util.Disassembler.disassemble
+org.eclipse.jdt.internal.core.util.Disassembler.disassemble
+org.eclipse.jdt.internal.core.util.Disassembler.disassembleTypeMembers
+org.eclipse.jdt.internal.core.util.Disassembler.disassemble
+org.eclipse.jdt.internal.core.util.Disassembler.disassemble
+org.eclipse.jdt.internal.ui.javaeditor.ClassFileEditor$SourceAttachmentForm.updateCodeView
+org.eclipse.jdt.internal.ui.javaeditor.ClassFileEditor$SourceAttachmentForm.createControl
+org.eclipse.jdt.internal.ui.javaeditor.ClassFileEditor.verifyInput
+org.eclipse.jdt.internal.ui.javaeditor.ClassFileEditor.createPartControl
+org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.createPartControl

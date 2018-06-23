@@ -1,0 +1,15 @@
+Bug 264901 – [target] target plaform pref page table & move operation
+The new target platform preference page needs the following enhancements:
+* The view of target definitions should be a table with 2 columns.
+The first column should be "Name" (as shown currently), and the second column should be the "Location".
+Definitions stored in the workspace will show their workspace path in this column.
+Definitions stored with metadata will leave this column blank.
+* The table should allow sorting on either column (by pressing the column header).
+Sort order should be persisted (as a preference, perhaps), so that the order is consistent when the page is later re-opened.
+* An image overlay should be used for definitions stored in the workspace - to visually distinguish them.
+There is a project overlay available (ask Curtis for this...)
+* A "Move..." action shold be added to the buttons on the right that enables when a metadata definition is selected, allowing the definition to be moved to the workspace.
+A dialog should open to allow the user to specify a file location for the definition in the workspace (there should be a standard dialog for this).
+Note that the preference page displays in memory copies of all workspace target definitions.
+This allows all operations on the page to be canceled.
+In this spirit, moving a target definition to the workspace is also cancelable (this is just copying a meta target def to ws target def that have different handles - the ITargetPlatformService provdies a copy method).

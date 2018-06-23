@@ -1,0 +1,29 @@
+55807 – JSP's always marked as outdated with Jar Scanner Component configured with â€œscanAllDirectoriesâ€? and referenced Taglib in WEB-INF/classes/META-INF
+consider the following (simplified) eclipse project configuration.
+web_base_jar (shared taglib etc.)
+web_war (uses web_base_jar)
+When developing our web project locally we use an exploded war layout.
+The compile output
+of web_base_jar is directly copied (not as a jar!) to the warâ€™s
+web_war/WEB-INF/classes directory by our ideâ€™s (eclipse with sysdeo plugin and intellij).
+Our shared taglib ends up here: web_war/WEB-INF/classes/META-INF/myTaglib.tld.
+The taglib
+is successfully picked up by the Jar Scanner configured with â€œscanAllDirectoriesâ€?.
+This leads to the following generated jsp code when myTaglib is used:
+static {
+_jspx_dependants = new java.util.HashMap<java.lang.String,java.lang.Long>(1);
+_jspx_dependants.put("file:/somepath/pc_web_war_exploded/WEB-INF/classes/META-INF/ myTaglib.tld
+", Long.valueOf(-1L));
+}
+The relevant code for this snippet is in org.apache.jasper.compiler.TagLibraryInfoImpl.<init>(TagLibraryInfoImpl.java:173).
+Because the Taglib is a file uri (file:/C:/somepath/pc_web_war_exploded/WEB-INF/classes/META-INF/myTaglib.tld)
+it is not found by ApplicationContext#getResource and the method
+org.apache.jasper.JspCompilationContext.getLastModified(JspCompilationContext.java:437) returns
+-1 in this case.
+When the compiler checks if the current jsp is outdated it checks also all includes/dependants.
+Because myTaglib is in the dependants  list of our jsps it is also checked.
+The check tests
+the lastModified timestamp of the file against -1 and returns always true.
+See here org.apache.jasper.compiler.Compiler.isOutDated(Compiler.java:519)
+This means that our jsps are recompiled on every request.
+We have some workarounds for this but it would be nice if this setup would work out of the box

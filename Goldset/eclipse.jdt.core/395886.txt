@@ -1,0 +1,14 @@
+org.eclipse.jdt.core/dom/org/eclipse/jdt/internal/core/dom/NaiveASTFlattener.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTConverter18Test.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTMatcherTest.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ASTConverter.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/DefaultBindingResolver.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/internal/core/dom/NaiveASTFlattener.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ASTConverter.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/ASTMatcher.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/Name.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/QualifiedName.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/SimpleName.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/internal/core/dom/NaiveASTFlattener.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/internal/core/dom/rewrite/ASTRewriteAnalyzer.java
+org.eclipse.jdt.core/dom/org/eclipse/jdt/internal/core/dom/rewrite/ASTRewriteFlattener.java

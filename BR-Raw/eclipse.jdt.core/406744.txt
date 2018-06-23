@@ -1,0 +1,24 @@
+Bug 406744 – [1.8][compiler][codegen] LambdaConversionException seen when method reference targets a varargs method.
+BETA_JAVA8:
+We generate bad code that triggers a LCE for this program:
+// ---
+interface I {
+void foo(Integer a1, Integer a2, String a3);
+}
+class Y {
+static void m(Number a1, Object...
+rest) {
+System.out.println(a1);
+print(rest);
+}
+static void print (Object [] o) {
+for (int i = 0; i < o.length; i++)
+System.out.println(o[i]);
+}
+}
+public class X {
+public static void main(String [] args) {
+I i = Y::m;
+i.foo(10, 20, "10, 20");
+}
+}

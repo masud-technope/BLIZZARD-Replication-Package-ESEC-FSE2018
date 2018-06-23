@@ -1,0 +1,48 @@
+Bug 447062 – [1.8][dom/ast] lambda as a class member - IllegalArgumentException
+I use Eclipse 4.4.1 and JDK 1.8.0.5.
+I have a class with lambda as a class member:
+public class LambdaTest {
+Runnable foo = () -> {
+};
+}
+When I save this class, the following error occurs (in error log):
+java.lang.IllegalArgumentException
+at org.eclipse.jdt.core.dom.ASTNode.setSourceRange(ASTNode.java:2845)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2252)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1789)
+at org.eclipse.jdt.core.dom.ASTConverter.convertToVariableDeclarationFragment(ASTConverter.java:3317)
+at org.eclipse.jdt.core.dom.ASTConverter.convertToFieldDeclaration(ASTConverter.java:3204)
+at org.eclipse.jdt.core.dom.ASTConverter.checkAndAddMultipleFieldDeclaration(ASTConverter.java:438)
+at org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations(ASTConverter.java:188)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:2958)
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1374)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:889)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:585)
+at org.eclipse.jdt.core.dom.ASTParser.createASTs(ASTParser.java:896)
+at org.eclipse.jdt.apt.core.internal.env.BaseProcessorEnv.createASTs(BaseProcessorEnv.java:857)
+at org.eclipse.jdt.apt.core.internal.env.ReconcileEnv.openPipeline(ReconcileEnv.java:108)
+at org.eclipse.jdt.apt.core.internal.env.AbstractCompilationEnv.newReconcileEnv(AbstractCompilationEnv.java:97)
+at org.eclipse.jdt.apt.core.internal.APTDispatchRunnable.reconcile(APTDispatchRunnable.java:219)
+at org.eclipse.jdt.apt.core.internal.APTDispatchRunnable.runAPTDuringReconcile(APTDispatchRunnable.java:167)
+at org.eclipse.jdt.apt.core.internal.AptCompilationParticipant.reconcile(AptCompilationParticipant.java:223)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation$1.run(ReconcileWorkingCopyOperation.java:258)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.notifyParticipants(ReconcileWorkingCopyOperation.java:245)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:95)
+at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:729)
+at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:789)
+at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1247)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:126)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:108)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:89)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:87)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.initialReconcile(JavaReconcilingStrategy.java:178)
+at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.initialReconcile(CompositeReconcilingStrategy.java:114)
+at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.initialReconcile(JavaCompositeReconcilingStrategy.java:136)
+at org.eclipse.jface.text.reconciler.MonoReconciler.initialProcess(MonoReconciler.java:105)
+at org.eclipse.jdt.internal.ui.text.JavaReconciler.initialProcess(JavaReconciler.java:406)
+at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:173)
+As a result the project can not be complied properly.
+When I put 'foo' variable in any method, everything works as expected.
+Making 'foo' variable does not help.

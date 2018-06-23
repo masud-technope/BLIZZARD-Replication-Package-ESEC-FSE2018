@@ -1,0 +1,24 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/dialogs/SourceActionDialog.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/SpellingConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/wizards/NewJavaProjectWizardPageOne.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/actions/GenerateConstructorUsingFieldsSelectionDialog.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/nls/ExternalizeWizardPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/formatter/WhiteSpaceTabPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/dialogfields/ComboDialogField.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/EditTemplateDialog.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/FoldingConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/formatter/ModifyDialogTabPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat/FatJarPackageWizardPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/formatter/ProfileConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackager/AbstractJarDestinationWizardPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/JavaSearchPage.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/MoveMembersWizard.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/PullUpMemberPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/util/SWTUtil.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/formatter/LineWrappingTabPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javadocexport/JavadocWizardPage.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/code/ExtractMethodInputPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/formatter/CreateProfileDialog.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/sef/SelfEncapsulateFieldInputPage.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/ComboSelectionDialog.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/OptionsConfigurationBlock.java

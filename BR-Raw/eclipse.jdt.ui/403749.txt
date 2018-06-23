@@ -1,0 +1,4 @@
+Bug 403749 – [1.8][clean up][quick assist] migrate anonymous class creations to lambda expressions
+Create a clean up / multi fix / quick assist that migrates anonymous class creations to lambda expressions.
+The result must be semantically equivalent to the original code.
+The migration can only work if the type is a "Functional Interface", and if the anonymous class body only contains a single method.

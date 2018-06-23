@@ -1,0 +1,9 @@
+java/org/apache/coyote/ajp/AjpAprProcessor.java
+java/org/apache/coyote/ajp/AjpProcessor.java
+java/org/apache/coyote/http11/Http11AprProcessor.java
+java/org/apache/coyote/http11/Http11NioProcessor.java
+java/org/apache/coyote/http11/Http11Processor.java
+java/org/apache/coyote/http11/filters/ChunkedInputFilter.java
+java/org/apache/coyote/http11/filters/ChunkedOutputFilter.java
+java/org/apache/tomcat/util/buf/HexUtils.java
+java/org/apache/tomcat/util/buf/MessageBytes.java

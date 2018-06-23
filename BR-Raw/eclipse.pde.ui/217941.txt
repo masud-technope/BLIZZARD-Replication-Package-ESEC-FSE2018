@@ -1,0 +1,10 @@
+Bug 217941 – Incorrectly parse headers in Manifest Content Assist
+Steps to reproduce:
+1.
+Import org.eclipse.pde.core into your workspace.
+2.
+Go to the last time of the Export-Package header
+3.
+Add a comma then a new line then trigger content assist.
+Result: content assist shows almost all the packages in the plug-in.
+ This is because we don't parse the header correctly resulting in the Export-Package header  only containing the first 3 packages.

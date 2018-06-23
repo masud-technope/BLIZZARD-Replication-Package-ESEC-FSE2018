@@ -1,0 +1,6 @@
+Bug 92712 – IJavaStackFrame.isVarargs() named inconsistently
+20050419
+We renamed Method.isVarargs() to Method.isVarArgs(), however, we added a new
+method IJavaStackFrame.isVarargs().
+ We should ensure that these methods are
+consistently named.

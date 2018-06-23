@@ -1,0 +1,31 @@
+Bug 153460 – NPE occurs after retrieving content from CVS
+3.3M1
+- observed on linux-motif and aix-motif, but probably happens on all platforms
+- connect to dev.eclipse.org
+- retrieve the following projects:
+org.eclipse.swt
+org.eclipse.swt.examples
+org.eclipse.swt.motif.linux.x86
+org.eclipse.swt.snippets
+- the following NPE occurs:
+java.lang.NullPointerException
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validateBinIncludes(BuildErrorReporter.java:194)
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validateBinIncludes(BuildErrorReporter.java:189)
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validateBuild(BuildErrorReporter.java:170)
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validate(BuildErrorReporter.java:105)
+at org.eclipse.pde.internal.core.builders.ErrorReporter.validateContent(ErrorReporter.java:130)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.checkBuildProperties(ManifestConsistencyChecker.java:140)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.checkThisProject(ManifestConsistencyChecker.java:58)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.build(ManifestConsistencyChecker.java:40)
+at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:607)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:162)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:196)
+at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:225)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:228)
+at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:247)
+at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:280)
+at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:145)
+at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:208)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)

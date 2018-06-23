@@ -1,0 +1,11 @@
+Bug 472205 – [formatter] Class extends generic type and implements another type, missing space after ">"
+I have a problem with the formatter in the following case:
+class A extends B<ClientListener>implements C
+Instead of having
+class A extends B<ClientListener> implements C
+(class A extends B<ClientListener>[missing space here]implements C)
+Problem appears when class extends a typed type, followed by an implements declaration.
+In other case there is no problem.
+I checked all options, but I can't configure that case (it is possible to configure space after "<" and before ">", but not after ">" of the generic type).
+It is possible to avoid it by not formatting this kind of class, but I as use the "on save" clean all option, it is really annoying.
+Thanks for the help.

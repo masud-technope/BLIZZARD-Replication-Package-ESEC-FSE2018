@@ -1,0 +1,51 @@
+Bug 93208 – [dom] CompilationUnit.rewrite throws AssertionFailedException with legal AST (bug in recoding ast modifications)
+While recording AST modifications and copySubtree is performed on a node from
+the same AST, eg: ASTNode x = ast.newXXX ...
+y = ASTNode.copySubtree(ast, x),
+when the edit is requested it fails to get the source from the original node
+with an Assertion exception.
+I'm not sure if it's my fault, but ASTNode.copySubtree javadoc implies that
+this is a legal operation.
+I get the following stack trace when running the attached unit test (irrelevant
+traces removed):
+org.eclipse.jface.text.Assert$AssertionFailedException: Assertion failed:
+at org.eclipse.jface.text.Assert.isTrue(Assert.java:177)
+at org.eclipse.jface.text.Assert.isTrue(Assert.java:162)
+at org.eclipse.text.edits.TextEdit.<init>(TextEdit.java:149)
+at org.eclipse.text.edits.CopySourceEdit.<init>(CopySourceEdit.java:96)
+at
+org.eclipse.jdt.internal.core.dom.rewrite.ASTRewriteAnalyzer.getCopySourceEdit
+(ASTRewriteAnalyzer.java:128)
+at
+org.eclipse.jdt.internal.core.dom.rewrite.ASTRewriteAnalyzer.doTextInsert
+(ASTRewriteAnalyzer.java:984)
+at
+org.eclipse.jdt.internal.core.dom.rewrite.ASTRewriteAnalyzer$ListRewriter.rewrit
+eList(ASTRewriteAnalyzer.java:461)
+at
+org.eclipse.jdt.internal.core.dom.rewrite.ASTRewriteAnalyzer.rewriteParagraphLis
+t(ASTRewriteAnalyzer.java:837)
+at org.eclipse.jdt.internal.core.dom.rewrite.ASTRewriteAnalyzer.visit
+(ASTRewriteAnalyzer.java:1263)
+at org.eclipse.jdt.core.dom.TypeDeclaration.accept0
+(TypeDeclaration.java:469)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2450)
+at org.eclipse.jdt.internal.core.dom.rewrite.ASTRewriteAnalyzer.doVisit
+(ASTRewriteAnalyzer.java:249)
+at
+org.eclipse.jdt.internal.core.dom.rewrite.ASTRewriteAnalyzer.doVisitList
+(ASTRewriteAnalyzer.java:280)
+at
+org.eclipse.jdt.internal.core.dom.rewrite.ASTRewriteAnalyzer.doVisitUnchangedChi
+ldren(ASTRewriteAnalyzer.java:298)
+at org.eclipse.jdt.internal.core.dom.rewrite.ASTRewriteAnalyzer.visit
+(ASTRewriteAnalyzer.java:1151)
+at org.eclipse.jdt.core.dom.CompilationUnit.accept0
+(CompilationUnit.java:287)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2450)
+at org.eclipse.jdt.core.dom.InternalASTRewrite.rewriteAST
+(InternalASTRewrite.java:71)
+at org.eclipse.jdt.core.dom.AST.rewrite(AST.java:2642)
+at org.eclipse.jdt.core.dom.CompilationUnit.rewrite
+(CompilationUnit.java:853)
+at jdt.tests.AstRewriteBug.testAstRewriteBug(AstRewriteBug.java:60)

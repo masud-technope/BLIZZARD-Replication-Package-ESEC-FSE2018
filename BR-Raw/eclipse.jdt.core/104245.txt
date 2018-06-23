@@ -1,0 +1,16 @@
+Bug 104245 – AST.newCompilationUnit javadoc error
+The Javadoc for AST.newCompilationUnit contains the following second paragraph:
+"Note that the new compilation unit is not automatically made the root node of
+this AST.
+This must be done explicitly by calling setRoot." But there is no
+method setRoot, at least no such public method.
+In fact, the abstract syntax "tree" is actually a forest, because there can be
+multiple nodes without parents.
+And calling the getRoot method on a particular
+node will actually return the root of the tree in the forest to which that node
+belongs.
+To make a node the only root of the AST, one must only make every other
+node children or descendents of it.
+Two suggested changes: (1) remove the second paragraph from newCompilationUnit
+javadoc and (2) include some discussion of what the "root" of an AST is in the
+Javadoc for the AST type.

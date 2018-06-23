@@ -1,0 +1,14 @@
+Bug 213268 – [open plug-in artifact] filter is too stringent
+3.4 M4
+I am a huge fan of PDE and love the new Open Plug-in Artifact dialog, even with its flaws :)
+1.
+The filter in said dialog is too stringent.
+ It expects you to enter the fully-qualified name for extensions and extension points for any match to occur.
+This is unnecessary.
+ In the Open Type dialog, you do not have to enter the fully-qualified name of a class to get a match.
+ Extensions should be treated the same when it comes to their namespace requirement.
+Take a look at how the extension filter works when you press Add...
+on the Extensions page of the plug-in manifest editor.
+2.
+In the top level menu, go to Navigate > Open Plug-in Artifact.
+Note how the keybinding is preceded by two weird boxes.

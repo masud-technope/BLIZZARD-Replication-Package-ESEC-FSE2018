@@ -1,0 +1,7 @@
+Bug 159066 – No feedback the state of the state
+users of PDE are inherently manipulating a set of plugins in a State.
+ That state is resolved and various bundles are wired together.
+ From time to time the wirings go wrong or are unexpected.
+ When this happens it would be good for users to inspect the state and follow the wires and diagnose the problems.
+ This is very much like the functions provide in the OSGi console (e.g., ss, diag, package, ..) but on the PDE state not the framework's state.
+The Equinox team would be delighted to supply any underlying infrastructure needed in addition to the state helper etc and humbly request that the PDE UI wizards expose this somehow in the UI.

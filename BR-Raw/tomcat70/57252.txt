@@ -1,0 +1,27 @@
+57252 – Custom error page is not used for an error that occurs asynchronously
+Created attachment 32224 [details]
+Small app to reproduce the problem
+If an error is sent as part of some asynchronous processing, for example:
+@WebServlet(value = "/async", asyncSupported=true)
+public class AsyncServlet extends HttpServlet {
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+final AsyncContext context = request.startAsync();
+context.start(new Runnable() {
+@Override
+public void run() {
+try {
+response.sendError(500);
+} catch (IOException e) {
+}
+context.complete();
+}
+});
+}
+}
+Tomcat 7.0.57 renders its default error page rather than the configured custom error page.
+The same behaviour is also exhibited in recent 8.0.x releases.
+It's perhaps worth noting that Tomcat 7.0.55 renders an entirely blank page in this scenario.
+My expectation is that the custom error page is used and, FWIW, this is what Jetty does.
+I have attached a war that can be used to reproduce the problem.
+/sync can be used to confirm that the custom error page is working.
+/async will reproduce the problem described above.

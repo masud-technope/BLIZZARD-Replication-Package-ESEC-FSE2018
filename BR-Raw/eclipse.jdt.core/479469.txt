@@ -1,0 +1,11 @@
+Bug 479469 – [formatter] Line wrap for long @see references
+Give the following code and a line wrap of 90:
+> //
+>
+> /**
+> * @see org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory
+> */
+> package com.example;
+The formatter will wrap the reference to something that Javadoc cannot process:
+>  * @see org.springframework.boot.context.embedded.jetty.
+> * JettyEmbeddedServletContainerFactory

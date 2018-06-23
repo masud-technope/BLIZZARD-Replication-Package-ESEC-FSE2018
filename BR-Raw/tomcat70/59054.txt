@@ -1,0 +1,18 @@
+59054 – CrawlerSessionManagerValve is not serializable, and throws exception when passing itself as sessionAttribute
+During first request to the application when user agent matches crawler pattern the execution reaches the point where it tries to store itself in sessionAttribute (s1.setAttribute(this.getClass().getName(), this)).
+Since CrawlerSessionManagerValve does not implement Serializable it throws exception:
+java.lang.IllegalArgumentException: setAttribute: Non-serializable attribute org.apache.catalina.valves.CrawlerSessionManagerValve
+at org.apache.catalina.session.StandardSession.setAttribute(StandardSession.java:1465)
+at org.apache.catalina.session.StandardSession.setAttribute(StandardSession.java:1426)
+at org.apache.catalina.session.StandardSessionFacade.setAttribute(StandardSessionFacade.java:154)
+at org.apache.catalina.valves.CrawlerSessionManagerValve.invoke(CrawlerSessionManagerValve.java:190)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:116)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:423)
+at org.apache.coyote.ajp.AjpProcessor.process(AjpProcessor.java:190)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:625)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:316)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+at java.lang.Thread.run(Thread.java:745)
+I was able to fix this bug by modyfing source code to implement Serializable interface.

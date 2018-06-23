@@ -1,0 +1,13 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/RepositoryInfo.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/ProductEditor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/PluginConfigurationSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/UpdatesPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/iproduct/IRepositoryInfo.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/UpdatesSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/IHelpContextIds.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/iproduct/IProductModelFactory.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/ProductModelFactory.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/product/Product.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/iproduct/IProduct.java

@@ -1,0 +1,13 @@
+Bug 416022 – Clean Up Refactoring should report which file caused the exception (was: Eclipse code formatter crashes with exception in handling Cp1252 character encoding)
+Performed code formatting at project level containing more than 100 Java files.
+Expected: The code must be formatted as per the template.
+Actual: The formatter threw exception saying: Some characters cannot be mapped using "Cp1252" character encoding.
+Either change the encoding or remove the characters which are not supported by the "Cp1252" character encoding.
+There are two problems here:
+1) The root cause for the exception
+2) The exception details are not enough - it doesn't state in which file the exception occurred.
+Now I have to dig through all the files one by one.
+-- Configuration Details --
+Product: Eclipse 2.0.0.20130613-0530 (org.eclipse.epp.package.jee.product)
+Installed Features:
+org.eclipse.jdt 3.9.0.v20130605-2000

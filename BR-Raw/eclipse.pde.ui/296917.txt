@@ -1,0 +1,84 @@
+Bug 296917 – NPE while building my workspace
+Using build I20091201-1600, I got the following NPE while building the entire workspace (Full build):
+!SESSION 2009-12-04 15:02:47.778 -----------------------------------------------
+eclipse.buildId=I20091201-1600
+java.version=1.6.0_17
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_FR
+Framework arguments:  -showLocation
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -consoleLog -showLocation -data C:\eclipse\workspaces\v36\formatter\head
+!ENTRY org.eclipse.ui 2 2 2009-12-04 15:03:43.722
+!MESSAGE Perspective OTI - Debug has been made into a local copy
+!ENTRY org.eclipse.core.resources 4 2 2009-12-04 15:09:20.263
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validateExecutionEnvironment(BuildErrorReporter.java:268)
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validateBuild(BuildErrorReporter.java:230)
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validate(BuildErrorReporter.java:123)
+at org.eclipse.pde.internal.core.builders.ErrorReporter.validateContent(ErrorReporter.java:127)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.validateBuildProperties(ManifestConsistencyChecker.java:326)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.validateProject(ManifestConsistencyChecker.java:241)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.build(ManifestConsistencyChecker.java:167)
+at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:627)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:170)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:201)
+at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:253)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:256)
+at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:309)
+at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:341)
+at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:342)
+at org.eclipse.ui.actions.GlobalBuildAction$1.run(GlobalBuildAction.java:178)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!ENTRY org.eclipse.core.resources 4 75 2009-12-04 15:09:30.571
+!MESSAGE Errors occurred during the build.
+!SUBENTRY 1 org.eclipse.pde.core 4 75 2009-12-04 15:09:30.571
+!MESSAGE Errors running builder 'Plug-in Manifest Builder' on project 'org.eclipse.jdt.core'.
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validateExecutionEnvironment(BuildErrorReporter.java:268)
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validateBuild(BuildErrorReporter.java:230)
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validate(BuildErrorReporter.java:123)
+at org.eclipse.pde.internal.core.builders.ErrorReporter.validateContent(ErrorReporter.java:127)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.validateBuildProperties(ManifestConsistencyChecker.java:326)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.validateProject(ManifestConsistencyChecker.java:241)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.build(ManifestConsistencyChecker.java:167)
+at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:627)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:170)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:201)
+at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:253)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:256)
+at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:309)
+at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:341)
+at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:342)
+at org.eclipse.ui.actions.GlobalBuildAction$1.run(GlobalBuildAction.java:178)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!ENTRY org.eclipse.core.resources 4 75 2009-12-04 15:09:30.571
+!MESSAGE Errors occurred during the build.
+!SUBENTRY 1 org.eclipse.pde.core 4 75 2009-12-04 15:09:30.581
+!MESSAGE Errors running builder 'Plug-in Manifest Builder' on project 'org.eclipse.jdt.core'.
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validateExecutionEnvironment(BuildErrorReporter.java:268)
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validateBuild(BuildErrorReporter.java:230)
+at org.eclipse.pde.internal.core.builders.BuildErrorReporter.validate(BuildErrorReporter.java:123)
+at org.eclipse.pde.internal.core.builders.ErrorReporter.validateContent(ErrorReporter.java:127)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.validateBuildProperties(ManifestConsistencyChecker.java:326)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.validateProject(ManifestConsistencyChecker.java:241)
+at org.eclipse.pde.internal.core.builders.ManifestConsistencyChecker.build(ManifestConsistencyChecker.java:167)
+at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:627)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:170)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:201)
+at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:253)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:256)
+at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:309)
+at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:341)
+at org.eclipse.core.internal.resources.Workspace.build(Workspace.java:342)
+at org.eclipse.ui.actions.GlobalBuildAction$1.run(GlobalBuildAction.java:178)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

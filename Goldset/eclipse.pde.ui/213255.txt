@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/ischema/IDocumentSection.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/Schema.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/SchemaElement.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/DocumentSection.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/SchemaAnnotationHandler.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/SchemaAttribute.java

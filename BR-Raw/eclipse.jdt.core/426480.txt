@@ -1,0 +1,14 @@
+Bug 426480 – EclipseFileManager#getJavaFileObjectsFromFiles allows directories
+This is the Javadoc from StandardJavaFileManager#getJavaFileObjectsFromFiles()
+/**
+* Gets file objects representing the given files.
+*
+* @param files a list of files
+* @return a list of file objects
+* @throws IllegalArgumentException if the list of files includes
+* a directory
+*/
+But both the following JDT implementations allow directories and need to be fixed:
+org.eclipse.jdt.internal.compiler.apt.util.EclipseFileManager
+org.eclipse.jdt.internal.compiler.tool.EclipseFileManager
+A patch will follow.

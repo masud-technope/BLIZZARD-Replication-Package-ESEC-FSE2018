@@ -1,0 +1,5 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/ConfigurationSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/AboutSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/LauncherSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/LicenseSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/product/WindowImagesSection.java

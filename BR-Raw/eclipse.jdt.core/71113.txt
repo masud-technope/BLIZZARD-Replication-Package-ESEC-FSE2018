@@ -1,0 +1,5 @@
+Bug 71113 – [1.5] improve DOM/AST specs for bindings for JLS3 constructs
+The specs for ITypeBinding and IMethodBinding do not cover all the cases that
+need to be handled in JLS3.
+The particular area that the spec must cover are
+instances of generic type and generic methods.

@@ -1,0 +1,8 @@
+Bug 202272 – two drop-down on fragment project Overview tab can be confusing
+Build ID: I20070625-1500
+Steps To Reproduce:
+<Accessibility>
+From a PDE Fragment project open the MANIFEST.MF file.
+Go to the Overview tab, place the focus on drop-down list Host minimum version or Host maximum version, press left arrow key or down arrow key, no changes between Inclusive and Exclusive combo choices.
+More information:
+This happens in even with Eclipse 3.3.

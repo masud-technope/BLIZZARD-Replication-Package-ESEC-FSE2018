@@ -1,0 +1,32 @@
+Bug 296498 – [JUnit] Launching from the 'JUnit' view with dirty editors causes two save prompts
+Build id: I20091124-0800
+1.
+Create a JUnit test.
+2.
+Put a test method in it.
+3.
+Run it.
+The test passes, everyone's happy.
+4.
+Make the editor dirty by typing stuff in it.
+5.
+Try to run the same test from the 'JUnit' view.
+6.
+A 'Save Resource' prompt appears, hit the 'ESC' key to cancel.
+7.
+The 'Save and Launch' prompt appears.
+Dismiss it.
+The launching operation should've just been canceled completely.
+8.
+Redo step 5.
+9.
+Redo step 6 but click the 'Cancel' button.
+10.
+Same result as step 7.
+11.
+Redo step 5.
+12.
+Redo step 6 but click the 'No' button.
+11.
+Same result as step 7.
+The prompt should not have appeared as I already said 'No'.

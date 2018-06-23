@@ -1,0 +1,19 @@
+Bug 201998 – Provide a wizard that generates NL fragments
+I am trying to set up NL fragments for plug-ins in my product, and the process is very tedious and time-consuming.
+Some PDE tooling is needed in this area.
+It would be good to provide a wizard that generates NL fragments for plug-ins en masse.
+In the wizard:
+1.
+I would be able to select >= 1 plug-in(s)
+2.
+Specify >= 1 locale(s)
+When I press Finish, PDE would generate 1 fragment per plug-in.
+- A fragment's symbolic name == the host's symbolicName + ".nl1".
+- The fragment's version would be the same as that of the host.
+- Fragment-Host's bundle-version range would be: "[1.0.0, 1.1.0)" if the host's version is 1.0.0 since translations need to be reviewed/updated with a minor release increment.
+As for the content of each fragment:
+- The fragment project created should be a simple project, not a Java project.
+- Assuming the Bundle-Localization header is set to "plugin", PDE would generate a plugin_<locale>.properties file at the root of the fragment for each specified locale and initializes its content by copying all keys from the host's properties file
+- Repeat the previous step for all properties files containing strings externalized from Java files.
+ Here PDE would also generate the full folder structure for each properties file.
+cc Kit to see if he has more ideas.

@@ -1,0 +1,69 @@
+48345 – Session does time-out shorter than setting in web.xml when PersistentManager is used.
+I am encountering the problem that Session does time-out shorter than setting in web.xml.
+This is a simple scenario where the problem occurs.
+I am using PersistentManager by the following configuration.
+<Context>
+<Manager className="org.apache.catalina.session.PersistentManager"
+maxIdleSwap="120">
+<Store className="org.apache.catalina.session.FileStore"/>
+</Manager>
+</Context>
+I am setting the session-timeout at five minutes.
+<session-config>
+<session-timeout>5</session-timeout>
+</session-config>
+[scenario]
+1.
+Create Session.
+2.
+120 seconds pass.
+Session does swapOut.
+3.
+In addition, 120 seconds pass.
+Get Session.
+Session does swapIn and access time of session in the memory is updated.
+4.
+In addition, 90 seconds pass.
+Get Session.
+Because the access time of the session has been updated in (3),
+The session should be able to be acquired.
+However, the session can not be acquired.
+This cause is StoreBase#processExpires invoked between (3) and (4).
+StoreBase#processExpire deletes the session saved in Store.
+StoreBase#processExpires is as follows.
+=====StoreBase#processExpires=====
+public void processExpires() {
+...
+for (int i = 0; i < keys.length; i++) {
+try {
+StandardSession session = (StandardSession) load(keys[i]);
+if (session == null) {
+continue;
+}
+if (session.isValid()) {
+continue;
+}
+...
+if ( ( (PersistentManagerBase) manager).isLoaded( keys[i] )) {
+// recycle old backup session
+session.recycle();
+} else {
+// expire swapped out session
+session.expire();
+}
+remove(session.getIdInternal());
+} catch (Exception e) {
+...
+}
+}
+}
+======
+The session saved in Store is loaded, and StandardSession#isValid() is executed.
+StandardSession#expire(true) is invoked for the session that passes
+session time-out in "StandardSession#isValid()".
+StandardSession#expire(true) invokes Manager#remove(Session).
+As a result, the session is deleted from the session map.
+In a word, session in memory is deleted by invalidating old session in Store.
+As a result, session does time-out shorter than setting in web.xml
+I made a patch against trunk.
+Best regards.

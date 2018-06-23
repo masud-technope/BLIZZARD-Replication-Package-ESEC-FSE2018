@@ -1,0 +1,10 @@
+Bug 308693 – Filter workspace features if target is managed using features
+1) Create a target pointing at the Eclipse install
+2) On the content tab, select manage using features
+3) Deselect everything except one feature
+4) Set the target as the active target platform
+5) Open a new Eclipse launch config
+6) On the plug-ins/content tab use "selected features below"
+Result:
+All features in the installation are visible in the table.
+We should filter the list of features in the model manager if the user is managing the target by features and a subset is selected.

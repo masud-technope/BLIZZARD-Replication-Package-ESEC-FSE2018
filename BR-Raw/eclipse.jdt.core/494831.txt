@@ -1,0 +1,11 @@
+Bug 494831 – Formatter ignores whitespace rules for diamond operator
+As of 4.5.2, formatter no longer respects "before opening angle bracket" whitespace setting for generic type parameter references.
+For example, in 4.5.1, the formatter would produce:
+List <String> list = new ArrayList <>();
+with this setting enabled, as expected.
+As of 4.5.2, this happens:
+List <String> list = new ArrayList<>();
+while this still works as expected:
+List <String> list = new ArrayList <String>();
+I have verified that this bug was introduced in 4.5.1 -> 4.5.2 by checking vanilla Eclipse installations of 4.5.1 and 4.5.2.
+Should be easy to repro: just download latest Mars version (4.5.2), set the formatter to add whitespace before opening type parameter bracket, and try running it on code using the diamond operator.

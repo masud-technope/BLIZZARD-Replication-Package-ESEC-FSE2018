@@ -1,0 +1,9 @@
+Bug 102141 – X.P. schema should indicate if dependency is required
+Some extension points require that extending plug-ins declare dependency on
+the plug-in declaring the extension point.
+ In other cases, where extension
+can be viewed as optional, or does not provide code, the dependency is not
+necessary.
+To help PDE determine what is the case, the extension point schema could
+contain information if given extension point requires dependency from
+extenders.

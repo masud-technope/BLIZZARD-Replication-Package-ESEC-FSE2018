@@ -1,0 +1,4 @@
+org.eclipse.core.launcher.Main.getBootPath
+org.eclipse.core.launcher.Main.basicRun
+org.eclipse.core.launcher.Main.run
+org.eclipse.core.launcher.Main.main

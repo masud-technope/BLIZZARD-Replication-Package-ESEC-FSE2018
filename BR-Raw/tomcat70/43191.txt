@@ -1,0 +1,21 @@
+43191 – compressableMimeType attribute ignored
+I have set compression="on" and compressableMimeType="text/html" in server.xml.
+It appears that the value of compressableMimeType is being ignored.
+My XML
+responses are all coming back gzipped.
+If I switch to compression="off" the
+responses are not gzipped, but as soon as I turn it on, regardless of the value
+of compressableMimeType, the XML responses are coming back gzipped.
+A full Connector tag follows.
+Note that this is just an example -- I have tried
+many values for compressableMimeType (that do NOT include text/xml) and the
+responses are still compressed.
+<Connector port="7630" address="${jboss.bind.address}"
+maxThreads="20" minSpareThreads="4" maxSpareThreads="10" strategy="ms"
+maxHttpHeaderSize="8192"
+emptySessionPath="true" enableLookups="false" redirectPort="7643"
+acceptCount="16"
+connectionTimeout="20000" disableUploadTimeout="true"
+compression="off"
+compressableMimeType="text/html,text/javascript,application/x-javascript,application/javascript"
+/>

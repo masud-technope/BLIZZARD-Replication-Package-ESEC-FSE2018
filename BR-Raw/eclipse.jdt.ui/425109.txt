@@ -1,0 +1,8 @@
+Bug 425109 – [quick fix] Failures in TypeMismatchQuickFixTests due to new IProblem.ReturnTypeMismatch
+(In reply to Srikanth Sankaran from bug 422489 comment #3)
+> Note to UI team: Compiler will not emit IProblem.TypeMismatch any more
+> for issues with return statement types.
+Instead expect
+> IProblem.ReturnTypeMismatch.
+> Not sure if this will break your test suites and/or quick fix support.
+This created 4 valid test failures in TypeMismatchQuickFixTests.

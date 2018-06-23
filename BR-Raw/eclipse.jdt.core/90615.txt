@@ -1,0 +1,6 @@
+Bug 90615 – Proposal for boolean
+boolean test;
+test= (the proposal should be true/false)
+I don't think the request of the status 'test' makes much sense, i.e.
+if (test == true) { ....
+=> the first part would be very nice to have it.

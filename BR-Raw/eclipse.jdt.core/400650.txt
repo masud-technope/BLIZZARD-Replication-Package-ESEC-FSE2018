@@ -1,0 +1,3 @@
+Bug 400650 – [1.8] ASTRewrite Implementation and Testing of annotations on subtypes of Type and TypeParameter
+For the entire Type Hieararchy (AnnotatableType) and Type Parameter hierarchy - ASTRewrite implementation [to be done in cases missing or corrected in cases existing if need be].
+This is the ASTRewrite Equivalent of bug 391890.

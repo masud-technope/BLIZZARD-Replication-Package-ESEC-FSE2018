@@ -1,0 +1,4 @@
+Bug 460465 – [search] references in workspace of enum type not found when statically importing enum constant
+Created attachment 250978 [details]
+Test Project containing an TestEnum and one class with static imports and one without
+When searching for references in workspace (Ctrl+Shift+G) of an enum type it doesnÂ´t find classes that only contain static imports of an enum constant of the enum type.

@@ -1,0 +1,4 @@
+Bug 151112 – Organize Manifests adds .settings and META-INF to Export-Package
+M20060712-0922 (3.2)
+Organize Manifests adds .settings and META-INF to Export-Package.
+To reproduce, apply action to org.junit4 R3_2.

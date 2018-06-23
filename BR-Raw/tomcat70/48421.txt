@@ -1,0 +1,37 @@
+48421 – JULI webapp logging files will not closed when webapp is stopped,reloaded or undeployed
+In Tomcat 6  the JULI logging files which are (can be) declared in webapp/WEB-INF/classes/logging.properties will not closed, when the
+webapp is reloaded, stopped or even undeployed.
+The files will at last be closed, when tomcat is shut down or restarted.
+This is also true for the normally used Handler org.apache.juli.FileHandler, which opens a new File every day and closes the old.
+On windows this has following effects:
+A) If  the webapp is undeployed the files which are open at this moment are locked and cannot be deleted until tomcat is (someday) stopped or restarted.
+B) If the webapp is reloaded the file is opened a second time.
+So the file has two open handles.
+The next day the FileHandler closes one handle but the file is kept locked through the other handle and cannot be deleted.
+Every time a webapp is reloaded the associated logfile is opened again (but not closed).
+This has the consequence that after reloading webapps a few times tomcat must be restarted from time to time.
+When tomcat is shutdown the unnecessary (and other) open files are closed and will get the shutdown time as modification time.
+That means any old log files will receive a current modification time, which is irritating.
+Steps to verify on windows: (for example: undeploy)
+1.
+create in the examples webapp: of tomcat 6.0.20:
+examples/WEB-INF/classes/logging.properties:
+handlers = org.apache.juli.FileHandler
+org.apache.juli.FileHandler.level = FINE
+org.apache.juli.FileHandler.directory = ${catalina.base}/logs
+org.apache.juli.FileHandler.prefix = servlet-examples.
+2.
+start tomcat
+3.
+undeploy examples using manager
+Actual Results:
+file ${catalina.base}/logs/servlet-examples.<date>.log cannot be deleted (nor at the next day)
+Expected:
+file ${catalina.base}/logs/servlet-examples.<date>.log can be deleted
+very cumbersome Workaround (working for reload):
+The getHead method of a custom Formatter is extended to track the handlers along with the classloader and webapp.
+If for a webapp a different (i.e.
+new) classloader is detected the close method of the handlers assigned to the old classloader is called.
+So the assigned file is proper closed (and the Formatter.getTail result is appended)
+I have set severity at minor because tomcat can be used (without webapp logging).
+But it is a bug because with this logging the same logfile can be useless multiple open (as described above), which should be considered as buggy.

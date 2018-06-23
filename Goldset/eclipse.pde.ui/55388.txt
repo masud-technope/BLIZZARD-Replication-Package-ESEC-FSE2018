@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/extension/PointSelectionPage.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/logview/LogView.java

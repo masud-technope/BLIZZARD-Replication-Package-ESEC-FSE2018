@@ -1,0 +1,9 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/feature/FeatureSpecPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/feature/NewFeaturePatchWizard.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/feature/NewFeatureProjectWizard.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/LauncherUtils.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/feature/BaseFeatureSpecPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/feature/FeatureData.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/feature/FeatureCustomHandlerPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/feature/PatchSpecPage.java

@@ -1,0 +1,13 @@
+Bug 61184 – Browse button on extension page does not work
+Build id: 200405060200
+When i press the browse button an attribute in the extension editor it does
+nothing for Class and Resource attribute types.
+ I am editing a source
+plugin.xml file, not a read only plugin.
+The overrides of isReferenceModel in the Class and Resource rows is returning
+the editable state of the model.
+ This is true for a source plugin which then
+causes the button to do nothing (it only works when !isReferenceModel()).
+Should the class and resource rows be overriding this method?  I removed the
+overrides and it seemed to work fine.
+btw, love the new look of the editor :)

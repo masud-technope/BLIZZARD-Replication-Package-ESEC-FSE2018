@@ -1,0 +1,19 @@
+Bug 335780 – Compiler says a method can be potentially static but this method contains 'this'
+Build Identifier: A method using 'this' can't be potentially static
+The latest beta of indigo introduces a new static analysis that detects
+is a method can be potentially static.
+But if I use 'this' in that method, it should not be tagged as potentially static.
+public class MethodStaticEclipseBug {
+public void m() {
+Foo.m(this);
+}
+static class Foo {
+static void m(MethodStaticEclipseBug bug) {
+// do something cool here
+}
+}
+}
+Reproducible: Always
+Steps to Reproduce:
+Type the above code in eclipse.
+the warning at line 3 is a false positive.

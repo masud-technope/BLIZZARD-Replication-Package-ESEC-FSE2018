@@ -1,0 +1,9 @@
+Bug 181476 – Import existing plugin destroys custom project natures
+To reproduce:
+1) install any plugin with both custom project natures and exported with source
+2) import plugin with source
+3) check .project - custom natures will be lost
+Currently org.eclipse.pde.internal.ui.wizards.imports.PluginImportOperation.setProjectDescription(IProject project, IPluginModelBase model) explicitly forces the the project nature to Java and/or PDE.
+However, if a developer had developed some plugins that contained custom natures, exported the plugin with source (including the original .project) - on import that information would be lost and would have to be manually reinstated.
+This makes the deployment of custom plugins a significant challenge.
+A simple change would be for setProjectDescription() to get the previous natures and add the Java/PDE natures (if necessary) instead of explicitly overwriting the natures.

@@ -1,0 +1,2 @@
+Bug 342364 – [RemoteSrvs][Generic] o.e.e.provider.generic.TCPServerSOContainer may fall back to alternative port if bind fails (if org.eclipse.ecf.provider.generic.port.fallback set)
+If the system property org.eclipse.ecf.provider.generic.port.fallback is set to "true", o.e.e.provider.generic.TCPServerSOContainer will use an alternative port if the given port (org.eclipse.ecf.provider.generic.port|"3282") is not available.

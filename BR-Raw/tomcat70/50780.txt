@@ -1,0 +1,10 @@
+50780 – AjpConnectionHandler keeps many connections causing memory leak
+Hi,
+Sorry for my english.
+I use Tomcat 7.0.6 with APR 1.1.20.
+I noticed (from heap dump) many org.apache.tomcat.util.net.SocketWrapper objects, which are kept by "connections" atribute in org.apache.coyote.ajp.AjpAprProtocol$AjpConnectionHandler object.
+I don't understand, why there are so many objects representing old connections which are not active.
+In my example it was 300000 objects created, after 7 days of Tomcat work.
+Has someone forgotten to clean this HashMap from time to time?
+best regards
+Sergiusz Brzezinski

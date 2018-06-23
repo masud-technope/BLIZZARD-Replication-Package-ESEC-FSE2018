@@ -1,0 +1,7 @@
+46947 – Code cleanup patch that removes some obsolete null checks
+Created attachment 23432 [details]
+Patch against trunk
+As discussed at ApacheCon with Mark and Peter, here is a patch against trunk that removes obsolete null checks where the variable has already been dereferenced earlier.
+The patch doesn't fix all issues that Findbugs reports in the "RCN" category.
+I was not able to confirm the remaining ones and I suspect some false alarms.
+Note to reviewer: The diffs for Generator.java are quite hard to follow in the patch file, maybe it's easier for you to just remove the "if (attrInfos != null)" check yourself in the original code.

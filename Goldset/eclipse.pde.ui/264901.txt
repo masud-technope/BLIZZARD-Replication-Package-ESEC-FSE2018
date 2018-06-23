@@ -1,0 +1,7 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target/impl/WorkspaceFileTargetHandle.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/TargetPlatformPreferencePage2.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/shared/target/BundleContainerTable.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/target/NewTargetDefinitionFileWizard.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/target/NewTargetDefnitionFileWizardPage.java

@@ -1,0 +1,7 @@
+Bug 99330 – [implementation] Don't swallow IllegalStateException in ASTprovider
+20050610-0010
+See bug 97214.
+Instead of swallowing all IllegalStateExceptions (that represent
+a programmer error when using the ASTProvider) the code should avoid creating
+the AST in the given situation (by first checking that the classfile really has
+a source)

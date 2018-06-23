@@ -1,0 +1,2 @@
+org.eclipse.jdt.debug.jdi.tests/tests/org/eclipse/debug/jdi/tests/AbstractJDITest.java
+org.eclipse.jdt.debug.jdi.tests/tests/org/eclipse/debug/jdi/tests/AutomatedSuite.java

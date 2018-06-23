@@ -1,0 +1,8 @@
+Bug 409245 – [1.8][compiler] Type annotations dropped when call is routed through a synthetic bridge method
+BETA_JAVA8:
+"The Java compiler accepts type annotations and adds them to the programâ€™s AST.
+It writes them to the classfile, including accounting for synthetic methods
+(such as bridge methods) and optimizations" ...
+At the moment type annotations are dropped if the call is routed through a
+synthetic method.
+See https://bugs.eclipse.org/bugs/show_bug.cgi?id=383624#c46, point 1 & 2.

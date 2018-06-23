@@ -1,0 +1,3 @@
+Bug 151113 – Remove dependency on PluginVersionIdentifier
+PluginVersionIdentifier was deprecated in 3.2.
+PDE should remove its dependency on it and should start using the org.osgi.framework.Version class instead.

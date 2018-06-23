@@ -1,0 +1,13 @@
+Bug 291924 – hashCode() and equals() break when extending abstract class
+User-Agent:       Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_1; en-us) AppleWebKit/531.9 (KHTML, like Gecko) Version/4.0.3 Safari/531.9
+Build Identifier: M20090917-0800
+I have an abstract base class for database objects that specifies a few basic methods that all database objects need.
+ To enforce that all objects override equals() and hashCode() I have made those methods abstract in the base class forcing the subclasses to implement them.
+ However, the generate hashCode() and equals() tool makes calls to super.equals() and super.hashCode() which then fail to compile since they are abstract methods.
+ These calls are not made if the hashCode() and equals() are not defined in the abstract super class.
+ In short, equals() and hashCode() should not call super() if super() is abstract.
+Reproducible: Always
+Steps to Reproduce:
+1.Create abstract class with equals() and hashCode() as abstract methods
+2.Extend abstract class
+3.attempt to generate equals() and hashCode()

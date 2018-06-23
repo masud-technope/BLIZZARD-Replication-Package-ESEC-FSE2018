@@ -1,0 +1,12 @@
+incubation/bundles/org.eclipse.ecf.provider.endpointdescription.localdiscovery/src/org/eclipse/ecf/provider/internal/endpointdescription/localdiscovery/EndpointDescriptionDiscoveryContainerAdapter.java
+framework/bundles/org.eclipse.ecf.discovery.ui.userinput/src/org/eclipse/ecf/discovery/ui/userinput/UserInputDiscoveryLocator.java
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/discovery/AbstractDiscoveryContainerAdapter.java
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/internal/discovery/DiscoveryServiceListener.java
+providers/bundles/org.eclipse.ecf.provider.discovery/src/org/eclipse/ecf/provider/discovery/CompositeDiscoveryContainer.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdDiscoveryAdvertiser.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdDiscoveryLocator.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/internal/provider/jmdns/JMDNSPlugin.java
+providers/bundles/org.eclipse.ecf.provider.jmdns/src/org/eclipse/ecf/provider/jmdns/container/JMDNSDiscoveryContainer.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/provider/jslp/container/JSLPDiscoveryContainer.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/core/ZooDiscoveryContainer.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/DiscoveryServiceTest.java

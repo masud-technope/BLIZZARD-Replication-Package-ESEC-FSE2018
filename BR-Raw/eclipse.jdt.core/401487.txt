@@ -1,0 +1,5 @@
+Bug 401487 – [1.8][assist] default modifier not proposed while completing modifiers in interfaces
+interface I {
+def<CTRL+SPACE>
+}
+For Java 8, we should propose default as a choice.

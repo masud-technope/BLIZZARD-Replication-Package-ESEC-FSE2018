@@ -1,0 +1,11 @@
+Bug 187000 – Debugger looses selection/focus a lot on the thread stack where you debug.
+Build ID:  I20070503-1400
+Steps To Reproduce:
+Just start debugging and press with the mouse the step over constantly.
+In my enviroment windows xp java 6 (and i have seen it now also on a co workers linux machine) many times the debugger looses the selection/focus on a stacktrace.
+Even the complete tree is collapsed and i really have to search for what thread is in suspend so that i can select it press step over once and then the tree expands again.
+I always had some problems with this in older releases.
+But currently it is really bad it pretty much happens multiply times when i debug.
+The selection and focus should just stick as much as possible because if it looses focus i can't press step over.
+I have to wait and select the right thread again before i can go on.
+More information:

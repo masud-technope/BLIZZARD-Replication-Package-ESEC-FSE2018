@@ -1,0 +1,3 @@
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/provider/jslp/identity/JSLPServiceTypeID.java
+framework/bundles/org.eclipse.ecf.identity/src/org/eclipse/ecf/core/util/StringUtils.java
+tests/bundles/org.eclipse.ecf.tests.provider.jslp/src/org/eclipse/ecf/tests/provider/jslp/identity/JSLPServiceIDTest.java

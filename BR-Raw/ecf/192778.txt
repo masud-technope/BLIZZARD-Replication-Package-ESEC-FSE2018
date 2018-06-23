@@ -1,0 +1,6 @@
+Bug 192778 – [UI] Easy way to browse contacts via key shortcut and search dialog
+This has always been a dream of mine for use within IM clients, maybe because I develop so much.
+I want something similar to Ctrl+Shift+T in Eclipse for browsing IM contacts quickly and messaging someone.
+I believe Eclipse has this functionality now abstracted into a class AbstractSearchDialog (or w/e it is called).
+Ctrl+Shift+C (contacts) maybe? Ctrl+Shift+M (messaging)?
+Any thoughts?

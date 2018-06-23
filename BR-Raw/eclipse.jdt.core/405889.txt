@@ -1,0 +1,4 @@
+Bug 405889 – [1.8][compiler][codegen] Resilience against NPE needed in Scope.getJavaLangInvokeMethodHandlesLookup
+BETA_JAVA8:
+Spawned from https://bugs.eclipse.org/bugs/show_bug.cgi?id=405066#c2
+review comment 4.

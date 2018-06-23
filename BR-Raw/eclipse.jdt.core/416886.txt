@@ -1,0 +1,8 @@
+Bug 416886 – [1.8][dom] ITypeBinding for the qualifier in a QualifiedTypeReference is wrong
+BETA_JAVA8:
+This test asserts in the last line:
+assertEquals("Wrong qualified name", "test404489.bug.X.Y",
+binding.getQualifiedName())
+The bindings qualified name is actually test404489.bug.X.
+I have disabled this line.
+Please reenable after fix.

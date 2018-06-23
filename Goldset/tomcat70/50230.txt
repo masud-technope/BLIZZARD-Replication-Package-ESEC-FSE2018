@@ -1,0 +1,4 @@
+java/org/apache/catalina/DistributedManager.java
+java/org/apache/catalina/ha/session/BackupManager.java
+java/org/apache/catalina/manager/HTMLManagerServlet.java
+webapps/docs/changelog.xml

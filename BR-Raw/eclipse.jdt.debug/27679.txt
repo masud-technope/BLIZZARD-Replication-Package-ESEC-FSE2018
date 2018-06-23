@@ -1,0 +1,54 @@
+Bug 27679 – NPE on shutdown as initializing preference store
+Debug Self hosting opening on Java perspective, but the debug perspective has
+been opened in previous sessions.
+Open the launch configuration dialog
+Close the dialog
+Exit the workspace.
+Thread [main] (Suspended (exception java.lang.NullPointerException))
+org.eclipse.jface.resource.ImageRegistry.get(java.lang.String) line: 69
+org.eclipse.jdt.internal.debug.ui.JavaDebugImages.get(java.lang.String)
+line: 165
+org.eclipse.jdt.internal.debug.ui.JavaVariablesFilterPreferencePage.<cli
+nit>() line: 145
+org.eclipse.jdt.internal.debug.ui.JDIDebugUIPlugin.initializeDefaultPref
+erences(org.eclipse.jface.preference.IPreferenceStore) line: 245
+org.eclipse.jdt.internal.debug.ui.JDIDebugUIPlugin
+(org.eclipse.ui.plugin.AbstractUIPlugin).initializeDefaultPluginPreferences()
+line: 620
+org.eclipse.jdt.internal.debug.ui.JDIDebugUIPlugin
+(org.eclipse.core.runtime.Plugin).getPluginPreferences() line: 347
+org.eclipse.ui.plugin.AbstractUIPlugin$CompatibilityPreferenceStore.init
+ialize() line: 176
+org.eclipse.jdt.internal.debug.ui.JDIDebugUIPlugin
+(org.eclipse.ui.plugin.AbstractUIPlugin).getPreferenceStore() line: 557
+org.eclipse.jdt.internal.debug.ui.JavaDebugOptionsManager.shutdown()
+line: 197
+org.eclipse.jdt.internal.debug.ui.JDIDebugUIPlugin.shutdown() line: 285
+org.eclipse.core.internal.plugins.PluginRegistry$2.run() line: 279
+org.eclipse.core.internal.runtime.InternalPlatform.run
+(org.eclipse.core.runtime.ISafeRunnable) line: 843
+org.eclipse.core.internal.plugins.PluginRegistry$1.visit
+(org.eclipse.core.runtime.IPluginDescriptor) line: 292
+org.eclipse.core.internal.plugins.PluginRegistry.accept
+(org.eclipse.core.internal.plugins.IPluginVisitor, boolean) line: 51
+org.eclipse.core.internal.plugins.PluginRegistry.shutdownPlugins()
+line: 295
+org.eclipse.core.internal.plugins.PluginRegistry.shutdown
+(org.eclipse.core.runtime.IProgressMonitor) line: 261
+org.eclipse.core.internal.runtime.InternalPlatform.loaderShutdown()
+line: 512
+sun.reflect.NativeMethodAccessorImpl.invoke0(java.lang.reflect.Method,
+java.lang.Object, java.lang.Object[]) line: not available [native method]
+sun.reflect.NativeMethodAccessorImpl.invoke(java.lang.Object,
+java.lang.Object[]) line: 39
+sun.reflect.DelegatingMethodAccessorImpl.invoke(java.lang.Object,
+java.lang.Object[]) line: 25
+java.lang.reflect.Method.invoke(java.lang.Object, java.lang.Object[])
+line: 324
+org.eclipse.core.internal.boot.InternalBootLoader.shutdown() line: 953
+org.eclipse.core.internal.boot.InternalBootLoader.run(java.lang.String,
+java.net.URL, java.lang.String, java.lang.String[], java.lang.Runnable) line:
+846
+org.eclipse.core.boot.BootLoader.run(java.lang.String, java.net.URL,
+java.lang.String, java.lang.String[]) line: 432
+EclipseRuntimeLauncher.main(java.lang.String[]) line: 24

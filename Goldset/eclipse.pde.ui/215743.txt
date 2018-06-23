@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDECoreMessages.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/SchemaErrorReporter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/pderesources.properties

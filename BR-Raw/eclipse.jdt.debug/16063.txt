@@ -1,0 +1,3 @@
+Bug 16063 – Preference pages now re-size
+The preference dialog now re-sizes.
+Ensure all our pages behave properly.

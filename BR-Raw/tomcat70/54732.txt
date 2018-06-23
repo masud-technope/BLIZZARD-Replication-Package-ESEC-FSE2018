@@ -1,0 +1,37 @@
+54732 – StatementCache interceptor does not forward calls to Statement.close() which causes memory leaks
+ML ref: http://mail-archives.apache.org/mod_mbox/tomcat-users/201303.mbox/browser
+When using Tomcat's jdbc-pool with the StatementCache interceptor (the default for TomEE 1.5.1), the actual java.sql.Statement.close() method is not called on the Statements.
+This causes severe memory leaks, at least with the MySQL driver.
+I see what could be a bug in StatementCache#closeInvoked() which is called by the above method.
+Here is the code with my own comments added:
+@Override
+public void closeInvoked() {
+boolean shouldClose = true;
+if (cacheSize.get() < maxCacheSize) {
+// omitted for brievety
+}
+closed = true;
+// [1] I think "delegate = null" is done too soon
+delegate = null;
+if (shouldClose) {
+// check its body below
+super.closeInvoked();
+}
+}
+// This is super.closeInvoked()
+public void closeInvoked() {
+if (getDelegate()!=null) {
+// never true when coming from
+// StatementCache#closeInvoked()
+// because of [1]
+try {
+getDelegate().close();
+}catch (SQLException ignore) {
+}
+}
+closed = true;
+delegate = null;
+}
+To test this, step into org.apache.tomcat.jdbc.test.TestStatementCache tests testPreparedStatementCache and testPreparedStatementCache2.
+The calls to Statement.close() are intercepted but never forwarded to the actual Statement.
+Perhaps some kind of mock could be used to make sure Statement.close() is called on each created Statement.

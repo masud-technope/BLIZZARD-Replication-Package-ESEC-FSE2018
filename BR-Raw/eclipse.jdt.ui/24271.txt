@@ -1,0 +1,11 @@
+Bug 24271 – Source Folders: Sort Java Packages and Simple Folders Together
+In Eclipse 1.0, packages and simple folders were not sorted together within the
+Project (as the source folder).
+ Packages were (sorted) and placed first,
+followed by simple folders (that were also sorted).
+In Eclipse 2.0, the packages and simple folders are sorted together within the
+Project (as the source folder).
+ Unfortunately, if you use Source Folders the
+packages and source folders are sorted as described above in Eclipse 1.0.
+It would be useful for packages and simple folders to be sorted together within
+their Source Folder.

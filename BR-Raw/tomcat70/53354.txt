@@ -1,0 +1,30 @@
+53354 – <filter-mapping> doesn't find the @WebFilter(filterName)
+As it's not possible to specify the invocation order in a @WebFilter, users are forced to explicitly specify <filter-mapping> in web.xml.
+This works in combination with a @WebFilter(filterName) in Glassfish and JBoss AS as follows:
+@WebFilter(filterName="filter1")
+public class Filter1 implements Filter {}
+@WebFilter(filterName="filter2")
+public class Filter2 implements Filter {}
+with
+<filter-mapping>
+<filter-name>filter1</filter-name>
+<url-pattern>/url1/*</url-pattern>
+</filter-mapping>
+<filter-mapping>
+<filter-name>filter2</filter-name>
+<url-pattern>/url2/*</url-pattern>
+</filter-mapping>
+However it fails in Tomcat 7.0.27 with the following confusing exception (the <url-pattern> *is* been set)
+Caused by: java.lang.IllegalArgumentException: Filter mapping must specify either a <url-pattern> or a <servlet-name>
+at org.apache.catalina.core.StandardContext.validateFilterMap(StandardContext.java:3009)
+at org.apache.catalina.core.StandardContext.addFilterMap(StandardContext.java:2968)
+at org.apache.catalina.deploy.WebXml.configureContext(WebXml.java:1207)
+at org.apache.catalina.startup.ContextConfig.webConfig(ContextConfig.java:1294)
+at org.apache.catalina.startup.ContextConfig.configureStart(ContextConfig.java:855)
+at org.apache.catalina.startup.ContextConfig.lifecycleEvent(ContextConfig.java:345)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5161)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+...
+7 more

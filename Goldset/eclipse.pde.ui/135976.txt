@@ -1,0 +1,12 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDECore.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDECoreMessages.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDEManager.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/ExtensionsErrorReporter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/pderesources.properties
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/plugin/PluginExtensionPoint.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/Schema.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/plugin/PluginExtensionPointNode.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/extension/BaseExtensionPointMainPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/extension/NewExtensionPointMainPage.java

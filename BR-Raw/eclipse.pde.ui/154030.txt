@@ -1,0 +1,12 @@
+Bug 154030 – Plug-in manifest editor: Switching from form to source page selects too much
+I20060815-0800
+Select an element on a form page in the plug-in manifest editor (e.g.
+an item on the Extensions page), then switch to the corresponding source page (plugin.xml).
+=> The whole source range is selected.
+This makes it hard to read the actual source (see e.g.
+bug 79208 comment 8).
+It is also inconsistent with other selection behavior, e.g.
+when I select an Extension in the Outline of the plugin.xml page, only the word "extension" of the declaring tag is selected.
+Transfering a model selection into a text selection should only select the tag name.
+That's also the way other editors do it (e.g.
+the Java Outline: selects element name, not whole element).

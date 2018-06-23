@@ -1,0 +1,13 @@
+34399 – Undeploying fails when context defined in server.xml & server fails to stop
+Steps to reproduce:
+1.
+autodeploy a web application by defining its context in server.xml
+2.
+start the Tomcat server
+3.
+use the Tomcat Manager to undeploy the application
+You will get the "OK - Undeployed application at context path /WebApplication"
+message, but the application will NOT be undeployed, it will be only stopped.
+If you try to stop the server after that, it will fail!
+I have used the shared installation (CATALINA_BASE dir), but I guess this
+won't work for standalone Tomcat isntallation either.

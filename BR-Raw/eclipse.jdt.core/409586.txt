@@ -1,0 +1,4 @@
+Bug 409586 – [1.8][dom ast] Cannot identify TYPE_USE annotation from ITypeBinding
+Up to Java 7, every reference to a type had the same ITypeBinding, and the annotations could only come from the type's declaration.
+Now, reference type bindings can carry different TYPE_USE annotations, but this is not reflected in the ITypeBinding API.
+We need to find the right solution to identify TYPE_USE annotation from ITypeBinding.

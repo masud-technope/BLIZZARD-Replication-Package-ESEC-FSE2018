@@ -1,0 +1,30 @@
+Bug 239940 – [implementation] NPE while editing a javadoc comment
+Using I20080702-0939.
+I was editing a simple class:
+public class X01 {
+/**
+* <pre>
+* Unclosed pre tag
+*/
+int foo;
+/**
+* Sample showing that the formatter does not handle
+* unclosed html tags properly
+*
+* @return  here's a simple return tag which description lines
+* should be indented when using default Eclipse built-in profile.
+* however due to the unclosed html 'pre' tag in the field javadoc
+* comment, this return tag won't be formatted!
+*/
+public abstract int bar();
+}
+As I get a compiler error on method bar(), I decided to change this test case to an interface...
+So, I performed the following changes:
+1) change 'class X01' to 'interface X01'
+2) remove the abstract modifier on method bar
+3) try to change 'foo' to a method:
+=> put the cursor after the name 'foo' (go directly at this point, do not
+fly or click elsewhere...)
+=> the NPE in JavadocView should happen then...
+I did it 4 times and the NPE ccured 3 times.
+I hope you can also reproduce it with this scenario...

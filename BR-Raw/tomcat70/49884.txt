@@ -1,0 +1,24 @@
+49884 – NullPointerException in org.apache.catalina.core.AsyncContextImpl.doInternalComplete
+Hi, I'm running Tomcat trunk (revision 992708, 2010-09-03) and I'm hitting an async servlet (see attached) with Apache Bench, and every once in a while I see a NullPointerException in org.apache.catalina.core.AsyncContextImpl.doInternalComplete:
+Sep 4, 2010 8:09:39 PM org.apache.catalina.core.AsyncContextImpl doInternalDispatch
+FINE: TIMING OUT!
+Sep 4, 2010 8:09:40 PM org.apache.catalina.core.AsyncContextImpl doInternalDispatch
+FINE: TIMING OUT!
+Sep 4, 2010 8:09:40 PM org.apache.catalina.core.AsyncContextImpl doInternalComplete
+SEVERE:
+Throwable occurred: java.lang.NullPointerException
+at org.apache.catalina.core.AsyncContextImpl.doInternalComplete(AsyncContextImpl.java:384)
+at org.apache.catalina.core.AsyncContextImpl.doInternalDispatch(AsyncContextImpl.java:327)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:238)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:201)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:163)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:108)
+at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:557)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+at org.apache.catalina.connector.CoyoteAdapter.asyncDispatch(CoyoteAdapter.java:301)
+at org.apache.coyote.http11.Http11Processor.asyncDispatch(Http11Processor.java:333)
+at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:258)
+at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:257)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:898)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:920)
+at java.lang.Thread.run(Thread.java:736)

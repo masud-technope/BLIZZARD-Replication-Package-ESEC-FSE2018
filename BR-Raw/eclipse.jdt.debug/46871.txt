@@ -1,0 +1,4 @@
+Bug 46871 – Console buffer size limit
+The MessageConsole needs a maximum buffer size (similar to the debugger process
+console).
+Otherwise, output grows unbounded.

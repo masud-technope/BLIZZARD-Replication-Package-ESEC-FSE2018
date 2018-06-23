@@ -1,0 +1,13 @@
+Bug 448792 – [1.8][compiler] More robust & fast captures needed for wildcards.
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=437444 introduces
+interned captures:
+This still needs follow up in three areas:
+- To make it more robust we should capture using both the capturing
+expression's source start and source end (along with CUD) not just the
+source end as some times source ends are seen to be identical for the
+containing and the contained expression (cast, assignment ...)
+- TypeSystem.getCapturedWildcard may introduce performance problems as we
+just maintain a linear list of captures across all files input to compiler.
+These should be hashed somehow on a CUD basis.
+- We need to see whether we need ATS.getCapturedWildcard and what it
+would look like.

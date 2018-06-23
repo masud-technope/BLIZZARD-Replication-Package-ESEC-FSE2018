@@ -1,0 +1,8 @@
+examples/bundles/org.eclipse.ecf.example.collab/META-INF/MANIFEST.MF
+examples/bundles/org.eclipse.ecf.example.collab/plugin.xml
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/example/collab/share/EclipseCollabSharedObject.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/example/collab/share/RosterListener.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/presence/PresenceContainer.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/presence/PresenceContainerAdapterFactory.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/presence/RosterManager.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/ui/SharedObjectContainerUI.java

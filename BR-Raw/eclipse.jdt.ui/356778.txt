@@ -1,0 +1,31 @@
+Bug 356778 – [search] "Inexact Type Arguments" filter is not showing up even when results are filtered
+The "Inexact Type Arguments" filter is not showing up even when results are filtered with this filter.
+##########
+public class Test<T> {
+public void standard(T t) {
+}
+public <U> T generic(U u) {
+return null;
+}
+public void foo() {
+Test<Object>t = new Test<Object>();
+t.<Object>generic(null);
+t.<String>generic(null);
+t.standard(null);
+new Test<String>().standard(null);
+}
+}
+##########
+Reproducible steps:
+1.
+Paste the above program
+2.
+Select 'generic' in the function foo() and search for references.
+3.
+There will be two references.
+Now, filter one of the results by filtering InExact Type Arguments.
+4.
+Now select 'standard' in the function foo() and search for references.
+5.
+You should see only one result and see that one reference is filtered.
+However, you don't see that filter in the view menu.

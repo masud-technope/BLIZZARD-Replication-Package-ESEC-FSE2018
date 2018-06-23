@@ -1,0 +1,22 @@
+server-side/bundles/org.eclipse.ecf.server.generic/src/org/eclipse/ecf/server/generic/app/ClientApplication.java
+server-side/bundles/org.eclipse.ecf.server.generic/src/org/eclipse/ecf/server/generic/app/ServerApplication.java
+examples/bundles/org.eclipse.ecf.example.collab/src/org/eclipse/ecf/internal/example/collab/ServerStartup.java
+framework/bundles/org.eclipse.ecf.provider/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/app/NamedGroup.java
+server-side/bundles/org.eclipse.ecf.server.generic/src/org/eclipse/ecf/server/generic/app/GenericServer.java
+framework/bundles/org.eclipse.ecf.provider/plugin.xml
+examples/bundles/org.eclipse.ecf.example.collab/plugin.xml
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/app/Connector.java
+server-side/bundles/org.eclipse.ecf.server.generic/plugin.xml
+server-side/bundles/org.eclipse.ecf.server.generic/src/org/eclipse/ecf/server/generic/ServerManager.java
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/app/ServerConfigParser.java
+examples/bundles/org.eclipse.ecf.example.collab/launchconfigs/ECF Example Collab 2.launch
+server-side/bundles/org.eclipse.ecf.server.generic/src/org/eclipse/ecf/server/generic/app/Connector.java
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/app/ClientApplication.java
+server-side/bundles/org.eclipse.ecf.server.generic/src/org/eclipse/ecf/server/generic/app/ServerConfigParser.java
+server-side/bundles/org.eclipse.ecf.server.generic/META-INF/MANIFEST.MF
+examples/bundles/org.eclipse.ecf.example.collab/META-INF/MANIFEST.MF
+examples/bundles/org.eclipse.ecf.example.collab/launchconfigs/ECF Example Server.launch
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/app/GenericServer.java
+server-side/bundles/org.eclipse.ecf.server.generic/src/org/eclipse/ecf/server/generic/app/NamedGroup.java
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/app/ServerApplication.java

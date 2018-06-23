@@ -1,0 +1,15 @@
+Bug 251970 – [ds tooling] "Hello OSGi Declarative Services" template generates invalid MANIFEST.MF
+Build-ID: N20081020-2000
+Manifest generated from "Hello OSGi Declarative Services" contains following header:
+Import-Package: org.eclipse.osgi.framework.console;version="1.0.0";version="0.0.0",
+org.osgi.framework;version="1.3.0";version="0.0.0"
+Whereas it should be:
+Import-Package: org.eclipse.osgi.framework.console;version="1.0.0",
+org.osgi.framework;version="1.3.0"
+Note two problems here:
+1.
+excesive 'version="1.0.0"' string for every imported package
+-> as a result dependencies are unresolved (errors in code)
+2.
+missing white space at the beginning of header second line
+-> as a result Manifest has error "':' is required after the header name"

@@ -1,0 +1,55 @@
+Bug 195394 – [Manifest][Editors] NPE in org.eclipse.pde.internal.ui.editor.plugin.ImportPackageSection
+Build ID: I20070625-1500
+Steps To Reproduce:
+1.
+PDE Perspective, Plug-Ins view
+2.
+Manifest Editor for org.eclipse.help.base
+3.
+Switch to tab Dependencies
+4.
+Select a package in the "Imported Package", open context-menu
+5.
+Select "Find references in this plugin"
+More information:
+eclipse.buildId=I20070625-1500
+java.version=1.6.0_02
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+Error
+Wed Jul 04 16:56:55 CEST 2007
+Unhandled event loop exception
+java.lang.NullPointerException
+at org.eclipse.pde.internal.ui.editor.plugin.ImportPackageSection.getSourceRoots(ImportPackageSection.java:695)
+at org.eclipse.pde.internal.ui.editor.plugin.ImportPackageSection.doReferenceSearch(ImportPackageSection.java:676)
+at org.eclipse.pde.internal.ui.editor.plugin.ImportPackageSection.access$9(ImportPackageSection.java:673)
+at org.eclipse.pde.internal.ui.editor.plugin.ImportPackageSection$7.run(ImportPackageSection.java:660)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:498)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:545)
+at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:490)
+at org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:402)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:938)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3682)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3293)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2389)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2353)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2219)
+at org.eclipse.ui.internal.Workbench$4.run(Workbench.java:466)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:289)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:461)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:106)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:153)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:106)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:76)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:363)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:176)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:504)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:443)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1169)

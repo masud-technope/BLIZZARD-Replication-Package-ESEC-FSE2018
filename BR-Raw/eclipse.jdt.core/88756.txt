@@ -1,0 +1,14 @@
+Bug 88756 – [codeassist] Code assist propose anonymous enum
+build I20050315-1100
+1) create X.java
+public enum X {
+A;
+private X() {}
+}
+2) create Y.java
+public class Y {
+void foo() {
+new X(<complete here>
+}
+}
+An anynmous type is proposed and should not.

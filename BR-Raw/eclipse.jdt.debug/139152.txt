@@ -1,0 +1,17 @@
+Bug 139152 – [preferences] Java->Debug preference page validates uninitialized fields
+N20060428
+1.
+Open 'Window->Preferences'
+2.
+Go to 'Java->Debug' page
+3.
+An error is shown which disapears quickly
+4.
+Close the dialog
+5.
+Open 'Window->Preferences'
+6.
+The 'Java->Debug' page is shown and the error disapears again.
+This only happens when you switch to this page for the first time after opening the dialog.
+See attached screenshot.
+Could also be a platform bug?

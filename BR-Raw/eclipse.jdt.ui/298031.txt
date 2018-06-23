@@ -1,0 +1,4 @@
+Bug 298031 – [JUnit] Test cases not found when @RunWith annotation on binary super class
+When a class extends a binary type annotated with @RunWith, the binary type has no source attachment, and the user selects the compilation unit -> Run As -> JUnit Test, a dialog appears that says no test class can be found.
+When the class itself is selected, then the class is recognized as a test class.
+ Similarly, when a source attachment is added, the test class can be found.

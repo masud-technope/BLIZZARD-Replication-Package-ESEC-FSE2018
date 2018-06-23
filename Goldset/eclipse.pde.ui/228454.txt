@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/SchemaTransformer.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/P2Utils.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/exports/ProductExportOperation.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/exports/SiteBuildOperation.java

@@ -1,0 +1,13 @@
+Bug 429836 – [1.8][search] Search implementors in workspace does not show lambda expressions.
+F4 works fine in this case, but (menu) Search + Implementors + Workspace
+brings up nothing after selecting Foo.
+// --
+@FunctionalInterface
+interface Foo {
+int foo(int x);
+}
+public class T {
+// Select 'x' in lambda body and press Ctrl+G.
+Foo f1= x -> x; //[1]
+Foo f2= (int x) -> x; //[2]
+}

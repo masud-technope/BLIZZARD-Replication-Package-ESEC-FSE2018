@@ -1,0 +1,11 @@
+Bug 41554 – Assertion failure during search
+Build: I20030813
+I am getting an assertion failure during search.
+ I am searching for references
+to a private field.
+ Searching in hierarchy or in workspace causes the same
+assertion failure.
+ Log file attached.
+Olivier: The assertion is in the constructor for jdt.internal.core.SourceType.
+If the assertion failure message included the name of the type, it would make
+debugging this case easier.

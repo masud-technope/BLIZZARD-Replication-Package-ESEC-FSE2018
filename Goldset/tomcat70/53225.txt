@@ -1,0 +1,2 @@
+java/org/apache/tomcat/util/scan/FileUrlJar.java
+webapps/docs/changelog.xml

@@ -1,0 +1,7 @@
+Bug 339000 – Misspelling for field name UndoManager2.fOperationHistroy
+Build Identifier: M20100909-0800
+The field name is misspelled.
+It should be UndoManager2.fOperationHistory (instead of UndoManager2.fOperationHistroy).
+Reproducible: Always
+Steps to Reproduce:
+It is in the source code, so I just open UndoManager2.java in org.eclipse.ltk.internal.core.refactoring

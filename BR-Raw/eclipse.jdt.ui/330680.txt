@@ -1,0 +1,14 @@
+Bug 330680 – Refactoring Signature Preview bg color is changed to default, hard to read with light syntax coloring
+Build Identifier: M20100909-0800
+ExtractMethodInputPage, line 314.
+This explicitly sets the background color of the signature preview text widget to be the same as the parent composite, which is going to the be standard gray.
+ If the user has set up preference in such a way that they use light fg colors on top of a dark bg color for their Java syntax coloring, this makes the preview very hard to read.
+This particular "bug" is also in any other Refactoring action that provides a signature preview on the first page of the dialog.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Set a black bg and white fg in Preferences > General > Editors > Text Editors
+2.
+Create a simple hello world Java file.
+3.
+Try to Refactor > Extract Method a line of code.

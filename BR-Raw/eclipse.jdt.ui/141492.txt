@@ -1,0 +1,7 @@
+Bug 141492 – 'Copy Fully Qualified Name' could copy full path for resources
+I20060512-0010
+Sometimes I need to paste the full path of a resource (e.g.
+into a bug report).
+'Copy Fully Qualified Name' which is currently disabled for resources could do that task.
+Maybe we could even switch the label (e.g.
+'Copy Full Path' for resources).

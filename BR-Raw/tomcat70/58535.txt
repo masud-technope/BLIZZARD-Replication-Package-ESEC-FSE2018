@@ -1,0 +1,19 @@
+58535 – ReverseComparator unsafely negates result
+Created attachment 33210 [details]
+Patch to avoid negation risk
+Consider the code:
+@Override
+public int compare(Session o1, Session o2) {
+int returnValue = comparator.compare(o1, o2);
+return (- returnValue);
+}
+This code negates the return value of the compare method.
+This is a questionable or bad programming practice, since if the return value is Integer.MIN_VALUE, negating the return value won't negate the sign of the result.
+You can achieve the same intended result by reversing the order of the operands rather than by negating the results.
+See http://findbugs.sourceforge.net/bugDescriptions.html#RV_NEGATING_RESULT_OF_COMPARETO
+Recommend the following:
+@Override
+public int compare(Session o1, Session o2) {
+// Note that comparing o2 with o1 to get reverse result...
+return comparator.compare(o2, o1);
+}

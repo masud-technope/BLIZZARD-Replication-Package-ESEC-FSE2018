@@ -1,0 +1,3 @@
+java/org/apache/tomcat/util/net/jsse/JSSESocketFactory.java
+webapps/docs/config/http.xml
+webapps/docs/changelog.xml

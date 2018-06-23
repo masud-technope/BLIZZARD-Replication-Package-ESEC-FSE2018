@@ -1,0 +1,18 @@
+Bug 480029 – [formatter] Comments indentation error in javadoc @return statements
+Created attachment 257331 [details]
+Class file and formatter to reproduce this issue
+Hello,
+To demand, I separate my previous bug submit into individual substitutions, original ticket:
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=479958
+In the javadoc formatting, when a @return statement start with a tag, indentation is wrong in this case.
+In the ZIP file, there is the class file to reproduce the bug, with formatter settings.
+My configuration:
+* Windows 10
+* Eclipse 4.5.1 64-bit
+* JDK 1.8 update 60
+Tested with these builds, same result for all these builds (fresh install, no plug-in):
+* Eclipse 4.5.1 64-bit
+* Eclipse 4.6 M2 64-bit
+* eclipse-SDK-M20151014-1000-win32-x86_64.zip
+* eclipse-SDK-I20151014-1100-win32-x86_64.zip
+Best regards,

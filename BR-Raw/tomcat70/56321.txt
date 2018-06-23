@@ -1,0 +1,32 @@
+56321 – ServletContextListener.contextDestroyed not completely executed when updating war
+When the contextDestroyed accesses a static method on a class which has not been loaded yet, the rest of the contextDestroyed code is not executed,e.g.,:
+package contexttest;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+public class ContextTest implements ServletContextListener {
+public void contextDestroyed(ServletContextEvent arg0) {
+System.out.println("Context Destroyed");
+MyTest.testStatic();
+System.out.println("Context Destroyed Done");
+}
+public void contextInitialized(ServletContextEvent arg0) {
+System.out.println("Context Initialized");
+}
+}
+package contexttest;
+public class MyTest {
+public static void testStatic(){
+System.out.println("My static method call");
+}
+}
+When I created a war based on this code, and copy this war to the tomcat web apps directory, it logs 'Context Initialized' as expected.
+When I remove the war it logs:
+Context Destroyed
+My static method call
+Context Destroyed Done
+as expected.
+However when I copy the war to web apps, wait till it is initialized, and then touch the war (to simulate the update of a the war).
+It logs for the destroy event only:
+'Context Destroyed'
+So the static method call and the 'Context Destroyed Done' is missing.
+When I execute the above on tomcat 7.0.42 it behaves as I would expect, so no difference between removing a war or updating the war.

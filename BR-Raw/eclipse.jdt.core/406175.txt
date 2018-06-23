@@ -1,0 +1,14 @@
+Bug 406175 – [1.8][compiler][codegen] Generate code for lambdas with expression body.
+BETA_JAVA8: The fix for bug 405067 addressed only block bodies lambdas.
+Expression body lambdas will be handled as the topic of this bug.
+At the moment the following program generates a verify error:
+// ---
+interface I {
+String id(String s);
+}
+public class X {
+public static void main(String[] args) {
+I i = (s) -> s;
+System.out.println(i.id("Hello"));
+}
+}

@@ -1,0 +1,16 @@
+org.eclipse.ecf.provider.jmdns.container.JMDNSDiscoveryContainer.connect
+org.eclipse.mylyn.internal.hudson.ui.HudsonDiscovery.start
+org.eclipse.mylyn.internal.hudson.ui.HudsonStartup.lazyStartup
+org.eclipse.mylyn.internal.builds.ui.BuildsUiPlugin$UiStartupExtensionPointReader$1.run
+java.net.PlainDatagramSocketImpl.join
+java.net.PlainDatagramSocketImpl.join
+java.net.MulticastSocket.joinGroup
+javax.jmdns.impl.JmDNSImpl.openMulticastSocket
+javax.jmdns.impl.JmDNSImpl.init
+javax.jmdns.impl.JmDNSImpl.<init>
+javax.jmdns.JmDNS.create
+org.eclipse.ecf.provider.jmdns.container.JMDNSDiscoveryContainer.connect
+org.eclipse.ecf.provider.jmdns.container.JMDNSDiscoveryContainer.disconnect
+org.eclipse.mylyn.internal.hudson.ui.HudsonDiscovery.stop
+org.eclipse.mylyn.internal.hudson.ui.HudsonStartup.stop
+org.eclipse.mylyn.internal.hudson.ui.HudsonUiPlugin.stop

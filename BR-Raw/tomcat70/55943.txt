@@ -1,0 +1,11 @@
+55943 – Provide a way prevent looking at the System classloader before the webapp classloaders
+I would like a way to prevent Tomcat from checking the System classloader before the webapp classloaders.
+ This would be useful when using the embedded Tomact API to produce isolated servlet containers.
+I ran in to some difficulty with this when I was adding Tomcat support to the SBT (Simple Build Tool) plugin: https://github.com/JamesEarlDouglas/xsbt-web-plugin
+In particular I had an issue where SBT includes a version of the Scala standard library, on the system classpath, that has been run through Proguard.
+ This  was conflicting with web applications that were including their own version of the Scala standard library.
+ I was eventually able to work around this using this hack: https://github.com/JamesEarlDouglas/xsbt-web-plugin/commit/f8a9b149f0c7c87d7b6e8f862c493841d82ad90a However, it would be nice if there was a way to accomplish this that didn't involve such a hack.
+I would be happy to submit a patch for this.
+ However, I would like some guidence on how the API should be changed to accomplish this.
+ Perhaps a new flag on the WebappLoader class?
+Thanks

@@ -1,0 +1,17 @@
+Bug 432628 – [formatter] Add option "Insert new line after annotations on enum constants"
+The formatter should have an option "Insert new line after annotations on enum constants".
+With this option enabled code should look like this:
+public enum SomeEnum {
+@XmlEnumValue("val1")
+VAL_1("val1"),
+@XmlEnumValue("val2")
+VAL_2("val2");
+...
+}
+Currently, formatting enums with line wrapping on enum constants set to "Wrap all elements, every element on a new line" the output looks like this:
+public enum SomeEnum {
+@XmlEnumValue("val1")
+VAL_1("val1"), @XmlEnumValue("val2")
+VAL_2("val2");
+...
+}

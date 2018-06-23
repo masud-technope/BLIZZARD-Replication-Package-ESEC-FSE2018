@@ -1,0 +1,8 @@
+Bug 95505 – Can not use code completion
+Eclipse 3.1 M7
+It was very convinient in Eclipse that when it already knows type and I write
+"new " and press Ctrl+Space, it shows this type.
+For example:
+button.addActionListener(new {cursor})
+But in M7 I have now look, what type should be used and write several first
+letters? Why? Please return old behaviour, at least make this optional.

@@ -1,0 +1,14 @@
+org.eclipse.pde.internal.ui.properties.PluginDevelopmentPage.performOk
+org.eclipse.jface.preference.PreferenceDialog$11.run
+org.eclipse.core.runtime.SafeRunner.run
+org.eclipse.core.runtime.Platform.run
+org.eclipse.ui.internal.JFaceUtil$1.run
+org.eclipse.jface.util.SafeRunnable.run
+org.eclipse.jface.preference.PreferenceDialog.okPressed
+org.eclipse.pde.internal.ui.properties.SelfHostingPropertyPage.performOk
+org.eclipse.jface.preference.PreferenceDialog$11.run
+org.eclipse.core.runtime.SafeRunner.run
+org.eclipse.core.runtime.Platform.run
+org.eclipse.ui.internal.JFaceUtil$1.run
+org.eclipse.jface.util.SafeRunnable.run
+org.eclipse.jface.preference.PreferenceDialog.okPressed

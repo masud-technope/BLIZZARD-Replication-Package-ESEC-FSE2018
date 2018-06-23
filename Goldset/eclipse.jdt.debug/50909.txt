@@ -1,0 +1,8 @@
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/BootpathTests.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/AbstractJavaLaunchConfigurationDelegate.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/JavaLocalApplicationLaunchConfigurationDelegate.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/StandardVMRunner.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/IJavaLaunchConfigurationConstants.java
+org.eclipse.jdt.launching/r3_0_changes.html
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/JavaAppletLaunchConfigurationDelegate.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/VMRunnerConfiguration.java

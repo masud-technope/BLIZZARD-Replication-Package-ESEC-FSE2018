@@ -1,0 +1,11 @@
+Bug 339896 – [change method signature] Preview is incorrect when a varargs parameter is present
+Build Identifier: 20100617-1415
+When adding a varargs parameter (or if one is already present), the type of that parameter is not used in the preview.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Trigger "Change Method Signature..." for some method
+2.
+Add a varargs parameter if there is not already one
+3.
+The "Method signature preview" at the bottom does not contain the type of the varargs parameter (even if it is not a new parameter)

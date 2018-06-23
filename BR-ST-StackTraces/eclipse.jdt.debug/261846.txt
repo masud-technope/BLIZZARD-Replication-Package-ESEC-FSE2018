@@ -1,0 +1,9 @@
+org.eclipse.jdt.internal.debug.core.hcr.JavaHotCodeReplaceManager.resourceChanged
+org.eclipse.core.internal.events.NotificationManager$2.run
+org.eclipse.core.runtime.SafeRunner.run
+org.eclipse.core.internal.events.NotificationManager.notify
+org.eclipse.core.internal.events.NotificationManager.broadcastChanges
+org.eclipse.core.internal.resources.Workspace.broadcastBuildEvent
+org.eclipse.core.internal.events.AutoBuildJob.doBuild
+org.eclipse.core.internal.events.AutoBuildJob.run
+org.eclipse.core.internal.jobs.Worker.run

@@ -1,0 +1,72 @@
+55996 – Async context does not timeout with HTTP NIO connector
+Created attachment 31200 [details]
+Servlet with Async processing and Java Based client
+I created a ProblemServlet which receives request via a Java based client.
+The Servlet starts an Async processing for each request.
+Within the Async processing run() method there is a while loop which cyclically sends String messages to the client.
+The implementation of run method is shown.
+public void run()
+{
+try
+{
+String msg = "";
+ServletOutputStream outputStream = publisherAsyncCtx.getResponse().getOutputStream();
+boolean continu = true;
+while (continu)
+{
+msg = "";
+msg = "|" + " " + new Date();
+System.out.println("publishing message...
+" + msg);
+outputStream.println(msg);
+publisherAsyncCtx.getResponse().flushBuffer();
+try
+{
+Thread.sleep(1000);
+}
+catch (InterruptedException e)
+{
+System.out.println("sleep InterruptedException: " + e.getMessage());
+e.printStackTrace();
+}
+}
+}
+When a Java based console application client hits this servlet and reads its output stream, for around 10 sec the messages arrive.
+But after 10 seconds the connection is closed by the server.
+Logs on the Server side:
+Starting the Async Context.
+publishing message...
+| Mon Jan 13 11:28:30 IST 2014
+publishing message...
+| Mon Jan 13 11:28:31 IST 2014
+publishing message...
+| Mon Jan 13 11:28:32 IST 2014
+publishing message...
+| Mon Jan 13 11:28:33 IST 2014
+publishing message...
+| Mon Jan 13 11:28:34 IST 2014
+publishing message...
+| Mon Jan 13 11:28:35 IST 2014
+publishing message...
+| Mon Jan 13 11:28:36 IST 2014
+publishing message...
+| Mon Jan 13 11:28:37 IST 2014
+publishing message...
+| Mon Jan 13 11:28:38 IST 2014
+publishing message...
+| Mon Jan 13 11:28:39 IST 2014
+publishing message...
+| Mon Jan 13 11:28:40 IST 2014
+publishing message...
+| Mon Jan 13 11:28:41 IST 2014
+Exception in thread "http-bio-8080-exec-6" java.lang.IllegalStateException: The request associated with the AsyncContext has already completed processing.
+at org.apache.catalina.core.AsyncContextImpl.check(AsyncContextImpl.java:521)
+at org.apache.catalina.core.AsyncContextImpl.getResponse(AsyncContextImpl.java:245)
+at com.pg.orion.artcloopcheck.ProblemServlet$AsynRunnable.run(ProblemServlet.java:67)
+at org.apache.catalina.core.AsyncContextImpl$RunnableWrapper.run(AsyncContextImpl.java:557)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at java.lang.Thread.run(Thread.java:722)
+Issue is seen with "apache-tomcat-7.0.50", "apache-tomcat-7.0.47".
+Not tested with other release 7 variants.
+The same codebase when run on "apache-tomcat-8.0.0-RC10" there are no issues.

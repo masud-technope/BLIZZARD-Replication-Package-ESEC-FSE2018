@@ -1,0 +1,6 @@
+Bug 49052 – changing VM arg in scrapbook properties does not restart VM
+I20031216
+* Changing the VM properties in the scrapbook properties dialog does not
+restart the VM on the next evaluation, but should.
+(For example, chaning the
+JRE does cause the VM to re-launch)

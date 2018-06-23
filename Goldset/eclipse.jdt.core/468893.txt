@@ -1,0 +1,10 @@
+org.eclipse.jdt.apt.pluggable.tests/plugin.xml
+org.eclipse.jdt.apt.pluggable.tests/src/org/eclipse/jdt/apt/pluggable/tests/BuilderTests.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/SourceTypeCollisionException.java
+org.eclipse.jdt.apt.pluggable.tests/resources/targets/bug468893/TypeIndexClient.java
+org.eclipse.jdt.apt.pluggable.tests/lib/annotations.jar
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/Compiler.java
+org.eclipse.jdt.apt.pluggable.tests/resources/targets/bug468893/Annotated.java
+org.eclipse.jdt.apt.pluggable.tests/resources/targets/bug468893/Annotation.java
+org.eclipse.jdt.apt.pluggable.tests/META-INF/services/javax.annotation.processing.Processor
+org.eclipse.jdt.apt.pluggable.tests/src/org/eclipse/jdt/apt/pluggable/tests/processors/buildertester/Bug468893Processor.java

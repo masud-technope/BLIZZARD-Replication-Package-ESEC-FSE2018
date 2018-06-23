@@ -1,0 +1,4 @@
+Bug 224095 – FileTransferInfo shares its properties with other instances
+If you create a FileTransferInfo without specifying any properties, it ends up pointing its preferences at a static Map implementation instance.
+So in theory, various instances of FileTransferInfo could be sharing the same Map.
+This doesn't sound like the expected behaviour to me.

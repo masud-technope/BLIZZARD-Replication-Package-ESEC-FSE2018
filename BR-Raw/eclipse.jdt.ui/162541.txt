@@ -1,0 +1,3 @@
+Bug 162541 – [misc] save participants not called upon 'Save As'
+N20061027-0010
+The save participants are not called upon 'Save As'.

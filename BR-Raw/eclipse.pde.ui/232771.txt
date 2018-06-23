@@ -1,0 +1,3 @@
+Bug 232771 – Unexpected confirmation dialog when launching
+3.4M7
+When launching with an OSGi launch config SaveScopeResourcesHandler.handleStatus() is called with projects == null and the fallback to DebugUIPlugin.preLaunchSave() triggers a save dialog for all dirty editors including those with an editor input that does not adapt to IResource.

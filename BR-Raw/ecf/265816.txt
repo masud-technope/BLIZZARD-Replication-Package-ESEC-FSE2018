@@ -1,0 +1,2 @@
+Bug 265816 – [Discovery] Move IDiscoveryContainerAdapter Connect* constants to IContainerServiceInfoAdapter
+With breaking API changes in the pipeline anyway, lets do some code refactorings too.

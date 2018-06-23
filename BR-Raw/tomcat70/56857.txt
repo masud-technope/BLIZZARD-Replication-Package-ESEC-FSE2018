@@ -1,0 +1,16 @@
+56857 – Thread safety issue in ApplicationContextFacade.invokeMethod
+Multiple subsequent Thread dumps were exhibiting lots of threads hanging in HashMap.get() while in RUNNABLE status, and consuming high CPU - a typical indicator of a thread safety issue with these non-threadsafe Maps.
+Thread stacks all as below.
+ApplicationContextFacade implements ServletContext, these objects are singletons per webapp, and get passed around among multiple threads.
+Their private member "objectCache" is a HashMap, i.e.
+not thread safe, but gets accessed AND modified without any synchronization in invokeMethod().
+Suggested remedy: change to a ConcurrentHashMap, which is thread-safe, and performs much better than synchronizing on every access.
+"connector-93: userId=_101_1, sessionId=C9EC1C59DD2244557BC6231A5476000E" daemon prio=10 tid=0x00007fb1e40cf800 nid=0x7b90 runnable [0x00007fb1e82c3000]
+java.lang.Thread.State: RUNNABLE
+at java.util.HashMap.get(HashMap.java:326)
+at org.apache.catalina.core.ApplicationContextFacade.invokeMethod(ApplicationContextFacade.java:789)
+at org.apache.catalina.core.ApplicationContextFacade.doPrivileged(ApplicationContextFacade.java:767)
+at org.apache.catalina.core.ApplicationContextFacade.getContextPath(ApplicationContextFacade.java:428)
+at blackboard.portal.servlet.ModuleCustomizationServlet.service(ModuleCustomizationServlet.java:88)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+...

@@ -1,0 +1,4 @@
+Bug 278818 – [target] duplicate bundles appear when restoring state
+3.5 RC3
+The LoadTargetDefinitionJob automatically removes duplicate bundles when creating target platform state (fixed by bug 274225).
+However, when state is restored on workspace restart, duplicates are not removed - PDE just scans all locations.

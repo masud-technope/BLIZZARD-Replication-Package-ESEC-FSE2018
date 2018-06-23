@@ -1,0 +1,8 @@
+Bug 499942 – [r-osgi][remoteservices] Class incompability with R-OSGi-registered services
+When r-osgi registers a replacement local service during registerRemoteService, if there are two or more versions of the service class subsequent usage requires that the remoteServiceTracker use open(true) in order to allow it to get access to any/all remote services registered, even if they do not have the same/compatible version service API.
+This requires on line 626 of ch.ethz.iks.r_osgi.impl.RemoteOSGiServiceImpl
+remoteServiceTracker.open(); be changed to remoteServiceTracker.open(true);
+and line 1019 in same class be changed from
+.getContext().getServiceReferences((String) null, filter);
+to
+.getContext().getAllServiceReferences((String) null, filter);

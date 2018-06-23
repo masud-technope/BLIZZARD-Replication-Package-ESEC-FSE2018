@@ -1,0 +1,6 @@
+Bug 10499 – DOM/AST: need a way to access the IMethodBinding of a ClassInstanceCreation
+Build 20020226
+How do I access the IMethodBinding of the constructor represented by a
+ClassInstanceCreation node ? We need this method binding since a constructor
+can throw exceptions.
+I think there should be a method resolveBinding() -> IMethodBinding.

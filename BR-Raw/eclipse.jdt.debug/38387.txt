@@ -1,0 +1,5 @@
+Bug 38387 – NLS'ing of internal error messages
+Jared found some cases of where I had nls'd what really are internal error
+messages.
+We should do a pass to ensure that when we generate internal error messages in
+the log that they will be in a language that we can understand :-)

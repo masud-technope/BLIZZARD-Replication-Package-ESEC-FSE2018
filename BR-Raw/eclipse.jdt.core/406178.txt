@@ -1,0 +1,2 @@
+Bug 406178 – [1.8][compiler] Some functional interfaces are wrongly rejected
+Attached test case says it all, but basically the "current" JDKs BinaryOperator<T> which extends BiFunction<T,T,T> without adding methods, gives an error since the single abstract method cannot be found during code generation, possibly since the superinterfaces aren't searched for the most specific match.

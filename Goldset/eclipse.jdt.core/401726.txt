@@ -1,0 +1,2 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/TypeHierarchyNotificationTests.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/hierarchy/TypeHierarchy.java

@@ -1,0 +1,18 @@
+Bug 366131 – [1.5][compiler] New generics compile error in Indigo SR1 for code that compiles in earlier Eclipse and javac
+Build Identifier: 20110916-0149
+The attached example source files demonstrate a new generics compile error found in Eclipse Indigo SR1.
+This has also been confirmed in Eclipse Juno M3.
+However, the examples compile in Helios SR2 and Indigo R, and also with javac from jdk1.6.0_29.x64 and jdk1.7.0_01.x64.
+The error is:
+"The method containsNC(Number&Comparable<? super Number&Comparable<? super N>>) in the type Range<Number&Comparable<? super Number&Comparable<? super N>>> is not applicable for the arguments (Comparable)"
+Here is the GeoTools Jira issue:
+GEOT-3971: NumberRange compile failure in Eclipse Indigo
+https://jira.codehaus.org/browse/GEOT-3971
+The original affected source file is here:
+http://svn.osgeo.org/geotools/trunk/modules/library/metadata/src/main/java/org/geotools/util/NumberRange.java
+If this isn't an argument against static typing, I don't know what is.
+ :-)
+Reproducible: Always
+Steps to Reproduce:
+1.
+Open source files in Java editor in Eclipse SR1 or later.

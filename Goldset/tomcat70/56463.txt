@@ -1,0 +1,5 @@
+conf/web.xml
+java/org/apache/catalina/servlets/DefaultServlet.java
+webapps/docs/changelog.xml
+webapps/docs/default-servlet.xml
+webapps/docs/security-howto.xml

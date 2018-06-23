@@ -1,0 +1,2 @@
+Bug 339790 – [remoteservices][rest] rest registry should start remote service ids at 1
+Currently in org.eclipse.ecf.remoteservice.client.RemoteServiceClientRegistry the nextServiceId starts at 0, it should start at 1.

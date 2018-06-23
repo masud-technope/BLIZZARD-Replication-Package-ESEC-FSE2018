@@ -1,0 +1,2 @@
+Bug 273135 – LogService implementation misses details when logging
+The implementation invokes println on the String 'message' parameter instead of the constructed StringBuffer.

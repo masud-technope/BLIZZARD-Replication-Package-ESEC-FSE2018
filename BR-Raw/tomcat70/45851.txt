@@ -1,0 +1,20 @@
+45851 – FarmWarDeployer fails to properly unpack copied war on target node
+Created attachment 22616 [details]
+files used to reproduce issue
+When trying to deploy a war to a cluster, it seems that the war will deploy locally when placed in the listener directory, however, it seems that either there is some corruption when moving the war across the wire, or the deployer on the target node is not able to properly unpack and read the files inside.
+Pertinent portion of the log from the target node is attached.
+I can provide any other info as needed, but not sure what else would be pertinent.
+ The test.war is simply a war'd copy of the default Tomcat Manager web app.
+To reproduce:
+1.
+Configure two nodes two make up a SimpleTCPCluster (version 6.0.18 was used)
+2.
+From either node, drop test.war into the listen directory
+Results:
+* test.war will be deployed locally
+* test.war will be copies to the webapps directory on the target
+* test.war will not fully deploy on the target
+Expected results:
+* war unpacked and deployed locally
+* copied to each node in the cluster
+* war unpacked and deployed on each node of the cluster

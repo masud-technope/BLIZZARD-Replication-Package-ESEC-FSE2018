@@ -1,0 +1,5 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/callhierarchy/SearchScopeHierarchyAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/callhierarchy/CallHierarchyMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/callhierarchy/SearchInDialog.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/callhierarchy/CallHierarchyMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/callhierarchy/SearchScopeActionGroup.java

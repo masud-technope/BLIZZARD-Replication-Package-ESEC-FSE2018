@@ -1,0 +1,9 @@
+java/org/apache/catalina/Globals.java
+java/org/apache/catalina/connector/CoyoteAdapter.java
+java/org/apache/catalina/connector/LocalStrings.properties
+java/org/apache/catalina/connector/Request.java
+java/org/apache/catalina/connector/Response.java
+java/org/apache/catalina/core/ApplicationSessionCookieConfig.java
+java/org/apache/catalina/realm/RealmBase.java
+test/org/apache/catalina/connector/TestCoyoteAdaptor.java
+webapps/docs/config/systemprops.xml

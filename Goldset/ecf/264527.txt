@@ -1,0 +1,6 @@
+protocols/bundles/ch.ethz.iks.slp/pom.xml
+protocols/bundles/ch.ethz.iks.slp/runtimeTests/pom.xml
+protocols/bundles/ch.ethz.iks.slp/runtimeTests/src/main/java/ch/ethz/iks/slp/impl/TestActivator.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/OSGiPlatformAbstraction.java
+protocols/bundles/ch.ethz.iks.slp/src/main/java/ch/ethz/iks/slp/impl/SLPCore.java
+protocols/bundles/ch.ethz.iks.slp/test/init.xargs

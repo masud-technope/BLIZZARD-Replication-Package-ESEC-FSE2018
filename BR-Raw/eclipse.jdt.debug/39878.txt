@@ -1,0 +1,10 @@
+Bug 39878 – Debug test failing on Linux
+This test has been failing consistently in nightly builds on linux.
+Program did not suspend.
+junit.framework.AssertionFailedError: Program did not suspend.
+at org.eclipse.jdt.debug.tests.AbstractDebugTest.stepOver
+(AbstractDebugTest.java:617)
+at org.eclipse.jdt.debug.tests.core.LocalVariableTests.testSimpleVisibility
+(LocalVariableTests.java:41)
+at org.eclipse.jdt.debug.tests.AutomatedSuite$1.run(AutomatedSuite.java:161)
+at java.lang.Thread.run(Thread.java:513)

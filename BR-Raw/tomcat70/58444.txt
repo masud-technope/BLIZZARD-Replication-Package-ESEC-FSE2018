@@ -1,0 +1,21 @@
+58444 – _jspInit() never called on JSP with custom super class
+I have a JSP that extends a custom super class:
+<@page extends="com.example.MySuperServlet" %>
+My super class is defined as follows:
+public abstract class MySuperServlet extends javax.servlet.GenericServlet implements javax.servlet.jsp.HttpJspPage {
+@Override public void service(....) {
+_jspService(req, res);
+}
+@Override public void jspInit() {}
+@Override public void jspDestroy() {}
+}
+The problem is that the generated JSP class contains a method _jspInit() which is never called.
+It initializes an expression factory (_el_expressionfactory) and an instance manager (_jsp_instancemanager).
+Now that both are not initialized, I get NullpointerExceptions when calling the JSP, i.e.
+in some generated methods there is code like
+_jsp_instancemanager.newInstance(_jspx_th_my_005fcustomtag_005f0)
+Usually when there is no custom super class, tomcat extends the generated JSP class from org.apache.jasper.runtime.HttpJspBase which calls _jspInit() from its init(ServletContext) method.
+For my custom super class it is no option to extend org.apache.jasper.runtime.HttpJspBase instead of GenericServlet because it is tomcat specific.
+It is also no option to call _jspInit() directly from my jspInit() method, because _jspInit() is not part of the servlet/JSP spec and thus it is not defined in any interface.
+Note that there is no problem with tomcat 6 and 5.
+I haven't tested with tomcat 8, yet.

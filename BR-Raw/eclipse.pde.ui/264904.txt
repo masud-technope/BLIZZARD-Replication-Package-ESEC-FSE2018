@@ -1,0 +1,6 @@
+Bug 264904 – [target] File > New > Target Definition
+We need to enhance the existing "New Target Definition" wizard available from the "File > New > Other"  menu.
+* The wizard will only allow target definitions to be created in the workspace (same as now)
+* The options at the bottom of the wizard should be the same as the 4 options in the wizard presented in the preference page (currently, there are only 3 slightly different options)
+* The wizard should create a target definition in the new format, using the new model.
+It currently creates targets using the old model/syntax.

@@ -1,0 +1,15 @@
+Bug 402618 – [1.8][compiler] Compiler fails to resolve type annotations on method/constructor references
+BETA_JAVA8:
+The following program should fail to compile, but compiles successfully:
+// ----
+interface I {
+void foo(X x);
+}
+public class X {
+void foo() {
+}
+public void main(String[] args) {
+I i = @Marker X::foo;
+}
+}
+The compiler silently acepts the undefined annotation Marker

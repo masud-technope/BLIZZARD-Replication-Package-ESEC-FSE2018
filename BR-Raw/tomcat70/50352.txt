@@ -1,0 +1,53 @@
+50352 – AsyncListener.onComplete is not called after AsyncContext.complete() is called
+Using servlet 3 async features, when asyncContext.complete(); is called from an async thread, the AsyncListener onComplete() method is not called though it should be.
+Example Servlet :
+package test;
+import java.io.IOException;
+import javax.servlet.AsyncContext;
+import javax.servlet.AsyncEvent;
+import javax.servlet.AsyncListener;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+/**
+* Servlet implementation class MyServlet
+*/
+@WebServlet(value = "/MyServlet", asyncSupported = true)
+public class MyServlet extends HttpServlet implements AsyncListener {
+private static final long serialVersionUID = 1L;
+protected void doGet(HttpServletRequest request,
+HttpServletResponse response) throws ServletException, IOException {
+final AsyncContext asyncContext = request.startAsync(request, response);
+asyncContext.addListener(this);
+asyncContext.start(new Runnable() {
+@Override
+public void run() {
+try {
+Thread.sleep(5 * 1000);
+asyncContext.getResponse().getWriter().write("Hello world");
+asyncContext.complete();
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+});
+}
+@Override
+public void onComplete(AsyncEvent arg0) throws IOException {
+System.out.println("onComplete " + arg0);
+}
+@Override
+public void onError(AsyncEvent arg0) throws IOException {
+System.out.println("onError " + arg0);
+}
+@Override
+public void onStartAsync(AsyncEvent arg0) throws IOException {
+System.out.println("onStartAsync " + arg0);
+}
+@Override
+public void onTimeout(AsyncEvent arg0) throws IOException {
+System.out.println("onTimeout " + arg0);
+}
+}

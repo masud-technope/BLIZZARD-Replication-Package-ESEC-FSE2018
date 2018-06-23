@@ -1,0 +1,27 @@
+59269 – Session swapping out in PersistentManagerBase
+I've been trying to setup PersistentManager, more precisely I wanted to configure session swapping out to achieve memory friendly configuration under high load.
+To my surprise, this is not possible, or I must be missing something crucial.
+Swapping out only works, when the session is idle for too long.
+However, it does not work together with the 'maxActiveSessions' configuration option.
+Method processMaxActiveSwaps()
+------------------------------
+In the org.apache.catalina.session.PersistentManagerBase, there is method called processMaxActiveSwaps(), which should do the 'maxActiveSessions' checking and swap out superfluous sessions.
+However, the method body never executes:
+Compare the condition "if (getMaxActiveSessions() >= sessions.length) return;" with the fact, that exception is thrown if too many sessions are created in org.apache.catalina.session.ManagerBase.createSession().
+I've found this bug in versions 7, 8, 9.
+Seems that this bug is there since ages, the same already reported here (in 2001!!!):
+https://mail-archives.apache.org/mod_mbox/tomcat-dev/200112.mbox/%3C3C20D8AE.D9B7795F@distributopia.com%3E
+https://mail-archives.apache.org/mod_mbox/tomcat-dev/200112.mbox/<3C20D8AE.D9B7795F@distributopia.com>
+Expected behaviour
+------------------
+Just to eliminate possible misunderstandings, here is what behaviour I expected from the documentation, the source code and what common sence tells me: there is configuration option 'maxActiveSessions' which simply limits number of sessions stored in the memory, to avoid OutOfMemExeption etc.
+However, I have session timeout set up for couple of hours (needed) and it is not possible to keep them all in memory.
+And I don't even want to tell to my users: Sorry, no space for you, here you have it: TooManyActiveSessionsException on you.
+So I'd like to swap out sessions not active for say half an hour.
+There is 'minIdleSwap' config option, which tells when the session may be swapped out if needed.
+BTW.
+as this does not work, this option is currently completely useless.
+What can be done: remove the check in org.apache.catalina.session.ManagerBase.createSession() (or make it less strict - e.g.
+allow couple of additional sessions to be created over this limit).
+Then the processMaxActiveSwaps() method would do its job nicely and overflowing sessions would be swapped out.
+Many thanks for 1) any clarification if I'm wrong OR 2) bug fixing :-) OR 3) removing the stale/old/never-more-working source code and documenting that this feature is simply not there even though it looks like it is.

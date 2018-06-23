@@ -1,0 +1,12 @@
+Bug 406995 – [content assist] Context Information is not shown after completion of void method
+With the automatic addition of ';' to void-returning method completion proposals, we don't show Context Information any more for such completions.
+Example: Complete after "wait" here and choose a method with parameters:
+package xy;
+public class CompletionTest {
+{
+wait
+}
+}
+The problem in this case is that JavaMethodCompletionProposal#computeContextInformation() needs another condition
+"|| getReplacementString().endsWith(SEMICOLON)".
+Need to check other proposals as well.

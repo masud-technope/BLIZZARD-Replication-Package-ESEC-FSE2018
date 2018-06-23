@@ -1,0 +1,7 @@
+java/javax/servlet/jsp/el/ELException.java
+java/javax/servlet/jsp/el/ELParseException.java
+java/javax/servlet/jsp/el/Expression.java
+java/javax/servlet/jsp/el/ExpressionEvaluator.java
+java/javax/servlet/jsp/el/FunctionMapper.java
+java/javax/servlet/jsp/el/VariableResolver.java
+webapps/docs/changelog.xml

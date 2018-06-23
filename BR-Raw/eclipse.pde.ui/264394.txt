@@ -1,0 +1,3 @@
+Bug 264394 – Adopt the proper preferences story
+There's a lot of deprecation warnings in PDE in regards to how we use preferences.
+We should review our usage and fix the deprecations to use the new preferences story.

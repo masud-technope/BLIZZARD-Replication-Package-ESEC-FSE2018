@@ -1,0 +1,29 @@
+Bug 415399 – [1.8][compiler] Type annotations on constructor results dropped by the code generator
+BETA_JAVA8:
+Given the following program:
+// ---
+import java.lang.annotation.*;
+import static java.lang.annotation.ElementType.*;
+@Target(TYPE_USE)
+@interface Immutable {}
+class Document {}
+class X {
+@Immutable X() {
+}
+}
+// ---
+The annotation @Immutable does not make it to the class file.
+8b100 emits:
+X();
+descriptor: ()V
+flags:
+Code:
+stack=1, locals=1, args_size=1
+0: aload_0
+1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+4: return
+LineNumberTable:
+line 7: 0
+line 8: 4
+RuntimeInvisibleTypeAnnotations:
+0: #9(): METHOD_RETURN

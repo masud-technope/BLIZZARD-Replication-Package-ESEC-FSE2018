@@ -1,0 +1,6 @@
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/JUnitMessages.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/JUnitMessages.properties
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/JUnitPreferencePage.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/JUnitUIPreferencesConstants.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/TestRunnerViewPart.java
+org.eclipse.jdt.junit/src/org/eclipse/jdt/internal/junit/ui/JUnitPreferencePage.java

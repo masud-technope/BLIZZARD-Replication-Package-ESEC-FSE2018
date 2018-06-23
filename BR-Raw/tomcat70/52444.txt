@@ -1,0 +1,5 @@
+52444 – Classloading-based ServletContainerInitializer @HandlesTypes processing can result in long startup times
+See 52326 for background, noting particularly the following:
+"As long as SCI processing involves expensive classloading, larger applications will suffer from long startup times and thus be encouraged to "shut off" this functionality via metadata-complete='true'."
+This issue, then, is intended to address classloading-based approach to @HandlesTypes processing by replacing it with something faster and generally less problematic.
+ ASM would be one way to get it done.

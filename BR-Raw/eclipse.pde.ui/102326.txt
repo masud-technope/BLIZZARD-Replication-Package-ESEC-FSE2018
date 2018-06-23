@@ -1,0 +1,12 @@
+Bug 102326 – Feature and Fragment Export JarSigning dialog needs keypass field.
+Java keystores ( JKS, JCEKS format), and keytool allow for creating signing
+certificates with a keypass.
+  If a signing certificate has been stored in the
+keystore with a keypass, it can not be used for signing with the present
+implementation.
+  The keypass field value can be optionally supplied (i.e.
+can
+be left blank if the associated keyEntry value has not been stored with a keypass).
+Please add a keypass field to the JarSigning Wizard page, and update any ant
+build templates as specified in "Bugzilla Bug 100534 Support for jarsigning in
+PDE scripts".

@@ -1,0 +1,54 @@
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/NullAnnotationsQuickFixTest.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/NullAnnotationsFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/NullAnnotationsRewriteOperations.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullAnnotationsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/QuickFixProcessor.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/NullAnnotationsQuickFixTest.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/FixMessages.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/FixMessages.properties
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/NullAnnotationsFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/NullAnnotationsRewriteOperations.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/MultiFixMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/MultiFixMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullAnnotationsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/IProposalRelevance.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/NullAnnotationsCorrectionProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/QuickFixProcessor.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/FixMessages.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/FixMessages.properties
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/NullAnnotationsFix.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/NullAnnotationsRewriteOperations.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/MultiFixMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/MultiFixMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullAnnotationsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullQuickFixes.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullRewriteOperations.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/NullAnnotationsCorrectionProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/QuickFixProcessor.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/NullAnnotationsQuickFixTest.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/QuickFixTest.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/MultiFixMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/MultiFixMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullAnnotationsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullFixMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullFixMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullQuickFixes.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullRewriteOperations.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/QuickFixProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullAnnotationsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullRewriteOperations.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/QuickFixProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullAnnotationsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullFixMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullFixMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullQuickFixes.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullRewriteOperations.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullAnnotationsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullQuickFixes.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullRewriteOperations.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullAnnotationsCleanUp.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullFixMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullFixMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullQuickFixes.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/fix/NullRewriteOperations.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/QuickFixProcessor.java

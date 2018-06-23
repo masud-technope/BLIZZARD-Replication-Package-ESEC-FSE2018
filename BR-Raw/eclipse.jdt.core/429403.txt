@@ -1,0 +1,3 @@
+Bug 429403 – [1.8][null] null mismatch from type arguments is not reported at field initializer
+An assignment like this is correctly flagged in most locations but not against a field initializer:
+List<@NonNull Person> l = new ArrayList<@Nullable Person>();

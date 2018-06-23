@@ -1,0 +1,15 @@
+org.eclipse.jdt.core.Signature.createCharArrayTypeSignature
+org.eclipse.jdt.core.Signature.createTypeSignature
+org.eclipse.jdt.internal.core.SelectionRequestor.acceptLocalVariable
+org.eclipse.jdt.internal.codeassist.SelectionEngine.selectFrom
+org.eclipse.jdt.internal.codeassist.SelectionEngine.select
+org.eclipse.jdt.internal.core.Openable.codeSelect
+org.eclipse.jdt.internal.core.CompilationUnit.codeSelect
+org.eclipse.jdt.internal.core.CompilationUnit.codeSelect
+org.eclipse.jdt.internal.ui.text.java.hover.AbstractJavaEditorTextHover.getJavaElementsAt
+org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.internalGetHoverInfo
+org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo2
+org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2
+org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2
+org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2
+org.eclipse.jface.text.TextViewerHoverManager$4.run

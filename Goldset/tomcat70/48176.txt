@@ -1,0 +1,3 @@
+java/org/apache/catalina/tribes/io/BufferPool.java
+java/org/apache/jasper/compiler/ServletWriter.java
+modules/tomcat-lite/java/org/apache/tomcat/util/http/MimeMap.java

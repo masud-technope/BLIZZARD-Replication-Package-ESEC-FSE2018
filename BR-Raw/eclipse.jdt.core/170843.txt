@@ -1,0 +1,7 @@
+Bug 170843 – deleteDerivedResources should ignore ResourceException
+The FileSystemUtil.deleteDerivedResources() method is used to delete generated files.
+ It in turn calls IResource.delete(), and passes any resulting CoreException up the stack.
+We are getting occasional instances of "org.eclipse.core.internal.resources.ResourceException: Problems encountered while deleting resources", which appear to be due either to file locking or to simultaneous deletion of projects during testing.
+There does not seem to be any good reason to pass these exceptions up the stack - arguably we should log the failure, but we should not be throwing an exception.
+The problem is reported against 3.2.1, but it is not severe enough to warrant fixing in 3.2.2.
+ It should be fixed in 3.3.

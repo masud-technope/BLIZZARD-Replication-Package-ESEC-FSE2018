@@ -1,0 +1,60 @@
+Bug 148006 – [console] deadlock in ConsoleDocument during ant execution in autobuild
+I20060620-1010
+Got this after starting up with the build, importing plug-ins as binary, and waiting for autobuild to complete:
+Full thread dump Java HotSpot(TM) Client VM (1.4.2_06-b02 mixed mode):
+[..]
+Found one Java-level deadlock:
+=============================
+"Thread-12":
+waiting to lock monitor 0x080930fc (object 0x48ac6540, a org.eclipse.ui.internal.console.ConsoleDocument),
+which is held by "Worker-8"
+"Worker-8":
+waiting to lock monitor 0x08092cd4 (object 0x56c9ddb0, a java.lang.Class),
+which is held by "Thread-12"
+Java stack information for the threads listed above:
+===================================================
+"Thread-12":
+at org.eclipse.ui.internal.console.ConsoleDocument.get(ConsoleDocument.java:29)
+- waiting to lock <0x48ac6540> (a org.eclipse.ui.internal.console.ConsoleDocument)
+at org.eclipse.ant.internal.ui.launchConfigurations.TaskLinkManager.addLink(TaskLinkManager.java:145)
+at org.eclipse.ant.internal.ui.launchConfigurations.TaskLinkManager.addTaskHyperlink(TaskLinkManager.java:118)
+- locked <0x56c9ddb0> (a java.lang.Class)
+at org.eclipse.ant.internal.ui.antsupport.logger.AntProcessBuildLogger.appendAndLink(AntProcessBuildLogger.java:145)
+at org.eclipse.ant.internal.ui.antsupport.logger.AntProcessBuildLogger.adornMessage(AntProcessBuildLogger.java:122)
+at org.eclipse.ant.internal.ui.antsupport.logger.AntProcessBuildLogger.logMessage(AntProcessBuildLogger.java:76)
+at org.eclipse.ant.internal.ui.antsupport.logger.AntProcessBuildLogger.messageLogged(AntProcessBuildLogger.java:317)
+at org.apache.tools.ant.Project.fireMessageLoggedEvent(Project.java:2009)
+- locked <0x48abcae0> (a org.apache.tools.ant.Project)
+at org.apache.tools.ant.Project.fireMessageLogged(Project.java:2058)
+at org.apache.tools.ant.Project.log(Project.java:367)
+at org.apache.tools.ant.Task.log(Task.java:346)
+at org.apache.tools.ant.Task.log(Task.java:334)
+at org.apache.tools.ant.taskdefs.Delete.execute(Delete.java:465)
+at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:275)
+at org.apache.tools.ant.Task.perform(Task.java:364)
+at org.apache.tools.ant.Target.execute(Target.java:341)
+at org.apache.tools.ant.Target.performTasks(Target.java:369)
+at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1216)
+at org.apache.tools.ant.Project.executeTarget(Project.java:1185)
+at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:40)
+at org.eclipse.ant.internal.core.ant.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:32)
+at org.apache.tools.ant.Project.executeTargets(Project.java:1068)
+at org.eclipse.ant.internal.core.ant.InternalAntRunner.run(InternalAntRunner.java:706)
+at org.eclipse.ant.internal.core.ant.InternalAntRunner.run(InternalAntRunner.java:457)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:324)
+at org.eclipse.ant.core.AntRunner.run(AntRunner.java:356)
+at org.eclipse.ant.internal.ui.launchConfigurations.AntLaunchDelegate$1.run(AntLaunchDelegate.java:230)
+at java.lang.Thread.run(Thread.java:534)
+"Worker-8":
+at org.eclipse.ant.internal.ui.launchConfigurations.TaskLinkManager.processNewLine(TaskLinkManager.java:166)
+- waiting to lock <0x56c9ddb0> (a java.lang.Class)
+at org.eclipse.ant.internal.ui.console.TaskLineTracker.lineAppended(TaskLineTracker.java:43)
+at org.eclipse.debug.internal.ui.views.console.ConsoleLineNotifier.lineAppended(ConsoleLineNotifier.java:126)
+at org.eclipse.debug.internal.ui.views.console.ConsoleLineNotifier.matchFound(ConsoleLineNotifier.java:118)
+at org.eclipse.ui.internal.console.ConsolePatternMatcher$MatchJob.run(ConsolePatternMatcher.java:130)
+- locked <0x48ac6540> (a org.eclipse.ui.internal.console.ConsoleDocument)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)
+Found 1 deadlock.

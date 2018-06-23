@@ -1,0 +1,12 @@
+45906 – Fix ResourceAttributes ETag handling
+Created attachment 22642 [details]
+Fix ResourceAttributes ETag handling
+The ResourceAttributes class and it's clients have a few problems WRT ETag handling:
+- ResourceAttributes only has a "getetag" attribute (apparently for WebDav?), and doesn't expose this value through an HTTP header compatible ALTERNATE_ETAG attribute like it does it's other attributes.
+- ResourceAttributes doesn't expose it's ETag through the getIDs(), getAll(), or get(String) methods, meaning FileDirContext.FileResourceAttributes won't return the value to DirContextURLConnection clients along with the other attributes.
+- The ResourceAttributes API is confusing, in that setETag(String) sets the *strong* etag, but getETag() returns the *weak* etag.
+- ResourceAttributes.getETag(boolean) is broken in that it sets the 'result' variable if there is an ETAG attribute value, but then immediately proceeds to overwrite that result value with the 'strongETag' or 'weakETag' value.
+- The only user of ResourceAttributes.getETag(boolean) is DefaultServlet.getETag(ResourceAttributes), which calls both ResourceAttributes.getETag() and ResourceAttributes.getETag(boolean) in succession - this method can be totally removed (making access more consistent with other attributes) by having just the simpler ResourceAttributes.getETag() return a strong tag if there is one, else fallback to returning the weak one.
+- The DefaultServlet.getETag(ResourceAttributes) method has a redundant and dead-code path to generate a weak etag using the content length and last modified values - which will have already been done and returned by ResourceAttributes.getETag(boolean).
+The attached patch against trunk should fix all of this.
+FYI: This is a continuation of the DirContextURLConnection problems I fixed in bug 44611.

@@ -1,0 +1,33 @@
+41869 – Should EL (Expression Language) expressions result in the TagData.REQUEST_TIME_VALUE object?
+I have a custom tag with attributes defined in the TLD file as allowing run-
+time expression values, meaning:
+<rtexprvalue>true</rtexprvalue>
+I also have a TagExtraInfo class that I am using to validate the values
+provided.
+Inside my TagExtraInfo sub-class I have code such as this:
+Object attr = data.getAttribute("groupSize");
+if ( attr != null &&
+!attr.equals(TagData.REQUEST_TIME_VALUE)
+{
+and so on.
+  When, in my JSP, I provide attribute values such as "<%= 10 * 14
+%" (JSP scriplet) I do indeed get the TagData.REQUEST_TIME_VALUE object back
+on this call.
+However, when I instead have an EL value, something like "${groupSizeValue}",
+I do not received the REQUEST_TIME_VALUE distinguished object back.
+ I receive
+a String object, containing the text "${groupSizeValue}".
+ Is this the correct
+behavior?  Everything I have read (books, Google searches, etc.) seems to
+point me in the thinking that this is a bug.
+From looking at the tomcat 5.5.20 and 5.5.23 source code, I see where the
+JspAttribute (nested class of Node) is created.
+ In the Validator class, line
+1117, is the creation for this object passing the constant "false" for
+the "expr" argument (5th argument to the 1st ctor of this class).
+ I believe
+it is line 1117 that would be getting executed since the if statement
+preceding this is:
+if (el.containsEL() && !pageInfo.isELIgnored()) {
+So, my question is, why would an EL expression when EL is not being ignored be
+considered not an expression?

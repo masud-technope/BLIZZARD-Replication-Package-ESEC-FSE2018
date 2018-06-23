@@ -1,0 +1,2 @@
+Bug 120561 – [working sets] Allow to have the working sets automatically sorted in the Package Explorer
+In the dialog where you can chose the working sets to be displayed in the Package Explorer view, please add a button to sort working sets alphabetically.

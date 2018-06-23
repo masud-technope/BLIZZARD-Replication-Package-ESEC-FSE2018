@@ -1,0 +1,6 @@
+test/org/apache/jasper/compiler/TestGenerator.java
+test/webapp-3.0/WEB-INF/bugs.tld
+test/webapp-3.0/bug5nnnn/bug56529.jsp
+java/org/apache/jasper/compiler/Validator.java
+java/org/apache/jasper/compiler/Validator.java
+webapps/docs/changelog.xml

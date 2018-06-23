@@ -1,0 +1,17 @@
+org.eclipse.ecf.tests.discovery.DiscoveryTest.testAddServiceTypeListener
+org.pluginbuilder.autotestsuite.application.AutoTestRunner.run
+org.pluginbuilder.autotestsuite.application.AutoTestApplication.runAllJUnit3Tests
+org.pluginbuilder.autotestsuite.application.AutoTestApplication.runAllJUnitTests
+org.pluginbuilder.autotestsuite.application.AutoTestApplication.runHeadless
+org.pluginbuilder.autotestsuite.application.AutoTestApplication.run
+org.pluginbuilder.autotestsuite.application.AutoTestApplication.start
+org.eclipse.equinox.internal.app.EclipseAppHandle.run
+org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication
+org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start
+org.eclipse.core.runtime.adaptor.EclipseStarter.run
+org.eclipse.core.runtime.adaptor.EclipseStarter.run
+org.eclipse.equinox.launcher.Main.invokeFramework
+org.eclipse.equinox.launcher.Main.basicRun
+org.eclipse.equinox.launcher.Main.run
+org.eclipse.equinox.launcher.Main.main
+org.eclipse.core.launcher.Main.main

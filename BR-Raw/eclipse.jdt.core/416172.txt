@@ -1,0 +1,27 @@
+Bug 416172 – [1.8][compiler][null] null type annotation not evaluated on method return type
+// -- following program does not compile: good;
+import org.eclipse.jdt.annotation.NonNull;
+public class X {
+class Y {}
+@NonNull String  foo(X.@NonNull Y xy) {
+return "";
+}
+}
+class Z extends X {
+String  foo(X.Y xy) {
+return null;
+}
+}
+// -- following program does compile: bad;
+import org.eclipse.jdt.annotation.NonNull;
+public class X {
+class Y {}
+X.@NonNull Y  foo(X.@NonNull Y xy) {
+return new X().new Y();
+}
+}
+class Z extends X {
+X.@NonNull Y  foo(X.Y xy) {
+return null;
+}
+}

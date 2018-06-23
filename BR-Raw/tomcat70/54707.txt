@@ -1,0 +1,45 @@
+54707 – Buggy Perl http clients cause tomcat digest auth to fail due to quoted nc values (e.g. nc="00000001")
+This problem was discovered while trying to make the Perl LWP library work with tomcat where a path was being protected with digest authentication.
+Ultimately, this is a bug with Perl (see https://rt.cpan.org/Public/Bug/Display.html?id=43354), and it has been possibly fixed.
+HOWEVER, this requires users to update their perl libraries etc (a big pain for our customers and for us).
+A simple fix to tomcat would solve this problem for us and make life good again.
+A typical digest response header from perl looks like:
+Authorization: Digest username="joe", realm="ACME", qop="auth", algorithm="MD5", uri="/my/protected/path", nonce="1363130363664:71e75a43d7fdbfff8c54bece373058b8", nc="00000001", cnonce="513fb7fb", response="baeeff0b6b9b7e74e769630160d3725b", message-digest="d41d8cd98f00b204e9800998ecf8427e", opaque="9C2C62C52D30A7D5707F75F5A813F113"
+The entry nc="00000001" causes tomcat to reject the request.
+ It should be nc=00000001 (the perl client's mistake)
+The following perl script demonstrates the problem:
+#!/usr/bin/perl
+use strict;
+use LWP;
+&doGet("myname", "mypassword", "myrealmname", "myhost", "8080", "/my/protected/path");
+sub doGet
+{
+my ($username, $password, $realm, $host, $port, $uri) = @_;
+my $url = "http://".$host.":".$port.$uri;
+print "GET: $url\n";
+my $browser = LWP::UserAgent->new;
+$browser->agent('Debug Digest Problem');
+$browser->credentials($host.":".$port,$realm,$username=>$password);
+my $response=$browser->get($url);
+print "HTTP STATUS:".$response->status_line."\n";
+print $response->content;
+}
+The fix should be in org.apache.tomcat.util.http.parser.HttpParser.java
+Looking at build 7.0.37 code:
+Around line 147:
+case 3:
+// FIELD_TYPE_LHEX
+value = readLhex(input);
+break;
+This switch is hit when the field is 'nc' (due to line 72 fieldTypes.put("nc", FIELD_TYPE_LHEX); ]
+The method readLhex() does not tolerant quotes.
+(see line 434 and below).
+A similar tomcat issue was fixed a while back for the quoted qop field.
+(the qop response field should also not be quoted, but tomcat handles this).
+Also see line 375
+* This is not defined in any RFC.
+It is a special case to handle data from
+* buggy clients (known buggy clients include Microsoft IE 8 & 9, Apple
+* Safari for OSX and iOS) that add quotes to values that should be tokens.
+Server software which tolerates this mistake in the perl client includes Apache and Spring's security filter
+(org.springframework.security.web.authentication.www.DigestAuthenticationFilter).

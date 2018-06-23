@@ -1,0 +1,6 @@
+Bug 391890 – [1.8][compiler] DOM/AST API should be enhanced to support type annotations in Type & TypeParameter nodes
+Created attachment 222286 [details]
+Work in progress - patch v0.3
+BETA_JAVA8:
+This bug will cover the work for enhancing the entire Type hierarchy and
+TypeParameter nodes.

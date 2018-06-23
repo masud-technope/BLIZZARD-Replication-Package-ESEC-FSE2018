@@ -1,0 +1,4 @@
+Bug 125872 – [clean up] 'Serial id' should not be in J2SE 5 section
+20060131
+'Serial id' should not be in J2SE 5 section.
+It is valid for all source levels.

@@ -1,0 +1,11 @@
+org.eclipse.jdt.debug.tests/testprograms/org/eclipse/debug/tests/targets/HcrClass2.java
+org.eclipse.jdt.debug.tests/testprograms/org/eclipse/debug/tests/targets/HcrClass3.java
+org.eclipse.jdt.debug.tests/testprograms/org/eclipse/debug/tests/targets/HcrClass4.java
+org.eclipse.jdt.debug.tests/testprograms/org/eclipse/debug/tests/targets/HcrClass5.java
+org.eclipse.jdt.debug.tests/testprograms/org/eclipse/debug/tests/targets/HcrClass6.java
+org.eclipse.jdt.debug.tests/testprograms/org/eclipse/debug/tests/targets/HcrClass7.java
+org.eclipse.jdt.debug.tests/testprograms/org/eclipse/debug/tests/targets/HcrClass8.java
+org.eclipse.jdt.debug.tests/testprograms/org/eclipse/debug/tests/targets/HcrClass9.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AbstractDebugTest.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/HcrTests.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/hcr/JavaHotCodeReplaceManager.java

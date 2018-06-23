@@ -1,0 +1,79 @@
+Bug 386901 – Eclipse does not pass all annotated classes to annotation processor
+ModuleACL
+ModuleAsset*
+ModuleCloud
+ModuleCore*
+ModuleESB*
+ModuleFioranoMq
+ModuleHTTPWeb*
+ModuleIbmMq
+ModuleJ2EE*
+ModuleJcaps
+ModuleJndi
+ModuleLegacy*
+ModuleMessaging*
+ModuleNBEditor
+ModulePFCoreBridge
+ModuleReporting
+ModuleSonicMq
+ModuleTibco
+ModuleVSE
+ModuleWeb20
+ModuleWS
+ModuleXML
+We have the above 22 annotated classes that all look like the following:
+import com.itko.lisa.annotations.NonNls;
+import com.itko.lisa.app.AbstractModule;
+import com.itko.lisa.app.Resources;
+import com.itko.lisa.core.ModuleCore;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+@com.itko.lisa.annotations.Module(key = ModuleACL.KEY, bundle = ModuleACL.BUNDLE, depends = {ModuleCore.KEY})
+public class ModuleACL extends AbstractModule {
+private static final Log log = LogFactory.getLog("com.itko.lisa.acl.ModuleACL");
+@NonNls public static final String KEY = "com.itko.lisa.acl.ModuleACL";
+@NonNls static final String BUNDLE = "com.itko.lisa.resources.acl";
+public static final Resources.Wrapper resources = new Resources.Wrapper(KEY);
+public ModuleACL() {
+super(KEY, BUNDLE);
+}
+}
+The classes with the asterisks do not typically get passed to the 'com.itko.lisa.annotations.Module' Annotation Processor (AP).
+ I say typically because every blue moon eclipse will pass all 22 annotated classes to the AP during a build.
+ What usually happens is that we consistently get 8 annotated classes in the 1st AP round and then 7 in the 2nd.
+The AP's process() methid looks like the following:
+public boolean process( final Set<? extends TypeElement> annotations, final RoundEnvironment roundEnv )
+{
+for( TypeElement annotation : annotations )
+{
+List<Tuple<Element, AnnotationMirror>> elements = new ArrayList<>();
+Set<? extends Element> annotatedElements = roundEnv.getElementsAnnotatedWith( annotation );
+...
+}
+}
+Stepping into the roundEnv.getElementsAnnotatedWith(...) methods shows that the missing classes are not in the set returned from line 142
+"return Collections.unmodifiableSet(_annoToUnit.getValues(a));"
+So I pulled in the source for the org.eclipse.jdt.internal.compiler.Compiler and changed the compile(ICompilationUnit[] sourceUnits) method to
+public void compile(ICompilationUnit[] sourceUnits) {
+this.stats.startTime = System.currentTimeMillis();
+CompilationUnitDeclaration unit = null;
+ProcessTaskManager processingTask = null;
+System.out.println("==============================================================================");
+System.out.println(new Date(stats.startTime));
+System.out.println("==============================================================================");
+for (int i = 0; i < sourceUnits.length; ++i)
+{
+ICompilationUnit icu = sourceUnits[i];
+StringBuilder sb = new StringBuilder();
+sb.append(icu.getFileName());
+System.out.println(sb.toString());
+}
+System.out.println();
+...
+Next I launched a debug session against eclipse and discover that
+1.) the missing modules are not in the list of sourceUnits handed to the compile method and
+2.) there are over 1000+ source files that are in my project however they are never output by this debug code.
+Our project has 4412 java source files, however the above compile code will only output lines for 2923 source units over 2 invocations in a single build.
+ And to make matters more "magical", the project's output folder has all the source files compiled into it.
+How can this be and more importantly how can I get eclipse to consistently pass all annotated files to the AP?
+Also, originally tried this with Eclipse 4.2, but for some reason the src was not matching up to what the debugger said I should see, so I dropped down a version.

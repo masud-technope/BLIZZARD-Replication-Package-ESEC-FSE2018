@@ -1,0 +1,8 @@
+Bug 9127 – JAR Packager: Path of exported resource wrong if src folder not under project
+Create J project
+Create folder /x/y
+Define y as source folder ==> x/y appears as source folder
+==> Files in x don't get exported
+==> Path for resource files in x/y/ are wrong (i.e.
+contain /x/y)
+Note: *.java and *.class files are exported correctly.

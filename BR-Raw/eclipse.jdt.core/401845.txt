@@ -1,0 +1,18 @@
+Bug 401845 – [1.8][compiler] Bad interaction between varargs and lambas/references.
+BETA_JAVA8:
+The following triggers two errors.
+I believe it should be accepted:
+// ---------
+interface I {
+Integer foo(X x);
+}
+public class X {
+int foo(I ...i) { return 10;}
+int goo() { return 0;}
+{
+foo(X::goo);
+foo(()-> {return 10;});
+}
+}
+// ----------
+Interestingly javac accepts the first call to foo and rejects the second.

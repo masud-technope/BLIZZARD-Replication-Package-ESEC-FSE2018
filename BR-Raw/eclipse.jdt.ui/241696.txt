@@ -1,0 +1,12 @@
+Bug 241696 – [quick fix][quick assist] quickfix to iterate over a collection
+Created attachment 108083 [details]
+editor screenshot
+It would be convenient to have a quickfix for iterating over a collection without the need to store it (eg as a local var).
+void foo(Map<String, Integer> map) {
+map.keySet()<-- Cursor position here
+}
+The best way (I know) to iterate over a computed collection is
+- quickfix to assign as local var
+- use the foreach template
+- inline the local var
+A quickfix for iterating over the collection at the cursor position could save several key strokes.

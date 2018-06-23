@@ -1,0 +1,17 @@
+Bug 401796 – [1.8][compiler] don't treat default methods as overriding an independent inherited abstract method
+Consider this example:
+public interface I1 {
+default void m() { }
+}
+public abstract class C1 {
+public abstract void m();
+}
+public class C2 extends C1 implements I1 { }
+I read the spec 0.6.1 part H, 8.4.8 as saying:
+- I1.m is inherited because C1.m does not override it from C1
+- C1.m is inherited because I1.m does not override it from I1
+In 8.4.8.4 none of the sentences starting with "It is a compile-time error" apply.
+This puts the following sentence to action:
+"Otherwise, the set of override-equivalent methods consists of at least one abstract method and zero or more default methods; then the class is necessarily an abstract class and is considered to inherit all the methods."
+Thus we should issue an error because C2 is not abstract.
+This error is not reported currently.

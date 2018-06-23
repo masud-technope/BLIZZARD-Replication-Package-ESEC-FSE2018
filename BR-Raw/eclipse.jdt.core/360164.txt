@@ -1,0 +1,13 @@
+Bug 360164 – Compile error in XSDImpl
+In org.eclipse.wst.xsd.core, in org.eclipse.wst.xsd.contentmodel.internal.XSDImpl, we are seeing a Java Compile error:
+Compiler Report
+Compiler: Eclipse Compiler for Java(TM) Version: 0.C13, 3.8.0 M3
+Number of source files: 17 Number of classfiles: 37
+Problems: 1 (Errors: 1 Warnings: 0 )
+Source File: org/eclipse/wst/xsd/contentmodel/internal/XSDImpl.java
+1.
+ERROR: IsClassPathCorrect
+The type java.lang.Enum cannot be resolved.
+It is indirectly referenced from required .class files
+XSDImpl.java :
+1 : /*******************************************************************************

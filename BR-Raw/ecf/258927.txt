@@ -1,0 +1,16 @@
+Bug 258927 – [Discovery][SLP] byte service properties aren't correctly converted into an octet sequence (Base64)
+"Opaque values (i.e.
+ binary values) are expressed in radix-64
+notation.
+ The syntax is:
+<opaque-val>    ::=  (<len>:<radix-64-data>)
+<len>           ::=  number of bytes of the original data
+<radix-64-data> ::=  radix-64 encoding of the original data
+<len> is a 16-bit binary number.
+ Radix-64 encodes every 3 bytes
+of binary data into 4 bytes of ASCII data which is in the range
+of characters which are fully printable and transferable by mail.
+For a formal definition of the Radix-64 format see RFC 1521 [7],
+MIME Part One, Section 5.2 Base64 Content Transfer Encoding, page
+21."
+org.eclipse.ecf.internal.provider.jslp.ServicePropertiesAdapter.toProperties() and org.eclipse.ecf.internal.provider.jslp.ServicePropertiesAdapter.ServicePropertiesAdapter(List) convert byte[] incorrectly.

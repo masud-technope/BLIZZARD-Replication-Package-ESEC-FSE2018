@@ -1,0 +1,9 @@
+org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.reconciled
+org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor.reconciled
+org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile
+org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.initialReconcile
+org.eclipse.jface.text.reconciler.CompositeReconcilingStrategy.initialReconcile
+org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.initialReconcile
+org.eclipse.jface.text.reconciler.MonoReconciler.initialProcess
+org.eclipse.jdt.internal.ui.text.JavaReconciler.initialProcess
+org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run

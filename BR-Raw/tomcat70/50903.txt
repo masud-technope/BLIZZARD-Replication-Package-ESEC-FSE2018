@@ -1,0 +1,6 @@
+50903 – Current keep-alive request processed after connector.stop()
+When the connector is stopped, if a connection is in a keep-alive state the next request received by that connection will be processed and then the connection will be closed.
+When the request is received, it should be rejected.
+Outstanding questions:
+- What return code (if any) should be sent back to the client?
+- If the reading of a request starts before the connector is stopped, should that request be allowed to complete or should it be rejected?

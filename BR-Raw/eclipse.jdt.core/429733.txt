@@ -1,0 +1,35 @@
+Bug 429733 – [1.8][bytecode] Bad type on operand stack
+Running this snipped in Eclipse JAVA_BETA8 produces an error (see below).
+Running it on the command-line with jdk8 works fine.
+public class Main {
+public static void main(String[] args) {
+test(new Some<>(1.1d));
+}
+static <S> void test(Option<S> value) {
+}
+static interface Option<T> {
+}
+static class Some<T> implements Option<T> {
+Some(T value) {
+}
+}
+}
+Exception in thread "main" java.lang.VerifyError: Bad type on operand stack
+Exception Details:
+Location:
+Main.main([Ljava/lang/String;)V @7: invokespecial
+Reason:
+Type double_2nd (current frame, stack[3]) is not assignable to 'java/lang/Object'
+Current Frame:
+bci: @7
+flags: { }
+locals: { '[Ljava/lang/String;' }
+stack: { uninitialized 0, uninitialized 0, double, double_2nd }
+Bytecode:
+0000000: bb00 1059 1400 12b7 0014 b800 17b1
+at java.lang.Class.getDeclaredMethods0(Native Method)
+at java.lang.Class.privateGetDeclaredMethods(Class.java:2688)
+at java.lang.Class.getMethod0(Class.java:2937)
+at java.lang.Class.getMethod(Class.java:1771)
+at sun.launcher.LauncherHelper.validateMainClass(LauncherHelper.java:544)
+at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:526)

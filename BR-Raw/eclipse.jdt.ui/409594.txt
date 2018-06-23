@@ -1,0 +1,17 @@
+Bug 409594 – [organize imports] Import static (Ctrl+Shift+M) creates imports for private methods
+When using Ctrl+Shift+M to 'unqualify' calls to private static methods within the same class, JDT generates unresolvable imports.
+To reproduce, use this code:
+class Snippet {
+static void foo() {
+Snippet.b|ar();
+}
+private static void bar() {
+}
+}
+Position the cursor on the bar() invocation (as indicated by |) and press Ctrl+Shift+M.
+JDT creates a static import for the private method bar(), which naturally cannot be resolved.
+and leads to a compile error.
+Though the code snippet might appear artifical, it isn't quite.
+When moving static methods, invocations remain 'qualified' even if the moved method now resides in the same class as the invoking code (see bug 409592).
+After manually declaring the moved method as private, the result looks like the snippet above.
+To get rid of the qualified invocations, I usually use Ctrl+Shift+M.

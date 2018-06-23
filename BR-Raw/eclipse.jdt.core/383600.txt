@@ -1,0 +1,12 @@
+Bug 383600 – [1.8][compiler] Receiver annotations for inner class constructors require grammar change to support qualified this
+JSR 308 draft proposal requires support for type annotations
+on inner class constructor's receiver using this syntax:
+class Outer {
+class Inner {
+@Result Inner(@Receiver Outer Outer.this, boolean b) { }
+}
+}
+here @Result is a type annotation that is attached to the result type of
+the constructed object, while @Receiver is a type annotation attached to
+the type of the receiver of the inner class constructor invocation
+i.e the enclosing instance.

@@ -1,0 +1,4 @@
+org.eclipse.jdt.core/search/org/eclipse/jdt/internal/core/search/matching/MemberDeclarationVisitor.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaElement8Tests.java
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/JavaSearchBugs8Tests.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/util/HandleFactory.java

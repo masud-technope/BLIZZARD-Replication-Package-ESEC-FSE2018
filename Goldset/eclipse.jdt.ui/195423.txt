@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/OverrideCompletionProposal.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/AbstractJavaCompletionProposal.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/MethodDeclarationCompletionProposal.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/JavaCompletionProposal.java

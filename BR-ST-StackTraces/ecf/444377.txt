@@ -1,0 +1,16 @@
+java.net.PlainSocketImpl.socketBind
+java.net.AbstractPlainSocketImpl.bind
+java.net.Socket.bind
+org.eclipse.ecf.internal.provider.filetransfer.httpclient4.ECFHttpClientProtocolSocketFactory.connectSocket
+org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection
+org.apache.http.impl.conn.AbstractPoolEntry.open
+org.apache.http.impl.conn.AbstractPooledConnAdapter.open
+org.apache.http.impl.client.DefaultRequestDirector.tryConnect
+org.apache.http.impl.client.DefaultRequestDirector.execute
+org.apache.http.impl.client.AbstractHttpClient.execute
+org.apache.http.impl.client.AbstractHttpClient.execute
+org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer.performConnect
+org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer.access$0
+org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer$1.performFileTransfer
+org.eclipse.ecf.filetransfer.FileTransferJob.run
+org.eclipse.core.internal.jobs.Worker.run

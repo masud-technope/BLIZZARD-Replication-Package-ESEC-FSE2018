@@ -1,0 +1,15 @@
+Bug 309795 – workspace didn't compile after restart - always have to reload Target Platform
+Created attachment 165416 [details]
+getting those errors after restart before reload
+OSX 10.6.3
+Eclipse SDK M6
+cocoa-64
+plus I-Build 20100414
+If I restart Eclipse I always get many compile errors.
+refresh / cleaning projects doesnt help.
+I have to reload my Target Platform - from Preferences-TargetPlatform-Reload or opening the TargetPlatform Definition File in workspace, wait until resolved and the Set as TargetPlatform
+...thought that perhaps it was a problem with bundlepooling or so - did a test with a fresh installation and a new workspace, cloned my projects from repository into workspace, set the target platform -
+and all works ....
+until I restart.
+Then I always have to reload the Target Platform to get the projects compiled.
+BTW: while testing with a fresh installation and a new workspace I got exceptions (see bug 309792)

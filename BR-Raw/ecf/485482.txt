@@ -1,0 +1,3 @@
+Bug 485482 – remove code for org.eclipse.ecf.provider.discovery
+As discussed on ecf-dev, org.eclipse.ecf.provider.discovery (CompositeDiscoveryContainer) is obsolete given OSGi services and should be removed.
+ I think it would be useful to have a release which is present but empty before removing from the distribution, so it can replace existing implementations.

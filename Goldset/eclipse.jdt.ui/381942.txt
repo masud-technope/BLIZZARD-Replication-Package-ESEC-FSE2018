@@ -1,0 +1,3 @@
+org.eclipse.jdt.ui.tests/leaks/org/eclipse/jdt/ui/tests/leaks/ScreenshotTest.java
+org.eclipse.jdt.ui.tests/leaks/org/eclipse/jdt/ui/leaktest/LeakTestSetup.java
+org.eclipse.jdt.ui.tests/leaks/org/eclipse/jdt/ui/tests/leaks/JavaLeakTest.java

@@ -1,0 +1,4 @@
+providers/bundles/org.eclipse.ecf.provider.dnssd/.gitignore
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/BnRDnsSdServiceTypeID.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdDisocoveryLocator.java
+providers/bundles/org.eclipse.ecf.provider.dnssd/src/org/eclipse/ecf/provider/dnssd/DnsSdServiceTypeID.java

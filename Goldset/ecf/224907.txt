@@ -1,0 +1,9 @@
+framework/bundles/org.eclipse.ecf.identity/src/org/eclipse/ecf/core/identity/IDFactory.java
+framework/bundles/org.eclipse.ecf.identity/src/org/eclipse/ecf/core/identity/LongID.java
+framework/bundles/org.eclipse.ecf.identity/src/org/eclipse/ecf/core/identity/Namespace.java
+framework/bundles/org.eclipse.ecf.identity/src/org/eclipse/ecf/core/identity/StringID.java
+framework/bundles/org.eclipse.ecf.identity/src/org/eclipse/ecf/internal/core/identity/Messages.java
+framework/bundles/org.eclipse.ecf.identity/src/org/eclipse/ecf/internal/core/identity/messages.properties
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/core/ContainerTypeDescription.java
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/internal/core/Messages.java
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/internal/core/messages.properties

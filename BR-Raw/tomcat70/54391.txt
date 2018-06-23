@@ -1,0 +1,16 @@
+54391 – Provide value for javax.servlet.context.orderedLibs attribute
+In Servlet spec 3.0 Rev.
+a at the end of chapter 8.3 the following is written
+(page #87 (109/230)):
+[quote]
+In addition, a Servlet 3.0 compliant Servlet container must provide a
+ServletContext attribute with name javax.servlet.context.orderedLibs,
+whose value (of type java.util.List<java.lang.String>) contains the list of
+names of JAR files in the WEB-INF/lib directory of the application represented by
+the ServletContext, ordered by their web fragment names (with possible
+exclusions if fragment JAR files have been excluded from absolute-ordering), or
+null if the application does not specify any absolute or relative ordering.
+[/quote]
+In the source code there is a constant ServletContext.ORDERED_LIBS, but I see no code where it were used.
+My understanding is that the list should contain just the jar names, e.g.
+["foo.jar", "bar.jar"] and be absent if there is no ordering.

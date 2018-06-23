@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.launching/src/org/eclipse/pde/internal/launching/launcher/VMHelper.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/launcher/JREBlock.java

@@ -1,0 +1,42 @@
+Bug 175138 – Widget is disposed error
+Using eclipse.buildId=I20070213-0907
+java.version=1.6.0_01-ea
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=fr_CA
+Framework arguments:  -launcher D:\eclipse\I0213\eclipse\eclipse.exe -name Eclipse -startup D:\eclipse\I0213\eclipse\plugins\org.eclipse.equinox.launcher_1.0.0.v20070208a.jar -showlocation
+Command-line arguments:  -os win32 -ws win32 -arch x86 -launcher D:\eclipse\I0213\eclipse\eclipse.exe -name Eclipse -startup D:\eclipse\I0213\eclipse\plugins\org.eclipse.equinox.launcher_1.0.0.v20070208a.jar -debug -consolelog -console -showlocation
+When closing the build.properties editor, I got this error.
+Not always reproducable.
+org.eclipse.swt.SWTException: Widget is disposed
+at org.eclipse.swt.SWT.error(SWT.java:3478)
+at org.eclipse.swt.SWT.error(SWT.java:3401)
+at org.eclipse.swt.SWT.error(SWT.java:3372)
+at org.eclipse.swt.widgets.Widget.error(Widget.java:432)
+at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:325)
+at org.eclipse.swt.widgets.Tree.setRedraw(Tree.java:4107)
+at org.eclipse.pde.internal.ui.editor.SourceOutlinePage$1.run(SourceOutlinePage.java:93)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:123)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3484)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3124)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2264)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2228)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2103)
+at org.eclipse.ui.internal.Workbench$4.run(Workbench.java:457)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:289)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:452)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:101)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:146)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:106)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:76)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:354)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:169)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:476)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:416)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1124)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1099)

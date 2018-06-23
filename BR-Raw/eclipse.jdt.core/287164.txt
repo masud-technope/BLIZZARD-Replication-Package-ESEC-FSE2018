@@ -1,0 +1,10 @@
+Bug 287164 – Report build path error if source folder has other source folder as output folder
+Assume that you have project configured like this:
++src1 -> output to src1
++ A.java
++src2 -> output to src1
++ B.java
++ c.txt
+c.txt is not copied into the src1.
+If you configure output to bin, you will receive inside A.class, B.class and c.txt.
+In the first example, c.txt should be also copied (or it should be impossible to allow for mentioned output path configuration).

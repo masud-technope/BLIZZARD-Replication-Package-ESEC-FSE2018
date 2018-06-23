@@ -1,0 +1,1 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/feature/OpenReferenceAction.java

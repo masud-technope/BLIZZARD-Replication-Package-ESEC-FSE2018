@@ -1,0 +1,50 @@
+Bug 376354 – [regression] Cannot set breakpoint on final inner type
+Version: 4.2.0
+Build id: I20120321-0610
+Consider the following snippet:
+package a;
+public class FinalTest {
+public final Number number = new Number() {
+@Override
+public final long longValue() {
+return 0;
+}
+@Override
+public int intValue() {
+return 0;
+}
+@Override
+public float floatValue() {
+return 0;
+}
+@Override
+public double doubleValue() {
+return 0;
+}
+};
+public Number number2 = new Number() {
+@Override
+public long longValue() {
+return 0;
+}
+@Override
+public int intValue() {
+return 0;
+}
+@Override
+public float floatValue() {
+return 0;
+}
+@Override
+public double doubleValue() {
+return 0;
+}
+};
+/**
+* @param args
+*/
+public static void main(String[] args) {
+System.out.println("foo");
+}
+}
+Trying to add a line (or other) breakpoint anywhere in the final inner type will result in a breakpoint being placed on line 27 (public Number number2 = new Number() {).

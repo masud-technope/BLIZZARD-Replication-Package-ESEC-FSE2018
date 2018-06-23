@@ -1,0 +1,19 @@
+Bug 176315 – whackiness with dependencies view
+in i0228
+I was playing around with targets and ended up in a situtation where I had javax.servlet and org.eclipse.equinox.servlet.api in different parts of the target.
+ Both export javax.servlet (the package).
+ I have another bundle B that imports that package using something like.
+ Note that the service.http reference comes from the org.eclipse.osgi.services bundle.
+Import-Package: javax.servlet,
+javax.servlet.http,
+org.osgi.service.http
+When I looked at the plugin dependencies view and focused on B I did not see either of these as a direct child.
+Rather, javax.servlet (the bundle) was listed as a child under org.eclipse.osgi.services.
+ This is strange because services does not reexport the pakcages that B needs.
+Ok, whatever.
+ javax.servlet the bundle is bugging me (causing some compilatin problems) so I delete it from the target (as in from the dir on disk that the target definition points to) and reload, refresh, spin around twice.
+ My compilation errors went away but the plugin dependeince view still showed javax.servlet (now with a red X on it).
+ There does not seem to be anything I can do to make it go away.
+Related to this, it is kind of confusing that the dependencies view shows dependents that are not in the current target or workspace.
+ The plugins view seems to have filters that will show just this subset of the universe and the Focus on...
+selection list shows just that set as well.

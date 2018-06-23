@@ -1,0 +1,24 @@
+Bug 432515 – [1.8][rename] Method renaming does not work well for method reference
+If I rename the mul() method to mulx() in following code:
+public class Test02 {
+private static class Multiplier {
+private final long mMul;
+public Multiplier(long iMul) {
+this.mMul = iMul;
+}
+public Long mul(Long iItem) {
+return iItem * mMul;
+}
+}
+private static void test(UnaryOperator<Long> iFn) {
+}
+public static void main(String[] args) {
+UnaryOperator<Long> mul = (new Multiplier(3))::mul;
+test((new Multiplier(3))::mul);
+}
+}
+it renames the 'Multiplier' constructor in both (new Multiplier(3))::mul occurrences.
+The result is (new mulx(3))::mul
+But preview during renaming looks good, i.e.
+all occurrences of method name are found well just final renaming fails.
+Used Eclipse 4.3.2 with Eclipse JDT (Java Development Tools) Patch with Java 8 support (for Kepler SR2) 1.0.0.v20140317-1956

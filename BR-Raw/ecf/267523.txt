@@ -1,0 +1,2 @@
+Bug 267523 – [remotesvc][api] add api for setting connect context in IRemoteServiceContainerAdapter
+Add setConnectContextForAuthentication to IRemoteServiceContainerAdapter.

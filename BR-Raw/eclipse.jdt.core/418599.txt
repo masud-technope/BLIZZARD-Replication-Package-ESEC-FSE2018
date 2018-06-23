@@ -1,0 +1,2 @@
+Bug 418599 – Get rid of compile warnings in official build
+http://download.eclipse.org/eclipse/downloads/drops4/N20131002-2000/testResults.php

@@ -1,0 +1,34 @@
+53584 – Forms authentication without cookies requires double submission in 6.0.33
+Created attachment 29093 [details]
+Standalone test app which reproduces the issue
+We have an application which uses the forms authentication provided by Servlet specification and is configured store session IDs in the URL rather than using cookies.
+This configuration has been working as expected under Tomcat 6.0.32 and earlier.
+On upgrading to Tomcat 6.0.33 or 6.0.35 this combination no longer works as expected.
+Specifically, when a user initially submits the login form they are immediately returned back to the form-login-page.
+Submitting the login form a second time allows them to log in.
+The only difference I have been able to spot between the first and second form submission is for the second submission the request attribute "javax.servlet.forward.request_uri" now has the jsessionid appended to the URL.
+Attached is a standalone WAR which reliably reproduces the problem with 6.0.33 and 6.0.35.
+Steps to reproduce:
+1) Unpack tomcat 6.0.33.
+I used windows version "apache-tomcat-6.0.33-windows-x86.zip".
+2) Drop forms-auth-test.war into the webapps directory.
+3) Disable cookies by editing conf/context.xml:
+<Context cookies="false">
+....
+</Context>
+4) Add a user to authenticated with to conf/tomcat-users.xml:
+<tomcat-users>
+<role rolename="tomcat"/>
+<user username="tomcat" password="tomcat" roles="tomcat"/>
+</tomcat-users>
+5) Launch tomcat, I used "bin/catalina.bat start".
+6) Navigate to http://localhost:8080/forms-auth-test/index.jsp
+7) Enter user:tomcat pass:tomcat (should be prefilled).
+Click login.
+8) Observe that you are returned to the login page (with a session ID in the URL this time).
+9) Enter the username and password again and click login.
+10) Login should succeed this time.
+Environment details:
+- Windows 7 64-bit, Oracle JVM 1.6.0u32 & 1.7.0u4.
+- Debian 5 32-bit, Oracle JVM 1.6.0u32.
+Relevant tomcat-user mailing list thread: http://tomcat.markmail.org/thread/kywykrrjvwuavndp

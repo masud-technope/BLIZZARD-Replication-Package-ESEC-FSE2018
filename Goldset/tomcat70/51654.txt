@@ -1,0 +1,5 @@
+java/org/apache/catalina/startup/HostConfig.java
+java/org/apache/catalina/startup/LocalStrings.properties
+java/org/apache/catalina/startup/LocalStrings_es.properties
+java/org/apache/catalina/startup/LocalStrings_ja.properties
+webapps/docs/changelog.xml

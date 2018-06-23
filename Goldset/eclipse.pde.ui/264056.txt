@@ -1,0 +1,7 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target/impl/ExternalFileTargetHandle.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target/impl/TargetPlatformService.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/target/provisional/ITargetPlatformService.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/target/TargetDefinitionPersistenceTests.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/targetdefinition/InformationSection.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/targetdefinition/TargetEditor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/TargetPlatformPreferencePage2.java

@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/IHelpContextIds.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/category/FeaturesPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/category/CategoryDefinitionWizardPage.java

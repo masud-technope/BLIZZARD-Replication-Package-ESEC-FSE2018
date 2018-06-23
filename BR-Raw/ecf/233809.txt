@@ -1,0 +1,2 @@
+Bug 233809 – [Discovery][SLP] org.eclipse.ecf.tests.discovery.DiscoveryTest.addListenerRegisterAndWait(TestListener, IServiceInfo) wait unnecessarily long
+org.eclipse.ecf.tests.discovery.DiscoveryTest.addListenerRegisterAndWait(TestListener, IServiceInfo) can be better synchronised with org.eclipse.ecf.tests.discovery.listener.TestListener to speed up test execution

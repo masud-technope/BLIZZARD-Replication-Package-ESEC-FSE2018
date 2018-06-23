@@ -1,0 +1,3 @@
+Bug 294774 – [rest] simplify rest API
+The current rest API could be simplified in several respects, and to encourage easy understanding and usage it would be helpful to apply some simplifications.
+This bug will be used for discussing potential simplification ideas with Holger and other interested community members.

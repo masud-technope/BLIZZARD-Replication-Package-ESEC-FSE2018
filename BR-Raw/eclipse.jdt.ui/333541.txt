@@ -1,0 +1,16 @@
+Bug 333541 – [preferences] "Show whitespace characters" gets toggled when "whitespace characters" dialog is opened
+Build Identifier: 20101216-1529
+Using eclipse-java-indigo-M4-linux-gtk
+When you click on the "whitespace characters" link to open the "Show Whitespace Characters" dialog, then checkbox is always toggled
+For the use case of someone enabling the option, that works fine - click the link, tweak the options in the dialog, close and the option is enabled
+However, if the option is already enabled and you just want to tweak the options, it gets really annoying - click the link, tweak the options, close and notice the option is now disabled
+Suggest that the the checkbox should never be toggled from on to off by clicking on this link
+For reference, the option was added by bug #257313
+Reproducible: Always
+Steps to Reproduce:
+1.
+In Preferences -> General -> Text Editors
+2.
+Click the "whitespace characters" link and get the "Show Whitespace Characters" dialog
+3.
+Notice the checkbox has been toggled

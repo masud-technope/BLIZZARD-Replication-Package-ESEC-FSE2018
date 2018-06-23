@@ -1,0 +1,27 @@
+Bug 212745 – Wording and wrong title case in dialog that warns when importing while running a target
+I20071212-0010.
+See bug 185502 for details.
+The dialog that's now shown has three issues:
+- it should be a warning dialog
+- dialogs should use title casing i.e.
+start words with big letters
+- it says: ...
+plug-ins my not be...
+(my -> may)
+- the message talks about 'workbench' but actually it can be anything that
+runs eclipse code (e.g.
+a simple SWT app).
+How about this:
+title:
+Running Application
+message:
+An application is currently running.
+Some of the selected plug-ins may not be imported if they are locked by it.
+Do you want to continue?
+If more than one app is running it has to be changed to:
+title:
+Running Applications
+message:
+Applications are currently running.
+Some of the selected plug-ins may not be imported if they are locked by one of them.
+Do you want to continue?

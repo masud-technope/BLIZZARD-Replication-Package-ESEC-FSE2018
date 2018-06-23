@@ -1,0 +1,15 @@
+53090 – Servlet superclass injection targets are ignored
+Created attachment 28623 [details]
+patch that shows the processing of the servlet's superclass injections
+Hi folks,
+I've been running Tomcat 7.0.26 in a JEE container against the EE6 Web Profile CTS.
+In many of the tests there is the following scenario: A servlet 'X' extends a regular class 'Y'.
+An env-entry element for a field in 'Y' with injection-target-class equal to 'Y' is defined in the app's web.xml.
+The injection-target-name points to a field that is not annotated.
+When the app boots and Tomcat handles the injections for the servlet it processes only those that are defined explicitly for the 'X' servlet's class name, ignoring its superclasses.
+I'm attaching a patch I made on top of 7.0.x/trunk that fixed the issue.
+It's quite small.
+I believe Tomcat should respect the injections for the servlet's superclasses.
+What do you think is the right behavior?
+Thank you,
+Bobby

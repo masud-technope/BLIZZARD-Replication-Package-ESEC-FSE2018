@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/BuildPropertiesChange.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/BundleManifestChange.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/ContainerRenameParticipant.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/CreateHeaderChangeOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/PluginManifestChange.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/util/PDEModelUtility.java

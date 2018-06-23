@@ -1,0 +1,34 @@
+Bug 425712 – [1.8][compiler] Valid program rejected by the compiler.
+BETA_JAVA8:
+// --
+public class X {
+{
+bar( () -> (char) 0); // [1]
+}
+void bar(FB fb) { }
+public static void main(String[] args) {
+System.out.println("OK");
+}
+}
+interface FB {
+byte foo();
+}
+elicits:
+The method bar(FB) in the type X is not applicable for the arguments (() -> (char) 0)
+This program is valid - bug is LE.isCompatibleWith - when checking return
+expressions, we should not use parameterCompatibilityLevel, we should see
+if the expression is assignmenet compatible instead as would be done for
+return expressions.
+Expression [] returnExpressions = this.resultExpressions;
+for (int i = 0, length = returnExpressions.length; i < length; i++) {
+if (returnExpressions[i] instanceof FunctionalExpression) { // don't want to use the resolvedType - polluted from some other overload resolution candidate
+if (!returnExpressions[i].isCompatibleWith(sam.returnType, this.enclosingScope))
+return false;
+} else {
+if (this.enclosingScope.parameterCompatibilityLevel(returnExpressions[i].resolvedType, sam.returnType) == Scope.NOT_COMPATIBLE) {
+if (sam.returnType.id != TypeIds.T_void || this.body instanceof Block)
+return false;
+}
+}
+}
+This is at the root of the problem reported in https://bugs.eclipse.org/bugs/show_bug.cgi?id=423803#c6

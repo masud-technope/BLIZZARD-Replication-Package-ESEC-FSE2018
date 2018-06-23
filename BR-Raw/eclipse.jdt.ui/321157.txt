@@ -1,0 +1,17 @@
+Bug 321157 – [navigation] 'Open Implementation' should work for private methods seamlessly
+Build Identifier: 20100617-1415
+The Navigate->Open Implementation call complains ("The operation is not applicable to the current selection.
+Select an overridable method") about a method that is private.
+This is rather annoying.
+Instead the call should fall back to open the method directly.
+That way a user does not have to think about if a given method is an interfaced method or a direct method.
+Only when you really want to navigate to the Interface you will have to think about Interfaces and Implementations.
+This is annoying, because if you navigate code you don't know intimately you won't know before hand if the method is overridable and so have to do multiple clicks before you get where you intended to go.
+This call is about fast and quick navigation and such de-tours are the opposite of the goal.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Select the call of a private method in your Java Editor
+2.
+Select Navigate-->Open Implementation
+3.

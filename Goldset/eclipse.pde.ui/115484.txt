@@ -1,0 +1,13 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/exports/ExportOptionsTab.java
+ui/org.eclipse.pde.core/META-INF/MANIFEST.MF
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/exports/FeatureExportInfo.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/exports/FeatureExportOperation.java
+ui/org.eclipse.pde.core/src_ant/org/eclipse/pde/internal/core/ant/BaseExportTask.java
+ui/org.eclipse.pde.core/src_ant/org/eclipse/pde/internal/core/ant/FeatureExportTask.java
+ui/org.eclipse.pde.core/src_ant/org/eclipse/pde/internal/core/ant/PluginExportTask.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/exports/BaseExportWizardPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/exports/ExportOptionsTab.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/exports/FeatureExportWizard.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/exports/PluginExportWizard.java

@@ -1,0 +1,9 @@
+Bug 183260 – State out of sync after switching targets
+build i0418-1012
+- download and extract the RCP delta pack
+- download and start Eclipse SDK on an empty workspace
+- check out org.eclipse.pde.build and org.eclipse.update.core from HEAD
+- change the target platform to be the RCP delta pack
+- note the errors from missing plug-ins, this is ok
+- switch the target back to the original (reset button)
+- note that the errors still exist

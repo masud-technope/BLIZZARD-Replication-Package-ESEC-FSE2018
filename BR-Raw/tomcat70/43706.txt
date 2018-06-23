@@ -1,0 +1,84 @@
+43706 – Fix a litmus warning for WebdavServlet
+The litmus WebDAV compliance test suite produces a couple of warnings in its
+'copymove' group of tests.
+This is the output on tomcat6 trunk:
+$ env TESTS="copymove" litmus http://localhost:8080/webdav/
+-> running `copymove':
+0.
+init..................
+pass
+1.
+begin.................
+pass
+2.
+copy_init.............
+pass
+3.
+copy_simple...........
+WARNING: COPY to new resource didn't give 201
+......................
+pass (with 1 warning)
+4.
+copy_overwrite........
+pass
+5.
+copy_cleanup..........
+pass
+6.
+copy_coll.............
+pass
+7.
+move..................
+WARNING: MOVE to new resource didn't give 201
+......................
+pass (with 1 warning)
+8.
+move_coll.............
+pass
+9.
+move_cleanup..........
+pass
+10.
+finish................
+pass
+<- summary for `copymove': of 11 tests run: 11 passed, 0 failed.
+100.0%
+-> 2 warnings were issued.
+With my patch the warnings are gone:
+$ env TESTS="copymove" litmus http://localhost:8080/webdav/
+-> running `copymove':
+0.
+init..................
+pass
+1.
+begin.................
+pass
+2.
+copy_init.............
+pass
+3.
+copy_simple...........
+pass
+4.
+copy_overwrite........
+pass
+5.
+copy_cleanup..........
+pass
+6.
+copy_coll.............
+pass
+7.
+move..................
+pass
+8.
+move_coll.............
+pass
+9.
+move_cleanup..........
+pass
+10.
+finish................
+pass
+<- summary for `copymove': of 11 tests run: 11 passed, 0 failed.
+100.0%

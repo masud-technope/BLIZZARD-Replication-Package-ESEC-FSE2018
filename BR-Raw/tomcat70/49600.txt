@@ -1,0 +1,11 @@
+49600 – Bad exception thrown by ProxyDirContext.lookup
+Created attachment 25766 [details]
+Unit tests illustrating the problems
+Two problems with exception thrown by ProxyDirContext.lookup
+- ProxyDirContext.lookup throws notFoundException when the entry doesn't exist.
+notFoundException is a field and therefore initialized at ProxyDirContext creation.
+The consequence is that the exception thrown contains a stacktrace that has nothing to do with the current execution stack.
+This makes difficult to find the root cause of a problem.
+If this is really an optimization (what is the gain), then what about making this field static?
+- ProxyDirContext.lookup is not consistent: for the same call it may throw NamingException or NameNotFoundException depending whether the cache has been used or not.
+Problems occur in Tomcat 6 and 7.

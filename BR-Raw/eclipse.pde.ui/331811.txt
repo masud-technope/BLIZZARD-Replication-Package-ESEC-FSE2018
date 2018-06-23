@@ -1,0 +1,27 @@
+Bug 331811 – Polish Use Scan Feature
+I had no performance issues in my tests.
+ I haven't tried with an overly large (100+ project workspace) yet.
+Issues:
+1) I think we should revisit the pref page name.
+ The current one is long (doesn't fit in the default sized dialog), not very clear and does not start with 'API' like the other API tooling pages.
+ My suggestions would be:
+"API Use Dependencies"
+"API Dependency Scans"
+"API Use Scans"
+Make the API tooling pages have their own branch in the pref tree)
+We originally moved away from using 'use scans' as it is not a user friendly term.
+ However, only users that are familiar with use scans will ever have a use for this tool.
+2) Problem category should match up exactly with the preference page name.
+ We need to use a consistent name, otherwise users won't understand where the problems are coming from.
+3) The problems should be associated with the type name if it can be calculated so they show up in the editor.
+4) Preference page should have a link to the error level page.
+5) Error levels should not be ignore by default.
+ Currently the user sets up the scan on the preference page, it asks you if you want to build and you say "great, go for it".
+ No errors are reported, which is perfect until you realize that there are no errors being reported period.
+6) Is there any value to letting the user change the cache size?  As a user I have know idea what a reasonable value it and whether it would be beneficial for me to change it.
+ No need to give the user an advanced option unless there is a definite need by some users.
+7) The text at the top of the page needs a bit of work.
+ It shouldn't say *the* api use scan problems.
+ Second sentence should perhaps read "The dependencies found in the use scans will be compared against workspace projects to ensure they still exist."
+8) Edit locations button should be removed, it adds no real value.
+9) There is no help doc for the page, we should file a bug to remind us to write doc in M6.

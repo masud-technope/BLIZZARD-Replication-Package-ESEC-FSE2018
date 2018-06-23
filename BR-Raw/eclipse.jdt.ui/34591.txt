@@ -1,0 +1,25 @@
+Bug 34591 – Convert nested type to top level gets confused by anonymous classes
+Consider the example below:
+- Select Test->Foo
+- Refactor->"Convert nested type to top level"
+- The code does not compile.
+public class Test
+{
+public String bar2()
+{
+return "wee!";
+}
+public class Foo
+{
+public void bar()
+{
+new Runnable()
+{
+public void run()
+{
+System.out.println(bar2());
+}
+};
+}
+}
+}

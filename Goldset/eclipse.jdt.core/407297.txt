@@ -1,0 +1,10 @@
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/JavaCore.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/impl/CompilerOptions.java
+org.eclipse.jdt.core/formatter/org/eclipse/jdt/internal/formatter/DefaultCodeFormatter.java
+org.eclipse.jdt.compiler.tool.tests/src/org/eclipse/jdt/compiler/tool/tests/CompilerToolTests.java
+org.eclipse.jdt.compiler.tool/src/org/eclipse/jdt/internal/compiler/tool/Options.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/BatchCompilerTest.java
+org.eclipse.jdt.core/batch/org/eclipse/jdt/internal/compiler/batch/Main.java
+org.eclipse.jdt.core/batch/org/eclipse/jdt/internal/compiler/batch/messages.properties
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/impl/CompilerOptions.java
+org.eclipse.jdt.core/model/org/eclipse/jdt/core/JavaCore.java

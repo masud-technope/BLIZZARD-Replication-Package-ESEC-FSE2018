@@ -1,0 +1,4 @@
+52245 – Add detection of EL Jar to WebappClassLoader
+The EL API is not currently detected by the code in WebappClassLoader.
+Applications containing el-api.jar will not start.
+(patch to follow).

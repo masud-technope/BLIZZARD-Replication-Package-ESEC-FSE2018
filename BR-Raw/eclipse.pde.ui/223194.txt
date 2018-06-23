@@ -1,0 +1,4 @@
+Bug 223194 – failing test in N20080318-2000
+The getSeverity test is failing when run in the test harness.
+It is the design of the test that is causing the problem, since getSeverity could return different values based on if the framework is running or not.
+The test should be updated to check both cases (framework running and not).

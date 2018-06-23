@@ -1,0 +1,44 @@
+Bug 430307 – [1.8][model] NPE trying to get children of a LambdaExpression restored from handleIdentifier
+I encountered this problem when I closed and reopened a Type Hierarchy view, but the scenario is not well reproducible because the E4 workbench is very unreliable (bug 430306).
+Easier steps in the JavaElement View:
+package jsr335.funint6;
+import java.util.function.IntConsumer;
+class Test {
+void foo() {
+IntConsumer c = (i) -> { };
+}
+}
+- set input to 'i' and then follow > PARENT > PARENT to get the LambdaExpression
+- show Properties and copy the handleIdentifier.
+Mine is this:
+=zz1.8/src<jsr335.funint6{Test.java[Test~foo)Lambda\(IntConsumer\)"Ljava.util.function.IntConsumer;!125!134!130
+- open JavaElement View's view menu and run "Create from Handle..."
+- try to re-create the copied handleIdentifier
+=> fails when trying to access the children of the LambdaExpression element
+The problem is that LambdaExpression is not prepared to be restored from a handle memento, since that doesn't restore its lambdaMethod field.
+org.eclipse.jdt.internal.core.Member#getHandleFromMemento(..) does this:
+LambdaExpression expression = new LambdaExpression(this, name, interphase, sourceStart, sourceEnd, arrowPosition);
+if (!memento.hasMoreTokens() || (token = memento.nextToken()) != MementoTokenizer.LAMBDA_METHOD)
+return expression;
+The end of the called LambdaExpression constructor has a comment
+// Method is in the process of being fabricated, will be attached shortly.
+, but the lambdaMethod field is never initialized when the plain LambdaExpression is returned.
+I guess the solution has to be that a LambdaExpression always stores the lambda method as well, but we have a different formatting for the LambdaExpression's handleIdentifier (e.g.
+an additional JEM_LAMBDA_EXPRESSION appended).
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2014-03-13 16:19:33.484
+!MESSAGE
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.core.JavaElement.getChildrenOfType(JavaElement.java:226)
+at org.eclipse.jdt.internal.core.SourceType.getMethods(SourceType.java:418)
+at org.eclipse.jdt.internal.ui.viewsupport.JavaElementLabelComposer.isLambdaType(JavaElementLabelComposer.java:1099)
+at org.eclipse.jdt.internal.ui.viewsupport.JavaElementLabelComposer.appendTypeLabel(JavaElementLabelComposer.java:987)
+at org.eclipse.jdt.internal.ui.viewsupport.JavaElementLabelComposer.appendElementLabel(JavaElementLabelComposer.java:287)
+at org.eclipse.jdt.ui.JavaElementLabels.getElementLabel(JavaElementLabels.java:518)
+at org.eclipse.jdt.ui.JavaElementLabels.getElementLabel(JavaElementLabels.java:491)
+at org.eclipse.jdt.internal.ui.typehierarchy.HistoryAction.getShortLabel(HistoryAction.java:111)
+at org.eclipse.jdt.internal.ui.typehierarchy.HistoryAction.getElementLabel(HistoryAction.java:93)
+at org.eclipse.jdt.internal.ui.typehierarchy.TypeHierarchyViewPart.restoreState(TypeHierarchyViewPart.java:1697)
+at org.eclipse.jdt.internal.ui.typehierarchy.TypeHierarchyViewPart.createPartControl(TypeHierarchyViewPart.java:1006)
+at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.createPartControl(CompatibilityPart.java:142)
+...

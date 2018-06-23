@@ -1,0 +1,9 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/snippeteditor/ScrapbookLauncher.java
+org.eclipse.jdt.debug.ui/.externalToolBuilders/Build Snippet Support JAR.launch
+org.eclipse.jdt.debug.ui/snippetsupport.jar
+org.eclipse.jdt.debug.ui/.project
+org.eclipse.jdt.debug.ui/build.properties
+org.eclipse.jdt.debug.ui/scripts/buildExtraJAR.xml
+org.eclipse.jdt.debug.ui/Snippet Support/org/eclipse/jdt/internal/debug/ui/snippeteditor/ScrapbookMain.java
+org.eclipse.jdt.debug.ui/.settings/org.eclipse.pde.prefs
+org.eclipse.jdt.debug.ui/.gitignore

@@ -1,0 +1,7 @@
+Bug 426778 – [1.8][inference] Internal compiler error: java.lang.NullPointerException at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.analyseCode(LambdaExpression.java:450)
+While converting code to Java 8 (with the new Java 8 compiler) I get this severe error:
+Internal compiler error: java.lang.NullPointerException at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.analyseCode(LambdaExpression.java:450)
+I can locate it to this statement:
+Collections.sort( result,
+Comparator.comparingInt( (CourseProviderEmploymentStatistics stat) ->  stat.doneTrainingsTotal ).reversed()
+.thenComparing( (CourseProviderEmploymentStatistics stat) -> stat.courseProviderName ) );

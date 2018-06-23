@@ -1,0 +1,3 @@
+Bug 477523 – Provide new severity level "information" in the UI
+We need a new severity level in the UI so that users can start using the feature.
+See bug #83548 for details.

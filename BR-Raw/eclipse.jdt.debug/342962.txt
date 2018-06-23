@@ -1,0 +1,35 @@
+Bug 342962 – setter / getter step filter test failures on Mac
+the build from N20110414-2000 had a test failure for the setter / getter step filters:
+Wrong line number expected:<91> but was:<88>
+junit.framework.AssertionFailedError: Wrong line number expected:<91> but was:<88>
+at org.eclipse.jdt.debug.test.stepping.StepFilterTests.testSetterFilters(StepFilterTests.java:280)
+at org.eclipse.jdt.debug.tests.AbstractDebugTest.runBare(AbstractDebugTest.java:1763)
+at org.eclipse.jdt.debug.tests.DebugSuite$1.run(DebugSuite.java:54)
+at java.lang.Thread.run(Thread.java:613)
+The two following exceptions were found in the log:
+!ENTRY org.eclipse.jdt.debug 4 125 2011-04-14 23:49:47.684
+!MESSAGE Internal error logged from JDI Debug:
+!STACK 0
+com.sun.jdi.InternalException: Got error code in reply:13
+at org.eclipse.jdi.internal.MirrorImpl.defaultReplyErrorHandler(MirrorImpl.java:277)
+at org.eclipse.jdi.internal.request.EventRequestImpl.enable(EventRequestImpl.java:232)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$StepHandler.createStepRequest(JDIThread.java:2035)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$StepHandler.createSecondaryStepRequest(JDIThread.java:2293)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$StepHandler.createSecondaryStepRequest(JDIThread.java:2271)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$StepHandler.handleEvent(JDIThread.java:2172)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:154)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:104)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:248)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!ENTRY org.eclipse.jdt.debug 4 125 2011-04-14 23:49:47.703
+!MESSAGE Internal error logged from JDI Debug:
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.jdi.internal.request.EventRequestManagerImpl.deleteEventRequest(EventRequestManagerImpl.java:376)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$StepHandler.deleteStepRequest(JDIThread.java:2093)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$StepHandler.stepEnd(JDIThread.java:2247)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$StepHandler.handleEvent(JDIThread.java:2180)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:154)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:104)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:248)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)

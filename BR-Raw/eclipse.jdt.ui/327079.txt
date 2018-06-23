@@ -1,0 +1,17 @@
+Bug 327079 – [JUnit] Can't run single test with JUnit 4 launcher if there's a suite() method
+I20101005-0800.
+Test Case:
+Try to run test1 from the following source with the JUnit 4 launcher.
+import junit.framework.Test;
+import junit.framework.TestCase;
+public class Sample extends TestCase {
+public void test1() {
+System.out.println("1");
+}
+public static Test suite() {
+return null;
+}
+public void test2() {
+System.out.println("2");
+}
+}

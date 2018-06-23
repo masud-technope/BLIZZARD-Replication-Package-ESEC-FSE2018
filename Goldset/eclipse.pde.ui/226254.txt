@@ -1,0 +1,7 @@
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/ApiDescription.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/ApiProfile.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/PluginProjectApiComponent.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/provisional/IApiProfile.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/ProjectApiDescription.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/BundleApiComponent.java
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/util/tests/HeadlessApiProfileManagerTests.java

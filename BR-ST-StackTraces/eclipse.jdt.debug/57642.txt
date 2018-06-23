@@ -1,0 +1,3 @@
+sun.reflect.NativeMethodAccessorImpl.invoke0
+org.eclipse.jdt.debug.tests.AutomatedSuite$1.run
+java.lang.Thread.run

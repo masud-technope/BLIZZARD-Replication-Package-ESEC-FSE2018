@@ -1,0 +1,19 @@
+57144 – Improve ClientAbortException.getMessage() to provide non-null message in Tomcat 7
+For reference - r1634258 and r1360468
+I was backporting a test for BZ 54928 from Tomcat 8 to Tomcat 7 and noted a difference in output.
+The code was:
+log.info("Exception caught " + e.getMessage());
+In Tomcat 7 (7.0.56+) it resulted in
+"Exception caught null"
+while on Tomcat 8 (8.0.14+) it was
+"Exception caught Software caused connection abort: socket write error".
+When I changed the code to use e.toString() it became:
+in Tomcat 7:
+"Exception caught ClientAbortException:  java.net.SocketException: Software caused connection abort: socket write error"
+in Tomcat 8:
+"Exception caught org.apache.catalina.connector.ClientAbortException: java.net.SocketException: Software caused connection abort: socket write error"
+The difference comes from r1360468.
+Essentially Tomcat 8 delegates processing to original implementations in java.lang.Throwable, while the old code in Tomcat 7 has its own implementation of getMessage() and toString().
+There are two differences:
+a) The Throwable(Throwable cause) constructor in Java initializes message as cause.toString() while in ClientAbortException(Throwable) the message defaults to being null.
+b) Throwable.toString() uses the fully qualified name of a class, while ClientAbortException.toString() prints just "ClientAbortException".

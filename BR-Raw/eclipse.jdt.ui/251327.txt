@@ -1,0 +1,14 @@
+Bug 251327 – [browsing] JavaBrowsingPart not clearing fPreveiousSelectionProvider
+Build ID: M20080911-1700
+Steps To Reproduce:
+1.
+Open two editors - one must be an ITextEditor (any java file) and the other must not be (extend EditorPart directly and only implement ISelectionProvider)
+2.
+Place a break point in JavaBrowsingPart.selectionChanged(IWorkbenchPart, ISelection)
+2.
+Switch between the two editors in the java browsing perspective (so you can see the packages).
+3.
+When you select the ITextEditor it shows the editor's package, when you select the non-ITextEditor it checks line 718 and determines that the same part last fired the selection event because when the ITextEditor's selection event is processed it doesn't set fPreviousSelectionProvider.
+More information:
+A simple fix would seem to be to set the fPreviousSelectionProvider in a finally block with the contents of selectionChanged inside the try portion.
+ It would be nice if this could make it into the next release as it really makes custom displays a pain to integrate.

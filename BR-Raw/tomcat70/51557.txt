@@ -1,0 +1,18 @@
+51557 – Newline during a http header field name obscures next value
+Created attachment 27314 [details]
+Patch to stop CR & LF in the header.
+InternalInputBuffer allows newlines in http header field names.
+As an example:
+Foo: Val1
+Bar: Val2
+MISS
+Hup: Val3
+This will lead to a field name of 'MISSHup' and not 'Hup'.
+Digging into the specs, I think this goes back to RFC 822 which states:
+field-name  =  1*<any CHAR, excluding CTLs, SPACE, and ":">
+and
+CTL         =  <any ASCII control           ; (  0- 37,  0.- 31.)
+character and DEL>          ; (    177,     127.)
+I think this is saying that field-name should not contain CR or LF.
+I've attached a patch that stops CR & LF.
+Two improvements I could see, if there's agreement with this as a bug, are adding a unit test to TestInternalInputBuffer and changing the code so it disallows space and any other ctrl character in the field name.

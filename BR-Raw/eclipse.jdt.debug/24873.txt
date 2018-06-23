@@ -1,0 +1,5 @@
+Bug 24873 – Misc for the Detail Formatters preference page
+Page is listed as Details Formatters (should be Detail Formatters?)
+Add button is labelled "Add Formatter" (the other pages I looked at only
+had "Add")
+When a formatter is removed, the next one should be selected

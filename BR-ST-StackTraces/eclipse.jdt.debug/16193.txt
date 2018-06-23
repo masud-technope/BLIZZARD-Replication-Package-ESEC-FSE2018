@@ -1,0 +1,16 @@
+org.eclipse.jdt.debug.ui.launchConfigurations.JavaConnectTab.initializeDefaults
+org.eclipse.jdt.debug.ui.launchConfigurations.JavaConnectTab.setDefaults
+org.eclipse.debug.ui.AbstractLaunchConfigurationTabGroup.setDefaults
+org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationDialog.createConfigOfType
+org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationDialog.openDialogOnNewConfigOfSpecifiedType
+org.eclipse.debug.internal.ui.launchConfigurations.LaunchConfigurationDialog.open
+org.eclipse.debug.internal.ui.actions.OpenLaunchConfigurationsAction.run
+org.eclipse.jface.action.Action.runWithEvent
+org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection
+org.eclipse.ui.internal.Workbench.run
+org.eclipse.core.internal.boot.InternalBootLoader.run
+org.eclipse.core.boot.BootLoader.run
+java.lang.reflect.Method.invoke
+org.eclipse.core.launcher.Main.basicRun
+org.eclipse.core.launcher.Main.run
+org.eclipse.core.launcher.Main.main

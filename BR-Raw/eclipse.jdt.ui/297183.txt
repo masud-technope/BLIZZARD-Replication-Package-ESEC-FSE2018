@@ -1,0 +1,13 @@
+Bug 297183 – [quick fix] "Add unimplemented methods" should add methods from top of hierarchy first
+HEAD
+(Follow-up to bug 140971 comment 20)
+> - "Override/Implement Methods" : For this case the super super class method
+> comes first and then super class methods.
+> - "Add unimplemented methods" :  Methods from immediate super class comes first
+> and then the methods from super super class.
+>
+> I prefer the implementation for "Override/Implement Methods" case.
+And I think
+> that both cases should follow the same ordering of methods.
+I agree, we should be consistent.
+As always, a patch would be welcome ;-).

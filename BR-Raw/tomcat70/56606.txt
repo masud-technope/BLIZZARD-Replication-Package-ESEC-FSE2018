@@ -1,0 +1,10 @@
+56606 – Tomcat Installer: old attribute generated in tomcat-users.xml instead of the new one
+Hi all, using the Tomcat Installer (for example apache-tomcat-7.0.42.exe) I see that when the admin user is created (in tomcat-users.xml), the tag inside the xml has the (old?) attribute name instead of username (as seen in other parts in the same file).
+I see this in all three source files from tomcat6, 7 and 8, for example here: http://svn.apache.org/repos/asf/tomcat/tc7.0.x/trunk/res/tomcat.nsi
+this is the line related:
+StrCpy $R5 '<user name="$R1" password="$R2" roles="$R3" />$\r$\n'
+so I think the fix should be trivial (change name with username).
+Note that even in the published doc in the web site there are some references to <user name=  ...
+Last (using the same installation procedure, using the exe), if I don't set a password for the admin, the line in the tomcat-users.xml won't be generated
+Thanks for now,
+Sandro

@@ -1,0 +1,10 @@
+Bug 80069 – NPE in SocketConnection
+Latest from HEAD.
+Running the test suite I saw this (not reproduceable).
+It looks like it is
+possible to read after the connection is closed.
+java.lang.NullPointerException
+at org.eclipse.jdi.internal.connect.SocketConnection.readPacket(SocketConnection.java:50)
+at org.eclipse.jdi.internal.connect.PacketReceiveManager.readAvailablePacket(PacketReceiveManager.java:239)
+at org.eclipse.jdi.internal.connect.PacketReceiveManager.run(PacketReceiveManager.java:73)
+at java.lang.Thread.run(Thread.java:813)

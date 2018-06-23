@@ -1,0 +1,2 @@
+Bug 229626 – changing unsupported API tag severity does not update problems
+If I have an existing problem for an unsupported API tag, then change the severity from error to warning, the problem remains with an error severity.

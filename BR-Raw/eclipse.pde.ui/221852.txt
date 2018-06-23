@@ -1,0 +1,6 @@
+Bug 221852 – Can't export features from a p2-enabled SDK
+With equinox-p2-sdk-I20080305-1100-win32, it is impossible to export a feature.
+Steps:
+- Create a new feature project (don't even bother adding a plugin or anything)
+- Export > features.
+You will notice that the finish button of the wizard is never enabled.

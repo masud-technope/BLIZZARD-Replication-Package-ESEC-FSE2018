@@ -1,0 +1,29 @@
+Bug 456960 – Broken classfile generated for incorrect annotation usage - case 2
+This is another variant of bug 434556.
+Testcode:
+===
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+@Bar(String)
+public class Code2 {
+}
+@Retention(RetentionPolicy.RUNTIME)
+@interface Bar {
+Class<?>[] value();
+}
+===
+If the annotation is correctly specified as '@Bar(String.class)' then the generated classfile is valid.
+If just @Bar(String) is used we get an error as expected but the generated class file has an invalid attribute for the annotation.
+Javap cannot understand it so just prints the bytes:
+RuntimeVisibleAnnotations: length = 0xA
+00 01 00 16 00 01 00 17 00 00
+00 01 = there is one annotation
+00 16 = the nameindex for the annotation is 0x16: 'LBar;'
+00 01 = the annotation has one name value pair
+00 17 = the name of the name value pair is at index 0x17: 'value'
+00 00 = ????? it should be one byte for the type of the annotation value and then a pair for the annotation value index.
+This appears to be due to the handling in ClassFile.generateAnnotation() as with that other bug.
+That fix only got applied to the case of an annotation with multiple values, this time we have an annotation with only one value which is treated differently (as a SingleMemberAnnotation rather than a NormalAnnotation).
+Similar logic to what was used in the NormalAnnotation case under that bug fix needs applying here.
+We should be not including the invalid member value.
+From a cursory look it *might* be slightly different here as the 'if (this.contentsOffset == memberValuePairOffset)' may be triggering.

@@ -1,0 +1,20 @@
+Bug 237709 – [preferences] Installed JRE tab does not pick up new JRE created in other Preference Pages
+Build ID: M20080221-1800
+Steps To Reproduce:
+In WebLogic Server Tools plugin, we
+create a new JRE when user creates a new WLS Server Runtime
+in the WTP "Server" Preference Page.
+The code to create JRE looks like:
+final VMStandin vmWorkingCopy = new VMStandin( type, vmId );
+vmWorkingCopy.setName( vmId );
+vmWorkingCopy.setInstallLocation( vmLocation );
+vm = vmWorkingCopy.convertToRealVM();
+JavaRuntime.saveVMConfiguration();
+The last call persists the change to Preference store.
+If user immediately switch to Installed JRE page,
+the new JRE does not show up.
+Even worse is that
+if user closes the Preference now, the change is overridden.
+More information:
+If user creates the WebLogic server runtime outside of the Preference,
+the JRE is picked up next time user

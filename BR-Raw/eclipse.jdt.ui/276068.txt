@@ -1,0 +1,10 @@
+Bug 276068 – [JUnit] JUnit viewer doesn't recognise <skipped/> node
+Created attachment 135565 [details]
+Example Junit xml report
+Another JUnit 4 one.
+If a JUnit4 test is annotated @Ignore, the resulting xml generated (e.g.
+when running mvn test) contains <skipped/>
+This causes an error when opening the file.
+Try opening the attached with E3.5M7, and you'll get:
+The test run could not be imported from file 'C:\Projects\workspace\abdera\adapters\filesystem\target\surefire-reports\TEST-org.apache.abdera.protocol.server.test.filesystem.FilesystemTest.xml'.
+unknown node 'skipped'

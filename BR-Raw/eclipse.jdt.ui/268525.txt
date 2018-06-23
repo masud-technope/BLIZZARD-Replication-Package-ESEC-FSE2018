@@ -1,0 +1,23 @@
+Bug 268525 – [nls tooling] exception in ExternalizeWizardPage.windEscapeChars()
+Using Eclipse 3.5M5
+While I was editing a key value, I accidentally entered '\' at the end of the key value and then clicked the mouse stopping the cell edit.
+The exception below occurs and key values can no longer be edited.
+java.lang.StringIndexOutOfBoundsException: String index out of range: 13
+at java.lang.String.charAt(String.java:444)
+at org.eclipse.jdt.internal.ui.refactoring.nls.ExternalizeWizardPage.windEscapeChars(ExternalizeWizardPage.java:342)
+at org.eclipse.jdt.internal.ui.refactoring.nls.ExternalizeWizardPage.access$2(ExternalizeWizardPage.java:331)
+at org.eclipse.jdt.internal.ui.refactoring.nls.ExternalizeWizardPage$CellModifier.modify(ExternalizeWizardPage.java:194)
+at org.eclipse.jface.viewers.ColumnViewer$2.setValue(ColumnViewer.java:274)
+at org.eclipse.jface.viewers.EditingSupport.saveCellEditorValue(EditingSupport.java:113)
+at org.eclipse.jface.viewers.ColumnViewerEditor.saveEditorValue(ColumnViewerEditor.java:454)
+at org.eclipse.jface.viewers.ColumnViewerEditor.applyEditorValue(ColumnViewerEditor.java:311)
+at org.eclipse.jface.viewers.ColumnViewerEditor.handleEditorActivationEvent(ColumnViewerEditor.java:438)
+at org.eclipse.jface.viewers.ColumnViewer.triggerEditorActivationEvent(ColumnViewer.java:680)
+at org.eclipse.jface.viewers.ColumnViewer.handleMouseDown(ColumnViewer.java:664)
+at org.eclipse.jface.viewers.ColumnViewer.access$0(ColumnViewer.java:660)
+at org.eclipse.jface.viewers.ColumnViewer$1.mouseDown(ColumnViewer.java:89)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:179)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1003)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3875)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3470)

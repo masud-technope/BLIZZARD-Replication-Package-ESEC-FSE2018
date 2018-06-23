@@ -1,0 +1,2 @@
+Bug 461000 – [Tooling] Provide Remote Services Perspective
+Create a remote services perspective.

@@ -1,0 +1,6 @@
+Bug 27462 – [startup] SearchPlugin is loaded when Java plug-in gets loaded
+The Java UI plugin eagerly activates the Search plugin.
+There are 2 reason:
+1) ISearchPageScore adapter that is registered
+2) fSearchResultViewEntryAdapterFactory
+we should investigate whether we can reduce this plugin activation.

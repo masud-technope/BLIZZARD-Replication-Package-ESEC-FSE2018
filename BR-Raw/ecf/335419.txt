@@ -1,0 +1,40 @@
+Bug 335419 – [Discovery][ZooDiscovery] ClassCastException in DiscoverdService.createServiceProperties
+For the remote service admin, one of the endpoint description properties has 'objectClass' as the key.
+ This is as per the OSGi chap 122 specification.
+In testing the RSA implementation with ZooDiscovery, I discovered that when an EndpointDescription is discovered, that the ZooDiscovery implementation has this code in DiscoverdService.java<init>
+public DiscoverdService(String path, Properties propMap) {
+Assert.isNotNull(propMap);
+this.uuid = path.split(INode._URI_)[0];
+this.location = URI.create((String) propMap.remove(IService.LOCATION));
+super.priority = Integer.parseInt((String) propMap
+.remove(IService.PRIORITY));
+super.weight = Integer.parseInt((String) propMap
+.remove(IService.WEIGHT));
+String[] services = (String[]) propMap.remove(Constants.OBJECTCLASS);
+if (services == null) {
+services = (String[]) propMap.remove(INode.NODE_PROPERTY_SERVICES);
+}
+String na = (String) propMap.remove(INode.NODE_PROPERTY_NAME_NA);
+String[] protocols = (String[]) propMap
+.remove(INode.NODE_PROPERTY_NAME_PROTOCOLS);
+String[] scopes = (String[]) propMap
+.remove(INode.NODE_PROPERTY_NAME_SCOPE);
+super.properties = createServiceProperties(propMap);
+...
+}
+When objectClass is one of the keys in propMap, it seems that this line of code:
+services = (String[]) propMap.remove(INode.NODE_PROPERTY_SERVICES);
+is *not* executed, and then when createServiceProperties(propMap) is executed (with INode.NODE_PROPERTY_SERVICES still present in the propMap, the following exception is thrown:
+2011-01-25 21:30:10,727 - ERROR [pool-1-thread-3-EventThread:ClientCnxn$EventThread@579] - Caught unexpected throwable
+java.lang.ClassCastException: [Ljava.lang.String; cannot be cast to java.lang.String
+at org.eclipse.ecf.provider.zookeeper.core.DiscoverdService.createServiceProperties(DiscoverdService.java:70)
+at org.eclipse.ecf.provider.zookeeper.core.DiscoverdService.<init>(DiscoverdService.java:57)
+at org.eclipse.ecf.provider.zookeeper.node.internal.NodeReader.processResult(NodeReader.java:100)
+at org.apache.zookeeper.ClientCnxn$EventThread.run(ClientCnxn.java:527)
+It seems likely to me that
+1) The objectClass key should *not* be removed from the service properties as it is with
+String[] services = (String[]) propMap.remove(Constants.OBJECTCLASS);
+1a) The objectClass property in the published service properties should not be changed/messed with on publication...as it is needed for publishing RSA enpdoint descriptions.
+2) The INode.NODE_PROPERTY_SERVICES property *should* probably always be removed from the properties (whether objectClass is present or not)
+Unfortunately, it looks like ZooDiscovery uses objectClass internally.
+ This should probably be changed so that objectClass can be used as an endpoint description property as per the RSA spec.

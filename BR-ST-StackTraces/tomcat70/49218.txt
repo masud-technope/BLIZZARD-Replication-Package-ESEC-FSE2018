@@ -1,0 +1,8 @@
+java.util.jar.JarFile.getMetaInfEntryNames
+java.util.jar.JarFile.maybeInstantiateVerifier
+java.util.jar.JarFile.getInputStream
+org.apache.naming.resources.WARDirContext$WARResource.streamContent
+org.apache.naming.resources.ProxyDirContext.cacheLoad
+org.apache.naming.resources.ProxyDirContext.cacheLookup
+org.apache.naming.resources.ProxyDirContext.lookup
+org.apache.catalina.core.ApplicationContext.getResource

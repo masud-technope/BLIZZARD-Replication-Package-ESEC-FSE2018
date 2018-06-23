@@ -1,0 +1,12 @@
+org.eclipse.jdt.internal.compiler.lookup.ParameterizedTypeBinding.getNonWildcardParameterization
+org.eclipse.jdt.internal.compiler.ast.LambdaExpression.findGroundTargetType
+org.eclipse.jdt.internal.compiler.ast.LambdaExpression.isCompatibleWith
+org.eclipse.jdt.internal.compiler.lookup.PolyTypeBinding.isCompatibleWith
+org.eclipse.jdt.internal.compiler.lookup.Scope.parameterCompatibilityLevel
+org.eclipse.jdt.internal.compiler.lookup.Scope.parameterCompatibilityLevel
+org.eclipse.jdt.internal.compiler.lookup.Scope.parameterCompatibilityLevel18
+org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod
+org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod
+org.eclipse.jdt.internal.compiler.lookup.Scope.findMethod
+org.eclipse.jdt.internal.compiler.lookup.Scope.getMethod
+org.eclipse.jdt.internal.compiler.ast.MessageSend.findMethodBinding

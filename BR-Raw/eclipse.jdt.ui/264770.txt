@@ -1,0 +1,52 @@
+Bug 264770 – [browsing][implementation] NPE when starting eclipse with Java Browsing Perspective
+I started eclipse which opened with the Java Browsing Perspective I had previously used, and the packages view had the following exception:
+Build ID: I20090202-1535
+Steps To Reproduce:
+eclipse.buildId=I20090202-1535
+java.version=1.5.0_16
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_GB
+Framework arguments:  -keyring /Users/channing/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/channing/.eclipse_keyring -consoleLog -showlocation
+Error
+Thu Feb 12 20:29:42 GMT 2009
+Unable to create view ID org.eclipse.jdt.ui.PackagesView: An unexpected exception was thrown.
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.ui.browsing.JavaBrowsingPart.setInitialSelection(JavaBrowsingPart.java:916)
+at org.eclipse.jdt.internal.ui.browsing.JavaBrowsingPart.createPartControl(JavaBrowsingPart.java:377)
+at org.eclipse.ui.internal.ViewReference.createPartHelper(ViewReference.java:371)
+at org.eclipse.ui.internal.ViewReference.createPart(ViewReference.java:230)
+at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:595)
+at org.eclipse.ui.internal.WorkbenchPage$ActivationList.setActive(WorkbenchPage.java:4203)
+at org.eclipse.ui.internal.WorkbenchPage$17.runWithException(WorkbenchPage.java:3265)
+at org.eclipse.ui.internal.StartupThreading$StartupRunnable.run(StartupThreading.java:31)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:133)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3000)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2749)
+at org.eclipse.ui.application.WorkbenchAdvisor.openWindows(WorkbenchAdvisor.java:803)
+at org.eclipse.ui.internal.Workbench$27.runWithException(Workbench.java:1367)
+at org.eclipse.ui.internal.StartupThreading$StartupRunnable.run(StartupThreading.java:31)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:133)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3000)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2749)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2299)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2204)
+at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:499)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:333)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:492)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:113)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:194)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:368)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:556)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:511)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1270)

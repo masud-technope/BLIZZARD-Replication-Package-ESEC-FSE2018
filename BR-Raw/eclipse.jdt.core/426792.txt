@@ -1,0 +1,3 @@
+Bug 426792 – [1.8][inference][impl] generify new type inference engine
+Since BETA_JAVA8 was upgraded to 1.6 compliance, we can now use generics.
+The new inference engine was already designed with generics in mind, this should be materialized now.

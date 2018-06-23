@@ -1,0 +1,3 @@
+Bug 424852 – [create on paste] Respect line delimiter preference when creating new CU
+Respect the line delimiter preference when creating a new CU by pasting to the Package Explorer.
+Currently, we use the line delimiter from the clipboard, which may not be the same as the project preference.

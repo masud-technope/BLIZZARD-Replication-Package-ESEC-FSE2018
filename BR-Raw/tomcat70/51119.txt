@@ -1,0 +1,4 @@
+51119 – extras - JmxRemoteLifecycleListener does not support JAAS based authentication and authorisation
+(Also true in Tomcat 7)
+The JmxRemoteLifecycleListener does not support JAAS based authentication.
+That is, when authentication is required, it only supports file based authentication.

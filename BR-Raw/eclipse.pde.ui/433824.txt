@@ -1,0 +1,31 @@
+Bug 433824 – API scan filter should mention what was filtered from report
+When using the API scan with filtering from an Ant script,
+e.g.
+<apitooling.apiuse
+location="${test.build}"
+scopepattern="${scope.pattern}"
+referencepattern="${ref.pattern}"
+report="${xml}"
+considerapi="false"
+considerinternal="true"
+considerillegaluse="true"
+excludelist="${exclude}"
+filters="${filters}"
+debug="true"
+/>
+The resulting xml, html report does not mention if or which filters were used.
+Date of the Scan: 	Apr 30, 2014, 8:09:05 AM
+Description:
+Includes API References: 	false
+Includes Internal References: 	true
+Includes Illegal Use: 	true
+Baseline Location: 	xxxxxxxxxxxxxxxxxx
+Scope Pattern: 	com\.ibm\..*
+Reference Pattern: 	org\.eclipse\..*
+Report Location: 	xxxxxxxxxxxxxxxxxx
+API Patterns: 	None
+Internal Patterns: 	None
+Archive Patterns: 	None
+From Filter Patterns: 	None
+To Filter Patterns: 	None
+So it is not clear if any filters were used to affect the scan.

@@ -1,0 +1,40 @@
+org.eclipse.jdt.ui.tests/examples/org/eclipse/jdt/ui/examples/JavaElementLightweightDecorator.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/nls/AccessorClassModifier.java
+org.eclipse.jdt.ui/ui refactoring/org/eclipse/jdt/internal/ui/refactoring/nls/search/NLSSearchResultRequestor.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/SynchronizedLineDifferInitializationTest.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/AddJavaDocStubOperation.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/CompilationUnitDocumentProvider.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/changes/AbstractDeleteChange.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/nls/NLSHintHelper.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/compare/JavaAddElementFromHistoryImpl.java
+org.eclipse.ltk.ui.refactoring/src/org/eclipse/ltk/internal/ui/refactoring/FileStatusContextViewer.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/ClassFileDocumentProvider.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/ExtractMethodRefactoring.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/actions/OrganizeImportsAction.java
+org.eclipse.ltk.core.refactoring/src/org/eclipse/ltk/core/refactoring/UndoTextFileChange.java
+org.eclipse.ltk.core.refactoring/src/org/eclipse/ltk/core/refactoring/MultiStateTextFileChange.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/changes/DeletePackageFragmentRootChange.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/nls/NLSHintHelperTest.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/SerialVersionHashOperation.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/nls/NLSHint.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/util/JavaModelUtil.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/util/OpenTypeHistory.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/actions/FormatAllAction.java
+org.eclipse.ltk.core.refactoring/src/org/eclipse/ltk/internal/core/refactoring/TextChanges.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/ContentTypeTest.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/compare/JavaReplaceWithEditionActionImpl.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/javaeditor/DocumentAdapter.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/surround/SurroundWithTryCatchRefactoring.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/hover/AbstractAnnotationHover.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/fix/CleanUpPostSaveListener.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/base/JDTChange.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/reorg/JavaDeleteProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/propertiesfileeditor/PropertyKeyHyperlink.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/util/RefactoringFileBuffers.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/performance/FileBufferPerformanceTest.java
+org.eclipse.jdt.ui.tests/examples/org/eclipse/jdt/ui/examples/MyQuickAssistProcessor.java
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/search/NLSSearchTest.java
+org.eclipse.ltk.core.refactoring/src/org/eclipse/ltk/internal/core/refactoring/MultiStateUndoChange.java
+org.eclipse.ltk.core.refactoring/src/org/eclipse/ltk/internal/core/refactoring/BufferValidationState.java
+org.eclipse.ltk.core.refactoring/src/org/eclipse/ltk/core/refactoring/TextFileChange.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/CodeRefactoringUtil.java

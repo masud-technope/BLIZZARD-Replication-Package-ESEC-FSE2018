@@ -1,0 +1,25 @@
+Bug 272742 – ImagesOnFileSystemRegistry is not thread safe
+I20090416-1053
+Got the exception below when I clicked/hovered over a type and had the Javadoc view open (linked to editor).
+This has already been reported as bug 223686, but the real problem is that ImagesOnFileSystemRegistry is not thread safe.
+I could not find steps to reproduce, but I'm pretty sure this happens if getNewFile() is called in two threads at the same time such that fImageCount is the same for both threads.
+Later, both threads must call ImageLoader#save(..) concurrently.
+Exception in thread "Info view input computer" org.eclipse.swt.SWTException: i/o error (java.io.FileNotFoundException: C:\e\w\runtime-head-CLEAN-2\.metadata\.plugins\org.eclipse.jdt.ui\jdt-images\0.png (The system cannot find the path specified))
+at org.eclipse.swt.SWT.error(SWT.java:3864)
+at org.eclipse.swt.SWT.error(SWT.java:3779)
+at org.eclipse.swt.graphics.ImageLoader.save(ImageLoader.java:241)
+at org.eclipse.jdt.internal.ui.viewsupport.ImagesOnFileSystemRegistry.getImageURL(ImagesOnFileSystemRegistry.java:104)
+at org.eclipse.jdt.internal.ui.viewsupport.ImagesOnFileSystemRegistry.getImageURL(ImagesOnFileSystemRegistry.java:85)
+at org.eclipse.jdt.internal.ui.infoviews.JavadocView.getInfoText(JavadocView.java:1079)
+at org.eclipse.jdt.internal.ui.infoviews.JavadocView.getJavadocHtml(JavadocView.java:1009)
+at org.eclipse.jdt.internal.ui.infoviews.JavadocView.computeInput(JavadocView.java:876)
+at org.eclipse.jdt.internal.ui.infoviews.AbstractInfoView$2.run(AbstractInfoView.java:620)
+Caused by: java.io.FileNotFoundException: C:\e\w\runtime-head-CLEAN-2\.metadata\.plugins\org.eclipse.jdt.ui\jdt-images\0.png (The system cannot find the path specified)
+at java.io.FileOutputStream.$$YJP$$open(Native Method)
+at java.io.FileOutputStream.open(FileOutputStream.java)
+at java.io.FileOutputStream.<init>(FileOutputStream.java:179)
+at java.io.FileOutputStream.<init>(FileOutputStream.java:70)
+at org.eclipse.swt.internal.Compatibility.newFileOutputStream(Compatibility.java:193)
+at org.eclipse.swt.graphics.ImageLoader.save(ImageLoader.java:239)
+...
+6 more

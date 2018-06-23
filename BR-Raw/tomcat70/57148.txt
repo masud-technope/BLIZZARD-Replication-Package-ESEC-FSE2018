@@ -1,0 +1,29 @@
+57148 – EL type conversion of empty string when there is a PropertyEditor (ELSupport.coerceToType())
+(Noted when reviewing org.apache.el.lang.ELSupport.coerceToType())
+My expectations are that ELSupport.coerceToType() method follows the type conversion rules specified in Expression Language specification.
+There is the following phrase in specification 3.0 ch.1.23.7 Coerce A to Any Other Type T:
+"If A is a String and T's PropertyEditor throws an exception:"
+"If A is "", return null"
+"Otherwise, error"
+The same phrase in present in EL 2.2 and EL 2.1 specifications (ch.1.18.7) as well.
+Consider the following case:
+- A is an empty string ("")
+- T has a PropertyEditor
+Expected behaviour:
+- Call PropertyEditor with value of "".
+- If it throws an exception, return null.
+- Otherwise use the converted value.
+try {
+propertyEditor.setAsText("").getValue();
+} catch (RuntimeException e) {
+return null;
+}
+Actual implementation:
+- It skips calling the PropertyEditor and immediately returns null.
+if (obj instanceof String) {
+if ("".equals(obj))
+return null;
+PropertyEditor editor = PropertyEditorManager.findEditor(type);
+...
+The PropertyEditor.setAsText(String) method is documented to throw IllegalArgumentException on invalid values.
+I think that EL API expects an ELException, so it is to be wrapped somewhere.

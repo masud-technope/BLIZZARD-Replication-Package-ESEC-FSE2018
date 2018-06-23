@@ -1,0 +1,3 @@
+Bug 197332 – [IRC] No way to set the topic of a channel
+It would be nice if we had a control or something in the UI that represented the channel name and topic.
+Also a way to set this would be awesome!

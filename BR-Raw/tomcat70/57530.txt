@@ -1,0 +1,33 @@
+57530 – Reimplement TestAbstractHttp11Processor.testNon2xxResponseWithExpectation test using SimpleHttpClient instead of Java 6
+As was noted when testing 7.0.59 release candidate, the testNon2xxResponseWithExpectation test in org.apache.coyote.http11.TestAbstractHttp11Processor fails when running with Java 6,
+[[[
+Testcase: testNon2xxResponseWithExpectation took 0,195 sec
+Caused an ERROR
+null
+java.lang.NullPointerException
+at org.apache.coyote.http11.TestAbstractHttp11Processor.doTestNon2xxResponseAndExpectation(TestAbstractHttp11Processor.java:646)
+at org.apache.coyote.http11.TestAbstractHttp11Processor.testNon2xxResponseWithExpectation(TestAbstractHttp11Processor.java:604)
+]]]
+Reference:
+http://mail-archives.apache.org/mod_mbox/tomcat-dev/201502.mbox/%3CCABzHfVngj3_P1sn7fDGVk6Pys4nxzie9LQB%3DN5n6PYX%2BSAh7cQ%40mail.gmail.com%3E
+http://mail-archives.apache.org/mod_mbox/tomcat-dev/201502.mbox/%3CCABzHfVnFn2VH+2kth2SZP-5CKPsi4oz6cb9q-wwsLw_2TKOMxQ@mail.gmail.com%3E
+The test sets up a web application with a security constraint that
+forbids access to an echo servlet.
+It sends a request with "Expect:
+100-continue"  and expects a 403 response with "Connection: close"
+header.
+Running with a debugger, Java 6u45 does not send the "Expect:
+100-continue" header, as the test expects.
+I have not found a java bug report for this specific issue, but from those that I found I think that
+- handling of "Expect: 100-continue" is a late addition (since Java 7 only?) and
+- it is more complicated than necessary for this simple test (HttpURLConnection handles the full request-response cycle, including 100 (Continue) response, timeouts etc).
+I think that this case can be reimplemented using a more simple client implementation,
+org.apache.catalina.startup.SimpleHttpClient
+I also expect that Tomcat rejects the request immediately without sending a 100 (Continue) response.
+This detail can be tested by reimplementing the test with SimpleHttpClient.
+(For reference:
+http://bugs.java.com/view_bug.do?bug_id=6726695
+JDK-6726695 : HttpURLConnection shoul support 'Expect: 100-contimue' headers for PUT
+http://bugs.java.com/view_bug.do?bug_id=8012625
+JDK-8012625 : Incorrect handling of HTTP/1.1 " Expect: 100-continue " in HttpURLConnection
+)

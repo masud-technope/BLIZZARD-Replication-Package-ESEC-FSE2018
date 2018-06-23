@@ -1,0 +1,8 @@
+Bug 58817 – UI no longer responsive when sorting search matches
+Build 20040413
+I searched for references to type: java.lang.System in org.eclipse.jdt.core
+project.
+This found over 4000 matches.
+I attempted to sort them by parent name, and my IDE locked for about 5 minutes
+to do the work, with no progress indication, no refresh and 100% CPU usage.
+Clearly something to improve on UI responsiveness front.

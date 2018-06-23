@@ -1,0 +1,3 @@
+49360 – Context class reload fails for PersistentManager
+On context class reload tomcat fails with
+LifecycleException:  An invalid Lifecycle transition was attempted ([before_start]) for component [org.apache.catalina.session.PersistentManager[/xxx]] in state [DESTROYED]

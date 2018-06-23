@@ -1,0 +1,4 @@
+Bug 420413 – [1.8][dom ast] AST#newArrayType(Type, int) should allow to create zero-dimension array
+BETA_JAVA8
+AST#newArrayType(Type, int) should allow to create zero-dimension arrays.
+Otherwise, a client who already has Dimension nodes has to remove the auto-created first dimension.

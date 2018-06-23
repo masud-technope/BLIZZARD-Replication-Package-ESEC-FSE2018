@@ -1,0 +1,22 @@
+Bug 287374 – [extract method] Allows extracting lhs of full qualified expression
+The refactoring correctly warns you if you try to extract the lefthandside of an assignment.
+In case you only select the SimpleName of a FieldAccess the refactoring works but produces illegal code.
+Snippet:
+public class A {
+int i;
+public void f() {
+this./*[*/i/*]*/ = 4;
+}
+}
+Extract method on "i" and you end up with
+public class A {
+int i;
+public void f() {
+this.extracted() = 4;
+}
+private int extracted() {
+return /*[*/i/*]*/;
+}
+}
+Expected would be an error message as we already do if you select the whole left hand side.
+Maybe we can reuse SnippetFinder#isLeftHandSideOfAssignment that will be introduced by bug 264606

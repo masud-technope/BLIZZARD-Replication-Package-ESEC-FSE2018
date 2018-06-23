@@ -1,0 +1,8 @@
+Bug 78151 – 'Insert single proposals automatically' should not insert without prefix
+200410260800
+- Have a new CU New.java:
+public class New extends /*caret*/ { }
+- Press Ctrl+Space with the cursor at the indicated location.
+=> Was: 'New' is inserted.
+=> Expected: Proposal popup with single completion is shown, even if 'Insert
+single proposals automatically' is checked.

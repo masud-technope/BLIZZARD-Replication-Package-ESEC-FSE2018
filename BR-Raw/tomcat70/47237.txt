@@ -1,0 +1,3 @@
+47237 – Put a hard limit on Http11NioProcessor objects
+These objects get cached with keep alive connections, with a very large amount of connections, this means memory consumption.
+http://tomcat.markmail.org/message/vyk2mjymxzjsxwao?q=NIOConnector+and+high+memory+consumption

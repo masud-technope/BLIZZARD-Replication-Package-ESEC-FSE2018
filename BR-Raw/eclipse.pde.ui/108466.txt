@@ -1,0 +1,21 @@
+Bug 108466 – Dups from (Eclipse)ClassLoader.getResources(String)
+When running runtime workspace, EclipseClassLoader.getResources(String) returns
+duplicate results for files found in plugin jarfiles (i.e.
+jar files listed in
+manifest.mf Bundle-ClassPath: entry or plugin.xml <library/> element).
+Steps to reproduce
+1.
+create plugin project
+2.
+add a jar with "file.txt" entry to the project
+3.
+add the jar to plugin runtime classpath using plugin manifest editor
+4.
+update plugin classpath (make sure the jar got added to java build path)
+5.
+add code that counts number of entries returned by
+getClass().getClassLoader().getResources("file.txt")
+5.
+start eclipse application, see that getResources returns two entries
+Apparently, eclipse adds the jar on plugin's classpath twice -- as a regular
+OSGi classpath entry and as a development entry.

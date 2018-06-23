@@ -1,0 +1,11 @@
+java/org/apache/catalina/deploy/NamingResources.java
+java/org/apache/catalina/core/DefaultInstanceManager.java
+java/org/apache/catalina/core/LocalStrings.properties
+java/org/apache/catalina/deploy/LocalStrings.properties
+java/org/apache/catalina/deploy/NamingResources.java
+java/org/apache/catalina/startup/ContextConfig.java
+java/org/apache/catalina/startup/LocalStrings.properties
+java/org/apache/catalina/startup/WebAnnotationSet.java
+java/org/apache/catalina/util/Introspection.java
+java/org/apache/catalina/util/LocalStrings.properties
+webapps/docs/changelog.xml

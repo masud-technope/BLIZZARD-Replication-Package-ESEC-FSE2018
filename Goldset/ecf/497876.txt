@@ -1,0 +1,2 @@
+osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/META-INF/MANIFEST.MF
+osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/src/org/eclipse/ecf/osgi/services/remoteserviceadmin/RemoteServiceAdmin.java

@@ -1,0 +1,23 @@
+52999 – Performance issue with locking in ContainerBase.fireContainerEvent()
+This was reported on dev list [1]:
+> 2) org.apache.catalina.core.ContainerBase.fireContainerEvent;
+> That method contains critical section:
+>  synchronized (listeners) {
+>        list = listeners.toArray(list);
+> }
+>
+> Is is called pretty often with every put operation into request or
+> session map.
+That code in tomcat looks like a candidate for
+> CopyOnWriteArrayList
+>
+I confirm that I see fireContainerEvent() calls in many places in StandardSession.
+Moreover those are two nested loops:  a loop in StandardSession over array
+of context.getApplicationEventListeners(); x copying the list of container listeners inside into array in context.fireContainerEvent().
+I cannot confirm reported problem with request attributes - I do not see anything in the code that would send events from that access.
+Is it possible to solve it with a ReadWriteLock?
+Or it would be better to have a helper class that avoids copying the array over on every access (the said copy-on-write one)?
+I classify this as an enhancement request.
+[1] Thread "Two performance problems (found during myfaces testing)" on dev list, starting on 2012-03-08,
+- http://tomcat.markmail.org/thread/7bbvzmkvyvryvn44
+- http://marc.info/?t=133124021200002&r=1&w=2

@@ -1,0 +1,2 @@
+Bug 295335 – [Discovery][jSLP] Execute OSGi jUnit tests separately and collect results
+Execute OSGi jUnit tests separately

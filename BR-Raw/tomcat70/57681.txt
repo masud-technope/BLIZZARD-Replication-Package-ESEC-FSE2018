@@ -1,0 +1,8 @@
+57681 – Allow parallel class loading in web application class loader by synchronizing on class specific object
+Created attachment 32553 [details]
+Parallel classloading port from Tc8.0 into Tc7.0
+Related to fix in Tomcat8.0:
+Fix https://issues.apache.org/bugzilla/show_bug.cgi?id=56530
+Add a web application class loader implementation that supports the parallel loading of web application classes.
+Source file to patch:
+https://svn.apache.org/viewvc/tomcat/tc7.0.x/trunk/java/org/apache/catalina/loader/WebappClassLoader.java?revision=1661811&view=markup

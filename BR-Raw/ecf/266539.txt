@@ -1,0 +1,6 @@
+Bug 266539 – [Discovery][ui] zeroconf services not being shown in ui
+With latest from head, I'm not seeing some iTunes services shown in the discovery ui.
+ I also happen to see these info notices in the error log:
+!ENTRY org.eclipse.ecf.discovery.model 1 0 2009-02-27 10:31:50.984
+!MESSAGE Cannot create a resource for 'ecf://192.168.100.11:80/tcp/local/iana'; a registered resource factory is needed
+I'm not sure if this is related, but it seems that it could be.

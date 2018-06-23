@@ -1,0 +1,29 @@
+Bug 262511 – [quick fix] Wrong quick fixes for "The type X is not visible"
+Build id: M20080911-1700
+Using the test case below (3 java files), there is one compiler error "The type Field is not visible".
+2 quick fixes are proposed in the hoover:
+1/ Change visibility of 'field' to 'public'
+2/ Change to 'field'
+The first one is wrog because 'field' is already public, AND because the error doens't come from the access of the field, but the access of the type of the field.
+The second one, is useless since it doesn't do anything.
+// ===
+package tests;
+import tests.sub.Container;
+public class Main {
+void foo() {
+Container container = new Container();
+String s = container.field.getBar();
+}
+}
+// ===
+package tests.sub;
+public class Container {
+public Field field;
+}
+// ===
+package tests.sub;
+class Field {
+public String getBar() {
+return "Bar";
+}
+}

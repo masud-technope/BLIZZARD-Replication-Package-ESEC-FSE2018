@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/ui/launcher/IPDELauncherConstants.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/core/IModelProviderEvent.java

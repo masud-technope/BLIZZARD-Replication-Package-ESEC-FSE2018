@@ -1,0 +1,10 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/nls/NLSFragmentGenerator.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/build/ExternalBuildModel.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/ExtensionsErrorReporter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDERegistryStrategy.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/SearchablePluginsManager.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/search/dialogs/FilteredPluginArtifactsSelectionDialog.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/MinimalState.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/TargetPlatformHelper.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/target/TargetDefinitionResolutionTests.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/util/ManifestUtils.java

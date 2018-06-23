@@ -1,0 +1,29 @@
+Bug 375326 – try-with-resources assignment in statement produces stack map exception
+Build Identifier: 20120322-1740
+Performing an assignment in the resources section of a try-with-resources block triggers a stack map exception.
+Example code:
+public class EclispeTest1 {
+@Test
+public void testWithResourcesAssignment() throws Exception{
+HasAutoCloseable a;
+try(AutoCloseable b=(a=new HasAutoCloseable()).a){
+}
+}
+public class AutoCloseableA implements AutoCloseable{
+@Override
+public void close() {
+// TODO Auto-generated method stub
+}
+}
+public class HasAutoCloseable{
+AutoCloseable a=new AutoCloseableA();
+}
+}
+Triggers the following exception
+java.lang.VerifyError: Stack map does not match the one at exception handler 49 in method EclispeTest1.testWithResourcesAssignment()V at offset 4
+at java.lang.Class.getDeclaredMethods0(Native Method)
+at java.lang.Class.privateGetDeclaredMethods(Class.java:2442)
+at java.lang.Class.getMethod0(Class.java:2685)
+at java.lang.Class.getMethod(Class.java:1620)
+at .........
+Reproducible: Always

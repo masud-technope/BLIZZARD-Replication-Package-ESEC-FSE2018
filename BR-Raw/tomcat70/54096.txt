@@ -1,0 +1,9 @@
+54096 – env-entry rejects legal types
+In servlet 3.0 the type in an env-entry can be any type which has a public constructor taking a single String (or character) as an argument.
+Tomcat only accepts a fixed list of types (see NamingContextListener from line 813).
+This is legal in web.xml but not accepted by tomcat:
+<env-entry>
+<env-entry-name>location</env-entry-name>
+<env-entry-type>java.io.File</env-entry-type>
+<env-entry-value>/var/lib/tomcat</env-entry-value>
+</env-entry>

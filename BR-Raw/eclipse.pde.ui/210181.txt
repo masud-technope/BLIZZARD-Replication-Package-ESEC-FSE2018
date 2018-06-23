@@ -1,0 +1,2 @@
+Bug 210181 – Add decoration for optional import packages
+As we did for plug-ins in bug 210180, let's do the same for packages.

@@ -1,0 +1,2 @@
+Bug 420433 – [r-OSGi] NPE in ch.ethz.iks.r_osgi.impl.ChannelEndpointImpl.handleMessage(RemoteOSGiMessage) when SERVICE_MODIFIED received before SERVICE_ADDED
+If r-OSGi receives a SERVICE_MODIFIED for service X before it knows about X (SERVICE_ADDED) do not try updating the local service instance.

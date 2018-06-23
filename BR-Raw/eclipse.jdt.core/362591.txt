@@ -1,0 +1,45 @@
+Bug 362591 – VerifyError: Inconsistent stackmap frames
+Build Identifier: 20110916-0149
+Java version: JVM build 1.7.0_01-b08
+Compiler:  1.7 compliance
+Class to reproduce:
+public class VerifyErrorTest {
+public static void main(String[] args) {
+testError(3, 4, "d");
+testNoError(3, 4, "d");
+}
+public static void testError(Number n0, Number n1, String refValue) {
+Number result = refValue.equals("ttt") ? n0 : (n1 == null ? null : n1.intValue());
+}
+public static void testNoError(Number n0, Number n1, String refValue) {
+Number result = null;
+if (refValue.equals("ttt")) {
+result = (Integer) n0;
+} else {
+if (n1 == null) {
+result = null;
+} else {
+result = n1.intValue();
+}
+}
+}
+}
+Result:
+Exception in thread "main" java.lang.VerifyError: Inconsistent stackmap frames at branch target 28 in method VerifyErrorTest.testError(Ljava/lang/Number;Ljava/lang/Number;Ljava/lang/String;)V at offset 10
+at java.lang.Class.getDeclaredMethods0(Native Method)
+at java.lang.Class.privateGetDeclaredMethods(Class.java:2442)
+at java.lang.Class.getMethod0(Class.java:2685)
+at java.lang.Class.getMethod(Class.java:1620)
+at sun.launcher.LauncherHelper.getMainMethod(LauncherHelper.java:484)
+at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:476)
+Notes:
+- The method testNoError does not generate this error (workaround).
+- This issue may be related to bug 361053 (no way of testing with the HEAD code)
+Reproducible: Always
+Steps to Reproduce:
+1.
+Create a new java project (java 1.7 compliance).
+2.
+Add the provided class
+3.
+Run

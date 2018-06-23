@@ -1,0 +1,18 @@
+Bug 438956 – [1.8][quick fix] Surround with try/catch quick fix on lambda expression surrounds wrong method
+This code:
+for (int ruleId : ruleIds) {
+grid.compute().affinityRun(cache.name(), ruleId,
+() -> log.info("Processing rule #{} {}", ruleId, cache.get(ruleId)) );
+}
+will generate compiler error: Unhandled exception type GridException
+with 1 quick fix: Surround with try/catch.
+However, when surround with try/catch quick fix is selected, it becomes:
+try {
+grid.compute().affinityRun(cache.name(), ruleId,
+() -> log.info("Processing rule #{} {}", ruleId, cache.get(ruleId)) );
+} catch (GridException e1) {
+throw new RuntimeException("Cannot compute", e1);
+}
+which won't work (i.e.
+the code still won't compile), as quick fix is surrounding the outer method affinityRun(), which doesn't throw checked Exception, while the inner lambda still throw GridException.
+What JDT should do is convert the lambda into a Runnable (as it's inferred from the context), then surround the Runnable's method body with try/catch.

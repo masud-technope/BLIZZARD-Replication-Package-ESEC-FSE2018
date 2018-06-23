@@ -1,0 +1,19 @@
+Bug 175566 – Manifest editor preference page leaks six images
+Build: I20070220
+Open and close the Plugin Development > Editors preference page.
+ Six images are leaked: two green plus images, two red X images, and two twin arrow "refresh" images.
+Sample Sleak output:
+java.lang.Error
+at java.lang.Throwable.<init>(Throwable.java:58)
+at org.eclipse.swt.graphics.Device.new_Object(Device.java:786)
+at org.eclipse.swt.graphics.Image.<init>(Image.java:491)
+at org.eclipse.jface.resource.ImageDescriptor.createImage(ImageDescriptor.java:289)
+at org.eclipse.jface.resource.ImageDescriptor.createImage(ImageDescriptor.java:227)
+at org.eclipse.jface.resource.ImageDescriptor.createImage(ImageDescriptor.java:205)
+at org.eclipse.pde.internal.ui.editor.text.PDEQuickAssistAssistant.<init>(PDEQuickAssistAssistant.java:157)
+at org.eclipse.pde.internal.ui.editor.text.XMLConfiguration.getQuickAssistAssistant(XMLConfiguration.java:165)
+at org.eclipse.jface.text.source.SourceViewer.configure(SourceViewer.java:369)
+at org.eclipse.pde.internal.ui.preferences.SyntaxColorTab.createPreviewer(SyntaxColorTab.java:242)
+at org.eclipse.pde.internal.ui.preferences.SyntaxColorTab.createContents(SyntaxColorTab.java:150)
+at org.eclipse.pde.internal.ui.preferences.EditorPreferencePage.createXMLTab(EditorPreferencePage.java:113)
+at org.eclipse.pde.internal.ui.preferences.EditorPreferencePage.createContents(EditorPreferencePage.java:100)

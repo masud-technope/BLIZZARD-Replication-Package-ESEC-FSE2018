@@ -1,0 +1,4 @@
+java/org/apache/jasper/compiler/TldLocationsCache.java
+java/org/apache/jasper/compiler/JspConfig.java
+webapps/docs/changelog.xml
+java/org/apache/jasper/compiler/WebXml.java

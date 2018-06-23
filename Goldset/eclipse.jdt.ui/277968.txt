@@ -1,0 +1,9 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline/A_test37_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline/A_test37_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline/A_test38_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline/A_test38_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline/A_test39_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/InlineTemp/canInline/A_test39_out.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/InlineTempTests.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/InlineConstantRefactoring.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/code/InlineTempRefactoring.java

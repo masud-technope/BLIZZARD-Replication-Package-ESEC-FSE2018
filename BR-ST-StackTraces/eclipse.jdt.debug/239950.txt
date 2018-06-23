@@ -1,0 +1,7 @@
+org.eclipse.jdt.internal.debug.eval.ast.instructions.ArrayAccess.execute
+org.eclipse.jdt.internal.debug.eval.ast.engine.Interpreter.execute
+org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine$1$EvaluationRunnable.run
+org.eclipse.jdt.internal.debug.core.model.JDIThread.runEvaluation
+org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine$EvalRunnable.run
+org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run
+org.eclipse.core.internal.jobs.Worker.run

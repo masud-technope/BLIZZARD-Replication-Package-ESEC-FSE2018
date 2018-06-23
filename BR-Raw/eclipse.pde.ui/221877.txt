@@ -1,0 +1,22 @@
+Bug 221877 – [api tooling] test failure in N20080307-0100
+there should be 4 resources with filters expected:<4> but was:<0>
+junit.framework.AssertionFailedError: there should be 4 resources with filters expected:<4> but was:<0>
+at org.eclipse.pde.api.tools.model.tests.ApiFilterStoreTests.assertFilterStore(ApiFilterStoreTests.java:98)
+at org.eclipse.pde.api.tools.model.tests.ApiFilterStoreTests.testAnnotateStoreFromLocalFile(ApiFilterStoreTests.java:150)
+at org.eclipse.test.EclipseTestRunner.run(EclipseTestRunner.java:354)
+at org.eclipse.test.EclipseTestRunner.run(EclipseTestRunner.java:206)
+at org.eclipse.test.CoreTestApplication.runTests(CoreTestApplication.java:35)
+at org.eclipse.test.CoreTestApplication.run(CoreTestApplication.java:31)
+at org.eclipse.equinox.internal.app.EclipseAppContainer.callMethod(EclipseAppContainer.java:547)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:195)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:362)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:175)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:549)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:504)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1236)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1212)
+at org.eclipse.core.launcher.Main.main(Main.java:30)
+Test runs fine when executed locally.
+I'll investigate using the test framework.

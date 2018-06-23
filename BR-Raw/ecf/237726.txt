@@ -1,0 +1,22 @@
+Bug 237726 – [patch] Smack in ECF discards non-ASCII VCard data
+The VCard provider has an XML handling bug for the poor people with names and data outside US-ASCII.
+It's classical abuse of String.getBytes().
+How I wish that method was deprecated!
+A Java string containing international characters is converted to bytes (implicitly using the "native" encoding, perhaps an 8-bit SBCS charset like ISO-8859-15), and is then parsed using XML without the XML declaration which then defaults to UTF-8, and gets the 8 bit SBCS bytes wrong and complains.
+When this happens, the entire address book of the user I'm logging in as is silently dropped!
+[Fatal Error] :1:20: Invalid byte 1 of 1-byte UTF-8 sequence.
+org.xml.sax.SAXParseException: Invalid byte 1 of 1-byte UTF-8 sequence.
+at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:264)
+at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:292)
+at javax.xml.parsers.DocumentBuilder.parse(DocumentBuilder.java:98)
+at org.jivesoftware.smackx.provider.VCardProvider._createVCardFromXml(VCardProvider.java:84)
+at org.jivesoftware.smackx.provider.VCardProvider.parseIQ(VCardProvider.java:76)
+at org.jivesoftware.smack.PacketReader.parseIQ(PacketReader.java:603)
+at org.jivesoftware.smack.PacketReader.parsePackets(PacketReader.java:289)
+at org.jivesoftware.smack.PacketReader.access$0(PacketReader.java:280)
+at org.jivesoftware.smack.PacketReader$1.run(PacketReader.java:63)
+[Fatal Error] :1:20: Invalid byte 1 of 1-byte UTF-8 sequence.
+The patch: It merely converts the XML string to UTF-8 (if available) instead of the native encoding.
+Hope this gets in the release, since it really messes up a lot of people.
+The snag is that the bug is in the Smack code.
+Is that an issue, IP wise?

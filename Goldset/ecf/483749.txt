@@ -1,0 +1,11 @@
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/internal/remoteservices/ui/messages.properties
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/remoteserviceadmin/ui/rsa/model/RSAAdapterFactory.java
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/remoteserviceadmin/ui/rsa/model/ExceptionNode.java
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/remoteserviceadmin/ui/rsa/model/ExceptionNodeWorkbenchAdapter.java
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/remoteserviceadmin/ui/rsa/model/ImportRegistrationNode.java
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/remoteserviceadmin/ui/rsa/model/StackTraceElementNode.java
+framework/bundles/org.eclipse.ecf.remoteservice.ui/plugin.xml
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/remoteserviceadmin/ui/rsa/model/ExportRegistrationNode.java
+framework/bundles/org.eclipse.ecf.remoteservice.ui/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/remoteserviceadmin/ui/rsa/model/AbstractRegistrationNode.java
+framework/bundles/org.eclipse.ecf.remoteservice.ui/src/org/eclipse/ecf/internal/remoteservices/ui/RemoteServicePerspective.java

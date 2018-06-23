@@ -1,0 +1,16 @@
+Bug 287049 – [actions] 'Add Import' always marks the editor as if it has unsaved changes
+Build ID: I20090611-1540
+Steps To Reproduce:
+1.
+Save the Java source file.
+2.
+Put the cursor to any class name which already has an appropriate 'import' statement or doesn't need it, press Shift-Ctrl-M or use corresponding menu item for 'Add Import'.
+The editor will be marked by an asterisk as if it has unsaved changes, and the 'Save' button on the toolbar will become available, but no text is really changed.
+More information:
+Example:
+import java.util.Map;
+public class AddImport {
+Map map;
+String s;
+}
+Pressing Shift-Ctrl-M on either 'Map' or 'String' causes the described things to happen.

@@ -1,0 +1,4 @@
+Bug 130199 – Package navigation in ManifestEditor
+Double-clicking on a package in the Exported/Imported Packages sections of the manifest editor should navigate to that package in the Package Explorer
+The action should also be available as an 'Open' context menu item in those viewers.
+If the package does not exist in the workspace, then fail gracefully as we do when you double-click on a non-existent bundle in the Require-Bundle viewer.

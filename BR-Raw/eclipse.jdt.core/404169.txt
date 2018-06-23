@@ -1,0 +1,6 @@
+Bug 404169 – deprecation warnings in test projects on junit.framework.Assert
+Since JUnit 4.11, junit.framework.Assert is deprecated.
+This creates a bunch of warnings in the test projects.
+AFAIK, the goal is still to keep the tests runnable with Java 1.4 / JUnit 3, so the fix is to:
+- just drop the "Assert." if it occurs in a subclass of TestCase
+- replace the "Assert." with "junit.framework.TestCase."

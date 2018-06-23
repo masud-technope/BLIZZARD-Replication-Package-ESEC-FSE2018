@@ -1,0 +1,7 @@
+org.eclipse.jdt.internal.compiler.classfmt.ExternalAnnotationProvider$TypeParametersAnnotationWalker.toTypeParameterBounds
+org.eclipse.jdt.internal.compiler.classfmt.ExternalAnnotationProvider$MethodAnnotationWalker.toTypeParameterBounds
+org.eclipse.jdt.internal.compiler.lookup.BinaryTypeBinding.createTypeVariables
+org.eclipse.jdt.internal.compiler.lookup.BinaryTypeBinding.createMethod
+org.eclipse.jdt.internal.compiler.lookup.BinaryTypeBinding.createMethods
+org.eclipse.jdt.internal.compiler.lookup.BinaryTypeBinding.cachePartsFrom
+org.eclipse.jdt.internal.compiler.lookup.LookupEnvironment.createBinaryTypeFrom

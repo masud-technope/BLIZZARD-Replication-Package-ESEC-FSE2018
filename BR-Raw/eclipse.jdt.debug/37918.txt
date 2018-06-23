@@ -1,0 +1,5 @@
+Bug 37918 – Console uses Date format that is not appropriate for Japanese.
+When putting the title in the console window the date/time printed should use
+the 4 digit year format as this is recognized in Japan.
+I will attach a picture of the console while running WebSphere Studio Device
+Developer version 5.5 (based on Eclipse 2.0.2)

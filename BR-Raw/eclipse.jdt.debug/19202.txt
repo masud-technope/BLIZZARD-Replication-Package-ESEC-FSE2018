@@ -1,0 +1,8 @@
+Bug 19202 – JavaLineBreakpoint holds JDIThread pointers
+Repeatedly debugging a program to a breakpoint, then terminating and removing causes an
+unbounded memory leak.
+ Leak is traceable to JavaLineBreakpoint and the fSuspendEvents
+HashMap.
+ Entries are never removed from this map.
+ This in turn pulls in a fair number of other
+objects, such as RuntimeProcess, OutputStreamMonitor, etc.

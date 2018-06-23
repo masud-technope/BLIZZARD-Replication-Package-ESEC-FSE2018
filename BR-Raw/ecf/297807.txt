@@ -1,0 +1,3 @@
+Bug 297807 – [presence] Replace org.jivesoftware.smack/ with org.jivesoftware.smack31/ CVS
+To simplify the build the new smack31 should replace the old smack bundle.
+The old version can be resurrected from a tag in CVS if required.

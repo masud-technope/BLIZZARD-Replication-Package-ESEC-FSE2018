@@ -1,0 +1,60 @@
+Bug 465521 – Many comparator errors in .class files in I20150426-2000
+Full log at
+http://download.eclipse.org/eclipse/downloads/drops4/I20150426-2000/buildlogs/comparatorlogs/buildtimeComparatorUnanticipated.log.txt
+The ones that concern me most are the .class files ones:
+.
+ eclipse.jdt.debug/org.eclipse.jdt.debug.ui
+no-classifier: different
+META-INF/ECLIPSE_.RSA: different
+META-INF/ECLIPSE_.SF: different
+org/eclipse/jdt/debug/ui/launchConfigurations/AppletMainTab.class: different
+org/eclipse/jdt/debug/ui/launchConfigurations/JavaJRETab.class: different
+org/eclipse/jdt/debug/ui/launchConfigurations/JavaMainTab.class: different
+org/eclipse/jdt/internal/debug/ui/FilterLabelProvider.class: different
+org/eclipse/jdt/internal/debug/ui/JDIModelPresentation.class: different
+org/eclipse/jdt/internal/debug/ui/JavaSourceLocationWorkbenchAdapterFactory$SourceLocationPropertiesAdapter.class: different
+org/eclipse/jdt/internal/debug/ui/StorageEditorInput.class: different
+org/eclipse/jdt/internal/debug/ui/classpath/VariableClasspathEntryWorkbenchAdapter.class: different
+org/eclipse/jdt/internal/debug/ui/jres/ExecutionEnvironmentsLabelProvider.class: different
+org/eclipse/jdt/internal/debug/ui/jres/InstalledJREsBlock$VMLabelProvider.class: different
+org/eclipse/jdt/internal/debug/ui/jres/JREsLabelProvider.class: different
+org/eclipse/jdt/internal/debug/ui/jres/LibraryLabelProvider.class: different
+org/eclipse/jdt/internal/debug/ui/launcher/RuntimeClasspathEntryLabelProvider.class: different
+org/eclipse/jdt/internal/debug/ui/launcher/SourceElementLabelProvider.class: different
+org/eclipse/jdt/internal/debug/ui/launcher/SourceElementQualifierProvider.class: different
+org/eclipse/jdt/internal/debug/ui/snippeteditor/SelectImportsAction.class: different
+org/eclipse/jdt/internal/debug/ui/sourcelookup/WorkbenchAdapter.class: different
+snippetsupport.jar: different
+META-INF/ECLIPSE_.RSA: different
+META-INF/ECLIPSE_.SF: different
+classifier-sources: different
+META-INF/ECLIPSE_.RSA: different
+META-INF/ECLIPSE_.SF: different
+The main artifact has been replaced with the baseline version.
+The following attached artifacts have been replaced with the baseline version: [sources]
+4.
+ eclipse.jdt.ui/org.eclipse.jdt.junit
+no-classifier: different
+META-INF/ECLIPSE_.RSA: different
+META-INF/ECLIPSE_.SF: different
+org/eclipse/jdt/internal/junit/buildpath/ClasspathVariableMarkerResolutionGenerator$1.class: different
+org/eclipse/jdt/internal/junit/ui/JUnitAddLibraryProposal.class: different
+org/eclipse/jdt/internal/junit/ui/JUnitClasspathFixProcessor$JUnitClasspathFixProposal.class: different
+org/eclipse/jdt/internal/junit/ui/JUnitPreferencePage.class: different
+org/eclipse/jdt/internal/junit/ui/JUnitQuickFixProcessor$AddAssertProposal.class: different
+classifier-sources: different
+META-INF/ECLIPSE_.RSA: different
+META-INF/ECLIPSE_.SF: different
+The main artifact has been replaced with the baseline version.
+The following attached artifacts have been replaced with the baseline version: [pack200, sources]
+7.
+ eclipse.jdt.ui/org.eclipse.jdt.ui.tests
+no-classifier: different
+META-INF/ECLIPSE_.RSA: different
+META-INF/ECLIPSE_.SF: different
+org/eclipse/jdt/ui/examples/MyQuickAssistProcessor.class: different
+org/eclipse/jdt/ui/tests/search/TestLabelProvider.class: different
+classifier-sources: not present in baseline
+The main artifact has been replaced with the baseline version.
+The following attached artifacts have been replaced with the baseline version: [pack200]
+The following attached artifacts are not present in the baseline and have been removed: [sources]

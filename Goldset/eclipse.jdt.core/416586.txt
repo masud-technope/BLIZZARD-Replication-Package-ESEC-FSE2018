@@ -1,0 +1,4 @@
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/IDocElement.java
+org.eclipse.jdt.core/component.xml
+org.eclipse.jdt.core/.settings/.api_filters
+org.eclipse.jdt.core/dom/org/eclipse/jdt/core/dom/IExtendedModifier.java

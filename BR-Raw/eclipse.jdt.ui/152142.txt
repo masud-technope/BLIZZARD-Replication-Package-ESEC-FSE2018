@@ -1,0 +1,9 @@
+Bug 152142 – [nls] the NLS key tab is not available in the search dialog window
+In Eclipse 3.2, the NLS key tab is not available in the search dialog window.
+It is not listed in the 'Customize...' list either.
+It is still documented in Eclipse 3.2 doc but the corresponding class
+NLSSearchPage is no longer part of the o.e.jdt.ui plugin (org.eclipse.jdt.ui_3.2.0.v20060605-1400.jar)
+http://dev.eclipse.org/viewcvs/index.cgi/org.eclipse.jdt.ui/ui%20refactoring/org/eclipse/jdt/internal/ui/refactoring/nls/search/Attic/NLSSearchPage.java
+It seems that the documentation is not up to date but in doubt, I open this bug
+in UI since the new actions related to NLS keys does not cover all the
+functionalities which were availbale in the NLS search page.

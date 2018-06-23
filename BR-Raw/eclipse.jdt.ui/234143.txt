@@ -1,0 +1,29 @@
+Bug 234143 – [syntax coloring] Deprecation doesn't properly appear on keywords this and super for construction calls
+Hello,
+Try this code:
+class foo {
+public foo(String a) {
+this(a, null);
+}
+/**
+* @deprecated
+*/
+@Deprecated
+public foo(String a, String b) {
+}
+}
+class bar extends foo {
+public bar(Object o) {
+this(o, "bar");
+}
+public bar(Object o, String a) {
+this(o, a, null);
+}
+public bar(Object o, String a, String b) {
+super(a, b);
+new foo(a,b);
+}
+}
+You will observe none of the this(*) and super(*) constructor calls are stroke, whereas the declaration of foo(String, String) and its use with the new call are.
+Thanks
+Mathieu Sivade

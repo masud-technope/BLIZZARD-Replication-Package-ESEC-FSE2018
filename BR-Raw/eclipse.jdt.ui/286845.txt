@@ -1,0 +1,4 @@
+Bug 286845 – Added new IProblem id UnresolvedVariable
+To fix bug 276294, JDT/Core added a new IProblem id called UnresolvedVariable
+It replaces UndefinedName in cases where we know we have a varaible.
+Quick fix likely needs to be updated.

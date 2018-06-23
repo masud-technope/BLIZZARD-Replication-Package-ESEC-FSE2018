@@ -1,0 +1,54 @@
+56425 – Unable to find unambiguous method in class String
+I am experiencing an issue with my code running in tomcat 7.0.53 which is returning a JasperException Caused by: javax.el.MethodNotFoundException: Unable to find unambiguous method: class java.lang.String.replace(java.lang.String, java.lang.String)
+Below is the JSP code causing the problem.
+This does not happen in previous versions of Tomcat including 7.0.50 and 7.0.52.
+<div class="slyout-container ${object.replace('.', '_')}" data-searchbox-target="${target }">
+object is of type String with values such as "module.submodule" and I want to make it "module_submodule"
+Below is the stack trace.
+Caused by: org.apache.jasper.JasperException: javax.el.MethodNotFoundException: Unable to find unambiguous method: class java.lang.String.replace(java.lang.String, java.lang.String)
+at org.apache.jasper.servlet.JspServletWrapper.handleJspException(JspServletWrapper.java:549)
+at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:470)
+at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:390)
+at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:334)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:303)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:748)
+at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:604)
+at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:543)
+at org.apache.jasper.runtime.JspRuntimeLibrary.include(JspRuntimeLibrary.java:954)
+at org.apache.jsp.layouts.window_jsp._jspService(window_jsp.java:92)
+at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:432)
+at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:390)
+at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:334)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:303)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:748)
+at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:486)
+at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:411)
+at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:338)
+at org.apache.tiles.servlet.context.ServletTilesRequestContext.forward(ServletTilesRequestContext.java:241)
+...
+51 more
+Caused by: javax.el.MethodNotFoundException: Unable to find unambiguous method: class java.lang.String.replace(java.lang.String, java.lang.String)
+at javax.el.Util.findWrapper(Util.java:333)
+at javax.el.Util.findMethod(Util.java:214)
+at javax.el.BeanELResolver.invoke(BeanELResolver.java:174)
+at org.apache.jasper.el.JasperELResolver.invoke(JasperELResolver.java:139)
+at org.apache.el.parser.AstValue.getValue(AstValue.java:173)
+at org.apache.el.ValueExpressionImpl.getValue(ValueExpressionImpl.java:184)
+at org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate(PageContextImpl.java:967)
+at org.apache.jsp.WEB_002dINF.views.core.search.searchForm_jsp._jspService(searchForm_jsp.java:171)
+at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:432)
+...
+77 more
+Thanks,
+Sebastian

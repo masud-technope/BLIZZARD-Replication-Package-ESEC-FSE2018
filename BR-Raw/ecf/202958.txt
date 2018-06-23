@@ -1,0 +1,7 @@
+Bug 202958 – [ui] irc channel output copy/select all works incorrectly
+Enter IRC channel (e.g.
+#eclipse-dev).
+Right click on the chat output text area to bring up Copy/Clear/Select All menu.
+Choose Select All.
+Expected:  That channel's text would be selected.
+Actual:  The root container's (irc.freenode.net) output is selected rather than the channel's output.

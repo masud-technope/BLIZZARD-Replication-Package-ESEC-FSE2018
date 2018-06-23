@@ -1,0 +1,9 @@
+Bug 81983 – [preferences] Disabling and enabling folding on small file takes forever
+3.1 M4
+Using enable/disable folding on a small CU takes forever.
+This is caused by the
+recent change to apply the preference to all Java editors.
+In another (hidden)
+window (Debug) I had StyledText open which (understandably) took long to react
+on the preference change.
+Non-visible editor's should not react to this change until they become visible.

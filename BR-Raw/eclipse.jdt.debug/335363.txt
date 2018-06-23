@@ -1,0 +1,17 @@
+Bug 335363 – 'Add Java Exception Breakpoint' dialog has truncated text for its checkboxes if font size is increased
+Created attachment 187559 [details]
+Screenshot depicting the problem in question.
+I20110124-1800
+1.
+Window > Preferences > General > Appearance > Colors and Fonts
+2.
+Basic > Dialog Font
+3.
+Increase the font size.
+4.
+Click 'OK'.
+5.
+Run > Add Java Exception Breakpoint...
+6.
+Notice that the text in the checkbox is truncated(!).
+Resizing/maximizing the dialog doesn't seem to help.

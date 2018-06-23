@@ -1,0 +1,31 @@
+Bug 433735 – [1.8] Discrepancy with javac when dealing with local classes in lambda expressions
+The following class is accepted by eclipse while it is rejected by javac with the error
+cannot reference this before super type constructor has been called.
+--------------------->
+import java.util.function.Supplier;
+class E {
+E(Supplier<Object> factory) { }
+}
+public class Y extends E {
+Y() {
+super( () -> {
+class Z extends E {
+Z() {
+super(new Supplier<Object>() {
+@Override
+public Object get() {
+// TODO Auto-generated method stub
+return new Object();
+}
+});
+}
+}
+return new Z();
+});
+}
+public static void main(String[] args) {
+new Y();
+}
+}
+----------------------------->
+Not sure if it's a bug in eclipse or javac.

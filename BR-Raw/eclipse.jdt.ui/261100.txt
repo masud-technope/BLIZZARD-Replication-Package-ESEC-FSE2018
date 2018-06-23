@@ -1,0 +1,5 @@
+Bug 261100 – [common navigator] Dragging FileTransfer to closed project shows "valid drop"
++++ This bug was initially created as a clone of Bug #218574 +++
+Another thing I noticed while testing was that dragging a local selection onto a closed project results in the icon changing to 'no drop'.
+ However, dragging a file transfer onto a closed project results in the icon being a 'valid drop'.
+ Actually performing the drop resulted in an error dialog saying the destination did not exist.

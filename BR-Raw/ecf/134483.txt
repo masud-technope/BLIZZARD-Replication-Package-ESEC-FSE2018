@@ -1,0 +1,4 @@
+Bug 134483 – Standalone ClientApplication is breaks in line 137 since ContainerFactory uses ECFPlugin
+The standalone org.eclipse.ecf.provider.app.ClientApplication.init (line 72) throws an ExceptionInInitializerError, since the ContainerFactory references the ECFPlugin in the contructor.
+The ClientApplication is standalone (i.e  it doesn't not run in Eclipse or in an Eclipse Rich Client), so (I think) the ECFPlugin is never initialised and thus the "ECFPlugin.getDefault()" throws a NullPointerExcepton.
+A previous version of ECF (I think v0.62) worked ok, since in this version the ContainerFactory did not yet use the ECFPlugin.

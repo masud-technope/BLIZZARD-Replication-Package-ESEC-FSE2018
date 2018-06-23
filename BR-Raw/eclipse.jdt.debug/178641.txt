@@ -1,0 +1,6 @@
+Bug 178641 – [performance] conditional breakpoint performance test failure
+The performance test for conditional breakpoints is much worse on windows in 3.3 than 3.2x.
+It appears the amount of "side effect" work overlapping with the test is different in 3.3.
+For example, when running the test on 3.3, the source editor tends to open, where it does not open in 3.2.
+As well, the 3.3 test suite has additional views that get activated when a target suspends ("view management" tests).
+The test is only intended to measure the time for a conditional breakpoint to be evaluated in a tight loop.

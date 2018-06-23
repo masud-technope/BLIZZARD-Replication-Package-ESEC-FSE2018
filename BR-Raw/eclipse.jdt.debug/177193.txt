@@ -1,0 +1,17 @@
+Bug 177193 – Setting range of values in array objects in one request
+Build ID: M20060921-0945
+Steps To Reproduce:
+Our code uses certain classes to streamline JDWP message transfer because those currently supported are way too slow.
+Our code takes an array of bytes in the debugger and places them in an array in the JVM.
+The first implementation of our code used IJavaDebugTarget.newValue() for each byte and then IJavaArray.setValue() to place the byte into an array.
+This scheme causes JDWP messages for each byte and is very slow, about 1-2 kilobytes per second.
+Our new implementation uses the following internal classes to create one message on the debugger side and send all the bytes in one JDWP message:
+ArrayReferenceImpl
+JDIMessages
+JdwpCommandPacket
+JdwpReplyPacket
+JdwpID
+We achieved acceptable performance in the past by limiting message size but new markets demand larger messages and force us to use these classes.
+Please make them API or create a fast API for sending large JDWP messages.
+Please note we are limited as to the version of Eclipse we use and consider making these changes in version 3.2.1.
+More information:

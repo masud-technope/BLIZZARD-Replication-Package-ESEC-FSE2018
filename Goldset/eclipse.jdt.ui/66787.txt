@@ -1,0 +1,2 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/JavaSearchResultPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/SearchMessages.properties

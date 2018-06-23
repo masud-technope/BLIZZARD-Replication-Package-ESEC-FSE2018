@@ -1,0 +1,7 @@
+java/org/apache/catalina/loader/LocalStrings.properties
+java/org/apache/catalina/loader/ParallelWebappClassLoader.java
+java/org/apache/catalina/loader/mbeans-descriptors.xml
+test/org/apache/catalina/loader/TestParallelWebappClassLoader.java
+webapps/docs/changelog.xml
+webapps/docs/config/loader.xml
+java/org/apache/tomcat/util/compat/JreCompat.java

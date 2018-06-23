@@ -1,0 +1,59 @@
+Bug 400374 – opening an editor when the maximum allowed is reached will result in an exception (and editor will not be opened)
+this is the exception:
+!ENTRY org.eclipse.ui 4 0 2013-02-08 23:36:40.932
+!MESSAGE Unhandled event loop exception
+!STACK 0
+org.eclipse.core.runtime.AssertionFailedException: assertion failed:
+at org.eclipse.core.runtime.Assert.isTrue(Assert.java:110)
+at org.eclipse.core.runtime.Assert.isTrue(Assert.java:96)
+at org.eclipse.jdt.internal.ui.javaeditor.JavaSourceViewer.prepareDelayedProjection(JavaSourceViewer.java:658)
+at org.eclipse.jdt.internal.ui.javaeditor.JavaEditor.internalDoSetInput(JavaEditor.java:2582)
+at org.eclipse.jdt.internal.ui.javaeditor.JavaEditor.doSetInput(JavaEditor.java:2571)
+at org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor.doSetInput(CompilationUnitEditor.java:1395)
+at org.eclipse.ui.texteditor.AbstractTextEditor.setInputWithNotify(AbstractTextEditor.java:4289)
+at org.eclipse.ui.texteditor.AbstractTextEditor.setInput(AbstractTextEditor.java:4311)
+at org.eclipse.ui.internal.WorkbenchPage.reuseEditor(WorkbenchPage.java:2885)
+at org.eclipse.ui.internal.WorkbenchPage.busyOpenEditor(WorkbenchPage.java:3023)
+at org.eclipse.ui.internal.WorkbenchPage.access$22(WorkbenchPage.java:2969)
+at org.eclipse.ui.internal.WorkbenchPage$8.run(WorkbenchPage.java:2951)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+at org.eclipse.ui.internal.WorkbenchPage.openEditor(WorkbenchPage.java:2947)
+at org.eclipse.ui.internal.WorkbenchPage.openEditor(WorkbenchPage.java:2911)
+at org.eclipse.ui.internal.WorkbenchPage.openEditor(WorkbenchPage.java:2902)
+at org.eclipse.jdt.internal.ui.javaeditor.EditorUtility.openInEditor(EditorUtility.java:373)
+at org.eclipse.jdt.internal.ui.javaeditor.EditorUtility.openInEditor(EditorUtility.java:179)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.gotoSelectedElement(AbstractInformationControl.java:440)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl.access$0(AbstractInformationControl.java:435)
+at org.eclipse.jdt.internal.ui.text.AbstractInformationControl$2.widgetDefaultSelected(AbstractInformationControl.java:227)
+at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:119)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4169)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3758)
+at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1057)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:941)
+at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:79)
+at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:588)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:543)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:354)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:181)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:636)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1450)
+I already had that also in my 3.8.x version, but now i am on the 4.3 stream:
+Version: 4.3.0
+Build id: I20130205-0800
+i i still have this.
+For that workspace i really need to say that it shouldn't close editors automatically for a specific number (16) now.
+If this happens, i really have first to close 1 and then i can reopen on.

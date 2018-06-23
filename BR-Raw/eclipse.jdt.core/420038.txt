@@ -1,0 +1,16 @@
+Bug 420038 – [1.8][compiler] Tolerate illegal type annotations on array dimensions of class literals for now for compatibility.
+BETA_JAVA8:
+The following program is tolerated by javac 8b108;
+// --
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+@Target(ElementType.TYPE_USE)
+@interface T {
+}
+public class X {
+public static void main(String[] args) {
+Class<?> c = int @T [].class;
+}
+}
+I believe oracle compiler is definitely at fault - this issue has been reported
+to them  until we hear confirmtion, we should turn our error into warning for now.

@@ -1,0 +1,4 @@
+Bug 135328 – EJB Creation: Wizard fails if ejb-jar.xml is invalid
+XDoclet EJB creation wizard fails in validating a bean display name if the DD is invalid, therefore fails the wizard.
+The bug is due to missing catch statement in the try{}finally{} block in the DataModel.
+A safe fix is available patch attached

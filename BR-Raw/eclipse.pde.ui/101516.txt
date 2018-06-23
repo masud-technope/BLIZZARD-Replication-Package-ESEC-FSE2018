@@ -1,0 +1,4 @@
+Bug 101516 – Sort extensions in PDE plug-in XML editor
+3.1
+It would be helpful to be able to sort the extensions listed in the extensions
+tab of the plug-in XML editor alphabetically, or by declared order.

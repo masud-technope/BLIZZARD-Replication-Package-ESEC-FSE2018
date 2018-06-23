@@ -1,0 +1,11 @@
+Bug 239490 – [working sets][package explorer] Newly created incompatible working sets appear in Package Explorer
+Build ID: I20080617-2000
+Steps To Reproduce:
+1.Create a plugin project working set.
+2.Add a plugin project to this working set.
+3.Create a Java project working set.
+4.Add a Java project to this working set.
+5.Try to add a plugin project working set -> Only Java project working sets are now allowed to be created! Where are the plugin project working sets now?
+6.
+After here only Java project working sets are showed in the Package Explorer.
+More information:

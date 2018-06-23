@@ -1,0 +1,29 @@
+Bug 367465 – [jar exporter] Runnable Jar File Export "repacks referenced libraries" warning cannot be disabled
+Build Identifier: 20110615-0604
+When exporting to a Runnable Jar file with Library Handling option "Extract required libraries into the generated JAR", a warning dialog box appears that begins with "This operation repacks referenced libraries.
+Please review the licenses associated...".
+There is a checkbox on the dialog to disable the message, but it has no effect.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Obtain a library jar file.
+I downloaded jdom-1.1.2.tar.gz from http://www.jdom.org/dist/binary/
+2.
+Go to Project / Properties menu / Java Build Path / Libraries tab.
+3.
+Select Add Jars and select <download_dir>/jdom-1.1.2.jar
+4.
+Select File > Export, then Java > Runnable Jar file
+5.
+In Jar Export Window, select the following
+- Launch Configuration:  Select project being exported
+- Export Destination: Select folder and enter jar file name, e.g.
+myProgram,jar
+- Library Handling: Extract required libraries into the generated JAR
+6.
+Click Finish ...warning will appear
+7.
+Check "Do not show this message again"
+8.
+Repeat steps 4-6.
+...warning still appears.

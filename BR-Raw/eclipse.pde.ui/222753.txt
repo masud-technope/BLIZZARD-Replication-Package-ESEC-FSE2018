@@ -1,0 +1,13 @@
+Bug 222753 – Prompted twice for rebuild
+on the API profiles pref page if you change the default profile notification pref (in the options section) and press apply you get prompted twice for a rebuild.
+Steps:
+1.
+open the API profiles pref page
+2.
+change the default API profile option
+3.
+press apply
+Expected:
+I am prompted for a rebuild
+Happens:
+I am prompted for a rebuild, I press ok and am prompted for a rebuild again

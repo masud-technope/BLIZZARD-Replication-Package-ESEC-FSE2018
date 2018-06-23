@@ -1,0 +1,2 @@
+Bug 342694 – Replace with org.eclipse.ecf.osgi.services.remoteserviceadmin.IHostContainerSelector.selectHostContainers(ServiceReference, Map<String, Object>, String[], String[], String[])
+As per discussed in http://dev.eclipse.org/mhonarc/lists/ecf-dev/msg05198.html add Add org.eclipse.ecf.osgi.services.remoteserviceadmin.IHostContainerSelector.selectHostContainers(ServiceReference, Map<String, Object>, String[], String[], String[])

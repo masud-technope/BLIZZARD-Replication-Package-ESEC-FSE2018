@@ -1,0 +1,20 @@
+Bug 429935 – [1.8][compiler] NPE with reference to missing functional interface type
+This is a recent regression:
+// --
+public class X {
+public static void main(String[] args) {
+I i = (I s) -> s;
+}
+}
+results in
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.lookup.MethodBinding.collectMissingTypes(MethodBinding.java:378)
+at org.eclipse.jdt.internal.compiler.problem.ProblemReporter.missingTypeInLambda(ProblemReporter.java:6190)
+at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.resolveType(LambdaExpression.java:425)
+at org.eclipse.jdt.internal.compiler.ast.LocalDeclaration.resolve(LocalDeclaration.java:251)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:623)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:303)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:533)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1211)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1321)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:591)

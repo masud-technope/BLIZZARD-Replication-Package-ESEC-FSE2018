@@ -1,0 +1,7 @@
+Bug 90528 – Editor icon does not show problem decoration for second instance
+3.1 M6
+- open a .java file that has errors or warnings
+- the editor tab icon has the problem decoration
+- Window > New Window
+- open the same file in the new window
+- the editor tab icon is missing the problem decoration

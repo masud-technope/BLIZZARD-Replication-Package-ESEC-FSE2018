@@ -1,0 +1,17 @@
+org.eclipse.jdt.internal.compiler.lookup.MethodBinding.redeclaresPublicObjectMethod
+org.eclipse.jdt.internal.compiler.lookup.ReferenceBinding.getInterfaceAbstractContracts
+org.eclipse.jdt.internal.compiler.lookup.ReferenceBinding.getSingleAbstractMethod
+org.eclipse.jdt.internal.compiler.ast.ReferenceExpression.isCompatibleWith
+org.eclipse.jdt.internal.compiler.lookup.PolyTypeBinding.isCompatibleWith
+org.eclipse.jdt.internal.compiler.lookup.TypeBinding.isCompatibleWith
+org.eclipse.jdt.internal.compiler.lookup.Scope.parameterCompatibilityLevel
+org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod
+org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod
+org.eclipse.jdt.internal.compiler.lookup.Scope.findMethod
+org.eclipse.jdt.internal.compiler.lookup.Scope.findMethod
+org.eclipse.jdt.internal.compiler.lookup.Scope.getImplicitMethod
+org.eclipse.jdt.internal.compiler.ast.MessageSend.resolveType
+org.eclipse.jdt.internal.compiler.ast.Expression.resolve
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements
+org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements
+org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve

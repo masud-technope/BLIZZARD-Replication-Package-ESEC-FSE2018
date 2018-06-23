@@ -1,0 +1,21 @@
+Bug 19733 – [content assist] Code assist closes when the list would filter to 0 items
+Code assist closes when the list would filter to 0 items.
+ This means, for
+example, that mistyping a method name will close code assist forcing you to
+reopen it after backspacing over the incorrect character.
+A better approach would be to jump to the entries in the list as you type
+instead of filtering the list.
+ This would have the following advantages:
+1) Mistyping does not close code assist.
+ Simply backspace and type the
+correct charater and code assist will continue to follow.
+2) If you begin typing something (a method name for example) then realize
+that you don't remember the name of what you are looking for, you can just
+scroll through the list.
+ Currently, you have to completely backspace over what
+you typed (to restore all filtered items) and then scroll through the list.
+3) Should also be faster as eclipse does not have to keep regenerating the
+list -- it only has to select the first item that matches what you have typed so
+far.
+This is how Visual Studio 6 implements code assist, which I have found to be
+very useful and unobtrusive.

@@ -1,0 +1,4 @@
+49876 – correcting generics related compile warning in org/apache/tomcat/util/bcel/classfile files
+Explanation:
+Several files have compile time generics related warnings displayed for org/apache/tomcat/util/bcel/classfile.
+This patch cleans up several of those warnings.

@@ -1,0 +1,3 @@
+Bug 245336 – [filetransfer] no tracing in httpclient provider
+Currently there is little/no tracing in org.eclipse.ecf.provider.filetransfer...which is the default provider for the filetransfer API.
+ Tracing would be helpful for clients that are using the filetransfer API (and this provider) like p2.

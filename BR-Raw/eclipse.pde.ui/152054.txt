@@ -1,0 +1,4 @@
+Bug 152054 – No tooltip necessary when no description is available
+When no description is available for an attribute, currently a tooltip appears when hovering over the attribute in the Extensions page of the plug-in editor.
+The tooltip tells me that no description is available.
+It would be better if no tooltip appeared at all.

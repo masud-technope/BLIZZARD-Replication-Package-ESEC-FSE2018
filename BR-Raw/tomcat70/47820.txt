@@ -1,0 +1,8 @@
+47820 – Static utility methods in Tomcat should be instance methods
+Why are the static addServlet() methods in Tomcat static?  I can see
+they don't use any state from the instance, but isn't it cleaner to use
+an instance method, so that the API is uniform (everything I want to do
+to a tomcat instance goes through the instance)?  It would be more
+consistent to follow the pattern of addServlet(String,String,String),
+and search for the context by name instead of requiring the instance to
+be passed in to a static method.

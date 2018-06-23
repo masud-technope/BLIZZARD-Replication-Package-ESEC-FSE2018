@@ -1,0 +1,29 @@
+Bug 143171 – [misc] 'Update conflicts' dialog appears on save - save no longer possible
+R3.1.2 and 3.2 RC5
+1.
+create a Java project with a CU
+2.
+add some text and save
+2.
+close the Java editor
+3.
+open the Java editor for above class
+4.
+change the text without saving
+5.
+from the Package Explorer's context menu select:
+Replace With > Previous From Local History
+6.
+Give focus to Java editor
+7.
+click 'No' to the dialog
+8.
+Save
+==> "Save problems"  dialog appears with message:
+Save could not be completed.
+Reason:
+Update conflict
+NOTE: does not happen with standard text editor
+POSSIBLE WORKAROUNDS:
+- type another character and save works again
+- use Save As

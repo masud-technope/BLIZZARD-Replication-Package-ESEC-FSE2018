@@ -1,0 +1,12 @@
+41666 – If-Unmodified-Since failure
+The If-Unmodified-Since header doesn't work enoughly.
+failed case:
+The If-Unmodified-Since header value: 1000000(milliseconds)
+The lastModified value of target resource: 1001000(milliseconds)
+In this case, the response's status code should be SC_PRECONDITION_FAILED,
+but the result is not so.
+caused by:
+In DefaultServlet#checkIfUnmodifiedSince:
+if ( lastModified > (headerValue + 1000)) {
+I think it should be:
+if ( lastModified >= (headerValue + 1000)) {

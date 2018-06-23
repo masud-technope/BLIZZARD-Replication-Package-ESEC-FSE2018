@@ -1,0 +1,7 @@
+52135 – Global error page is not handled
+The new Servlet 3.0 global error page
+<error-page>
+<location>/error.jsp</location>
+</error-page>
+is not handled in Tomcat 7.
+On Glassfish 3 for example, it works fine.

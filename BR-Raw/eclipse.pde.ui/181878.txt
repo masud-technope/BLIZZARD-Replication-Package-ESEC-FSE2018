@@ -1,0 +1,2 @@
+Bug 181878 – [Site Editor] Multi-select love is needed
+It would be nice if we could multi-select things in the site editor to be consistent with our other editors.

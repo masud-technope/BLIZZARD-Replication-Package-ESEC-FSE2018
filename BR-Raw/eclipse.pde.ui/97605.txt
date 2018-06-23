@@ -1,0 +1,6 @@
+Bug 97605 – Run Dialog cut off in High Contrast
+RC1
+The Run Dialog's main and Common pages are cut off in High Contrast even if you
+exapnd them to full screen.
+You should also either size the dialog or provide
+the maximize control so that you can get the extra real estate.

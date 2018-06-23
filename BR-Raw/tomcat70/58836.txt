@@ -1,0 +1,10 @@
+58836 – Query string parameters w/o values are not sent to dest servlet via request.getRequestDispatcher().forward()
+URL / query string parameters with no value (technically keyless values) are not received by the destination servlet when using request.getRequestDispatcher().forward().
+Example:
+request.getRequestDispatcher("/newpage?P1=1&P2").forward(request,response);
+The servlet handling /newpage will have P1 in the request parameter list but not P2 even though both parameters are in the query string verified with request.getQueryString().
+ The order and quantity of parameters doesn't seem to make a difference, those without values are not seen by the servlet, while those with values (or even with just an = but no value) are.
+I believe the cause may be in ApplicationHttpRequest.mergeParameters().
+ Possibly the line "if (value == null)" should be replaced with if (queryParameters.containsKey(key)) (among other things), but I'm not 100% on that, building and debugging Tomcat is beyond my capabilities at this point.
+I have a pair of test servlets that show this behavior on my development server if somebody wants to see it in action.
+ Email me safepassing2/gmail_com and I'll provide the address.

@@ -1,0 +1,7 @@
+Bug 118850 – PDE Launcher does not put the "program arguments" at the end of the command line arguments
+The PDE Launcher does not put the "program arguments" at the end of the command arguments.
+This breaks the antRunner application since it expects the ant script target to be at the end of the command line.
+Scenario:
+Take a project with a build script
+Try to run the antRunner in the runtime workbench picking a target other then the defaultTarget.
+This makes it difficult to run anything that wants to use antRunner and the runtime workbench.

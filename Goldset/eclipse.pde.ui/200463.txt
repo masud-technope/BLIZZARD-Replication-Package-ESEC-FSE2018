@@ -1,0 +1,11 @@
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/PDERuntimeMessages.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/spy/sections/ActiveDialogPageSection.java
+ui/org.eclipse.pde.runtime/icons/obj16/save_image_as_obj.gif
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/PDERuntimePluginImages.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/pderuntimeresources.properties
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/spy/sections/ActiveSelectionSection.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/spy/SpyFormToolkit.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/spy/sections/ActiveShellSection.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/spy/sections/ActivePartSection.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/spy/sections/ActiveWizardSection.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/spy/sections/ActiveHelpSection.java

@@ -1,0 +1,3 @@
+47828 – Change Tomcat.setSilent() to setSilent(boolean)
+Change Tomcat.setSilent() to setSilent(boolean).
+ It's nicer for clients to have a JavaBean type setter, and it doesn't seem to make sense that you can set something but not unset it.

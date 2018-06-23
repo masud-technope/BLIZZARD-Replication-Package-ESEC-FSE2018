@@ -1,0 +1,10 @@
+Bug 32412 – [ccp] Get progress monitor before rename prompt when copy/pasting file
+build I20030220
+- in package explorer,
+- select a CU
+- Ctrl+C
+- Ctrl+V
+- you get a progress dialog, then another dialog prompting you to choose a
+different name
+Should get the new name dialog first, then only show the progress monitor if
+the first dialog is not canceled.

@@ -1,0 +1,5 @@
+Bug 183073 – [Manifest][Editors] Go Home/Back/Into are not necessary
+In the context menu of the Extensios section of the manifest editor, we have a Go Home/Back/Into triple menu contribution.
+ This drilling is not useful in this context and becomes particularly confusing when you have drilled into an extension and pressed 'Add...'
+We should just remove them.
+ It would also unclutter the context menu.

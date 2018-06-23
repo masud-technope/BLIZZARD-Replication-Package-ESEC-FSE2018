@@ -1,0 +1,3 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/workingsets/ConfigureWorkingSetAssignementAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/workingsets/WorkingSetModel.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/wizards/NewJavaWorkingSetWizard.java

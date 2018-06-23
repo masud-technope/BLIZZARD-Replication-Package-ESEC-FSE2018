@@ -1,0 +1,2 @@
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/spy/handlers/MenuSpyHandler.java
+ui/org.eclipse.pde.runtime/src/org/eclipse/pde/internal/runtime/spy/handlers/SpyHandler.java

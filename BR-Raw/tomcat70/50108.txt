@@ -1,0 +1,7 @@
+50108 – Add missing setter/getter to AbstractXXXProtocol
+Created attachment 26182 [details]
+patch for AbstractXXXProtocol
+Add missing following methods to AbstractHttp11Protocol and AbstractAjpProtocol.
+- setMinSpareThreads
+- getMinSpareThreads
+Best regards.

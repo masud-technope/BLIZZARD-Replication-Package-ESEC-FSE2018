@@ -1,0 +1,3 @@
+Bug 292972 – [filetransfer] apply additions/changes/fixes from p2 genuitec patch
+On bug 291926, there are a number of patches for p2 from Genuitec.
+ This bug will be used to discuss and track application of the ECF filetransfer-relevant pieces of that patch.

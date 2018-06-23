@@ -1,0 +1,10 @@
+java.lang.invoke.MethodHandleNatives.linkMethodHandleConstant
+X.main
+java.lang.invoke.MemberName.makeAccessException
+java.lang.invoke.MemberName$Factory.resolveOrFail
+java.lang.invoke.MethodHandles$Lookup.resolveOrFail
+java.lang.invoke.MethodHandles$Lookup.linkMethodHandleConstant
+java.lang.invoke.MethodHandleNatives.linkMethodHandleConstant
+java.lang.invoke.MethodHandleNatives.resolve
+java.lang.invoke.MemberName$Factory.resolve
+java.lang.invoke.MemberName$Factory.resolveOrFail

@@ -1,0 +1,219 @@
+Bug 202273 – [reconciling] Organize Imports on selected CU gives error
+I20070904-0800.
+1.
+select a CU in the Pacakge Explorer which isn't open in an editor
+2.
+Source > Organize Imports
+==>
+!SESSION 2007-09-05 15:44:38.143 -----------------------------------------------
+eclipse.buildId=I20070625-1500
+java.version=1.5.0_10
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=de_CH
+Framework arguments:  -update -keyring c:\eclipse\.keyring -showlocation -application org.eclipse.ui.ide.workbench
+Command-line arguments:  -debug -update -keyring c:\eclipse\.keyring -showlocation -application org.eclipse.ui.ide.workbench -data c:\eclipse\workspaces\tmp
+!ENTRY org.eclipse.osgi 2 0 2007-09-05 15:44:41.708
+!MESSAGE The following is a complete list of bundles which are not resolved, see the prior log entry for the root cause if it exists:
+!SUBENTRY 1 org.eclipse.osgi 2 0 2007-09-05 15:44:41.708
+!MESSAGE Bundle update@plugins/org.eclipse.jdt.apt.pluggable.core_1.0.0.v20070529-2100.jar [66] was not resolved.
+!SUBENTRY 2 org.eclipse.jdt.apt.pluggable.core 2 0 2007-09-05 15:44:41.708
+!MESSAGE Missing imported package org.eclipse.jdt.internal.compiler.tool_0.0.0.
+!SUBENTRY 2 org.eclipse.jdt.apt.pluggable.core 2 0 2007-09-05 15:44:41.708
+!MESSAGE Missing imported package org.eclipse.jdt.internal.compiler.apt.dispatch_0.0.0.
+!SUBENTRY 2 org.eclipse.jdt.apt.pluggable.core 2 0 2007-09-05 15:44:41.708
+!MESSAGE Missing imported package org.eclipse.jdt.internal.compiler.apt.model_0.0.0.
+!SUBENTRY 2 org.eclipse.jdt.apt.pluggable.core 2 0 2007-09-05 15:44:41.708
+!MESSAGE Missing imported package org.eclipse.jdt.internal.compiler.apt.util_0.0.0.
+!SUBENTRY 1 org.eclipse.osgi 2 0 2007-09-05 15:44:41.708
+!MESSAGE Bundle update@plugins/org.eclipse.jdt.compiler.apt_1.0.0.v20070510-2000.jar [68] was not resolved.
+!SUBENTRY 2 org.eclipse.jdt.compiler.apt 2 0 2007-09-05 15:44:41.708
+!MESSAGE Missing imported package org.eclipse.jdt.internal.compiler.tool_0.0.0.
+!SUBENTRY 1 org.eclipse.osgi 2 0 2007-09-05 15:44:41.708
+!MESSAGE Bundle update@plugins/org.eclipse.jdt.compiler.tool_1.0.0.v_771.jar [69] was not resolved.
+!SUBENTRY 2 org.eclipse.jdt.compiler.tool 2 0 2007-09-05 15:44:41.708
+!MESSAGE Missing Constraint: Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+!SESSION 2007-09-05 15:49:50.883 -----------------------------------------------
+eclipse.buildId=I20070904-0800
+java.version=1.5.0_10
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=de_CH
+Framework arguments:  -update -keyring c:\eclipse\.keyring -showlocation -application org.eclipse.ui.ide.workbench
+Command-line arguments:  -debug -update -keyring c:\eclipse\.keyring -showlocation -application org.eclipse.ui.ide.workbench -data c:\eclipse\workspaces\tmp
+!ENTRY org.eclipse.osgi 2 0 2007-09-05 15:49:54.388
+!MESSAGE The following is a complete list of bundles which are not resolved, see the prior log entry for the root cause if it exists:
+!SUBENTRY 1 org.eclipse.osgi 2 0 2007-09-05 15:49:54.388
+!MESSAGE Bundle update@plugins/org.eclipse.jdt.apt.pluggable.core_1.0.100.v20070827-1600.jar [66] was not resolved.
+!SUBENTRY 2 org.eclipse.jdt.apt.pluggable.core 2 0 2007-09-05 15:49:54.388
+!MESSAGE Missing imported package org.eclipse.jdt.internal.compiler.tool_0.0.0.
+!SUBENTRY 2 org.eclipse.jdt.apt.pluggable.core 2 0 2007-09-05 15:49:54.388
+!MESSAGE Missing imported package org.eclipse.jdt.internal.compiler.apt.dispatch_0.0.0.
+!SUBENTRY 2 org.eclipse.jdt.apt.pluggable.core 2 0 2007-09-05 15:49:54.388
+!MESSAGE Missing imported package org.eclipse.jdt.internal.compiler.apt.model_0.0.0.
+!SUBENTRY 2 org.eclipse.jdt.apt.pluggable.core 2 0 2007-09-05 15:49:54.388
+!MESSAGE Missing imported package org.eclipse.jdt.internal.compiler.apt.util_0.0.0.
+!SUBENTRY 1 org.eclipse.osgi 2 0 2007-09-05 15:49:54.388
+!MESSAGE Bundle update@plugins/org.eclipse.jdt.compiler.apt_1.0.100.v20070827-1600.jar [68] was not resolved.
+!SUBENTRY 2 org.eclipse.jdt.compiler.apt 2 0 2007-09-05 15:49:54.388
+!MESSAGE Missing imported package org.eclipse.jdt.internal.compiler.tool_0.0.0.
+!SUBENTRY 1 org.eclipse.osgi 2 0 2007-09-05 15:49:54.388
+!MESSAGE Bundle update@plugins/org.eclipse.jdt.compiler.tool_1.0.100.v_810.jar [69] was not resolved.
+!SUBENTRY 2 org.eclipse.jdt.compiler.tool 2 0 2007-09-05 15:49:54.388
+!MESSAGE Missing Constraint: Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+!ENTRY org.eclipse.core.resources 2 10035 2007-09-05 15:49:54.868
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+!ENTRY org.eclipse.jdt.ui 4 10001 2007-09-05 15:50:17.681
+!MESSAGE Internal Error
+!STACK 0
+java.lang.reflect.InvocationTargetException
+at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:381)
+at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:313)
+at org.eclipse.jface.window.ApplicationWindow$1.run(ApplicationWindow.java:758)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:67)
+at org.eclipse.jface.window.ApplicationWindow.run(ApplicationWindow.java:755)
+at org.eclipse.ui.internal.WorkbenchWindow.run(WorkbenchWindow.java:2451)
+at org.eclipse.ui.internal.progress.ProgressManager$5.run(ProgressManager.java:1149)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:67)
+at org.eclipse.ui.internal.progress.ProgressManager.runInUI(ProgressManager.java:1142)
+at org.eclipse.jdt.ui.actions.OrganizeImportsAction.run(OrganizeImportsAction.java:274)
+at org.eclipse.jdt.ui.actions.OrganizeImportsAction.run(OrganizeImportsAction.java:217)
+at org.eclipse.jdt.ui.actions.SelectionDispatchAction.dispatchRun(SelectionDispatchAction.java:268)
+at org.eclipse.jdt.ui.actions.SelectionDispatchAction.run(SelectionDispatchAction.java:244)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:498)
+at org.eclipse.ui.actions.RetargetAction.runWithEvent(RetargetAction.java:229)
+at org.eclipse.ui.internal.WWinPluginAction.runWithEvent(WWinPluginAction.java:234)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:543)
+at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:489)
+at org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:401)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:938)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3742)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3353)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2389)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2353)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2219)
+at org.eclipse.ui.internal.Workbench$4.run(Workbench.java:466)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:289)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:461)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:106)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:169)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:106)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:76)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:363)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:176)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:515)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:455)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1193)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1169)
+at org.eclipse.core.launcher.Main.main(Main.java:30)
+Caused by: org.eclipse.core.runtime.AssertionFailedException: assertion failed:
+at org.eclipse.core.runtime.Assert.isTrue(Assert.java:109)
+at org.eclipse.core.runtime.Assert.isTrue(Assert.java:95)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.aboutToBeReconciled(JavaReconcilingStrategy.java:194)
+at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.aboutToBeReconciled(JavaCompositeReconcilingStrategy.java:151)
+at org.eclipse.jdt.internal.ui.text.JavaReconciler.aboutToBeReconciled(JavaReconciler.java:350)
+at org.eclipse.jface.text.reconciler.AbstractReconciler$Listener.documentChanged(AbstractReconciler.java:239)
+at org.eclipse.jface.text.AbstractDocument.doFireDocumentChanged2(AbstractDocument.java:700)
+at org.eclipse.jface.text.AbstractDocument.doFireDocumentChanged(AbstractDocument.java:673)
+at org.eclipse.jface.text.AbstractDocument.doFireDocumentChanged(AbstractDocument.java:658)
+at org.eclipse.jface.text.AbstractDocument.fireDocumentChanged(AbstractDocument.java:723)
+at org.eclipse.jface.text.AbstractDocument.replace(AbstractDocument.java:1087)
+at org.eclipse.core.internal.filebuffers.SynchronizableDocument.replace(SynchronizableDocument.java:151)
+at org.eclipse.jface.text.AbstractDocument.replace(AbstractDocument.java:1110)
+at org.eclipse.core.internal.filebuffers.SynchronizableDocument.replace(SynchronizableDocument.java:137)
+at org.eclipse.text.edits.InsertEdit.performDocumentUpdating(InsertEdit.java:81)
+at org.eclipse.text.edits.TextEdit.traverseDocumentUpdating(TextEdit.java:896)
+at org.eclipse.text.edits.TextEdit.traverseDocumentUpdating(TextEdit.java:889)
+at org.eclipse.text.edits.TextEditProcessor.executeDo(TextEditProcessor.java:186)
+at org.eclipse.text.edits.TextEdit.dispatchPerformEdits(TextEdit.java:736)
+at org.eclipse.text.edits.TextEditProcessor.performEdits(TextEditProcessor.java:154)
+at org.eclipse.jface.text.RewriteSessionEditProcessor.performEdits(RewriteSessionEditProcessor.java:93)
+at org.eclipse.jdt.internal.corext.util.JavaModelUtil.applyEdit(JavaModelUtil.java:945)
+at org.eclipse.jdt.internal.corext.codemanipulation.OrganizeImportsOperation.run(OrganizeImportsOperation.java:398)
+at org.eclipse.jdt.internal.core.BatchOperation.executeOperation(BatchOperation.java:39)
+at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:720)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1797)
+at org.eclipse.jdt.core.JavaCore.run(JavaCore.java:4501)
+at org.eclipse.jdt.internal.ui.actions.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:369)
+...
+44 more
+Root exception:
+org.eclipse.core.runtime.AssertionFailedException: assertion failed:
+at org.eclipse.core.runtime.Assert.isTrue(Assert.java:109)
+at org.eclipse.core.runtime.Assert.isTrue(Assert.java:95)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.aboutToBeReconciled(JavaReconcilingStrategy.java:194)
+at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.aboutToBeReconciled(JavaCompositeReconcilingStrategy.java:151)
+at org.eclipse.jdt.internal.ui.text.JavaReconciler.aboutToBeReconciled(JavaReconciler.java:350)
+at org.eclipse.jface.text.reconciler.AbstractReconciler$Listener.documentChanged(AbstractReconciler.java:239)
+at org.eclipse.jface.text.AbstractDocument.doFireDocumentChanged2(AbstractDocument.java:700)
+at org.eclipse.jface.text.AbstractDocument.doFireDocumentChanged(AbstractDocument.java:673)
+at org.eclipse.jface.text.AbstractDocument.doFireDocumentChanged(AbstractDocument.java:658)
+at org.eclipse.jface.text.AbstractDocument.fireDocumentChanged(AbstractDocument.java:723)
+at org.eclipse.jface.text.AbstractDocument.replace(AbstractDocument.java:1087)
+at org.eclipse.core.internal.filebuffers.SynchronizableDocument.replace(SynchronizableDocument.java:151)
+at org.eclipse.jface.text.AbstractDocument.replace(AbstractDocument.java:1110)
+at org.eclipse.core.internal.filebuffers.SynchronizableDocument.replace(SynchronizableDocument.java:137)
+at org.eclipse.text.edits.InsertEdit.performDocumentUpdating(InsertEdit.java:81)
+at org.eclipse.text.edits.TextEdit.traverseDocumentUpdating(TextEdit.java:896)
+at org.eclipse.text.edits.TextEdit.traverseDocumentUpdating(TextEdit.java:889)
+at org.eclipse.text.edits.TextEditProcessor.executeDo(TextEditProcessor.java:186)
+at org.eclipse.text.edits.TextEdit.dispatchPerformEdits(TextEdit.java:736)
+at org.eclipse.text.edits.TextEditProcessor.performEdits(TextEditProcessor.java:154)
+at org.eclipse.jface.text.RewriteSessionEditProcessor.performEdits(RewriteSessionEditProcessor.java:93)
+at org.eclipse.jdt.internal.corext.util.JavaModelUtil.applyEdit(JavaModelUtil.java:945)
+at org.eclipse.jdt.internal.corext.codemanipulation.OrganizeImportsOperation.run(OrganizeImportsOperation.java:398)
+at org.eclipse.jdt.internal.core.BatchOperation.executeOperation(BatchOperation.java:39)
+at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:720)
+at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:1797)
+at org.eclipse.jdt.core.JavaCore.run(JavaCore.java:4501)
+at org.eclipse.jdt.internal.ui.actions.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
+at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:369)
+at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:313)
+at org.eclipse.jface.window.ApplicationWindow$1.run(ApplicationWindow.java:758)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:67)
+at org.eclipse.jface.window.ApplicationWindow.run(ApplicationWindow.java:755)
+at org.eclipse.ui.internal.WorkbenchWindow.run(WorkbenchWindow.java:2451)
+at org.eclipse.ui.internal.progress.ProgressManager$5.run(ProgressManager.java:1149)
+at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:67)
+at org.eclipse.ui.internal.progress.ProgressManager.runInUI(ProgressManager.java:1142)
+at org.eclipse.jdt.ui.actions.OrganizeImportsAction.run(OrganizeImportsAction.java:274)
+at org.eclipse.jdt.ui.actions.OrganizeImportsAction.run(OrganizeImportsAction.java:217)
+at org.eclipse.jdt.ui.actions.SelectionDispatchAction.dispatchRun(SelectionDispatchAction.java:268)
+at org.eclipse.jdt.ui.actions.SelectionDispatchAction.run(SelectionDispatchAction.java:244)
+at org.eclipse.jface.action.Action.runWithEvent(Action.java:498)
+at org.eclipse.ui.actions.RetargetAction.runWithEvent(RetargetAction.java:229)
+at org.eclipse.ui.internal.WWinPluginAction.runWithEvent(WWinPluginAction.java:234)
+at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:543)
+at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:489)
+at org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:401)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:938)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3742)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3353)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2389)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2353)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2219)
+at org.eclipse.ui.internal.Workbench$4.run(Workbench.java:466)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:289)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:461)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:106)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:169)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:106)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:76)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:363)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:176)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:585)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:515)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:455)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1193)
+at org.eclipse.equinox.launcher.Main.main(Main.java:1169)
+at org.eclipse.core.launcher.Main.main(Main.java:30)

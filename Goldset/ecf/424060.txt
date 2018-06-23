@@ -1,0 +1,13 @@
+framework/bundles/org.eclipse.ecf.discovery/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/discovery/AbstractDiscoveryContainerAdapter.java
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/internal/discovery/DiscoveryNamespace.java
+framework/bundles/org.eclipse.ecf.discovery/src/org/eclipse/ecf/internal/discovery/IServiceInfoServiceListener.java
+providers/bundles/org.eclipse.ecf.provider.jslp/src/org/eclipse/ecf/provider/jslp/identity/JSLPNamespace.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/DiscoveryActivator.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/core/ZooDiscoveryContainer.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/core/ZooDiscoveryNamespace.java
+tests/bundles/org.eclipse.ecf.tests.discovery/src/org/eclipse/ecf/tests/discovery/DiscoveryServiceRegistryTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.jmdns/src/org/eclipse/ecf/tests/provider/jmdns/JMDNSDiscoveryServiceRegistryTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.jslp/src/org/eclipse/ecf/tests/provider/jslp/JSLPDiscoveryServiceRegistryTest.java
+tests/bundles/org.eclipse.ecf.tests.provider.zookeeper/META-INF/MANIFEST.MF
+tests/bundles/org.eclipse.ecf.tests.provider.zookeeper/src/org/eclipse/ecf/tests/provider/zookeeper/ZooDiscoveryServiceRegistryTest.java

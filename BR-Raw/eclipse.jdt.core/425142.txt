@@ -1,0 +1,85 @@
+Bug 425142 – [1.8][compiler] NPE in ConstraintTypeFormula.reduceSubType
+Whilst optimizing for least ambiguity in overloaded methods with most flexibility in how an API might let them be called I listed all the options that I could think of and got a lot of these exceptions.
+I'm not sure which of the 10 cause it so the test class is a bit bigger:
+package npe.ConstraintTypeFormula.reduceSubType.line201;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.function.Consumer;
+@FunctionalInterface interface Use<T, E extends Throwable> {   void accept(T t) throws E; }
+@SuppressWarnings("unused") public class SomethingBreaks<T, E extends Throwable> {
+protected static SomethingBreaks<String, IOException> stream() {     return null;  }
+public void forEach(Consumer<T> use) throws E {}
+public <E2 extends E> void forEach(Use<T, E2> use) throws E, E2 {}
+private static void methodReference(String s) throws IOException {
+System.out.println(Files.size(Paths.get(s)));
+}
+public static void useCase1() throws IOException {
+Use<String, IOException> c =
+(String s) -> System.out.println(Files.size(Paths.get(s)));
+stream().forEach(c);
+}
+public static void useCase2() throws IOException {
+Use<String, IOException> c = SomethingBreaks::methodReference;
+stream().forEach(c);
+}
+public static void useCase3() throws IOException {
+stream().forEach((Use<String, IOException>) (String s) -> System.out.println(Files.size(Paths.get(s))));
+}
+public static void useCase4() throws IOException {
+stream().forEach((Use<String, IOException>) SomethingBreaks::methodReference);
+}
+public static void useCase5() throws IOException {
+stream().<IOException> forEach((String s) -> System.out.println(Files.size(Paths.get(s))));
+}
+public static void useCase6() throws IOException {
+stream().<IOException> forEach(SomethingBreaks::methodReference);
+}
+public static void useCase7() throws IOException {
+stream().<Use<String, IOException>> forEach((String s) -> System.out.println(Files.size(Paths.get(s))));
+}
+public static void useCase8() throws IOException {
+stream().<Use<String, IOException>> forEach(SomethingBreaks::methodReference);
+}
+public static void useCase9() throws IOException {
+stream().forEach((String s) -> System.out.println(Files.size(Paths.get(s))));
+}
+public static void useCase10() throws IOException {
+stream().forEach(SomethingBreaks::methodReference);
+}
+}
+This is the stack trace:
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.lookup.ConstraintTypeFormula.reduceSubType(ConstraintTypeFormula.java:201)
+at org.eclipse.jdt.internal.compiler.lookup.ConstraintTypeFormula.reduce(ConstraintTypeFormula.java:85)
+at org.eclipse.jdt.internal.compiler.lookup.BoundSet.reduceOneConstraint(BoundSet.java:587)
+at org.eclipse.jdt.internal.compiler.lookup.BoundSet.reduceOneConstraint(BoundSet.java:603)
+at org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.reduce(InferenceContext18.java:541)
+at org.eclipse.jdt.internal.compiler.lookup.InferenceContext18.solve(InferenceContext18.java:526)
+at org.eclipse.jdt.internal.compiler.lookup.ParameterizedGenericMethodBinding.computeCompatibleMethod(ParameterizedGenericMethodBinding.java:114)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod(Scope.java:717)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod(Scope.java:673)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.findMethod(Scope.java:1630)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getMethod(Scope.java:2752)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.findMethodBinding(MessageSend.java:852)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.resolveType(MessageSend.java:684)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java:1016)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:620)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:303)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:531)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1211)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1321)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:570)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1207)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:692)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1186)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:812)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider$1.run(ASTProvider.java:549)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.createAST(ASTProvider.java:542)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.getAST(ASTProvider.java:485)
+at org.eclipse.jdt.internal.ui.javaeditor.ASTProvider.getAST(ASTProvider.java:475)
+at org.eclipse.jdt.ui.SharedASTProvider.getAST(SharedASTProvider.java:132)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup.calculateASTandInform(SelectionListenerWithASTManager.java:170)
+at org.eclipse.jdt.internal.ui.viewsupport.SelectionListenerWithASTManager$PartListenerGroup$3.run(SelectionListenerWithASTManager.java:155)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)

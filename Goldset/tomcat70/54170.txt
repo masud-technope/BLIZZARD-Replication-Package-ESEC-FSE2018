@@ -1,0 +1,6 @@
+java/org/apache/tomcat/util/modeler/Util.java
+java/org/apache/catalina/core/ApplicationFilterConfig.java
+java/org/apache/catalina/core/StandardWrapper.java
+java/org/apache/tomcat/util/modeler/Util.java
+test/org/apache/catalina/core/TestApplicationFilterConfig.java
+webapps/docs/changelog.xml

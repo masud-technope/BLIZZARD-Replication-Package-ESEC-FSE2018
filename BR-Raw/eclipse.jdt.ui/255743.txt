@@ -1,0 +1,19 @@
+Bug 255743 – [search] NPE searching for property key
+Using eclipse.buildId=I20081111-0800
+java.version=1.6.0_10
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=fr_CA
+Command-line arguments:  -os win32 -ws win32 -arch x86 -debug -consolelog -console,
+I got this when I was editing a properties file.
+I mistyped some characters and suddenly I got this error in an error dialog.
+I might have triggered a search by mistake.
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.findIndexMatches(MatchLocator.java:269)
+at org.eclipse.jdt.internal.core.search.PatternSearchJob.search(PatternSearchJob.java:97)
+at org.eclipse.jdt.internal.core.search.PatternSearchJob.execute(PatternSearchJob.java:63)
+at org.eclipse.jdt.internal.core.search.processing.JobManager.performConcurrentJob(JobManager.java:276)
+at org.eclipse.jdt.internal.core.search.BasicSearchEngine.findMatches(BasicSearchEngine.java:206)
+at org.eclipse.jdt.internal.core.search.BasicSearchEngine.search(BasicSearchEngine.java:506)
+at org.eclipse.jdt.core.search.SearchEngine.search(SearchEngine.java:551)
+at org.eclipse.jdt.internal.ui.propertiesfileeditor.PropertyKeyHyperlink$4.run(PropertyKeyHyperlink.java:458)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)

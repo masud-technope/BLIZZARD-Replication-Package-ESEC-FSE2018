@@ -1,0 +1,5 @@
+Bug 247703 – Removing internal superclass does not report error for removed methods
+If I change the superclass of a class of an API class from a non-API (with a mehtod) class to Object, ot if I remove a public method on the non-API super class, no errors are reported on the public subclass.
+Tests that should be fixed when this bug is addressed:
+ClassCompatibilityInternalTests.testRemoveInternalMethod*()
+ClassCompatibilityHierarchyTests.testRemoveIntSuperClassWithMethod*()

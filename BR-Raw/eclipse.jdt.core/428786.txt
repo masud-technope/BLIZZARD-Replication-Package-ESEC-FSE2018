@@ -1,0 +1,15 @@
+Bug 428786 – [1.8][compiler] Inference needs to compute the "ground target type" when reducing a lambda compatibility constraint
+The following code compiles under JDK8 but not under Eclipse:
+package junk;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+public class Junk9 {
+class Node {
+public double getLayoutY() {return 12;}
+}
+void junk() {
+List<Integer> visibleCells = new ArrayList<>(20);
+Collections.sort(visibleCells, (Node o1, Node o2) -> Double.compare(o1.getLayoutY(), o2.getLayoutY()));
+}
+}

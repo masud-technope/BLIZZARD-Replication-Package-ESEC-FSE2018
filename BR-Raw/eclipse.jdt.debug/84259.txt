@@ -1,0 +1,60 @@
+Bug 84259 – ArrayIndexOutOfBoundsException when debugging
+Just noticed this exception in my log file.
+(second exception is interesting) I
+*think* it may have happened when I was debugging and I clicked on a
+java.util.Properties object in the Variables view and it didn't print anything.
+!SESSION 2005-02-02 13:19:27.557 -----------------------------------------------
+eclipse.buildId=I20050202-0800
+java.fullversion=J2RE 1.4.2 IBM J9 2.2 Windows XP x86-32 j9n142-20040915 (JIT
+enabled)
+J9VM - 20040914_1123_lHdSMR
+JIT  - r7_level20040912_1800
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_CA
+Framework arguments:  -showlocation
+Command-line arguments:  -os win32 -ws win32 -arch x86 -debug -data
+\eclipse\target\head\plugins\ -showlocation -consoleLog -console
+!ENTRY org.eclipse.jdt.launching 4 120 2005-02-02 13:19:27.567
+!MESSAGE Cannot connect to VM
+!STACK 0
+java.net.SocketException: socket closed
+at java.net.PlainSocketImpl.socketAccept(Native Method)
+at java.net.PlainSocketImpl.accept(PlainSocketImpl.java:379)
+at java.net.ServerSocket.implAccept(ServerSocket.java:471)
+at java.net.ServerSocket.accept(ServerSocket.java:442)
+at org.eclipse.jdi.internal.connect.SocketTransportService.accept(SocketTransportService.java:91)
+at org.eclipse.jdi.internal.connect.SocketTransportImpl.accept(SocketTransportImpl.java:56)
+at org.eclipse.jdi.internal.connect.SocketListeningConnectorImpl.accept(SocketListeningConnectorImpl.java:128)
+at org.eclipse.jdt.internal.launching.StandardVMDebugger$ConnectRunnable.run(StandardVMDebugger.java:78)
+at java.lang.Thread.run(Thread.java:813)
+!ENTRY org.eclipse.jdt.debug 4 120 2005-02-02 13:25:12.272
+!MESSAGE Exception processing async thread queue
+!SUBENTRY 1 org.eclipse.jdt.debug 4 120 2005-02-02 13:25:12.272
+!MESSAGE Exception processing async thread queue
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException
+at java.util.ArrayList.get(ArrayList.java:358)
+at org.eclipse.jdt.internal.debug.eval.ast.instructions.InstructionSequence.getInstruction(InstructionSequence.java:104)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTInstructionCompiler.endVisit(ASTInstructionCompiler.java:993)
+at org.eclipse.jdt.core.dom.ForStatement.accept0(ForStatement.java:230)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2450)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2520)
+at org.eclipse.jdt.core.dom.Block.accept0(Block.java:135)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2450)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:2497)
+at org.eclipse.jdt.core.dom.MethodDeclaration.accept0(MethodDeclaration.java:503)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2450)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2520)
+at org.eclipse.jdt.core.dom.TypeDeclaration.accept0(TypeDeclaration.java:477)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2450)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2520)
+at org.eclipse.jdt.core.dom.CompilationUnit.accept0(CompilationUnit.java:291)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2450)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.createExpressionFromAST(ASTEvaluationEngine.java:283)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.getCompiledExpression(ASTEvaluationEngine.java:230)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.getCompiledExpression(ASTEvaluationEngine.java:200)
+at org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.getCompiledExpression(JavaDetailFormattersManager.java:295)
+at org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.resolveFormatter(JavaDetailFormattersManager.java:162)
+at org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager.access$0(JavaDetailFormattersManager.java:150)
+at org.eclipse.jdt.internal.debug.ui.JavaDetailFormattersManager$4.run(JavaDetailFormattersManager.java:138)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run(JDIThread.java:2531)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:66)

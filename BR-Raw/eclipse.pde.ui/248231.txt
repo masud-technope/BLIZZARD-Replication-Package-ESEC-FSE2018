@@ -1,0 +1,6 @@
+Bug 248231 – [ds tooling] Sort and disallow duplicates in Provided Services list
+Using Eclipse 3.5M2.
+In the Service Component editor the Provided Services list should:
+- Be alphabetically sorted, since order is not significant to the XML.
+- Disallow duplicates.
+While duplicate <service> elements can be prevented in the form-based editor, it will clearly still be possible to add duplicates to the source editor, so duplicates in the document should be marked as a warning in both the form-based editor and the source editor.

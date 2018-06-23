@@ -1,0 +1,4 @@
+java/org/apache/catalina/startup/WebRuleSet.java
+test/org/apache/naming/resources/TestNamingContext.java
+test/webapp-3.0/WEB-INF/web.xml
+webapps/docs/changelog.xml

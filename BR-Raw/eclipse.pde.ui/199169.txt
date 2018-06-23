@@ -1,0 +1,11 @@
+Bug 199169 – The plugin.xml structure merge viewer does not show document root
+Using the latest pde.ui code from HEAD:
+- Make at least one change to a plugin.xml file checked out from the repository.
+- Synchronize the project containing the plugin.xml with HEAD.
+- Double-click on the plugin.xml.
+You will see a structural compare and a content compare.
+- Double-click on a specific change from the structure compare area.
+The content compare zooms to show just the affected range of the document.
+Excellent.
+BUG: Now that the document is zoomed to the change, there is no way to view the entire document again since we do not have a root element in the tree.
+If you look at the Java merge viewer, for instance, the root element is the Compilation Unit which allows the user to reset the view back to the entire document.

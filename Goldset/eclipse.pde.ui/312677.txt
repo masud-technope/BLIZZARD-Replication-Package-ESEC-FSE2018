@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/util/OSGiConsolePageParticipant.java
+ui/org.eclipse.pde.ui/plugin.xml
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/util/OSGiConsole.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/util/OSGiConsoleFactory.java

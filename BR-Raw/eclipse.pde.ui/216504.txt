@@ -1,0 +1,11 @@
+Bug 216504 – Support multiple Lazy Activation headers
+In an effort to provide maximum portability, it would be nice to support multiple lazy activation headers so that way a plug-in could be lazy activated when run in 3.0 and in 3.4.
+This does provide some interesting delimas.
+ The form editor has a check box that sets whether a bundle is started lazily.
+ This check box will be initialized based on the most current header for your target platform (or the same way the runtime in your target platform will resolve the header).
+ The current algorithm is:
+3.3+ : Bundle-ActivationPolicy
+3.2-3.3 : Eclipse-LazyStart
+3.0-3.1 : Eclipse-AutoStart
+The check box will then modify ALL lazy activation headers when its state is changed (un/checked).
+ This is to try to keep all the headers in sync with each other.

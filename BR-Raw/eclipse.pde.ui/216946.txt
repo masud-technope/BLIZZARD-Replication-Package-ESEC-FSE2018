@@ -1,0 +1,18 @@
+Bug 216946 – Unable to run JUnit4 tests if org.eclipse.jdt.junit4.runtime is not in target platform
+Build ID: I20070621-1340
+Steps To Reproduce:
+1.Create a target platform that doesn't contain the org.eclipse.jdt.* or org.eclipse.pde* projects.
+ (In my situation those files are not even present in the folder not just deselected from preferences)
+2.
+Change your eclipse preferences to point to that directory.
+3.
+ Create a Plugin project that has a dependency on org.junit4 and contains a JUnit4 test that just does Assert.assertTrue(true);
+4.
+Right click on the test class and select to run as JUnit Plug-in Test
+The console will appear as if it is starting the java process for the test but then after a time it will say the process is terminated.
+ The Junit view will not display any results and no workspace for the launch configuration will be created.
+ The test just dies with no feedback.
+More information:
+In my situation my target platform will contains only those bundles necessary to run my app and its test dependencies.
+ It won't contain Eclipse endstates needed for the IDE.
+This issue is also similar to one resolve for when Eclipse 3.3 was released (Bug 169452).

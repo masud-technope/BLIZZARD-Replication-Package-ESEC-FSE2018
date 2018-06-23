@@ -1,0 +1,5 @@
+org.eclipse.jdt.launching.macosx/macosx/org/eclipse/jdt/internal/launching/macosx/MacOSXVMInstallType.java
+org.eclipse.jdt.launching.macosx/macosx/org/eclipse/jdt/internal/launching/macosx/Messages.java
+org.eclipse.jdt.launching.macosx/macosx/org/eclipse/jdt/internal/launching/macosx/messages.properties
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/MacInstalledJREs.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/StandardVMType.java

@@ -1,0 +1,27 @@
+48454 – "Bad file descriptor"-IOException in CGIServlet for some programs
+Created attachment 24763 [details]
+Patch
+The internal CGIRunner-thread which reads the errorstream logs a "Bad file descriptor"-IOException everytime i called a program (see stacktrace at the end).
+The program works fine, but the log-messages disturb.
+I could reproduce the behaviour with Nagiostat as CGI-Program (http://nagiostat.sourceforge.net/).
+I think the behaviour depends on how fast the cgi-program will return, because I haven't the error with another cgi-program on the same machine.
+Looking at the code shows that the Process-Object in CGIRunner could be destroyed before the internal Thread has a chance to completely read the errorstream.
+I fixed the problem in CGIServlet with a errorStreamReaderThread.join(...) before proc.destroy() to allow a clean processing of the errorstream.
+This is not yet fixed in tomcat trunk / branch tc6.0.x
+Environment:
+Linux, Centos5.3 x64, JDK SUN 1.6.0_17, JBoss AS 5.1.0.GA (based on tomcat6.0)
+Patch: The attached Patch is against source of JBossWeb2.1.3.
+Improvement: The timeout of the join should be configurable.
+java.io.IOException: Bad file descriptor
+at java.io.FileInputStream.readBytes(Native Method)
+at java.io.FileInputStream.read(FileInputStream.java:199)
+at sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:264)
+at sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:306)
+at sun.nio.cs.StreamDecoder.read(StreamDecoder.java:158)
+at java.io.InputStreamReader.read(InputStreamReader.java:167)
+at java.io.BufferedReader.fill(BufferedReader.java:136)
+at java.io.BufferedReader.readLine(BufferedReader.java:299)
+at java.io.BufferedReader.readLine(BufferedReader.java:362)
+at org.apache.catalina.servlets.CGIServlet$CGIRunner.sendToLog(CGIServlet.java:1828)
+at org.apache.catalina.servlets.CGIServlet$CGIRunner.access$400(CGIServlet.java:1388)
+at org.apache.catalina.servlets.CGIServlet$CGIRunner$1.run(CGIServlet.java:1663)

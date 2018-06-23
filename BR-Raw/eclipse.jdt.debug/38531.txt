@@ -1,0 +1,26 @@
+Bug 38531 – IllegalArgumentException "Source attachment path should be absolute"
+build i20030604
+Maybe it was just for debugging purposes, but in the first (and only in the
+first) time I run this build with an existing workspace, I got dozens of stack
+traces like below (will attach log).
+Eclipse seemed to be working properly.
+!ENTRY org.eclipse.jdt.core 4 4 Jun 05, 2003 11:59:16.702
+!MESSAGE Source attachment path should be absolute: ""
+!STACK 0
+java.lang.IllegalArgumentException
+at java.lang.Throwable.<init>(Throwable.java)
+at org.eclipse.jdt.core.JavaCore.newLibraryEntry(JavaCore.java:2362)
+at org.eclipse.jdt.core.JavaCore.getResolvedClasspathEntry(JavaCore.java:1804)
+at
+org.eclipse.jdt.internal.core.JavaProject.getResolvedClasspath(JavaProject.java:1533)
+at
+org.eclipse.jdt.internal.core.JavaProject.getResolvedClasspath(JavaProject.java:1476)
+at
+org.eclipse.jdt.internal.core.JavaProject.getResolvedClasspath(JavaProject.java:1452)
+at org.eclipse.jdt.core.JavaCore.updateVariableValues(JavaCore.java:3251)
+at org.eclipse.jdt.core.JavaCore.setClasspathVariables(JavaCore.java:3053)
+at org.eclipse.jdt.core.JavaCore.setClasspathVariable(JavaCore.java:3025)
+at
+org.eclipse.jdt.internal.launching.JavaClasspathVariablesInitializer.setJREVariable(JavaClasspathVariablesInitializer.java:102)
+at
+org.eclipse.jdt.internal.launching.JavaClasspathVariablesInitializer.initialize(JavaClasspathVariablesInitializer.java:79)

@@ -1,0 +1,11 @@
+Bug 411636 – Save is very slow (burns cycles in the Package and Project Explorer)
+Created attachment 232751 [details]
+Stack trace
+I noticed that when I saved a Java file, the UI would be come unresponsive for about 5 seconds.
+ I did a stack trace (attached) and noticed that the main thread seemed to be hung up somewhere in the project explorer.
+ When I unchecked "Link With Editor" this delay went away.
+I tried doing the same action on the exact same workspace in Indigo and did not notice the same delay.
+ My workspace is very large (100+ projects, maybe 50-100K files).
+I'm using:
+Version: 4.3.0
+Build id: I20130605-2000

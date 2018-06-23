@@ -1,0 +1,19 @@
+Bug 444236 – [quick assist] Create 'for' loop quick assists produce incorrect result for multidimensional arrays
+import java.util.List;
+class E21 {
+private int[][] nums;
+void foo() {
+nums
+}
+}
+-------------------------------------
+Press Ctrl+1 at 'nums' in #foo and select "Create 'for' loop" or "Create enhanced 'for' loop" quick assist.
+The type to loop over does not contain any array dimension:
+class E21 {
+private int[][] nums;
+void foo() {
+for (int i : nums) {
+}
+}
+}
+Looks like it was not handled in the initial patch itself in GenerateForLoopAssistProposal.extractElementType(AST ast).

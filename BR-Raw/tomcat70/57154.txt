@@ -1,0 +1,20 @@
+57154 – Failure of TestWsWebSocketContainer when directory %TEMP%\test exists
+Steps to reproduce:
+1) Go to the temporary directory (System.getProperty("java.io.tmpdir")) and create a directory named "test" there.
+2) Run org.apache.tomcat.websocket.TestWsWebSocketContainer test case with Nio or Nio 2.
+The following two test cases are failing:
+testWriteTimeoutServerEndpoint
+testWriteTimeoutServerContainer
+Cause of the failure is the following ERROR:
+The HTTP response from the server [HTTP/1.1 302 Found
+] did not permit the HTTP upgrade to WebSocket
+javax.websocket.DeploymentException: The HTTP response from the server [HTTP/1.1 302 Found
+] did not permit the HTTP upgrade to WebSocket
+This test case configures DefaultServlet and tries to access
+"ws://localhost:" + getPort() + "/test".
+I suspect that Mapper responds with 302 redirect before the upgrade request reaches web application.
+This issue is observed at Buildbot.
+See
+TEST-org.apache.tomcat.websocket.TestWsWebSocketContainer.NIO.txt
+TEST-org.apache.tomcat.websocket.TestWsWebSocketContainer.NIO2.txt
+files in http://ci.apache.org/projects/tomcat/tomcat8/logs/1634329/

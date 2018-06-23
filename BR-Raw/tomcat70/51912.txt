@@ -1,0 +1,73 @@
+51912 – IOOB exception in InternalNioInputBuffer when debug logging is enabled
+I encountered the following while testing 7.0.22 RC.
+To reproduce:
+1.
+Replace conf/logging.properties with the following:
+===============
+handlers = 1catalina.org.apache.juli.FileHandler
+.handlers = 1catalina.org.apache.juli.FileHandler
+1catalina.org.apache.juli.FileHandler.level = FINE
+1catalina.org.apache.juli.FileHandler.directory = ${catalina.base}/logs
+1catalina.org.apache.juli.FileHandler.prefix = catalina.
+1catalina.org.apache.juli.FileHandler.bufferSize=20000
+.level=FINE
+===============
+Note that level=FINE enables debug logging.
+2.
+Run testsuite for NIO + org.apache.coyote.http11.TestInternalInputBuffer
+by adding the following to build.properties:
+execute.test.bio=false
+execute.test.nio=true
+execute.test.apr=false
+test.entry=org.apache.coyote.http11.TestInternalInputBuffer
+3.
+The test fails:
+==============
+Testsuite: org.apache.coyote.http11.TestInternalInputBuffer
+Tests run: 7, Failures: 2, Errors: 0, Time elapsed: 50,357 sec
+Testcase: testBug48839 took 9,594 sec
+Testcase: testBug51557NoColon took 1,217 sec
+FAILED
+junit.framework.AssertionFailedError:
+at org.apache.coyote.http11.TestInternalInputBuffer.testBug51557NoColon(TestInternalInputBuffer.java:137)
+Testcase: testBug51557Separators took 22,807 sec
+Testcase: testBug51557Ctl took 13,104 sec
+FAILED
+junit.framework.AssertionFailedError:
+at org.apache.coyote.http11.TestInternalInputBuffer.doTestBug51557Char(TestInternalInputBuffer.java:216)
+at org.apache.coyote.http11.TestInternalInputBuffer.testBug51557Ctl(TestInternalInputBuffer.java:160)
+Testcase: testBug51557Continuation took 1,248 sec
+Testcase: testBug51557BoundaryStart took 1,185 sec
+Testcase: testBug51557BoundaryEnd took 1,186 sec
+==============
+4.
+It is the only test in testsuite that is failing in this logging configuration.
+The rest of testsuite did run successfully.
+This test also succeeds when it is run with BIO or APR.
+Only NIO fails.
+In the log file the following exception occurs 3 times:
+==============
+28.09.2011 17:50:38 org.apache.coyote.http11.AbstractHttp11Processor process
+FINE: Error parsing HTTP request header
+java.lang.StringIndexOutOfBoundsException: String index out of range: -40
+at java.lang.String.checkBounds(String.java:397)
+at java.lang.String.<init>(String.java:482)
+at org.apache.coyote.http11.InternalNioInputBuffer.skipLine(InternalNioInputBuffer.java:672)
+at org.apache.coyote.http11.InternalNioInputBuffer.parseHeader(InternalNioInputBuffer.java:526)
+at org.apache.coyote.http11.InternalNioInputBuffer.parseHeaders(InternalNioInputBuffer.java:435)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:905)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:515)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1550)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:662)
+==============
+It is caused by debug logging in
+org.apache.coyote.http11.InternalNioInputBuffer.skipLine(InternalNioInputBuffer.java:672)
+671        if (log.isDebugEnabled()) {
+672            log.debug(sm.getString("iib.invalidheader", new String(buf,
+673                    headerData.start,
+674                    headerData.lastSignificantChar - headerData.start + 1,
+675                    DEFAULT_CHARSET)));
+676        }
+InternalInputBuffer and InternalAprInputBuffer have similar debug logging in their skipLine() methods, but they do not fail.

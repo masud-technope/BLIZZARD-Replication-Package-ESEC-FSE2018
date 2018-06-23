@@ -1,0 +1,3 @@
+Bug 303314 – [preferences] Add new options to 'code formatter' to expose constant from bug 282030
+Once bug 282030 is fixed, the new constant needs to be exposed in the code
+formatter preference page.

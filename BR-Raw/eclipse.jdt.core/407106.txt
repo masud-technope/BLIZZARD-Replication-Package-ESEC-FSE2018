@@ -1,0 +1,8 @@
+Bug 407106 – [1.8][code assist] Code assist failing for lambda expression with parameter of function call body
+interface Foo {
+void run1(int s1, int s2);
+}
+interface X extends Foo{
+static Foo f = (first, second) -> System.out.print(firs<ctrl-space>);
+}
+Code assist not making suggestion.

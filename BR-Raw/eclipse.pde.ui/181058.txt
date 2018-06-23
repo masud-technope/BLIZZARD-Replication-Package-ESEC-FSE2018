@@ -1,0 +1,6 @@
+Bug 181058 – Missing x-friends should be settable as a warning or error
+If your bundle has x-friends, there should be a preference to allow missing x-friends to show up as warning, error, or ignore.
+This showed up because I did a project rename, which didn't update the x-friend references.
+ Without knowing this, I went to run and failed.
+ I had to manualy track down the old x-friend references and fix them by hand.
+If I had this feature, then I would have seen warnings about the missing x-friends.

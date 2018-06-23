@@ -1,0 +1,7 @@
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient.ssl/src/org/eclipse/ecf/internal/provider/filetransfer/httpclient/ssl/SSLSocketFactoryModifier.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/provider/filetransfer/util/TimeoutInputStream.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient/.settings/org.eclipse.jdt.core.prefs
+providers/bundles/org.eclipse.ecf.provider.filetransfer/.settings/org.eclipse.jdt.launching.prefs
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/provider/filetransfer/util/PollingInputStream.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient.ssl/.settings/org.eclipse.jdt.core.prefs
+providers/bundles/org.eclipse.ecf.provider.filetransfer/.settings/org.eclipse.jdt.core.prefs

@@ -1,0 +1,7 @@
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/TestAll.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/parser23.rsc
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/parser22.rsc
+org.eclipse.jdt.core/grammar/java_1_5.g
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/dom/ASTConverter15Test.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/StatementRecoveryTest_1_5.java

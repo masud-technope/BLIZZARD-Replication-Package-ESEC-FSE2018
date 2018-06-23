@@ -1,0 +1,32 @@
+56577 – [websocket] Inappropriate executor in WsServerContainer
+The executor service to process SendHandler for sendAsync calls is initialized in WsServerContainer, which is using an unbounded queue.
+Thus, no more than corePoolSize threads will ever be created.
+(And the value of the maximumPoolSize therefore doesn't have any effect.)  [1]
+The corePoolSize has a default value to be 1, though it could be changed by context parameter, it's still hard to find an optimized value.
+This will create an issue if using the SendHandler to close the session after sending the last message.
+An example stack trace is like the following:
+"WebSocketServer-/spring-websocket-test-1" daemon prio=10 tid=0x00007f9f040ec000 nid=0x7499 waiting on condition [0x00007f9f73af8000]
+java.lang.Thread.State: TIMED_WAITING (parking)
+at sun.misc.Unsafe.park(Native Method)
+- parking to wait for  <0x000000075d52f018> (a java.util.concurrent.CountDownLatch$Sync)
+at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:226)
+at java.util.concurrent.locks.AbstractQueuedSynchronizer.doAcquireSharedNanos(AbstractQueuedSynchronizer.java:1033)
+at java.util.concurrent.locks.AbstractQueuedSynchronizer.tryAcquireSharedNanos(AbstractQueuedSynchronizer.java:1326)
+at java.util.concurrent.CountDownLatch.await(CountDownLatch.java:282)
+at org.apache.tomcat.websocket.FutureToSendHandler.get(FutureToSendHandler.java:93)
+at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.startMessageBlock(WsRemoteEndpointImplBase.java:238)
+at org.apache.tomcat.websocket.WsSession.sendCloseMessage(WsSession.java:487)
+at org.apache.tomcat.websocket.WsSession.doClose(WsSession.java:418)
+- locked <0x000000075d7dc388> (a java.lang.Object)
+at org.apache.tomcat.websocket.WsSession.close(WsSession.java:395)
+at org.apache.tomcat.websocket.WsSession.close(WsSession.java:389)
+at com.tango.test.spring.test.service.DefaultSessionManager$CloseSessionHandler.onResult(DefaultSessionManager.java:133)
+at org.apache.tomcat.websocket.WsRemoteEndpointImplBase$StateUpdateSendHandler.onResult(WsRemoteEndpointImplBase.java:1083)
+at org.apache.tomcat.websocket.WsRemoteEndpointImplBase.endMessage(WsRemoteEndpointImplBase.java:320)
+at org.apache.tomcat.websocket.WsRemoteEndpointImplBase$EndMessageHandler.onResult(WsRemoteEndpointImplBase.java:468)
+at org.apache.tomcat.websocket.server.WsRemoteEndpointImplServer$OnResultRunnable.run(WsRemoteEndpointImplServer.java:234)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at java.lang.Thread.run(Thread.java:745)
+If all the threads are in this state, there will be no available threads to clear any SendHandler and all Remote.send methods would throw TimeoutException though actually the clients could receive the messages.
+[1] http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ThreadPoolExecutor.html

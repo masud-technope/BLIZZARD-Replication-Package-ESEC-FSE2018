@@ -1,0 +1,16 @@
+Bug 324237 – [extract method] Extract Method refactoring fails if trailing ';' is also part of selection
+I20100831-1001
+ok, I have faced this too many times now...
+Steps:
+- Use this snippet and select "122;"
+package p;
+class A {
+int i;
+void foo() {
+this.i = 122;
+}
+}
+- Alt + Shift + M (Extract Method) => The end of selection contains characters that do not belong to a statement.
+-- bad!!
+Selecting the trailing ';' is very easy - I generally place the cursor right after '=' and then press Shift + End (to select till end of the line).
+Extract Method refactoring should simply ignore the trailing ';' instead of complaining about it.

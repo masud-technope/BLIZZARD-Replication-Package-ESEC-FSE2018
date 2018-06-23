@@ -1,0 +1,3 @@
+Bug 196007 – [UI] [Presence] Hover highlights should support pictures
+For example, I believe XMPP supports pictures.
+Our hover highlights could be cool and parse this out somehow and display it.

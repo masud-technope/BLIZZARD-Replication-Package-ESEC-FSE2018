@@ -1,0 +1,9 @@
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/buildermessages.properties
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/model/tests/ClassFileScannerTests.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/completion/APIToolsJavadocCompletionProposalComputer.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/ApiJavadocTag.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/search/ClassFileVisitor.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/BuilderMessages.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/TagValidator.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/util/Util.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/provisional/search/ReferenceModifiers.java

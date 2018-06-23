@@ -1,0 +1,61 @@
+Bug 424710 – [1.8][compiler] CCE in SingleNameReference.localVariableBinding
+Using Eclipse Java Development Tools Patch for Java 8 Support (BETA) 1.0.0.v20131228-0104_BETA_JAVA8
+Steps to reproduce:
+1 Create empty default 1.8 Java project with wizard
+2 Copy/paste this code (accepted by 1.8 javac) to the src folder:
+==============
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Stream;
+public class MapperTest {
+public static void main( String...
+argv ){
+List<String> data = Arrays.asList("abc", "123", "1a", "?!?");
+List<Pattern> patterns = Arrays.asList(Pattern.compile("[a-z]+"), Pattern.compile("[0-9]+"));
+patterns.stream()
+.flatMap(
+p -> {
+Stream<Matcher> map = data.stream().map(p::matcher);
+Stream<Matcher> filter = map.filter(Matcher::find);
+Function<? super Matcher, ? extends Object> mapper = Matcher::group;
+mapper = matcher -> matcher.group();
+return filter.map(mapper);
+})
+.forEach(System.out::println);
+}
+}
+==============
+Exception below will be reported during build:
+Error
+Sat Dec 28 10:31:29 CET 2013
+Errors running builder 'Java Builder' on project 'Java8Examples'.
+java.lang.ClassCastException: org.eclipse.jdt.internal.compiler.lookup.ProblemFieldBinding cannot be cast to org.eclipse.jdt.internal.compiler.lookup.LocalVariableBinding
+at org.eclipse.jdt.internal.compiler.ast.SingleNameReference.localVariableBinding(SingleNameReference.java:849)
+at org.eclipse.jdt.internal.compiler.ast.Assignment.resolveType(Assignment.java:199)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java:1016)
+at org.eclipse.jdt.internal.compiler.ast.Block.resolve(Block.java:123)
+at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.resolveType(LambdaExpression.java:367)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolveTypeExpecting(Expression.java:1046)
+at org.eclipse.jdt.internal.compiler.ast.FunctionalExpression.checkAgainstFinalTargetType(FunctionalExpression.java:140)
+at org.eclipse.jdt.internal.compiler.ast.ASTNode.resolvePolyExpressionArguments(ASTNode.java:693)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.findMethodBinding(MessageSend.java:854)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.resolveType(MessageSend.java:683)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.resolveType(MessageSend.java:591)
+at org.eclipse.jdt.internal.compiler.ast.Expression.resolve(Expression.java:1016)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:620)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:303)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:531)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1209)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1319)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:570)
+at org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:770)
+at org.eclipse.jdt.internal.compiler.ProcessTaskManager.run(ProcessTaskManager.java:137)
+at java.lang.Thread.run(Thread.java:744)
+Removing line 20 (mapper = matcher -> matcher.group();) fixes the problem, also changing the lines 19-20 to
+Function<? super Matcher, ? extends Object> mapper = matcher -> matcher.group();
+fixes the problem too.
+The assignment to the local variable doesn't work here...

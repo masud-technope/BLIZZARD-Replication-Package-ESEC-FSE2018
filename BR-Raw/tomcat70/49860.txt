@@ -1,0 +1,58 @@
+49860 – getParameters() fails on chunked POST requests with trailers
+Created attachment 25967 [details]
+Sample code to expose the issue
+Overview: A servlet hosted on Tomcat fails to retrieve the request parameters when the request is using chunked transfer encoding and trailers.
+Details: Sending a POST http request from a HTTP/1.1 client that uses chunked as transfer encoding and also includes trailers in the request (per RFC2616 sections 3.6.1 and 14.40):
+Request:
+===========================
+POST /echo/getBody HTTP/1.1
+User-Agent: org.test.chunked.EchoClient (chunked-test)
+content-type: application/x-www-form-urlencoded
+connection: Close
+host: localhost:8080
+transfer-encoding: chunked
+3
+a=0
+4
+&b=1
+0
+x-Signature: Tuu2
+============================
+The server responds with an error message (see below) and a stack trace pointing to ChunkedInputFilter class (http://svn.apache.org/repos/asf/tomcat/tc6.0.x/trunk/java/org/apache/coyote/http11/filters/ChunkedInputFilter.java).
+The method parseEndChunk() inside this class has a to do comment to handle trailers - this leads me to believe the trailers in chunked requests are not yet supported.
+The sample code attached contains means to reproduce the issue:
+- an Eclipse project TestHttpServer that hosts an EchoServlet
+- an Eclipse project TestHttpClient that sends and receives chunked requests and verifies them in a unit test
+- Eclipse's Tomcat server configuration
+The code is an extension of the attachments from bug 37794 (https://issues.apache.org/bugzilla/show_bug.cgi?id=37794) related to handling chunked requests in general.
+Note that when removing the trailer in the request above, the server responds correctly and is able to extract the parameters sent in the request' body.
+Here is the error response that the server sends back:
+Response:
+============================
+Response:
+HTTP/1.1 500 Internal Server Error
+Server: Apache-Coyote/1.1
+Content-Type: text/html;charset=utf-8
+Content-Length: 2266
+Date: Wed, 01 Sep 2010 22:48:08 GMT
+Connection: close
+<html><head><title>Apache Tomcat/6.0.29 - Error report</title><style><!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;} H3 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;} BODY {font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;} B {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;} P {font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;}A {color : black;}A.name {color : black;}HR {color : #525D76;}--></style> </head><body><h1>HTTP Status 500 - </h1><HR size="1" noshade="noshade"><p><b>type</b> Exception report</p><p><b>message</b> <u></u></p><p><b>description</b> <u>The server encountered an internal error () that prevented it from fulfilling this request.</u></p><p><b>exception</b> <pre>java.io.IOException: Invalid CRLF
+org.apache.coyote.http11.filters.ChunkedInputFilter.parseCRLF(ChunkedInputFilter.java:337)
+org.apache.coyote.http11.filters.ChunkedInputFilter.parseEndChunk(ChunkedInputFilter.java:356)
+org.apache.coyote.http11.filters.ChunkedInputFilter.doRead(ChunkedInputFilter.java:136)
+org.apache.coyote.http11.InternalInputBuffer.doRead(InternalInputBuffer.java:710)
+org.apache.coyote.Request.doRead(Request.java:428)
+org.apache.catalina.connector.InputBuffer.realReadBytes(InputBuffer.java:304)
+org.apache.catalina.connector.InputBuffer.realReadChars(InputBuffer.java:360)
+org.apache.tomcat.util.buf.CharChunk.substract(CharChunk.java:379)
+org.apache.catalina.connector.InputBuffer.read(InputBuffer.java:388)
+org.apache.catalina.connector.CoyoteReader.read(CoyoteReader.java:93)
+org.test.chunked.EchoServlet.getBody(EchoServlet.java:90)
+org.test.chunked.EchoServlet.doPostOrGet(EchoServlet.java:60)
+org.test.chunked.EchoServlet.doPost(EchoServlet.java:41)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:637)
+javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+</pre></p><p><b>note</b> <u>The full stack trace of the root cause is available in the Apache Tomcat/6.0.29 logs.</u></p><HR size="1" noshade="noshade"><h3>Apache Tomcat/6.0.29</h3></body></html>
+===============================
+Best regards,
+Dan Luca.

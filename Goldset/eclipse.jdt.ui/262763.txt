@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/jarexport/FatJarExportTests.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat/FatJarRsrcUrlAntExporter.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat/UnpackFatJarAntExporter.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/jarpackagerfat/UnpackJarAntExporter.java

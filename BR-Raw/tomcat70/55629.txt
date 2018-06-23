@@ -1,0 +1,2 @@
+55629 – StatusManagerServlet does not remove JMX notification listener
+StatusManagerServlet.destroy should call mBeanServer.removeNotificationListener because init method call mBeanServer.addNotificationListener.

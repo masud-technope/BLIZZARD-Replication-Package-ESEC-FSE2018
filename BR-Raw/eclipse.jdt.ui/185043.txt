@@ -1,0 +1,7 @@
+Bug 185043 – [rename] Undo in in-place refactoring "animates" info popup
+In junit.samples.money.Money select Money in Line 27 and start a rename refactoring on this type.
+Enter something.
+Press crtl-z.
+The animation now is quite nasty because the hover is repainted for every character.
+Enter something else and press ctrl-z again.
+Each change of a character done by linked mode is undo'ed as single undo.

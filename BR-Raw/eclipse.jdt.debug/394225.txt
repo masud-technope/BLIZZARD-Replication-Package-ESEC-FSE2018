@@ -1,0 +1,5 @@
+Bug 394225 – Display evaluates !(true&&true&&true&&true&&true) incorrectly.
+!(true&&true&&true&&true&&true)
+Evaluates to true in display window.
+Should be false.
+Seems to fail when using at least 5 true's.

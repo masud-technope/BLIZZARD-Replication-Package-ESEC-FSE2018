@@ -1,0 +1,29 @@
+Bug 285854 – [build path] javadoc location can't be changed to domain name if ip is given
+I20090611-1540
+1.
+Right click a referenced library
+2.
+Properties
+3.
+Javadoc
+4.
+Provide a javadoc location url, take:
+http://72.5.124.55/javaee/5/docs/api/
+5.
+Ok
+6.
+Reopen the javadoc property page
+7.
+Change url to:
+http://java.sun.com/javaee/5/docs/api/
+8.
+Ok
+9.
+Reopen the javadoc property page
+Is:
+The javadoc location url is still http://72.5.124.55/javaee/5/docs/api/
+Should:
+be changed to http://java.sun.com/javaee/5/docs/api/
+72.5.124.55 resolves to java.sun.com.
+I guess a compare is made on the URLs, which resolves the IP and hence the dialog thinks, that the two urls are equals.
+Workaround is to change the url to a dummy url first and then to the correct one.

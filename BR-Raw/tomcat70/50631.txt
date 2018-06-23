@@ -1,0 +1,2 @@
+50631 – InternalNioInputBuffer should honor maxHttpHeadSize
+InternalNioInputBuffer automatically expands its buffer while reading in request line, effectively ignoring the maxHttpHeaderSize setting.

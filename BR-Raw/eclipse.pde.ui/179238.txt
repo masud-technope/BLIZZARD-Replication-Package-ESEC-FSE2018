@@ -1,0 +1,4 @@
+Bug 179238 – Extension list filtered tree "clear" button is bad positioned
+Eclipse 3.3 M6 + Windows XP SP2 with classic theme:
+The "clear" button on extensions filtered tree "eats" the right border from filter box.
+See attached screenshot.

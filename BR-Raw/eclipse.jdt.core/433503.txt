@@ -1,0 +1,12 @@
+Bug 433503 – Use OrderedTestSuite instead of listing all test methods again
+Some jdt.core tests use an error-prone method to guarantee test execution order.
+E.g.
+JavaSearchBugsTests and JavaSearchBugs8Tests list all test methods again in the suite() method implementation.
+1.
+This hack should not be applied without an understanding why the tests fail when they are executed in random order.
+2.
+Instead of listing all test methods again, you should at least use a utility like
+return new OrderedTestSuite(JavaSearchBugs8Tests.class);
+or just
+return buildModelTestSuite(JavaSearchBugs8Tests.class, ALPHABETICAL_SORT)
+without the "if (TESTS_PREFIX != null || ..." before.

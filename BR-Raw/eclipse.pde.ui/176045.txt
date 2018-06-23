@@ -1,0 +1,4 @@
+Bug 176045 – Extension editor doesn't remember field changes
+On linux, I creat a handler element in the PDE Editor>Extensions tab and then start tabbing through the handler fields (I fill in all 3).
+When I click on another element under the extension section and click back, my handler has only remember the change to the first of 3 fields.
+PW

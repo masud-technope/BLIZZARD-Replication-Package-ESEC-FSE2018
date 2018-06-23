@@ -1,0 +1,3 @@
+58568 – WebappClassLoaderBase exposes null "system" instance member
+The WebappClassLoaderBase contains a "system" instance member that is never initialized.
+It seems like this bug was introduced when https://bz.apache.org/bugzilla/show_bug.cgi?id=55943 was fixed.

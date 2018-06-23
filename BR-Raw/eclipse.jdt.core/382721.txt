@@ -1,0 +1,20 @@
+Bug 382721 – [1.8][compiler] Effectively final variables needs special treatment
+BETA_JAVA8
+(1) The following program which does not compile under 1.7-
+should now begin to compile with Java 8:
+// -------- 8< -----------
+public class X {
+public static void main(String[] args) {
+X x = new X() {
+void foo() {
+System.out.println(args);
+}
+};
+}
+}
+The proposed amends to 8.1.3 allow for a local class including anonymous
+classes to use effectively final variables from its surrounding context.
+(2) Likewise, we need to also allow lambda expressions to reference effectively
+final, definitely assigned local variables, formal parameters or
+exception handler parameter from the surrounding context (in addition
+to finals)

@@ -1,0 +1,54 @@
+40771 – Can't read POST data from within a filter or valve
+I was attempting to create a Filter or Valve that could be placed in front of an
+Axis web service that would handle security according to the WS-Security
+specification.
+That turned out to be a rabbit trail, but I did find and fix a
+bug that I discovered along the way.
+I ran into problems reading POST data (the web service request) from the
+org.apache.catalina.connector.Request object exposed in the Filter/Valve
+interfaces.
+This is a chunk of code in a prototype Valve that didn't work:
+private ByteChunk getPOSTBody(Request request)
+throws IOException
+{
+ByteChunk retval = new ByteChunk(request.getContentLength());
+ByteChunk body = new ByteChunk(request.getContentLength());
+int bytesRead;
+do
+{
+bytesRead = request.getCoyoteRequest().doRead(body);
+retval.append(body);
+}
+while (bytesRead >= 0) ;
+//puts the data back into the pipe.
+request.getCoyoteRequest().action
+(ActionCode.ACTION_REQ_SET_BODY_REPLAY, retval);
+return retval;
+}
+This code works as designed, however the problem occurs later on when Axis
+attempted to parse the web service request.
+I don't remember the exact Axis
+error, but I was able to track the problem down to a bug in the
+org.apache.coyote.http11.filters.SavedRequestInputFilter class.
+The doRead
+method was not properly implemented to return a -1 when appropriate.
+Here is my modified version of the doRead method:
+public int doRead(ByteChunk chunk, org.apache.coyote.Request request)
+throws IOException {
+int writeLength = 0;
+if (chunk.getLimit() > 0 && chunk.getLimit() < input.getLength()) {
+writeLength = chunk.getLimit();
+} else {
+writeLength = input.getLength();
+}
+if(input.getOffset()>= input.getEnd())
+return -1;
+input.substract(chunk.getBuffer(), 0, writeLength);
+chunk.setOffset(0);
+chunk.setEnd(writeLength);
+return writeLength;
+}
+This bug won't show up unless someone tries to use a filter/valve to do
+something with web services.
+That's not too likely because that's what we have
+SOAPHandlers for.

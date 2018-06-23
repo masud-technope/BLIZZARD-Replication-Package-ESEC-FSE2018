@@ -1,0 +1,22 @@
+Bug 424283 – [1.8][hovering] Support showing Javadoc for JavaFX properties
+This might sound a bogus request but is something that really happens as part of OracleJDK where you have source code that look like this:
+/**
+* Called when there is an external request to close this {@code Window}.
+* The installed event handler can prevent window closing by consuming the
+* received event.
+*/
+private ObjectProperty<EventHandler<WindowEvent>> onCloseRequest;
+public final void setOnCloseRequest(EventHandler<WindowEvent> value) {
+onCloseRequestProperty().set(value);
+}
+public final EventHandler<WindowEvent> getOnCloseRequest() {
+return (onCloseRequest != null) ? onCloseRequest.get() : null;
+}
+public final ObjectProperty<EventHandler<WindowEvent>>
+onCloseRequestProperty() {
+and generated JavaDoc like this:
+http://docs.oracle.com/javafx/2/api/javafx/stage/Window.html#setOnCloseRequest%28javafx.event.EventHandler%29 which is implemented through https://bugs.openjdk.java.net/browse/JDK-7112427
+i'm not sure how to solve this.
+Possible solutions:
+* teach JDT the property API - if no docs found search for a variable with the same name
+* if no javadoc is found on the method - fall back to the HTML-JavaDoc

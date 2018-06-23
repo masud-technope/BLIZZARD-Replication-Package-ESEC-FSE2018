@@ -1,0 +1,26 @@
+Bug 403444 – [1.8][dom ast] CCE when resolving binding for malformed LambdaExpression in JLS4 AST
+Inspect example from bug 402665 in ASTView with AST Level 4:
+package jsr335;
+public class SpecExamples335 {
+public static interface StringToInt {
+int stoi(String s);
+}
+public static interface ReduceInt {
+int reduce(int a, int b);
+}
+void foo(StringToInt s) { }
+void bar(ReduceInt r) { }
+void bar() {
+foo(s -> s.length());
+foo((s) -> s.length());
+foo((String s) -> s.length());
+bar((x, y) -> x+y);
+bar((int x, int y) -> x+y);
+}
+}
+When I drill down to the argument of "foo(s -> s.length())", I get this exception:
+java.lang.ClassCastException: org.eclipse.jdt.internal.compiler.ast.LambdaExpression cannot be cast to org.eclipse.jdt.internal.compiler.ast.Literal
+at org.eclipse.jdt.core.dom.DefaultBindingResolver.resolveExpressionType(DefaultBindingResolver.java:735)
+at org.eclipse.jdt.core.dom.Expression.resolveTypeBinding(Expression.java:113)
+at org.eclipse.jdt.astview.views.ASTViewContentProvider.getNodeChildren(ASTViewContentProvider.java:112)
+...

@@ -1,0 +1,34 @@
+Bug 435767 – [1.8][inference] Problem in inferrence of type : The method in the type is not applicable for the arguments (Object)
+I have some compilation error in Eclipse 4.4M7 with the 1.8 compilation level.
+In fact when I use lambda and Generics, there is one case where I have the following error :
+The method getKey(String) in the type DummyClass is not applicable for the arguments (Object).
+But if I watch the tooltip to see the inference of the parameter.
+It is the good type of parameter.
+The following code illustrate my problem.
+////
+public class DummyClass {
+public void method() {
+// Cases where there is no error
+final Supplier<Set<String>> suppliers = this.memoize(() -> new HashSet<>());
+final Supplier<Map<Object, Object>> noMemoize = () -> suppliers.get().stream()
+.filter(path -> path.startsWith(""))
+.collect(Collectors.toMap(path -> this.getKey(path), path -> this.getValue(path)));
+// Case where there is errors.
+final Supplier<Map<Object, Object>> memoize = this.memoize(() -> suppliers.get().stream()
+.filter(path -> path.startsWith(""))
+.collect(Collectors.toMap(path -> this.getKey(path), path -> this.getValue(path))));
+// Error message are : Description
+// Resource	Path	Location	Type
+// The method getKey(String) in the type DummyClass is not applicable for the arguments (Object)	DummyClass.java line 23	Java Problem
+// The method getValue(String) in the type DummyClass is not applicable for the arguments (Object)	DummyClass.java line 23	Java Problem
+}
+private <T> Supplier<T> memoize(final Supplier<T> delegate) {
+return delegate;
+}
+private Object getKey(final String path) {
+return path;
+}
+private Object getValue(final String path) {
+return path;
+}
+}

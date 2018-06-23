@@ -1,0 +1,4 @@
+43142 – webapp expanded in a FOLDER named webapps/xxx.war is loaded TWICE
+reproduce: copy the expanded of file xxx.war file in a FOLDER
+tomcat/webapps/xxx.war
+bug: tomcat will load the app TWICE

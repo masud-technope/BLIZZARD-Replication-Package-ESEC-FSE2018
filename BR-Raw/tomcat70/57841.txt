@@ -1,0 +1,6 @@
+57841 – Change logging defaults to avoid unusable feedback by default
+Starting a deployed application can fail with the error message `SCHWERWIEGEND: Error listenerStart` which is unhelpful.
+Instead provide a usable feedback by default explaining the cause of a severe error.
+Those should be logged verbosely by default.
+If very experienced power user want to skip logging of severe/fatal error (even for those it's hard to imagine a cause), they can configure it.
+By default is should just work.

@@ -1,0 +1,18 @@
+50273 ñ AprEndpoint logs socket accept fails altough error is harmless
+I use the above Tomcat on my HP-UX 11.23 system.
+I have compiled libtcnative 1.1.20 successfully.
+Tomcat is spamming my log files with this error message:
+5.11.2010 09:06:29 org.apache.tomcat.util.net.AprEndpoint$Acceptor run
+SCHWERWIEGEND: Socket accept failed
+org.apache.tomcat.jni.Error: Kein Pufferplatz verf√ºgbar
+at org.apache.tomcat.jni.Socket.accept(Native Method)
+at org.apache.tomcat.util.net.AprEndpoint$Acceptor.run(AprEndpoint.java:1169)
+at java.lang.Thread.run(Thread.java:619)
+In English: No buffer space available.
+I googled for the problem and this out:
+http://forums.devx.com/archive/index.php/t-99967.html
+This bug occurs with the IE6 & IE8 on our setup.
+I wasn't able to filter this our with java logging, it simple ignored loading my filter.
+Searching the APR docs I found this: http://dev.ariel-networks.com/apr/apr-tutorial/html/apr-tutorial-13.html Section "Detection of the remote host closed the socket"
+The error seems to be harmless, a debug or info would satisfy here but in the level severe it simply spams my disk.
+Is there a way to fix that according to the APR docs? I have no clue in C.

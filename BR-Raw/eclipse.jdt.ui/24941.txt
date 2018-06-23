@@ -1,0 +1,44 @@
+Bug 24941 – inline method - doesn't handle implicit cast [refactoring]
+I-20021016 linux-gtk:
+public class Woo {
+static void goo(char c) {
+System.out.println("char");
+}
+static void goo(int i) {
+System.out.println("i");
+}
+static int foo() {
+return 'a';
+}
+public static void main(String[] args) {
+goo(foo());
+}
+}
+1.
+execute the class
+2.
+observe the output is "int"
+3.
+inline method foo
+4.
+execute the class
+5.
+observe the output is "char"
+characters are implicitely cast to int on return.
+When the method is inlined,
+the implicit cast must be made explicit.
+If there's no ambiguity the cast could
+be omitted.
+The fix should handle all kind of possible implicit conversions.
+There's a similar case:
+public class Zoo {
+static int foo() {
+return 'A';
+}
+public static void main(String[] args) {
+System.out.println("output: " + foo());
+}
+}
+Before inlining, the output is '65', after inlining, it's 'A'.
+In the past I often got bitten by implicit conversions of characters to int,
+which is hard to debug.

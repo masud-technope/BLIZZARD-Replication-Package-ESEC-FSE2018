@@ -1,0 +1,7 @@
+Bug 272567 – [javadoc][hovering] Rendered Javadoc should strip out * at beginning of line
+I20090415-1348
+Rendered Javadoc should strip out * at beginning of line.
+This works mostly fine, but there are people who put the * at the very beginning of the line, i.e.
+without any space before, e.g.
+com.ibm.icu.text.Collator.
+The result in Javadoc hover and view is a text with * measles.

@@ -1,0 +1,56 @@
+Bug 337673 – [remoteserviceadmin] RS Proxies need to be classloader accessible
+Unfortunately, we are seeing proxy services only when calling ServiceTracker.open(true).
+----- see als this -----
+After thinking about this bug, and realizing that you are using a
+ServiceTracker to track/discovery remote services I think this could be the
+following issue:
+The ServiceTracker class has two 'open' methods:
+public void open()
+and
+public void open(boolean trackAllServices)
+I suspect that you are currently using open() and with the Remote Services
+Admin it's necessary to use serviceTracker.open(true).
+ See more about this
+below, but could you try opening with open(true) rather than open() and see if
+things then work for you?  Given that your proxy/consumer discovery isn't
+happening for the generic provider either, I now don't believe this has
+anything to do with r-osgi localhost handling as I did yesterday.
+The RSA implementation has some new logic for proxy classloading as given in
+the OSGi 4.2 enterprise specification, section 122.5.6.
+ For some reason that
+I'm not completely clear on, this proxy classloding logic seems to require the
+ServiceTracker.open(true) method to be used by clients rather than
+ServiceTracker.open() (because ServiceTracker.open() calls
+ServiceTracker.open(false)).
+The javadocs in ServiceTracker.open(boolean trackAllServices) for
+trackAllServices is this:
+* @param trackAllServices If {@code true}, then this
+*        {@code ServiceTracker} will track all matching services
+*        regardless of class loader accessibility.
+If {@code false},
+*        then this {@code ServiceTracker} will only track matching
+*        services which are class loader accessible to the bundle whose
+*        {@code BundleContext} is used by this
+*        {@code ServiceTracker}.
+'only track matching services which are class loader accessible' is the key
+part.
+ I'm not clear on why the proxying logic in 122.5.6 seems to make the
+services 'not classloader accessible'...but it seems to do so.
+ I'm going to
+consult with the folks responsible for the ServiceTracker and the spec to
+understand this better.
+In the mean time, please try ServiceTracker.open(true) in your code, and lets
+see if this fixes things for this use case.
+----- and this -----
+No this doesn't sound right.
+Using open(true) is dangerous precisely
+because of the risk of getting ClassCastExceptions -- it explicitly
+returns service instances that are incompatible with the client's
+classloader.
+The open(true) method is really only useful for clients
+that don't actually need to call the services they are tracking, e.g.
+because they are only interested in the metadata.
+If you are only seeing the proxy services when calling
+ServiceTracker.open(true), then it suggests something is going wrong.
+It sounds like a bug either in your code or in the framework's
+compatibility checking.

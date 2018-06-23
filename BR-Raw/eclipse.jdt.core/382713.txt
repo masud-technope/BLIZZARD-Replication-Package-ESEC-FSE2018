@@ -1,0 +1,17 @@
+Bug 382713 – [1.8][compiler] Compiler should reject lambda expressions when target type is not a functional interface
+BETA_JAVA8
+The following program should be rejected on two counts:
+// ---------- 8< ------------
+interface I {
+void foo();
+void goo();
+}
+public class X {
+public static void main(String[] args) {
+X x = () -> 10;
+I i = () -> 10;
+}
+}
+Former lambda expression's target type is not an interface at all,
+while the latter's target type is not a functional interface.
+At the moment, the compiler does not complain on either instance.

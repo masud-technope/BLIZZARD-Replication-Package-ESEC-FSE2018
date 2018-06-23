@@ -1,0 +1,4 @@
+Bug 465293 – External annotation path per container and project
+Extracted from bug 462412:
+Currently, classpath containers only allow editing of an annotationpath per contained element/jar.
+When configuring a project's build path (as opposed to JRE preferences) it should be possible to define a single annotation path for an entire classpath container.

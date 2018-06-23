@@ -1,0 +1,91 @@
+Bug 12740 – Wierd behavior when debugging standalone SWT example
+20020402 (has been broken since at least 0214, maybe earlier)
+This has been broken for quite a while - I kept thinking it was so obviously
+broken that someone would surely fix it, but I have figured out that it is
+probably only a problem with standalone SWT examples...
+so I am finally opening
+this PR because all of us on the SWT team hit this every time we debug.
+Here are the steps required to run a little SWT class in eclipse:
+1) Connect to the dev.eclipse.org repository
+2) Open HEAD
+3) Turn off autobuild (important)
+4) Select the org.eclipse.swt project
+5) Select "Check out as project" from the pop-up menu
+6) Go to a Packages view
+7) In the view menu (little black triangle), select "Filters..."
+8) Make sure that ".*" is NOT checked (i.e.
+you need to see "." files)
+9) Click OK
+10) Now expand org.eclipse.swt
+11) Select the file ".classpath_win32" (assuming you are working on Windows)
+12) Rename this file to ".classpath"
+13) Workbench -> Rebuild All
+14) Now it is safe to turn autobuild back on
+15) Now you need to put the swt dll somewhere where the VM can find it.
+What we do is export it to the 'eclipse' directory, which will be the
+current directory.
+To do this, do the following (assuming Windows):
+- In the Packages view, expand org.eclipse.swt/os/win32/x86
+- Select the dll file
+- File -> Export -- File system -- Next>
+- In the "Directory" field, select your 'eclipse' directory
+- Finish
+You only have to do the above 15 steps once (per workspace...<g>).
+16) Now paste the following little class into a test project where you can run
+Java code:
+import org.eclipse.swt.*;
+import org.eclipse.swt.widgets.*;
+import org.eclipse.swt.layout.*;
+public class SWTTest {
+static Display display;
+static Shell shell;
+static List list;
+public static void main(String[] args) {
+display = new Display();
+shell = new Shell(display);
+shell.setLayout(new GridLayout());
+shell.setText("List Test");
+list = new List(shell, SWT.MULTI);
+list.setLayoutData(new GridData(GridData.FILL_BOTH));
+for (int i = 0; i < 5; i++) {
+list.add("item" + i);
+}
+shell.pack();
+shell.open();
+while (!shell.isDisposed()) {
+if (!display.readAndDispatch()) display.sleep();
+}
+}
+}
+17) Put a breakpoint on any valid line of code (I have mine on shell.setText...)
+18) Run under the debugger
+Here's the bug: When you hit the breakpoint, the debugger bogusly opens up an
+editor on "ClassLoader.class", and the stack looks like garbage (as if it was
+stuck on the first line of code in the loadLibrary call, but we are actually
+way past that call by the time we hit the breakpoint).
+I will paste the garbage
+stack at the end of this description.
+The only way to actually debug your code
+is to do one "step over".
+Unfortunately, you will then be past the line where
+you set your breakpoint.
+This is *not* a "stop-ship" type problem for us - it's
+just really annoying.
+(Also annoying is having to close the empty
+"ClassLoader.class" editor all the time <g>).
+Thread [main] (Suspended (breakpoint at line 16 in test.SWTTest))
+java.lang.ClassLoader.loadLibrary0(java.lang.Class, java.io.File) line:
+1470 [local variables unavailable]
+java.lang.ClassLoader.loadLibrary(java.lang.Class, java.lang.String,
+boolean) line: 1346
+<not responding>
+java.lang.System.loadLibrary(java.lang.String) line: 849
+org.eclipse.swt.internal.Library.loadLibrary(java.lang.String) line: 102
+org.eclipse.swt.internal.win32.OS.<clinit>() line: 39
+<not responding>
+<not responding>
+<not responding>
+<not responding>
+<not responding>
+<not responding>
+test.SWTTest.main(java.lang.String[]) line: 13

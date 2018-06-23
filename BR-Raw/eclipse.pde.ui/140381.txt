@@ -1,0 +1,7 @@
+Bug 140381 – Convert produces warnings in build.properties for / not existing
+By default, java projects have their source folder in the root of their project.
+ When PDE converts a java project with such a source folder, it creates a source..
+entry in the build.properties.
+ This entry specifies the "/" folder.
+PDE places a warning marking saying that "/" does not exist in the workspace.
+ We might want to think about modifying the warning logic to allow a project to have their source folder in the root of a project (though it is not recommended).

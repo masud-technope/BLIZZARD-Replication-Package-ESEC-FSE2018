@@ -1,0 +1,11 @@
+Bug 173187 – Line Breakpoint changes unclear during refactoring
+1.
+ I have 3 line breakpoints from the same class.
+2.
+ I refactored by renaming the class.
+3.
+ I went through the wizard and eventually ended up at the page where Breakpint changes are shown.
+If you expand the Breakpiont changes, you will see three identical entires showing "Line breakpoint type change".
+ The user cannot tell the differences between the three changes.
+Same problem with method breakpoints.
+ If I have multiple method breakpoints from the same file, the dialog does not show information to help the user distinguish between the different breakpoints.

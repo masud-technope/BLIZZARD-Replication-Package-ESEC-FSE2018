@@ -1,0 +1,7 @@
+Bug 176320 – Non linear progress in open type dialog
+Build 20070228
+When migrating to latest SDK, I got it all reindexing the workspace due to index format change (ok).
+What striked me is that when opening the type dialog, it rendered indexing progress in a strange way.
+It rushed to 50%, while accumulating more indexing jobs.
+Then it processed them down to 0, and then filled the rest of the progress in half a second.
+I think it should better deal with the situation where reindexing is occurring when reporting the progress, so it becomes more linear.

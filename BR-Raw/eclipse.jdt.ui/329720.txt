@@ -1,0 +1,4 @@
+Bug 329720 – [hover] There is no preference to change background color of debug hover popup
+The background color of the debug hover popup on Linux Lucid Lynx is inherited from the desktop theme.
+For dark color schemes this leads to black text on a dark grey background.
+There should be a preference for setting background color of debug hover popup within Eclipse independently from the desktop theme.

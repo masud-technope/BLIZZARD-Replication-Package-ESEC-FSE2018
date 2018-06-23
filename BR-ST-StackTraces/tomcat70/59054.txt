@@ -1,0 +1,13 @@
+org.apache.catalina.session.StandardSession.setAttribute
+org.apache.catalina.session.StandardSession.setAttribute
+org.apache.catalina.session.StandardSessionFacade.setAttribute
+org.apache.catalina.valves.CrawlerSessionManagerValve.invoke
+org.apache.catalina.core.StandardEngineValve.invoke
+org.apache.catalina.connector.CoyoteAdapter.service
+org.apache.coyote.ajp.AjpProcessor.process
+org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process
+org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run
+java.util.concurrent.ThreadPoolExecutor.runWorker
+java.util.concurrent.ThreadPoolExecutor$Worker.run
+org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run
+java.lang.Thread.run

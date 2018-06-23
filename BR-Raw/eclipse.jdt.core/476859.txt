@@ -1,0 +1,6 @@
+Bug 476859 – enclosing method not found error when EJC compiled, works fine with oracle jdk compiler
+Created attachment 256434 [details]
+class, unit test, failure traces
+See the attached class and the corresponding unit tests.
+All tests pass when run on command line with oracle jdk 1.8.0_60 .
+Running them inside eclipse there are 2 internal errors and 2 failures, see attachment for code and error traces.

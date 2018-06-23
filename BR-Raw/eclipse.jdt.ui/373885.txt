@@ -1,0 +1,16 @@
+Bug 373885 – [jar exporter] save runnable jar export as ant script with relative name saves in eclipse program folder not workspace
+Build Identifier: Version: Indigo Service Release 2 Build id: 20120216-1857
+When saving settings for producing a runnable jar file as an ant script, if you enter a relative filename in the filename box, a message appears suggesting that this will be relative to the workspace root.
+ However, when the file is actually saved, it is saved relative to the directory eclipse is installed in.
+Reproducible: Always
+Steps to Reproduce:
+1.
+export > runnable jar file
+2.
+check 'save as ant script'
+3.
+enter a relative path (e.g.
+'myproject/exportjar.xml') in the filename box
+4.
+click finish
+the file is not produced in the myproject directory of the workspace, but in a new subdirectory of the eclipse program directory.

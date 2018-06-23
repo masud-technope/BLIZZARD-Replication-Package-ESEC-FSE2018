@@ -1,0 +1,29 @@
+Bug 390761 – [1.8][compiler] Incorrect error about default method clashing with another inherited method.
+BETA_JAVA8:
+The following compiles alright with Lambda JDK8b56, but fails
+to compile on Eclipse top of beta8 branch.
+I believe the right
+behavior is to compile this fine.
+As Map's method replaces MapStream's
+asIterable(), at X, only the more immediate method should be seen
+thus eliminating any chance of a clash.
+However, the current code leaves in MapStream's method also
+perhaps under the influence of https://bugs.eclipse.org/bugs/show_bug.cgi?id=302358: Essentially we should not skip the inherited method if any
+overriding version in a subclass may have a different erasure.
+In the present case since Map and MapStream are isomorphic with pass-through
+parameterization, it is kosher to eliminate MapStream's method.
+// ----
+public interface X extends Map {
+}
+interface Map<K,V> extends MapStream<K, V>  {
+Iterable<BiValue<K, V>> asIterable() default {
+return null;
+}
+}
+interface MapStream<K, V> {
+Iterable<BiValue<K, V>> asIterable();
+}
+interface BiValue<T, U> {
+T getKey();
+U getValue();
+}

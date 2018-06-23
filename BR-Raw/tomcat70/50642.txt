@@ -1,0 +1,7 @@
+50642 – keepAliveProtection doesn't work
+Created attachment 26541 [details]
+ServletContextListener that removes the leaked ClassLoader reference
+sun.net.www.http.HttpClient.kac.keepAliveTimer.contextClassLoader causes a memory leak as it references the webapp's classloader rather than Tomcat's.
+JreMemoryLeakPreventionListener claims to fix this, but only loads sun.net.www.http.HttpClient and does not create the timer thread.
+Thus the leak still exists.
+AFAICT, the attached listener does successfully prevent the leak.

@@ -1,0 +1,13 @@
+Bug 343422 – [javadoc wizard] Generating Javadoc for CUs with UTF-8 names fails on Windows
+3.6.
+Generating Javadoc for CUs with 'UTF-8' names fails on Windows (where 'Cp1252' is the default encoding).
+1.
+start new workspace
+2.
+import project form attachment 193329 [details]
+3.
+set project encoding to UTF-8
+4.
+try to export Javadoc
+==> fails because the file names are mangled
+There's no way to fix this by using VM arguments or extra Javadoc program arguments because the options file is created using the encoding with which the workspace was launched and the '-encoding' parameter is not used when reading the options file.

@@ -1,0 +1,30 @@
+56797 – EL-API does not find overriden method
+Util.findWrapper(..) returns with a MethodNotFoundException (util.method.ambiguous) under the following conditions:
+- A method is overriden and the return type in the overriden method is inherited from the original method's return type
+- The method is called with a parameter whose type is inherited from the declared type (assignable)
+Apparently, this leads to a situation with multiple matches.
+If only one of those conditions is true, the error does not occur.
+Example:
+--------
+TesterBeanA.java:
+public CharSequence getCharSequence(CharSequence cs) {
+return cs;
+}
+TesterBeanAA.java
+@Override
+public String getCharSequence(CharSequence cs) {
+return cs.toString();
+}
+Test Case:
+----------
+TestMethodExpressionImpl.java:
+@Test
+public void testInvokeOverridenParamAndReturnType() {
+MethodExpression me = factory.createMethodExpression(context,
+"${beanAA.getCharSequence('test')}", null ,
+new Class<?>[] { TesterBeanB.class });
+assertEquals("test", me.invoke(context, null));
+}
+Note 1: The error also occurs if getCharSequence(..) in TesterBeanA is abstract.
+I suggest adding a check for isAbstract() upon reading method modifiers and drop abstract method right away.
+Note 2: This worked in Tomcat 7.0.40.

@@ -1,0 +1,3 @@
+Bug 271045 – API tools should work with unresolved bundles
+The apitooling.analysis and apitooling.apifreeze tasks should be usable with a bunch of bundles that aren't fully resolved.
+ A component owner or product owner should be able to feed just the bundles he owns through the tooling without having to gather all the dependencies necessary to have a fully resolved Eclipse instance.

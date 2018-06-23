@@ -1,0 +1,6 @@
+55772 – Flushing AsyncContext response writer after ClientAbortException (BrokenPipe) causes request state to leak
+Created attachment 31040 [details]
+Test case to reproduce request state (cookie) leakage
+This issue is easily reproducible with the attached test case.
+Request state is leaked between requests due to the ADAPTER_NOTES note on the coyote request containing the catalina connector request (which holds the cookies from the first request) and never gets cleaned up in this error case (and maybe others similar to it).
+It seems like it would be worthwhile to clear out the notes field from the coyote request when we recycle() it to prevent future issues like this.

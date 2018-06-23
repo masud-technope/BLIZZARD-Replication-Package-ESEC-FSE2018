@@ -1,0 +1,18 @@
+Bug 232530 – [MSN] Session and subclasses needs to handle whitespace and exceptions better
+I am using ECF 2.0.0.v20080514
+I am seeing very frequently parsing problems in the ChatSession.read() method which lead to exception which causes the death of the Session$IdleThread that processes the received messages.
+If an unexpected Exception occurs I can no longer receive messages in the current session.
+So perhaps it is better to protect the Session$IdleThread  from any uncaught exceptions.
+One of the cases that leads to the described behavior is this:
+The original received message which is being processed by the ChatSession.read():
+"MSG s_boshev@prosyst.bg s_boshev@prosyst.bg 129
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+X-MMS-IM-Format: FN=MS%20Shell%20Dlg; EF=; CO=0; CS=cc; PF=0
+e de"
+This leads to this exception:
+Exception in thread "Thread-12" java.lang.StringIndexOutOfBoundsException: String index out of range: 5
+at java.lang.String.checkBounds(String.java:402)
+at java.lang.String.<init>(String.java:443)
+at org.eclipse.ecf.protocol.msn.ChatSession.read(ChatSession.java:295)
+at org.eclipse.ecf.protocol.msn.Session$IdleThread.run(Session.java:287)

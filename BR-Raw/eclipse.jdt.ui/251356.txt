@@ -1,0 +1,5 @@
+Bug 251356 – Fix for bug 146768 breaks JDT Refactoring and its test
+N20081017-2000.
+With the changes made to fix bug 146768 it is now possible to inline invalid selections/methods.
+This is also surfaced by a broken test, see:
+http://download.eclipse.org/eclipse/downloads/drops/N20081017-2000/testresults/html/org.eclipse.jdt.ui.tests.refactoring_linux.gtk.x86_6.0.html

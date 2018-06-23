@@ -1,0 +1,7 @@
+56777 – Allow configuration resources to be loaded from places other than straight off the filesystem
+We're using embedded Tomcat in Spring Boot (https://github.com/spring-projects/spring-boot).
+Spring Boot allows a user to create an executable jar file that contains Tomcat and their application.
+The idea is that an application can, if so desired, be entirely contained within the jar with no external dependencies.
+Currently, this breaks down if a key store or trust store is required for SSL configuration as Tomcat requires them to be readable directly from the filesystem rather than from within a jar file.
+I'd like to propose an enhancement to Tomcat that introduces a resource abstraction, allowing configuration resources to be loaded from within an archive and perhaps even broader than that.
+(Jetty, for example, allows a resource to be loaded from a URL).

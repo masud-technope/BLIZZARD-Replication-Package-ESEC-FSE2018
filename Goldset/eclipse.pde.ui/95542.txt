@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/ClasspathUtilCore.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PDEClasspathContainer.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/SearchablePluginsManager.java

@@ -1,0 +1,32 @@
+Bug 427537 – [1.8][search] CCE with search match location set to cast type and intersection casts
+// --
+import java.io.Serializable;
+interface I {
+void foo();
+}
+public class X {
+public static void main(String[] args) {
+I i = (I & Serializable) () -> {};
+}
+}
+Search for I using Java search + type references + cast locations.
+java.lang.ClassCastException: org.eclipse.jdt.internal.compiler.ast.IntersectionCastTypeReference incompatible with org.eclipse.jdt.internal.compiler.ast.QualifiedTypeReference
+at org.eclipse.jdt.internal.core.search.matching.TypeReferenceLocator.match(TypeReferenceLocator.java:99)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocatorParser.consumeCastExpressionLL1WithBounds(MatchLocatorParser.java:227)
+at org.eclipse.jdt.internal.compiler.parser.Parser.consumeRule(Parser.java:7015)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:10965)
+at org.eclipse.jdt.internal.compiler.parser.Parser.parse(Parser.java:11314)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocatorParser.parseBodies(MatchLocatorParser.java:834)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocatorParser.parseBodies(MatchLocatorParser.java:808)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.getMethodBodies(MatchLocator.java:889)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.parseAndBuildBindings(MatchLocator.java:1671)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.locateMatches(MatchLocator.java:1091)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.locateMatches(MatchLocator.java:1196)
+at org.eclipse.jdt.internal.core.search.matching.MatchLocator.locateMatches(MatchLocator.java:1328)
+at org.eclipse.jdt.internal.core.search.JavaSearchParticipant.locateMatches(JavaSearchParticipant.java:96)
+at org.eclipse.jdt.internal.core.search.BasicSearchEngine.findMatches(BasicSearchEngine.java:232)
+at org.eclipse.jdt.internal.core.search.BasicSearchEngine.search(BasicSearchEngine.java:516)
+at org.eclipse.jdt.core.search.SearchEngine.search(SearchEngine.java:584)
+at org.eclipse.jdt.internal.ui.search.JavaSearchQuery.run(JavaSearchQuery.java:144)
+at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)

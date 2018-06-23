@@ -1,0 +1,8 @@
+42747 – Context className attribute ignored for contexts deployed from descriptors in web/META-INF/context.xml
+When deploying an app from a context descriptor inside a webapp/META-INF
+directory via context.xml, the className is ignored and the context is created
+as a StandardContext.
+ I've tried to use a ReplicatedContext class in a cluster
+from this configuration and it does not work.
+ However, it does work if i move
+the context.xml to $CATALINA_BASE/conf/[EngineName]/[HostName]/webapp.xml.

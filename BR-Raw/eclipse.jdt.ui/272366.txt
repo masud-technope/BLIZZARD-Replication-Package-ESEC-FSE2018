@@ -1,0 +1,4 @@
+Bug 272366 – [ltk] LTK RefactoringWizardOpenOperation opens window with no window title text
+If your wizard does not have any user input pages, but performs changes that have a preview, the preview window is opened automatically.
+However, this preview window does not contain the text that was set using RefactoringWizard#setWindowTitle().
+If a user page was specified, it does contain work.

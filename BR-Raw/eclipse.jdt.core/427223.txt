@@ -1,0 +1,19 @@
+Bug 427223 – [1.8][compiler] NPE during resolution of generic method arg type
+EJC does not like the line mentioned below, jdk8 b127 does compile it.
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+public class Test {
+List<Object> toList(Object o) {
+if (o instanceof Optional) {
+// DOES NOT COMPILE
+return Arrays.asList(((Optional<?>) o).orElse(null));
+} else {
+return null;
+}
+}
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Errors occurred during the build.
+Errors running builder 'Java Builder' on project 'xxx'.
+java.lang.NullPointerException
+WORKAROUND: Casting
+return Arrays.asList( (Object) ((Optional<?>) o).orElse(null) );

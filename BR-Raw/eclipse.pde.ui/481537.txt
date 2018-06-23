@@ -1,0 +1,1 @@
+Bug 481537 – Run copyright right tool on org.eclipse.pde.ui.tests

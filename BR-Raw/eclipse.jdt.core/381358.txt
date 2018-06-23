@@ -1,0 +1,50 @@
+Bug 381358 – [1.8] Compiler should gracefully reject JSR 335 constructs at source levels 1.7-
+BETA_JAVA8 top of branch.
+(1) The following program does not elicit an error message at the
+moment, when compiled as a 1.7- project.
+It should be rejected with
+a message that reads "Default methods are available only at source
+level 1.8 or above"
+// -----
+interface I {
+public void foo() default { System.out.println("Place holder"); }
+}
+// -----
+(2) The following program while compiled as a 1.7- project triggers
+three error messages:
+// ---
+class X {
+X x = () -> 10;
+}
+// ----
+- Syntax error on token ")", invalid TypeElidedFormalParameter
+- Syntax error, insert "ElidedSemicolonAndRightBrace" to complete
+LambdaBody
+- Syntax error, insert ")" to complete Expression.
+It should emit a single error message saying "Lambda expressions are
+available only at source level 1.8 or above"
+(3) The following program should be rejected at 1.7-, but is not at
+the moment:
+// ---
+class X {
+X x = System::exit;
+}
+// ----
+(4) The following program generates the message "Syntax error on token
+COLON_COLON, delete this token", it should instead complain that
+"Reference expressions are available only at source level 1.8 or above"
+(2) & (4) are a bit tricky in that, at source levels 1.7-, for performance
+reasons we don't look ahead in the token stream to disambiguate between
+the different uses of the tokens '(' and '<'.
+That means that we don't build
+a parse subtree for these constructs at 1.7- levels.
+So the parser will
+see a badly mangled program and that could result in a slew of errors as
+in case (2) above.
+One strategy is to recognize the operators '::' and '->' which are
+returned as tokens at any source level and issue the "available at
+source level 1.8+" messages upon encountering these tokens.
+In order
+to make sure that this message is not drowned in a flurry of others,
+we may want to experiment with tossing out all other problem markers
+if any of these tokens are seen and complained against.

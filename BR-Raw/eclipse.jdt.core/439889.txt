@@ -1,0 +1,37 @@
+Bug 439889 – [1.8][compiler] [lambda] Deserializing lambda fails with IllegalArgumentException: "Invalid lambda deserialization"
+This looks suspiciously like bug 428642 (currently marked as fixed) is not really fixed.
+I tested this on Eclipse 4.4.0 (Luna release version) using 64-bit JDK 1.8.05.
+The following code works as expected with javac but fails to execute correctly (throwing an IllegalArgumentException instead) when run from inside Eclipse.
+-----------------------------
+package com.vodecc.voipmng.boundary.wicket.alarming;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+public class SerializationTest implements Serializable
+{
+interface SerializableRunnable extends Runnable, Serializable {
+}
+SerializableRunnable runnable;
+public SerializationTest() {
+final SerializationTest self = this;
+// runnable = () -> self.doSomething();  // WORKING
+runnable = () -> this.doSomething(); // FAILS
+}
+public void doSomething() {
+System.out.println("Hello,world!");
+}
+public static void main(String[] args) throws Exception
+{
+final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+try (ObjectOutputStream out = new ObjectOutputStream(buffer) ) {
+out.writeObject(new SerializationTest());
+}
+try (ObjectInputStream in = new ObjectInputStream( new ByteArrayInputStream(buffer.toByteArray())))
+{
+final SerializationTest s = (SerializationTest) in.readObject();
+s.doSomething();
+}
+}
+}

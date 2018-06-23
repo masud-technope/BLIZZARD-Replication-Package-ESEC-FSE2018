@@ -1,0 +1,4 @@
+48267 – Patch to fix generics in javax packages
+Created attachment 24597 [details]
+Patch to fix generics in javax packages
+Patch to fix generics in javax packages

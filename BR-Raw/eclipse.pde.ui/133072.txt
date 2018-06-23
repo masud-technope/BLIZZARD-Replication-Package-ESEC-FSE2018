@@ -1,0 +1,40 @@
+Bug 133072 – Cannot launch an "Eclipse Application" without the -ws argument
+When trying to launch an Eclipse Application that does NOT use SWT under OSX from 3.1 or 3.2M5, you get the following problems:
+When running against 1.4.2_09, you get the dreaded "2006-03-23
+15:35:27.340 java[1053] Apple AWT Java VM was loaded on first thread
+-- can't start AWT."  The application then stops.
+When running against 1.5.0_06 you get these messages on startup:
+2006-03-23 15:29:59.468 java[1047] [Java CocoaComponent compatibility
+mode]: Enabled
+2006-03-23 15:29:59.468 java[1047] [Java CocoaComponent compatibility
+mode]: Setting timeout for SWT to 0.100000
+Under 1.5.0_06, the app appears to run, but there is no menu-bar,
+dock-icon, or window that shows up.
+ Basically nothing happens, but
+the event thread is running and you have to kill it.
+Under 3.0 (i think) you used to be able to tell Eclipse not to force
+any "first-thread" flags by not passing the -ws carbon flag to the
+application.
+ However, it appears that we no longer have the ability to suppress that flag.
+We hacked around this by removing the check for the "-ws" flag in the  org.eclipse.jdt.internal.launching.macosx.MacOSXVMInstall.java class and rebuilding that plugin.
+ But this is not a good all-around solution.
+ Better would be to be able to override and not pass the -ws flag at all if we wanted to per Launch configuration.
+Here's the test class we used:
+package Fred;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import org.eclipse.core.runtime.IPlatformRunnable;
+public class Main implements IPlatformRunnable {
+public Object run(Object args) throws Exception {
+SwingUtilities.invokeLater(new Runnable() {
+public void run() {
+new JFrame("Fred").setVisible(true);
+}
+});
+synchronized(this)
+{
+wait();
+}
+return IPlatformRunnable.EXIT_OK;
+}
+}

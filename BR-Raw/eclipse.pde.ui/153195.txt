@@ -1,0 +1,14 @@
+Bug 153195 – Create OSGI Bundle Manifest generates exports for CVS metadata
+The create osgi bundle manifest link on the manifest editor overview page modifies plugin.xml and generates a manifest.mf file.
+The Export-Package entry of the generated manifest contains entries for the root folder, and for all of the CVS meta-data folders.
+ These extra exports should not be generated because they are in fact *not* packages, and cause errors to be flagged in the mainfest when the project is built.
+Ex.
+Export-Package: .,
+CVS,
+cgenrcp,
+cgenrcp.CVS,
+cgenrcp.actions,
+cgenrcp.actions.CVS,
+cgenrcp.dnd,
+cgenrcp.editors,
+cgenrcp.editors.CVS,

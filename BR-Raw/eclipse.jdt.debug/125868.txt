@@ -1,0 +1,34 @@
+Bug 125868 – Invalid Thread Access when launching
+Running HEAD.
+1.
+ restart eclipse
+2.
+ start a jdt debug session and resulted in this exception
+It seems to only happen on the first launch.
+ Subsequent launches do not result in exceptions.
+org.eclipse.swt.SWTException: Invalid thread access
+at java.lang.Throwable.<init>(Throwable.java)
+at java.lang.Throwable.<init>(Throwable.java)
+at org.eclipse.swt.SWTException.<init>(SWTException.java:87)
+at org.eclipse.swt.SWT.error(SWT.java:3283)
+at org.eclipse.swt.SWT.error(SWT.java:3206)
+at org.eclipse.swt.SWT.error(SWT.java:3177)
+at org.eclipse.swt.widgets.Display.error(Display.java:974)
+at org.eclipse.swt.widgets.Display.checkDevice(Display.java)
+at org.eclipse.swt.widgets.Display.disposeExec(Display.java:919)
+at org.eclipse.jdt.internal.ui.viewsupport.ImageDescriptorRegistry.hookDisplay(ImageDescriptorRegistry.java:85)
+at org.eclipse.jdt.internal.ui.viewsupport.ImageDescriptorRegistry.<init>(ImageDescriptorRegistry.java:48)
+at org.eclipse.jdt.internal.ui.viewsupport.ImageDescriptorRegistry.<init>(ImageDescriptorRegistry.java:36)
+at org.eclipse.jdt.internal.ui.JavaPlugin.internalGetImageDescriptorRegistry(JavaPlugin.java:861)
+at org.eclipse.jdt.internal.ui.JavaPlugin.getImageDescriptorRegistry(JavaPlugin.java:337)
+at org.eclipse.jdt.internal.debug.ui.JDIModelPresentation.getJavaElementImageRegistry(JDIModelPresentation.java:1881)
+at org.eclipse.jdt.internal.debug.ui.JDIModelPresentation.getVariableImage(JDIModelPresentation.java:870)
+at org.eclipse.jdt.internal.debug.ui.JDIModelPresentation.getImage(JDIModelPresentation.java:658)
+at org.eclipse.debug.internal.ui.LazyModelPresentation.getImage(LazyModelPresentation.java:106)
+at org.eclipse.debug.internal.ui.DelegatingModelPresentation.getImage(DelegatingModelPresentation.java:141)
+at org.eclipse.debug.internal.ui.views.launch.DebugElementHelper.getImageDescriptor(DebugElementHelper.java:55)
+at org.eclipse.debug.internal.ui.elements.adapters.AsynchronousDebugLabelAdapter.getImageDescriptors(AsynchronousDebugLabelAdapter.java:85)
+at org.eclipse.debug.internal.ui.viewers.provisional.AsynchronousLabelAdapter.computeLabels(AsynchronousLabelAdapter.java:81)
+at org.eclipse.debug.internal.ui.elements.adapters.AsynchronousDebugLabelAdapter.computeLabels(AsynchronousDebugLabelAdapter.java)
+at org.eclipse.debug.internal.ui.viewers.provisional.AsynchronousLabelAdapter$2.run(AsynchronousLabelAdapter.java:48)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)

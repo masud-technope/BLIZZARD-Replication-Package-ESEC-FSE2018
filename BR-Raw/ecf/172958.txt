@@ -1,0 +1,5 @@
+Bug 172958 – [IRC][Patch] New / commands for Root & Channel Containers
+/ commands now work in the Channel Container and I setup a /op command for both containers.
+If this patch is acceptable I'll continue and write out all the /mode related commands for the ui.
+Thanks,
+Mark

@@ -1,0 +1,12 @@
+webapps/docs/changelog.xml
+webapps/examples/WEB-INF/classes/websocket/drawboard/Client.java
+webapps/examples/WEB-INF/classes/websocket/drawboard/DrawMessage.java
+webapps/examples/WEB-INF/classes/websocket/drawboard/DrawboardEndpoint.java
+webapps/examples/WEB-INF/classes/websocket/drawboard/Room.java
+webapps/examples/WEB-INF/classes/websocket/drawboard/WsConfigListener.java
+webapps/examples/WEB-INF/classes/websocket/drawboard/wsmessages/AbstractWebsocketMessage.java
+webapps/examples/WEB-INF/classes/websocket/drawboard/wsmessages/BinaryWebsocketMessage.java
+webapps/examples/WEB-INF/classes/websocket/drawboard/wsmessages/CloseWebsocketMessage.java
+webapps/examples/WEB-INF/classes/websocket/drawboard/wsmessages/StringWebsocketMessage.java
+webapps/examples/websocket/drawboard.xhtml
+webapps/examples/websocket/index.xhtml

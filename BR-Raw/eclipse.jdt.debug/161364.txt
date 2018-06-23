@@ -1,0 +1,5 @@
+Bug 161364 – Evaluating Code that contains Generics does not work while debugging
+When using the Display or Inspect feature while debugging my code I'm getting an error "Evaluations must contain either an expression or a block of well-formed statements".
+This is actually independent on the code but does occure if the instruction pointer is inside the code of a method with signature:
+private <T extends WebInput> List<T> getInputs(Class<T> type).
+Outside of such a method the evaluation works as expected.

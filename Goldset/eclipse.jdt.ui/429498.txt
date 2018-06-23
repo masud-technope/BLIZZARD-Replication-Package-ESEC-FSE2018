@@ -1,0 +1,17 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/ChangeSignature18/canModify/A_testLambda0_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ChangeSignature18/canModify/A_testLambda0_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ChangeSignature18/canModify/A_testLambda1_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ChangeSignature18/canModify/A_testLambda1_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ChangeSignature18/canModify/A_testLambda2_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ChangeSignature18/canModify/A_testLambda2_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ChangeSignature18/canModify/A_testLambda3_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ChangeSignature18/canModify/A_testLambda3_out.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ChangeSignature18/canModify/A_testMethodReference0_in.java
+org.eclipse.jdt.ui.tests.refactoring/resources/ChangeSignature18/canModify/A_testMethodReference0_out.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/AllRefactoringTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ChangeSignatureTests.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/ChangeSignatureTests18.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/RefactoringTest.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/RefactoringCoreMessages.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/refactoring.properties
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ChangeSignatureProcessor.java

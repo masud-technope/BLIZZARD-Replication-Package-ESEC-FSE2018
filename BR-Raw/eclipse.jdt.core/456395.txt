@@ -1,0 +1,4 @@
+Bug 456395 – can't compile the Java8 code
+Created attachment 249670 [details]
+code sample
+Type mismatch: cannot convert from Map<Object,Set<Object>> to Map<String,Set<String>>

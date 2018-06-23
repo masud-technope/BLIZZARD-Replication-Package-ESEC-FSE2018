@@ -1,0 +1,11 @@
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/spy/TcpIpSpyMessages.properties
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/spy/JdwpReplyPacket.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/spy/JdwpPacket.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/spy/SpyMessages.properties
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/spy/UnableToParseData.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/spy/VerbosePacketStream.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/spy/TcpIpSpyMessages.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/spy/JdwpConversation.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/spy/TcpipSpy.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/spy/JdwpCommandPacket.java
+org.eclipse.jdt.debug/jdi/org/eclipse/jdi/internal/spy/VerboseWriter.java

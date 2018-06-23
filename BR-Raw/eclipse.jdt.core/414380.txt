@@ -1,0 +1,5 @@
+Bug 414380 – [compiler][internal] QualifiedNameReference#indexOfFirstFieldBinding does not point to the first field
+Trying to find the token and sourcePosition that correspond to QNR#binding I wanted to use QNR#indexOfFirstFieldBinding but observed that this field is reassigned for *every* field in the chain.
+So either the name or the usage of this field is wrong.
+In bug 392384 I'm temporarily adding another field indexOfFirstFirstFieldBinding so I can test that errors are reported at the desired location.
+That change may need to be reverted via this bug.

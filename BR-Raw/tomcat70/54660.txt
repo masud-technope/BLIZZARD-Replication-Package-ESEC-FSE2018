@@ -1,0 +1,13 @@
+54660 – AccessLogValve fileDateFormat can not be changed through JMX
+When an AccessLogValve is added to a catalina host with the JMX addVale() operation on the Host object name, the valve will start with the default fileDateFormat.
+Changing the attribute on the valve through it's JMX object name has no effect because the valve is already started.
+Executing a rotate() operation on the valve does also have no effect.
+Steps to Reproduce:
+- Start tomcat server
+- Add Host using JMX
+- Add valve to Host using JMX
+- Set valve attribute fileDateFormat to something else than yyyy-MM-dd, for example yy-MM
+Actual Results:
+The access log file format will include the default fileDateFormat of yyyy-MM-dd
+Expected Results:
+The access log file format with yy-MM, as from the example.

@@ -1,0 +1,6 @@
+Bug 112503 – Cannot change the background color of the 'Display' view
+I have my main Java coloring set to a black background and bright text.
+Unfortunately, the 'Display' tab won't let me set the background color, it just
+defaults to whatever windows uses.
+However, it follows the syntax-highlighting
+colors from the java pane, so most of the text I type in there is thus unreadable...

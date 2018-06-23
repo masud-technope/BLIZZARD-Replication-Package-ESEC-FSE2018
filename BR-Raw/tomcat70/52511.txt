@@ -1,0 +1,5 @@
+52511 – Exception logged in annotation scanning for web apps without /WEB-INF/classes
+Created attachment 28196 [details]
+error and exception trace
+Any web app not containing a /WEB-INF/classes directory appears to cause an error and exception trace to be logged during web app startup.
+ This is new Tomcat 7.0.25 (or 7.0.24) and did not occur in 7.0.23.

@@ -1,0 +1,18 @@
+Bug 482775 – [javadoc] Autocomplete does not propose proceeding enum constants
+I am using Mars/4.5.1.
+Autocomplete does not propose constants that are defined after the cursor.
+This happens in the absence of any compiler error.
+Example:
+public enum MyEnum {
+/**
+* @see #B|
+*/
+ALPHA,
+/**
+* @see #A|
+*/
+BETA1,
+BETA2
+}
+If you press Ctrl+Space at | in BETA's javadoc, you will be recommended ALPHA.
+If you do this in ALPHA's javadoc, you will not be recommended anything.

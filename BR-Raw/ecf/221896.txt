@@ -1,0 +1,8 @@
+Bug 221896 – [filetransfer] add priority attribute for multiple protocol factory registrations
+The extension point org.eclipse.ecf.provider.retrieveFileTransferProtocolFactory will accept only the last registration of a protocol factory for a given protocol...e.g.
+if more than one extension tries to register itself as the handler for 'http', the last one will be accepted and all others will not.
+In comment #8 of bug 190654
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=190654#c8
+a strategy is outlined to add an optional priority attribute to allow extensions to give themselves a priority.
+ This bug is to add this enhancement to these extension points.
+This is non-optimal as discussed in further comments on bug 190654, but will  serve in the Ganymede timeframe.

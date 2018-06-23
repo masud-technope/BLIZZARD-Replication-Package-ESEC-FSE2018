@@ -1,0 +1,3 @@
+Bug 264997 – [preferences] Compiler page should show current EE
+N20090215-2000.
+The 'Compiler' page should show the current EE.

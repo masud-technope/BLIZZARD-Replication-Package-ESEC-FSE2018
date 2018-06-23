@@ -1,0 +1,3 @@
+Bug 422178 – [JUnit] ComparisonFailure treated as normal failure when rerunning
+When you rerun a test case in the same VM, a ComparisonFailure is treated as a normal failure (i.e.
+the compare window can't be opened).

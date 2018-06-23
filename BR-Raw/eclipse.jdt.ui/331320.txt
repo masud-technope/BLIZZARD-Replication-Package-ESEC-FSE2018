@@ -1,0 +1,4 @@
+Bug 331320 – [navigation] Open Return Type hyperlink should not show up when return type is void
+HEAD
+I know we settled to the current solution in bug 88434, but in daily usage, I find it confusing that the "Open Return Type" hyperlink shows up when the return type is void (especially on a method declaration where I want to jump to the implementation).
+Could we disable the hyperlink for primitive and void return types?

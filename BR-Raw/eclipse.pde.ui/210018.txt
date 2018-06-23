@@ -1,0 +1,4 @@
+Bug 210018 – [spy] improve saving image functionality
+Currently, the spy does image scraping to save images found in editors and views.
+The use of ImageLoader to save images isn't the right approach here because we lose things like transparency and original name of the image.
+We should be able to query for the image using the extension registry and get the acutal image we need and copy that to where the user would like to save it.

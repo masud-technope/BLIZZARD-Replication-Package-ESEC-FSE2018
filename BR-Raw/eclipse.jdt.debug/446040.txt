@@ -1,0 +1,107 @@
+Bug 446040 – Invalid thread access in RuntimeClasspathViewer$1.preferenceChange (err_grp: 87791828)
+Hello committers,
+we received a new error report for Eclipse 4.4.1.M20140925-0400.
+General Information:
+anonymous-id:         24ad43ce-0a9e-4ffd-a544-d73b21063102
+eclipse-build-id:     4.4.1.M20140925-0400
+eclipse-product:      org.eclipse.epp.package.jee.product
+operating system:     Windows7 6.1.0 (x86_64) - win32
+java-runtime-version: 1.8.0_20-b26
+The following plug-ins were present on the execution stack (*):
+1.
+org.eclipse.core.runtime_3.10.0.v20140318-2214
+2.
+org.eclipse.jdt.debug.ui_3.6.300.v20140512-1926
+3.
+org.eclipse.jdt.debug_3.8.101.v20140902-1548
+4.
+org.eclipse.jdt_3.10.0.v20140925-0400
+5.
+org.eclipse.jface_3.10.1.v20140813-1009
+6.
+org.eclipse.swt_3.103.1.v20140903-1938
+Error Status:
+code:                   2
+plugin:                 org.eclipse.equinox.preferences_3.5.200.v20140224-1527
+message:                Problems occurred when invoking code from plug-in: "org.eclipse.equinox.preferences".
+fingerprint:            87791828
+exception class:        org.eclipse.swt.SWTException
+exception message:      Invalid thread access
+number of children:     0
+org.eclipse.swt.SWTException: Invalid thread access
+at org.eclipse.swt.SWT.error(SWT.java:4441)
+at org.eclipse.swt.SWT.error(SWT.java:4356)
+at org.eclipse.swt.SWT.error(SWT.java:4327)
+at org.eclipse.swt.widgets.Widget.error(Widget.java:476)
+at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:367)
+at org.eclipse.swt.widgets.Tree.getSelection(Tree.java:3446)
+at org.eclipse.jface.viewers.TreeViewer.getSelection(TreeViewer.java:232)
+at org.eclipse.jface.viewers.TreeViewer.setSelection(TreeViewer.java:311)
+at org.eclipse.jface.viewers.AbstractTreeViewer.setSelectionToWidget(AbstractTreeViewer.java:2524)
+at org.eclipse.jface.viewers.StructuredViewer.setSelectionToWidget(StructuredViewer.java:1751)
+at org.eclipse.jface.viewers.AbstractTreeViewer.setSelectionToWidget(AbstractTreeViewer.java:2977)
+at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1443)
+at org.eclipse.jface.viewers.TreeViewer.preservingSelection(TreeViewer.java:366)
+at org.eclipse.jface.viewers.StructuredViewer.preservingSelection(StructuredViewer.java:1397)
+at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1525)
+at org.eclipse.jface.viewers.ColumnViewer.refresh(ColumnViewer.java:533)
+at org.eclipse.jface.viewers.StructuredViewer.refresh(StructuredViewer.java:1481)
+at org.eclipse.jdt.internal.debug.ui.classpath.RuntimeClasspathViewer$1.preferenceChange(RuntimeClasspathViewer.java:58)
+at org.eclipse.core.internal.preferences.EclipsePreferences$3.run(EclipsePreferences.java:896)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.preferences.EclipsePreferences.firePreferenceEvent(EclipsePreferences.java:899)
+at org.eclipse.core.internal.preferences.EclipsePreferences.put(EclipsePreferences.java:912)
+at org.eclipse.jdt.internal.debug.ui.jres.JREsUpdater$1.run(JREsUpdater.java:91)
+at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+Messages, stacktraces, and nested status objects may be shortened.
+Please visit
+http://dev.eclipse.org/recommenders/committers/confess/0.5/reports/54328c1ee4b0a33678b204b7
+for the complete error log.
+Some general information and guidelines about how to use this bug report:
+1.
+Feel free to move this bug to your own product and components.
+Please note
+that this bug is only accessible to Eclipse committers.
+If you move this bug
+please make sure that it's still in the "Security Advisor" group.
+2.
+The bug contents of the fields status, resolution, keywords, and whitelist
+are presented to reporters.
+If you needs more information, please set the
+keyword "needinfo".
+This will trigger a specialized dialog asking the user
+to provide further details.
+3.
+Use the following resolutions for the following situations:
+* CLOSED / FIXED: This bug has been fixed.
+Please provide additional
+information in the whiteboard field.
+* CLOSED / WORKSFORME: Use this resolution if you can't reproduce this issue
+and request further information.
+Please use the whiteboard text to specify
+more details what a user should provide and how.
+* CLOSED / INVALID: Use this resolution if the reported problem is a
+'user-configuration' problem.
+Please consider giving hints how to fix
+these issues in the whiteboard field.
+* CLOSED / NOT ECLIPSE: Use this if the problem is caused by another plugin
+not developed at Eclipse.org
+* CLOSED / MOVED: If this bug has been moved else where.
+Please provide more
+information (e.g.
+a link) in the whiteboard field.
+4.
+Please remember that only committers can view and comment on this bug.
+You
+may, however, manually add the reporting user to the bug's cc list.
+But keep
+in mind that the report may contains sensitive information.
+5.
+If you are missing a feature, please file a enhancement request here:
+https://bugs.eclipse.org/bugs/enter_bug.cgi?product=Recommenders.Incubator&component=Stacktraces
+Thank you for your assistance.
+Your friendly error-reports-inbox.
+--
+* Note: The list of present bundles and their respective versions was
+calculated by package naming heuristics.
+This may or may not reflect reality.

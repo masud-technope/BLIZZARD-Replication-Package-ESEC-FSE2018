@@ -1,0 +1,15 @@
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/AllPDETests.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/build/properties/BaseValidator.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/build/properties/BuildPropertiesValidator.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/build/properties/AllValidatorTests.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/build/properties/BaseValidator.java
+ui/org.eclipse.pde.ui.tests/src/org/eclipse/pde/ui/tests/build/properties/BuildPropertiesValidator.java
+ui/org.eclipse.pde.ui.tests/tests/build.properties/org.eclipse.pde.tests.build.properties.one.zip
+ui/org.eclipse.pde.ui.tests/tests/build.properties/org.eclipse.pde.tests.build.properties.two.zip
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/PreferenceInitializer.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/BuildErrorReporter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/CompilerFlags.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/SourceEntryErrorReporter.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/PDECompilersConfigurationBlock.java

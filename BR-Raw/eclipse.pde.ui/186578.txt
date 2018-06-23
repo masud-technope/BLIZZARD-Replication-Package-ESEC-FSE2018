@@ -1,0 +1,10 @@
+Bug 186578 – Should Plug-ins view have "Show In" as one menu with submenus?
+3.3 N0510
+The Package Explorer and other navigators have one "Show In" menu, with a submenu with entries for each of the different target views.
+The Plug-ins view has two menus, "Show in Resource Navigator" and "Show in Package Explorer".
+It would be good to have some consistency in this regard and I'd suggest we follow the Package Explorer pattern, since a submenu makes it easier to add targets and takes up less top level menu space.
+Thus:
+1.
+ The plug-ins view should be one menu with a submenu with "Navigator" and "Packapge Explorer".
+2.
+ The Show-In menu should probably be bound to Alt-Shift-W like in the Package Explorer.

@@ -1,0 +1,8 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/SearchablePluginsManager.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/IPreferenceConstants.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/AddToJavaSearchJob.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/MainPreferencePage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/preferences/TargetPlatformPreferencePage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/plugins/JavaSearchActionGroup.java

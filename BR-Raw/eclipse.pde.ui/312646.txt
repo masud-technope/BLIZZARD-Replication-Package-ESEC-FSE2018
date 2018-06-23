@@ -1,0 +1,12 @@
+Bug 312646 – empty feature list when 1 is selected
+Using HEAD:
+* New Eclipse Application launch configuration
+* Choose "features selected below"
+* De-select all features
+* check "Only show selected"
+* Select "org.eclipse.pde" feature (appears in list)
+* Select "plug-ins selected below only"
+* Select "features selected below"
+The selection count shows 1 of N, but the list/tree is empty
+At this point, switching back to "plug-ins selected below" and then back to "features selected below", the selection count is now 0...
+so the select gets removed somehow.

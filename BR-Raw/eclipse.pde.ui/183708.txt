@@ -1,0 +1,8 @@
+Bug 183708 – [Plug-in Dependencies View] Nothing happens when opening view from manifest editor.
+1.
+Open the Plug-in Dependencies view and put it in the State mode.
+2.
+Open the manifest editor for pde.core, go to dependencies page, expand the Dependency Analysis section.
+3.
+click on the 'Show the plug-in dependency hierarchy'.
+ Nothing happens.

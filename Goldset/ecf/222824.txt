@@ -1,0 +1,1 @@
+providers/bundles/org.eclipse.ecf.provider.xmpp/src/org/eclipse/ecf/internal/provider/xmpp/smack/ECFConnection.java

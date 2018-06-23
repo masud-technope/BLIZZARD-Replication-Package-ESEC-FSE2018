@@ -1,0 +1,7 @@
+50293 – javax.el.CompositeELResolver synchronization issue
+Created attachment 26310 [details]
+Synchronize change in CompositeELResolver.add
+The javax.el.CompositeELResolver.add method needs to synchronize around the update to the resolvers.
+ If two threads call add, then it is possible for both threads get past the size check, then one thread updates the size, and when the next thread tries to update the size, it fails with an ArrayIndexOutOfBoundsException.
+Also, it makes sense to increase the default size of the ELResolver array since even the jasper EL adds 5 ELResolvers.
+ I propose a default of 8.

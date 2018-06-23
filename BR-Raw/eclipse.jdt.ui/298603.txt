@@ -1,0 +1,6 @@
+Bug 298603 – [JUnit] Add a filter for ignored tests
+Build Identifier: M20090917-0800
+The JUnit view has a filter to show only failures.
+It would be nice to have an additional filter (toolbar and menu) that shows only the ignored tests.
+Otherwise it is very hard to find the ignored tests in a large test suite.
+Reproducible: Always

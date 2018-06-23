@@ -1,0 +1,75 @@
+Bug 428862 – [1.8] Unable to install breakpoint
+Using  Kepler SR2 + Java 8 RC1 + Eclipse Java Development Tools Patch for Java 8 Support (BETA) 1.0.0.v20140223-2022, consider the below code snippet:
+package p1;
+import java.io.*;
+import java.util.function.IntConsumer;
+public class QuickSerializedLambdaTest {
+interface X extends IntConsumer,Serializable{}
+public static void main(String[] args) throws IOException, ClassNotFoundException {
+X x1 = i -> System.out.println(i);// lambda expression
+X x2 = System::exit; // method reference
+ByteArrayOutputStream debug=new ByteArrayOutputStream();
+try(ObjectOutputStream oo=new ObjectOutputStream(debug))
+{
+oo.writeObject(x1); // TODO: Add breakpoint in this line
+oo.writeObject(x2);
+}
+try(ObjectInputStream oi=new ObjectInputStream(new ByteArrayInputStream(debug.toByteArray())))
+{
+X x=(X)oi.readObject();
+x.accept(42);// shall print "42"
+x=(X)oi.readObject();
+x.accept(0);// shall exit
+}catch(Exception e){
+e.printStackTrace();
+}
+throw new AssertionError("should not reach this point");
+}
+}
+Add a breakpoint inside the main method and debug as Java Application.
+When the breakpoint is hit, a popup dialog is displayed saying: "Unable to install breakpoint in p1.QuickSerializedLambdaTest$X due to missing line number attributes.
+Modify compiler options to generate line number attributes.
+Reason:
+Absent Line Number Information"
+As mentioned in bug 135027, executed  "javap -l".
+Below is the result:
+Compiled from "QuickSerializedLambdaTest.java"
+public class p1.QuickSerializedLambdaTest {
+public p1.QuickSerializedLambdaTest();
+LineNumberTable:
+line 5: 0
+LocalVariableTable:
+Start  Length  Slot  Name   Signature
+0       5     0  this   Lp1/QuickSerializedLambdaTest;
+public static void main(java.lang.String[]) throws java.io.IOException, java.l
+ang.ClassNotFoundException;
+LineNumberTable:
+line 8: 0
+line 9: 6
+line 10: 12
+line 11: 20
+line 11: 26
+line 13: 36
+line 14: 42
+line 15: 48
+line 16: 107
+line 16: 113
+line 18: 133
+line 19: 143
+line 20: 152
+line 21: 162
+line 22: 170
+line 23: 231
+line 25: 236
+LocalVariableTable:
+Start  Length  Slot  Name   Signature
+0     246     0  args   [Ljava/lang/String;
+6     240     1    x1   Lp1/QuickSerializedLambdaTest$X;
+12     234     2    x2   Lp1/QuickSerializedLambdaTest$X;
+20     226     3 debug   Ljava/io/ByteArrayOutputStream;
+36      37     6    oo   Ljava/io/ObjectOutputStream;
+133      62     6    oi   Ljava/io/ObjectInputStream;
+143      27     7     x   Lp1/QuickSerializedLambdaTest$X;
+231       5     4     e   Ljava/lang/Exception;
+}
+Why is this dialog coming up?

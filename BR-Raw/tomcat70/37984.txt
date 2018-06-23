@@ -1,0 +1,12 @@
+37984 – JNDIRealm.java not able to handle MD5 password
+I'm using JNDIRealm to authenticate to OpenLDAP 2.2.28.
+ Within OpenLDAP I've
+configured the userPassword attribute for each user to contain the MD5 digest,
+and each is prefixed with the string "{MD5}".
+ I am not an LDAP expert by any
+means but I believe this prefix is a standard convention.
+ Anyway assuming this
+is a convention then JNDIRealm needs to strip off the "{MD5}" portion much like
+it does with "{SHA1}".
+ See attached patch which accomplishes this and I
+verified it works in my environment.

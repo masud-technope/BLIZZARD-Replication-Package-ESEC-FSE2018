@@ -1,0 +1,10 @@
+Bug 95935 – Schema Preview should open in external browser
+3.1 M7
+go to the Window > prefereces > Plug-in Development > Target Platform
+preference page.
+Switch to the Source Code Locations tab.
+Click on the 'org.eclipse.pde.core.source' link
+You will see that the schema description opens in the internal browser, which
+is usually desired, but not in this case since the preferences dialog is up.
+In this face, we should force the preview to come up in an external browser.
+So the open schema action should have two modes: default, and forceExternal.

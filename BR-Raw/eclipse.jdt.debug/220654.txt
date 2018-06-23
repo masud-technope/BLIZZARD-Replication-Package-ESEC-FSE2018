@@ -1,0 +1,7 @@
+Bug 220654 – EEVMPage creates VM from EE file 3 times after selecting file
+Put a breakpoint in JavaRuntime#createVMFromDefinitionFile().
+Installed JRE Pref Page, click Add..., select Execution Environment Description, browse to an ee file.
+Once an ee file has been selected, the breakpoint will be hit three times.
+ Each time this breakpoint is hit, we are doing a decent amount of work, especially in the call to EEVMType.getLibaryLocations() because of I/O and regex calls.
+The calls are always coming from the modify listener on the text box.
+ However, the problem does not occur on the standard vm page.

@@ -1,0 +1,6 @@
+org.eclipse.jdt.ui.tests/ui/org/eclipse/jdt/ui/tests/quickfix/QuickFixTest18.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/ScopeAnalyzer.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/ASTResolving.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/ReturnTypeSubProcessor.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/proposals/MissingReturnTypeCorrectionProposal.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/proposals/MissingReturnTypeInLambdaCorrectionProposal.java

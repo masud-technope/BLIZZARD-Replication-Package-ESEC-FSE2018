@@ -1,0 +1,7 @@
+ui/org.eclipse.pde.ui/icons/obj16/profile_exc.gif
+ui/org.eclipse.pde.ui/plugin.properties
+ui/org.eclipse.pde.ui/plugin.xml
+ui/org.eclipse.pde.ui/schema/launchShortcuts.exsd
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEPluginImages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/OverviewPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties

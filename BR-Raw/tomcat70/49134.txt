@@ -1,0 +1,8 @@
+49134 – Server.stop() doesn't unregister all MBeans
+Created attachment 25306 [details]
+Unit test illustrating the problem
+Server.stop() should unregister all MBeans registered by Tomcat but it is not the case.
+It has side effects when starting a new Server as some Tomcat components like MapperListener components rely on what they find in the MBeanServer and try to work with objects that don't exist anymore (like Host for MapperListener)
+Provided unit test shows a part of the problem (in fact the helper class Tomcat should be improved to register all MBeans just like a "normal" Tomcat distribution).
+A workaround consists in cleaning up the JMX tree from all Catalina objects once server.stop() has been called.
+For info: it seems that such a problem has already been reported: bug #47046

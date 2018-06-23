@@ -1,0 +1,7 @@
+45279 – McastServiceImpl leaks sockets.
+McastServiceImpl does not close its socket in stop() as it claims.
+It merely calls leaveGroup(), which is sufficient to stop receiving messages, but does not close the socket.
+This causes a file descriptor leak each time the service is stopped.
+add;
+socket.close();
+after leaveGroup();

@@ -1,0 +1,54 @@
+Bug 286524 � [JUnit] JUnit test runner fails to run test classes with non-ASCII names if project encoding differs from default encoding
+Build ID: 20090619-0625
+Steps To Reproduce:
+Note: Instructions are for reproduction on MS Windows Server 2003, German version.
+On other platforms, the default encoding may be different.
+1.
+Start Eclipse and create a new workspace
+2.
+Once Eclipse has started, verify that the encoding (Preferences/General/Workspace/Encoding) is set to "Default (Cp1252)"
+3.
+Create a new Java project: New/Java Project, enter name "TestProj", click "Finish".
+4.
+Change project encoding: in project properties of TestProj, set Resource/Text file encoding to "Other","UTF-8"
+5.
+In Package Explorer, create new package "mypkg" in TestProj.
+6.
+Unter mypgk, create two Java classes, named "MyTest" and "MyTestÄ" (New/Class); note A-umlaut character in second name.
+7.
+Put this code into the two classes:
+package mypkg;
+import org.junit.Test;
+public class MyTest {
+@Test
+public void doTestWithUmlaut(){
+}
+}
+Replace the class name MyTest as approriate.
+8.
+Add JUnit 4 to build path: TestProj/Build Path/Add Libraries....
+ Eclipse should automatically offer JUnit 3 and JUnit 4 from its plugin folder.
+Add JUnit 4.
+TestProj should now compile without errors.
+9.
+Run all tests in package mypkg: mypkg context menu/Run As/JUnit test.
+Only the test in MyTest will run.
+The console will show an error message:
+Class not found mypkg.MyTest&#65533;
+java.lang.ClassNotFoundException: mypkg.MyTest&#65533;
+at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+at java.security.AccessController.doPrivileged(Native Method)
+at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:268)
+at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.loadClass(RemoteTestRunner.java:693)
+at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.loadClasses(RemoteTestRunner.java:429)
+at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:452)
+at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+Note that running the test class MyTestÄ individually (invoking Run As on the class) works fine.
+More information:
+I suspect that JUnit incorrectly uses the platform default encoding when loading all classes from a package.
+This appears to confuse it when a project does not use the default encoding.

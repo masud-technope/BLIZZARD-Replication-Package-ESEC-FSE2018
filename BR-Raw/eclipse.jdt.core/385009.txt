@@ -1,0 +1,53 @@
+Bug 385009 – [1.8][compiler] Running alternate parser/scanner in reconnaissance mode could add rigor.
+BETA_JAVA8:
+As discussed in bug 380194, JSR335 introduces a number of complexities
+and challenges in parsing the new constructs.
+The grammar could very well
+be intrinsically non-LALR(1) (not ascertained as of now).
+The current solution depends upon tight collaboration between the
+parser & scanner - in particular the scanner is responsible for
+disambiguating on demand (normal parser) or always (Diagnose parser)
+the usages of certain overloaded tokens.
+This disambiguation is achieved by looking ahead in the input stream as
+many tokens as necessary to discern the presence/absence of certain
+signature tokens like "->" and "::" and heralding these tokens well
+ahead of time to the parser by injecting certain synthetic tokens.
+This look ahead is implemented at the moment all in the scanner by
+leveraging the pre-existing and well tested jumpOverMethodBody() method.
+While it works well for the lambda parameter list case, it is a bit
+clunky when used to determine if we are at the head of a reference
+expression.
+The current bug is to develop a completely new look ahead mechanism
+driven by a new abstractions called VanguardParser and VanguardScanner
+that will eliminate all traces of kludginess from the current solution
+and provide an alternate mechanism with full rigor.
+The idea is that when the scanner sees a '(' and would like to
+disambiguate this usage of '(' to determine if it is starting a
+lambda parameter list, it would a launch a new parser and scanner
+pair at the current cursor position with the parser's explicit
+goal state set to the nonterminal ParenthesizedLambdaParameterList.
+The new Parser/Scanner operate in a parallel universe i.e they don't
+share any state with the original parser/scanner.
+If the new parser
+enters ACCEPT_STATE when given the explicit goal of reducing
+ParenthesizedLambdaParameterList, we surely know we are at the head
+of a lambda parameter list - it can't get better than that !
+Pros:
+- Very structured, maximally rigorous solution.
+- Much smaller implementation that the prior one.
+- Much more maintainable solution.
+- Will fail early when it should - it is guaranteed that the
+LALR(1) automaton will signal error at the first erroneous
+token.
+Prior implementation suffered from the drawback that
+it could look ahead several tokens well after the point of
+first error to fail.
+- Current work does not handle annotations in some places.
+JSR 308 introduces annotations all over the place.
+So a
+reference expression could look like:
+X<@Blah String>.
+@BlahBlah Y<@Foo Integer> @DimAnnot []::goo;
+By using a scouting parser driven by the exact same grammar
+rules as the normal parser ensures we handle all cases seamlessly.
+Patch will follow shortly.

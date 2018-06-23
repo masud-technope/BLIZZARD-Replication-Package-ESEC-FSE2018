@@ -1,0 +1,8 @@
+Bug 172398 – [API] no visible difference between getValue and getReplacementString in AbstractTemplateSection
+In the AbstractTemplateSection, we have two function: .getValue(String key) and .getReplacementString(String fileName, String key).
+ When generating a source folder, a call is made to .getValue().
+ When substituting keys in a file, .getReplacementString is called.
+ Unfortunately, they resolve the same key (packageName) differently.
+ This is the cause of bug 172230.
+We should look at why we have two functions that resolve keys.
+ I would recommend that if we keep both functions, they resolve the same key using the same code.

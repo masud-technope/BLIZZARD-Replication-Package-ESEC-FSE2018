@@ -1,0 +1,7 @@
+java/org/apache/catalina/connector/CoyoteAdapter.java
+java/org/apache/coyote/ajp/AbstractAjpProcessor.java
+java/org/apache/coyote/ajp/AjpAprProcessor.java
+java/org/apache/coyote/ajp/AjpNioProcessor.java
+java/org/apache/coyote/ajp/AjpProcessor.java
+java/org/apache/coyote/http11/AbstractHttp11Processor.java
+webapps/docs/changelog.xml

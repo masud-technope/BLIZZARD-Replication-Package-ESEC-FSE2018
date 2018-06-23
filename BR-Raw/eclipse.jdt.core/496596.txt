@@ -1,0 +1,15 @@
+Bug 496596 – [1.8] Intersection Lambda type incorrect
+interface Serial {}
+interface Cmp {
+int cmp();
+}
+interface Cmp2 {
+int cmp(int a);
+}
+public static Cmp method() {
+return (Cmp & Serial) () -> 1;
+}
+public static Cmp2 method2() {
+return (Cmp2 & Serial) (a) -> 1;
+}
+When I call expression.resolveTypeBinding() on the 1st lambda expression it returns the Cmp type whereas the second one returns an intersection type "Cmp2 & Serial".

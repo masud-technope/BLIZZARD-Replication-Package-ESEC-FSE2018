@@ -1,0 +1,5 @@
+org.apache.tomcat.util.http.parser.HttpParser.parseMediaType
+org.apache.tomcat.util.http.parser.MediaTypeCache.parse
+org.apache.catalina.connector.Response.setContentType
+org.apache.catalina.connector.ResponseFacade.setContentType
+javax.servlet.ServletResponseWrapper.setContentType

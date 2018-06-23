@@ -1,0 +1,2 @@
+Bug 219513 – [validation] delete empty and useless plugin.xml
+If you have a plug-in and it doesn't contribute any extensions or extension points, the plug-in.xml should be removed.

@@ -1,0 +1,3 @@
+Bug 383448 – ee.osgiminimum 1.2 is missing X500Principal
+I have org.eclipse.pde.api.tools.ee.osgiminimum12_1.0.200.v20120530-1420 installed and it seems to be missing the following as defined by the OSGi min 1.2 execution environment.
+javax/security/auth/x500/X500Principal.class

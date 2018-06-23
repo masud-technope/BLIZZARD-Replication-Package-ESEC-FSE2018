@@ -1,0 +1,7 @@
+Bug 256603 – [Discovery][Remotesvcs] Replace org.eclipse.ecf.discovery.ui with EMF based ui (CQ 2038)
+Replace org.eclipse.ecf.discovery.ui with CQ 2038 [1].
+It allows extends to provide their own subtree for a given service type.
+See [2][3]
+[1] https://dev.eclipse.org/ipzilla/show_bug.cgi?id=2038
+[2] http://wiki.eclipse.org/ECF_Conference_Call_11.25.2008#Discovery_UI
+[3] http://www.eclipse.org/newsportal/article.php?id=1321&group=eclipse.technology.ecf#1321

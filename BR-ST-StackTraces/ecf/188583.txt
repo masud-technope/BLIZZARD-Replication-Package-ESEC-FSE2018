@@ -1,0 +1,7 @@
+org.eclipse.ecf.protocol.msn.NotificationSession.retrieveBuddyList
+org.eclipse.ecf.protocol.msn.NotificationSession.login
+org.eclipse.ecf.protocol.msn.MsnClient.connect
+org.eclipse.ecf.internal.provider.msn.MSNContainer.connect
+imclient.connect.XIMClient.createAndConnectClient
+imclient.connect.URIClientConnectControl$ClientConnectJob.run
+org.eclipse.core.internal.jobs.Worker.run

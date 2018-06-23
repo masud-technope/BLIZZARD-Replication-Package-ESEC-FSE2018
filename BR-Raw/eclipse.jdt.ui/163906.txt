@@ -1,0 +1,23 @@
+Bug 163906 – [implementation] commitWorkingCopy() assumes file already exists
+ICompilationUnit.commitWorkingCopy() fails if the resource does not already exist.
+ This makes it difficult for APT to save to disk, during build, a type that was created during reconcile.
+What's worse, the failure mode is that the file does get created, but in a location relative to the disk root rather than relative to the workspace.
+Inside commitWorkingCopy(), the stack looks like this:
+FileBuffers.getWorkspaceFileAtLocation(IPath) line: 72
+FileBuffers.getFileStoreAtLocation(IPath) line: 138
+JavaTextFileBuffer.commitFileBufferContent(IProgressMonitor, boolean) line: 488
+JavaTextFileBuffer(JavaFileBuffer).commit(IProgressMonitor, boolean) line: 131
+DocumentAdapter.save(IProgressMonitor, boolean) line: 392
+CommitWorkingCopyOperation.executeOperation() line: 123
+CommitWorkingCopyOperation(JavaModelOperation).run(IProgressMonitor) line: 720
+Workspace.run(IWorkspaceRunnable, ISchedulingRule, int, IProgressMonitor) line: 1742
+CommitWorkingCopyOperation(JavaModelOperation).runOperation(IProgressMonitor) line: 784
+CompilationUnit.commitWorkingCopy(boolean, IProgressMonitor) line: 341
+The FileBuffers and JavaTextFileBuffers classes come from org.eclipse.core.filebuffers.
+ FileBuffers.getWorkspaceFileAtLocation() returns null if the file does not exist in the workspace; then getFileStoreAtLocation() returns null; and that makes commitFileBufferContent() "fall back" to writing the file relative to the disk root rather than the workspace root.
+ For instance, it might write the type com.xyz.A to c:/foo/generated-src/com/xyz/A.java, rather than writing it to a folder under the "foo" project.
+I am not sure what the correct behavior should be.
+ It could:
+- throw an exception if the file does not already exist;
+- create the file if needed, but throw an exception if the package fragment folder does not exist;
+- create both the folder and the file as needed.

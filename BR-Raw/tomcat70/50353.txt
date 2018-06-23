@@ -1,0 +1,65 @@
+50353 – Calling asyncContext.getResponse() returns null after async timeout
+If the async thread calls asyncContext.getResponse() after the async timeout, it gets a null reference.
+In the following example, it leads to a NPE.
+The servlet spec is not very clear on the behavior to adopt after a timeout, but I don't think null should be returned.
+Maybe an IllegalStateException instead ? It seems to be the case if complete() is called after the timeout.
+package test;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.AsyncContext;
+import javax.servlet.AsyncEvent;
+import javax.servlet.AsyncListener;
+import javax.servlet.ServletException;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+/**
+* Servlet implementation class MyServlet
+*/
+@WebServlet(value = "/MyServlet", asyncSupported = true)
+public class MyServlet extends HttpServlet implements AsyncListener {
+private static final long serialVersionUID = 1L;
+protected void doGet(HttpServletRequest request,
+HttpServletResponse response) throws ServletException, IOException {
+final AsyncContext asyncContext = request.startAsync(request, response);
+asyncContext.addListener(this);
+asyncContext.setTimeout(10*1000);
+asyncContext.start(new Runnable() {
+@Override
+public void run() {
+System.out.println("Entering async thread");
+try {
+Thread.sleep(20 * 1000);
+System.out.println("<Asyncthread> about to write response");
+ServletResponse response2 = asyncContext.getResponse();
+PrintWriter writer = response2.getWriter();
+writer.write("Hello world");
+System.out.println("<Asyncthread> about to complete");
+asyncContext.complete();
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+});
+}
+@Override
+public void onComplete(AsyncEvent evt) throws IOException {
+System.out.println("onComplete " + evt);
+}
+@Override
+public void onError(AsyncEvent evt) throws IOException {
+System.out.println("onError " + evt);
+}
+@Override
+public void onStartAsync(AsyncEvent evt) throws IOException {
+System.out.println("onStartAsync " + evt);
+}
+@Override
+public void onTimeout(AsyncEvent evt) throws IOException {
+System.out.println("onTimeout " + evt);
+evt.getAsyncContext().getResponse().getWriter().write("Timed out");
+evt.getAsyncContext().complete();
+}
+}

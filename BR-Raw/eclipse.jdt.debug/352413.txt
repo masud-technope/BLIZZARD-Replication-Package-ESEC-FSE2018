@@ -1,0 +1,4 @@
+Bug 352413 – [1.7] Debugger should support binary literals and underscores while setting literals
+Change value window in the debugger doesn't accept underscores in literals, whereas Java7 supports.
+This is not important and probably unnecessary.
+Only one use case I think that may make it necessary is - copy/paste the integer from code to this window.

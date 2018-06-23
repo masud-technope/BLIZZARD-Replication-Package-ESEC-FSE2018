@@ -1,0 +1,9 @@
+Bug 206118 – Trace utility should offer a trace method that takes class and method name
+org.eclipse.ecf.core.util.Trace currently only offers:
+trace(String pluginId, String message)
+trace(String pluginId, String option, String message)
+whereas other methods like entering, exiting, ...
+all also take the class and method name.
+Thus
+race(String pluginId, String option, Class clazz, String methodName, String message)
+should be added.

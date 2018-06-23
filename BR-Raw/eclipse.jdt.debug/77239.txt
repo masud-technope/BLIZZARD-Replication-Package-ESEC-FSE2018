@@ -1,0 +1,35 @@
+Bug 77239 – navigating an ill-formed stack trace
+Using the stack trace console to navigate a stack trace that is not fomatted
+properly (copy/pasted from Bugzilla) is troublesome.
+For example, pasting the
+following trace into the console has these problems:
+(1) partial lines such as "e.run(JavaWatchExpressionDelegate.java:144)"
+results in a hyperlink that can't find source for "e"
+(2) removing the newline character to create one complete line does not
+recalcualte the hyperlinks
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTInstructionCompiler.containsALocalType(ASTInstructionCompiler.java:331)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTInstructionCompiler.visit(ASTInstructionCompiler.java:2075)
+at org.eclipse.jdt.core.dom.MethodInvocation.accept0(MethodInvocation.java:234)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2456)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:2503)
+at org.eclipse.jdt.core.dom.ReturnStatement.accept0(ReturnStatement.java:133)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2456)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2526)
+at org.eclipse.jdt.core.dom.Block.accept0(Block.java:133)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2456)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChild(ASTNode.java:2503)
+at org.eclipse.jdt.core.dom.MethodDeclaration.accept0(MethodDeclaration.java:499)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2456)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2526)
+at org.eclipse.jdt.core.dom.TypeDeclaration.accept0(TypeDeclaration.java:474)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2456)
+at org.eclipse.jdt.core.dom.ASTNode.acceptChildren(ASTNode.java:2526)
+at org.eclipse.jdt.core.dom.CompilationUnit.accept0(CompilationUnit.java:290)
+at org.eclipse.jdt.core.dom.ASTNode.accept(ASTNode.java:2456)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.createExpressionFromAST(ASTEvaluationEngine.java:251)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.getCompiledExpression(ASTEvaluationEngine.java:156)
+at org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine.evaluate(ASTEvaluationEngine.java:73)
+at org.eclipse.jdt.internal.debug.ui.JavaWatchExpressionDelegate$EvaluationRunnable.run(JavaWatchExpressionDelegate.java:144)
+at org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run(JDIThread.java:2510)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:66)

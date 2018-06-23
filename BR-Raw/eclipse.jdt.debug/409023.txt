@@ -1,0 +1,28 @@
+Bug 409023 – HCR drops too many frames from local type
+Created attachment 231493 [details]
+fix
+FUP to bug 403475, if you have a local type defined that executes a method with the same name as the enclosing method, HCR drops to the enclosing method.
+Run the following snippet, add a change to LocalClass#run, save and notice two frames are popped.
+We shold be popping the top frame annd be back in LocalClass#run, instead we end up in TestHCR#run (the enclosing method).
+package a.b.c;
+public class TestHCR {
+public void run() {
+System.out.println("LocalHCR#run()");
+class LocalClass {
+public void run() {
+System.out.println("LocalClass#run()"); //BP here
+}
+}
+new LocalClass().run();
+}
+static class InnerClass {
+public void run() {
+System.out.println("InnerClass#run()");
+new TestHCR().run();
+}
+}
+public static void main(String[] args) {
+System.out.println("TestHCR#main()");
+new InnerClass().run();
+}
+}

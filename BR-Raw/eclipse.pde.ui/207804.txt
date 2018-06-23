@@ -1,0 +1,5 @@
+Bug 207804 – Extension Registry methods don't account for multiple versions
+The accessor methods in PDEExtensionRegistry don't account for multiple versions  of a plug-in.
+ Instead some methods take an String id as a parameter.
+ This does not work if two plug-ins have the same id.
+ Instead, the methods should take an IPluginModelBase when necessary which can differentiated between two plug-ins with  different versions.

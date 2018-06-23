@@ -1,0 +1,36 @@
+54087 – HTTP Connector incorrectly throws Exception on Invalid If-Modified-Since Header
+Given this request:
+Frame 6: 988 bytes on wire (7904 bits), 988 bytes captured (7904 bits)
+Ethernet II, Src: Adtran_16:34:e9 (00:a0:c8:16:34:e9), Dst: Supermic_34:fe:a8 (00:30:48:34:fe:a8)
+Internet Protocol Version 4, Src: 198.58.103.28 (198.58.103.28), Dst: 216.17.130.68 (216.17.130.68)
+Transmission Control Protocol, Src Port: 37483 (37483), Dst Port: http (80), Seq: 1449, Ack: 1, Len: 922
+[2 Reassembled TCP Segments (2370 bytes): #4(1448), #6(922)]
+Hypertext Transfer Protocol
+GET /rss/calendar_id/2.xml HTTP/1.1\r\n
+Accept: application/atom+xml,application/rdf+xml,application/rss+xml,application/xml,text/xml,*/*\r\n
+Connection: close\r\n
+Accept-Encoding: gzip,deflate\r\n
+User-Agent: Superfeedr bot/2.0 http://superfeedr.com - Please get in touch if we are polling too hard.\r\n
+X-Superfeedr-Url: http://startupia.mhsoftware.com/rss/calendar_id/2.xml\r\n
+If-None-Match: "1351656000000"\r\n
+If-Modified-Since: 2012-10-31 04:00:00 +0000\r\n
+host: startupia.mhsoftware.com\r\n
+ofu.dpn=ffffffffc3a03c0245525d5f4f58455e445a4a4236
+\r\n
+[Full request URI: http://startupia.mhsoftware.com/rss/calendar_id/2.xml]
+~
+Tomcat Throws the Exception:
+2012-10-31 15:47:15,381 [http-80-46] ERROR org.apache.catalina.core.ContainerBase.[Catalina].[startupia.mhsoftware.com].[/].[RSSProcessor]- Servlet.service() for servlet RSSProcessor threw exception
+java.lang.IllegalArgumentException: 2012-10-31 04:00:00 +0000
+at org.apache.catalina.connector.Request.getDateHeader(Request.java:1924)
+at org.apache.catalina.connector.RequestFacade.getDateHeader(RequestFacade.java:632)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:619)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+at sun.reflect.GeneratedMethodAccessor72.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+This is because the date for the If-Modified-Since Header (2012-10-31 04:00:00 +0000) is not in the format specified by RFC-2616 Section 3.3.1.
+However, the RFC states in section 14.25a:
+if the passed If-Modified-Since date is invalid, the response is exactly the same as for a normal GET.
+A date which is later than the server's current time is invalid.
+Tomcat is not complying with this aspect of the specification because it throws a 500 rather than processing it as described by the specification.

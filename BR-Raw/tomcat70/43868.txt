@@ -1,0 +1,8 @@
+43868 – MBeanServer invoke issue
+Impossible to invoke "removeRole" or other MBean methods and "setAttribute" by
+MBeanServer cause of the same bug in ManagedBean.java at both lines 545
+(getSetter method) and 604 (getInvoke method):
+object = this;
+Must be replace by:
+object = bean;
+Fortunately getGetter method is correct.

@@ -1,0 +1,5 @@
+Bug 264999 – [open type] Does not make matching range bold if pattern ends with < or space
+HEAD
+The Open Type dialog does not make the matching range bold if the pattern ends with < or space, e.g.
+"IStorage" -> good
+"IStorage<" -> nothing bold

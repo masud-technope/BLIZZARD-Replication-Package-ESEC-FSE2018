@@ -1,0 +1,3 @@
+Bug 265415 – [Discovery][JMDNS] Dead-lock in javax.jmdns.impl.JmDNSImpl.unregisterService(ServiceInfo)
+JMDNS 2.1
+If javax.jmdns.impl.tasks.Canceler run before javax.jmdns.impl.JmDNSImpl obtains the synchronization object javax.jmdns.impl.JmDNSImpl.unregisterService(ServiceInfo).lock, a dead-lock occurs.

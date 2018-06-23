@@ -1,0 +1,7 @@
+Bug 388739 – [1.8][compiler] consider default methods when detecting whether a class needs to be declared abstract
+BETA_JAVA8
+JLS 8.1.1.1 defines the criteria when a class needs to be declared as abstract.
+These rules have been rewritten to account for default methods.
+The new rules rely on two notions that have been updated/introduced for Java8:
+- methods inherited by a given class (8.4.8 - modified)
+- a method "overrides" another method "from C" (8.4.8.1 - modified, concept "override from C" is new)

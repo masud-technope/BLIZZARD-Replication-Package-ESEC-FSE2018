@@ -1,0 +1,18 @@
+Bug 124815 – NPE using "Compute dependancy extent" action on some plugins
+R3.2M4
+This doesn't happen to all plugins that I tried.
+To reproduce choose a plugin or create a simple one and add one of the following to the dependancy list
+org.eclipse.ui.workbench.texteditor
+org.eclipse.ui.editors
+Select one of the above and from the popup menu select "Compute dependancy extent"
+When I did that I got the following NPE
+Error 2006-01-22 22:54:18.145 An internal error occurred during: "Dependency on org.eclipse.ui.editors".
+java.lang.NullPointerException
+at org.eclipse.search.ui.text.AbstractTextSearchResult.doAddMatch(AbstractTextSearchResult.java:119)
+at org.eclipse.search.ui.text.AbstractTextSearchResult.addMatch(AbstractTextSearchResult.java:79)
+at org.eclipse.pde.internal.ui.search.dependencies.DependencyExtentOperation.searchForTypesUsed(DependencyExtentOperation.java:163)
+at org.eclipse.pde.internal.ui.search.dependencies.DependencyExtentOperation.checkForJavaDependencies(DependencyExtentOperation.java:135)
+at org.eclipse.pde.internal.ui.search.dependencies.DependencyExtentOperation.execute(DependencyExtentOperation.java:77)
+at org.eclipse.pde.internal.ui.search.dependencies.DependencyExtentQuery.run(DependencyExtentQuery.java:43)
+at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:94)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:58)

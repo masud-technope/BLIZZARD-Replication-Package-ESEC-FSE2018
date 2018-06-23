@@ -1,0 +1,3 @@
+apitools/org.eclipse.pde.api.tools.tests/src/org/eclipse/pde/api/tools/model/tests/ApiFilterStoreTests.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/ApiFilterStore.java
+apitools/org.eclipse.pde.api.tools.tests/test-xml/.settings/.api_filters

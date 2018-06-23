@@ -1,0 +1,13 @@
+Bug 311307 – New OSGi Console needs polish
+3.6 M7.
+The new OSGi Console needs polish:
+- each time I choose it from the Console view menu a new one is created which is
+not the case with the other view actions (they just switch or create it when
+called the first time)
+- the name of each such created OSGi console is the same hence I have no clue
+which one is which
+- if I got the N&N right then this is the dev workspace console.
+This is not
+obvious to the user.
+It might be quite dangerous if he misleads this and starts
+to mess around with its dev workspace

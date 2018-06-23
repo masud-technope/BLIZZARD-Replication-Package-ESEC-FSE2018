@@ -1,0 +1,15 @@
+Bug 426074 – [1.8][compiler] 18.5.2 Functional interface parameterization inference problem with intersection types.
+// BETA_JAVA8
+interface Functional<T> {
+void foo(T t);
+}
+interface I { }
+public class X {
+public static void main(String[] args) {
+Functional<? extends X> f = (Functional<? extends X> & I) (X c) -> {
+System.out.println("main");
+};
+f.foo(null);
+}
+}
+The program above is rejected by ECJ erroneously.

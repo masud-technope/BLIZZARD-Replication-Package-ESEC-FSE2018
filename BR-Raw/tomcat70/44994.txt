@@ -1,0 +1,25 @@
+44994 – JSP EL condition expression fails when nested: ${a ? b ? x: y: z}
+A JSP Expression Language (EL) conditional expression cannot have another conditional expression as its "true" expression.
+The following fails:
+${0 lt a ? 1 lt a ? "many": "one": "none"}
+It throws the following exception (the 19th character is the second question mark):
+org.apache.el.parser.ParseException: Encountered "?" at line 1, column 19.
+Was expecting one of:
+"." ...
+"[" ...
+...
+org.apache.el.parser.ELParser.generateParseException(ELParser.java:1890)
+org.apache.el.parser.ELParser.jj_consume_token(ELParser.java:1770)
+org.apache.el.parser.ELParser.Choice(ELParser.java:220)
+The expression succeeds if brackets are added around the inner conditional expression:
+${0 lt a ? (1 lt a ? "many": "one"): "none"}
+I assume the bug is in ELParser.jjt (in apache-tomcat-6.0.16-src/java/org/apache/el/parser/).
+It uses Or(), instead of Choice(), for the "true" expression.
+WRONG:   Or() (<QUESTIONMARK> Or() <COLON> Choice() #Choice(3))*
+RIGHT:   Or() (<QUESTIONMARK> Choice() <COLON> Choice() #Choice(3))*
+Diff:
+107c107
+<       Or() (<QUESTIONMARK> Or() <COLON> Choice() #Choice(3))*
+---
+>       Or() (<QUESTIONMARK> Choice() <COLON> Choice() #Choice(3))*
+This bug was not present in Tomcat 5.5.

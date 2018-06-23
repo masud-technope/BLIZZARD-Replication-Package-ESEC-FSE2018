@@ -1,0 +1,26 @@
+53871 – java.lang.StackOverflowError on deploying a web application
+When starting Tomcat 7.0.29 and 7.0.30, and automatically deploying a war file from webapps the following error is thrown:
+14:01:06,380 ERROR [HostConfig:576] Error waiting for multi-thread deployment of context descriptors to complete java.util.concurrent.ExecutionException: java.lang.StackOverflowError
+at java.util.concurrent.FutureTask$Sync.innerGet(FutureTask.java:252)
+at java.util.concurrent.FutureTask.get(FutureTask.java:111)
+at org.apache.catalina.startup.HostConfig.deployDescriptors(HostConfig.java:574)
+at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:470)
+at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1413)
+at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:313)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+at org.apache.catalina.util.LifecycleBase.fireLifecycleEvent(LifecycleBase.java:90)
+at org.apache.catalina.util.LifecycleBase.setStateInternal(LifecycleBase.java:401)
+at org.apache.catalina.util.LifecycleBase.setState(LifecycleBase.java:346)
+at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:1140)
+at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:785)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1559)
+at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1549)
+at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+at java.lang.Thread.run(Thread.java:722)
+Caused by: java.lang.StackOverflowError at java.util.HashSet.(HashSet.java:103) at org.apache.catalina.startup.ContextConfig.populateSCIsForCacheEntry(ContextConfig.java:2243) at org.apache.catalina.startup.ContextConfig.populateSCIsForCacheEntry(ContextConfig.java:2260) at org.apache.catalina.startup.ContextConfig.populateSCIsForCacheEntry(ContextConfig.java:2260)
+...(and many more identical lines)...
+However this works fine in 7.0.28.

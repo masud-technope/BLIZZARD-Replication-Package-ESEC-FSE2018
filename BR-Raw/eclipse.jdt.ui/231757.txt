@@ -1,0 +1,10 @@
+Bug 231757 – [implementation] NPE in JavaEditor.handlePreferenceStoreChanged at startup
+Created attachment 99901 [details]
+[NPE Stack trace]
+eclipse.buildId=I20080510-2000
+(see NPE details in the attached file)
+After upgrading to the latest level, starting Eclipse with the above build against an existing workspace.
+Active perspective at startup was Debug (also had Java, Team Synch and CVS perspectives)
+NPE was displayed in an error message once UI became visible.
+Problem not reproduced after several startup or with other workspaces.
+So, opening bug just to keep a trace of this pb.

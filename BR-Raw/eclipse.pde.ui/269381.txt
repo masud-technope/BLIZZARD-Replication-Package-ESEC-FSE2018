@@ -1,0 +1,11 @@
+Bug 269381 – [ds tooling] Compiler warnings in N20090318-2000
+1.
+WARNING in /src/org/eclipse/pde/internal/ds/ui/wizards/DSFileWizardPage.java
+(at line 230)
+public void linkEntered(HyperlinkEvent e) {
+The method linkEntered(HyperlinkEvent) from the type new SelectionAdapter(){} is never used locally
+2.
+WARNING in /src/org/eclipse/pde/internal/ds/ui/wizards/DSFileWizardPage.java
+(at line 236)
+public void linkExited(HyperlinkEvent e) {
+The method linkExited(HyperlinkEvent) from the type new SelectionAdapter(){} is never used locally

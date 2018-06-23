@@ -1,0 +1,23 @@
+Bug 410650 – [hovering] "else if" closing bracket hover should include all preceding ifs
+The closing bracket hover after an "else if" should include all preceding ifs.
+Example:
+if (i == 1) {
+int i1;
+int i2;
+int i3;
+int i4;
+} else if (i == 2) {
+new I1();
+new I2();
+new I3();
+new I4();
+} else {         // hover on "}" only shows one if, not both
+test1();
+test2();
+test3();
+test4();
+}                // hover on "}" shows all ifs
+After bug 377141, the hover on the "}" of an "else" branch now shows all preceding "if" expressions.
+The same should be implemented for the "}" of an "else if" branch in the same "if" (...
+"else if")+ (...
+"else")? structure.

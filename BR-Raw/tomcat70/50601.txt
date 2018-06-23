@@ -1,0 +1,7 @@
+50601 – Redundant null checks before instanceof in equals()
+Created attachment 26497 [details]
+Patch to remove null checks
+There are several instances of the following code in equals methods:
+if (obj == null) return false;
+if (!(obj instanceof SomeClass)) return false;
+The null check is redundant, as null will fail the instanceof check.

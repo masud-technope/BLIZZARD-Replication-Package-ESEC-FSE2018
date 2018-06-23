@@ -1,0 +1,11 @@
+Bug 179529 – Stop Eclipse takes a lot of time in case of big workspace
+Version: 3.3.0
+Build id: I20070323-1616
+(open against jdt.core, but other components might be involved in this one)
+Scenario is as follows:
+- start RAD, and (source) import the 1360+ plugins in your workspace,
+- stop RAD and start Eclipse against this workspace.
+- as soon as the UI becomes visible and the InitializeAfterLoad job is launched, quit the workbench.
+- Cancel any pending background task
+--> though Cancelled, some jobs are not stopping quickly (see to_be_attached screen shots) - mainly the InitializeAfterLoad job, then the Save Workspace.
+We could try and better manage the fact that such jobs were cancelled, which, from a user perspective, does not seem to be the case.

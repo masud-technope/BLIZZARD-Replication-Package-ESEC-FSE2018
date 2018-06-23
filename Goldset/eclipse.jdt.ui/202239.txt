@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/template/java/JavaContextType.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/template/java/SWTContextType.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/template/java/CompilationUnitContextType.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/template/java/JavaDocContextType.java

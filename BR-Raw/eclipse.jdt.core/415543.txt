@@ -1,0 +1,38 @@
+Bug 415543 – [1.8][compiler] Incorrect bound index in RuntimeInvisibleTypeAnnotations attrribute
+BETA_JAVA8:
+----------
+From the spec:
+"When the annotationâ€™s target is a bound of a type parameter of a class or
+method, target info contains one type parameter bound target:
+type_parameter_bound_target {
+u1 type_parameter_index;
+u1 bound_index;
+};
+type parameter index specifies the index of the type parameter, while bound
+index specifies the index of the bound.
+Indexes start at 0.
+Bound index 0 is
+always a class, not interface, type.
+If the programmer-supplied upper bound
+of the type variable is an interface, it is treated as the second bound, and
+the implicit first bound is java.lang.Object.
+// ---
+Given that, given the following program:
+// ---
+import java.lang.annotation.*;
+import static java.lang.annotation.ElementType.*;
+@Target({TYPE_USE}) @interface NonNull { }
+class X <T extends @NonNull Comparable> {
+}
+// --
+we generate bad code:
+"  RuntimeInvisibleTypeAnnotations: \n" +
+"    #21 @NonNull(\n" +
+"      target type = 0x11 CLASS_TYPE_PARAMETER_BOUND\n" +
+"      type parameter index = 0 type parameter bound index = 0\n" +
+"    )\n" +
+"}"
+javac 8b100 generates:
+RuntimeInvisibleTypeAnnotations:
+0: #13(): CLASS_TYPE_PARAMETER_BOUND, param_index=0, bound_index=1
+which is correct.

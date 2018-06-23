@@ -1,0 +1,17 @@
+Bug 300542 – [build path] user library dialog should allow to select JAR from workspace
+Build Identifier:
+When adding a jar to a user library, you are give the dialog for selecting a file with an external path.
+When attaching the source attachment or native library location you can select either an external path or a workspace path.
+It would be useful to also be able to specify the jar location as a workspace path, which would aid in sharing projects with other people.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Open preferences, navigate to Java -> Build Path -> User Libraries
+2.
+Click New, and enter a name for the User Library.
+3.
+Click "Add JARs", note the dialog type.
+4.
+Select the "Native libary location" element, click "Edit".
+5.
+Note the dialog type which allows for choosing an External Folder or Workspace path.

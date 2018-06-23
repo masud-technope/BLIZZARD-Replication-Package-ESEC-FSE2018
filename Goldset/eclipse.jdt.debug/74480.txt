@@ -1,0 +1,23 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/JavaApplicationLaunchShortcut.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AutomatedSuite.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/performance/PerfContextualLaunchMenu.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/monitors/JavaOwningThread.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/ProjectCreationDecorator.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/IJavaLaunchConfigurationConstants.java
+org.eclipse.jdt.debug.tests/test plugin/org/eclipse/jdt/debug/testplugin/TestLaunchShortcut.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AbstractDebugTest.java
+org.eclipse.jdt.debug.ui/plugin.xml
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/launching/LaunchShortcutTests.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/monitors/NoMonitorInformationElement.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/JavaMigrationDelegate.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/launching/MigrationDelegateTests.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/launching/LaunchConfigurationTests.java
+org.eclipse.jdt.debug.tests/plugin.xml
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/monitors/JavaWaitingThread.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/AbstractJavaMainTab.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/monitors/JavaOwnedMonitor.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/JavaAppletLaunchShortcut.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/monitors/JavaContendedMonitor.java
+org.eclipse.jdt.debug.tests/testprograms/MigrationTests.java
+org.eclipse.jdt.debug.tests/testprograms/MigrationTests2.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/core/refactoring/LaunchConfigurationProjectMainTypeChange.java

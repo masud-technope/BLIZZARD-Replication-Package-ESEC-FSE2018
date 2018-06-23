@@ -1,0 +1,15 @@
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/internal/provider/filetransfer/Activator.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/internal/provider/filetransfer/IURLConnectionModifier.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/provider/filetransfer/browse/URLFileSystemBrowser.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/provider/filetransfer/retrieve/UrlConnectionRetrieveFileTransfer.java
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/internal/core/ECFPlugin.java
+framework/bundles/org.eclipse.ecf.ssl/src/org/eclipse/ecf/internal/ssl/ECFCertificateException.java
+framework/bundles/org.eclipse.ecf.ssl/src/org/eclipse/ecf/internal/ssl/ECFTrustManager.java
+framework/bundles/org.eclipse.ecf.ssl/.classpath
+framework/bundles/org.eclipse.ecf.ssl/.project
+framework/bundles/org.eclipse.ecf.ssl/.settings/org.eclipse.jdt.core.prefs
+framework/bundles/org.eclipse.ecf.ssl/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.ssl/build.properties
+framework/bundles/org.eclipse.ecf.ssl/src/org/eclipse/ecf/internal/ssl/ECFSSLSocket.java
+framework/bundles/org.eclipse.ecf.ssl/src/org/eclipse/ecf/internal/ssl/ECFSSLSocketFactory.java
+framework/bundles/org.eclipse.ecf.ssl/src/org/eclipse/ecf/internal/ssl/ECFTrustManager.java

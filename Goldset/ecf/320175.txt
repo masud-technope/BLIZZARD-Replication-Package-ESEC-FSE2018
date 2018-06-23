@@ -1,0 +1,13 @@
+framework/bundles/org.eclipse.ecf.remoteservice.rest.synd/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.remoteservice.rest.synd/src/org/eclipse/ecf/remoteservice/rest/synd/SyndFeedResponseDeserializer.java
+framework/bundles/org.eclipse.ecf.remoteservice.rest/src/org/eclipse/ecf/remoteservice/rest/RestException.java
+framework/bundles/org.eclipse.ecf.remoteservice.rest/src/org/eclipse/ecf/remoteservice/rest/client/RestClientService.java
+framework/bundles/org.eclipse.ecf.remoteservice.rest/src/org/eclipse/ecf/remoteservice/rest/client/XMLRemoteResponseDeserializer.java
+framework/bundles/org.eclipse.ecf.remoteservice/.settings/.api_filters
+framework/bundles/org.eclipse.ecf.remoteservice/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.remoteservice/build.properties
+framework/bundles/org.eclipse.ecf.remoteservice/src/org/eclipse/ecf/remoteservice/client/AbstractClientContainer.java
+framework/bundles/org.eclipse.ecf.remoteservice/src/org/eclipse/ecf/remoteservice/client/AbstractClientService.java
+framework/bundles/org.eclipse.ecf.remoteservice/src/org/eclipse/ecf/remoteservice/client/IRemoteResponseDeserializer.java
+tests/bundles/org.eclipse.ecf.tests.remoteservice.rest/src/org/eclipse/ecf/tests/remoteservice/rest/RestPutServiceTest.java
+tests/bundles/org.eclipse.ecf.tests.remoteservice.rest/src/org/eclipse/ecf/tests/remoteservice/rest/twitter/TwitterRemoteServiceTest.java

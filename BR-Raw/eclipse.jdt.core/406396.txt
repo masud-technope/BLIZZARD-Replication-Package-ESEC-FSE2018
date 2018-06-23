@@ -1,0 +1,40 @@
+Bug 406396 – Method can be static analysis misses a bunch of cases...
+(1) In the following program, foo is not tagged as can be static, while goo
+is.
+Both can be static:
+// ---
+public class X  {
+int f;
+int foo() {
+int f = 0;
+return f;
+}
+int goo() {
+return 0;
+}
+}
+// ---
+Problem stems from the fact we do a look up for any existing f, to
+report hiding diagnostics.
+That look up is confused with a real
+field access.
+(2) See that in the following program we don't suggest that foo could
+be static when in fact it could be:
+// ----
+public class X  {
+int f;
+void foo() {
+class Y {
+int p;
+{
+class Z {
+int f = p;
+}
+}
+};
+}
+}
+Basically the analysis as is implemented is broken and I don't see
+any quick fixes.
+We can take solace that we are not meant to report
+every possible candidate, but what we report should be correct.

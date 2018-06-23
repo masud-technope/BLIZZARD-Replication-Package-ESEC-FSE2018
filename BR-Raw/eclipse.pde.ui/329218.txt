@@ -1,0 +1,6 @@
+Bug 329218 – Provide a consumer based report launch config UI
+Extension to bug 322571.
+ The consumer oriented report should be available from the existing launch configuration.
+ We should have a radio button or combo to select the type of report.
+ Most of the controls will be the same between the settings.
+We could also add an option to produce both reports.

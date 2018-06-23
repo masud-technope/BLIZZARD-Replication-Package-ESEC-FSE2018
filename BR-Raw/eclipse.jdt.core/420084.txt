@@ -1,0 +1,19 @@
+Bug 420084 – [1.8] static interface method cannot be resolved without receiver when imported statically
+This is already allowed for static method imports from classes and the same should be allowed from interfaces too.
+Consider these two units:
+--------------------
+package a.b;
+public interface J {
+static int foo(){return 0;}
+}
+--------------------
+package a;
+import static a.b.J.foo;
+public interface I {
+static int call() {
+return foo();
+}
+}
+--------------------
+Invocation of foo() is rejected with the following error but should not be:
+This static method of interface J can only be accessed as J.foo

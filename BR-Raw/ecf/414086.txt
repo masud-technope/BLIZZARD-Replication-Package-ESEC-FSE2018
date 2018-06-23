@@ -1,0 +1,2 @@
+Bug 414086 – Add support for Servlet-based remote services
+It would be useful to have some support code for creating and using servlets to handle remoteservice calls

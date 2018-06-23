@@ -1,0 +1,2 @@
+java/org/apache/jasper/compiler/Validator.java
+java/org/apache/jasper/resources/LocalStrings.properties

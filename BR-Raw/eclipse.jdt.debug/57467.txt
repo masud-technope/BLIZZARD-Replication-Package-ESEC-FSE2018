@@ -1,0 +1,23 @@
+Bug 57467 – race condition causes invalid stack frames
+I was finding that I got "transisent" "invalid stack frame" exceptions when I
+ran the debug tests.
+I traced it down to this: two threads are asking a thread
+for stack frames at the same time - the ui is populating frame labels in the
+background, and the test methods is accessing/testing something about the top
+stack frame.
+The issue is in deciding whether to 'preserve' stack frames in
+the "computeStackFrames" method of JDIThread.
+We compare the current TOS with
+the old TOS and attempt to re-use stack frames.
+To compare frames, we use the
+underlying method (or "fLastMethod") in the case of the old stack frames.
+However, the "fLastMethod" is only populated the first time we retrieve the
+underlying method for a stack frame.
+Thus, if we ask for stack frames twice,
+before an underlying method has been retrieved, the second requestor will
+always get invalid frames, as our logic compares "currMethod.equals
+(lastMethod)" where lastMethod is null (which fails, and thus invalidates the
+previously computed stack frames).
+The fix is to say that if the "last method" is null, then the frames are equal
+since the index of the frames is the same, and no info of the underlying frame
+has been retrieved yet (so it cannot be stale yet).

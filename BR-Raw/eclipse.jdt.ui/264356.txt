@@ -1,0 +1,2 @@
+Bug 264356 – Remove copies of ListDialog and use API
+ListDialog is API and for some reason JDT has two copies of the class for redundancy :)

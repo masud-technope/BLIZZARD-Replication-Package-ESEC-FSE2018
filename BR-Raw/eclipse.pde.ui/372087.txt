@@ -1,0 +1,12 @@
+Bug 372087 – Splash in exported product not found
+Currently the editor for the product definition files says the following:
+-----------
+The splash screen appears when the product launches.
+ If its location is not specified, the 'splash.bmp' file is assumed to be in the product's defining plug-in.
+-----------
+If the location is not specified, this works well if the product is started from Eclipse but if the plugin is not set the exported product will not find its splashscreen.
+Looks like the following entry is not added to config.ini:
+osgi.splashPath=platform:/base/plugins/com.example.rcp.demo
+I suggest to change either the text or add the entry to config.ini.
+Text changes might be faster.
+:-)

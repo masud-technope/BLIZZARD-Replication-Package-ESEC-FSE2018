@@ -1,0 +1,13 @@
+Bug 319965 – New Feature Project->Referenced Plug-ins and Fragments multiselection functionality
+Build Identifier: 20100617-1415
+Currently when creating a new Feature Project and after clicking Next you get 'Referenced Plug-Ins and Fragments dialog' and you have to check every plug in separately, because there is no multiselection possibility.
+If someone wants to add many plug-ins to feature it's not very convenient.
+Reproducible: Always
+Steps to Reproduce:
+1.Go to File->New->Other->Plug-In Development->Feature Project
+2.
+Write Project name and click 'Next'
+3.
+Now you can see 'Select All' and 'Deselect All' buttons or you can simply click a checkbox next to plugin name.
+There are no means to multiselect e.g.
+10 plugins with two simple user actions for example highlighting wanted plugins.

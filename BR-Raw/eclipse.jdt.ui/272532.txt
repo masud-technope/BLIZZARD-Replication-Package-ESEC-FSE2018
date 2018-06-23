@@ -1,0 +1,29 @@
+Bug 272532 – [clean up] "Use modifier 'final' where possible" can introduce compile errors
+Build ID: I20090313-0100
+Steps To Reproduce:
+1.
+Create a class with a private field and a constructor that can return before assigning to said field.
+ e.g.
+class Choo
+{
+private int a;
+Choo(int b)
+{
+if (1 == b)
+return;
+a = 2;
+}
+}
+2.
+Source -> Cleanup..
+3.
+Ensure Code Style -> Variable declarations -> Use modifier 'final' where possible -> Private fields is ticked.
+4.
+Run the clean-up.
+'final' will be added to the private field (a), which will cause the constructor to error: "The blank final field a may not have been initialized"
+Can work around this by putting in the implicit "=0;" on the private field.
+--
+java.version=1.6.0_13
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Command-line arguments:  -os win32 -ws win32 -arch x86_64

@@ -1,0 +1,15 @@
+12428 – request.getUserPrincipal(): Misinterpretation of specification?
+When calling request.getUserPrincipal() from an unprotected resource, the method returns
+null even when the user is actually authenticated.
+From Servlet 2.3 spec:
+public
+java.security.Principal getUserPrincipal()
+Returns a java.security.Principal object
+containing the name of the current
+authenticated user.
+If the user has not been authenticated,
+the method returns
+null.
+My interpretation would be that once a user has been
+authenticated, a call to getUserPrincipal() would always return the associated Principal
+object whether it is from a protected or unprotected resource.

@@ -1,0 +1,66 @@
+55524 – Deadlock produced during Websocket write operation (org.apache.catalina.websocket.WsOutbound)
+Created attachment 30800 [details]
+thread dump of the deadlock
+I use Tomcat with an application that uses Websockets.
+The websockets are handled by the Atmosphere framework: https://github.com/Atmosphere/atmosphere
+A deadlock occurs during write operations to the websocket.
+I have attached a thread dump of the deadlock.
+This issue is also duscussed here:
+https://github.com/Atmosphere/atmosphere/issues/1264
+Here are the deadlocked threads:
+Found one Java-level deadlock:
+=============================
+"Atmosphere-Shared-AsyncOp-267":
+waiting to lock monitor 0x00007efebc0015f8 (object 0x00000005ef4c6988, a org.apache.catalina.websocket.WsOutbound),
+which is held by "Atmosphere-Scheduler-2"
+"Atmosphere-Scheduler-2":
+waiting to lock monitor 0x00007efe8c290ac0 (object 0x00000005ef4b77f8, a org.atmosphere.cpr.AtmosphereResourceImpl),
+which is held by "Atmosphere-Shared-AsyncOp-267"
+Java stack information for the threads listed above:
+===================================================
+"Atmosphere-Shared-AsyncOp-267":
+at org.apache.catalina.websocket.WsOutbound.writeTextMessage(WsOutbound.java:165)
+- waiting to lock <0x00000005ef4c6988> (a org.apache.catalina.websocket.WsOutbound)
+at org.atmosphere.container.version.TomcatWebSocket.write(TomcatWebSocket.java:49)
+at org.atmosphere.websocket.WebSocket.write(WebSocket.java:199)
+at org.atmosphere.websocket.WebSocket.write(WebSocket.java:168)
+at org.atmosphere.websocket.WebSocket.write(WebSocket.java:40)
+at org.atmosphere.cpr.AtmosphereResponse$2.write(AtmosphereResponse.java:574)
+at org.atmosphere.handler.AbstractReflectorAtmosphereHandler.onStateChange(AbstractReflectorAtmosphereHandler.java:169)
+at org.atmosphere.cpr.DefaultBroadcaster.invokeOnStateChange(DefaultBroadcaster.java:1027)
+at org.atmosphere.cpr.DefaultBroadcaster.prepareInvokeOnStateChange(DefaultBroadcaster.java:1047)
+at org.atmosphere.cpr.DefaultBroadcaster.executeAsyncWrite(DefaultBroadcaster.java:921)
+at org.atmosphere.cpr.DefaultBroadcaster$3.run(DefaultBroadcaster.java:580)
+- locked <0x00000005ef4b77f8> (a org.atmosphere.cpr.AtmosphereResourceImpl)
+at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at java.lang.Thread.run(Thread.java:724)
+"Atmosphere-Scheduler-2":
+at org.atmosphere.cpr.AsynchronousProcessor.completeLifecycle(AsynchronousProcessor.java:476)
+- waiting to lock <0x00000005ef4b77f8> (a org.atmosphere.cpr.AtmosphereResourceImpl)
+at org.atmosphere.cpr.AsynchronousProcessor.timedout(AsynchronousProcessor.java:437)
+at org.atmosphere.cpr.AsynchronousProcessor$AsynchronousProcessorHook.timedOut(AsynchronousProcessor.java:633)
+at org.atmosphere.websocket.DefaultWebSocketProcessor.close(DefaultWebSocketProcessor.java:483)
+at org.atmosphere.container.TomcatWebSocketHandler.onClose(TomcatWebSocketHandler.java:80)
+at org.apache.catalina.websocket.StreamInbound.doOnClose(StreamInbound.java:222)
+at org.apache.catalina.websocket.WsOutbound.doWriteBytes(WsOutbound.java:423)
+at org.apache.catalina.websocket.WsOutbound.doWriteText(WsOutbound.java:442)
+at org.apache.catalina.websocket.WsOutbound.writeTextMessage(WsOutbound.java:174)
+- locked <0x00000005ef4c6988> (a org.apache.catalina.websocket.WsOutbound)
+at org.atmosphere.container.version.TomcatWebSocket.write(TomcatWebSocket.java:49)
+at org.atmosphere.websocket.WebSocket.write(WebSocket.java:199)
+at org.atmosphere.websocket.WebSocket.write(WebSocket.java:168)
+at org.atmosphere.websocket.WebSocket.write(WebSocket.java:40)
+at org.atmosphere.cpr.AtmosphereResponse$2.write(AtmosphereResponse.java:574)
+at org.atmosphere.cpr.AtmosphereResponse.write(AtmosphereResponse.java:992)
+at org.atmosphere.interceptor.HeartbeatInterceptor$1$1.call(HeartbeatInterceptor.java:104)
+at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:178)
+at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:292)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+at java.lang.Thread.run(Thread.java:724)

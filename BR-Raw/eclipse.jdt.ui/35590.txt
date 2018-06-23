@@ -1,0 +1,18 @@
+Bug 35590 – JUnit window doesn't report errors from junit.extensions.TestSetup [JUnit]
+The class junit.extensions.TestSetup is a decorator to set up additional
+fixture state once before tests are run.
+I have a TestSuite wrapped into a
+TestSetup for that purpose.
+The JUnit window in the Java perspective shows
+neither errors (exceptions) nor failures (assertions) that happen in my
+TestSetup.setUp() method.
+The only thing I get is a comment on the status line:
+JUnit test run finished: 1.913 seconds (Errors: 0, Failures: 1)
+Just FYI, my class ActivationsTest creates a TestSuite like this:
+public static Test suite() {
+TestSuite suite = new TestSuite();
+suite.addTest( new ActivationsTest( "testAddAccount" ) );
+suite.addTest( new ActivationsTest( "testAddAccountReserveMobile" ) );
+suite.addTest( new ActivationsTest( "testReserveAvailableMobile" ) );
+return new CAMTestSetup( suite, "ActivationsTest" );
+}//suite()

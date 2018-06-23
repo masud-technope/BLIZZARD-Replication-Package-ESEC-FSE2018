@@ -1,0 +1,11 @@
+Bug 211256 – [ast rewrite] whitespace missing between return and expression
+M20070921-1145
+Any attempt to extract a constant from the string literal on line 3 fails.
+ The problem is the absence of optional whitespace between the return keyword and the literal.
+-------------------- Bug.java -------------------
+class Bug {
+String method(){
+return"A"//LINE 3
++"B";
+}
+}

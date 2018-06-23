@@ -1,0 +1,3 @@
+org.eclipse.jdt.core.tests.builder/src/org/eclipse/jdt/core/tests/builder/IncrementalTests18.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/MissingTypeBinding.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/UnresolvedReferenceBinding.java

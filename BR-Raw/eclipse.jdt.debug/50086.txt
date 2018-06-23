@@ -1,0 +1,5 @@
+Bug 50086 – Enhanced evaluation support
+When a display or inspect is performed from the Java editor the result should
+be displayed in a pop-up window, similar to "javadoc hover".
+Pressing "F2"
+would provide focus to the result window in order to traverse large results.

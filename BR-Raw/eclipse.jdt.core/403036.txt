@@ -1,0 +1,11 @@
+Bug 403036 – Wrong message is shown when there is no content for Javadoc
+1.Create a class:
+public class C1 {
+String s;
+}
+2.
+Hover on 'String' and click on the link for 'java' package.
+The message shown in "Note: The attached Javadoc could not be retrieved as the specified Javadoc location is either wrong or currently not accessible."
+The javadoc location is specified correctly and is accessible but for 'java' there is no javadoc available and hence no content can be retrieved.
+The message indicates a problem with the url even though it is correct.
+Cases for a wrong/Inaccessible url and a url where no content is available is not handled differently.

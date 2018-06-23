@@ -1,0 +1,3 @@
+Bug 140179 – Name of default JDK set to Home
+Eclipse 3.2RC1
+On MacOS X, Eclipse will create the entry for the default JRE with the name "Home" because this is the last segment of the JDK's location.

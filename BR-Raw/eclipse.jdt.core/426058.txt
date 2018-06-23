@@ -1,0 +1,4 @@
+Bug 426058 – IJavaElement.getAttachedJavadoc(IProgressMonitor) uses wrong encoding
+Created attachment 239121 [details]
+Screenshot
+Hi, I'm chinese, and in eclipse 4.3.1 jee edition, may there are one erro, that is in the "javadoc display dialog", I would like to display the javadoc for chinese version, but it display the chinese garbled? can any one tell me whay? bacause in v4.2.x it's looks okay!

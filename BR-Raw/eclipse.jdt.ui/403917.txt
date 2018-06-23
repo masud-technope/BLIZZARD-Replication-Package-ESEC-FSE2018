@@ -1,0 +1,2 @@
+Bug 403917 – [1.8] Render TYPE_USE annotations in Javadoc hover/view
+Render TYPE_USE annotations in Javadoc hover/view.

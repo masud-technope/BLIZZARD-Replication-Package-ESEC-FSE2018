@@ -1,0 +1,19 @@
+Bug 177420 – EquinoxLaunchConfiguration does not consider bundle version when launching
+Build ID: I20070209-1006
+Steps To Reproduce:
+1.
+Set the PDE target environment to one that contains 2 bundles with the same ID but different versions
+2.
+Select either of the bundles to be launched
+3.
+Launch the configuration
+4.
+Observe that the generated config.ini does not change depending on which bundle is chosen (the same .jar file is referenced
+5.
+Reopen the launch configuration.
+ Both bundles are selected.
+More information:
+It looks like EquinoxLaunchConfiguration doesn't take into account bundle versions when generating program arguments.
+ The getBundles(boolean) method iterates over 'fAllBundles', obtaining an IPluginModelBase for each plugin.
+ It then uses only the ID when calling LaunchConfigurationHelper.getBundleURL to generate the bundle URL, losing the version information.
+I'm not sure if this is the only place where version info is lost.

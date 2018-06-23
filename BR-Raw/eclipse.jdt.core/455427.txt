@@ -1,0 +1,4 @@
+Bug 455427 – [test] Make compiler test run with APT enabled
+See bug 436486 for context.
+At times having APT enabled affects the compiler behavior as seen in the given bug.
+This bug is to investigate the options to run the compiler tests with APT enabled ,possibly with dummy annotations processors.

@@ -1,0 +1,19 @@
+40929 – Misleading comments in StandardClassLoader
+Sometime during the Tomcat 5 development, the StandardClassLoader in
+org.apache.catalina.loader package was stripped down, and is now just a
+URLClassLoader.
+I work with code that extends the StandardClassLoader (we use the automatic
+reloading of jar files), and during an upgrade from tomcat 4 to tomcat 5.5 found
+difficultly trying to figure out what had happened to the code.
+ I ended up
+having to install SVN and do a svn log to figure out why the code was removed.
+When the code was stripped down, the comments in the java file (and therefore in
+the javadoc api) remained identical, so the javadoc api for the class is very
+misleading.
+ For instance, the comments say that the class implements Reloader,
+when it in fact does not.
+The class comments should be updated to reflect the state of the code.
+I can't see this as being very high priority, but it would likely be an easy to
+fix for people whom are in the code regularly, and it would make the javadoc
+much more readable for people that extend the StandardClassLoader for their own
+purposes.

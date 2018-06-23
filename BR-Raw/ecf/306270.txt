@@ -1,0 +1,12 @@
+Bug 306270 – [msn] ECF MSN Provider throws an Error
+ECF MSN Provider throws the following error message when trying to connect through the ECF container.
+"An internal error occurred during: "Container connect".
+5"
+Stack Trace:
+java.lang.ArrayIndexOutOfBoundsException: 5
+at org.eclipse.ecf.protocol.msn.NotificationSession.retrieveBuddyList(NotificationSession.java:163)
+at org.eclipse.ecf.protocol.msn.NotificationSession.login(NotificationSession.java:112)
+at org.eclipse.ecf.protocol.msn.MsnClient.connect(MsnClient.java:143)
+at org.eclipse.ecf.internal.provider.msn.MSNContainer.connect(MSNContainer.java:306)
+at org.eclipse.ecf.ui.actions.AsynchContainerConnectAction$AsynchActionJob.run(AsynchContainerConnectAction.java:112)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

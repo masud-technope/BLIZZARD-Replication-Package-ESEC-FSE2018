@@ -1,0 +1,8 @@
+Bug 247553 – Export-Package version when creating Plug-in from existing JAR archives
+When using Eclipse to develop OSGi bundles you quite often need to "osgify" external libraries.
+To do this you can use "File -> New -> Project -> Plug-in Development -> Plug-in from existing JAR archives"
+When plug-in is created, the "Export-Package" entries in the generated MANIFEST do not hold any version attribute.
+According to OSGi R4 specs it means exported packages do have version "0.0.0" instead of having the same version as the Bundle-Version meta tag.
+Missing versioning from Export-Package and Import-Package meta tags is a common issue in OSGi development and specifying them is considered as a "best practice".
+It would be great if the "Plug-in from existing JAR archives" functionality would by default add version attribute to ""Export-Package" entries.
+The version value would be the same as the "Bundle-Version".

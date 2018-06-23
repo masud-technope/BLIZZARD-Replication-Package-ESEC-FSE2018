@@ -1,0 +1,14 @@
+org.eclipse.osgi.framework.internal.core.BundleLoader.findClass
+org.eclipse.osgi.framework.internal.core.BundleLoader.findClass
+org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass
+java.lang.ClassLoader.loadClass
+java.lang.ClassLoader.loadClassInternal
+java.lang.Class.forName0
+java.lang.Class.forName
+org.eclipse.ecf.provider.generic.SOManager.loadSharedObject
+org.eclipse.ecf.provider.generic.SOManager.createSharedObject
+org.eclipse.ecf.example.collab.share.GenericSharedObject.createObject
+org.eclipse.ecf.example.collab.share.EclipseCollabSharedObject.createObject
+org.eclipse.ecf.example.collab.ui.LineChatClientView.createObject
+org.eclipse.ecf.example.collab.ui.ChatComposite$37.run
+java.lang.Thread.run

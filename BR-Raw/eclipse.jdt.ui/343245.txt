@@ -1,0 +1,30 @@
+Bug 343245 – [JUnit] DBCS4.1: JUnit can not import URL with CJK Extension B from clipboard
+Build Identifier: I20110412-2200
+OS: SELS4
+Eclipse SDK: 4.1.0
+JRE: IBM JDK 1.6.0
+JUnit view can not import URL with CJK Extension B from clipboard.
+Eclipse hangs up.
+Reproducible: Always
+Steps to Reproduce:
+1.Launch Eclipse and show JUnit view by [Window]->[Show View...]->[Others]->[Java]->[JUnit]
+2.Open U20BOF_\ud842\udf9f.xml, attached to this report, in your browser.
+3.Select your browser's URL field and copy it to clipboard
+4.Click JUnit menu icon and select 'import URL from clipboard'.
+5.Eclipse hangs up and it outputs the following error log.
+!SESSION 2011-04-19 17:06:45.167 -----------------------------------------------
+eclipse.buildId=I20110412-2200
+java.fullversion=JRE 1.6.0 IBM J9 2.4 Linux x86-32 jvmxi3260sr9-20110203_74623 (JIT enabled, AOT enabled)
+J9VM - 20110203_074623
+JIT  - r9_20101028_17488ifx3
+GC   - 20101027_AA
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=ja_JP
+Command-line arguments:  -os linux -ws gtk -arch x86 -consolelog
+!ENTRY org.eclipse.equinox.event 4 0 2011-04-19 17:07:58.964
+!MESSAGE Exception while dispatching event org.osgi.service.event.Event [topic=org/eclipse/e4/ui/model/application/ApplicationElement/tags/REMOVE] to handler org.eclipse.e4.ui.services.internal.events.UIEventHandler@3ed83ed8
+!STACK 0
+java.lang.NullPointerException
+at org.eclipse.e4.ui.workbench.addons.minmax.MinMaxAddon.restore(MinMaxAddon.java:345)
+at org.eclipse.e4.ui.workbench.addons.minmax.MinMaxAddon$3.handleEvent(MinMaxAddon.java:221)
+at org.eclipse.e4.ui.services.internal.events.UIEventHandler$1.run(UIEventHandler.java:41)
+...

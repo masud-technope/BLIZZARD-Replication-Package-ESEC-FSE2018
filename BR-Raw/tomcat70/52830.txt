@@ -1,0 +1,6 @@
+52830 – DataSource JNDI lookup with javax.naming.Name failed
+I try to use tomcat 7 with hibernate 4.x I got an Naming exception on getting dataSource with javax.naming.Name.
+Works when search with string.
+But hibernate migrate to Name in their code.
+See:
+https://hibernate.onjira.com/browse/HHH-7012

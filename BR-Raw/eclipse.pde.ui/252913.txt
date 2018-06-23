@@ -1,0 +1,1 @@
+Bug 252913 – [ds tooling] ensure component xml files are included in bin.includes

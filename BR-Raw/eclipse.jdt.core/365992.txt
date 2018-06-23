@@ -1,0 +1,16 @@
+Bug 365992 – [builder] [null] Change of nullness for a parameter doesn't trigger a build for the files that call the method
+Consider two classes
+#######
+public class Test1 {
+public void foo() {
+new Test2().bar(null);
+}
+}
+#######
+import org.eclipse.jdt.annotation.NonNull;
+public class Test2 {
+public void bar(@NonNull String str) {}
+}
+#####
+With 'Build Automatically' turned on, change in the nullness of the parameter 'str' in bar() should rebuild Test1.
+This is not happening now.

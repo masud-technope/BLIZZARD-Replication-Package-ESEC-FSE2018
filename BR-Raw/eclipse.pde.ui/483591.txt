@@ -1,0 +1,5 @@
+Bug 483591 – API Tools view should filter non-API changes (ApiComparator bug for generic methods)
+The API Tools view should filter non-API changes.
+I tried to verify the API changes for bug 478673, but the view showed too many changes for private and package-accessible members.
+Those are not considered API and should not be shown.
+If you still want to show non-API changes, you can add a toggleable filter.

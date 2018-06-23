@@ -1,0 +1,12 @@
+Bug 273718 – ColaDocumentChangeMessage should use constants instead of hard-coded integers
+The 'transformType' field appears to be an accident waiting to happen.
+Sample snippet of some code below.
+public boolean isInsertion() {
+return (transformType == 0);
+}
+public boolean isDeletion() {
+return (transformType == 1);
+}
+public boolean isReplacement() {
+return (transformType == 2);
+}

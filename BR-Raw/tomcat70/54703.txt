@@ -1,0 +1,14 @@
+54703 – Nullpointer exception in HttpParser.parseMediaType
+input for parseMediaType() is
+----------
+multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+boundary="----=_Part_121_929034657.1363355797756"
+----------
+exception trace
+java.lang.NullPointerException
+at org.apache.tomcat.util.http.parser.HttpParser.parseMediaType(HttpParser.java:215)
+at org.apache.tomcat.util.http.parser.MediaTypeCache.parse(MediaTypeCache.java:54)
+at org.apache.catalina.connector.Response.setContentType(Response.java:806)
+at org.apache.catalina.connector.Response.checkSpecialHeader(Response.java:1119)
+at org.apache.catalina.connector.Response.setHeader(Response.java:1446)
+at org.apache.catalina.connector.ResponseFacade.setHeader(ResponseFacade.java:535)

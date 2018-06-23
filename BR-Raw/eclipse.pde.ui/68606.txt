@@ -1,0 +1,17 @@
+Bug 68606 – New Plug-in Project wizard shows error when creating out-of the box project
+I200406250010
+1.
+Start to create a new plug-in project
+2.
+select project name to be "My Plug-in"
+3.
+flip to next page
+==> error is shown in status line (see attached picture)
+I would expect that the wizard suggests working default values especially when
+it was the wizard's decision to put the plug-in class into a package.
+Note: with the error the status also showed the name (good) but when the project
+name starts with uppercase (e.g.
+MyPlugin) then the status shows the warning:
+"By convention, package names usually start with a lower-case letter" without
+telling which value on that page is wrong and there's no package field on the
+wizard page, only a class field.

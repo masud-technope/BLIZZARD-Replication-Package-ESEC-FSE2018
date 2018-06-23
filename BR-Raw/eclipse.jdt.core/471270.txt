@@ -1,0 +1,7 @@
+Bug 471270 – Enrich IllegalArgumentsExceptions with information about actual arguments in org.eclipse.jdt.internal.core.util.Util
+Dear JDT team,
+I am currently investigating Bug 471266.
+Unfortunately, I have a hard time doing so as the IllegalArgumentException thrown in org.eclipse.jdt.internal.compiler.util.Util does not give me any information about the actual arguments for which Util.scanTypeVariableSignature failed.
+As far as I can see, just using "throw new IllegalArgumentException()" is a prevalent pattern in org.eclipse.jdt.internal.compiler.util.Util.
+Would it be possible to add information about the actual arguments? Or did you explicitly decide not to do so, in order to keep exception creation light-weight?
+(FWIW, I would be willing to provide a patch.)

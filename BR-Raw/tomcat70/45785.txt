@@ -1,0 +1,30 @@
+45785 – ClassCastException if directory ending with .jar exists in WEB-INF/lib
+Exception occurs if there is a directory in WEB-INF/lib having a .jar ending (e.g.
+foo.jar).
+Don't know if it makes sense to create such a dir in WEB-INF/lib, in my case a bug in another tool created such a dir.
+But in any case: Tomcat should not crash because of such a directory, IMHO.
+java.lang.ClassCastException: org.apache.naming.resources.FileDirContext cannot be cast to org.apache.naming.resources.Resource
+at org.apache.catalina.util.ExtensionValidator.validateApplication(ExtensionValidator.java:182)
+at org.apache.catalina.core.StandardContext.start(StandardContext.java:4167)
+at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:791)
+at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:771)
+at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:525)
+at org.apache.catalina.startup.HostConfig.deployDescriptor(HostConfig.java:627)
+at org.apache.catalina.startup.HostConfig.deployDescriptors(HostConfig.java:553)
+at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:488)
+at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1149)
+at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:311)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:117)
+at org.apache.catalina.core.ContainerBase.start(ContainerBase.java:1053)
+at org.apache.catalina.core.StandardHost.start(StandardHost.java:719)
+at org.apache.catalina.core.ContainerBase.start(ContainerBase.java:1045)
+at org.apache.catalina.core.StandardEngine.start(StandardEngine.java:443)
+at org.apache.catalina.core.StandardService.start(StandardService.java:516)
+at org.apache.catalina.core.StandardServer.start(StandardServer.java:710)
+at org.apache.catalina.startup.Catalina.start(Catalina.java:578)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+at java.lang.reflect.Method.invoke(Method.java:597)
+at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:288)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:413)

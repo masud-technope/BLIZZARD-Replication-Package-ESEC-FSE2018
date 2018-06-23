@@ -1,0 +1,15 @@
+framework/bundles/org.eclipse.ecf.docshare/plugin.properties
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/internal/docshare/Activator.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/internal/docshare/messages.properties
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/internal/provisional/docshare/menu/DocShareRosterMenuContributionItem.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/internal/docshare/messages.properties
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/DocShare.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/IdentityMapping.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/SynchronizationStrategy.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/cola/ColaDeletion.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/cola/ColaInsertion.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/cola/ColaReplacement.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/cola/ColaSynchronizer.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/cola/ColaUpdateMessage.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/cola/TransformationStrategy.java
+framework/bundles/org.eclipse.ecf.docshare/src/org/eclipse/ecf/docshare/messages/UpdateMessage.java

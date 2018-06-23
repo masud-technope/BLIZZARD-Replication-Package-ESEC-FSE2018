@@ -1,0 +1,9 @@
+ua/org.eclipse.pde.ua.core/src/org/eclipse/pde/internal/ua/core/toc/text/TocMarkerManager.java
+ua/org.eclipse.pde.ua.core/src/org/eclipse/pde/internal/ua/core/toc/text/TocModel.java
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/toc/TocEditor.java
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/toc/TocPage.java
+ua/org.eclipse.pde.ua.core/src/org/eclipse/pde/internal/ua/core/toc/text/TocDocumentHandler.java
+ua/org.eclipse.pde.ua.core/src/org/eclipse/pde/internal/ua/core/toc/text/TocMarkerManager.java
+ua/org.eclipse.pde.ua.core/src/org/eclipse/pde/internal/ua/core/toc/text/TocModel.java
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/toc/TocEditor.java
+ua/org.eclipse.pde.ua.ui/src/org/eclipse/pde/internal/ua/ui/editor/toc/TocPage.java

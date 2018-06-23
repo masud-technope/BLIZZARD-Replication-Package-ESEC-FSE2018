@@ -1,0 +1,2 @@
+ua/org.eclipse.pde.ua.tests/src/org/eclipse/pde/internal/ua/tests/cheatsheet/SimpleCSSSpellCheckTestCase.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/text/XMLStringPartitionScanner.java

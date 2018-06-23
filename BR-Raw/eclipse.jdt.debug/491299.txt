@@ -1,0 +1,4 @@
+Bug 491299 – Classpath tab for Java application has wrong colors
+Non editable entries are white text on black background on Linux with Gtk default theme Adwaita (due to usage of COLOR_INFO_* constants, which are ment for popups) which is way too intrusive in the UI.
+Additionally when using Eclipse dark theme having same colors makes it undistinguishable from the rest of the UI using dark pallette.
+As the bug is really similar to bug 488825 I'm taking the same approach and will make the respective class not implement IColorProvider.

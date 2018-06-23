@@ -1,0 +1,8 @@
+Bug 421506 – Suggestion to align "Additional Save actions" with the desired code Eclipse contribution guidelines
+Created attachment 237386 [details]
+Setting
+I think most Eclipse projects (at least Eclipse platform, EGit and e4) ask their contributors to remove trailing whitespace from their contributions.
+I suggest to add "Remove trailing white space on all lines" to the default Additional save actions.
+I also think that "Use modifier final where possible" for private fields is currently not desired by the Eclipse projects.
+This would result in setting similar to the attached screenshot.
+Would JDT accept a patch for this change?

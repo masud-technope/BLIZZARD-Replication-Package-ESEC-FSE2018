@@ -1,0 +1,8 @@
+Bug 478714 – [1.7][quick fix] Multi-Catch QuickFix creates compiler error
+Created attachment 256939 [details]
+A video showing the error
+Same as bug no.
+388724.
+For administrative purposes I created a new bug report as it was requested from me.
+See the attached video for details.
+Quick fix generates broken code.

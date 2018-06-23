@@ -1,0 +1,5 @@
+47158 – I think AccessLogValve has race condition problem
+"Double-Checked Locking" pattern is heavily used in this class, but the usage of it in AccessLogValve has some issues of race condition judging by this article: http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html
+Based by this article, I think these variables in this class should be declared as volatile to get rid of race condition:
+private volatile long currentMillis;
+private volatile  Date currentDate;

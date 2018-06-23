@@ -1,0 +1,15 @@
+Bug 176591 – [1.5][compiler] Java compiler erroneously reports a type mismatch
+Build ID: Build id: M20070212-1330
+Steps To Reproduce:
+With compiler compliance level 5.0,
+public Set<String> getTypedSet()
+{
+return true ? Collections.emptySet() : null;
+}
+leads to "Type mismatch: cannot convert from Set<Object> to Set<String>".
+More information:
+public Set<String> getTypedSet()
+{
+return Collections.emptySet();
+}
+works.

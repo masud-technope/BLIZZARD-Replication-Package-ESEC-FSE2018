@@ -1,0 +1,2 @@
+Bug 412149 – [1.8][compiler] Emit repeated annotations into the designated container
+When an annotation is repeated, it should be emitted as part of its container annotation.

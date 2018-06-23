@@ -1,0 +1,3 @@
+Bug 215743 – [schema] errors should be displayed in problems and package explorer views
+When working with an exsd file, an error is only shown within the Extension Point Schema editor, whereas it should also result in an entry in the Problems view and decorators (on the file, parent folder(s), project and working set(s)) in the Package Explorer view.
+Only showing the problem in the editor means that you only see the error when the editor is open and you're paying particular attention to the editor's details.

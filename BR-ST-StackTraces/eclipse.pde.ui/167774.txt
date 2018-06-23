@@ -1,0 +1,9 @@
+org.eclipse.pde.internal.core.PDEState.createTargetModels
+org.eclipse.pde.internal.ui.preferences.TargetPluginsTab.addNewBundles
+org.eclipse.pde.internal.ui.preferences.TargetPluginsTab.handleAdd
+org.eclipse.pde.internal.ui.preferences.TargetPluginsTab.buttonSelected
+org.eclipse.pde.internal.ui.parts.SharedPartWithButtons$SelectionHandler.buttonSelected
+org.eclipse.pde.internal.ui.parts.SharedPartWithButtons$SelectionHandler.widgetSelected
+org.eclipse.swt.widgets.TypedListener.handleEvent
+org.eclipse.swt.widgets.EventTable.sendEvent
+org.eclipse.swt.widgets.Widget.sendEvent

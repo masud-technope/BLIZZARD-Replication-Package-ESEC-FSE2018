@@ -1,0 +1,6 @@
+Bug 54407 – Make a pass on all the properties files
+I did a quick pass over all of the files today and cleaned most of these up.
+The source lookup seemed to still be a work in progress so I did not touch
+those.
+Near the end of 3.0 we should do a pass on all of the message properties files
+to remove unused strings and fix up missing keys.

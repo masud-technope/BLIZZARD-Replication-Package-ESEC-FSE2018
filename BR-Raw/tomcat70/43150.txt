@@ -1,0 +1,11 @@
+43150 – Tomcat and path with pound sign (#) -> ClassNotFoundException
+Tomcat will not start if it's located and launched from a path with a # (pound)
+character somewhere.
+You'll find all informations in the given mail-thread on
+tomcat-user, including some developer specific informations.
+One part of the problem is the usage of File.toURL in URLClassloader...
+I'd really appreciate it if this problem could be fixed/worked around (see
+mail-thread for hints).
+btw.
+the same applies to version 5.5 and probably earlier versions too.
+thanks!

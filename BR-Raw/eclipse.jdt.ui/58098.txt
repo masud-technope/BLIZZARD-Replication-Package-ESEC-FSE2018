@@ -1,0 +1,9 @@
+Bug 58098 – Smart cursor positioning in java names don't work for CONSTANT_NAMES
+Smart cursor positioning in java names don't work for CONSTANT_NAMES both when
+moving and deleting (Ctrl+Delete).
+I assume it should as CONSTANT_NAMES are
+equally part of a Java naming standard just as methodNames() are.
+In case it
+works as designed then option name should be changed to accurately describe its
+actual function.
+Linux 3.0M8

@@ -1,0 +1,8 @@
+Bug 323690 – [call hierarchy] Refresh view when selection is empty
+Build Identifier: 20100617-1415
+If I open the call hierarchy for a given method by placing the caret on the method and then pressing Ctrl+Alt+H, it can still happen, that the resulting tree is empty.
+In Eclipse 3.5 I could then simply press F5 3 or 4 times to refresh the tree until it show the actual result.
+Now in 3.6 the call hierarchy refreshes only, if it is non-empty.
+Pressing Ctrl+Alt+H again after the call hierarchy opened and the selection is on the requested method does it though.
+But F5 should also work, since I don'T have to worry about the selection then.
+Reproducible: Always

@@ -1,0 +1,3 @@
+Bug 128345 – Reload the target platform from the target editor
+As it stands now, the user modifies the .target file, saves, then opens the target platform preference page, browses for the target file, and then press Load for his changes to take effect.
+There should be a button inside the target editor to update the current target platform from the target file's contents.

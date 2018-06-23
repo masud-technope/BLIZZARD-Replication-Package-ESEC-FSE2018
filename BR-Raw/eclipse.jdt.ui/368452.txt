@@ -1,0 +1,15 @@
+Bug 368452 – Full rebuild is asked on compiler options changed even when workspace is empty
+Build Identifier: Version: Indigo Service Release 1 Build id: 20110916-0149
+When a compiler option has been changed (through Preferences / Java / Compiler / Errors/Warnings), a dialog box appears and tells you that â€œThe Error/Warning settings have changedâ€? and that â€œA full rebuild is required for changes to take effectâ€? and asks you if you want to â€œDo the full build nowâ€?.
+The question should not be asked when the workspace contains no project to possibly rebuild.
+Reproducible: Always
+Steps to Reproduce:
+1.
+Grab a fresh eclipse install.
+(Optional, but just to be sure.)
+2.
+Start eclipse, pointing it to a blank, new workspace directory.
+(So that it starts with no projects.)
+3.
+Go straight to Preferences, change some Java compiler option, e.g., ask for â€œInclude 'assert' in null analysisâ€?.
+Click Apply or OK.

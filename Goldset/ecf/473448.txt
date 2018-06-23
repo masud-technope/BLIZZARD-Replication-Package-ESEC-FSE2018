@@ -1,0 +1,11 @@
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/MessageNotificationPopup.java
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/MessagesView.java
+providers/bundles/org.eclipse.ecf.provider.xmpp.ui/src/org/eclipse/ecf/internal/provider/xmpp/ui/wizards/XMPPConnectWizard.java
+providers/bundles/org.eclipse.ecf.provider.xmpp.ui/src/org/eclipse/ecf/internal/provider/xmpp/ui/hyperlink/XMPPHyperlink.java
+providers/bundles/org.eclipse.ecf.provider.xmpp.ui/plugin.xml
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/MultiRosterView.java
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/presence/ui/chatroom/ChatRoomManagerView.java
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/internal/presence/ui/handlers/BrowseHandler.java
+framework/bundles/org.eclipse.ecf.presence.ui/src/org/eclipse/ecf/internal/presence/ui/messages.properties
+providers/bundles/org.eclipse.ecf.provider.xmpp.ui/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.presence.ui/META-INF/MANIFEST.MF

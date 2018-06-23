@@ -1,0 +1,6 @@
+47569 – Test cases do not clear up afterwards
+Some of the test cases (e.g.
+TestTomcat) start a Tomcat server,
+This creates the directory tree
+tomcat.8080/work...
+which is not deleted when the test finishes.

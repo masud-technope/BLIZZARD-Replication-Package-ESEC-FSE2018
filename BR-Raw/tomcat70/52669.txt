@@ -1,0 +1,38 @@
+52669 – Annotation processing, in WEB-INF/classes, for Servlets/Listeners/Filters is skipped when the web app is not extracted, classes do not have packages and for some embedded scenarios
+Hi,
+Annotation processing for Servlets/Listeners/Filters is skipped when:
+- the web app is not extracted (screenshot1),
+- classes do not have packages (screenshot2),
+- for some embedded scenarios (running Tomcat in OSGI environment - screenshot3)
+A test web application is attached - test-web-app.war.
+I followed the history and the change that introduces that behaviour is made with revision 1210012.
+org.apache.catalina.startup.ContextConfig
+The annotations are processed correctly in all use cases when we have:
+1199    URL webinfClasses;
+1200    try {
+1201        webinfClasses = context.getServletContext().getResource(
+1202                                "/WEB-INF/classes");
+1203        processAnnotationsUrl(webinfClasses, webXml);
+1204    } catch (MalformedURLException e) {
+1205        log.error(sm.getString(
+1206                                "contextConfig.webinfClassesUrl"), e);
+1207    }
+The way how they are processed now is assuming that we will have FirDirContext always.
+1196    try {
+1197        NamingEnumeration<Binding> listBindings =
+1198                    context.getResources().listBindings("/WEB-INF/classes");
+1199        while (listBindings.hasMoreElements()) {
+1200            Binding binding = listBindings.nextElement();
+1201            if (binding.getObject() instanceof FileDirContext) {
+1202               File webInfCLassDir =
+1203                     new File(
+1204                       ((FileDirContext) binding.getObject()).getDocBase());
+1205               processAnnotationsFile(webInfCLassDir, webXml);
+1206            }
+1207        }
+1208    } catch (NamingException e) {
+1209        log.error(sm.getString(
+1210                            "contextConfig.webinfClassesUrl"), e);
+1211    }
+Regards
+Violeta Georgieva

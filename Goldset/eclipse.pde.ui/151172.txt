@@ -1,0 +1,13 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/MinimalState.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/BundleErrorReporter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/JarManifestErrorReporter.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/bundle/Bundle.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/util/HeaderMap.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/util/Headers.java
+ui/org.eclipse.pde.core/src_ant/org/eclipse/pde/internal/core/ant/ConvertSchemaToHTML.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/bundle/Bundle.java
+ui/org.eclipse.pde.core/text/org/eclipse/pde/internal/core/text/bundle/BundleModelFactory.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/actions/FormatOperation.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/contentassist/ManifestContentAssistProcessor.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/BundleSourcePage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/text/ManifestConfiguration.java

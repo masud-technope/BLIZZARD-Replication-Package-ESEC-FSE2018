@@ -1,0 +1,4 @@
+Bug 229024 – meta attribute in schema should be case-insensitive
+Looking at the org.eclipse.ui.encodings extension point, you see a tab with "?" on the overview page of the schema editor.
+This is caused by an meta attribute called "apiInfo" which is not recognized by PDE.
+Seems PDE only recognizes the "apiinfo" type as valid attribute for api informations.

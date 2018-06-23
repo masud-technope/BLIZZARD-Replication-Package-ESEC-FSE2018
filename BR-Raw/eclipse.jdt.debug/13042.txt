@@ -1,0 +1,11 @@
+Bug 13042 – NPE after killing Java process
+I had terminated a target eclipse session where I was playing with cancelling
+debug launch configurations.
+ There were javaw.exe processes hanging around.
+ I
+killed the process in the task manager:
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.fireEvents(EventDispatcher.java:227)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:126)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.run(EventDispatcher.java:155)
+at java.lang.Thread.run(Thread.java:484)

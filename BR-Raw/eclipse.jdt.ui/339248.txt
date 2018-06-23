@@ -1,0 +1,23 @@
+Bug 339248 – [inline] Inline method adds wrong casts for Collections.fill(*)
+I20110307-2110
+package xy;
+import java.util.ArrayList;
+import java.util.Collections;
+public class C {
+void foo(ArrayList<String> al) {
+Collections.fill(al, "Hi");
+}
+}
+In 3.6, inlining the 'fill' method worked fine (except for the invisible FILL_THRESHOLD constant).
+In HEAD, the result is this, with 2 unnecessary casts that contain the unavailable type variable T:
+int size = ((List<? super T>) al).size();
+if (size < Collections.FILL_THRESHOLD || al instanceof RandomAccess) {
+for (int i=0; i<size; i++)
+(al).set(i, (T) "Hi");
+} else {
+ListIterator<? super String> itr = (al).listIterator();
+for (int i=0; i<size; i++) {
+itr.next();
+itr.set("Hi");
+}
+}

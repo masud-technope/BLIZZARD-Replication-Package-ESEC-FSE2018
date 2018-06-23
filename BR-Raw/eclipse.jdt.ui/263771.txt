@@ -1,0 +1,29 @@
+Bug 263771 – [hashcode/equals] Generated equals/hashCode implementation wrong for multidimensional arrays
+Build ID: M20070921-1145
+Steps To Reproduce:
+let
+Character[][] world...
+be a declared field.
+Select it in the generation dialog as included field in hashCode and equals.
+It generates
+- hashCode:
+result = prime * result + Arrays.hashCode(world);
+- equals:
+if (!Arrays.equals(world, other.world))
+return false;
+These implementations of Arrays.hashCode / Arrays.equals do not work for multidim arrays.
+Solution:
+- hashCode:
+for (int x = 0; x < width; x++) {
+for (int y = 0; y < height; y++) {
+result = prime * result + world[x][y].hashCode();
+}
+}
+- equals
+for (int x = 0; x < width; x++) {
+for (int y = 0; y < height; y++) {
+if (!world[x][y].equals(other.world[x][y]))
+return false;
+}
+}
+More information:

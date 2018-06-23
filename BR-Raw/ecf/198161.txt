@@ -1,0 +1,8 @@
+Bug 198161 – [IRC] <tab> name completion broken
+The IRC name completion seems to be broken.
+To repro:
+0) Get/build/run latest from HEAD (7/27/2007)
+1) Go into IRC channel
+2) Type first letter of channel participants
+3) hit <tab>
+4) name is not completed as it was in ECF 1.0.1.

@@ -1,0 +1,8 @@
+org.apache.catalina.session.ManagerBase.processExpires
+org.apache.catalina.session.ManagerBase.backgroundProcess
+org.apache.catalina.core.ContainerBase.backgroundProcess
+org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren
+org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren
+org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren
+org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run
+java.lang.Thread.run

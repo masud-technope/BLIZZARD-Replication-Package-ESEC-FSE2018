@@ -1,0 +1,8 @@
+providers/bundles/org.eclipse.ecf.provider.r_osgi/buckminster.cspex
+framework/bundles/org.eclipse.ecf.remoteservice/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.sharedobject/src/org/eclipse/ecf/core/util/reflection/ClassUtil.java
+framework/bundles/org.eclipse.ecf.remoteservice/src/org/eclipse/ecf/remoteservice/AbstractRemoteService.java
+framework/bundles/org.eclipse.ecf.sharedobject/src/org/eclipse/ecf/core/sharedobject/SharedObjectMsg.java
+providers/bundles/org.eclipse.ecf.provider.r_osgi/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.r_osgi/src/org/eclipse/ecf/internal/provider/r_osgi/RemoteServiceImpl.java
+framework/bundles/org.eclipse.ecf.sharedobject/META-INF/MANIFEST.MF

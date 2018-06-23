@@ -1,0 +1,4 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaPluginImages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/viewsupport/BindingLabelProvider.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/viewsupport/JavaElementImageProvider.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/JavaElementImageDescriptor.java

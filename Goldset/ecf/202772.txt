@@ -1,0 +1,1 @@
+examples/bundles/org.eclipse.ecf.example.pubsub/src/org/eclipse/ecf/example/pubsub/PubSubView.java

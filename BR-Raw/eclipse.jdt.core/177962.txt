@@ -1,0 +1,16 @@
+Bug 177962 – Null timestamp on working copy
+Have a workaround at present, should find a more correct and elegant fix.
+The bug manifests when switching the "enable processing during reconcile" APT setting.
+ If files have been generated and removed during an editing session with reconcile-time processing enabled, and the processing is then disabled, subsequent builds may fail because of null timestamps.
+ It seems that somewhere along the line a working copy (perhaps an empty one) is getting created, but not discarded; then when we attempt to generate types at build time we stumble over that working copy.
+ I'm not sure why it has a null timestamp, but that is apparently used to denote a deleted unit.
+The workaround is in GeneratedFileManager.saveCompilationUnit().
+ To see the bug manifest, comment out the following block of code and exercise type generation with and without reconcile-time processing enabled.
+if (isWorkingCopy && !AptConfig.shouldProcessDuringReconcile(_jProject)) {
+// Cover the case where the user turned off reconcile-time processing after some working
+// copies were already created - else they'll get null timestamps and the commit will fail.
+// There's probably a better way to do this but it's a corner case anyway.
+- WSH 3/07
+_CUHELPER.discardWorkingCopy(unit);
+isWorkingCopy = false;
+}

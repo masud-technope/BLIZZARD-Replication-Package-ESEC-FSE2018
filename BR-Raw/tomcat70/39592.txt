@@ -1,0 +1,66 @@
+39592 – SSI does not correctly process HEAD request
+Hello,
+I think there is a small bug in Tomcat 5.0 and 5.5 (at least I could see it already with many versions of
+Tomcat).
+I use SSI
+org.apache.catalina.ssi.SSIServlet
+and
+<param-name>isVirtualWebappRelative</param-name>
+<param-value>1</param-value>
+All my pages (*.html) are processed by the SSI
+<url-pattern>*.html</url-pattern>
+If there is a normal GET request, SSI compiles a page and everything is just OK.
+However, for  the HEAD request to the same page (there is no need to compile the page) the SSI still
+tries to do it and generates a number of exceptions (see enclosed).
+This error is not critical but overloads my catalina.out file.
+I do not think that it is difficult to fix it.
+I already reported this error to tomcat-dev, but decided to create a formal "bug" report at ASF Bugzilla
+to see if it was already fixed or not.
+This is not a big error, but it is annoying.
+Thanks!
+With the best regards,
+Igor Tetko
+*****
+Apr 28, 2006 11:26:45 AM org.apache.catalina.core.ApplicationContext log
+SEVERE: #include--Couldn't include file: styles.html
+java.io.IOException: Couldn't find file: /incl/styles.html
+at org.apache.catalina.ssi.SSIServletExternalResolver.getFileText(SSIServletExternalResolver.java:537)
+at org.apache.catalina.ssi.SSIMediator.getFileText(SSIMediator.java:155)
+at org.apache.catalina.ssi.SSIInclude.process(SSIInclude.java:44)
+at org.apache.catalina.ssi.SSIProcessor.process(SSIProcessor.java:146)
+at org.apache.catalina.ssi.SSIServlet.processSSI(SSIServlet.java:221)
+at org.apache.catalina.ssi.SSIServlet.requestHandler(SSIServlet.java:187)
+at org.apache.catalina.ssi.SSIServlet.doGet(SSIServlet.java:123)
+at javax.servlet.http.HttpServlet.doHead(HttpServlet.java:270)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:706)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:802)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:252)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:173)
+at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:672)
+at org.apache.catalina.core.ApplicationDispatcher.doInclude(ApplicationDispatcher.java:574)
+at org.apache.catalina.core.ApplicationDispatcher.include(ApplicationDispatcher.java:499)
+at org.apache.catalina.ssi.SSIServletExternalResolver.getFileText(SSIServletExternalResolver.java:519)
+at org.apache.catalina.ssi.SSIMediator.getFileText(SSIMediator.java:155)
+at org.apache.catalina.ssi.SSIInclude.process(SSIInclude.java:44)
+at org.apache.catalina.ssi.SSIProcessor.process(SSIProcessor.java:146)
+at org.apache.catalina.ssi.SSIServlet.processSSI(SSIServlet.java:221)
+at org.apache.catalina.ssi.SSIServlet.requestHandler(SSIServlet.java:187)
+at org.apache.catalina.ssi.SSIServlet.doGet(SSIServlet.java:123)
+at javax.servlet.http.HttpServlet.doHead(HttpServlet.java:270)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:706)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:802)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:252)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:173)
+at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:213)
+at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:178)
+at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:126)
+at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:105)
+at org.apache.catalina.valves.FastCommonAccessLogValve.invoke(FastCommonAccessLogValve.java:495)
+at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:107)
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:148)
+at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:869)
+at org.apache.coyote.http11.Http11BaseProtocol$Http11ConnectionHandler.processConnection(Http11BaseProtocol.java:664)
+at org.apache.tomcat.util.net.PoolTcpEndpoint.processSocket(PoolTcpEndpoint.java:527)
+at org.apache.tomcat.util.net.LeaderFollowerWorkerThread.runIt(LeaderFollowerWorkerThread.java:80)
+at org.apache.tomcat.util.threads.ThreadPool$ControlRunnable.run(ThreadPool.java:684)
+at java.lang.Thread.run(Thread.java:613)

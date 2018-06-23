@@ -1,0 +1,3 @@
+Bug 81249 – toString() as variable label causes "no suspended threads"
+When I turn on the use of 'toString()' for all variable labels, I often see
+labels as "toString() unavailable - no suspended threads".

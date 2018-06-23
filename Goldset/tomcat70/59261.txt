@@ -1,0 +1,7 @@
+java/javax/servlet/ServletRequest.java
+java/org/apache/catalina/connector/Request.java
+java/org/apache/catalina/connector/CoyoteAdapter.java
+java/org/apache/catalina/core/ApplicationDispatcher.java
+java/org/apache/catalina/connector/LocalStrings.properties
+webapps/docs/changelog.xml
+java/org/apache/catalina/core/StandardWrapperValve.java

@@ -1,0 +1,6 @@
+Bug 483534 – [search]Open Method error on parameterized methods
+interface FI {
+void foo(ArrayList<IOException> x);
+}
+IMethod exists() returns false
+cause: IOException not stored (intentional as multiple parameterized methods of the same erasure type not allowed) - but this causes the failure of type.getMethod().

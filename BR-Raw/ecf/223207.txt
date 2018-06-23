@@ -1,0 +1,8 @@
+Bug 223207 – [filetransfer][api] More generic handling of lastModified timestamp
+Created attachment 92923 [details]
+Patch to generilize handling of lastModified timestamp
+The URLConnectionRetrieveFileTransfer and HttpClientRetrieveFileTransfer both obtain the 'lastModifiedTime' from the header fields for subsequent use when doing interrupted file transfer.
+This timestamp can be very useful when creating a local cache and it is not uncommon for remote protocols to support it.
+The attached patch will make the lastModified timestamp generally available in the IIncomingFileTransfer interface.
+It adds the needed functionality for the EFS provider as well (+ EFS support for getRemoteFileName()).
+I did not find a way to do this with SCP although I'm not a wiz in that area so perhaps that's possible too.

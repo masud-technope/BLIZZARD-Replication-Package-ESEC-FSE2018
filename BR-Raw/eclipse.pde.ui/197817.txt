@@ -1,0 +1,10 @@
+Bug 197817 – Plug-in should be removed from Java Search when imported as source
+I20070724-0800
+Has already been reported as fixed in bug 56501, but apparently, no regression test caught the reappearance of this problem.
+- new workspace
+- Plug-ins view
+- Select All
+- Add to Java Search
+- import org.eclipse.core.expressions as source
+- Navigate > Open Type, enter "AndExpression"
+=> two matches for same class (from source and from External Plug-in Libraries)

@@ -1,0 +1,19 @@
+Bug 433989 – Nested static generic class reference is incorrectly marked as compile error
+Created attachment 242632 [details]
+Screenshot of incorrect validation in latest stable build of Luna.
+class A<V> {
+public static class Container {
+public static class In<T> {
+public static class Inner<U> {
+}
+}
+public static <X> void doit() {
+new In.Inner<X>(); // compilation error
+}
+}
+}
+Mentioned piece of code is being reported by JDT to contain error with the following message:
+* The member type A.Container.In must be parameterized, since it is qualified with a parameterized type (Java Problem)
+However the code is syntactically correct and can be compiled via javac.
+Tested on Eclipse Kepler, Juno and Luna (see attached screenshot) builds.
+Originally asked as a question on StackOverflow - http://stackoverflow.com/questions/23416674/nested-generics-in-java

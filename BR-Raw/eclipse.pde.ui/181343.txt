@@ -1,0 +1,9 @@
+Bug 181343 – [Plug-in Dependencies View] Fragment shows itself as dependency
+1.
+Focus on org.eclipse.swt.win32 (with fragments option on)
+2.
+You will see that the tree shows the host
+org.eclipse.swt but it should not show the fragment itself as a dependency.
+3.
+In the flat layout mode, again both host and fragment are listed.
+ It should only show host.

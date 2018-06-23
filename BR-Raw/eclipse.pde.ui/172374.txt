@@ -1,0 +1,45 @@
+Bug 172374 – Launch As Eclipse Application clears target workspace BEFORE it determines if it is in use
+Build ID: 3.2.1 Build id: M20060921-0945
+Steps To Reproduce:
+1.
+Run ...
+menu to invoke the launch configuration dialog
+2.
+select a workspace that is in use by another Eclipse
+3.
+select clear workspace
+4.
+RUN
+5.
+You will see an error message "Workspace Cannot be Locked"
+6.
+close the message (click OK)
+7.
+switch to the Eclipse instance that has (had) the workspace open
+8.
+refresh current view
+9.
+you get an error "Project location has been deleted" asking if the project should be deleted from the workspace.
+More information:
+I have discovered an interesting feature of platform launch.
+ For my case, I
+am writing JUnit plug-in tests.
+ Hence, when I run the tests, a new
+workbench is launched.
+ Running the test causes a new Java project to be
+created in the launched workspace, and project source to be generated and
+compiled.
+It is possible that some of my tests fail due to compile erros.
+In this case, I launch a new instance of Eclipse on the launch workspace so
+I can open the generated project and examine the compile errors.
+Now here comes the rub.
+If I forget to close this second instance of Eclipse, then return to the
+primary workbench and launch another test, *and* I specify to delete the
+workbench, the workbench is cleared even though another instance of Eclipse
+has it open.
+ *after* clearing the workbench, the launch code determines
+that the workspace is locked by another instance and the launch fails.
+Ultimately, the second instance of Eclipse that has the workspace open gets
+errors trying to refresh a workbench that no longer exists.
+It seems to me that the launch should check for the workspace being in use
+*before* it does the clear.

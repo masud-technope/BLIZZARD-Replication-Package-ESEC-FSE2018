@@ -1,0 +1,3 @@
+Bug 409352 – [regression] API tooling complains about missing @since tag for an interface method that has @noreference tag
+API tooling produces "Missing @since tag on getEvaluation()" error message for	http://git.eclipse.org/c/cdt/org.eclipse.cdt.git/tree/core/org.eclipse.cdt.core/parser/org/eclipse/cdt/core/dom/ast/IValue.java line 35.
+API tooling in Eclipse 3.8.2 was satisfied by the @noreference tag.

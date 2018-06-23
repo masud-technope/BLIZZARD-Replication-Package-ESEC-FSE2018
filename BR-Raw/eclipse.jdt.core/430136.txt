@@ -1,0 +1,15 @@
+Bug 430136 – [1.8][model] JavaElement.JEM_LAMBDA_METHOD should not use '*' and '>' as memento delimiter
+JavaElement.JEM_LAMBDA_METHOD should not use '*' and '>' as memento delimiter.
+I just saw that the fix for bug 425134 had to make adjustments in MementoTests.
+That's not good.
+Existing JavaElement handles should stay as stable as possible, see Javadoc of IJavaElement#getHandleIdentifier().
+'*' and '>' were already used by existing mementos, and such stored mementos cannot be parsed any more now.
+I see that most "safe" ASCII characters are already used as token delimiters or in token data, but these look free:
+&')`
+Forbidden character groups:
+- identifier characters
+- characters used in Signature (at least for parameter type signatures)
+- , is IMO risky as well (often used by clients to separate data)
+We should also have a test for lambda type and lambda method mementos.
+I don't think these will be stored often (since they are inherently unstable), but they can be used locally (e.g.
+to put an element on the clipboard, or for hyperlinks in Javadoc hovers).

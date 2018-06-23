@@ -1,0 +1,61 @@
+Bug 424637 – [1.8][compiler][null] AIOOB in ReferenceExpression.resolveType with a method reference to Files::walk
+This may be a duplicate but the problematic source code is so neat I'm reporting it without checking too carefully :)
+What steps will reproduce the problem?
+1.
+Copy the source code from the error message below and paste it to a project and save.
+2.
+AIOOB is logged many many times from many many places.
+Tested with BETA_JAVA8 binaries updated earlier today.
+-- Error Details --
+Date: Tue Dec 24 21:15:24 EET 2013
+Message: Exception occurred during problem detection:
+----------------------------------- SOURCE BEGIN -------------------------------------
+package vararg.methodref;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.function.Function;
+import java.util.stream.Stream;
+public class AstAndReconcileErrors {
+public static void method() {
+Function<Path, Stream<Path>> method = Files::walk;
+}
+}
+----------------------------------- SOURCE END -------------------------------------
+Severity: Error
+Product: Eclipse SDK 4.3.1.v20130911-1000 (org.eclipse.sdk.ide)
+Plugin: org.eclipse.jdt.core
+Session Data:
+eclipse.buildId=4.3.0.M20130911-1000
+java.version=1.8.0-ea
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+Exception Stack Trace:
+java.lang.ArrayIndexOutOfBoundsException: 1
+at org.eclipse.jdt.internal.compiler.ast.ReferenceExpression.resolveType(ReferenceExpression.java:468)
+at org.eclipse.jdt.internal.compiler.ast.LocalDeclaration.resolve(LocalDeclaration.java:244)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolveStatements(AbstractMethodDeclaration.java:620)
+at org.eclipse.jdt.internal.compiler.ast.MethodDeclaration.resolveStatements(MethodDeclaration.java:303)
+at org.eclipse.jdt.internal.compiler.ast.AbstractMethodDeclaration.resolve(AbstractMethodDeclaration.java:531)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1209)
+at org.eclipse.jdt.internal.compiler.ast.TypeDeclaration.resolve(TypeDeclaration.java:1319)
+at org.eclipse.jdt.internal.compiler.ast.CompilationUnitDeclaration.resolve(CompilationUnitDeclaration.java:570)
+at org.eclipse.jdt.internal.compiler.Compiler.resolve(Compiler.java:920)
+at org.eclipse.jdt.internal.compiler.Compiler.resolve(Compiler.java:965)
+at org.eclipse.jdt.internal.core.CompilationUnitProblemFinder.process(CompilationUnitProblemFinder.java:204)
+at org.eclipse.jdt.internal.core.CompilationUnitProblemFinder.process(CompilationUnitProblemFinder.java:270)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.makeConsistent(ReconcileWorkingCopyOperation.java:190)
+at org.eclipse.jdt.internal.core.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:89)
+at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:728)
+at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:788)
+at org.eclipse.jdt.internal.core.CompilationUnit.reconcile(CompilationUnit.java:1247)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:126)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.access$0(JavaReconcilingStrategy.java:108)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy$1.run(JavaReconcilingStrategy.java:89)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:87)
+at org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy.reconcile(JavaReconcilingStrategy.java:151)
+at org.eclipse.jdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:86)
+at org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy.reconcile(JavaCompositeReconcilingStrategy.java:104)
+at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:77)
+at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:206)

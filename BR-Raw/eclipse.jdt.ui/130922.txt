@@ -1,0 +1,12 @@
+Bug 130922 – [quick assist] 'Assign parameter to new field' must not make field final'
+I20060307-1315
+package xy;
+public class Try{
+public Try(String arg) {
+}
+public Try() {
+}
+}
+Quick assist on 'arg' to assign to a new field
+-> field is final, yielding a compile error
+-> expected: field not final as it was in earlier builds

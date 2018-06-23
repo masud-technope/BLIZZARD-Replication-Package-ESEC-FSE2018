@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/BuildPropertiesChange.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/BundleManifestChange.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/PDERenameParticipant.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/refactoring/ResourceMoveParticipant.java

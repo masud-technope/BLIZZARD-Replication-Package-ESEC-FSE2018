@@ -1,0 +1,2 @@
+Bug 316595 – [Discovery] Defer service retrieval in unit tests
+Instead of eagerly retrieving service instances, it should be done lazily upon request by the test.

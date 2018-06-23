@@ -1,0 +1,6 @@
+framework/bundles/org.eclipse.ecf.storage/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.storage/src/org/eclipse/ecf/internal/storage/IDEntry.java
+framework/bundles/org.eclipse.ecf.provider/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.zookeeper/src/org/eclipse/ecf/provider/zookeeper/core/ZooDiscoveryNamespace.java
+providers/bundles/org.eclipse.ecf.provider.zookeeper/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.provider/src/org/eclipse/ecf/provider/util/IdentifiableObjectInputStream.java

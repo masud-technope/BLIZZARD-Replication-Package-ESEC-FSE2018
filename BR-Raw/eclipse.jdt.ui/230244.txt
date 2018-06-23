@@ -1,0 +1,5 @@
+Bug 230244 – [refactoring] Add new participant-aware refactorings to IRefactoringProcessorIds
+I20080502-0100
+Add constants for new participant-aware refactorings to IRefactoringProcessorIds and let implementations of RefactoringProcessor#getIdentifier() point to the API constants:
+- ChangeSignatureProcessor
+- IntroduceParameterObjectProcessor

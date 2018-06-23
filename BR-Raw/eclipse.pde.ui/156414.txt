@@ -1,0 +1,7 @@
+Bug 156414 – Widget Disposed error when creating OSGi manifest
+I had 2 3.0 projects with the info in plugin.xml.
+ I used the "create OSGi manifest" link on the PDE Editor>Overview tab.
+While updating the PDE editor with the newly created MANIFEST.MF, it generated an exception:
+org.eclipse.swt.SWTException: Widget is disposed
+I'll attach the log.
+PW

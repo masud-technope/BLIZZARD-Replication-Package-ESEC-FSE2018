@@ -1,0 +1,5 @@
+ui/org.eclipse.pde.ui.templates/templates_3.3/helloRCP/java/ApplicationWorkbenchAdvisor.java
+ui/org.eclipse.pde.ui.templates/templates_3.3/helloRCP/java/$applicationClass$.java
+ui/org.eclipse.pde.ui.templates/templates_3.3/helloRCP/java/Perspective.java
+ui/org.eclipse.pde.ui.templates/templates_3.3/helloRCP/java/ApplicationActionBarAdvisor.java
+ui/org.eclipse.pde.ui.templates/templates_3.3/helloRCP/java/ApplicationWorkbenchWindowAdvisor.java

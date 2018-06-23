@@ -1,0 +1,78 @@
+52009 – NPE exception in org.apache.catalina.connector.CoyoteAdapter.service
+1.
+I copied activemq-all-5.4.2.jar, commons-logging-1.1.jar to tomcat lib folder
+2.
+Edit tomcat-user.xml, context.xml, server.xml as below:
+Changes  in server.xml:
+<Resource  name="jms/broker" auth="Container"
+type="org.apache.activemq.ActiveMQConnectionFactory" description="JMS Connection Factory"
+factory="org.apache.activemq.jndi.JNDIReferenceFactory" brokerURL="tcp://localhost:61616" brokerName="ActiveMQBroker" useEmbeddedBroker="false" />
+<Resource name="jms/topic/MyTopic" auth="Container" type="org.apache.activemq.command.ActiveMQTopic" factory="org.apache.activemq.jndi.JNDIReferenceFactory" physicalName="APP.JMS.TOPIC" />
+<Resource name="jms/queue/MyQueue" auth="Container" type="org.apache.activemq.command.ActiveMQQueue" factory="org.apache.activemq.jndi.JNDIReferenceFactory" physicalName="APP.JMS.QUEUE" />
+<Connector acceptorThreadPriority="1" allowTrace="true" asyncTimeout="10000" connectionLinger="25" connectionTimeout="60000" name="NIOConnector" pollerThreadPriority="1" port="8888" protocol="org.apache.coyote.http11.Http11NioProtocol" redirectPort="8443" tcpNoDelay="false"/>
+Changes in context.xml
+<ResourceLink global="jms/broker" name="jms/broker" type="javax.jms.ConnectionFactory"/>
+<ResourceLink global="jms/topic/MyTopic" name="jms/topic/MyTopic" type="javax.jms.Topic"/>
+<ResourceLink global="jms/queue/MyQueue" name="jms/queue/MyQueue" type="javax.jms.Queue"/>
+You can also get these file from attached zip
+Then access
+http://localhost:8080/manager/text/resources, got three JMS resource i defined
+OK - Listed global resources of all types
+jms/topic/MyTopic:org.apache.activemq.command.ActiveMQTopic
+jms/queue/MyQueue:org.apache.activemq.command.ActiveMQQueue
+jms/broker:org.apache.activemq.ActiveMQConnectionFactory
+UserDatabase:org.apache.catalina.users.MemoryUserDatabase
+3.
+Start apache-activemq-5.4.2, create topic APP.JMS.TOPIC, and queque: APP.JMS.QUEUE
+4.
+Put sample files QuoteStreamerApp.war as attached in webapp folder, then it will report errors, but if don't define NIO connector, this error doesn't exist
+2011-10-11 15:53:01 org.apache.catalina.startup.HostConfig checkResources
+INFO: Undeploying context [/QuoteStreamerApp]
+2011-10-11 15:53:11 org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive QuoteStreamerApp.war
+2011-10-11 15:53:52 com.ibm.websphere.webmsg.quotestreamer.AppInit init
+INFO: DataSimulator successfully created and set and started.
+2011-10-11 15:54:01 com.ibm.webmsg.example.StockServlet setProperties
+INFO: Configured properties for quote streamer requests.
+2011-10-11 15:54:02 com.ibm.webmsg.example.StockServlet registerURL
+INFO: Registered the URL for comet requests.
+2011-10-11 15:54:02 org.apache.coyote.http11.AbstractHttp11Processor process
+SEVERE: Error processing request
+java.lang.NullPointerException
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:436)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:970)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:515)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1550)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:662)
+2011-10-11 15:54:02 org.apache.coyote.http11.AbstractHttp11Processor process
+SEVERE: Error processing request
+java.lang.NullPointerException
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:436)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:970)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:515)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1550)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:662)
+2011-10-11 15:54:04 org.apache.coyote.http11.AbstractHttp11Processor process
+SEVERE: Error processing request
+java.lang.NullPointerException
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:436)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:970)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:515)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1550)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:662)
+2011-10-11 15:54:04 org.apache.coyote.http11.AbstractHttp11Processor process
+SEVERE: Error processing request
+java.lang.NullPointerException
+at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:436)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:970)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:515)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1550)
+at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+at java.lang.Thread.run(Thread.java:662)

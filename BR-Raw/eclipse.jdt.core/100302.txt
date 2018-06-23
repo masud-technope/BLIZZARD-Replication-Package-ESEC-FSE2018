@@ -1,0 +1,31 @@
+Bug 100302 – StackOverflowError during completion
+private void processProperties(PropertiesList propertiesList) {
+Map map = propertiesList.getPropertyMap("MainMenu.button");
+for (Map.Entry entry : (Set<Map.Entry>) map.entrySet()) {
+Button button = new Button();
+button.setActionCommand((String) entry.());
+map.getKey();
+}
+}
+Hitting Ctrl-SP while between: 'entry.' and '());' generates this error.
+eclipse.buildId=I20050610-1757
+java.version=1.5.0_03
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86
+java.lang.StackOverflowError
+at org.eclipse.jdt.core.Signature.appendArrayTypeSignature(Signature.java:2393)
+at org.eclipse.jdt.core.Signature.appendTypeSignature(Signature.java:2333)
+at org.eclipse.jdt.core.Signature.appendTypeSignature(Signature.java:2282)
+at org.eclipse.jdt.core.Signature.appendArrayTypeSignature(Signature.java:2445)
+at org.eclipse.jdt.core.Signature.appendArrayTypeSignature(Signature.java:2393)
+at org.eclipse.jdt.core.Signature.appendTypeSignature(Signature.java:2333)
+at org.eclipse.jdt.core.Signature.appendTypeSignature(Signature.java:2282)
+at org.eclipse.jdt.core.Signature.appendArrayTypeSignature(Signature.java:2445)
+at org.eclipse.jdt.core.Signature.appendArrayTypeSignature(Signature.java:2393)
+at org.eclipse.jdt.core.Signature.appendTypeSignature(Signature.java:2333)
+at org.eclipse.jdt.core.Signature.appendTypeSignature(Signature.java:2282)
+at org.eclipse.jdt.core.Signature.appendArrayTypeSignature(Signature.java:2445)
+at org.eclipse.jdt.core.Signature.appendArrayTypeSignature(Signature.java:2393)
+[...
+ad nauseam ...]

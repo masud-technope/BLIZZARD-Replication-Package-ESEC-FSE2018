@@ -1,0 +1,4 @@
+Bug 217002 – Typo in javadoc for AptPreferenceConstants.PROCESSING_IN_EDITOR_DISABLED_OPTION
+The javadoc for the string constant AptPreferenceConstants.PROCESSING_IN_EDITOR_DISABLED_OPTION reads "Processors should report this option in {@link com.sun.mirror.apt.AnnotationProcessorFactory#supportedOptions()} in order to enable processing while editing, that is, during reconcile.
+ If this option is set, ie if processing is disabled, ..."
+Instead of saying "in order to enable" it should read "in order to disable", as is suggested by the name of the option and by the second sentence of the javadoc.

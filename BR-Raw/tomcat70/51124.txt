@@ -1,0 +1,31 @@
+51124 – ArrayIndexOutOfBoundsException after setting org.apache.jasper.runtime.BodyContentImpl.LIMIT_BUFFER=true
+First of all, I know that there has been a bug regarding a similar problem before and that it was fixed.
+But currently this bugs occurs even with tomcat version 6.0.32.
+We have a problem with the tomcat runnign with the parameter org.apache.jasper.runtime.BodyContentImpl.LIMIT_BUFFER=true.
+After the tomcat has just started, everything is fine but after one or two days a lot of ArrayIndexOutOfBoundsException occur on random pages of the application.
+Tomcats started without this parameter don't seem to have that problem.
+Unfortunately we weren't able reproduce the bug locally, It appears only on our production system.
+Could there be a concurrency problem, that only shows if a lot it going on on the platform?
+I can provide two small stackstraces that can show the classes where the problem occurs:
+1.
+Caused by: java.lang.ArrayIndexOutOfBoundsException
+at org.apache.jasper.runtime.BodyContentImpl.write(Unknown Source)
+at java.io.PrintWriter.write(PrintWriter.java:382)
+at org.apache.jasper.runtime.JspWriterImpl.flushBuffer(Unknown Source)
+at org.apache.jasper.runtime.PageContextImpl.release(Unknown Source)
+at org.apache.jasper.runtime.JspFactoryImpl.internalReleasePageContext(Unknown Source)
+at org.apache.jasper.runtime.JspFactoryImpl.releasePageContext(Unknown Source)
+at org.apache.jsp.members.lists.short_.incomingShortList_jsp._jspService(incomingShortList_jsp.java:796)
+at org.apache.jasper.runtime.HttpJspBase.service(Unknown Source)
+at javax.servlet.http.HttpServlet.service(Unknown Source)
+2.
+Caused by: java.lang.ArrayIndexOutOfBoundsException
+at java.lang.String.getChars(String.java:854)
+at org.apache.jasper.runtime.BodyContentImpl.write(Unknown Source)
+at org.apache.jasper.runtime.BodyContentImpl.write(Unknown Source)
+at org.apache.jasper.runtime.BodyContentImpl.print(Unknown Source)
+at org.apache.taglibs.standard.tag.common.fmt.MessageSupport.doEndTag(MessageSupport.java:203)
+at org.apache.jsp.members.profiles.profile_jsp._jspx_meth_fmt_005fmessage_005f2(profile_jsp.java:4897)
+at org.apache.jsp.members.profiles.profile_jsp._jspService(profile_jsp.java:481)
+at org.apache.jasper.runtime.HttpJspBase.service(Unknown Source)
+at javax.servlet.http.HttpServlet.service(Unknown Source)

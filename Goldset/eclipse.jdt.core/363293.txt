@@ -1,0 +1,5 @@
+org.eclipse.jdt.core/batch/org/eclipse/jdt/internal/compiler/batch/messages.properties
+org.eclipse.jdt.core/buildnotes_jdt-core.html
+org.eclipse.jdt.compiler.tool.tests/src/org/eclipse/jdt/compiler/tool/tests/CompilerInvocationTests.java
+org.eclipse.jdt.compiler.tool.tests/src/org/eclipse/jdt/compiler/tool/tests/CompilerToolTests.java
+org.eclipse.jdt.compiler.tool.tests/src/org/eclipse/jdt/compiler/tool/tests/AbstractCompilerToolTest.java

@@ -1,0 +1,10 @@
+44620 – infinit loop in nio connector code
+The code below has a chance to cause tomcat enter dead loop in class InternalNioOutputBuffer
+private synchronized void addToBB(byte[] buf, int offset, int length) throws IOException {
+-->       while (socket.getBufHandler().getWriteBuffer().remaining() < length) {
+flushBuffer();
+}
+when the buffer size of socket is smaller than length.
+The default size of socket comes from socket.appWriteBufSize, which is 8192; The value of length is limited by maxHttpHeaderSize, which is 9000.
+Well, the chance for dead loop exists and happened.
+It can be avoid if we config the two value correctly in server.xml

@@ -1,0 +1,17 @@
+Bug 458995 – [api tooling] API parse error of MANIFEST.MF without naming the project
+The API tooling reported an error in a MANIFEST.MF without listing the project name.
+org.osgi.framework.BundleException: The manifest line "=======" is invalid; it has no colon ':' character after the header key.
+at org.eclipse.osgi.util.ManifestElement.parseBundleManifest(ManifestElement.java:550)
+at org.eclipse.pde.api.tools.internal.builder.ApiAnalysisBuilder.build(ApiAnalysisBuilder.java:478)
+at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:730)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:298)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:301)
+at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:357)
+at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:380)
+at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:144)
+at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:239)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

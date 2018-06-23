@@ -1,0 +1,5 @@
+java/org/apache/catalina/realm/MemoryRuleSet.java
+res/tomcat.nsi
+webapps/docs/config/realm.xml
+webapps/docs/manager-howto.xml
+webapps/docs/changelog.xml

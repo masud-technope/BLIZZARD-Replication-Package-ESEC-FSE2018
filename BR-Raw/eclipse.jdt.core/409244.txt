@@ -1,0 +1,9 @@
+Bug 409244 – [1.8][compiler] Type annotations on redundant casts dropped.
+BETA_JAVA8:
+"If the compiler eliminates an annotated cast, it is required to retain the
+annotations on the cast in the class file (if the annotation type has at least
+RetentionPolicy.CLASS retention).
+When a cast is removed, the compiler may need
+to adjust (the locations of) the annotations, to account for the relationship between the expressionâ€™s type and the casted-to type.
+Consider:" ...
+At the moment ECJ is not in compliance here.

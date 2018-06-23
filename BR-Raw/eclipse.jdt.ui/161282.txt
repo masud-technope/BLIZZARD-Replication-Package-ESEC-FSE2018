@@ -1,0 +1,7 @@
+Bug 161282 – [content assist] Applying proposal from the content assist history results in unresolved type
+Create a blank file with a main method, and type in the method:
+Set[CTRL-SPACE and import Set]<String> my = new [CTRL-SPACE and choose TreeSet, and finish the line]
+You should have ended up with:
+Set<String> my = new TreeSet<String>();
+Where TreeSet was "auto-added" by Eclipse, but it will be underlined red, for you still need to import it.
+Expected: if Eclipse added TreeSet, it should have added an import line for it.

@@ -1,0 +1,17 @@
+50228 – PermGen leak when calling JspFragment.invoke() with a custom Writer
+Created attachment 26266 [details]
+writerleak.war - Reproduces the leak
+We have a web application that contains a SimpleTag that calls JspFragment.invoke(writer) with a custom java.io.Writer (actually, a NullWriter from commons-io).
+When this application is undeployed, it still remains in memory, as reported by the "Find leaks" tool in the manager webapp.
+I am attaching a simple sample application that reproduces the issue.
+To reproduce:
+1.
+Deploy the app.
+2.
+Open index.jsp
+3.
+Undeploy the app.
+4.
+"Find leaks" reports that the app is still in memory
+Using the Eclipse MAT tool I can see that the leak is caused by o.a.jasper.runtime.BodyContentImpl keeping a reference to the Writer,
+while the BodyContentImpl instance is cached in some pool referenced by a ThreadLocal.

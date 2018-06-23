@@ -1,0 +1,30 @@
+Bug 231263 – [formatter] New JavaDoc formatter wrongly indent tags description
+Created attachment 99431 [details]
+Simple CU with big Javadoc
+Build ID: I20080502-0100
+Steps To Reproduce:
+1.
+Open some compilation unit, with many JavaDoc comments, formatted in 3.4M6;
+2.
+Format full compilation unit;
+3.
+Notice that look of JavaDoc comments is now very different.
+More information:
+I see following problems:
+1.
+for @param two tabs are used, but location of first "tab" is so that next tab position is just 1 character, so first "tab" looks as just space.
+2.
+Same problem for wrapping @return - single "tab", that looks as space.
+3.
+{@link ITypeBinding} can now be wrapped in the middle, so "{@link" stays on one line, and "ITypeBinding}" - on next line.
+This saves some space, but hurts readability.
+Now questions for these problems:
+1.
+May be add one more "space" after "* ", so first tab will be rendered as 4 spaces and provide enough indent?
+2.
+Same for @return - one more "space" after "* ".
+3.
+I'm not sure, may be space is more important, but may be make wrapping behavior configurable?
+4.
+In general, I find all these changes very annoying, because I have big codebase, formatted with old style, and use formatting as "Clean Up" step, so now I see massive changes in CVS in each compilation unit that I touch.
+:-(

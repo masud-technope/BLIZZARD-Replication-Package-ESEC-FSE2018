@@ -1,0 +1,3 @@
+Bug 283891 – [JUnit] Add camel case support in TestSelectionDialog
+The Test Selection Dialog doesn't have the powerful camel case support that the Open Type dialog has.
+Can you add it?

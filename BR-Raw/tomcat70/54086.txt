@@ -1,0 +1,43 @@
+54086 � ConcurrentModificationException in NioReceiver on shutdown
+Solaris 10 x86, jdk 1.7.
+We use tomcat clustering for session replication with 4 nodes and sometimes 8 nodes.
+ We get a ConcurrentModificationException occasionally on shutdown.
+ I have been unable to reliably reproduce the exception.
+In the log, I see "Unable to close cluster receiver selector." with the exception below:
+java.util.ConcurrentModificationException
+java.util.HashMap$HashIterator.nextEntry(HashMap.java:894)
+java.util.HashMap$KeyIterator.next(HashMap.java:928)
+java.util.Collections$UnmodifiableCollection$1.next(Collections.java:1067)
+org.​apache.​catalina.​tribes.​transport.​nio.​NioReceiver.​closeSelector(​NioReceiver.​java:382)
+org.​apache.​catalina.​tribes.​transport.​nio.​NioReceiver.​stopListening(​NioReceiver.​java:365)
+org.apache.catalina.tribes.transport.nio.NioReceiver.stop(NioReceiver.java:86)
+org.​apache.​catalina.​tribes.​group.​ChannelCoordinator.​internalStop(​ChannelCoordinator.java:203)
+org.​apache.​catalina.​tribes.​group.​ChannelCoordinator.​stop(​ChannelCoordinator.​java:115)
+org.​apache.​catalina.​tribes.​group.​ChannelInterceptorBase.​stop(​ChannelInterceptorBase.java:178)
+org.​apache.​catalina.​tribes.​group.​ChannelInterceptorBase.​stop(​ChannelInterceptorBase.java:178)
+org.​apache.​catalina.​tribes.​group.​ChannelInterceptorBase.​stop(​ChannelInterceptorBase.java:178)
+org.​apache.​catalina.​tribes.​group.​interceptors.​MessageDispatchInterceptor.​stop(​MessageDispatchInterceptor.java:172)
+org.​apache.​catalina.​tribes.​group.​ChannelInterceptorBase.​stop(​ChannelInterceptorBase.java:178)
+org.​apache.​catalina.​tribes.​group.​ChannelInterceptorBase.​stop(​ChannelInterceptorBase.java:178)
+org.apache.catalina.tribes.group.GroupChannel.stop(GroupChannel.java:438)
+org.​apache.​catalina.​ha.​tcp.​SimpleTcpCluster.​stopInternal(​SimpleTcpCluster.​java:​744)
+org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+org.apache.catalina.core.ContainerBase.stopInternal(ContainerBase.java:1199)
+org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+org.apache.catalina.core.StandardService.stopInternal(StandardService.java:502)
+org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+org.apache.catalina.core.StandardServer.stopInternal(StandardServer.java:753)
+org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:232)
+org.apache.catalina.startup.Catalina.stop(Catalina.java:751)
+org.apache.catalina.startup.Catalina.start(Catalina.java:713)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+sun.​reflect.​DelegatingMethodAccessorImpl.​invoke(​DelegatingMethodAccessorImpl.​java:43)
+java.lang.reflect.Method.invoke(Method.java:601)
+org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:322)
+org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:451)
+I looked at the code briefly and noticed the use of a SelectionKey Iterator.
+ I have not dug deep enough to find any issue in the NioReceiver code, but I did find this potentially relevant text in the Selector javadocs (http://docs.oracle.com/javase/7/docs/api/java/nio/channels/Selector.html):
+"A selector's key and selected-key sets are not, in general, safe for use by multiple concurrent threads.
+If such a thread might modify one of these sets directly then access should be controlled by synchronizing on the set itself.
+The iterators returned by these sets' iterator methods are fail-fast: If the set is modified after the iterator is created, in any way except by invoking the iterator's own remove method, then a ConcurrentModificationException will be thrown."

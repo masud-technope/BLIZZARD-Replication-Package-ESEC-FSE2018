@@ -1,0 +1,6 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/launcher/VMLibraryBlock.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/LibraryLocation.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/StandardVMType.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/JREContainerInitializer.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/internal/launching/Standard11xVMType.java
+org.eclipse.jdt.launching/launching/org/eclipse/jdt/launching/JavaRuntime.java

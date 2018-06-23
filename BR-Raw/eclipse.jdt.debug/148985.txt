@@ -1,0 +1,4 @@
+Bug 148985 – use new API JavaUI.openInEditor
+3.3
+org.eclipse.jdt.internal.debug.ui.actions.OpenTypeAction.openInEditor(Object)
+can now use JavaUI.openInEditor to open and reveal a Java element

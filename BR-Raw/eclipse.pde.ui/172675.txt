@@ -1,0 +1,23 @@
+Bug 172675 – Name, Provider form fields on fragment overview page not updated when externalization quick fix applied
+Eclipse version > Build id: I20070130-0800
+Steps To Reproduce:
+(1) Create a fragment project
+(2) Set the externalized strings compiler option to Error
+Windows -> Preferences -> Plug-in Development -> Compilers -> Usage of
+Non-Externalized Strings
+(3) Go to MANIFEST.MF source page
+(4) Click on quick fix associated with the Bundle-Name header
+-> Select Externalize Bundle-Name header
+-> Externalization works well
+(5) Switch to Overview Page
+-> Notice the "Name" field in the "General Information" section still
+contains the non-externalized
+(6) Type some text in another field and click in another field
+-> Note: The externalized string key now appears in the "Name" field
+-> This problem is also applicable to the "Provider" field
+-> However, this problem does not occur if it is a plug-in project
+- only on fragment projects
+From my investigation, it simply looks like a model changed event is not being
+fired.
+ Because the modelChanged method in the GeneralInformationSection is
+not recieving any event to trigger the refresh.

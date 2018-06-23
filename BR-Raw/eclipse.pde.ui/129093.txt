@@ -1,0 +1,11 @@
+Bug 129093 – New Feature Wizard is too aggressive with overwriting fields
+The revamped feature wizard is too aggressive when it comes to synchronizing the Feature Properties with the project name.
+If I manually edit the feature ID for example and then go back to the project name field and type.
+ I would not expect the feature ID field to change on me again.
+Look how well-behaved the 'Plug-in from existing archives' is when it comes to this issue.
+ The Feature wizard should be as well-behaved
+Also, the auto-computed Feature Name should be like the one for the Plug-in Name.
+ Right now, we just use the id as the name.
+ I would expect a name like "xxx Feature", where xxx is the last segment of the feature ID.
+Also, it would be good to generate a default for the Feature Provider where appropriate.
+ again, look at the new plugin wizard to see how it's done.

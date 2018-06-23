@@ -1,0 +1,53 @@
+Bug 250806 – Activating working set updaters for bundle org.eclipse.jdt.ui has encountered a problem.
+Build ID: M20080911-1700
+Steps To Reproduce:
+1.Go to Problems View --> Configure Contents
+2.
+Set Scope ON working set
+3.
+create a working set that contain not all project, just some
+4.
+restart eclipse
+5 I got this error and stack trace with NPE bellow
+I guess that NullPointerException at JavaWorkingSetUpdater.checkElementExistence(JavaWorkingSetUpdater.java:223) is a real problem....
+More information:
+org.eclipse.swt.SWTException: Failed to execute runnable (java.lang.NullPointerException)
+at org.eclipse.swt.SWT.error(SWT.java:3777)
+at org.eclipse.swt.SWT.error(SWT.java:3695)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:136)
+at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:3800)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3425)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2382)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2346)
+at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2198)
+at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:493)
+at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:288)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:488)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:113)
+at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:193)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:386)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:549)
+at org.eclipse.equinox.launcher.Main.basicRun(Main.java:504)
+at org.eclipse.equinox.launcher.Main.run(Main.java:1236)
+Caused by: java.lang.NullPointerException
+at org.eclipse.jdt.internal.ui.workingsets.JavaWorkingSetUpdater.checkElementExistence(JavaWorkingSetUpdater.java:223)
+at org.eclipse.jdt.internal.ui.workingsets.JavaWorkingSetUpdater.add(JavaWorkingSetUpdater.java:78)
+at org.eclipse.ui.internal.AbstractWorkingSetManager$5.runInUIThread(AbstractWorkingSetManager.java:647)
+at org.eclipse.ui.progress.UIJob$1.run(UIJob.java:94)
+at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:133)
+...
+22 more
+eclipse.buildId=M20080911-1700
+java.version=1.6.0_07
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=ru_RU
+Command-line arguments:  -os win32 -ws win32 -arch x86

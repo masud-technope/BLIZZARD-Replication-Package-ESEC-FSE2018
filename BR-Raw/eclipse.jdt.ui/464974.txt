@@ -1,0 +1,28 @@
+Bug 464974 – GVT45:(Bidi) Wrong display of file path including bidi data on External Annotation Attachment Configuration panel
+Created attachment 252524 [details]
+Wrong display of file path including bidi data_Dynamic cases
+Build ID: I20150320-0800
+Steps to reproduce:
+1.Click Window -> Preferences
+2.Expand Java -> Installed JREs
+3.Select the installed JRE and Click Edit
+4.Select the "External annotations:(none)" under rt.jar and Click External annotations button
+5.Click Browse...
+6.Select the folder including bidi data
+Problem Description:
+Wrong display of structured text (file path) including bidi data on External Annotation Attachment Configuration panel.
+Platform provides following level of support for structured text:
+1.
+Dynamic cases (editable controls, like input fields, combo box etc.)
+Use following API (from org.eclipse.jface.util.BidiUtils package) in the appropriate graphical
+context (label, field):
+BidiUtils.applyBidiProcessing(sourceField, StructuredTextTypeHandlerFactory.FILE);
+sourceField is the control in which file path appears.
+2.
+Static cases (not editable controls like labels)
+One need to work on the string level (rather than on graphical control level).
+You should use function leanToFullText defined in the class: org.eclipse.equinox.bidi.internal.StructuredTextImpl.
+Sample call :
+resultStr =
+STextExpertFactory.getExpert(STextTypeHandlerFactory.FILE).leanToFullText (inputStr)
+Please help investigate.Thanks.

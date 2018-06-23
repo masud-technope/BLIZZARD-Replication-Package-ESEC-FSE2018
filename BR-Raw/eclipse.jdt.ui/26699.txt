@@ -1,0 +1,9 @@
+Bug 26699 – Create Jar fails with no warning if jar read-only
+Once *.jardesc has been created, if I invoke "Create JAR" from the context menu
+and the jar file already exists and is read-only, the progress dialog flashes
+and nothing more happens.
+Please add check for this condition and at least an error message should be
+displayed.
+Even better, ask something like "Jar file read-only, overwrite?" Y/N
+and overwrite the file on yes (similar to what the option "warn if jar file
+exists" does).

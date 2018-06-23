@@ -1,0 +1,11 @@
+org.eclipse.core.internal.runtime.PlatformActivator$1.run
+org.eclipse.core.runtime.adaptor.EclipseStarter.run
+org.eclipse.core.runtime.adaptor.EclipseStarter.run
+sun.reflect.NativeMethodAccessorImpl.invoke0
+sun.reflect.NativeMethodAccessorImpl.invoke
+sun.reflect.DelegatingMethodAccessorImpl.invoke
+java.lang.reflect.Method.invoke
+org.eclipse.core.launcher.Main.invokeFramework
+org.eclipse.core.launcher.Main.basicRun
+org.eclipse.core.launcher.Main.run
+org.eclipse.core.launcher.Main.main

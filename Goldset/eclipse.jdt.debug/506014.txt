@@ -1,0 +1,10 @@
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIDebugModelMessages.properties
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIDebugModelMessages.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/logicalstructures/JDIReturnValueVariable.java
+org.eclipse.jdt.debug.ui/icons/full/obj16/methodresult_obj_disabled.png
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIStackFrame.java
+org.eclipse.jdt.debug.ui/icons/full/obj16/methodresult_obj_disabled@2x.png
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JDIModelPresentation.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaDebugImages.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIThread.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/test/stepping/StepResultTests.java

@@ -1,0 +1,14 @@
+org.eclipse.core.internal.resources.ProjectPreferences$2.run
+org.eclipse.core.internal.resources.ProjectPreferences.save
+org.eclipse.core.internal.preferences.EclipsePreferences.flush
+org.eclipse.core.internal.resources.ProjectPreferences.flush
+org.eclipse.core.internal.preferences.EclipsePreferences.flush
+org.eclipse.core.internal.resources.ProjectPreferences.flush
+org.eclipse.core.internal.resources.CharsetManager.setCharsetFor
+org.eclipse.core.internal.resources.File.setCharset
+org.eclipse.jdt.apt.core.internal.env.EncodedFileOutputStream.close
+sun.nio.cs.StreamEncoder$CharsetSE.implClose
+sun.nio.cs.StreamEncoder.close
+java.io.OutputStreamWriter.close
+java.io.PrintWriter.close
+org.apache.beehive.netui.compiler.genmodel.GenStrutsApp.writeToFile

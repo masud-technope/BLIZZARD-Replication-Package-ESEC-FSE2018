@@ -1,0 +1,2 @@
+Bug 405250 – [1.8][code assist] Annotations getting suggested at import statements
+import java.util.@<ctrl-space>

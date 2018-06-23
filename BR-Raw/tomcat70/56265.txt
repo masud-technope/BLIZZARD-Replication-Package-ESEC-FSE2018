@@ -1,0 +1,25 @@
+56265 – Unexpected escaping in the values of dynamic tag attributes containing EL expressions
+The following was reported on the users list,
+"double xmlEscape in dynamic attributes in 7.0.52"
+http://marc.info/?t=139479709800007&r=1&w=2
+[quote]
+Hi,
+I have several custom jspx tags with dynamic attributes that worked well up to Tomcat 7.0.47, but they do not work properly on Tomcat 7.0.52.
+Same problems occur also when using Spring form tags (I suspect that other libraries would have same problem, but I didn't test them).
+sample (data-test[2] is dynamic attribute, onclick is static):
+<c:set var="world" value="'World'"></c:set>
+<sf:form onclick="window.alert('Hello ${world}!')"
+data-test="window.alert('Hello ${world}!')"
+data-test2="window.alert('Hello World!')"
+tomcat 7.0.47 output:
+<form onclick="window.alert(&#39;Hello &#39;World&#39;!&#39;)"
+data-test="window.alert(&#39;Hello &#39;World&#39;!&#39;)"
+data-test2="window.alert(&#39;Hello World!&#39;)"
+tomcat 7.0.52 output:
+<form onclick="window.alert(&#39;Hello &#39;World&#39;!&#39;)"
+data-test="window.alert(&amp;#039;Hello &#39;World&#39;!&amp;#039;)"
+data-test2="window.alert(&#39;Hello World!&#39;)"
+If there is EL used in dynamic attribute (data-test), non-EL part of that attribute is escaped twice, EL part is escaped only once.
+Tomcat 7.0.47 would escape everything just once.
+Everything works as before if static attribute is used (onclick) or there is no EL in dynamic attribute (data-test2).
+[/quote]

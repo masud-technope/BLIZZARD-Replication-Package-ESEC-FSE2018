@@ -1,0 +1,10 @@
+Bug 248054 – Can't set breakpoint annotation as Highlighted
+Build ID: I20080918-0100
+Steps To Reproduce:
+In Annotations, set Breakpoints to Show in Text as Highlighted, and pick a nice color.
+Observe that breakpoints are not hilighted in the editor.
+This isn't just the latest version, it's always been true.
+More information:
+This is the second biggest annoyance in Eclipse (after not being able to set syntax hilighting background colors).
+The annotation icon for breakpoint is often overwritten by others (e.g.
+warnings, tasks) so it'd be nice to see at a glance where the breakpoints were (a la Turbo C circa 1990...)

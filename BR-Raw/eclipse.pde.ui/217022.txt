@@ -1,0 +1,5 @@
+Bug 217022 – PDELabelProvider should handle system.bundle better
+For example, if you go to add a plug-in and type system.bundle, you have no idea what system bundle is currently available.
+It would be nice to adorn the label provider with something like...
+system.bundle [org.eclipse.osgi (xxxx)]
+This would provide a hint at least to developers to what system bundle is being used.

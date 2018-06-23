@@ -1,0 +1,16 @@
+Bug 424930 – [1.8][compiler] Regression: "Cannot infer type arguments" error from compiler.
+// --
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.function.Supplier;
+public class X<S, T extends Deque<S>> {
+private final Supplier<T> supplier;
+public X(Supplier<T> supplier) {
+this.supplier = supplier;
+}
+public static <S> X<S, Deque<S>> newDefaultMap(int dequeCapacity) {
+return new X<>(() -> new ArrayDeque<>(dequeCapacity));
+}
+}
+triggers an error: "Cannot infer type arguments for X<>"
+This code used to work earlier I believe.

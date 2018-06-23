@@ -1,0 +1,4 @@
+Bug 425512 – [1.8][compiler] Arrays should NOT be allowed in intersection casts
+We should compile
+(int [] & Serializable) new int [0];
+javac doesn't, but that is a bug.

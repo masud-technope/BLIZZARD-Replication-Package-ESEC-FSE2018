@@ -1,0 +1,19 @@
+51704 – Dubious use of mkdirs() return code in juli FileHandler
+File#mkdirs() only returns true if the method created the directory itself.
+If mkdirs() returns false, it is still possible for the directory to exist.
+Thus the code in FileHandler at [1], i.e.
+364     // Create the directory if necessary
+365 	File dir = new File(directory);
+366 	if (!dir.exists() && !dir.mkdirs()) {
+367 	    reportError("Unable to create [" + dir + "]", null,
+368 	    ErrorManager.OPEN_FAILURE);
+369 	    writer = null;
+370 	    return;
+371 	}
+can generate an error even though the directory now exists.
+It would be safer to code the check as follows:
+366 	if (!dir.mkdirs() && !dir.exists()) {
+There is no need to call dir.exists() before mkdirs() as mkdirs() does that anyway.
+There is similar code at [2] and possibly elsewhere in Tomcat, I did not check.
+[1] http://svn.apache.org/viewvc/tomcat/trunk/java/org/apache/juli/FileHandler.java?view=markup#l364
+[1] http://svn.apache.org/viewvc/tomcat/trunk/java/org/apache/juli/FileHandler.java?view=markup#l379

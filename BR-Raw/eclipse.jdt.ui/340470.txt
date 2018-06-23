@@ -1,0 +1,6 @@
+Bug 340470 – [implementation] Use ASTProvider.SHARED_AST_LEVEL instead of AST.JLS3 where it makes sense
+Created attachment 191542 [details]
+Fix
+HEAD
+Use ASTProvider.SHARED_AST_LEVEL instead of AST.JLS3 where it makes sense.
+The patch is based on Deepaks initial patch to use JLS4 in the BETA_JAVA7 branch, but it also includes test projects and is against HEAD.

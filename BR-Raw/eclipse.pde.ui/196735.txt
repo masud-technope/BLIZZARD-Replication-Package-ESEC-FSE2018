@@ -1,0 +1,4 @@
+Bug 196735 – [Schema][Editor] Source page should be named "Source"
+Build ID: I20070625-1500
+The source page tab in the schema editor currently uses as its name the name of the schema file.
+It should just say "Source".

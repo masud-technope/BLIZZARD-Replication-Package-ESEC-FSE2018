@@ -1,0 +1,6 @@
+50535 – Support resources serving from /WEB-INF/classes/META-INF/resources directory
+Servlet 3.0 introduced the feature to serve static files from META-INF/resources directory.
+The specification only demands support for this if the META-INF/resources is inside of a jar file in the /WEB-INF/lib directory.
+Tomcat passes this requirement because it serves files from jar but not from WEB-INF/classes.
+It seems Glassfish 3.0.1 however supports both type of locations.
+It would be nice if Tomcat would support it too.

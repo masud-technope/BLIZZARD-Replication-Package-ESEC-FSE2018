@@ -1,0 +1,15 @@
+Bug 397747 – [JUnit] JUnit3TestReference handles JUnit4TestAdapter incorrectly
+Created attachment 225371 [details]
+eclipse project zip
+The tree (test hierarchy) that Eclipse creates when running JUnit tests is wrong when adding a JUnit4 test suite (via JUnit4TestAdapter) to a JUnit3 test suite (see attached screenshot, the first added JUnit3TestCase displays under the JUnit4TestSuite but in fact it has nothing to do with it)
+The culprit is most likely JUnit3TestReference where in #sendTree, for a #isJUnit4TestSuiteAdapter, a mismatch of the test count occurs:
+JUnit4TestAdapter#countTestCases() counts all tests (via Description#testCount, RECURSIVELY), whereas JUnit4TestAdapter#getTests only returns its direct children (NON RECURSIVELY).
+In the constellation shown in the Eclipse Project attached, this results in a mismatch as the test class JUnit4TestCase has 2 Test methods, but the JUnit4TestSuite only has 1 SuiteClass.
+What happens is that the Tree will fill up with Tests until the numbers match, hence it thinks that the JUnit3TestCase also belongs to the JUnit4TestSuite.
+The JUnit3TestCase added for the second time will then show correctly in the tree (see screenshot).
+A possible fix would be to change JUnit3TestReference, Lines 145,146:
+notified.visitTreeEntry(getIdentifier(), true, fTest.countTestCases());
+List tests= (List) callJUnit4GetterMethod(fTest, "getTests"); //$NON-NLS-1$
+to
+List tests= (List) callJUnit4GetterMethod(fTest, "getTests"); //$NON-NLS-1$
+notified.visitTreeEntry(getIdentifier(), true, tests.size());

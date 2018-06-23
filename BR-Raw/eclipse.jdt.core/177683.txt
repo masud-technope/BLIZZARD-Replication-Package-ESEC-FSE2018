@@ -1,0 +1,10 @@
+Bug 177683 – NPE in internal.util.Factory.createErrorClassType()
+There are several methods in org.eclipse.jdt.apt.core.internal.util.Factory such as createErrorClassType(), createErrorInterfaceType(), etc.
+ These methods are implemented like this:
+public static ClassType createErrorClassType(final ITypeBinding binding)
+{
+return createErrorClassType(binding.getName());
+}
+The problem is that the caller (e.g., MethodDeclarationImpl) may be calling the method precisely because the binding is null.
+We need to search for calls to these Factory methods and figure out whether a different (known non-null) binding can be passed in or whether the Factory methods should be null-protected (e.g., if null, use some standard name).
+This bug is present in v3.1.2, 3.2.2, and 3.3.

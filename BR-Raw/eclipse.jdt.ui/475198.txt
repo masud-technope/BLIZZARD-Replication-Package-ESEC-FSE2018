@@ -1,0 +1,7 @@
+Bug 475198 – Unify 'Sort Members' messages in dialogs (actions, preferences, Clean Up)
+(In reply to Adrian Price from bug 474251 comment #5)
+> BTW I've just noticed that whereas the 'Sort members' label in the
+> 'Configure' dialog is "Ignore fields and enum constants", the corresponding
+> description in the parent preference page is "Sort members excluding fields,
+> enum constants and initializers".
+Yes, we should unify these messages.

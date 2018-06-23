@@ -1,0 +1,41 @@
+Bug 448043 – IllegalStateException: Bad AST node structure at ASTConverter
+package p2;
+public class MainScreen {
+public MainScreen() {}
+/**
+* m1
+*/
+void m1() {}
+syso//this.m2();
+}
+void m2() {}
+}
+----------------------------------------
+In the above example, press Ctrl+space after "syso" and press Enter.
+We get the following exception:
+java.lang.IllegalStateException: Bad AST node structure:
+- parent [176, 177] org.eclipse.jdt.core.dom.Initializer
+body [-1, -1] org.eclipse.jdt.core.dom.Block
+----------------------------------- SOURCE BEGIN -------------------------------------
+package p2;
+public class MainScreen {
+public MainScreen() {}
+/**
+* m1
+*/
+void m1() {}
+private void syso() {
+// TODO Auto-generated method stub
+}//this.m2();
+}
+void m2() {}
+}
+----------------------------------- SOURCE END -------------------------------------
+at org.eclipse.jdt.core.dom.ASTConverter.convert(ASTConverter.java:1421)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.convert(CompilationUnitResolver.java:292)
+at org.eclipse.jdt.core.dom.ASTParser.internalCreateAST(ASTParser.java:1209)
+at org.eclipse.jdt.core.dom.ASTParser.createAST(ASTParser.java:809)
+at org.eclipse.jdt.core.dom.rewrite.ImportRewrite.rewriteImports(ImportRewrite.java:1051)
+at org.eclipse.jdt.internal.ui.text.java.JavaTypeCompletionProposal.apply(JavaTypeCompletionProposal.java:116)
+at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.apply(AbstractJavaCompletionProposal.java:497)
+...

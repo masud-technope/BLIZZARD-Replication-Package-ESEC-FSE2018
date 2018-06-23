@@ -1,0 +1,11 @@
+54984 – multipart/form-data is not always read with correct encoding
+The bug occurs when form data is posted as multipart/form-data and using Servlet 3 API to get posted files.
+In a servlet, if we set the encoding:
+request.setCharacterEncoding("UTF-8");
+Then invoke:
+request.getParts()
+And then invoke:
+String text = request.getParameter("sometextfield");
+UTF-8 characters in the text have been garbled.
+Order of method calls are significant, if a getParameter is called before getParts, the correct encoding will be used.
+However, the order which you invoke the methods should not matter.

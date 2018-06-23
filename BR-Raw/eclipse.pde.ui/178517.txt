@@ -1,0 +1,15 @@
+Bug 178517 – [Manifest Editor] Code completion in the Manifest-editor should also know about Equinox-specific extensions
+Build: Eclipse 3.3M5
+Steps to reproduce:
+1) open the manifest-editor of a bundle
+2) go to the MANIFEST.MF-page
+3) go to an empty line and press control-space
+EXPECTED result:
+A list which also contains the Exquinox-Headers.
+A list of them can be found here:
+http://help.eclipse.org/help32/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/misc/bundle_manifest.html
+Also you might want to have a look to http://wiki.eclipse.org/index.php/OSGi_R4.1_work
+for osgi 4.1 and thus eclipse 3.3 the header Eclipse-LazyStart: true should be changed to Bundle-ActivationPolicy: lazy
+At the given page you can find some additional headers for osgi 4.1
+Is it worth to add a possibility to add buddy-loading policies to the ui? Maybe to the dependency tab?
+Bernd

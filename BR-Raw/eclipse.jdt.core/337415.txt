@@ -1,0 +1,17 @@
+Bug 337415 – External folders project is not created
+Created attachment 189164 [details]
+Workspace for recreation steps
+When the preferences and the project are imported using ANT script, the external folders project is not created causing potentially dangerous behavior (f.e.
+no delta can be computed, so each build is a full build).
+The steps to reproduce the behavior are:
+1.
+Import the projects from attached zip file
+2.
+Inside the Data project there are two launch configurations.
+3.
+Execute the "Headless Import"
+4.
+Refresh the Data project.
+runtimeData folder contains new workspace, check in the .metadata/.plugins/org.eclipse.jdt.core if the external folders project exists.
+Two other projects are ant tasks responsible for loading the preferences and importing the project.
+The second launch configuration ("Verification") launches Eclipse which uses the same workspace as the headless one, so it is possible to check if the classpath variable has been correctly loaded.

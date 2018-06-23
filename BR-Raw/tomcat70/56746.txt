@@ -1,0 +1,4 @@
+56746 – Webssocket secure client thread cannot access webapp resources
+The new SecureIOThreadFactory method in org.apache.tomcat.websocket.AsyncChannelWrapperSecure
+sets the context class loader of the secure websocket client threads to it's own standard class loader - thus preventing the them from accessing webapp resources.
+Removing this line restores access, as the new threads then have the classloader of the calling (webapp) thread

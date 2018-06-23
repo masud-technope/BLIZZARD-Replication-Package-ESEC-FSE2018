@@ -1,0 +1,4 @@
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/JavaLibraryPathTests.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/launching/TabGroupWrapperTests.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/launching/ContributedTabTests.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AbstractDebugTest.java

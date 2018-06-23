@@ -1,0 +1,6 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/shared/target/TargetContentsGroup.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/AbstractModelManager.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/commands/TagManager.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/shared/target/TargetLocationsGroup.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/schema/Schema.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/ExternalFeatureModelManager.java

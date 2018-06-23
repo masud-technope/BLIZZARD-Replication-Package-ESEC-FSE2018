@@ -1,0 +1,8 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/console/JavaStackTracePageParticipant.java
+org.eclipse.jdt.debug.ui/plugin.xml
+org.eclipse.jdt.debug.ui/plugin.properties
+org.eclipse.jdt.debug.ui/icons/full/elcl16/format_trace.gif
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/console/FormatStackTraceActionDelegate.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/console/ConsoleMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/JavaDebugImages.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/console/FormatJavaStackTraceAction.java

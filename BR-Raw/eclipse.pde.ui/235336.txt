@@ -1,0 +1,16 @@
+Bug 235336 – [p2] cannot compile against plugins referenced via .link files
+Build ID: I20080530-1730
+Steps To Reproduce:
+1.
+Use a .link file to integrate another plugin into the platform
+2.
+Run Eclipse and verify with Help -> About Eclipse SDK -> Plugin Details that the plugin is indeed available
+3.
+Create a new Plugin in the workbench
+4.
+In the MANIFEST.MF editor, try to set a dependency to the plugin that was integrated with the .link file
+4) will not work, the dialog will not even display the plugin.
+If you add the dependency textually, it will still not work, as the classpath will not be resolved.
+If this is not supposed to work, then I suggest updating
+http://wiki.eclipse.org/Equinox_p2_Getting_Started#Links_Folder
+which says "For backwards compatibility the links folder is supported by p2 with the same behavior.".

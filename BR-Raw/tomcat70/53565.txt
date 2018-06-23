@@ -1,0 +1,26 @@
+53565 – deprecated
+\org\apache\tomcat\jdbc\pool\interceptor\SlowQueryReport.java:300: warning: [deprecation] toGMTString() in Date has been deprecated
+buf.append(new java.util.Date(maxInvocationDate).toGMTString());
+\org\apache\tomcat\jdbc\pool\interceptor\SlowQueryReport.java:305: warning: [deprecation] toGMTString() in Date has been deprecated
+buf.append(new java.util.Date(minInvocationDate).toGMTString());
+to solve a possible solution is:
+public String toString() {
+DateFormat df = new SimpleDateFormat("dd MMM yyyy kk:mm:ss z");
+df.setTimeZone(TimeZone.getTimeZone("GMT"));
+StringBuilder buf = new StringBuilder("QueryStats[query:");
+buf.append(query);
+buf.append(", nrOfInvocations:");
+buf.append(nrOfInvocations);
+buf.append(", maxInvocationTime:");
+buf.append(maxInvocationTime);
+buf.append(", maxInvocationDate:");
+//buf.append(new java.util.Date(maxInvocationDate).toGMTString());
+buf.append(df.format(new java.util.Date(maxInvocationDate)));
+buf.append(", minInvocationTime:");
+buf.append(minInvocationTime);
+buf.append(", minInvocationDate:");
+//buf.append(new java.util.Date(minInvocationDate).toGMTString());
+buf.append(df.format(new java.util.Date(minInvocationDate)));
+buf.append(", totalInvocationTime:");
+buf.append(totalInvocationTime);
+buf.append(", averageInvocationTime:");

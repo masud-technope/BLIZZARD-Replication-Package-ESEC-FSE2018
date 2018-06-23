@@ -1,0 +1,11 @@
+Bug 479192 – Warning in PDE after moving to java 8
+/plugins/org.eclipse.pde.api.tools_1.1.0.N20151005-2000/@dot.html 	0 	2
+/plugins/org.eclipse.pde.core_3.11.0.N20151005-2000/@dot.html 	0 	1
+/plugins/org.eclipse.pde.junit.runtime_3.5.0.N20151005-2000/@dot.html 	0 	11
+1.
+WARNING in /src/org/eclipse/pde/internal/core/NLResourceHelper.java
+(at line 52)
+URLClassLoader resourceLoader = new URLClassLoader(locations, null);
+Resource leak: 'resourceLoader' is never closed
+See sample fix here
+http://git.eclipse.org/c/pde/eclipse.pde.ui.git/diff/ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/wizards/plugin/NewLibraryPluginCreationOperation.java?id=b699ff8b61309dfcbd0bd31c8cefabcdfb88d608

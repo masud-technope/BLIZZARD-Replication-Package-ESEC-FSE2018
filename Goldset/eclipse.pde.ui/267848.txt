@@ -1,0 +1,3 @@
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/WorkspacePluginModelManager.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/builders/ManifestConsistencyChecker.java
+ui/org.eclipse.pde.core/src/org/eclipse/pde/internal/core/plugin/WorkspacePluginModelBase.java

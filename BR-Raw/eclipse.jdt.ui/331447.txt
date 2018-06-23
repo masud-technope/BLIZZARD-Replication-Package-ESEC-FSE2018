@@ -1,0 +1,5 @@
+Bug 331447 – [preferences] UI for COMPILER_PB_UNAVOIDABLE_GENERIC_TYPE_PROBLEMS
+Created attachment 184143 [details]
+Fix
+HEAD
+UI for new compiler option COMPILER_PB_UNAVOIDABLE_GENERIC_TYPE_PROBLEMS, see bug 322817.

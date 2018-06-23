@@ -1,0 +1,13 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/core/refactoring/MethodBreakpointMethodChange.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/core/refactoring/ExceptionBreakpointTypeChange.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/core/refactoring/BreakpointChange.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/core/refactoring/DeleteBreakpointChange.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/core/refactoring/RefactoringMessages.properties
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/core/refactoring/RefactoringMessages.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/core/refactoring/LineBreakpointTypeChange.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/core/refactoring/WatchpointFieldChange.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/core/refactoring/ClassPrepareBreakpointTypeChange.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/core/refactoring/MethodBreakpointChange.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/core/refactoring/WatchpointTypeChange.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/core/refactoring/LineBreakpointChange.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/core/refactoring/MethodBreakpointTypeChange.java

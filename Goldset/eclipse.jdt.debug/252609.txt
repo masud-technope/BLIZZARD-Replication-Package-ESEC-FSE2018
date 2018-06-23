@@ -1,0 +1,5 @@
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/AutomatedSuite.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/LineTrackerTests.java
+org.eclipse.jdt.debug.tests/testprograms/OneToTen.java
+org.eclipse.jdt.debug.tests/testprograms/PrintConcatenation.java
+org.eclipse.jdt.debug.tests/testprograms/OneToTenPrint.java

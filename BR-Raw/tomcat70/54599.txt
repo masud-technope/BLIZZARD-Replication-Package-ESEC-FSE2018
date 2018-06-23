@@ -1,0 +1,34 @@
+54599 – DataSource password is exposed to applications via toString method
+On the server side, create a DataSource using "org.apache.tomcat.jdbc.pool.DataSourceFactory".
+Ex:
+<Resource auth="Container"
+description=""
+name="jdbc/testTomcatJdbc"
+factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+type="javax.sql.DataSource"
+username="sa"
+password="super-secret"
+driverClassName="org.h2.Driver"
+url="jdbc:h2:mem:test"
+minIdle="1"
+initialSize="1" />
+In a web application, create a JSP file, add the following:
+<%@ page import="javax.naming.*" session="false" %>
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Display Password!</title>
+</head>
+<body>
+<h1>toString for Tomcat JDBC</h1>
+<%
+dataSource = (javax.sql.DataSource) ctx.lookup("java:/comp/env/jdbc/testTomcatJdbc");
+out.println("<p>" + dataSource.toString() + "</p>");
+%>
+</body>
+</html>
+Access the JSP in your browser.
+ The output from toString on the DataSource will display the password that was configured in the <Resource/> tag.
+Example Output:
+toString for Tomcat JDBC
+org.apache.tomcat.jdbc.pool.DataSource@75cae120{ConnectionPool[defaultAutoCommit=null; defaultReadOnly=null; defaultTransactionIsolation=-1; defaultCatalog=null; driverClassName=org.h2.Driver; maxActive=100; maxIdle=100; minIdle=1; initialSize=1; maxWait=30000; testOnBorrow=false; testOnReturn=false; timeBetweenEvictionRunsMillis=5000; numTestsPerEvictionRun=0; minEvictableIdleTimeMillis=60000; testWhileIdle=false; testOnConnect=false; password=super-secret; url=jdbc:h2:mem:test; username=sa; validationQuery=null; validatorClassName=null; validationInterval=30000; accessToUnderlyingConnectionAllowed=true; removeAbandoned=false; removeAbandonedTimeout=60; logAbandoned=false; connectionProperties=null; initSQL=null; jdbcInterceptors=null; jmxEnabled=true; fairQueue=true; useEquals=true; abandonWhenPercentageFull=0; maxAge=0; useLock=false; dataSource=null; dataSourceJNDI=null; suspectTimeout=0; alternateUsernameAllowed=false; commitOnReturn=false; rollbackOnReturn=false; useDisposableConnectionFacade=true; logValidationErrors=false; propagateInterruptState=false; }

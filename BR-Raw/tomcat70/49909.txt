@@ -1,0 +1,8 @@
+49909 – jstl 1.2 not support
+Created attachment 26011 [details]
+run log
+I get the R995577 from svn, and complied.
+Report err when run my webapp that lib include jstl.jar v1.2.
+But run the examples with jstl.jar v1.1.2 and standard.jar v1.1.2 was work fined.
+Is the tc7 not support jstal 1.2?
+The exception stack in the attachment.

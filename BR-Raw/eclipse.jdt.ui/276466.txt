@@ -1,0 +1,7 @@
+Bug 276466 – [call hierarchy] Improve UI for View Menu Preferences
+Build ID: I20090514-2000
+Steps To Reproduce:
+From bug <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=274087"></a>
+Need to improve the UI for Preferences action in the call hierarchy view menu for configuring the expand with constructors by default.
+It should allow the user to configure a list of types or/and methods for which the call hierarchy is by default expand with constructors.
+More information:

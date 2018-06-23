@@ -1,0 +1,11 @@
+Bug 95542 – PDE should not attempt to add external folder to classpath
+3.1M7
+JDT does not support external folders.
+ If a fragment declares a folder as a
+library and the fragment is not in the workspace, PDE currently attempts to
+add it to the classpath (as it should).
+ However, JDT chokes on it.
+therefore, to avoid this unpleasantness, PDE should add the following
+check/workaround:  If the external library is a folder, don't add it.
+ It is
+not correct, but better than what is happening today.

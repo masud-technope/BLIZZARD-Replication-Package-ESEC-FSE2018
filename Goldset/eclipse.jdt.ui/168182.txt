@@ -1,0 +1,10 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/propertiesfileeditor/PropertiesFileSourceViewerConfiguration.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/SpellingConfigurationBlock.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/spelling/JavaSpellingProblem.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/spelling/PropertiesFileSpellingEngine.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/spelling/SpellCheckIterator.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/spelling/PropertiesFileSpellCheckIterator.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/PreferencesMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/spelling/PropertiesValueBreakIterator.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/PreferencesMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/PreferenceConstants.java

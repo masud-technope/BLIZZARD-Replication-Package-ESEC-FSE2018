@@ -1,0 +1,53 @@
+Bug 427207 – [1.8][bytecode] Runtime type problem: Instruction type does not match stack map
+This program crashes at runtime when compiling and running it from within eclipse.
+Compiling and running it with jdk8 b127 from the command line works fine.
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+package crash;
+import java.util.function.Function;
+class Crash {
+public static void main(String[] args) {
+test(1, Crash::intToSome);
+}
+static <T> Some test(T value, Function<T, Some> f) {
+return (value == null) ? new Nothing() : f.apply(value);
+}
+static SomeInt intToSome(int i) {
+return new SomeInt();
+}
+static abstract class Some {}
+static class SomeInt extends Some {}
+static class Nothing extends Some {}
+// NOTE: on the other hand this works fine:
+//static interface Some {}
+//static class SomeInt implements Some {}
+//static class Nothing implements Some {}
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Exception in thread "main" java.lang.VerifyError: Instruction type does not match stack map
+Exception Details:
+Location:
+crash/Crash.test(Ljava/lang/Object;Ljava/util/function/Function;)Lcrash/Crash$Some; @21: areturn
+Reason:
+Type 'java/lang/Object' (current frame, stack[0]) is not assignable to 'crash/Crash$Some' (stack map, stack[0])
+Current Frame:
+bci: @21
+flags: { }
+locals: { 'java/lang/Object', 'java/util/function/Function' }
+stack: { 'java/lang/Object' }
+Stackmap Frame:
+bci: @21
+flags: { }
+locals: { 'java/lang/Object', 'java/util/function/Function' }
+stack: { 'crash/Crash$Some' }
+Bytecode:
+0000000: 2ac7 000d bb00 2259 b700 24a7 000a 2b2a
+0000010: b900 2502 00b0
+Stackmap Table:
+same_frame(@14)
+same_locals_1_stack_item_frame(@21,Object[#50])
+at java.lang.Class.getDeclaredMethods0(Native Method)
+at java.lang.Class.privateGetDeclaredMethods(Class.java:2688)
+at java.lang.Class.getMethod0(Class.java:2937)
+at java.lang.Class.getMethod(Class.java:1771)
+at sun.launcher.LauncherHelper.validateMainClass(LauncherHelper.java:544)
+at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:526)

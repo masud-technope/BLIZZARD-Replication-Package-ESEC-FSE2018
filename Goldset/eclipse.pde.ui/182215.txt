@@ -1,0 +1,7 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/dependencies/StateViewPage.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/views/dependencies/DependenciesView.java
+ui/org.eclipse.pde.ui/icons/obj16/focus.gif
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/IPreferenceConstants.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEPluginImages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/PDEUIMessages.java
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/pderesources.properties

@@ -1,0 +1,3 @@
+Bug 483749 – [tooling][remoteservices] In RSA Manager view when error occurs, insufficient information is presented
+In the RSA Manager view, when importing a remote service and it fails the imported endpoint shows as Error without any explanation.
+ If I open the Error View the explanation appears but this is not immediately obvious.

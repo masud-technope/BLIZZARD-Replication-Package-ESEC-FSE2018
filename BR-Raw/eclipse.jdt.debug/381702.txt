@@ -1,0 +1,8 @@
+Bug 381702 – [patch] executionEnvironments contributions should be sorted
+Created attachment 216831 [details]
+Fix for eclipse.jdt.debug repo
+executionEnvironments contributions should be sorted.
+Callers of IExecutionEnvironmentsManager.getExecutionEnvironments() which present the contributions in the UI should not reorder them.
+Currently, EEs are sorted in various ways (by name, by ID, etc.), which is confusing.
+The patch fixes the problems in the eclipse.jdt.debug repo.
+jdt.ui and pde should follow up after this bug is fixed.

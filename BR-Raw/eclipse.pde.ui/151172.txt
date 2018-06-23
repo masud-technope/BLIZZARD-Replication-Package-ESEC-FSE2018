@@ -1,0 +1,4 @@
+Bug 151172 – PDE Manifest Editor should treat OSGI manifest headers as case insensitive
+The default color of the reserved OSGi manifest headers is "Red/Bold", whereas the color for all other headers is "Red".
+ It is too difficult to distinguish the two, making it harder to spot cases where to misspell a header, such as "Bundle-Classpath" when you should have typed "Bundle-ClassPath".
+My preference would be for the reserved OSGi manifest headers to be "Blue/Bold".

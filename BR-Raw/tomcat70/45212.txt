@@ -1,0 +1,14 @@
+45212 – AbstractReplicatedMap.entrySet returns values not entries.
+AbstractReplicatedMap implements entrySet() as follows;
+public Set entrySet() {
+LinkedHashSet set = new LinkedHashSet(super.size());
+Iterator i = super.entrySet().iterator();
+while ( i.hasNext() ) {
+Map.Entry e = (Map.Entry)i.next();
+Object key = e.getKey();
+MapEntry entry = (MapEntry)super.get(key);
+if ( entry != null && entry.isPrimary() ) set.add(entry.getValue());
+}
+return Collections.unmodifiableSet(set);
+}
+this returns a set of all the *values*, the line set.add(entry.getValue()) should be set.add(entry);

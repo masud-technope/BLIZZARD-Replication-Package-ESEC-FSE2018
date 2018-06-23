@@ -1,0 +1,15 @@
+java/org/apache/naming/NamingEntry.java
+java/org/apache/naming/NamingService.java
+java/org/apache/naming/NamingServiceMBean.java
+java/org/apache/naming/ResourceRef.java
+java/org/apache/naming/factory/EjbFactory.java
+java/org/apache/naming/factory/OpenEjbFactory.java
+java/org/apache/naming/factory/ResourceEnvFactory.java
+java/org/apache/naming/factory/TransactionFactory.java
+java/org/apache/naming/resources/BaseDirContext.java
+java/org/apache/naming/resources/DirContextURLConnection.java
+java/org/apache/naming/resources/FileDirContext.java
+java/org/apache/naming/resources/ProxyDirContext.java
+java/org/apache/naming/resources/Resource.java
+java/org/apache/naming/resources/ResourceCache.java
+java/org/apache/naming/resources/WARDirContext.java

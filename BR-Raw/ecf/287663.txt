@@ -1,0 +1,24 @@
+Bug 287663 – [remoteservices][r-osgi] r-osgi timeout value async/sync call does not have any effect
+Hello,
+The timeout value specified in the async/sync call on the ECF provider level does not have any effect currently.
+I am using the Eclipse ECF with R-OSGi and Equinox (org.eclipse.ecf.provider.r_osgi_3.0.0.v20090616-0832.jar).
+When I modify the IRemoteCall timeout value with 3000 ms ...
+remoteService.callAsync(createRemoteCall(), createRemoteCallListener());
+System.out.println("callAsync invoked");
+IRemoteCall createRemoteCall() {
+return new IRemoteCall() {
+public String getMethod() {
+return "hello";
+}
+public Object[] getParameters() {
+return new Object[] { "Asynch RemoteService Consumer" };
+}
+public long getTimeout() {
+return 3000;
+}
+};
+}
+sync call use the method
+org.eclipse.ecf.internal.provider.r_osgi.callSync (RemoteServiceImpl)
+not work!!, only "timeout exceeded" after 120000 ms (2 min), this value is set in ch.ethz.iks.r_osgi.impl.ChannelEndpointImpl.
+Thanks.

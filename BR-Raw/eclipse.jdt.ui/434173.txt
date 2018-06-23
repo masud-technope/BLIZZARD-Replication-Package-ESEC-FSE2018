@@ -1,0 +1,7 @@
+Bug 434173 – [1.8][quick fix] strictfp ignored for remove method suggestion
+interface I {
+public strictfp  void foo() { // Use quick assist -> remove method body
+System.out.println("Hellow");
+}
+}
+quick fix suggests "remove method body" [one of the suggestions] for the above issue which would make foo an abstract method, for which strictfp modifier is not allowed and hence results in an error

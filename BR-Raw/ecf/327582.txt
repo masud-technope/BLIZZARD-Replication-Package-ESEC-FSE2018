@@ -1,0 +1,4 @@
+Bug 327582 – [r-osgi]simplify implementation of getRemoteServiceReferences(ID[]...)
+Currently, the r-osgi implementation of getRemoteServiceReferences(ID[],String,String) does an incorrect and unnecessary thing.
+ This should be simplified/removed to ignore the ID[] idFilter parameter.
+Also getRemoteServiceReferences(ID,ID[],String,String) similarly should be simplified.

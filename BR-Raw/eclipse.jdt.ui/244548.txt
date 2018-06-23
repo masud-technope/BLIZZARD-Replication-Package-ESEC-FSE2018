@@ -1,0 +1,22 @@
+Bug 244548 – [hovering] Annotation attribute javadoc is not displayed
+Build ID: I20080617-2000
+Steps To Reproduce:
+1.
+Create ExampleAnno.java:
+public @interface ExampleAnno {
+/**
+* Some documentation.
+*/
+String[] anAttribute();
+}
+2.
+Create Demo.java:
+public class Demo {
+@ExampleAnno()
+public void m() {
+}
+}
+3.
+Place the cursor inside the parens for @ExampleAnno and bring up content assist (CTRL-SPACE).
+ Notice that anAttribute is listed, but the JavaDoc does not appear in the hover.
+More information:

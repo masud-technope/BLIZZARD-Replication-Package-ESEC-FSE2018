@@ -1,0 +1,3 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/propertiesfileeditor/PropertiesFileSourceViewerConfiguration.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/HTMLAnnotationHover.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/ui/text/JavaSourceViewerConfiguration.java

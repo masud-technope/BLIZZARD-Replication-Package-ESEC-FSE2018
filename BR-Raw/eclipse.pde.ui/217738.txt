@@ -1,0 +1,2 @@
+Bug 217738 – [registry view] show OSGi service information
+In the plug-in registry view, it would be nice to show information about OSGi services being published and consumed.

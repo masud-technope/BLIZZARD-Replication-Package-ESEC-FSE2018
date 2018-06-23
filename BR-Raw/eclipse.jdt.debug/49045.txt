@@ -1,0 +1,7 @@
+Bug 49045 – Scrapbook launch config name is not user friendly
+The names used for scrapbook launch configs are not user friendly, and not
+meant for display in the current format.
+Since LC names are now displayed in
+the console title bar, we should change this.
+For example "Console -
+snip.jpage-Scrapbook-1071679716544".

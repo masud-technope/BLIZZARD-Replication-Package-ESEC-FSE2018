@@ -1,0 +1,2 @@
+Bug 296145 – [Discovery][jSLP] Refactor SLPMessage to write message header in super class
+Refactor super.writeHeader(DataOutputStream, int) called by each message implementation into SLPMessage.getBytes().

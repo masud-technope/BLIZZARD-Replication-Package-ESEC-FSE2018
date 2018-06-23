@@ -1,0 +1,7 @@
+Bug 419057 – ITypeBinding#getModifiers() misses implicit "static" for class member interface
+master and BETA_JAVA8
+ITypeBinding#getModifiers() misses the implicit "static" modifier for member interfaces of a class:
+public class C {
+interface IC {} // implicitly static, see JLS7 8.5.1
+}
+(If you wonder about the reference to JLS7 8.5.1, then you may have an old version of JLS7 that contains a section 8.5.2 and a bogus 8.5.1 that said IC would be implicitly public -- that part has been removed again).

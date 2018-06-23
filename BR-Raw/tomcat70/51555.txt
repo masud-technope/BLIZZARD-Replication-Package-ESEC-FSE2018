@@ -1,0 +1,25 @@
+51555 – An invalid Lifecycle transition ([before_stop]) for component in state [INITIALIZED]: MapperListener
+Created attachment 27313 [details]
+TEST-org.apache.tomcat.util.net.TestXxxEndpoint.BIO.txt
+While running TestXxxEndpoint test I observed the following error - see attached log:
+An invalid Lifecycle transition was attempted ([before_stop]) for component [org.apache.catalina.connector.MapperListener@e3849c] in state [INITIALIZED]
+org.apache.catalina.LifecycleException: An invalid Lifecycle transition was attempted ([before_stop]) for component [org.apache.catalina.connector.MapperListener@e3849c] in state [INITIALIZED]
+at org.apache.catalina.util.LifecycleBase.invalidTransition(LifecycleBase.java:386)
+at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:212)
+at org.apache.catalina.connector.Connector.stopInternal(Connector.java:973)
+at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:225)
+at org.apache.tomcat.util.net.TestXxxEndpoint.testStartStopBindOnStart(TestXxxEndpoint.java:172)
+The test case contains two tests.
+The first one (on port 8001) succeeded, while the second one (on port 8002) failed with "Address already in use: JVM_Bind".
+This failure to bind to 8002 was unexpected and does not occur during normal run.
+While Tomcat was stopping after failed start, the above "invalid Lifecycle transition" exception was thrown by MapperListener.
+I was testing with BIO connector only, running a single test (test.entry=org.apache.tomcat.util.net.TestXxxEndpoint).
+I think that the cause of the startup failure was that I accidentally started two copies of Ant in parallel.
+In Eclipse it happens if you double-click on "Run External Tool" button.
+Looking at o.a.catalina.connector.Connector#startInternal(), it does
+- protocolHandler.start();
+- mapperListener.start();
+The logs show that protocolHandler.start() call failed.
+Thus mapperListener.start() was not called.
+This second test TestXxxEndpoint.testStartStopBindOnStart() runs with "bindOnInit" property of connector set to "false".
+Thus binding failure did not happen in init(), but occurred in start().

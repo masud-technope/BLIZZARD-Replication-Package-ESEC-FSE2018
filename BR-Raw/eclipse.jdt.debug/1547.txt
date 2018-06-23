@@ -1,0 +1,5 @@
+Bug 1547 – duplicate variable names (1GB7V3E)
+DW (3/26/01 5:23:39 PM)
+If a subclass defines an inst var with the same name as in a supertype,
+they are difficult to distinguish in the UI - we should show the defining
+type name in this, when the "qualified" button is pressed.

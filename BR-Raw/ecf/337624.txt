@@ -1,0 +1,20 @@
+Bug 337624 – [Discovery][ZooDiscovery] allow silencing of zookeeper startup, publish, shutdown
+Currently, when the zookeeper provider starts up and shuts down, it produces output to standard out...for example:
+ZooDiscovery> Discovery Service Activated.
+Feb 18, 2011 3:53:38 PM.
+...
+log4j:WARN No appenders could be found for logger (org.apache.zookeeper.server.ZooKeeperServer).
+log4j:WARN Please initialize the log4j system properly.
+ZooDiscovery> Service Published: Feb 18, 2011 3:53:42 PM.
+ServiceInfo[uri=ecf.osgirsvc://localhost:9278/osgirsvc_YFsonK7gMRipiNY7mhngPWce4X8=;id=ServiceID[type=ServiceTypeID[typeName=_ecf.osgirsvc._default.default._iana];location=ecf.osgirsvc://localhost:9278/osgirsvc_YFsonK7gMRipiNY7mhngPWce4X8=;full=_ecf.osgirsvc._default.default._iana@ecf.osgirsvc://localhost:9278/osgirsvc_YFsonK7gMRipiNY7mhngPWce4X8=];priority=0;weight=0;props=ServiceProperties[{endpoint.service.id=58, endpoint.package.version.org.eclipse.ecf.examples.remoteservices.hello=3.0.0, objectClass=org.eclipse.ecf.examples.remoteservices.hello.IHello, endpoint.framework.uuid=00c93b4b-ba3b-0010-1045-97c48d87b8f2, remote.intents.supported=passByValue exactlyOnce ordered, ecf.endpoint.id.ns=ecf.namespace.r_osgi, remote.configs.supported=ecf.r_osgi.peer, endpoint.id=r-osgi://localhost:9278, service.imported.configs=ecf.r_osgi.peer}]]
+...
+...
+osgi> ZooDiscovery> Discovery Service Deactivated.Feb 18, 2011 3:57:27 PM.
+As well, the log4j initialization doesn't seem to be configured...i.e.
+log4j:WARN No appenders could be found for logger (org.apache.zookeeper.server.ZooKeeperServer).
+log4j:WARN Please initialize the log4j system properly.
+Would it be possible to turn off the ZooDiscovery startup, publish, and shutdown output?  If desired, ECF has a trivial OSGi LogService implementation (SystemLogService)...as well as a LogHelper classes and others to use.
+ One example usage is here:
+http://git.eclipse.org/c/ecf/org.eclipse.ecf.git/tree/osgi/bundles/org.eclipse.ecf.osgi.services.remoteserviceadmin/src/org/eclipse/ecf/internal/osgi/services/remoteserviceadmin/Activator.java
+I'm not saying this LogService has to be used for addressing this bug, but it is available for use at no additional code cost and without additional dependencies.
+ Note also that the ECF util Trace class can also be used (for tracing/debug output).

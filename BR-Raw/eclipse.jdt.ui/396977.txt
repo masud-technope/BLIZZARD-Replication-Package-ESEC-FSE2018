@@ -1,0 +1,12 @@
+Bug 396977 – [jar exporter] Wrong library order in manifest generating a jar file with "runnable JAR file" option
+Created attachment 224946 [details]
+Manifest and Build path
+I'm trying to generate a runnable jar using Eclipse (Export->Java->Runnable JAR file).
+The JAR is generated correctly but the classpath key generated in the manifest file of this jar don't respect the libraries order fixed on my Build Path configuration.
+I have to change manually the manifest file because I need respect this order.
+The Java BuildPath order in my Eclipse configuration is:
+DynastyDM.jar dtgjxfsdevices.jar dsijxfs.jar jxfsclient2.1.3b.jar
+The classpath key in the manifest file has the following value:
+dtgjxfsdevices.jar jxfsclient2.1.3b.jar dsijxfs.jar DynastyDM.jar
+Â¿What can I do for generating automatically the manifest file with the correct order?
+Thanks

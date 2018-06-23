@@ -1,0 +1,12 @@
+org.eclipse.jdt.annotation/src/org/eclipse/jdt/annotation/DefaultLocation.java
+org.eclipse.jdt.annotation/src/org/eclipse/jdt/annotation/NonNullByDefault.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/CompilerInvocationTests.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/NullAnnotationTest.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/NullTypeAnnotationTest.java
+org.eclipse.jdt.core.tests.compiler/workspace/Test374129_1.8.jar
+org.eclipse.jdt.core.tests.compiler/workspace/Test388281_1.8.jar
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/core/compiler/IProblem.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/Annotation.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/BinaryTypeBinding.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/problem/ProblemReporter.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/problem/messages.properties

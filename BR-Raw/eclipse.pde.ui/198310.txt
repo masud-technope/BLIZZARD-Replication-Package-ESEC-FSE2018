@@ -1,0 +1,3 @@
+Bug 198310 – PDE NLS wizard could use a Preview page
+Continuing with our streak of coolness, the PDE Tools > Externalize Strings...
+wizard could also use a Preview page like the Organize Manifests wizard.

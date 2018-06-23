@@ -1,0 +1,6 @@
+42039 – Tomcat doesn't output the stack trace of UnavailableException.
+When UnavailableException is thrown from the Servlet:init, Tomcat doesn't output
+the stack trace of UnavailableException.
+The cause of problem is lost.
+Tomcat should output the stack trace at the "invoke" method of
+StandardWrapperValue.

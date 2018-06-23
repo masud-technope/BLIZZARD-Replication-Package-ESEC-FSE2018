@@ -1,0 +1,10 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/GotoMarkerAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/ExceptionOccurrencesFinder.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/JavaSearchMarkerUpdater.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/OccurrencesFinder.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/JavaSearchEditorOpener.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/browsing/JavaBrowsingPerspectiveFactory.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaHierarchyPerspectiveFactory.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/OpenJavaSearchPageAction.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/JavaPerspectiveFactory.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/search/JavaSearchResultPage.java

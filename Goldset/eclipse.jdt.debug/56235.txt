@@ -1,0 +1,4 @@
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/CreateStepFilterDialog.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/DialogSettingsHelper.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/PackageSelectionDialog.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/jres/AddVMDialog.java

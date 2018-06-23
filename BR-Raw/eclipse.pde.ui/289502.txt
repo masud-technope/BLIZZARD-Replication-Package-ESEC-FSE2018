@@ -1,0 +1,7 @@
+Bug 289502 – Spell checking issues in org.eclipse.pde.doc.user/toc.xml
+Created attachment 147238 [details]
+screen shot
+I20090915-0100
+With the new spell checking support in PDE, I get some spelling erros on
+element attribute tags, rather than their content, like, "The word 'href' is
+not spelled correctly".

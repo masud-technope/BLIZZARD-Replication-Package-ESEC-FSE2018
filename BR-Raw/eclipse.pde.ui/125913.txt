@@ -1,0 +1,9 @@
+Bug 125913 – New Extension dialog should give default focus to filter text field
+I20060125-0800
+- Open plugin manifest editor
+- Switch to Extensions tab
+- Click Add...
+Keyboard focus on the resulting dialog is set on the list, rather than the text field, so I can't just type in the id.
+I have to first click on the text field.
+Elsewhere in eclipse it brings keyboard focus to the logical starting field..
+see new java project/class/package toolbar buttons to see what I mean.

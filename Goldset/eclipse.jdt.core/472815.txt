@@ -1,0 +1,4 @@
+org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/formatter/FormatterBugsTests.java
+org.eclipse.jdt.core/formatter/org/eclipse/jdt/internal/formatter/LineBreaksPreparator.java
+org.eclipse.jdt.core/formatter/org/eclipse/jdt/internal/formatter/Token.java
+org.eclipse.jdt.core/formatter/org/eclipse/jdt/internal/formatter/linewrap/WrapPreparator.java

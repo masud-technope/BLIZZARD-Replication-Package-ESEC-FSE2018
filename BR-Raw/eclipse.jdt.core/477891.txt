@@ -1,0 +1,27 @@
+Bug 477891 – [1.8] regression caused by the fix for bug 438812: order dependencies in analysis of default method inheritance
+As discussed in http://stackoverflow.com/questions/32663581/why-does-order-of-implementing-interfaces-with-default-methods-matter-in-java
+Turns out that our fix for bug 438812 introduced a bogus order dependence:
+//---
+interface A {
+public default void display() {
+System.out.println("Display from A");
+}
+}
+interface B extends A {
+public default void display() {
+System.out.println("Display from B");
+}
+}
+interface C extends A {
+public void display();
+}
+public interface D extends B, C {
+}
+//---
+Prior to bug 438812 we correctly reported:
+The default method display() inherited from B conflicts with another method inherited from C
+After the fix we remain silent.
+The error *is* consistently reported, however, if we change D to
+//---
+public interface D extends C, B { }
+//---

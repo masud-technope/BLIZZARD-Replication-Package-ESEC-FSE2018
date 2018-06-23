@@ -1,0 +1,5 @@
+Bug 329626 – [quick assist] RFE: Quick fix to set all case statements in an Enum switch
+Build Identifier:
+It would be nice if Eclipse would allow me to CTRL+SPACE inside a new switch statement for an Enum, and give me the option to populate all case statements for each value.
+And if you really want to get fancy, a dialog box where I can check/uncheck the values I desire.
+Reproducible: Always

@@ -1,0 +1,79 @@
+Bug 18174 – Quotes in execution arguments of Java launch
+If you enter something like the following string as execution arguments for a
+Java launch, the arguments are not passed as one would expect.
+\"quote\" "a \"quoted\" spaced arg"
+Here is a suggested replacement for
+org.eclipse.jdt.launching.ExecutionArguments.ArgumentParser that works both on
+win32 and linux (a contribution from WSDD 4.0).
+The subtle difference is that a
+quote can be escaped with a backslash, but a backslash is not a general escape
+character as in unix because that causes problems with path names on windows.
+private static class ArgumentParser {
+private String fArgs;
+private int fIndex= 0;
+private int ch= -1;
+public ArgumentParser(String args) {
+fArgs= args;
+}
+public String[] parseArguments() {
+StringBuffer buf;
+List v= new ArrayList();
+ch= getNext();
+while (ch > 0) {
+while (Character.isWhitespace((char)ch))
+ch= getNext();
+if (ch == '"') {
+v.add(parseString());
+} else {
+v.add(parseToken());
+}
+}
+String[] result= new String[v.size()];
+v.toArray(result);
+return result;
+}
+private int getNext() {
+if (fIndex < fArgs.length())
+return fArgs.charAt(fIndex++);
+return -1;
+}
+private String parseString() {
+StringBuffer buf= new StringBuffer();
+//buf.append((char)ch);
+ch= getNext();
+while (ch > 0 && ch != '"') {
+if (ch == '\\') {
+ch= getNext();
+if (ch != '"') buf.append('\\'); //
+Only escape double quotes
+}
+if (ch > 0) {
+buf.append((char)ch);
+ch= getNext();
+}
+}
+//if (ch > 0) buf.append((char)ch);
+ch= getNext();
+return buf.toString();
+}
+private String parseToken() {
+StringBuffer buf= new StringBuffer();
+while (ch > 0 && !Character.isWhitespace((char)ch)) {
+if (ch == '\\') {
+ch= getNext();
+if (ch > 0) {
+if (ch != '"') buf.append
+('\\'); // Only escape double quotes
+buf.append((char)ch);
+ch= getNext();
+}
+} else if (ch == '"') {
+buf.append(parseString());
+} else {
+buf.append((char)ch);
+ch= getNext();
+}
+}
+return buf.toString();
+}
+}

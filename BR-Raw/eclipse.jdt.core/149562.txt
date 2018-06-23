@@ -1,0 +1,21 @@
+Bug 149562 – Small problem with enumerations and switch statements
+Hi,
+I've got the folling source code :
+public class Test {
+enum Types {One, Two;}
+public static void main(String[] args) {
+int val;
+Types type = Types.One;
+switch (type) {
+case One:
+val = 1;
+break;
+case Two:
+val = 2;
+break;
+}
+System.out.println(val);
+}
+}
+Eclipse complains that the variable val might not be initialized, but the switch/case statement covers all possible values of the enumeration.
+Is this a bug ?

@@ -1,0 +1,4 @@
+48660 – Connector compression=on overwrites Vary header
+When compressing the connector sets the "Vary: Accept-Encoding".
+ I think it would be more correct to append "Accept-Encoding" the the current value of the Vary header instead of replacing it.
+In particular, I cannot set this header to "Cookie" to force reload of the page if the JSESSIONID cookie changes

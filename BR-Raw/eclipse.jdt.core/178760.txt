@@ -1,0 +1,4 @@
+Bug 178760 – The Copy/Paste mechanism does not work anymore.
+The Copy/Paste mechanism does not work anymore.
+But you can copy files with drag and drop.
+Both in local and GridFTP connections.

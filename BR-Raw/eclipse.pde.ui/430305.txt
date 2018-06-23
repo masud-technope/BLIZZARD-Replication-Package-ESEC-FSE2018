@@ -1,0 +1,4 @@
+Bug 430305 – [1.8] Remove the unsupported bytecodes preference in Luna
+We added a preference setting and problem marker for unsupported bytecodes.
+ In the Luna stream, the new version of ASM will read Java 8 bytecodes rendering this preference obsolete (until the next Java release).
+While there is no harm in having the preference page, it will do nothing.

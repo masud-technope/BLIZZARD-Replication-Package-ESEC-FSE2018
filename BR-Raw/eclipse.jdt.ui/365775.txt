@@ -1,0 +1,2 @@
+Bug 365775 – [preferences] Validate syntactic correctness of null annotation option settings
+Validate syntactic correctness of null annotation option settings (must be a fully qualified name).

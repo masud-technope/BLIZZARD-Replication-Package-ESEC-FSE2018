@@ -1,0 +1,18 @@
+Bug 25324 – Ability to know when tests are finished [junit]
+Hi,
+I'm writing a Cactus Plugin that extends the JUnit Plugin and I need to know
+when the tests have finished running in the TestRunner.
+There is a nice
+ITestRunListener interface for that.
+My idea was thus to implement this
+interface and somehow register my listener to the TestRunner
+(RemoteTestRunnerClient).
+However:
+1/ Currently the RemoteTestRunnerClient implementation only supports one
+listener
+2/ There is no API in TestRunnerViewPart to get access to the TestRunner
+I am attaching a patch that should provide this facility.
+However, I need your
+help to know if this is the right approach or not.
+Thank you
+-Vincent

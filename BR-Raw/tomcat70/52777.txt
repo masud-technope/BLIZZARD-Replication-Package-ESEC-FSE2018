@@ -1,0 +1,27 @@
+52777 – Automatically shut down old versions in parallel deployment
+Under parallel deployment, when an older version in an application has zero sessions, shut it down automatically to release tomcat and JVM resources.
+Christopher Schultz suggested these approaches might be possible (on the Tomcat user list):
+1.
+Modify the parallel deployment code to register an MBean
+NotificationListener that filters for useful events (such as expiring
+session notifications on the outgoing webapp).
+2.
+When the listener receives a notification, check the current state
+(e.g.
+session count=0; or, I suppose you could make this a part of
+your filter in step #1).
+If session count = 0, start a new thread that
+stops the outgoing webapp and de-registers the listener.
+Or.
+1.
+Install a SessionEventListener that counts-down the sessions
+(you'll have to get the count from JMX, I suppose) until they equal 0,
+then starts a new thread that ...
+etc.
+Or.
+1.
+Install a Timer thread that polls at intervals (1 minute?) to see
+if all the sessions are dead and then starts a thread ...
+etc.
+The first idea seems the cleanest, though Tomcat might not actually
+fire MBean events for things like session count changing.

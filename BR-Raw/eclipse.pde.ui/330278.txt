@@ -1,0 +1,15 @@
+Bug 330278 – PackageFinder.findPackagesInClassFiles may produce invalid package names
+While working on bug 330256 I noticed some weird package names when scanning for dependencies in binary class files.
+I traced it down to org.eclipse.pde.internal.ui.search.dependencies.PackageFinder.findPackagesInClassFiles(IClassFile[], IProgressMonitor).
+Here is the call stack:
+PackageFinder.getPackage(String) line: 185
+PackageFinder.computeReferencedTypes(IClassFileReader, Set) line: 82
+PackageFinder.findPackagesInClassFiles(IClassFile[], IProgressMonitor) line: 34
+OrganizeManifestsProcessor$2(AddNewBinaryDependenciesOperation).findSecondaryDependencies(String[], Set, Map, Set, IBundle, boolean, IProgressMonitor) line: 40
+OrganizeManifestsProcessor$2(AddNewDependenciesOperation).execute(IProgressMonitor) line: 84
+...
+The root cause seems to be in #extractFullyQualifiedType().
+example input:
+extractFullyQualifiedType("Lcom/abc/MyClass$1;")
+resulting output:
+"new com.abc$MyClass(){}"

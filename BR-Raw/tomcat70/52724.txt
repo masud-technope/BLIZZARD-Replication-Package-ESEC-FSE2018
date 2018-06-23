@@ -1,0 +1,14 @@
+52724 – An incomplete fix for the resource leak bugs in Catalina.java
+The fix revision 730178 was aimed to remove an resource leak bug on the  FileInputStream object "fis" (created line 458), the Socket "socket" (created at line 477),
+the OutputStream object "stream", and the FileInputStream object "inputStream" in the file "/tomcat/tc7.0.x/trunk/java/org/apache/catalina/startup/Catalina.java" , but
+it is incomplete.
+There are some problems:
+1.
+the InputSource object "is" created at line 452 is not closed.
+2.
+when the statements at lines 455-457 throw some exception, the "fis" can not be closed as expected.
+3.
+when the statements at lines 480-483 throw some exception, the "socket" and the "stream" can not be closed as expected.
+4.
+when the statements at lines 574-576 throw some exception, the "inputStream" can not be closed as expected.
+The best way to close such resource objects is putting such close operations in the finaly block of a try-catch-finally structure.

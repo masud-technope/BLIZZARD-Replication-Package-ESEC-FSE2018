@@ -1,0 +1,7 @@
+Bug 151668 – [reorg] Copy action should NOT add 'copy of' prefix
+Yes, I add this issue though it contradicts to issue #3985 and issue #33071.
+I really wonder what the advantage of this prefix should be.
+I never just wanted to create a copy where the name is not important like a backup.
+Whenever I copy a file I want to specify a new name.
+And there it is really annoying to remove the prefix over and over again.
+If this is now different for other people (otherwise it would probably not have been added this way) it might make sense to make this prefix configurable.

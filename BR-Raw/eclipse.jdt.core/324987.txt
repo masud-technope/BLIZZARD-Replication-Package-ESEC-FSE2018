@@ -1,0 +1,5 @@
+Bug 324987 – [formatter] API compatibility problem with Annotation Newline options
+Follow-up to bug 308000
+We have a compatibility problem with 3.6 clients (e.g.
+our old UI).
+A 3.6 client expects IJavaProject#getOption(..) and #getOptions(..) to return values for the deprecated formatter options, but these are removed now.

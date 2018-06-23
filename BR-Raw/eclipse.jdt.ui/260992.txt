@@ -1,0 +1,17 @@
+Bug 260992 – [clean up] Improper enhanced for-loop conversion on descendingIterator()
+Build ID: M20080911-1700
+Steps To Reproduce:
+Type some code like this:
+NavigableSet<?> set = ...
+for (Iterator<?> it = set.descendingIterator(); it.hasNext();) {
+Object element = it.next();
+System.out.println(element);
+}
+Run the "Convert for loops to enhanced" code cleanup.
+You get:
+for (Object element : set) {
+System.out.println(element);
+}
+But this iterates through the elements of set in ascending order, when the original code went in descending order.
+More information:
+Probably the code that detects whether enhanced for-loop conversion is possible should verify that the Iterator is being obtained through a call to Iterable.iterator() and not some other method like NavigableSet.descendingIterator().

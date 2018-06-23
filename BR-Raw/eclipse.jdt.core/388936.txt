@@ -1,0 +1,8 @@
+Bug 388936 – [1.8] create jclMin libraries for 1.8
+JDT/Core tests use their own minimal versions of java classpath libraries.
+We need to create versions of these for 1.8 compliance,
+AFAICS this involves creating the following files:
+- jclMin1.8src.zip
+- jclMin1.8.jar
+- converterJclMin1.8src.zip
+- converterJclMin1.8.jar

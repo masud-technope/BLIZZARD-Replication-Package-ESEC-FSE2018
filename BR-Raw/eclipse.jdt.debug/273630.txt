@@ -1,0 +1,19 @@
+Bug 273630 – Errors in breakpoint conditions not handled properly if breakpoint listener votes to resume
+Testcase:
+for (int i=; i<10; i++)
+{
+System.out.println("hello");  // BREAKPOINT HERE
+}
+1.
+ Set a breakpoint in the loop
+2.
+ Add a condition that has error on the breakpoint
+3.
+ Have a breakpoint listener that votes to resume.
+When the breakpoint is hit, we will receive an error dialog indicating that there is an error in the condition.
+ However, since the breakpoint listener votes to resume, the program execution continues.
+ As a result, when the same breakpoint is hit again, we receive another error dialog.
+ It's very difficult to correct the error on the condition with so many dialogs popping up.
+Expected behavior:
+* Program execution is suspended even though the breakpoint listener votes to resume
+* The user should only receive one error dialog.

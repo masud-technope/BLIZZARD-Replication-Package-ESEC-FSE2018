@@ -1,0 +1,5 @@
+Bug 304191 – [content assist] Suspected regression on CodeCompletionPerformanceTest#testApplicationWithParamterGuesses2() test
+Verifying results for I20100224-2242 build, it looks like there's a confirmed regression on CodeCompletionPerformanceTest#testApplicationWithParamterGuesses2 test.
+Looking at history it seems to have appeared between N20100121-2000 and N20100123-2000 build.
+It's sure that depending on the machine, this test result is not constant (e.g.
+on RHEL machine), has different amplitude and also has a big error, but looking at history, I'm strongly convinced that something went slow in this area and I prefer open a bug to warn about it...

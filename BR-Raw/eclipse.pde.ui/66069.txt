@@ -1,0 +1,23 @@
+Bug 66069 – site.xml editor "Publish" command add "null/foo.jar"
+(1) open site.xml in workbench by site.xml editor
+(2) In First page [Feature], I push [Build All] button.
+(3) Right click on feature entry, display popup menu
+[Publish]
+[Build]
+--
+[Remove]
+[Copy]
+[Paste](disble)
+--
+[Revert]
+[Save]
+select [Publish] button.
+(3) Right block [Feature To Publish] entry added select feature,
+that feature entry directory name is null.
+I found in TextEditor
+(third page of site.xml editor)
+<feature url="null/???_?.?.?.jar">
+feature directory name is "features" I think valid path will
+<feature url="feature/???_?.?.?.jar">
+--
+please check

@@ -1,0 +1,4 @@
+java/org/apache/tomcat/util/buf/C2BConverter.java
+java/org/apache/tomcat/util/buf/LocalStrings.properties
+java/org/apache/catalina/connector/OutputBuffer.java
+webapps/docs/changelog.xml

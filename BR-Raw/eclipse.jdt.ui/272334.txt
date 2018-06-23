@@ -1,0 +1,17 @@
+Bug 272334 – [quick assist] 'Replace conditional with if-else' should also work on VariableDeclarationFragment
+Build ID: M20090211-1700
+Provide a new refactoring:
+Name: something like "convert if-else to ternary"
+Precondition: an if-else statement is selected
+Postcondition: the if statement is replaced by a ternary operator populated appropriately
+Example: it would convert the following:
+if( doInsert )
+{
+sql = INSERT_ADDRESS;
+}
+else
+{
+sql = UPDATE_ADDRESS;
+}
+to:
+sql = doInsert ? INSERT_ADDRESS : UPDATE_ADDRESS;

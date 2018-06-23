@@ -1,0 +1,2 @@
+Bug 443341 – [1.8][quick fix] "Convert lambda to anonymous" should be a quick fix below 1.8
+"Convert lambda to anonymous" should be a quick fix below 1.8

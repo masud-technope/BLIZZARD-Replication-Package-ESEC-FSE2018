@@ -1,0 +1,7 @@
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/LambdaExpressionSyntaxTest.java
+org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/parser/ReferenceExpressionSyntaxTest.java
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/parser14.rsc
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/parser20.rsc
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/parser7.rsc
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/parser/parser8.rsc
+org.eclipse.jdt.core/grammar/java.g

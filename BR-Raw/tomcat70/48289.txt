@@ -1,0 +1,6 @@
+48289 – ElSupport - Javadoc and generics fixes
+Created attachment 24620 [details]
+Patch - see description
+Patch to add some Javadoc and generics fixes to ElSupport.
+Note that the method coerceToEnum() remains to be fixed.
+Also adds some basic test cases for the compare() method.

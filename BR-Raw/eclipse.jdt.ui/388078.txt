@@ -1,0 +1,19 @@
+Bug 388078 – [inline] inline logical or in and expression goes wrong
+If I inline a boolean or expression into an and expression, the operator precedence is ignored.
+boolean doitOr(boolean a, boolean b, boolean c) {
+boolean or = a || b;
+return or && c;
+}
+Inline local variable 'or' yields the wrong result:
+boolean doitOr(boolean a, boolean b, boolean c) {
+return a || b && c;
+}
+while plus workd
+int doitPlus(int a, int b, int c) {
+int plus = a  +  b;
+return plus * c;
+}
+resolves correct to:
+int doitPlus(int a, int b, int c) {
+return (a  +  b) * c;
+}

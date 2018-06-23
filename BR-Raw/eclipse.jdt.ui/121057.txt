@@ -1,0 +1,6 @@
+Bug 121057 – [jres] 'Execution Environments' preference page not updated after JRE addition
+I20051214-2000
+- start with a new workspace and a 1.4 VM
+- on the 'Installed JREs' page, add a 1.5 SDK
+- without leaving the preferences dialog, go to the 'Execution Environments' page and select J2SE-1.5
+=> compatible JREs list is empty, although I just installed one

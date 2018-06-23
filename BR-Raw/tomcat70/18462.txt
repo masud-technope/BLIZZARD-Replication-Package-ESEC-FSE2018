@@ -1,0 +1,11 @@
+18462 – System.err gets overriden to output to System.out
+I am using Eclipse to do my development and I am running tomcat 4.1.24 from
+within eclipse.
+One of the nice features of eclipse is that anything you
+display with System.out comes out in blue and anything you send to System.err
+is displayed in red.
+However when tomcat is running Catalina overrides
+System.err and makes it point to System.out.
+This is very inconvinient because
+its much harder to search for severe error messages in a list of millions of
+trivial ones.

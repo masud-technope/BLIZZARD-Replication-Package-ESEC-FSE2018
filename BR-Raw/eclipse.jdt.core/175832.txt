@@ -1,0 +1,12 @@
+Bug 175832 – [recovery] $missing$ should not be shown inside a message
+build I20070222-0951
+public class X {
+public void myMethod() {
+@MyAnnot1()
+}
+}
+@interface MyAnnot1 {
+}
+This code produce the following message when compiled
+"The member enum $missing$ cannot be local"
+$missing$ is build by statement recovery and should not be shown in a message.

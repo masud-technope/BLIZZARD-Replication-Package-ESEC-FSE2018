@@ -1,0 +1,27 @@
+58157 – RecycleRequiredException and missing AsyncListener.onTimeout call
+Created attachment 32916 [details]
+Servlet which starts asynchronous processing and intentionally waits for a timeout before dispatching to a static HTML file.
+Overview:
+When repeatedly polling an asynchronous servlet which (intentionally) times out, I occasionally see the following exception in the console:
+Jul 20, 2015 8:58:45 AM org.apache.catalina.connector.CoyoteAdapter checkRecycled
+INFO: Encountered a non-recycled request and recycled it forcedly.
+org.apache.catalina.connector.CoyoteAdapter$RecycleRequiredException
+at org.apache.catalina.connector.CoyoteAdapter.checkRecycled(CoyoteAdapter.java:590)
+at org.apache.coyote.http11.AbstractHttp11Processor.recycle(AbstractHttp11Processor.java:1809)
+at org.apache.coyote.http11.Http11NioProtocol$Http11ConnectionHandler.release(Http11NioProtocol.java:199)
+at org.apache.tomcat.util.net.NioEndpoint$Poller.cancelledKey(NioEndpoint.java:1100)
+at org.apache.tomcat.util.net.NioEndpoint$Poller.timeout(NioEndpoint.java:1466)
+at org.apache.tomcat.util.net.NioEndpoint$Poller.run(NioEndpoint.java:1234)
+at java.lang.Thread.run(Thread.java:745)
+This coincides with a request not receiving any response.
+The majority of times the servlet is called, the correct response is returned as expected once the request times out, however on occasion (sometimes within 1 min, sometimes not until 30 mins of successful requests have passed) I see this exception and AsyncListener.onTimeout() is never called to produce the response.
+Steps to reproduce:
+0) Configure Tomcat to use the NIO connector
+1) Deploy the attached TimeoutServlet (note: add a static HTML page 'timeout.html' to the root of the web application to serve as the timeout response).
+2) Using a tool of your choice (I used JMeter), repeatedly send a request to the servlet and wait for the timeout response before sending the next request.
+Actual Results:
+Eventually, one of the requests will receive no response and the above exception will be written to the console.
+Expected Results:
+Every request should receive the timeout response (timeout.html) after 1 second and no exception should appear in the console.
+Additional Information:
+Appears to be very similar to https://bz.apache.org/bugzilla/show_bug.cgi?id=57011.

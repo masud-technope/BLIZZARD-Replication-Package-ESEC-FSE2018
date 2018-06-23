@@ -1,0 +1,5 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/formatter/FormatterMessages.properties
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/formatter/NewLinesTabPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/formatter/IndentationTabPage.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/formatter/FormatterMessages.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/preferences/formatter/ProfileVersioner.java

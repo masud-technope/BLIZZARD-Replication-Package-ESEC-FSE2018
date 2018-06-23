@@ -1,0 +1,31 @@
+Bug 471611 – Error on hover on call to generic method with null annotation
+When annotation-based null analysis is enabled, mouse hover (or F2) fails on generic methods with any null annotation on method parameters.
+The method being called must be defined in a separate file; defining and calling in the same class or in different inner classes of the same class will not trigger the bug.
+Minimal examples:
+Foo.java:
+public class Foo {
+public <T> void bug1(@NonNull T x) { return; }
+public static <T> void bug2(@NonNull String x) { return; }
+}
+Bar.java:
+public class Bar {
+void m() { new Foo().bug1("x"); Foo.bug2("x"); }
+}
+Hovering over "bug1" or "bug2" in the Bar class will cause the following error in the Error Log:
+Unexpected runtime error while computing a text hover
+java.lang.NullPointerException
+at org.eclipse.jdt.internal.compiler.lookup.MethodBinding.getParameterAnnotations(MethodBinding.java:699)
+at org.eclipse.jdt.core.dom.MethodBinding.getParameterAnnotations(MethodBinding.java:132)
+at org.eclipse.jdt.internal.ui.viewsupport.BindingLinkedLabelComposer.appendMethodBindingLabel(BindingLinkedLabelComposer.java:221)
+at org.eclipse.jdt.internal.ui.viewsupport.BindingLinkedLabelComposer.appendBindingLabel(BindingLinkedLabelComposer.java:91)
+at org.eclipse.jdt.internal.ui.viewsupport.JavaElementLinks.getBindingLabel(JavaElementLinks.java:729)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getInfoText(JavadocHover.java:772)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo(JavadocHover.java:716)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.internalGetHoverInfo(JavadocHover.java:639)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo2(JavadocHover.java:631)
+at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:129)
+at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:85)
+at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
+This occurs with both @NonNull and @Nullable, or without annotations if the class or package is @NonNullByDefault.
+Null annotations on the return type or type parameter do not trigger the bug, even if a method parameter is type T and inherits the annotation.

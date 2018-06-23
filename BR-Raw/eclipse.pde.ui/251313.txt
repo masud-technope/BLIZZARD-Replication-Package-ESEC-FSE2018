@@ -1,0 +1,329 @@
+Bug 251313 – Failed assertion in API tooling build
+When building CDT HEAD against CDT 5.0 baseline I'm getting the following failed assertion.
+As a result the list of breaking changes for org.eclipse.cdt.core is shown as:
+List of breaking changes:
+null
+!ENTRY org.eclipse.core.resources 4 2 2008-10-18 18:09:43.109
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+org.eclipse.core.runtime.AssertionFailedException: assertion failed: Marker property value is too long: - The type org.eclipse.cdt.core.settings.model.util.PathEntryTranslator has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IContainerEntry has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.spawner.EnvironmentReader has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.gnu.IGNUASTCompoundStatementExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ICodeReaderFactory has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.PathEntryContainerInitializer has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.c.ICASTTypeIdInitializerExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.Addr32 has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTNamedTypeSpecifier has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.cdtvariables.CdtVariable has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.index.export.IExportProjectProvider has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IUsing has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.som.parser.SOMParser has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.IParserConfiguration has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTPreprocessorIfStatement has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTMacroExpansion has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.ASTCompletionNode has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.CCProjectNature has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IStructure has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IBinding has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.util.IPathSettingsContainerVisitor has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.templateengine.process.ProcessRunner has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTTypeIdExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.debug.stabs.Stabs has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.templateengine.TemplateEngineMessages has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTCompositeTypeSpecifier has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.rewrite.MacroExpansionExplorer has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.coff.parser.PEBinaryShared has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.parser.IScannerInfo has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.index.IIndexerStateEvent has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.IPositionConverter has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTFunctionCallExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.som.AR has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.envvar.IContributedEnvironment has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IMember has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.IAddress has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.cpp.ICPPNamespaceScope has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.parser.IParserLogService has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.index.IIndexFileSet has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTProblemExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.gnu.IGNUASTTypeIdExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IRegion has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTFileLocation has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.formatter.CodeFormatter has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.WriteAccessException has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.cpp.ICPPASTOperatorName has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.parser.util.CharArrayUtils has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.ACSettingEntry has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.extension.impl.CResourceDataContainer has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.index.IIndexFile has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.c.ICASTEnumerationSpecifier has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.ICIncludeFileEntry has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.resources.IPathEntryVariableManager has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.templateengine.TemplateInitializationException has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.cdtvariables.IUserVarSupplier has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.ICExtension has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.macho.ERandomAccessFile has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.util.PatternNameMap has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.templateengine.process.processes.AppendCreate has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.ASTSignatureUtil has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTIdExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTMacroExpansionLocation has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.index.IIndexerStateListener has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IElementChangedListener has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.templateengine.TemplateEngine has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.debug.stabs.StabConstant has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.cpp.ICPPASTDeleteExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.ICDescriptor has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IProblemRequestor has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.cpp.ICPPASTExplicitTemplateInstantiation has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.util.ThreadLocalMap has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.parser.IBuiltinBindingsProvider has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.c.ICQualifierType has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.gnu.cpp.GPPLanguage has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTASMDeclaration has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.Addr64 has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.cpp.ICPPASTSimpleTypeTemplateParameter has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.parser.IPreprocessorDirective has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.resources.IConsole has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.extension.CConfigurationData has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.BinaryObjectAdapter has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.macho.parser.MachOBinaryObject has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.Flags has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTArrayDeclarator has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.ProblemMarkerInfo has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.ICMultiConfigDescription has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.parser.AbstractScannerExtensionConfiguration has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.cpp.ICPPNamespaceAlias has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.language.WorkspaceLanguageConfiguration has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom
+at org.eclipse.core.runtime.Assert.isTrue(Assert.java:111)
+at org.eclipse.core.internal.resources.MarkerInfo.checkValidAttribute(MarkerInfo.java:62)
+at org.eclipse.core.internal.resources.MarkerInfo.setAttribute(MarkerInfo.java:145)
+at org.eclipse.core.internal.resources.MarkerInfo.setAttributes(MarkerInfo.java:172)
+at org.eclipse.core.internal.resources.Marker.setAttributes(Marker.java:277)
+at org.eclipse.pde.api.tools.internal.builder.ApiAnalysisBuilder.createMarkerForProblem(ApiAnalysisBuilder.java:511)
+at org.eclipse.pde.api.tools.internal.builder.ApiAnalysisBuilder.createMarkers(ApiAnalysisBuilder.java:434)
+at org.eclipse.pde.api.tools.internal.builder.ApiAnalysisBuilder.buildAll(ApiAnalysisBuilder.java:397)
+at org.eclipse.pde.api.tools.internal.builder.ApiAnalysisBuilder.build(ApiAnalysisBuilder.java:302)
+at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:633)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:170)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:201)
+at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:253)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:256)
+at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:309)
+at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:341)
+at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:140)
+at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:238)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!ENTRY org.eclipse.core.resources 2 75 2008-10-18 18:14:14.500
+!MESSAGE Errors during build.
+!SUBENTRY 1 org.eclipse.pde.api.tools 2 75 2008-10-18 18:14:14.500
+!MESSAGE Errors running builder 'API Analysis Builder' on project 'org.eclipse.cdt.core'.
+!SUBENTRY 1 org.eclipse.pde.api.tools 2 75 2008-10-18 18:14:14.500
+!MESSAGE assertion failed: Marker property value is too long: - The type org.eclipse.cdt.core.settings.model.util.PathEntryTranslator has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IContainerEntry has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.spawner.EnvironmentReader has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.gnu.IGNUASTCompoundStatementExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ICodeReaderFactory has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.PathEntryContainerInitializer has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.c.ICASTTypeIdInitializerExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.Addr32 has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTNamedTypeSpecifier has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.cdtvariables.CdtVariable has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.index.export.IExportProjectProvider has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IUsing has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.som.parser.SOMParser has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.IParserConfiguration has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTPreprocessorIfStatement has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTMacroExpansion has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.ASTCompletionNode has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.CCProjectNature has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IStructure has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IBinding has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.util.IPathSettingsContainerVisitor has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.templateengine.process.ProcessRunner has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTTypeIdExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.debug.stabs.Stabs has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.templateengine.TemplateEngineMessages has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTCompositeTypeSpecifier has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.rewrite.MacroExpansionExplorer has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.coff.parser.PEBinaryShared has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.parser.IScannerInfo has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.index.IIndexerStateEvent has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.IPositionConverter has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTFunctionCallExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.som.AR has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.envvar.IContributedEnvironment has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IMember has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.IAddress has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.cpp.ICPPNamespaceScope has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.parser.IParserLogService has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.index.IIndexFileSet has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTProblemExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.gnu.IGNUASTTypeIdExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IRegion has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTFileLocation has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.formatter.CodeFormatter has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.WriteAccessException has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.cpp.ICPPASTOperatorName has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.parser.util.CharArrayUtils has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.ACSettingEntry has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.extension.impl.CResourceDataContainer has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.index.IIndexFile has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.c.ICASTEnumerationSpecifier has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.ICIncludeFileEntry has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.resources.IPathEntryVariableManager has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.templateengine.TemplateInitializationException has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.cdtvariables.IUserVarSupplier has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.ICExtension has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.macho.ERandomAccessFile has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.util.PatternNameMap has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.templateengine.process.processes.AppendCreate has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.ASTSignatureUtil has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTIdExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTMacroExpansionLocation has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.index.IIndexerStateListener has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IElementChangedListener has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.templateengine.TemplateEngine has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.debug.stabs.StabConstant has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.cpp.ICPPASTDeleteExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.ICDescriptor has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IProblemRequestor has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.cpp.ICPPASTExplicitTemplateInstantiation has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.util.ThreadLocalMap has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.parser.IBuiltinBindingsProvider has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.c.ICQualifierType has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.gnu.cpp.GPPLanguage has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTASMDeclaration has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.Addr64 has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.cpp.ICPPASTSimpleTypeTemplateParameter has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.parser.IPreprocessorDirective has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.resources.IConsole has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.extension.CConfigurationData has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.BinaryObjectAdapter has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.macho.parser.MachOBinaryObject has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.Flags has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTArrayDeclarator has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.ProblemMarkerInfo has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.ICMultiConfigDescription has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.parser.AbstractScannerExtensionConfiguration has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.cpp.ICPPNamespaceAlias has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.language.WorkspaceLanguageConfiguration has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom
+!STACK 0
+org.eclipse.core.runtime.AssertionFailedException: assertion failed: Marker property value is too long: - The type org.eclipse.cdt.core.settings.model.util.PathEntryTranslator has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IContainerEntry has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.spawner.EnvironmentReader has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.gnu.IGNUASTCompoundStatementExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ICodeReaderFactory has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.PathEntryContainerInitializer has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.c.ICASTTypeIdInitializerExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.Addr32 has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTNamedTypeSpecifier has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.cdtvariables.CdtVariable has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.index.export.IExportProjectProvider has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IUsing has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.som.parser.SOMParser has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.IParserConfiguration has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTPreprocessorIfStatement has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTMacroExpansion has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.ASTCompletionNode has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.CCProjectNature has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IStructure has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IBinding has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.util.IPathSettingsContainerVisitor has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.templateengine.process.ProcessRunner has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTTypeIdExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.debug.stabs.Stabs has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.templateengine.TemplateEngineMessages has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTCompositeTypeSpecifier has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.rewrite.MacroExpansionExplorer has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.coff.parser.PEBinaryShared has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.parser.IScannerInfo has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.index.IIndexerStateEvent has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.IPositionConverter has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTFunctionCallExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.som.AR has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.envvar.IContributedEnvironment has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IMember has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.IAddress has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.cpp.ICPPNamespaceScope has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.parser.IParserLogService has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.index.IIndexFileSet has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTProblemExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.gnu.IGNUASTTypeIdExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IRegion has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTFileLocation has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.formatter.CodeFormatter has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.WriteAccessException has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.cpp.ICPPASTOperatorName has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.parser.util.CharArrayUtils has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.ACSettingEntry has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.extension.impl.CResourceDataContainer has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.index.IIndexFile has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.c.ICASTEnumerationSpecifier has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.ICIncludeFileEntry has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.resources.IPathEntryVariableManager has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.templateengine.TemplateInitializationException has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.cdtvariables.IUserVarSupplier has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.ICExtension has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.macho.ERandomAccessFile has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.util.PatternNameMap has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.templateengine.process.processes.AppendCreate has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.ASTSignatureUtil has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTIdExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTMacroExpansionLocation has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.index.IIndexerStateListener has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IElementChangedListener has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.templateengine.TemplateEngine has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.debug.stabs.StabConstant has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.cpp.ICPPASTDeleteExpression has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.ICDescriptor has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.IProblemRequestor has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.cpp.ICPPASTExplicitTemplateInstantiation has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.util.ThreadLocalMap has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.parser.IBuiltinBindingsProvider has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.c.ICQualifierType has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.gnu.cpp.GPPLanguage has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTASMDeclaration has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.Addr64 has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.cpp.ICPPASTSimpleTypeTemplateParameter has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.parser.IPreprocessorDirective has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.resources.IConsole has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.extension.CConfigurationData has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.BinaryObjectAdapter has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.utils.macho.parser.MachOBinaryObject has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.model.Flags has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.IASTArrayDeclarator has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.ProblemMarkerInfo has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.settings.model.ICMultiConfigDescription has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.parser.AbstractScannerExtensionConfiguration has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom.ast.cpp.ICPPNamespaceAlias has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.language.WorkspaceLanguageConfiguration has been removed from org.eclipse.cdt.core_5.1.0
+- The type org.eclipse.cdt.core.dom
+at org.eclipse.core.runtime.Assert.isTrue(Assert.java:111)
+at org.eclipse.core.internal.resources.MarkerInfo.checkValidAttribute(MarkerInfo.java:62)
+at org.eclipse.core.internal.resources.MarkerInfo.setAttribute(MarkerInfo.java:145)
+at org.eclipse.core.internal.resources.MarkerInfo.setAttributes(MarkerInfo.java:172)
+at org.eclipse.core.internal.resources.Marker.setAttributes(Marker.java:277)
+at org.eclipse.pde.api.tools.internal.builder.ApiAnalysisBuilder.createMarkerForProblem(ApiAnalysisBuilder.java:511)
+at org.eclipse.pde.api.tools.internal.builder.ApiAnalysisBuilder.createMarkers(ApiAnalysisBuilder.java:434)
+at org.eclipse.pde.api.tools.internal.builder.ApiAnalysisBuilder.buildAll(ApiAnalysisBuilder.java:397)
+at org.eclipse.pde.api.tools.internal.builder.ApiAnalysisBuilder.build(ApiAnalysisBuilder.java:302)
+at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:633)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:170)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:201)
+at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:253)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:37)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:256)
+at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:309)
+at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:341)
+at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:140)
+at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:238)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)

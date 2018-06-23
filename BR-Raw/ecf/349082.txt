@@ -1,0 +1,13 @@
+Bug 349082 – LogInfo logsWarning in EndpointDescriptionLocator
+I wondered why it was printing out warnings when it shouldn't need to ...
+the logInfo has been copied/pasted from logWarning, and the LogUtility delegate method hasn't been changed.
+private void logInfo(String methodName, String message) {
+LogUtility.logWarning(methodName,
+DebugOptions.ENDPOINT_DESCRIPTION_LOCATOR, this.getClass(),
+message);
+}
+private void logWarning(String methodName, String message) {
+LogUtility.logWarning(methodName,
+DebugOptions.ENDPOINT_DESCRIPTION_LOCATOR, this.getClass(),
+message);
+}

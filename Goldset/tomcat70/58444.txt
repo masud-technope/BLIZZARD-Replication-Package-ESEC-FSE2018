@@ -1,0 +1,5 @@
+java/org/apache/jasper/compiler/Generator.java
+test/org/apache/jasper/runtime/TestCustomHttpJspPage.java
+test/org/apache/jasper/runtime/TesterHttpJspBase.java
+test/webapp-3.0/bug5nnnn/bug58444.jsp
+webapps/docs/changelog.xml

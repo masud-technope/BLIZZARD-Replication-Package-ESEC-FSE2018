@@ -1,0 +1,13 @@
+Bug 249593 – Cannot set default compiler level for product
+Build ID: org.eclipse.jdt.core_3.4.1.v_877a_R34x.jar
+Steps To Reproduce:
+We have a product where we'd like the default compiler level set to 1.5 instead of 1.6 (which is the default).
+ We added these lines to our product customization ini file:
+org.eclipse.jdt.core/org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.5
+org.eclipse.jdt.core/org.eclipse.jdt.core.compiler.source=1.5
+org.eclipse.jdt.core/org.eclipse.jdt.core.compiler.compliance=1.5
+However if we launch our product on a new workspace, these values get overwritten and replaced with 1.6.
+ The above is how we customize all kinds of preferences.
+ These ones don't seem to be working for us though.
+ Is there something we're doing wrong?
+More information:

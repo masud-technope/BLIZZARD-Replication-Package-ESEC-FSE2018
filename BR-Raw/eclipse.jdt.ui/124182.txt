@@ -1,0 +1,11 @@
+Bug 124182 – [navigation] Status line loses annotation text when selection changes
+build I20060110
+- open a CU with some compilation error (in my case it was an unused private field)
+- place the caret some term that has no error, such as a class name
+- the highlighting does its thing, and the status line is blank (correct)
+- place the caret in the range of the error
+- the highlighting does its thing, and the status line shows the error (correct)
+- move the caret somewhere else in the range (either using mouse or keyboard)
+- the highlighting is unchanged (correct) but the status line is cleared (incorrect)
+It looks like the error display is tied to the highlighting, and is optimized to do nothing when the highlighting is unchanged, but someone else is clearing the status line on every selection.
+Expectation: the status line shows the error text whenever the caret is within the range of an error (likewise for warnings).

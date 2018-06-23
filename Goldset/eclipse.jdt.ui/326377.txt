@@ -1,0 +1,2 @@
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/java/AnonymousTypeCompletionProposal.java
+org.eclipse.jdt.text.tests/src/org/eclipse/jdt/text/tests/contentassist/CodeCompletionTest.java

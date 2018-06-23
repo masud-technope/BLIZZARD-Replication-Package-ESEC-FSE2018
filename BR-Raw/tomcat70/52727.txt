@@ -1,0 +1,6 @@
+52727 – An incomplete fix for the resource leak bug in HostConfig.java
+The fix revision 423920  was aimed to remove an resource leak bug on the  BufferedOutputStream object "ostream " (created line 804) in the method "deployWAR" of the file "/tomcat/trunk/java/org/apache/catalina/startup/HostConfig.java" , but it is incomplete.
+There are some problems:
+1.
+when "ostream" is not created successfully but the  temp FileOutputStream object  is created successfully  , the temp  FileOutputStream  object  will be  leaked.
+The best way to close such resource objects is putting such close operations for each object in the finaly block of a try-catch-finally structure.

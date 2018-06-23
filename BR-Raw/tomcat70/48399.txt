@@ -1,0 +1,6 @@
+48399 – Lock fields should be final
+Created attachment 24715 [details]
+Patch lock field that should be final
+A field that is used as a lock should be final.
+org.apache.catalina.ha.session.DeltaSession.diffLock
+is protected and mutable.

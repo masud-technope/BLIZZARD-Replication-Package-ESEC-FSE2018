@@ -1,0 +1,6 @@
+Bug 269007 – [ds tooling]: Cannot unset bind/unbind methods on service references
+(Eclipse 3.5M6 on Mac OSX/Cocoa/x86_64)
+When editing a service reference in the DS component editor, it is impossible to remove bind/unbind methods from service reference (at least without going into the XML source).
+Add a service reference with a bind method "setFoo" and unbind method "unsetFoo".
+Then edit the reference and blank out the bind/unbind method names and click Ok.
+The names will still be setFoo/unsetFoo.

@@ -1,0 +1,4 @@
+Bug 43555 – Conditional method entry breakpoint
+Build 3.0M3
+Method entry breakpoint should be conditionnable using expressions involving
+the receiver (+ arguments?).

@@ -1,0 +1,23 @@
+Bug 150632 – [assist] Content Assist and Parameter Hints sometimes don't work for constructor call
+I20060711-1100
+In the example below, invoke content assist in the call to constructor of ModifierFilter.
+Expected: proposals for constructor call and anonymous inner type
+Was: proposals for PUBLIC_FILTER and SETTINGS_LAST_USED_FILTERS.
+I found no way to get the parameter hints for the constructor call (or the anonymous proposal).
+Interestingly, this works fine as soon as I remove the declaration of the abstract method getName(), or move the declaration to after PUBLIC_FILTER.
+abstract class MatchFilter {
+private static final String SETTINGS_LAST_USED_FILTERS= "filters_last_used";
+// works if next line is commented out or moved to after PUBLIC_FILTER
+public abstract String getName();
+// content assist at new ModifierFilter(|):
+private static final MatchFilter PUBLIC_FILTER= new ModifierFilter();
+}
+class ModifierFilter extends MatchFilter {
+private final String fName;
+public ModifierFilter(String name) {
+fName= name;
+}
+public String getName() {
+return fName;
+}
+}

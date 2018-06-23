@@ -1,0 +1,3 @@
+java/org/apache/tomcat/websocket/FutureToSendHandler.java
+java/org/apache/tomcat/websocket/LocalStrings.properties
+webapps/docs/changelog.xml

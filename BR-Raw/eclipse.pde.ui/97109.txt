@@ -1,0 +1,55 @@
+Bug 97109 – RC1: Clicking on an entry in Classpath table of plugin.xml editor causes ArrayStoreException
+Example to reproduce:
+In Eclipe 3.1 RC1 open up the plugin.xml file in the plugin editor for
+org.eclipse.tomcat.
+Select the "Runtime" tab.
+Clicking on any entry in the "Classpath" table leads to an error dialog and:
+!SESSION 2005-05-28 10:48:18.593 ----------------------------------------------
+-
+eclipse.buildId=I20050527-1300
+java.version=1.5.0_03
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_GB
+Command-line arguments:  -os win32 -ws win32 -arch x86
+!ENTRY org.eclipse.jface 4 2 2005-05-28 11:00:36.906
+!MESSAGE Problems occurred when invoking code from plug-
+in: "org.eclipse.jface".
+!STACK 0
+java.lang.ArrayStoreException
+at java.util.AbstractCollection.toArray(Unknown Source)
+at org.eclipse.pde.internal.ui.editor.plugin.ExportPackageVisibilitySection.selectionChanged(ExportPackageVisibilitySection.java:250)
+at org.eclipse.ui.forms.ManagedForm.fireSelectionChanged(ManagedForm.java:127)
+at org.eclipse.pde.internal.ui.editor.TableSection$PartAdapter.selectionChanged(TableSection.java:31)
+at org.eclipse.pde.internal.ui.parts.TablePart$1.selectionChanged(TablePart.java:49)
+at org.eclipse.jface.viewers.Viewer$2.run(Viewer.java:162)
+at org.eclipse.core.internal.runtime.InternalPlatform.run(InternalPlatform.java:1038)
+at org.eclipse.core.runtime.Platform.run(Platform.java:775)
+at org.eclipse.ui.internal.JFaceUtil$1.run(JFaceUtil.java:44)
+at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:148)
+at org.eclipse.jface.viewers.Viewer.fireSelectionChanged(Viewer.java:160)
+at org.eclipse.jface.viewers.StructuredViewer.updateSelection(StructuredViewer.java:1784)
+at org.eclipse.jface.viewers.StructuredViewer.handleSelect(StructuredViewer.java:1027)
+at org.eclipse.jface.viewers.StructuredViewer$4.widgetSelected(StructuredViewer.java:1053)
+at org.eclipse.jface.util.OpenStrategy.fireSelectionEvent(OpenStrategy.java:209)
+at org.eclipse.jface.util.OpenStrategy.access$3(OpenStrategy.java:204)
+at org.eclipse.jface.util.OpenStrategy$1.handleEvent(OpenStrategy.java:364)
+at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:844)
+at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:2929)
+at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2562)
+at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:1694)
+at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:1658)
+at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:366)
+at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:143)
+at org.eclipse.ui.internal.ide.IDEApplication.run(IDEApplication.java:103)
+at org.eclipse.core.internal.runtime.PlatformActivator$1.run(PlatformActivator.java:226)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:375)
+at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:162)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.eclipse.core.launcher.Main.invokeFramework(Main.java:334)
+at org.eclipse.core.launcher.Main.basicRun(Main.java:278)
+at org.eclipse.core.launcher.Main.run(Main.java:973)
+at org.eclipse.core.launcher.Main.main(Main.java:948)

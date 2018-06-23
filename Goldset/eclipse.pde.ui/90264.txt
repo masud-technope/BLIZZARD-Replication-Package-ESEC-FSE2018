@@ -1,0 +1,4 @@
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/rows/ClassAttributeRow.java
+org.eclipse.pde/src/org/eclipse/pde/internal/builders/ExtensionsErrorReporter.java
+org.eclipse.pde/src/org/eclipse/pde/internal/pderesources.properties
+ui/org.eclipse.pde.ui/src/org/eclipse/pde/internal/ui/editor/plugin/PluginGeneralInfoSection.java

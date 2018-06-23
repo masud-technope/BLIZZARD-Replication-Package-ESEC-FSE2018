@@ -1,0 +1,6 @@
+Bug 91427 – FIeldImpl could cache type() and typeName()
+Doing some profiling of stepping in the debugger, and updating the variables
+view, I found that FieldImpl does not cache its type or typeName.
+These are
+accessed repeatedly while updating the varibles view, and type() causes
+communication with the target VM.

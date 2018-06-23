@@ -1,0 +1,5 @@
+org.eclipse.jdt.ui.tests.refactoring/resources/SurroundWithWorkSpace/SurroundWithTests/trycatch17_in/TestMultiTryCatch.java
+org.eclipse.jdt.ui.tests.refactoring/resources/SurroundWithWorkSpace/SurroundWithTests/trycatch17_out/TestMultiTryCatch.java
+org.eclipse.jdt.ui.tests.refactoring/test cases/org/eclipse/jdt/ui/tests/refactoring/SurroundWithTests17.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/surround/SurroundWithTryCatchRefactoring.java
+org.eclipse.jdt.ui/ui/org/eclipse/jdt/internal/ui/text/correction/LocalCorrectionsSubProcessor.java

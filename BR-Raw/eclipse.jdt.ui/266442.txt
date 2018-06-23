@@ -1,0 +1,6 @@
+Bug 266442 – [navigation] JavaElementImplementationHyperlink.open() must show dialog in case of error
+HEAD.
+In case of error JavaElementImplementationHyperlink.open() currently logs the error with "" as message.
+This is not good:
+- it must use an appropriate message
+- it must show an ErrorDialog to the user

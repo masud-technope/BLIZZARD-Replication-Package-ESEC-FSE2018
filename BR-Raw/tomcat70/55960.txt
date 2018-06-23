@@ -1,0 +1,39 @@
+55960 – TestSSOnonLoginAndBasicAuthenticator is flawed and incomplete
+Created attachment 31173 [details]
+updated test class and new servlet test class
+As the original author of this test class, I am embarrassed to have to open this bug report.
+I started a code review and cleanup of this class some time ago, then tried to add some new test cases to examine the way the SSO Valve interacts with the standard Authenticators for a client that does not use cookies.
+As my updated test class took shape, I started a thread on the users list called "Single Signon without Cookies".
+Based on this discussion, I removed a lot of my newly developed test cases because they were not needed.
+I was surprised because some of them completed "successfully" although I now realise they ought to have failed.
+After further investigation, I discovered that my original logic inadvertently allowed the client to return the SSO cookie even though instructed NOT to do so.
+Once the tests were looking better, I decided to check the overall timing and found my new suite of 7 tests had an elapsed time of 290 seconds, while the current svn version completes in only 35 seconds.
+Long running times are unavoidable because two tests explore SSO and webapp session expiry.
+One test case has to let a session expire and the shortest timeout is 1 minute.
+The other test has to let a session expire and prove that a longer-lived session preserves the SSO status.
+With an expiry granularity of 1 minute, the longer-lived session has to be expired after 2 more minutes.
+That means the test case will have run for nearly 4 minutes.
+I do not understand why, in the svn (current) version, these two test cases always run to a successful completion.
+The remaining test cases do not expire sessions and all complete in less than 3 seconds, so the two expiry cases are waiting about 30 seconds between them.
+This simply isn't long enough.
+What is worse, I noticed the setup methods for the two webapps call (Standard)Context.setSessionTimeout(int mins) with time arguments that are erroneously small numbers of seconds! The Tomcat code and documentation consistently define the session expiry argument to be a number of minutes, which means the short and long timeouts of 4 and 10 "seconds" would be interpreted as 4 and 10 MINUTES respectively, and so to work properly the current test ought to take about 20 minutes to complete, rather than the observed 35 seconds! I used a debugger to verify the two sessions have maxInactiveInterval set to 240 and 600 during one suspicious test.
+I don't think it is productive to worry about the current versions of these tests, because I have significantly redeveloped the class and debugged it.
+The elapsed times of the test cases confirm they now work properly.
+The new "no cookies" test case required a new variant of a test servlet which allows the client to supply a request parameter.
+This parameter is interpreted as a url which is to encoded and inserted into the HTML response.
+Thus the returned URL can be used by the client to continue using the established session.
+The only downside was the increased elapsed time when compared to the broken version.
+Unfortunately, there is no simple way for a unit test to establish a shorter timeout than 60 seconds.
+This topic was discussed at length on the dev list - the most complete account is in Konstantin's post to "Re: svn commit: r1415184" on 4 December 2012.
+The new version of the test class uses:
+((ManagerBase) basicContext.getManager())
+.setProcessExpiresFrequency(MANAGER_EXPIRE_SESSIONS_FAST);
+..
+to ensure the sessions are expired as quickly as possible.
+and:
+StandardSession.setMaxInactiveInterval(EXTRA_DELAY_SECS);
+..
+to force a quicker expiry of the session before waiting.
+The new suite of tests complete in about 50 seconds, comparable to the old broken version, and only one quarter of the "unkludged" test time.
+Although the elapsed time could be trimmed a little bit more, I think the version I propose has a sensible resilience to variation in real-life timeouts.
+The net result is an extensive change, but I cannot see how to implement it in smaller chunks because the changes are inter-dependent.

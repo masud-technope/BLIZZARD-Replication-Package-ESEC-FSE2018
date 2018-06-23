@@ -1,0 +1,2 @@
+Bug 230180 – [remotesvcs] Provide org.eclipse.ecf.discovery.IDiscoveryContainerAdapter#unregisterAllServices()
+org.eclipse.ecf.discovery.IDiscoveryContainerAdapter may provide API to unregister all currently registered IServiceInfos at once.

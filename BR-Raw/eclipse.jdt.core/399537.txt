@@ -1,0 +1,16 @@
+Bug 399537 – [1.8][compiler] Exceptions thrown from lambda body must match specification per function descriptor
+BETA_JAVA8:
+The following program should trigger an error at the throw site as it illegal
+to throw a checked exception from a lambda body that is not specified in the
+function descriptor computed for the single abstract method of the functional
+interface.
+// --
+import java.io.IOException;
+interface I { void run(int x); }
+class X {
+void foo() {
+I r = (int y) -> {
+throw new IOException();
+};
+}
+}

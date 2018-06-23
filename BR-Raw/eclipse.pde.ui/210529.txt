@@ -1,0 +1,7 @@
+Bug 210529 – [update] Error installing examples with p2-provisioned SDK
+This will likely end up being a bug for UA team, but logging it here for now.
+If you try to install the examples from the Welcome page in a p2-provisioned SDK, an error occurs.
+I assume welcome is calling update.core APIs, so this may be a good test case for backwards compatibility support.
+The only entry in the log is:
+!ENTRY org.eclipse.update.core 4 0 2007-11-21 08:47:43.375
+!MESSAGE Cannot install featureorg.eclipse.sdk.samples 3.3.0

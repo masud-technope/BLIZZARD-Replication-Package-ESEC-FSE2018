@@ -1,0 +1,5 @@
+Bug 403923 – [1.8] Handle annotations on extra dimensions in the AST
+Handle annotations on extra dimensions in the AST.
+For jsr308, a new extraDimensions2 property has been added to MethodDeclaration and to the two concrete VariableDeclaration types.
+Make a pass over all JDT UI code that uses the old property in any way (direct access or via property descriptor) and update usages.
+File separate bugs if things get too complicated somewhere or if you think we should add new features for handling these constructs.

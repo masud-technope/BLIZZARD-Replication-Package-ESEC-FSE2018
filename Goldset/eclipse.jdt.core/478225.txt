@@ -1,0 +1,3 @@
+org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/AnnotationProcessorFactoryLoader.java
+org.eclipse.jdt.compiler.apt/src/org/eclipse/jdt/internal/compiler/apt/dispatch/RoundDispatcher.java
+org.eclipse.jdt.apt.pluggable.core/src/org/eclipse/jdt/internal/apt/pluggable/core/dispatch/IdeAnnotationProcessorManager.java

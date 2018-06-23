@@ -1,0 +1,66 @@
+49905 – In cluster, when using DeltaManager memory leak can occur
+Created attachment 26008 [details]
+Patch to remove context classloader from threads in ThreadPoolExecutor in tribes
+Tested on apache-tomcat-6.0.29 running under jdk 1.6.0_18.
+When DeltaManager is instantiated and assigned in StandardContext.start(),
+is it done AFTER StandardContext.bindThreads().
+DeltaManager, in turn, during initalization, asks for sessions in other nodes,
+and this may result in creating threads in ThreadPoolExecutor in tribes.
+These threads created with contextClassLoader set to current
+webapplication WebAppClassLoader.
+This results in memory leak and error message during redeployment in tomcat log:
+09/09/2010 14:46:19 S - - WebappClassLoader.clearReferencesThreads:
+The web application [/creditdev] appears to have started a thread
+named [pool-1-thread-1] but has failed to stop it.
+This is very likely
+to create a memory leak.
+Stacktrace:
+at java.util.concurrent.ThreadPoolExecutor.addThread(Unknown Source)
+at java.util.concurrent.ThreadPoolExecutor.addIfUnderCorePoolSize(Unknown
+Source)
+at java.util.concurrent.ThreadPoolExecutor.execute(Unknown Source)
+at org.apache.catalina.tribes.group.interceptors.MessageDispatch15Interceptor.addToQueue(MessageDispatch15Interceptor.java:67)
+at org.apache.catalina.tribes.group.interceptors.MessageDispatchInterceptor.sendMessage(MessageDispatchInterceptor.java:68)
+at org.apache.catalina.tribes.group.ChannelInterceptorBase.sendMessage(ChannelInterceptorBase.java:75)
+at org.apache.catalina.tribes.group.interceptors.TcpFailureDetector.sendMessage(TcpFailureDetector.java:87)
+at org.apache.catalina.tribes.group.ChannelInterceptorBase.sendMessage(ChannelInterceptorBase.java:75)
+at org.apache.catalina.tribes.group.GroupChannel.send(GroupChannel.java:216)
+at org.apache.catalina.tribes.group.GroupChannel.send(GroupChannel.java:175)
+at org.apache.catalina.ha.tcp.SimpleTcpCluster.send(SimpleTcpCluster.java:813)
+at org.apache.catalina.ha.session.DeltaManager.getAllClusterSessions(DeltaManager.java:959)
+at org.apache.catalina.ha.session.DeltaManager.start(DeltaManager.java:930)
+at org.apache.catalina.core.ContainerBase.setManager(ContainerBase.java:438)
+at org.apache.catalina.core.StandardContext.start(StandardContext.java:4559)
+at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:791)
+at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:771)
+at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:546)
+at org.apache.catalina.startup.HostConfig.deployDescriptor(HostConfig.java:637)
+at org.apache.catalina.startup.HostConfig.deployDescriptors(HostConfig.java:563)
+at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:498)
+at org.apache.catalina.startup.HostConfig.start(HostConfig.java:1277)
+at org.apache.catalina.startup.HostConfig.lifecycleEvent(HostConfig.java:321)
+at org.apache.catalina.util.LifecycleSupport.fireLifecycleEvent(LifecycleSupport.java:119)
+at org.apache.catalina.core.ContainerBase.start(ContainerBase.java:1053)
+at org.apache.catalina.core.StandardHost.start(StandardHost.java:785)
+at org.apache.catalina.core.ContainerBase.start(ContainerBase.java:1045)
+at org.apache.catalina.core.StandardEngine.start(StandardEngine.java:445)
+at org.apache.catalina.core.StandardService.start(StandardService.java:519)
+at org.apache.catalina.core.StandardServer.start(StandardServer.java:710)
+at org.apache.catalina.startup.Catalina.start(Catalina.java:581)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:289)
+at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:414)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.tanukisoftware.wrapper.WrapperStartStopApp.run(WrapperStartStopApp.java:243)
+at java.lang.Thread.run(Unknown Source)
+Proposed solution - implement java.util.concurrent.ThreadFactory in
+MessageDispatch15Interceptor
+and pass instance on ThreadPoolExecutor executor creation.
+This instance must call setContextClassLoader(null) in newThread()
+overriden method.

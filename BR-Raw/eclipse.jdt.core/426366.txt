@@ -1,0 +1,26 @@
+Bug 426366 – [1.8][compiler] Type inference doesn't handle multiple candidate target types in outer overload context
+package a;
+import java.util.Collections;
+import java.util.List;
+/**
+* @author tomschindl
+*
+*/
+public class Test {
+public static class A {
+public A(B newSelectedObject, String editorController) {
+}
+public A(List<B> newSelectedObjects, String editorController) {
+}
+}
+public static class B {
+}
+public static class C extends A {
+public C() {
+super(Collections.emptyList(), "");
+}
+}
+}
+It looks like the type-inference is broken the above code should just compile but fails with an exception.
+The compilation succeeds if the type is speced explicitly:
+super(Collections.<B>emptyList(), "");

@@ -1,0 +1,4 @@
+Bug 204139 – Add a way to look for platform.xml in places other than default location
+Many products there days are getting more and more complicated.
+ With this complexity, some times the platform.xml is not always in the default location.
+ It would be handy to be able to help point PDE to the location of a platform.xml if it is some where other than the default location.

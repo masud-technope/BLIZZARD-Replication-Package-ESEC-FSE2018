@@ -1,0 +1,11 @@
+Bug 114116 – [assist] name suggestion for collections
+3.2M2
+code completiom nicely suggests names for arrays:
+Report[] <--CODE ASSIST> will suggest reports
+it would be nice if it worked for collections too.
+Set<Report> <--CODE ASSIST>  suggests set which is not useful.
+reports would be
+much better.
+I do understand that colletions are not any special from other generic classes
+and only some generics are containers but the collections are much more used and
+having this completion would be very useful.

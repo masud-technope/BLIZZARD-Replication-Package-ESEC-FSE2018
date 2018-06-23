@@ -1,0 +1,2 @@
+tests/bundles/org.eclipse.ecf.tests.filetransfer/src/org/eclipse/ecf/tests/filetransfer/URLPartialRetrieveTest.java
+releng/org.eclipse.ecf.releng.bm/ECF3-6Baseline.target

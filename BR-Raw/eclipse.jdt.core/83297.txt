@@ -1,0 +1,10 @@
+Bug 83297 – [1.5] Annotation bindings don't provide their declared elements/methods
+I20050118-1015
+@Annot(value="Hello", count=-1)
+@interface Annot {
+String value();
+int count();
+}
+The ITypeBinding for @Annot does not provide the declared elements/methods.
+#getDeclaredMethods() returns an empty array, instead of method bindings for
+value() and count().

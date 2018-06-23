@@ -1,0 +1,27 @@
+Bug 376550 – "Method can be static" warning on method that accesses instance field in inner class
+Build Identifier: 20120216-1857
+The "Method can be static" code style warning does not properly account for anonymous inner classes declared within methods.
+Reproducible: Always
+Steps to Reproduce:
+1.
+From the menu select Window, Preferences.
+2.
+Go to Java, Compiler, Errors/Warnings.
+3.
+In the Code Style section set "Method can be static" to "Warning".
+4.
+Compile the following code.
+import java.util.ArrayList;
+import java.util.Collection;
+public class CanBeStatic {
+private Object o = new Object();
+public final Collection<Object> go() {
+return new ArrayList<Object>() {
+{
+add(o);
+}
+};
+}
+}
+Notice that you get the "can be declared as static" on the go() method.
+But the warning is incorrect: if you declare the method as static then it won't compile because it references an instance field.

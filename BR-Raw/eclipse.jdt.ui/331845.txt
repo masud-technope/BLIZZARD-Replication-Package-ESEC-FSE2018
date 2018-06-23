@@ -1,0 +1,7 @@
+Bug 331845 – [quick assist] Provide 'Add parentheses ....' quick assist
+Created attachment 184534 [details]
+fix v0.9
+Currently this is available as a quick fix (i.e.
+when there is an error and adding parenthesis fixes the error).
+It would be extremely useful to have this available as a quick assist as well.
+Attached patch should do the job.

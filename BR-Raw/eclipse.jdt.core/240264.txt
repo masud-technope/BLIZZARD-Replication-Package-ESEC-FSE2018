@@ -1,0 +1,14 @@
+Bug 240264 – UnsupportedOperationException in FileObject.getName
+Build ID: I20080617-2000
+Steps To Reproduce:
+1.
+write an annotation processor (jsr-269)
+2.
+use
+Filer filer = processingEnv.getFiler();
+FileObject output = filer.createResource(StandardLocation.SOURCE_OUTPUT, "", "some_file");
+3.
+call output.getName()
+More information:
+exception thrown is
+java.lang.UnsupportedOperationException: Not yet implemented at org.eclipse.jdt.internal.apt.pluggable.core.filer.IdeOutputNonSourceFileObject.getName(IdeOutputNonSourceFileObject.java:61)

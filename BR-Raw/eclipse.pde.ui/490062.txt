@@ -1,0 +1,24 @@
+Bug 490062 – [DS] Allow to generate the lazy activation policy if OSGi DS annotations are used
+After the generation of the component definition XML file, there are two warnings shown in the project.
+IMHO it is bad practice that code generation creates warnings in a project.
+At least if it is not intended to show a user that he has to modify something.
+a) build.properties
+Honestly I'm not sure if the warning is correct or if the modification of the build.properties should be modified.
+It definitely forces a user to modify the build.properties manually to get rid of the warning.
+I would suggest to modify the generation to create only an entry for the OSGI-INF folder in the build properties instead of the component definition XML.
+So instead of something like this:
+bin.includes = META-INF/,\
+.,\
+OSGI-INF/component.xml
+it should look like this:
+bin.includes = META-INF/,\
+.,\
+OSGI-INF/
+Doing this would avoid the warning and automatically add all component definition XML files if there are multiple service implementations in that bundle.
+b) MANIFEST.MF
+I still don't understand why in Eclipse the DS do not work without that header.
+Probably a startup order issue.
+Nevertheless the OSGi wiki says "if another service is registering the components (such as Declarative Services or Blueprint) then the lazy policy may be beneficial".
+So it doesn't seem to hurt.
+Just as information, a DS bundle created with Bndtools does not specify the Bundle-ActivationPolicy.
+Coming to the point, if a warning is raised that the Bundle-ActivationPolicy needs to be set to make a bundle that provides a DS work correctly with Equinox, we should add that header automatically.

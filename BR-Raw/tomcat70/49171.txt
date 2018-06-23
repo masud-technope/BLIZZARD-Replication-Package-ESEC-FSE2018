@@ -1,0 +1,3 @@
+49171 – Avoid raw type warning in TagSupport
+Created attachment 25334 [details]
+Simple fix to suppress raw-type warning (does not affect API!)

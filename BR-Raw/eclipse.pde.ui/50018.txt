@@ -1,0 +1,6 @@
+Bug 50018 – update class path should prompt to save the plugin.xml
+If you edit build.xml and then do update class path you are not prompted to
+save the build.xml file.
+This can make things very confusing (and anything
+which improves the comprehension of plugin classpath juggling is a good thing)
+Ideally this classpath update should happen automatically

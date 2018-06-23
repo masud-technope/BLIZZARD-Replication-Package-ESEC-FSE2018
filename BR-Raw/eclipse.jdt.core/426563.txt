@@ -1,0 +1,27 @@
+Bug 426563 – [1.8] AIOOBE when method with error invoked with lambda expression as argument
+Code causing the exception:
+interface I<U, V extends J<U>> {
+void foo(U u, V v);
+}
+interface J<T> {}
+public class X  {
+public void bar(FI<?, ?> fi) {}
+public static void main(String args[]) {
+new X().bar((p, q) -> {});
+}
+}
+Note that bar takes a parameter of type FI, which doesn't exist.
+And the excepton thrown is:
+java.lang.ArrayIndexOutOfBoundsException: Array index out of range: 0
+at org.eclipse.jdt.internal.compiler.lookup.ParameterizedTypeBinding.getNonWildcardParameterization(ParameterizedTypeBinding.java:1367)
+at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.findGroundTargetType(LambdaExpression.java:419)
+at org.eclipse.jdt.internal.compiler.ast.LambdaExpression.isCompatibleWith(LambdaExpression.java:743)
+at org.eclipse.jdt.internal.compiler.lookup.PolyTypeBinding.isCompatibleWith(PolyTypeBinding.java:37)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.parameterCompatibilityLevel(Scope.java:4641)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.parameterCompatibilityLevel(Scope.java:4610)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.parameterCompatibilityLevel18(Scope.java:836)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod(Scope.java:741)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.computeCompatibleMethod(Scope.java:679)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.findMethod(Scope.java:1666)
+at org.eclipse.jdt.internal.compiler.lookup.Scope.getMethod(Scope.java:2801)
+at org.eclipse.jdt.internal.compiler.ast.MessageSend.findMethodBinding(MessageSend.java:862)

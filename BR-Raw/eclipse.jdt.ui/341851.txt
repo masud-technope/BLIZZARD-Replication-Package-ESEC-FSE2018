@@ -1,0 +1,12 @@
+Bug 341851 – [rename] Refactoring (renaming) gives "already exists" error for upper/lower case change
+Build Identifier: M20100909-0800
+When I try to rename my project from "project1" to "Project1" using rightclick->refactor->rename, I get the error "A folder with that name already exists".
+I have to first change it to something else like "proj1" and then back to "Project1".
+Reproducible: Always
+Steps to Reproduce:
+1.
+Create new java project name "project1"
+2.
+Refactor the project name to "Project1"
+3.
+Will see the error in the dialogue box not letting you continue.

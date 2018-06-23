@@ -1,0 +1,9 @@
+Bug 62062 – Mark Occurrences annotation text is not interesting as Tooltip Description
+I20040512-0800
+Mark Occurrences annotation is not interesting as Tooltip Description.
+Steps:
+- enable Mark Occurrences
+- set caret to a variable and wait until occurrences marked
+- hover over variable or press F2
+-> expected: type, name and javadoc
+-> was: only name (I guess this is the Annotation's text)

@@ -1,0 +1,11 @@
+Bug 170502 – [source lookup] [launching] string variables added to the bootpath via the launch dialog do not stay there
+In the launch dialog if you go to the classpath tab (of a java app type) and add a string variable to the bootpath entries it will not stay there.
+To reproduce:
+1.
+open launch dialog and go to the classpath tab.
+2.
+add a string variable to the boothpath entries
+3.
+hit apply and close the dialog
+4.
+reopen and go back to the classpath tab the new entry is now moved under the user entries

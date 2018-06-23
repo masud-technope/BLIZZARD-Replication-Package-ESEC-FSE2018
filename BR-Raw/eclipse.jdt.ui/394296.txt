@@ -1,0 +1,17 @@
+Bug 394296 – [clean up] Clean up doesn't work if warnings were suppressed
+I noticed that the "Source > Clean Up..." action doesn't cleanup defects when warnings were suppressed.
+For example, if I ask the cleanup to add missing Overrides and I have disabled all warnings, then the @Override is not added.
+If I remove the "@SuppressWarnings("all")", then the @Override is added:
+@SuppressWarnings("all")
+public class Test extends java.util.ArrayList<String> {
+private static final long serialVersionUID = -394398626433235653L;
+public boolean add(String e) {
+return super.add(e);
+}
+}
+The same thing happens for "use modifier 'final' where possible", "Change all accesses through subtypes", "Remove unnecessary '$NON-NLS$' tags", etc.
+rendering the Cleanup action much less useful in the presence of a @SuppressWarnings("all").
+--
+Eclipse SDK
+Version: 3.8.1
+Build id: M20120914-1540

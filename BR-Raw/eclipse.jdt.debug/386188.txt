@@ -1,0 +1,66 @@
+Bug 386188 – ParserConfigurationException trying to load JREs on Mac OS
+Created attachment 219293 [details]
+Error log
+Hi, I just started using Eclipse and was trying to perform the "Hello World" tutorial, but it keeps producing errors.
+Upon opening the window to create a New Java Project, it produces a list of errors (see below or attached file), including "Exception occurred parsing property list".
+Upon creating the class, it says "configure build path" and "the specified JRE installation does not exist" (I've tried running the program with various JRE installations - ).
+My Installed JREs folder is empty, and says "The selected JRE does not support the current compiler compliance level of 1.4" at the top.
+I'm not sure what to put in JRE home, or how to find it.
+Note: I have a Mac OS X 10.5.8
+Thank you!
+!SESSION 2012-07-26 21:46:29.000 -----------------------------------------------
+eclipse.buildId=I20120608-1400
+java.version=1.5.0_30
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/lamarar/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86 -product org.eclipse.epp.package.jee.product -keyring /Users/lamarar/.eclipse_keyring -showlocation
+!ENTRY org.eclipse.core.net 1 0 2012-07-26 21:47:23.484
+!MESSAGE System property http.nonProxyHosts has been set to gov.cv|*.gov.cv|169.254/16|*.169.254/16 by an external source.
+This value will be overwritten using the values from the preferences
+!ENTRY org.eclipse.jdt.launching 4 4 2012-07-26 21:51:30.335
+!MESSAGE Exception occurred parsing property list
+!STACK 1
+org.eclipse.core.runtime.CoreException: Exception occurred parsing property list
+at org.eclipse.jdt.internal.launching.PListParser.abort(PListParser.java:239)
+at org.eclipse.jdt.internal.launching.PListParser.parse(PListParser.java:71)
+at org.eclipse.jdt.internal.launching.MacInstalledJREs.parseJREInfo(MacInstalledJREs.java:193)
+at org.eclipse.jdt.internal.launching.MacInstalledJREs.parseJREInfo(MacInstalledJREs.java:178)
+at org.eclipse.jdt.internal.launching.MacInstalledJREs.getInstalledJREs(MacInstalledJREs.java:155)
+at org.eclipse.jdt.internal.launching.macosx.MacOSXVMInstallType.detectInstallLocation(MacOSXVMInstallType.java:106)
+at org.eclipse.jdt.launching.JavaRuntime.detectEclipseRuntime(JavaRuntime.java:1770)
+at org.eclipse.jdt.launching.JavaRuntime.initializeVMs(JavaRuntime.java:2678)
+at org.eclipse.jdt.launching.JavaRuntime.getVMInstallTypes(JavaRuntime.java:532)
+at org.eclipse.jdt.internal.launching.environments.EnvironmentsManager.initializeCompatibilities(EnvironmentsManager.java:234)
+at org.eclipse.jdt.internal.launching.environments.ExecutionEnvironment.init(ExecutionEnvironment.java:177)
+at org.eclipse.jdt.internal.launching.environments.ExecutionEnvironment.getDefaultVM(ExecutionEnvironment.java:214)
+at org.eclipse.jdt.internal.launching.JREContainerInitializer.resolveVM(JREContainerInitializer.java:173)
+at org.eclipse.jdt.internal.launching.JREContainerInitializer.resolveVM(JREContainerInitializer.java:140)
+at org.eclipse.jdt.internal.launching.JREContainerInitializer.initialize(JREContainerInitializer.java:57)
+at org.eclipse.jdt.internal.core.JavaModelManager.initializeContainer(JavaModelManager.java:2843)
+at org.eclipse.jdt.internal.core.JavaModelManager.getClasspathContainer(JavaModelManager.java:1878)
+at org.eclipse.jdt.core.JavaCore.getClasspathContainer(JavaCore.java:3128)
+at org.eclipse.jdt.internal.core.JavaProject.resolveClasspath(JavaProject.java:2691)
+at org.eclipse.jdt.internal.core.JavaProject.resolveClasspath(JavaProject.java:2614)
+at org.eclipse.jdt.internal.core.ClasspathEntry.validateClasspath(ClasspathEntry.java:1649)
+at org.eclipse.jdt.core.JavaConventions.validateClasspath(JavaConventions.java:612)
+at org.eclipse.pde.internal.core.ClasspathComputer.getClasspath(ClasspathComputer.java:60)
+at org.eclipse.pde.internal.ui.wizards.imports.PluginImportOperation.importPlugin(PluginImportOperation.java:453)
+at org.eclipse.pde.internal.ui.wizards.imports.PluginImportOperation.runInWorkspace(PluginImportOperation.java:241)
+at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: javax.xml.parsers.ParserConfigurationException: jaxp_feature_not_supported: Feature "http://apache.org/xml/features/nonvalidating/load-external-dtd" is not supported.
+at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl.setFeature(DocumentBuilderFactoryImpl.java:207)
+at org.eclipse.jdt.internal.launching.PListParser.parseXML(PListParser.java:101)
+at org.eclipse.jdt.internal.launching.PListParser.parse(PListParser.java:65)
+...
+25 more
+!SUBENTRY 1 org.eclipse.jdt.launching 4 0 2012-07-26 21:51:30.336
+!MESSAGE Exception occurred parsing property list
+!STACK 0
+javax.xml.parsers.ParserConfigurationException: jaxp_feature_not_supported: Feature "http://apache.org/xml/features/nonvalidating/load-external-dtd" is not supported.
+at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl.setFeature(DocumentBuilderFactoryImpl.java:207)
+at org.eclipse.jdt.internal.launching.PListParser.parseXML(PListParser.java:101)
+at org.eclipse.jdt.internal.launching.PListParser.parse(PListParser.java:65)
+at org.eclipse.jdt.internal.launching.MacInstalledJREs.parseJREInfo(MacInstalledJREs.java:193)
+(see attached file for more)

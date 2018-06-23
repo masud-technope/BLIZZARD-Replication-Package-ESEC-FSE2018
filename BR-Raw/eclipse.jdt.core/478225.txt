@@ -1,0 +1,48 @@
+Bug 478225 – JDT APT doesn't deal gracefully with 'broken' annotation processors
+When a broken annotation processor (one that throws exceptions) is activated on the factory path it can cause a 'bombardement' of error popups which make the IDE unusable.
+See for example here: https://jira.spring.io/browse/IDE-1381
+Broken processors while not the 'norm' can occur for a number of reasons and they should be handled gracefully.
+A number of things could be done:
+- detect broken processor and stop trying to execute it
+- use project error marker to indicate the problem instead of popup dialogs
+- write error to error log instead of popup in the UI.
+Really...
+the most import thing is...
+don't bombard the user with endless popups.
+So at the very least, these errors should be dumped in error log instead of a UI popup.
+From the link above, this stacktrace may help pinpoint where 'exceptions' might be escaping from the build-process and turning into a bombardment of popups:
+!ENTRY org.eclipse.core.resources 4 2 2015-09-23 09:22:05.893
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NoClassDefFoundError: org/springframework/boot/configurationprocessor/TypeExcludeFilter
+at org.springframework.boot.configurationprocessor.ConfigurationMetadataAnnotationProcessor.<init>(ConfigurationMetadataAnnotationProcessor.java:89)
+at sun.reflect.GeneratedConstructorAccessor262.newInstance(Unknown Source)
+at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.lang.reflect.Constructor.newInstance(Constructor.java:422)
+at java.lang.Class.newInstance(Class.java:442)
+at org.eclipse.jdt.apt.core.internal.ClassServiceFactory.newInstance(ClassServiceFactory.java:26)
+at org.eclipse.jdt.internal.apt.pluggable.core.dispatch.IdeAnnotationProcessorManager.discoverNextProcessor(IdeAnnotationProcessorManager.java:92)
+at org.eclipse.jdt.internal.compiler.apt.dispatch.RoundDispatcher.round(RoundDispatcher.java:116)
+at org.eclipse.jdt.internal.compiler.apt.dispatch.BaseAnnotationProcessorManager.processAnnotations(BaseAnnotationProcessorManager.java:159)
+at org.eclipse.jdt.internal.apt.pluggable.core.dispatch.IdeAnnotationProcessorManager.processAnnotations(IdeAnnotationProcessorManager.java:134)
+at org.eclipse.jdt.internal.compiler.Compiler.processAnnotations(Compiler.java:967)
+at org.eclipse.jdt.internal.compiler.Compiler.compile(Compiler.java:489)
+at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.compile(AbstractImageBuilder.java:395)
+at org.eclipse.jdt.internal.core.builder.BatchImageBuilder.compile(BatchImageBuilder.java:183)
+at org.eclipse.jdt.internal.core.builder.AbstractImageBuilder.compile(AbstractImageBuilder.java:332)
+at org.eclipse.jdt.internal.core.builder.BatchImageBuilder.build(BatchImageBuilder.java:62)
+at org.eclipse.jdt.internal.core.builder.JavaBuilder.buildAll(JavaBuilder.java:256)
+at org.eclipse.jdt.internal.core.builder.JavaBuilder.build(JavaBuilder.java:180)
+at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:734)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:144)
+at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:235)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Attach one or more files to this issue

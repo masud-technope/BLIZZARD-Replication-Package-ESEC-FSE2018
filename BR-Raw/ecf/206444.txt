@@ -1,0 +1,3 @@
+Bug 206444 – [Discovery] Providers should be dynamic aware
+The CompositeDiscoveryContainer should be dynamic aware.
+Meaning it should be able to handle life cycle events of providers.

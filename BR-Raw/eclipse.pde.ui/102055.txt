@@ -1,0 +1,7 @@
+Bug 102055 – Feature.xml editor does not allow editing of included features
+Start eclipse 3.1R4
+Create a plugin Small and feature SmallFeature containing the Small plugin
+Create a feature LargeFeature with no plugins
+In the Included Features tab of the LargeFeature add the SmallFeature
+Note that it is not possible to change the version number of the SmallFeature in
+the Included Features tab.

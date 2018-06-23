@@ -1,0 +1,6 @@
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/provisional/comparator/ApiComparator.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/builder/ApiAnalysisBuilder.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/problems/problemmessages.properties
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/preferences/ApiProfilesPreferencePage.java
+apitools/org.eclipse.pde.api.tools/src/org/eclipse/pde/api/tools/internal/util/Util.java
+apitools/org.eclipse.pde.api.tools.ui/src/org/eclipse/pde/api/tools/ui/internal/preferences/ApiProfilesConfigurationBlock.java

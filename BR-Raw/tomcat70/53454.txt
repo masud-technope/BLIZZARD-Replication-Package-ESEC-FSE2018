@@ -1,0 +1,9 @@
+53454 – Default doHead implementation overrides 'Content-Length' header
+Created attachment 28985 [details]
+Sampe app with sources
+If a client extends HttpServlet and desides to override doGet() method, resulting servlet can fail to correctly handle HEAD requests.
+This will happen, if client chooses to set Content-Length manually (e.g., to allow content bigger than 2Gb):
+resp.setHeader("Content-Length", String.valueOf(12345678900L));
+and only writes actual content if it is a GET request (e.g., because it is costly operation).
+In such conditions, GET request will have correct "Content-Length" header, but HEAD requset will have "Content-Length" header with value 0.
+Sample project with sources is attached

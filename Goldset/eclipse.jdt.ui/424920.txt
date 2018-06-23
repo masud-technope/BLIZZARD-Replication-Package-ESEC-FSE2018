@@ -1,0 +1,7 @@
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/codemanipulation/ImportReferencesCollector.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/ASTFlattener.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/ASTNodes.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/GenericVisitor.java
+org.eclipse.jdt.ui/core extension/org/eclipse/jdt/internal/corext/dom/HierarchicalASTVisitor.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/TypeContextChecker.java
+org.eclipse.jdt.ui/core refactoring/org/eclipse/jdt/internal/corext/refactoring/structure/ImportRemover.java

@@ -1,0 +1,2 @@
+Bug 77064 – clear does not work in stack trace console
+Pressing the clear button does not clear the stack trace console.

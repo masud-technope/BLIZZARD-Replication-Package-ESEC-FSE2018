@@ -1,0 +1,17 @@
+50721 – RequestUtil.URLDecode() throws IllegalArgumentException for URLs with %xx-Code as last character
+When calling org.apache.catalina.util.RequestUtil.URLDecode() for a valid URL ending with a %xx-Code, the method throws the IllegalArgumentException "The % character must be followed by two hexademical digits".
+This only happens, if the %xx-Code is at the  at the end of the URL.
+It works fine for URLs ending with normal characters.
+Example:
+RequestUtil.URLDecode("http://localhost:8080/webdav/test%C3%A4", "UTF8") fails
+RequestUtil.URLDecode("http://localhost:8080/webdav/test%C3%A4n", "UTF8") works fine
+The problem is with the the test in line 329 (added in revision: 905073):
+if (ix + 2 >= len) {
+Because the index ix is already incremented in line 325, after reading the current byte b (e.g.
+the %-character), this test fails if "%A4" is at the end, but does not fail for "%A4n".
+Simple fix: In line 329 the '>=' should be replaced by a '>':
+if (ix + 2 > len) {
+This change should have no side effects, because ix is checked again before the next iteration.
+Because this change is trivial I did not include a patch.
+Best regards
+Christof

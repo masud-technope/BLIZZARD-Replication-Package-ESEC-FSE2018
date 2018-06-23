@@ -1,0 +1,3 @@
+Bug 56235 – Organize Favorites dialog could remember size
+Each time I open this dialog I need to resize it.
+It could persist the resize.

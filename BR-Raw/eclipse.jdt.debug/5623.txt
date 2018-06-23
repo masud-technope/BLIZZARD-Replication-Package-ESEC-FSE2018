@@ -1,0 +1,2 @@
+Bug 5623 – JDK 1.4 hot swap
+Our JDI client needs to be updated to the JDK 1.4 specification.

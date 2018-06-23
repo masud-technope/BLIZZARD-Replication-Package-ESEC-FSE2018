@@ -1,0 +1,12 @@
+Bug 171962 – the value of a translatable attribute seems to be set twice
+This happens all the time with translatable attributes.
+For example,
+1.
+On the Extensions page of the plugin editor, press Add..
+and choose the org.eclipse.core.runtime.content.contenttype extension point.
+2.
+right-click on the extension and select the content-type element.
+The element will be created and selected, which is good.
+ But observe how the 'name' attribute has a long qualified name.
+ If you select the element again, the value of the 'name' attribute will now show 'name' as expected.
+Is it that the value of the attribute is being set twice, but it's not refreshed after the second/good value is being set?

@@ -1,0 +1,2 @@
+framework/bundles/org.eclipse.ecf/src/org/eclipse/ecf/core/util/ContainerFactoryTracker.java
+framework/bundles/org.eclipse.ecf/META-INF/MANIFEST.MF

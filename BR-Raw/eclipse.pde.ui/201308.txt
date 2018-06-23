@@ -1,0 +1,7 @@
+Bug 201308 – BinaryRepositoryProvider makes deprecated calls
+org.eclipse.pde.internal.core.BinaryRepositoryProvider.java
+Severity and Description	Path	Resource	Location	Creation Time	Id
+The type IFileModificationValidator is deprecated	org.eclipse.pde.core/src/org/eclipse/pde/internal/core	BinaryRepositoryProvider.java	line 15	1188224978718	132725
+The type IFileModificationValidator is deprecated	org.eclipse.pde.core/src/org/eclipse/pde/internal/core	BinaryRepositoryProvider.java	line 30	1188224978718	132726
+The type IFileModificationValidator is deprecated	org.eclipse.pde.core/src/org/eclipse/pde/internal/core	BinaryRepositoryProvider.java	line 122	1188224978718	132727
+The type IFileModificationValidator is deprecated	org.eclipse.pde.core/src/org/eclipse/pde/internal/core	BinaryRepositoryProvider.java	line 170	1188224978718	132728

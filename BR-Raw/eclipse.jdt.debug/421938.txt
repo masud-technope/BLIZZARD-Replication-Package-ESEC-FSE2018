@@ -1,0 +1,4 @@
+Bug 421938 – [1.8] ExecutionEnvironmentDescription#getVMArguments does not preserve VM arguments
+ExecutionEnvironmentDescription doesn't preserve the order of VM arguments provided in a .ee file (since it uses a plain HashMap), and the test org.eclipse.jdt.debug.tests.core.EEDefinitionTests.testVMArguments() happens to test a combination of VM arguments which under 1.7 just happens to hash in the tested order.
+Under 1.8 this false positive doesn't happen.
+I'm supplying a patch which rectifies this.

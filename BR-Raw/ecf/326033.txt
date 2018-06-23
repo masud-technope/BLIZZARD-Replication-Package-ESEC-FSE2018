@@ -1,0 +1,52 @@
+Bug 326033 – ClassCastException handling of r_osgi event handler topics
+Hi,
+In the /ch.ethz.iks.r_osgi.remote/src/main/java/ch/ethz/iks/r_osgi/impl/RemoteOSGiServiceImpl.setupTrackers() there is an assumption that all event handlers have assigned a topic of String[].
+According to OSGi specs the topic of interests can be a String or a String[]
+This leads to r_osgi crashing.
+I propose the following change which has been tested by us:
+public Object addingService(
+final ServiceReference reference) {
+final String[] theTopics;
+Object topics = reference.getProperty(EventConstants.EVENT_TOPIC);
+if (topics instanceof String)
+theTopics = new String[] { (String) topics };
+else
+theTopics =
+(String[]) reference.getProperty(EventConstants.EVENT_TOPIC);
+=================================
+STACKTRACE (line numbers could be slightly different from the currennt impl)
+=================================
+!ENTRY org.eclipse.osgi 4 0 2010-09-23 13:16:37.555
+!MESSAGE An unexpected runtime error has occurred.
+!STACK 0
+java.lang.ClassCastException: java.lang.String cannot be cast to [Ljava.lang.String;
+at ch.ethz.iks.r_osgi.impl.RemoteOSGiServiceImpl$1.addingService(RemoteOSGiServiceImpl.java:1130)
+at org.osgi.util.tracker.ServiceTracker$Tracked.customizerAdding(ServiceTracker.java:896)
+at org.osgi.util.tracker.AbstractTracked.trackAdding(AbstractTracked.java:261)
+at org.osgi.util.tracker.AbstractTracked.track(AbstractTracked.java:233)
+at org.osgi.util.tracker.ServiceTracker$Tracked.serviceChanged(ServiceTracker.java:840)
+at org.eclipse.osgi.internal.serviceregistry.FilteredServiceListener.serviceChanged(FilteredServiceListener.java:104)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl.dispatchEvent(BundleContextImpl.java:933)
+at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:227)
+at org.eclipse.osgi.framework.eventmgr.ListenerQueue.dispatchEventSynchronous(ListenerQueue.java:149)
+at org.eclipse.osgi.internal.serviceregistry.ServiceRegistry.publishServiceEventPrivileged(ServiceRegistry.java:756)
+at org.eclipse.osgi.internal.serviceregistry.ServiceRegistry.publishServiceEvent(ServiceRegistry.java:711)
+at org.eclipse.osgi.internal.serviceregistry.ServiceRegistrationImpl.register(ServiceRegistrationImpl.java:130)
+at org.eclipse.osgi.internal.serviceregistry.ServiceRegistry.registerService(ServiceRegistry.java:206)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl.registerService(BundleContextImpl.java:507)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl.registerService(BundleContextImpl.java:525)
+at com.remainsoftware.gravity.event.dispatcher.Activator.start(Activator.java:29)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl$1.run(BundleContextImpl.java:783)
+at java.security.AccessController.doPrivileged(Native Method)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl.startActivator(BundleContextImpl.java:774)
+at org.eclipse.osgi.framework.internal.core.BundleContextImpl.start(BundleContextImpl.java:755)
+at org.eclipse.osgi.framework.internal.core.BundleHost.startWorker(BundleHost.java:370)
+at org.eclipse.osgi.framework.internal.core.AbstractBundle.resume(AbstractBundle.java:374)
+at org.eclipse.osgi.framework.internal.core.Framework.resumeBundle(Framework.java:1067)
+at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:561)
+at org.eclipse.osgi.framework.internal.core.StartLevelManager.resumeBundles(StartLevelManager.java:546)
+at org.eclipse.osgi.framework.internal.core.StartLevelManager.incFWSL(StartLevelManager.java:459)
+at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:243)
+at org.eclipse.osgi.framework.internal.core.StartLevelManager.dispatchEvent(StartLevelManager.java:440)
+at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:227)
+at org.eclipse.osgi.framework.eventmgr.EventManager$EventThread.run(EventManager.java:337)

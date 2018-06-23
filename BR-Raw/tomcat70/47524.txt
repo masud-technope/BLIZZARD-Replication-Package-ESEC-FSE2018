@@ -1,0 +1,11 @@
+47524 – McastServiceImpl executor is not dispatching events.
+Created attachment 23977 [details]
+Fix proposal
+The class McastServiceImpl does not dispatch events, because the the executor is not creating threads.
+The class ReceiverBase has its own queue to address this issue.
+I have refactored the code a little to reuse the class.
+(attaching the diff file)
+I'm not sure if filing a bug in Bugzilla is the right procedure for Trunk branch.
+If not, could you please tell me how should I proceed?
+Regards,
+Ariel

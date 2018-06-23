@@ -1,0 +1,24 @@
+Bug 357110 – Problem with inner classes referenced from jars or class folders: "The type ... cannot be resolved"
+Build Identifier: I20110613-1736
+The opened Java-Editor shows reproducable under some circumstances the (wrong) error message "The type ..
+cannot be resolved.
+It is indirectly referenced from required .class files."
+However, the Package-Explorer does not show this error.
+The error is only displayed in the Editor.
+If the error happens the org.eclipse.jdt.core.dom.ASTParser is not able to parse this java file (which is called by a plugin of mine).
+I found no workaround for this but to refactor some classes not to be inner classes any more, but this is not really a good workaround.
+Reproducible: Always
+Steps to Reproduce:
+The error is reproduceable as follows:
+- Create a class A with a static inner Class I in the sourcefolder "src"
+with outputfolder "bin".
+- Create a class B beeing a subclass of I in the same project in another
+sourcefolder "src2".
+Let the outputfolder of "src2" be "bin2".
+- Create a class C beeing a subclass of B in the first source folder "src".
+- Now change the project settings by removing the sourcefolder "src2"
+and instead add the "bin2" folder to the libraries.
+By this the class B is now only available as a binary class file.
+- Open the Editor for the class C and find the error message describe above.
+The same problem arises reproducably, if the the class file of B is not in a classfolder but in a jar.
+There is no problem, if I is not an inner class but a normal class.

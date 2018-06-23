@@ -1,0 +1,27 @@
+Bug 336934 – [compiler] NPE in Scope.getTypeOrPackage
+Created attachment 188771 [details]
+.log
+Build id: I20110118-0800
+If package name collides with a type name and there is static import inside, then you get NPE.
+If the static import is commented out, then NPE is not thrown.
+Log is attached.
+You can reproduce the problem using the following code:
+//------------------------------
+package a;
+public class B {
+}
+//------------------------------
+package external;
+public class Lib {
+public static void m() {
+}
+}
+//------------------------------
+package a.B;
+import static external.Lib.m;
+public class C {
+public void main() {
+m();
+}
+}
+//------------------------------

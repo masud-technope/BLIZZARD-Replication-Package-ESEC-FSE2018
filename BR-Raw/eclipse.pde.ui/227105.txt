@@ -1,0 +1,17 @@
+Bug 227105 – plugin.xml source editor should support content assist for identifiers
+I20080410-1022
+The plugin.xml source editor should support content assist for attributes that are of type 'identifier'.
+E.g.
+in ...
+<extension
+point="org.eclipse.ui.bindings">
+<key
+commandId="org.eclipse.ui.views.showView"
+schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+sequence="M2+M3+Q T">
+<parameter
+id="org.eclipse.ui.views.showView.viewId"
+value="org.eclipse.jdt.ui.TypeHierarchy">
+</parameter>
+</key>
+..., content assist should be available after 'commandId="', 'schemeId="', and 'parameter id="' and offer valid identifiers.

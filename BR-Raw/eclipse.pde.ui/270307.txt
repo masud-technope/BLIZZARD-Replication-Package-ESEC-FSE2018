@@ -1,0 +1,2 @@
+Bug 270307 – Should be able to remove a baseline by pressing "Delete"
+Once a baseline is selected, we should be able to remove it by pressing the "delete" key.

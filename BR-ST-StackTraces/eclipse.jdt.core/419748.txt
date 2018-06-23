@@ -1,0 +1,12 @@
+org.eclipse.jdt.core.dom.ASTConverter.convertAndSetReceiver
+org.eclipse.jdt.core.dom.ASTConverter.convert
+org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations
+org.eclipse.jdt.core.dom.ASTConverter.convert
+org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations
+org.eclipse.jdt.core.dom.ASTConverter.convert
+org.eclipse.jdt.core.dom.ASTConverter.buildBodyDeclarations
+org.eclipse.jdt.core.dom.ASTConverter.convert
+org.eclipse.jdt.core.dom.ASTConverter.convert
+org.eclipse.jdt.core.dom.CompilationUnitResolver.convert
+org.eclipse.jdt.core.dom.ASTParser.internalCreateAST
+org.eclipse.jdt.core.dom.ASTParser.createAST

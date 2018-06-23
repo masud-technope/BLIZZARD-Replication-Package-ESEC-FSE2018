@@ -1,0 +1,13 @@
+Bug 402233 – [1.8][compiler][infrastructure] Implement Expression.tIsMoreSpecific(TypeBinding t, TypeBinding s)
+BETA_JAVA8:
+The most specific applicable overloaded method resolution in Java8 differs from
+Java 7 in that it is not just a pair wise comparison of methods as in the case
+of Java 7.
+The expression that constitutes the argument must also be taken into
+consideration to decide which one of the parameter types is more specific.
+This requires some infrastructure in the form of new methods in Expression
+and its subtypes.
+(It can be argued this new method belongs in type binding, but if we take
+that route for poly expressions, we have to turn around and ask the expression
+itself - given you are who you are which of T and S is more specific - Given
+that I am proposing to implement this only in Expression)

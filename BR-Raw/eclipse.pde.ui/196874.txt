@@ -1,0 +1,20 @@
+Bug 196874 – [Manifest][Editors] Selection behaviour is wrong after delete in Extension section tree viewer
+Steps To Reproduce:
+(1) Open manifest editor
+(2) Switch to "Extensions" page
+(3) Select any object within the tree viewer in the "All Extensions" section
+(4) Press delete
+-> BUG: Selection is lost and details section goes blank
+The correct selection behaviour after the deletion is as follows:
+* If there are N objects on the same level in the hierarchy and the
+Nth object is deleted, the N-1th object should be selected
+* If there are N objects on the same level in the hierarchy and any
+object 1 to N-1 is deleted, the N+1th object should be selected
+* If N=1 objects on the same level in the hierarchy and object 1 is
+deleted, the parent object should be selected (no more children on the
+same level)
+This behaviour is applicable when the delete is performed using the
+corresponding keyboard shortcut, or context menu and when invoking a cut
+operation.
+This behaviour is implemented by the Simple Cheat Sheet Editor - if you need a
+reference.

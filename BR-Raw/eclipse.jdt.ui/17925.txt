@@ -1,0 +1,7 @@
+Bug 17925 – References menu item not available for Display.KeyTable
+Build 20020521
+- SWT in Binary
+- open class Display
+- in Outline view, select the KeyTable field (static final int [] [] KeyTable)
+- References does not appear on the Outline context menu
+- Read Access / Write Access are also missing

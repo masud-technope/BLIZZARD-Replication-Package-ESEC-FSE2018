@@ -1,0 +1,45 @@
+Bug 443727 – NPE in JDIDebugTarget$ThreadStartHandler.handleEvent
+Hello Committers,
+I found round about 150 events (all from a single user) in the error logs and though it may be worth reporting it.
+Maybe you can quickly spot the issue based on this stacktrace?
+Please let me know what else we could (automatically) collect from a user to help you tracking that issue.
+Best,
+Marcel
+@message
+timestamp=Wed Sep 10 09:48:04 EDT 2014
+anonymousId=bac41314-e68f-499e-a691-4b75137e6066
+eventId=8e22b97a-1659-4696-80d4-9a37cee8ccc4
+eclipseBuildId=4.4.0.I20140606-1215
+eclipseProduct=org.eclipse.epp.package.standard.product
+javaRuntimeVersion=1.8.0_20-b26
+osgiWs=win32
+osgiOs=Windows8
+osgiOsVersion=6.3.0
+osgiArch=x86_64
+presentBundles={com.codetrails.stats.stacktraces.server.eclipse.Bundle@4a6d15ca[
+name=org.eclipse.core.jobs
+version=3.6.0.v20140424-0053
+],Bundle[
+name=org.eclipse.jdt.debug
+version=3.8.100.v20140522-1618
+],Bundle[
+name=org.eclipse.jdt
+version=3.10.0.v20140606-1215
+]}
+status=com.codetrails.stats.stacktraces.server.eclipse.Status@a8136b88[
+pluginId=org.eclipse.core.jobs
+pluginVersion=3.6.0.v20140424-0053
+code=2
+severity=4
+message=An internal error occurred during: "JDI Event Dispatch".
+fingerprint=3d0ae8a9
+exception=
+java.lang.NullPointerException: null
+at org.eclipse.jdt.internal.debug.core.model.JDIDebugTarget$ThreadStartHandler.handleEvent(JDIDebugTarget.java:1955)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:152)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:100)
+at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:249)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+children={}
+]
+https://dev.eclipse.org/recommenders/errors/8e22b97a-1659-4696-80d4-9a37cee8ccc4.txt

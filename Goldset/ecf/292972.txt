@@ -1,0 +1,4 @@
+framework/bundles/org.eclipse.ecf.filetransfer/src/org/eclipse/ecf/filetransfer/FileTransferJob.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer.httpclient.ssl/META-INF/MANIFEST.MF
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/provider/filetransfer/outgoing/AbstractOutgoingFileTransfer.java
+providers/bundles/org.eclipse.ecf.provider.filetransfer/src/org/eclipse/ecf/provider/filetransfer/retrieve/AbstractRetrieveFileTransfer.java

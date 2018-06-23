@@ -1,0 +1,15 @@
+48358 – JSP-unloading reloaded
+Created attachment 24684 [details]
+Patch including tests that fixed the problem for us.
+Currently Tomcat does not support unloading JSPs.
+When constantly changing and reloading JSP files (especially during development time) this causes the JVM to run out of memory.
+The patch fixes this problem by tracking the last time a JSP page was requested.
+Objects are destroyed if a configurable number of JSPs is live, starting with the "oldest" ones.
+This behaviour is deactivated by default.
+It must be configured explicitly.
+The patch comes with tests that check the added functionality.
+To make testing easier I added easymock as dependency to the classpath.
+I'd appreciate any feedback on the code changes - suggestions for improvement, potential problems with the code etc.
+This work was done in collaboration with some of my colleagues at work.
+I will forward a link to this bug entry to those involved so they can provide more information on the background of the patch if needed.
+On a side note: Just in case you might like to include the patch - I couldn't find a "patch intended for inclusion" check box (like the one in jira) in bugzilla - thus stating explicitly: License to ASF granted for inclusion in ASF works (as per the Apache License Â§5).

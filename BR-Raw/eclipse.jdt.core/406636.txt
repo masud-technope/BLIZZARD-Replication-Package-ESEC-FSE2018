@@ -1,0 +1,12 @@
+Bug 406636 – [1.8][binary tools] AIOOB while disassembling class file.
+BETA_JAVA8:
+The disabled test org.eclipse.jdt.core.tests.compiler.regression.Jsr335ClassFileTest._test014()
+when run generates an AIIOB exception with this stack:
+java.lang.ArrayIndexOutOfBoundsException: 1434
+at org.eclipse.jdt.internal.core.util.ClassFileStruct.u2At(ClassFileStruct.java:56)
+at org.eclipse.jdt.internal.core.util.BootstrapMethodsEntry.<init>(BootstrapMethodsEntry.java:33)
+at org.eclipse.jdt.internal.core.util.BootstrapMethodsAttribute.<init>(BootstrapMethodsAttribute.java:45)
+at org.eclipse.jdt.internal.core.util.ClassFileReader.<init>(ClassFileReader.java:277)
+at org.eclipse.jdt.internal.core.util.Disassembler.disassemble(Disassembler.java:239)
+at org.eclipse.jdt.core.tests.compiler.regression.Jsr335ClassFileTest.verifyClassFile(Jsr335ClassFileTest.java:51)
+at org.eclipse.jdt.core.tests.compiler.regression.Jsr335ClassFileTest.test014(Jsr335ClassFileTest.java:2027)

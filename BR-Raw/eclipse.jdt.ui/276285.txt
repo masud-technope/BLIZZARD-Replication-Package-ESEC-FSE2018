@@ -1,0 +1,5 @@
+Bug 276285 – [content assist][preferences] 'Favorites' should grow list on resize
+I20090513-2000
+The Java > Editor > Content Assist > Favorites preference page needs some polish:
+- list should grow vertically
+- 'Edit' button should be 'Edit...'

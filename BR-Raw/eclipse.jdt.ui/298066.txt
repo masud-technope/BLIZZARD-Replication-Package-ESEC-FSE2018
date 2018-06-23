@@ -1,0 +1,17 @@
+Bug 298066 – [nls tooling] Refactoring removes comments in *.properties when done for a message key
+I20091215-1320
+Steps:
+1.
+Checkout o.e.compare
+2.
+Open /org.eclipse.compare/compare/org/eclipse/compare/internal/patch/PatchMessages.java
+3.
+Select InputPatchPage_SingleFileError_format field
+4.
+Do Refactor > Rename or Alt+Shift+R with Rename Dialog
+5.
+Change the field name
+6.
+Examine changes made to PatchMessages.properties in the preview dialog
+=> Lines below 'InputPatchPage_SingleFileError_format', those starting with '#' are selected for removal.
+I think this should not happen.

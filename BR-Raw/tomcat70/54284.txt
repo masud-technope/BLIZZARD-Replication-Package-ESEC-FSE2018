@@ -1,0 +1,34 @@
+54284 – Util.objectNameValueNeedsQuote throws NPE for anonymous Filters
+How to reproduce?
+From inside the contextInitialized-Method of an ServletContextListener instance, call
+context.addFilter(null,
+new ArbitraryFilter(pathPrefix)).addMappingForUrlPatterns(null, false, pathPrefix);
+What happens?
+Dec 12, 2012 3:59:03 PM org.apache.catalina.core.StandardContext filterStart
+SEVERE: Exception starting filter null
+java.lang.NullPointerException
+at org.apache.tomcat.util.modeler.Util.objectNameValueNeedsQuote(Util.java:26)
+at org.apache.catalina.core.ApplicationFilterConfig.registerJMX(ApplicationFilterConfig.java:421)
+at org.apache.catalina.core.ApplicationFilterConfig.initFilter(ApplicationFilterConfig.java:282)
+at org.apache.catalina.core.ApplicationFilterConfig.<init>(ApplicationFilterConfig.java:108)
+at org.apache.catalina.core.StandardContext.filterStart(StandardContext.java:4650)
+at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5306)
+at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:901)
+at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:877)
+at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:633)
+at org.apache.catalina.startup.HostConfig.deployDescriptor(HostConfig.java:657)
+at org.apache.catalina.startup.HostConfig$DeployDescriptor.run(HostConfig.java:1637)
+at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+at java.lang.Thread.run(Thread.java:722)
+Dec 12, 2012 3:59:03 PM org.apache.catalina.core.StandardContext startInternal
+SEVERE: Error filterStart
+Dec 12, 2012 3:59:03 PM org.apache.catalina.core.StandardContext startInternal
+SEVERE: Context [] startup failed due to previous errors
+What should happen?
+Either - if null is not an allowed filter name, throw a IllegalArgumentException on context.addFilter(...)
+Or, if it is an allowed filter name, handle null-values gracefully

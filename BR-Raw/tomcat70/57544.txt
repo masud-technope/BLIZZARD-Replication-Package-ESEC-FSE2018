@@ -1,0 +1,15 @@
+57544 – Server CPU maxed out (100% per core) randomly after 10 to 30 hours
+"uniwar-exec-18" #59 daemon prio=5 os_prio=0 tid=0x000000000096a000 nid=0x58da runnable [0x000000004457c000]
+java.lang.Thread.State: RUNNABLE
+at org.apache.coyote.http11.AbstractInputBuffer.nextRequest(AbstractInputBuffer.java:298)
+at org.apache.coyote.http11.AbstractNioInputBuffer.nextRequest(AbstractNioInputBuffer.java:150)
+at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1152)
+at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:659)
+at org.apache.coyote.http11.Http11NioProtocol$Http11ConnectionHandler.process(Http11NioProtocol.java:223)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1558)
+at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1515)
+- locked <0x00000006771385a8> (a org.apache.tomcat.util.net.NioChannel)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+at java.lang.Thread.run(Thread.java:745)

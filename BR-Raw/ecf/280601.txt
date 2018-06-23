@@ -1,0 +1,11 @@
+Bug 280601 – removePresenceListener adds the listener instead of removing it
+Created attachment 139414 [details]
+proposed patch
+In XMPPContainerPresenceHelper, the IRosterManager implementation adds the again listener instead of removing it in removePresenceListener:
+public void removePresenceListener(IPresenceListener listener) {
+synchronized (presenceListeners) {
+presenceListeners.add(listener);
+}
+}
+This method should call presenceListeners.remove instead.
+See attached patch.

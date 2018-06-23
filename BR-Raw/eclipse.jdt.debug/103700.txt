@@ -1,0 +1,32 @@
+Bug 103700 – ClassCastException when evaluating assigment of array of interfaces
+import java.util.List;
+public class Test {
+public static void main(String[] args) {
+List[] l= new List[1];
+System.out.println();   // <-- breakpoint here
+}
+}
+At the breakpoint, try to evaluate 'l= new List[0]'.
+An error occurs:
+java.lang.ClassCastException: org.eclipse.jdi.internal.InterfaceTypeImpl
+at org.eclipse.jdi.internal.ValueImpl.checkReferenceType(ValueImpl.java:220)
+at org.eclipse.jdi.internal.ValueImpl.checkReferenceType(ValueImpl.java:203)
+at org.eclipse.jdi.internal.ValueImpl.checkValue(ValueImpl.java:183)
+at org.eclipse.jdi.internal.StackFrameImpl.setValue(StackFrameImpl.java:174)
+at
+org.eclipse.jdt.internal.debug.core.model.JDILocalVariable.setJDIValue(JDILocalVariable.java:84)
+at
+org.eclipse.jdt.internal.debug.core.model.JDILocalVariable.setValue(JDILocalVariable.java:179)
+at
+org.eclipse.jdt.internal.debug.eval.ast.instructions.AssignmentOperator.execute(AssignmentOperator.java:66)
+at
+org.eclipse.jdt.internal.debug.eval.ast.engine.Interpreter.execute(Interpreter.java:50)
+at
+org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine$1$EvaluationRunnable.run(ASTEvaluationEngine.java:355)
+at
+org.eclipse.jdt.internal.debug.core.model.JDIThread.runEvaluation(JDIThread.java:565)
+at
+org.eclipse.jdt.internal.debug.eval.ast.engine.ASTEvaluationEngine$EvalRunnable.run(ASTEvaluationEngine.java:389)
+at
+org.eclipse.jdt.internal.debug.core.model.JDIThread$ThreadJob.run(JDIThread.java:2446)
+at org.eclipse.core.internal.jobs.Worker.run(Worker.java:76)

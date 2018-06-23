@@ -1,0 +1,21 @@
+Bug 212771 – NPE in SourceLocationManager
+Steps to reproduce:
+1.
+Open up an external plug-in in the Manifest editor that contains extension points.
+2.
+Go to the extension point tab
+3.
+Right click in the table.
+The result is this NPE:
+java.lang.NullPointerException
+at java.util.StringTokenizer.<init>(StringTokenizer.java:197)
+at org.osgi.framework.Version.<init>(Version.java:127)
+at org.eclipse.pde.internal.core.SourceLocationManager.searchBundleManifestLocations(SourceLocationManager.java:287)
+at org.eclipse.pde.internal.core.SourceLocationManager.findSourceFile(SourceLocationManager.java:89)
+at org.eclipse.pde.internal.core.schema.SchemaRegistry.getSchemaFromSourceExtension(SchemaRegistry.java:116)
+at org.eclipse.pde.internal.core.schema.SchemaRegistry.getSchemaURL(SchemaRegistry.java:110)
+at org.eclipse.pde.internal.ui.editor.actions.OpenSchemaAction.findSchema(OpenSchemaAction.java:151)
+at org.eclipse.pde.internal.ui.editor.actions.OpenSchemaAction.setInput(OpenSchemaAction.java:97)
+I went back to 3.3 to see how it handled this situation.
+ When the plugin id was null, they simply returned null from the SourceLocationManager.findSourceFile(..).
+ So we just need to do the same and do some checking before passing a null to Version.

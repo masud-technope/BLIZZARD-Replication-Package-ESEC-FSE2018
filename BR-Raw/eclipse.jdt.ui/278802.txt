@@ -1,0 +1,3 @@
+Bug 278802 – rename 'Hierarchy' view to 'Type Hierarchy' view
+I20090601-2000.
+We always talk about the type hierarchy view hence we should rename the 'Hierarchy' view to 'Type Hierarchy' view.

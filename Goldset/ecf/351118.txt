@@ -1,0 +1,5 @@
+examples/bundles/org.eclipse.ecf.examples.provider.trivial/plugin.xml
+examples/bundles/org.eclipse.ecf.examples.provider.trivial/src/org/eclipse/ecf/examples/provider/trivial/identity/TrivialNamespace.java
+examples/bundles/org.eclipse.ecf.examples.provider.trivial/META-INF/MANIFEST.MF
+examples/bundles/org.eclipse.ecf.examples.provider.trivial/src/org/eclipse/ecf/internal/examples/provider/trivial/container/TrivialContainer.java
+examples/bundles/org.eclipse.ecf.examples.provider.trivial/src/org/eclipse/ecf/examples/provider/trivial/identity/TrivialID.java

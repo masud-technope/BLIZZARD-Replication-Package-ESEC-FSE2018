@@ -1,0 +1,3 @@
+Bug 304258 – [target] Improve target persistence tests for new file format
+The current target persistence tests have test data for 'old' target files (3.4 and earlier).
+ In 3.6 the file format changed and additional test data for 3.5 target files should be added.

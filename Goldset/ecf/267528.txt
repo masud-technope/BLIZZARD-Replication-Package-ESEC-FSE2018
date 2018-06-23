@@ -1,0 +1,16 @@
+framework/bundles/org.eclipse.ecf.discovery.ui.browser/plugin.xml
+releng/org.eclipse.ecf.releng/projectSet-anonymous.psf
+releng/org.eclipse.ecf.releng/projectSet-extssh.psf
+releng/features/org.eclipse.ecf.core-feature/feature.xml
+releng/org.eclipse.ecf.releng.maps/ecf.core.map
+framework/bundles/org.eclipse.ecf.discovery.ui.browser/.classpath
+framework/bundles/org.eclipse.ecf.discovery.ui.browser/.project
+framework/bundles/org.eclipse.ecf.discovery.ui.browser/.settings/org.eclipse.jdt.core.prefs
+framework/bundles/org.eclipse.ecf.discovery.ui.browser/.settings/org.eclipse.pde.core.prefs
+framework/bundles/org.eclipse.ecf.discovery.ui.browser/META-INF/MANIFEST.MF
+framework/bundles/org.eclipse.ecf.discovery.ui.browser/OSGI-INF/l10n/bundle.properties
+framework/bundles/org.eclipse.ecf.discovery.ui.browser/about.html
+framework/bundles/org.eclipse.ecf.discovery.ui.browser/build.properties
+framework/bundles/org.eclipse.ecf.discovery.ui.browser/plugin.xml
+framework/bundles/org.eclipse.ecf.discovery.ui.browser/src/org/eclipse/ecf/discovery/ui/browser/Activator.java
+framework/bundles/org.eclipse.ecf.discovery.ui.browser/src/org/eclipse/ecf/discovery/ui/browser/OpenBrowserCommand.java

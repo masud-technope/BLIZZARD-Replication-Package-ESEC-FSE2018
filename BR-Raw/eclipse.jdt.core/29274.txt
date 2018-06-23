@@ -1,0 +1,15 @@
+Bug 29274 – Surface non-java projects as model non-java resources
+Build 2.1 M4
+From EG's note:
+Now that more projects that we work with do not have the java nature (e.g.
+an
+update-site project, the documentation project) it becomes more annoying that
+the PackageExplorer doesn't show non-Java projects.
+The JavaCore API already supports to get at non-Java resources inside a
+JavaProject.
+I was therefore wondering whether we could also surface a
+corresponding JavaModel .getNonJavaResources or JavaModel.getNonJavaProjects.
+Similarly the delta would be handled in the same ways as for non-Java resources.
+I did a quick prototype by just surfaceing IProjects in the PackageExplorer as
+well.
+It works pretty well, with the exception of the deltas.

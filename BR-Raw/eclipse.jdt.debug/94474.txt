@@ -1,0 +1,9 @@
+Bug 94474 – Unable to change source attachment on JRE jar
+I20050509-2010
+* From Installed JREs pref page
+* select a JRE and "Edit"
+* deselect "use default system libraries"
+* Edit a source attachment
+* Press OK and OK to dismiss dialogs
+* Re-open to insect source attachment
+> It's gone

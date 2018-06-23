@@ -1,0 +1,109 @@
+Bug 415541 – [1.8][compiler] Type annotations in the body of static initializer get dropped.
+BETA_JAVA8:
+From the spec:
+"Type annotations in the body of an initializer appear with the code that
+performs the initialization, not on the field that is being initialized.
+Type annotations in the body of instance initializer appear on on
+all initial constructors, and type annotations in the body of a class initializer
+appear on the clinit symbol"
+for the following program:
+// ---
+import java.lang.annotation.*;
+import static java.lang.annotation.ElementType.*;
+@Target({TYPE_USE}) @interface NonNull { }
+class X {
+static {
+new @NonNull Object();
+}
+{
+new @NonNull Object();
+}
+X() {
+}
+X (int x) {
+}
+}
+we generate the following code:
+"// Compiled from X.java (version 1.8 : 52.0, super bit)\n" +
+"class X {\n" +
+"  Constant pool:\n" +
+"    constant #1 class: #2 X\n" +
+"    constant #2 utf8: \"X\"\n" +
+"    constant #3 class: #4 java/lang/Object\n" +
+"    constant #4 utf8: \"java/lang/Object\"\n" +
+"    constant #5 utf8: \"<clinit>\"\n" +
+"    constant #6 utf8: \"()V\"\n" +
+"    constant #7 utf8: \"Code\"\n" +
+"    constant #8 method_ref: #3.#9 java/lang/Object.<init> ()V\n" +
+"    constant #9 name_and_type: #10.#6 <init> ()V\n" +
+"    constant #10 utf8: \"<init>\"\n" +
+"    constant #11 utf8: \"LineNumberTable\"\n" +
+"    constant #12 utf8: \"LocalVariableTable\"\n" +
+"    constant #13 utf8: \"this\"\n" +
+"    constant #14 utf8: \"LX;\"\n" +
+"    constant #15 utf8: \"RuntimeInvisibleTypeAnnotations\"\n" +
+"    constant #16 utf8: \"LNonNull;\"\n" +
+"    constant #17 utf8: \"(I)V\"\n" +
+"    constant #18 utf8: \"x\"\n" +
+"    constant #19 utf8: \"I\"\n" +
+"    constant #20 utf8: \"SourceFile\"\n" +
+"    constant #21 utf8: \"X.java\"\n" +
+"  \n" +
+"  // Method descriptor #6 ()V\n" +
+"  // Stack: 2, Locals: 1\n" +
+"  static {};\n" +
+"    0  new java.lang.Object [3]\n" +
+"    3  dup\n" +
+"    4  invokespecial java.lang.Object() [8]\n" +
+"    7  astore_0\n" +
+"    8  return\n" +
+"      Line numbers:\n" +
+"        [pc: 0, line: 6]\n" +
+"        [pc: 8, line: 7]\n" +
+"  \n" +
+"  // Method descriptor #6 ()V\n" +
+"  // Stack: 1, Locals: 1\n" +
+"  X();\n" +
+"     0  aload_0 [this]\n" +
+"     1  invokespecial java.lang.Object() [8]\n" +
+"     4  new java.lang.Object [3]\n" +
+"     7  invokespecial java.lang.Object() [8]\n" +
+"    10  return\n" +
+"      Line numbers:\n" +
+"        [pc: 0, line: 11]\n" +
+"        [pc: 4, line: 9]\n" +
+"        [pc: 10, line: 12]\n" +
+"      Local variable table:\n" +
+"        [pc: 0, pc: 11] local: this index: 0 type: X\n" +
+"    RuntimeInvisibleTypeAnnotations: \n" +
+"      #16 @NonNull(\n" +
+"        target type = 0x44 NEW\n" +
+"        offset = 4\n" +
+"      )\n" +
+"  \n" +
+"  // Method descriptor #17 (I)V\n" +
+"  // Stack: 1, Locals: 2\n" +
+"  X(int x);\n" +
+"     0  aload_0 [this]\n" +
+"     1  invokespecial java.lang.Object() [8]\n" +
+"     4  new java.lang.Object [3]\n" +
+"     7  invokespecial java.lang.Object() [8]\n" +
+"    10  return\n" +
+"      Line numbers:\n" +
+"        [pc: 0, line: 13]\n" +
+"        [pc: 4, line: 9]\n" +
+"        [pc: 10, line: 14]\n" +
+"      Local variable table:\n" +
+"        [pc: 0, pc: 11] local: this index: 0 type: X\n" +
+"        [pc: 0, pc: 11] local: x index: 1 type: int\n" +
+"    RuntimeInvisibleTypeAnnotations: \n" +
+"      #16 @NonNull(\n" +
+"        target type = 0x44 NEW\n" +
+"        offset = 4\n" +
+"      )\n" +
+"}"
+//----------------
+This shows two problems in code generation:
+(1) Static class initializer code is missing the type annotations attributes.
+(2) Checkcast instruction is not emitted - so the fix for bug 409244 may not
+be fully effective.

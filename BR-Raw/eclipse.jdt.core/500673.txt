@@ -1,0 +1,26 @@
+Bug 500673 – ASTParser.createASTs() throws ClassCastException: BaseTypeBinding cannot be cast to ArrayBinding
+Created attachment 263896 [details]
+Sources
+Latest JDT, but code that generates the bug is really simple.
+I attached two files (in archive), send them to createASTs
+Exception:
+java.lang.ClassCastException: org.eclipse.jdt.internal.compiler.lookup.BaseTypeBinding cannot be cast to org.eclipse.jdt.internal.compiler.lookup.ArrayBinding
+at org.eclipse.jdt.internal.compiler.problem.ProblemReporter.typesAsString(ProblemReporter.java:8072)
+at org.eclipse.jdt.internal.compiler.problem.ProblemReporter.typesAsString(ProblemReporter.java:8035)
+at org.eclipse.jdt.internal.compiler.problem.ProblemReporter.typesAsString(ProblemReporter.java:8032)
+at org.eclipse.jdt.internal.compiler.problem.ProblemReporter.varargsConflict(ProblemReporter.java:9033)
+at org.eclipse.jdt.internal.compiler.lookup.MethodVerifier15.checkForBridgeMethod(MethodVerifier15.java:113)
+at org.eclipse.jdt.internal.compiler.lookup.MethodVerifier.checkAgainstInheritedMethods(MethodVerifier.java:198)
+at org.eclipse.jdt.internal.compiler.lookup.MethodVerifier15.checkAgainstInheritedMethods(MethodVerifier15.java:390)
+at org.eclipse.jdt.internal.compiler.lookup.MethodVerifier15.checkMethods(MethodVerifier15.java:591)
+at org.eclipse.jdt.internal.compiler.lookup.MethodVerifier.verify(MethodVerifier.java:1010)
+at org.eclipse.jdt.internal.compiler.lookup.MethodVerifier15.verify(MethodVerifier15.java:1005)
+at org.eclipse.jdt.internal.compiler.lookup.MethodVerifier.verify(MethodVerifier.java:1019)
+at org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding.verifyMethods(SourceTypeBinding.java:2604)
+at org.eclipse.jdt.internal.compiler.lookup.CompilationUnitScope.verifyMethods(CompilationUnitScope.java:824)
+at org.eclipse.jdt.internal.compiler.Compiler.process(Compiler.java:864)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:1016)
+at org.eclipse.jdt.core.dom.CompilationUnitResolver.resolve(CompilationUnitResolver.java:639)
+at org.eclipse.jdt.core.dom.ASTParser.createASTs(ASTParser.java:993)
+at ru.scanner.Main.main(Main.java:188)
+java.lang.ClassCastException: org.eclipse.jdt.internal.compiler.lookup.BaseTypeBinding cannot be cast to org.eclipse.jdt.internal.compiler.lookup.ArrayBinding

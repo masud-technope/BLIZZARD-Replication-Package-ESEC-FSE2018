@@ -1,0 +1,11 @@
+Bug 72352 – "No completion available" after cast to "String[]"
+I'm using 3.1M1
+In all lines behind this code fragment
+String name = (String) eURLParamNames.nextElement();
+String[] values = (String[]) htURLParams.get(name);
+the code completion fails.
+With
+String name = (String) eURLParamNames.nextElement();
+String[] values = (String) htURLParams.get(name);
+the code completion works.
+It seems to depend on the cast...

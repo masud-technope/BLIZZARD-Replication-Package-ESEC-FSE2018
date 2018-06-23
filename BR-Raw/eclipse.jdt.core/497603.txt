@@ -1,0 +1,5 @@
+Bug 497603 – [compiler][inference] type inference bug
+Created attachment 262999 [details]
+example code
+The attached code does not compile with ECJ in 4.6: "Type mismatch: cannot convert from Iterator<Object> to Iterator<Iterator<String>>"
+However, it compiles fine with javac 1.8.0_92 (and used to compile with ECJ 4.5).

@@ -1,0 +1,8 @@
+49143 – Possible incorrect lazy initialisations
+Incorrect lazy initialization of static field:
+org.apache.catalina.realm.RealmBase.md5Helper
+org.apache.catalina.session.StandardSession.sessionContext
+org.apache.catalina.startup.TldConfig.noTldJars
+org.apache.catalina.util.ExtensionValidator.containerAvailableExtensions
+org.apache.tomcat.util.modeler.modules.MbeansDescriptorsDigesterSource.digester
+fields should probably all be made volatile

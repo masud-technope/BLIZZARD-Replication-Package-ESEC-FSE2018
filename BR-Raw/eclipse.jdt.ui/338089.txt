@@ -1,0 +1,11 @@
+Bug 338089 – [quick fix] "Infer Generic Type Arguments..." shows up twice
+HEAD
+The "Infer Generic Type Arguments..." shows up twice, e.g on class instance creations:
+package xy;
+import java.util.ArrayList;
+import java.util.List;
+public class Try {
+void foo() {
+List<String> var= new ArrayList(); // caret in ArrayList, Ctrl+1
+}
+}

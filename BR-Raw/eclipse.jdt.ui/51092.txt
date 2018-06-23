@@ -1,0 +1,6 @@
+Bug 51092 – [reconciling] JavaMultiPassReconciler removes annotations
+I20040130 + plug-in export
+Open a CU which has errors and warnings.
+Observe: the annotations in overview and annotation ruler are quickly visible
+and then get removed.
+This is caused by JavaMultiPassReconciler.

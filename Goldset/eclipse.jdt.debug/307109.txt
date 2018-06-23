@@ -1,0 +1,2 @@
+org.eclipse.jdt.launching.macosx/macosx/org/eclipse/jdt/internal/launching/macosx/MacOSXLauncherMessages.properties
+org.eclipse.jdt.launching.macosx/macosx/org/eclipse/jdt/internal/launching/macosx/MacOSXVMInstallType.java

@@ -1,0 +1,2 @@
+Bug 199259 – [discovery] ServiceInfo constructors are cumbersome
+From bug 199116, it seems that there needs to be some "smaller" constructors that takes fewer parameters in the ServiceInfo class.

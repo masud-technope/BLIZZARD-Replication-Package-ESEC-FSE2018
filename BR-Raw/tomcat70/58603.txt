@@ -1,0 +1,17 @@
+58603 – RemoteIpFilter does not adjust getRequestURL()
+Created attachment 33272 [details]
+Details for how to reproduce the bug
+When putting an HTTP server behind a forwarder -- such as nginx or Amazon CloudFront -- special HTTP headers are sent -- such as X-Forwarded-Proto and X-Forwarded-For -- to allow the server to reconstruct the URL that the client used for making the request.
+This is important, for example, to construct a meaningful "Location" HTTP response header.
+The purpose of the RemoteIpFilter is to give servlets the impression that they are operating on the original, pre-forwarded request.
+Hence, without changing any line of code, the existing servlets can construct meaningful URL for the client.
+Unfortunately, the wrapped request that RemoteIpFilter produces does not correctly implement getRequestURL().
+In fact, it simply forwards this call to the wrapped request, which contains non-meaningful information about e.g., the HTTP schema [1][2].
+This currently breaks Jetty, which relies on getRequestURL to construct a correct "Location" header [3].
+(See attachment for details on how to reproduce the bug.)
+I'm not sure what the best technical solution would be.
+Should RemoteIpFilter.XForwardedRequest implement its own getRequestURL? I haven't found an implementation for it.
+Could somebody point me to it?
+[1] http://grepcode.com/file/repo1.maven.org/maven2/org.apache.tomcat/tomcat-catalina/8.0.24/org/apache/catalina/filters/RemoteIpFilter.java#444
+[2] http://grepcode.com/file/repo1.maven.org/maven2/org.apache.tomcat/tomcat-servlet-api/8.0.24/javax/servlet/http/HttpServletRequestWrapper.java#212
+[3] http://grepcode.com/file/repo1.maven.org/maven2/org.glassfish.jersey.containers/jersey-container-servlet-core/2.19/org/glassfish/jersey/servlet/ServletContainer.java#253

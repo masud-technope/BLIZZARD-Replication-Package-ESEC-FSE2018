@@ -1,0 +1,34 @@
+Bug 168331 – [1.5][compiler] AbstractMethodError on interface method
+Build ID: I20061214-1445
+Java Version: 6.0
+Eclipse 3.3 M4 introduced a bug in the compiler, which results in an AbstractMethodError at runtime.
+However, the affected code worked before, and the compiler doesn't complain anything at compile time.
+The following code reproduces the error:
+package bugs;
+public class AbstractMethodErrorBug {
+public static interface IListEntry {
+}
+public static interface IExtendedListEntry extends IListEntry {
+}
+public static interface IList {
+IListEntry getEntry(int index);
+}
+public static interface IExtendedList extends IList {
+IExtendedListEntry getEntry(int index);
+}
+public static class ExtendedList implements IExtendedList {
+public IExtendedListEntry getEntry(int index) {
+return null;
+}
+}
+private IList list = new ExtendedList();
+public AbstractMethodErrorBug() {
+}
+public void testAbstractMethodErrorBug() {
+list.getEntry(0); // causes an AbstractMethodError
+System.out.println("Bug has been fixed :-)");
+}
+public static void main(String[] args) {
+new AbstractMethodErrorBug().testAbstractMethodErrorBug();
+}
+}

@@ -1,0 +1,1 @@
+Bug 484244 – Remove unused methods in Activators in PDE

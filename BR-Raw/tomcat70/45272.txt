@@ -1,0 +1,4 @@
+45272 – Version 1 cookie not persisted in IE
+A cookie with value "MIGCBgkrBgEEAYI3WAOgdTBzBgorBgEEAYI3WAMBoGUwYwIDAgABAgJmAwICAMAECN7UUhW1gKdu%0ABBBgywr0Nm%2FxNVdoCHCcNMB2BDiF%2FIwn6i47%2B1H0fKHpkJeDVFhEvyYKke1zTGupImD7r2JOcdo%2F%0A6%2FK85sELQu%2BbOW%2BH9lhDfwdxHA%3D%3D"
+and version 1 is persisted correctly and returned using tomcat 5.5.26 and Firefox but not persisted using tomcat 5.5.26 and IE.
+This issue is not present in 5.5.25.

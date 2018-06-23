@@ -1,0 +1,6 @@
+Bug 333850 – [r-osgi] Remote service is null for second remote reference
+Environment: JmDNS, R-OSGi
+Error occurs on consumer side with a service tracker running, provider side no errors/exceptions.
+Used a filter with service tracker.
+The remote service does still work as it should though.
+[log;+0100 2011.01.10 11:28:12:666;ERROR;org.eclipse.ecf.osgi.services.distribution;org.eclipse.core.runtime.Status[plugin=org.eclipse.ecf.osgi.services.distribution;code=4;message=org.eclipse.ecf.internal.osgi.services.distribution.DiscoveredServiceTrackerImpl:registerRemoteServiceReferences:Remote service is null for remote reference RemoteServiceReference[remoteServiceID=org.eclipse.ecf.remoteservice.RemoteServiceID[containerID=r-osgi://jumper:9279;containerRelativeID=57];ref=RemoteServiceReference{r-osgi://jumper:9279#57-[devsosgi.simulator.ISimulator]}];severity4;exception=null;children=[]]]

@@ -1,0 +1,8 @@
+Bug 209774 – Simplify/generalize discovery API (summary bug)
+Hi,
+for the ECF 2.0 (Ganymede) release we plan on simplifying and generalizing the discovery API.
+The goals in general are:
+- Make it easy for the API consumer
+- The SPI should allow for easier implementation of new providers (SLP, JINI, JXTA, ...)
+- Discovery doesn't have to be network-based anymore (e.g.
+filesystem-based discovery of services)

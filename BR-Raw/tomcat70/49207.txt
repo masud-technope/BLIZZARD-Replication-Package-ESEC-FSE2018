@@ -1,0 +1,12 @@
+49207 – Filter name not set when dynamically added
+When dynamically adding a Filter the name is not set when calling the method "addMappingForUrlPatterns" in ApplicationFilterRegistration.java.
+java.lang.IllegalArgumentException: Filter mapping specifies an unknown
+filter name null
+at
+org.apache.catalina.core.StandardContext.validateFilterMap(StandardContext.java:2650)
+at
+org.apache.catalina.core.StandardContext.addFilterMapBefore(StandardContext.java:2622)
+at
+org.apache.catalina.core.ApplicationFilterRegistration.addMappingForUrlPatterns(ApplicationFilterRegistration.java:102)
+at
+org.pidster.tomcat.test7.dyn.TestDynamicsListener.contextInitialized(TestDynamicsListener.java:105)

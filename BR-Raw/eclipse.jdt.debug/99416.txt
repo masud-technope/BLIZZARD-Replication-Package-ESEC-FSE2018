@@ -1,0 +1,31 @@
+Bug 99416 – Evaluation in context of superclass fails to resolve instvar in subclass
+I20050610-1200
+* Debug to a breakpoint in VectorTest.testCapacity()
+Thread [main] (Suspended (breakpoint at line 48 in VectorTest))
+VectorTest.testCapacity() line: 48
+NativeMethodAccessorImpl.invoke0(Method, Object, Object[]) line: not
+available [native method]
+NativeMethodAccessorImpl.invoke(Object, Object[]) line: 39
+DelegatingMethodAccessorImpl.invoke(Object, Object[]) line: 25
+Method.invoke(Object, Object[]) line: 324
+VectorTest(TestCase).runTest() line: 154
+VectorTest(TestCase).runBare() line: 127
+TestResult$1.protect() line: 106
+TestResult.runProtected(Test, Protectable) line: 124
+TestResult.run(TestCase) line: 109
+VectorTest(TestCase).run(TestResult) line: 118
+TestSuite.runTest(Test, TestResult) line: 208
+TestSuite.run(TestResult) line: 203
+TestRunner.doRun(Test, boolean) line: 116
+TestRunner.doRun(Test) line: 109
+TestRunner.run(Test) line: 72
+VectorTest.main(String[]) line: 32
+* Select a stack frame up the stack in "VectorTest(TestCase).runTest() line:
+154"
+* eval "fEmpty"
+>Evaluation failed.
+Reason(s):
+fEmpty cannot be resolved
+The eval works in the top frame.
+Looks like we're doing the eval in the
+declaring type's source, rather than the receiving type.

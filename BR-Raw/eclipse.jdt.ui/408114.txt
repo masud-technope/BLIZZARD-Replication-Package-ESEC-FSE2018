@@ -1,0 +1,21 @@
+Bug 408114 – [1.8][extract local] Unable to extract local variable within lambda expression's body
+Since a lambda expression is like a method, it should be possible to extract local variables within its body.
+Consider the following example and try to extract a local variable from the lines with comments, we get different error messages:
+@FunctionalInterface
+interface FI {
+int foo(int a);
+}
+public class TestExtractLocalVariable {
+FI fi1= (a) -> a + 10;	// Error
+FI fi2= (int a) -> {
+int b= a + 10; // Error
+return b;
+};
+void bar(FI fi) {
+FI fi1= (a) -> a + 10; // Error, not extracted within lambda body
+FI fi2= (a) -> {
+int b= a + 10; // Works here
+return b;
+};
+}
+}

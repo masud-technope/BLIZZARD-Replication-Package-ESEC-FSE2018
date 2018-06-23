@@ -1,0 +1,9 @@
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDINullValue.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/logicalstructures/JavaStructureErrorValue.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/model/JDIValue.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/debug/core/IJavaValue.java
+org.eclipse.jdt.debug/buildnotes_jdt-debug.html
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/InstanceVariableTests.java
+org.eclipse.jdt.debug.tests/tests/org/eclipse/jdt/debug/tests/core/ArrayTests.java
+org.eclipse.jdt.debug.ui/ui/org/eclipse/jdt/internal/debug/ui/variables/JavaVariableContentProvider.java
+org.eclipse.jdt.debug/model/org/eclipse/jdt/internal/debug/core/logicalstructures/LogicalObjectStructureValue.java

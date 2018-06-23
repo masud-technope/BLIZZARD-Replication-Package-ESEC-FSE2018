@@ -1,0 +1,26 @@
+49530 – Context is not correctly stopped at shutdown
+Created attachment 25669 [details]
+Application that show the behavior
+Apparently a web application context is not correctly stopped when shutting down Tomcat 7.0.0.
+I noticed that the destroy() method of a Servlet that's loaded on startup was not called, and put together a test case (see attached files).
+The test servlet writes to System.out on init() and destroy(), the output on init appears in logs/catalina.out, but no output on destroy.
+From what I  understand of the attached log, the context isn't stopped at all.
+Steps to reproduce:
+1.
+copy attached startupServlet.war to webapps
+2.
+start Tomcat, then "StartTestServlet.init" appears in catalina.out
+3.
+stop Tomcat
+Actual Result:
+no output appears in logs/catalina.out
+Expected Result:
+"StartTestServlet.destroy" appears in catalina.out
+catalina.log shows evidence of context /startupServlet being stopped
+FWIW:
+java -version:
+java version "1.6.0_20"
+Java(TM) SE Runtime Environment (build 1.6.0_20-b02)
+Java HotSpot(TM) 64-Bit Server VM (build 16.3-b01, mixed mode)
+uname -a
+Linux <hostname> 2.6.32-22-generic #36-Ubuntu SMP Thu Jun 3 19:31:57 UTC 2010 x86_64 GNU/Linux

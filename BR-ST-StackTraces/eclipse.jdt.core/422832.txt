@@ -1,0 +1,2 @@
+org.eclipse.jdt.internal.compiler.lookup.BinaryTypeBinding.superInterfaces
+org.eclipse.jdt.internal.compiler.lookup.ParameterizedTypeBinding.superInterfaces

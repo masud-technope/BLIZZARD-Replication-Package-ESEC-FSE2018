@@ -1,0 +1,2 @@
+org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/ast/TypeDeclaration.java
+org.eclipse.jdt.core/buildnotes_jdt-core.html
