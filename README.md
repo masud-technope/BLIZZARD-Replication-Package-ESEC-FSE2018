@@ -10,6 +10,7 @@ Subject Systems (6)
  * eclipse.jdt.ui (1,115)
  * eclipse.pde.ui (872)
  * tomcat70 (1,053)
+
 Total Bug reports: 5,139
 
 
