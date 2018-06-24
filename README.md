@@ -117,7 +117,7 @@ Q.4: How to get Query Effectiveness?
 You can set **-topk** to a big number like **100000** to get all the results, and then simply calculate the QE.
 
 
-Please cite this work as:
+Please cite our work as
 ------------------------------------------
 ```
 @INPROCEEDINGS{fse2018masud, 
