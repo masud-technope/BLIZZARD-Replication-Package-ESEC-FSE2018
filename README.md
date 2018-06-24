@@ -4,17 +4,12 @@
 
 Subject Systems (6):
 --------------------
-ecf (553)
-
-eclipse.jdt.core (989)
-
-eclipse.jdt.debug (557)
-
-eclipse.jdt.ui (1,115)
-
-eclipse.pde.ui (872)
-
-tomcat70 (1,053)
+ * ecf (553)
+ * eclipse.jdt.core (989)
+ * eclipse.jdt.debug (557)
+ * eclipse.jdt.ui (1,115)
+ * eclipse.pde.ui (872)
+ * tomcat70 (1,053)
 ------------------------
 Total Bug reports: 5,139
 
@@ -62,12 +57,12 @@ Available Operations:
 
 Required parameters for the operations:
 ------------------------------------------
-- -task : expects a task to be performed
-- -repo : expects the name of a system.
-- -queryFile: file to store the reformulated queries  
-- -bugIDFile: file containing the bug IDs
-- -topk : expects the number of results to be analyzed.
-- -resultFile: file to store the localization results
+- **-task** : expects a task to be performed
+- **-repo** : expects the name of a system.
+- **-queryFile**: file to store the reformulated queries  
+- **-bugIDFile**: file containing the bug IDs
+- **-topk** : expects the number of results to be analyzed.
+- **-resultFile**: file to store the localization results
 
 
 Q.1: How to install the BLIZZARD tool?
@@ -80,7 +75,10 @@ Q.1: How to install the BLIZZARD tool?
 Q.2: How to get reformulated queries for a system?
 ----------------------------------------------------
 
-```java -jar blizzard-runner.jar -task reformulateQuery -repo ecf -bugIDFile ./sample-input/sample-bugs.txt -queryFile ./sample-input/sample-query.txt```
+```
+java -jar blizzard-runner.jar -task reformulateQuery -repo ecf -bugIDFile ./sample-input/sample-bugs.txt -queryFile ./sample-input/sample-query.txt
+
+```
 
 
 Query File format:
@@ -97,7 +95,10 @@ Q.3: How to collect bug localization results?
 - Ennter the path to query file.
 - Execute this command
 
-```java -jar blizzard-runner.jar -task getResult -repo ecf  -queryFile ./sample-input/sample-query.txt -topk 10 -resultFile ./sample-output/sample-results.txt```
+```
+java -jar blizzard-runner.jar -task getResult -repo ecf  -queryFile ./sample-input/sample-query.txt -topk 10 -resultFile ./sample-output/sample-results.txt
+
+```
 
 The above command collects Top-10 results, and also reports Hit@10, MRR@10, MAP@10  for the queries.
 
