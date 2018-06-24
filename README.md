@@ -111,7 +111,7 @@ You can set -topk to a big number like 100000 to get all the results, and then s
 Please cite this work as:
 ------------------------------------------
 ```
-<pre>
+
 @INPROCEEDINGS{fse2018masud, 
 author={Rahman, M. M. and Roy, C. K.}, 
 booktitle={Proc. ESEC/FSE}, 
@@ -119,7 +119,7 @@ title={Improving IR-Based Bug Localization with Context-Aware Query Reformulatio
 year={2018}, 
 pages={11} 
 }
-</pre>
+
 ```
 
 
