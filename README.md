@@ -2,6 +2,14 @@
 Improving IR-Based Bug Localization with Context-Aware Query Reformulation
 =========================================================================================
 
+Accepted Paper at ESEC/FSE 2018
+---------------------------------------
+```
+Improving IR-Based Bug Localization with Context-Aware Query Reformulation
+
+Mohammad Masudur Rahman and Chanchal K. Roy
+```
+
 Subject Systems (6)
 --------------------
  * ecf (553)
@@ -11,7 +19,7 @@ Subject Systems (6)
  * eclipse.pde.ui (872)
  * tomcat70 (1,053)
 
-Total Bug reports: 5,139
+**Total Bug reports: 5,139**
 
 
 Materials Included
