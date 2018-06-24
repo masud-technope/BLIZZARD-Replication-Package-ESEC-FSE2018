@@ -1,14 +1,19 @@
 
-Improving IR-Based Bug Localization with Context-Aware Query Reformulation
+#Improving IR-Based Bug Localization with Context-Aware Query Reformulation
 =========================================================================================
 
 Subject Systems (6):
 --------------------
 ecf (553)
+
 eclipse.jdt.core (989)
+
 eclipse.jdt.debug (557)
+
 eclipse.jdt.ui (1,115)
+
 eclipse.pde.ui (872)
+
 tomcat70 (1,053)
 ------------------------
 Total Bug reports: 5,139
@@ -56,7 +61,7 @@ Available Operations:
 
 
 Required parameters for the operations:
-======================================
+------------------------------------------
 - -task : expects a task to be performed
 - -repo : expects the name of a system.
 - -queryFile: file to store the reformulated queries  
@@ -81,7 +86,9 @@ Q.2: How to get reformulated queries for a system?
 Query File format:
 --------------------------
 BugID1	Reformulated-query
+
 BugID2	Reformulated-query
+
 BugID3	Reformulated-query
 
 
@@ -99,6 +106,21 @@ Q.4: How to get Query Effectiveness?
 ---------------------------------------------
 
 You can set -topk to a big number like 100000 to get all the results, and then simply calculate the QE.
+
+
+Please cite this work as:
+------------------------------------------
+```
+<pre>
+@INPROCEEDINGS{fse2018masud, 
+author={Rahman, M. M. and Roy, C. K.}, 
+booktitle={Proc. ESEC/FSE}, 
+title={Improving IR-Based Bug Localization with Context-Aware Query Reformulation}, 
+year={2018}, 
+pages={11} 
+}
+</pre>
+```
 
 
 
