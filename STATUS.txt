@@ -1,0 +1,15 @@
+
+
+BADGE: Reusable or Available
+=============================
+
+Rationale:
+============================
+- The provided prototype is functional, and it does two major tasks: (1) reformulates a bug report's content, and (2) localizes the bugs and reports the localization performances. 
+- README provides a careful documentation of all the artifacts included.
+- README provides an overview of what the tool does, and enlists a set of clear instructions to run/execute the tool.
+- All the external dependencies, and associated data including pre-processing tools are provided.
+- The artifacts are made publicly available using a DOI.
+- The tool can be easily employed for validating any future tools on bug localization. 
+- Raw version of our results and queries are provided for the direct verification 
+  of a major section of our published results. 
