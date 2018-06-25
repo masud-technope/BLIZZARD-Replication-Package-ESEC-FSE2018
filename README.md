@@ -11,8 +11,9 @@ Mohammad Masudur Rahman and Chanchal K. Roy
 ```
 
 ```
-BLIZZARD automatically localizes buggy entities from project source using appropriate query reformulation and effective information retrieval. 
-In particular, it determines whether there are excessive program entities or not in a bug report (query), 
+BLIZZARD automatically localizes buggy entities from project source using appropriate 
+query reformulation and effective information retrieval. In particular, it determines whether 
+there are excessive program entities or not in a bug report (query), 
 and then applies appropriate reformulations to the query for bug localization.
 ```
 
@@ -70,7 +71,7 @@ Materials Included
 
 **Licensing & Others**
 - ```LICENSE```
-- ```--STATUS```
+- ```STATUS```
 
 
 Available Operations
