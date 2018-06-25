@@ -3,6 +3,21 @@
 Improving IR-Based Bug Localization with Context-Aware Query Reformulation
 =========================================================================================
 
+Accepted Paper at ESEC/FSE 2018
+===========================================================
+
+Improving IR-Based Bug Localization with Context-Aware Query Reformulation
+
+Mohammad Masudur Rahman and Chanchal K. Roy
+
+
+Overview:
+========================
+BLIZZARD automatically localizes buggy entities from project source using appropriate query reformulation and effective information retrieval. 
+In particular, it determines whether there are excessive program entities or not in a bug report (query), 
+and then applies appropriate reformulations to the query for bug localization.
+
+
 Subject Systems (6):
 ====================
 ecf (553)
