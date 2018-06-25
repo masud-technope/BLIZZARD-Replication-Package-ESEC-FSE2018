@@ -10,6 +10,8 @@ Improving IR-Based Bug Localization with Context-Aware Query Reformulation
 Mohammad Masudur Rahman and Chanchal K. Roy
 ```
 
+[![DOI](https://zenodo.org/badge/138428994.svg)](https://zenodo.org/badge/latestdoi/138428994)
+
 Subject Systems (6)
 --------------------
  * ecf (553)
