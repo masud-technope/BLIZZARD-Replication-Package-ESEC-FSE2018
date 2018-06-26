@@ -79,6 +79,8 @@ Available Operations
 -----------------------
 - Create reformulated query, i.e., ```reformulateQuery```
 - Collect/evaluate localization results, i.e., ```getResult```
+- Show replicated bug localization performances from raw data, i.e., ```getReportedBLPerformance```
+- Show replicated query effectiveness performances from raw data, i.e., ```getReportedQEPerformance```
 
 
 Required parameters for the operations
