@@ -160,7 +160,7 @@ Q.6: How to replicate the Query Effectiveness performances reported in the paper
 java -jar blizzard-runner.jar -task getReportedQEPerformance  -reportKey ST
 ```
 
-This commands shows query improvement, worsening and preserving statistics across all subject systems (as shown in **Table 9**).
+This commands shows query improvement, query worsening and query preserving statistics across all 6 subject systems (as shown in **Table 9**).
 
 
 Please cite our work as
