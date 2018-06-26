@@ -91,6 +91,7 @@ Required parameters for the operations
 - **-bugIDFile**: file containing the bug IDs
 - **-topk** : expects the number of results to be analyzed.
 - **-resultFile**: file to store the localization results
+- **-reportKey**: expects one of the three bug report classes (e.g., ST, PE, NL)
 
 
 Q.1: How to install the BLIZZARD tool?
@@ -149,7 +150,7 @@ Q.5: How to replicate the bug localization performances reported in the paper?
 java -jar blizzard-runner.jar -task getReportedBLPerformance  -topk 10 -reportKey ST
 ```
 
-This command shows Hit@10, MRR@10, MAP@10 for all 6 subject systems, and their mean measures (as shown in ```Table 5```)
+This command shows Hit@10, MRR@10, MAP@10 for all 6 subject systems, and their mean measures (as shown in **Table 5**)
 
 
 Q.6: How to replicate the Query Effectiveness performances reported in the paper?
@@ -159,7 +160,7 @@ Q.6: How to replicate the Query Effectiveness performances reported in the paper
 java -jar blizzard-runner.jar -task getReportedQEPerformance  -reportKey ST
 ```
 
-This commands shows query improvement, worsening and preserving statistics across all subject systems (as shown in ```Table 9```).
+This commands shows query improvement, worsening and preserving statistics across all subject systems (as shown in **Table 9**).
 
 
 Please cite our work as
