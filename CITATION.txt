@@ -1,0 +1,22 @@
+
+Please cite this work as:
+===============================
+
+M. M. Rahman and C.K. Roy, "Improving IR-Based Bug Localization with Context-Aware Query Reformulation", 
+In Proceeding of The 26th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE 2018), 
+pp. 11, Florida, USA, November, 2018 (to appear)
+
+
+or
+
+@INPROCEEDINGS{fse2018masud, 
+author={Rahman, M. M. and Roy, C. K.}, 
+booktitle={Proc. ESEC/FSE}, 
+title={Improving IR-Based Bug Localization with Context-Aware Query Reformulation}, 
+year={2018}, 
+pages={11} 
+}
+
+
+
+

@@ -64,15 +64,17 @@ BLIZZARD Prototype & External Dependencies:
 
 
 Installing, Building and Execution:
---README
---INSTALL
+--README: Tool overview, artifact details and required commands for the tool's execution.
+--INSTALL: System requirements and installation details
 --sample-input: Sample input directory
 --sample-output: Sample output directory
 
 
 Licensing & Others:
---LICENSE
---STATUS
+--LICENSE: Our artifacts are under MIT license
+--STATUS: It shows our requested badge and the rationale.
+--CITATION: It shows how this work should be cited.
+--Screenshots: It contains the screenshots of the available operations
 
 
 Available Operations:
@@ -89,6 +91,7 @@ Required parameters for the operations:
 (4) -bugIDFile: file containing the bug IDs
 (5) -topk : expects the number of results to be analyzed.
 (6) -resultFile: file to store the localization results
+(7) -reportKey: expects one of three bug report classes (e.g., ST, PE, NL)
 
 
 Q.1: How to install the BLIZZARD tool?
@@ -112,28 +115,53 @@ BugID2	Reformulated-query
 BugID3	Reformulated-query
 
 
-Q.3: How to collect bug localization results?
-=================================================
-(1) Ennter the path to query file.
-(2) Execute this command
+Q.3: How to collect Top-K bug localization results?
+===================================================
 
 java -jar blizzard-runner.jar -task getResult -repo ecf  -queryFile ./sample-input/sample-query.txt -topk 10 -resultFile ./sample-output/sample-results.txt
 
 The above command collects Top-10 results and reports Hit@10, MRR@10, MAP@10  for the queries.
 
+If you want to extract all the results rather than Top-K only, you can set -topk to a big number, **100000** to get all the results. 
+This provides the ranking of all source code files for each given query. 
+
 DISCLAIMER: Currently, the tool provides system specific results. 
 Hence, the performances reported at Table 5 (of the paper) can be found by averaging the results from all 6 subject systems.
-The items provided in "BLIZZARD" folder can be directly used to verify the results reported in the paper. You have to choose appropriate bug IDs for that.
-For example, if you want to verify results for BR_ST of ecf, (1) please use the bug-IDs only from "./BLIZZARD/Query/ecf/proposed-ST.txt" to geneate queries, and then (2) execute the queries.
 
 
-Q.4: How to get Query Effectiveness?
-=====================================
+Q.4: How to determine Query Effectiveness (QE) performances?
+===================================================
 
-You can set -topk to a big number like 100000 to get all the results, and then simply calculate the QE.
+You can set **-topk** to a big number, **100000** to get all the results. This provides the ranking of all source code files for each query
+which can be then used to determine the Query Effectiveness (QE).
 
 
+Q.5: How to replicate the bug localization performances reported in the paper?
+========================================================================
 
+java -jar blizzard-runner.jar -task getReportedBLPerformance  -topk 10 -reportKey ST
+
+This command shows Hit@10, MRR@10, MAP@10 for all 6 subject systems, and their mean measures (as shown in Table 5)
+
+
+Q.6: How to replicate the Query Effectiveness performances reported in the paper?
+=========================================================================
+
+java -jar blizzard-runner.jar -task getReportedQEPerformance  -reportKey ST
+
+This commands shows query improvement, worsening and preserving statistics across all subject systems (as shown in Table 9).
+
+
+Please cite our work as
+------------------------------------------
+
+@INPROCEEDINGS{fse2018masud, 
+author={Rahman, M. M. and Roy, C. K.}, 
+booktitle={Proc. ESEC/FSE}, 
+title={Improving IR-Based Bug Localization with Context-Aware Query Reformulation}, 
+year={2018}, 
+pages={11} 
+}
 
 
 
