@@ -171,7 +171,7 @@ author={Rahman, M. M. and Roy, C. K.},
 booktitle={Proc. ESEC/FSE}, 
 title={Improving IR-Based Bug Localization with Context-Aware Query Reformulation}, 
 year={2018}, 
-pages={11} 
+pages={12} 
 }
 ```
 
