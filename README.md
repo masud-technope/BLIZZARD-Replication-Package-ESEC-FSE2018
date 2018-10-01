@@ -178,7 +178,7 @@ pages={12}
 
 Something not working as expected?
 ------------------------------------------------------------------------
-Contact: Masud Rahman (masud.rahman@usask.ca)
+Contact: **Masud Rahman** (masud.rahman@usask.ca)
 
 OR
 
