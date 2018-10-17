@@ -180,8 +180,13 @@ pages={12}
 ```
 
 
-------------------------------
-Contact: Masud Rahman (masud.rahman@usask.ca)
+Something not working as expected?
+------------------------------------------------------------------------
+Contact: **Masud Rahman** (masud.rahman@usask.ca)
+
+OR
+
+Create an issue from [here](https://github.com/masud-technope/BLIZZARD-Replication-Package-ESEC-FSE2018/issues/new)
 
 
 
