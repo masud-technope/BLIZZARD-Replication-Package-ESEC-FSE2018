@@ -19,6 +19,10 @@ and then applies appropriate reformulations to the query for bug localization.
 
 [![DOI](https://zenodo.org/badge/138428994.svg)](https://zenodo.org/badge/latestdoi/138428994)
 
+[![Functional](https://www.acm.org/binaries/content/gallery/acm/publications/replication-badges/artifacts_evaluated_functional_dl.jpg)]
+
+
+
 Subject Systems (6)
 --------------------
  * ecf (553)
