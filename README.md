@@ -175,6 +175,9 @@ year={2018},
 pages={621-632} 
 }
 ```
+**Download this** [<img src="http://homepage.usask.ca/~masud.rahman/img/pdf.png"
+     alt="PDF" heigh="16px" width="16px" />](http://homepage.usask.ca/~masud.rahman/papers/masud-ESECFSE2018.pdf)
+
 ```
 @INPROCEEDINGS{icse2018masud, 
 author={Rahman, M. M. and Roy, C. K.}, 
@@ -184,6 +187,8 @@ year={2018},
 pages={348-349} 
 }
 ```
+**Download this** [<img src="http://homepage.usask.ca/~masud.rahman/img/pdf.png"
+     alt="PDF" heigh="16px" width="16px" />](http://homepage.usask.ca/~masud.rahman/papers/masud-ICSE2018.pdf)
 
 
 Something not working as expected?
