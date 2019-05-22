@@ -9,13 +9,11 @@ Improving IR-Based Bug Localization with Context-Aware Query Reformulation
 
 Mohammad Masudur Rahman and Chanchal K. Roy
 ```
+**Download this paper:**  [<img src="http://homepage.usask.ca/~masud.rahman/img/pdf.png"
+     alt="PDF" heigh="16px" width="16px" />](http://homepage.usask.ca/~masud.rahman/papers/masud-ESECFSE2018.pdf)
 
-```
-BLIZZARD automatically localizes buggy entities from project source using appropriate 
-query reformulation and effective information retrieval. In particular, it determines whether 
-there are excessive program entities or not in a bug report (query), 
-and then applies appropriate reformulations to the query for bug localization.
-```
+**Abstract:** Recent findings suggest that Information Retrieval (IR)-based bug localization techniques do not perform well if the bug report lacks rich structured information (e.g., relevant program entity names). Conversely, excessive structured information (e.g., stack traces) in the bug report might not always help the automated localization either. In this paper, we propose a novel technique--BLIZZARD-- that automatically localizes buggy entities from project source using appropriate query reformulation and effective information retrieval. In particular, our technique determines whether there are excessive program entities or not in a bug report (query), and then applies appropriate reformulations to the query for bug localization. Experiments using 5,139 bug reports show that our technique can localize the buggy source documents with 7%--56% higher Hit@10, 6%--62% higher MAP@10 and 6%--62% higher MRR@10 than the baseline technique. Comparison with the state-of-the-art techniques and their variants report that our technique can improve 19% in MAP@10 and 20% in MRR@10 over the state-of-the-art, and can impro 59% of the noisy queries and 39% of the poor queries.
+
 
 [![DOI](https://zenodo.org/badge/138428994.svg)](https://zenodo.org/badge/latestdoi/138428994)
 
