@@ -1,0 +1,13 @@
+Bug 1055 - check for duplicate ACLs in addACL() and create()
+actual result:
+
+[zk: (CONNECTED) 0] create /test2 'test2' digest:test:test:cdrwa,digest:test:test:cdrwa
+Created /test2
+[zk: (CONNECTED) 1] getAcl /test2
+'digest,'test:test
+: cdrwa
+'digest,'test:test
+: cdrwa
+[zk: (CONNECTED) 2]
+
+but getAcl should only have a single entry.
