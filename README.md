@@ -67,7 +67,7 @@ Materials Included
 
 **BLIZZARD Prototype & External Dependencies**
 - ```blizzard-runner.jar:``` Our proposed tool
-- [**```SOURCE-CODE``` can be cloned from here**](https://github.com/masud-technope/BLIZZARD). Go ahead and extend.
+- **```SOURCE-CODE```** [**BLIZZARD-1.0.0**](https://github.com/masud-technope/BLIZZARD) and [**BLIZZARD-2.0.0**](https://github.com/masud-technope/BLIZZARD-Tool-New). Go ahead and extend.
 - ```data:``` Data folder required for the tool
 - ```models:``` Models required for the tool
 - ```tbdata:``` Data folder required for the tool
