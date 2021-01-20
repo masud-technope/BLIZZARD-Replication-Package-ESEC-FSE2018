@@ -9,15 +9,15 @@ Improving IR-Based Bug Localization with Context-Aware Query Reformulation
 
 Mohammad Masudur Rahman and Chanchal K. Roy
 ```
-**Download this paper:**  [<img src="http://homepage.usask.ca/~masud.rahman/img/pdf.png"
-     alt="PDF" heigh="16px" width="16px" />](http://homepage.usask.ca/~masud.rahman/papers/masud-ESECFSE2018.pdf)
+**Download this paper:**  [<img src="https://web.cs.dal.ca/~masud/img/pdf.png"
+     alt="PDF" heigh="16px" width="16px" />](https://web.cs.dal.ca/~masud/papers/masud-ESECFSE2018.pdf)
      
 ```
 Poster: Improving Bug Localization with Report Quality Dynamics and Query Reformulation
 Mohammad Masudur Rahman and Chanchal K. Roy
 ```
-**Download this paper** [<img src="http://homepage.usask.ca/~masud.rahman/img/pdf.png"
-     alt="PDF" heigh="16px" width="16px" />](http://homepage.usask.ca/~masud.rahman/papers/masud-ICSE2018.pdf)  
+**Download this paper** [<img src="https://web.cs.dal.ca/~masud/img/pdf.png"
+     alt="PDF" heigh="16px" width="16px" />](https://web.cs.dal.ca/~masud/papers/masud-ICSE2018.pdf)  
 
 
 **Abstract:** Recent findings suggest that Information Retrieval (IR)-based bug localization techniques do not perform well if the bug report lacks rich structured information (e.g., relevant program entity names). Conversely, excessive structured information (e.g., stack traces) in the bug report might not always help the automated localization either. In this paper, we propose a novel technique--BLIZZARD-- that automatically localizes buggy entities from project source using appropriate query reformulation and effective information retrieval. In particular, our technique determines whether there are excessive program entities or not in a bug report (query), and then applies appropriate reformulations to the query for bug localization. Experiments using 5,139 bug reports show that our technique can localize the buggy source documents with 7%--56% higher Hit@10, 6%--62% higher MAP@10 and 6%--62% higher MRR@10 than the baseline technique. Comparison with the state-of-the-art techniques and their variants report that our technique can improve 19% in MAP@10 and 20% in MRR@10 over the state-of-the-art, and can impro 59% of the noisy queries and 39% of the poor queries.
@@ -184,8 +184,8 @@ year={2018},
 pages={621-632} 
 }
 ```
-**Download this paper** [<img src="http://homepage.usask.ca/~masud.rahman/img/pdf.png"
-     alt="PDF" heigh="16px" width="16px" />](http://homepage.usask.ca/~masud.rahman/papers/masud-ESECFSE2018.pdf)
+**Download this paper** [<img src="https://web.cs.dal.ca/~masud/img/pdf.png"
+     alt="PDF" heigh="16px" width="16px" />](https://web.cs.dal.ca/~masud/papers/masud-ESECFSE2018.pdf)
 
 ```
 @INPROCEEDINGS{icse2018masud, 
@@ -196,8 +196,8 @@ year={2018},
 pages={348-349} 
 }
 ```
-**Download this paper** [<img src="http://homepage.usask.ca/~masud.rahman/img/pdf.png"
-     alt="PDF" heigh="16px" width="16px" />](http://homepage.usask.ca/~masud.rahman/papers/masud-ICSE2018.pdf)
+**Download this paper** [<img src="https://web.cs.dal.ca/~masud/img/pdf.png"
+     alt="PDF" heigh="16px" width="16px" />](https://web.cs.dal.ca/~masud/papers/masud-ICSE2018.pdf)
 
 
 # Related Projects: [ACER](https://github.com/masud-technope/ACER-Replication-Package-ASE2017), [STRICT](https://github.com/masud-technope/STRICT-Replication-Package), and [QUICKAR](https://github.com/masud-technope/QUICKAR-Replication-Package-ASE2016)
